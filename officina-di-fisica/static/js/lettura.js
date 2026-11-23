@@ -2,10 +2,16 @@
 export function passaggi(kind, blocks = []) {
   const types = blocks.map((block) => block.type);
   const figures = types.flatMap((type, i) => type === 'figure' ? [i] : []);
-  if (kind !== 'example' && kind !== 'worked' && (kind !== 'lesson' || figures.length < 2)) return [];
+  if (!['example', 'worked', 'lesson'].includes(kind)) return [];
 
   const starts = [0];
   if (kind === 'lesson') {
+    if (figures.length < 2) {
+      // Keep formulas and figures with the paragraph that introduces them.
+      for (let i = 1; i < types.length; i++) {
+        if (types[i] === 'text' && types[i - 1] !== 'figure') starts.push(i);
+      }
+    }
     for (const i of figures.slice(1)) {
       // Two paragraphs before a new figure often close one configuration and introduce the next.
       starts.push(types[i - 1] === 'text' && types[i - 2] === 'text' ? i - 1 : i);
@@ -29,7 +35,7 @@ export function passaggi(kind, blocks = []) {
   return starts.length > 1 ? starts.map((from, i) => [from, starts[i + 1] ?? blocks.length]) : [];
 }
 
-export function installaPassaggi(container, record) {
+export function installaPassaggi(container, record, onChange = () => {}) {
   const spans = passaggi(record.kind, record.blocks);
   if (!spans.length) return;
   const copy = container?.querySelector('.copy');
@@ -48,7 +54,7 @@ export function installaPassaggi(container, record) {
         <button type="button" class="lettura-tutto textbtn" aria-controls="testo-dei-passaggi">Mostra tutto</button>
       </div>
     </div>`;
-  container.prepend(tools);
+  copy.before(tools);
   const start = tools.querySelector('.lettura-inizia');
   const bar = tools.querySelector('.lettura-barra');
   const status = tools.querySelector('.lettura-stato');
@@ -63,12 +69,27 @@ export function installaPassaggi(container, record) {
     status.textContent = 'Passaggio ' + (index + 1) + ' di ' + spans.length;
     back.disabled = index === 0;
     next.disabled = index === spans.length - 1;
+    container.dispatchEvent(new Event('lettura:passaggio'));
   }
-  start.addEventListener('click', () => {
+  function setMode(mode, focus = false) {
+    if ((mode === 'steps') === !bar.hidden) return;
+    if (mode === 'continuous') {
+      nodes.forEach((node) => { node.hidden = false; });
+      bar.hidden = true;
+      start.hidden = false;
+      status.textContent = '';
+      container.dispatchEvent(new Event('lettura:passaggio'));
+      if (focus) start.focus({ preventScroll: true });
+      return;
+    }
     start.hidden = true;
     bar.hidden = false;
     show(0);
-    next.focus({ preventScroll: true });
+    if (focus) next.focus({ preventScroll: true });
+  }
+  start.addEventListener('click', () => {
+    setMode('steps', true);
+    onChange('steps');
   });
   back.addEventListener('click', () => {
     show(current - 1);
@@ -79,10 +100,29 @@ export function installaPassaggi(container, record) {
     if (next.disabled) all.focus({ preventScroll: true });
   });
   all.addEventListener('click', () => {
-    nodes.forEach((node) => { node.hidden = false; });
-    bar.hidden = true;
-    start.hidden = false;
-    status.textContent = '';
-    start.focus({ preventScroll: true });
+    setMode('continuous', true);
+    onChange('continuous');
   });
+  return { setMode };
+}
+
+export async function lettorePersonale(container, record) {
+  let reader;
+  try {
+    reader = await import('./preferenze-lettura.js');
+  } catch {
+    if (!container?.isConnected) return;
+    installaPassaggi(container, record);
+    const notice = document.createElement('p');
+    notice.className = 'helper';
+    notice.setAttribute('role', 'status');
+    notice.textContent = 'Le preferenze e l’ascolto sono temporaneamente indisponibili. Puoi continuare a leggere.';
+    container.prepend(notice);
+    return;
+  }
+  if (container?.isConnected) reader.installReader(container, record);
+}
+
+export function segnaleLettori(root, event) {
+  for (const container of root.querySelectorAll('[data-lettore]')) container.dispatchEvent(new Event(event));
 }

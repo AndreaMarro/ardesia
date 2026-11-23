@@ -19,6 +19,7 @@ from . import commerce, editor, learning
 from .domain.catalog_search import search_catalog
 from .application.error_diary import ErrorDiary
 from .adapters.study_repository import SQLiteStudy
+from .adapters import reading_preferences
 from .application.pathways import learning_path
 from .application.formative import attach_formative_variant
 from .editorial.service import editorial_library
@@ -290,7 +291,7 @@ class Handler(BaseHTTPRequestHandler):
         if not post and path == "api/v1/openapi.json":
             return json.loads((CONTRACTS / "openapi.json").read_text())
         if not post and p[:3] == ["api", "v1", "schemas"] and len(p) == 4:
-            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1", "error-diary-v1"}
+            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1", "error-diary-v1", "reading-preferences-v1"}
             name = p[3].removesuffix(".schema.json")
             require(p[3] == name + ".schema.json" and name in names, "Schema assente.", 404)
             return json.loads((CONTRACTS / p[3]).read_text())
@@ -379,6 +380,14 @@ class Handler(BaseHTTPRequestHandler):
         if p[:2] == ["api", "author"]:
             need_author(u)
             return self.author(db, u, p[2:], d, post)
+        if path == "api/v1/me/reading-preferences":
+            need_user(u)
+            if post:
+                scope = self.headers.get("X-Officina-Session", "")
+                require(hmac.compare_digest(scope.encode(), draft_scope(token).encode()),
+                        "Il quaderno è cambiato. Riapri il materiale prima di salvare.", 409)
+                return reading_preferences.update(db, u["id"], d)
+            return reading_preferences.read(db, u["id"])
         if not post and path == "api/v1/catalog/search":
             return search_catalog(published(db), self.query_params())
         if p[:3] == ["api", "v1", "courses"] and p[4:] in (["error-diary"], ["error-diary", "retest"]):
@@ -401,6 +410,7 @@ class Handler(BaseHTTPRequestHandler):
             return {
                 "user": account(db, u),
                 "draftSession": draft_scope(token) if u else None,
+                "readingPreferences": reading_preferences.read(db, u["id"] if u else None),
                 "mode": config(db).get("mode", "verifica"),
                 "courses": [
                     dict(

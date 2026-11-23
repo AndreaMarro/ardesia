@@ -5,6 +5,8 @@ Dalla testata, **Cerca** apre i materiali per argomento o codice, per esempio `C
 In **Il mio studio → Diario degli errori** ritrovi la risposta data, il passaggio da controllare e un caso diverso da provare. Scegli il percorso e il tempo disponibile. La sezione *Tentativi e aiuti* distingue i supporti usati, il successo autonomo su una famiglia diversa e il ripasso a distanza. [Percorso di recupero e verifiche](docs/verifica-prodotto/diario.md)
 
 
+In una lezione o in un esempio, apri **Testo e ascolto** per aumentare la spaziatura, cambiare contrasto, concentrarti sul testo o usare una voce italiana del dispositivo. **Un passaggio alla volta** mantiene formule, figure e collegamenti al banco accanto al paragrafo. Puoi tornare al testo completo in ogni momento. [Preferenze, disponibilità delle voci e verifiche](docs/verifica-prodotto/lettura.md)
+
 I sei percorsi di Andrea Marro per il semestre aperto di Medicina 2026/27. Il quaderno dello studente, il banco autore e il registro dei bonifici condividono una sola installazione. L’edizione si può usare su questo computer senza servizi esterni.
 
 ![Copertina dell’Officina con i percorsi di studio](docs/verifiche/copertina-desktop.png)

@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS reading_preferences (
+    user TEXT PRIMARY KEY NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    preferences TEXT NOT NULL
+);

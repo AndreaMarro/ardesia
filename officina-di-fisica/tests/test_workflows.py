@@ -11,6 +11,7 @@ import http.cookiejar
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
 from copy import deepcopy
 from pathlib import Path
 import secrets
@@ -42,8 +43,8 @@ class Client:
         self.jar = http.cookiejar.CookieJar()
         self.http = request.build_opener(request.HTTPCookieProcessor(self.jar))
 
-    def fetch(self, route, body=None, expected=200):
-        headers = {"Accept": "application/json"}
+    def fetch(self, route, body=None, expected=200, headers=None):
+        headers = {"Accept": "application/json", **(headers or {})}
         binary = None
         if body is not None:
             binary = json.dumps(body).encode()
@@ -119,6 +120,51 @@ class Workflows(unittest.TestCase):
             self.process.terminate()
             self.process.communicate(timeout=10)
             self.process = None
+
+    def test_reader_preferences_sessions_concurrency_and_assessment_isolation(self):
+        endpoint = "/api/v1/me/reading-preferences"
+        first = self.student
+        second = self.client().login()
+        other = self.client().register("altro@example.test")
+        guest = self.client()
+        base = {"focus": False, "density": "standard", "contrast": "paper", "pace": "continuous"}
+        guest.fetch(endpoint, expected=401)
+        guest.fetch(endpoint, {"focus": True}, expected=401)
+        self.assertEqual(first.fetch(endpoint), base)
+        self.assertEqual(guest.fetch("/api/state")["readingPreferences"], base)
+        def header(client):
+            return {"X-Officina-Session": client.fetch("/api/state")["draftSession"]}
+        h1, h2 = header(first), header(second)
+        self.assertNotEqual(h1, h2)
+        def ledger():
+            with closing(sqlite3.connect(self.data / "officina.sqlite3")) as db:
+                return {t: db.execute("SELECT * FROM "+t+" ORDER BY rowid").fetchall()
+                        for t in ("runs", "attempts", "reads", "exposed", "lab_events", "access", "versions")}
+        before = ledger()
+        for invalid in [{}, {"focus": 1}, {"reset": 1}, {"pace": "auto"},
+                        {"density": ["spacious"]}, {"user": "owner"}, {"reset": True, "focus": True}]:
+            first.fetch(endpoint, invalid, 400, h1)
+        first.fetch(endpoint, {"focus": True}, 409)
+        other.fetch(endpoint, {"density": "spacious"}, 409, h1)
+        with ThreadPoolExecutor(2) as pool:
+            pending = [pool.submit(first.fetch, endpoint, {"density": "spacious"}, 200, h1),
+                       pool.submit(second.fetch, endpoint, {"pace": "steps"}, 200, h2)]
+            for result in pending:
+                result.result()
+        expected = {**base, "density": "spacious", "pace": "steps"}
+        self.assertEqual(second.fetch("/api/state")["readingPreferences"], expected)
+        self.assertEqual(first.fetch(endpoint, {"pace": "steps"}, headers=h1), expected)
+        self.assertEqual(other.fetch(endpoint), base)
+        first.fetch("/api/logout", {})
+        first.fetch(endpoint, {"focus": True}, 401, h1)
+        self.stop_server()
+        self.open_server()
+        reopened = self.client().login()
+        self.assertEqual(reopened.fetch(endpoint), expected)
+        self.assertEqual(reopened.fetch(endpoint, {"reset": True}, headers=header(reopened)), base)
+        self.assertEqual(ledger(), before)
+        with closing(sqlite3.connect(self.data / "officina.sqlite3")) as db:
+            self.assertEqual(db.execute("SELECT count(*) FROM reading_preferences").fetchone()[0], 0)
 
     def client(self):
         return Client(self.base)

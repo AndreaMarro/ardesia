@@ -482,6 +482,123 @@
           }
         }
       }
+    },
+    "/v1/me/reading-preferences": {
+      "get": {
+        "summary": "Preferenze dell’account corrente",
+        "responses": {
+          "200": {
+            "description": "Scelte effettive del lettore",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/reading-preferences-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Applica i soli campi inviati o ripristina il profilo",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Officina-Session",
+            "required": true,
+            "description": "Identificatore pubblico draftSession della risposta /state per lo stesso quaderno.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "density": {
+                        "type": "string",
+                        "enum": [
+                          "standard",
+                          "spacious"
+                        ],
+                        "default": "standard"
+                      },
+                      "contrast": {
+                        "type": "string",
+                        "enum": [
+                          "paper",
+                          "high"
+                        ],
+                        "default": "paper"
+                      },
+                      "focus": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "pace": {
+                        "type": "string",
+                        "enum": [
+                          "continuous",
+                          "steps"
+                        ],
+                        "default": "continuous"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "minProperties": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "reset": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "reset"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Scelte effettive del lettore",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/reading-preferences-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
     }
   },
   "components": {

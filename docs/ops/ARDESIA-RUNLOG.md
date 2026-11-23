@@ -1169,3 +1169,11 @@ La ricerca trasversale è nel ramo ufficiale `f31ef847` con tredici job verdi e 
 1. Verificare l’albero del merge con la suite CI, il diario sui dati precedenti e il manifesto del pacchetto.
 2. Sul ramo ufficiale verificato integrare le preferenze di lettura nella lezione canonica. Controllare tastiera, ripresa e isolamento dai voti.
 3. Usare l’inventario per ID per la revisione editoriale e le prove scientifiche. Il collaudo touch fisico e le sessioni con studenti richiedono disponibilità separata.
+
+## 23 novembre 2026 · Lettore di Officina
+
+La base del lettore è il merge del diario `c0cf5478`, con 13 job superati e pacchetto uguale a quello della candidata. Le 56 lezioni e i 117 esempi conservano i blocchi editoriali e offrono passaggi manuali. L’ascolto locale parte su richiesta, la trascrizione usa la formula presente nella pagina. L’espressione appena letta si può confrontare con le misure dello stesso banco. Il collaudo ha individuato una bozza di allenamento che si perdeva al ritorno dal banco e i selettori troppo bassi su WebKit. Il test verifica anche una consegna concorrente e il cambio di utente. [Integrazione del diario](https://github.com/AndreaMarro/ardesia/pull/343#issuecomment-7105498496) · [Contratto e risultati del lettore](../../officina-di-fisica/docs/verifica-prodotto/lettura.md)
+
+1. Verificare su ciascun merge il lettore, la copia del quaderno 1.1.0, le schede sigillate e l’impronta del pacchetto.
+2. Proseguire la revisione editoriale per ID. Distinguere controlli di struttura, calcoli indipendenti e lettura integrale della spiegazione.
+3. Collaudare perdita e ripristino del contesto grafico sul banco canonico. Registrare il lavoro con studenti e la prova touch fisica come verifiche separate.

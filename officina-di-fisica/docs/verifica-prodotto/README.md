@@ -44,3 +44,11 @@ La ricerca usa le edizioni già pubblicate e la stessa inclusione transitiva che
 | axe-core 4.14.1 MPL-2.0, Playwright 1.65.1 Apache-2.0, Lighthouse CI 0.16.1 Apache-2.0 | Riutilizzati axe 4.14.1 e Playwright 1.60.0 dal lockfile. Il budget HTTP di laboratorio è misurato separatamente dai Web Vitals. [axe](https://github.com/dequelabs/axe-core/releases/tag/v4.14.1) · [Playwright](https://github.com/microsoft/playwright/releases/tag/v1.65.1) · [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci/releases/tag/v0.16.1) |
 | Three.js r187 MIT, Ray Optics 5.4.0 Apache-2.0 | Riferimenti per la successiva verifica di geometrie e raggi. La ricerca apre il renderer installato e non carica moduli 3D durante la consultazione dei risultati. [Three.js](https://github.com/mrdoob/three.js/releases/tag/r187) · [Ray Optics](https://github.com/ricktu288/ray-optics/releases/tag/v5.4.0) |
 | ts-fsrs 6.0.1 MIT | Riferimento per il ripasso differito. Calibrare un modello richiede eventi longitudinali e una verifica sui richiami. [FSRS](https://github.com/open-spaced-repetition/ts-fsrs/releases/tag/v6.0.1) |
+
+## Continuità del lettore
+
+| ID | Sorgente e contratto | Dati | Ingresso | Prova |
+| --- | --- | --- | --- | --- |
+| LET | `lettura.js`, `preferenze-lettura.js`, `ascolto.js`, `/v1/me/reading-preferences` | Blocchi dell’edizione pubblicata e preferenze personali nella migrazione 004 | Testo e ascolto nelle lezioni, negli esempi e nelle correzioni formative disponibili | `browser-lettore.mjs` confronta l’ordine delle 173 edizioni, voce, rappresentazioni e ritorno dal banco. `test_workflows.py` controlla concorrenza, isolamento e voti. |
+
+La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto su quel commit con 13 job CI superati e un archivio storico. [Verifica del diario integrato](https://github.com/AndreaMarro/ardesia/pull/343#issuecomment-7105498496) · [Contratto e verifiche del lettore](lettura.md)

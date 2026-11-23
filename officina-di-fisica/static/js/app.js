@@ -36,7 +36,7 @@ import { recoveryCollection, runPage, trainPage } from './practice.js';
 import { ascoltaCambioAccesso, pulisciBozze } from './recupero/bozza.js';
 import { labPage } from './labs.js';
 import { previewOfficina } from './anteprima.js';
-import { installaPassaggi } from './lettura.js';
+import { lettorePersonale, segnaleLettori } from './lettura.js';
 import { installActivities } from './attivita-metodo.js';
 import { metodoContent, sprintContent } from './metodo.js';
 const authorPage = async (parts) => (await import('./editor.js')).authorPage(parts);
@@ -277,7 +277,7 @@ async function material(id, course) {
       $('#preview-result').innerHTML =
         `<h3>${result.correct ? 'Risposta corretta' : 'Rivedi il passaggio'}</h3>${blocks(result.solution)}<p>Risposta · ${esc(answerText(r, result.key))}</p>`;
       typeset();
-      installaPassaggi($('#preview-result'), { kind: 'worked', blocks: result.solution });
+      await lettorePersonale($('#preview-result'), { kind: 'worked', blocks: result.solution });
       el.hidden = true;
     });
     return;
@@ -307,7 +307,7 @@ async function material(id, course) {
     reading.insertAdjacentHTML('beforeend', '<details class="c1-index"><summary>' +
       esc(captions[r.scaffold.strategy]) + '</summary><p>' + esc(r.scaffold.citation) + '</p></details>');
   }
-  installaPassaggi(reading, r);
+  typeset(main);
   if (r.kind === 'example') reading.insertAdjacentHTML('afterend', benchLinks(id));
   on('#read', 'click', async () => {
     await api('/read', { id });
@@ -315,6 +315,7 @@ async function material(id, course) {
     $('#read').textContent = 'Lettura registrata';
   });
   on('#exercise', 'click', () => startRun({ course, skill: r.skill, mode: 'practice' }));
+  await lettorePersonale(reading, r);
 }
 let closePage, returnPage, displayedRoute;
 async function router() {
@@ -323,6 +324,7 @@ async function router() {
     main.focus();
     return;
   }
+  segnaleLettori(main, 'lettura:sospendi');
   const here = location.hash.slice(1);
   if (!ready) await refresh();
   ready = true;
@@ -341,10 +343,13 @@ async function router() {
     } else if (originRoute.startsWith('studio/diario')) {
       source = main.querySelector('[data-diary-origin]') || source;
     }
+    const practice = main.querySelector('form[data-practice-key]');
+    const draft = practice && {session: state.draftSession, key: practice.dataset.practiceKey,
+      value: new FormData(practice).get('value')};
     const card = source?.closest('[data-diario-item]');
     const diary = card && { session: state.draftSession, run: card.dataset.run, index: Number(card.dataset.index),
       link: [...card.querySelectorAll('a')].indexOf(source) };
-    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: fragment ? source : null, diary,
+    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: fragment ? source : null, diary, draft,
       href: source?.getAttribute('href'), user: state.user?.id};
     fragment?.append(...main.childNodes);
   }
@@ -367,6 +372,7 @@ async function router() {
       const prior = returnPage;
       returnPage = undefined;
       main.replaceChildren(prior.fragment);
+      segnaleLettori(main, 'lettura:riprendi');
       main.removeAttribute('aria-busy');
       document.title = (main.querySelector('h1')?.textContent || 'Officina di Fisica') + ' · Andrea Marro';
       if (prior.focus?.isConnected) prior.focus.focus({preventScroll: true});
@@ -394,7 +400,9 @@ async function router() {
     else if (page === 'acquisto') await checkout(parts[0]);
     else if (page === 'allenamento') await trainPage(parts[0]);
     else if (page === 'prova') {
-      const run = await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]));
+      const draft = restore && returnPage.draft;
+      if (draft) await refresh();
+      const run = await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]), draft);
       closePage = run.dispose;
       focusOnArrival = run.focus;
     }
@@ -461,11 +469,13 @@ document.querySelector('.skip').addEventListener('click', (e) => {
   main.scrollIntoView();
 });
 window.addEventListener('hashchange', schedule);
+window.addEventListener('pagehide', () => segnaleLettori(main, 'lettura:sospendi'));
 let leavingSession = false;
 function privateActivity(route = '') {
-  return /^(?:prova\/|studio\/diario(?:\/|$))/.test(route.replace(/^#/, ''));
+  return /^(?:materiale\/|prova\/|studio\/diario(?:\/|$))/.test(route.replace(/^#/, ''));
 }
 function changedSession() {
+  segnaleLettori(main, 'lettura:sospendi');
   pulisciBozze();
   ready = false;
   if (!leavingSession && (privateActivity(location.hash) || privateActivity(returnPage?.route))) {
