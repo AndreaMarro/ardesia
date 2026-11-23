@@ -109,7 +109,43 @@ async function fallbackAndSession(browser, base) {
     await p.goto(base+'/#prova/'+(await exam.json()).id);
     await p.locator('.question-shell').waitFor();
     assert.equal(await p.locator('[data-lettore], .feedback, [data-transcript]').count(),0);
-    return ['ospite', 'voce remota e tardiva', 'cambio passaggio e navigazione', 'mappe assenti e ripresa', 'logout in seconda scheda', 'esame sigillato'];
+    await p.reload();
+    const practice = async key => {
+      await p.goto(base+'/#materiale/'+key+'/C1');
+      await p.locator('#single').click();
+      await p.locator('form[data-practice-key]').waitFor();
+      return (await p.url()).split('#prova/')[1].split('/')[0];
+    };
+    const leave = async () => {
+      await p.locator('.question-shell a[href^="#banco/"]').first().click();
+      await p.locator('[data-predict]').waitFor();
+    };
+    const back = () => p.getByRole('link',{name:'Torna all’attività'}).click();
+    await practice('C1-Q049');
+    await p.locator('#response input[type=radio]').first().check();
+    await leave(); await back();
+    await p.locator('form[data-practice-key]').waitFor();
+    assert.ok(await p.locator('#response input[type=radio]').first().isChecked());
+    const run = await practice('C1-Q034');
+    await p.locator('#response input').fill('37');
+    await leave(); await back();
+    await p.locator('form[data-practice-key]').waitFor();
+    assert.equal(await p.locator('#response input').inputValue(),'37');
+    await leave();
+    assert.ok((await ctx.request.post(base+'/api/run/'+run,{data:{action:'answer',idx:0,value:'19'},headers})).ok());
+    await back();
+    await p.locator('.feedback').waitFor();
+    assert.equal(await p.locator('#response input').inputValue(),'19');
+    assert.equal(await p.locator('[data-practice-key]').count(),0);
+    await practice('C1-Q034');
+    await p.locator('#response input').fill('41');
+    await leave();
+    await ctx.request.post(base+'/api/logout',{data:{},headers});
+    await ctx.request.post(base+'/api/demo',{data:{},headers});
+    await back();
+    await p.locator('#retry').waitFor();
+    assert.equal(await p.locator('#response input').count(),0);
+    return ['ritorno dal banco con scelta e numero', 'invio concorrente e cambio sessione', 'ospite', 'voce remota e tardiva', 'cambio passaggio e navigazione', 'mappe assenti e ripresa', 'logout in seconda scheda', 'esame sigillato'];
   } finally { await ctx.close(); }
 }
 
@@ -196,15 +232,22 @@ async function journey(engine, base, width, height, scale) {
     assert.deepEqual(assets,['/vendor/sre-4.1.5/mathmaps/base.json','/vendor/sre-4.1.5/mathmaps/it.json','/vendor/sre-4.1.5/sre.js']);
     assert.ok(requests.every(url=>new URL(url).origin===base));
     await audit('trascrizione');
-    const voiceInfo = await page.evaluate(()=> (window.speechSynthesis?.getVoices() || []).filter(v=>v.localService&&/^it(?:[-_]|$)/i.test(v.lang)).map(v=>v.name));
-    if (voiceInfo.length) {
+    // The OS can populate voices when the foreground tab changes. Read the rendered state atomically.
+    await choice.press('Enter'); await choice.press('Enter');
+    await page.waitForFunction(() => document.querySelector('.lettore-opzioni').open &&
+      !!document.querySelector('[data-voice]').textContent);
+    const voiceInfo = await page.evaluate(()=>({
+      available: !document.querySelector('[data-play]').disabled,
+      note: document.querySelector('[data-voice]').textContent,
+      names: (window.speechSynthesis?.getVoices() || []).filter(v=>v.localService&&/^it(?:[-_]|$)/i.test(v.lang)).map(v=>v.name),
+    }));
+    if (voiceInfo.available) {
       await page.getByRole('button',{name:'Ascolta il testo visibile'}).click();
       await page.getByRole('button',{name:'Ferma l’ascolto'}).waitFor();
       await page.getByRole('button',{name:'Ferma l’ascolto'}).press('Enter');
       await page.waitForFunction(()=>document.activeElement.hasAttribute('data-play'));
     } else {
-      assert.ok(await page.getByRole('button',{name:'Ascolta il testo visibile'}).isDisabled());
-      assert.match(await page.locator('[data-voice]').innerText(),/voce italiana locale/);
+      assert.match(voiceInfo.note,/voce italiana locale/);
     }
     await page.clock.install();
     await page.getByRole('button',{name:'Avvia un timer di 5 minuti'}).click();
@@ -233,7 +276,7 @@ async function journey(engine, base, width, height, scale) {
     const all = engine===chromium && width===1440 ? await allEditions(page,base) : undefined;
     const failures = engine===chromium && width===1440 ? await fallbackAndSession(browser,base) : undefined;
     assert.deepEqual(errors,[]);
-    reports.push({name,width,height,scale,openMs,audits,localVoices:voiceInfo.length,rules,assets,all,failures});
+    reports.push({name,width,height,scale,openMs,audits,localVoices:voiceInfo.names.length,nativePlayStop:voiceInfo.available,rules,assets,all,failures});
   } catch (error) {
     console.error(name,page?.url(),await page?.locator('[data-message]').allTextContents());
     throw error;

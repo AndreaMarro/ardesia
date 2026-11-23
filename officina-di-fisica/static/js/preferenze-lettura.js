@@ -143,6 +143,7 @@ export function installReader(container, record) {
   for (const el of inputs) el.addEventListener('change', () => save({[el.name]:el.type === 'checkbox' ? el.checked : el.value}));
   get('[data-reset]').onclick = () => save({reset:true});
   play.onclick = () => {
+    voices();
     const pending = speech.play(copy);
     if (!stop.hidden) stop.focus({preventScroll:true});
     return pending;
@@ -186,7 +187,12 @@ export function installReader(container, record) {
   container.addEventListener('lettura:passaggio', () => { stopAudio(); closeTranscript(); });
   function observeVoices() {
     synth?.removeEventListener('voiceschanged', voices);
-    if (panel.open && !suspended) { voices(); synth?.addEventListener('voiceschanged', voices); }
+    window.removeEventListener('focus', voices);
+    if (panel.open && !suspended) {
+      voices();
+      synth?.addEventListener('voiceschanged', voices);
+      window.addEventListener('focus', voices);
+    }
   }
   const enclosing = container.closest('details');
   enclosing?.addEventListener('toggle', () => { if (!enclosing.open) stopAudio(); });

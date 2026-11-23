@@ -342,10 +342,13 @@ async function router() {
     } else if (originRoute.startsWith('studio/diario')) {
       source = main.querySelector('[data-diary-origin]') || source;
     }
+    const practice = main.querySelector('form[data-practice-key]');
+    const draft = practice && {session: state.draftSession, key: practice.dataset.practiceKey,
+      value: new FormData(practice).get('value')};
     const card = source?.closest('[data-diario-item]');
     const diary = card && { session: state.draftSession, run: card.dataset.run, index: Number(card.dataset.index),
       link: [...card.querySelectorAll('a')].indexOf(source) };
-    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: fragment ? source : null, diary,
+    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: fragment ? source : null, diary, draft,
       href: source?.getAttribute('href'), user: state.user?.id};
     fragment?.append(...main.childNodes);
   }
@@ -396,7 +399,9 @@ async function router() {
     else if (page === 'acquisto') await checkout(parts[0]);
     else if (page === 'allenamento') await trainPage(parts[0]);
     else if (page === 'prova') {
-      const run = await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]));
+      const draft = restore && returnPage.draft;
+      if (draft) await refresh();
+      const run = await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]), draft);
       closePage = run.dispose;
       focusOnArrival = run.focus;
     }

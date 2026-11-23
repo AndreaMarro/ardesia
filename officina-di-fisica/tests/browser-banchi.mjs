@@ -472,7 +472,7 @@ try {
   await assertShown(p.locator('[data-bench="LAB3D-04"]'));
   await p.getByRole('link', { name: 'Torna all’attività' }).click();
   assert.equal(await p.locator('[name=scenario]').inputValue(), 'C2-Q062');
-  assert.equal(await p.locator('#scheda-recupero details').getAttribute('open'), '');
+  assert.ok(await p.locator('#scheda-recupero').getByText('Segui lo svolgimento', { exact:true }).evaluate(el => el.closest('details').open));
   await desktop.ctx.close();
   assert.deepEqual(errors, []);
   assert.deepEqual(external, []);
