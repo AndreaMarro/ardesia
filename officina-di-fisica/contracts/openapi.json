@@ -348,6 +348,140 @@
           }
         }
       }
+    },
+    "/v1/courses/{course}/error-diary": {
+      "get": {
+        "summary": "Riapre gli errori del titolare nelle edizioni corrispondenti",
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 99999
+            }
+          },
+          {
+            "name": "minutes",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                5,
+                15
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pagina degli errori autorizzati",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas/error-diary-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
+    },
+    "/v1/courses/{course}/error-diary/retest": {
+      "post": {
+        "summary": "Avvia un caso di famiglia diversa per un errore autorizzato",
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Astra-Request",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "const": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "run",
+                  "index",
+                  "requestId"
+                ],
+                "properties": {
+                  "run": {
+                    "type": "string"
+                  },
+                  "index": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "requestId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tentativo aperto o già creato dalla stessa richiesta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
     }
   },
   "components": {

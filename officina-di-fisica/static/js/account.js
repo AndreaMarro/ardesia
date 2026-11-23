@@ -53,7 +53,7 @@ export async function study() {
   main.innerHTML =
     studioCrumb() +
     head('Il mio studio', state.user.email) +
-    `<div class="actions">${state.user.role === 'autore' ? link('Banco autore', 'autore', true) : ''}${button('Aggiorna il quaderno', 'update-studio')}${button('Esci', 'logout')}</div><div class="split"><div><h2>Il tuo quaderno</h2>${s.recommendations.length ? `<section class="sheetpanel"><h3>Da dove riprendere</h3>${s.recommendations.map((r, i) => `<div class="order"><b>${esc(r.title)}</b><p>${esc(r.reason)}</p><div class="actions">${r.target ? link(r.targetKind === 'lab' ? 'Osserva il laboratorio' : 'Rivedi la spiegazione', (r.targetKind === 'lab' ? 'lab/' : 'materiale/') + r.target) : ''}${button('Prova una nuova situazione', 'advice-' + i)}</div></div>`).join('')}</section>` : ''}${
+    `<div class="actions">${state.user.role === 'autore' ? link('Banco autore', 'autore', true) : ''}${link('Diario degli errori', 'studio/diario')}${button('Aggiorna il quaderno', 'update-studio')}${button('Esci', 'logout')}</div><div class="split"><div><h2>Il tuo quaderno</h2>${s.recommendations.length ? `<section class="sheetpanel"><h3>Da dove riprendere</h3>${s.recommendations.map((r, i) => `<div class="order"><b>${esc(r.title)}</b><p>${esc(r.reason)}</p><div class="actions">${r.target ? link(r.targetKind === 'lab' ? 'Osserva il laboratorio' : 'Rivedi la spiegazione', (r.targetKind === 'lab' ? 'lab/' : 'materiale/') + r.target) : ''}${button('Prova una nuova situazione', 'advice-' + i)}</div></div>`).join('')}</section>` : ''}${
       recent.length
         ? `<section class="sheetpanel"><h3>Attività da riprendere</h3>${recent
             .slice(0, 5)

@@ -220,7 +220,7 @@ async function coursePage(id, tab = 'parti', activityId) {
     const courses = [...(c.includes || []), id];
     body = `<div class="big-list"><h2>Fascicoli per lo studio</h2>${!data.owned ? gate(id) : ''}${courses.map((cid) => `<div class="order"><h3>${esc(titleOf(cid))}</h3><div class="actions">${(cid === 'C6' ? ['dispensa', 'esercizi', 'simulazioni'] : ['dispensa', 'esercizi']).map((b) => (data.owned ? `<a class="button" href="/download/${esc(cid)}/${b}" download>↓ ${{ dispensa: 'Dispensa', esercizi: 'Esercizi con soluzioni', simulazioni: 'Simulazioni' }[b]}</a>` : `<span class="small">${{ dispensa: 'Dispensa', esercizi: 'Eserciziario', simulazioni: 'Simulazioni' }[b]}</span>`)).join('')}</div></div>`).join('')}</div>`;
   } else if (tab === 'recupero') {
-    body = data.owned ? '<section id="raccolta-errori" class="big-list"></section>' : gate(id);
+    body = data.owned ? '<div class="actions">' + link('Diario dei miei errori', 'studio/diario/' + id, true) + '</div><section id="raccolta-errori" class="big-list"></section>' : gate(id);
   } else if (tab === 'attivita') {
     body = `<div class="split"><div><h2>Verifica il tuo lavoro</h2><p class="deck">Allenamento con feedback, verifiche con correzione alla consegna.</p><div class="actions">${link('Apri le attività', 'allenamento/' + id, true)}</div></div><div><h3>Laboratori del percorso</h3>${listLine('Simulazioni 3D delle lezioni', 'laboratori/' + id)}${data.items.filter(r=>r.kind==='bench').map(r=>listLine(r.title,'banco/'+r.id+'/'+encodeURIComponent(location.hash.slice(1)),r.summary)).join('')}${data.items
       .filter((r) => r.kind === 'lab')
@@ -332,13 +332,19 @@ async function router() {
   closePage = undefined;
   let focusOnArrival;
   if (page === 'banco' && parts[1] && parts[1] === originRoute &&
-      /^(?:materiale|corso|prova|lab|laboratori|percorsi)(?:\/|$)/.test(originRoute)) {
+      /^(?:materiale|corso|prova|lab|laboratori|percorsi|studio\/diario)(?:\/|$)/.test(originRoute)) {
     // Reauthorize private runs on return. Other lesson pages can reuse their reading position and DOM.
-    const fragment = /^(?:prova|percorsi)\//.test(originRoute) ? null : document.createDocumentFragment();
-    const source = originRoute.startsWith('percorsi/')
-      ? [...main.querySelectorAll('[data-result]')].find(a => a.dataset.result === parts[0])
-      : document.activeElement;
-    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: source,
+    const fragment = /^(?:prova\/|percorsi\/|studio\/diario(?:\/|$))/.test(originRoute) ? null : document.createDocumentFragment();
+    let source = document.activeElement;
+    if (originRoute.startsWith('percorsi/')) {
+      source = [...main.querySelectorAll('[data-result]')].find(a => a.dataset.result === parts[0]);
+    } else if (originRoute.startsWith('studio/diario')) {
+      source = main.querySelector('[data-diary-origin]') || source;
+    }
+    const card = source?.closest('[data-diario-item]');
+    const diary = card && { session: state.draftSession, run: card.dataset.run, index: Number(card.dataset.index),
+      link: [...card.querySelectorAll('a')].indexOf(source) };
+    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: fragment ? source : null, diary,
       href: source?.getAttribute('href'), user: state.user?.id};
     fragment?.append(...main.childNodes);
   }
@@ -378,6 +384,11 @@ async function router() {
     else if (page === 'banco') closePage = await (await import('./banchi/banco.js')).benchPage(...parts);
     else if (page === 'lab') await labPage(...parts);
     else if (page === 'fonti') sources();
+    else if (page === 'studio' && parts[0] === 'diario') {
+      if (restore && returnPage.diary)
+        history.replaceState({ ...history.state, diary: returnPage.diary }, '');
+      focusOnArrival = await (await import('./diario.js')).diaryPage(...parts.slice(1));
+    }
     else if (page === 'studio') await study();
     else if (page === 'accedi') await login(parts);
     else if (page === 'acquisto') await checkout(parts[0]);
@@ -412,7 +423,13 @@ async function router() {
   if (restore && returnPage) {
     const prior = returnPage;
     returnPage = undefined;
-    const origin = prior.href && [...main.querySelectorAll('a')].find(a => a.getAttribute('href') === prior.href);
+    const links = prior.diary ? main.querySelectorAll('.diary-entry[open] a') : main.querySelectorAll('a');
+    const exact = prior.diary && links[prior.diary.link];
+    const origin = exact?.getAttribute('href') === prior.href ? exact : [...links].find(a => a.getAttribute('href') === prior.href);
+    if (origin && here.startsWith('studio/diario')) {
+      for (let details = origin.closest('details'); details; details = details.parentElement?.closest('details'))
+        details.open = true;
+    }
     (origin || focusOnArrival || main).focus({preventScroll: true});
     window.scrollTo({top: prior.scroll, behavior: 'instant'});
   } else if (focusOnArrival) {
@@ -445,10 +462,13 @@ document.querySelector('.skip').addEventListener('click', (e) => {
 });
 window.addEventListener('hashchange', schedule);
 let leavingSession = false;
+function privateActivity(route = '') {
+  return /^(?:prova\/|studio\/diario(?:\/|$))/.test(route.replace(/^#/, ''));
+}
 function changedSession() {
   pulisciBozze();
   ready = false;
-  if (!leavingSession && (location.hash.startsWith('#prova/') || returnPage?.route.startsWith('prova/'))) {
+  if (!leavingSession && (privateActivity(location.hash) || privateActivity(returnPage?.route))) {
     leavingSession = true;
     main.replaceChildren();
     location.reload();
@@ -456,7 +476,7 @@ function changedSession() {
 }
 ascoltaCambioAccesso(changedSession);
 document.addEventListener('visibilitychange', async () => {
-  if (document.hidden || !ready || !location.hash.startsWith('#prova/')) return;
+  if (document.hidden || !ready || !privateActivity(location.hash)) return;
   // A background tab can miss both origin messages while suspended.
   try {
     const fresh = await api('/state');
@@ -464,6 +484,6 @@ document.addEventListener('visibilitychange', async () => {
   } catch { /* A transient connection failure leaves the current draft available. */ }
 });
 window.addEventListener('pageshow', event => {
-  if (event.persisted && location.hash.startsWith('#prova/')) location.reload();
+  if (event.persisted && privateActivity(location.hash)) location.reload();
 });
 schedule();

@@ -71,8 +71,10 @@ jobs:
           xvfb-run -a npm run test:accessibility
           xvfb-run -a node tests/browser-recupero-campo.mjs
           xvfb-run -a node tests/browser-catalogo.mjs
+          xvfb-run -a node tests/browser-diario.mjs
           python3 tools/misura_percorso.py > var/arch/browser/carico.json
           python3 tools/misura_catalogo.py > var/arch/browser/catalogo/prestazioni.json
+          python3 tools/misura_diario.py > var/arch/browser/diario/prestazioni.json
       - name: Distribuzione riproducibile e riapertura da ZIP
         run: |
           mkdir -p var/release

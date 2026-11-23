@@ -23,6 +23,18 @@ class SQLiteStudy:
     def attempts(self, uid):
         return self.db.execute("SELECT * FROM attempts WHERE user=? ORDER BY stamp,rowid", (uid,))
 
+    def diary_attempts(self, uid):
+        return self.db.execute("""
+            SELECT a.rowid AS seq, a.run, a.idx, a.id, a.v, a.skill, a.family,
+                   a.correct, a.aided, a.stamp, r.course AS run_course, r.mode
+            FROM attempts a JOIN runs r ON r.id=a.run AND r.user=a.user
+            WHERE a.user=? AND (r.mode NOT IN ('exam','mid','final','diagnosis') OR r.finished IS NOT NULL)
+            ORDER BY a.stamp,a.rowid
+        """, (uid,))
+
+    def exposures(self, uid):
+        return {(r[0], r[1]) for r in self.db.execute("SELECT id,v FROM exposed WHERE user=?", (uid,))}
+
     def seen(self, uid):
         return {r[0] for r in self.db.execute("SELECT DISTINCT id FROM attempts WHERE user=?", (uid,))}
 
