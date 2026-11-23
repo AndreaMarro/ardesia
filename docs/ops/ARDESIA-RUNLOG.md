@@ -1185,3 +1185,9 @@ La base ufficiale `250673b6` contiene il nuovo lettore. Una prova reale in C4 ha
 1. Sul commit integrato ripetere il percorso della normale orientata, l’archivio 1.1.0 e il confronto fra pacchetti. La verifica terminale richiede anche la CI post-merge.
 2. Riprodurre la perdita e il ripristino del contesto 3D su un banco attivo e sulla tavola manuale. Il gesto di rientro deve conservare posizione temporale, controlli, misure e preferenza di vista.
 3. Proseguire le revisioni editoriali per identificativo negli altri cinque corsi. La comprensione con studenti e il collaudo touch fisico restano prove distinte.
+
+### 23 novembre 2026 · Officina, continuità della misura
+
+Sul merge C4 `d2c9e0a6` è stato riprodotto un ritorno della GPU ignorato dall’app. La ripresa conserva camera, tempo e misura A. Una scelta esplicita di tavola resta valida. La sorgente `efef256b` corregge anche i segmenti a lunghezza nulla e i tappi sovrapposti nella lente. Chromium e WebKit hanno verificato il ritorno effettivo di immagine e letture su quattro profili. La griglia scientifica confronta 181 voci e 1.199 stati. Gli hash delle letture coincidono a parità di versione Node. Un primo confronto tra runtime diversi differiva nell’ultima cifra di alcune potenze. [Contratto e prove](../../officina-di-fisica/docs/verifica-prodotto/continuita-banchi.md) · [C4 verificato sul merge](https://github.com/AndreaMarro/ardesia/pull/345#issuecomment-7108434480)
+
+Priorità successive: riconciliare il pacchetto sulla SHA effettiva, applicare le altre decisioni editoriali per ID preservando i tentativi, provare con studenti la rappresentazione del verso e dei campi nulli e completare il collaudo touch fisico quando disponibile.

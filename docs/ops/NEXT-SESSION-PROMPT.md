@@ -60,3 +60,7 @@ Partire dal ramo ufficiale e verificare l’effettiva integrazione dell’increm
 ## Officina · Edizione C4 e banchi
 
 Il codice dell’edizione C4 discende dal lettore integrato `250673b6`. Prima di proseguire riconciliare commit effettivo, CI post-merge e pacchetto. Per il confronto aprire C4-Q091 e il primo problema di LAB3D-07. La geometria e il recupero del contesto richiedono un incremento separato, con baseline reale per WebGL e tavola. Gli altri corsi conservano la loro revisione da svolgere per ID. [Contratto, prove per SHA e limiti](../../officina-di-fisica/docs/verifica-prodotto/edizione-c4.md)
+
+### Officina · 23 novembre 2026, continuità dei banchi
+
+Riconciliare base, PR e merge con GitHub. La revisione C4 ha verbale post-merge e ZIP identici sulla `d2c9e0a6`. Il banco recupera il contesto sulla sorgente `efef256b` con controprove di immagine, scelte manuali e letture. Proseguire con il registro editoriale degli altri corsi, la correzione delle voci motivate e la verifica dei collegamenti contestuali. Le prove con utenti e telefono fisico rimangono separate. [Contratto](../../officina-di-fisica/docs/verifica-prodotto/continuita-banchi.md)

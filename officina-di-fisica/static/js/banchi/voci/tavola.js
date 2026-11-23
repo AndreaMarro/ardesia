@@ -7,15 +7,15 @@ const pt = (p) =>
   proj(p)
     .map((v) => v.toFixed(2))
     .join(',');
-function labelLayer(labels) {
+function labelLayer(labels, fontSize) {
   const placed = [],
     leaders = [],
     texts = [];
   for (const { x, y, name, color } of labels) {
-    const half = Math.min(221, 4 + 3.5 * [...name].length);
-    const pos = posizionaEtichetta(x, y - 4, half * 2, 13, 460, 215, placed);
+    const half = Math.min(221, 4 + fontSize * 0.30 * [...name].length);
+    const pos = posizionaEtichetta(x, y - 4, half * 2, fontSize + 2, 460, 215, placed);
     const cx = pos.x,
-      cy = pos.y + 4;
+      cy = pos.y + fontSize / 3;
     if (Math.hypot(cx - x, cy - y) > 9)
       leaders.push(
         '<line x1="' +
@@ -37,14 +37,14 @@ function labelLayer(labels) {
         cy +
         '" text-anchor="middle" fill="' +
         color +
-        '" style="paint-order:stroke;stroke:#fbf7e9;stroke-width:3px;font:600 12px sans-serif">' +
+        '" style="paint-order:stroke;stroke:#fbf7e9;stroke-width:3px;font:600 ' + fontSize + 'px sans-serif">' +
         esc(name) +
         '</text>',
     );
   }
   return leaders.join('') + texts.join('');
 }
-export function disegna2D(elementi, title, className = 'bench-diagram') {
+export function disegna2D(elementi, title, className = 'bench-diagram', visibleWidth = 460) {
   const shapes = [],
     labels = [];
   const poly = (pts, c, opacity = 1) =>
@@ -179,7 +179,7 @@ export function disegna2D(elementi, title, className = 'bench-diagram') {
     esc(title) +
     '</title>' +
     shapes.join('') +
-    labelLayer(labels) +
+    labelLayer(labels, Math.max(12, Math.ceil(12 * 460 / visibleWidth))) +
     '</svg>'
   );
 }
