@@ -214,6 +214,11 @@ export const ondulatoria = {
       A = s.ampiezza;
     const val = (u) => A * Math.sin(phase - 2 * Math.PI * cyc * u),
       origin = 1.28;
+    if (A === 0) {
+      b.line([[-2.6, origin, 0], [2.73, origin, 0]], c.metallo);
+      b.label([0, origin + 0.5, 0], 'E = 0 · B = 0');
+      return;
+    }
     b.line(
       punti(111, (i) => [-2.56 + (5.12 * i) / 110, origin + val(i / 110), 0]),
       c.viola,
@@ -374,7 +379,7 @@ export const ondulatoria = {
       const u = i / 12,
         v = (i + 1) / 12;
       const r = (t) => 0.89 * Math.sqrt(Math.max(0, 1 - (2 * t - 1) ** 2));
-      b.rod([-0.115 + 0.23 * u, y, 0], [-0.115 + 0.23 * v, y, 0], r(u), c.acqua, 0.26, r(v));
+      b.rod([-0.115 + 0.23 * u, y, 0], [-0.115 + 0.23 * v, y, 0], r(u), c.acqua, 0.26, r(v), true);
     }
     for (const k of [-1, 1]) b.ball([k * f, y, 0], 0.055, c.viola);
     b.label([f, y - 0.27, 0], 'F′', c.viola);

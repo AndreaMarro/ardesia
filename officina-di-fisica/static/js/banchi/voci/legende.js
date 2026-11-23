@@ -50,7 +50,7 @@ export const legende = {
   onde2: 'S₁ e S₂ · sorgenti coerenti. P · sonda. Asta ocra · ampiezza locale',
   sorgente: 'La sonda viola intercetta una porzione del fronte proveniente dalla sorgente',
   doppler: 'Sorgente ocra · fronti emessi · ricevitore o riflettore',
-  em: 'Viola · campo E. Verde · campo B. La freccia scura indica la propagazione',
+  em: 'Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.',
   assorbitore: 'Lastra viola · assorbitore. Il fascio conserva la sezione e cambia intensità',
   fotone: 'Onda viola · fotone incidente. Verde · elettrone del bersaglio',
   nucleo: 'Rosso · protone. Verde nel nucleo · neutrone',

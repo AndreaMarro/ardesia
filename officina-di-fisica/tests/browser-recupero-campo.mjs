@@ -212,7 +212,11 @@ async function journey(browser, base, { name, width, height, noGL = false }) {
       await canvas.press('ArrowRight');
       await canvas.press('Home');
       assert.equal(await clock.inputValue(), '11', 'Ruotare la vista conserva il tempo');
-      await canvas.evaluate((c) => c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext());
+      await canvas.evaluate(c => {
+        const ext = c.getContext('webgl2').getExtension('WEBGL_lose_context');
+        c.resumeProbe = () => ext.restoreContext();
+        ext.loseContext();
+      });
       await bank.locator('[data-pista-piana] svg').waitFor();
       assert.equal(
         await clock.evaluate((el) => el === document.activeElement),
@@ -223,7 +227,12 @@ async function journey(browser, base, { name, width, height, noGL = false }) {
         await bank.locator('[data-pista-piana] svg').getAttribute('aria-label'),
         /−2 m al secondo 11/,
       );
+      await canvas.evaluate(c => c.resumeProbe());
+      await canvas.waitFor({state:'visible'});
+      assert.match(await canvas.getAttribute('aria-label'), /−2 m al secondo 11/);
+      assert.ok(await clock.evaluate(el => el === document.activeElement));
       report.contextLoss = true;
+      report.contextRestored = true;
     }
     await bank.getByRole('button', { name: 'Tabella', exact: true }).click();
     await page.reload();

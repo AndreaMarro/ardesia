@@ -50,6 +50,7 @@ export function montaPista(root, model, initialTime, returnToClock) {
   const axis = scala(model);
   let time = initialTime,
     gpu = null,
+    in3D = false,
     closed = false;
   function elements(t) {
     const sample = model.at(t),
@@ -68,15 +69,15 @@ export function montaPista(root, model, initialTime, returnToClock) {
     time = t;
     const point = model.at(t);
     const label = 'Carrello a ' + firma(point.x) + ' m al secondo ' + t + '.';
-    if (gpu) {
+    if (in3D) {
       canvas.setAttribute('aria-label', label + ' Frecce per ruotare, Home per ripristinare la vista.');
       gpu.frame(t);
     } else flat.innerHTML = pistaPiana(axis, model, point, label);
   }
   function flatView() {
     const hadFocus = document.activeElement === canvas;
-    gpu?.dispose();
-    gpu = null;
+    in3D = false;
+    gpu?.visible(false);
     canvas.hidden = true;
     flat.hidden = false;
     desc.textContent =
@@ -85,6 +86,18 @@ export function montaPista(root, model, initialTime, returnToClock) {
       ' m. Le frecce seguono l’andata e il ritorno.';
     draw(time);
     if (hadFocus) returnToClock();
+  }
+  function show3D() {
+    if (closed || !root.isConnected) return;
+    in3D = true;
+    canvas.hidden = false;
+    flat.hidden = true;
+    gpu.visible(true);
+    desc.textContent =
+      'Pista in 3D. Ogni tacca vale ' +
+      (axis.marks[1].value - axis.min) +
+      ' m. Usa le frecce sulla pista per ruotarla.';
+    draw(time);
   }
   flatView();
   async function start3D() {
@@ -100,18 +113,15 @@ export function montaPista(root, model, initialTime, returnToClock) {
         { width: 7.5, height: 3.15, target: [0, 0.45, 0], eye: [2, 3.5, 9] },
         flatView,
         gl,
+        show3D,
       );
       gpu.gestures(false);
       gpu.rebuild((tools) => scenaMobile(tools, elements));
-      gpu.visible(true);
-      flat.hidden = true;
-      desc.textContent =
-        'Pista in 3D. Ogni tacca vale ' +
-        (axis.marks[1].value - axis.min) +
-        ' m. Usa le frecce sulla pista per ruotarla.';
-      draw(time);
+      show3D();
     } catch {
-      if (!gpu) gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      if (gpu) gpu.dispose();
+      else gl?.getExtension('WEBGL_lose_context')?.loseContext();
+      gpu = null;
       if (!closed) flatView();
     }
   }

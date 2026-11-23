@@ -263,7 +263,7 @@ export function diagram(model, d, v) {
 function renderClassic(r, c, saved, owned, related, fields) {
   return crumb([['Simulazioni 3D','laboratori'],[r.title]]) +
     `<article class="bench-room classic-room"><header class="bench-head"><div><div class="meta">Laboratorio guidato · ${esc(r.course)}</div><h1>${esc(r.title)}</h1><p>${esc(titleOf(r.course))}</p></div><img src="/identita/cric-al-banco.svg" alt="Cric" width="82" height="68"></header>
-    ${related}${sequenza()}<div class="bench-work"><section class="bench-instrument" aria-label="Banco di misura"><div class="bench-strip"><span data-display>Tavola di misura</span><button data-focus aria-pressed="false">⛶ Concentrazione</button></div><figure class="labfigure" id="lab-view"></figure><div class="meters" id="meters"></div></section>
+    ${related}${sequenza()}<div class="bench-work"><section class="bench-instrument" aria-label="Banco di misura"><div class="bench-strip"><span data-display>Tavola di misura</span><button data-focus aria-pressed="false">Concentrazione</button></div><figure class="labfigure" id="lab-view"></figure><div class="meters" id="meters"></div></section>
     <aside class="bench-desk"><div data-classic="0"><h2>La tua previsione</h2><label class="field">${esc(r.prediction)}<textarea id="prediction" rows="3">${esc(saved.prediction||'')}</textarea></label></div>
     <div data-classic="1" hidden><h2>Osserva il banco</h2>${vignetta('osserva')}<p>${esc(r.observation)}</p></div>
     <div data-classic="2" hidden><h2>Regola il banco</h2>${fields}${button('Ripristina parametri','reset')}</div>

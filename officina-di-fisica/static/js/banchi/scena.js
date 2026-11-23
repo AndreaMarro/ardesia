@@ -43,12 +43,12 @@ function instruments(root) {
   function ball(p, r, color, group, opacity) {
     return mesh(new T.SphereGeometry(r, 24, 16), color, p, group, opacity);
   }
-  function rod(a, b, r, color, group, opacity = 1, endRadius = r) {
+  function rod(a, b, r, color, group, opacity = 1, endRadius = r, openEnded = false) {
     const start = v(a),
       end = v(b),
       axis = end.clone().sub(start);
     const obj = mesh(
-      new T.CylinderGeometry(endRadius, r, Math.max(0.0001, axis.length()), 32),
+      new T.CylinderGeometry(endRadius, r, Math.max(0.0001, axis.length()), 32, 1, openEnded),
       color,
       start.lerp(end, 0.5).toArray(),
       group,
@@ -165,7 +165,7 @@ function release(group, palette) {
   for (const collection of [textures, materials, geometries]) for (const r of collection) r.dispose();
   group.clear();
 }
-export function openScene(canvas, spec, onLoss, context) {
+export function openScene(canvas, spec, onLoss, context, onRestore) {
   const renderer = new T.WebGLRenderer({
     canvas,
     context,
@@ -173,13 +173,13 @@ export function openScene(canvas, spec, onLoss, context) {
     alpha: false,
     powerPreference: 'low-power',
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   const scene = new T.Scene();
   scene.background = new T.Color(spec.bg || 0xf0efdf);
   const camera = new T.OrthographicCamera(-4, 4, 2, -2, 0.05, 100);
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = false;
-  controls.enablePan = false;
+  controls.cursor.fromArray(spec.target);
+  controls.maxTargetRadius = Math.min(spec.width, spec.height) / 4;
   controls.minZoom = 0.65;
   controls.maxZoom = 3;
   controls.maxPolarAngle = Math.PI * 0.93;
@@ -198,13 +198,15 @@ export function openScene(canvas, spec, onLoss, context) {
     currentTime = 0,
     shown = false,
     closed = false,
+    lost = false,
+    bufferRatio = 0,
     view = 'orbit';
   let labels = [],
     cssWidth = 0,
     cssHeight = 0;
   const projected = new T.Vector3();
   function render() {
-    if (!shown || closed || !canvas.isConnected || document.hidden || !cssHeight) return;
+    if (!shown || closed || lost || !canvas.isConnected || document.hidden || !cssHeight) return;
     const pixels = (cssHeight * camera.zoom) / (camera.top - camera.bottom);
     const occupied = [];
     camera.updateMatrixWorld();
@@ -228,10 +230,14 @@ export function openScene(canvas, spec, onLoss, context) {
   function resize() {
     const width = canvas.clientWidth,
       height = canvas.clientHeight;
-    if (!width || !height) return;
+    if (lost || closed || !width || !height) return;
+    // Budget the instrument itself in device pixels, including in concentration mode.
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(1_000_000 / (width * height)));
+    if (width === cssWidth && height === cssHeight && ratio === bufferRatio) return;
     cssWidth = width;
     cssHeight = height;
-    renderer.setSize(width, height, false);
+    bufferRatio = ratio;
+    renderer.setDrawingBufferSize(width, height, ratio);
     const aspect = width / height,
       span = Math.max(spec.height, spec.width / aspect);
     camera.left = (-span * aspect) / 2;
@@ -264,8 +270,20 @@ export function openScene(canvas, spec, onLoss, context) {
     if (['+', '=', '-', 'Home', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key))
       e.preventDefault();
     else return;
-    if (e.key === 'Home') return setView();
+    if (e.key === 'Home') return setView(view);
     if (['+', '=', '-'].includes(e.key)) return zoom(e.key === '-' ? 1 / 1.15 : 1.15);
+    if (e.shiftKey) {
+      camera.updateMatrixWorld();
+      const horizontal = e.key === 'ArrowLeft' || e.key === 'ArrowRight';
+      const sign = e.key === 'ArrowLeft' || e.key === 'ArrowDown' ? -1 : 1;
+      const distance = (camera.top - camera.bottom) * 0.06 / camera.zoom;
+      const delta = new T.Vector3().setFromMatrixColumn(camera.matrixWorld, horizontal ? 0 : 1)
+        .multiplyScalar(sign * distance);
+      camera.position.add(delta);
+      controls.target.add(delta);
+      controls.update();
+      return;
+    }
     const offset = camera.position.clone().sub(controls.target),
       s = new T.Spherical().setFromVector3(offset);
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') s.theta += (e.key === 'ArrowLeft' ? -1 : 1) * 0.12;
@@ -277,12 +295,22 @@ export function openScene(canvas, spec, onLoss, context) {
   }
   function loss(e) {
     e.preventDefault();
-    if (!closed) onLoss();
+    if (closed || lost) return;
+    lost = true;
+    onLoss();
+  }
+  function restore() {
+    if (closed || !lost) return;
+    // Three registers its own restore listener during construction and rebuilds its GL state first.
+    lost = false;
+    bufferRatio = 0;
+    onRestore?.();
   }
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
   canvas.addEventListener('keydown', keydown);
   canvas.addEventListener('webglcontextlost', loss);
+  canvas.addEventListener('webglcontextrestored', restore);
   controls.addEventListener('change', render);
   setView();
   resize();
@@ -303,7 +331,10 @@ export function openScene(canvas, spec, onLoss, context) {
     },
     visible(value) {
       shown = value;
-      if (value) render();
+      if (value) {
+        resize();
+        render();
+      }
     },
     view: setView,
     gestures(enabled) {
@@ -319,9 +350,10 @@ export function openScene(canvas, spec, onLoss, context) {
       controls.dispose();
       canvas.removeEventListener('keydown', keydown);
       canvas.removeEventListener('webglcontextlost', loss);
+      canvas.removeEventListener('webglcontextrestored', restore);
       release(root, palette);
       renderer.dispose();
-      renderer.forceContextLoss();
+      if (!lost) renderer.forceContextLoss();
     },
   };
 }

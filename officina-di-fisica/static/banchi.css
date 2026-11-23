@@ -14,6 +14,7 @@
 .bench-strip { display: flex; align-items: center; justify-content: space-between; gap: .5rem; color: #374338; background: #edf0e4; padding: .25rem .8rem; border-bottom: 1px solid #ced1bf; }
 .bench-strip [data-display] { font: 620 .75rem var(--mono); }
 .bench-strip [data-display]::before { content: ''; display: inline-block; width: .5rem; height: .5rem; background: #47744b; border-radius: 50%; margin-right: .45rem; }
+.bench-strip [data-interrotto]::before { background: #885a17; }
 .bench-strip button, .bench-views button { font: 640 .82rem var(--sans); min-height: 36px; padding: .25rem .65rem; border-color: transparent; background: transparent; }
 .bench-strip button:hover, .bench-views button:hover { color: var(--violet-dark); background: #eee9f3; }
 .bench-stage { height: clamp(330px, 45vh, 620px); position: relative; background: #efece2; overflow: hidden; }
@@ -36,6 +37,7 @@
 .bench-time { padding: .55rem .9rem .18rem; border-top: 1px solid #ccc7b8; background: #fffdf7; }
 .time-line { display: flex; align-items: center; gap: .8rem; }
 .time-line [data-play] { min-width: 5rem; background: var(--violet-dark); color: white; border: 0; }
+.time-line [data-play]:hover:enabled { background: var(--ink); color: white; }
 .time-slide { flex: 1; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: center; font: 620 .82rem var(--sans); }
 .time-slide output { font: .8rem var(--mono); }
 .bench-room input[type=range], .lab-focus-dialog input[type=range] { accent-color: var(--violet); width: 100%; min-height: 26px; padding: 0; grid-column: 1/-1; margin: 0; }

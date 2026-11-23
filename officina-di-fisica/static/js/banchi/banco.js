@@ -93,8 +93,8 @@ function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
     <header class="bench-head"><div><div class="meta">${esc(kind)} · ${esc((areas[r.course] || state.courses.find(c => c.id === r.course)?.title || r.course))}</div><h1>${esc(r.title)}</h1><p>${esc(focus?.question || r.summary)}</p></div><img src="/identita/cric-al-banco.svg" width="90" height="76" alt="Cric"></header>
     ${sequenza()}<div class="bench-work">
     <section class="bench-instrument" aria-label="Strumento di osservazione">
-      <div class="bench-strip"><span data-display>Preparazione della vista…</span><button type="button" data-focus aria-pressed="false">⛶ Concentrazione</button></div>
-      <div class="bench-stage"><canvas tabindex="0" aria-label="${esc(r.title)}. Frecce per ruotare, più e meno per lo zoom, Home per la vista iniziale."></canvas><div data-drawing hidden></div></div>
+      <div class="bench-strip"><span data-display role="status">Preparazione della vista…</span><button type="button" data-focus aria-pressed="false">Concentrazione</button></div>
+      <div class="bench-stage"><canvas tabindex="0" aria-label="${esc(r.title)}. Frecce per ruotare, Maiusc e frecce per spostare, più e meno per lo zoom, Home per raddrizzare la vista scelta."></canvas><div data-drawing hidden></div></div>
       <p class="scene-caption" data-caption hidden></p><p class="bench-warning" role="status" hidden></p>
       ${barraTempo()}
       <div class="bench-views" role="group" aria-label="Inquadratura"><button data-view="orbit">Obliqua</button><button data-view="top">Alto</button><button data-view="side">Laterale</button>${pilot === 'onde' ? '<button data-view="section">Sezione</button>' : ''}<button data-view="diagram">Tavola 2D</button><button data-touch hidden aria-pressed="false">Ruota col dito</button><button data-reset-view aria-label="Ripristina vista">↺ Ripristina vista</button></div>
@@ -184,11 +184,14 @@ export async function benchPage(id, origin, topicIndex) {
     world,
     drawing,
     view = 'orbit',
+    desiredView = 'orbit',
+    viewRequest = 0,
     available = false,
     choice;
   const media = matchMedia('(prefers-reduced-motion: reduce)'),
     graphBox = get('[data-graphs]'),
     diagram = get('[data-drawing]');
+  let diagramWidth = 460;
   const active = () => inViewport && !document.hidden && root.isConnected && !disposed;
   const duration = () => (clock ? clock.duration(s.x, s.y) : s.duration);
   const clockInput = timeline && get('[name=x]');
@@ -335,6 +338,15 @@ export async function benchPage(id, origin, topicIndex) {
     visibility();
   });
   observer.observe(stageBox);
+  const diagramSize = activity && !pilot ? new ResizeObserver(([entry]) => {
+    const { width, height } = entry.contentRect;
+    const padding = parseFloat(getComputedStyle(root).fontSize);
+    const usable = Math.min(width - padding, (height - padding) * 460 / 215);
+    if (usable <= 0 || usable === diagramWidth) return;
+    diagramWidth = usable;
+    if (!disposed && view === 'diagram') frame();
+  }) : null;
+  diagramSize?.observe(stageBox);
   document.addEventListener('visibilitychange', visibility);
   function motion() {
     if (media.matches) stop();
@@ -373,7 +385,7 @@ export async function benchPage(id, origin, topicIndex) {
   }
   get('[data-reference]').ontoggle = references;
   function draw() {
-    if (view !== 'diagram' && gpu) gpu.rebuild(world.build, p, s, sceneLevel());
+    if (available && view !== 'diagram') gpu.rebuild(world.build, p, s, sceneLevel());
     get('[data-legend]').textContent =
       pilot === 'induzione'
         ? 'Viola · campo imposto / n · normale positiva / rosso · corrente nel circuito chiuso'
@@ -446,26 +458,39 @@ export async function benchPage(id, origin, topicIndex) {
     }
     frame();
   }
-  async function setView(next) {
+  function chooseView(next) {
+    desiredView = next;
+    return showView(true);
+  }
+  async function showView(resetCamera = false) {
+    const request = ++viewRequest;
+    const next = available ? desiredView : 'diagram';
     if (next === 'diagram' && !drawing) {
       if (activity && !pilot) {
         const { disegna2D } = await import('./voci/tavola.js');
         drawing = (_, p, s, t, step, title) =>
-          disegna2D(activity.elements(s.x, step, step >= 0 ? t : undefined), title);
+          disegna2D(activity.elements(s.x, step, step >= 0 ? t : undefined), title, 'bench-diagram', diagramWidth);
       } else drawing = (await import('./tavola.js')).drawing;
-      if (disposed) return;
     }
-    if (next !== 'diagram' && !available) return;
+    if (disposed || !root.isConnected || request !== viewRequest) return;
     view = next;
     const flat = next === 'diagram';
     canvas.hidden = flat;
     diagram.hidden = !flat;
-    get('[data-display]').textContent = flat ? 'Tavola di misura' : '3D interattivo';
+    const temporary = flat && !available && (gpu || startingContext);
+    const display = flat
+      ? temporary ? 'Tavola di misura · 3D interrotto' : 'Tavola di misura'
+      : '3D interattivo';
+    const status = get('[data-display]');
+    status.toggleAttribute('data-interrotto', Boolean(temporary));
+    if (status.textContent !== display) status.textContent = display;
     get('[data-help]').textContent = flat
       ? available
         ? 'Schema del banco nel piano di misura.'
-        : 'WebGL non disponibile. La tavola segue gli stessi parametri e calcoli.'
-      : 'Trascina per ruotare. Usa due dita o la rotella per ingrandire.';
+        : temporary && desiredView !== 'diagram'
+          ? 'Puoi continuare a misurare. La vista 3D riprenderà appena disponibile. Scegli «Tavola 2D» per restare qui.'
+          : 'WebGL non disponibile. La tavola segue gli stessi parametri e calcoli.'
+      : 'Trascina per ruotare, usa il tasto destro per spostare la vista e la rotella per lo zoom. Da tastiera usa le frecce, Maiusc e frecce, oppure + e −.';
     root.querySelectorAll('[data-view]').forEach((btn) => {
       btn.disabled = !available && btn.dataset.view !== 'diagram';
       btn.setAttribute('aria-pressed', String(btn.dataset.view === view));
@@ -478,14 +503,39 @@ export async function benchPage(id, origin, topicIndex) {
     if (!flat) gpu.gestures(touchEnabled);
     if (!flat && touch)
       get('[data-help]').textContent =
-        'Attiva «Ruota col dito» per ruotare e ingrandire con due dita. «Scorri la pagina» restituisce lo scorrimento verticale.';
-    if (!flat) gpu.view(next);
+        'Attiva «Ruota col dito». Un dito ruota la vista, due dita la spostano o la ingrandiscono. Scegli «Scorri la pagina» per scorrere di nuovo.';
+    if (!flat && resetCamera) gpu.view(next);
     visibility();
     draw();
   }
+  function lostContext(event) {
+    event?.preventDefault();
+    if (disposed) return;
+    const focused = document.activeElement;
+    const viewControl = root.contains(focused) && focused?.matches(
+      '[data-view]:not([data-view=diagram]), [data-reset-view], [data-touch]',
+    );
+    if (focused === canvas || viewControl)
+      get('[data-view=diagram]').focus({ preventScroll: true });
+    available = false;
+    showView();
+  }
+  function restoredContext() {
+    if (disposed) return;
+    available = true;
+    showView();
+  }
+  // The lazy imports can still be pending when the browser loses its first context.
+  function restoreDuringLoad() {
+    if (startingContext) initialize3D();
+  }
+  function finishLoading() {
+    canvas.removeEventListener('webglcontextlost', lostContext);
+    canvas.removeEventListener('webglcontextrestored', restoreDuringLoad);
+  }
   async function initialize3D() {
     try {
-      startingContext = canvas.getContext('webgl2', {
+      startingContext ??= canvas.getContext('webgl2', {
         antialias: true,
         alpha: false,
         powerPreference: 'low-power',
@@ -497,30 +547,22 @@ export async function benchPage(id, origin, topicIndex) {
           ? import('./scene/' + pilot + '.js')
           : activity?.scene || import('./scene/' + r.model + '.js'),
       ]);
-      if (disposed) return;
+      if (disposed || gpu || !startingContext || startingContext.isContextLost()) return;
       world = scene;
-      gpu = renderer.openScene(
-        canvas,
-        scene.spec,
-        () => {
-          available = false;
-          gpu?.dispose();
-          gpu = null;
-          setView('diagram');
-        },
-        startingContext,
-      );
+      gpu = renderer.openScene(canvas, scene.spec, lostContext, startingContext, restoredContext);
+      finishLoading();
       startingContext = null;
       available = true;
-      setView('orbit');
+      showView(true);
     } catch (error) {
       if (disposed) return;
+      finishLoading();
       startingContext?.getExtension('WEBGL_lose_context')?.loseContext();
       startingContext = null;
       gpu?.dispose();
       gpu = null;
       available = false;
-      setView('diagram');
+      showView();
     }
   }
   function goStep(next) {
@@ -587,8 +629,8 @@ export async function benchPage(id, origin, topicIndex) {
     get('[data-touch]').textContent = touchEnabled ? 'Scorri la pagina' : 'Ruota col dito';
     get('[data-touch]').setAttribute('aria-pressed', String(touchEnabled));
   };
-  get('[data-reset-view]').onclick = () => setView('orbit');
-  root.querySelectorAll('[data-view]').forEach((btn) => (btn.onclick = () => setView(btn.dataset.view)));
+  get('[data-reset-view]').onclick = () => chooseView('orbit');
+  root.querySelectorAll('[data-view]').forEach((btn) => (btn.onclick = () => chooseView(btn.dataset.view)));
   get('.bench-params').oninput = (e) => {
     const el = e.target,
       def = model.params.find((a) => a.key === el.name);
@@ -685,10 +727,12 @@ export async function benchPage(id, origin, topicIndex) {
     if (disposed) return;
     disposed = true;
     leaveFocus();
+    finishLoading();
     startingContext?.getExtension('WEBGL_lose_context')?.loseContext();
     startingContext = null;
     cancelAnimationFrame(raf);
     observer.disconnect();
+    diagramSize?.disconnect();
     media.removeEventListener('change', motion);
     document.removeEventListener('visibilitychange', visibility);
     window.removeEventListener('pagehide', dispose);
@@ -696,6 +740,8 @@ export async function benchPage(id, origin, topicIndex) {
   }
   window.addEventListener('pagehide', dispose);
   segnaMomento(root, 0, true);
+  canvas.addEventListener('webglcontextlost', lostContext);
+  canvas.addEventListener('webglcontextrestored', restoreDuringLoad);
   initialize3D();
   return dispose;
 }

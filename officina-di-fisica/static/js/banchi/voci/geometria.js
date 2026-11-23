@@ -19,8 +19,23 @@ export function tavolo(stage) {
     elementi,
     box: (p, size, c, alpha = 1) => add('box', { p, size, c, alpha }),
     ball: (p, r, c, alpha = 1) => add('ball', { p, r, c, alpha }),
-    rod: (a, b, r, c, alpha = 1, r2 = r) => add('rod', { a, b, r, c, alpha, r2 }),
-    line: (points, c, dash = false) => add('line', { points, c, dash }),
+    rod: (a, b, r, c, alpha = 1, r2 = r, openEnded = false) => add('rod', { a, b, r, c, alpha, r2, openEnded }),
+    line(points, c, dash = false) {
+      let cleaned;
+      let last = points[0];
+      for (let i = 1; i < points.length; i++) {
+        const point = points[i];
+        const dx = point[0] - last[0], dy = point[1] - last[1], dz = point[2] - last[2];
+        if (dx * dx + dy * dy + dz * dz < 1e-18) {
+          cleaned ??= points.slice(0, i);
+        } else {
+          cleaned?.push(point);
+          last = point;
+        }
+      }
+      const path = cleaned ?? points;
+      if (path.length > 1) add('line', { points: path, c, dash });
+    },
     arrow: (a, b, c) => {
       if (stage >= 0 && Math.hypot(...b.map((v, i) => v - a[i])) > 0.015) add('arrow', { a, b, c });
     },
@@ -53,7 +68,7 @@ export function disegna3D(utensili, elementi) {
         b.ball(e.p, e.r, e.c, undefined, e.alpha);
         break;
       case 'rod':
-        b.rod(e.a, e.b, e.r, e.c, undefined, e.alpha, e.r2);
+        b.rod(e.a, e.b, e.r, e.c, undefined, e.alpha, e.r2, e.openEnded);
         break;
       case 'line':
         b.line(e.points, e.c, undefined, e.dash);
@@ -82,7 +97,7 @@ export function scenaMobile(b, sample) {
     if (length) mesh.quaternion.setFromUnitVectors(up, direction.divideScalar(length));
   }
   function unitRod(e, ratio, group) {
-    return b.rod([0, -0.5, 0], [0, 0.5, 0], 1, e.c, group, e.alpha ?? 1, ratio);
+    return b.rod([0, -0.5, 0], [0, 0.5, 0], 1, e.c, group, e.alpha ?? 1, ratio, e.openEnded);
   }
   function make(e, ratio) {
     switch (e.kind) {
@@ -177,7 +192,7 @@ export function scenaMobile(b, sample) {
           ? 'label/' + e.text + '/' + e.c
           : e.kind === 'line'
             ? 'line/' + e.points.length + '/' + e.dash
-            : e.kind + '/' + ratio;
+            : e.kind + '/' + ratio + (e.openEnded ? '/open' : '');
       if (!pools.has(key)) pools.set(key, { nodes: [], used: 0 });
       const pool = pools.get(key);
       const node = pool.nodes[pool.used] ?? (pool.nodes[pool.used] = make(e, ratio));
