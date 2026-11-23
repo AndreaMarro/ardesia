@@ -1153,3 +1153,11 @@ Per la sola valutazione successiva, in ordine di priorità e quando saranno disp
 1. Far ripercorrere al docente il passaggio da 5 a 7 s e concordare la rubrica su risposta e spiegazione. Prova attesa: revisione datata della variante e dell’indizio.
 2. Con un dispositivo fisico disponibile, ripetere errore, pausa, ritorno alla pista e correzione con touch e tecnologia assistiva abituale. Registrare dispositivo, esito del focus e leggibilità del segno.
 3. Con partecipanti volontari, osservare ripresa, spiegazione del verso e trasferimento a sette giorni. Pubblicare solo risultati aggregati secondo il protocollo.
+
+## 23 novembre 2026 · Ricerca nei percorsi di Fisica
+
+Il contratto `039e91ac` precede il codice `9b79eb29`. Gli ID di studio pubblicati ricercabili sono 898, con 93 quesiti d’esame custoditi negli stessi fascicoli. Le controprove includono una modifica e un ritiro editoriali, la riapertura dello storico e la navigazione reale fino agli otto tipi di materiale. Il browser WebKit ha evidenziato select da 24 px risolte impostando e misurando un’altezza di 44 px. La proiezione sui metadati riutilizza la pubblicazione canonica e riduce l’esposizione rispetto al riuso del motore editoriale riservato. Gli esiti di CI e integrazione sono associati alla SHA nella PR. [Matrice e prove](../../officina-di-fisica/docs/verifica-prodotto/ricerca.md)
+
+1. **Recupero operativo.** Partire da un errore storico e dalle famiglie già osservate. Dipendenza: tentativo autorizzato e versione del quesito. Prova: attività diversa, autonoma e ripresa differita sullo stesso quaderno.
+2. **Fruizione personalizzabile.** Riaprire la stessa lezione dopo aver scelto ritmo e rappresentazione. Dipendenza: preferenze esplicite del lettore. Prova: stessa posizione, tastiera e alternativa testuale in entrambi i browser.
+3. **Validazione con persone.** Quando saranno disponibili partecipanti e telefono, osservare ricerca per argomento, ritorno dopo un’interruzione e comprensione del recupero. Registrare per edizione le osservazioni aggregate.

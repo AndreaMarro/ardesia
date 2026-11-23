@@ -40,3 +40,7 @@ Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati so
 ## 23 novembre 2026 · Recupero formativo C1-Q027
 
 Il percorso di riferimento è C1 → Esercizi prioritari → Aree di segno opposto → Inizia il quesito. Dopo un errore aprire **Prova il ritorno di 7 s**. La PR tecnica e il job Officina distinguono il collaudo del candidato da quello del ramo integrato. Per riprendere la valutazione, leggere prima il verbale, poi le tre prove aperte del registro: rubrica del docente, telefono fisico quando disponibile, pilot e trasferimento differito. [Verbale e istruzioni](../../officina-di-fisica/docs/recupero-c1-q027/README.md) · [Registro](ARDESIA-RUNLOG.md)
+
+## Continuità · 23 novembre 2026
+
+Per Officina partire dalla SHA effettiva del ramo `officina-di-fisica` e dalla PR tecnica della ricerca. Il contratto della ricerca distingue verifica automatica, ritorno alla sessione, regressioni scientifiche e prova con studenti. La priorità di prodotto successiva è il diario operativo dei recuperi su C1–C6, legato ai tentativi esistenti. [Matrice delle funzioni](../../officina-di-fisica/docs/verifica-prodotto/README.md) · [Prove e limiti](../../officina-di-fisica/docs/verifica-prodotto/ricerca.md) · [Registro](ARDESIA-RUNLOG.md)
