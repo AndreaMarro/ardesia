@@ -1,18 +1,18 @@
 # Tre modi di studiare fisica
 
-**Dossier di progettazione 1.0 · 23 novembre 2026**
+**Dossier di progettazione 1.0 · revisione 2 · 23 novembre 2026**
 
 Materiale per la scelta di prodotto di Andrea Marro. La baseline è Officina di Fisica 1.1.0, pubblicata con la PR #339. I prototipi in questa cartella lavorano su uno stesso caso e su dati locali della demo. [Versione esaminata](https://github.com/AndreaMarro/ardesia/releases/tag/officina-di-fisica-v1.1.0)
 
-**Prova i tre concept.** Scarica lo ZIP, estrai `confronto.html` e aprilo nel browser. Puoi usare i pulsanti **Prova la sessione**, **Apri il banco** e **Apri il quaderno**. Il collegamento **Confronto** permette di passare da uno all’altro. Il file include interfaccia, grafici e caratteri e funziona offline. [Scarica i prototipi](prototipi-offline.zip?raw=true) · [HTML autonomo](confronto.html) · [Galleria desktop e mobile](verifica.md)
+**Prova i tre concept.** Scarica lo ZIP, estrai `confronto.html` e aprilo nel browser. Sotto «Il ritorno basta?» trovi la traccia del sensore e tre ingressi. Scegli **Campo** per muovere subito il segnalino sulla pista in 3D. Il collegamento **Confronto** permette di passare da uno all’altro. Il file include interfaccia, grafici e caratteri e funziona offline. [Scarica i prototipi](prototipi-offline.zip?raw=true) · [HTML autonomo](confronto.html) · [Galleria desktop e mobile](verifica.md)
 
 ![Passo, Campo e Margine sullo stesso problema, nel rendering mobile](prove/tre-concept-mobile.webp)
 
 | Direzione | Che cosa fa lo studente | Prova che la distingue |
 | --- | --- | --- |
-| **Passo** | Prevede dove si fermerà, chiede eventualmente un indizio e recupera l’errore. | Scegli «Più indietro» e osserva come si torna al significato dei due rettangoli. [Desktop](prove/passo-desktop.webp) |
-| **Campo** | Cambia la durata del ritorno, fissa una previsione e controlla la posizione su pista, grafico e tabella. | A 5 s di ritorno finisce a +2 m. A 6 s torna alla partenza. Dopo la misura puoi aprire la pista in 3D e cambiare istante o vista. [Desktop](prove/campo-desktop.webp) |
-| **Margine** | Scrive i contributi sul foglio o nei campi e rivede il primo passaggio incoerente. | Inserisci 12, 10 e 22 m. Il quaderno riporta il focus alla riga del ritorno. La scheda A4 reca l’ID e la revisione. [Desktop](prove/margine-desktop.webp) · [Scheda](prove/scheda-margine.pdf) |
+| **Passo** | Prevede dove si fermerà, chiede eventualmente un indizio e recupera l’errore. | Apri l’indizio per contare caselle da un metro. Scegli «Più indietro» e confronta i quattro gruppi da tre con i cinque da due. [Desktop](prove/passo-desktop.webp) |
+| **Campo** | Cambia la durata del ritorno, fissa una previsione e controlla la posizione su pista, grafico e tabella. | Muovi il tempo fino a 4 s prima della previsione. Dopo la misura puoi seguire anche il ritorno. A 5 s di ritorno finisci a +2 m, a 6 s sulla partenza. [Desktop](prove/campo-desktop.webp) |
+| **Margine** | Scrive i contributi sul foglio o nei campi e rivede il primo passaggio incoerente. | Inserisci 12, 10 e 22 m. Nella somma leggi i due valori che hai scritto. Il quaderno riporta il focus al segno del ritorno. La scheda A4 reca l’ID e la revisione. [Desktop](prove/margine-desktop.webp) · [Scheda](prove/scheda-margine.pdf) |
 
 ### Raccomandazione
 

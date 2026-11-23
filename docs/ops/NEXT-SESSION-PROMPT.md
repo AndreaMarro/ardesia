@@ -40,3 +40,5 @@ Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati so
 ## Officina · scelta della direzione di prodotto
 
 Il dossier 1.0 e i tre prototipi offline si trovano nella proposta di progettazione. La versione applicativa di riferimento è Officina 1.1.0. Il primo passo dipende dalla scelta di Andrea tra Passo, Campo e Margine. Seguono un pilot controbilanciato e, solo dopo l’esito, una verticale applicativa con gate di comprensione, accessibilità e costo della seconda attività. [Confronto](../proposte/officina-fisica/1.0/README.md) · [Protocollo](../proposte/officina-fisica/1.0/decisione.md) · [Registro](ARDESIA-RUNLOG.md)
+
+La seconda revisione della [PR #340](https://github.com/AndreaMarro/ardesia/pull/340) apre Campo direttamente sulla pista e permette di esplorare i primi 4 s. Usare le schermate della [galleria verificata](../proposte/officina-fisica/1.0/verifica.md) per valutare le tre alternative.

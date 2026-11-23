@@ -33,7 +33,8 @@ for(let d=0;d<=8;d++) {
 for(const invalid of [-1,8.5,9,NaN])assert.throws(()=>model.osserva(invalid));
 const cases=[],auditTags=['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22a','wcag22aa'];
 const sourceDemo=await readFile(path.join(dossier,'confronto.html'));
-const summary={source:{id:source.id,rev:source.version,result_m:source.answer.value},clockSamples,htmlBytes:sourceDemo.length,
+const ingressi=[];
+const summary={source:{id:source.id,rev:source.version,result_m:source.answer.value},clockSamples,htmlBytes:sourceDemo.length,ingressi,
   playwright:req('playwright/package.json').version,axe:req('axe-core/package.json').version,axeTags:auditTags,cases};
 const screens=[['desktop',1440,900],['tablet',768,1024],['mobile',390,844],['stretto',320,740]];
 async function check(page,key,selector){
@@ -47,6 +48,11 @@ async function noteAxe(p,c,label) {
   await p.addScriptTag({path:axeFile});
   const raw=await p.evaluate(async tags=>await window.axe.run(document,{runOnly:{type:'tag',values:tags}}),auditTags);
   c.axe.push({state:label,violations:raw.violations.map(v=>[v.id,v.nodes.length]),review:raw.incomplete.map(v=>[v.id,v.nodes.length])});
+  if(raw.violations.length){
+    const suffix=[c.browser,c.format,c.concept||'indice',label].join('-');
+    await writeFile(path.join(destination,'axe-'+suffix+'.json'),JSON.stringify(raw.violations,null,2));
+    await p.screenshot({path:path.join(destination,'axe-'+suffix+'.png')});
+  }
   assert.deepEqual(raw.violations.map(v=>[v.id,v.nodes.map(n=>n.target)]),[],c.browser+' '+c.format+' '+label);
 }
 async function fill(p,s,v){await p.locator(s).fill(v)}
@@ -59,6 +65,8 @@ async function finish(p,c) {
   await check(p,'trasferimento','#tx');
   await fill(p,'#tx','26');await p.getByRole('button',{name:'Controlla il risultato'}).click();
   assert.match(await p.locator('#tx-message').innerText(),/distanza totale/);
+  await fill(p,'#tx','2');await p.getByRole('button',{name:'Controlla il risultato'}).click();
+  assert.match(await p.locator('#tx-message').innerText(),/da che parte dello zero/);
   await fill(p,'#tx','−2,0');await p.getByRole('button',{name:'Controlla il risultato'}).click();
   assert.match(await p.locator('#tx-message').innerText(),/Hai ottenuto −2 m/);
   await noteAxe(p,c,'trasferimento');
@@ -78,6 +86,10 @@ for(const [browserName,engine] of Object.entries({chromium,webkit})){
       await context.route(/^https?:/, r=>r.abort());
       if(browserName==='chromium')await context.setOffline(true);
       await page.goto(file);await check(page,'indice','h1');
+      const index={browser:browserName,format,axe:[]};ingressi.push(index);
+      assert.match(await page.locator('.sensor svg').getAttribute('aria-label'),/più tre metri al secondo/);
+      assert.equal(await page.getByRole('navigation').getByRole('link').count(),3);
+      await noteAxe(page,index,'scelta');
       await screenshot(page,{browser:browserName,format},'confronto');
       await page.keyboard.press(browserName==='webkit'?'Alt+Tab':'Tab');assert.equal(await page.locator(':focus').innerText(),'Vai al contenuto');
       await page.keyboard.press('Enter');assert.equal(await page.locator(':focus').getAttribute('id'),'lavoro');
@@ -98,28 +110,46 @@ for(const [browserName,engine] of Object.entries({chromium,webkit})){
         if(key==='passo'){
           await page.locator('#prediction .primary').click();assert.match(await page.locator('#prediction-message').innerText(),/Scegli/);
           await page.locator('#hint summary').click();
+          await page.locator('.plot svg[aria-label*="Ogni casella"]').waitFor();
           await page.getByLabel('Più indietro').check();await page.locator('#prediction .primary').click();
-          assert.match(await page.locator('.session').innerText(),/Rivedi la previsione/);
+          assert.match(await page.locator('.session').innerText(),/Hai scelto «Più indietro»/);
+          assert.equal(await page.locator('.plot pattern rect').count(),2);
           assert.match(await page.locator('.session').innerText(),/22 m/);
           await screenshot(page,c,'passo-controllo');await noteAxe(page,c,'riscontro');
         } else if(key==='campo'){
-          await page.locator('#table').click();assert.equal(await page.locator('tbody tr').last().innerText(),'Ritorno\t5\t−2');
-          await page.locator('#chart').click();await page.locator('#duration').focus();await page.keyboard.press('Home');
-          assert.equal(await page.locator('#seconds').innerText(),'0 s');assert.ok(await page.locator('#less').isDisabled());
-          await page.keyboard.press('End');assert.ok(await page.locator('#more').isDisabled());
+          const scene=page.locator('#plot svg');
+          assert.equal(await page.getByRole('button',{name:'Pista 3D'}).getAttribute('aria-pressed'),'true');
+          assert.match(await scene.getAttribute('aria-label'),/a 0 metri al secondo 0/);
+          const marker=()=>scene.locator('circle').last().getAttribute('cx');
+          const origin=await marker();
+          await page.locator('#timeline').focus();await page.keyboard.press('End');
+          assert.equal(await page.locator('#time').innerText(),'4 s');assert.equal(await page.locator('#instant').innerText(),'+12 m');
+          assert.equal(await scene.locator('[data-tratto=andata]').count(),1);assert.equal(await scene.locator('[data-tratto=ritorno]').count(),0);
+          assert.notEqual(await marker(),origin);
+          const dial=await marker();await page.selectOption('#angle','0');assert.notEqual(await marker(),dial);
+          await page.locator('#table').click();assert.equal(await page.locator('tbody tr').first().innerText(),'Andata\t4\t+3\t+12');
+          assert.equal(await page.locator('tbody tr').last().innerText(),'Ritorno\t0\t−2\t0');
+          await page.locator('#chart').click();assert.match(await scene.getAttribute('aria-label'),/Cursore al secondo 4/);
+          await page.selectOption('#duration','0');assert.equal(await page.locator('#duration').inputValue(),'0');assert.ok(await page.locator('#less').isDisabled());
+          await page.selectOption('#duration','8');assert.ok(await page.locator('#more').isDisabled());
           for(let i=0;i<3;i++)await page.locator('#less').click();
           await page.locator('#predict').click();await page.getByLabel('Più avanti').check();await page.locator('#prediction .primary').click();
           assert.match(await page.locator('#phase').innerText(),/\+2 m/);
-          await page.locator('#space summary').click();await page.locator('#timeline').focus();await page.keyboard.press('Home');
+          await page.locator('#pista').click();await page.locator('#timeline').focus();await page.keyboard.press('Home');
           for(let i=0;i<4;i++)await page.keyboard.press('ArrowRight');
           assert.match(await page.locator('#instant').innerText(),/\+12 m/);
-          const right=await page.locator('#spatial svg polygon').first().getAttribute('points');
+          const right=await marker();
           await page.selectOption('#angle','-30');
-          assert.notEqual(await page.locator('#spatial svg polygon').first().getAttribute('points'),right);
+          assert.notEqual(await marker(),right);
           await page.locator('#timeline').focus();await page.keyboard.press('End');
-          assert.match(await page.locator('#spatial svg').getAttribute('aria-label'),/\+2 metri/);
-          await page.locator('#space').scrollIntoViewIfNeeded();await screenshot(page,c,'campo-pista');await noteAxe(page,c,'pista');
-          await page.locator('#more').click();assert.equal(await page.locator('#timeline').count(),0);
+          assert.match(await scene.getAttribute('aria-label'),/\+2 metri al secondo 9/);
+          assert.equal(await scene.locator('[data-tratto]').count(),2);
+          await page.locator('#table').click();assert.equal(await page.locator('tbody tr').last().innerText(),'Ritorno\t5\t−2\t−10');
+          await page.reload();assert.equal(await page.locator('#instant').innerText(),'+2 m');
+          assert.equal(await page.locator('#table').getAttribute('aria-pressed'),'true');
+          await page.locator('#pista').click();await page.evaluate(()=>scrollTo(0,0));
+          await screenshot(page,c,'campo-pista');await noteAxe(page,c,'pista');
+          await page.locator('#more').click();assert.equal(await page.locator('#timeline').getAttribute('max'),'4');assert.equal(await page.locator('#instant').innerText(),'0 m');assert.equal(await page.locator('#phase').count(),0);
           await page.locator('#predict').click();await page.getByLabel('Alla partenza').check();await page.locator('#prediction .primary').click();
           assert.match(await page.locator('#phase').innerText(),/finale 0 m/);
         } else {
@@ -129,18 +159,35 @@ for(const [browserName,engine] of Object.entries({chromium,webkit})){
           await page.getByText('Leggi la fonte',{exact:true}).click();
           await fill(page,'#n0','12');await fill(page,'#n1','10');await fill(page,'#n2','22');await page.locator('#notebook .primary').click();
           assert.equal(await page.locator(':focus').getAttribute('id'),'n1');assert.match(await page.locator('#note1').innerText(),/negativo/);
+          assert.equal(await page.locator('#formula2').innerText(),'+12 m + (+10 m)');
           await screenshot(page,c,'margine-errore');await noteAxe(page,c,'errore');
           await page.emulateMedia({media:'print'});assert.ok(await page.locator('.print-only').isVisible());assert.ok(await page.locator('#notebook').isHidden());
           if(browserName==='chromium'&&format==='desktop')await page.pdf({path:path.join(destination,'scheda-margine.pdf'),preferCSSPageSize:true});
           await page.emulateMedia({media:'screen'});await fill(page,'#n1','−10');await fill(page,'#n2','+2');await page.locator('#notebook .primary').click();
           assert.match(await page.locator('#phase').innerText(),/tre passaggi/);
+          assert.equal(await page.locator('#formula2').innerText(),'+12 m + (−10 m)');
         }
         await finish(page,c);
         await page.locator('header a').click();
+      }
+      if(format==='desktop'){
+        for(const view of ['chart','table']){
+          await page.evaluate(v=>{
+            const key='ardesia:studio-concept:1.0';
+            const saved=JSON.parse(sessionStorage.getItem(key));
+            saved.campo={...saved.campo,view:v,space:false,stage:'start',duration:7};
+            sessionStorage.setItem(key,JSON.stringify(saved));
+          },view);
+          await page.reload();await page.getByRole('link',{name:/Campo/}).click();
+          assert.equal(await page.locator('#duration').inputValue(),'7');
+          assert.equal(await page.locator(view==='chart'?'#pista':'#table').getAttribute('aria-pressed'),'true');
+          await page.locator('header a').click();
+        }
+        index.ripresaPrimaRevisione=true;
       }
       assert.deepEqual(network,[]);assert.deepEqual(errors,[]);await context.close();
     }
   } finally {await browser.close()}
 }
 await writeFile(path.join(destination,'esiti.json'),JSON.stringify(summary,null,2)+'\n');
-console.log(cases.length+' percorsi completi, '+cases.reduce((n,c)=>n+c.axe.length,0)+' scansioni axe, '+clockSamples+' campioni fisici. '+destination);
+console.log(cases.length+' percorsi completi, '+[...cases,...ingressi].reduce((n,c)=>n+c.axe.length,0)+' scansioni axe, '+clockSamples+' campioni fisici. '+destination);

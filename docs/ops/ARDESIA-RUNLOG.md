@@ -1151,3 +1151,13 @@ Taste Skill 2.1.5 è stato applicato nella modalità dedicata alle schermate di 
 1. Il committente confronta le tre esperienze e sceglie quale ipotesi provare. Esito atteso: direzione e obiettivo di misura espliciti.
 2. Dopo la scelta, organizzare il pilot sul lessico, la correzione e la ripresa con studenti consenzienti. Esito atteso: tempi, rinunce, errori e aiuti aggregati sul denominatore dichiarato.
 3. Con trasferimento e accessibilità riesaminati, decidere una sola verticale e verificarla su un secondo argomento. Il telefono fisico resta rinviato. [Roadmap e criteri](../proposte/officina-fisica/1.0/fattibilita.md)
+
+## 23 novembre 2026 · Revisione dell’esperienza su C1-Q027
+
+Sulla [PR di progetto #340](https://github.com/AndreaMarro/ardesia/pull/340), dopo la prima versione `5d3b71e`, la scelta dei percorsi parte dal tracciato del sensore. Aprire Campo porta alla pista graduata, dove si percorre l’andata prima di rispondere. Il ritorno misurato disegna una seconda freccia in senso opposto. L’indizio di Passo divide il grafico in caselle da un metro. In Margine la terza riga riprende i due valori effettivamente scritti. Le illustrazioni dipendono dai dati del quesito. Le prime tavole visive conservano data e provenienza nel dossier.
+
+In una prima prova il pulsante del banco superava il bordo di 11 px sul telefono simulato da 320 px. Un solo cursore controlla ora il tempo. Per la durata si sceglie il valore esatto o si usano i tasti ±. La prova di contrasto su WebKit segnalava lo sfondo dell’indice nella successiva schermata scura. La correzione usa una superficie dedicata e applica il tema alla radice. La replica comprende il passaggio chiaro/scuro, il recupero di sessioni precedenti, 24 percorsi, 80 scansioni axe con zero violazioni automatiche e 153 campioni del modello. Le prove con studenti e telefono fisico restano da svolgere. [Risultati e schermate](../proposte/officina-fisica/1.0/verifica.md)
+
+1. Andrea può confrontare il segno sulle tre interfacce. Registrare il gesto o il testo che richiede un’ulteriore revisione prima di scegliere una direzione. [Prototipo](../proposte/officina-fisica/1.0/confronto.html)
+2. Dopo la scelta, verificare con studenti se trovano la pista e spiegano il segno su un ritorno di sette secondi. Registrare risposte e aiuti come previsto dal [protocollo](../proposte/officina-fisica/1.0/decisione.md).
+3. Quando sarà disponibile il telefono concordato, verificare cursore, cambio vista e lettura sequenziale con la tecnologia assistiva in uso. Allegare dispositivo e risultato al collaudo.
