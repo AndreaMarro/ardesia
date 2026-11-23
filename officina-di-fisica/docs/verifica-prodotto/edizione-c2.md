@@ -14,3 +14,19 @@ Nel collaudo precedente, a 320 px, dodici delle diciotto formule dei tredici mat
 | F6 | Edizioni degli esercizi e accessi. | Alterare il quaderno registrato con la vecchia installazione. | Vecchio e nuovo tentativo C2-Q062, secondo utente, due avvii, archive e misure riconciliati su candidata e merge. Registrare separatamente le prestazioni locali e le verifiche con studenti e telefono fisico. |
 
 Le proprietà di equilibrio idrostatico, viscosità e flusso laminare sono confrontate con gli enunciati sull’equilibrio del fluido e sulla legge di Poiseuille. [Pressione e fluidi in equilibrio](https://openstax.org/books/university-physics-volume-1/pages/14-2-measuring-pressure) · [Viscosità e flusso laminare](https://openstax.org/books/university-physics-volume-1/pages/14-7-viscosity-and-turbulence)
+
+## Collaudo dei fluidi nella versione distribuita
+
+Il contratto originale precede la modifica ai materiali. Il rilascio Vercel parte dal merge 7f6d0ffe della PR #350. Il catalogo C2 su quella base è identico a quello usato per redigere il contratto. Nella copia di prova b2d87657 sono cambiati 15 materiali su 991 e solo i fascicoli C2 di teoria ed esercizi. La sezione del tubo mostra perché un anello esterno pesa di più nella portata media. Il manometro mantiene il verso del dislivello e il galleggiante confronta le densità con la frazione immersa. [Materiali coinvolti](prove/edizione-c2/differenze.json) · [Tentativo v1 riaperto dopo v2](prove/edizione-c2/riapertura-locale.json) · [Quattro profili di collaudo locale](prove/edizione-c2/edizioni.json)
+
+![Sezioni anulari nella soluzione del quesito C2-Q062](prove/edizione-c2/chromium-320-sezione.png)
+
+[Manometro 3D](prove/edizione-c2/chromium-1440-manometro-3d.png) · [Galleggiamento nella tavola piana](prove/edizione-c2/chromium-320-galleggiante-tavola.png)
+
+### Pubblicazione compatibile con i tentativi già svolti
+
+1. Prima di cambiare i materiali live, conservare i PDF dell’edizione servita. Eseguire il comando `python tools/conserva_fascicoli.py C2` dal checkout che contiene quei PDF, usando le credenziali dell’archivio di destinazione. Il comando confronta le impronte e salva le copie private sotto la chiave dell’edizione. Registra anche l’impronta dei PDF eventualmente rigenerati dall’autore.
+2. Pubblicare il runtime che contiene sia le figure precedenti sia la nuova sezione del tubo. Con l’archivio ancora a v1, fascicoli e soluzioni precedenti rimangono leggibili. Eseguire quindi `python tools/prepara_archivio_cloud.py --provision` dal nuovo checkout. La migrazione canonica aggiorna le sole prime edizioni integre e conserva i tentativi consegnati.
+3. Verificare in preview e poi in produzione l’inventario per ID, i due PDF e un tentativo C2-Q062 della versione precedente. Eseguire `node tests/browser-fluidi-https.mjs` con `OFFICINA_BASE_URL`, `OFFICINA_COMMIT_ATTESO` e `ASTRA_RESULTS`. Il test usa i controlli del manometro e del galleggiante in 3D e senza WebGL, confronta tutti i tredici svolgimenti a 320 px e controlla la SHA prima e dopo il percorso. Per una preview protetta la chiave opzionale è `VERCEL_AUTOMATION_BYPASS_SECRET`.
+
+Le prove con studenti e smartphone fisico rimangono distinte dal collaudo tecnico.
