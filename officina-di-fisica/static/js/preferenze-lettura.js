@@ -22,7 +22,7 @@ export function installReader(container, record) {
         <label><span id="${id}-pace">All’apertura</span><select name="pace" aria-labelledby="${id}-pace"><option value="continuous">Testo intero</option><option value="steps">Un passaggio alla volta</option></select></label>
       </div>
       <label class="lettore-focus"><input name="focus" type="checkbox">Modalità concentrazione</label>
-      <div class="lettore-suono"><button type="button" data-play>Ascolta il testo visibile</button>
+      <div class="lettore-suono"><button type="button" data-play disabled>Ascolta il testo visibile</button>
         <button type="button" data-stop hidden>Ferma l’ascolto</button>
         <button type="button" data-words aria-expanded="false" aria-controls="${id}-trascrizione">Leggi la trascrizione</button></div>
       <p class="lettore-nota" data-voice></p>
