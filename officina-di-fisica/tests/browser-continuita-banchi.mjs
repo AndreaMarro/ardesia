@@ -140,6 +140,53 @@ async function capture(page, name) {
   await figure.evaluate(() => new Promise(done => requestAnimationFrame(() => requestAnimationFrame(done))));
   return figure.screenshot({scale:'css', path:name ? path.join(output,name+'.png') : undefined});
 }
+async function keyboardPan(page, screen, original) {
+  // Read this WebGL frame before the compositor clears the default drawing buffer.
+  await screen.evaluate(el => {
+    const gl = el.getContext('webgl2');
+    function pixels() {
+      const w=gl.drawingBufferWidth, h=gl.drawingBufferHeight;
+      const rgba=new Uint8Array(w*h*4);
+      gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,rgba);
+      return rgba;
+    }
+    let reference;
+    function received(event) {
+      if (event.key==='ArrowRight' && event.shiftKey)
+        el.panInput={at:performance.now(), before:el.testDraws};
+    }
+    function painted(event) {
+      if (event.key==='Home') reference=pixels();
+      if (event.key!=='ArrowRight' || !event.shiftKey) return;
+      const current=pixels(), input=el.panInput;
+      input.ms=Math.round(performance.now()-input.at);
+      input.draws=el.testDraws-input.before;
+      let moved=0;
+      for (let i=0; i<current.length; i+=4) {
+        if (Math.abs(current[i]-reference[i])>12 || Math.abs(current[i+1]-reference[i+1])>12 ||
+            Math.abs(current[i+2]-reference[i+2])>12) moved++;
+      }
+      input.fraction=moved/(current.length/4);
+      el.removeEventListener('keydown',received,true);
+      el.removeEventListener('keydown',painted);
+    }
+    el.addEventListener('keydown',received,true);
+    el.addEventListener('keydown',painted);
+  });
+  await screen.press('Home');
+  await screen.press('Shift+ArrowRight');
+  const input=await screen.evaluate(el=>el.panInput);
+  assert.ok(input?.draws>0 && input.fraction>0.008 && input.ms<=1000,
+    'tasto, disegni e pixel WebGL della traslazione '+JSON.stringify(input));
+  // A second, independent capture checks the image actually composited by the browser.
+  const deadline=performance.now()+1000;
+  let pan;
+  do { pan=changed(original,await capture(page)); }
+  while (pan<=0.008 && performance.now()<deadline);
+  assert.ok(pan>0.008,'traslazione nella schermata del browser '+pan);
+  return {pan,panMs:input.ms,panDraws:input.draws,panGpu:input.fraction};
+}
+
 const focusOn = (page, selector) => page.locator(selector).evaluate(el=>document.activeElement===el);
 const timeAndSpeed = (page) => page.locator('[data-readings]').innerText();
 async function seek(page,value) {
@@ -171,27 +218,8 @@ async function continuity(page, base, profile) {
     await page.mouse.move(x+40,y+20,{steps:4});
     await page.mouse.up({button:'right'});
     assert.ok(changed(original,await capture(page))>0.008,'mouse pan');
-    await screen.press('Home');
   }
-  await screen.evaluate(el => {
-    function record(event) {
-      if (event.key==='Shift') return;
-      el.panInput = {key:event.key, shifted:event.shiftKey, draws:el.testDraws, at:performance.now()};
-      el.removeEventListener('keydown', record, true);
-    }
-    el.addEventListener('keydown', record, true);
-  });
-  await screen.press('Shift+ArrowRight');
-  const received = await screen.evaluate(el => el.panInput);
-  assert.ok(received?.key==='ArrowRight' && received.shifted, 'tasto ricevuto dal canvas');
-  await page.waitForFunction(n => document.querySelector('.bench-stage canvas').testDraws>n, received.draws, {timeout:1000});
-  let pan, panMs;
-  do {
-    pan = changed(original,await capture(page));
-    panMs = await screen.evaluate(el => Math.round(performance.now()-el.panInput.at));
-  } while (pan<=0.008 && panMs<1000);
-  assert.ok(pan>0.008 && panMs<=1000, 'keyboard pan '+pan+' dopo '+panMs+' ms');
-  const panDraws = await screen.evaluate(el => el.testDraws-el.panInput.draws);
+  const panProof=await keyboardPan(page,screen,original);
   for (let i=0;i<12;i++) await screen.press('Shift+ArrowRight');
   const limit = await capture(page);
   await screen.press('Shift+ArrowRight');
@@ -284,7 +312,7 @@ async function continuity(page, base, profile) {
   await restore(page);
   await selected(page,'orbit');
   assert.equal(await page.locator('[data-bench]').count(),1);
-  return {profile:name,pan,panMs,panDraws,recovered,fallbackMs,restoredMs,buffer,during,after};
+  return {profile:name,...panProof,recovered,fallbackMs,restoredMs,buffer,during,after};
 }
 
 async function interruptFirstLoad(browser, base) {
