@@ -138,7 +138,7 @@ C6 riunisce le simulazioni degli altri cinque corsi e aggiunge sei esperienze di
 | --- | --- | --- | --- |
 | Principio di Archimede | [SIM-C2-L004-01](http://127.0.0.1:8847/#banco/SIM-C2-L004-01) | Come colleghi la spinta alla quantità d’acqua spostata? | — |
 | Spinta idrostatica | [SIM-C2-L004-02](http://127.0.0.1:8847/#banco/SIM-C2-L004-02) | Cambia la spinta se il corpo resta tutto immerso ma cambia il liquido? | — |
-| Condizioni di galleggiamento e immersione | [SIM-C2-L004-03](http://127.0.0.1:8847/#banco/SIM-C2-L004-03) | Quanta parte del blocco rimane sopra la superficie? | — |
+| Condizioni di galleggiamento e immersione | [SIM-C2-L004-03](http://127.0.0.1:8847/#banco/SIM-C2-L004-03) | Quale percentuale del volume del blocco resta immersa nell’acqua? | — |
 
 ## C2-L005 · Contare ciò che attraversa una sezione
 

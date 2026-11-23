@@ -1,0 +1,223 @@
+{
+  "C2-E013": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C2-piastre.svg",
+        "text": "Il gradiente delle velocità attraversa lo spessore d in direzione perpendicolare alle piastre."
+      },
+      {
+        "type": "text",
+        "text": "Il moto relativo genera una variazione di velocità trasversale. Con due piastre estese, regime stazionario e aderenza, il gradiente è costante."
+      },
+      {
+        "type": "formula",
+        "text": "d=0{,}0020\\,\\mathrm m,\\qquad |\\Delta v/\\Delta y|=0{,}30/0{,}0020=150\\,\\mathrm{s^{-1}}"
+      },
+      {
+        "type": "formula",
+        "text": "|\\tau|=\\eta|\\Delta v/\\Delta y|=0{,}40\\cdot150=60\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "F=|\\tau|A=60\\cdot0{,}020=1{,}2\\,\\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "La forza esterna necessaria punta nel verso del moto della lastra. Il liquido esercita sulla lastra una forza opposta di uguale modulo in questo moto uniforme."
+      }
+    ],
+    "prompt": "Una lastra di area 0,020 m² scorre a 0,30 m/s sopra una lastra ferma, con 2,0 mm di olio fra le due. La viscosità è 0,40 Pa·s. Nel modello lineare senza gradiente di pressione, che forza occorre per mantenerla in moto?"
+  },
+  "C2-E016": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La geometria è nota e viene misurato il rapporto fra Δp e Q. Converti tutti i dati prima di elevare il raggio alla quarta."
+      },
+      {
+        "type": "formula",
+        "text": "r=10^{-3}\\,\\mathrm m,\\quad L=0{,}20\\,\\mathrm m,\\quad Q=5{,}0\\times10^{-7}\\,\\mathrm{m^3/s},\\quad\\Delta p=10^3\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "8\\eta LQ=\\pi r^4\\Delta p\\quad\\Rightarrow\\quad\\eta=\\frac{\\pi(10^{-3})^4(10^3)}{8(0{,}20)(5{,}0\\times10^{-7})}"
+      },
+      {
+        "type": "formula",
+        "text": "\\eta=\\frac{\\pi\\times10^{-9}}{8{,}0\\times10^{-7}}\\,\\mathrm{Pa\\,s}\\simeq3{,}9\\times10^{-3}\\,\\mathrm{Pa\\,s}"
+      },
+      {
+        "type": "text",
+        "text": "L’unità si verifica: m⁴ Pa diviso per m·m³/s dà Pa·s. Una piccola incertezza sul raggio ha effetto amplificato su questa stima."
+      }
+    ]
+  },
+  "C2-Q002": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "p=F_\\perp/A=45/0{,}015=3000\\,\\mathrm{Pa}=3{,}0\\,\\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "Per ogni metro quadrato l’interazione corrisponderebbe a 3000 N, se la distribuzione restasse uniforme."
+      }
+    ]
+  },
+  "C2-Q011": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "h=\\Delta p/(\\rho g)=4000/(1000\\cdot10)=0{,}40\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Con 10 kPa circa per metro d’acqua, quattro decimi di metro sono plausibili."
+      }
+    ]
+  },
+  "C2-Q014": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In quota aumenta l’altezza già percorsa verso la superficie e si riduce la colonna sovrastante. La variazione finale meno iniziale è −ρgh."
+      }
+    ]
+  },
+  "C2-Q015": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "p_{\\rm media}=\\rho g(h/2)=1000\\cdot10\\cdot0{,}10=1000\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "F=p_{\\rm media}A=1000(0{,}40\\cdot0{,}20)=80\\,\\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "Per uno sportello rettangolare verticale la media coincide con il valore alla profondità del centro geometrico."
+      }
+    ],
+    "hints": [
+      "La pressione relativa cresce linearmente da zero al bordo inferiore."
+    ]
+  },
+  "C2-Q029": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "F=\\Delta p A=(150\\times10^3)(2\\times10^{-4})=30\\,\\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "Aggiungere l’atmosfera produrrebbe la forza su una sola faccia e trascurerebbe quella opposta."
+      }
+    ]
+  },
+  "C2-Q037": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "S=\\rho_f gV,\\qquad T=mg-S"
+      },
+      {
+        "type": "text",
+        "text": "Il primo termine dipende dal volume comune; il peso e quindi la tensione crescono invece con la massa dell’oggetto."
+      }
+    ]
+  },
+  "C2-Q049": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "Q=2400/180=13{,}33\\,\\mathrm{mL/s}"
+      },
+      {
+        "type": "formula",
+        "text": "t=V_{\\rm linea}/Q=120/13{,}33\\simeq9{,}0\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "Il calcolo assume assenza di aria intrappolata, comprimibilità e perdite di volume."
+      }
+    ]
+  },
+  "C2-Q062": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\bar v=v_{\\rm asse}/2=0{,}56/2=0{,}28\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La sonda centrale campiona il massimo. Per la portata occorre la media pesata sull’area."
+      }
+    ],
+    "hints": [
+      "Il profilo nel tubo circolare è parabolico."
+    ]
+  },
+  "C2-Q076": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta p=R_hQ=(8{,}0\\times10^8)(2{,}5\\times10^{-6})=2000\\,\\mathrm{Pa}=2{,}0\\,\\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "Il segno è positivo nella convenzione pressione a monte meno pressione a valle."
+      }
+    ]
+  },
+  "C2-Q089": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta p_i=R_iQ"
+      },
+      {
+        "type": "text",
+        "text": "Con Q uguale, il rapporto delle cadute è quello delle resistenze. Raddoppiare R raddoppia la frazione di pressione persa sul tratto."
+      }
+    ]
+  },
+  "C2-Q092": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "\\Delta A=3{,}0\\times10^{-4}\\,\\mathrm{m^2},\\qquad \\Delta E=0{,}050(3{,}0\\times10^{-4})=1{,}5\\times10^{-5}\\,\\mathrm J=15\\,\\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il dato di area descrive già l’unica interfaccia creata."
+      }
+    ]
+  },
+  "SIM-C2-L002-04": {
+    "version": 1,
+    "formula": "Δh = Δp/(ρg), con acqua e g = 10 m/s²",
+    "interpretation": "Le due braccia hanno uguale sezione. Se la pressione a sinistra aumenta, quel livello scende e l’altro sale. La misura è la differenza fra i livelli, pari al doppio dello spostamento di ciascuno.",
+    "transferPrompt": "I due rami del manometro ad acqua ricevono la differenza di pressione con segno {x}. Quale dislivello in centimetri corrisponde a questa lettura?"
+  },
+  "SIM-C2-L004-03": {
+    "version": 1,
+    "summary": "Quanta parte del blocco rimane sopra la superficie?",
+    "interpretation": "Lascia libero il blocco in acqua da 1000 kg/m³. All’equilibrio spinta e peso coincidono. A densità uguale il corpo completamente immerso è in equilibrio indifferente.",
+    "transferPrompt": "Un blocco omogeneo di densità {x} galleggia in acqua da 1000 kg/m³. Quale percentuale del suo volume resta sotto il pelo libero?"
+  }
+}

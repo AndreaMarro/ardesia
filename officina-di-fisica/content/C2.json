@@ -175,15 +175,31 @@
     "prerequisites": [
       "C2-L001"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La forza totale di 45 N si distribuisce su 0,015 m². Dividi la forza normale per l’area per trovare la forza riferita a un metro quadrato."
+      },
+      {
         "type": "formula",
-        "text": "p=F_\\perp/A=45/0{,}015=3000\\,\\mathrm{Pa}=3{,}0\\,\\mathrm{kPa}"
+        "text": "p=\\frac{F_\\perp}{A}"
+      },
+      {
+        "type": "formula",
+        "text": "p=\\frac{45}{0{,}015}\\,\\mathrm{N/m^2}"
       },
       {
         "type": "text",
-        "text": "Per ogni metro quadrato l’interazione corrisponderebbe a 3000 N, se la distribuzione restasse uniforme."
+        "text": "Moltiplica numeratore e denominatore per mille. Il rapporto diventa 45 000 diviso 15, cioè 3000. Un newton al metro quadrato vale un pascal."
+      },
+      {
+        "type": "formula",
+        "text": "p=3000\\,\\mathrm{Pa}=3{,}0\\,\\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo inverso: 3000 N/m² su 0,015 m² restituiscono i 45 N della consegna."
       }
     ],
     "difficulty": 2,
@@ -717,15 +733,35 @@
     "prerequisites": [
       "C2-L002"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La superficie e il punto immerso sono nello stesso liquido in quiete. Cerchi la profondità h a cui il peso della colonna aggiunge 4,0 kPa alla pressione superficiale."
+      },
+      {
         "type": "formula",
-        "text": "h=\\Delta p/(\\rho g)=4000/(1000\\cdot10)=0{,}40\\,\\mathrm m"
+        "text": "\\Delta p=4{,}0\\,\\mathrm{kPa}=4000\\,\\mathrm{Pa}"
       },
       {
         "type": "text",
-        "text": "Con 10 kPa circa per metro d’acqua, quattro decimi di metro sono plausibili."
+        "text": "La legge idrostatica dà Δp = ρgh. Per isolare h dividi entrambi i membri per ρg."
+      },
+      {
+        "type": "formula",
+        "text": "h=\\frac{\\Delta p}{\\rho g}"
+      },
+      {
+        "type": "formula",
+        "text": "\\rho g=1000\\cdot10\\,\\mathrm{Pa/m}"
+      },
+      {
+        "type": "formula",
+        "text": "h=\\frac{4000}{10\\,000}\\,\\mathrm m=0{,}40\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Ogni metro aggiunge 10 kPa. Quattro decimi di metro aggiungono proprio 4 kPa."
       }
     ],
     "difficulty": 2,
@@ -837,11 +873,31 @@
     "prerequisites": [
       "C2-L002"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "In quota aumenta l’altezza già percorsa verso la superficie e si riduce la colonna sovrastante. La variazione finale meno iniziale è −ρgh."
+        "text": "Segna il punto iniziale in basso e quello finale h metri più in alto. In un liquido in quiete a densità costante la differenza di pressione fra le basi sostiene il peso della colonna. Al punto inferiore la pressione è maggiore."
+      },
+      {
+        "type": "formula",
+        "text": "p_{\\rm basso}-p_{\\rm alto}=\\rho gh"
+      },
+      {
+        "type": "text",
+        "text": "La consegna chiede la variazione durante la risalita. Fai pressione finale meno iniziale e ottieni il segno meno."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=p_{\\rm alto}-p_{\\rm basso}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=-\\rho gh"
+      },
+      {
+        "type": "text",
+        "text": "Per h = 0 i due punti coincidono e la variazione è zero. Percorrendo il tratto verso il basso il segno si inverte."
       }
     ],
     "difficulty": 2,
@@ -877,19 +933,47 @@
     "prerequisites": [
       "C2-L002"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "p_{\\rm media}=\\rho g(h/2)=1000\\cdot10\\cdot0{,}10=1000\\,\\mathrm{Pa}"
+        "type": "text",
+        "text": "Su entrambe le facce agisce la pressione atmosferica. Sottraendo le due pressioni resta il contributo dell’acqua. Sul bordo superiore, a livello della superficie, questa differenza è zero. Sul bordo inferiore, a 0,20 m di profondità, vale invece"
       },
       {
         "type": "formula",
-        "text": "F=p_{\\rm media}A=1000(0{,}40\\cdot0{,}20)=80\\,\\mathrm N"
+        "text": "p_{\\rm fondo}=1000\\cdot10\\cdot0{,}20\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "p_{\\rm fondo}=2000\\,\\mathrm{Pa}"
       },
       {
         "type": "text",
-        "text": "Per uno sportello rettangolare verticale la media coincide con il valore alla profondità del centro geometrico."
+        "text": "La pressione cresce lungo una retta e lo sportello ha larghezza costante. La pressione media è la semisomma dei valori ai bordi."
+      },
+      {
+        "type": "formula",
+        "text": "p_{\\rm media}=\\frac{0+2000}{2}\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "p_{\\rm media}=1000\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "text",
+        "text": "L’area dello sportello è larghezza per altezza."
+      },
+      {
+        "type": "formula",
+        "text": "A=0{,}40\\cdot0{,}20\\,\\mathrm{m^2}=0{,}080\\,\\mathrm{m^2}"
+      },
+      {
+        "type": "formula",
+        "text": "F=p_{\\rm media}A=80\\,\\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "La risultante spinge dall’acqua verso l’aria. Applicando a tutta l’area la pressione del solo bordo inferiore si otterrebbero 160 N, il doppio."
       }
     ],
     "difficulty": 3,
@@ -902,7 +986,7 @@
       "tolerance": 0.1
     },
     "hints": [
-      "La pressione relativa cresce linearmente da zero al bordo inferiore."
+      "Segna zero sul bordo superiore e ρgh su quello inferiore. Usa il valore medio sullo sportello."
     ],
     "error": {
       "category": "modello",
@@ -1608,15 +1692,35 @@
     "prerequisites": [
       "C2-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La sovrapressione è già la differenza fra interno ed esterno. Per trovare la forza netta moltiplicala per l’area. Nei centimetri quadrati devi convertire entrambe le lunghezze."
+      },
+      {
         "type": "formula",
-        "text": "F=\\Delta p A=(150\\times10^3)(2\\times10^{-4})=30\\,\\mathrm N"
+        "text": "1\\,\\mathrm{cm^2}=(10^{-2}\\,\\mathrm m)^2"
+      },
+      {
+        "type": "formula",
+        "text": "A=2\\times10^{-4}\\,\\mathrm{m^2}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=150\\,000\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "F=\\Delta p\\,A=15\\cdot2\\,\\mathrm N"
+      },
+      {
+        "type": "formula",
+        "text": "F=30\\,\\mathrm N"
       },
       {
         "type": "text",
-        "text": "Aggiungere l’atmosfera produrrebbe la forza su una sola faccia e trascurerebbe quella opposta."
+        "text": "Ogni centimetro quadrato riceve 15 N netti. Due centimetri quadrati danno quindi 30 N."
       }
     ],
     "difficulty": 2,
@@ -2056,15 +2160,31 @@
     "prerequisites": [
       "C2-L004"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Immagina di togliere i due solidi e riempire con lo stesso liquido ciascuno spazio lasciato libero. A parità di volume completamente immerso e di fluido, il peso del liquido spostato è uguale. Perciò i due solidi ricevono la stessa spinta verso l’alto."
+      },
+      {
         "type": "formula",
-        "text": "S=\\rho_f gV,\\qquad T=mg-S"
+        "text": "S=\\rho_{\\rm fluido}gV"
       },
       {
         "type": "text",
-        "text": "Il primo termine dipende dal volume comune; il peso e quindi la tensione crescono invece con la massa dell’oggetto."
+        "text": "A riposo il peso verso il basso è bilanciato da spinta e tensione verso l’alto. Il dinamometro misura la tensione."
+      },
+      {
+        "type": "formula",
+        "text": "T+S=mg"
+      },
+      {
+        "type": "formula",
+        "text": "T=mg-S"
+      },
+      {
+        "type": "text",
+        "text": "La spinta S è comune. A massa maggiore corrispondono un peso maggiore e una tensione maggiore. Entrambe le tensioni sono positive perché lasciati liberi entrambi i solidi affonderebbero."
       }
     ],
     "difficulty": 2,
@@ -2681,19 +2801,39 @@
     "prerequisites": [
       "C2-L005"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "Q=2400/180=13{,}33\\,\\mathrm{mL/s}"
+        "type": "text",
+        "text": "All’avvio il liquido riempie prima i 120 mL della linea. Cerca il tempo per questo volume, usando il ritmo uniforme della pompa. Porta i dati in millilitri e secondi."
       },
       {
         "type": "formula",
-        "text": "t=V_{\\rm linea}/Q=120/13{,}33\\simeq9{,}0\\,\\mathrm s"
+        "text": "2{,}4\\,\\mathrm L=2400\\,\\mathrm{mL}"
+      },
+      {
+        "type": "formula",
+        "text": "3\\,\\mathrm{min}=180\\,\\mathrm s"
       },
       {
         "type": "text",
-        "text": "Il calcolo assume assenza di aria intrappolata, comprimibilità e perdite di volume."
+        "text": "Dividi il volume per il tempo e semplifica entrambi per 60. Mantieni la frazione esatta."
+      },
+      {
+        "type": "formula",
+        "text": "Q=\\frac{2400}{180}\\,\\mathrm{mL/s}=\\frac{40}{3}\\,\\mathrm{mL/s}"
+      },
+      {
+        "type": "text",
+        "text": "Per trovare il tempo dividi 120 per la portata, ossia moltiplica per il reciproco."
+      },
+      {
+        "type": "formula",
+        "text": "t=120\\cdot\\frac{3}{40}\\,\\mathrm s=9\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "In nove secondi la pompa sposta tre volte 40 mL. Il controllo restituisce i 120 mL richiesti. Il modello presuppone che il volume pompato riempia la linea senza perdite."
       }
     ],
     "difficulty": 2,
@@ -3354,7 +3494,7 @@
     "prerequisites": [
       "C2-L007"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "figure",
@@ -3363,27 +3503,55 @@
       },
       {
         "type": "text",
-        "text": "Il moto relativo genera una variazione di velocità trasversale. Con due piastre estese, regime stazionario e aderenza, il gradiente è costante."
+        "text": "La lastra superiore trascina l’olio. Il liquido aderisce alle due piastre, quindi la velocità vale zero alla parete ferma e 0,30 m/s alla parete mobile. Considera piastre estese, olio newtoniano e moto laminare stazionario. Lungo il moto la pressione è uniforme. In queste condizioni la velocità cresce linearmente nello spessore."
       },
       {
         "type": "formula",
-        "text": "d=0{,}0020\\,\\mathrm m,\\qquad |\\Delta v/\\Delta y|=0{,}30/0{,}0020=150\\,\\mathrm{s^{-1}}"
-      },
-      {
-        "type": "formula",
-        "text": "|\\tau|=\\eta|\\Delta v/\\Delta y|=0{,}40\\cdot150=60\\,\\mathrm{Pa}"
-      },
-      {
-        "type": "formula",
-        "text": "F=|\\tau|A=60\\cdot0{,}020=1{,}2\\,\\mathrm N"
+        "text": "d=2{,}0\\,\\mathrm{mm}=0{,}0020\\,\\mathrm m"
       },
       {
         "type": "text",
-        "text": "La forza esterna necessaria punta nel verso del moto della lastra. Il liquido esercita sulla lastra una forza opposta di uguale modulo in questo moto uniforme."
+        "text": "Per ogni metro di distanza perpendicolare alle piastre, di quanto cambierebbe la velocità mantenendo la stessa pendenza?"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta v}{d}=\\frac{0{,}30}{0{,}0020}\\,\\mathrm{s^{-1}}"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta v}{d}=150\\,\\mathrm{s^{-1}}"
+      },
+      {
+        "type": "text",
+        "text": "La viscosità moltiplicata per la pendenza dà lo sforzo di taglio, cioè la forza tangenziale per unità di area."
+      },
+      {
+        "type": "formula",
+        "text": "|\\tau|=\\eta\\,\\frac{\\Delta v}{d}"
+      },
+      {
+        "type": "formula",
+        "text": "|\\tau|=0{,}40\\cdot150\\,\\mathrm{Pa}=60\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "text",
+        "text": "Su 0,020 m² la forza resistente ha il seguente modulo."
+      },
+      {
+        "type": "formula",
+        "text": "F=|\\tau|A=60\\cdot0{,}020\\,\\mathrm N"
+      },
+      {
+        "type": "formula",
+        "text": "F=1{,}2\\,\\mathrm N"
+      },
+      {
+        "type": "text",
+        "text": "L’olio frena la lastra. Per mantenere la velocità applica 1,2 N nel verso del moto. A parità di velocità, raddoppiare lo spessore dimezza la pendenza e la forza necessaria."
       }
     ],
     "difficulty": 2,
-    "prompt": "Una lastra di area 0,020 m² scorre a 0,30 m/s sopra una lastra ferma, con 2,0 mm di olio fra le due. La viscosità è 0,40 Pa·s. Nel modello lineare senza gradiente di pressione, che forza occorre per mantenerla in moto?",
+    "prompt": "Una lastra di area 0,020 m² scorre a 0,30 m/s sopra una lastra ferma. I 2,0 mm di olio fra le due piastre hanno viscosità 0,40 Pa·s. Nel moto laminare stazionario con pressione uniforme lungo le piastre, quale forza occorre per mantenere la lastra in moto?",
     "family": "lolio-fra-due-piastre"
   },
   {
@@ -3476,15 +3644,68 @@
     "prerequisites": [
       "C2-L007"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\bar v=v_{\\rm asse}/2=0{,}56/2=0{,}28\\,\\mathrm{m/s}"
+        "type": "text",
+        "text": "La sonda legge il centro, dove il fluido è più veloce. Per trovare la velocità media che trasporta lo stesso volume attraverso tutto il tubo, ogni pezzetto della sezione deve contare per la sua area. Alla parete il fluido aderisce e la velocità vale zero."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C2-Q062-sezione.svg",
+        "text": "Il disco centrale e la corona esterna hanno la stessa area. Dal centro al confine del disco la velocità scende da 0,56 a 0,28 m/s. Dal confine alla parete scende da 0,28 a zero."
       },
       {
         "type": "text",
-        "text": "La sonda centrale campiona il massimo. Per la portata occorre la media pesata sull’area."
+        "text": "Chiama R il raggio del tubo e r la distanza dall’asse. La frazione di area dentro il raggio r è u = r²/R², perché l’area è πr². Nel profilo parabolico di Poiseuille la velocità diminuisce linearmente con questa frazione."
+      },
+      {
+        "type": "formula",
+        "text": "u=\\frac{r^2}{R^2}"
+      },
+      {
+        "type": "formula",
+        "text": "v=0{,}56(1-u)\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "A metà dell’area u vale ½ e la velocità vale 0,28 m/s. Fra il centro e questo confine, intervalli uguali di u contengono aree uguali. La media per area è quindi la semisomma delle due velocità estreme."
+      },
+      {
+        "type": "formula",
+        "text": "v_{\\rm disco}=\\frac{0{,}56+0{,}28}{2}\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "v_{\\rm disco}=0{,}42\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Fai lo stesso fra il confine e la parete."
+      },
+      {
+        "type": "formula",
+        "text": "v_{\\rm corona}=\\frac{0{,}28+0}{2}\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "v_{\\rm corona}=0{,}14\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Le due zone hanno lo stesso peso nella media complessiva."
+      },
+      {
+        "type": "formula",
+        "text": "\\bar v=\\frac{0{,}42+0{,}14}{2}\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "\\bar v=0{,}28\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La media è metà della lettura assiale per questo profilo parabolico. Suddividere il raggio in due lunghezze uguali darebbe aree diverse. Una sonda fuori asse leggerebbe inoltre una velocità diversa da quella massima."
       }
     ],
     "difficulty": 2,
@@ -3497,7 +3718,7 @@
       "tolerance": 0.002
     },
     "hints": [
-      "Il profilo nel tubo circolare è parabolico."
+      "Confronta disco e corona di uguale area. La sonda sull’asse legge la velocità massima."
     ],
     "error": {
       "category": "modello",
@@ -3935,27 +4156,63 @@
     "prerequisites": [
       "C2-L008"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "La geometria è nota e viene misurato il rapporto fra Δp e Q. Converti tutti i dati prima di elevare il raggio alla quarta."
+        "text": "Cerchi la viscosità partendo dalla portata misurata. Il modello di Poiseuille descrive un fluido newtoniano in un tubo circolare rigido, con aderenza alla parete e moto laminare stazionario pienamente sviluppato. Usa raggio e lunghezza in metri, pressione in pascal, portata in metri cubi al secondo."
       },
       {
         "type": "formula",
-        "text": "r=10^{-3}\\,\\mathrm m,\\quad L=0{,}20\\,\\mathrm m,\\quad Q=5{,}0\\times10^{-7}\\,\\mathrm{m^3/s},\\quad\\Delta p=10^3\\,\\mathrm{Pa}"
+        "text": "r=1{,}0\\,\\mathrm{mm}=10^{-3}\\,\\mathrm m"
       },
       {
         "type": "formula",
-        "text": "8\\eta LQ=\\pi r^4\\Delta p\\quad\\Rightarrow\\quad\\eta=\\frac{\\pi(10^{-3})^4(10^3)}{8(0{,}20)(5{,}0\\times10^{-7})}"
+        "text": "L=20\\,\\mathrm{cm}=0{,}20\\,\\mathrm m"
       },
       {
         "type": "formula",
-        "text": "\\eta=\\frac{\\pi\\times10^{-9}}{8{,}0\\times10^{-7}}\\,\\mathrm{Pa\\,s}\\simeq3{,}9\\times10^{-3}\\,\\mathrm{Pa\\,s}"
+        "text": "Q=5{,}0\\times10^{-7}\\,\\mathrm{m^3/s}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=1{,}0\\,\\mathrm{kPa}=10^3\\,\\mathrm{Pa}"
       },
       {
         "type": "text",
-        "text": "L’unità si verifica: m⁴ Pa diviso per m·m³/s dà Pa·s. Una piccola incertezza sul raggio ha effetto amplificato su questa stima."
+        "text": "Per la portata, 1 mL vale un milionesimo di m³. Moltiplica quindi 0,50 mL/s per 10⁻⁶ m³/mL. La quarta potenza riguarda il raggio già convertito."
+      },
+      {
+        "type": "formula",
+        "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L}"
+      },
+      {
+        "type": "text",
+        "text": "Moltiplica entrambi i membri per 8ηL. Poi dividi per 8LQ, così la viscosità rimane da sola."
+      },
+      {
+        "type": "formula",
+        "text": "8\\eta LQ=\\pi r^4\\Delta p"
+      },
+      {
+        "type": "formula",
+        "text": "\\eta=\\frac{\\pi r^4\\Delta p}{8LQ}"
+      },
+      {
+        "type": "text",
+        "text": "In unità SI, r⁴ vale 10⁻¹². Moltiplicando per 10³ ottieni 10⁻⁹. Al denominatore il prodotto 8 × 0,20 × 5,0 vale 8,0."
+      },
+      {
+        "type": "formula",
+        "text": "\\eta=\\frac{\\pi\\times10^{-9}}{8{,}0\\times10^{-7}}\\,\\mathrm{Pa\\,s}"
+      },
+      {
+        "type": "formula",
+        "text": "\\eta\\simeq3{,}9\\times10^{-3}\\,\\mathrm{Pa\\,s}"
+      },
+      {
+        "type": "text",
+        "text": "Le unità si controllano cancellando m⁴ fra numeratore e denominatore. Rimane Pa·s. Una sovrastima del raggio si amplifica perché il raggio entra alla quarta potenza."
       }
     ],
     "difficulty": 3,
@@ -4192,15 +4449,35 @@
     "prerequisites": [
       "C2-L008"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La resistenza idraulica collega la caduta di pressione alla portata. Per usare Pa·s/m³, converti prima i millilitri in metri cubi."
+      },
+      {
         "type": "formula",
-        "text": "\\Delta p=R_hQ=(8{,}0\\times10^8)(2{,}5\\times10^{-6})=2000\\,\\mathrm{Pa}=2{,}0\\,\\mathrm{kPa}"
+        "text": "Q=2{,}5\\times10^{-6}\\,\\mathrm{m^3/s}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=R_hQ"
       },
       {
         "type": "text",
-        "text": "Il segno è positivo nella convenzione pressione a monte meno pressione a valle."
+        "text": "Nel prodotto i secondi e i metri cubi si cancellano. Moltiplica 8,0 per 2,5 e somma gli esponenti 8 e −6."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=20\\cdot10^2\\,\\mathrm{Pa}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p=2000\\,\\mathrm{Pa}=2{,}0\\,\\mathrm{kPa}"
+      },
+      {
+        "type": "text",
+        "text": "Con portata positiva la pressione a monte è più alta. Una portata dimezzata, con la stessa resistenza, dimezzerebbe la caduta."
       }
     ],
     "difficulty": 2,
@@ -4869,15 +5146,31 @@
     "prerequisites": [
       "C2-L009"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "In serie il fluido attraversa entrambi i tratti. In regime stazionario, per un liquido incomprimibile senza diramazioni, la portata Q è la stessa. Chiama R la resistenza minore e 2R quella maggiore."
+      },
+      {
         "type": "formula",
-        "text": "\\Delta p_i=R_iQ"
+        "text": "\\Delta p_1=RQ"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p_2=2RQ"
       },
       {
         "type": "text",
-        "text": "Con Q uguale, il rapporto delle cadute è quello delle resistenze. Raddoppiare R raddoppia la frazione di pressione persa sul tratto."
+        "text": "Il secondo tratto ha una caduta doppia rispetto al primo. Per parlare della frazione sul totale devi sommare le due cadute."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta p_{\\rm tot}=3RQ"
+      },
+      {
+        "type": "text",
+        "text": "Il primo tratto perde un terzo della differenza totale e il secondo due terzi. Le due quote ricompongono l’intera caduta di pressione."
       }
     ],
     "difficulty": 2,
@@ -5135,15 +5428,43 @@
     "prerequisites": [
       "C2-L010"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La superficie aumenta di 3,0 cm². Per ogni centimetro quadrato occorre il fattore di conversione dell’area, cioè il quadrato di 10⁻²."
+      },
+      {
         "type": "formula",
-        "text": "\\Delta A=3{,}0\\times10^{-4}\\,\\mathrm{m^2},\\qquad \\Delta E=0{,}050(3{,}0\\times10^{-4})=1{,}5\\times10^{-5}\\,\\mathrm J=15\\,\\mu\\mathrm J"
+        "text": "\\Delta A=3{,}0\\times10^{-4}\\,\\mathrm{m^2}"
       },
       {
         "type": "text",
-        "text": "Il dato di area descrive già l’unica interfaccia creata."
+        "text": "Per una singola interfaccia creata lentamente a temperatura e tensione superficiale costanti, moltiplica l’area aggiunta per la tensione γ."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta E=\\gamma\\Delta A"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta E=0{,}050\\cdot3{,}0\\times10^{-4}\\,\\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta E=1{,}5\\times10^{-5}\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Un microjoule vale 10⁻⁶ J. Dividendo per 10⁻⁶ ottieni quindici microjoule."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta E=15\\,\\mu\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’unità N/m moltiplicata per m² dà N·m, cioè J. Un film con due interfacce richiederebbe il doppio per lo stesso incremento di area di ciascuna faccia."
       }
     ],
     "difficulty": 2,
