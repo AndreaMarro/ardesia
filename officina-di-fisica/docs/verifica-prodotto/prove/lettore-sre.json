@@ -1,0 +1,82 @@
+{
+  "name": "speech-rule-engine",
+  "version": "4.1.5",
+  "tag": "https://github.com/Speech-Rule-Engine/speech-rule-engine/releases/tag/v4.1.5",
+  "license": "Apache-2.0",
+  "sha512Npm": "Nx4d44Ca0FQ4ve9WS8Ja6w2zkI9q7JvH1+3nI9zh4aU/vICXTZWzzYR4MyYRkk/5vcF7OMkwjYkX3qrfahfOgg==",
+  "files": {
+    "lib/sre.js": {
+      "bytes": 362625,
+      "sha256": "d5c339578187a04f6324ad2841a1ac89e94d97cdf6b8c38bb62a72511ff41428"
+    },
+    "lib/mathmaps/base.json": {
+      "bytes": 208699,
+      "sha256": "12042895616f86951a36a003dbfb3003b7a379756e38f5705022fdcb61b63879"
+    },
+    "lib/mathmaps/it.json": {
+      "bytes": 279204,
+      "sha256": "d770adf0bdee854cf3aeea084219f9dce5cd811904a3011921753cb7bafa7e62"
+    },
+    "LICENSE": {
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    }
+  },
+  "bundleOnDemandBytes": 850528,
+  "mathspeak": [
+    {
+      "engine": "chromium",
+      "loads": [
+        "base.json",
+        "it.json"
+      ],
+      "phrases": [
+        "s uguale a v Delta maiuscola normale t virgola d pedice e normale c normale o normale linea di base uguale a inizio frazione s fratto 2 fine frazione",
+        "un mezzo",
+        "x quadrato uguale a 9",
+        "F maiuscola uguale a m a"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "loads": [
+        "base.json",
+        "it.json"
+      ],
+      "phrases": [
+        "s uguale a v Delta maiuscola normale t virgola d pedice e normale c normale o normale linea di base uguale a inizio frazione s fratto 2 fine frazione",
+        "un mezzo",
+        "x quadrato uguale a 9",
+        "F maiuscola uguale a m a"
+      ]
+    }
+  ],
+  "clearspeak": [
+    {
+      "engine": "chromium",
+      "loads": [
+        "base.json",
+        "it.json"
+      ],
+      "phrases": [
+        "s uguale a v triangolo normale t virgola d pedice e normale c normale o normale uguale a s fratto 2",
+        "un mezzo",
+        "x quadrato uguale a 9",
+        "F uguale a m a"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "loads": [
+        "base.json",
+        "it.json"
+      ],
+      "phrases": [
+        "s uguale a v triangolo normale t virgola d pedice e normale c normale o normale uguale a s fratto 2",
+        "un mezzo",
+        "x quadrato uguale a 9",
+        "F uguale a m a"
+      ]
+    }
+  ]
+}

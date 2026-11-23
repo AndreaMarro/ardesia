@@ -52,3 +52,7 @@ Partire dalla SHA effettiva di `officina-di-fisica`. Verificare il verbale di in
 1. Confrontare il commit integrato, i tredici job, il pacchetto verificato e il percorso reale con il verbale della PR.
 2. Dalla base così verificata migliorare le modalità di lettura presenti, con accettazione anticipata e prove sul lettore canonico.
 3. Tracciare separatamente gli esiti editoriali per ID, il collaudo touch fisico rinviato e l’osservazione dell’autonomia con studenti. [Evidenze](../../officina-di-fisica/docs/verifica-prodotto/diario.md)
+
+## Officina · Lettura personale
+
+Partire dal ramo ufficiale e verificare l’effettiva integrazione dell’incremento del lettore. I punti da riprendere nell’ordine sono il confronto con le prove della SHA di merge, la revisione delle spiegazioni per ID e il recupero grafico conservando i dati della simulazione. Per riprodurre la lettura aprire C6-L01 e il terzo passaggio sull’eco. Per il ritorno all’allenamento aprire C1-Q034. [Risultati, controlli e limiti](../../officina-di-fisica/docs/verifica-prodotto/lettura.md)
