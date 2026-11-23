@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:officina:reading-preferences:v1",
+  "title": "Preferenze di lettura",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "density": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "spacious"
+      ],
+      "default": "standard"
+    },
+    "contrast": {
+      "type": "string",
+      "enum": [
+        "paper",
+        "high"
+      ],
+      "default": "paper"
+    },
+    "focus": {
+      "type": "boolean",
+      "default": false
+    },
+    "pace": {
+      "type": "string",
+      "enum": [
+        "continuous",
+        "steps"
+      ],
+      "default": "continuous"
+    }
+  },
+  "required": [
+    "density",
+    "contrast",
+    "focus",
+    "pace"
+  ]
+}
