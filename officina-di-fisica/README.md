@@ -2,6 +2,8 @@
 
 Dalla testata, **Cerca** apre i materiali per argomento o codice, per esempio `C1-Q027`. Puoi filtrare per percorso e tipo e tornare al risultato dopo aver consultato l’attività. [Ricerca e criteri di verifica](docs/verifica-prodotto/ricerca.md)
 
+In **Il mio studio → Diario degli errori** ritrovi la risposta data, il passaggio da controllare e un caso diverso da provare. Scegli il percorso e il tempo disponibile. La sezione *Tentativi e aiuti* distingue i supporti usati, il successo autonomo su una famiglia diversa e il ripasso a distanza. [Percorso di recupero e verifiche](docs/verifica-prodotto/diario.md)
+
 
 I sei percorsi di Andrea Marro per il semestre aperto di Medicina 2026/27. Il quaderno dello studente, il banco autore e il registro dei bonifici condividono una sola installazione. L’edizione si può usare su questo computer senza servizi esterni.
 

@@ -34,7 +34,7 @@ test('I contratti pubblicati accettano il pacchetto di geometria e respingono un
     ...engine, measure: (x) => x === 7 ? 17 : engine.measure(x),
   })), /misura/);
   const openapi = await read('contracts/openapi.json');
-  for (const name of ['engine', 'engine-ref', 'pathway', 'proposal', 'exam', 'catalog-search']) assert.equal(typeof await schema(name), 'function');
+  for (const name of ['engine', 'engine-ref', 'pathway', 'proposal', 'exam', 'catalog-search', 'error-diary']) assert.equal(typeof await schema(name), 'function');
   assert.equal(openapi.openapi, '3.1.1');
   assert.ok(openapi.paths['/v1/courses/{course}/learning-path'].get.security.length);
 });

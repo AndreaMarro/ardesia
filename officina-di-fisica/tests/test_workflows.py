@@ -168,6 +168,91 @@ class Workflows(unittest.TestCase):
     def author_get(self, key):
         return self.admin.fetch("/api/author/item/" + key)
 
+    def test_error_diary_across_courses_and_editions(self):
+        from server.adapters.contracts import schema, validate
+        from server.store import catalog_seed
+        def url(course="C6"):
+            return "/api/v1/courses/" + course + "/error-diary"
+        self.client().fetch(url(), expected=401)
+        self.student.fetch(url(), expected=403)
+        self.grant("C6")
+        self.assertFalse(self.student.fetch(url())["items"])
+        rows = list(catalog_seed())
+        cases = {}
+        for course in ("C1","C2","C3","C4","C5","C6"):
+            question = next(q for q in rows if q["course"]==course and q["kind"]=="question"
+                            and not q.get("exam") and q["answer"]["type"]=="numeric")
+            run = self.start_run(course=course, item=question["id"])
+            if course == "C2":
+                self.view(run, {"action":"hint","idx":0})
+            self.view(run, {"action":"answer","idx":0,"value":"-987654321"})
+            entry = self.student.fetch(url(course))["items"][0]
+            self.assertEqual((entry["question"]["id"],entry["run"],entry["index"]), (question["id"],run,0))
+            self.assertEqual(entry["hints"], int(course=="C2"))
+            self.assertEqual(entry["assisted"], course=="C2")
+            for key in ("prerequisite","explanation","representation"):
+                self.assertTrue(entry[key]["id"], (course,key))
+            self.assertTrue(entry["retryAvailable"])
+            cases[course] = (question,run)
+        db = self.db()
+        before = [list(db.execute("SELECT * FROM "+t+" ORDER BY rowid")) for t in ("runs","attempts","exposed","reads","lab_events")]
+        diary = self.student.fetch(url())
+        validate(diary, schema("error-diary-v1"))
+        self.assertEqual(diary["total"], 6)
+        other_device = self.client().login().fetch(url())
+        self.assertEqual(other_device["items"],diary["items"])
+        self.assertEqual(before,[list(db.execute("SELECT * FROM "+t+" ORDER BY rowid")) for t in ("runs","attempts","exposed","reads","lab_events")])
+        other = self.client()
+        other.fetch("/api/demo",{})
+        self.assertEqual(other.fetch(url())["total"], 0)
+        question,rid = cases["C1"]
+        data = {"run":rid,"index":0,"requestId":"ripresa-idempotente"}
+        other.fetch(url("C1")+"/retest",data,404)
+        self.student.fetch(url("C2")+"/retest",data,404)
+        self.student.fetch(url("C1")+"?minutes=10",expected=400)
+        self.student.fetch(url("C1")+"?page=0",expected=400)
+        self.student.fetch(url("C1")+"?minutes=5&minutes=15",expected=400)
+        for client in (self.student, self.client().login()):
+            client.fetch(url("C1")+"/retest",dict(data,index=-1),404)
+        self.admin.fetch("/api/author/withdraw", {"id":question["id"],"live":question["version"]})
+        old = self.student.fetch(url("C1"))["items"][0]
+        self.assertEqual((old["question"]["title"],old["question"]["version"]),(question["title"],question["version"]))
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            clients=[self.client().login(), self.client().login()]
+            ids=list(pool.map(lambda c:c.fetch(url("C1")+"/retest",data)["id"],clients))
+        self.assertEqual(ids[0],ids[1])
+        alternate = next(r for r in rows if r["id"]==self.view(ids[0])["items"][0]["id"])
+        self.assertNotEqual(alternate["family"],question["family"])
+        self.view(ids[0], {"action":"answer", "idx":0, "value":str(alternate["answer"]["value"])})
+        retained = self.student.fetch(url("C1"))["items"][0]["observed"]
+        self.assertIsNotNone(retained["transferAt"])
+        self.assertIsNone(retained["delayedAt"])
+        self.assertEqual(self.student.fetch(url("C1")+"/retest",data)["id"],ids[0])
+        with db: db.execute("DELETE FROM access WHERE course='C6'")
+        self.student.fetch(url("C1"),expected=403)
+        self.student.fetch("/api/logout",{})
+        self.student.fetch(url("C1"),expected=401)
+
+    def test_error_diary_excludes_sealed_exam_until_delivery(self):
+        from server.store import catalog_seed
+        self.grant("C6")
+        rid = self.start_run(course="C6",mode="exam",exam=1)
+        first = self.view(rid)["items"][0]
+        q = next(r for r in catalog_seed() if r["id"]==first["id"])
+        wrong = next(option for option in first["options"] if option != q["answer"]["value"])
+        url="/api/v1/courses/C6/error-diary"
+        self.view(rid, {"action":"answer","idx":0,"value":wrong})
+        self.assertEqual(self.student.fetch(url)["total"],0)
+        data={"run":rid,"index":0,"requestId":"nuovo-problema"}
+        self.student.fetch(url+"/retest",data,404)
+        self.view(rid, {"action":"finish"})
+        item=self.student.fetch(url)["items"][0]
+        self.assertEqual((item["source"],item["question"]),("esame consegnato",None))
+        self.assertNotIn(q["prompt"], json.dumps(item,ensure_ascii=False))
+        retry = self.student.fetch(url+"/retest",data)["id"]
+        next_id=self.view(retry)["items"][0]["id"]
+        self.assertFalse(next(r for r in catalog_seed() if r["id"]==next_id).get("exam"))
+
     def test_catalog_search_live_authority_and_editions(self):
         path = "/api/v1/catalog/search?"
         guest = self.client()

@@ -137,7 +137,7 @@ export async function benchPage(id, origin, topicIndex) {
   stileBanco();
   const focus = topicIndex === undefined ? null : r.topics?.[Number(topicIndex)];
   const back =
-    origin && /^(?:materiale|corso|prova|lab|laboratori|percorsi)(?:\/|$)/.test(origin) ? origin : 'laboratori';
+    origin && /^(?:materiale|corso|prova|lab|laboratori|percorsi|studio\/diario)(?:\/|$)/.test(origin) ? origin : 'laboratori';
   main.innerHTML = bancoMarkup(r, activity, focus, back, model, pilot, state.user, origin);
   const root = main.querySelector('.bench-room'),
     get = (sel) => root.querySelector(sel),

@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Diario personale degli errori",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "course": {
+      "type": "string"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pageSize": {
+      "const": 12
+    },
+    "minutes": {
+      "enum": [
+        5,
+        15
+      ]
+    },
+    "now": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "required": [
+    "course",
+    "total",
+    "page",
+    "pageSize",
+    "minutes",
+    "now",
+    "items"
+  ],
+  "$defs": {
+    "reference": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "title"
+          ]
+        },
+        {
+          "const": null
+        }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "at": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skill": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "question": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "prompt": { "type": "string" },
+                "response": { "type": "string" },
+                "unit": { "type": "string" },
+                "version": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "version", "prompt", "response", "unit"
+              ]
+            },
+            {
+              "const": null
+            }
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "diagnosis": {
+          "type": "string"
+        },
+        "assisted": {
+          "type": "boolean"
+        },
+        "hints": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "solutionAvailable": {
+          "type": "boolean"
+        },
+        "repetitions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observed": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "assistedAfter": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reviewedAt": { "oneOf": [{ "type": "integer", "minimum": 0 }, { "const": null }] },
+            "transferAt": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "const": null
+                }
+              ]
+            },
+            "delayedAt": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "const": null
+                }
+              ]
+            },
+            "due": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "assistedAfter",
+            "transferAt",
+            "reviewedAt",
+            "delayedAt",
+            "due"
+          ]
+        },
+        "prerequisite": {
+          "$ref": "#/$defs/reference"
+        },
+        "explanation": {
+          "$ref": "#/$defs/reference"
+        },
+        "representation": {
+          "$ref": "#/$defs/reference"
+        },
+        "retryAvailable": {
+          "type": "boolean"
+        },
+        "retryFresh": {
+          "type": "boolean"
+        },
+        "next": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "step": {
+              "enum": [
+                "prerequisite",
+                "explanation",
+                "representation",
+                "retry",
+                "review"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "step",
+            "reason"
+          ]
+        }
+      },
+      "required": [
+        "run",
+        "index",
+        "at",
+        "skill",
+        "source",
+        "question",
+        "title",
+        "category",
+        "diagnosis",
+        "assisted",
+        "hints",
+        "solutionAvailable",
+        "repetitions",
+        "observed",
+        "prerequisite",
+        "explanation",
+        "representation",
+        "retryAvailable",
+        "retryFresh",
+        "next"
+      ]
+    }
+  }
+}

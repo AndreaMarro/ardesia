@@ -17,6 +17,8 @@ from urllib.parse import parse_qsl, quote, unquote, urlparse
 
 from . import commerce, editor, learning
 from .domain.catalog_search import search_catalog
+from .application.error_diary import ErrorDiary
+from .adapters.study_repository import SQLiteStudy
 from .application.pathways import learning_path
 from .application.formative import attach_formative_variant
 from .editorial.service import editorial_library
@@ -276,12 +278,19 @@ class Handler(BaseHTTPRequestHandler):
                 {"error": "Operazione interrotta. I dati salvati sono al sicuro."}, 500
             )
 
+    def query_params(self):
+        query = urlparse(self.path).query
+        require(len(query) <= 2048 and not re.search(r"%(?![0-9a-fA-F]{2})", query), "Parametri non validi.")
+        pairs = parse_qsl(query, keep_blank_values=True, strict_parsing=True, max_num_fields=4, errors="strict")
+        require(len(pairs) == len(dict(pairs)), "Parametro ripetuto.")
+        return dict(pairs)
+
     def route(self, db, u, p, d, post, token):
         path = "/".join(p)
         if not post and path == "api/v1/openapi.json":
             return json.loads((CONTRACTS / "openapi.json").read_text())
         if not post and p[:3] == ["api", "v1", "schemas"] and len(p) == 4:
-            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1"}
+            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1", "error-diary-v1"}
             name = p[3].removesuffix(".schema.json")
             require(p[3] == name + ".schema.json" and name in names, "Schema assente.", 404)
             return json.loads((CONTRACTS / p[3]).read_text())
@@ -371,12 +380,15 @@ class Handler(BaseHTTPRequestHandler):
             need_author(u)
             return self.author(db, u, p[2:], d, post)
         if not post and path == "api/v1/catalog/search":
-            query = urlparse(self.path).query
-            require(len(query) <= 2048 and not re.search(r"%(?![0-9a-fA-F]{2})", query),
-                    "Ricerca non valida.")
-            pairs = parse_qsl(query, keep_blank_values=True, strict_parsing=True, max_num_fields=4, errors="strict")
-            require(len(pairs) == len(dict(pairs)), "Parametro di ricerca ripetuto.")
-            return search_catalog(published(db), dict(pairs))
+            return search_catalog(published(db), self.query_params())
+        if p[:3] == ["api", "v1", "courses"] and p[4:] in (["error-diary"], ["error-diary", "retest"]):
+            need_user(u)
+            diary = ErrorDiary(SQLiteStudy(db), u, published(db), p[3])
+            if not post and len(p) == 5:
+                return diary.page(self.query_params())
+            if post and p[4:] == ["error-diary", "retest"]:
+                return diary.retry(d)
+            raise Problem("Metodo non disponibile.", 405)
         rows = published(db)
         if not post and p[:3] == ["api", "v1", "courses"] and len(p) == 5 and p[4] == "learning-path":
             need_user(u)
