@@ -18,3 +18,42 @@ La validazione con studenti, l’intelligibilità con tecnologie assistive perso
 Baseline `c0cf5478d954804c8f8a2db3007662f5eae093db`. Percorso riprodotto sul lettore C6-L01 a 1440 × 900 in Chromium e 390 × 844 in WebKit. La lettura a voce alta rimane una scelta personale. La sua disponibilità dipende dalle voci italiane locali esposte dal browser.
 
 Il contratto del profilo accetta esclusivamente densità, contrasto, concentrazione e modalità di avanzamento. L’identità deriva dalla sessione. Il salvataggio di un campo preserva le scelte già salvate per gli altri campi. Un reset esplicito ripristina l’intero profilo. Per l’ospite si usano solo preferenze del browser. I tempi di lettura, il testo ascoltato e le scelte di accessibilità restano separati da tentativi, competenze e registri ufficiali.
+
+## Uso
+
+In ogni lezione ed esempio la riga **Testo e ascolto** raccoglie le preferenze. **Un passaggio alla volta** si può usare anche dal testo. Le frecce cambiano passaggio soltanto quando le attiva il lettore. **Mostra tutto** ripristina la sequenza intera. Al ritorno da una simulazione il focus ritrova il suo collegamento. La stampa comprende tutti i blocchi anche durante un passaggio.
+
+Il contrasto alto usa carta bianca e inchiostro scuro. La modalità concentrazione nasconde l’indice laterale e conserva i laboratori nel testo. Il timer dura cinque minuti e segnala la fine con un messaggio. La pagina protegge lo spazio di lettura anche senza voce, con MathML e trascrizione. Una lezione rimane disponibile durante un’interruzione del caricamento delle mappe vocali. Il lettore può riprovare l’azione.
+
+## Implementazione e limiti
+
+- Il contratto pubblico espone le quattro preferenze del quaderno. Una scrittura richiede la sessione corrente e il valore pubblico `draftSession` nell’intestazione `X-Officina-Session`. SQLite unisce le sole modifiche richieste nella transazione di scrittura. Il ripristino elimina la riga del profilo. L’ospite conserva scelte separate sul dispositivo.
+- Il testo, le didascalie e le formule provengono dagli stessi blocchi visibili nel lettore. Per l’espressione dell’eco la lettura editoriale si applica soltanto al TeX esatto presente nell’annotazione MathML. Una formula cambiata torna alla verbalizzazione strutturale. Per le altre formule il lettore carica su richiesta il motore italiano Mathspeak e le sole mappe `base` e `it`. La distribuzione include motore, mappe e licenza Apache 2.0. [Provenienza e impronte](prove/lettore-sre.json) · [Release ufficiale SRE 4.1.5](https://github.com/Speech-Rule-Engine/speech-rule-engine/releases/tag/v4.1.5)
+- L’avvio dell’ascolto richiede un comando esplicito e una voce che il browser dichiara italiana e locale. Cambio di passaggio, chiusura dei controlli, navigazione e uscita interrompono la lettura. La trascrizione resta disponibile con sole voci remote. [Contratto Web Speech](https://webaudio.github.io/web-speech-api/#dom-speechsynthesisvoice-localservice)
+- Dopo migrazione l’archivio conta 19 tabelle. Nel collaudo di ritorno, a scrittori fermi su una copia, `BEGIN IMMEDIATE; PRAGMA user_version=3; COMMIT;` consente all’eseguibile precedente di riaprire il quaderno. La tabella delle preferenze resta presente e la migrazione 004 la riutilizza al successivo aggiornamento. L’operazione reale richiede uno snapshot coerente dell’archivio e il confronto dei registri prima della riapertura.
+- Lo studente sceglie densità, passo, tempo e formulazione in parole senza fornire dati clinici. L’utilità di questi controlli con specifici studenti deve ancora essere osservata. [CAST, personalizzazione della presentazione](https://udlguidelines.cast.org/representation/perception/customize-display/) · [W3C, redistribuzione dei contenuti](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+
+## Verifiche per requisito
+
+Baseline `c0cf5478`. Contratto `4875fc1f`. Le prove di sorgente sono riferite a `6e90bc08f3d2ed822a3076e149eae9a817075743`. L’esecuzione CI successiva alla pubblicazione della PR è associata all’albero provato da GitHub. Il verbale di integrazione registra separatamente la SHA ufficiale.
+
+| ID | Baseline → modifica | Rischio | Prova e risultato tecnico |
+| --- | --- | --- | --- |
+| L1 | 8 su 56 lezioni con passaggi → 56 su 56 e tutti i 117 esempi | Perdere un blocco o staccare il banco dalla spiegazione | PASS. Confronto DOM per tutte le 173 edizioni, 352 formule e 129 figure. C6-L01 conserva il terzo passaggio, il collegamento e il focus dopo il ritorno dalla tavola 2D. [Verbale browser](prove/lettore-browser.json) |
+| L2 | Nessun profilo personale di lettura → quattro scelte persistenti | Mescolare utenti o perdere un aggiornamento concorrente | PASS. Due sessioni apportano modifiche disgiunte, una terza conserva le proprie scelte. Verificati richieste invalide, reset, sessione precedente, riavvio, storico e voti. [Test HTTP](../../tests/test_workflows.py) |
+| L3 | Nessun ascolto selezionabile → ascolto italiano locale, interruzione e trascrizione | Partenza involontaria, lettura dopo uscita o invio a un servizio esterno | PASS. Voce del sistema disponibile sul Mac in WebKit. Il doppio controllato verifica voci tardive e remote, navigazione, cambio utente e fallimento con ripresa. Esame C6 sigillato verificato senza aiuti attivi. [Test browser](../../tests/browser-lettore.mjs) |
+| L4 | Formula solo tipografica e MathML → verbalizzazione selezionabile | Lettura errata di segno, frazione, esponente o tragitto | PASS tecnico. Frazione, potenza e segno verificati in due motori. La distanza dell’eco è controllata per tutti i 21 valori del banco con un calcolo inverso indipendente. A 20 ms il percorso è 6,8 m e la parete dista 3,4 m. [Controprova eseguibile](prove/lettore-eco.mjs) |
+| L5 | Controlli limitati → impostazioni richiudibili, timer, testo integrale stampabile | Perdita di focus o pagina più larga dello schermo | PASS tecnico. Cinque configurazioni, 15 scansioni axe. Verificati zoom nativo 200%, larghezze 320 e 390, tastiera, movimento ridotto e timer senza avanzamento. [Taste Skill e zoom](prove/lettore-taste.json) |
+| L6 | Archivio v3 e lettore senza motore vocale → migrazione 004 e motore facoltativo | Cambiare i dati preesistenti o rallentare l’apertura | PASS tecnico. Copia 1.1.0 riaperta con lo stesso cookie e la risposta originaria, confronto integrale delle 18 tabelle precedenti e andata e ritorno di versione. Motore e mappe 850.528 byte grezzi su richiesta, zero richieste SRE nell’apertura ordinaria. [Misura prima/dopo](prove/lettore-costo.json) |
+
+Dieci aperture locali per versione hanno dato mediana 182 ms e p90 367 ms nella base, mediana 205,5 ms e p90 252 ms nella prima candidata. Il confronto descrive questo Mac e una prova corta. Le misure dei singoli browser sono nel verbale. Taste ha esaminato l’applicazione autentica a 100% e 200%. Il suo controllo colore segnala `FAIL palette-purple` e avvisi per crema, tipi e bordi dell’identità esistente. La verifica manuale ha controllato separazione delle opzioni dal testo, collegamento all’esperimento, chiarezza della frase sull’eco e leggibilità dei controlli a larghezza ridotta. [Misure e osservazioni grezze](prove/lettore-taste.json)
+
+| Chromium desktop | WebKit mobile |
+| --- | --- |
+| ![Passaggio dell’eco con formula e accesso al banco](prove/lettore-desktop.png) | ![Trascrizione della formula dell’eco](prove/lettore-mobile.png) |
+
+**Da validare con persone.** Intelligibilità delle voci individuali e dei simboli specialistici, comprensione della differenza fra cammino e distanza, effetto di ritmo e spaziatura sul carico percepito, riuso a distanza e utilizzo con tecnologie assistive personali. Il test touch su telefono fisico è rinviato. L’esito automatico di axe riguarda gli stati eseguiti.
+
+### Controprova di continuità rilevata nel collaudo
+
+L7, prima della correzione. Sul ramo ufficiale `c0cf5478`, digitare `37` in C1-Q034, entrare nel banco collegato e usare **Torna all’attività** lascia il campo vuoto. Il test già presente in `browser-banchi.mjs` ha riprodotto il difetto anche sulla prima candidata. Criterio aggiuntivo: mantenere in memoria solo la risposta di allenamento aperta e ancora da inviare. All’uscita dal banco ricontrollare sessione, permesso, tentativo, posizione, ID ed edizione sul server. Una risposta già registrata altrove prevale sempre. Nessuna scrittura nei voti, nel registro tentativi, nello storage del dispositivo o nella cronologia del browser. Coprire risposta numerica, scelta, sessione cambiata e invio concorrente.
