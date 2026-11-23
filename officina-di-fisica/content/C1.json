@@ -8,7 +8,7 @@
     "title": "Dare una misura alle cose",
     "skill": "C1-L001",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
@@ -20,7 +20,15 @@
       },
       {
         "type": "formula",
-        "text": "\\rho=\\frac{m}{V},\\qquad [\\rho]=M L^{-3},\\qquad 1\\,\\mathrm{kg/m^3}=1\\,\\mathrm{kg}\\,\\mathrm{m}^{-3}"
+        "text": "\\rho=\\frac{m}{V}"
+      },
+      {
+        "type": "formula",
+        "text": "[\\rho]=M L^{-3}"
+      },
+      {
+        "type": "formula",
+        "text": "1\\,\\mathrm{kg/m^3}=1\\,\\mathrm{kg}\\,\\mathrm m^{-3}"
       },
       {
         "type": "text",
@@ -37,7 +45,19 @@
       },
       {
         "type": "text",
-        "text": "La notazione scientifica separa le cifre significative dalla scala: scrivi un coefficiente tra 1 incluso e 10 escluso, seguito da una potenza di dieci. Per stimare basta spesso confrontare gli esponenti. Se si richiede la potenza di dieci più vicina in scala logaritmica, si arrotonda all’esponente successivo a partire dal coefficiente √10. Dichiara la convenzione quando conta."
+        "text": "La notazione scientifica separa le cifre significative dalla scala. Per una misura diversa da zero scrivi un coefficiente con il suo segno e una potenza di dieci. Il modulo del coefficiente va da 1 incluso a 10 escluso."
+      },
+      {
+        "type": "formula",
+        "text": "1\\leq |a|<10"
+      },
+      {
+        "type": "text",
+        "text": "Per esempio, −0,003 m diventa −3 × 10⁻³ m. Moltiplicare −3 per 0,001 restituisce il valore di partenza. Per una misura nulla scrivi 0 con la sua unità."
+      },
+      {
+        "type": "text",
+        "text": "Per scegliere la potenza di dieci più vicina in scala logaritmica, confronta il modulo del coefficiente con √10. Se raggiunge questa soglia, scegli l’esponente successivo. La regola si applica alla grandezza in modulo."
       },
       {
         "type": "text",
@@ -193,15 +213,23 @@
     "prerequisites": [
       "C1-L001"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Il lavoro è una forza moltiplicata per uno spostamento lungo la forza. Entrambi i termini della prima coppia hanno unità N·m, cioè J. Una somma fisica richiede grandezze omogenee."
+        "text": "Il lavoro di una forza costante è la componente della forza lungo lo spostamento moltiplicata per la lunghezza del tratto. Qui forza e moto sono concordi, così tale componente è F."
+      },
+      {
+        "type": "formula",
+        "text": "L=Fd"
+      },
+      {
+        "type": "text",
+        "text": "Una forza di 2 N applicata lungo 3 m compie 6 J di lavoro. Puoi sommare questo lavoro a un altro lavoro. Anche un momento torcente si esprime in N·m, ma descrive l’effetto rotazionale di una forza. Per sommare grandezze servono sia dimensioni comuni sia lo stesso significato fisico."
       }
     ],
     "difficulty": 2,
-    "prompt": "Quale coppia può comparire in una somma di energie?",
+    "prompt": "Una forza costante agisce lungo un tratto rettilineo nello stesso verso del moto. Nelle opzioni «lunghezza» indica la lunghezza di quel tratto. Quale coppia può comparire in una somma di energie?",
     "family": "due-quantita-sommabili",
     "answer": {
       "type": "choice",
@@ -358,11 +386,11 @@
     "prerequisites": [
       "C1-L001"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Con la stessa lunghezza si possono raggiungere punti diversi a seconda della direzione e del verso. Lo spostamento richiede un vettore."
+        "text": "Confronta un percorso di 4 m a nord con uno di 4 m a sud a partire dalla stessa porta. I due spostamenti hanno uguale modulo e verso opposto. Conoscere i soli quattro metri lascia due arrivi possibili. Per indicare lo spostamento occorrono modulo, direzione e verso. La grandezza è vettoriale."
       }
     ],
     "difficulty": 1,
@@ -381,7 +409,7 @@
     ],
     "error": {
       "category": "concetto",
-      "message": "Immagina due spostamenti uguali orientati in versi opposti.",
+      "message": "Confronta due spostamenti di uguale modulo e verso opposto a partire dallo stesso punto.",
       "target": "C1-L001"
     }
   },
@@ -396,23 +424,39 @@
     "prerequisites": [
       "C1-L001"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "m_{\\mathrm{tara}}=0{,}0420\\times1000\\,\\mathrm g=42{,}0\\,\\mathrm g"
+        "type": "text",
+        "text": "La bilancia indica una massa. La lettura della fiala piena comprende vetro e contenuto. Per isolare il contenuto devi sottrarre la massa del vetro, detta tara. Prima esprimi entrambe le letture in grammi."
       },
       {
         "type": "formula",
-        "text": "m_{\\mathrm{liquido}}=54{,}6-42{,}0=12{,}6\\,\\mathrm g"
+        "text": "1\\,\\mathrm{kg}=1000\\,\\mathrm g"
+      },
+      {
+        "type": "formula",
+        "text": "m_{\\rm tara}=0{,}0420\\,\\mathrm{kg}=42{,}0\\,\\mathrm g"
       },
       {
         "type": "text",
-        "text": "Il contenuto contribuisce positivamente alla lettura della fiala piena."
+        "text": "Ora puoi sottrarre valori espressi nella stessa unità."
+      },
+      {
+        "type": "formula",
+        "text": "m=(54{,}6-42{,}0)\\,\\mathrm g"
+      },
+      {
+        "type": "formula",
+        "text": "m=12{,}6\\,\\mathrm g"
+      },
+      {
+        "type": "text",
+        "text": "Controlla ricomponendo la lettura. 42,0 g di fiala più 12,6 g di contenuto danno 54,6 g. Il peso sarebbe una forza espressa in newton."
       }
     ],
     "difficulty": 2,
-    "prompt": "Una fiala piena pesa sulla bilancia 54,6 g. La fiala vuota segna 0,0420 kg. Calcola la massa del contenuto in g.",
+    "prompt": "La bilancia indica 54,6 g per una fiala piena e 0,0420 kg per la fiala vuota. Calcola la massa del contenuto in grammi.",
     "family": "la-bilancia-con-la-tara",
     "answer": {
       "type": "numeric",
@@ -1209,36 +1253,48 @@
     "prerequisites": [
       "C1-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "figure",
         "src": "/figures/C1-posizione.svg",
-        "text": "Le coordinate mostrano due tratti di movimento separati da una sosta."
+        "text": "Il primo segmento sale di 6 m, il secondo resta alla stessa quota e il terzo scende di 4 m. L’asse verticale misura la posizione."
       },
       {
         "type": "text",
-        "text": "Le tre variazioni di posizione sono +6 m, 0 m e −4 m. Per sommare i metri effettivamente camminati prendi i moduli."
+        "text": "Leggi le posizioni all’inizio e alla fine di ogni segmento. Le variazioni sono +6 m, 0 m e −4 m. Per ottenere la distanza somma i moduli, contando anche il ritorno."
       },
       {
         "type": "formula",
-        "text": "d=|6|+|0|+|-4|=10\\,\\mathrm m"
+        "text": "d=6+0+4=10\\,\\mathrm m"
       },
       {
         "type": "text",
-        "text": "Per la velocità media collega invece direttamente gli estremi."
+        "text": "Lo spostamento confronta soltanto la posizione finale con quella iniziale. È positivo perché l’arrivo è a destra del via."
       },
       {
         "type": "formula",
-        "text": "\\Delta x=2-0=2\\,\\mathrm m,\\qquad \\bar v=\\frac{2}{6}\\,\\mathrm{m/s}=0{,}33\\,\\mathrm{m/s}"
+        "text": "\\Delta x=(2-0)\\,\\mathrm m=2\\,\\mathrm m"
       },
       {
         "type": "text",
-        "text": "La piccola velocità media positiva riflette il ritorno parziale. La rapidità media, che usa la distanza percorsa, sarebbe 10/6 m/s."
+        "text": "Dividi per i sei secondi totali, compresa la sosta."
+      },
+      {
+        "type": "formula",
+        "text": "\\bar v=\\frac{2}{6}\\,\\mathrm{m/s}=\\tfrac13\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "\\bar v\\simeq0{,}33\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Dividendo invece 10 m per 6 s otterresti la rapidità media, circa 1,67 m/s. Una deviazione fra due misure potrebbe aumentare la distanza. Qui il grafico specifica tutto il percorso."
       }
     ],
     "difficulty": 1,
-    "prompt": "Nel grafico posizione–tempo il punto passa per (0 s, 0 m), (2 s, 6 m), (4 s, 6 m), (6 s, 2 m). Trova distanza percorsa e velocità media.",
+    "prompt": "Il grafico posizione–tempo è formato dai tre segmenti che uniscono in ordine (0 s, 0 m), (2 s, 6 m), (4 s, 6 m) e (6 s, 2 m). Trova la distanza percorsa e la velocità media.",
     "family": "una-sosta-e-un-ritorno"
   },
   {
@@ -1722,15 +1778,19 @@
     "prerequisites": [
       "C1-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Nel primo caso rimane costante la posizione. Nel secondo rimane costante una velocità positiva, quindi la posizione continua ad aumentare."
+        "text": "Leggi per prima cosa l’etichetta dell’asse verticale. Sul grafico posizione–tempo una linea orizzontale significa che in due istanti successivi leggi la stessa posizione. Il corpo resta fermo."
+      },
+      {
+        "type": "text",
+        "text": "Sul grafico velocità–tempo la quota della linea è una velocità positiva e costante. In ogni secondo il corpo avanza dello stesso tratto. Per esempio, con v = +2 m/s in tre secondi la posizione aumenta di 6 m."
       }
     ],
     "difficulty": 2,
-    "prompt": "Quale interpretazione è corretta per una linea orizzontale sopra lo zero?",
+    "prompt": "Confronta un grafico posizione–tempo (x–t) con uno velocità–tempo (v–t). In entrambi la linea è orizzontale e sopra lo zero. Quale interpretazione è corretta?",
     "family": "tratto-orizzontale-in-due-grafici",
     "answer": {
       "type": "choice",
@@ -1847,15 +1907,23 @@
       "C1-L002",
       "C1-L003"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Se la velocità cambia della stessa quantità in ogni secondo, l’accelerazione è costante. L’area sotto il grafico v–t è un rettangolo più un triangolo. Il primo registra lo spazio che si percorrerebbe con la velocità iniziale, il secondo il contributo della variazione di velocità."
+        "text": "Se la velocità cambia della stessa quantità in ogni secondo lungo un asse, l’accelerazione è costante. Nel grafico velocità–tempo l’area con segno dà lo spostamento. Un tratto sotto l’asse dei tempi contribuisce con segno meno. Per la distanza percorsa conta invece i metri di ogni tratto, anche al ritorno."
       },
       {
         "type": "formula",
-        "text": "v=v_0+at,\\qquad x-x_0=v_0t+\\tfrac12at^2"
+        "text": "v=v_0+at"
+      },
+      {
+        "type": "text",
+        "text": "Nel rettangolo di base t e altezza v₀ leggi lo spostamento che avresti mantenendo la velocità iniziale. Il triangolo aggiunge il contributo della variazione di velocità, positivo o negativo secondo il segno di a."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=v_0t+\\tfrac12at^2"
       },
       {
         "type": "text",
@@ -1868,7 +1936,11 @@
       },
       {
         "type": "formula",
-        "text": "x=x_0+v_{0x}t,\\qquad y=y_0+v_{0y}t-\\tfrac12gt^2"
+        "text": "x=x_0+v_{0x}t"
+      },
+      {
+        "type": "formula",
+        "text": "y=y_0+v_{0y}t-\\tfrac12gt^2"
       },
       {
         "type": "text",
@@ -2387,11 +2459,15 @@
     "prerequisites": [
       "C1-L004"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Il vettore velocità ruota verso l’interno della traiettoria. La sua variazione istantanea è radiale e diretta al centro."
+        "text": "In due istanti vicini il vettore velocità ha lo stesso modulo ed è tangente alla circonferenza. Sposta le due frecce in modo che abbiano la stessa coda. La freccia che va dalla prima punta alla seconda è la variazione di velocità."
+      },
+      {
+        "type": "text",
+        "text": "Quando l’intervallo di tempo si restringe, questa variazione punta lungo il raggio, verso il centro. Dividendo per l’intervallo positivo ottieni un’accelerazione con lo stesso verso. Nel punto più a destra di un giro antiorario la velocità punta in alto e l’accelerazione a sinistra."
       }
     ],
     "difficulty": 1,
@@ -3022,7 +3098,7 @@
     "prerequisites": [
       "C1-L005"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
@@ -3051,11 +3127,23 @@
       },
       {
         "type": "text",
-        "text": "La gravitazione fra due masse puntiformi o sfericamente simmetriche è attrattiva e agisce sulla retta dei centri. R indica la distanza tra i centri. La costante G permette di passare da masse e distanza a una forza in newton."
+        "text": "La gravitazione fra due masse puntiformi o fra due corpi sfericamente simmetrici esterni l’uno all’altro è attrattiva. La forza agisce sulla retta dei centri. Chiama R la distanza fra i centri. All’esterno di un pianeta sferico puoi usare tutta la sua massa M come se fosse concentrata al centro."
       },
       {
         "type": "formula",
-        "text": "F=G\\frac{Mm}{R^2},\\qquad g=G\\frac{M}{R^2}"
+        "text": "F=G\\frac{Mm}{R^2}"
+      },
+      {
+        "type": "text",
+        "text": "Dividi la forza per la massa di prova m. Ottieni il modulo dell’accelerazione di caduta alla distanza R."
+      },
+      {
+        "type": "formula",
+        "text": "g=G\\frac{M}{R^2}"
+      },
+      {
+        "type": "text",
+        "text": "Dentro il pianeta, a distanza r dal centro, i gusci sferici esterni al punto producono un campo totale nullo. Nella formula per g usa soltanto la massa racchiusa entro r. In una sfera uniforme questa massa cresce come r³, quindi il campo cresce come r e al centro è nullo."
       },
       {
         "type": "text",
@@ -3151,19 +3239,31 @@
     "prerequisites": [
       "C1-L006"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Finché la scatola resta ferma, l’attrito statico equilibra la trazione orizzontale. Appena prima dello scorrimento raggiunge il suo massimo, 18 N. La normale vale 60 N."
+      },
+      {
         "type": "formula",
-        "text": "f_{s,\\max}=\\mu_sN\\quad\\Rightarrow\\quad\\mu_s=18/60=0{,}30"
+        "text": "f_{s,\\max}=\\mu_s N"
       },
       {
         "type": "text",
-        "text": "Il rapporto tra due forze è adimensionale. La misura riguarda l’istante precedente allo scorrimento."
+        "text": "Dividi entrambi i membri per la normale."
+      },
+      {
+        "type": "formula",
+        "text": "\\mu_s=\\frac{18\\,\\mathrm N}{60\\,\\mathrm N}=0{,}30"
+      },
+      {
+        "type": "text",
+        "text": "Il coefficiente è adimensionale. Moltiplicando di nuovo 0,30 per 60 N ritrovi 18 N. Una lettura presa prima della soglia darebbe soltanto un limite inferiore al coefficiente."
       }
     ],
     "difficulty": 2,
-    "prompt": "Un dinamometro registra 18 N appena prima che una scatola inizi a scivolare. La normale è 60 N. Qual è il coefficiente statico?",
+    "prompt": "Su un piano orizzontale un dinamometro tira una scatola parallelamente al piano. Aumenti lentamente la trazione. Appena prima dello scorrimento leggi 18 N. La normale è 60 N. Qual è il coefficiente di attrito statico?",
     "family": "soglia-di-scorrimento",
     "answer": {
       "type": "numeric",
@@ -3674,31 +3774,55 @@
     "prerequisites": [
       "C1-L007"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Il testo fornisce una distanza e la risultante. Il teorema dell’energia cinetica collega direttamente ingresso e uscita senza richiedere il tempo di attraversamento."
+        "text": "Prendi il verso iniziale come positivo. La risultante e lo spostamento sono concordi. Il lavoro lungo i 3,0 m è quindi positivo."
       },
       {
         "type": "formula",
-        "text": "L_{\\rm tot}=Fd=4{,}0\\cdot3{,}0=12\\,\\mathrm J,\\quad K_i=\\tfrac12(2{,}0)(1{,}0)^2=1\\,\\mathrm J"
-      },
-      {
-        "type": "formula",
-        "text": "K_f=K_i+L=13\\,\\mathrm J,\\qquad v_f^2=2K_f/m=13\\,\\mathrm{m^2/s^2}"
-      },
-      {
-        "type": "formula",
-        "text": "v_f=\\sqrt{13}\\,\\mathrm{m/s}\\simeq3{,}61\\,\\mathrm{m/s}"
+        "text": "L=(4{,}0\\,\\mathrm N)(3{,}0\\,\\mathrm m)=12\\,\\mathrm J"
       },
       {
         "type": "text",
-        "text": "Il lavoro positivo fa aumentare la rapidità. La radice positiva dà il modulo; il verso resta quello del moto iniziale."
+        "text": "Il carrello possiede già energia cinetica quando entra nella zona. Usa la massa di 2,0 kg e la rapidità iniziale di 1,0 m/s."
+      },
+      {
+        "type": "formula",
+        "text": "K_i=\\tfrac12 m v_i^2=1{,}0\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il lavoro della risultante è la variazione di energia cinetica. Per ottenere l’energia finale aggiungilo a quella iniziale."
+      },
+      {
+        "type": "formula",
+        "text": "K_f=(1+12)\\,\\mathrm J=13\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Isola il quadrato della rapidità moltiplicando l’energia finale per due e dividendo per la massa."
+      },
+      {
+        "type": "formula",
+        "text": "v_f^2=\\frac{2K_f}{m}=13\\,\\mathrm{m^2/s^2}"
+      },
+      {
+        "type": "formula",
+        "text": "v_f=+\\sqrt{13}\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "v_f\\simeq3{,}61\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Poiché 9 < 13 < 16, la rapidità finale è fra 3 e 4 m/s. Il verso rimane quello iniziale perché il carrello accelera in avanti."
       }
     ],
     "difficulty": 2,
-    "prompt": "Un carrello di 2,0 kg entra a 1,0 m/s in una zona lunga 3,0 m. La risultante costante parallela al moto è 4,0 N. Calcola la velocità all’uscita.",
+    "prompt": "Un carrello di 2,0 kg entra a 1,0 m/s in una zona lunga 3,0 m. Su tutto il tratto la risultante è costante, vale 4,0 N e ha lo stesso verso del moto. Calcola la velocità all’uscita.",
     "family": "dal-lavoro-alla-velocita-finale"
   },
   {
@@ -3985,19 +4109,31 @@
     "prerequisites": [
       "C1-L007"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La potenza istantanea misura il lavoro fornito per unità di tempo. Conta la componente della forza lungo la velocità del punto di applicazione. Qui l’angolo è zero e il coseno vale uno."
+      },
+      {
         "type": "formula",
-        "text": "P=Fv\\cos0^\\circ=25\\cdot0{,}80=20\\,\\mathrm W"
+        "text": "P=Fv\\cos 0^\\circ"
+      },
+      {
+        "type": "formula",
+        "text": "P=(25\\,\\mathrm N)(0{,}80\\,\\mathrm{m/s})"
+      },
+      {
+        "type": "formula",
+        "text": "P=+20\\,\\mathrm W"
       },
       {
         "type": "text",
-        "text": "Poiché N·m/s è J/s, l’unità ottenuta è il watt."
+        "text": "In un secondo, mantenendo questi valori, il punto avanza di 0,80 m e la trazione compie 20 J di lavoro. Invertire la forza cambierebbe il segno della potenza."
       }
     ],
     "difficulty": 2,
-    "prompt": "Una cinghia tira con 25 N paralleli alla sua velocità di 0,80 m/s. Qual è la potenza meccanica fornita in quell’istante?",
+    "prompt": "Una cinghia esercita una trazione di 25 N. Il punto di applicazione si muove a 0,80 m/s nella direzione e nel verso della forza. Qual è la potenza meccanica fornita in quell’istante?",
     "family": "potenza-istantanea-dalla-trazione",
     "answer": {
       "type": "numeric",
@@ -4587,15 +4723,40 @@
     "prerequisites": [
       "C1-L008"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Su entrambe le tratte l’attrito dinamico si oppone allo scorrimento. Il lavoro resta negativo anche tornando allo stato iniziale di posizione, quindi l’attrito è non conservativo."
+        "text": "Osserva il blocco dal laboratorio. Sul piano fermo la forza di attrito dinamico punta nel verso opposto a quello in cui il blocco scivola. Supponi che il suo modulo sia 2 N e che il blocco percorra 1 m all’andata e 1 m al ritorno."
+      },
+      {
+        "type": "formula",
+        "text": "L_{\\rm andata}=-2\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Al ritorno si invertono sia lo spostamento sia l’attrito. L’angolo fra i due rimane 180°, quindi anche il lavoro di ritorno vale −2 J."
+      },
+      {
+        "type": "formula",
+        "text": "L_{\\rm giro}=(-2-2)\\,\\mathrm J=-4\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il blocco ritrova la posizione iniziale. Un lavoro diverso da zero lungo un percorso chiuso identifica una forza non conservativa."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-Q078-attrito.svg",
+        "text": "In entrambi i disegni il blocco scorre a destra rispetto al laboratorio. Sul piano fermo l’attrito sul blocco punta a sinistra. Sul nastro che corre più veloce del blocco punta a destra."
+      },
+      {
+        "type": "text",
+        "text": "Ora confronta il nastro in figura. Mentre le superfici slittano, il nastro trascina il blocco e l’attrito può compiere lavoro positivo sul blocco. Il verso della forza dipende dallo scorrimento relativo fra le superfici. Per il segno del lavoro confronta quella forza con lo spostamento del corpo nel riferimento scelto."
       }
     ],
     "difficulty": 1,
-    "prompt": "L’attrito radente consuma energia meccanica in quantità legata alla lunghezza percorsa. Come si classifica rispetto alla conservatività?",
+    "prompt": "Un blocco scivola su un piano ruvido fermo. Lo porti da A a B e lo fai scivolare indietro fino ad A. Come si classifica la forza di attrito dinamico rispetto alla conservatività?",
     "family": "una-forza-che-dipende-dal-cammino",
     "answer": {
       "type": "text",
@@ -4670,15 +4831,39 @@
     "prerequisites": [
       "C1-L008"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "L’energia dà la rapidità dal dislivello. Nel punto più basso l’accelerazione radiale è diretta verso il sostegno; da T − mg = mv²/r si trova la tensione."
+        "text": "Indica con h il dislivello iniziale rispetto al fondo e con ℓ la lunghezza del filo. La tensione è perpendicolare allo spostamento lungo l’arco. La perdita di energia potenziale diventa energia cinetica."
+      },
+      {
+        "type": "formula",
+        "text": "mgh=\\tfrac12mv^2"
+      },
+      {
+        "type": "formula",
+        "text": "v^2=2gh"
+      },
+      {
+        "type": "text",
+        "text": "Nel punto più basso il centro dell’arco è sopra la massa. La tensione punta in alto e il peso in basso. La loro risultante fornisce l’accelerazione radiale."
+      },
+      {
+        "type": "formula",
+        "text": "T-mg=\\frac{mv^2}{\\ell}"
+      },
+      {
+        "type": "formula",
+        "text": "T=mg+\\frac{2mgh}{\\ell}"
+      },
+      {
+        "type": "text",
+        "text": "La massa si semplifica nel calcolo della rapidità. Serve invece per esprimere la tensione in newton. Controlla il caso h = 0, in cui la massa resta ferma al fondo e la tensione vale mg."
       }
     ],
     "difficulty": 3,
-    "prompt": "Una massa appesa a un filo oscilla. Conosci altezza iniziale e lunghezza del filo e vuoi la tensione nel punto più basso. Quale procedimento è sufficiente se parte ferma e trascuri l’aria?",
+    "prompt": "Una massa m nota è appesa a un filo leggero e inestensibile di lunghezza nota. La lasci partire da ferma, con filo teso, da un dislivello noto rispetto al fondo. Trascurando l’aria, quale procedimento dà la tensione nel punto più basso?",
     "family": "trovare-la-tensione-del-filo",
     "answer": {
       "type": "choice",
@@ -4755,32 +4940,48 @@
     "prerequisites": [
       "C1-L009"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "figure",
         "src": "/figures/C1-impulso.svg",
-        "text": "I due lati rettilinei delimitano un triangolo di base totale 0,20 s. La forza è positiva durante tutto l’intervallo."
-      },
-      {
-        "type": "formula",
-        "text": "J=\\tfrac12(0{,}20\\,\\mathrm s)(40\\,\\mathrm N)=4{,}0\\,\\mathrm{N\\,s}"
+        "text": "La forza sale e scende lungo due segmenti. Ogni metà del triangolo dura 0,10 s. Il picco comune è 40 N."
       },
       {
         "type": "text",
-        "text": "La quantità di moto iniziale è zero. La componente dell’impulso è positiva, quindi è positivo anche il cambiamento della velocità."
+        "text": "Cerchi la velocità acquisita dal carrello. La forza cambia durante la spinta. L’area sotto il grafico forza–tempo misura l’impulso. Calcola l’area di ciascun triangolo."
       },
       {
         "type": "formula",
-        "text": "J=mv_f-mv_i\\quad\\Rightarrow\\quad v_f=J/m=4{,}0/2{,}0=2{,}0\\,\\mathrm{m/s}"
+        "text": "J_1=\\tfrac12(0{,}10\\,\\mathrm s)(40\\,\\mathrm N)"
+      },
+      {
+        "type": "formula",
+        "text": "J_1=2{,}0\\,\\mathrm{N\\,s}"
       },
       {
         "type": "text",
-        "text": "La forza media è 20 N; usarla per 0,20 s riproduce lo stesso impulso. Usare il picco per l’intero intervallo lo raddoppierebbe."
+        "text": "Anche nella discesa la forza è positiva. Il secondo triangolo ha la stessa base e la stessa altezza."
+      },
+      {
+        "type": "formula",
+        "text": "J=J_1+J_2=4{,}0\\,\\mathrm{N\\,s}"
+      },
+      {
+        "type": "text",
+        "text": "L’impulso aumenta la quantità di moto di un carrello inizialmente fermo. Dividi per la massa di 2,0 kg."
+      },
+      {
+        "type": "formula",
+        "text": "v_f=\\frac{J}{m}=+2{,}0\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Per controllare, la forza media è metà del picco, cioè 20 N. In 0,20 s fornisce proprio 4,0 N·s. Usare 40 N per tutto il tempo raddoppierebbe la velocità."
       }
     ],
     "difficulty": 2,
-    "prompt": "Una forza orizzontale cresce da zero a 40 N in 0,10 s, poi cala linearmente a zero in altri 0,10 s. Un carrello di 2,0 kg inizialmente fermo riceve questa forza netta. Trova la velocità finale.",
+    "prompt": "Una forza orizzontale cresce linearmente da zero a 40 N in 0,10 s, poi cala linearmente a zero in altri 0,10 s. Un carrello di 2,0 kg inizialmente fermo riceve questa forza netta. Trova la velocità finale prendendo positivo il verso della spinta.",
     "family": "leggere-una-pulsazione-di-forza"
   },
   {
@@ -5027,19 +5228,31 @@
     "prerequisites": [
       "C1-L009"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Indica con p il modulo comune della quantità di moto. Nel modello classico p = mv, quindi la rapidità è p diviso per la massa."
+      },
+      {
         "type": "formula",
-        "text": "K=\\tfrac12m(p/m)^2=p^2/(2m)"
+        "text": "v=\\frac{p}{m}"
+      },
+      {
+        "type": "formula",
+        "text": "K=\\tfrac12 m\\left(\\frac{p}{m}\\right)^2"
+      },
+      {
+        "type": "formula",
+        "text": "K=\\frac{p^2}{2m}"
       },
       {
         "type": "text",
-        "text": "A p fissato il corpo più leggero deve muoversi più velocemente e ha maggiore energia cinetica."
+        "text": "A numeratore uguale e positivo, il denominatore minore dà l’energia maggiore. Se raddoppi la massa mantenendo lo stesso p, l’energia si dimezza. Con p = 0, invece, entrambi i corpi sarebbero fermi e avrebbero energia cinetica nulla."
       }
     ],
     "difficulty": 2,
-    "prompt": "Due corpi hanno quantità di moto dello stesso modulo. Quale ha maggiore energia cinetica?",
+    "prompt": "Due corpi con masse differenti hanno quantità di moto dello stesso modulo, diverso da zero. Nella meccanica classica quale corpo ha maggiore energia cinetica?",
     "family": "energia-di-due-quantita-di-moto-uguali",
     "answer": {
       "type": "choice",
@@ -5550,11 +5763,15 @@
     "prerequisites": [
       "C1-L010"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Le forze si elidono nella somma vettoriale. Rispetto al polo scelto la prima ha momento nullo, la seconda ha braccio pari alla distanza tra le rette. Rimane una tendenza a ruotare."
+        "text": "La somma vettoriale delle due forze è zero. Per esaminare la rotazione scegli come polo un punto sulla retta d’azione della prima forza. Il suo braccio è zero, dunque il suo momento è zero."
+      },
+      {
+        "type": "text",
+        "text": "La seconda forza ha braccio d, la distanza perpendicolare fra le rette. Per un modulo F di ciascuna forza, il momento totale ha modulo Fd. Se cambi polo, la risultante nulla lascia invariato il momento della coppia. Un corpo libero può quindi acquisire accelerazione angolare mentre il suo centro di massa mantiene la velocità."
       }
     ],
     "difficulty": 2,

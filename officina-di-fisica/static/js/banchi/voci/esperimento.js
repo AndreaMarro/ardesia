@@ -240,6 +240,12 @@ export async function esperienza(record) {
             [curve(clock.label, 0, end, (t) => clock.signal(x, t, y), 160)],
             0,
           );
+          if (clock.secant) {
+            const points = signal.series[0].points;
+            signal.title = 'Pendenza della secante · ' + clock.secant;
+            signal.x = 'Tempo dalla prima lettura (s)';
+            signal.series.push({name: 'Secante fra gli estremi', points: [points[0], points.at(-1)], dash: true});
+          }
           signal.track = 'time';
           signal.point = clock.signal(x, 0, y);
           charts.push(signal);

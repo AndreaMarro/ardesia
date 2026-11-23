@@ -338,6 +338,9 @@ async function router() {
     // Reauthorize private runs on return. Other lesson pages can reuse their reading position and DOM.
     const fragment = /^(?:prova\/|percorsi\/|studio\/diario(?:\/|$))/.test(originRoute) ? null : document.createDocumentFragment();
     let source = document.activeElement;
+    if (originRoute.startsWith('materiale/') && source?.closest('a')?.hash !== '#' + here) {
+      source = [...main.querySelectorAll('a[href]')].find(link => link.hash === '#' + here) || source;
+    }
     if (originRoute.startsWith('percorsi/')) {
       source = [...main.querySelectorAll('[data-result]')].find(a => a.dataset.result === parts[0]);
     } else if (originRoute.startsWith('studio/diario')) {
@@ -425,6 +428,8 @@ async function router() {
     on('#retry', 'click', () => go(here));
     demo(here);
   }
+  // Un collegamento già visibile può essere attivato durante il caricamento del lettore.
+  if (here !== location.hash.slice(1)) return;
   typeset();
   document.title = ([...main.querySelectorAll('h1')].find(h => !h.closest('[hidden]'))?.textContent || 'Officina di Fisica') + ' · Andrea Marro';
   main.removeAttribute('aria-busy');

@@ -9,9 +9,10 @@ import math
 from decimal import Decimal
 from pathlib import Path
 
-from c12_build import Course
+from c12_build import Course, edition_json
 from c12_fluidi import build as build_fluids
 from c12_meccanica import build as build_mechanics
+from c12_supplement import enrich
 
 ROOT = Path(__file__).resolve().parents[1]
 s = math.sqrt
@@ -36,7 +37,7 @@ examples = {
     ],
     "C1-E005": [
         (abs(6) + abs(-4), "10", r"=10\,\mathrm m"),
-        ((2 - 0) / (6 - 0), "0.33", r"=0{,}33\,\mathrm{m/s}"),
+        ((2 - 0) / (6 - 0), "0.33", r"\simeq0{,}33\,\mathrm{m/s}"),
     ],
     "C1-E006": [
         (6 / 3, "2", r"=2\,\mathrm{m/s^2}"),
@@ -61,7 +62,7 @@ examples = {
     "C1-E016": [(0.04 * s(250 / 0.10), "2.0", r"=2{,}0\,\mathrm{m/s}")],
     "C1-E017": [
         (area_impulse, "4.0", r"=4{,}0\,\mathrm{N\,s}"),
-        (area_impulse / 2, "2.0", r"=2{,}0\,\mathrm{m/s}"),
+        (area_impulse / 2, "2.0", r"=+2{,}0\,\mathrm{m/s}"),
     ],
     "C1-E018": [
         (collision_speed, "1.666666666667", r"5/3\,\mathrm{m/s}"),
@@ -155,6 +156,11 @@ def main():
         rows.update({r["id"]: r for r in stored})
         generated = Course(course)
         builder(generated)
+        enrich(generated)
+        assert len(generated.rows) == len(stored), course
+        for source, released in zip(generated.rows, stored, strict=True):
+            assert source == released, (released["id"], "il sorgente non riproduce la scheda distribuita")
+        assert edition_json(generated.rows) == (ROOT / "content" / (course + ".json")).read_text(), course
         qs = [r for r in stored if r["kind"] == "question"]
         assert {x[0] for x in generated.numeric} == {
             r["id"] for r in qs if r["answer"]["type"] == "numeric"

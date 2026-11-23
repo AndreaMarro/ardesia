@@ -88,6 +88,7 @@ function pressureDoppler(speed, t) {
 }
 const motions = {
   'C1-L003-03': {
+    secant: 'velocità media',
     duration: (x) => x,
     frame: (x, t) => ({ pos: (1 + t) ** 2 }),
     label: 'Posizione durante la misura',
@@ -95,6 +96,7 @@ const motions = {
     signal: (x, t) => (1 + t) ** 2,
   },
   'C1-L003-04': {
+    secant: 'accelerazione media',
     duration: (x) => x,
     frame: (x, t) => ({ pos: (1 + t) ** 3 / 3, freccia: (1 + t) ** 2 / 12 }),
     label: 'Velocità durante la misura',

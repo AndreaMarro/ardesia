@@ -76,13 +76,13 @@ export const experiments = {
   },
   // Velocità media e istantanea
   'SIM-C1-L003-03': {
-    observe: "Accorcia l’intervallo misurato a partire da 1 s. Confronta la pendenza media tra i due punti con la velocità in quell’istante.",
+    observe: "Parti dal segno di 1 s. In «Grafici e misure» la retta tratteggiata unisce le due posizioni. Accorcia l’intervallo e osserva come cambia la sua pendenza.",
     measure: (x) => 2 + x,
     apparatus: (x, y) => ({ pos: (1 + x) ** 2, inizio: 1, min: 0, max: 16 }),
   },
   // Accelerazione media e istantanea
   'SIM-C1-L003-04': {
-    observe: "Accorcia l’intervallo e osserva la freccia della velocità finale. Per trovare l’accelerazione usa la variazione di velocità durante l’intervallo.",
+    observe: "La freccia sul carrello indica la velocità. In «Grafici e misure» la retta tratteggiata unisce le due letture del tachimetro. La sua pendenza misura l’accelerazione media.",
     measure: (x) => 2 + x,
     apparatus: (x, y) => ({
       pos: (1 + x) ** 3 / 3,

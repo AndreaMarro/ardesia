@@ -1,0 +1,382 @@
+{
+  "C1-E005": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C1-posizione.svg",
+        "text": "Le coordinate mostrano due tratti di movimento separati da una sosta."
+      },
+      {
+        "type": "text",
+        "text": "Le tre variazioni di posizione sono +6 m, 0 m e −4 m. Per sommare i metri effettivamente camminati prendi i moduli."
+      },
+      {
+        "type": "formula",
+        "text": "d=|6|+|0|+|-4|=10\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Per la velocità media collega invece direttamente gli estremi."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta x=2-0=2\\,\\mathrm m,\\qquad \\bar v=\\frac{2}{6}\\,\\mathrm{m/s}=0{,}33\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La piccola velocità media positiva riflette il ritorno parziale. La rapidità media, che usa la distanza percorsa, sarebbe 10/6 m/s."
+      }
+    ],
+    "prompt": "Nel grafico posizione–tempo il punto passa per (0 s, 0 m), (2 s, 6 m), (4 s, 6 m), (6 s, 2 m). Trova distanza percorsa e velocità media."
+  },
+  "C1-E014": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il testo fornisce una distanza e la risultante. Il teorema dell’energia cinetica collega direttamente ingresso e uscita senza richiedere il tempo di attraversamento."
+      },
+      {
+        "type": "formula",
+        "text": "L_{\\rm tot}=Fd=4{,}0\\cdot3{,}0=12\\,\\mathrm J,\\quad K_i=\\tfrac12(2{,}0)(1{,}0)^2=1\\,\\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "K_f=K_i+L=13\\,\\mathrm J,\\qquad v_f^2=2K_f/m=13\\,\\mathrm{m^2/s^2}"
+      },
+      {
+        "type": "formula",
+        "text": "v_f=\\sqrt{13}\\,\\mathrm{m/s}\\simeq3{,}61\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Il lavoro positivo fa aumentare la rapidità. La radice positiva dà il modulo; il verso resta quello del moto iniziale."
+      }
+    ],
+    "prompt": "Un carrello di 2,0 kg entra a 1,0 m/s in una zona lunga 3,0 m. La risultante costante parallela al moto è 4,0 N. Calcola la velocità all’uscita."
+  },
+  "C1-E017": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C1-impulso.svg",
+        "text": "I due lati rettilinei delimitano un triangolo di base totale 0,20 s. La forza è positiva durante tutto l’intervallo."
+      },
+      {
+        "type": "formula",
+        "text": "J=\\tfrac12(0{,}20\\,\\mathrm s)(40\\,\\mathrm N)=4{,}0\\,\\mathrm{N\\,s}"
+      },
+      {
+        "type": "text",
+        "text": "La quantità di moto iniziale è zero. La componente dell’impulso è positiva, quindi è positivo anche il cambiamento della velocità."
+      },
+      {
+        "type": "formula",
+        "text": "J=mv_f-mv_i\\quad\\Rightarrow\\quad v_f=J/m=4{,}0/2{,}0=2{,}0\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "La forza media è 20 N; usarla per 0,20 s riproduce lo stesso impulso. Usare il picco per l’intero intervallo lo raddoppierebbe."
+      }
+    ],
+    "prompt": "Una forza orizzontale cresce da zero a 40 N in 0,10 s, poi cala linearmente a zero in altri 0,10 s. Un carrello di 2,0 kg inizialmente fermo riceve questa forza netta. Trova la velocità finale."
+  },
+  "C1-L001": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In laboratorio due persone descrivono lo stesso spessore come 0,003 m e 3 mm. Il numero cambia perché cambia il campione scelto come unità. La grandezza resta una lunghezza. Prima di sommare due misure, chiediti quale proprietà stanno misurando e riportale alla stessa unità."
+      },
+      {
+        "type": "text",
+        "text": "Nel Sistema Internazionale lunghezza, massa e tempo si misurano in metri, chilogrammi e secondi. Si aggiungono ampere, kelvin, mole e candela. Una grandezza derivata combina grandezze di base. La densità di un campione è la massa distribuita per unità di volume."
+      },
+      {
+        "type": "formula",
+        "text": "\\rho=\\frac{m}{V},\\qquad [\\rho]=M L^{-3},\\qquad 1\\,\\mathrm{kg/m^3}=1\\,\\mathrm{kg}\\,\\mathrm{m}^{-3}"
+      },
+      {
+        "type": "text",
+        "text": "La dimensione descrive il tipo di grandezza e resta la stessa passando da g/cm³ a kg/m³. Scrivi ogni conversione come un rapporto che vale uno. Per un’area il rapporto delle lunghezze entra due volte, per un volume tre."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-scala.svg",
+        "text": "Conta le celle lungo i due lati. Ogni cella rossa o bianca ha area 1 mm²."
+      },
+      {
+        "type": "formula",
+        "text": "1\\,\\mathrm{cm}^3=(10^{-2}\\,\\mathrm m)^3=10^{-6}\\,\\mathrm m^3"
+      },
+      {
+        "type": "text",
+        "text": "La notazione scientifica separa le cifre significative dalla scala: scrivi un coefficiente tra 1 incluso e 10 escluso, seguito da una potenza di dieci. Per stimare basta spesso confrontare gli esponenti. Se si richiede la potenza di dieci più vicina in scala logaritmica, si arrotonda all’esponente successivo a partire dal coefficiente √10. Dichiara la convenzione quando conta."
+      },
+      {
+        "type": "text",
+        "text": "Dividi in due parti uguali un liquido uniforme senza modificarne lo stato. Massa e volume si dimezzano e sono grandezze estensive. La densità resta uguale ed è intensiva. Uno scalare è definito da valore e unità. Per lo spostamento servono anche direzione e verso. Per recuperare una conversione dubbia, disegna il cubo di lato 1 cm e riscrivi separatamente i tre fattori."
+      }
+    ]
+  },
+  "C1-L004": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Se la velocità cambia della stessa quantità in ogni secondo, l’accelerazione è costante. L’area sotto il grafico v–t è un rettangolo più un triangolo. Il primo registra lo spazio che si percorrerebbe con la velocità iniziale, il secondo il contributo della variazione di velocità."
+      },
+      {
+        "type": "formula",
+        "text": "v=v_0+at,\\qquad x-x_0=v_0t+\\tfrac12at^2"
+      },
+      {
+        "type": "text",
+        "text": "Vicino alla superficie terrestre e per distanze piccole rispetto al raggio terrestre, un oggetto in caduta libera ha accelerazione quasi uniforme verso il basso. Trascuriamo l’aria. Con y positivo in alto si pone aᵧ = −g e g ≈ 9,81 m/s². La scelta del segno vale anche durante la salita."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-parabola.svg",
+        "text": "Al culmine la velocità ha ancora una componente orizzontale. La gravità continua ad accelerare il punto verso il basso."
+      },
+      {
+        "type": "formula",
+        "text": "x=x_0+v_{0x}t,\\qquad y=y_0+v_{0y}t-\\tfrac12gt^2"
+      },
+      {
+        "type": "text",
+        "text": "Per un lancio obliquo si usa lo stesso tempo nelle due equazioni. Il moto orizzontale uniforme e quello verticale accelerato si combinano in una parabola. Individua un evento, per esempio il ritorno a una quota, e imponi quell’altezza all’equazione verticale."
+      },
+      {
+        "type": "text",
+        "text": "Una velocità può variare anche se il modulo resta costante: accade quando gira la direzione. Durante un giro uniforme di raggio r in tempo T il punto percorre 2πr, quindi il modulo della velocità è 2πr/T. La variazione della direzione richiede un’accelerazione verso il centro."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-circolo.svg",
+        "text": "Nel punto di destra v è tangente. La freccia rivolta verso il centro rappresenta l’accelerazione."
+      },
+      {
+        "type": "formula",
+        "text": "a_c=\\frac{v^2}{r}=\\left(\\frac{2\\pi}{T}\\right)^2r"
+      },
+      {
+        "type": "text",
+        "text": "Il nome centripeta descrive la direzione dell’accelerazione. Per individuare la forza responsabile, cerca l’interazione reale che ha una componente radiale, per esempio la tensione di un filo."
+      }
+    ]
+  },
+  "C1-L006": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Trascina lentamente una scatola con un dinamometro. Prima dello scorrimento, l’attrito statico si adatta alla forza richiesta dall’equilibrio lungo il piano; esiste un limite. Superata la soglia, nel modello di attrito secco la forza dinamica ha modulo approssimativamente proporzionale alla normale e verso opposto allo scorrimento relativo."
+      },
+      {
+        "type": "formula",
+        "text": "0\\le |f_s|\\le\\mu_s N,\\qquad |f_d|=\\mu_dN"
+      },
+      {
+        "type": "text",
+        "text": "I coefficienti μ sono adimensionali. Trova prima N dal bilancio perpendicolare. Verifica se l’attrito necessario a impedire lo scorrimento rientra nel limite statico; soltanto allora puoi accettare l’ipotesi di quiete. Il laboratorio permette di confrontare l’attrito necessario con il suo limite."
+      },
+      {
+        "type": "text",
+        "text": "Una molla ideale esercita una forza di richiamo. Misura la deformazione x dalla lunghezza a riposo: x positivo se l’estremo viene tirato verso l’asse positivo. Il segno meno riporta la forza verso la posizione di riposo. Il modello vale nel campo elastico lineare."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C1-molla.svg",
+        "text": "La molla in basso è allungata. Il richiamo è verso sinistra e il segmento verde misura la deformazione rispetto al riferimento in alto."
+      },
+      {
+        "type": "formula",
+        "text": "F_{\\rm el}=-kx,\\qquad [k]=\\mathrm{N/m}"
+      },
+      {
+        "type": "text",
+        "text": "La gravitazione fra due masse puntiformi o sfericamente simmetriche è attrattiva e agisce sulla retta dei centri. R indica la distanza tra i centri. La costante G permette di passare da masse e distanza a una forza in newton."
+      },
+      {
+        "type": "formula",
+        "text": "F=G\\frac{Mm}{R^2},\\qquad g=G\\frac{M}{R^2}"
+      },
+      {
+        "type": "text",
+        "text": "La consueta forza peso mg è la forma locale dell’attrazione di un pianeta. A piccole variazioni di quota g è quasi costante. Se l’altezza diventa confrontabile con il raggio del pianeta, usa la distanza dal centro in entrambi gli stati."
+      }
+    ]
+  },
+  "C1-Q002": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il lavoro è una forza moltiplicata per uno spostamento lungo la forza. Entrambi i termini della prima coppia hanno unità N·m, cioè J. Una somma fisica richiede grandezze omogenee."
+      }
+    ],
+    "prompt": "Quale coppia può comparire in una somma di energie?"
+  },
+  "C1-Q006": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con la stessa lunghezza si possono raggiungere punti diversi a seconda della direzione e del verso. Lo spostamento richiede un vettore."
+      }
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Immagina due spostamenti uguali orientati in versi opposti.",
+      "target": "C1-L001"
+    }
+  },
+  "C1-Q007": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "m_{\\mathrm{tara}}=0{,}0420\\times1000\\,\\mathrm g=42{,}0\\,\\mathrm g"
+      },
+      {
+        "type": "formula",
+        "text": "m_{\\mathrm{liquido}}=54{,}6-42{,}0=12{,}6\\,\\mathrm g"
+      },
+      {
+        "type": "text",
+        "text": "Il contenuto contribuisce positivamente alla lettura della fiala piena."
+      }
+    ],
+    "prompt": "Una fiala piena pesa sulla bilancia 54,6 g. La fiala vuota segna 0,0420 kg. Calcola la massa del contenuto in g."
+  },
+  "C1-Q028": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel primo caso rimane costante la posizione. Nel secondo rimane costante una velocità positiva, quindi la posizione continua ad aumentare."
+      }
+    ],
+    "prompt": "Quale interpretazione è corretta per una linea orizzontale sopra lo zero?"
+  },
+  "C1-Q039": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il vettore velocità ruota verso l’interno della traiettoria. La sua variazione istantanea è radiale e diretta al centro."
+      }
+    ]
+  },
+  "C1-Q051": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "f_{s,\\max}=\\mu_sN\\quad\\Rightarrow\\quad\\mu_s=18/60=0{,}30"
+      },
+      {
+        "type": "text",
+        "text": "Il rapporto tra due forze è adimensionale. La misura riguarda l’istante precedente allo scorrimento."
+      }
+    ],
+    "prompt": "Un dinamometro registra 18 N appena prima che una scatola inizi a scivolare. La normale è 60 N. Qual è il coefficiente statico?"
+  },
+  "C1-Q067": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "P=Fv\\cos0^\\circ=25\\cdot0{,}80=20\\,\\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Poiché N·m/s è J/s, l’unità ottenuta è il watt."
+      }
+    ],
+    "prompt": "Una cinghia tira con 25 N paralleli alla sua velocità di 0,80 m/s. Qual è la potenza meccanica fornita in quell’istante?"
+  },
+  "C1-Q078": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Su entrambe le tratte l’attrito dinamico si oppone allo scorrimento. Il lavoro resta negativo anche tornando allo stato iniziale di posizione, quindi l’attrito è non conservativo."
+      }
+    ],
+    "prompt": "L’attrito radente consuma energia meccanica in quantità legata alla lunghezza percorsa. Come si classifica rispetto alla conservatività?"
+  },
+  "C1-Q080": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia dà la rapidità dal dislivello. Nel punto più basso l’accelerazione radiale è diretta verso il sostegno; da T − mg = mv²/r si trova la tensione."
+      }
+    ],
+    "prompt": "Una massa appesa a un filo oscilla. Conosci altezza iniziale e lunghezza del filo e vuoi la tensione nel punto più basso. Quale procedimento è sufficiente se parte ferma e trascuri l’aria?"
+  },
+  "C1-Q085": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "formula",
+        "text": "K=\\tfrac12m(p/m)^2=p^2/(2m)"
+      },
+      {
+        "type": "text",
+        "text": "A p fissato il corpo più leggero deve muoversi più velocemente e ha maggiore energia cinetica."
+      }
+    ],
+    "prompt": "Due corpi hanno quantità di moto dello stesso modulo. Quale ha maggiore energia cinetica?"
+  },
+  "C1-Q094": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le forze si elidono nella somma vettoriale. Rispetto al polo scelto la prima ha momento nullo, la seconda ha braccio pari alla distanza tra le rette. Rimane una tendenza a ruotare."
+      }
+    ]
+  },
+  "SIM-C1-L001-04": {
+    "version": 1,
+    "summary": "Una cassa d’acqua di un metro di lato si pesa in chili o in tonnellate?",
+    "interpretation": "Stima prima il volume in metri cubi. Un metro cubo d’acqua ha massa circa mille chilogrammi. Aumentando il lato, verifica quando cambia l’ordine di grandezza della massa."
+  },
+  "SIM-C1-L002-03": {
+    "version": 1,
+    "interpretation": "Trasla la coda della seconda freccia sulla punta della prima. Lo spostamento risultante va dalla partenza all’arrivo. Una componente negativa sottrae distanza lungo l’asse.",
+    "transferPrompt": "Dopo un primo tratto di +3 m aggiungi uno spostamento con segno di {x}. A quale distanza orientata dal via finisci?"
+  },
+  "SIM-C1-L003-03": {
+    "version": 1,
+    "formula": "s(t)=t²; v media = [(1+Δt)²−1]/Δt = 2+Δt",
+    "interpretation": "Il primo segno è la posizione a 1 s. La secante fra le due posizioni dà la velocità media. Riducendo l’intervallo si avvicina alla velocità istantanea di 2 m/s.",
+    "transferPrompt": "Un sensore registra s(t) = t² in metri. Fra t = 1 s e un istante successivo di {x}, quale velocità media deduci dalle due posizioni?"
+  },
+  "SIM-C1-L003-04": {
+    "version": 1,
+    "formula": "v(t)=t²; a media = [(1+Δt)²−1]/Δt = 2+Δt",
+    "interpretation": "La velocità cresce come il quadrato del tempo, in unità SI. Dividi la variazione di velocità per l’intervallo, poi restringilo verso l’istante iniziale. La freccia rappresenta la velocità finale.",
+    "transferPrompt": "Nel registro di un carrello v(t) = t² in m/s. Inizi a t = 1 s e misuri per {x}. Quale accelerazione media ricavi?"
+  },
+  "SIM-C1-L003-06": {
+    "version": 1,
+    "formula": "Δx = 2t per t ≤ 2; Δx = 4 − 2(t−2) dopo l’inversione",
+    "interpretation": "Per due secondi il carrello avanza a 2 m/s, poi torna con la stessa rapidità. La pendenza della posizione cambia segno. L’inversione istantanea è una schematizzazione.",
+    "transferPrompt": "Una guida procede a +2 m/s per due secondi e poi inverte a −2 m/s. Quanto vale lo spostamento con segno quando il cronometro indica {x}?"
+  },
+  "SIM-C1-L007-03": {
+    "version": 1,
+    "formula": "W = ΔK = ½(2 kg)v² ⇒ v = √W",
+    "interpretation": "Una forza netta di 1 N compie lavoro lungo la guida. L’energia assorbita si ritrova nell’energia cinetica. Il lavoro quadruplica per raddoppiare la rapidità."
+  },
+  "SIM-C1-L009-02": {
+    "version": 1,
+    "interpretation": "Il secondo carrello è inizialmente fermo e il primo lo raggiunge dal lato adatto al verso scelto. Dopo l’aggancio la massa mobile raddoppia. Il momento si conserva, l’energia cinetica diminuisce."
+  }
+}

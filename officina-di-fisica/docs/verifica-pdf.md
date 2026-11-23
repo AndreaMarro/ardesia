@@ -4,8 +4,8 @@ Edizione verificata il 2026-11-23. Le misure confrontano i PDF distribuiti con i
 
 | PDF | Pagine A4 | Piè di pagina e numero | Testatine interne | Pagine dell’indice | Esempi o quesiti rintracciati | Chiavi stampate | Impronta corrente |
 |---|---:|---:|---:|---:|---:|---:|---|
-| C1-dispensa.pdf | 25/25 | 25/25 | 24/24 | 11/11 | 23/23 | — | sì |
-| C1-esercizi.pdf | 54/54 | 54/54 | 53/53 | 6/6 | 100/100 | 100 | sì |
+| C1-dispensa.pdf | 26/26 | 26/26 | 25/25 | 11/11 | 23/23 | — | sì |
+| C1-esercizi.pdf | 56/56 | 56/56 | 55/55 | 6/6 | 100/100 | 100 | sì |
 | C2-dispensa.pdf | 22/22 | 22/22 | 21/21 | 11/11 | 21/21 | — | sì |
 | C2-esercizi.pdf | 48/48 | 48/48 | 47/47 | 6/6 | 100/100 | 100 | sì |
 | C3-dispensa.pdf | 23/23 | 23/23 | 22/22 | 11/11 | 23/23 | — | sì |
@@ -40,8 +40,6 @@ Per ripetere il controllo, installare Poppler ed eseguire il comando seguente da
 
 ## Riscontro visivo su pagine rasterizzate
 
-<!-- PDF SHA-256: fe9e4e8cf08088a5006d803b0ff8c9760fc637e17471a5ff361c0162d02355d2 -->
+<!-- PDF SHA-256: 8737c735c2b37fe09aa1653c10e906302eaeb5b09246eac7d72fd327703c3ccc -->
 
-Nel fascicolo C5 la figura delle sfere a p. 8 accompagna la relazione fra potenza, superficie e intensità. A p. 9 l’area efficace precede il calcolo dell’energia. A p. 10 si possono seguire la conversione dei centimetri quadrati e il controllo in joule. Nell’eserciziario il confronto fra le due corde a p. 27 conserva il rapporto adimensionale. A p. 28 l’angolo è leggibile fra il raggio e la normale, il segmento proiettato è alto metà del sensore e disegno e calcolo di 10 W sono sulla stessa pagina. A p. 29 l’inversione del livello sonoro termina con il valore in microwatt per metro quadrato. Ispezione eseguita a schermo sulle pagine rasterizzate. La prova di stampa fisica rimane aperta.
-
-Gli altri undici fascicoli coincidono con l’edizione precedente. Le relative osservazioni visive sono conservate nel suo verbale. [Verbale della base canonica](https://github.com/AndreaMarro/ardesia/blob/f4ed455ce3ec3ea377c815014108f01a540750c8/officina-di-fisica/docs/verifica-pdf.md)
+Sulla nuova dispensa C1, pagina 16, la figura della molla e la sua didascalia precedono la legge di gravitazione. Le due frazioni per forza e accelerazione si leggono interamente. Il paragrafo sui gusci sferici esterni è sulla stessa pagina. Sull’eserciziario C1, pagina 48, i lavori di andata e di ritorno, la tavola dei due supporti e la didascalia sono leggibili insieme. Le frecce dell’attrito puntano a sinistra sul piano e a destra sul nastro più veloce. Ispezione delle due pagine rasterizzate con Poppler. I controlli su tutti i 13 fascicoli sono riportati nella tabella. [Riscontri dell’edizione C5 precedente](verifica-prodotto/edizione-c5.md)
