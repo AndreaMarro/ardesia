@@ -188,6 +188,8 @@ export function installReader(container, record) {
     synth?.removeEventListener('voiceschanged', voices);
     if (panel.open && !suspended) { voices(); synth?.addEventListener('voiceschanged', voices); }
   }
+  const enclosing = container.closest('details');
+  enclosing?.addEventListener('toggle', () => { if (!enclosing.open) stopAudio(); });
   panel.addEventListener('toggle', () => {
     observeVoices();
     if (!panel.open) stopAudio();

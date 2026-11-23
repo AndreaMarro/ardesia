@@ -320,7 +320,9 @@ async function runAcceptance() {
     await tablet.getByRole('link', { name: 'Osserva il laboratorio' }).getAttribute('href'),
     '#lab/LAB-C2/C2',
   );
-  await tablet.locator('#scheda-recupero summary').click();
+  const solution = tablet.locator('#scheda-recupero');
+  await solution.getByText('Segui lo svolgimento', { exact: true }).click();
+  await solution.getByText('Testo e ascolto', { exact: true }).waitFor();
   await tablet.locator('#scheda-recupero .katex').first().waitFor();
   await noOverflow(tablet);
   const scenarioText = await tablet.locator('#scheda-recupero .reader > p').first().innerText();

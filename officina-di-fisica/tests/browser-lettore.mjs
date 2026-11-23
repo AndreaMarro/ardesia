@@ -130,11 +130,14 @@ async function journey(engine, base, width, height, scale) {
       const report = await page.evaluate(async () => {
         const audit = await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22a','wcag22aa']}});
         return {violations:audit.violations.map(v=>[v.id,v.nodes.map(n=>n.target)]),manual:audit.incomplete.map(v=>v.id),
-          width:innerWidth,scroll:document.documentElement.scrollWidth};
+          width:innerWidth,scroll:document.documentElement.scrollWidth,
+          controlHeights:[...document.querySelectorAll('.lettore-opzioni[open] select')].map(el=>el.getBoundingClientRect().height)};
       });
       assert.deepEqual(report.violations,[],name+' '+stage);
       assert.ok(report.scroll<=report.width+1, name+' reflow '+stage);
+      assert.ok(report.controlHeights.every(height=>height>=44),name+' dimensione dei controlli');
       audits[stage] = report;
+      if (stage==='trascrizione' && width<500) await page.locator('[data-transcript]').scrollIntoViewIfNeeded();
       await page.screenshot({path:path.join(out,name+'-'+stage+'.png'),animations:'disabled'});
     }
     const before = performance.now();

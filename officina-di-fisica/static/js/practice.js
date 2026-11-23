@@ -191,6 +191,7 @@ export async function runPage(id, initial) {
       const entry = document.createElement('button');
       entry.type = 'button';
       entry.dataset.campoEntry = '';
+      entry.addEventListener('click', () => segnaleLettori(main, 'lettura:passaggio'));
       entry.className = 'solid campo-ingresso';
       entry.textContent = 'Prova il ritorno di ' + q.formative.variant.legs[1].duration + ' s';
       main.querySelector('.feedback h3').after(entry);

@@ -466,7 +466,8 @@ try {
   await p.getByLabel('Competenza', { exact: true }).selectOption('C2-L007');
   await p.getByLabel('Situazione', { exact: true }).selectOption('C2-Q062');
   await p.getByRole('button', { name: 'Apri la scheda di recupero' }).click();
-  await p.locator('#scheda-recupero details summary').click();
+  await p.locator('#scheda-recupero').getByText('Segui lo svolgimento', { exact: true }).click();
+  await p.locator('#scheda-recupero').getByText('Testo e ascolto', { exact: true }).waitFor();
   await p.locator('#scheda-recupero a[href^="#banco/LAB3D-04"]').click();
   await assertShown(p.locator('[data-bench="LAB3D-04"]'));
   await p.getByRole('link', { name: 'Torna all’attività' }).click();
