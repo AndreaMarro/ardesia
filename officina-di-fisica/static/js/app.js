@@ -33,6 +33,7 @@ import {
 } from './ui.js';
 import { study, login, checkout, admin, editions } from './account.js';
 import { recoveryCollection, runPage, trainPage } from './practice.js';
+import { ascoltaCambioAccesso, pulisciBozze } from './recupero/bozza.js';
 import { labPage } from './labs.js';
 import { previewOfficina } from './anteprima.js';
 import { installaPassaggi } from './lettura.js';
@@ -314,7 +315,7 @@ async function material(id, course) {
   });
   on('#exercise', 'click', () => startRun({ course, skill: r.skill, mode: 'practice' }));
 }
-let closeBench, returnPage, displayedRoute;
+let closePage, returnPage, displayedRoute;
 async function router() {
   const [page = 'home', ...parts] = (location.hash.slice(1) || 'home').split('/').map(decodeURIComponent);
   if (page === 'main') {
@@ -324,13 +325,17 @@ async function router() {
   if (!ready) await refresh();
   ready = true;
   const here = location.hash.slice(1);
-  closeBench?.();
-  closeBench = undefined;
-  if (page === 'banco' && parts[1] && parts[1] === displayedRoute &&
-      /^(?:materiale|corso|prova|lab|laboratori)(?:\/|$)/.test(displayedRoute)) {
-    const fragment = document.createDocumentFragment();
-    returnPage = {route: displayedRoute, fragment, scroll: window.scrollY, focus: document.activeElement, user: state.user?.id};
-    fragment.append(...main.childNodes);
+  const originRoute = main.querySelector('.question-shell')?.dataset.route || displayedRoute;
+  closePage?.();
+  closePage = undefined;
+  let focusOnArrival;
+  if (page === 'banco' && parts[1] && parts[1] === originRoute &&
+      /^(?:materiale|corso|prova|lab|laboratori)(?:\/|$)/.test(originRoute)) {
+    // Reauthorize private runs on return. Other lesson pages can reuse their reading position and DOM.
+    const fragment = originRoute.startsWith('prova/') ? null : document.createDocumentFragment();
+    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: document.activeElement,
+      href: document.activeElement?.getAttribute('href'), user: state.user?.id};
+    fragment?.append(...main.childNodes);
   }
   const restore = returnPage && page !== 'banco' && here === returnPage.route && state.user?.id === returnPage.user;
   if (!restore && page !== 'banco') returnPage = undefined;
@@ -347,7 +352,7 @@ async function router() {
     else a.removeAttribute('aria-current');
   }
   try {
-    if (restore) {
+    if (restore && returnPage.fragment) {
       const prior = returnPage;
       returnPage = undefined;
       main.replaceChildren(prior.fragment);
@@ -367,14 +372,18 @@ async function router() {
     else if (page === 'corso') await coursePage(...parts);
     else if (page === 'materiale') await material(...parts);
     else if (page === 'laboratori') await labs(...parts);
-    else if (page === 'banco') closeBench = await (await import('./banchi/banco.js')).benchPage(...parts);
+    else if (page === 'banco') closePage = await (await import('./banchi/banco.js')).benchPage(...parts);
     else if (page === 'lab') await labPage(...parts);
     else if (page === 'fonti') sources();
     else if (page === 'studio') await study();
     else if (page === 'accedi') await login(parts);
     else if (page === 'acquisto') await checkout(parts[0]);
     else if (page === 'allenamento') await trainPage(parts[0]);
-    else if (page === 'prova') await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]));
+    else if (page === 'prova') {
+      const run = await runPage(parts[0], parts[1] === undefined ? undefined : Number(parts[1]));
+      closePage = run.dispose;
+      focusOnArrival = run.focus;
+    }
     else if (page === 'autore-accesso') {
       await api('/owner', { ticket: parts[0] });
       history.replaceState(null, '', '#autore');
@@ -395,10 +404,20 @@ async function router() {
     demo(here);
   }
   typeset();
-  document.title = (main.querySelector('h1')?.textContent || 'Officina di Fisica') + ' · Andrea Marro';
+  document.title = ([...main.querySelectorAll('h1')].find(h => !h.closest('[hidden]'))?.textContent || 'Officina di Fisica') + ' · Andrea Marro';
   main.removeAttribute('aria-busy');
-  main.focus({ preventScroll: true });
-  window.scrollTo(0, 0);
+  if (restore && returnPage) {
+    const prior = returnPage;
+    returnPage = undefined;
+    const origin = prior.href && [...main.querySelectorAll('a')].find(a => a.getAttribute('href') === prior.href);
+    (origin || focusOnArrival || main).focus({preventScroll: true});
+    window.scrollTo({top: prior.scroll, behavior: 'instant'});
+  } else if (focusOnArrival) {
+    focusOnArrival.focus();
+  } else {
+    main.focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  }
 }
 async function schedule() {
   pending = true;
@@ -422,4 +441,26 @@ document.querySelector('.skip').addEventListener('click', (e) => {
   main.scrollIntoView();
 });
 window.addEventListener('hashchange', schedule);
+let leavingSession = false;
+function changedSession() {
+  pulisciBozze();
+  ready = false;
+  if (!leavingSession && (location.hash.startsWith('#prova/') || returnPage?.route.startsWith('prova/'))) {
+    leavingSession = true;
+    main.replaceChildren();
+    location.reload();
+  }
+}
+ascoltaCambioAccesso(changedSession);
+document.addEventListener('visibilitychange', async () => {
+  if (document.hidden || !ready || !location.hash.startsWith('#prova/')) return;
+  // A background tab can miss both origin messages while suspended.
+  try {
+    const fresh = await api('/state');
+    if (fresh.draftSession !== state.draftSession) changedSession();
+  } catch { /* A transient connection failure leaves the current draft available. */ }
+});
+window.addEventListener('pageshow', event => {
+  if (event.persisted && location.hash.startsWith('#prova/')) location.reload();
+});
 schedule();

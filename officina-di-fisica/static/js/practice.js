@@ -132,6 +132,7 @@ export async function trainPage(id) {
 let timer = 0;
 export async function runPage(id, initial) {
   clearInterval(timer);
+  let recovery, closed = false;
   let run = await api('/run/' + id),
     idx = Math.min(
       Math.max(Number.isInteger(initial) ? initial : run.items.findIndex((q) => !q.sent), 0),
@@ -140,12 +141,20 @@ export async function runPage(id, initial) {
   const jump = (n) => go('prova/' + id + '/' + n);
   const send = async (action, extra = {}) => {
     run = await api('/run/' + id, { action, idx, ...extra });
-    draw();
+    if (closed) return;
+    await draw();
+    if (action === 'answer') main.querySelector('[data-campo-entry]')?.focus();
   };
-  function draw() {
+  async function draw() {
+    if (closed) return;
+    recovery?.dispose();
+    recovery = null;
     clearInterval(timer);
     const q = run.items[idx],
       exam = run.mode === 'exam';
+    // Keep this question as the destination after reload or a visit to its lab.
+    if (q.formative && location.hash === '#prova/' + id)
+      history.replaceState(history.state, '', '#prova/' + encodeURIComponent(id) + '/' + idx);
     const feedback = q.correct !== undefined;
     const noEdit = Boolean(run.finished || (!run.sealed && q.sent) || (exam && (q.blank || q.changes >= 2)));
     const score = run.result;
@@ -168,9 +177,21 @@ export async function runPage(id, initial) {
  ${feedback ? `<section class="feedback"><h3>${q.correct === true ? 'Risposta corretta' : q.correct === false ? 'Rivediamo il ragionamento' : q.aided ? 'Svolgimento consultato' : 'Quesito omesso'}</h3>${q.aided ? '<p class="small">Questa attività è registrata come assistita.</p>' : ''}${blocks(q.solution)}<p class="notice good"><b>Risposta</b> · ${esc(answerText(q, q.key))}</p>${diagnosis}${run.course === 'C1' && run.items.length === 1 && run.mode === 'practice' ? listLine('Continua con gli esercizi prioritari', 'corso/C1/esercizi') : ''}</section>` : ''}
  ${!run.sealed || run.finished ? benchLinks(q.id) : ''}
  <div class="actions">${idx > 0 ? button('← Precedente', 'prev') : ''}${idx < run.items.length - 1 ? button('Successivo →', 'next', true) : ''}${!run.finished ? button('Consegna l’attività', 'finish') : link('Il mio studio', 'studio')}</div></article>`;
+    main.querySelector('.question-shell').dataset.route = location.hash.slice(1);
     typeset();
     if (feedback && Array.isArray(q.solution)) {
       installaPassaggi(main.querySelector('.feedback'), { kind: 'worked', blocks: q.solution });
+    }
+    if (q.formative) {
+      const {montaRecupero} = await import('./recupero/campo.js');
+      if (closed) return;
+      const entry = document.createElement('button');
+      entry.type = 'button';
+      entry.dataset.campoEntry = '';
+      entry.className = 'solid campo-ingresso';
+      entry.textContent = 'Prova il ritorno di ' + q.formative.variant.legs[1].duration + ' s';
+      main.querySelector('.feedback h3').after(entry);
+      recovery = montaRecupero(main.querySelector('.question-shell'), entry, run, q);
     }
     $$('[data-jump]').forEach((el) => (el.onclick = () => jump(Number(el.dataset.jump))));
     on('#response', 'submit', async (e, f) => {
@@ -209,7 +230,7 @@ export async function runPage(id, initial) {
           api('/run/' + id)
             .then((r) => {
               run = r;
-              draw();
+              return draw();
             })
             .catch((e) => toast(e.message));
         }
@@ -218,5 +239,9 @@ export async function runPage(id, initial) {
       timer = setInterval(tick, 1000);
     }
   }
-  draw();
+  await draw();
+  return {
+    focus: recovery?.focus,
+    dispose() { closed = true; clearInterval(timer); recovery?.dispose(); },
+  };
 }

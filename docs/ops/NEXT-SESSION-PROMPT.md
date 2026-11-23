@@ -36,3 +36,7 @@ Per un lavoro sui sei corsi di Andrea usare il branch `officina-di-fisica`, dire
 Per questa applicazione partire dal ramo `officina-di-fisica`, dallo stato terminale della PR 339 e dalle verifiche riferite al commit integrato. Il capitolo e la voce sono le chiavi di navigazione dei laboratori. Il rapporto distingue risultati su Mac reale, viewport touch emulati e valutazioni umane ancora aperte. [PR 339](https://github.com/AndreaMarro/ardesia/pull/339) · [Revisione canonica](../../officina-di-fisica/docs/architettura/README.md)
 
 Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati sono il collaudo touch/lettore di schermo su telefono fisico, la prova di comprensione con studenti e il collaudo di un modello editoriale scelto dal docente. Dipendenze e risultati attesi sono nell’ultima voce dedicata a Cric. [Registro](ARDESIA-RUNLOG.md)
+
+## 23 novembre 2026 · Recupero formativo C1-Q027
+
+Il percorso di riferimento è C1 → Esercizi prioritari → Aree di segno opposto → Inizia il quesito. Dopo un errore aprire **Prova il ritorno di 7 s**. La PR tecnica e il job Officina distinguono il collaudo del candidato da quello del ramo integrato. Per riprendere la valutazione, leggere prima il verbale, poi le tre prove aperte del registro: rubrica del docente, telefono fisico quando disponibile, pilot e trasferimento differito. [Verbale e istruzioni](../../officina-di-fisica/docs/recupero-c1-q027/README.md) · [Registro](ARDESIA-RUNLOG.md)

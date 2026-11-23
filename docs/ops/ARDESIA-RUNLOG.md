@@ -1141,3 +1141,15 @@ Passi da valutare con Andrea dopo questa consegna:
 1. Quando sarà disponibile un telefono autorizzato, aprire una voce del corso, effettuare previsione, misura e trasferimento anche con il lettore di schermo. Conservare modello, versione del sistema e verbale.
 2. Con il docente e studenti disponibili, osservare la lettura di C1-Q027 e il trasferimento a un caso diverso. Registrare errori concettuali e aiuti richiesti senza identificativi personali.
 3. Quando sarà scelto un modello editoriale, eseguire una proposta sul corpus approvato e registrare versione, citazione, giudizio umano e decisione di pubblicazione.
+
+## 23 novembre 2026 · Ritorno di sette secondi in C1-Q027
+
+Dalla base ufficiale `14fd6504` è stata implementata l’interazione Campo selezionata dalla PR 340. L’ingresso arriva dal tentativo autorizzato e dall’edizione storica del quesito. Il modello cinematico serve pista 3D, alternativa piana e tabella. La bozza vive nella scheda e gli aiuti formativi si registrano separatamente dall’esito. La verifica ufficiale continua a leggere il tentativo originario. [Codice e prove riproducibili](../../officina-di-fisica/docs/recupero-c1-q027/README.md)
+
+Il test browser ha evidenziato due problemi riprodotti e corretti. Lo stato premuto della tabella perdeva contrasto dopo un tap. Una seconda scheda WebKit poteva conservare la vista privata dopo il logout. Il percorso aggiornato verifica il ritorno al cancello di accesso e la pulizia selettiva della bozza. In quattro configurazioni il carrello, la tabella e la lettura coincidono ai quattro istanti. I risultati automatici e gli aspetti ancora da osservare con persone sono distinti nel verbale. [Dati del collaudo](../../officina-di-fisica/docs/recupero-c1-q027/prove/esiti.json)
+
+Per la sola valutazione successiva, in ordine di priorità e quando saranno disponibili docente, partecipanti o dispositivo:
+
+1. Far ripercorrere al docente il passaggio da 5 a 7 s e concordare la rubrica su risposta e spiegazione. Prova attesa: revisione datata della variante e dell’indizio.
+2. Con un dispositivo fisico disponibile, ripetere errore, pausa, ritorno alla pista e correzione con touch e tecnologia assistiva abituale. Registrare dispositivo, esito del focus e leggibilità del segno.
+3. Con partecipanti volontari, osservare ripresa, spiegazione del verso e trasferimento a sette giorni. Pubblicare solo risultati aggregati secondo il protocollo.
