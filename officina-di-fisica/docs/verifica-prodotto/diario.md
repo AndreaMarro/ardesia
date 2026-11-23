@@ -1,0 +1,16 @@
+# Diario degli errori dei sei percorsi
+
+## Contratto di accettazione
+
+Base `f31ef847e4772a59c3ba7a0576a9c14ded0cfefa`. La raccolta di 513 quesiti di studio permette già di consultare gli svolgimenti e provare un'altra famiglia. Il quaderno propone fino a cinque raccomandazioni. Il nuovo diario si apre da **Il mio studio** e da **Errori e recupero** e ricostruisce gli errori effettivamente commessi dal lettore. [Base canonica](https://github.com/AndreaMarro/ardesia/commit/f31ef847e4772a59c3ba7a0576a9c14ded0cfefa)
+
+| ID | Invariante | Controprova prima del merge |
+| --- | --- | --- |
+| D1 | Ogni risposta errata conservata nel quaderno autorizzato ritrova la versione su cui si è risposto, la spiegazione del passaggio, un prerequisito, una rappresentazione e un problema di famiglia diversa. C6 compone i corsi attraverso gli ID originali. | Enumerare i 513 quesiti e i 56 obiettivi di lezione, confrontare le destinazioni con le edizioni distribuite, eseguire un percorso reale per ciascun corso. |
+| D2 | Aiuti, letture e soluzioni viste, prova assistita, successo autonomo su altra famiglia e richiamo differito conservano significati separati. Il diario distingue gli errori concettuali, di procedimento, algebra, calcolo, unità e interpretazione secondo la scheda editoriale. | Sequenze datate con risposta ripetuta, indizio, famiglia distinta e richiamo prima e dopo la scadenza. Un successo da solo dà evidenza della risposta data. |
+| D3 | Lo studente può scegliere il tempo disponibile e aprire a ritmo manuale ciascun passaggio. La raccomandazione spiega la scelta in base allo storico della competenza, ai prerequisiti, alla difficoltà e alla data. | Cambiare disponibilità, confrontare un primo errore con errori ricorrenti, tornare allo stesso caso e aprire il retest. |
+| D4 | Il diario rilegge il registro ufficiale. Ricarica, secondo client, altre edizioni, ritiro di un materiale, logout e revoca rispettano i confini dell’account. Una prova sigillata in corso rimane riservata. Dopo la consegna dell’esame il recupero parte dalla competenza e usa quesiti di studio. | Due account con accesso al medesimo corso, archivio precedente all’incremento, esame iniziato e consegnato, tentativo ritirato. Confrontare i record di valutazione prima e dopo le letture. |
+| D5 | La richiesta di nuovo esercizio deriva dalla risposta errata autorizzata. Due invii identici avviano un solo tentativo. L’assenza di alternative viene dichiarata. | Forzare tentativo altrui, domanda originaria, famiglia già vista e richiesta duplicata. Verificare il nuovo quesito senza aprire una chiave di correzione. |
+| D6 | Contratto API additivo, un solo registro, massimo 12 errori per pagina. Pista, figura o tabella restano raggiungibili con tastiera e con WebGL disattivato. | Browser Chromium e WebKit, 320 px e desktop, axe sugli stati principali. Con 200 risposte storiche il p95 locale su 20 letture deve restare sotto 400 ms, risposta entro 24 KiB per pagina. |
+
+Il tempo consigliato è una scelta organizzativa del lettore. La categoria identifica il passaggio da controllare previsto dall’autore. Una spiegazione autonoma e il trasferimento fuori dall’app richiedono osservazione didattica separata.
