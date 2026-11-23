@@ -28,7 +28,7 @@ import {
 } from './ui.js';
 
 import { vignetta } from './anteprima.js';
-import { installaPassaggi } from './lettura.js';
+import { installaPassaggi, lettorePersonale, segnaleLettori } from './lettura.js';
 
 export function recoveryCollection(node, items, course) {
   const questions = items.filter((item) => item.kind === 'question');
@@ -48,7 +48,7 @@ export function recoveryCollection(node, items, course) {
   const form = node.querySelector('form');
   const { skill, scenario } = form.elements;
   const sheet = node.querySelector('#scheda-recupero');
-  const clear = () => sheet.replaceChildren();
+  const clear = () => { segnaleLettori(sheet, 'lettura:sospendi'); sheet.replaceChildren(); };
   const list = () => {
     scenario.innerHTML = questions
       .filter((q) => q.skill === skill.value)
@@ -67,13 +67,14 @@ export function recoveryCollection(node, items, course) {
       const result = await api('/recupero', { course, id: q.id });
       if (!node.isConnected || scenario.value !== q.id) return;
       const target = result.target;
+      segnaleLettori(sheet, 'lettura:sospendi');
       sheet.innerHTML = `<article class="reader sheetpanel"><div class="meta">${esc(errorNames[result.error.category] || result.error.category)}</div><h3>${esc(q.title)}</h3><p>${esc(result.prompt)}</p>
       ${blocks(result.figures)}${result.options.length ? `<ol type="A">${result.options.map((v) => `<li>${esc(v)}</li>`).join('')}</ol>` : ''}
       <div class="callout">${vignetta('riprendi')}<h3>Il passaggio da controllare</h3><p>${esc(result.error.message)}</p></div>
       ${benchLinks(q.id)}<details><summary>Segui lo svolgimento</summary><div class="lettura-contenuto">${blocks(result.solution)}</div></details>
       <div class="actions">${target ? link(target.kind === 'lab' ? 'Osserva il laboratorio' : 'Riprendi la spiegazione', (target.kind === 'lab' ? 'lab/' : 'materiale/') + target.id + '/' + course) : ''}${result.canRetest ? button('Prova un caso diverso', 'recovery-retest', true) : ''}</div></article>`;
       typeset(sheet);
-      installaPassaggi(sheet.querySelector('.lettura-contenuto'), { kind: 'worked', blocks: result.solution });
+      await lettorePersonale(sheet.querySelector('.lettura-contenuto'), { kind: 'worked', blocks: result.solution });
       on(
         '#recovery-retest',
         'click',
@@ -147,6 +148,7 @@ export async function runPage(id, initial) {
   };
   async function draw() {
     if (closed) return;
+    segnaleLettori(main, 'lettura:sospendi');
     recovery?.dispose();
     recovery = null;
     clearInterval(timer);
@@ -180,7 +182,8 @@ export async function runPage(id, initial) {
     main.querySelector('.question-shell').dataset.route = location.hash.slice(1);
     typeset();
     if (feedback && Array.isArray(q.solution)) {
-      installaPassaggi(main.querySelector('.feedback'), { kind: 'worked', blocks: q.solution });
+      const reader = run.mode === 'practice' && !run.sealed ? lettorePersonale : installaPassaggi;
+      await reader(main.querySelector('.feedback'), { kind: 'worked', blocks: q.solution });
     }
     if (q.formative) {
       const {montaRecupero} = await import('./recupero/campo.js');

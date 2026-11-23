@@ -34,7 +34,7 @@ export const errorNames = {
   testo: 'Interpretazione del testo',
   modello: 'Scelta del modello',
 };
-export async function api(path, data) {
+export async function api(path, data, headers = {}) {
   let response;
   try {
     response = await fetch(
@@ -43,7 +43,7 @@ export async function api(path, data) {
         ? { cache: 'no-store' }
         : {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-Astra-Request': '1' },
+            headers: { 'Content-Type': 'application/json', 'X-Astra-Request': '1', ...headers },
             body: JSON.stringify(data),
             cache: 'no-store',
           },

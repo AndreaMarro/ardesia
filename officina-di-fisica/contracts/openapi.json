@@ -500,10 +500,26 @@
           "default": {
             "$ref": "#/components/responses/Problem"
           }
-        }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
       },
       "post": {
         "summary": "Applica i soli campi inviati o ripristina il profilo",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Officina-Session",
+            "required": true,
+            "description": "Identificatore pubblico draftSession della risposta /state per lo stesso quaderno.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -576,7 +592,12 @@
           "default": {
             "$ref": "#/components/responses/Problem"
           }
-        }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
       }
     }
   },
