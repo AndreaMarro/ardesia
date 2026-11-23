@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "engine-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "apiVersion",
+    "id",
+    "version",
+    "title",
+    "inputUnit",
+    "outputUnit",
+    "law",
+    "references",
+    "observe",
+    "legend",
+    "sha256"
+  ],
+  "properties": {
+    "apiVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,47}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "maxLength": 32
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "inputUnit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12
+    },
+    "outputUnit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12
+    },
+    "law": {
+      "$ref": "#/$defs/expression"
+    },
+    "references": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 32,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "observe": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 700
+    },
+    "legend": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$defs": {
+    "expression": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "input": {
+              "const": true
+            }
+          },
+          "required": [
+            "input"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unit": {
+              "enum": [
+                "1",
+                "m",
+                "cm",
+                "mm",
+                "m²",
+                "cm²",
+                "m³",
+                "s",
+                "ms",
+                "Hz",
+                "m/s",
+                "m/s²",
+                "kg",
+                "N",
+                "J",
+                "A",
+                "K",
+                "mol",
+                "cd"
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "add",
+                "subtract",
+                "multiply",
+                "divide"
+              ]
+            },
+            "left": {
+              "$ref": "#/$defs/expression"
+            },
+            "right": {
+              "$ref": "#/$defs/expression"
+            }
+          },
+          "required": [
+            "op",
+            "left",
+            "right"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "LAB3D-01",
+    "kind": "bench",
+    "course": "C1",
+    "title": "Piano inclinato e attrito",
+    "model": "piano",
+    "section": "Laboratori 3D",
+    "order": 1,
+    "version": 1,
+    "skill": "C1-L005",
+    "prerequisites": [
+      "C1-L005"
+    ],
+    "mur": "1.4, 2.2",
+    "related": [
+      "C1-L005",
+      "C1-L006",
+      "C1-E009",
+      "C1-E011",
+      "C1-Q050",
+      "C1-Q051",
+      "C1-Q052",
+      "C1-L001",
+      "C1-L002",
+      "C1-E003",
+      "C1-E010",
+      "C1-Q011",
+      "C1-Q016",
+      "C1-Q042",
+      "C1-Q044",
+      "C1-Q046",
+      "C1-Q049",
+      "C1-Q053",
+      "C1-Q058"
+    ],
+    "summary": "Quanta trazione serve per impedire al blocco di scivolare?",
+    "blocks": [],
+    "prediction": {
+      "question": "La componente del peso lungo il piano è minore dell’attrito statico massimo. Lasci il blocco da fermo. Cosa accade?",
+      "options": [
+        "Resta fermo",
+        "Scivola a valle",
+        "Sale lungo il piano"
+      ],
+      "correct": 0,
+      "why": "Il contatto equilibra esattamente la componente del peso fino alla soglia statica."
+    },
+    "assessment": [
+      {
+        "prompt": "Su un piano orizzontale N = 20 N e μs = 0,4. Quanto vale la massima trazione equilibrabile?",
+        "value": 8,
+        "unit": "N",
+        "worked": "Al limite di distacco fs,max = μs N = 0,4 × 20 N = 8 N. Prima del limite l’attrito assume solo il valore necessario."
+      },
+      {
+        "prompt": "Un blocco di 2 kg sta già scivolando sul piano orizzontale. Tiri con 9 N e l’attrito si oppone con 3 N. Qual è l’accelerazione nel verso della trazione?",
+        "value": 3,
+        "unit": "m/s²",
+        "worked": "Somma le forze con i loro segni. Fnet = 9 − 3 = 6 N. Dividi per la massa e ottieni 6/2 = 3 m/s²."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C1-L001",
+        "topic": "Scalari e vettori",
+        "anchor": "Dividi in due parti uguali un liquido unif",
+        "question": "Il peso cambia orientamento insieme agli assi o resta verticale?"
+      },
+      {
+        "lesson": "C1-L002",
+        "topic": "Funzioni trigonometriche elementari",
+        "anchor": "Nel triangolo rettangolo il coseno è catet",
+        "question": "Quale cateto del triangolo del peso cambia quando inclini la guida?"
+      },
+      {
+        "lesson": "C1-L002",
+        "topic": "Definizione, componenti e modulo dei vettori",
+        "anchor": "Un tragitto obliquo può essere descritto d",
+        "question": "Ruotando la guida, come cambiano le proiezioni di uno stesso peso?"
+      },
+      {
+        "lesson": "C1-L005",
+        "topic": "Sistemi inerziali e primo principio",
+        "anchor": "In un sistema inerziale un corpo con risul",
+        "question": "Che cosa succede a un blocco inizialmente fermo con risultante nulla?"
+      },
+      {
+        "lesson": "C1-L005",
+        "topic": "Equilibrio traslazionale e statico",
+        "anchor": "In un sistema inerziale un corpo con risul",
+        "question": "Quale forza tangenziale mantiene il blocco in equilibrio?"
+      },
+      {
+        "lesson": "C1-L005",
+        "topic": "Secondo principio della dinamica",
+        "anchor": "Un carrello può muoversi mentre le forze s",
+        "question": "Quanto accelera il blocco se la risultante lungo il piano raddoppia?"
+      },
+      {
+        "lesson": "C1-L005",
+        "topic": "Forza peso e normale",
+        "anchor": "Scegli gli assi per ridurre i conti e proi",
+        "question": "Inclinando la guida la normale resta uguale al peso?"
+      },
+      {
+        "lesson": "C1-L006",
+        "topic": "Attrito statico e dinamico",
+        "anchor": "I coefficienti μ sono adimensionali. Trova",
+        "question": "Quando l’attrito passa da statico a dinamico?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-02",
+    "kind": "bench",
+    "course": "C1",
+    "title": "Moto parabolico",
+    "model": "volo",
+    "section": "Laboratori 3D",
+    "order": 2,
+    "version": 1,
+    "skill": "C1-L004",
+    "prerequisites": [
+      "C1-L004"
+    ],
+    "mur": "2.1",
+    "related": [
+      "C1-L004",
+      "C1-E007",
+      "C1-Q032",
+      "C1-Q034",
+      "C1-Q035",
+      "C1-L003",
+      "C1-L008",
+      "C1-Q033",
+      "C6-L01"
+    ],
+    "summary": "Quale componente della velocità cambia quando una pallina lascia la mano?",
+    "blocks": [],
+    "prediction": {
+      "question": "Al culmine del volo obliquo, quale componente della velocità si annulla?",
+      "options": [
+        "La orizzontale",
+        "La verticale",
+        "Entrambe"
+      ],
+      "correct": 1,
+      "why": "La gravità cambia la velocità verticale. Al culmine la pallina continua ad avanzare orizzontalmente."
+    },
+    "assessment": [
+      {
+        "prompt": "Con vy iniziale = 10 m/s e g = 10 m/s², dopo quanti secondi si raggiunge il culmine?",
+        "value": 1,
+        "unit": "s",
+        "worked": "Al culmine vy = 0. Da 0 = 10 − 10t segue t = 10/10 = 1 s."
+      },
+      {
+        "prompt": "La pallina torna alla quota di partenza dopo 1,2 s. Se la velocità orizzontale è 3 m/s, quanto avanza?",
+        "value": 3.6,
+        "unit": "m",
+        "worked": "Senza resistenza la velocità orizzontale resta costante. La distanza sul piano orizzontale vale 3 × 1,2 = 3,6 m."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C1-L003",
+        "topic": "Posizione e spostamento",
+        "anchor": "Sul pavimento segna un’origine e scegli il",
+        "question": "Come cambia la posizione della pallina rispetto all’origine scelta?"
+      },
+      {
+        "lesson": "C1-L003",
+        "topic": "Traiettoria e legge oraria",
+        "anchor": "Sul pavimento segna un’origine e scegli il",
+        "question": "Quali tre coordinate individuano un punto della traiettoria al tempo t?"
+      },
+      {
+        "lesson": "C1-L003",
+        "topic": "Velocità media e istantanea",
+        "anchor": "Tra due istanti la velocità media è la pen",
+        "question": "In quale direzione punta la velocità istantanea al culmine?"
+      },
+      {
+        "lesson": "C1-L003",
+        "topic": "Accelerazione media e istantanea",
+        "anchor": "Per ottenere l’accelerazione istantanea si",
+        "question": "Quanto cambia vy in due intervalli di tempo uguali?"
+      },
+      {
+        "lesson": "C1-L003",
+        "topic": "Moto rettilineo uniforme",
+        "anchor": "Anche la velocità può essere misurata ista",
+        "question": "La proiezione orizzontale avanza di tratti uguali in tempi uguali?"
+      },
+      {
+        "lesson": "C1-L003",
+        "topic": "Grafici cinematici",
+        "anchor": "Tra due istanti la velocità media è la pen",
+        "question": "Quale curva delle velocità ha la stessa pendenza durante salita e discesa?"
+      },
+      {
+        "lesson": "C1-L004",
+        "topic": "Moto uniformemente accelerato",
+        "anchor": "Se la velocità cambia della stessa quantit",
+        "question": "Come riconosci un’accelerazione costante sul grafico di vy?"
+      },
+      {
+        "lesson": "C1-L004",
+        "topic": "Caduta libera",
+        "anchor": "Vicino alla superficie terrestre e per dis",
+        "question": "Che cosa osservi impostando un’elevazione di 90°?"
+      },
+      {
+        "lesson": "C1-L004",
+        "topic": "Moto parabolico",
+        "anchor": "Per un lancio obliquo si usa lo stesso tem",
+        "question": "Come si combinano moto orizzontale e caduta nello stesso istante?"
+      },
+      {
+        "lesson": "C1-L008",
+        "topic": "Energia meccanica e conservazione",
+        "anchor": "Scrivi l’energia meccanica come K + U. Se ",
+        "question": "Il modulo della velocità torna a quello iniziale alla stessa quota?"
+      },
+      {
+        "lesson": "C6-L01",
+        "topic": "Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale",
+        "anchor": "Prova a disegnare il sistema con una linea",
+        "question": "Quali assi e unità servono per ricostruire la traiettoria della pallina?"
+      },
+      {
+        "lesson": "C1-L008",
+        "topic": "Energia potenziale gravitazionale ed elastica",
+        "anchor": "La prima espressione di U vale per gravità",
+        "question": "Quanto aumenta l’energia potenziale per chilogrammo tra lancio e culmine?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-03",
+    "kind": "bench",
+    "course": "C2",
+    "title": "Pressione idrostatica",
+    "model": "stevino",
+    "section": "Laboratori 3D",
+    "order": 3,
+    "version": 1,
+    "skill": "C2-L002",
+    "prerequisites": [
+      "C2-L002"
+    ],
+    "mur": "3.2",
+    "related": [
+      "C2-L002",
+      "C2-E003",
+      "C2-E004",
+      "C2-Q011",
+      "C2-Q012",
+      "C2-Q014",
+      "C2-L001",
+      "C2-L003",
+      "C2-E002",
+      "C2-Q004",
+      "C2-Q006",
+      "C2-Q019",
+      "C6-L05",
+      "C1-L001"
+    ],
+    "summary": "Due sonde alla stessa profondità leggono la stessa pressione?",
+    "blocks": [],
+    "prediction": {
+      "question": "Sposti la sonda in orizzontale alla stessa profondità nel liquido fermo. Come varia la pressione?",
+      "options": [
+        "Aumenta",
+        "Diminuisce",
+        "Resta uguale"
+      ],
+      "correct": 2,
+      "why": "Il peso della colonna per unità di area dipende dalla profondità e dalla densità. La posizione orizzontale non compare."
+    },
+    "assessment": [
+      {
+        "prompt": "Con ρ = 1000 kg/m³ e g = 10 m/s², quanto aumenta la pressione scendendo di 0,5 m?",
+        "value": 5,
+        "unit": "kPa",
+        "worked": "Δp = ρgh = 1000 × 10 × 0,5 = 5000 Pa. Dividi per 1000 per ottenere 5 kPa."
+      },
+      {
+        "prompt": "In un olio di densità 800 kg/m³ misuri 16 kPa oltre la pressione superficiale. A quale profondità ti trovi con g = 10 m/s²?",
+        "value": 2,
+        "unit": "m",
+        "worked": "Trasforma 16 kPa in 16 000 Pa. Da Δp = ρgh ricavi h = 16 000/(800 × 10) = 2 m."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C2-L001",
+        "topic": "Densità",
+        "anchor": "Per confrontare campioni di dimensioni div",
+        "question": "Come cambia l’aumento di pressione se scegli un liquido più denso?"
+      },
+      {
+        "lesson": "C2-L001",
+        "topic": "Pressione e forza normale",
+        "anchor": "Una parete bagnata riceve una forza distri",
+        "question": "Come ricavi la pressione dividendo il peso della colonna per la sua sezione?"
+      },
+      {
+        "lesson": "C2-L001",
+        "topic": "Pressione assoluta e relativa",
+        "anchor": "La pressione assoluta ha come riferimento ",
+        "question": "Quale pressione resta alla sonda quando la porti in superficie?"
+      },
+      {
+        "lesson": "C2-L002",
+        "topic": "Legge di Stevino",
+        "anchor": "Più scendi in acqua, maggiore è la colonna",
+        "question": "Come si ricava la profondità dalla lettura del manometro?"
+      },
+      {
+        "lesson": "C2-L002",
+        "topic": "Pressione con la profondità",
+        "anchor": "Usa densità uniforme e g quasi costante, l",
+        "question": "Due sonde allo stesso livello hanno sempre la stessa lettura?"
+      },
+      {
+        "lesson": "C2-L003",
+        "topic": "Trasmissione dell’incremento di pressione in un liquido confinato",
+        "anchor": "Qui le forze indicano gli incrementi norma",
+        "question": "Alzando la pressione superficiale di 10 kPa, di quanto aumenta ogni lettura?"
+      },
+      {
+        "lesson": "C6-L05",
+        "topic": "Collegamento U1, U2, U3, U5 e U6 · lettura di grafici, segni, pendenze e aree",
+        "anchor": "Se un grafico di pressione contro profondi",
+        "question": "Quali unità ha la pendenza di una retta pressione–profondità?"
+      },
+      {
+        "lesson": "C1-L001",
+        "topic": "Stima di ordine di grandezza",
+        "anchor": "La notazione scientifica separa le cifre s",
+        "question": "L’aumento di pressione sotto un metro d’acqua è dell’ordine di 1, 10 o 100 kPa?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-04",
+    "kind": "bench",
+    "course": "C2",
+    "title": "Poiseuille nel capillare",
+    "model": "tubo",
+    "section": "Laboratori 3D",
+    "order": 4,
+    "version": 1,
+    "skill": "C2-L007",
+    "prerequisites": [
+      "C2-L007"
+    ],
+    "mur": "3.4",
+    "related": [
+      "C2-L007",
+      "C2-L008",
+      "C2-E014",
+      "C2-E015",
+      "C2-E016",
+      "C2-Q071",
+      "C2-Q075",
+      "C2-Q076",
+      "C2-L005",
+      "C2-E013",
+      "C2-Q062",
+      "C2-Q063",
+      "C2-Q064",
+      "C2-Q065",
+      "C2-Q066",
+      "C2-Q067",
+      "C2-Q068",
+      "C2-Q072",
+      "C2-Q073",
+      "C2-Q074",
+      "C2-Q078",
+      "C6-L02",
+      "C6-L04",
+      "C1-L001"
+    ],
+    "summary": "Quanto conta il raggio a pressione fissata e a portata fissata?",
+    "blocks": [],
+    "prediction": {
+      "question": "In regime laminare dimezzi il raggio a pressione, lunghezza e viscosità costanti. Quanto flusso rimane?",
+      "options": [
+        "La metà",
+        "Un quarto",
+        "Un sedicesimo"
+      ],
+      "correct": 2,
+      "why": "A pressione fissata Q è proporzionale a R⁴. Dimezzando R compare il fattore (1/2)⁴ = 1/16."
+    },
+    "assessment": [
+      {
+        "prompt": "Un tubo porta 32 mL/s. A pressione fissata dimezzi il raggio mantenendo valide le ipotesi. Qual è la nuova portata?",
+        "value": 2,
+        "unit": "mL/s",
+        "worked": "Q₂/Q₁ = (R₂/R₁)⁴ = 1/16. La portata diventa 32/16 = 2 mL/s."
+      },
+      {
+        "prompt": "La pompa mantiene Q costante. Se raddoppi il raggio di un capillare che richiedeva 160 Pa, quanti pascal servono?",
+        "value": 10,
+        "unit": "Pa",
+        "worked": "Isolando Δp ottieni 8μLQ/(πR⁴). Il nuovo denominatore è 16 volte maggiore, quindi 160/16 = 10 Pa."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C2-L005",
+        "topic": "Flusso e portata volumetrica",
+        "anchor": "Segna un piano immaginario di traverso a u",
+        "question": "Che volume attraversa la sezione in un secondo?"
+      },
+      {
+        "lesson": "C2-L005",
+        "topic": "Velocità media di sezione",
+        "anchor": "In un condotto più stretto la velocità med",
+        "question": "Qual è il rapporto tra velocità al centro e velocità media?"
+      },
+      {
+        "lesson": "C2-L007",
+        "topic": "Flussi laminari e turbolenti",
+        "anchor": "Un confronto di scala utile, come approfon",
+        "question": "Quale regolazione porta fuori dal dominio laminare?"
+      },
+      {
+        "lesson": "C2-L007",
+        "topic": "Regime stazionario",
+        "anchor": "In un tubo diritto e circolare un flusso l",
+        "question": "Durante lo scorrimento dei traccianti cambia il profilo a parametri fissi?"
+      },
+      {
+        "lesson": "C2-L007",
+        "topic": "Viscosità dinamica",
+        "anchor": "Fai scorrere lentamente una lastra sopra u",
+        "question": "A pressione fissata, una viscosità doppia come modifica il flusso?"
+      },
+      {
+        "lesson": "C2-L007",
+        "topic": "Gradiente di velocità",
+        "anchor": "Il gradiente dice quanto cambia la velocit",
+        "question": "Dove cambia di più la velocità passando a uno strato vicino?"
+      },
+      {
+        "lesson": "C2-L007",
+        "topic": "Profilo parabolico laminare",
+        "anchor": "In un tubo diritto e circolare un flusso l",
+        "question": "Dove si trovano la velocità massima e la velocità nulla?"
+      },
+      {
+        "lesson": "C2-L008",
+        "topic": "Legge di Hagen–Poiseuille",
+        "anchor": "In un tubo reale lungo e orizzontale, mant",
+        "question": "Quali grandezze determinano Q in un capillare?"
+      },
+      {
+        "lesson": "C2-L008",
+        "topic": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+        "anchor": "r e L sono in metri, η in Pa·s, Δp in Pa, ",
+        "question": "Raddoppiare il raggio ha lo stesso effetto che dimezzare la lunghezza?"
+      },
+      {
+        "lesson": "C2-L008",
+        "topic": "Resistenza idraulica",
+        "anchor": "La portata finale è un sedicesimo di quell",
+        "question": "Quale pressione deve fornire la pompa per mantenere la portata?"
+      },
+      {
+        "lesson": "C2-L008",
+        "topic": "Limiti dei modelli fisiologici",
+        "anchor": "La portata finale è un sedicesimo di quell",
+        "question": "Quando il banco segnala che il profilo laminare perde validità?"
+      },
+      {
+        "lesson": "C6-L02",
+        "topic": "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario",
+        "anchor": "Per un liquido incomprimibile con velocità",
+        "question": "Come passi dal profilo di velocità alla portata che attraversa la sezione?"
+      },
+      {
+        "lesson": "C6-L04",
+        "topic": "Collegamento U2, U3, U4 e U7 · proporzioni, leggi di potenza, esponenziali",
+        "anchor": "Dimezzare una grandezza può dimezzare un r",
+        "question": "Come distingui una legge di quarta potenza da una proporzione lineare?"
+      },
+      {
+        "lesson": "C1-L001",
+        "topic": "Conversioni tra unità",
+        "anchor": "La dimensione descrive il tipo di grandezz",
+        "question": "Che raggio in metri corrisponde alla lettura del calibro in millimetri?"
+      },
+      {
+        "lesson": "C2-L005",
+        "topic": "Conservazione della massa",
+        "anchor": "In regime stazionario nessuna regione accu",
+        "question": "A regime stazionario, quanto volume entra mentre un uguale volume esce?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-05",
+    "kind": "bench",
+    "course": "C3",
+    "title": "Gas ideale e pistone",
+    "model": "gas",
+    "section": "Laboratori 3D",
+    "order": 5,
+    "version": 1,
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L02"
+    ],
+    "mur": "5.1, 5.4",
+    "related": [
+      "C3-L02",
+      "C3-L07",
+      "C3-E003",
+      "C3-E004",
+      "C3-Q011",
+      "C3-Q012",
+      "C3-Q015",
+      "C3-L01",
+      "C3-Q013",
+      "C3-Q014",
+      "C3-Q016",
+      "C3-Q017",
+      "C3-Q018",
+      "C3-Q019",
+      "C3-Q020",
+      "C3-Q061",
+      "C1-L001"
+    ],
+    "summary": "Come cambia la pressione quando il pistone dimezza il volume a temperatura costante?",
+    "blocks": [],
+    "prediction": {
+      "question": "Il pistone dimezza il volume a temperatura e quantità di sostanza costanti. La pressione finale…",
+      "options": [
+        "Raddoppia",
+        "Si dimezza",
+        "Resta uguale"
+      ],
+      "correct": 0,
+      "why": "Il prodotto pV = nRT resta costante. Dimezzando il volume la pressione raddoppia."
+    },
+    "assessment": [
+      {
+        "prompt": "Un gas occupa 4 L a 90 kPa. A temperatura e quantità costanti lo porti a 2 L. Quanto vale la pressione?",
+        "value": 180,
+        "unit": "kPa",
+        "worked": "p₁V₁ = p₂V₂. Dividi entrambi i membri per V₂. Ottieni 90 × 4/2 = 180 kPa."
+      },
+      {
+        "prompt": "In un cilindro bloccato a 3 L misuri 100 kPa a 300 K. Scaldi fino a 450 K. Quale pressione misuri?",
+        "value": 150,
+        "unit": "kPa",
+        "worked": "A n e V costanti p/T è costante. p₂ = 100 × 450/300 = 150 kPa. Nel rapporto delle temperature servono i kelvin."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C3-L01",
+        "topic": "5.1 Sistema e ambiente",
+        "anchor": "Immagina di segnare con una matita il cont",
+        "question": "Dove si trova il confine mobile del gas nel cilindro?"
+      },
+      {
+        "lesson": "C3-L01",
+        "topic": "5.1 Stato termodinamico e variabili p, V, T",
+        "anchor": "All’equilibrio, pressione p, volume V e te",
+        "question": "Quali tre letture identificano lo stato del gas?"
+      },
+      {
+        "lesson": "C3-L01",
+        "topic": "5.1 Temperatura e scale",
+        "anchor": "Prima di fare un rapporto tra temperature ",
+        "question": "Se porti T da 250 a 500 K a volume fisso, come cambia p?"
+      },
+      {
+        "lesson": "C3-L02",
+        "topic": "5.1 Gas perfetti",
+        "anchor": "Una siringa tappata oppone resistenza alla",
+        "question": "A n e T costanti, il prodotto pV cambia spostando il pistone?"
+      },
+      {
+        "lesson": "C3-L02",
+        "topic": "5.1 Equazione di stato e variabili assolute",
+        "anchor": "p è la pressione assoluta, V il volume occ",
+        "question": "Come ricavi T dalle letture di pressione e volume?"
+      },
+      {
+        "lesson": "C3-L07",
+        "topic": "5.4 Isoterma",
+        "anchor": "In una isoterma del gas perfetto chiuso il",
+        "question": "Che curva ottieni spostando il pistone a temperatura costante?"
+      },
+      {
+        "lesson": "C3-L07",
+        "topic": "5.4 Isocora",
+        "anchor": "In una trasformazione isocora il volume re",
+        "question": "Con volume bloccato, come varia la pressione al crescere di T?"
+      },
+      {
+        "lesson": "C3-L07",
+        "topic": "5.4 Isobara",
+        "anchor": "In una trasformazione isocora il volume re",
+        "question": "Quale volume ristabilisce la pressione iniziale se raddoppi T?"
+      },
+      {
+        "lesson": "C1-L001",
+        "topic": "Grandezze intensive ed estensive",
+        "anchor": "Dividi in due parti uguali un liquido unif",
+        "question": "Se raddoppi insieme moli e volume a T costante, quale grandezza resta uguale?"
+      },
+      {
+        "lesson": "C3-L01",
+        "topic": "5.1 Funzioni di stato",
+        "anchor": "All’equilibrio, pressione p, volume V e te",
+        "question": "Ritornando agli stessi n, V e T, quale pressione ritrovi?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-06",
+    "kind": "bench",
+    "course": "C3",
+    "title": "Conduzione del calore",
+    "model": "calore",
+    "section": "Laboratori 3D",
+    "order": 6,
+    "version": 1,
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L05"
+    ],
+    "mur": "5.3",
+    "related": [
+      "C3-L05",
+      "C3-E009",
+      "C3-Q042",
+      "C3-Q044",
+      "C3-Q045",
+      "C3-E010",
+      "C3-Q047",
+      "C3-Q049",
+      "C1-L001"
+    ],
+    "summary": "Allungando la barra, come cambiano il gradiente e la potenza trasferita?",
+    "blocks": [],
+    "prediction": {
+      "question": "Le temperature delle due facce restano fisse. Se raddoppi lo spessore della stessa parete a parità di area, la potenza termica…",
+      "options": [
+        "Raddoppia",
+        "Si dimezza",
+        "Resta uguale"
+      ],
+      "correct": 1,
+      "why": "La stessa differenza di temperatura si distribuisce su una distanza doppia. Gradiente e potenza si dimezzano."
+    },
+    "assessment": [
+      {
+        "prompt": "Una parete ha k = 2 W/(m·K), A = 1 m², L = 0,5 m e ΔT = 10 K. Calcola la potenza trasferita.",
+        "value": 40,
+        "unit": "W",
+        "worked": "P = kAΔT/L = 2 × 1 × 10/0,5 = 40 W. È energia trasferita ogni secondo."
+      },
+      {
+        "prompt": "Un pannello di area 2 m² trasmette 20 W con ΔT = 10 K e k = 0,5 W/(m·K). Trova lo spessore.",
+        "value": 0.5,
+        "unit": "m",
+        "worked": "Moltiplica P = kAΔT/L per L, poi dividi per P. L = 0,5 × 2 × 10/20 = 0,5 m."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C3-L05",
+        "topic": "5.3 Conduzione",
+        "anchor": "La conducibilità λ si misura in W/(m·K), A",
+        "question": "Come cambiano gradiente e potenza se aumenti lo spessore?"
+      },
+      {
+        "lesson": "C1-L001",
+        "topic": "Grandezze fisiche, dimensioni e SI",
+        "anchor": "Nel Sistema Internazionale lunghezza, mass",
+        "question": "Come passi da potenza per unità di area a watt?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-07",
+    "kind": "bench",
+    "course": "C4",
+    "title": "Campo elettrico di due cariche",
+    "model": "campo",
+    "section": "Laboratori 3D",
+    "order": 7,
+    "version": 1,
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "mur": "6.1, 6.2",
+    "related": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03",
+      "C4-E003",
+      "C4-Q014",
+      "C4-Q018",
+      "C1-L002",
+      "C4-E001",
+      "C4-E005",
+      "C4-Q011",
+      "C4-Q012",
+      "C4-Q013",
+      "C4-Q015",
+      "C4-Q017",
+      "C1-L001"
+    ],
+    "summary": "Tra due cariche, dove si annullano il campo o il potenziale?",
+    "blocks": [],
+    "prediction": {
+      "question": "Al punto medio tra due cariche uguali e positive, quanto vale il campo totale?",
+      "options": [
+        "È diretto verso destra",
+        "È nullo",
+        "È doppio del campo singolo"
+      ],
+      "correct": 1,
+      "why": "Le distanze sono uguali. I campi hanno intensità uguale e versi opposti, quindi la somma vettoriale è zero."
+    },
+    "assessment": [
+      {
+        "prompt": "Una carica di +1 nC è nel vuoto. A 1 m, con k = 9 × 10⁹ N·m²/C², quanto vale il modulo del campo?",
+        "value": 9,
+        "unit": "N/C",
+        "worked": "E = k"
+      },
+      {
+        "prompt": "Due cariche da +1 nC e −1 nC distano 2 m. Quanto vale il modulo del campo nel punto medio, con la stessa k?",
+        "value": 18,
+        "unit": "N/C",
+        "worked": "I due campi puntano dal positivo al negativo. Ogni carica dista 1 m e contribuisce con 9 N/C. I versi coincidono, quindi 9 + 9 = 18 N/C."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C1-L002",
+        "topic": "Somma e differenza",
+        "anchor": "Per sommare due vettori porta l’origine de",
+        "question": "Dove due campi non nulli hanno somma vettoriale nulla?"
+      },
+      {
+        "lesson": "C4-L01",
+        "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+        "anchor": "Le cariche dello stesso segno si respingon",
+        "question": "Che cosa cambia nel campo, e quindi nella forza su una carica di prova, raddoppiando la distanza?"
+      },
+      {
+        "lesson": "C4-L02",
+        "topic": "6.1 Campo elettrico e linee di forza",
+        "anchor": "La tangente a una linea di campo dà la dir",
+        "question": "Come si confronta il vettore in P con la tangente alla linea di campo?"
+      },
+      {
+        "lesson": "C4-L02",
+        "topic": "6.1 Campo di una o più cariche puntiformi",
+        "anchor": "Il versore radiale punta dalla sorgente al",
+        "question": "Quali componenti si cancellano nel punto medio fra cariche uguali?"
+      },
+      {
+        "lesson": "C4-L03",
+        "topic": "6.2 Potenziale e differenza di potenziale",
+        "anchor": "È lecito scegliere un riferimento per lo z",
+        "question": "Dove puoi spostare la sonda mantenendo lo stesso potenziale?"
+      },
+      {
+        "lesson": "C1-L001",
+        "topic": "Notazione scientifica",
+        "anchor": "La notazione scientifica separa le cifre s",
+        "question": "Quali potenze di dieci si compensano fra nanocoulomb e costante di Coulomb?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-08",
+    "kind": "bench",
+    "course": "C4",
+    "title": "Circuiti in serie e parallelo",
+    "model": "circuito",
+    "section": "Laboratori 3D",
+    "order": 8,
+    "version": 1,
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L06"
+    ],
+    "mur": "6.4",
+    "related": [
+      "C4-L06",
+      "C4-E011",
+      "C4-E012",
+      "C4-Q055",
+      "C4-Q058",
+      "C4-Q059",
+      "C4-L05",
+      "C4-E009",
+      "C4-Q051",
+      "C4-Q052",
+      "C4-Q053",
+      "C4-Q054",
+      "C4-Q056",
+      "C4-Q057",
+      "C4-Q060",
+      "C6-L02",
+      "C6-L03"
+    ],
+    "summary": "Quali resistori condividono la tensione e dove si divide la corrente?",
+    "blocks": [],
+    "prediction": {
+      "question": "Due resistori diversi sono collegati tra gli stessi due nodi. Quale grandezza è uguale nei due rami?",
+      "options": [
+        "Corrente",
+        "Potenza",
+        "Tensione"
+      ],
+      "correct": 2,
+      "why": "Ogni resistore ha un morsetto sul primo nodo e uno sul secondo. La differenza di potenziale è quindi la stessa."
+    },
+    "assessment": [
+      {
+        "prompt": "Una pila da 12 V alimenta 2 Ω e 4 Ω in serie. Quanto vale la corrente nel primo resistore?",
+        "value": 2,
+        "unit": "A",
+        "worked": "In serie Req = 2 + 4 = 6 Ω. La maglia ha una sola corrente, I₁ = I = 12/6 = 2 A."
+      },
+      {
+        "prompt": "Ora colleghi 6 Ω e 3 Ω in parallelo a 6 V. Qual è la corrente erogata dalla pila?",
+        "value": 3,
+        "unit": "A",
+        "worked": "I due rami ricevono 6 V ciascuno. I₁ = 6/6 = 1 A e I₂ = 6/3 = 2 A. Al nodo I = I₁ + I₂ = 3 A."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C4-L05",
+        "topic": "6.4 Corrente continua e intensità",
+        "anchor": "Il verso convenzionale è quello del moto d",
+        "question": "In che verso scorre la corrente convenzionale rispetto agli elettroni?"
+      },
+      {
+        "lesson": "C4-L05",
+        "topic": "6.4 Generatore ideale",
+        "anchor": "Il verso convenzionale è quello del moto d",
+        "question": "Quale grandezza impone il generatore passando da serie a parallelo?"
+      },
+      {
+        "lesson": "C4-L05",
+        "topic": "6.4 Conduzione ohmica",
+        "anchor": "Per un resistore ohmico R resta costante a",
+        "question": "Come cambia la corrente di un ramo ohmico quando raddoppi U?"
+      },
+      {
+        "lesson": "C4-L05",
+        "topic": "6.4 Prima e seconda legge di Ohm",
+        "anchor": "Una retta V(I) passante per l’origine indi",
+        "question": "Come si ricava la resistenza dal rapporto tra tensione e corrente?"
+      },
+      {
+        "lesson": "C4-L06",
+        "topic": "6.4 Resistenze in serie e in parallelo",
+        "anchor": "Segui i fili di un circuito prima di somma",
+        "question": "Sono gli stessi due nodi oppure una sola maglia?"
+      },
+      {
+        "lesson": "C4-L06",
+        "topic": "6.4 Potenza elettrica ed effetto Joule",
+        "anchor": "Per una differenza di potenziale V e una c",
+        "question": "Quale ramo dissipa più potenza e come cambia il confronto in serie?"
+      },
+      {
+        "lesson": "C6-L02",
+        "topic": "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario",
+        "anchor": "Una rete in regime stazionario rende visib",
+        "question": "Come si dividono le correnti al nodo e come si ricompongono?"
+      },
+      {
+        "lesson": "C6-L03",
+        "topic": "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica",
+        "anchor": "Il prodotto della tensione V per la corren",
+        "question": "La potenza fornita dalla pila coincide con la somma delle potenze dissipate?"
+      },
+      {
+        "lesson": "C6-L03",
+        "topic": "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica",
+        "anchor": "Se il risultato suggerisce che il liquido ",
+        "question": "Come verifichi con due rami il bilancio tra potenza in ingresso e potenze utilizzate?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-09",
+    "kind": "bench",
+    "course": "C5",
+    "title": "Banco ottico",
+    "model": "lente",
+    "section": "Laboratori 3D",
+    "order": 9,
+    "version": 1,
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L10"
+    ],
+    "mur": "7.7",
+    "related": [
+      "C5-L10",
+      "C5-E019",
+      "C5-E020",
+      "C5-Q093",
+      "C5-Q094",
+      "C5-Q098",
+      "C5-Q091",
+      "C5-Q092",
+      "C5-Q095",
+      "C5-Q096",
+      "C5-Q097",
+      "C5-Q099",
+      "C5-Q100",
+      "C6-L06"
+    ],
+    "summary": "In quale punto puoi raccogliere un’immagine su uno schermo?",
+    "blocks": [],
+    "prediction": {
+      "question": "Avvicini l’oggetto fino a porlo fra la lente convergente e il fuoco. Puoi raccoglierne l’immagine su uno schermo?",
+      "options": [
+        "Sì, oltre il secondo fuoco",
+        "No, l’immagine è virtuale",
+        "Sì, sul piano della lente"
+      ],
+      "correct": 1,
+      "why": "I raggi emergenti divergono. I loro prolungamenti all’indietro si incrociano dal lato dell’oggetto."
+    },
+    "assessment": [
+      {
+        "prompt": "Un oggetto è a 30 cm da una lente di focale 10 cm. A quale distanza dalla lente si forma l’immagine?",
+        "value": 15,
+        "unit": "cm",
+        "worked": "1/q = 1/f − 1/p = 1/10 − 1/30 = 2/30. Invertendo si ha q = 15 cm, positivo sul lato di uscita."
+      },
+      {
+        "prompt": "Sposti l’oggetto a 5 cm dalla stessa lente di focale 10 cm. Quanto vale la distanza con segno q?",
+        "value": -10,
+        "unit": "cm",
+        "worked": "1/q = 1/10 − 1/5 = −1/10. Quindi q = −10 cm. L’immagine diritta appare sul lato dell’oggetto."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C5-L10",
+        "topic": "UD7 · lenti sottili convergenti",
+        "anchor": "Una lente convergente sottile porta raggi ",
+        "question": "Dove passa un raggio inizialmente parallelo all’asse ottico?"
+      },
+      {
+        "lesson": "C5-L10",
+        "topic": "UD7 · legge dei punti coniugati e formazione di immagini",
+        "anchor": "Se p è minore di f il denominatore p − f d",
+        "question": "Come riconosci dal segno di q un’immagine virtuale?"
+      },
+      {
+        "lesson": "C6-L06",
+        "topic": "Collegamento cumulativo U1–U7 · scelta del modello, controllo dei limiti, ripresa distribuita",
+        "anchor": "Un ultimo controllo consiste nel modificar",
+        "question": "Come cambia la natura dell’immagine spostando l’oggetto appena oltre il fuoco?"
+      }
+    ]
+  },
+  {
+    "id": "LAB3D-10",
+    "kind": "bench",
+    "course": "C5",
+    "title": "Interferenza di due sorgenti",
+    "model": "onde",
+    "section": "Laboratori 3D",
+    "order": 10,
+    "version": 1,
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L03"
+    ],
+    "mur": "4.2",
+    "related": [
+      "C5-L03",
+      "C5-E005",
+      "C5-E006",
+      "C5-Q021",
+      "C5-Q023",
+      "C5-Q025",
+      "C5-L01",
+      "C5-L02",
+      "C5-Q022",
+      "C5-Q024",
+      "C5-Q028",
+      "C5-Q030"
+    ],
+    "summary": "Le oscillazioni delle due sorgenti si sommano o si cancellano alla sonda?",
+    "blocks": [],
+    "prediction": {
+      "question": "Due onde di uguale ampiezza arrivano alla sonda con la stessa fase. Qual è l’ampiezza risultante?",
+      "options": [
+        "Zero",
+        "A",
+        "2A"
+      ],
+      "correct": 2,
+      "why": "Le creste arrivano insieme, come le valli mezzo periodo dopo. La somma raggiunge il doppio dell’ampiezza di una singola onda."
+    },
+    "assessment": [
+      {
+        "prompt": "Due onde hanno ciascuna ampiezza 2 mm. Si incontrano in fase. Quanto vale l’ampiezza risultante?",
+        "value": 4,
+        "unit": "mm",
+        "worked": "Gli spostamenti si sommano istante per istante. In fase il massimo è A + A = 2 + 2 = 4 mm."
+      },
+      {
+        "prompt": "Alla stessa distanza da due sorgenti uguali introduci uno sfasamento di 180°. Qual è l’ampiezza alla sonda?",
+        "value": 0,
+        "unit": "mm",
+        "worked": "I cammini uguali danno la stessa fase di propagazione. Lo sfasamento iniziale di π rende opposti gli spostamenti in ogni istante. La loro somma è zero."
+      }
+    ],
+    "topics": [
+      {
+        "lesson": "C5-L01",
+        "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+        "anchor": "L’ampiezza A è la distanza massima dall’eq",
+        "question": "Come distingui lo spostamento istantaneo della sonda dalla sua ampiezza?"
+      },
+      {
+        "lesson": "C5-L02",
+        "topic": "UD4 · velocità, frequenza e lunghezza d’onda",
+        "anchor": "Una fotografia a un istante fissato permet",
+        "question": "Come cambia la distanza tra i fronti se aumenti la frequenza?"
+      },
+      {
+        "lesson": "C5-L02",
+        "topic": "UD4 · equazione armonica di propagazione",
+        "anchor": "Per una sinusoide che avanza verso x cresc",
+        "question": "A una sonda ferma, quale grandezza varia durante il periodo?"
+      },
+      {
+        "lesson": "C5-L02",
+        "topic": "UD4 · onde trasversali su corda e longitudinali nei fluidi",
+        "anchor": "Sulla corda y è perpendicolare al cammino ",
+        "question": "In che direzione oscilla la sonda mentre i fronti attraversano il piano?"
+      },
+      {
+        "lesson": "C5-L03",
+        "topic": "UD4 · principio di sovrapposizione",
+        "anchor": "Due impulsi raggiungono lo stesso tratto d",
+        "question": "Come sommi due spostamenti nello stesso punto e allo stesso istante?"
+      },
+      {
+        "lesson": "C5-L03",
+        "topic": "UD4 · interferenza costruttiva e distruttiva",
+        "anchor": "Una differenza di cammino Δs di una lunghe",
+        "question": "Quale differenza di cammino cancella due contributi inizialmente in fase?"
+      }
+    ]
+  }
+]

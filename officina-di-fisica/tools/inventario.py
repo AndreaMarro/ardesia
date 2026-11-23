@@ -143,7 +143,10 @@ KIND = {
     "example": "esempio svolto",
     "question": "quesito",
     "lab": "laboratorio",
+    "bench": "banco 3D di approfondimento",
+    "experiment": "simulazione di lezione",
     "section": "sezione",
+    "method": "attività di metodo",
 }
 ANSWER = {"numeric": "numerica", "choice": "scelta multipla", "text": "completamento"}
 
@@ -447,19 +450,19 @@ def main():
     inventory = [
         "# Inventario editoriale e copertura MUR",
         "",
-        f"Questa fotografia riguarda il {source}. I {len(rows)} record hanno identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.",
+        f"Questa fotografia riguarda il {source}. Comprende {len(rows)} record con identificatori stabili. C6 riutilizza i cinque microcorsi mediante gli stessi identificatori e aggiunge materiali propri. I conteggi seguono il modulo di origine. Ogni record è contato una sola volta.",
         "",
         "Fonti ministeriali consultate il 21 novembre 2026 per l’anno accademico 2026/27. I collegamenti ai documenti archiviati sono sotto la matrice.",
         "",
         "## Banca pubblicata",
         "",
-        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori |",
-        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|",
+        "| Origine | Lezioni | Esempi guidati | Famiglie di esempi | Quesiti di studio | Quesiti di simulazione | Famiglie di quesiti | Scelta / numerica / completamento | Tavole SVG distinte usate | Quesiti con figura nella consegna | Laboratori guidati | Banchi 3D | Simulazioni di lezione | Attività di metodo |",
+        "|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|",
     ]
     for c in courses:
         s = stats[c]
         inventory.append(
-            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} |"
+            f"| {c} · {index[c]['title']} | {s['lesson']} | {s['example']} | {len(exfamilies[c])} | {s['banca']} | {s['sim']} | {len(families[c])} | {s['choice']} / {s['numeric']} / {s['text']} | {len(figures[c])} | {s['promptFigure']} | {s['lab']} | {s['bench']} | {s['experiment']} | {s['method']} |"
         )
     inventory += [
         "",
@@ -478,7 +481,7 @@ def main():
     inventory.extend(
         [
             "",
-            "Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le rappresentazioni calcolate dal vivo nei laboratori appartengono alla colonna laboratori.",
+            "Le famiglie sono quelle registrate con un identificatore editoriale. I valori numerici appartengono alla consegna salvata. Ripetere lo stesso quesito mantiene la medesima famiglia. Il conteggio delle figure usa il percorso dell’asset e include le tavole nella consegna e nello svolgimento. Una figura citata in più moduli compare in ciascuna riga interessata. Le ultime colonne distinguono i laboratori guidati, i banchi 3D di approfondimento, le simulazioni delle singole voci e le attività di metodo. [Mappa delle simulazioni di lezione](laboratori-3d/voci.md)",
             "",
             "## Matrice del programma",
             "",

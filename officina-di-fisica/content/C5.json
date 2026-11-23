@@ -1317,7 +1317,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 7.0,
+      "value": 7,
       "unit": "mm",
       "tolerance": 0.01
     },
@@ -1713,7 +1713,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 36.0,
+      "value": 36,
       "unit": "cm",
       "tolerance": 0.05
     },
@@ -1868,7 +1868,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 15.0,
+      "value": 15,
       "unit": "m/s",
       "tolerance": 0.02
     },
@@ -2108,7 +2108,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 2.0,
+      "value": 2,
       "unit": "mm",
       "tolerance": 0.01
     },
@@ -2188,7 +2188,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 2.0,
+      "value": 2,
       "unit": "mm",
       "tolerance": 0.01
     },
@@ -2429,7 +2429,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 3.0,
+      "value": 3,
       "unit": "ms",
       "tolerance": 0.01
     },
@@ -2509,7 +2509,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 20.0,
+      "value": 20,
       "unit": "W/m²",
       "tolerance": 0.1
     },
@@ -2790,7 +2790,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 3.0,
+      "value": 3,
       "unit": "rapporto",
       "tolerance": 0.01
     },
@@ -2834,7 +2834,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 10.0,
+      "value": 10,
       "unit": "W",
       "tolerance": 0.1
     },
@@ -3010,7 +3010,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": -20.0,
+      "value": -20,
       "unit": "dB",
       "tolerance": 0.01
     },
@@ -3083,16 +3083,53 @@
     "blocks": [
       {
         "type": "text",
-        "text": "Il tempo indicato misura l’intero percorso fra emissione e ricezione."
+        "text": "La parete è a 51 m dal microfono, ma il tempo indicato non riguarda soltanto il tragitto verso la parete. L'eco è il suono che prima arriva sulla parete, poi viene riflesso e torna indietro."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-Q045-eco.svg",
+        "text": "La freccia viola rappresenta l'andata; quella rossa il ritorno. Il percorso complessivo è il doppio della distanza fra sorgente e parete."
+      },
+      {
+        "type": "text",
+        "text": "I dati sono distanza parete d = 51 m e tempo totale dell'eco Δt = 0,30 s. Cerco la velocità v del suono. La sorgente e il microfono sono vicini, perciò assumiamo che il punto di partenza e quello d'arrivo coincidano."
+      },
+      {
+        "type": "text",
+        "text": "Calcolo prima il cammino effettivo. Il suono percorre 51 m all'andata e altrettanti al ritorno: non dobbiamo dividere la sola distanza 51 m per il tempo dell'eco."
       },
       {
         "type": "formula",
-        "text": "v=\\frac{2d}{\\Delta t}=\\frac{2(51\\ \\mathrm m)}{0{,}30\\ \\mathrm s}=340\\ \\mathrm{m/s}"
+        "text": "s_{tot}=d+d=2d=2\\cdot51=102\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "La velocità costante è distanza percorsa divisa per tempo. La relazione s = vt si inverte dividendo entrambi i membri per t."
+      },
+      {
+        "type": "formula",
+        "text": "s=vt\\quad\\Rightarrow\\quad\\frac{s}{t}=\\frac{vt}{t}\\quad\\Rightarrow\\quad v=\\frac{s}{t}"
+      },
+      {
+        "type": "text",
+        "text": "Sostituisco 102 m e 0,30 s. Per evitare la calcolatrice moltiplico numeratore e denominatore per 10, così 102 / 0,30 diventa 1020 / 3."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{102\\,\\mathrm m}{0{,}30\\,\\mathrm s}=\\frac{1020}{3}\\,\\mathrm{m/s}=340\\,\\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo a mente: a 340 m/s in 0,30 s il suono percorre 340 × 3/10 = 102 m, esattamente 51 m di andata più 51 m di ritorno."
+      },
+      {
+        "type": "text",
+        "text": "Errore tipico: 51 / 0,30 = 170 m/s, che dimezza erroneamente il risultato perché dimentica il ritorno. Trucco: quando il suono viene emesso e ricevuto nello stesso punto, il tragitto dell'eco vale sempre 2d, finché il mezzo e la velocità restano gli stessi lungo il percorso."
       }
     ],
     "answer": {
       "type": "numeric",
-      "value": 340.0,
+      "value": 340,
       "unit": "m/s",
       "tolerance": 0.5
     },
@@ -3381,7 +3418,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 2.0,
+      "value": 2,
       "unit": "m",
       "tolerance": 0.01
     },
@@ -3547,7 +3584,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 9.0,
+      "value": 9,
       "unit": "rapporto",
       "tolerance": 0.01
     },
@@ -3872,7 +3909,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 20.0,
+      "value": 20,
       "unit": "%",
       "tolerance": 0.05
     },
@@ -3959,7 +3996,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 65.0,
+      "value": 65,
       "unit": "%",
       "tolerance": 0.01
     },
@@ -4203,9 +4240,9 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 124.0,
+      "value": 124,
       "unit": "neutroni",
-      "tolerance": 0.0
+      "tolerance": 0
     },
     "hints": [
       "Togli due protoni e due neutroni, poi calcola A − Z."
@@ -4237,9 +4274,9 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 6.0,
+      "value": 6,
       "unit": "protoni",
-      "tolerance": 0.0
+      "tolerance": 0
     },
     "hints": [
       "Nel β⁺ un protone diventa un neutrone."
@@ -4310,7 +4347,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 3.0,
+      "value": 3,
       "unit": "h",
       "tolerance": 0.02
     },
@@ -4348,7 +4385,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 1.0,
+      "value": 1,
       "unit": "kBq",
       "tolerance": 0.005
     },
@@ -4466,9 +4503,9 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 720.0,
+      "value": 720,
       "unit": "Bq",
-      "tolerance": 1.0
+      "tolerance": 1
     },
     "hints": [
       "La lettura è una frazione dell’attività."
@@ -4540,7 +4577,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 65.0,
+      "value": 65,
       "unit": "°",
       "tolerance": 0.1
     },
@@ -4779,7 +4816,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 50.0,
+      "value": 50,
       "unit": "°",
       "tolerance": 0.1
     },
@@ -4855,7 +4892,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 60.0,
+      "value": 60,
       "unit": "°",
       "tolerance": 0.1
     },
@@ -4891,7 +4928,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 8.0,
+      "value": 8,
       "unit": "°",
       "tolerance": 0.1
     },
@@ -4927,7 +4964,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 16.0,
+      "value": 16,
       "unit": "cm",
       "tolerance": 0.05
     },
@@ -5053,7 +5090,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 15.0,
+      "value": 15,
       "unit": "cm",
       "tolerance": 0.05
     },
@@ -5221,7 +5258,7 @@
     ],
     "answer": {
       "type": "numeric",
-      "value": 15.0,
+      "value": 15,
       "unit": "cm",
       "tolerance": 0.05
     },

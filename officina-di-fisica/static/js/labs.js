@@ -7,6 +7,7 @@ import {
   go,
   esc,
   link,
+  listLine,
   head,
   crumb,
   titleOf,
@@ -21,6 +22,8 @@ import {
   startRun,
 } from './ui.js';
 import { models, parameters, modes, initial } from './models.js';
+import { concentrazione, momenti, segnaMomento, sequenza, stileBanco } from './banchi/aula.js';
+import { benchRoute } from './banchi/collegamenti.js';
 import { vignetta } from './anteprima.js';
 const ink = '#123a39',
   red = '#a93622',
@@ -257,6 +260,17 @@ export function diagram(model, d, v) {
     ],
   ];
 }
+function renderClassic(r, c, saved, owned, related, fields) {
+  return crumb([['Simulazioni 3D','laboratori'],[r.title]]) +
+    `<article class="bench-room classic-room"><header class="bench-head"><div><div class="meta">Laboratorio guidato · ${esc(r.course)}</div><h1>${esc(r.title)}</h1><p>${esc(titleOf(r.course))}</p></div><img src="/identita/cric-al-banco.svg" alt="Cric" width="82" height="68"></header>
+    ${related}${sequenza()}<div class="bench-work"><section class="bench-instrument" aria-label="Banco di misura"><div class="bench-strip"><span data-display>Tavola di misura</span><button data-focus aria-pressed="false">⛶ Concentrazione</button></div><figure class="labfigure" id="lab-view"></figure><div class="meters" id="meters"></div></section>
+    <aside class="bench-desk"><div data-classic="0"><h2>La tua previsione</h2><label class="field">${esc(r.prediction)}<textarea id="prediction" rows="3">${esc(saved.prediction||'')}</textarea></label></div>
+    <div data-classic="1" hidden><h2>Osserva il banco</h2>${vignetta('osserva')}<p>${esc(r.observation)}</p></div>
+    <div data-classic="2" hidden><h2>Regola il banco</h2>${fields}${button('Ripristina parametri','reset')}</div>
+    <div data-classic="3" hidden><h2>Il modello</h2>${blocks(r.blocks)}<details><summary>Confronta la tua interpretazione</summary><p>${esc(r.interpretation)}</p></details></div>
+    <div data-classic="4" hidden><h2>Verifica la tua previsione</h2><label class="field">Che cosa hai osservato?<textarea id="lab-note">${esc(saved.note||'')}</textarea></label><div class="actions">${state.user?button('Salva osservazione','save-observation',true):''}${owned?button('Verifica con un problema','lab-test'):link('Apri il percorso','corso/'+c)}</div></div>
+    <div class="bench-nav"><button data-classic-back>← Indietro</button><button class="solid" data-classic-next>Osserva →</button></div></aside></div></article>`;
+}
 export async function labPage(id, context) {
   const r = await api('/item/' + id),
     m = r.model;
@@ -265,10 +279,31 @@ export async function labPage(id, context) {
     owned = state.courses.find((o) => o.id === c)?.owned;
   const predictionsKey = 'astra-lab-' + (state.user?.id || 'ospite') + '-' + id + '-' + r.version;
   const saved = JSON.parse(sessionStorage.getItem(predictionsKey) || '{}');
-  main.innerHTML =
-    crumb([['Laboratori', 'laboratori'], [r.title]]) +
-    head(r.title, titleOf(r.course), 'Laboratorio · ' + r.course) +
-    `<section class="split"><div><h2>Il modello</h2>${blocks(r.blocks)}<label class="field">La tua previsione<span class="helper">${esc(r.prediction)}</span><textarea id="prediction" rows="2">${esc(saved.prediction || '')}</textarea></label></div><aside class="sheetpanel intro-card">${vignetta('osserva')}<h3>Osservazione guidata</h3><p>${esc(r.observation)}</p></aside></section><section class="labpanel"><div class="kickerline"><h2>Il banco</h2>${button('Ripristina parametri', 'reset')}</div><figure class="labfigure" id="lab-view"></figure><div class="meters" id="meters" aria-live="off"></div><div class="labfields">${modes[m] ? `<label>Configurazione<select id="lab-mode">${modes[m].map((v) => `<option ${v === d.mode ? 'selected' : ''}>${v}</option>`).join('')}</select></label>` : ''}${parameters[m].map(([k, title, unit, min, max, step]) => `<div><label for="slide-${k}">${esc(title)} ${esc(unit)}</label><input id="slide-${k}" type="range" min="${min}" max="${max}" step="${step}" value="${d[k]}"><label class="sr" for="val-${k}">Valore numerico di ${esc(title)} ${esc(unit)}</label><input type="number" id="val-${k}" min="${min}" max="${max}" step="${step}" value="${d[k]}"><small>${num(min)} – ${num(max)} ${esc(unit)}</small></div>`).join('')}</div></section><label class="field">Che cosa hai osservato?<textarea id="lab-note">${esc(saved.note || '')}</textarea></label><div class="actions">${state.user ? button('Salva osservazione', 'save-observation', true) : ''}${owned ? button('Verifica con un problema', 'lab-test') : link('Apri il percorso', 'corso/' + c)}</div><details><summary>Confronta la tua interpretazione</summary><p class="notice">${esc(r.interpretation)}</p></details>`;
+  const sims = r.simulations || [];
+  const related = sims.length
+    ? '<details class="sim-related"' + (sims.length <= 3 ? ' open' : '') +
+      '><summary>Simulazioni 3D di questa lezione · ' + sims.length + '</summary>' +
+      sims.map((e) => listLine(e.title, benchRoute(e.id))).join('') + '</details>'
+    : '';
+  stileBanco();
+  const fields = `<div class="labfields">${modes[m] ? `<label>Configurazione<select id="lab-mode">${modes[m].map((v) => `<option ${v === d.mode ? 'selected' : ''}>${v}</option>`).join('')}</select></label>` : ''}${parameters[m].map(([k, title, unit, min, max, step]) => `<div><label for="slide-${k}">${esc(title)} ${esc(unit)}</label><input id="slide-${k}" type="range" min="${min}" max="${max}" step="${step}" value="${d[k]}"><label class="sr" for="val-${k}">Valore numerico di ${esc(title)} ${esc(unit)}</label><input type="number" id="val-${k}" min="${min}" max="${max}" step="${step}" value="${d[k]}"><small>${num(min)} – ${num(max)} ${esc(unit)}</small></div>`).join('')}</div>`;
+  main.innerHTML = renderClassic(r,c,saved,owned,related,fields);
+  const room = main.querySelector('.classic-room');
+  concentrazione(room.querySelector('.bench-instrument'));
+  let phase = 0;
+  function showPhase(next) {
+    phase = Math.max(0,Math.min(momenti.length-1,next));
+    segnaMomento(room,phase);
+    for (const panel of room.querySelectorAll('[data-classic]')) panel.hidden = Number(panel.dataset.classic) !== phase;
+    room.querySelector('[data-classic-back]').disabled = phase === 0;
+    const ahead = room.querySelector('[data-classic-next]');
+    ahead.hidden = phase === 4;
+    ahead.textContent = (momenti[phase+1] || '')+' →';
+  }
+  for (const btn of room.querySelectorAll('[data-phase]')) btn.onclick = () => showPhase(Number(btn.dataset.phase));
+  room.querySelector('[data-classic-back]').onclick = () => showPhase(phase-1);
+  room.querySelector('[data-classic-next]').onclick = () => showPhase(phase+1);
+  showPhase(0);
   if (m === 'C3') $('#lab-mode').setAttribute('aria-label', 'Trasformazione termodinamica');
   function draw() {
     const [svg, caption, meters] = diagram(m, d, models[m](d));

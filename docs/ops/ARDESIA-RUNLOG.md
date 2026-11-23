@@ -1129,3 +1129,15 @@ Per una ripresa operativa:
 1. **Manutenzione.** Partire dalla cartella e dal tag del prodotto, creare una bozza in una copia di prova, pubblicarla e verificare i fascicoli interessati. Il collaudo di accettazione legge la nuova versione e conserva il tentativo anteriore. [Guida](../../officina-di-fisica/docs/guida-autore.md)
 2. **Revisione con il docente.** Se Andrea prepara un’edizione per la vendita, aprire la matrice e annotare la revisione umana sulle versioni effettivamente esaminate. Prova attesa per questa fase: record e revisore identificati. [Matrice](../../officina-di-fisica/docs/inventario-copertura.csv)
 3. **Servizio condiviso.** Alla scelta di un host e delle condizioni reali, configurare HTTPS, volume dati, prezzi, intestatario e IBAN attraverso i canali privati. L’accettazione richiede riaccesso dal servizio condiviso e conferma di un accredito reale verificato dal titolare. La distribuzione qui parte in modalità verifica. [Manuale](../../officina-di-fisica/README.md)
+
+## 23 novembre 2026 · Cric, laboratori e confini applicativi
+
+La sede canonica dell’Officina è il ramo `officina-di-fisica`. La PR 339 riunisce i 181 laboratori dei 56 capitoli, i contratti di estensione, le migrazioni, i test e le prove didattiche. Il corso GEO e i provider di prova usano archivi isolati. Il banco geometrico conta visibilmente 6 e 15 celle passando da 2 a 5 colonne. L’editor richiede revisione e pubblicazione distinte. La scelta del monolite mantiene un’applicazione locale con un unico archivio. [PR e stato di integrazione](https://github.com/AndreaMarro/ardesia/pull/339) · [Revisione e limiti](../../officina-di-fisica/docs/architettura/README.md)
+
+La suite ha rilevato un’etichetta accessibile diversa dal testo di «Indietro», un’interferenza fra scritture concorrenti dei log e una differenza nella formattazione delle migliaia su WebKit Linux. Le correzioni mantengono i controlli della consegna, dell’accessibilità e dell’integrità delle righe JSON. I quattro job generali che installano Chromium usano Ubuntu 24.04 per compatibilità con Playwright 1.60. La matrice dedicata produce prove per ciascun corso e browser prima e dopo l’integrazione. Il riscontro con telefono fisico è rinviato su richiesta del proprietario. [Workflow](../../.github/workflows/officina-di-fisica.yml)
+
+Passi da valutare con Andrea dopo questa consegna:
+
+1. Quando sarà disponibile un telefono autorizzato, aprire una voce del corso, effettuare previsione, misura e trasferimento anche con il lettore di schermo. Conservare modello, versione del sistema e verbale.
+2. Con il docente e studenti disponibili, osservare la lettura di C1-Q027 e il trasferimento a un caso diverso. Registrare errori concettuali e aiuti richiesti senza identificativi personali.
+3. Quando sarà scelto un modello editoriale, eseguire una proposta sul corpus approvato e registrare versione, citazione, giudizio umano e decisione di pubblicazione.

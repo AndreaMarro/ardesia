@@ -4,7 +4,6 @@ import base64
 import binascii
 import hashlib
 import json
-import math
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -16,18 +15,23 @@ from .store import (
     Problem,
     audit,
     encode,
-    published,
     record,
     require,
     safe_key,
 )
 
-KINDS = {"course", "section", "lesson", "example", "question", "lab"}
-TYPES = {"text", "formula", "figure", "attachment", "example", "question", "lab"}
+from .adapters.engines import validate_experiment
+from .adapters.exam_policies import exam_policy
+from .domain.pathway import prerequisites, unique_experiments
+from .adapters.contracts import schema, validate as validate_contract
+from .editorial.service import EditorialWorkspace
+from .domain.authoring import ContentPolicy, KINDS, validate_record
+from .application.publication import publish as publish_graph
+from .adapters.publication import SQLitePublication
+
 LAB_SPEC = json.loads((ROOT / "static" / "lab-models.json").read_text())
-CATEGORIES = {"concetto", "calcolo", "algebra", "unità", "testo", "modello"}
-
-
+EXPERIMENTS = {r["id"]: r for path in (ROOT / "content").glob("esperienze-C*.json")
+               for r in json.loads(path.read_text())}
 def heads(db):
     return {r["id"]: dict(r) for r in db.execute("SELECT * FROM heads")}
 
@@ -74,157 +78,9 @@ def valid_src(db, src, extra):
 
 
 def validate(db, r, objects, extra=()):
-    require(isinstance(r, dict) and safe_key(r.get("id")), "ID assente o non valido.")
-    require(r.get("kind") in KINDS, "Tipo di materiale non valido.")
-    require(
-        isinstance(r.get("title"), str) and bool(r["title"].strip()),
-        "Inserisci il titolo.",
-    )
-    require(
-        isinstance(r.get("order"), (int, float)) and math.isfinite(r["order"]),
-        "Posizione non valida.",
-    )
-    require(isinstance(r.get("section", ""), str), "Sezione non valida.")
-
-    def ref(key, kinds):
-        require(
-            isinstance(key, str) and key in objects and objects[key]["kind"] in kinds,
-            "Riferimento non disponibile: " + str(key),
-        )
-
-    kind = r["kind"]
-    ref(r.get("course"), {"course"})
-    if kind == "course":
-        require(
-            r["course"] == r["id"],
-            "L’ID del corso deve coincidere con il corso principale.",
-        )
-        for k in r.get("includes", []):
-            ref(k, {"course"})
-
-        def walk(k, path):
-            require(k not in path, "I corsi inclusi formano un ciclo.")
-            for sub in objects[k].get("includes", []):
-                walk(sub, path | {k})
-
-        walk(r["id"], set())
-    for k in r.get("reuse", []):
-        ref(k, {"course"})
-    if r.get("skill"):
-        ref(r["skill"], {"lesson"})
-    for k in r.get("prerequisites", []):
-        ref(k, {"lesson"})
-    require(isinstance(r.get("blocks"), list), "Blocchi mancanti.")
-    for b in r["blocks"] + r.get("promptBlocks", []):
-        require(
-            isinstance(b, dict)
-            and b.get("type") in TYPES
-            and isinstance(b.get("text", ""), str),
-            "Blocco non valido.",
-        )
-        if b["type"] in ("figure", "attachment"):
-            require(
-                valid_src(db, b.get("src"), extra),
-                "File assente o percorso non valido: " + str(b.get("src")),
-            )
-        if b["type"] in ("example", "lab", "question"):
-            ref(b.get("ref"), {b["type"]})
-    if kind in ("example", "question"):
-        require(
-            r.get("prompt") and r.get("family") and r.get("skill") and r["blocks"],
-            "Servono consegna, famiglia, competenza e svolgimento.",
-        )
-        require(r.get("difficulty") in (1, 2, 3), "Difficoltà da 1 a 3.")
-    if kind == "lab":
-        model = r.get("model")
-        require(model in LAB_SPEC["parameters"], "Modello di laboratorio sconosciuto.")
-        defaults = r.get("defaults", {})
-        require(
-            isinstance(defaults, dict), "Configurazione iniziale del banco non valida."
-        )
-        bounds = {row[0]: row[3:6] for row in LAB_SPEC["parameters"][model]}
-        for param, value in defaults.items():
-            if param == "mode":
-                require(
-                    value in LAB_SPEC["modes"].get(model, []),
-                    "Trasformazione o collegamento non valido.",
-                )
-                continue
-            require(param in bounds, "Parametro non supportato dal modello: " + param)
-            lo, hi, step = bounds[param]
-            require(
-                type(value) in (int, float)
-                and math.isfinite(value)
-                and lo <= value <= hi
-                and abs((value - lo) / step - round((value - lo) / step)) < 1e-7,
-                "Valore iniziale fuori intervallo o passo non valido: " + param,
-            )
-        for field in ("prediction", "observation", "interpretation"):
-            require(
-                isinstance(r.get(field), str) and r[field].strip(),
-                "Completa previsione, osservazione e interpretazione.",
-            )
-    if kind == "question":
-        a = r.get("answer", {})
-        require(
-            a.get("type") in ("choice", "numeric", "text"),
-            "Tipo di risposta non valido.",
-        )
-        require("value" in a and str(a["value"]).strip(), "Risposta corretta mancante.")
-        if a["type"] == "choice":
-            ops = a.get("options", [])
-            require(
-                2 <= len(ops) <= 8
-                and len(set(ops)) == len(ops)
-                and a["value"] in ops
-                and all(isinstance(x, str) and x.strip() for x in ops),
-                "Controlla opzioni distinte e chiave.",
-            )
-        if a["type"] == "numeric":
-            require(
-                isinstance(a["value"], (int, float))
-                and math.isfinite(a["value"])
-                and isinstance(a.get("tolerance"), (float, int))
-                and 0 <= a["tolerance"] < math.inf
-                and isinstance(a.get("unit", ""), str),
-                "Valore, unità e tolleranza assoluta richiesti.",
-            )
-        if r.get("exam"):
-            require(
-                r["course"] == "C6" and r["exam"] in (1, 2, 3),
-                "Fascicolo d’esame non valido.",
-            )
-            require(
-                a["type"] != "choice" or len(a["options"]) == 5,
-                "Una scelta della simulazione richiede cinque risposte.",
-            )
-        require(
-            isinstance(a.get("aliases", []), list)
-            and all(isinstance(v, str) for v in a.get("aliases", [])),
-            "Sinonimi non validi.",
-        )
-        require(
-            isinstance(r.get("hints"), list)
-            and all(isinstance(v, str) and v.strip() for v in r["hints"]),
-            "Suggerimenti non validi.",
-        )
-        er = r.get("error", {})
-        require(
-            r.get("hints") and er.get("message") and er.get("category") in CATEGORIES,
-            "Inserisci suggerimento, categoria e feedback.",
-        )
-        target = er.get("target", "")
-        if target.startswith("lab:"):
-            require(
-                any(
-                    t.get("kind") == "lab" and t.get("course") == target[4:]
-                    for t in objects.values()
-                ),
-                "Laboratorio di recupero non disponibile.",
-            )
-        else:
-            ref(target, {"lesson", "lab"})
-    return True
+    policy = ContentPolicy(EXPERIMENTS, LAB_SPEC, exam_policy, validate_experiment,
+                           lambda src: valid_src(db, src, extra))
+    return validate_record(r, objects, policy)
 
 
 def workspace(db):
@@ -361,6 +217,13 @@ def imported(db, user, pkg, commit):
             validate(db, r, obj, extra)
         except Exception as e:
             errors.append(r["id"] + " · " + str(e))
+    if not errors:
+        try:
+            prerequisites(obj)
+            prerequisites(obj, "course")
+            unique_experiments(obj)
+        except Problem as error:
+            errors.append(str(error))
     if errors or not commit:
         return {"errors": errors, "count": len(clean), "saved": False}
     for a in pkg.get("assets", []):
@@ -371,20 +234,23 @@ def imported(db, user, pkg, commit):
 
 
 def publish(db, user, targets):
-    require(isinstance(targets, dict) and targets, "Seleziona almeno una bozza.")
-    objs = {r["id"]: r for r in published(db)}
-    for key, ver in targets.items():
-        h = db.execute("SELECT draft FROM heads WHERE id=?", (key,)).fetchone()
-        require(
-            h and h[0] and h[0] == ver, "La bozza è cambiata o è assente: " + key, 409
-        )
-        objs[key] = record(db, key, ver)
-    for key in targets:
-        validate(db, objs[key], objs)
-    for key, v in targets.items():
-        db.execute("UPDATE heads SET live=?,draft=NULL WHERE id=?", (v, key))
-        audit(db, user["id"], "pubblicazione", key, str(v))
-    return {"count": len(targets)}
+    return publish_graph(SQLitePublication(db, validate), user["id"], targets)
+
+
+def review_scaffold(db, author, proposal, commit=False):
+    validate_contract(proposal, schema("proposal-v1"))
+    key, version = proposal["objectId"], proposal["version"]
+    head = db.execute("SELECT live,draft FROM heads WHERE id=?", (key,)).fetchone()
+    require(head and head["live"] == version and head["draft"] is None and next_v(db, key) == version + 1,
+            "La lezione è cambiata. Riparti dall’edizione attuale.", 409)
+    source = record(db, key, version)
+    workspace = EditorialWorkspace([source], {source["course"]}, {}, {"propose"})
+    reviewed = workspace.validate_proposal(proposal, lambda value: validate_contract(value, schema("proposal-v1")))
+    if commit:
+        draft = {**source, "scaffold": {"strategy": proposal["strategy"], "citation": reviewed["citation"]}}
+        reviewed["draftVersion"] = write_draft(db, author, draft, version)
+        reviewed["status"] = "bozza salvata"
+    return reviewed
 
 
 def export(db):

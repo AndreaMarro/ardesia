@@ -8,9 +8,9 @@ In copertina **Cric**, la chiave inglese con la matita in spalla, cambia posa co
 
 ## Ritrovare l’edizione su GitHub
 
-Il prodotto ha una cartella autonoma nel branch **officina-di-fisica** di **AndreaMarro/ardesia**. La cartella contiene codice, sorgenti didattiche, tavole, PDF, verifiche e manuali. Il tag del prodotto nel monorepo è **officina-di-fisica-v1.0.0**. [Cartella su GitHub](https://github.com/AndreaMarro/ardesia/tree/officina-di-fisica/officina-di-fisica) · [ZIP della sola Officina](https://github.com/AndreaMarro/ardesia/raw/refs/heads/officina-di-fisica/officina-di-fisica/distribuzione/Officina-di-Fisica-1.0.0.zip)
+L’edizione 1.1 vive nella cartella `officina-di-fisica/` del ramo ufficiale omonimo di AndreaMarro/ardesia. Dalla home scegli **Laboratori 3D per capitolo** per raggiungere ciascuna delle 181 voci. La release contiene il pacchetto verificato della sola Officina e la sua impronta SHA-256. [Cartella canonica](https://github.com/AndreaMarro/ardesia/tree/officina-di-fisica/officina-di-fisica) · [Release 1.1](https://github.com/AndreaMarro/ardesia/releases/tag/officina-di-fisica-v1.1.0) · [Revisione tecnica, didattica e UX](docs/architettura/README.md)
 
-Anche il bundle Git nella cartella di distribuzione permette di recuperare il repository autonomo e il suo tag `v1.0.0`. Dopo averlo scaricato puoi eseguire `git clone Officina-di-Fisica-1.0.0.bundle Officina-di-Fisica`. Per lavorare direttamente sul branch di Ardesia scaricando la sola cartella del prodotto:
+Il bundle Git storico nella cartella di distribuzione permette di recuperare l’edizione autonoma 1.0.0. Dopo averlo scaricato puoi eseguire `git clone Officina-di-Fisica-1.0.0.bundle Officina-di-Fisica`. Per lavorare direttamente sul branch di Ardesia scaricando la sola cartella del prodotto:
 
 ```sh
 git clone --filter=blob:none --sparse --single-branch --branch officina-di-fisica https://github.com/AndreaMarro/ardesia.git ardesia-officina
@@ -41,6 +41,8 @@ L’indirizzo predefinito è [127.0.0.1:8843](http://127.0.0.1:8843/). Il server
 ## Materiali
 
 L’edizione comprende **56 lezioni, 117 esempi guidati e 606 quesiti con svolgimento**. In ogni esempio puoi leggere tutto lo svolgimento oppure scegliere **Un passaggio alla volta**, avanzare fra formule e figure e tornare al testo completo. I 13 fascicoli A4 raccolgono 411 pagine con indici cliccabili. C6 include le tre simulazioni da 31 quesiti.
+
+Ognuna delle **181 voci delle lezioni** apre una simulazione 3D con una previsione, misure, calcolo guidato e due verifiche. La biblioteca comprende anche dieci banchi di approfondimento e cinque laboratori guidati. [Indice per lezione](docs/laboratori-3d/voci.md) · [Scene e prove su desktop, tablet e smartphone](docs/laboratori-3d/esperienze.md)
 
 | Percorso | Cosa aprire |
 |---|---|
@@ -95,9 +97,11 @@ python3 tools/audit_integrazioni.py
 python3 tools/dimostra_lotto.py
 python3 -m unittest discover -s tests
 node tools/check-formulas.cjs
-node --test tests/models.test.js tests/lettura.test.js
+node --test tests/*.test.js
 npm ci
 npm run test:browser
+node tests/browser-banchi.mjs
+node tests/browser-esperienze.mjs
 node tests/editor.mjs
 python3 tools/verifica_pdf.py
 ```

@@ -3411,12 +3411,65 @@
     "version": 1,
     "blocks": [
       {
-        "type": "formula",
-        "text": "W=120(2{,}0-1{,}5)=60\\ \\mathrm J,\\qquad\\Delta U=35-60=-25\\ \\mathrm J"
+        "type": "text",
+        "text": "Il gas si espande e riceve calore. Per sapere come varia la sua energia interna dobbiamo confrontare l'energia ricevuta come calore e quella ceduta compiendo lavoro. Fisso subito la convenzione: Q positivo se entra nel gas; W positivo se il gas compie lavoro sull'esterno."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C3-Q051-bilancio.svg",
+        "text": "Il pistone avanza, il volume aumenta e il gas compie lavoro positivo. La figura distingue il calore entrante dal lavoro uscente."
       },
       {
         "type": "text",
-        "text": "Il lavoro ceduto supera il calore ricevuto. La differenza proviene dall’energia interna."
+        "text": "Trascrivo i dati: pressione costante p = 120 kPa, volume iniziale Vᵢ = 1,5 L, volume finale V𝒇 = 2,0 L, calore ricevuto Q = +35 J. Cerco ΔU. Prima di utilizzare il primo principio devo trovare il lavoro W."
+      },
+      {
+        "type": "text",
+        "text": "Il testo dice che il gas si espande contro una pressione esterna costante. Il lavoro di espansione contro questa pressione vale W = pₑₓₜ ΔV. Non serve supporre che la pressione interna del gas sia uguale a quella esterna per tutto il processo. Il volume finale è maggiore di quello iniziale, dunque ΔV è positivo."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta V=V_f-V_i=2{,}0-1{,}5=+0{,}5\\,\\mathrm L"
+      },
+      {
+        "type": "formula",
+        "text": "W=p\\Delta V"
+      },
+      {
+        "type": "text",
+        "text": "Sostituisco. Un kilopascal per un litro equivale a un joule, perché 1 kPa = 1000 Pa e 1 L = 0,001 m³. Quindi possiamo moltiplicare direttamente 120 per 0,5 ottenendo 60 J."
+      },
+      {
+        "type": "formula",
+        "text": "1\\,\\mathrm{kPa\\cdot L}=10^3\\,\\mathrm{Pa}\\cdot10^{-3}\\,\\mathrm{m^3}=1\\,\\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "W=120\\,\\mathrm{kPa}\\cdot0{,}5\\,\\mathrm L=+60\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il primo principio, con la convenzione scelta, è ΔU = Q − W: l'energia interna cresce con il calore entrante e diminuisce se il gas compie lavoro."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=Q-W"
+      },
+      {
+        "type": "text",
+        "text": "Sostituisco ora i due contributi. Il gas riceve 35 J ma ne trasferisce 60 J all'esterno come lavoro: la differenza deve essere negativa."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=+35\\,\\mathrm J-60\\,\\mathrm J=-25\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Controllo invertendo la formula: ΔU = Q − W implica Q = ΔU + W. Inserendo −25 + 60 si ritrovano i 35 J dati nel testo."
+      },
+      {
+        "type": "text",
+        "text": "Errore frequente: scrivere +25 J ignorando il segno del lavoro. Trucco: disegna due frecce, una per l'energia che entra e una per quella che esce. Ricorda però che un libro può adottare la convenzione W positivo se il lavoro è compiuto sul gas: non mescolare due convenzioni diverse."
       }
     ],
     "prompt": "Un gas si espande contro 120 kPa costanti da 1,5 a 2,0 L e assorbe 35 J. Calcola ΔU in joule.",

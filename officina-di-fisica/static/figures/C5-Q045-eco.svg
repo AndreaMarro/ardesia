@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-labelledby="title desc">
+<title id="title">L'eco percorre la distanza di andata e ritorno</title>
+<desc id="desc">La parete dista 51 metri dalla sorgente e dal microfono. Il suono arriva alla parete e torna indietro, percorrendo 102 metri in 0,30 secondi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#5936ae"/></marker><marker id="return" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#95354b"/></marker></defs>
+<rect width="800" height="300" fill="#f8f5ea"/>
+<g font-family="Arial,sans-serif" fill="#221c30">
+<text x="38" y="38" font-size="22" font-weight="700">L'eco fa un viaggio di andata e ritorno</text>
+<circle cx="122" cy="148" r="33" fill="#e4dcfa" stroke="#221c30" stroke-width="3"/>
+<path d="M112 137q28 10 0 20m-3-28q42 19 0 36" fill="none" stroke="#5936ae" stroke-width="3"/>
+<rect x="651" y="74" width="24" height="149" fill="#dced4d" stroke="#221c30" stroke-width="3"/>
+<path d="M672 78l15 15m-15 17 15 15m-15 17 15 15m-15 17 15 15" stroke="#221c30" stroke-width="2"/>
+<path d="M165 112H646" stroke="#5936ae" stroke-width="5" marker-end="url(#arrow)"/>
+<path d="M646 188H165" stroke="#95354b" stroke-width="5" marker-end="url(#return)"/>
+<text x="410" y="100" text-anchor="middle" font-size="20">andata: 51 m</text>
+<text x="410" y="216" text-anchor="middle" font-size="20">ritorno: 51 m</text>
+<text x="125" y="252" text-anchor="middle" font-size="19">Microfono</text>
+<text x="663" y="252" text-anchor="middle" font-size="19">Parete</text>
+<text x="400" y="286" text-anchor="middle" font-size="22" font-weight="700">d totale = 51 + 51 = 102 m in 0,30 s</text>
+</g></svg>

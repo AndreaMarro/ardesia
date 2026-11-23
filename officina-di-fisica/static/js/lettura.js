@@ -2,7 +2,7 @@
 export function passaggi(kind, blocks = []) {
   const types = blocks.map((block) => block.type);
   const figures = types.flatMap((type, i) => type === 'figure' ? [i] : []);
-  if (kind !== 'example' && (kind !== 'lesson' || figures.length < 2)) return [];
+  if (kind !== 'example' && kind !== 'worked' && (kind !== 'lesson' || figures.length < 2)) return [];
 
   const starts = [0];
   if (kind === 'lesson') {
@@ -32,7 +32,8 @@ export function passaggi(kind, blocks = []) {
 export function installaPassaggi(container, record) {
   const spans = passaggi(record.kind, record.blocks);
   if (!spans.length) return;
-  const copy = container.querySelector('.copy');
+  const copy = container?.querySelector('.copy');
+  if (!copy) return;
   const nodes = Array.from(copy.children);
   if (nodes.length !== record.blocks.length) return;
   copy.id = 'testo-dei-passaggi';

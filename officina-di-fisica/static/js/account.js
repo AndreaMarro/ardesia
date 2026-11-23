@@ -120,7 +120,7 @@ export async function checkout(id) {
     next = 'acquisto/' + id;
   const contents = [
     ['lesson', 'lezione', 'lezioni'], ['example', 'esempio guidato', 'esempi guidati'],
-    ['question', 'quesito di studio', 'quesiti di studio'], ['lab', 'laboratorio', 'laboratori'],
+    ['question', 'quesito di studio', 'quesiti di studio'], ['lab', 'laboratorio guidato', 'laboratori guidati'], ['bench', 'banco 3D', 'banchi 3D'], ['experiment', 'simulazione di lezione', 'simulazioni delle lezioni'],
   ].map(([kind, singular, plural]) => {
     const count = data.items.filter((item) => item.kind === kind).length;
     return count ? count + ' ' + (count === 1 ? singular : plural) : '';

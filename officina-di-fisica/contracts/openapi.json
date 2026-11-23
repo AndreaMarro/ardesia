@@ -1,0 +1,319 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Officina di Fisica · contratti di integrazione",
+    "version": "1.0.0",
+    "description": "I client ignorano i campi additivi delle risposte. Un nuovo contratto incompatibile riceve un nuovo percorso principale."
+  },
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Identità dell’applicazione",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "type": "string"
+                    },
+                    "edition": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "product",
+                    "edition"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
+    },
+    "/v1/openapi.json": {
+      "get": {
+        "summary": "Contratto API",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
+    },
+    "/v1/schemas/{name}": {
+      "get": {
+        "summary": "JSON Schema per nome completo di file",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/courses/{course}/learning-path": {
+      "get": {
+        "summary": "Competenze, prerequisiti ed evidenze del lettore",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas/pathway-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "name": "course",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/engines/{engine}/{version}/{digest}.js": {
+      "get": {
+        "summary": "Modulo nativo immutabile installato dall’operatore",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "text/javascript": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "name": "engine",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "digest",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/author/scaffold": {
+      "post": {
+        "summary": "Controlla o salva una proposta come bozza d’autore",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "citation": {
+                      "type": "string"
+                    },
+                    "draftVersion": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "citation"
+                  ],
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-Astra-Request",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "const": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "proposal": {
+                    "$ref": "./schemas/proposal-v1.schema.json"
+                  },
+                  "commit": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "proposal",
+                  "commit"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/author/editorial-library/{course}": {
+      "get": {
+        "summary": "Esporta le lezioni pubblicate del corso per il lavoro editoriale",
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "course",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Libreria editoriale",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas/library-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "session": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "astra_session"
+      }
+    },
+    "responses": {
+      "Problem": {
+        "description": "Richiesta rifiutata con il corrispondente stato HTTP",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@ concurrency:
 jobs:
   web:
     name: web (typecheck + test + build)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
@@ -176,7 +176,7 @@ jobs:
 
   studio:
     name: studio (typecheck + test + build)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: apps/studio
@@ -238,7 +238,7 @@ jobs:
   # che ha riportato un esito su almeno cinque PR consecutive (unita' F1-3).
   e2e-golden-path:
     name: e2e golden path (advisory)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     continue-on-error: true
     defaults:
       run:

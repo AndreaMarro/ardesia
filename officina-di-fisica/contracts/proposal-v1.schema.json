@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scelta di scaffolding da revisionare",
+  "type": "object", "additionalProperties": false,
+  "required": ["objectId", "version", "passage", "strategy"],
+  "properties": {
+    "objectId": {"type": "string", "minLength": 1, "maxLength": 96},
+    "version": {"type": "integer", "minimum": 1},
+    "passage": {"type": "integer", "minimum": 0, "maximum": 5},
+    "strategy": {"enum": ["richiama-prerequisito", "confronta-le-misure", "segui-un-esempio"], "type":"string"}
+  }
+}

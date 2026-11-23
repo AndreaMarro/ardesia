@@ -16,10 +16,13 @@ export const num = (v, d = 3) =>
 export const kinds = {
   course: 'Corso',
   section: 'Sezione',
+  method: 'Attività di metodo',
   lesson: 'Lezione',
   example: 'Esempio svolto',
   question: 'Quesito',
   lab: 'Laboratorio',
+  bench: 'Laboratorio 3D',
+  experiment: 'Simulazione di lezione',
 };
 export const errorNames = {
   concetto: 'Errore concettuale',

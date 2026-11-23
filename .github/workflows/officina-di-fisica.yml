@@ -1,6 +1,10 @@
 name: Officina di Fisica
 
 on:
+  pull_request:
+    paths:
+      - "officina-di-fisica/**"
+      - ".github/workflows/officina-di-fisica.yml"
   push:
     branches: [officina-di-fisica]
   workflow_dispatch:
@@ -14,9 +18,9 @@ concurrency:
 
 jobs:
   collaudo:
-    if: github.ref == 'refs/heads/officina-di-fisica'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/officina-di-fisica'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
     defaults:
       run:
         working-directory: officina-di-fisica
@@ -53,12 +57,71 @@ jobs:
           python3 tools/c56_audit.py
           python3 tools/c56_varieta.py
           python3 tools/audit_integrazioni.py
-          node --test tests/models.test.js tests/lettura.test.js
+          npm test
+          npm run test:contracts
       - name: Studio, ordini, pubblicazione e lotti
         run: |
           python3 -m unittest discover -s tests -v
           python3 tools/dimostra_lotto.py
           node tests/browser.mjs
           node tests/editor.mjs
+      - name: Contratti, accessibilità, confronto visivo e interazione
+        run: |
+          npx playwright install --with-deps webkit
+          xvfb-run -a npm run test:accessibility
+          python3 tools/misura_percorso.py > var/arch/browser/carico.json
+      - name: Distribuzione riproducibile e riapertura da ZIP
+        run: |
+          mkdir -p var/release
+          python3 tools/package_release.py var/release/officina-di-fisica.zip --verify > var/release/SHA256SUMS
+          (cd var/release && sha256sum -c SHA256SUMS)
+        env:
+          PYTHONUNBUFFERED: '1'
+      - name: Pubblica pacchetto e verbale del collaudo
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: officina-${{ github.sha }}
+          path: |
+            officina-di-fisica/var/release/
+            officina-di-fisica/var/arch/browser/
+          if-no-files-found: error
+          retention-days: 14
       - name: Fascicoli e indici
         run: python3 tools/verifica_pdf.py
+
+  laboratori:
+    name: Simulazioni ${{ matrix.course }} · ${{ matrix.browser }}
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/officina-di-fisica'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        course: [C1, C2, C3, C4, C5, C6]
+        browser: [chromium, webkit]
+    defaults:
+      run:
+        working-directory: officina-di-fisica
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: officina-di-fisica
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - if: matrix.browser == 'webkit'
+        run: npx playwright install --with-deps webkit
+      - name: Lezione, esperimento, confronto e trasferimento sui quattro formati
+        run: xvfb-run -a node tests/browser-esperienze.mjs
+        env:
+          ASTRA_COURSE: ${{ matrix.course }}
+          ASTRA_BROWSER: ${{ matrix.browser }}
+          ASTRA_RESULTS: var/griglia
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: misure-${{ matrix.course }}-${{ matrix.browser }}
+          path: officina-di-fisica/var/griglia/*.json
+          if-no-files-found: error
+          retention-days: 14

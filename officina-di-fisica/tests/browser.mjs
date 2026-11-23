@@ -1,5 +1,6 @@
 // Reproducible browser acceptance test. It only writes into a new temporary database.
 import { chromium } from 'playwright';
+import { revisedLearning } from './browser-metodo.mjs';
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, rm } from 'node:fs/promises';
@@ -83,6 +84,44 @@ async function guidedReading(page, id, course, expected, screenshot = '') {
   await noOverflow(page);
   return original;
 }
+async function signedAreasFlow(page, device) {
+  await visit(page, 'home', '.hero');
+  await advance(page, page.getByRole('link', { name: 'Preparazione rapida all’esame', exact: true }), '.method-intro');
+  await advance(page, page.getByRole('link', { name: 'Esercizi prioritari C1' }).first(), '.c1-index');
+  await page.getByRole('link', { name: 'Diagnosi e simulazioni · C6' }).waitFor();
+  await visit(page, 'corso/C1', '.c1-paths');
+  await screen(page, 'c1-' + device);
+  await noOverflow(page);
+  await advance(page, page.getByRole('link', { name: 'Inizia dalle lezioni' }), '.topic-row');
+  await advance(page, page.getByRole('link', { name: 'Formule inverse e interpretazione dei grafici' }), '.method-graphs');
+  await visit(page, 'corso/C1', '.c1-paths');
+  await advance(page, page.getByRole('link', { name: 'Vai agli esercizi prioritari' }), 'a[href="#materiale/C1-Q027/C1"]');
+  await page.getByRole('link', { name: 'Formule inverse e interpretazione dei grafici' }).waitFor();
+  await advance(page, page.getByRole('link', { name: 'Aree di segno opposto' }), '#single');
+  await advance(page, page.locator('#single'), '#response');
+  await page.getByLabel('Risposta numerica in m', { exact: true }).fill('2');
+  await page.getByRole('button', { name: 'Verifica risposta' }).click();
+  await page.getByRole('heading', { name: 'Risposta corretta' }).waitFor();
+  await page.getByRole('button', { name: 'Un passaggio alla volta' }).click();
+  const solution = page.locator('.feedback');
+  for (const [step, drawing] of ['C1-aree', 'C1-Q027-andata', 'C1-Q027-ritorno', 'C1-Q027-somma'].entries()) {
+    await solution.getByText('Passaggio ' + (step + 1) + ' di 4', { exact: true }).waitFor();
+    const figure = solution.locator('figure:visible img');
+    assert.equal(await figure.getAttribute('src'), '/figures/' + drawing + '.svg');
+    await figure.evaluate(img => img.decode());
+    assert.ok(await solution.locator('.math:visible').evaluate(box => box.scrollWidth <= box.clientWidth + 1), 'Formula interamente visibile');
+    await noOverflow(page);
+    if (shots) {
+      await solution.screenshot({ path: path.join(shots, 'q027-' + device + '-' + (step + 1) + '.png') });
+    }
+    if (step < 3) await solution.getByRole('button', { name: 'Avanti' }).click();
+  }
+  await solution.getByRole('button', { name: 'Indietro' }).click();
+  await solution.getByText('Passaggio 3 di 4', { exact: true }).waitFor();
+  await solution.getByRole('button', { name: 'Mostra tutto' }).click();
+  assert.equal(await solution.locator('figure:visible').count(), 4);
+  await advance(page, solution.getByRole('link', { name: 'Continua con gli esercizi prioritari' }), '.c1-index');
+}
 function watch(page) {
   page.on('response', (r) => {
     if (r.status() >= 400) logs.push(r.status() + ' ' + new URL(r.url()).pathname);
@@ -93,7 +132,7 @@ function watch(page) {
   });
   page.on('dialog', (d) => d.accept());
 }
-try {
+async function runAcceptance() {
   await once(app.stdout, 'data');
   browser = await chromium.launch(
     process.env.ASTRA_CHROME ? { executablePath: process.env.ASTRA_CHROME } : { channel: 'chrome' },
@@ -137,13 +176,14 @@ try {
   await page.keyboard.press('Tab');
   assert.ok(
     await page
-      .locator('.hero a')
+      .getByRole('link', { name: 'Studio completo', exact: true })
       .evaluate((el) => el === document.activeElement && parseFloat(getComputedStyle(el).outlineWidth) >= 2),
   );
   await page.keyboard.press('Enter');
   await page.locator('.catalog-row').first().waitFor();
   assert.equal(await page.locator('.catalog-row').count(), 6);
-  await advance(page, page.locator('a[href="#corso/C1"]'), '.tabs');
+  await advance(page, page.locator('a[href="#corso/C1"]'), '.c1-paths');
+  await page.getByText('Indice del microcorso e accesso', { exact: true }).click();
   await advance(page, page.getByRole('link', { name: 'Leggi un’anteprima' }), '.reader');
   assert.ok((await page.locator('.reader .katex').count()) > 0);
   await advance(page, page.getByRole('link', { name: 'Segui un esempio' }), '.exercise-prompt');
@@ -218,11 +258,21 @@ try {
   await p.getByText('prima evidenza', { exact: false }).first().waitFor();
   assert.ok((await p.locator('main').innerText()).includes('Isolare un corpo'));
   await noOverflow(p);
+  await signedAreasFlow(page, 'desktop');
+  await signedAreasFlow(p, 'mobile');
+  if (process.argv.includes('--c1')) {
+    assert.deepEqual(logs.filter(s => !s.includes('favicon')), [], 'Console');
+    console.log('PASS · Entrambi i percorsi C1, metodo condiviso, risposta +2 m e quattro figure su desktop (1440×960) e mobile (390×844).');
+    return;
+  }
+  await revisedLearning(page, 'desktop', visit, noOverflow, shots);
+  await revisedLearning(p, 'mobile', visit, noOverflow, shots);
   await visit(p, 'materiale/C1-L005/C1', '.reader');
   await noOverflow(p);
   await guidedReading(p, 'C1-E018', 'C1', [[0, 1, 2], [3, 4], [5, 6]]);
   await visit(p, 'lab/LAB-C1', '#meters');
   await noOverflow(p);
+  await p.locator('[data-phase="2"]').click();
   const phoneForce = p.locator('#val-F');
   await phoneForce.fill('20');
   await phoneForce.press('Tab');
@@ -245,7 +295,9 @@ try {
   assert.equal(originExample, sharedExample);
   await guidedReading(tablet, 'C5-L10', 'C5', [[0, 1, 2, 3], [4, 5]]);
   assert.deepEqual(await studyEvidence(), priorEvidence);
-  await visit(tablet, 'corso/C6', '.course-volume');
+  await visit(tablet, 'corso/C6', '.method-intro');
+  await advance(tablet, tablet.getByRole('link', { name: 'Apri le lezioni' }), '.course-volume');
+  assert.ok(tablet.url().endsWith('#corso/C6/lezioni'));
   const volumes = tablet.locator('.course-volume');
   assert.equal(await volumes.count(), 6);
   const thermo = volumes.filter({ has: tablet.locator('.volume-code', { hasText: /^C3$/ }) });
@@ -256,7 +308,8 @@ try {
   assert.equal(await thermo.getByText(lessonName, { exact: true }).count(), 1);
   await advance(tablet, firstLesson, '.reader');
   assert.equal(await tablet.locator('.reader h1').innerText(), lessonName);
-  assert.equal(await tablet.locator('.crumb a[href="#corso/C6/lezioni"]').count(), 1);
+  await advance(tablet, tablet.locator('.crumb a[href="#corso/C6/lezioni"]'), '.course-volume');
+  assert.equal(await volumes.count(), 6);
   await visit(tablet, 'corso/C2', '.tabs');
   await advance(tablet, tablet.getByRole('link', { name: 'Errori e recupero' }), '#choose-recovery');
   await tablet.getByLabel('Competenza', { exact: true }).selectOption('C2-L007');
@@ -275,6 +328,7 @@ try {
   assert.notEqual(await tablet.locator('.exercise-prompt').innerText(), scenarioText);
   for (const c of ['C1', 'C2', 'C3', 'C4', 'C5']) {
     await visit(tablet, 'lab/LAB-' + c, '#lab-view svg');
+    await tablet.locator('[data-phase="2"]').click();
     const before = await tablet.locator('#meters').innerText();
     const field = tablet.locator('.labfields input[type=number]').first();
     await field.fill({ C1: '0.5', C2: '0.5', C3: '2', C4: '12', C5: '5' }[c]);
@@ -283,7 +337,9 @@ try {
     await noOverflow(tablet);
     if (c === 'C2') {
       await screen(tablet, 'laboratorio-tablet');
+      await tablet.locator('[data-phase="0"]').click();
       await tablet.locator('#prediction').fill('Prevedo un sedicesimo della portata.');
+      await tablet.locator('[data-phase="4"]').click();
       await tablet.locator('#lab-note').fill('Il rapporto con raggio 1 mm vale 0,0625.');
       await tablet.locator('#save-observation').click();
       await tablet.getByText('Osservazione registrata nel tuo studio.').waitFor();
@@ -295,6 +351,7 @@ try {
       await tablet.locator('#val-p').press('Tab');
       assert.ok((await tablet.locator('#meters').innerText()).includes('∞'));
     }
+    await tablet.locator('[data-phase="2"]').click();
     await tablet.locator('#reset').click();
     assert.equal(await tablet.locator('#meters').innerText(), before);
   }
@@ -333,6 +390,9 @@ try {
   console.log(
     'PASS · copertina, catalogo, lezione, esempio, account, bonifico, conferma, ripresa su secondo client, 5 laboratori, simulazione, PDF, accesso autore. Viewport 1440×960, 810×1080, 390×844.',
   );
+}
+try {
+  await runAcceptance();
 } finally {
   await browser?.close();
   app.kill();
