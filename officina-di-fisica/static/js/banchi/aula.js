@@ -1,13 +1,43 @@
-import { esc } from '../ui.js';
+import { esc, main } from '../ui.js';
 
 export const momenti = ['Prevedi', 'Osserva', 'Esplora', 'Comprendi', 'Verifica'];
-export function stileBanco() {
-  if (document.querySelector('#bench-styles')) return;
+let caricamentoStile;
+function caricaStile() {
+  if (caricamentoStile) return caricamentoStile;
   const style = document.createElement('link');
   style.id = 'bench-styles';
   style.rel = 'stylesheet';
   style.href = '/banchi.css';
+  caricamentoStile = new Promise(resolve => {
+    style.onload = () => resolve(true);
+    style.onerror = () => {
+      style.remove();
+      caricamentoStile = undefined;
+      resolve(false);
+    };
+  });
   document.head.append(style);
+  return caricamentoStile;
+}
+
+export async function mostraBanco(markup, route) {
+  if (location.hash !== route) return false;
+  let notice = '';
+  if (!document.querySelector('#bench-styles')?.sheet) {
+    main.innerHTML = '<p class="helper" role="status">Apertura del banco…</p>';
+    const navigation = new AbortController();
+    const left = new Promise(resolve => window.addEventListener('hashchange', () => resolve(null),
+      {once:true, signal:navigation.signal}));
+    try {
+      const styled = await Promise.race([caricaStile(),left]);
+      if (styled === null || location.hash !== route) return false;
+      if (!styled) notice = '<p class="helper" role="status">Il banco usa la disposizione di base.</p>';
+    } finally {
+      navigation.abort();
+    }
+  }
+  main.innerHTML = notice + markup;
+  return true;
 }
 export function sequenza() {
   return (

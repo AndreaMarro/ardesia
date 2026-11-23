@@ -9,7 +9,7 @@ import {
   momenti,
   segnaMomento,
   sequenza,
-  stileBanco,
+  mostraBanco,
 } from './aula.js';
 import { guidaPilota, piloti, problemi, ragionamento } from './quaderno.js';
 const areas = {
@@ -118,6 +118,7 @@ function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
 }
 
 export async function benchPage(id, origin, topicIndex) {
+  const route = location.hash;
   const item = await api('/item/' + encodeURIComponent(id));
   const activity =
     item.kind === 'experiment' ? await (await import('./voci/esperimento.js')).esperienza(item) : null;
@@ -134,11 +135,11 @@ export async function benchPage(id, origin, topicIndex) {
     const induction = await import('./modelli/induzione.js');
     model = { ...induction, params: [model.params[0], ...induction.params.slice(1)] };
   }
-  stileBanco();
   const focus = topicIndex === undefined ? null : r.topics?.[Number(topicIndex)];
   const back =
     origin && /^(?:materiale|corso|prova|lab|laboratori|percorsi|studio\/diario)(?:\/|$)/.test(origin) ? origin : 'laboratori';
-  main.innerHTML = bancoMarkup(r, activity, focus, back, model, pilot, state.user, origin);
+  const markup = bancoMarkup(r, activity, focus, back, model, pilot, state.user, origin);
+  if (!await mostraBanco(markup, route)) return;
   const root = main.querySelector('.bench-room'),
     get = (sel) => root.querySelector(sel),
     canvas = get('canvas'),
@@ -334,10 +335,24 @@ export async function benchPage(id, origin, topicIndex) {
     } else if (playing) syncTime();
   }
   const observer = new IntersectionObserver((entries) => {
-    inViewport = entries[0].isIntersecting;
+    inViewport = entries.at(-1).isIntersecting;
     visibility();
   });
   observer.observe(stageBox);
+  // A focused instrument can receive a camera key before the viewport observer catches up.
+  function updateViewportForInput() {
+    if (inViewport || disposed || !gpu || view === 'diagram' || document.hidden) return;
+    const rect = canvas.getBoundingClientRect();
+    const viewport = window.visualViewport;
+    const left = viewport?.offsetLeft || 0;
+    const top = viewport?.offsetTop || 0;
+    if (rect.width && rect.height && rect.right > left && rect.bottom > top &&
+        rect.left < left + (viewport?.width || innerWidth) && rect.top < top + (viewport?.height || innerHeight)) {
+      inViewport = true;
+      visibility();
+    }
+  }
+  canvas.addEventListener('keydown', updateViewportForInput, true);
   let diagramFrame = 0;
   const diagramSize = activity && !pilot ? new ResizeObserver(([entry]) => {
     const { width, height } = entry.contentRect;
@@ -737,6 +752,7 @@ export async function benchPage(id, origin, topicIndex) {
     startingContext = null;
     cancelAnimationFrame(raf);
     observer.disconnect();
+    canvas.removeEventListener('keydown', updateViewportForInput, true);
     diagramSize?.disconnect();
     cancelAnimationFrame(diagramFrame);
     media.removeEventListener('change', motion);

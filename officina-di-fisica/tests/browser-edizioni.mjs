@@ -118,6 +118,44 @@ async function delayedReader(page, base, keyboard) {
   return keyboard ? 'tastiera' : 'puntatore';
 }
 
+async function focusedDuringLoading(context, base, profile) {
+  const page = await context.newPage();
+  const module = '**/preferenze-lettura.js';
+  const bench = secants[1];
+  let resume;
+  const held = new Promise(resolve => { resume = resolve; });
+  await page.route(module, async route => { await held; await route.continue(); }, {times:1});
+  try {
+    const requested = page.waitForRequest(module);
+    await page.goto(base+'/#materiale/'+bench.skill+'/C1', {waitUntil:'domcontentloaded'});
+    await requested;
+    const origin = page.locator('a[href^="#banco/'+bench.id+'/"]');
+    assert.equal(await page.locator('main').getAttribute('aria-busy'),'true');
+    await origin.focus();
+    const readingHere = () => origin.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      return el===document.activeElement && scrollY>0 && rect.bottom>0 && rect.top<innerHeight;
+    });
+    assert.ok(await readingHere(), 'collegamento raggiunto durante il caricamento');
+    resume();
+    await page.locator('main:not([aria-busy])').waitFor();
+    assert.ok(await readingHere(), 'il completamento della lezione conserva il controllo scelto in vista');
+    await page.screenshot({path:path.join(output,profile+'-focus-lettore.png'), animations:'disabled'});
+    await page.keyboard.press('Enter');
+    await page.getByRole('heading',{name:bench.title,level:1}).waitFor();
+    await page.locator('main:not([aria-busy])').waitFor();
+    assert.ok(await page.locator('main').evaluate(el=>document.activeElement===el),'annuncio del banco appena aperto');
+    await page.getByRole('link',{name:'Torna all’attività'}).press('Enter');
+    await origin.waitFor();
+    await page.locator('main:not([aria-busy])').waitFor();
+    assert.ok(await origin.evaluate(el=>document.activeElement===el),'ritorno al collegamento scelto');
+    return bench.id;
+  } finally {
+    resume();
+    await page.close();
+  }
+}
+
 async function readSecant(page, base, profile, bench, fallback) {
   await page.goto(base+'/#materiale/'+bench.skill+'/C1');
   const origin=page.locator('a[href^="#banco/'+bench.id+'/"]');
@@ -221,7 +259,8 @@ try {
       const errors=[];
       page.on('pageerror',error => errors.push(error.message));
       const late=await delayedReader(page,base,fallback);
-      const report={profile,fallback,late,projection:await illustratedSolution(page,base,profile,sensor,'sensore')};
+      const focusedLink=await focusedDuringLoading(context,base,profile);
+      const report={profile,fallback,late,focusedLink,projection:await illustratedSolution(page,base,profile,sensor,'sensore')};
       report.fields=await fields(page,base,profile,fallback);
       report.mechanics={friction:await illustratedSolution(page,base,profile,friction,'attrito'),secants:[]};
       for (const secant of secants) report.mechanics.secants.push(await readSecant(page,base,profile,secant,fallback));

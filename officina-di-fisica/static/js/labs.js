@@ -22,7 +22,7 @@ import {
   startRun,
 } from './ui.js';
 import { models, parameters, modes, initial } from './models.js';
-import { concentrazione, momenti, segnaMomento, sequenza, stileBanco } from './banchi/aula.js';
+import { concentrazione, momenti, segnaMomento, sequenza, mostraBanco } from './banchi/aula.js';
 import { benchRoute } from './banchi/collegamenti.js';
 import { vignetta } from './anteprima.js';
 const ink = '#123a39',
@@ -272,6 +272,7 @@ function renderClassic(r, c, saved, owned, related, fields) {
     <div class="bench-nav"><button data-classic-back>← Indietro</button><button class="solid" data-classic-next>Osserva →</button></div></aside></div></article>`;
 }
 export async function labPage(id, context) {
+  const route = location.hash;
   const r = await api('/item/' + id),
     m = r.model;
   const c = context || r.course;
@@ -285,9 +286,8 @@ export async function labPage(id, context) {
       '><summary>Simulazioni 3D di questa lezione · ' + sims.length + '</summary>' +
       sims.map((e) => listLine(e.title, benchRoute(e.id))).join('') + '</details>'
     : '';
-  stileBanco();
   const fields = `<div class="labfields">${modes[m] ? `<label>Configurazione<select id="lab-mode">${modes[m].map((v) => `<option ${v === d.mode ? 'selected' : ''}>${v}</option>`).join('')}</select></label>` : ''}${parameters[m].map(([k, title, unit, min, max, step]) => `<div><label for="slide-${k}">${esc(title)} ${esc(unit)}</label><input id="slide-${k}" type="range" min="${min}" max="${max}" step="${step}" value="${d[k]}"><label class="sr" for="val-${k}">Valore numerico di ${esc(title)} ${esc(unit)}</label><input type="number" id="val-${k}" min="${min}" max="${max}" step="${step}" value="${d[k]}"><small>${num(min)} – ${num(max)} ${esc(unit)}</small></div>`).join('')}</div>`;
-  main.innerHTML = renderClassic(r,c,saved,owned,related,fields);
+  if (!await mostraBanco(renderClassic(r,c,saved,owned,related,fields), route)) return;
   const room = main.querySelector('.classic-room');
   concentrazione(room.querySelector('.bench-instrument'));
   let phase = 0;

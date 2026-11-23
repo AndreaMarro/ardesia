@@ -1,0 +1,135 @@
+{
+  "caso": "Scorrere fuori dallo strumento, attendere l’uscita, tornare al canvas visibile e azionarlo prima della consegna della nuova notifica nativa.",
+  "prima": {
+    "sha": "bf562913bbe177731b84ac2135ccc15f1e978c96",
+    "misure": [
+      {
+        "engine": "chromium",
+        "before": 174,
+        "draws": 0,
+        "ms": 2,
+        "fraction": 0,
+        "rect": [
+          13,
+          244.265625,
+          307,
+          495.859375
+        ],
+        "viewport": [
+          320,
+          740
+        ],
+        "focus": true,
+        "handled": true,
+        "lost": false,
+        "visibility": "visible",
+        "delivered": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "deferred": [
+          true
+        ]
+      },
+      {
+        "engine": "webkit",
+        "before": 319,
+        "draws": 0,
+        "ms": 2,
+        "fraction": 0,
+        "rect": [
+          13,
+          244.21875,
+          307,
+          495.8125
+        ],
+        "viewport": [
+          320,
+          740
+        ],
+        "focus": true,
+        "handled": true,
+        "lost": false,
+        "visibility": "visible",
+        "delivered": [
+          true,
+          false
+        ],
+        "deferred": [
+          true
+        ]
+      }
+    ]
+  },
+  "dopo": {
+    "sha": "2c1f49d70805aae669bc0f1da4a679abd31272d3",
+    "misure": [
+      {
+        "engine": "chromium",
+        "before": 232,
+        "draws": 29,
+        "ms": 3,
+        "fraction": 0.03548482885217579,
+        "rect": [
+          13,
+          244.265625,
+          307,
+          495.859375
+        ],
+        "viewport": [
+          320,
+          740
+        ],
+        "focus": true,
+        "handled": true,
+        "lost": false,
+        "visibility": "visible",
+        "delivered": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "deferred": [
+          true
+        ]
+      },
+      {
+        "engine": "webkit",
+        "before": 406,
+        "draws": 29,
+        "ms": 7,
+        "fraction": 0.0355118237771299,
+        "rect": [
+          13,
+          244.21875,
+          307,
+          495.8125
+        ],
+        "viewport": [
+          320,
+          740
+        ],
+        "focus": true,
+        "handled": true,
+        "lost": false,
+        "visibility": "visible",
+        "delivered": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "deferred": [
+          true
+        ]
+      }
+    ]
+  }
+}

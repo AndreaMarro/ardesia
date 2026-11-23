@@ -14,6 +14,7 @@ const data = await mkdtemp(path.join(tmpdir(),'officina-continuita-'));
 const boot = "from server.store import initialize; from server.web import Handler,ThreadingHTTPServer; initialize(); s=ThreadingHTTPServer(('127.0.0.1',0),Handler); print(s.server_port,flush=True); s.serve_forever()";
 const server = spawn('python3', ['-uc',boot], {cwd:root, env:{...process.env,ASTRA_DATA:data},stdio:['ignore','pipe','inherit']});
 const reports = [];
+const firstLayouts = {};
 const stage = '.bench-stage';
 const canvas = stage + ' canvas';
 const diagram = '[data-drawing]:not([hidden]) svg';
@@ -33,6 +34,69 @@ function changed(a, b) {
     if (delta > 12) count++;
   }
   return count / (left.width*left.height);
+}
+
+async function firstBenchLayout(browser, base) {
+  const context = await browser.newContext({viewport:{width:810,height:1080},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  const states = [];
+  try {
+    await context.request.post(base+'/api/demo',{headers:{'X-Astra-Request':'1'},data:{}});
+    for (const outcome of ['pronto','errore','uscita']) {
+      const page = await context.newPage();
+      let release;
+      const held = new Promise(resolve => { release = resolve; });
+      const css = '**/banchi.css';
+      await page.route(css, async route => {
+        await held;
+        if (outcome==='errore') await route.abort('failed');
+        else await route.continue();
+      }, {times:1});
+      try {
+        await page.goto(base+'/#laboratori');
+        const search = page.getByRole('searchbox',{name:'Cerca un argomento'});
+        await search.fill('lente');
+        const lens = page.locator('a[href^="#banco/SIM-C5-L10-02/"]');
+        const request = page.waitForRequest(css);
+        await lens.click();
+        await request;
+        assert.equal(await page.locator('[data-bench]').count(),0,'i comandi attendono lo stile');
+        await page.getByText('Apertura del banco…',{exact:true}).waitFor();
+        if (outcome==='uscita') {
+          await page.getByRole('navigation',{name:'Navigazione principale'}).getByRole('link',{name:'Simulazioni 3D'}).click();
+          await search.waitFor();
+          release();
+          await page.locator('main:not([aria-busy])').waitFor();
+          assert.equal(await page.locator('[data-bench]').count(),0);
+        } else {
+          release();
+          const room = page.locator('[data-bench="SIM-C5-L10-02"]');
+          await room.waitFor();
+          if (outcome==='errore') {
+            await page.getByText('Il banco usa la disposizione di base.',{exact:true}).waitFor();
+            await room.locator('input[name=prediction]').first().check();
+            await room.locator('[data-predict] button').press('Enter');
+            assert.ok((await room.locator('[data-readings]').innerText()).length>0);
+          }
+          await page.getByRole('link',{name:'Torna all’attività'}).click();
+          await search.waitFor();
+          assert.equal(await search.inputValue(),'lente');
+          if (outcome==='errore') {
+            const retry = page.waitForRequest(css);
+            await lens.click();
+            await retry;
+            await room.waitFor();
+            assert.equal(await page.getByText('Il banco usa la disposizione di base.',{exact:true}).count(),0);
+            assert.ok(await page.locator('#bench-styles').evaluate(node=>Boolean(node.sheet)));
+          }
+        }
+        states.push(outcome);
+      } finally {
+        release();
+        await page.close();
+      }
+    }
+    return states;
+  } finally { await context.close(); }
 }
 
 async function predict(page, base, id) {
@@ -76,6 +140,98 @@ async function capture(page, name) {
   await figure.evaluate(() => new Promise(done => requestAnimationFrame(() => requestAnimationFrame(done))));
   return figure.screenshot({scale:'css', path:name ? path.join(output,name+'.png') : undefined});
 }
+async function keyboardPan(page, screen, original) {
+  // Read this WebGL frame before the compositor clears the default drawing buffer.
+  await screen.evaluate(el => {
+    const gl = el.getContext('webgl2');
+    function pixels() {
+      const w=gl.drawingBufferWidth, h=gl.drawingBufferHeight;
+      const rgba=new Uint8Array(w*h*4);
+      gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,rgba);
+      return rgba;
+    }
+    let reference;
+    function received(event) {
+      if (event.key==='ArrowRight' && event.shiftKey) {
+        const rect=el.getBoundingClientRect();
+        el.panInput={at:performance.now(), before:el.testDraws, focused:document.activeElement===el,
+          hidden:document.hidden, lost:gl.isContextLost(), bounds:[rect.left,rect.top,rect.right,rect.bottom],
+          viewport:[innerWidth,innerHeight]};
+      }
+    }
+    function painted(event) {
+      if (event.key==='Home') reference=pixels();
+      if (event.key!=='ArrowRight' || !event.shiftKey) return;
+      const current=pixels(), input=el.panInput;
+      input.ms=Math.round(performance.now()-input.at);
+      input.draws=el.testDraws-input.before;
+      input.handled=event.defaultPrevented;
+      let moved=0;
+      for (let i=0; i<current.length; i+=4) {
+        if (Math.abs(current[i]-reference[i])>12 || Math.abs(current[i+1]-reference[i+1])>12 ||
+            Math.abs(current[i+2]-reference[i+2])>12) moved++;
+      }
+      input.fraction=moved/(current.length/4);
+      el.removeEventListener('keydown',received,true);
+      el.removeEventListener('keydown',painted);
+    }
+    el.addEventListener('keydown',received,true);
+    el.addEventListener('keydown',painted);
+  });
+  await screen.press('Home');
+  await screen.press('Shift+ArrowRight');
+  const input=await screen.evaluate(el=>el.panInput);
+  assert.ok(input?.focused && input.handled && !input.hidden && !input.lost &&
+    input.draws>0 && input.fraction>0.008 && input.ms<=1000,
+    'tasto, disegni e pixel WebGL della traslazione '+JSON.stringify(input));
+  // A second, independent capture checks the image actually composited by the browser.
+  const deadline=performance.now()+1000;
+  let pan;
+  do { pan=changed(original,await capture(page)); }
+  while (pan<=0.008 && performance.now()<deadline);
+  assert.ok(pan>0.008,'traslazione nella schermata del browser '+pan);
+  return {pan,panMs:input.ms,panDraws:input.draws,panGpu:input.fraction};
+}
+
+// Keep native observations and their order, delaying only the delivery for the stage under test.
+function trackStageVisibility() {
+  const NativeObserver=window.IntersectionObserver;
+  const probe=window.stageVisibility={last:null, pending:[], hold:false};
+  window.IntersectionObserver=class extends NativeObserver {
+    constructor(callback,options) {
+      super((entries,observer)=>{
+        if (!entries.every(entry=>entry.target.matches('.bench-stage'))) return callback(entries,observer);
+        const deliver=()=>{callback(entries,observer); probe.last=entries.at(-1).isIntersecting;};
+        if (probe.hold) probe.pending.push(deliver);
+        else deliver();
+      },options);
+    }
+  };
+}
+
+async function delayedVisibilityPan(page,screen,original) {
+  await page.waitForFunction(()=>window.stageVisibility.last===true);
+  await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+  await page.waitForFunction(()=>window.stageVisibility.last===false);
+  const offscreen=await screen.evaluate(el=>el.testDraws);
+  await page.keyboard.press('Home');
+  assert.equal(await screen.evaluate(el=>el.testDraws),offscreen,'il banco fuori schermo rimane sospeso');
+  await page.evaluate(()=>{window.stageVisibility.hold=true;});
+  try {
+    await screen.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+    await page.waitForFunction(()=>window.stageVisibility.pending.length>0);
+    const proof=await keyboardPan(page,screen,original);
+    await screen.press('Home');
+    return proof;
+  } finally {
+    await page.evaluate(()=>{
+      const probe=window.stageVisibility;
+      probe.hold=false;
+      for (const deliver of probe.pending.splice(0)) deliver();
+    });
+  }
+}
+
 const focusOn = (page, selector) => page.locator(selector).evaluate(el=>document.activeElement===el);
 const timeAndSpeed = (page) => page.locator('[data-readings]').innerText();
 async function seek(page,value) {
@@ -97,6 +253,7 @@ async function continuity(page, base, profile) {
   await selected(page,'side');
   await page.evaluate(()=>document.fonts.ready);
   await screen.focus();
+  await page.waitForFunction(() => document.querySelector('.bench-stage canvas').testDraws>0);
   const original = await capture(page,name+'-laterale');
   if (profile.width>500) {
     const box = await screen.boundingBox();
@@ -106,11 +263,8 @@ async function continuity(page, base, profile) {
     await page.mouse.move(x+40,y+20,{steps:4});
     await page.mouse.up({button:'right'});
     assert.ok(changed(original,await capture(page))>0.008,'mouse pan');
-    await screen.press('Home');
   }
-  await screen.press('Shift+ArrowRight');
-  const pan = changed(original,await capture(page));
-  assert.ok(pan>0.008, 'keyboard pan '+pan);
+  const panProof=await keyboardPan(page,screen,original);
   for (let i=0;i<12;i++) await screen.press('Shift+ArrowRight');
   const limit = await capture(page);
   await screen.press('Shift+ArrowRight');
@@ -118,6 +272,7 @@ async function continuity(page, base, profile) {
   await screen.press('Home');
   const resetDifference = changed(original,await capture(page,name+'-home'));
   assert.ok(resetDifference<0.008, 'Home did not restore selected projection '+resetDifference);
+  const delayedPan=await delayedVisibilityPan(page,screen,original);
   await screen.press('ArrowLeft');
   await screen.press('=');
   await screen.press('Shift+ArrowUp');
@@ -203,7 +358,7 @@ async function continuity(page, base, profile) {
   await restore(page);
   await selected(page,'orbit');
   assert.equal(await page.locator('[data-bench]').count(),1);
-  return {profile:name,pan,recovered,fallbackMs,restoredMs,buffer,during,after};
+  return {profile:name,...panProof,delayedPan,recovered,fallbackMs,restoredMs,buffer,during,after};
 }
 
 async function interruptFirstLoad(browser, base) {
@@ -265,6 +420,7 @@ try {
         const ctx = await browser.newContext({viewport:{width,height},deviceScaleFactor:width>500?2:1,hasTouch:width<500,isMobile:width<500,reducedMotion:'reduce'});
         try {
           await ctx.addInitScript({path:path.join(root,'node_modules/axe-core/axe.min.js')});
+          await ctx.addInitScript(trackStageVisibility);
           await ctx.addInitScript(() => {
             const get = HTMLCanvasElement.prototype.getContext;
             HTMLCanvasElement.prototype.getContext = function(type,...args) {
@@ -289,12 +445,13 @@ try {
           console.log('PASS',engine.name(),width);
         } finally { await ctx.close(); }
       }
+      firstLayouts[engine.name()] = await firstBenchLayout(browser,base);
       await interruptFirstLoad(browser,base);
       await withoutGPU(browser,base);
     } finally { await browser.close(); }
   }
   const sha = execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
-  await writeFile(path.join(output,'continuita.json'),JSON.stringify({sha,reports},null,2)+'\n');
+  await writeFile(path.join(output,'continuita.json'),JSON.stringify({sha,reports,firstLayouts},null,2)+'\n');
 } finally {
   const exited = once(server,'exit');
   server.kill();

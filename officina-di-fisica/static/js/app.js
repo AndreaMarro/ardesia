@@ -324,6 +324,7 @@ async function router() {
     main.focus();
     return;
   }
+  const focusBeforeRender = document.activeElement;
   segnaleLettori(main, 'lettura:sospendi');
   const here = location.hash.slice(1);
   if (!ready) await refresh();
@@ -447,6 +448,10 @@ async function router() {
     }
     (origin || focusOnArrival || main).focus({preventScroll: true});
     window.scrollTo({top: prior.scroll, behavior: 'instant'});
+  } else if (document.activeElement !== focusBeforeRender && document.activeElement !== main &&
+             main.contains(document.activeElement)) {
+    // Il lettore può essere ancora in caricamento quando si raggiunge un controllo della nuova pagina.
+    return;
   } else if (focusOnArrival) {
     focusOnArrival.focus();
   } else {
