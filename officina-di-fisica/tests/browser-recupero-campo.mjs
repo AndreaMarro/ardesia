@@ -207,10 +207,18 @@ async function journey(browser, base, { name, width, height, noGL = false }) {
     await screenshot(page, report, 'pista', '[data-banco]');
     await audit(page, report, 'pista');
     if (report.render === 'WebGL2' && name === 'chromium-desktop') {
-      await bank
-        .locator('canvas')
-        .evaluate((c) => c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext());
+      const canvas = bank.locator('canvas');
+      await canvas.focus();
+      await canvas.press('ArrowRight');
+      await canvas.press('Home');
+      assert.equal(await clock.inputValue(), '11', 'Ruotare la vista conserva il tempo');
+      await canvas.evaluate((c) => c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext());
       await bank.locator('[data-pista-piana] svg').waitFor();
+      assert.equal(
+        await clock.evaluate((el) => el === document.activeElement),
+        true,
+        'Con la perdita della pista focalizzata si continua dalla timeline',
+      );
       assert.match(
         await bank.locator('[data-pista-piana] svg').getAttribute('aria-label'),
         /−2 m al secondo 11/,

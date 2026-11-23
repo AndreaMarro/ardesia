@@ -169,7 +169,7 @@ export function montaRecupero(shell, entry, run, item) {
       track?.dispose();
       track = null;
     }
-    if (onTrack && !track) track = montaPista(get('[data-figura]'), model, state.time);
+    if (onTrack && !track) track = montaPista(get('[data-figura]'), model, state.time, () => slider.focus());
     showTime();
     showResult();
   }

@@ -43,7 +43,7 @@ function pistaPiana(axis, model, sample, label) {
   </svg>`;
 }
 
-export function montaPista(root, model, initialTime) {
+export function montaPista(root, model, initialTime, returnToClock) {
   const canvas = root.querySelector('canvas');
   const flat = root.querySelector('[data-pista-piana]');
   const desc = root.querySelector('[data-vista-pista]');
@@ -74,6 +74,7 @@ export function montaPista(root, model, initialTime) {
     } else flat.innerHTML = pistaPiana(axis, model, point, label);
   }
   function flatView() {
+    const hadFocus = document.activeElement === canvas;
     gpu?.dispose();
     gpu = null;
     canvas.hidden = true;
@@ -83,6 +84,7 @@ export function montaPista(root, model, initialTime) {
       (axis.marks[1].value - axis.min) +
       ' m. Le frecce seguono l’andata e il ritorno.';
     draw(time);
+    if (hadFocus) returnToClock();
   }
   flatView();
   async function start3D() {
