@@ -25,6 +25,9 @@ page.setDefaultTimeout(18000);
 const headers={'X-Astra-Request':'1'};
 const close=(value,expected)=>Math.abs(value-expected)<=Math.max(0.000001,Math.abs(expected)*0.0007);
 try{
+  const readRelease=async()=>(await (await context.request.get(base+'/api/health')).json()).commit;
+  const release=await readRelease();
+  assert.match(release,/^[a-f0-9]{40}$/);
   assert.equal((await context.request.post(base+'/api/demo',{data:{},headers})).status(),200);
   const index=await (await context.request.get(base+'/api/simulazioni')).json();
   const ids=index.lessons.flatMap(lesson=>lesson.experiments.map(experiment=>experiment.id));
@@ -54,7 +57,8 @@ try{
     if(results.length%25===0) console.log(mode,results.length);
   }
   assert.deepEqual(errors,[]);
-  await writeFile(path.join(directory,mode+'.json'),JSON.stringify({domain:base,mode,engine:browser.version(),lessons:index.lessons.length,results},null,2)+'\n');
+  assert.equal(await readRelease(),release,'Distribuzione cambiata durante il controllo dei 181 banchi.');
+  await writeFile(path.join(directory,mode+'.json'),JSON.stringify({domain:base,release,mode,engine:browser.version(),lessons:index.lessons.length,results},null,2)+'\n');
   console.log(mode,results.length,'banchi',2*results.length,'letture');
 }catch(failure){
   console.error(JSON.stringify({count:results.length,state:await page.locator('main').innerText().then(value=>value.slice(-350)),hash:new URL(page.url()).hash}));

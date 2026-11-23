@@ -44,6 +44,9 @@ async function capture(state) {
   assert.ok(excess <= 1, 'Scorrimento laterale di '+excess+' px');
 }
 try {
+  const readRelease = async () => (await (await context.request.get(base+'/api/health')).json()).commit;
+  const release = await readRelease();
+  assert.match(release,/^[a-f0-9]{40}$/);
   const headers = {'X-Astra-Request':'1'};
   const demo = await context.request.post(base+'/api/demo',{headers,data:{}});
   assert.equal(demo.status(),200);
@@ -111,7 +114,8 @@ try {
   assert.equal(await search.inputValue(),'lente');
   await page.waitForFunction(() => document.activeElement?.getAttribute('href')?.startsWith('#banco/SIM-C5-L10-02/'));
   assert.deepEqual(errors,[]);
-  const evidence = {profile,url:base,os:os.type()+' '+os.release(),engine:name,version:browser.version(),viewport,
+  assert.equal(await readRelease(),release,'Il dominio ha cambiato distribuzione durante la misura.');
+  const evidence = {profile,url:base,release,os:os.type()+' '+os.release(),engine:name,version:browser.version(),viewport,
     emulatedTouch:mobile||tablet,reducedMotion:true,render,changedPixels,states,keyboardFocus:true,restoredAnswer:true,pageErrors:errors};
   await writeFile(path.join(output,profile+'.json'),JSON.stringify(evidence,null,2)+'\n');
   console.log(JSON.stringify(evidence));

@@ -328,6 +328,9 @@ class Handler(BaseHTTPRequestHandler):
             "api/logout",
         ):
             if path == "api/logout":
+                if os.environ.get("ASTRA_HOSTED") == "1" and u and u["role"] == "autore":
+                    from .adapters.hosted_transfer import discard
+                    discard(db, draft_scope(token))
                 db.execute("DELETE FROM sessions WHERE token=?", (digest(token),))
                 self.cookie("", 0)
                 return {"ok": True}
@@ -398,6 +401,14 @@ class Handler(BaseHTTPRequestHandler):
             return self.login(db, candidate["id"])
         if p[:2] == ["api", "author"]:
             need_author(u)
+            if os.environ.get("ASTRA_HOSTED") == "1":
+                from .adapters import hosted_transfer
+                if post and p[2:] == ["transfer"]:
+                    return hosted_transfer.upload(db, draft_scope(token), d,
+                        lambda action, payload: self.author(db, u, [action], payload, True))
+                if not post and p[2:] == ["export-part"]:
+                    return hosted_transfer.export_part(db, draft_scope(token), self.query_params(), DATA / "exports",
+                        lambda connection: encode(editor.export(connection)).encode())
             return self.author(db, u, p[2:], d, post)
         if path == "api/v1/me/reading-preferences":
             need_user(u)
@@ -428,6 +439,7 @@ class Handler(BaseHTTPRequestHandler):
             counts = {c["id"]: Counter(r["kind"] for r in in_course(rows, c["id"])) for c in courses}
             return {
                 "user": account(db, u),
+                "editorialTransfer": bool(os.environ.get("ASTRA_HOSTED") == "1" and u and u["role"] == "autore"),
                 "draftSession": draft_scope(token) if u else None,
                 "readingPreferences": reading_preferences.read(db, u["id"] if u else None),
                 "mode": config(db).get("mode", "verifica"),

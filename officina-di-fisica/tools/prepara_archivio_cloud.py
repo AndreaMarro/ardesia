@@ -12,7 +12,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from server.adapters import hosted
+from server.adapters import hosted, hosted_transfer
 from server import store
 
 
@@ -52,6 +52,7 @@ def provision():
             script.insert(-1, f"INSERT INTO settings VALUES('hosted_schema','{schema}');")
             apply_script("\n".join(script))
         db.execute(hosted.FILES_SCHEMA)
+        db.execute(hosted_transfer.SCHEMA)
         saved = db.execute("SELECT value FROM settings WHERE key='hosted_seed_sha'").fetchone()
     if existing and (not saved or saved[0] != signature):
         # Canonical migrations preserve changed/draft editions and editions referenced by attempts.
