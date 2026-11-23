@@ -1,0 +1,88 @@
+{
+  "base": {
+    "sha": "f7f4bde8e09ed49b1db12b66017331aefbfa112b",
+    "allow": [],
+    "findings": [
+      {
+        "level": "WARN",
+        "id": "mixed-font-headline",
+        "width": 1440,
+        "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move)."
+      },
+      {
+        "level": "WARN",
+        "id": "palette-cream",
+        "width": 1440,
+        "message": "Yellow-cream background (page background #f8f5ea, text #f8f5ea)."
+      },
+      {
+        "level": "FAIL",
+        "id": "palette-purple",
+        "width": 1440,
+        "message": "Indigo / violet (text #44258d, text #5936ae)."
+      },
+      {
+        "level": "WARN",
+        "id": "font-count",
+        "width": 1440,
+        "message": "3 typefaces in use (Work Sans, Baskervville, ui-monospace)."
+      },
+      {
+        "level": "WARN",
+        "id": "app-title-size",
+        "width": 1440,
+        "message": "The h1 is 81px (\"I percorsi\")."
+      },
+      {
+        "level": "WARN",
+        "id": "edge-text",
+        "width": 390,
+        "message": "6 text block(s) sit 12–15px from the phone's edge: \"Percorsi\" (14px); \"Inizio\" (16px); \"I percorsi\" (14px)"
+      }
+    ]
+  },
+  "codice": {
+    "sha": "9b79eb29c7fbb78f63d1bad75935834d1eace52a",
+    "allow": [],
+    "findings": [
+      {
+        "level": "WARN",
+        "id": "mixed-font-headline",
+        "width": 1440,
+        "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move)."
+      },
+      {
+        "level": "WARN",
+        "id": "palette-cream",
+        "width": 1440,
+        "message": "Yellow-cream background (page background #f8f5ea, text #f8f5ea)."
+      },
+      {
+        "level": "FAIL",
+        "id": "palette-purple",
+        "width": 1440,
+        "message": "Indigo / violet (text #44258d, text #5936ae)."
+      }
+    ]
+  },
+  "identita": {
+    "sha": "9b79eb29c7fbb78f63d1bad75935834d1eace52a",
+    "allow": [
+      "palette-purple"
+    ],
+    "findings": [
+      {
+        "level": "WARN",
+        "id": "mixed-font-headline",
+        "width": 1440,
+        "message": "1 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move)."
+      },
+      {
+        "level": "WARN",
+        "id": "palette-cream",
+        "width": 1440,
+        "message": "Yellow-cream background (page background #f8f5ea, text #f8f5ea)."
+      }
+    ]
+  }
+}

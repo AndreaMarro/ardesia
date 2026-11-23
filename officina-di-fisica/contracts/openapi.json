@@ -284,6 +284,70 @@
           }
         }
       }
+    },
+    "/v1/catalog/search": {
+      "get": {
+        "summary": "Cerca i metadati pubblicati per titolo, argomento o codice",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string",
+              "maxLength": 96
+            }
+          },
+          {
+            "in": "query",
+            "name": "course",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "course",
+                "lesson",
+                "example",
+                "question",
+                "experiment",
+                "bench",
+                "lab",
+                "method"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9999,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pagina stabile di metadati per l’orientamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schemas/catalog-search-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        }
+      }
     }
   },
   "components": {

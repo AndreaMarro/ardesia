@@ -48,7 +48,7 @@ function field(step) {
     <input name="answer" required autocomplete="off" maxlength="72" inputmode="${numeric ? 'decimal' : 'text'}"></label>
     ${numeric ? '' : '<small>Usa +, −, *, / e parentesi. Puoi omettere il segno di prodotto fra simboli.</small>'}`;
 }
-export function installActivities(root, records) {
+export function installActivities(root, records, activityId) {
   const panel = root.querySelector('.workshop');
   if (!panel) return;
   const area = panel.querySelector('.work-area');
@@ -126,4 +126,9 @@ export function installActivities(root, records) {
       render(true);
     };
   });
+  if (activityId) {
+    const selected = [...panel.querySelectorAll('[data-sheet]')].find(button => button.dataset.sheet === activityId);
+    selected?.click();
+    return area.querySelector('h3');
+  }
 }

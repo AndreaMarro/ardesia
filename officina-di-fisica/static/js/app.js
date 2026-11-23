@@ -182,7 +182,7 @@ function c1Exam(items) {
     ${link('Diagnosi e simulazioni · C6', 'allenamento/C6')}</div></section>`;
 }
 
-async function coursePage(id, tab = 'parti') {
+async function coursePage(id, tab = 'parti', activityId) {
   const data = await api('/course/' + id),
     c = data.course;
   const tabs = [
@@ -248,9 +248,10 @@ async function coursePage(id, tab = 'parti') {
     main.insertAdjacentHTML('beforeend', '<details class="c1-index" data-learning-path><summary>Prerequisiti e prossima attività</summary><div data-path-panel></div></details>');
     attachPathway(main.querySelector('[data-learning-path]'), id);
   }
-  if (tab === 'metodo') installActivities(main, data.activities);
+  const activityFocus = tab === 'metodo' && installActivities(main, data.activities, activityId);
   if (tab === 'recupero' && data.owned) recoveryCollection($('#raccolta-errori'), data.items, id);
   demo('corso/' + id);
+  return activityFocus;
 }
 async function material(id, course) {
   const r = await api('/item/' + id);
@@ -322,19 +323,23 @@ async function router() {
     main.focus();
     return;
   }
+  const here = location.hash.slice(1);
   if (!ready) await refresh();
   ready = true;
-  const here = location.hash.slice(1);
+  if (here !== location.hash.slice(1)) return;
   const originRoute = main.querySelector('.question-shell')?.dataset.route || displayedRoute;
   closePage?.();
   closePage = undefined;
   let focusOnArrival;
   if (page === 'banco' && parts[1] && parts[1] === originRoute &&
-      /^(?:materiale|corso|prova|lab|laboratori)(?:\/|$)/.test(originRoute)) {
+      /^(?:materiale|corso|prova|lab|laboratori|percorsi)(?:\/|$)/.test(originRoute)) {
     // Reauthorize private runs on return. Other lesson pages can reuse their reading position and DOM.
-    const fragment = originRoute.startsWith('prova/') ? null : document.createDocumentFragment();
-    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: document.activeElement,
-      href: document.activeElement?.getAttribute('href'), user: state.user?.id};
+    const fragment = /^(?:prova|percorsi)\//.test(originRoute) ? null : document.createDocumentFragment();
+    const source = originRoute.startsWith('percorsi/')
+      ? [...main.querySelectorAll('[data-result]')].find(a => a.dataset.result === parts[0])
+      : document.activeElement;
+    returnPage = {route: originRoute, fragment, scroll: window.scrollY, focus: source,
+      href: source?.getAttribute('href'), user: state.user?.id};
     fragment?.append(...main.childNodes);
   }
   const restore = returnPage && page !== 'banco' && here === returnPage.route && state.user?.id === returnPage.user;
@@ -364,12 +369,10 @@ async function router() {
     }
     if (page === 'home') home();
     else if (page === 'percorsi') {
-      main.innerHTML =
-        crumb([['Inizio', 'home'], ['Percorsi']]) +
-        head('I percorsi', 'Scegli un tema da studiare o segui l’intero programma di Fisica per Medicina.') +
-        catalog();
+      const { catalogPage } = await import('./ricerca.js');
+      focusOnArrival = await catalogPage(parts[0], parts[1], catalog);
     } else if (page === 'sprint') main.innerHTML = sprintContent();
-    else if (page === 'corso') await coursePage(...parts);
+    else if (page === 'corso') focusOnArrival = await coursePage(...parts);
     else if (page === 'materiale') await material(...parts);
     else if (page === 'laboratori') await labs(...parts);
     else if (page === 'banco') closePage = await (await import('./banchi/banco.js')).benchPage(...parts);
