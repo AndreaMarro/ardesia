@@ -1,0 +1,40 @@
+{
+  "prima": {
+    "sha": "f31ef847e4772a59c3ba7a0576a9c14ded0cfefa",
+    "route": "/api/studio",
+    "risposte": 200,
+    "letture": 20,
+    "suggerimenti": 5,
+    "p50ms": 29.89,
+    "p95ms": 37.94
+  },
+  "dopo": {
+    "sha": "9b5dc7e4dab8aa8777108e6657d71d14c1ff0686",
+    "route": "/api/studio",
+    "risposte": 200,
+    "letture": 20,
+    "suggerimenti": 5,
+    "p50ms": 28.5,
+    "p95ms": 32.13
+  },
+  "diario": {
+    "endpoint": "/api/v1/courses/C6/error-diary",
+    "oggettiInArchivio": 991,
+    "sistema": "Darwin",
+    "architettura": "arm64",
+    "carico": {
+      "errori": 200,
+      "perPagina": 12,
+      "letture": 20,
+      "bytes": 13842,
+      "p50ms": 45.26,
+      "p95ms": 46.29
+    },
+    "inventario": {
+      "quesitiConfrontati": 513,
+      "pagine": 43,
+      "obiettivi": 56,
+      "consegnaPiuLungaCaratteri": 249
+    }
+  }
+}

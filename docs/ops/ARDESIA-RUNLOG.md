@@ -1161,3 +1161,11 @@ Il contratto `039e91ac` precede il codice `9b79eb29`. Gli ID di studio pubblicat
 1. **Recupero operativo.** Partire da un errore storico e dalle famiglie già osservate. Dipendenza: tentativo autorizzato e versione del quesito. Prova: attività diversa, autonoma e ripresa differita sullo stesso quaderno.
 2. **Fruizione personalizzabile.** Riaprire la stessa lezione dopo aver scelto ritmo e rappresentazione. Dipendenza: preferenze esplicite del lettore. Prova: stessa posizione, tastiera e alternativa testuale in entrambi i browser.
 3. **Validazione con persone.** Quando saranno disponibili partecipanti e telefono, osservare ricerca per argomento, ritorno dopo un’interruzione e comprensione del recupero. Registrare per edizione le osservazioni aggregate.
+
+## 23 novembre 2026 · Diario formativo dell’Officina
+
+La ricerca trasversale è nel ramo ufficiale `f31ef847` con tredici job verdi e un archivio che coincide con il checksum locale. Il nuovo diario rilegge l’archivio di tentativi e la versione originale invece di mantenere un secondo registro. In `9b5dc7e4` il confronto HTTP comprende 513 quesiti su 56 obiettivi e il flusso browser rilegge l’errore di C1-Q027, apre la tavola 2D e risolve C1-Q021. L’archivio 1.1.0 conserva la risposta originaria e la valutazione. Corretta la restituzione del focus quando due errori aprono lo stesso banco. Cinque obiettivi di C6 hanno due sole famiglie, perciò il sistema distingue il ripasso della stessa situazione dall’ulteriore trasferimento. [Verbale ricerca](https://github.com/AndreaMarro/ardesia/pull/342#issuecomment-7103658096) · [Matrice e schermate del diario](../../officina-di-fisica/docs/verifica-prodotto/diario.md)
+
+1. Verificare l’albero del merge con la suite CI, il diario sui dati precedenti e il manifesto del pacchetto.
+2. Sul ramo ufficiale verificato integrare le preferenze di lettura nella lezione canonica. Controllare tastiera, ripresa e isolamento dai voti.
+3. Usare l’inventario per ID per la revisione editoriale e le prove scientifiche. Il collaudo touch fisico e le sessioni con studenti richiedono disponibilità separata.

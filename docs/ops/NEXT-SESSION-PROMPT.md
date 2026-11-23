@@ -44,3 +44,11 @@ Il percorso di riferimento è C1 → Esercizi prioritari → Aree di segno oppos
 ## Continuità · 23 novembre 2026
 
 Per Officina partire dalla SHA effettiva del ramo `officina-di-fisica` e dalla PR tecnica della ricerca. Il contratto della ricerca distingue verifica automatica, ritorno alla sessione, regressioni scientifiche e prova con studenti. La priorità di prodotto successiva è il diario operativo dei recuperi su C1–C6, legato ai tentativi esistenti. [Matrice delle funzioni](../../officina-di-fisica/docs/verifica-prodotto/README.md) · [Prove e limiti](../../officina-di-fisica/docs/verifica-prodotto/ricerca.md) · [Registro](ARDESIA-RUNLOG.md)
+
+## 23 novembre 2026 · Diario formativo
+
+Partire dalla SHA effettiva di `officina-di-fisica`. Verificare il verbale di integrazione della ricerca sul merge `f31ef847` e l’esito della PR del diario. Il codice `9b5dc7e4` aggiunge il percorso operativo su tutti i sei microcorsi e conserva i registri precedenti. La matrice D1–D6 riporta il confronto su 513 quesiti, la riapertura della risposta originale e i limiti dei richiami nei cinque obiettivi con sole due famiglie.
+
+1. Confrontare il commit integrato, i tredici job, il pacchetto verificato e il percorso reale con il verbale della PR.
+2. Dalla base così verificata migliorare le modalità di lettura presenti, con accettazione anticipata e prove sul lettore canonico.
+3. Tracciare separatamente gli esiti editoriali per ID, il collaudo touch fisico rinviato e l’osservazione dell’autonomia con studenti. [Evidenze](../../officina-di-fisica/docs/verifica-prodotto/diario.md)
