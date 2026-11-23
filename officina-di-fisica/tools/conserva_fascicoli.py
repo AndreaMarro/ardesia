@@ -13,7 +13,7 @@ from server.printing import fingerprint
 from server.store import connect, published
 
 
-def conserva(course):
+def conserva(course, materials):
     if not hosted.enabled():
         raise RuntimeError("Seleziona l'archivio distribuito da conservare.")
     with connect(request_snapshot=True) as db:
@@ -26,7 +26,7 @@ def conserva(course):
             key = "pdf/" + stamp
             raw = hosted.load_bytes(db, key)
             if not raw:
-                source = ROOT / "materials" / (course + "-" + book + ".pdf")
+                source = materials / (course + "-" + book + ".pdf")
                 if source.with_suffix(".stamp").read_text().strip() != stamp:
                     raise RuntimeError(f"Il fascicolo {course} {book} va conservato dal checkout che lo pubblica.")
                 raw = source.read_bytes()
@@ -36,7 +36,7 @@ def conserva(course):
             editions.append({"book": book, "stamp": stamp, "sha256": hashlib.sha256(raw).hexdigest()})
     with connect(readonly=True) as db:
         for entry in editions:
-            saved=hosted.load_bytes(db, "pdf/" + entry["stamp"])
+            saved = hosted.load_bytes(db, "pdf/" + entry["stamp"])
             if hashlib.sha256(saved).hexdigest() != entry["sha256"]:
                 raise RuntimeError("Il fascicolo conservato ha un'impronta inattesa.")
     return editions
@@ -45,4 +45,6 @@ def conserva(course):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("course")
-    print(json.dumps(conserva(parser.parse_args().course), ensure_ascii=False, indent=2))
+    parser.add_argument("--materiali", type=Path, default=ROOT / "materials", help="Fascicoli del checkout precedentemente pubblicato")
+    args = parser.parse_args()
+    print(json.dumps(conserva(args.course, args.materiali), ensure_ascii=False, indent=2))
