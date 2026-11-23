@@ -36,3 +36,15 @@ Per un lavoro sui sei corsi di Andrea usare il branch `officina-di-fisica`, dire
 Per questa applicazione partire dal ramo `officina-di-fisica`, dallo stato terminale della PR 339 e dalle verifiche riferite al commit integrato. Il capitolo e la voce sono le chiavi di navigazione dei laboratori. Il rapporto distingue risultati su Mac reale, viewport touch emulati e valutazioni umane ancora aperte. [PR 339](https://github.com/AndreaMarro/ardesia/pull/339) · [Revisione canonica](../../officina-di-fisica/docs/architettura/README.md)
 
 Alla riapertura, attendere la valutazione di Andrea. I tre passi condizionati sono il collaudo touch/lettore di schermo su telefono fisico, la prova di comprensione con studenti e il collaudo di un modello editoriale scelto dal docente. Dipendenze e risultati attesi sono nell’ultima voce dedicata a Cric. [Registro](ARDESIA-RUNLOG.md)
+
+## Officina · scelta della direzione di prodotto
+
+Il dossier 1.0 e i tre prototipi offline si trovano nella proposta di progettazione. La versione applicativa di riferimento è Officina 1.1.0. Il primo passo dipende dalla scelta di Andrea tra Passo, Campo e Margine. Seguono un pilot controbilanciato e, solo dopo l’esito, una verticale applicativa con gate di comprensione, accessibilità e costo della seconda attività. [Confronto](../proposte/officina-fisica/1.0/README.md) · [Protocollo](../proposte/officina-fisica/1.0/decisione.md) · [Registro](ARDESIA-RUNLOG.md)
+
+La seconda revisione della [PR #340](https://github.com/AndreaMarro/ardesia/pull/340) apre Campo direttamente sulla pista e permette di esplorare i primi 4 s. Usare le schermate della [galleria verificata](../proposte/officina-fisica/1.0/verifica.md) per valutare le tre alternative.
+
+La terza revisione confronta la stessa previsione errata, il ritorno di 7 s e la ripresa nei tre concept. Per la decisione attuale usare le 36 schermate annotate. La scelta di Andrea precede l’integrazione. [Confronto e prove](../proposte/officina-fisica/1.0/revisione/README.md)
+
+1. Valutare il gesto di Campo sullo stesso caso di Passo e Margine, con marchi e nomi rivedibili. Registrare la decisione sulla sola interazione.
+2. Se selezionata, provare la comprensione del segno e la ripresa con il protocollo del dossier. Raccogliere numero corretto, spiegazione e prova differita separatamente.
+3. Per la sola verticale accettata verificare pratica C1, caso attivo, conservazione del tentativo e CI sulla SHA candidata. I dati del banco «Grafici cinematici» descrivono un moto diverso. [Ambito e accettazione](../proposte/officina-fisica/1.0/revisione/integrazione.md)

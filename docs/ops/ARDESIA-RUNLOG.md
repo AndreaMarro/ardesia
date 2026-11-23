@@ -1141,3 +1141,33 @@ Passi da valutare con Andrea dopo questa consegna:
 1. Quando sarà disponibile un telefono autorizzato, aprire una voce del corso, effettuare previsione, misura e trasferimento anche con il lettore di schermo. Conservare modello, versione del sistema e verbale.
 2. Con il docente e studenti disponibili, osservare la lettura di C1-Q027 e il trasferimento a un caso diverso. Registrare errori concettuali e aiuti richiesti senza identificativi personali.
 3. Quando sarà scelto un modello editoriale, eseguire una proposta sul corpus approvato e registrare versione, citazione, giudizio umano e decisione di pubblicazione.
+
+## 23 novembre 2026 · Tre direzioni di prodotto per Officina di Fisica
+
+Sul ramo di progettazione di Officina 1.1.0, il dossier 1.0 confronta Passo, Campo e Margine sullo stesso C1-Q027. L’ospite trova un banco per «grafici cinematici» e zero per «aree con segno». Campo è la prima ipotesi da testare; con priorità al recupero vince Passo. L’applicazione pubblicata conserva il proprio albero Git. [Dossier e prototipi](../proposte/officina-fisica/1.0/README.md) · [Matrice](../proposte/officina-fisica/1.0/decisione.md)
+
+Taste Skill 2.1.5 è stato applicato nella modalità dedicata alle schermate di app. La verifica a 768 px ha portato a ridisegnare la console di Campo. A 320 px si è ridotta la spaziatura del quaderno per lasciare interamente a vista il pulsante principale. Il pacchetto offline ha superato 24 flussi nei due motori e 72 scansioni automatiche. In WebKit la prova da file richiede di bloccare HTTP(S) individualmente, perché l’interruttore offline impedisce anche la prima navigazione locale. Il primo test storico in locale è scaduto su Edizioni PDF; l’intera replica è riuscita. [Misure e limiti](../proposte/officina-fisica/1.0/verifica.md)
+
+1. Il committente confronta le tre esperienze e sceglie quale ipotesi provare. Esito atteso: direzione e obiettivo di misura espliciti.
+2. Dopo la scelta, organizzare il pilot sul lessico, la correzione e la ripresa con studenti consenzienti. Esito atteso: tempi, rinunce, errori e aiuti aggregati sul denominatore dichiarato.
+3. Con trasferimento e accessibilità riesaminati, decidere una sola verticale e verificarla su un secondo argomento. Il telefono fisico resta rinviato. [Roadmap e criteri](../proposte/officina-fisica/1.0/fattibilita.md)
+
+## 23 novembre 2026 · Revisione dell’esperienza su C1-Q027
+
+Sulla [PR di progetto #340](https://github.com/AndreaMarro/ardesia/pull/340), dopo la prima versione `5d3b71e`, la scelta dei percorsi parte dal tracciato del sensore. Aprire Campo porta alla pista graduata, dove si percorre l’andata prima di rispondere. Il ritorno misurato disegna una seconda freccia in senso opposto. L’indizio di Passo divide il grafico in caselle da un metro. In Margine la terza riga riprende i due valori effettivamente scritti. Le illustrazioni dipendono dai dati del quesito. Le prime tavole visive conservano data e provenienza nel dossier.
+
+In una prima prova il pulsante del banco superava il bordo di 11 px sul telefono simulato da 320 px. Un solo cursore controlla ora il tempo. Per la durata si sceglie il valore esatto o si usano i tasti ±. La prova di contrasto su WebKit segnalava lo sfondo dell’indice nella successiva schermata scura. La correzione usa una superficie dedicata e applica il tema alla radice. La replica comprende il passaggio chiaro/scuro, il recupero di sessioni precedenti, 24 percorsi, 80 scansioni axe con zero violazioni automatiche e 153 campioni del modello. Le prove con studenti e telefono fisico restano da svolgere. [Risultati e schermate](../proposte/officina-fisica/1.0/verifica.md)
+
+1. Andrea può confrontare il segno sulle tre interfacce. Registrare il gesto o il testo che richiede un’ulteriore revisione prima di scegliere una direzione. [Prototipo](../proposte/officina-fisica/1.0/confronto.html)
+2. Dopo la scelta, verificare con studenti se trovano la pista e spiegano il segno su un ritorno di sette secondi. Registrare risposte e aiuti come previsto dal [protocollo](../proposte/officina-fisica/1.0/decisione.md).
+3. Quando sarà disponibile il telefono concordato, verificare cursore, cambio vista e lettura sequenziale con la tecnologia assistiva in uso. Allegare dispositivo e risultato al collaudo.
+
+## 23 novembre 2026 · Lo stesso errore in Campo, Passo e Margine
+
+La PR 340 raccoglie 36 schermate riprese dai prototipi a 1440 × 900 e 390 × 844. Ogni direzione attraversa sei momenti, dalla previsione del verso alla ricarica dopo la correzione. Nell’esercizio da 7 s Margine mantiene in vista la consegna e il grafico da 5 s. In tutti i concept il valore +2 m rimane alla riapertura, ma il campo perde la diagnosi sul segno. Campo rimanda alle aree mentre mostra la pista. Il rapporto separa questi comportamenti dalle ipotesi su comprensione, consolidamento e preferenze individuali. [Tavole e protocollo](../proposte/officina-fisica/1.0/revisione/README.md)
+
+Taste Skill 2.1.5 ha restituito 0 FAIL e 27 WARN sull’insieme dei 18 rapporti a due risoluzioni. Per consentire la replica, ogni schermata conserva coordinate e due annotazioni in testo. La misura della densità esclude le parole degli indizi chiusi. Il telefono è emulato e la prova su hardware touch è rinviata. [Rilievi per stato](../proposte/officina-fisica/1.0/revisione/taste.json) · [Misure nel browser](../proposte/officina-fisica/1.0/revisione/misure.json)
+
+1. Andrea esamina il trasferimento nelle tre viste e sceglie se sperimentare il recupero del segno di Campo per C1-Q027. Esito atteso, decisione esplicita sulla sola verticale.
+2. Se selezionata, usare il pilot per verificare reperibilità, controllo del ritmo e spiegazione del segno, con riscontri distinti alla ripresa e a sette giorni.
+3. Prima del merge tecnico applicare alla stessa verticale i criteri scientifici, di accesso, di accessibilità e conservazione. Il binario è riutilizzabile con i parametri del quesito. [Percorso d’integrazione](../proposte/officina-fisica/1.0/revisione/integrazione.md)
