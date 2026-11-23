@@ -152,8 +152,12 @@ async function keyboardPan(page, screen, original) {
     }
     let reference;
     function received(event) {
-      if (event.key==='ArrowRight' && event.shiftKey)
-        el.panInput={at:performance.now(), before:el.testDraws};
+      if (event.key==='ArrowRight' && event.shiftKey) {
+        const rect=el.getBoundingClientRect();
+        el.panInput={at:performance.now(), before:el.testDraws, focused:document.activeElement===el,
+          hidden:document.hidden, lost:gl.isContextLost(), bounds:[rect.left,rect.top,rect.right,rect.bottom],
+          viewport:[innerWidth,innerHeight]};
+      }
     }
     function painted(event) {
       if (event.key==='Home') reference=pixels();
@@ -161,6 +165,7 @@ async function keyboardPan(page, screen, original) {
       const current=pixels(), input=el.panInput;
       input.ms=Math.round(performance.now()-input.at);
       input.draws=el.testDraws-input.before;
+      input.handled=event.defaultPrevented;
       let moved=0;
       for (let i=0; i<current.length; i+=4) {
         if (Math.abs(current[i]-reference[i])>12 || Math.abs(current[i+1]-reference[i+1])>12 ||
@@ -176,7 +181,8 @@ async function keyboardPan(page, screen, original) {
   await screen.press('Home');
   await screen.press('Shift+ArrowRight');
   const input=await screen.evaluate(el=>el.panInput);
-  assert.ok(input?.draws>0 && input.fraction>0.008 && input.ms<=1000,
+  assert.ok(input?.focused && input.handled && !input.hidden && !input.lost &&
+    input.draws>0 && input.fraction>0.008 && input.ms<=1000,
     'tasto, disegni e pixel WebGL della traslazione '+JSON.stringify(input));
   // A second, independent capture checks the image actually composited by the browser.
   const deadline=performance.now()+1000;
@@ -185,6 +191,45 @@ async function keyboardPan(page, screen, original) {
   while (pan<=0.008 && performance.now()<deadline);
   assert.ok(pan>0.008,'traslazione nella schermata del browser '+pan);
   return {pan,panMs:input.ms,panDraws:input.draws,panGpu:input.fraction};
+}
+
+// Keep native observations and their order, delaying only the delivery for the stage under test.
+function trackStageVisibility() {
+  const NativeObserver=window.IntersectionObserver;
+  const probe=window.stageVisibility={last:null, pending:[], hold:false};
+  window.IntersectionObserver=class extends NativeObserver {
+    constructor(callback,options) {
+      super((entries,observer)=>{
+        if (!entries.every(entry=>entry.target.matches('.bench-stage'))) return callback(entries,observer);
+        const deliver=()=>{callback(entries,observer); probe.last=entries.at(-1).isIntersecting;};
+        if (probe.hold) probe.pending.push(deliver);
+        else deliver();
+      },options);
+    }
+  };
+}
+
+async function delayedVisibilityPan(page,screen,original) {
+  await page.waitForFunction(()=>window.stageVisibility.last===true);
+  await page.evaluate(()=>scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+  await page.waitForFunction(()=>window.stageVisibility.last===false);
+  const offscreen=await screen.evaluate(el=>el.testDraws);
+  await page.keyboard.press('Home');
+  assert.equal(await screen.evaluate(el=>el.testDraws),offscreen,'il banco fuori schermo rimane sospeso');
+  await page.evaluate(()=>{window.stageVisibility.hold=true;});
+  try {
+    await screen.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+    await page.waitForFunction(()=>window.stageVisibility.pending.length>0);
+    const proof=await keyboardPan(page,screen,original);
+    await screen.press('Home');
+    return proof;
+  } finally {
+    await page.evaluate(()=>{
+      const probe=window.stageVisibility;
+      probe.hold=false;
+      for (const deliver of probe.pending.splice(0)) deliver();
+    });
+  }
 }
 
 const focusOn = (page, selector) => page.locator(selector).evaluate(el=>document.activeElement===el);
@@ -227,6 +272,7 @@ async function continuity(page, base, profile) {
   await screen.press('Home');
   const resetDifference = changed(original,await capture(page,name+'-home'));
   assert.ok(resetDifference<0.008, 'Home did not restore selected projection '+resetDifference);
+  const delayedPan=await delayedVisibilityPan(page,screen,original);
   await screen.press('ArrowLeft');
   await screen.press('=');
   await screen.press('Shift+ArrowUp');
@@ -312,7 +358,7 @@ async function continuity(page, base, profile) {
   await restore(page);
   await selected(page,'orbit');
   assert.equal(await page.locator('[data-bench]').count(),1);
-  return {profile:name,...panProof,recovered,fallbackMs,restoredMs,buffer,during,after};
+  return {profile:name,...panProof,delayedPan,recovered,fallbackMs,restoredMs,buffer,during,after};
 }
 
 async function interruptFirstLoad(browser, base) {
@@ -374,6 +420,7 @@ try {
         const ctx = await browser.newContext({viewport:{width,height},deviceScaleFactor:width>500?2:1,hasTouch:width<500,isMobile:width<500,reducedMotion:'reduce'});
         try {
           await ctx.addInitScript({path:path.join(root,'node_modules/axe-core/axe.min.js')});
+          await ctx.addInitScript(trackStageVisibility);
           await ctx.addInitScript(() => {
             const get = HTMLCanvasElement.prototype.getContext;
             HTMLCanvasElement.prototype.getContext = function(type,...args) {

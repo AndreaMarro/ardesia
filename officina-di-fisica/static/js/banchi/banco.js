@@ -335,10 +335,24 @@ export async function benchPage(id, origin, topicIndex) {
     } else if (playing) syncTime();
   }
   const observer = new IntersectionObserver((entries) => {
-    inViewport = entries[0].isIntersecting;
+    inViewport = entries.at(-1).isIntersecting;
     visibility();
   });
   observer.observe(stageBox);
+  // A focused instrument can receive a camera key before the viewport observer catches up.
+  function updateViewportForInput() {
+    if (inViewport || disposed || !gpu || view === 'diagram' || document.hidden) return;
+    const rect = canvas.getBoundingClientRect();
+    const viewport = window.visualViewport;
+    const left = viewport?.offsetLeft || 0;
+    const top = viewport?.offsetTop || 0;
+    if (rect.width && rect.height && rect.right > left && rect.bottom > top &&
+        rect.left < left + (viewport?.width || innerWidth) && rect.top < top + (viewport?.height || innerHeight)) {
+      inViewport = true;
+      visibility();
+    }
+  }
+  canvas.addEventListener('keydown', updateViewportForInput, true);
   let diagramFrame = 0;
   const diagramSize = activity && !pilot ? new ResizeObserver(([entry]) => {
     const { width, height } = entry.contentRect;
@@ -738,6 +752,7 @@ export async function benchPage(id, origin, topicIndex) {
     startingContext = null;
     cancelAnimationFrame(raf);
     observer.disconnect();
+    canvas.removeEventListener('keydown', updateViewportForInput, true);
     diagramSize?.disconnect();
     cancelAnimationFrame(diagramFrame);
     media.removeEventListener('change', motion);
