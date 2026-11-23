@@ -11,6 +11,7 @@ import tempfile
 import threading
 from pathlib import Path
 
+from .adapters import hosted
 from .store import DATA, ROOT, Problem, connect, digest, encode, in_course, require
 
 JOBS = {}
@@ -102,8 +103,19 @@ def short_course(c):
     return [c["id"], c["title"], c.get("summary", "")]
 
 
-def locate(rows, c, b):
+def locate(rows, c, b, db=None):
     stamp = fingerprint(rows, c, b)
+    if hosted.enabled() and db is not None:
+        cache = DATA / "pdf" / (stamp + ".pdf")
+        if cache.is_file():
+            return cache
+        raw = hosted.load_bytes(db, "pdf/" + stamp)
+        if raw:
+            cache.parent.mkdir(parents=True, exist_ok=True)
+            with tempfile.NamedTemporaryFile(dir=cache.parent, delete=False) as tmp:
+                tmp.write(raw)
+            Path(tmp.name).replace(cache)
+            return cache
     for root in (DATA / "pdf", ROOT / "materials"):
         f = root / (c + "-" + b + ".pdf")
         m = f.with_suffix(".stamp")
@@ -113,6 +125,9 @@ def locate(rows, c, b):
 
 
 def chrome():
+    if hosted.enabled():
+        from .adapters.cloud_chrome import executable
+        return executable()
     candidates = [
         os.environ.get("ASTRA_CHROME"),
         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -153,19 +168,22 @@ def blocks(blocks_, rows=(), level=0):
                 if src.startswith("/figures/")
                 else DATA / "uploads" / Path(src).name
             )
-            if file.is_file():
+            if file.is_file() or (hosted.enabled() and src.startswith("/asset/")):
                 if src.startswith("/asset/"):
-                    with connect() as db:
+                    from .editor import read_asset
+                    with connect(readonly=True) as db:
+                        raw = read_asset(db, Path(src).name)
                         mime = db.execute(
                             "SELECT mime FROM assets WHERE id=?", (Path(src).name,)
                         ).fetchone()[0]
                 else:
                     mime = "image/svg+xml"
+                    raw = file.read_bytes()
                 url = (
                     "data:"
                     + mime
                     + ";base64,"
-                    + base64.b64encode(file.read_bytes()).decode()
+                    + base64.b64encode(raw).decode()
                 )
                 out.append(
                     '<figure><img src="'
@@ -680,13 +698,11 @@ def generate(rows, c, b, dest):
         def render(folios=None):
             source.write_text(document(rows, c, b, folios))
             out.unlink(missing_ok=True)
-            subprocess.run(
-                command,
-                timeout=120,
-                check=True,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
+            if hosted.enabled():
+                from .adapters.cloud_chrome import print_pdf
+                print_pdf(command[0], source, out, w)
+            else:
+                subprocess.run(command, timeout=120, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             require(
                 out.exists() and out.stat().st_size > 3000,
                 "Esportazione PDF interrotta.",
@@ -714,8 +730,19 @@ def generate(rows, c, b, dest):
     return stamp
 
 
-def queue(rows, c, b):
-    fingerprint(rows, c, b)
+def queue(rows, c, b, db=None):
+    stamp = fingerprint(rows, c, b)
+    if hosted.enabled():
+        # A serverless worker can freeze immediately after returning an HTTP response.
+        # Finish the author request and commit the immutable file before reporting success.
+        db.commit()
+        with tempfile.TemporaryDirectory() as path:
+            dest = Path(path)
+            generate(rows, c, b, dest)
+            with connect() as writer:
+                writer.execute("BEGIN IMMEDIATE")
+                hosted.save_bytes(writer, "pdf/" + stamp, (dest / (c + "-" + b + ".pdf")).read_bytes())
+        return {"state": "pronto"}
     key = c + "-" + b
     with LOCK:
         if JOBS.get(key) == "in lavorazione":
@@ -733,13 +760,13 @@ def queue(rows, c, b):
     return {"state": "in lavorazione"}
 
 
-def status(rows):
+def status(rows, db=None):
     return [
         {
             "course": r["id"],
             "book": b,
             "title": BOOKS[b],
-            "ready": bool(locate(rows, r["id"], b)),
+            "ready": bool(locate(rows, r["id"], b, db)),
             "job": JOBS.get(r["id"] + "-" + b, ""),
         }
         for r in rows

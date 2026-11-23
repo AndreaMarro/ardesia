@@ -35,6 +35,20 @@ export const errorNames = {
   modello: 'Scelta del modello',
 };
 export async function api(path, data, headers = {}) {
+  if (state.editorialTransfer && path === '/author/export' && data === undefined) {
+    const { riceviArchivio } = await import('./trasferimento.js');
+    return riceviArchivio(request);
+  }
+  if (state.editorialTransfer && data !== undefined && ['/author/upload', '/author/import'].includes(path)) {
+    const bytes = new TextEncoder().encode(JSON.stringify(data));
+    if (bytes.length > 3_000_000) {
+      const { inviaLotto } = await import('./trasferimento.js');
+      return inviaLotto(request, path.split('/').at(-1), bytes);
+    }
+  }
+  return request(path, data, headers);
+}
+async function request(path, data, headers = {}) {
   let response;
   try {
     response = await fetch(

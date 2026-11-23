@@ -6,6 +6,7 @@ import mimetypes
 import os
 import re
 import secrets
+import sqlite3
 import sys
 import time
 from http import cookies
@@ -203,13 +204,16 @@ class Handler(BaseHTTPRequestHandler):
         self.cookie(token, age)
         return {"ok": True}
 
+    def client_ip(self):
+        return self.client_address[0]
+
     def do_GET(self):
-        self.handle_request(False)
+        self.dispatch_officina(False)
 
     def do_POST(self):
-        self.handle_request(True)
+        self.dispatch_officina(True)
 
-    def handle_request(self, write):
+    def dispatch_officina(self, write):
         self.started = time.monotonic()
         self.cookie_header = None
         try:
@@ -253,14 +257,16 @@ class Handler(BaseHTTPRequestHandler):
             raw = cookies.SimpleCookie(self.headers.get("Cookie", ""))
             token = raw.get("astra_session")
             token = token.value if token else ""
-            with connect() as db:
-                db.execute("BEGIN IMMEDIATE" if write or path.startswith("/api/run/") else "BEGIN")
-                user = db.execute(
-                    "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
-                    (digest(token), NOW()),
-                ).fetchone()
-                parts = path.strip("/").split("/")
-                result = self.route(db, user, parts, data, write, token)
+            hosted = os.environ.get("ASTRA_HOSTED") == "1"
+            run_read = not write and path.startswith("/api/run/")
+            try:
+                result = self.authorized_request(path, data, write, token, write or (run_read and not hosted))
+            except sqlite3.OperationalError as exc:
+                # Recheck identity, access and deadline on the writer only when a read
+                # actually has to finalize an expired attempt.
+                if not (hosted and run_read and exc.sqlite_errorcode == sqlite3.SQLITE_READONLY):
+                    raise
+                result = self.authorized_request(path, data, write, token, True)
             if isinstance(result, tuple):
                 self.response(result[0], mime=result[1], headers=result[2])
             else:
@@ -278,6 +284,15 @@ class Handler(BaseHTTPRequestHandler):
             self.response(
                 {"error": "Operazione interrotta. I dati salvati sono al sicuro."}, 500
             )
+
+    def authorized_request(self, path, data, write, token, mutable):
+        with connect(readonly=not mutable, request_snapshot=mutable) as db:
+            db.execute("BEGIN IMMEDIATE" if mutable else "BEGIN")
+            user = db.execute(
+                "SELECT u.* FROM users u JOIN sessions s ON u.id=s.user WHERE token=? AND expires>?",
+                (digest(token), NOW()),
+            ).fetchone()
+            return self.route(db, user, path.strip("/").split("/"), data, write, token)
 
     def query_params(self):
         query = urlparse(self.path).query
@@ -300,7 +315,11 @@ class Handler(BaseHTTPRequestHandler):
             require(p[5] == meta["sha256"] + ".js", "Edizione del motore assente.", 404)
             return code, "text/javascript; charset=utf-8", {"Cache-Control": "public, max-age=31536000, immutable"}
         if not post and path == "api/health":
-            return {"product": "officina-di-fisica", "edition": "1.1.0"}
+            health = {"product": "officina-di-fisica", "edition": "1.1.0"}
+            release = os.environ.get("OFFICINA_COMMIT", "")
+            if os.environ.get("ASTRA_HOSTED") == "1" and re.fullmatch(r"[a-f0-9]{40}", release):
+                health["commit"] = release
+            return health
         if post and path in (
             "api/register",
             "api/login",
@@ -309,6 +328,9 @@ class Handler(BaseHTTPRequestHandler):
             "api/logout",
         ):
             if path == "api/logout":
+                if os.environ.get("ASTRA_HOSTED") == "1" and u and u["role"] == "autore":
+                    from .adapters.hosted_transfer import discard
+                    discard(db, draft_scope(token))
                 db.execute("DELETE FROM sessions WHERE token=?", (digest(token),))
                 self.cookie("", 0)
                 return {"ok": True}
@@ -326,7 +348,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.login(db, uid)
             if path == "api/owner":
                 require(
-                    self.client_address[0] in ("127.0.0.1", "::1"),
+                    os.environ.get("ASTRA_HOSTED") != "1" and self.client_address[0] in ("127.0.0.1", "::1"),
                     "Accesso locale richiesto.",
                     403,
                 )
@@ -342,7 +364,7 @@ class Handler(BaseHTTPRequestHandler):
             mail = str(d.get("email", "")).strip().casefold()
             pwd = str(d.get("password", ""))
             require(0 < len(mail) <= 254 and len(pwd) <= 512, "Credenziali non valide.")
-            limit = digest(self.client_address[0])
+            limit = digest(self.client_ip())
             auth_limit(db, limit)
             if path == "api/register":
                 require(
@@ -379,6 +401,14 @@ class Handler(BaseHTTPRequestHandler):
             return self.login(db, candidate["id"])
         if p[:2] == ["api", "author"]:
             need_author(u)
+            if os.environ.get("ASTRA_HOSTED") == "1":
+                from .adapters import hosted_transfer
+                if post and p[2:] == ["transfer"]:
+                    return hosted_transfer.upload(db, draft_scope(token), d,
+                        lambda action, payload: self.author(db, u, [action], payload, True))
+                if not post and p[2:] == ["export-part"]:
+                    return hosted_transfer.export_part(db, draft_scope(token), self.query_params(), DATA / "exports",
+                        lambda connection: encode(editor.export(connection)).encode())
             return self.author(db, u, p[2:], d, post)
         if path == "api/v1/me/reading-preferences":
             need_user(u)
@@ -409,6 +439,7 @@ class Handler(BaseHTTPRequestHandler):
             counts = {c["id"]: Counter(r["kind"] for r in in_course(rows, c["id"])) for c in courses}
             return {
                 "user": account(db, u),
+                "editorialTransfer": bool(os.environ.get("ASTRA_HOSTED") == "1" and u and u["role"] == "autore"),
                 "draftSession": draft_scope(token) if u else None,
                 "readingPreferences": reading_preferences.read(db, u["id"] if u else None),
                 "mode": config(db).get("mode", "verifica"),
@@ -642,7 +673,7 @@ class Handler(BaseHTTPRequestHandler):
                 403,
             )
             return (
-                f.read_bytes(),
+                editor.read_asset(db, p[1]) if p[0] == "asset" else f.read_bytes(),
                 mime,
                 {
                     "Content-Disposition": (
@@ -656,7 +687,7 @@ class Handler(BaseHTTPRequestHandler):
             from .printing import locate
 
             require(entitled(db, u, rows, p[1]), "Accesso al percorso richiesto.", 403)
-            f = locate(rows, p[1], p[2])
+            f = locate(rows, p[1], p[2], db)
             require(f, "Edizione PDF da rigenerare nell’area autore.", 409)
             return (
                 f.read_bytes(),
@@ -694,7 +725,7 @@ class Handler(BaseHTTPRequestHandler):
                         sys.executable,
                         str(ROOT / "tools" / "inventario.py"),
                         "--database",
-                        str(DATA / "officina.sqlite3"),
+                        db.execute("PRAGMA database_list").fetchone()[2],
                         "--out",
                         target,
                     ],
@@ -812,5 +843,5 @@ class Handler(BaseHTTPRequestHandler):
             from .printing import queue, status
 
             rows = published(db)
-            return queue(rows, d["course"], d["book"]) if post else status(rows)
+            return queue(rows, d["course"], d["book"], db) if post else status(rows, db)
         raise Problem("Strumento non trovato.", 404)

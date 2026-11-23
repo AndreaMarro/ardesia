@@ -1,5 +1,7 @@
 # Officina di Fisica
 
+Apri [Officina di Fisica sul web](https://officina-di-fisica.vercel.app) dal browser. **Apri un quaderno di prova** dà accesso ai sei percorsi. Nella navigazione principale, **Simulazioni 3D** raccoglie i banchi ed è consultabile per argomento. Ogni lezione presenta i collegamenti ai propri esperimenti. [Distribuzione e gestione degli archivi](docs/verifica-prodotto/pubblicazione-vercel.md)
+
 Dalla testata, **Cerca** apre i materiali per argomento o codice, per esempio `C1-Q027`. Puoi filtrare per percorso e tipo e tornare al risultato dopo aver consultato l’attività. [Ricerca e criteri di verifica](docs/verifica-prodotto/ricerca.md)
 
 In **Il mio studio → Diario degli errori** ritrovi la risposta data, il passaggio da controllare e un caso diverso da provare. Scegli il percorso e il tempo disponibile. La sezione *Tentativi e aiuti* distingue i supporti usati, il successo autonomo su una famiglia diversa e il ripasso a distanza. [Percorso di recupero e verifiche](docs/verifica-prodotto/diario.md)
