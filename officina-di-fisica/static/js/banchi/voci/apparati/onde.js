@@ -212,8 +212,9 @@ export const ondulatoria = {
     const cyc = s.cicli ?? (s.banda ? 0.5 + s.banda * 0.49 : 1.5),
       phase = s.fase ?? 0,
       A = s.ampiezza;
-    const val = (u) => A * Math.sin(phase - 2 * Math.PI * cyc * u),
-      origin = 1.28;
+    const probe = s.campoSonda;
+    const val = (u) => A * (u === 0 && probe !== undefined ? probe : Math.sin(phase - 2 * Math.PI * cyc * u));
+    const origin = 1.28;
     if (A === 0) {
       b.line([[-2.6, origin, 0], [2.73, origin, 0]], c.metallo);
       b.label([0, origin + 0.5, 0], 'E = 0 · B = 0');
@@ -228,7 +229,14 @@ export const ondulatoria = {
       punti(111, (i) => [-2.56 + (5.12 * i) / 110, origin, val(i / 110)]),
       c.verde,
     );
-    for (let i = 0; i <= 16; i++) {
+    if (probe !== undefined) {
+      const point = [-2.56, origin, 0];
+      b.ball(point, 0.07, c.inchiostro);
+      b.label([-2.84, origin - 0.33, 0], 'P');
+      b.arrow(point, [-2.56, origin + val(0), 0], c.viola);
+      b.arrow(point, [-2.56, origin, val(0)], c.verde);
+    }
+    for (let i = probe === undefined ? 0 : 1; i <= 16; i++) {
       const u = i / 16,
         x = -2.56 + 5.12 * u,
         v = val(u);

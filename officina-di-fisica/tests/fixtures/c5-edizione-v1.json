@@ -1,0 +1,181 @@
+{
+  "C5-E007": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C5-sfere.svg",
+        "text": "Il segnale disponibile si distribuisce su tutta la superficie sferica. Il sensore ne occupa una piccola porzione."
+      },
+      {
+        "type": "text",
+        "text": "A = 3,0 cm² = 3,0 × 10⁻⁴ m², perché il fattore 10⁻² si applica a entrambe le dimensioni. Calcoliamo l’intensità sulla sfera di raggio 2 m."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{0{,}40}{4\\pi(2{,}0)^2}\\ \\mathrm{W/m^2}=7{,}96\\times10^{-3}\\ \\mathrm{W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il sensore è piccolo e orientato perpendicolarmente, così possiamo assumere I uniforme su A. L’energia è la potenza raccolta moltiplicata per la durata."
+      },
+      {
+        "type": "formula",
+        "text": "E=I A\\,\\Delta t=(7{,}96\\times10^{-3})(3{,}0\\times10^{-4})(5{,}0)\\ \\mathrm J=1{,}2\\times10^{-5}\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’intera sorgente emette 2 J in cinque secondi. Una piccola superficie a due metri intercetta soltanto una frazione di quei joule."
+      }
+    ]
+  },
+  "C5-L04": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una sorgente può erogare sempre la stessa energia al secondo mentre un piccolo sensore, allontanandosi, ne raccoglie sempre meno. La potenza P misura il trasferimento totale di energia E nell’intervallo Δt. L’intensità media I misura invece la potenza che attraversa una superficie perpendicolare alla propagazione, divisa per l’area illuminata."
+      },
+      {
+        "type": "formula",
+        "text": "P=\\frac{\\Delta E}{\\Delta t},\\qquad I=\\frac{P_{\\perp}}{S},\\qquad [I]=\\mathrm{W\\,m^{-2}}"
+      },
+      {
+        "type": "text",
+        "text": "Per una sorgente puntiforme isotropa in un mezzo omogeneo privo di assorbimento, la potenza si ripartisce su sfere concentriche. L’area cresce più rapidamente del raggio."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C5-sfere.svg",
+        "text": "Una sezione mostra le due sfere come cerchi. Nel denominatore va l’area della superficie sferica, che è 4πr²."
+      },
+      {
+        "type": "formula",
+        "text": "I(r)=\\frac{P}{4\\pi r^2},\\qquad \\frac{I_2}{I_1}=\\left(\\frac{r_1}{r_2}\\right)^2"
+      },
+      {
+        "type": "text",
+        "text": "Nell’onda armonica su una corda ideale le piccole porzioni di corda acquistano energia cinetica ed elastica. A parità di corda, velocità di propagazione e frequenza, la potenza media cresce con il quadrato dell’ampiezza A. Nell’approssimazione di piccole pendenze, con densità lineare μ in kg/m, si può esprimerla così."
+      },
+      {
+        "type": "formula",
+        "text": "\\overline P=\\tfrac12\\mu v\\omega^2A^2"
+      },
+      {
+        "type": "text",
+        "text": "Una sonda di area piccola e perpendicolare al fronte raccoglie, in un campo uniforme sulla sonda, Pᵣ = I S. Per ritrovare l’energia raccolta moltiplica ancora per la durata dell’esposizione. La legge sferica perde validità per fasci collimati, riflessioni importanti o assorbimento significativo."
+      }
+    ]
+  },
+  "C5-Q003": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dal centro all’estremo e ritorno trascorre mezzo periodo. Il ciclo completo dura 36 ms, ossia 0,036 s."
+      },
+      {
+        "type": "formula",
+        "text": "f=1/T=1/(0{,}036\\ \\mathrm s)=27{,}8\\ \\mathrm{Hz}"
+      }
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Con velocità opposte l’oscillatore ripete la posizione dopo mezzo periodo.",
+      "target": "C5-L01"
+    }
+  },
+  "C5-Q038": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A parità degli altri fattori il trasferimento di energia al secondo è proporzionale alla massa di corda per metro."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\overline P_B}{\\overline P_A}=\\frac{\\mu_B}{\\mu_A}=3"
+      }
+    ]
+  },
+  "C5-Q039": {
+    "title": "Energia catturata inclinando il sensore",
+    "version": 1,
+    "prompt": "Un’area di 4,0 m² ha la normale inclinata di 60° verso un’onda piana uniforme di intensità 5,0 W/m². Quale potenza in W attraversa la superficie?",
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il fascio attraversa l’area proiettata S cos 60° = 4,0 × 0,5 = 2,0 m²."
+      },
+      {
+        "type": "formula",
+        "text": "P=I S\\cos\\theta=(5{,}0)(2{,}0)\\ \\mathrm W=10\\ \\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "Nell’orientamento perpendicolare passerebbero 20 W."
+      }
+    ]
+  },
+  "C5-Q041": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il rapporto di intensità vale 10⁵."
+      },
+      {
+        "type": "formula",
+        "text": "I=10^{-12}10^5=10^{-7}\\ \\mathrm{W/m^2}=0{,}10\\ \\mathrm{\\mu W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il risultato è ancora inferiore a un microwatt per metro quadrato."
+      }
+    ]
+  },
+  "C5-Q052": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per un’onda nel vuoto la velocità è c."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac cf=\\frac{3{,}0\\times10^8}{1{,}50\\times10^8}\\ \\mathrm m=2{,}0\\ \\mathrm m"
+      }
+    ]
+  },
+  "C5-Q084": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Da n₁ sin θ₁ = n₂ sin θ₂ otteniamo n₂ = n₁ sin θ₁ / sin θ₂."
+      },
+      {
+        "type": "formula",
+        "text": "n_2=\\frac{0{,}7071}{0{,}5000}=1{,}414"
+      },
+      {
+        "type": "text",
+        "text": "Il valore maggiore di uno è coerente con il raggio più vicino alla normale."
+      }
+    ]
+  },
+  "C5-Q096": {
+    "version": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel modello sottile il raggio centrale mantiene la sua direzione. Il raggio parallelo all’asse, invece, emerge passando per il fuoco d’uscita. La loro intersezione localizza l’immagine."
+      }
+    ]
+  },
+  "SIM-C5-L06-01": {
+    "version": 1,
+    "summary": "Dove punta il campo magnetico quando il campo elettrico attraversa lo zero?",
+    "interpretation": "Ruota la vista e distingui i due piani ortogonali. In un’onda piana nel vuoto E e B sono in fase e il loro prodotto vettoriale punta nel verso di propagazione."
+  }
+}

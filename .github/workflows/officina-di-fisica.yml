@@ -74,6 +74,7 @@ jobs:
           xvfb-run -a node tests/browser-diario.mjs
           xvfb-run -a node tests/browser-lettore.mjs
           xvfb-run -a node tests/browser-edizione-c4.mjs
+          xvfb-run -a node tests/browser-edizioni.mjs
           xvfb-run -a node tests/browser-banchi.mjs
           xvfb-run -a node tests/browser-continuita-banchi.mjs
           python3 tools/misura_percorso.py > var/arch/browser/carico.json
