@@ -56,3 +56,7 @@ Partire dalla SHA effettiva di `officina-di-fisica`. Verificare il verbale di in
 ## Officina · Lettura personale
 
 Partire dal ramo ufficiale e verificare l’effettiva integrazione dell’incremento del lettore. I punti da riprendere nell’ordine sono il confronto con le prove della SHA di merge, la revisione delle spiegazioni per ID e il recupero grafico conservando i dati della simulazione. Per riprodurre la lettura aprire C6-L01 e il terzo passaggio sull’eco. Per il ritorno all’allenamento aprire C1-Q034. [Risultati, controlli e limiti](../../officina-di-fisica/docs/verifica-prodotto/lettura.md)
+
+## Officina · Edizione C4 e banchi
+
+Il codice dell’edizione C4 discende dal lettore integrato `250673b6`. Prima di proseguire riconciliare commit effettivo, CI post-merge e pacchetto. Per il confronto aprire C4-Q091 e il primo problema di LAB3D-07. La geometria e il recupero del contesto richiedono un incremento separato, con baseline reale per WebGL e tavola. Gli altri corsi conservano la loro revisione da svolgere per ID. [Contratto, prove per SHA e limiti](../../officina-di-fisica/docs/verifica-prodotto/edizione-c4.md)

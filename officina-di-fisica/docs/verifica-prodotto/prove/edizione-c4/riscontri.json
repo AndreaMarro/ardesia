@@ -1,0 +1,49 @@
+{
+  "base": "250673b6878c33e52ad0e705d8629425ae668fd7",
+  "code": "fedaf61d410db16171fad5ac4952c194af7b123f",
+  "migration": {
+    "sha": "fedaf61d410db16171fad5ac4952c194af7b123f",
+    "tablesCompared": 19,
+    "unchangedHistoricalTables": 17,
+    "newEditions": 28,
+    "idempotent": true,
+    "pinnedVersions": [
+      1,
+      2
+    ],
+    "sameGrading": true,
+    "historicC1": true,
+    "originalBackupPreserved": true
+  },
+  "reconciliation": {
+    "catalogue": 991,
+    "changed": 28,
+    "unchanged": 963,
+    "question": 606,
+    "experiment": 181,
+    "benchProblems": 20,
+    "historicalFigures": 162,
+    "books": 13,
+    "changedBooks": [
+      "C4-dispensa.pdf",
+      "C4-esercizi.pdf"
+    ]
+  },
+  "reflowBudgetCssPx": 1,
+  "before": {
+    "questions": 24,
+    "formulas": 23,
+    "overflow": 17,
+    "worstOverflowPx": 215,
+    "medianMs": 31.0,
+    "p90Ms": 93
+  },
+  "after": {
+    "questions": 24,
+    "formulas": 57,
+    "overflow": 0,
+    "worstOverflowPx": 0,
+    "medianMs": 62.0,
+    "p90Ms": 129
+  }
+}
