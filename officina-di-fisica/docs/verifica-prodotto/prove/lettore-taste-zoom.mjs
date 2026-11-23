@@ -4,7 +4,7 @@ import path from 'node:path';
 import { tmpdir } from 'node:os';
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
-const [work, taste, out, url] = process.argv.slice(2);
+const [work, taste, out, url, item = 'C6-L01'] = process.argv.slice(2);
 const {chromium}=createRequire(path.join(work,'package.json'))('playwright');
 const {probe,layout,app}=await import(pathToFileURL(path.join(taste,'scripts/lib/probe.mjs')));
 const {judge,judgeLayout,judgeApp,APP_SKIP}=await import(pathToFileURL(path.join(taste,'scripts/lib/rules.mjs')));
@@ -21,7 +21,11 @@ try {
   const headers={'X-Astra-Request':'1'};
   const demo=await ctx.request.post(url+'/api/demo',{data:{},headers});
   assert.ok(demo.ok());
-  await page.goto(url+'/#materiale/C6-L01/C6');
+  await page.goto(url+'/#materiale/'+encodeURIComponent(item)+'/'+item.split('-')[0]);
+  if (item.includes('-Q')) {
+    await page.locator('#single').press('Enter');
+    await page.locator('#reveal').press('Enter');
+  }
   await page.getByText('Testo e ascolto',{exact:true}).click();
   await page.evaluate(()=>document.fonts.ready);
   const tasteReports=[];
@@ -43,6 +47,11 @@ try {
       entries:document.querySelectorAll('[data-lettore]').length}));
     assert.equal(layoutActual.entries,1);
     assert.ok(layoutActual.scroll<=width+1 && layoutActual.controls.every(c=>c.height>=44 && c.right<=width+1));
+    if (item.includes('-Q')) {
+      const formulas = await page.locator('.feedback .math').evaluateAll(nodes=>nodes.map(el=>el.scrollWidth-el.clientWidth));
+      assert.ok(formulas.length>0 && formulas.every(extra=>extra<=1));
+      await page.locator('.feedback figure').first().scrollIntoViewIfNeeded();
+    }
     const observations=raw.map(({level,id,message})=>({level,id,message}));
     tasteReports.push({zoom:actual,width,layout:layoutActual,raw:observations});
     await page.screenshot({path:path.join(out,'lettore-zoom-'+zoom+'.png'),animations:'disabled'});

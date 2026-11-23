@@ -14,9 +14,12 @@ num(
     "Converti il femtocoulomb e usa il modulo della carica.",
     "unità",
     "Il prefisso femto vale 10⁻¹⁵, e il numero di particelle è positivo.",
-    eq(r"N=|q|/e=\frac{4{,}80\cdot10^{-15}}{1{,}60\cdot10^{-19}}=3{,}00\cdot10^4"),
-    "Il segno meno indica un eccesso di elettroni, non un numero negativo di particelle.",
-)
+    "La gocciolina ha acquistato cariche negative. Ogni elettrone aggiunge una carica di modulo e. Per contarli dividi la carica acquistata, in valore assoluto, per quella di un elettrone.",
+    eq(r"|q|=4{,}80\ \mathrm{fC}=4{,}80\cdot10^{-15}\ \mathrm C"),
+    "Nella divisione i coulomb si semplificano. I coefficienti danno 4,80 ÷ 1,60 = 3. Per le potenze sottrai gli esponenti.",
+    eq(r"N=3{,}00\cdot10^{-15-(-19)}=30\,000"),
+    "Controlla il segno moltiplicando i 30 000 elettroni per −e. Si ritrova la carica negativa della gocciolina.",
+).update(version=2)
 choice(
     "Forze fra cariche diverse",
     "Due cariche isolate +q e +3q si respingono. Quale confronto fra le forze reciproche rispetta la dinamica?",
@@ -41,9 +44,10 @@ word(
     "Fra un microcoulomb e un picocoulomb vi sono due salti di un fattore mille.",
     "unità",
     "Un nanocoulomb è un miliardesimo di coulomb.",
+    "Il prefisso si chiama nano e ha simbolo n. La lettera C indica il coulomb. Leggi nC come «nanocoulomb».",
     eq(r"1\ \mathrm{nC}=10^{-9}\ \mathrm C=10^{-3}\ \mu\mathrm C"),
-    "Tenere separati prefisso e unità evita errori di molti ordini di grandezza nella forza.",
-)
+    "Un nanocoulomb è un millesimo di microcoulomb.",
+).update(version=2)
 num(
     "La distanza necessaria a ridurre la forza",
     "Due cariche a distanza 4 cm si respingono con forza F. A quanti cm vanno portate per ridurre il modulo a F/9?",
@@ -55,11 +59,13 @@ num(
     "La distanza compare al quadrato al denominatore.",
     "algebra",
     "Per ridurre la forza nove volte basta aumentare la distanza di tre volte.",
-    eq(
-        r"\frac{F_f}{F_i}=\left(\frac{r_i}{r_f}\right)^2=\frac19\quad\Longrightarrow\quad r_f=3r_i=12\ \mathrm{cm}"
-    ),
-    "Il risultato è una distanza maggiore, coerente con una forza ridotta.",
-)
+    "Le cariche restano le stesse. Con la legge di Coulomb il rapporto fra le forze dipende solo dal quadrato del rapporto fra le distanze.",
+    eq(r"\frac{F_f}{F_i}=\left(\frac{r_i}{r_f}\right)^2=\frac19"),
+    "Le distanze sono positive. Prendi la radice positiva di entrambi i membri. La radice di 9 vale 3.",
+    eq(r"\frac{r_i}{r_f}=\frac13"),
+    eq(r"r_f=3r_i=3\cdot4\ \mathrm{cm}=12\ \mathrm{cm}"),
+    "Verifica a ritroso. Triplicando la distanza il denominatore della forza diventa nove volte maggiore.",
+).update(version=2)
 num(
     "Carica mancante dopo la separazione",
     "Un sistema isolato possiede in totale −2,5 nC. Dopo una separazione il primo oggetto ha +1,2 nC. Qual è la carica del secondo, in nC?",
@@ -143,11 +149,14 @@ num(
     "Ricava il modulo e assegna il segno usando l’attrazione.",
     "algebra",
     "La forza con la sorgente positiva è attrattiva, quindi la seconda carica deve essere negativa.",
-    eq(
-        r"|q_2|=\frac{Fr^2}{k|q_1|}=\frac{9\cdot10^{-6}\cdot0{,}20^2}{9\cdot10^9\cdot2\cdot10^{-9}}=2{,}0\cdot10^{-8}\ \mathrm C"
-    ),
-    "Questo modulo equivale a 20 nC. Il segno necessario dà q₂ = −20 nC.",
-)
+    "Per il modulo isola la carica incognita nella legge di Coulomb. Porta la distanza al quadrato al numeratore e dividi per k e per il modulo della carica nota.",
+    eq(r"|q_2|=\frac{F r^2}{k|q_1|}"),
+    eq(r"F r^2=9\cdot10^{-6}(0{,}20)^2\ \mathrm{N\,m^2}"),
+    eq(r"k|q_1|=18\ \mathrm{N\,m^2/C}"),
+    eq(r"|q_2|=\frac{3{,}6\cdot10^{-7}}{18}\ \mathrm C"),
+    eq(r"|q_2|=2{,}0\cdot10^{-8}\ \mathrm C"),
+    "Nelle unità, N·m² diviso per (N·m²/C²)·C dà C. Il modulo di 2,0 × 10⁻⁸ C equivale a 20 nC. La sorgente è positiva e la forza è attrattiva, quindi la seconda carica è negativa. Si ottiene q₂ = −20 nC.",
+).update(version=2)
 
 enter("C4", 2)
 choice(
@@ -163,12 +172,15 @@ choice(
     "Distingui la sorgente dalla particella che sonda il campo.",
     "concetto",
     "E dipende dalla configurazione sorgente; F contiene il fattore q della prova.",
+    "Le piastre sono le sorgenti del campo. La piccola carica serve a sondarlo. Cambiamo la prova nello stesso punto mantenendo fisse le piastre.",
     fig(
         "C4-campo",
-        "Il verso di E è fissato dalle piastre anche quando sulla prova negativa la forza punta nel verso opposto.",
+        "Segui le due frecce fra le piastre. Il campo E va dalla piastra positiva, a sinistra, alla negativa, a destra. La freccia della forza F sulla prova negativa punta a sinistra.",
     ),
+    "Con la prova +q, la forza segue il campo verso destra. Inserendo −q si cambia solo il segno del fattore che moltiplica il campo.",
     eq(r"\vec F_{-q}=(-q)\vec E=-\vec F_{+q}"),
-)
+    "Il campo nel punto resta uguale. La forza conserva il modulo e inverte il verso. Per controllare, rimetti +q e ritroverai la forza verso destra.",
+).update(version=2)
 num(
     "Campo da una forza misurata",
     "Una prova di +4,0 nC subisce una forza di 1,2 μN verso est. Trova il modulo del campo in N/C.",
@@ -205,10 +217,14 @@ num(
     "Fra due sorgenti positive i campi si oppongono. Uguaglia i moduli.",
     "algebra",
     "La distanza dalla carica maggiore deve essere doppia di quella dalla più piccola.",
-    eq(r"\frac{kq}{x^2}=\frac{4kq}{(30-x)^2}\quad\Longrightarrow\quad 30-x=2x"),
-    eq(r"x=10\ \mathrm{cm}"),
-    "A 10 cm dalla sorgente piccola e 20 cm dalla grande i due contributi hanno lo stesso modulo e verso opposto.",
-)
+    "Chiama x la distanza in centimetri dalla carica +q. L’altra distanza vale 30 − x. Fra due sorgenti positive ogni campo si allontana dalla sua sorgente. Le frecce puntano in versi opposti e si cancellano se i moduli coincidono.",
+    eq(r"\frac{kq}{x^2}=\frac{4kq}{(30-x)^2}"),
+    "Semplifica kq e moltiplica per i denominatori. Entrambe le distanze sono positive, quindi puoi prendere la radice positiva.",
+    eq(r"(30-x)^2=4x^2"),
+    eq(r"30-x=2x"),
+    eq(r"3x=30\quad\Rightarrow\quad x=10\ \mathrm{cm}"),
+    "Le distanze sono 10 e 20 cm. La carica quattro volte maggiore si trova a distanza doppia. Il fattore quattro al numeratore si compensa con il quadrato di due al denominatore.",
+).update(version=2)
 choice(
     "Le linee possono attraversarsi?",
     "Un disegno mostra due linee di campo elettrico che si incrociano con tangenti differenti in un punto con E diverso da zero. Qual è il problema?",
@@ -235,11 +251,13 @@ num(
     "Usa il moto orizzontale per il tempo di permanenza.",
     "modello",
     "L’accelerazione è verticale, quindi il tempo si trova da x/vx.",
-    eq(
-        r"t=0{,}80/4=0{,}20\ \mathrm s,\qquad y=\tfrac12a_y t^2=3(0{,}20)^2=0{,}12\ \mathrm m"
-    ),
-    "La conversione finale dà 12 cm. La traiettoria combina moto orizzontale uniforme e moto verticale accelerato.",
-)
+    "In orizzontale la velocità resta 4 m/s perché l’accelerazione orizzontale è nulla. Dividi il tratto percorso per questa velocità.",
+    eq(r"t=\frac{0{,}80\ \mathrm m}{4\ \mathrm{m/s}}=0{,}20\ \mathrm s"),
+    "Durante gli stessi 0,20 s il moto verticale parte con velocità nulla e accelera verso y positivo.",
+    eq(r"\Delta y=\tfrac12 a_y t^2=3(0{,}20)^2\ \mathrm m"),
+    eq(r"\Delta y=3\cdot0{,}040\ \mathrm m=0{,}12\ \mathrm m"),
+    "Ogni metro contiene 100 cm. Lo spostamento verticale è quindi +12 cm.",
+).update(version=2)
 word(
     "Linee rivolte verso il centro",
     "Una distribuzione radiale di linee elettriche punta verso un’unica carica puntiforme al centro. Indica con un aggettivo il segno della sorgente.",
@@ -354,9 +372,11 @@ num(
     "Usa la distanza misurata nella direzione del campo.",
     "unità",
     "La differenza di potenziale per unità di distanza deve usare metri.",
-    eq(r"E=|\Delta V|/d=12/0{,}030=400\ \mathrm{V/m}"),
-    "Il campo punta dal piano a potenziale più alto verso quello a potenziale più basso.",
-)
+    "La distanza fra i piani è misurata nella direzione del campo. Per ottenere volt al metro converti prima 3,0 cm in 0,030 m.",
+    eq(r"E=\frac{|\Delta V|}{d}"),
+    eq(r"E=\frac{12\ \mathrm V}{0{,}030\ \mathrm m}=400\ \mathrm{V/m}"),
+    "Controlla con il prodotto inverso. Un campo di 400 V/m, su 0,030 m, dà una differenza di potenziale di modulo 12 V. Il campo punta dal piano a potenziale maggiore a quello a potenziale minore.",
+).update(version=2)
 choice(
     "Potenziale nullo senza campo nullo",
     "Nel punto medio tra +q e −q, ponendo V = 0 all’infinito, quale situazione si incontra?",
@@ -384,14 +404,14 @@ num(
     "eV",
     0.02,
     17 - 2,
-    "Per una particella con carica unitaria in modulo, 1 V di differenza corrisponde a 1 eV di energia in modulo.",
+    "L’elettrone ha carica −e. Un elettrone che attraversa una differenza di potenziale di 1 V scambia un’energia di modulo 1 eV. Usa il segno di −q ΔV per stabilire se accelera.",
     "algebra",
     "La carica negativa guadagna energia cinetica andando verso un potenziale più alto.",
-    eq(
-        r"\Delta V=17-2=15\ \mathrm V,\qquad \Delta K=-q\Delta V=e\cdot15\ \mathrm V=15\ \mathrm{eV}"
-    ),
+    eq(r"\Delta V=(17-2)\ \mathrm V=15\ \mathrm V"),
+    eq(r"\Delta K=-q\Delta V"),
+    eq(r"\Delta K=+e\cdot15\ \mathrm V=15\ \mathrm{eV}"),
     "Un elettronvolt è un’unità di energia. Il guadagno sarebbe di segno opposto per una carica positiva con lo stesso spostamento.",
-)
+).update(version=2)
 word(
     "Scelta dello zero",
     "La scelta di V = 0 all’infinito per una carica puntiforme fissa un … per il potenziale. Completa con la parola che indica l’origine convenzionale della scala.",
@@ -414,12 +434,15 @@ num(
     "Converti la massa in kg e uguaglia il guadagno cinetico alla perdita di energia potenziale.",
     "unità",
     "Un milligrammo vale 10⁻⁶ kg.",
-    eq(
-        r"\tfrac12 mv_f^2=-q\Delta V=4{,}0\cdot10^{-6}\cdot9{,}0=36\cdot10^{-6}\ \mathrm J"
-    ),
-    eq(r"v_f=\sqrt{2\cdot36\cdot10^{-6}/(2{,}0\cdot10^{-6})}=6{,}0\ \mathrm{m/s}"),
-    "La perdita di potenziale accelera una carica positiva.",
-)
+    "La massa entra nella legge in chilogrammi. Un milligrammo è un millesimo di grammo, quindi 2,0 mg = 2,0 × 10⁻⁶ kg. Il potenziale diminuisce e la differenza finale meno iniziale è −9,0 V.",
+    eq(r"\tfrac12mv_f^2=-q\Delta V"),
+    eq(r"-q\Delta V=4{,}0\cdot10^{-6}\cdot9{,}0\ \mathrm J"),
+    eq(r"\Delta K=36\cdot10^{-6}\ \mathrm J"),
+    "Poiché parte da ferma, tutta l’energia cinetica finale è quella guadagnata. Moltiplica per due e dividi per la massa.",
+    eq(r"v_f^2=\frac{2\cdot36\cdot10^{-6}}{2{,}0\cdot10^{-6}}\ \mathrm{m^2/s^2}"),
+    eq(r"v_f=\sqrt{36}\ \mathrm{m/s}=6{,}0\ \mathrm{m/s}"),
+    "Per il modulo della velocità scegli la radice positiva.",
+).update(version=2)
 choice(
     "Campi e curve di livello",
     "In due regioni segnate con lo stesso intervallo di potenziale fra linee adiacenti, dove è mediamente più intenso il campo?",
@@ -430,12 +453,12 @@ choice(
         "Dove il valore assoluto del potenziale è sempre maggiore",
         "Dove si cambia il riferimento dello zero",
     ],
-    "Confronta la variazione di V per distanza percorsa normalmente.",
+    "Misura la distanza fra le due linee lungo la perpendicolare alle equipotenziali. A parità di variazione di potenziale, come cambia il rapporto |ΔV|/Δs se le linee si avvicinano?",
     "modello",
     "È il gradiente del potenziale a determinare il campo.",
     eq(r"E_\perp\simeq |\Delta V|/\Delta s"),
     "Per la medesima caduta di potenziale una distanza minore richiede un campo medio maggiore lungo la normale.",
-)
+).update(version=2)
 num(
     "Numero di coppie in una configurazione",
     "Per calcolare l’energia di quattro cariche puntiformi distinte sommando i contributi a coppie, quanti termini distinti devi includere?",
@@ -466,8 +489,8 @@ choice(
     "Considera la repulsione sugli elettroni mobili.",
     "concetto",
     "Gli elettroni sono spinti verso il lato lontano. Sul lato vicino resta un difetto elettronico.",
-    "Le cariche si separano per induzione. Il lato vicino diventa positivo e quello lontano negativo. La sfera isolata resta globalmente neutra.",
-)
+    "La bacchetta negativa respinge gli elettroni mobili della sfera verso il lato lontano. Sul lato vicino rimane un difetto di elettroni e quindi una carica positiva. Il lato lontano ha un eccesso di elettroni. Poiché la sfera è isolata e la bacchetta non la tocca, la carica totale resta zero.",
+).update(version=2)
 word(
     "Risposta locale dell’isolante",
     "Quale termine indica la formazione o l’orientamento di dipoli elettrici in un dielettrico immerso in un campo?",
@@ -516,7 +539,7 @@ choice(
 )
 num(
     "Potenziale fra due punti del metallo",
-    "Due punti si trovano entrambi nello stesso conduttore collegato in equilibrio elettrostatico. Se uno è a +42 V rispetto alla terra, quale differenza VB − VA si misura fra loro in volt?",
+    "A e B si trovano nello stesso pezzo di metallo continuo, in equilibrio elettrostatico. A si trova a +42 V rispetto alla Terra. Quale differenza VB − VA si misura fra i due punti in volt?",
     1,
     0,
     "V",
@@ -525,9 +548,11 @@ num(
     "Nel materiale conduttore all’equilibrio elettrostatico il campo interno è nullo.",
     "concetto",
     "Il valore di potenziale rispetto alla terra può essere non nullo anche se è uniforme nel conduttore.",
-    eq(r"V_B=V_A=42\ \mathrm V,\qquad V_B-V_A=0\ \mathrm V"),
-    "Uno zero del campo implica costanza spaziale del potenziale all’interno del conduttore.",
-)
+    "Collega A e B con un percorso interamente nel metallo. In equilibrio elettrostatico il campo è nullo lungo tutto il percorso. Il lavoro del campo per unità di carica è quindi zero e il potenziale ha lo stesso valore ai due estremi.",
+    eq(r"V_B=V_A=42\ \mathrm V"),
+    eq(r"V_B-V_A=(42-42)\ \mathrm V=0\ \mathrm V"),
+    "I +42 V dipendono dal riferimento scelto. Cambiando riferimento si spostano insieme i due potenziali, mentre la loro differenza resta zero.",
+).update(version=2)
 word(
     "Connettere un conduttore alla Terra",
     "Qual è il termine pratico per un collegamento conduttore a un grande serbatoio di carica che fissa il potenziale di riferimento? Completa «messa a …».",
@@ -571,7 +596,7 @@ choice(
 )
 num(
     "Effetto di un mezzo sul campo a carica fissa",
-    "Tra due piastre isolate cariche il campo iniziale è 12 kV/m. Un dielettrico lineare omogeneo riempie tutto lo spazio con εr = 3. Trascurando i bordi, quale campo si ottiene in kV/m?",
+    "Tra due piastre parallele isolate, inizialmente nel vuoto, il campo è 12 kV/m. Un dielettrico lineare omogeneo di permittività relativa εr = 3 riempie lo spazio fra le piastre. Le cariche libere restano fisse. Trascurando i bordi, quale campo si ottiene in kV/m?",
     2,
     4,
     "kV/m",
@@ -580,11 +605,11 @@ num(
     "Le cariche libere restano fisse e il campo delle cariche legate riduce il campo totale.",
     "modello",
     "Con carica libera fissata il campo nel mezzo si divide per εr.",
-    eq(
-        r"E_f=\sigma_{\rm libera}/(\varepsilon_0\varepsilon_r)=E_i/\varepsilon_r=12/3=4\ \mathrm{kV/m}"
-    ),
-    "Il risultato richiede piastre isolate. Con un generatore collegato che mantiene V costante il vincolo fisico cambia.",
-)
+    "Nel vuoto il campo vale σlibera/ε₀. Dopo l’inserimento la densità di carica libera sulle piastre resta la stessa. Il dielettrico si polarizza e il campo delle cariche legate riduce il campo totale.",
+    eq(r"E_f=\frac{\sigma_{\mathrm{libera}}}{\varepsilon_0\varepsilon_r}=\frac{E_i}{\varepsilon_r}"),
+    eq(r"E_f=\frac{12}{3}\ \mathrm{kV/m}=4\ \mathrm{kV/m}"),
+    "Controlla il caso del vuoto. Ponendo εr = 1 si torna ai 12 kV/m iniziali.",
+).update(version=2)
 word(
     "Materiale con cariche prevalentemente legate",
     "Come si chiama, nel linguaggio dei condensatori, un materiale isolante che risponde al campo principalmente per polarizzazione?",
@@ -645,11 +670,11 @@ num(
     "Trasforma μC in C e mA in A prima di dividere.",
     "unità",
     "Il rapporto fra coulomb e ampere fornisce secondi.",
-    eq(
-        r"t=\frac{\Delta q}{I}=\frac{8{,}0\cdot10^{-6}}{0{,}40\cdot10^{-3}}=0{,}020\ \mathrm s=20\ \mathrm{ms}"
-    ),
-    "Quaranta microcoulomb al decimo di secondo corrispondono allo stesso ordine di grandezza.",
-)
+    eq(r"t=\frac{\Delta q}{I}"),
+    eq(r"t=\frac{8{,}0\cdot10^{-6}\ \mathrm C}{0{,}40\cdot10^{-3}\ \mathrm A}"),
+    eq(r"t=0{,}020\ \mathrm s=20\ \mathrm{ms}"),
+    "Rimoltiplica corrente per durata. Il prodotto 0,40 mA × 20 ms dà 8,0 µC perché 10⁻³ A × 10⁻³ s = 10⁻⁶ C. Hai ricostruito la carica trasferita.",
+).update(version=2)
 choice(
     "Confrontare due curve ohmiche",
     "In un grafico I in ordinata e V in ascissa, due resistori danno rette per l’origine. Quale ha resistenza più alta?",
@@ -721,10 +746,11 @@ choice(
     ],
     "Confronta V/I utilizzando la stessa unità di corrente.",
     "modello",
-    "Le due resistenze di rapporto sono 1 kΩ e 1,5 kΩ.",
-    eq(r"R_1=1/0{,}001=1000\ \Omega,\qquad R_2=3/0{,}002=1500\ \Omega"),
+    "I rapporti V/I misurati nei due punti valgono 1 kΩ e 1,5 kΩ. Una resistenza costante darebbe lo stesso rapporto. Per individuare la causa della variazione servono altre misure.",
+    eq(r"R_1=\frac{1\ \mathrm V}{0{,}001\ \mathrm A}=1000\ \Omega"),
+    eq(r"R_2=\frac{3\ \mathrm V}{0{,}002\ \mathrm A}=1500\ \Omega"),
     "Una resistenza ohmica costante richiederebbe valori uguali. Dati ulteriori servirebbero a distinguere non linearità intrinseca e mutamento delle condizioni, come il riscaldamento.",
-)
+).update(version=2)
 num(
     "Corrente media con un’inversione",
     "In un intervallo di 5 s passano 12 C verso destra e 2 C verso sinistra. Calcola la corrente media in A assumendo destra positiva.",
@@ -773,10 +799,12 @@ choice(
     "Individua la grandezza uguale nei due rami.",
     "modello",
     "A tensione comune si usa P = V²/R.",
+    "I rami in parallelo hanno la stessa tensione V ai capi. Per ciascun resistore la legge di Ohm dà I = V/R. Sostituisci la corrente nella potenza elettrica.",
+    eq(r"P=VI=V\frac{V}{R}=\frac{V^2}{R}"),
     eq(r"P_1/P_2=R_2/R_1"),
-    "Il ramo meno resistivo porta più corrente alla stessa tensione, e riceve più energia ogni secondo.",
+    "Nel rapporto si semplifica V². Il ramo di resistenza minore porta più corrente e dissipa più energia ogni secondo.",
     lab=True,
-)
+).update(version=2)
 word(
     "Il punto in comune",
     "Nel linguaggio dei circuiti ideali, come si chiama l’insieme di estremi collegati fra loro da filo ideale e aventi lo stesso potenziale? Usa il singolare.",
@@ -914,11 +942,11 @@ num(
     "Per un condensatore lineare ΔQ = CΔV.",
     "algebra",
     "Al denominatore compare l’incremento di tensione.",
-    eq(
-        r"C=\frac{\Delta Q}{\Delta V}=\frac{18\ \mu\mathrm C}{5-2\ \mathrm V}=6\ \mu\mathrm F"
-    ),
-    "Si può usare la pendenza della retta Q(V) senza conoscere la carica iniziale assoluta.",
-)
+    "La capacità di un condensatore lineare è la pendenza del grafico carica-tensione. Misura quanto aumenta la carica per ogni volt in più.",
+    eq(r"\Delta V=(5-2)\ \mathrm V=3\ \mathrm V"),
+    eq(r"C=\frac{\Delta Q}{\Delta V}=\frac{18\ \mu\mathrm C}{3\ \mathrm V}=6\ \mu\mathrm F"),
+    "Rimoltiplicando 6 µF per 3 V si ritrovano i 18 µC di incremento.",
+).update(version=2)
 choice(
     "Allontanare le piastre isolate",
     "Un condensatore piano scollegato dal generatore conserva la propria carica. Le armature vengono allontanate, senza cambiare area o dielettrico e trascurando i bordi. Che cosa succede alla tensione?",
@@ -958,11 +986,12 @@ num(
     "Isola A in C = ε₀A/d e converti i metri quadrati.",
     "unità",
     "1 m² corrisponde a 10 000 cm².",
-    eq(
-        r"A=Cd/\varepsilon_0=(88{,}5\cdot10^{-12})(10^{-3})/(8{,}85\cdot10^{-12})=0{,}010\ \mathrm{m^2}"
-    ),
-    "La conversione dà 100 cm². Piastre quadrate di lato 10 cm hanno dimensione laterale molto maggiore della distanza di 1 mm.",
-)
+    eq(r"C=\frac{\varepsilon_0 A}{d}\quad\Rightarrow\quad A=\frac{C d}{\varepsilon_0}"),
+    eq(r"\frac{C}{\varepsilon_0}=\frac{88{,}5\cdot10^{-12}}{8{,}85\cdot10^{-12}}\ \mathrm m"),
+    eq(r"A=10\ \mathrm m\cdot10^{-3}\ \mathrm m"),
+    eq(r"A=0{,}010\ \mathrm{m^2}"),
+    "Per passare alle aree il fattore di conversione va applicato a due lati. Un metro quadrato contiene 100 × 100 = 10 000 cm². Quindi 0,010 × 10 000 = 100 cm². Un quadrato di lato 10 cm ha proprio questa area e il lato è molto maggiore della distanza di 1 mm.",
+).update(version=2)
 choice(
     "Perché compare un mezzo?",
     "Quale grafico consente di ricavare l’energia del condensatore ideale inizialmente scarico come area di un triangolo?",
@@ -976,9 +1005,11 @@ choice(
     "Il lavoro per aggiungere una piccola carica dq vale V dq.",
     "concetto",
     "La tensione durante il caricamento cresce da zero al valore finale.",
-    eq(r"U=\int_0^Q V(q)\,dq=\int_0^Q q/C\,dq=Q^2/(2C)"),
-    "La tensione media durante questa sommatoria è metà di quella finale. Il fattore un mezzo esprime l’area triangolare.",
-)
+    "Metti la carica q sull’asse orizzontale e la tensione V sull’asse verticale. Per un condensatore lineare inizialmente scarico la retta V = q/C parte dall’origine. Per aggiungere una piccola carica Δq occorre un lavoro circa uguale a V Δq, l’area di una striscia sottile sotto la retta.",
+    eq(r"U=\int_0^Q V(q)\,\mathrm dq"),
+    eq(r"U=\frac{1}{C}\int_0^Q q\,\mathrm dq=\frac{Q^2}{2C}"),
+    "Sommando le strisce si ottiene l’area del triangolo, metà della base Q per l’altezza finale V. L’unità è C·V = J, come deve essere per un’energia.",
+).update(version=2)
 num(
     "Una variazione di energia per tensione",
     "Un condensatore da 5,0 μF passa da 2,0 a 4,0 V. Quanto aumenta l’energia in μJ?",
@@ -1098,11 +1129,14 @@ num(
     "Sottrai i reciproci prima di invertire.",
     "algebra",
     "Per la serie di condensatori si sommano i reciproci.",
-    eq(
-        r"1/C_x=1/3-1/9=2/9\ \mu\mathrm F^{-1}\quad\Longrightarrow\quad C_x=9/2=4{,}5\ \mu\mathrm F"
-    ),
+    "Per condensatori in serie si sommano i reciproci delle capacità. Isola il reciproco della capacità ignota sottraendo quello del condensatore da 9 µF.",
+    eq(r"\frac{1}{C_x}=\frac{1}{C_{\mathrm{eq}}}-\frac{1}{C_1}"),
+    eq(r"\frac{1}{C_x}=\left(\frac{1}{3}-\frac{1}{9}\right)(\mu\mathrm F)^{-1}"),
+    eq(r"\frac{1}{C_x}=\frac{2}{9}(\mu\mathrm F)^{-1}"),
+    "Inverti sia il numero sia l’unità per tornare alla capacità.",
+    eq(r"C_x=\frac92\,\mu\mathrm F=4{,}5\,\mu\mathrm F"),
     "Il valore equivalente 3 μF è inferiore sia a 9 sia a 4,5 μF.",
-)
+).update(version=2)
 choice(
     "Collegare armature di segno opposto",
     "Due condensatori identici da C, inizialmente caricati entrambi a V, sono scollegati dalle sorgenti. Si connette la piastra positiva di ciascuno a quella negativa dell’altro. Dopo il transitorio reale qual è il modulo della tensione comune?",
@@ -1203,12 +1237,13 @@ choice(
     "Applica la regola della mano destra prima e dopo l’inversione.",
     "concetto",
     "Una corrente con verso opposto dà linee circolari percorse nel verso opposto.",
+    "Immagina di afferrare il filo con la mano destra. Punta il pollice nel verso della corrente convenzionale. Le dita piegate seguono il campo magnetico attorno al filo.",
     fig(
         "C4-filo-b",
         "Con corrente uscente il campo è antiorario. Con corrente entrante si orienta in senso orario.",
     ),
-    "Il campo misurato dalla bussola può includere anche il campo terrestre. L’inversione qui riguarda il contributo del filo.",
-)
+    "Inverti il pollice tenendo fisso il punto di osservazione. In quel punto la tangente al cerchio resta la stessa e il campo del filo inverte verso. La bussola reale risente anche del campo terrestre.",
+).update(version=2)
 num(
     "Carica misurata tramite deviazione",
     "Una particella passa perpendicolarmente a B = 0,50 T alla velocità 400 m/s e subisce forza magnetica di 2,0 μN. Trova il modulo della carica in nC.",
@@ -1352,14 +1387,19 @@ num(
     "Il coseno usa l’angolo rispetto alla normale.",
     "modello",
     "A 60° la componente normale è metà del modulo del campo.",
+    "Guarda la spira di taglio. Scegli il verso positivo della normale, la freccia perpendicolare al piano. Il flusso è l’area della spira moltiplicata per la componente del campo lungo questa freccia.",
     fig(
-        "C4-flusso",
-        "Il piano e la normale sono perpendicolari. L’angolo indicato è quello della formula.",
+        "C4-Q091-flusso-v2",
+        "La spira è vista di taglio. Il campo B forma 60° con la normale verso l’alto. Il tratteggio riporta la punta di B sulla normale. La componente Bₙ è positiva e lunga metà di B.",
     ),
-    eq(
-        r"\Phi=BA\cos60^\circ=0{,}30\cdot0{,}020\cdot0{,}5=0{,}0030\ \mathrm{Wb}=3{,}0\ \mathrm{mWb}"
-    ),
-)
+    "L’angolo tra il campo e la normale è 60°. Il coseno di 60° vale un mezzo. Prima calcola la componente normale del campo.",
+    eq(r"B_n=B\cos 60^\circ"),
+    eq(r"B_n=0{,}30\ \mathrm T\times\tfrac12=0{,}15\ \mathrm T"),
+    "Ora moltiplica per l’area di 0,020 m². Il prodotto di un tesla per un metro quadrato vale un weber.",
+    eq(r"\Phi=B_nA=0{,}15\times0{,}020\ \mathrm{Wb}"),
+    eq(r"\Phi=0{,}0030\ \mathrm{Wb}=+3{,}0\ \mathrm{mWb}"),
+    "Per passare da Wb a mWb moltiplica per mille. Come controllo, con il campo lungo la normale avresti 6,0 mWb. A 60° ne ottieni metà. Invertendo la normale il flusso diventerebbe −3,0 mWb.",
+).update(version=2)
 choice(
     "Un grande campo immutabile",
     "Una spira conduttrice chiusa resta ferma con area e orientamento fissi in un campo magnetico uniforme costante. Qual è la f.e.m. dovuta a quel campo?",
@@ -1472,12 +1512,13 @@ choice(
     "Considera il flusso che cresce perché muta l’area immersa.",
     "modello",
     "L’aumento del flusso entrante richiede un campo indotto uscente.",
+    "Durante l’ingresso aumenta la porzione di spira attraversata dal campo esterno diretto dentro il foglio. Cresce in modulo il flusso entrante. Per la legge di Lenz, il campo prodotto dalla corrente indotta deve puntare verso chi guarda per opporsi a questo aumento.",
     fig(
         "C4-lenz",
         "La direzione della risposta è la stessa per un aumento dovuto all’area immersa o al modulo del campo.",
     ),
     "Con il pollice destro verso chi guarda, le dita si chiudono in senso antiorario. Dopo che tutta la spira è dentro, una traslazione rigida nel campo uniforme lascia costante il flusso.",
-)
+).update(version=2)
 num(
     "Da un grafico con due pendenze",
     "Una spira singola concatena un flusso che sale linearmente da 0 a 8 mWb nei primi 4 ms e resta poi costante per 4 ms. Calcola il modulo della f.e.m. media sull’intero intervallo di 8 ms in V.",

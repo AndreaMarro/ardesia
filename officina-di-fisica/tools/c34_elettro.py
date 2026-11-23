@@ -384,12 +384,15 @@ ex(
         "C4-orbita",
         "La forza si dirige verso il centro; la velocità è tangente. Il disegno fissa l’orientamento di una possibile entrata.",
     ),
-    eq(r"|q|vB=mv^2/r\quad\Longrightarrow\quad r=\frac{mv}{|q|B}"),
-    eq(
-        r"r=\frac{1{,}67\cdot10^{-27}\cdot2{,}0\cdot10^5}{1{,}60\cdot10^{-19}\cdot0{,}10}=2{,}09\cdot10^{-2}\ \mathrm m=2{,}09\ \mathrm{cm}"
-    ),
-    "Una velocità maggiore a campo fissato allargherebbe l’orbita. Il segno della carica determina il verso di curvatura.",
-)
+    "Il campo è perpendicolare alla velocità. La forza magnetica curva il moto e fornisce la forza centripeta. Uguaglia i moduli e semplifica una velocità.",
+    eq(r"|q|vB=\frac{mv^2}{r}"),
+    eq(r"r=\frac{mv}{|q|B}"),
+    "Calcola separatamente quantità di moto e prodotto fra carica e campo, usando le unità del Sistema Internazionale.",
+    eq(r"mv=3{,}34\cdot10^{-22}\ \mathrm{kg\,m/s}"),
+    eq(r"|q|B=1{,}60\cdot10^{-20}\ \mathrm{kg/s}"),
+    eq(r"r=0{,}020875\ \mathrm m=2{,}0875\ \mathrm{cm}"),
+    "Per passare dai metri ai centimetri moltiplica per cento. La velocità e il campo hanno due cifre significative, quindi il raggio si esprime come 2,1 cm. A campo fissato una velocità maggiore allarga l’orbita. Il segno della carica decide da quale parte curva la traiettoria.",
+).update(version=2)
 ex(
     "Forza su un segmento di filo",
     "Un segmento rettilineo di 8,0 cm è percorso da 2,0 A verso destra in un campo di 0,25 T diretto verso l’alto nel piano del foglio. Trova modulo e verso della forza.",
@@ -421,18 +424,18 @@ lesson(
     "Una forza elettromotrice può esistere anche a circuito aperto. Una corrente persistente richiede un cammino chiuso e dipende dalle proprietà del circuito. In una spira resistiva con autoinduzione trascurabile, il suo modulo si ricava dalla legge di Ohm.",
 )
 ex(
-    "Quanto vale l’impulso induttivo?",
+    "Quale tensione media si induce nella bobina?",
     "Una bobina di 40 spire, area 5,0 cm² per spira, giace perpendicolare a un campo che cresce uniformemente da 0,10 a 0,30 T in 20 ms. Calcola il modulo della f.e.m. media.",
     2,
     "L’area è 5,0 × 10⁻⁴ m² e il tempo 0,020 s. Il campo è parallelo alla normale delle spire. Ogni spira concatena la stessa variazione di flusso.",
-    eq(
-        r"|\Delta\Phi|=A|\Delta B|=(5{,}0\cdot10^{-4})(0{,}20)=1{,}0\cdot10^{-4}\ \mathrm{Wb}"
-    ),
-    eq(
-        r"|\overline{\mathcal E}|=N|\Delta\Phi|/\Delta t=40\cdot10^{-4}/0{,}020=0{,}20\ \mathrm V"
-    ),
-    "Il numero di spire moltiplica la variazione per spira. Il risultato è una tensione, non una forza meccanica.",
-)
+    eq(r"|\Delta B|=(0{,}30-0{,}10)\ \mathrm T=0{,}20\ \mathrm T"),
+    eq(r"|\Delta\Phi|=A\,|\Delta B|"),
+    eq(r"|\Delta\Phi|=1{,}0\cdot10^{-4}\ \mathrm{Wb}"),
+    "Moltiplica la variazione di flusso di una spira per le 40 spire. Dividi poi per la durata della variazione, 0,020 s.",
+    eq(r"N|\Delta\Phi|=0{,}0040\ \mathrm{Wb}"),
+    eq(r"|\overline{\mathcal E}|=\frac{0{,}0040\ \mathrm{Wb}}{0{,}020\ \mathrm s}=0{,}20\ \mathrm V"),
+    "Un weber al secondo è un volt. A parità di variazione di flusso, se il tempo raddoppiasse la tensione media si dimezzerebbe.",
+).update(version=2, family="quanto-vale-limpulso-induttivo")
 ex(
     "Decidere il verso durante una diminuzione",
     "Una spira chiusa è vista frontalmente. Il campo esterno è entrante nel foglio e sta diminuendo in modulo. Qual è il verso della corrente indotta visto dall’osservatore?",
