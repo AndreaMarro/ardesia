@@ -692,10 +692,21 @@ def generate(rows, c, b, dest):
                 "Esportazione PDF interrotta.",
             )
 
-        render()
-        folios = destination_pages(out)
-        if folios:
+        # A short handout often starts and ends on page one. Trust only the
+        # destinations in the PDF just produced, including after repagination.
+        folios = {"s0": 1}
+        for _ in range(3):
             render(folios)
+            measured = destination_pages(out)
+            if measured == folios:
+                break
+            if not measured:
+                render()
+                break
+            folios = measured
+        else:
+            # Keep the section links if the browser cannot produce stable numbers.
+            render()
         out.replace(dest / (c + "-" + b + ".pdf"))
         marker = w / "stamp"
         marker.write_text(stamp)
