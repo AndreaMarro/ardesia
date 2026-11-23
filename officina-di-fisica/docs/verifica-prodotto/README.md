@@ -70,3 +70,8 @@ La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto s
 | Funzione | Sorgente e contratto | Dati | Interazione | Prova |
 | --- | --- | --- | --- | --- |
 | Lettura di energia, frequenza, intensità e raggi in C5 | Record versionati di corso, figura della proiezione e modello elettromagnetico. Il manifest delle prime edizioni riconosce soltanto la revisione distribuita. | 165 decisioni per ID e assegnazione dell’edizione al tentativo | Esempio guidato, sette quesiti, lettura manuale, previsione, misura e ritorno alla lezione | [Contratto scientifico ed editoriale](edizione-c5.md) · [Prova di lettura e del banco](../../tests/browser-edizioni.mjs) |
+## Meccanica
+
+| Funzione | Sorgente e contratto | Dati | Interazione | Prova |
+| --- | --- | --- | --- | --- |
+| Segno del lavoro e misura delle pendenze in C1 | Sorgenti dei corsi C1/C2 riproducibili e due grafici con secante fra gli estremi del segnale | 181 voci C1, 24 nuove edizioni, soluzioni v1/v2 e due fascicoli | Confronto fra supporti, lettura a tappe, misura della velocità e dell’accelerazione, ritorno al paragrafo | [Contratto e registro C1](edizione-c1.md) · [Riapertura di due versioni](../../tools/collauda_riapertura.py) |
