@@ -338,13 +338,18 @@ export async function benchPage(id, origin, topicIndex) {
     visibility();
   });
   observer.observe(stageBox);
+  let diagramFrame = 0;
   const diagramSize = activity && !pilot ? new ResizeObserver(([entry]) => {
     const { width, height } = entry.contentRect;
     const padding = parseFloat(getComputedStyle(root).fontSize);
     const usable = Math.min(width - padding, (height - padding) * 460 / 215);
     if (usable <= 0 || usable === diagramWidth) return;
     diagramWidth = usable;
-    if (!disposed && view === 'diagram') frame();
+    if (diagramFrame || disposed || view !== 'diagram') return;
+    diagramFrame = requestAnimationFrame(() => {
+      diagramFrame = 0;
+      if (!disposed && view === 'diagram') frame();
+    });
   }) : null;
   diagramSize?.observe(stageBox);
   document.addEventListener('visibilitychange', visibility);
@@ -733,6 +738,7 @@ export async function benchPage(id, origin, topicIndex) {
     cancelAnimationFrame(raf);
     observer.disconnect();
     diagramSize?.disconnect();
+    cancelAnimationFrame(diagramFrame);
     media.removeEventListener('change', motion);
     document.removeEventListener('visibilitychange', visibility);
     window.removeEventListener('pagehide', dispose);

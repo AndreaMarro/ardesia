@@ -299,7 +299,19 @@ try {
     const p = await ctx.newPage();
     p.setDefaultTimeout(30000);
     p.on('pageerror', (e) => errors.push(String(e)));
-    await findLens(p, format);
+    try {
+      await findLens(p, format);
+    } catch (error) {
+      const route = await p.evaluate(() => ({
+        route: location.hash, heading: document.querySelector('main h1')?.textContent,
+        bench: document.querySelector('[data-bench]')?.dataset.bench,
+        search: Boolean(document.querySelector('#cerca-simulazione')),
+        back: [...document.querySelectorAll('main a')].find(a => a.textContent === 'Torna all’attività')?.hash,
+        busy: document.querySelector('main')?.getAttribute('aria-busy'),
+      }));
+      console.error('Percorso lente', format, route, errors);
+      throw error;
+    }
     const shelf = p.locator('.topic-shelf[data-course=C1]');
     await shelf.locator(':scope > summary').click();
     await shelf.locator('.topic-shelf-body details summary').first().click();

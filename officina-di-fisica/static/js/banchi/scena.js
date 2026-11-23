@@ -306,7 +306,14 @@ export function openScene(canvas, spec, onLoss, context, onRestore) {
     bufferRatio = 0;
     onRestore?.();
   }
-  const resizeObserver = new ResizeObserver(resize);
+  let sizeFrame = 0;
+  const resizeObserver = new ResizeObserver(() => {
+    if (sizeFrame || closed) return;
+    sizeFrame = requestAnimationFrame(() => {
+      sizeFrame = 0;
+      resize();
+    });
+  });
   resizeObserver.observe(canvas);
   canvas.addEventListener('keydown', keydown);
   canvas.addEventListener('webglcontextlost', loss);
@@ -346,6 +353,7 @@ export function openScene(canvas, spec, onLoss, context, onRestore) {
       if (closed) return;
       closed = true;
       resizeObserver.disconnect();
+      cancelAnimationFrame(sizeFrame);
       controls.removeEventListener('change', render);
       controls.dispose();
       canvas.removeEventListener('keydown', keydown);
