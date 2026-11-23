@@ -1177,3 +1177,11 @@ La base del lettore è il merge del diario `c0cf5478`, con 13 job superati e pac
 1. Verificare su ciascun merge il lettore, la copia del quaderno 1.1.0, le schede sigillate e l’impronta del pacchetto.
 2. Proseguire la revisione editoriale per ID. Distinguere controlli di struttura, calcoli indipendenti e lettura integrale della spiegazione.
 3. Collaudare perdita e ripristino del contesto grafico sul banco canonico. Registrare il lavoro con studenti e la prova touch fisica come verifiche separate.
+
+## 23 novembre 2026 · Edizioni scientifiche di C4
+
+La base ufficiale `250673b6` contiene il nuovo lettore. Una prova reale in C4 ha mostrato un risultato numerico corretto con il feedback troncato a «E = k». L’esercizio di flusso richiedeva 215 px di scorrimento aggiuntivo sullo schermo stretto. L’edizione rivede 24 soluzioni, due esempi, un esperimento e il banco. È stata ricontrollata la singola voce in tutti i 166 record di C4, inclusi i materiali conservati. Il confronto sull’archivio sintetico prova la riapertura del vecchio voto e l’apertura dell’edizione successiva. [Verbale e registri](../../officina-di-fisica/docs/verifica-prodotto/edizione-c4.md)
+
+1. Sul commit integrato ripetere il percorso della normale orientata, l’archivio 1.1.0 e il confronto fra pacchetti. La verifica terminale richiede anche la CI post-merge.
+2. Riprodurre la perdita e il ripristino del contesto 3D su un banco attivo e sulla tavola manuale. Il gesto di rientro deve conservare posizione temporale, controlli, misure e preferenza di vista.
+3. Proseguire le revisioni editoriali per identificativo negli altri cinque corsi. La comprensione con studenti e il collaudo touch fisico restano prove distinte.

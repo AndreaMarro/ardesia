@@ -52,3 +52,9 @@ La ricerca usa le edizioni già pubblicate e la stessa inclusione transitiva che
 | LET | `lettura.js`, `preferenze-lettura.js`, `ascolto.js`, `/v1/me/reading-preferences` | Blocchi dell’edizione pubblicata e preferenze personali nella migrazione 004 | Testo e ascolto nelle lezioni, negli esempi e nelle correzioni formative disponibili | `browser-lettore.mjs` confronta l’ordine delle 173 edizioni, voce, rappresentazioni e ritorno dal banco. `test_workflows.py` controlla concorrenza, isolamento e voti. |
 
 La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto su quel commit con 13 job CI superati e un archivio storico. [Verifica del diario integrato](https://github.com/AndreaMarro/ardesia/pull/343#issuecomment-7105498496) · [Contratto e verifiche del lettore](lettura.md)
+
+## Revisione delle edizioni
+
+| Ambito | Sorgente e contratto | Persistenza | Ingresso | Verifiche |
+| --- | --- | --- | --- | --- |
+| C4 · elettricità e magnetismo | 166 decisioni editoriali, 28 edizioni aggiornate, registro delle impronte delle prime edizioni | Versioni e tentativi fissati, fascicoli del corso | Allenamento individuale, esempi, banco del campo elettrico, esperimento sul raggio, dispensa ed eserciziario | Correttezza di campo e flusso, 24 svolgimenti a 320 px, riconciliazione di chiavi, permessi e dati sulle due edizioni. [Contratto ed evidenze](edizione-c4.md) |

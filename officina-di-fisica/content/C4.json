@@ -1060,7 +1060,7 @@
       "C4-L02",
       "C4-L05"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "figure",
@@ -1068,16 +1068,36 @@
         "text": "La forza si dirige verso il centro; la velocità è tangente. Il disegno fissa l’orientamento di una possibile entrata."
       },
       {
-        "type": "formula",
-        "text": "|q|vB=mv^2/r\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}"
+        "type": "text",
+        "text": "Il campo è perpendicolare alla velocità. La forza magnetica curva il moto e fornisce la forza centripeta. Uguaglia i moduli e semplifica una velocità."
       },
       {
         "type": "formula",
-        "text": "r=\\frac{1{,}67\\cdot10^{-27}\\cdot2{,}0\\cdot10^5}{1{,}60\\cdot10^{-19}\\cdot0{,}10}=2{,}09\\cdot10^{-2}\\ \\mathrm m=2{,}09\\ \\mathrm{cm}"
+        "text": "|q|vB=\\frac{mv^2}{r}"
+      },
+      {
+        "type": "formula",
+        "text": "r=\\frac{mv}{|q|B}"
       },
       {
         "type": "text",
-        "text": "Una velocità maggiore a campo fissato allargherebbe l’orbita. Il segno della carica determina il verso di curvatura."
+        "text": "Calcola separatamente quantità di moto e prodotto fra carica e campo, usando le unità del Sistema Internazionale."
+      },
+      {
+        "type": "formula",
+        "text": "mv=3{,}34\\cdot10^{-22}\\ \\mathrm{kg\\,m/s}"
+      },
+      {
+        "type": "formula",
+        "text": "|q|B=1{,}60\\cdot10^{-20}\\ \\mathrm{kg/s}"
+      },
+      {
+        "type": "formula",
+        "text": "r=0{,}020875\\ \\mathrm m=2{,}0875\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Per passare dai metri ai centimetri moltiplica per cento. La velocità e il campo hanno due cifre significative, quindi il raggio si esprime come 2,1 cm. A campo fissato una velocità maggiore allarga l’orbita. Il segno della carica decide da quale parte curva la traiettoria."
       }
     ],
     "prompt": "Un protone con massa 1,67 × 10⁻²⁷ kg e carica 1,60 × 10⁻¹⁹ C entra a 2,0 × 10⁵ m/s perpendicolarmente a un campo uniforme di 0,10 T. Calcola il raggio in cm.",
@@ -1180,13 +1200,13 @@
     "course": "C4",
     "section": "Indurre una tensione cambiando il flusso",
     "order": 19,
-    "title": "Quanto vale l’impulso induttivo?",
+    "title": "Quale tensione media si induce nella bobina?",
     "skill": "C4-L10",
     "prerequisites": [
       "C4-L05",
       "C4-L09"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
@@ -1194,15 +1214,31 @@
       },
       {
         "type": "formula",
-        "text": "|\\Delta\\Phi|=A|\\Delta B|=(5{,}0\\cdot10^{-4})(0{,}20)=1{,}0\\cdot10^{-4}\\ \\mathrm{Wb}"
+        "text": "|\\Delta B|=(0{,}30-0{,}10)\\ \\mathrm T=0{,}20\\ \\mathrm T"
       },
       {
         "type": "formula",
-        "text": "|\\overline{\\mathcal E}|=N|\\Delta\\Phi|/\\Delta t=40\\cdot10^{-4}/0{,}020=0{,}20\\ \\mathrm V"
+        "text": "|\\Delta\\Phi|=A\\,|\\Delta B|"
+      },
+      {
+        "type": "formula",
+        "text": "|\\Delta\\Phi|=1{,}0\\cdot10^{-4}\\ \\mathrm{Wb}"
       },
       {
         "type": "text",
-        "text": "Il numero di spire moltiplica la variazione per spira. Il risultato è una tensione, non una forza meccanica."
+        "text": "Moltiplica la variazione di flusso di una spira per le 40 spire. Dividi poi per la durata della variazione, 0,020 s."
+      },
+      {
+        "type": "formula",
+        "text": "N|\\Delta\\Phi|=0{,}0040\\ \\mathrm{Wb}"
+      },
+      {
+        "type": "formula",
+        "text": "|\\overline{\\mathcal E}|=\\frac{0{,}0040\\ \\mathrm{Wb}}{0{,}020\\ \\mathrm s}=0{,}20\\ \\mathrm V"
+      },
+      {
+        "type": "text",
+        "text": "Un weber al secondo è un volt. A parità di variazione di flusso, se il tempo raddoppiasse la tensione media si dimezzerebbe."
       }
     ],
     "prompt": "Una bobina di 40 spire, area 5,0 cm² per spira, giace perpendicolare a un campo che cresce uniformemente da 0,10 a 0,30 T in 20 ms. Calcola il modulo della f.e.m. media.",
@@ -1252,15 +1288,27 @@
     "title": "Contare gli elettroni trasferiti",
     "skill": "C4-L01",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La gocciolina ha acquistato cariche negative. Ogni elettrone aggiunge una carica di modulo e. Per contarli dividi la carica acquistata, in valore assoluto, per quella di un elettrone."
+      },
+      {
         "type": "formula",
-        "text": "N=|q|/e=\\frac{4{,}80\\cdot10^{-15}}{1{,}60\\cdot10^{-19}}=3{,}00\\cdot10^4"
+        "text": "|q|=4{,}80\\ \\mathrm{fC}=4{,}80\\cdot10^{-15}\\ \\mathrm C"
       },
       {
         "type": "text",
-        "text": "Il segno meno indica un eccesso di elettroni, non un numero negativo di particelle."
+        "text": "Nella divisione i coulomb si semplificano. I coefficienti danno 4,80 ÷ 1,60 = 3. Per le potenze sottrai gli esponenti."
+      },
+      {
+        "type": "formula",
+        "text": "N=3{,}00\\cdot10^{-15-(-19)}=30\\,000"
+      },
+      {
+        "type": "text",
+        "text": "Controlla il segno moltiplicando i 30 000 elettroni per −e. Si ritrova la carica negativa della gocciolina."
       }
     ],
     "prompt": "Una gocciolina acquisisce carica −4,80 fC. Quanti elettroni ha acquistato? Usa e = 1,60 × 10⁻¹⁹ C.",
@@ -1330,15 +1378,19 @@
     "title": "Prefisso sotto il microcoulomb",
     "skill": "C4-L01",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "blocks": [
+      {
+        "type": "text",
+        "text": "Il prefisso si chiama nano e ha simbolo n. La lettera C indica il coulomb. Leggi nC come «nanocoulomb»."
+      },
       {
         "type": "formula",
         "text": "1\\ \\mathrm{nC}=10^{-9}\\ \\mathrm C=10^{-3}\\ \\mu\\mathrm C"
       },
       {
         "type": "text",
-        "text": "Tenere separati prefisso e unità evita errori di molti ordini di grandezza nella forza."
+        "text": "Un nanocoulomb è un millesimo di microcoulomb."
       }
     ],
     "prompt": "Quale prefisso SI, scritto in lettere, corrisponde a 10⁻⁹ e si usa spesso per le piccole cariche?",
@@ -1370,15 +1422,31 @@
     "title": "La distanza necessaria a ridurre la forza",
     "skill": "C4-L01",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Le cariche restano le stesse. Con la legge di Coulomb il rapporto fra le forze dipende solo dal quadrato del rapporto fra le distanze."
+      },
+      {
         "type": "formula",
-        "text": "\\frac{F_f}{F_i}=\\left(\\frac{r_i}{r_f}\\right)^2=\\frac19\\quad\\Longrightarrow\\quad r_f=3r_i=12\\ \\mathrm{cm}"
+        "text": "\\frac{F_f}{F_i}=\\left(\\frac{r_i}{r_f}\\right)^2=\\frac19"
       },
       {
         "type": "text",
-        "text": "Il risultato è una distanza maggiore, coerente con una forza ridotta."
+        "text": "Le distanze sono positive. Prendi la radice positiva di entrambi i membri. La radice di 9 vale 3."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{r_i}{r_f}=\\frac13"
+      },
+      {
+        "type": "formula",
+        "text": "r_f=3r_i=3\\cdot4\\ \\mathrm{cm}=12\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Verifica a ritroso. Triplicando la distanza il denominatore della forza diventa nove volte maggiore."
       }
     ],
     "prompt": "Due cariche a distanza 4 cm si respingono con forza F. A quanti cm vanno portate per ridurre il modulo a F/9?",
@@ -1606,15 +1674,35 @@
     "title": "Scegliere il valore della seconda carica",
     "skill": "C4-L01",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Per il modulo isola la carica incognita nella legge di Coulomb. Porta la distanza al quadrato al numeratore e dividi per k e per il modulo della carica nota."
+      },
+      {
         "type": "formula",
-        "text": "|q_2|=\\frac{Fr^2}{k|q_1|}=\\frac{9\\cdot10^{-6}\\cdot0{,}20^2}{9\\cdot10^9\\cdot2\\cdot10^{-9}}=2{,}0\\cdot10^{-8}\\ \\mathrm C"
+        "text": "|q_2|=\\frac{F r^2}{k|q_1|}"
+      },
+      {
+        "type": "formula",
+        "text": "F r^2=9\\cdot10^{-6}(0{,}20)^2\\ \\mathrm{N\\,m^2}"
+      },
+      {
+        "type": "formula",
+        "text": "k|q_1|=18\\ \\mathrm{N\\,m^2/C}"
+      },
+      {
+        "type": "formula",
+        "text": "|q_2|=\\frac{3{,}6\\cdot10^{-7}}{18}\\ \\mathrm C"
+      },
+      {
+        "type": "formula",
+        "text": "|q_2|=2{,}0\\cdot10^{-8}\\ \\mathrm C"
       },
       {
         "type": "text",
-        "text": "Questo modulo equivale a 20 nC. Il segno necessario dà q₂ = −20 nC."
+        "text": "Nelle unità, N·m² diviso per (N·m²/C²)·C dà C. Il modulo di 2,0 × 10⁻⁸ C equivale a 20 nC. La sorgente è positiva e la forza è attrattiva, quindi la seconda carica è negativa. Si ottiene q₂ = −20 nC."
       }
     ],
     "prompt": "Nel vuoto a distanza 0,20 m da +2,0 nC, una carica esercita una forza attrattiva di 9,0 μN. Trova la seconda carica con segno in nC. Usa k = 9,0 × 10⁹ N·m²/C².",
@@ -1647,16 +1735,28 @@
     "prerequisites": [
       "C4-L01"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
+      {
+        "type": "text",
+        "text": "Le piastre sono le sorgenti del campo. La piccola carica serve a sondarlo. Cambiamo la prova nello stesso punto mantenendo fisse le piastre."
+      },
       {
         "type": "figure",
         "src": "/figures/C4-campo.svg",
-        "text": "Il verso di E è fissato dalle piastre anche quando sulla prova negativa la forza punta nel verso opposto."
+        "text": "Segui le due frecce fra le piastre. Il campo E va dalla piastra positiva, a sinistra, alla negativa, a destra. La freccia della forza F sulla prova negativa punta a sinistra."
+      },
+      {
+        "type": "text",
+        "text": "Con la prova +q, la forza segue il campo verso destra. Inserendo −q si cambia solo il segno del fattore che moltiplica il campo."
       },
       {
         "type": "formula",
         "text": "\\vec F_{-q}=(-q)\\vec E=-\\vec F_{+q}"
+      },
+      {
+        "type": "text",
+        "text": "Il campo nel punto resta uguale. La forza conserva il modulo e inverte il verso. Per controllare, rimetti +q e ritroverai la forza verso destra."
       }
     ],
     "prompt": "Sostituisci una piccola carica di prova +q con −q nello stesso punto, senza alterare le sorgenti. Quale cambiamento si osserva?",
@@ -1779,19 +1879,35 @@
     "prerequisites": [
       "C4-L01"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\frac{kq}{x^2}=\\frac{4kq}{(30-x)^2}\\quad\\Longrightarrow\\quad 30-x=2x"
+        "type": "text",
+        "text": "Chiama x la distanza in centimetri dalla carica +q. L’altra distanza vale 30 − x. Fra due sorgenti positive ogni campo si allontana dalla sua sorgente. Le frecce puntano in versi opposti e si cancellano se i moduli coincidono."
       },
       {
         "type": "formula",
-        "text": "x=10\\ \\mathrm{cm}"
+        "text": "\\frac{kq}{x^2}=\\frac{4kq}{(30-x)^2}"
       },
       {
         "type": "text",
-        "text": "A 10 cm dalla sorgente piccola e 20 cm dalla grande i due contributi hanno lo stesso modulo e verso opposto."
+        "text": "Semplifica kq e moltiplica per i denominatori. Entrambe le distanze sono positive, quindi puoi prendere la radice positiva."
+      },
+      {
+        "type": "formula",
+        "text": "(30-x)^2=4x^2"
+      },
+      {
+        "type": "formula",
+        "text": "30-x=2x"
+      },
+      {
+        "type": "formula",
+        "text": "3x=30\\quad\\Rightarrow\\quad x=10\\ \\mathrm{cm}"
+      },
+      {
+        "type": "text",
+        "text": "Le distanze sono 10 e 20 cm. La carica quattro volte maggiore si trova a distanza doppia. Il fattore quattro al numeratore si compensa con il quadrato di due al denominatore."
       }
     ],
     "prompt": "Due sorgenti +q e +4q sono distanti 30 cm. Fra di esse, a quanti cm da +q è nullo il campo?",
@@ -1872,15 +1988,31 @@
     "prerequisites": [
       "C4-L01"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "In orizzontale la velocità resta 4 m/s perché l’accelerazione orizzontale è nulla. Dividi il tratto percorso per questa velocità."
+      },
+      {
         "type": "formula",
-        "text": "t=0{,}80/4=0{,}20\\ \\mathrm s,\\qquad y=\\tfrac12a_y t^2=3(0{,}20)^2=0{,}12\\ \\mathrm m"
+        "text": "t=\\frac{0{,}80\\ \\mathrm m}{4\\ \\mathrm{m/s}}=0{,}20\\ \\mathrm s"
       },
       {
         "type": "text",
-        "text": "La conversione finale dà 12 cm. La traiettoria combina moto orizzontale uniforme e moto verticale accelerato."
+        "text": "Durante gli stessi 0,20 s il moto verticale parte con velocità nulla e accelera verso y positivo."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta y=\\tfrac12 a_y t^2=3(0{,}20)^2\\ \\mathrm m"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta y=3\\cdot0{,}040\\ \\mathrm m=0{,}12\\ \\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Ogni metro contiene 100 cm. Lo spostamento verticale è quindi +12 cm."
       }
     ],
     "prompt": "Una particella entra tra due piastre con vx = 4 m/s e vy = 0. Il campo produce ay = 6 m/s² e ax = 0. Dopo 0,80 m orizzontali, di quanti cm si è spostata verso y positivo?",
@@ -2243,15 +2375,23 @@
       "C4-L01",
       "C4-L02"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La distanza fra i piani è misurata nella direzione del campo. Per ottenere volt al metro converti prima 3,0 cm in 0,030 m."
+      },
+      {
         "type": "formula",
-        "text": "E=|\\Delta V|/d=12/0{,}030=400\\ \\mathrm{V/m}"
+        "text": "E=\\frac{|\\Delta V|}{d}"
+      },
+      {
+        "type": "formula",
+        "text": "E=\\frac{12\\ \\mathrm V}{0{,}030\\ \\mathrm m}=400\\ \\mathrm{V/m}"
       },
       {
         "type": "text",
-        "text": "Il campo punta dal piano a potenziale più alto verso quello a potenziale più basso."
+        "text": "Controlla con il prodotto inverso. Un campo di 400 V/m, su 0,030 m, dà una differenza di potenziale di modulo 12 V. Il campo punta dal piano a potenziale maggiore a quello a potenziale minore."
       }
     ],
     "prompt": "In un campo uniforme due piani equipotenziali distano 3,0 cm lungo il campo e differiscono di 12 V. Trova il modulo E in V/m.",
@@ -2343,11 +2483,19 @@
       "C4-L01",
       "C4-L02"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "formula",
-        "text": "\\Delta V=17-2=15\\ \\mathrm V,\\qquad \\Delta K=-q\\Delta V=e\\cdot15\\ \\mathrm V=15\\ \\mathrm{eV}"
+        "text": "\\Delta V=(17-2)\\ \\mathrm V=15\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta K=-q\\Delta V"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta K=+e\\cdot15\\ \\mathrm V=15\\ \\mathrm{eV}"
       },
       {
         "type": "text",
@@ -2365,7 +2513,7 @@
       "tolerance": 0.02
     },
     "hints": [
-      "Per una particella con carica unitaria in modulo, 1 V di differenza corrisponde a 1 eV di energia in modulo."
+      "L’elettrone ha carica −e. Un elettrone che attraversa una differenza di potenziale di 1 V scambia un’energia di modulo 1 eV. Usa il segno di −q ΔV per stabilire se accelera."
     ],
     "error": {
       "category": "algebra",
@@ -2425,19 +2573,39 @@
       "C4-L01",
       "C4-L02"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
-        "type": "formula",
-        "text": "\\tfrac12 mv_f^2=-q\\Delta V=4{,}0\\cdot10^{-6}\\cdot9{,}0=36\\cdot10^{-6}\\ \\mathrm J"
+        "type": "text",
+        "text": "La massa entra nella legge in chilogrammi. Un milligrammo è un millesimo di grammo, quindi 2,0 mg = 2,0 × 10⁻⁶ kg. Il potenziale diminuisce e la differenza finale meno iniziale è −9,0 V."
       },
       {
         "type": "formula",
-        "text": "v_f=\\sqrt{2\\cdot36\\cdot10^{-6}/(2{,}0\\cdot10^{-6})}=6{,}0\\ \\mathrm{m/s}"
+        "text": "\\tfrac12mv_f^2=-q\\Delta V"
+      },
+      {
+        "type": "formula",
+        "text": "-q\\Delta V=4{,}0\\cdot10^{-6}\\cdot9{,}0\\ \\mathrm J"
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta K=36\\cdot10^{-6}\\ \\mathrm J"
       },
       {
         "type": "text",
-        "text": "La perdita di potenziale accelera una carica positiva."
+        "text": "Poiché parte da ferma, tutta l’energia cinetica finale è quella guadagnata. Moltiplica per due e dividi per la massa."
+      },
+      {
+        "type": "formula",
+        "text": "v_f^2=\\frac{2\\cdot36\\cdot10^{-6}}{2{,}0\\cdot10^{-6}}\\ \\mathrm{m^2/s^2}"
+      },
+      {
+        "type": "formula",
+        "text": "v_f=\\sqrt{36}\\ \\mathrm{m/s}=6{,}0\\ \\mathrm{m/s}"
+      },
+      {
+        "type": "text",
+        "text": "Per il modulo della velocità scegli la radice positiva."
       }
     ],
     "prompt": "Una particella da 2,0 mg con carica +4,0 μC parte da ferma e scende di 9,0 V di potenziale. Agisce solo il campo. Calcola la velocità finale in m/s.",
@@ -2471,7 +2639,7 @@
       "C4-L01",
       "C4-L02"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "formula",
@@ -2497,7 +2665,7 @@
       ]
     },
     "hints": [
-      "Confronta la variazione di V per distanza percorsa normalmente."
+      "Misura la distanza fra le due linee lungo la perpendicolare alle equipotenziali. A parità di variazione di potenziale, come cambia il rapporto |ΔV|/Δs se le linee si avvicinano?"
     ],
     "error": {
       "category": "modello",
@@ -2571,11 +2739,11 @@
       "C4-L02",
       "C4-L03"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Le cariche si separano per induzione. Il lato vicino diventa positivo e quello lontano negativo. La sfera isolata resta globalmente neutra."
+        "text": "La bacchetta negativa respinge gli elettroni mobili della sfera verso il lato lontano. Sul lato vicino rimane un difetto di elettroni e quindi una carica positiva. Il lato lontano ha un eccesso di elettroni. Poiché la sfera è isolata e la bacchetta non la tocca, la carica totale resta zero."
       }
     ],
     "prompt": "Una bacchetta negativa si avvicina a una sfera metallica inizialmente neutra, isolata e senza contatto. Come si presenta il lato della sfera più vicino alla bacchetta?",
@@ -2745,18 +2913,26 @@
       "C4-L02",
       "C4-L03"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Collega A e B con un percorso interamente nel metallo. In equilibrio elettrostatico il campo è nullo lungo tutto il percorso. Il lavoro del campo per unità di carica è quindi zero e il potenziale ha lo stesso valore ai due estremi."
+      },
+      {
         "type": "formula",
-        "text": "V_B=V_A=42\\ \\mathrm V,\\qquad V_B-V_A=0\\ \\mathrm V"
+        "text": "V_B=V_A=42\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "V_B-V_A=(42-42)\\ \\mathrm V=0\\ \\mathrm V"
       },
       {
         "type": "text",
-        "text": "Uno zero del campo implica costanza spaziale del potenziale all’interno del conduttore."
+        "text": "I +42 V dipendono dal riferimento scelto. Cambiando riferimento si spostano insieme i due potenziali, mentre la loro differenza resta zero."
       }
     ],
-    "prompt": "Due punti si trovano entrambi nello stesso conduttore collegato in equilibrio elettrostatico. Se uno è a +42 V rispetto alla terra, quale differenza VB − VA si misura fra loro in volt?",
+    "prompt": "A e B si trovano nello stesso pezzo di metallo continuo, in equilibrio elettrostatico. A si trova a +42 V rispetto alla Terra. Quale differenza VB − VA si misura fra i due punti in volt?",
     "difficulty": 1,
     "family": "potenziale-fra-due-punti-del-metallo",
     "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
@@ -2912,18 +3088,26 @@
       "C4-L02",
       "C4-L03"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Nel vuoto il campo vale σlibera/ε₀. Dopo l’inserimento la densità di carica libera sulle piastre resta la stessa. Il dielettrico si polarizza e il campo delle cariche legate riduce il campo totale."
+      },
+      {
         "type": "formula",
-        "text": "E_f=\\sigma_{\\rm libera}/(\\varepsilon_0\\varepsilon_r)=E_i/\\varepsilon_r=12/3=4\\ \\mathrm{kV/m}"
+        "text": "E_f=\\frac{\\sigma_{\\mathrm{libera}}}{\\varepsilon_0\\varepsilon_r}=\\frac{E_i}{\\varepsilon_r}"
+      },
+      {
+        "type": "formula",
+        "text": "E_f=\\frac{12}{3}\\ \\mathrm{kV/m}=4\\ \\mathrm{kV/m}"
       },
       {
         "type": "text",
-        "text": "Il risultato richiede piastre isolate. Con un generatore collegato che mantiene V costante il vincolo fisico cambia."
+        "text": "Controlla il caso del vuoto. Ponendo εr = 1 si torna ai 12 kV/m iniziali."
       }
     ],
-    "prompt": "Tra due piastre isolate cariche il campo iniziale è 12 kV/m. Un dielettrico lineare omogeneo riempie tutto lo spazio con εr = 3. Trascurando i bordi, quale campo si ottiene in kV/m?",
+    "prompt": "Tra due piastre parallele isolate, inizialmente nel vuoto, il campo è 12 kV/m. Un dielettrico lineare omogeneo di permittività relativa εr = 3 riempie lo spazio fra le piastre. Le cariche libere restano fisse. Trascurando i bordi, quale campo si ottiene in kV/m?",
     "difficulty": 2,
     "family": "effetto-di-un-mezzo-sul-campo-a-carica-fissa",
     "review": "revisione editoriale e scientifica assistita; controllo strutturale automatico",
@@ -3126,15 +3310,23 @@
       "C4-L01",
       "C4-L03"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "formula",
-        "text": "t=\\frac{\\Delta q}{I}=\\frac{8{,}0\\cdot10^{-6}}{0{,}40\\cdot10^{-3}}=0{,}020\\ \\mathrm s=20\\ \\mathrm{ms}"
+        "text": "t=\\frac{\\Delta q}{I}"
+      },
+      {
+        "type": "formula",
+        "text": "t=\\frac{8{,}0\\cdot10^{-6}\\ \\mathrm C}{0{,}40\\cdot10^{-3}\\ \\mathrm A}"
+      },
+      {
+        "type": "formula",
+        "text": "t=0{,}020\\ \\mathrm s=20\\ \\mathrm{ms}"
       },
       {
         "type": "text",
-        "text": "Quaranta microcoulomb al decimo di secondo corrispondono allo stesso ordine di grandezza."
+        "text": "Rimoltiplica corrente per durata. Il prodotto 0,40 mA × 20 ms dà 8,0 µC perché 10⁻³ A × 10⁻³ s = 10⁻⁶ C. Hai ricostruito la carica trasferita."
       }
     ],
     "prompt": "Un segnale mantiene una corrente di 0,40 mA e trasferisce 8,0 μC in un verso. Per quanti millisecondi dura?",
@@ -3353,11 +3545,15 @@
       "C4-L01",
       "C4-L03"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "formula",
-        "text": "R_1=1/0{,}001=1000\\ \\Omega,\\qquad R_2=3/0{,}002=1500\\ \\Omega"
+        "text": "R_1=\\frac{1\\ \\mathrm V}{0{,}001\\ \\mathrm A}=1000\\ \\Omega"
+      },
+      {
+        "type": "formula",
+        "text": "R_2=\\frac{3\\ \\mathrm V}{0{,}002\\ \\mathrm A}=1500\\ \\Omega"
       },
       {
         "type": "text",
@@ -3383,7 +3579,7 @@
     ],
     "error": {
       "category": "modello",
-      "message": "Le due resistenze di rapporto sono 1 kΩ e 1,5 kΩ.",
+      "message": "I rapporti V/I misurati nei due punti valgono 1 kΩ e 1,5 kΩ. Una resistenza costante darebbe lo stesso rapporto. Per individuare la causa della variazione servono altre misure.",
       "target": "C4-L05"
     }
   },
@@ -3488,15 +3684,23 @@
     "prerequisites": [
       "C4-L05"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
+      {
+        "type": "text",
+        "text": "I rami in parallelo hanno la stessa tensione V ai capi. Per ciascun resistore la legge di Ohm dà I = V/R. Sostituisci la corrente nella potenza elettrica."
+      },
+      {
+        "type": "formula",
+        "text": "P=VI=V\\frac{V}{R}=\\frac{V^2}{R}"
+      },
       {
         "type": "formula",
         "text": "P_1/P_2=R_2/R_1"
       },
       {
         "type": "text",
-        "text": "Il ramo meno resistivo porta più corrente alla stessa tensione, e riceve più energia ogni secondo."
+        "text": "Nel rapporto si semplifica V². Il ramo di resistenza minore porta più corrente e dissipa più energia ogni secondo."
       }
     ],
     "prompt": "Due resistori positivi di valori diversi sono in parallelo su un generatore ideale. Quale dissipa maggiore potenza?",
@@ -3941,15 +4145,23 @@
       "C4-L03",
       "C4-L04"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "La capacità di un condensatore lineare è la pendenza del grafico carica-tensione. Misura quanto aumenta la carica per ogni volt in più."
+      },
+      {
         "type": "formula",
-        "text": "C=\\frac{\\Delta Q}{\\Delta V}=\\frac{18\\ \\mu\\mathrm C}{5-2\\ \\mathrm V}=6\\ \\mu\\mathrm F"
+        "text": "\\Delta V=(5-2)\\ \\mathrm V=3\\ \\mathrm V"
+      },
+      {
+        "type": "formula",
+        "text": "C=\\frac{\\Delta Q}{\\Delta V}=\\frac{18\\ \\mu\\mathrm C}{3\\ \\mathrm V}=6\\ \\mu\\mathrm F"
       },
       {
         "type": "text",
-        "text": "Si può usare la pendenza della retta Q(V) senza conoscere la carica iniziale assoluta."
+        "text": "Rimoltiplicando 6 µF per 3 V si ritrovano i 18 µC di incremento."
       }
     ],
     "prompt": "Aumentando la tensione di un condensatore lineare da 2 a 5 V, il modulo della carica su un’armatura aumenta di 18 μC. Trova C in μF.",
@@ -4072,15 +4284,27 @@
       "C4-L03",
       "C4-L04"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
         "type": "formula",
-        "text": "A=Cd/\\varepsilon_0=(88{,}5\\cdot10^{-12})(10^{-3})/(8{,}85\\cdot10^{-12})=0{,}010\\ \\mathrm{m^2}"
+        "text": "C=\\frac{\\varepsilon_0 A}{d}\\quad\\Rightarrow\\quad A=\\frac{C d}{\\varepsilon_0}"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{C}{\\varepsilon_0}=\\frac{88{,}5\\cdot10^{-12}}{8{,}85\\cdot10^{-12}}\\ \\mathrm m"
+      },
+      {
+        "type": "formula",
+        "text": "A=10\\ \\mathrm m\\cdot10^{-3}\\ \\mathrm m"
+      },
+      {
+        "type": "formula",
+        "text": "A=0{,}010\\ \\mathrm{m^2}"
       },
       {
         "type": "text",
-        "text": "La conversione dà 100 cm². Piastre quadrate di lato 10 cm hanno dimensione laterale molto maggiore della distanza di 1 mm."
+        "text": "Per passare alle aree il fattore di conversione va applicato a due lati. Un metro quadrato contiene 100 × 100 = 10 000 cm². Quindi 0,010 × 10 000 = 100 cm². Un quadrato di lato 10 cm ha proprio questa area e il lato è molto maggiore della distanza di 1 mm."
       }
     ],
     "prompt": "Un condensatore piano nel vuoto ha distanza 1,0 mm e capacità 88,5 pF. Usa ε₀ = 8,85 × 10⁻¹² F/m e trascura i bordi. Trova l’area affacciata in cm².",
@@ -4114,15 +4338,23 @@
       "C4-L03",
       "C4-L04"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Metti la carica q sull’asse orizzontale e la tensione V sull’asse verticale. Per un condensatore lineare inizialmente scarico la retta V = q/C parte dall’origine. Per aggiungere una piccola carica Δq occorre un lavoro circa uguale a V Δq, l’area di una striscia sottile sotto la retta."
+      },
+      {
         "type": "formula",
-        "text": "U=\\int_0^Q V(q)\\,dq=\\int_0^Q q/C\\,dq=Q^2/(2C)"
+        "text": "U=\\int_0^Q V(q)\\,\\mathrm dq"
+      },
+      {
+        "type": "formula",
+        "text": "U=\\frac{1}{C}\\int_0^Q q\\,\\mathrm dq=\\frac{Q^2}{2C}"
       },
       {
         "type": "text",
-        "text": "La tensione media durante questa sommatoria è metà di quella finale. Il fattore un mezzo esprime l’area triangolare."
+        "text": "Sommando le strisce si ottiene l’area del triangolo, metà della base Q per l’altezza finale V. L’unità è C·V = J, come deve essere per un’energia."
       }
     ],
     "prompt": "Quale grafico consente di ricavare l’energia del condensatore ideale inizialmente scarico come area di un triangolo?",
@@ -4503,11 +4735,31 @@
     "prerequisites": [
       "C4-L07"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Per condensatori in serie si sommano i reciproci delle capacità. Isola il reciproco della capacità ignota sottraendo quello del condensatore da 9 µF."
+      },
+      {
         "type": "formula",
-        "text": "1/C_x=1/3-1/9=2/9\\ \\mu\\mathrm F^{-1}\\quad\\Longrightarrow\\quad C_x=9/2=4{,}5\\ \\mu\\mathrm F"
+        "text": "\\frac{1}{C_x}=\\frac{1}{C_{\\mathrm{eq}}}-\\frac{1}{C_1}"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{1}{C_x}=\\left(\\frac{1}{3}-\\frac{1}{9}\\right)(\\mu\\mathrm F)^{-1}"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{1}{C_x}=\\frac{2}{9}(\\mu\\mathrm F)^{-1}"
+      },
+      {
+        "type": "text",
+        "text": "Inverti sia il numero sia l’unità per tornare alla capacità."
+      },
+      {
+        "type": "formula",
+        "text": "C_x=\\frac92\\,\\mu\\mathrm F=4{,}5\\,\\mu\\mathrm F"
       },
       {
         "type": "text",
@@ -4809,8 +5061,12 @@
       "C4-L02",
       "C4-L05"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
+      {
+        "type": "text",
+        "text": "Immagina di afferrare il filo con la mano destra. Punta il pollice nel verso della corrente convenzionale. Le dita piegate seguono il campo magnetico attorno al filo."
+      },
       {
         "type": "figure",
         "src": "/figures/C4-filo-b.svg",
@@ -4818,7 +5074,7 @@
       },
       {
         "type": "text",
-        "text": "Il campo misurato dalla bussola può includere anche il campo terrestre. L’inversione qui riguarda il contributo del filo."
+        "text": "Inverti il pollice tenendo fisso il punto di osservazione. In quel punto la tangente al cerchio resta la stessa e il campo del filo inverte verso. La bussola reale risente anche del campo terrestre."
       }
     ],
     "prompt": "In prossimità di un lungo filo rettilineo la corrente viene invertita. Che cosa succede al contributo magnetico prodotto dal filo in un punto fisso?",
@@ -5258,16 +5514,44 @@
       "C4-L05",
       "C4-L09"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
       {
+        "type": "text",
+        "text": "Guarda la spira di taglio. Scegli il verso positivo della normale, la freccia perpendicolare al piano. Il flusso è l’area della spira moltiplicata per la componente del campo lungo questa freccia."
+      },
+      {
         "type": "figure",
-        "src": "/figures/C4-flusso.svg",
-        "text": "Il piano e la normale sono perpendicolari. L’angolo indicato è quello della formula."
+        "src": "/figures/C4-Q091-flusso-v2.svg",
+        "text": "La spira è vista di taglio. Il campo B forma 60° con la normale verso l’alto. Il tratteggio riporta la punta di B sulla normale. La componente Bₙ è positiva e lunga metà di B."
+      },
+      {
+        "type": "text",
+        "text": "L’angolo tra il campo e la normale è 60°. Il coseno di 60° vale un mezzo. Prima calcola la componente normale del campo."
       },
       {
         "type": "formula",
-        "text": "\\Phi=BA\\cos60^\\circ=0{,}30\\cdot0{,}020\\cdot0{,}5=0{,}0030\\ \\mathrm{Wb}=3{,}0\\ \\mathrm{mWb}"
+        "text": "B_n=B\\cos 60^\\circ"
+      },
+      {
+        "type": "formula",
+        "text": "B_n=0{,}30\\ \\mathrm T\\times\\tfrac12=0{,}15\\ \\mathrm T"
+      },
+      {
+        "type": "text",
+        "text": "Ora moltiplica per l’area di 0,020 m². Il prodotto di un tesla per un metro quadrato vale un weber."
+      },
+      {
+        "type": "formula",
+        "text": "\\Phi=B_nA=0{,}15\\times0{,}020\\ \\mathrm{Wb}"
+      },
+      {
+        "type": "formula",
+        "text": "\\Phi=0{,}0030\\ \\mathrm{Wb}=+3{,}0\\ \\mathrm{mWb}"
+      },
+      {
+        "type": "text",
+        "text": "Per passare da Wb a mWb moltiplica per mille. Come controllo, con il campo lungo la normale avresti 6,0 mWb. A 60° ne ottieni metà. Invertendo la normale il flusso diventerebbe −3,0 mWb."
       }
     ],
     "prompt": "Una spira piana di area 0,020 m² è in B = 0,30 T. L’angolo fra B e la normale scelta è 60°. Calcola il flusso in mWb.",
@@ -5603,8 +5887,12 @@
       "C4-L05",
       "C4-L09"
     ],
-    "version": 1,
+    "version": 2,
     "blocks": [
+      {
+        "type": "text",
+        "text": "Durante l’ingresso aumenta la porzione di spira attraversata dal campo esterno diretto dentro il foglio. Cresce in modulo il flusso entrante. Per la legge di Lenz, il campo prodotto dalla corrente indotta deve puntare verso chi guarda per opporsi a questo aumento."
+      },
       {
         "type": "figure",
         "src": "/figures/C4-lenz.svg",
