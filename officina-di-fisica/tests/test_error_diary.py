@@ -53,5 +53,10 @@ class DiaryEvidence(unittest.TestCase):
             self.assertTrue(q["error"]["message"])
             categories.add(q["error"]["category"])
         self.assertEqual(categories,set(CATEGORIES))
+        source = dict(id="A",family="A",difficulty=2)
+        near = dict(id="B",family="B",difficulty=2)
+        far = dict(id="C",family="C",difficulty=3)
+        self.assertEqual(choose_retest(source,[far,near],set(),set()),near)
+        self.assertEqual(choose_retest(source,[far,near],{"B"},{"B"}),far)
         q=questions[0]
         self.assertIsNone(choose_retest(q,[q,dict(q,id="XYZ"),dict(q,id="Q",family="nuova",exam=1)],set(),set()))

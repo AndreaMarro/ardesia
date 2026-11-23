@@ -65,4 +65,4 @@ def recommendation(observed, repetitions, weak_prerequisite, minutes, now, assis
         return {"step": "retry", "reason": "È passato almeno un giorno dall’errore. Prova un altro quesito per richiamare il procedimento."}
     if minutes == 5:
         return {"step": "explanation", "reason": "Per la sessione breve, ricostruisci il passaggio indicato e scegli quando provare il nuovo caso."}
-    return {"step": "retry", "reason": "Hai scelto 15 minuti. Applica lo stesso principio a un problema diverso e controlla quale passaggio riesci a svolgere da solo."}
+    return {"step": "retry", "reason": "Hai scelto 15 minuti. Applica lo stesso principio a un problema diverso."}

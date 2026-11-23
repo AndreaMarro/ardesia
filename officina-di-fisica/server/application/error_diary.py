@@ -89,6 +89,11 @@ class ErrorDiary:
         if not available[next_step["step"]]:
             next_step = {"step": "explanation" if target else "review",
                          "reason": "Alcuni materiali sono stati ritirati. Il diario conserva l’errore e indica le attività ancora disponibili."}
+        if next_step["step"] == "retry" and alternate:
+            level = alternate["difficulty"]
+            same_level = not protected and level == original.get("difficulty")
+            level_note = f"Il livello è lo stesso del primo quesito ({level} su 3)." if same_level else f"Il nuovo quesito di studio è di livello {level} su 3."
+            next_step["reason"] += " " + level_note
         return {"run": error["run"], "index": error["idx"], "at": error["stamp"], "skill": skill,
                 "source": "esame consegnato" if protected else error["mode"],
                 "question": question,

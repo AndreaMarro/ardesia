@@ -112,6 +112,7 @@ async function journey(engine, base, width, height, scale = 1) {
     const retry = card.locator('.diary-body > [data-diario-retest]');
     await retry.waitFor();
     assert.match(await card.innerText(), /Hai scelto 15 minuti/);
+    assert.match(await card.innerText(), /livello è lo stesso del primo quesito \(2 su 3\)/);
     await card.getByText('Tentativi e aiuti', { exact: true }).press('Enter');
     assert.match(await card.innerText(), /Risposta iniziale autonoma/);
     audits.errore = await inspect(page, name, 'errore');
