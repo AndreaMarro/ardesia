@@ -33,8 +33,11 @@ async function post(page,route,body) {
   return response.json();
 }
 async function go(page, route, selector) {
+  // A direct-entry test starts with a new document, apart from the click-through journeys below.
+  if (page.url() !== 'about:blank') await page.goto('about:blank');
   await page.goto(url+'#'+route);
   await page.locator(selector).first().waitFor({state:'visible'});
+  await page.waitForFunction(()=>!document.querySelector('main')?.hasAttribute('aria-busy'));
 }
 async function audit(page, label) {
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth+1),label+' · reflow');
@@ -201,8 +204,8 @@ async function performanceRun(browser) {
   const other=await page.context().newPage();
   await other.bringToFront();
   Object.assign(measures,await page.evaluate(()=>window.officinaVitals));
-  assert.ok(Number.isFinite(measures.LCP)&&Number.isFinite(measures.INP),JSON.stringify(measures));
-  assert.ok(measures.LCP<2500 && measures.INP<200 && (measures.CLS||0)<=0.1,JSON.stringify(measures));
+  assert.ok([measures.LCP,measures.INP,measures.CLS].every(Number.isFinite),JSON.stringify(measures));
+  assert.ok(measures.LCP<2500 && measures.INP<200 && measures.CLS<=0.1,JSON.stringify(measures));
   await page.context().close();
 }
 try {
@@ -212,7 +215,12 @@ try {
   const desktop=await chromium.launch({...opts,headless:process.env.ASTRA_HEADED!=='1',args:process.platform==='linux'?['--enable-unsafe-swiftshader']:[]});
   browsers.push(desktop);
   const author=await desktop.newPage();author.setDefaultTimeout(12000);
-  await install(author);await author.close();
+  await install(author);
+  await go(author,'autore','main h1');
+  await audit(author,'desktop-archivio-autore');
+  await go(author,'edizioni','.tablebox');
+  await audit(author,'desktop-edizioni');
+  await author.close();
   await learner(desktop,'desktop');
   const safari=await webkit.launch();browsers.push(safari);
   await learner(safari,'mobile-tavola');
@@ -222,14 +230,35 @@ try {
   await smoke.locator('.skip').focus();await smoke.keyboard.press('Enter');
   assert.equal(await smoke.evaluate(()=>document.activeElement.id),'main');
   await audit(smoke,'desktop-home');
+  await go(smoke,'accedi/nuovo/studio','#auth');
+  await audit(smoke,'desktop-registrazione');
+  await post(smoke,'register',{email:'prova@example.invalid',password:'Prova-locale-2026'});
+  await smoke.reload();
+  await go(smoke,'acquisto/C1','#order');
+  await audit(smoke,'desktop-riepilogo-ordine');
+  await post(smoke,'logout',{});
   await post(smoke,'demo',{});
   await smoke.reload();
   await go(smoke,'corso/C1','main .c1-paths');
   await audit(smoke,'desktop-orientamento-C1');
   await go(smoke,'materiale/C1-L004/C1','.bench-topic');
   await audit(smoke,'desktop-lezione-C1');
+  await go(smoke,'materiale/C1-Q027/C1','#single');
+  await smoke.locator('#single').click();
+  await smoke.getByLabel('Risposta numerica in m',{exact:true}).fill('2');
+  await audit(smoke,'desktop-risposta');
+  await smoke.getByRole('button',{name:'Verifica risposta'}).click();
+  await smoke.getByRole('button',{name:'Un passaggio alla volta'}).click();
+  await audit(smoke,'desktop-soluzione-progressiva');
+  await go(smoke,'laboratori','#simulazioni-voci');
+  await audit(smoke,'desktop-indice-laboratori');
+  await go(smoke,'sprint','.method-intro');
+  await audit(smoke,'desktop-esame-rapido');
   await go(smoke,'allenamento/C6','#exam-1');
   await audit(smoke,'desktop-esame-C6');
+  await smoke.locator('#exam-1').click();
+  await smoke.locator('#clock').waitFor();
+  await audit(smoke,'desktop-fascicolo-C6');
   await smoke.close();
   await performanceRun(desktop);
   const entries=logs.join('').split('\n').filter(s=>s.startsWith('{')).map(line=>JSON.parse(line));

@@ -69,6 +69,7 @@ jobs:
         run: |
           npx playwright install --with-deps webkit
           xvfb-run -a npm run test:accessibility
+          python3 tools/misura_percorso.py > var/arch/browser/carico.json
       - name: Distribuzione riproducibile e riapertura da ZIP
         run: |
           mkdir -p var/release

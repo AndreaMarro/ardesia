@@ -7,6 +7,18 @@
       "passed": 25
     },
     {
+      "page": "desktop-archivio-autore",
+      "violations": [],
+      "incomplete": [],
+      "passed": 27
+    },
+    {
+      "page": "desktop-edizioni",
+      "violations": [],
+      "incomplete": [],
+      "passed": 20
+    },
+    {
       "page": "desktop-prerequisiti",
       "violations": [],
       "incomplete": [
@@ -208,6 +220,18 @@
       "passed": 23
     },
     {
+      "page": "desktop-registrazione",
+      "violations": [],
+      "incomplete": [],
+      "passed": 24
+    },
+    {
+      "page": "desktop-riepilogo-ordine",
+      "violations": [],
+      "incomplete": [],
+      "passed": 23
+    },
+    {
       "page": "desktop-orientamento-C1",
       "violations": [],
       "incomplete": [
@@ -245,14 +269,74 @@
       "passed": 20
     },
     {
+      "page": "desktop-risposta",
+      "violations": [],
+      "incomplete": [],
+      "passed": 26
+    },
+    {
+      "page": "desktop-soluzione-progressiva",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            "span:nth-child(1) > .mord > .mathrm.mord",
+            ".math:nth-child(4) > .katex-display > .katex > .katex-html[aria-hidden=\"true\"] > .base:nth-child(2) > .mbin",
+            ".line-link > span[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 27
+    },
+    {
+      "page": "desktop-indice-laboratori",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": [
+            "a[href$=\"#banco/LAB3D-01\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-02\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-03\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-04\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-05\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-06\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-07\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-08\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-09\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#banco/LAB3D-10\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C1\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C2\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C3\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C4\"] > .arrow[aria-hidden=\"true\"]",
+            "a[href$=\"#lab/LAB-C5\"] > .arrow[aria-hidden=\"true\"]"
+          ]
+        }
+      ],
+      "passed": 25
+    },
+    {
+      "page": "desktop-esame-rapido",
+      "violations": [],
+      "incomplete": [],
+      "passed": 18
+    },
+    {
       "page": "desktop-esame-C6",
       "violations": [],
       "incomplete": [],
       "passed": 20
+    },
+    {
+      "page": "desktop-fascicolo-C6",
+      "violations": [],
+      "incomplete": [],
+      "passed": 25
     }
   ],
   "measures": {
-    "LCP": 184,
+    "LCP": 288,
     "CLS": 0.04521644195687809,
     "INP": 56
   },
