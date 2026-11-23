@@ -411,9 +411,11 @@ async function router() {
     }
     else if (page === 'autore-accesso') {
       await api('/owner', { ticket: parts[0] });
-      history.replaceState(null, '', '#autore');
-      await refresh();
-      await authorPage([]);
+      if (here === location.hash.slice(1)) history.replaceState(null, '', '#autore');
+      // replaceState non emette hashchange. La destinazione rilegge la sessione e gestisce il proprio focus.
+      ready = false;
+      pending = true;
+      return;
     } else if (page === 'autore') await authorPage(parts);
     else if (page === 'amministrazione') await admin();
     else if (page === 'edizioni') await editions();

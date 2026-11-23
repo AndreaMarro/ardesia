@@ -202,16 +202,45 @@ async function runAcceptance() {
   const author = await browser.newContext({ viewport: { width: 1280, height: 900 } }),
     admin = await author.newPage();
   watch(admin);
-  const ticket = spawnSync(
-    'python3',
-    [
-      '-c',
-      'from server.store import *\nt=secrets.token_urlsafe(32)\nwith connect() as d:d.execute("insert into tickets values(?,?)",(digest(t),NOW()+90))\nprint(t)',
-    ],
-    { cwd: root, env, encoding: 'utf8' },
-  ).stdout.trim();
+  function authorTicket() {
+    const result = spawnSync(
+      'python3',
+      [
+        '-c',
+        'from server.store import *\nt=secrets.token_urlsafe(32)\nwith connect() as d:d.execute("insert into tickets values(?,?)",(digest(t),NOW()+90))\nprint(t)',
+      ],
+      { cwd: root, env, encoding: 'utf8' },
+    );
+    assert.equal(result.status, 0);
+    return result.stdout.trim();
+  }
+  const ticket = authorTicket();
   await visit(admin, 'autore-accesso/' + ticket, 'main h1');
   await admin.waitForURL('**/#autore');
+  assert.equal(await admin.locator('main h1').innerText(), 'Area autore');
+  assert.ok((await admin.title()).includes('Area autore'));
+  assert.equal(await admin.evaluate(() => document.activeElement.id), 'main');
+  const otherWindow = await browser.newContext();
+  try {
+    const tab = await otherWindow.newPage();
+    let resume;
+    const pendingTicket = new Promise(resolve => { resume = resolve; });
+    await tab.route('**/api/owner', async route => {
+      await pendingTicket;
+      await route.continue();
+    });
+    const started = tab.waitForRequest(request => new URL(request.url()).pathname === '/api/owner');
+    await tab.goto(url + '#autore-accesso/' + authorTicket());
+    await started;
+    await tab.locator('.mast nav a[href="#percorsi"]').click();
+    resume();
+    await tab.locator('.catalog-row').first().waitFor();
+    await tab.waitForFunction(() => !document.querySelector('main').hasAttribute('aria-busy'));
+    assert.equal(new URL(tab.url()).hash, '#percorsi');
+    assert.equal(await tab.locator('.catalog-row').count(), 6);
+  } finally {
+    await otherWindow.close();
+  }
   await visit(admin, 'amministrazione', '.check-order');
   await admin.locator('.check-order [name=amount]').fill('1,00');
   await admin.locator('.check-order input[type=checkbox]').check();
