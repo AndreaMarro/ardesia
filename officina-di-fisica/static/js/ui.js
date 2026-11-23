@@ -1,3 +1,5 @@
+import { pulisciBozze, segnalaCambioAccesso } from './recupero/bozza.js';
+
 export const main = document.querySelector('main');
 export const state = { courses: [], labs: [], user: null, mode: 'verifica' };
 export const esc = (x) =>
@@ -60,10 +62,13 @@ export async function api(path, data) {
     error.status = response.status;
     throw error;
   }
+  if (data !== undefined && ['/login', '/register', '/owner', '/demo', '/logout'].includes(path))
+    segnalaCambioAccesso();
   return result;
 }
 export async function refresh() {
   Object.assign(state, await api('/state'));
+  pulisciBozze(state.draftSession);
   return state;
 }
 export function go(route) {

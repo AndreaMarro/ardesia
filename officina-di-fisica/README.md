@@ -10,6 +10,8 @@ In copertina **Cric**, la chiave inglese con la matita in spalla, cambia posa co
 
 L’edizione 1.1 vive nella cartella `officina-di-fisica/` del ramo ufficiale omonimo di AndreaMarro/ardesia. Dalla home scegli **Laboratori 3D per capitolo** per raggiungere ciascuna delle 181 voci. La release contiene il pacchetto verificato della sola Officina e la sua impronta SHA-256. [Cartella canonica](https://github.com/AndreaMarro/ardesia/tree/officina-di-fisica/officina-di-fisica) · [Release 1.1](https://github.com/AndreaMarro/ardesia/releases/tag/officina-di-fisica-v1.1.0) · [Revisione tecnica, didattica e UX](docs/architettura/README.md)
 
+In C1 scegli **Esercizi prioritari → Aree di segno opposto → Inizia il quesito**. Dopo un errore, **Prova il ritorno di 7 s** apre una variante con pista, tabella e ripresa della bozza. [Come provarla, schermate e collaudo](docs/recupero-c1-q027/README.md)
+
 Il bundle Git storico nella cartella di distribuzione permette di recuperare l’edizione autonoma 1.0.0. Dopo averlo scaricato puoi eseguire `git clone Officina-di-Fisica-1.0.0.bundle Officina-di-Fisica`. Per lavorare direttamente sul branch di Ardesia scaricando la sola cartella del prodotto:
 
 ```sh

@@ -1,0 +1,176 @@
+/* The recovery is a single work surface in the existing question page. */
+.campo-ingresso {
+  margin: 0.75rem 0;
+}
+.campo-recupero {
+  max-width: 51rem;
+  margin: 1rem auto 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  border-top: 4px solid var(--violet);
+  background: var(--panel);
+}
+.campo-intestazione,
+.campo-viste,
+.campo-tempo,
+.campo-scrittura {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+.campo-intestazione {
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  margin-bottom: 1rem;
+}
+.campo-intestazione span {
+  font-weight: 650;
+  color: var(--violet-dark);
+}
+.campo-recupero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+.campo-consegna {
+  max-width: 55ch;
+  margin: 0.8rem 0 1.2rem;
+  line-height: 1.55;
+}
+.campo-recupero label {
+  display: block;
+  font-weight: 660;
+  margin: 0.6rem 0 0.3rem;
+}
+.campo-recupero button {
+  min-height: 44px;
+  white-space: normal;
+}
+.campo-scrittura #campo-valore {
+  width: 10rem;
+  max-width: 100%;
+  min-width: 0;
+  font: 600 1.2rem/1.2 var(--sans);
+  font-variant-numeric: tabular-nums;
+  min-height: 46px;
+}
+.campo-scrittura input[aria-invalid='true'] {
+  border: 2px solid var(--red);
+}
+.campo-recupero form > .solid {
+  margin-top: 0.65rem;
+}
+.campo-recupero [data-bozza]:not(:empty),
+.campo-recupero [data-aiuti] {
+  margin: 0.5rem 0;
+}
+.campo-riscontro {
+  border-inline-start: 4px solid var(--red);
+  padding: 0.7rem 1rem;
+  margin: 0.85rem 0;
+  background: var(--paper);
+}
+.campo-riscontro.campo-esatto {
+  border-color: #536b17;
+}
+.campo-recupero [tabindex='-1']:focus {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+}
+.campo-recupero [data-precedente] {
+  margin: 0.65rem 0;
+}
+.campo-recupero [data-apri-pista] {
+  margin-top: 0.25rem;
+}
+.campo-banco {
+  margin-top: 1.15rem;
+  padding: clamp(0.8rem, 2vw, 1.35rem);
+  background: var(--paper);
+  border: 1px solid var(--fine);
+}
+.campo-banco h2 {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  margin-bottom: 0.4rem;
+}
+.campo-viste {
+  margin: 0.75rem 0;
+}
+.campo-viste button[aria-pressed='true']:enabled,
+.campo-viste button[aria-pressed='true']:enabled:hover {
+  color: white;
+  background: var(--violet-dark);
+}
+.campo-quadro {
+  background: #eeefdd;
+  border: 1px solid var(--fine);
+  overflow: hidden;
+}
+.campo-quadro canvas,
+.campo-disegno {
+  display: block;
+  width: 100%;
+  height: clamp(10rem, 24vw, 15rem);
+}
+.campo-disegno {
+  color: var(--ink);
+}
+.campo-disegno text {
+  fill: currentColor;
+  text-anchor: middle;
+  font: 600 16px var(--sans);
+}
+.campo-quadro canvas:focus-visible {
+  outline-offset: -4px;
+}
+.campo-banco figcaption,
+.campo-banco .small {
+  margin: 0.35rem 0;
+  font: 400 0.9rem/1.45 var(--sans);
+  color: var(--muted);
+}
+.campo-banco table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.campo-banco table caption {
+  text-align: left;
+  font-weight: 650;
+  margin-bottom: 0.25rem;
+}
+.campo-banco td,
+.campo-banco th {
+  padding: 0.32rem;
+  border-bottom: 1px solid var(--fine);
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.campo-banco tr[aria-current='true'] {
+  background: var(--wash);
+}
+.campo-lettura {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.75rem;
+}
+.campo-tratti {
+  font-variant-numeric: tabular-nums;
+}
+.campo-banco input[type='range'] {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  accent-color: var(--violet);
+}
+.campo-tempo {
+  margin-bottom: 0.75rem;
+}
+@media (max-width: 480px) {
+  .campo-recupero {
+    padding: 0.8rem;
+  }
+  .campo-scrittura input {
+    flex: 1 1 5rem;
+  }
+}

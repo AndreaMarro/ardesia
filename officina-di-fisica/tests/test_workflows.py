@@ -168,6 +168,47 @@ class Workflows(unittest.TestCase):
     def author_get(self, key):
         return self.admin.fetch("/api/author/item/" + key)
 
+    def test_formative_return_requires_pinned_error_owned_practice_and_current_session(self):
+        from server.application.formative import attach_formative_variant
+
+        self.grant("C1")
+        rid = self.start_run(course="C1", item="C1-Q027")
+        self.assertNotIn("formative", self.view(rid)["items"][0])
+        action = {"idx": 0, "action": "answer", "value": "-2"}
+        wrong = self.view(rid, action)
+        item = wrong["items"][0]
+        grant = item["formative"]
+        self.assertFalse(item["correct"])
+        self.assertEqual((item["version"], grant["variant"]["legs"][1]["duration"]), (2, 7))
+        self.assertEqual(grant["session"], self.student.fetch("/api/state")["draftSession"])
+        attempts = self.db().execute("SELECT * FROM attempts WHERE run=?", (rid,)).fetchall()
+        self.assertEqual(len(attempts), 1)
+        self.assertEqual(self.view(rid)["items"][0], item)
+        self.assertEqual(self.client().fetch("/api/state")["draftSession"], None)
+        self.view(rid, client=self.client(), expected=401)
+        self.view(rid, client=self.client().register("altra@example.test"), expected=404)
+        self.assertNotEqual(self.view(rid, client=self.client().login())["items"][0]["formative"]["session"],
+                            grant["session"])
+        self.student.fetch("/api/logout", {})
+        self.view(rid, expected=401)
+        self.student.login()
+        self.assertNotEqual(self.view(rid)["items"][0]["formative"]["session"], grant["session"])
+
+        for edits, changes in [
+            ({"mode": mode}, {}) for mode in ("exam", "mid", "final", "diagnosis", "retest", "review", "mixed")
+        ] + [({"sealed": True}, {}), ({"course": "C6"}, {}), ({}, {"version": 1}),
+             ({}, {"sent": False}), ({}, {"id": "C1-Q028"}), ({}, {"correct": None})]:
+            probe = {**wrong, **edits, "items": [{**item, **changes}]}
+            del probe["items"][0]["formative"]
+            attach_formative_variant(probe, grant["session"])
+            self.assertNotIn("formative", probe["items"][0], (edits, changes))
+        correct = self.start_run(course="C1", item="C1-Q027")
+        self.assertNotIn("formative", self.view(correct, {**action, "value": "+2"})["items"][0])
+        self.assertEqual(self.db().execute("SELECT * FROM attempts WHERE run=?", (rid,)).fetchall(), attempts)
+        with self.db() as db:
+            db.execute("DELETE FROM access WHERE course='C1'")
+        self.view(rid, expected=403)
+
     def test_accounts_access_restart_and_other_device(self):
         self.assertEqual(
             self.client().fetch("/api/health")["product"], "officina-di-fisica"
@@ -729,6 +770,7 @@ class Workflows(unittest.TestCase):
             rid = self.start_run(course="C6", mode="exam", exam=n)
             state = self.view(rid)
             self.assertEqual(len(state["items"]), 31)
+            self.assertTrue(all("formative" not in q for q in state["items"]))
             self.assertIn(state["deadline"] - state["serverTime"], range(2996, 3001))
             self.assertTrue(
                 all(
@@ -778,6 +820,7 @@ class Workflows(unittest.TestCase):
             else:
                 end = self.view(rid, {"action": "finish"})
             self.assertTrue(end["finished"])
+            self.assertTrue(all("formative" not in q for q in end["items"]))
             self.assertEqual(
                 end["result"], {"right": 1, "wrong": 1, "omitted": 29, "score": 0.9}
             )

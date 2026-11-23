@@ -17,6 +17,7 @@ from urllib.parse import quote, unquote, urlparse
 
 from . import commerce, editor, learning
 from .application.pathways import learning_path
+from .application.formative import attach_formative_variant
 from .editorial.service import editorial_library
 from .adapters.engines import checkpoints, installed
 from .adapters.exam_policies import exam_policy
@@ -45,6 +46,11 @@ from .store import (
     require,
     safe_key,
 )
+
+
+def draft_scope(token):
+    # Public storage namespace, intentionally distinct from both the cookie and its database key.
+    return hmac.digest(token.encode(), b"officina/formative-drafts/v1", "sha256").hex()
 
 
 def account(db, user):
@@ -374,6 +380,7 @@ class Handler(BaseHTTPRequestHandler):
             counts = {c["id"]: Counter(r["kind"] for r in in_course(rows, c["id"])) for c in courses}
             return {
                 "user": account(db, u),
+                "draftSession": draft_scope(token) if u else None,
                 "mode": config(db).get("mode", "verifica"),
                 "courses": [
                     dict(
@@ -567,7 +574,9 @@ class Handler(BaseHTTPRequestHandler):
         if post and path == "api/runs":
             return learning.start(db, u, rows, d)
         if p[:2] == ["api", "run"] and len(p) == 3:
-            return learning.details(db, u, rows, p[2], d if post else None)
+            run = learning.details(db, u, rows, p[2], d if post else None)
+            attach_formative_variant(run, draft_scope(token))
+            return run
         if post and path == "api/orders":
             return commerce.create(db, u, rows, d)
         if post and p[:2] == ["api", "order"] and len(p) == 3:

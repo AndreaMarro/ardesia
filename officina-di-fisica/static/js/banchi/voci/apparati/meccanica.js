@@ -1,6 +1,14 @@
 import { colore as c, punti, rad } from '../geometria.js';
-const rail = (b) => {
+const rail = (b, marks) => {
   for (const z of [-0.27, 0.27]) b.rod([-2.65, 0.22, z], [2.65, 0.22, z], 0.045, c.metallo);
+  if (marks) {
+    b.box([0, 0.12, 0.76], [5.12, 0.08, 0.42], c.bianco);
+    for (const {x, major, label} of marks) {
+      b.box([x, 0.17, major ? 0.76 : 0.69], [major ? 0.032 : 0.022, 0.018, major ? 0.39 : 0.23], c.inchiostro);
+      if (label) b.label([x, 0.12, 1.02], label);
+    }
+    return;
+  }
   for (let i = 0; i <= 10; i++)
     b.line(
       [
@@ -134,14 +142,18 @@ export const meccanica = {
     }
   },
   binario(b, s) {
-    rail(b);
     const at = (x) => -2.38 + (4.76 * (x - s.min)) / (s.max - s.min);
+    rail(b, s.marks?.map(mark => ({...mark, x: at(mark.value)})));
     const x = at(s.pos),
       old = at(s.inizio);
     b.rod([old, 0.06, 0.65], [old, 0.65, 0.65], 0.026, c.ocra);
     carrello(b, x, c.verde);
     b.arrow([x, 0.95, 0], [x + (s.freccia ?? 0) * 0.65, 0.95, 0], c.viola);
-    b.label([old, 0.85, 0.72], 'Via', c.ocra);
+    b.label([old, 0.85, 0.72], s.startLabel || 'Via', s.marks ? c.inchiostro : c.ocra);
+    if (s.turn !== undefined) {
+      b.arrow([old, 0.12, -1.15], [at(s.turn), 0.12, -1.15], c.verde);
+      b.arrow([at(s.turn), 0.12, -0.67], [x, 0.12, -0.67], c.viola);
+    }
     b.label([x, 1.45, -0.12], 'Carrello', c.verde);
   },
   volo(b, s) {
