@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pagina del catalogo pubblico",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "total",
+    "page",
+    "pageSize",
+    "items"
+  ],
+  "properties": {
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "page": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9999
+    },
+    "pageSize": {
+      "const": 12
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "course",
+          "title",
+          "version"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "course",
+              "lesson",
+              "example",
+              "question",
+              "experiment",
+              "bench",
+              "lab",
+              "method"
+            ]
+          },
+          "course": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

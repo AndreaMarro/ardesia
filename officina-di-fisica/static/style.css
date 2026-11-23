@@ -73,6 +73,53 @@ nav { display: flex; align-items: center; flex-wrap: wrap; }
 main { min-height: 60vh; }
 main:focus { outline: none; }
 
+/* Search reuses the course index and its typographic hierarchy. */
+.mast-search { display: inline-flex; align-items: center; min-height: 44px; margin-inline-start: auto; font-weight: 650; color: var(--violet-dark); }
+.search-sheet { max-width: 65rem; margin: clamp(1.2rem, 2.6vw, 2.5rem) 0; }
+.search-sheet h1 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.1rem; }
+.search-sheet form { display: flex; flex-wrap: wrap; align-items: end; gap: .8rem 1rem; }
+.search-entry { flex: 1 1 20rem; min-width: 0; }
+.search-entry > div { display: flex; }
+.search-entry input { flex: 1 1 auto; min-width: 0; width: 100%; }
+.search-filters { display: flex; flex: 1 1 23rem; gap: .75rem; }
+.search-filters > div { flex: 1 1 50%; min-width: 0; }
+.search-sheet label { display: block; font-weight: 630; font-size: .95rem; }
+.search-sheet input, .search-sheet select { min-height: 44px; margin-top: .26rem; padding: .45rem .55rem; border: 1px solid var(--ink); border-radius: 0; color: var(--ink); background: var(--paper); font: 400 1rem/1.3 var(--sans); }
+.search-sheet select { width: 100%; height: max(44px, 2.75rem); }
+.search-entry button { align-self: end; }
+.search-count, .search-pages { display: flex; flex-wrap: wrap; align-items: baseline; gap: .7rem 1.5rem; }
+.search-count span, .search-kind, .search-code { color: var(--muted); }
+.search-results { margin: 1.2rem 0 2.4rem; }
+.search-results h2 { font-size: clamp(1.35rem, 2vw, 1.8rem); margin-bottom: .7rem; }
+.search-results h2:focus-visible, .search-list a:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
+.search-list { padding: 0; list-style: none; border-top: 2px solid var(--ink); margin: 0 0 1rem; }
+.search-list li { border-bottom: 1px solid var(--fine); }
+.search-list a { display: grid; grid-template-columns: minmax(8.8rem,.45fr) minmax(0,2fr) minmax(7rem,.55fr) 1.2rem; gap: .3rem 1.1rem; align-items: baseline; padding: .75rem .35rem; text-decoration: none; }
+.search-list a:hover { background: var(--wash); }
+.search-list strong { font-size: 1.12rem; line-height: 1.35; }
+.search-code { font: .85rem/1.45 var(--mono); overflow-wrap: anywhere; }
+.search-arrow { color: var(--violet); }
+.search-pages { gap: .5rem; }
+.search-reset { display: inline-flex; align-items: center; min-height: 44px; margin-top: .5rem; color: var(--violet-dark); font-weight: 620; }
+@media (max-width: 640px) {
+  .search-list a { grid-template-columns: 1fr auto; }
+  .search-kind, .search-code { font-size: .82rem; }
+  .search-code { grid-row: 1; grid-column: 2; text-align: end; }
+  .search-list strong, .search-arrow { grid-row: 2; }
+  .search-arrow { justify-self: end; }
+  .search-filters { flex-basis: 100%; }
+}
+@media (max-width: 640px) {
+  .mast .brand span { display: grid; gap: .14rem; padding-left: .55rem; border-left: 1px solid var(--ink); }
+  .mast .brand strong, .mast .brand em { padding: 0; border: 0; }
+  .mast .brand em { font-size: .86rem; }
+  .sheet:has(.search-sheet) { padding-inline: max(16px, 3.6vw); }
+}
+@media (max-width: 420px) {
+  .search-filters { display: grid; grid-template-columns: minmax(0, 1fr); gap: .45rem; }
+}
+@media print { .mast-search, .search-sheet form { display: none; } }
+
 /* Masthead and cover spread. */
 .mast { display: flex; justify-content: space-between; align-items: center; gap: 1.25rem; padding: .77rem .04rem; border-bottom: 2px solid var(--ink); }
 .brand { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; }

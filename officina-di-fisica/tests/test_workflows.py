@@ -168,6 +168,41 @@ class Workflows(unittest.TestCase):
     def author_get(self, key):
         return self.admin.fetch("/api/author/item/" + key)
 
+    def test_catalog_search_live_authority_and_editions(self):
+        path = "/api/v1/catalog/search?"
+        guest = self.client()
+        def lookup(client, token):
+            return client.fetch(path + "q=" + token)["items"]
+        original = self.author_get("C5-Q002")["record"]
+        original_id = original["id"]
+        public = lookup(guest, original_id)
+        self.assertEqual([r["id"] for r in public], [original_id])
+        self.assertEqual(set(public[0]), {"id", "kind", "course", "title", "version"})
+        guest.fetch("/api/item/" + original_id, expected=403)
+        for invalid in ("q=a&q=b", "page=0", "q=%ff", "q=%2j", "q", "kind=solution"):
+            guest.fetch(path + invalid, expected=400)
+        self.assertFalse(lookup(guest, "%3Cscript%3E"))
+        self.grant("C5")
+        run = self.start_run(item=original_id)
+        db = self.db()
+        def ledger():
+            return {table: list(db.execute("SELECT * FROM " + table + " ORDER BY rowid"))
+                    for table in ("runs", "run_policies", "attempts", "exposed", "reads", "lab_events", "access")}
+        before = ledger()
+        self.assertEqual(lookup(self.student, original_id), public)
+        self.assertEqual(lookup(self.admin, "C6-Q013"), [])
+        self.assertEqual(ledger(), before)
+        self.assertEqual(self.student.fetch("/api/item/" + original_id)["version"], original["version"])
+        update = dict(original, title="Prova spettroscopica univoca")
+        new = self.admin.fetch("/api/author/save", {"record": update, "base": original["version"]})["v"]
+        self.assertEqual(lookup(guest, "spettroscopica"), [])
+        self.admin.fetch("/api/author/publish", {"targets": {original_id: new}})
+        fresh = lookup(guest, "spettroscopica")
+        self.assertEqual([(r["id"],r["version"]) for r in fresh], [(original_id,new)])
+        self.admin.fetch("/api/author/withdraw", {"id": original_id, "live": new})
+        self.assertEqual(lookup(guest, original_id), [])
+        self.assertEqual(self.view(run)["items"][0]["version"], original["version"])
+
     def test_formative_return_requires_pinned_error_owned_practice_and_current_session(self):
         from server.application.formative import attach_formative_variant
 

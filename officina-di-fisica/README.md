@@ -1,5 +1,8 @@
 # Officina di Fisica
 
+Dalla testata, **Cerca** apre i materiali per argomento o codice, per esempio `C1-Q027`. Puoi filtrare per percorso e tipo e tornare al risultato dopo aver consultato l’attività. [Ricerca e criteri di verifica](docs/verifica-prodotto/ricerca.md)
+
+
 I sei percorsi di Andrea Marro per il semestre aperto di Medicina 2026/27. Il quaderno dello studente, il banco autore e il registro dei bonifici condividono una sola installazione. L’edizione si può usare su questo computer senza servizi esterni.
 
 ![Copertina dell’Officina con i percorsi di studio](docs/verifiche/copertina-desktop.png)

@@ -70,7 +70,9 @@ jobs:
           npx playwright install --with-deps webkit
           xvfb-run -a npm run test:accessibility
           xvfb-run -a node tests/browser-recupero-campo.mjs
+          xvfb-run -a node tests/browser-catalogo.mjs
           python3 tools/misura_percorso.py > var/arch/browser/carico.json
+          python3 tools/misura_catalogo.py > var/arch/browser/catalogo/prestazioni.json
       - name: Distribuzione riproducibile e riapertura da ZIP
         run: |
           mkdir -p var/release
