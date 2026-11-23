@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 206" role="img" aria-labelledby="titolo descrizione">
+  <title id="titolo">Sezione di un sensore inclinato nel fascio</title>
+  <desc id="descrizione">I raggi arrivano da sinistra. La normale forma 60 gradi con la propagazione. Il segmento inclinato che rappresenta il sensore proietta su un piano verticale un segmento alto la metà.</desc>
+  <defs>
+    <marker id="freccia" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 8 4 0 8Z" fill="#594586"/>
+    </marker>
+    <marker id="verso" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 8 4 0 8Z" fill="#075751"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="418" height="204" rx="8" fill="#faf7ee" stroke="#aaa69a"/>
+  <g font-family="system-ui,sans-serif" font-size="17" fill="#231e32">
+    <text x="18" y="29">Propagazione</text>
+    <path d="M18 40H111" fill="none" stroke="#594586" stroke-width="2.5" marker-end="url(#freccia)"/>
+    <g fill="none" stroke="#594586" stroke-width="2" marker-end="url(#freccia)">
+      <path d="M18 82H174"/>
+      <path d="M18 122H244"/>
+      <path d="M18 162H311"/>
+    </g>
+    <path d="M180.72 82H363 M319.28 162H363" stroke="#67635d" fill="none" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <path id="sensore" d="M180.72 82L319.28 162" stroke="#231e32" stroke-width="6" stroke-linecap="round"/>
+    <path id="normale" d="M250 122L290 52.718" stroke="#075751" stroke-width="2.5" fill="none" marker-end="url(#verso)"/>
+    <path d="M250 122H326" stroke="#594586" stroke-width="1.3" stroke-dasharray="4 3"/>
+    <path d="M280 122A30 30 0 0 0 265 96.02" fill="none" stroke="#075751" stroke-width="2"/>
+    <text x="281" y="106" fill="#075751">60°</text>
+    <text x="294" y="51" fill="#075751">Normale</text>
+    <path id="proiezione" d="M359 82V162" stroke="#913f23" stroke-width="3"/>
+    <path d="M353 82H366 M353 162H366" stroke="#913f23" stroke-width="2"/>
+    <text x="198" y="178">Sensore</text>
+    <text x="302" y="190" fill="#79371f">Proiezione</text>
+  </g>
+</svg>

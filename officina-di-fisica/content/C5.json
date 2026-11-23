@@ -167,7 +167,7 @@
     "prerequisites": [
       "C5-L02"
     ],
-    "version": 1,
+    "version": 2,
     "coverage": [
       "UD4 · energia e potenza di un’onda meccanica in un mezzo elastico",
       "UD4 · intensità come energia per area e tempo",
@@ -176,15 +176,23 @@
     "blocks": [
       {
         "type": "text",
-        "text": "Una sorgente può erogare sempre la stessa energia al secondo mentre un piccolo sensore, allontanandosi, ne raccoglie sempre meno. La potenza P misura il trasferimento totale di energia E nell’intervallo Δt. L’intensità media I misura invece la potenza che attraversa una superficie perpendicolare alla propagazione, divisa per l’area illuminata."
+        "text": "Una sorgente può erogare la stessa energia ogni secondo mentre un sensore, allontanandosi, ne raccoglie sempre meno. Per misurare la potenza media della sorgente dividi l’energia emessa per il tempo impiegato. Emettere 6 J in 3 s significa erogare in media 2 W."
       },
       {
         "type": "formula",
-        "text": "P=\\frac{\\Delta E}{\\Delta t},\\qquad I=\\frac{P_{\\perp}}{S},\\qquad [I]=\\mathrm{W\\,m^{-2}}"
+        "text": "\\overline P=\\frac{\\Delta E}{\\Delta t}"
       },
       {
         "type": "text",
-        "text": "Per una sorgente puntiforme isotropa in un mezzo omogeneo privo di assorbimento, la potenza si ripartisce su sfere concentriche. L’area cresce più rapidamente del raggio."
+        "text": "Per misurare l’intensità, immagina una finestra piana perpendicolare al raggio. Dividi la potenza che la attraversa per la sua area. Il risultato dice quanti watt attraversano un metro quadrato in quella posizione."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{\\overline P_{\\rm finestra}}{S}"
+      },
+      {
+        "type": "text",
+        "text": "Per una sorgente puntiforme isotropa in un mezzo omogeneo privo di assorbimento, la stessa potenza attraversa tutte le sfere centrate sulla sorgente. A distanza doppia la superficie è quattro volte maggiore."
       },
       {
         "type": "figure",
@@ -193,7 +201,11 @@
       },
       {
         "type": "formula",
-        "text": "I(r)=\\frac{P}{4\\pi r^2},\\qquad \\frac{I_2}{I_1}=\\left(\\frac{r_1}{r_2}\\right)^2"
+        "text": "I(r)=\\frac{\\overline P}{4\\pi r^2}"
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I_2}{I_1}=\\left(\\frac{r_1}{r_2}\\right)^2"
       },
       {
         "type": "text",
@@ -205,7 +217,27 @@
       },
       {
         "type": "text",
-        "text": "Una sonda di area piccola e perpendicolare al fronte raccoglie, in un campo uniforme sulla sonda, Pᵣ = I S. Per ritrovare l’energia raccolta moltiplica ancora per la durata dell’esposizione. La legge sferica perde validità per fasci collimati, riflessioni importanti o assorbimento significativo."
+        "text": "Una sonda di area piccola e perpendicolare al raggio ha il piano parallelo al fronte d’onda locale. Vista dalla sorgente presenta tutta la propria area S. Se la inclini, raccoglie il fascio su un’area efficace più piccola. Chiama θ l’angolo fra il raggio e la normale al sensore."
+      },
+      {
+        "type": "formula",
+        "text": "S_{\\rm eff}=S\\cos\\theta"
+      },
+      {
+        "type": "text",
+        "text": "Per un’intensità uniforme sul sensore e costante durante la misura, moltiplica prima per l’area efficace e poi per il tempo di esposizione."
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm raccolta}=I S_{\\rm eff}"
+      },
+      {
+        "type": "formula",
+        "text": "E_{\\rm raccolta}=P_{\\rm raccolta}\\,\\Delta t"
+      },
+      {
+        "type": "text",
+        "text": "La legge dell’inverso del quadrato richiede l’espansione su sfere. Un fascio collimato di sezione costante conserva invece la propria intensità finché le perdite sono trascurabili."
       }
     ]
   },
@@ -749,7 +781,7 @@
     "prerequisites": [
       "C5-L02"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Una sorgente isotropa emette 0,40 W in un mezzo ideale. A 2,0 m di distanza un sensore piano di area 3,0 cm² è perpendicolare al raggio. Quanta energia intercetta in 5,0 s?",
     "family": "una-piccola-superficie-sulla-sfera",
     "difficulty": 2,
@@ -761,23 +793,59 @@
       },
       {
         "type": "text",
-        "text": "A = 3,0 cm² = 3,0 × 10⁻⁴ m², perché il fattore 10⁻² si applica a entrambe le dimensioni. Calcoliamo l’intensità sulla sfera di raggio 2 m."
+        "text": "La sorgente emette 0,40 joule al secondo in tutte le direzioni. Cerchiamo l’energia raccolta dal sensore in 5,0 s. Alla distanza di 2,0 m ogni metro quadrato di sfera riceve la stessa potenza."
       },
       {
         "type": "formula",
-        "text": "I=\\frac{0{,}40}{4\\pi(2{,}0)^2}\\ \\mathrm{W/m^2}=7{,}96\\times10^{-3}\\ \\mathrm{W/m^2}"
-      },
-      {
-        "type": "text",
-        "text": "Il sensore è piccolo e orientato perpendicolarmente, così possiamo assumere I uniforme su A. L’energia è la potenza raccolta moltiplicata per la durata."
+        "text": "S_{\\rm sfera}=4\\pi(2{,}0\\,\\mathrm m)^2"
       },
       {
         "type": "formula",
-        "text": "E=I A\\,\\Delta t=(7{,}96\\times10^{-3})(3{,}0\\times10^{-4})(5{,}0)\\ \\mathrm J=1{,}2\\times10^{-5}\\ \\mathrm J"
+        "text": "S_{\\rm sfera}=16\\pi\\,\\mathrm{m^2}"
       },
       {
         "type": "text",
-        "text": "L’intera sorgente emette 2 J in cinque secondi. Una piccola superficie a due metri intercetta soltanto una frazione di quei joule."
+        "text": "Dividi la potenza emessa per l’area della sfera. Usando π ≈ 3,14 ottieni l’intensità sul sensore."
+      },
+      {
+        "type": "formula",
+        "text": "I=\\frac{0{,}40}{16\\pi}\\,\\mathrm{W/m^2}"
+      },
+      {
+        "type": "formula",
+        "text": "I\\approx7{,}96\\times10^{-3}\\,\\mathrm{W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Il piano del sensore è perpendicolare al raggio, quindi la sua normale è parallela alla propagazione. L’area efficace coincide con l’area fisica. Ogni centimetro quadrato vale (0,01 m)²."
+      },
+      {
+        "type": "formula",
+        "text": "S_{\\rm eff}=3{,}0\\times10^{-4}\\,\\mathrm{m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Intensità per area dà la potenza che arriva al sensore. Potenza per tempo dà energia."
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm sensore}=I S_{\\rm eff}"
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm sensore}\\approx2{,}39\\times10^{-6}\\,\\mathrm W"
+      },
+      {
+        "type": "formula",
+        "text": "E=P_{\\rm sensore}\\,(5{,}0\\,\\mathrm s)"
+      },
+      {
+        "type": "formula",
+        "text": "E\\approx1{,}2\\times10^{-5}\\,\\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Controlla l’ordine di grandezza. La sorgente emette in tutto 2,0 J. Il sensore copre circa sei milionesimi della sfera e raccoglie circa dodici milionesimi di joule."
       }
     ]
   },
@@ -1384,18 +1452,34 @@
     "title": "Uno zero attraversato due volte",
     "skill": "C5-L01",
     "prerequisites": [],
-    "version": 1,
+    "version": 2,
     "prompt": "Due passaggi consecutivi per l’equilibrio di un oscillatore armonico, in versi opposti, distano 18 ms. Determina la frequenza in Hz.",
     "family": "uno-zero-attraversato-due-volte",
     "difficulty": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Dal centro all’estremo e ritorno trascorre mezzo periodo. Il ciclo completo dura 36 ms, ossia 0,036 s."
+        "text": "Parti dal centro nel verso positivo. L’oscillatore raggiunge un estremo e ripassa dal centro nel verso negativo. Per simmetria questi due quarti di giro durano in tutto mezzo periodo. Per rivedere lo stesso passaggio nel verso iniziale serve anche l’altra metà."
       },
       {
         "type": "formula",
-        "text": "f=1/T=1/(0{,}036\\ \\mathrm s)=27{,}8\\ \\mathrm{Hz}"
+        "text": "T=2(18\\,\\mathrm{ms})=36\\,\\mathrm{ms}"
+      },
+      {
+        "type": "formula",
+        "text": "T=0{,}036\\,\\mathrm s"
+      },
+      {
+        "type": "text",
+        "text": "La frequenza conta i cicli in un secondo. Inverti il periodo dopo averlo espresso in secondi."
+      },
+      {
+        "type": "formula",
+        "text": "f=\\frac{1}{0{,}036\\,\\mathrm s}\\approx27{,}8\\,\\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo mentale. Un ciclo dura poco più di un trentesimo di secondo, quindi la frequenza deve essere appena sotto 30 Hz."
       }
     ],
     "answer": {
@@ -1409,7 +1493,7 @@
     ],
     "error": {
       "category": "modello",
-      "message": "Con velocità opposte l’oscillatore ripete la posizione dopo mezzo periodo.",
+      "message": "All’equilibrio i due passaggi consecutivi in versi opposti distano mezzo periodo. Per una posizione diversa dallo zero i due intervalli possono avere durate diverse.",
       "target": "C5-L01"
     }
   },
@@ -2774,18 +2858,30 @@
     "prerequisites": [
       "C5-L02"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Due corde, alle rispettive tensioni, hanno la stessa velocità delle onde. Con uguali A e f, la corda B ha densità lineare tripla. Quale rapporto di potenze medie Pᴮ/Pᴬ prevede il modello armonico?",
     "family": "potenza-della-corda-e-massa-lineare",
     "difficulty": 3,
     "blocks": [
       {
         "type": "text",
-        "text": "A parità degli altri fattori il trasferimento di energia al secondo è proporzionale alla massa di corda per metro."
+        "text": "Cerchiamo il rapporto fra due potenze medie, cioè fra le energie trasportate in uno stesso tempo. Per una piccola onda sinusoidale su una corda ideale usa densità lineare μ, velocità dell’onda v, pulsazione ω e ampiezza A."
+      },
+      {
+        "type": "formula",
+        "text": "\\overline P=\\tfrac12\\mu v\\omega^2 A^2"
+      },
+      {
+        "type": "text",
+        "text": "Le corde hanno la stessa frequenza, dunque la stessa pulsazione ω = 2πf. Nel rapporto si semplificano anche v, A² e il fattore ½. Rimane il rapporto fra le masse per metro."
       },
       {
         "type": "formula",
         "text": "\\frac{\\overline P_B}{\\overline P_A}=\\frac{\\mu_B}{\\mu_A}=3"
+      },
+      {
+        "type": "text",
+        "text": "La tensione delle due corde può essere diversa. Qui il dato che permette la semplificazione è la stessa velocità di propagazione."
       }
     ],
     "answer": {
@@ -2809,27 +2905,48 @@
     "course": "C5",
     "section": "Energia, potenza e intensità",
     "order": 39,
-    "title": "Energia catturata inclinando il sensore",
+    "title": "Potenza raccolta inclinando il sensore",
     "skill": "C5-L04",
     "prerequisites": [
       "C5-L02"
     ],
-    "version": 1,
-    "prompt": "Un’area di 4,0 m² ha la normale inclinata di 60° verso un’onda piana uniforme di intensità 5,0 W/m². Quale potenza in W attraversa la superficie?",
+    "version": 2,
+    "prompt": "Un’onda piana uniforme ha intensità 5,0 W/m². La direzione di propagazione forma un angolo di 60° con la normale a un sensore piano di area 4,0 m². Quale potenza attraversa il sensore, in watt?",
     "family": "energia-catturata-inclinando-il-sensore",
     "difficulty": 3,
     "blocks": [
       {
         "type": "text",
-        "text": "Il fascio attraversa l’area proiettata S cos 60° = 4,0 × 0,5 = 2,0 m²."
+        "text": "Guarda il sensore lungo la direzione dell’onda. Conta quanta parte del fascio intercetta. Nella sezione disegnata, il tratto inclinato è il sensore, quello verticale è la sua proiezione. La dimensione fuori dal foglio resta uguale."
       },
       {
-        "type": "formula",
-        "text": "P=I S\\cos\\theta=(5{,}0)(2{,}0)\\ \\mathrm W=10\\ \\mathrm W"
+        "type": "figure",
+        "src": "/figures/C5-sensore-inclinato.svg",
+        "text": "Il raggio forma 60° con la normale. La proiezione del sensore perpendicolare al fascio è lunga metà del tratto inclinato."
       },
       {
         "type": "text",
-        "text": "Nell’orientamento perpendicolare passerebbero 20 W."
+        "text": "L’angolo dato è misurato dalla normale. L’area efficace è quindi l’area del sensore moltiplicata per il coseno di 60°, che vale ½."
+      },
+      {
+        "type": "formula",
+        "text": "S_{\\rm eff}=S\\cos60^\\circ"
+      },
+      {
+        "type": "formula",
+        "text": "S_{\\rm eff}=4{,}0\\times\\tfrac12\\,\\mathrm{m^2}=2{,}0\\,\\mathrm{m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Ogni metro quadrato perpendicolare al fascio riceve 5,0 W. Il sensore ne intercetta due."
+      },
+      {
+        "type": "formula",
+        "text": "P=I S_{\\rm eff}=10\\,\\mathrm W"
+      },
+      {
+        "type": "text",
+        "text": "A 0° fra raggio e normale la potenza sarebbe 20 W. A 90° i raggi sfiorerebbero il piano e la potenza sarebbe zero. Il valore trovato cade fra questi due limiti."
       }
     ],
     "answer": {
@@ -2904,22 +3021,42 @@
       "C5-L02",
       "C5-L04"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Usa I₀ = 10⁻¹² W/m². Un livello di 50 dB corrisponde a quale intensità, espressa in µW/m²?",
     "family": "intensita-dal-livello-sonoro",
     "difficulty": 1,
     "blocks": [
       {
         "type": "text",
-        "text": "Il rapporto di intensità vale 10⁵."
+        "text": "Il livello confronta l’intensità I con quella di riferimento I₀. Il numero 50 è il livello espresso in decibel. Dividilo per dieci per ricostruire il logaritmo del rapporto."
       },
       {
         "type": "formula",
-        "text": "I=10^{-12}10^5=10^{-7}\\ \\mathrm{W/m^2}=0{,}10\\ \\mathrm{\\mu W/m^2}"
+        "text": "\\log_{10}(I/I_0)=50/10=5"
       },
       {
         "type": "text",
-        "text": "Il risultato è ancora inferiore a un microwatt per metro quadrato."
+        "text": "Il logaritmo in base dieci risponde alla domanda «a quale esponente devo elevare 10?». Qui l’esponente è 5."
+      },
+      {
+        "type": "formula",
+        "text": "I/I_0=10^5"
+      },
+      {
+        "type": "formula",
+        "text": "I=10^5 I_0=10^{-7}\\,\\mathrm{W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Un microwatt vale 10⁻⁶ watt. Dividi il valore in watt per 10⁻⁶ per ottenere il numero di microwatt."
+      },
+      {
+        "type": "formula",
+        "text": "I=0{,}10\\,\\mathrm{\\mu W/m^2}"
+      },
+      {
+        "type": "text",
+        "text": "Controllo. Il valore trovato è dieci volte più piccolo di 1 µW/m² e centomila volte più grande dell’intensità di riferimento."
       }
     ],
     "answer": {
@@ -3402,18 +3539,34 @@
       "C5-L02",
       "C5-L04"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Una radioonda nel vuoto ha frequenza 150 MHz. Usa c = 3,0 × 10⁸ m/s. Trova λ in metri.",
     "family": "da-mhz-a-metri",
     "difficulty": 1,
     "blocks": [
       {
         "type": "text",
-        "text": "Per un’onda nel vuoto la velocità è c."
+        "text": "Un megahertz equivale a un milione di cicli al secondo. Scrivi la frequenza in hertz per poterla usare con la velocità in metri al secondo."
       },
       {
         "type": "formula",
-        "text": "\\lambda=\\frac cf=\\frac{3{,}0\\times10^8}{1{,}50\\times10^8}\\ \\mathrm m=2{,}0\\ \\mathrm m"
+        "text": "150\\,\\mathrm{MHz}=150\\times10^6\\,\\mathrm{Hz}"
+      },
+      {
+        "type": "formula",
+        "text": "f=1{,}50\\times10^8\\,\\mathrm{Hz}"
+      },
+      {
+        "type": "text",
+        "text": "In un periodo un fronte percorre una lunghezza d’onda. Quindi c = λf. Dividi entrambi i membri per f e semplifica le potenze di dieci uguali."
+      },
+      {
+        "type": "formula",
+        "text": "\\lambda=\\frac cf=\\frac{3{,}0}{1{,}50}\\,\\mathrm m=2{,}0\\,\\mathrm m"
+      },
+      {
+        "type": "text",
+        "text": "Controllo. Due metri per ciascuno dei 150 milioni di cicli al secondo danno 300 milioni di metri al secondo, proprio la velocità assegnata."
       }
     ],
     "answer": {
@@ -4676,22 +4829,30 @@
     "prerequisites": [
       "C5-L06"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Dall’aria, n = 1,00, un raggio incide a 45° e si rifrange a 30°, rispetto alla normale. Trova n del secondo mezzo.",
     "family": "indice-incognito-da-due-angoli",
     "difficulty": 2,
     "blocks": [
       {
         "type": "text",
-        "text": "Da n₁ sin θ₁ = n₂ sin θ₂ otteniamo n₂ = n₁ sin θ₁ / sin θ₂."
+        "text": "Entrambi gli angoli sono misurati rispetto alla normale. Per la legge di Snell i due prodotti, indice del mezzo per seno dell’angolo, sono uguali. Isola l’indice del secondo mezzo dividendo per il seno di 30°."
       },
       {
         "type": "formula",
-        "text": "n_2=\\frac{0{,}7071}{0{,}5000}=1{,}414"
+        "text": "n_2=n_1\\,\\frac{\\sin45^\\circ}{\\sin30^\\circ}"
       },
       {
         "type": "text",
-        "text": "Il valore maggiore di uno è coerente con il raggio più vicino alla normale."
+        "text": "Usa i due valori esatti. Nel triangolo rettangolo isoscele il seno di 45° è √2/2. Quello di 30° è ½."
+      },
+      {
+        "type": "formula",
+        "text": "n_2=\\frac{\\sqrt2/2}{1/2}=\\sqrt2\\approx1{,}414"
+      },
+      {
+        "type": "text",
+        "text": "L’indice è un rapporto senza unità. L’angolo nel secondo mezzo è minore e il raggio si piega verso la normale, come ci si aspetta entrando nel mezzo con indice maggiore."
       }
     ],
     "answer": {
@@ -5158,14 +5319,22 @@
     "prerequisites": [
       "C5-L09"
     ],
-    "version": 1,
+    "version": 2,
     "prompt": "Nel modello di lente sottile immersa nello stesso mezzo sui due lati, un raggio parassiale attraverso il centro ottico prosegue come?",
     "family": "raggio-che-incontra-il-centro",
     "difficulty": 1,
     "blocks": [
       {
         "type": "text",
-        "text": "Nel modello sottile il raggio centrale mantiene la sua direzione. Il raggio parallelo all’asse, invece, emerge passando per il fuoco d’uscita. La loro intersezione localizza l’immagine."
+        "text": "Segui il raggio che attraversa il centro ottico. Nel modello parassiale di lente sottile, con lo stesso mezzo sui due lati, prosegue lungo la stessa retta. La costruzione vale per una lente convergente e per una divergente."
+      },
+      {
+        "type": "text",
+        "text": "Per localizzare l’immagine disegna un secondo raggio proveniente dallo stesso punto dell’oggetto e parallelo all’asse. Con una convergente esce passando per il fuoco sul lato d’uscita. Con una divergente esce allontanandosi dall’asse e il suo prolungamento all’indietro passa per il fuoco sul lato d’ingresso."
+      },
+      {
+        "type": "text",
+        "text": "Segna l’intersezione dei raggi emergenti se si incontrano realmente. Se divergono, usa l’intersezione dei loro prolungamenti per localizzare l’immagine virtuale."
       }
     ],
     "answer": {

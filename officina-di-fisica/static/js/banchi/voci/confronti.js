@@ -64,7 +64,7 @@ export const confronti = {
   'SIM-C5-L01-02': (x) => ['Pulsazione', (2 * Math.PI) / x, 'rad/s'],
   'SIM-C5-L03-02': (x) => ['Sfasamento', 360 * x, '°'],
   'SIM-C5-L05-02': (x) => ['Intensità rispetto a I₀', 10 ** x, ''],
-  'SIM-C5-L06-01': (x) => ['Campo elettrico locale', 3 * Math.sin(rad(x)), 'V/m'],
+  'SIM-C5-L06-01': (_phase, magneticNT) => ['Campo elettrico in P', 0.3 * magneticNT, 'V/m'],
   'SIM-C5-L06-02': (x) => ['Lunghezza d’onda', 3, 'm'],
   'SIM-C5-L06-03': (x, y) => ['Lunghezza d’onda', 10 ** y, 'm'],
   'SIM-C5-L07-03': (x) => ['Elettrone libero', x >= 14 ? 'Sì' : 'No', ''],

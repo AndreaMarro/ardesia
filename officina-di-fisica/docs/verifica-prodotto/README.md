@@ -64,3 +64,9 @@ La base di questa modifica è il merge `c0cf5478`. Il diario è stato riaperto s
 | Funzione | Sorgente e contratto | Dati | Interazione | Prova |
 | --- | --- | --- | --- | --- |
 | Riapertura della vista 3D | `banco.js` conserva la scelta, `scena.js` conserva camera e risorse fino all’uscita. I due renderer consumano il medesimo modello. | Parametri pubblicati, tempo corrente, misura fissata e letture. La pista Campo conserva la sessione formativa esistente. | Tavola durante il guasto, stessa proiezione al ritorno della GPU, scelta manuale, gesti e tastiera | [Contratto ed esiti per SHA](continuita-banchi.md) · [Percorso browser](../../tests/browser-continuita-banchi.mjs) |
+
+## Onde e ottica
+
+| Funzione | Sorgente e contratto | Dati | Interazione | Prova |
+| --- | --- | --- | --- | --- |
+| Lettura di energia, frequenza, intensità e raggi in C5 | Record versionati di corso, figura della proiezione e modello elettromagnetico. Il manifest delle prime edizioni riconosce soltanto la revisione distribuita. | 165 decisioni per ID e assegnazione dell’edizione al tentativo | Esempio guidato, sette quesiti, lettura manuale, previsione, misura e ritorno alla lezione | [Contratto scientifico ed editoriale](edizione-c5.md) · [Prova di lettura e del banco](../../tests/browser-edizioni.mjs) |

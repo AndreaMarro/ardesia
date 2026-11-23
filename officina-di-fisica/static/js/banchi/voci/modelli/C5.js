@@ -87,9 +87,9 @@ export const experiments = {
   },
   // Onde elettromagnetiche e campi ortogonali
   'SIM-C5-L06-01': {
-    observe: "Confronta i campi elettrico e magnetico nella stessa sezione. Sono ortogonali e passano insieme per lo zero.",
+    observe: "Il punto P, all’estremità sinistra, è la sonda. Le frecce in P indicano i versi locali. Le due curve mostrano i campi anche nelle altre posizioni, nello stesso istante.",
     measure: (x) => 10 * sin(x),
-    apparatus: (x, y) => ({ fase: (x * Math.PI) / 180, ampiezza: 0.7 }),
+    apparatus: (x, y) => ({ fase: (x * Math.PI) / 180, ampiezza: 0.7, campoSonda: y / 10 }),
   },
   // Velocità, frequenza, lunghezza d’onda, ampiezza e intensità
   'SIM-C5-L06-02': {

@@ -57,7 +57,7 @@ try {
     if (item.includes('-Q')) {
       const formulas = await page.locator('.feedback .math').evaluateAll(nodes=>nodes.map(el=>el.scrollWidth-el.clientWidth));
       assert.ok(formulas.length>0 && formulas.every(extra=>extra<=1));
-      await page.locator('.feedback figure').first().scrollIntoViewIfNeeded();
+      await page.locator('.feedback figure').first().evaluate(el=>el.scrollIntoView({block:'start',behavior:'instant'}));
     }
     if (bench) {
       const drawing = page.locator('[data-drawing] svg');
@@ -68,13 +68,13 @@ try {
     }
     const observations=raw.map(({level,id,message})=>({level,id,message}));
     tasteReports.push({zoom:actual,width,layout:layoutActual,raw:observations});
-    if (bench) {
-      const session = await ctx.newCDPSession(page);
-      try {
-        const shot = await session.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
-        await writeFile(path.join(out,'banco-zoom-'+zoom+'.png'),Buffer.from(shot.data,'base64'));
-      } finally { await session.detach(); }
-    } else await page.screenshot({path:path.join(out,'lettore-zoom-'+zoom+'.png'),animations:'disabled'});
+    await page.evaluate(()=>new Promise(done=>requestAnimationFrame(()=>requestAnimationFrame(done))));
+    const session = await ctx.newCDPSession(page);
+    try {
+      const shot = await session.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+      const prefix = bench ? 'banco' : 'lettore';
+      await writeFile(path.join(out,prefix+'-zoom-'+zoom+'.png'),Buffer.from(shot.data,'base64'));
+    } finally { await session.detach(); }
   }
   console.log(JSON.stringify({taste:'12af471f627f866411b4bd785b19646d3672784c',reports:tasteReports},null,2));
 } finally {
