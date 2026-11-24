@@ -34,7 +34,7 @@ s=ThreadingHTTPServer(('127.0.0.1',0),Handler)
 print(json.dumps({'port':s.server_port,'ticket':ticket}),flush=True)
 s.serve_forever()
 `;
-const server=spawn('python3',['-uc',boot],{cwd:root,env:{...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_BATCH_FILE:packageFile},stdio:['ignore','pipe','inherit']});
+const server=spawn('python3',['-uc',boot],{cwd:root,env:{...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_BATCH_FILE:packageFile,ASTRA_EXTENSIONS:path.join(root,'extensions')},stdio:['ignore','pipe','inherit']});
 let browser;
 try {
  const [raw]=await Promise.race([once(server.stdout,'data'),once(server,'exit').then(()=>{throw Error('Preview server failed');})]);

@@ -1,3 +1,51 @@
+## Ripresa corrente — 544 quesiti e 69 altre attività
+
+Generazione `446c3b28d505045e286a9523cf749bb897e836687c76b735fda01266c3797aff`, manifest `82ee5179209a9583a7dfd2d652a2aaf810db621ef55837c568678df31484d7ff`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati; 544 quesiti hanno
+revisioni complete DRAFT e 69 attività hanno riesame individuale. Restano 4.062
+revisioni complete e 316 attività. U1, U2-01 e U2-02 sono revisionati in bozza;
+U2-03 ha i primi 64 ID completati. Primo ID successivo: `u2-incline-acceleration-01`.
+
+Le 1.644 anteprime private (1.632 dei quesiti, 12 delle quattro nuove edizioni di
+esempi) sono riferite ai pacchetti e al protocollo attuali. Sono stati corretti
+cinque testi/formule troppo larghi sui piccoli schermi; una seconda prova ha
+localizzato nel prompt di Atwood una sequenza di definizioni senza spazi.
+97 test editoriali, 55 Python applicativi, 260 Node e due dei contratti PASS.
+Ricostruzione fresh identica all'incrementale, import idempotenti; tutti i 991
+pubblicati, i live head e le versioni storiche preservati nei database di prova.
+
+Quattro originali pubblicati conservano un problema esplicito: C1-E003, C1-E008,
+C2-E005 (approssimazione idrostatica non dichiarata) e C3-E003 (uguaglianza usata
+per un arrotondamento). Le nuove v2 sono DRAFT separatamente verificate. Il calcolo
+originale di C3-E003 è manualmente fattibile: il difetto riguarda la precisione
+presentata, non una necessità di calcolatrice. Nessuna firma umana o pubblicazione.
+
+Il fingerprint delle prove include ora politiche d'esame e motori installati;
+l'harness rifiuta override esterni non compresi nella prova e passa al processo
+figlio il percorso assoluto dei motori verificati. Due controesempi indipendenti
+sono stati corretti. Tutte le anteprime sono state riprodotte sotto il protocollo
+finale; le prove precedenti non sono state rietichettate.
+
+PR #356 è MERGED su `0b5f3a8bce91f1c9aa9ac273829bc6c67e72023c`; entrambi i workflow
+post-merge sono SUCCESS (45478253510 e 45478253343). Questo incremento è sul ramo
+`feat/cric-u2-orbits`, in attesa della propria PR/CI/integrazione. I candidati 036–041
+fuori registro non incrementano le revisioni complete. Le 199 verifiche recuperate
+restano parziali; le 100 revisioni Pro non sono identificate.
+
+L'integratore attivo è `/private/tmp/cric-resident-integrator`, checkout dello stesso
+repository fuori da iCloud; i due worktree autore residenti hanno ownership disgiunta.
+Il vecchio checkout nella workspace è conservato per recupero, non è la copia attiva.
+Le ricostruzioni da Git di file offloaded sono state verificate byte per byte; il
+backup originale di `config.worktree` non è disponibile e i suoi byte non sono
+stati acquisiti. Non dedurre da questo il recupero di artefatti scientifici mancanti.
+
+Prossimi passi:
+1. Verifica HEAD remoto, checkpoint e prove sulla SHA effettiva; completa PR/CI/merge di544/69.
+2. Verifica indipendente incrociata dei48 ID A036–038 e48 B039–041; root unico integratore.
+3. Completa i browser/import e checkpoint di640 quesiti; riesamina C3-E005..012 e prosegui.
+4. Prosegui U2-04 e attività non riesaminate senza attendere approvazioni editoriali umane.
+La pubblicazione resta un gate separato; nessun materiale DRAFT o esame protetto esposto.
+
 # Checkpoint corrente — 416 quesiti, 45 altre attività
 
 Generazione ee506766c87603c1be333fb3d4323b65a1346006c0d9b0959614fe8f1eec6f12.

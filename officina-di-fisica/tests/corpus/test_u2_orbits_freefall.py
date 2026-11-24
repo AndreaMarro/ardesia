@@ -1,4 +1,4 @@
-"""Reproducible independent-oracle counterexamples for five reviewed U2 batches.
+"""Reproducible independent-oracle counterexamples for reviewed U2 batches.
 
 Retokening is simulated only inside a patch context: the adversary must still
 fail the separate mathematical oracle after satisfying payload/key integrity.
@@ -19,6 +19,8 @@ from tools.corpus_engineering import (
     circular_force_verifier,
     freefall_speed_verifier,
     freefall_time_verifier,
+    projectile_range_verifier,
+    vertical_flight_verifier,
     vertical_maximum_verifier,
 )
 from tools.corpus_engineering.pipeline import canonical, digest
@@ -32,6 +34,8 @@ BATCHES = [
     ("vertical-maximum-023", vertical_maximum_verifier),
     ("centripetal-acceleration-025", centripetal_acceleration_verifier),
     ("circular-force-026", circular_force_verifier),
+    ("vertical-flight-027", vertical_flight_verifier),
+    ("projectile-range-028", projectile_range_verifier),
 ]
 
 
@@ -41,7 +45,7 @@ def load_batch(name):
 
 
 class SeparateU2Evidence(unittest.TestCase):
-    def test_all_eighty_read_drafts_have_deterministic_fresh_reports(self):
+    def test_all_read_drafts_have_deterministic_fresh_reports(self):
         for name, verifier in BATCHES:
             with self.subTest(batch=name):
                 package, bindings = load_batch(name)
@@ -137,6 +141,26 @@ class SeparateU2Evidence(unittest.TestCase):
         self.assertEqual(resultant.dot(velocity), 0)
         self.assertLess(resultant.dot(position.subs(tau, 0)), 0)
         self.assertEqual(resultant.norm(), sp.Rational(mass*(radius*angular_speed)**2, radius))
+
+    @settings(max_examples=50, deadline=None)
+    @given(st.integers(1, 50), st.integers(1, 50), st.integers(1, 20))
+    def test_same_level_return_excludes_launch_and_preserves_time_under_common_scaling(self, initial_speed, field, scale):
+        v0, g, duration = vertical_flight_verifier.flight_model()
+        returned = duration.subs({v0: initial_speed, g: field})
+        self.assertGreater(returned, 0)
+        self.assertEqual(initial_speed*returned-sp.Rational(field, 2)*returned**2, 0)
+        self.assertEqual(initial_speed-field*returned, -initial_speed)
+        self.assertEqual(duration.subs({v0: scale*initial_speed, g: scale*field}), returned)
+
+    @settings(max_examples=50, deadline=None)
+    @given(st.integers(1, 50), st.integers(1, 50), st.integers(1, 50), st.integers(1, 20))
+    def test_projectile_apex_distance_is_half_range_and_horizontal_speed_does_not_change_duration(self, horizontal, vertical, field, scale):
+        u, w, g, full_range, duration, apex_x = projectile_range_verifier.projectile_model()
+        values = {u: horizontal, w: vertical, g: field}
+        self.assertEqual(full_range.subs(values), 2*apex_x.subs(values))
+        self.assertEqual(full_range.subs(values)/duration.subs(values), horizontal)
+        self.assertEqual(duration.subs({u: scale*horizontal, w: vertical, g: field}), duration.subs(values))
+        self.assertEqual(full_range.subs({u: scale*horizontal, w: vertical, g: field}), scale*full_range.subs(values))
 
 
 if __name__ == "__main__":

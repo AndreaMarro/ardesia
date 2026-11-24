@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-frequency-count-01",
+      "sourceSha256": "b8123c4f62ebf681d7fe756eff5f20146b6c8042063abdb8b60e2d71036655d8",
+      "candidateSha256": "7f1edddcae98ead4e6ab0aacf9887c0c52eb33c4b5b5db767516c837ad5b6f68",
+      "reviewedSignature": "60ddcb0426017b3b3b6aa986cc5f95761fa962783ea42ff482f30ec27a42afb8",
+      "assetChecksums": {
+        "frequency-count-progressive.svg": "19c4440c1b2034262b2728b25aa3274a765ac15743b35e69012fae8b139d0337"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "N2,t2s→2/(2s)=1Hz;tre marcatori stessa fase delimitano due intervalli,non tre cicli.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "2Hz ripete conteggio; t/N1s e tempo medio per ciclo,con stesso numero ma diversa dimensione.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-02",
+      "sourceSha256": "184c88c0dcafdcfde41e25a4a9631bdd259987b83dcd3fdea9fc2b6a11b46c05",
+      "candidateSha256": "052f5607a8bb367d78b67ca94d71ffb0695801c3efcaa0f394df07469709f9ce",
+      "reviewedSignature": "e7baa3577983493b283a194583b23710b100f0703c77f055155c0f03db5bf6a6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Hz",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Conteggio adimensionale diviso durata:1/s,unita Hz;nessun2π per contarecicli.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "s periodo,m/svelocita,mlunghezza,1puro;nessunaunitafrequenza fraqueste.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-03",
+      "sourceSha256": "d9e09593c4ee755901f886ac664b6b6096da49ffaddbf8fc8da8a91744c6e726",
+      "candidateSha256": "4fa161ee8ecfe8027abd51bc93dbbb27c901df925540c2a16013109a38781b79",
+      "reviewedSignature": "b47172c709dcae67121f774987c42d6b0bfed2e261d5fc09bfcfd2d73714c193",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "f=N/t",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "N durate di ciclo sommano t;durata media t/N e suo reciproco N/t;solo moto regolare permette un periodo comune.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. Definizione media valida per ripetizionianche non perfettamente regolari;reciproco e durata mediaper ciclo.",
+      "distractors": "t/N duratamedia,Nt tempo,N2/t fattoreNextra,1/(Nt) sbaglia monotonia inN.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-04",
+      "sourceSha256": "213320d070d0358de5e1a44f64bac33b1b9cf39ef66b35e7e037e471e18eada8",
+      "candidateSha256": "7c9d4251c1309df7954f08bdef1fee849a6171b6ddae3d5336fa645d16f2153b",
+      "reviewedSignature": "a2e1dd318253b9f50164a7bc69ac273b4a5c5914b8b713366d831c11f4cebb41",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Raddoppia da 1 a 2 Hz",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Due osservazioni2s:2/2=1Hz,4/2=2Hz;rapporto2.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "4Hz ripete nuovoN,1/2segue periodo invecefreq,negativo non e un conteggio positivo.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-05",
+      "sourceSha256": "1b54dd8123db3f92998528b6fb3f02b2aa8837f96045467524b37eb8716656d4",
+      "candidateSha256": "6741dec5b8be45579526e886eebf13bb8aa9e56530b417f05330d1673bbe6f3f",
+      "reviewedSignature": "ac8adcd2cf61404a650560584d81b900277e2893a15a7b561f20612bc2dc37c0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "N=ft=(1s−1)(2s)=2,intero positivo;nessun arrotondamento consentito al conteggio.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "N1 confonde reciprofreq con conteggio,N4 applica un altro2; dati incompatibili non si rendono validi arrotondando.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-06",
+      "sourceSha256": "be5b2e170d7e74ea9f4a041e3d759621bbfc415ba755a106306cd99a8c450255",
+      "candidateSha256": "7b978850876129bc9eb5807e3c599be4fa77700229e7bcd34dfad7dd19f0d97c",
+      "reviewedSignature": "bb99cc15f67761e8eb06caea02fcab65714eb0868817a751d3ea17731810a800",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "ft=N→t=N/f=2/(1s−1)=2s;1s e tempo medio di un solo ciclo.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "1s manca fattoreN;f/N non e durata; totalet=2s distinto dal periodo del moto regolare.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-07",
+      "sourceSha256": "a7ea6fa8af7e5796d41b055bfed5a716c9ceda86c5ce0a976eeda03826384256",
+      "candidateSha256": "516d220b88a2670e53dfe59acbfe0d26e76b5718105a2cc92f054619003dc296",
+      "reviewedSignature": "6073c263fa94830cca4ad07dc068506ef4bd9788bc13e46b41391f772e09f265",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "N2fisso,t2→4s:1→1/2Hz,rapporto1/2 positivo.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "2 e rapporto tempi;1ignora durata;4introduce quadrato;−1/2viola frequenze positive.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-08",
+      "sourceSha256": "4b8458284486151933568a71fd2b03ed9d3bc46df8472e15a074ac2c59190726",
+      "candidateSha256": "72f03fd6d3d7e1c978a662e273c4450f69101e4510bdb05f921e441217a782a3",
+      "reviewedSignature": "58fb8bd4c68ee3b256a2caf0650a08673d2dcd75e6a68de386836347b517c1be",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Frequenza corretta1Hz,proposta2Hz:scarto+1Hz,non durata o conteggio.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "−1ordineinverso;2ripeteproposta;1secondo non e1Hz;valorenumerico1nonrende scarto un conteggio.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-09",
+      "sourceSha256": "2e863a0c7abdcec5c2cbd78e32d613e7e789058aba16ef9a417569ff8fea3ba5",
+      "candidateSha256": "1a1cd4ab907e8a3f93e7154b23b7edd305f71d489f05f795a9bfd6e51ce3660a",
+      "reviewedSignature": "82e57f71d18042014f830a35601e459dc7a4821ef9dd0b060792f326df330239",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N=ft",
+      "dimension": {},
+      "manualArithmetic": "Moltiplicare f=N/t per t: N=ft;dimensione1;richiede ft intero positivo.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "f/t dimensioneT−2,t/f T2,1/(ft) reciproco sbagliato purdimensione1,f+tsomma dimensioniincompatibili.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-10",
+      "sourceSha256": "51f33e60a873073bb2884a46a9eab8547f8e532f34ea7c613cbabf1009f481f6",
+      "candidateSha256": "b19ec4172730511350560cb802ff1e9b3039dec78d140ff38fe455b525d9363f",
+      "reviewedSignature": "10bd47f1ca3b4cdbf22b56f90d36a48e600d0debfcaec8291f43f1ced8160ac3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁/κ₂",
+      "dimension": {},
+      "manualArithmetic": "κ1N/(κ2t) divisoN/t→κ1/κ2;κ1N intero positivo. PerN2,κ1=3/2 ammessoN3;κ1=1/4esclusoN1/2.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. κ1,κ2>0 maκ1Ndeve restareintero:fattoreκ1non necessariamenteintero.",
+      "distractors": "κ1κ2sbagliaeffettotempo,κ2/κ1inverte,κ1quadrato sovraconta,κ1+κ2da2aidentita invece1.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-11",
+      "sourceSha256": "4c95351d2fc91fd42efabb80ca251350885a77c448e4aeb48ee4f1a02253c2eb",
+      "candidateSha256": "60e99f507d66bce5af9ad67ea2343929e710c2a8d4e18d20db7faf22010d236a",
+      "reviewedSignature": "0a60119507a9b3d7396f90b0f207932d0ac21ad6223eef1b6952392a1ba539f0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "fA2/2=1Hz,fB6/4=3/2Hz;rapporto3/2,conteggi2e6sempreinteri.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "3consideraNsoltanto,2t soltanto,6moltiplica ifattori,2/3inverte;Nfrazionario non inferito da3/2Hz.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-12",
+      "sourceSha256": "689caadaeb4e1658e5854f77a679de768f194b5c1e872bdc7874699cf5f01756",
+      "candidateSha256": "5f0bc8d28eb26142f9af737a9765dccdce2cae00ef46b4348216ea359b9ac99f",
+      "reviewedSignature": "d884793d11c626cda326743d91e48be86e9da9d8432d8793ed8fbf2a7040c578",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/4",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media[1+(3/2)]/2=(5/2)/2=5/4Hz;aggregato8/(6s)=4/3Hz,scarto1/12Hz. Denominatore2s+4sesplicito nel fix.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. Uguale peso statisticoalleprove,nonpesitemporali;conteggiintegrali distinti.",
+      "distractors": "1o3/2singola prova,5/2somma,4/3aggregato con pesitemporali;mediadiN4et3s e la stessaaggregazione,non richiesta.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-13",
+      "sourceSha256": "c78ebb7e077d066e75529be7e6055893b5bc23af25fc19766300b6cfebb33f27",
+      "candidateSha256": "af3145480ec616b486fe3486dedb669ddcaacb0cf35207eea30a5efc4c0f9110",
+      "reviewedSignature": "b26015ff5aeb346ed17cda028c46a33d601450ec5b0ef7e530b3bf9d7a217cc0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetfB(3/2)*1Hz=3/2Hz;tB6/(3/2)=6*2/3=4s;rapportotB/tA=2.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata.",
+      "distractors": "tB6s manterrebbef1Hz,tB2s darebbef3Hz;4s e durataassoluta,non rapporto4.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-14",
+      "sourceSha256": "a761fb354645a140e58f47cdd6d689331e5055342560c32fa88a1dacbda4de4f",
+      "candidateSha256": "08da9e307e6524454ba557ae72e6c60a80b8917883793ab5d74a7124c22ff9c2",
+      "reviewedSignature": "6af65fece803131d42ba7635208181cfd1c50e30a6576847cb4d556d08c1d4b9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {},
+      "manualArithmetic": "fA1Hz,c3/(1Hz)=3s;S9/2→fB(9/2)/(3s)=3/2Hz;N_B(3/2)*4=6intero.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. Scale strumentale comune,guadagnopositivoc,offsetnullo;lettureSpossonofrazionarie.",
+      "distractors": "S9/2comeHz da18cicli;arrotondare f3/2Hz cambia osservazione. Deve essere interoNfinale,nonf.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-15",
+      "sourceSha256": "48d92b6c1b0f798d1493f224ee064527f943e7fd1d9fd82b6b80ed60014e9e5d",
+      "candidateSha256": "cf0fc89f120547ff0da087ddc247aa93a90dce7d21779e3892e4e239bcc252b0",
+      "reviewedSignature": "eec299d58fd38c63a8f6655682f56050f998f8940eb622b863960abfec07ec73",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "c(4−3)/(3/2−1)=1/(1/2)=2s,d3−2*1=1;S5→fC(5−1)/(2s)=2Hz;N_C2*2=4intero.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. Due frequenzedistinte identificanoc,d;daticompatibilicon conteggiofinaleintero.",
+      "distractors": "N1,2,3,5 in2s dannoS2,3,4,6;soltantoN4daS5. EntrambiS eN puri ma significati diversi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-frequency-count-16",
+      "sourceSha256": "6890e8a38513f59d77ab36799230ba42102021acc3c9ffce22963863dc3c104f",
+      "candidateSha256": "ca1d678ead2abc88e28e637e2420dbec38fcd1f498fe2f3a121c2c9f6c9c60a2",
+      "reviewedSignature": "5a6941062befc054e36d3513117845aac66bfc351ea0c1c3aede4d74ab046a86",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite",
+      "dimension": {},
+      "manualArithmetic": "N=(1s−1)t fa f1Hz;N=npositivo intero→t=ns,infinitacoppiediscrete. (1/2,1/2s) vietata;zero vietato.",
+      "physicalAssumptions": "ConteggioNinteropositivo di ciclicompleti su intervallot>0 delimitato dalla stessa fase;frequenzamedia positiva,non frequenzaangolare orientata. VincoloN=(1s−1)t eNinteropositivo:infinitenumerabile di coppie,noncontinuoreale libero.",
+      "distractors": "Nessuna/una/due contraddicefamiglia n=1,2,3,...;tutte reali positive includeNnoninteroe coppie nonvincolate.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_inverse_mean_cycle_duration",
+        "SymPy_independent_inverse_and_affine_calibration",
+        "Pint_Fraction_exact_frequency_count_dimensions",
+        "separate_integer_domain_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "6b5ff0a0943e2fe298d1ea02308764513096cb51a7a95e41dea5132a22b870cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "62a02ed5cb0f145707bba33b92c15cea00d12876",
+  "packageSha256": "e95c601571e5f1753391fbb39b37e0fb9720e16496f0b317ce4a01ecafc2e073",
+  "bindingsSha256": "7dcd55bbcbeba4f2fe4193457fe1ce4dde5527facb449f4d4e96c8369011df94",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-02.json",
+    "reference": "Derived from N elapsed cycle durations after reading16originals; all16candidates read,12reread after units fix; phase markers and time scale independently checked"
+  }
+}
