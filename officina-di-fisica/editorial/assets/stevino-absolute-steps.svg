@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1740" width="640" height="1740" font-family="Arial, sans-serif" font-size="20" fill="#182d42" role="img" aria-labelledby="title desc">
+<title id="title">Pressione assoluta: il contributo del gas resta alla superficie</title><desc id="desc">Gas a cento chilopascal assoluti sopra acqua in quiete. A due metri l'acqua aggiunge venti chilopascal. Una barra somma i due contributi. Un grafico con profondità verso il basso parte da cento chilopascal a profondità zero e arriva a centoventi a due metri.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#334f66"/></marker></defs>
+<rect width="640" height="1740" fill="white"/>
+<text x="32" y="46" font-size="24" font-weight="bold">1. Parti dalla pressione del gas</text><text x="32" y="84">Acqua: ρ = 1000 kg/m³, g = 10 m/s².</text><text x="32" y="128">Gas: p_s = 100 kPa assoluti.</text>
+<rect x="91" y="180" width="198" height="250" fill="#b5dcf1"/><path d="M90 160V430H290V160" fill="none" stroke="#263f55" stroke-width="3"/>
+<path d="M75 180H305" stroke="#4d7a99" stroke-width="2"/><circle cx="190" cy="380" r="7" fill="#b05b35"/><path d="M190 180V380" stroke="#b05b35" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="340" y="218">Superficie: h = 0.</text><text x="340" y="252">p = 100 kPa.</text><text x="340" y="370">Punto: h = 2 m.</text><text x="340" y="404">p = 120 kPa.</text>
+<text x="32" y="484">200 px di profondità: scala 100 px/m.</text><text x="32" y="520">Il gas non è un vuoto di riferimento.</text>
+<path d="M32 560H608" stroke="#6a7d8a" stroke-width="2"/>
+<text x="32" y="610" font-size="24" font-weight="bold">2. Somma due pressioni</text><text x="32" y="650">p = p_s + ρgh = 100 kPa + 20 kPa.</text>
+<rect x="90" y="706" width="300" height="54" fill="#e9bb70"/><rect x="390" y="706" width="60" height="54" fill="#84c7eb"/>
+<text x="140" y="742">100 kPa del gas</text><text x="350" y="804">20 kPa dell’acqua</text>
+<text x="32" y="860">Totale: 120 kPa, barra lunga 360 px.</text><text x="32" y="898">Contributi: 300 px e 60 px.</text><text x="32" y="932" font-size="18">Scala della pressione: 3 px/kPa.</text>
+<text x="32" y="990">Solo p − p_s è la pressione relativa.</text><text x="32" y="1024">Non aggiungere un’altra atmosfera.</text>
+<path d="M32 1064H608" stroke="#6a7d8a" stroke-width="2"/>
+<text x="32" y="1114" font-size="24" font-weight="bold">3. Leggi il limite alla superficie</text><text x="32" y="1154">p cresce con h, ma parte da p_s.</text><text x="32" y="1190" font-size="18">Pressione orizzontale; profondità verso il basso.</text>
+<path d="M90 1270H530" stroke="#334f66" stroke-width="2" marker-end="url(#arrow)"/><path d="M90 1270V1535" stroke="#334f66" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M390 1270L450 1470" fill="none" stroke="#b05b35" stroke-width="4"/>
+<path d="M90 1470H450M450 1270V1470" fill="none" stroke="#6a7d8a" stroke-width="1.5" stroke-dasharray="6 4"/>
+<circle cx="390" cy="1270" r="6" fill="#b05b35"/><circle cx="450" cy="1470" r="6" fill="#b05b35"/>
+<text x="72" y="1250">0</text><text x="360" y="1248">100</text><text x="442" y="1248">120</text><text x="530" y="1300">p (kPa)</text><text x="52" y="1478">2</text><text x="104" y="1535">h (m)</text>
+<text x="32" y="1590">Quando h tende a 0, p tende a 100 kPa.</text><text x="32" y="1630">Δp tende a zero; p resta positiva.</text><text x="32" y="1684" font-size="18">100 px/m e 3 px/kPa: scale indipendenti.</text>
+</svg>
