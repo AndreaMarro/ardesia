@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1000" viewBox="0 0 600 1000" role="img" aria-labelledby="title desc">
+<title id="title">Partenza, spostamento e coordinata finale</title>
+<desc id="desc">Tre tappe. Nelle prime due, la scala è cinquanta pixel per metro: origine a zero, partenza a due metri e arrivo a sei metri, dopo uno spostamento di quattro metri. Il terzo pannello è un altro esempio: un grafico posizione-tempo passa da zero secondi e tre metri a due secondi e sette metri. La pendenza è quattro metri diviso due secondi, cioè due metri al secondo.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="600" height="1000" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="40" font-weight="bold">1 · La partenza è già a +2 m</text>
+<text x="28" y="80">Origine fissa · scala 50 px/m</text>
+<path d="M70 190H500" stroke="#879b9a" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M100 178V202M200 178V202" stroke="#173d50" stroke-width="3"/>
+<circle cx="200" cy="190" r="7"/>
+<text x="85" y="232">0</text><text x="174" y="232">+2 m</text><text x="168" y="153">t = 0</text><text x="516" y="198">+x</text>
+<text x="28" y="298" font-weight="bold">2 · Aggiungere lo spostamento</text>
+<text x="28" y="338">In 2 s: Δx = (2 m/s)(2 s) = +4 m</text>
+<path d="M70 436H500" stroke="#879b9a" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M100 424V448M200 424V448M400 424V448" stroke="#173d50" stroke-width="3"/>
+<path d="M200 400H400" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="266" y="386">+4 m</text><text x="85" y="478">0</text><text x="174" y="478">+2 m</text><text x="374" y="478">+6 m</text>
+<text x="28" y="520">x = x₀ + Δx = 2 m + 4 m = 6 m</text>
+<path d="M28 544H572" stroke="#879b9a"/>
+<text x="28" y="588" font-weight="bold">3 · Un altro esempio: leggere il grafico</text>
+<path d="M100 900V622M100 900H480" stroke="#173d50" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M100 795L300 655" stroke="#173d50" stroke-width="4"/>
+<path d="M100 795H300V655" stroke="#173d50" stroke-width="2" stroke-dasharray="7 6" fill="none"/>
+<circle cx="100" cy="795" r="6"/><circle cx="300" cy="655" r="6"/>
+<text x="42" y="803">3 m</text><text x="42" y="663">7 m</text><text x="116" y="640">x</text>
+<path d="M300 894V906" stroke="#173d50" stroke-width="2"/>
+<text x="88" y="934">0</text><text x="282" y="934">2 s</text><text x="497" y="908">t</text>
+<text x="318" y="728">Δx = 4 m</text><text x="139" y="830">Δt = 2 s</text>
+<text x="28" y="977">x₀ = 3 m · v = Δx/Δt = 2 m/s</text>
+</g></svg>
