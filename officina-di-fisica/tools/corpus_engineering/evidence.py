@@ -2,9 +2,36 @@
 import json
 from pathlib import Path
 
-from .pipeline import digest, sha
+from .pipeline import digest, sha, git_bytes
 from .recovery import recover
-from .batches import load_registry,validate_batch
+from .batches import load_registry,validate_batch,load_activity_registry,validate_activity_batch
+
+
+def apply_activity_evidence(repo,app,activities):
+    """Extend the same checkpoint with unchanged-edition reviews; no publication."""
+    sources={};files={};by_id={r['id']:r for r in activities}
+    specs=load_activity_registry(app/'editorial/batches/registry.json')
+    for spec in specs:
+        for key in spec['activityIds']:
+            if key not in by_id:raise ValueError('Registered ID is not a source activity: '+key)
+            entry=by_id[key];provenance=entry['provenance'];identity=(provenance['commit'],provenance['path'])
+            if identity not in files:
+                raw=git_bytes(repo,*identity)
+                if sha(raw)!=provenance['fileSha256']:raise ValueError('Activity source file checksum mismatch')
+                files[identity]={r['id']:r for r in json.loads(raw)}
+            sources[key]=files[identity][key]
+            if digest(sources[key])!=entry['sourceSha256']:raise ValueError('Activity source digest mismatch')
+    batches=[validate_activity_batch(spec,sources,app) for spec in specs]
+    for batch in batches:
+        for result in batch['records']:
+            entry=by_id[result['id']]
+            entry.update(state='REVIEWED_EXISTING_EDITION',calculatorFreeReview='PASS_AI',
+              humanApproval='NOT_RUN',calculationScope=result['calculationScope'],
+              evidence=[{'kind':'independent_unchanged_activity_review','batchId':batch['spec']['id'],
+                         'path':batch['path'],'sha256':batch['sha256'],'sourceSha256':result['sourceSha256']}])
+    return {'reviewedActivityCount':sum(len(b['records']) for b in batches),
+            'completedActivityBatchIds':[b['spec']['id'] for b in batches],
+            'pendingActivityIds':[r['id'] for r in sorted(activities,key=lambda row:row['id']) if r['calculatorFreeReview']=='NOT_RUN']}
 
 
 def apply_evidence(repo, app, source_ref, entries, questions):

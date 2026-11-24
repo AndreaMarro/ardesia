@@ -1290,3 +1290,54 @@ Priorità e accettazione:
    e preservando i tentativi e le 93 domande d'esame protette.
 5. Preparare coda di approvazione umana nominativa e prove d'uso distinte dalla CI;
    nessuna certificazione WCAG/UDL o firma umana dedotta dai soli strumenti.
+
+## 24 novembre 2026 · Tutta U1 in bozza e primo riesame delle altre attività
+
+PR353 integrata su b0642d876ae73f963acd90fbeeb27444a8ae9377 con CI post-merge
+SUCCESS. PR354 integrata su f972c972ffdc8d229c2d55dc7cc43b8a335bf5a1 dopo i check
+tecnici; la run corpus45462320191 è SUCCESS, Officina45462320405 da rileggere.
+Il gate metadata354 ha rifiutato depends_on nel formato URL: corretto nel formato
+contrattuale {pr,reason}, poi rieseguito senza modificare il gate. Nessun bypass.
+
+Prodotte le ulteriori96 revisioni U1 con due autori isolati e verifica distinta
+per ciascun ID. Totale160 schede, tutti gli ID U1, nove pacchetti registrati,
+480 anteprime1440/768/320px, stati DRAFT/umano NOT_RUN. Conservati991 oggetti
+pubblicati e tutti i payload storici nell'importazione temporanea. Nuova
+controprova su ID Cric esistente: un'edizione in bozza conserva il vecchio live,
+non pretende che diventi nullo. Nessuna installazione reale aperta.
+
+Riesaminate16 altre attività originali:6 contenitori di corso senza compiti
+quantitativi e10 percorsi di metodo con49passi. Lettura indipendente dalla loro
+autoria originale, inverse SymPy, quantità Pint/Fraction, procedure manuali e
+distrattori. Nessun difetto concreto richiede un'edizione nuova in questi16record.
+I contenitori non certificano le lezioni collegate. Registro unico ora supporta
+activityBatches, validazione fresca e due code umane negli artefatti del checkpoint.
+Il reviewer ha ispezionato separatamente il contratto tecnico delle nuove attività;
+non dichiara una propria seconda attestazione scientifica su tutte16.
+
+Il checkpoint1d490199e48c182192a16ecdf096f59c87454b2def644783739684092c213b1e
+contabilizza4606quesiti e385attività. Ricostruzione da zero e incrementale identiche.
+Restano4446 revisioni complete e369 attività da riesaminare;199 prove recuperate
+parziali e Pro100 non identificato. Nessuna nuova pubblicazione o firma umana.
+
+Controprove scientifiche: corretta scala incoerente di vettori nel prodotto
+vettoriale; esplicitato D nelle domande isolate; prove rifiutate dopo cambio hash
+e nuova lettura prima del congelamento. Test delle chiavi errate ribindate e con
+nuovo token dimostrano che l'oracolo non dipende esclusivamente dalla firma.
+Su U2 sono emersi distrattori numericamente equivalenti e una spiegazione errata
+di un distrattore nella conversione cm/s²; gli autori correggono, reviewer distinto
+deve rileggere. Non sono inclusi nei conteggi completati finché manca il collaudo.
+
+Priorità con accettazione:
+
+1. Consolidare questo checkpoint su GitHub e verificare CI della SHA effettiva,
+   quindi integrare con gate intatti e verificare il merge. Nessun deploy implicito.
+2. Consolidare `u2-uniform-displacement-01` e le famiglie U2 già assegnate:
+   matematica indipendente, prova manuale, asset, import idempotente e browser per ID.
+3. Continuare per famiglie oltre U2, mantenendo ownership disgiunta e un integratore;
+   ogni candidata in lavorazione mantiene fasi mancanti esplicite nel registro.
+4. Proseguire il riesame delle369 attività, comprese181 esperienze e117 esempi;
+   nuove edizioni soltanto per difetti accertati e storico conservato.
+5. Sottoporre le due code alle approvazioni umane quando disponibili; tenere
+   separati firma scientifica, prove d'uso e pubblicazione. Non fermare l'authoring
+   in attesa di quel gate.

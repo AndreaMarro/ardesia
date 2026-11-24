@@ -19,18 +19,22 @@ store.initialize()
 package=json.load(open(sys.argv[1]))
 with store.connect() as db:
  before=store.published(db)
+ ids=[r['id'] for r in package['records']]
+ live_before={key:(head[0] if (head:=db.execute('SELECT live FROM heads WHERE id=?',(key,)).fetchone()) else None) for key in ids}
+ versions_before={(r['id'],r['v']):r['payload'] for r in db.execute('SELECT id,v,payload FROM versions')}
  first=import_drafts(db,{'id':'owner','role':'autore'},package)
  second=import_drafts(db,{'id':'owner','role':'autore'},package)
  after=store.published(db)
  assert store.encode(before)==store.encode(after)
  count=len(package['records'])
  assert first['saved']==count and second['saved']==0 and second['unchanged']==count
- ids=[r['id'] for r in package['records']]
- assert all(db.execute('SELECT live FROM heads WHERE id=?',(key,)).fetchone()[0] is None for key in ids)
+ assert all(db.execute('SELECT live FROM heads WHERE id=?',(key,)).fetchone()[0]==live_before[key] for key in ids)
+ assert all(db.execute('SELECT payload FROM versions WHERE id=? AND v=?',key).fetchone()[0]==payload for key,payload in versions_before.items())
  print(canonical({'schemaVersion':'1.0.0','packageSha256':digest(package),
   'beforePublishedCount':len(before),'afterPublishedCount':len(after),
   'beforePublishedSha256':digest(before),'afterPublishedSha256':digest(after),
   'firstImport':first,'repeatedImport':second,'verifiedIds':ids,
+  'preservedLiveHeads':sum(v is not None for v in live_before.values()),'preservedHistoricalVersions':len(versions_before),
   'publication':'DRAFT','database':'disposable_sqlite','humanApproval':'NOT_RUN'}))
 '''
 
@@ -38,6 +42,11 @@ with store.connect() as db:
 def exercise(batch="units-001"):
     if not re.fullmatch(r"[a-z][a-z0-9-]{0,63}",batch):raise ValueError("Invalid batch ID")
     package=APP/"editorial/batches"/(batch+".json")
+    return exercise_package(package)
+
+
+def exercise_package(package):
+    package=Path(package).resolve()
     with tempfile.TemporaryDirectory(prefix="cric-integration-") as home:
         run = subprocess.run([sys.executable, "-c", CODE, str(package)], cwd=APP,
             env={**os.environ, "ASTRA_DATA": home, "ASTRA_HOSTED": "0"}, capture_output=True, text=True, timeout=60)

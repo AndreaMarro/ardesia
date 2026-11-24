@@ -1,0 +1,48 @@
+# Revisione indipendente AI — uniform-displacement-010 — 24 novembre 2026
+
+Revisore `/root/review_corpus_increment`, distinto dall'autore `/root/author_vectors_b`. Lettura individuale di tutti i 16 enunciati, opzioni, spiegazioni, ipotesi, unità e figura, senza modificare i candidati. Verificatore e rapporti sono del revisore e non importano codice autore. **16/16 PASS; nessun finding scientifico residuo nell'edizione autore 4eb7d7c2. DRAFT; humanApproval=NOT_RUN.** Nessuna approvazione umana o pubblicazione.
+
+Sorgenti confrontate: Git `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`, `packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-01.json`. Verificati tutti gli ID `AR-<sourceId>`, commit e digest dei record originali/candidati; la firma indipendente è stata congelata solo dopo la lettura. Allegato Base64 e SVG locale corrispondenti.
+
+| Artefatto | Hash |
+|---|---|
+| Pacchetto, digest JSON canonico | `15c7f5d1f426241c4c8759a8625aeceec8b5fa9e7812f649d5e571cef66a48ec` |
+| Binding, digest JSON canonico | `4007f81c0bacc7557ed5547bad9da8d67040d83fd8dfc0e75e845f1b211e0fa5` |
+| Pacchetto, SHA-256 file | `7765a96c9d6f9265c18952970fe5b7db52a8529b40895ef4e538f3f7b2dc925f` |
+| Binding, SHA-256 file | `31cc4c0cb628d4db42b3aedb3891b8480049876daf2128f70599a59059f5dd15` |
+| SVG, SHA-256 | `2efc95e2aa57c1b4266f85eb38b94bad92c0a81b8bf5a8ff83879f6d2e632d81` |
+| Verificatore indipendente, SHA-256 | `b670702e41c5e14a4e5547dcef8bda74b303be5ecf6e1a3ab04e3601aa11db53` |
+| Rapporto scientifico JSON, SHA-256 | `65971ad5cbcef18af84c9f147ccf9d9d8601050d8e5d4b5d9249aa12488ae57a` |
+
+## Risultati individuali e casi esaminati
+
+Prefisso completo `AR-u2-uniform-displacement-`. Sono stati controllati tutti i distrattori, non soltanto l'unicità testuale della chiave.
+
+| ID finale | Chiave | Derivazione indipendente e distinzione fisica |
+|---|---|---|
+| 01 | `+4 m` | Da `x(τ)=x₀+vτ`, la differenza fra due istanti separati da 2 s è `2m/s×2s`; x₀ si cancella. Coincide qui con distanza perché non vi sono inversioni. |
+| 02 | `m` | `(L/T)T=L`. Soltanto il fattore velocità contiene una lunghezza; non si ottiene un'area. |
+| 03 | È nulla | `d²(x₀+vτ)/dτ²=0`; in riferimento inerziale con massa costante, `ΣF=ma=0`. Peso e reazione possono essere non nulli e opposti: «tutte le singole forze assenti» non è condizione necessaria. |
+| 04 | Raddoppia da `+4 m` a `+8 m` | Stesso intervallo positivo: velocità `+2→+4m/s`, quindi un solo raddoppio. Segno invariato; velocità diverse fra prove, costanti dentro ciascuna. |
+| 05 | `+2 m/s` | `(+4m)/(2s)`; inversa simbolica con durata positiva, compatibile anche con spostamenti negativi in altri casi. |
+| 06 | `2 s` | `(+4m)/(+2m/s)`; il rapporto di spostamento e velocità dello stesso segno dà durata positiva. |
+| 07 | `2` | Velocità comune non nulla: `D₂/D₁=4s/2s=2`. Otto è il secondo spostamento, non il rapporto. |
+| 08 | `18 km/h` | Conversione Pint esatta e controllo manuale `5×3600/1000=18`; fattore temporale al denominatore trattato nel verso corretto. Inversa `18×1000/3600=5m/s`. |
+| 09 | `v=D/Δt` | Inversione della differenza di coordinate; `Δt>0` esclude divisione per zero e conserva il segno di D. Unità `L/T`. |
+| 10 | `κ₁κ₂` | Integrale di velocità costante in ogni prova: entrambi i fattori velocità e durata intervengono alla prima potenza. La somma fallisce già quando entrambi sono uno. |
+| 11 | `4` | Spostamenti `4 m` e `16 m`, rapporto quattro; non indica accelerazione all'interno delle prove. |
+| 12 | `10 m` | Media `(4m+16m)/2`; prodotto delle medie degli ingressi `3m/s×3s=9m` è un altro calcolo. Pesi uguali dichiarati. |
+| 13 | `2` | Per ottenere 16 m a 4 m/s servono 4 s; rapporto con i 2 s iniziali uguale a due. Un tempo quadruplo darebbe fattore totale otto. |
+| 14 | `4 m/s` | Guadagno `12/(4m)=3m⁻¹`; lettura 48 dà `16m`, poi divisione per 4 s. Conteggi non scambiati direttamente con spostamento. |
+| 15 | `4 m/s` | Dai riferimenti `g=24/(12m)=2m⁻¹`, offset uno. Lettura corretta `(17−1)/g=8m`, quindi velocità `8m/2s`. L'opzione 8 m/s salta la divisione finale. |
+| 16 | `2 s` | Vincolo **fra condizioni di prove** `v=(1m/s²)T`, con v costante durante la prova di durata T. Integrando questa costante rispetto al tempo interno τ si ottiene `D=(1m/s²)T²`, non metà di tale valore. Per D=4 m, durata positiva T=2 s; v=2 m/s. |
+
+## Figura e controprove
+
+Figura riletta: nella seconda tappa le posizioni `0,2,4 m` hanno ascisse grafiche `100,260,420`, dunque scala 80 px/m e intervalli temporali uguali. x₀=0 è dichiarato come scelta del disegno, non condizione necessaria per D. Nel grafico v-tempo il rettangolo ha base 200 px per 2 s e altezza 120 px per 2 m/s: scale 100 px/s e 60 px per m/s; area fisica 4 m. Linea orizzontale e rettangolo, senza triangolo di accelerazione, coerenti con MRU.
+
+L'oracolo ricava lo spostamento da differenze di coordinate e da integrali di velocità costante. Le inverse e le tarature sono risolte con SymPy; Pint controlla unità, 5 m/s→18 km/h e guadagni inversi di lunghezza. Il caso 16 usa due variabili diverse: durata selezionata T e tempo interno τ. Verificato in memoria che `∫₀ᵀ T dτ=T²`, mentre `∫₀ᵀ τ dτ=T²/2`: i due modelli non sono intercambiabili.
+
+Controprove eseguite: 11 chiavi numeriche errate e ribindate per 01/05/06/07/08/11/12/13/14/15/16 sono rifiutate anche dall'oracolo indipendente, oltre che dalle firme. In 03, sostituire la chiave con assenza di tutte le forze è rifiutato dal controllo concettuale; unità sbagliata per una velocità rifiutata. È stato controllato anche moto uniforme negativo `v=−2m/s,T=2s→D=−4m`. Enunciato alterato e ribindato, sorgente azzerata, batch vuoto/parziale/duplicato sono stati rifiutati.
+
+Limiti: non attesta rendering browser, importazione canonica, CI, merge o pubblicazione di questo lotto. Nessuna prova empirica con studenti o certificazione di accessibilità; queste non derivano automaticamente dall'aritmetica esatta. Le firme valgono solo per gli hash sopra. Stato: **AI_REVIEWED_EXACT_EDITION / HUMAN_APPROVAL_NOT_RUN / DRAFT**.

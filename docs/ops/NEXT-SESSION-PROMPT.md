@@ -1,5 +1,24 @@
 # Prosecuzione corrente — Cric, revisione di 4.606 quesiti
 
+Checkpoint più recente della continuazione:160/4606 quesiti riscritti (tuttaU1),
+16/385 altre attività riesaminate (6 contenitori senza calcoli,10 percorsi di metodo).
+480 anteprime private e import idempotenti; umanoNOT_RUN, nuove pubblicazioni0.
+Restano4.446 revisioni complete e369 altre attività. Pro100 non identificato;
+199 controlli recuperati ancora parziali. Leggere il puntatore e verificare gli hash,
+non dedurre il completamento dai candidati presenti ma non registrati.
+
+PR354 MERGED su f972c972ffdc8d229c2d55dc7cc43b8a335bf5a1; CI corpus post-merge
+SUCCESS, job Officina da rileggere. PR353 MERGED su b0642d87 e CI post-merge SUCCESS.
+Il prossimo ID da consolidare è `u2-uniform-displacement-01`. Due autori hanno
+ownership disgiunta su U2; la verifica è affidata a revisori AI distinti dall'autore
+per ciascun ID. I nuovi candidati fuori dal registro non sono ancora revisioni
+complete. Conservare la coda DRAFT e le versioni Cric già live.
+
+L'importazione di un ID Cric esistente deve preservare il vecchio live e tutte le
+versioni: il runner ora prova anche questo caso, oltre ai nuovi ID AR. Le code
+umane sono artefatti della generazione; nessun PASS concede approvazione o pubblicazione.
+Le note sotto sono snapshot precedenti e non aggiornano i conteggi più recenti.
+
 Aggiornamento operativo del 24 novembre: PR #352 MERGED su
 `a599cc8c621ea5c2b8e62834cbe00419b4694b4f`, CI post-merge 14/14 SUCCESS.
 La continuazione produce altri 32 svolgimenti (scale-002, vectors-003), portando

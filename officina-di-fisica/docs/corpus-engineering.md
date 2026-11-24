@@ -58,7 +58,49 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Ripresa del 24 novembre 2026 — lotti parametrizzati
+## Checkpoint U1 — 160 quesiti e 16 altre attività
+
+La PR354 è integrata in `f972c972ffdc8d229c2d55dc7cc43b8a335bf5a1` dopo i check
+tecnici; la CI corpus post-merge è SUCCESS, mentre il job Officina va riconciliato
+con lo stato corrente. La PR353 sui permessi è integrata in `b0642d87` e la sua
+CI post-merge è SUCCESS. Le sezioni successive conservano gli incrementi precedenti.
+
+La continuazione completa scientificamente le sei famiglie U1 residue: difference,
+perpendicular, scalar-product, vector-product, projection e angle-ratio. Tutti i
+160 ID U1 hanno quindi una nuova scheda con soluzione indipendente, ipotesi,
+calcolo manuale, distrattori e provenienza; sono nove pacchetti registrati perché
+il primo contiene due famiglie. Le bozze restano da approvare umanamente.
+Sono passate 480 anteprime a1440/768/320px e tutte le importazioni idempotenti.
+
+Le altre attività ora hanno lotti di verifica nello stesso registro e nello stesso
+checkpoint: sei contenitori di corso senza calcoli incorporati e dieci percorsi di
+metodo con49 passi. Ogni passo è confrontato con un risultato indipendente; le
+cinque inverse sono risolte simbolicamente e le quantità sono controllate con Pint
+e frazioni esatte. I contenitori non certificano le attività collegate. Le sedici
+edizioni originali restano valide e conservate, senza riscritture inutili.
+
+La generazione contiene le due code di riesame umano: `human-approval-queue.json`
+per le nuove schede e `human-activity-review-queue.json` per le attività riesaminate.
+ID e hash individuano esattamente ciò che è da approvare; nessuna voce è approvata
+automaticamente. Restano4.446 quesiti da revisionare integralmente e369 altre
+attività da riesaminare. Pro100 rimane non identificato e199 prove recuperate sono
+parziali, indipendenti da questi conteggi. Zero nuove pubblicazioni.
+
+La verifica dell'importatore è estesa anche alle revisioni di ID Cric già esistenti:
+il puntatore live deve conservare l'edizione precedente, anziché diventare nullo.
+Una controprova crea un'edizione successiva in SQLite temporaneo, la reimporta e
+controlla sia il live sia tutti i payload delle versioni storiche. Non è stato
+modificato il database di un'installazione reale.
+
+Nel processo indipendente sono stati corretti vettori disegnati con scale diverse
+e simboli non definiti nei testi isolati. Le firme sono state rifiutate dopo i
+cambiamenti e congelate soltanto dopo nuova lettura. I verificatori e le note per
+ogni ID sono persistiti accanto ai rapporti. Primo ID successivo da consolidare:
+`u2-uniform-displacement-01`; i candidati U2 ancora in verifica non sono conteggiati
+come completati. La review U2 sta correggendo distrattori equivalenti e il testo
+di una conversione: non si attende il gate umano per continuare gli altri lotti.
+
+## Ripresa precedente del 24 novembre 2026 — 64 schede e lotti parametrizzati
 
 La PR #352 è integrata in `a599cc8c621ea5c2b8e62834cbe00419b4694b4f`;
 i 14 job post-merge sono terminati con successo. Il registro versionato
