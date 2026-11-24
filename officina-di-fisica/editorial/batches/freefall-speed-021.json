@@ -1,0 +1,1188 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-freefall-speed-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2381,
+      "title": "Cadere da fermo per un metro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 1,
+      "prompt": "Un corpo è lasciato da fermo in un campo gravitazionale uniforme di modulo assegnato g=2 m/s², senza resistenza dell’aria. Cade per un dislivello h=1 m. L’asse y è positivo verso l’alto e t=0 è il rilascio. Quanto vale il modulo V della velocità alla fine del dislivello, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corpo parte con componente verticale nulla e accelera verso il basso, quindi aᵧ=−g. Nel dislivello la variazione di coordinata è −h. Dalla legge vᵧ²=vᵧ₀²+2aᵧΔy otteniamo V²=2gh: i due segni negativi si compensano. Scegliamo poi la radice positiva perché si chiede il modulo."
+        },
+        {
+          "type": "formula",
+          "text": "a_y=-g"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta y=-h"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La rapidità è due metri al secondo, mentre la componente sull’asse verso l’alto è vᵧ=−2 m/s. La radice negativa non sarebbe una rapidità negativa: descriverebbe quel diverso oggetto orientato. Il valore di g è quello del campo assegnato, usato esattamente, senza sostituirlo con un valore terrestre."
+        }
+      ],
+      "hints": [
+        "Calcola 2gh e distingui la radice positiva dalla componente diretta verso il basso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La rapidità è due metri al secondo, mentre la componente sull’asse verso l’alto è vᵧ=−2 m/s. La radice negativa non sarebbe una rapidità negativa: descriverebbe quel diverso oggetto orientato. Il valore di g è quello del campo assegnato, usato esattamente, senza sostituirlo con un valore terrestre.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2382,
+      "title": "Le unità dopo la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 1,
+      "prompt": "Per una caduta da fermo senza aria in un campo uniforme g>0, la rapidità finale dopo un dislivello h>0 è V=√(2gh). Quale unità SI è compatibile con V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "m/s²",
+          "m/s",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "g ha dimensione di accelerazione e h di lunghezza. Il prodotto 2gh ha dunque dimensione di velocità al quadrato. La radice riguarda anche le unità e restituisce lunghezza su tempo. Il due è un coefficiente puro."
+        },
+        {
+          "type": "formula",
+          "text": "[2gh]=(L/T^2)L"
+        },
+        {
+          "type": "formula",
+          "text": "(L/T^2)L=L^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m/s è corretto. m/s² sarebbe l’unità di g prima del prodotto e della radice; m un dislivello, s una durata. Un numero puro non esprime la rapidità. La parola modulo elimina il segno della componente, non la sua dimensione fisica."
+        }
+      ],
+      "hints": [
+        "Prendi la radice sia del valore numerico sia delle unità di 2gh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è corretto. m/s² sarebbe l’unità di g prima del prodotto e della radice; m un dislivello, s una durata. Un numero puro non esprime la rapidità. La parola modulo elimina il segno della componente, non la sua dimensione fisica.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2383,
+      "title": "Il modulo della velocità acquistata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 1,
+      "prompt": "Un corpo cade da fermo per un dislivello h>0 in un campo gravitazionale uniforme di modulo g>0, senza aria. V indica la rapidità finale, non la componente su un asse orientato. Quale relazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=2gh",
+          "V=√(2gh)",
+          "V=−√(2gh)",
+          "V=√(gh)",
+          "V=√(2h/g)"
+        ],
+        "value": "V=√(2gh)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con asse positivo verso l’alto, accelerazione e spostamento sono entrambi negativi. La legge che elimina il tempo dà vᵧ²=2gh. Il quadrato della componente coincide con quello del modulo; per il modulo positivo prendiamo soltanto la radice positiva."
+        },
+        {
+          "type": "formula",
+          "text": "v_y^2=2(-g)(-h)"
+        },
+        {
+          "type": "formula",
+          "text": "2(-g)(-h)=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " V=|v_y|"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\sqrt{2gh}"
+        },
+        {
+          "type": "text",
+          "text": "2gh è il quadrato della rapidità; manca la radice. La radice con meno può dare la componente discendente su un asse verso l’alto, ma non il modulo richiesto. √(gh) perde il fattore due; √(2h/g) è invece il tempo di caduta da fermo e ha unità di secondi."
+        }
+      ],
+      "hints": [
+        "Ricorda quale grandezza è stata elevata al quadrato nella legge senza il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2gh è il quadrato della rapidità; manca la radice. La radice con meno può dare la componente discendente su un asse verso l’alto, ma non il modulo richiesto. √(gh) perde il fattore due; √(2h/g) è invece il tempo di caduta da fermo e ha unità di secondi.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2384,
+      "title": "Un campo quattro volte più intenso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 1,
+      "prompt": "Due cadute partono da fermo, senza aria, per lo stesso dislivello h=1 m. I campi sono uniformi in ciascuna prova e hanno moduli g₁=2 m/s² e g₂=8 m/s². Come cambia la rapidità finale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Quadruplica da 2 a 8 m/s",
+          "Raddoppia da 2 a 4 m/s",
+          "Resta 2 m/s",
+          "Si dimezza",
+          "Diventa negativa"
+        ],
+        "value": "Raddoppia da 2 a 4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dislivello fissato il radicando 2gh viene moltiplicato per quattro. La radice quadrata trasforma quel fattore quattro in due, perciò la rapidità raddoppia. Ogni campo resta costante durante la propria caduta: stiamo confrontando due prove diverse."
+        },
+        {
+          "type": "formula",
+          "text": "V_1^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore di rapidità è due, non quattro. La rapidità non porta segno negativo; con y positivo verso l’alto sarebbero invece negative entrambe le componenti finali. I quadrati quattro e sedici sono riconoscibili esattamente, senza approssimazioni numeriche."
+        }
+      ],
+      "hints": [
+        "Applica la radice anche al fattore di variazione del campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il fattore di rapidità è due, non quattro. La rapidità non porta segno negativo; con y positivo verso l’alto sarebbero invece negative entrambe le componenti finali. I quadrati quattro e sedici sono riconoscibili esattamente, senza approssimazioni numeriche.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2385,
+      "title": "Ricavare il campo dalla rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Un corpo cade da fermo senza aria per h=1 m in un campo uniforme g>0. Alla fine il modulo della velocità è V=2 m/s. Quanto vale g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per togliere la radice eleviamo al quadrato la relazione fra quantità positive: V²=2gh. Poi dividiamo per 2h, non nullo. Questo risultato è il modulo del campo; scegliendo un asse verticale verso l’alto la componente dell’accelerazione sarebbe il suo opposto."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{V^2}{2h}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{(2\\,\\mathrm{m/s})^2}{2(1\\,\\mathrm m)}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s})^2}{2(1\\,\\mathrm m)}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La sostituzione dà V²=4 m²/s² e V=2 m/s. Dividere V per h senza il quadrato non darebbe l’unità di un’accelerazione. Il dato V positivo e h positivo produce g positivo, coerente con il modello di una caduta discendente."
+        }
+      ],
+      "hints": [
+        "Elimina la radice prima di isolare g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sostituzione dà V²=4 m²/s² e V=2 m/s. Dividere V per h senza il quadrato non darebbe l’unità di un’accelerazione. Il dato V positivo e h positivo produce g positivo, coerente con il modello di una caduta discendente.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2386,
+      "title": "Ricostruire il dislivello percorso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Una caduta da fermo avviene senza aria in un campo uniforme g=2 m/s². Il modulo della velocità finale è V=2 m/s. Quanto vale il dislivello positivo h percorso, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dopo aver elevato al quadrato, V²=2gh è lineare in h. Dividiamo entrambi i membri per 2g. Il dislivello misura quanto il corpo è sceso: non è la coordinata verticale finale, che dipenderebbe dalla scelta dell’origine."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{V^2}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{(2\\,\\mathrm{m/s})^2}{2(2\\,\\mathrm{m/s^2})}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s})^2}{2(2\\,\\mathrm{m/s^2})}=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà 2gh=4 m²/s². h=1 m è una lunghezza positiva; con asse y verso l’alto lo spostamento sarebbe Δy=−1 m. Scambiare i due segni non rende negativa la distanza caduta né la rapidità."
+        }
+      ],
+      "hints": [
+        "Isola h dopo il quadrato e controlla che rimangano metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà 2gh=4 m²/s². h=1 m è una lunghezza positiva; con asse y verso l’alto lo spostamento sarebbe Δy=−1 m. Scambiare i due segni non rende negativa la distanza caduta né la rapidità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2387,
+      "title": "Un dislivello quadruplo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Due corpi partono da fermo e cadono senza aria nello stesso campo uniforme g=2 m/s². I dislivelli sono h₁=1 m e h₂=4 m. V₁,V₂ sono i moduli delle velocità finali. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/2",
+          "2",
+          "1/4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità dipende dalla radice del dislivello, perché V² è proporzionale a h. Il dislivello quadruplo produce un quadrato della rapidità quadruplo e quindi una rapidità doppia. I due valori sono due e quattro metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_2}{V_1}=\\sqrt{\\frac{h_2}{h_1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\sqrt4"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confronterebbe i quadrati delle rapidità oppure i dislivelli, non le rapidità stesse. I rapporti un mezzo e un quarto invertono il verso del confronto. La velocità iniziale nulla è essenziale: un contributo iniziale non nullo cambierebbe questa proporzionalità fra h e V²."
+        }
+      ],
+      "hints": [
+        "Confronta prima i quadrati delle rapidità, poi estrai la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confronterebbe i quadrati delle rapidità oppure i dislivelli, non le rapidità stesse. I rapporti un mezzo e un quarto invertono il verso del confronto. La velocità iniziale nulla è essenziale: un contributo iniziale non nullo cambierebbe questa proporzionalità fra h e V².",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2388,
+      "title": "La quota rimasta non è il dislivello caduto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Un corpo viene lasciato da fermo a quota H=18 m sopra il suolo, senza aria, in un campo gravitazionale uniforme g>0. v_f è il modulo della velocità immediatamente prima del suolo. A quale quota sopra il suolo si trova quando il modulo della sua velocità è v_f/3?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "6 m",
+          "12 m",
+          "16 m",
+          "18 m"
+        ],
+        "value": "16 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo h il dislivello già caduto e y la quota ancora sopra il suolo, perciò y=H−h. Le due rapidità soddisfano v²=2gh e v_f²=2gH. Il rapporto elimina g: se la rapidità è un terzo, il dislivello caduto è un nono del totale, non un terzo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bfde22bd943a3af5b11a81a7cf531b96773d2b583ce633b1d54e60d9a61d265",
+          "text": "Tre tappe per H=18 m: distingui quota sopra il suolo e dislivello già caduto; il rapporto delle rapidità 1/3 dà dislivello 1/9 del totale, cioè 2 m; la quota rimasta è 16 m. Le due colonne spaziali usano entrambe 20 pixel per metro e il suolo è quota zero."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v^2}{v_f^2}=\\frac hH"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\frac13\\right)^2=\\frac h{18\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " h=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " y=18\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "18\\,\\mathrm m-2\\,\\mathrm m=16\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La quota cercata è sedici metri. Due metri è la caduta già avvenuta, sei usa linearmente il rapporto delle rapidità e dodici sottrae quel falso dislivello di sei. Diciotto significherebbe essere ancora al rilascio con rapidità nulla. Non occorre assegnare un valore numerico a g: è lo stesso nei due rapporti e si cancella."
+        }
+      ],
+      "hints": [
+        "Distingui h già percorso da y ancora sopra il livello di arrivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La quota cercata è sedici metri. Due metri è la caduta già avvenuta, sei usa linearmente il rapporto delle rapidità e dodici sottrae quel falso dislivello di sei. Diciotto significherebbe essere ancora al rilascio con rapidità nulla. Non occorre assegnare un valore numerico a g: è lo stesso nei due rapporti e si cancella.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2389,
+      "title": "L’inversa per il modulo del campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Una caduta da fermo senza aria in campo uniforme soddisfa V=√(2gh), con V,g,h>0. Quale formula isola g a partire da V e h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g=V/(2h)",
+          "g=V²/(2h)",
+          "g=2h/V²",
+          "g=V²h/2",
+          "g=−V²/(2h)"
+        ],
+        "value": "g=V²/(2h)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato dei due membri elimina la radice senza introdurre un ramo negativo perché tutte le grandezze assegnate sono positive. Da V²=2gh dividiamo per 2h. La dimensione passa da velocità al quadrato su lunghezza ad accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{V^2}{2h}"
+        },
+        {
+          "type": "formula",
+          "text": " [g]=\\frac{L^2/T^2}{L}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{L^2/T^2}{L}=L/T^2"
+        },
+        {
+          "type": "text",
+          "text": "V/(2h) dimentica il quadrato e ha unità inverse di tempo. 2h/V² è il reciproco del modulo; moltiplicare per h non elimina il fattore dalla legge iniziale. Il meno darebbe una componente eventualmente orientata, mentre g nel testo è il modulo positivo del campo."
+        }
+      ],
+      "hints": [
+        "Fai il quadrato e poi dividi per il fattore 2h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "V/(2h) dimentica il quadrato e ha unità inverse di tempo. 2h/V² è il reciproco del modulo; moltiplicare per h non elimina il fattore dalla legge iniziale. Il meno darebbe una componente eventualmente orientata, mentre g nel testo è il modulo positivo del campo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2390,
+      "title": "Fattori sotto la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Due cadute partono da fermo senza aria; ogni campo è uniforme durante la propria prova. Nella seconda g₂=κ₁g₁ e h₂=κ₂h₁, con dati e fattori positivi. V₁,V₂ sono le rapidità finali. Quale rapporto V₂/V₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "√(κ₁κ₂)",
+          "κ₁√κ₂",
+          "√(κ₁/κ₂)",
+          "(κ₁+κ₂)/2"
+        ],
+        "value": "√(κ₁κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel quadrato della rapidità il campo e il dislivello sono due fattori alla prima potenza. Perciò il rapporto V₂²/V₁² vale κ₁κ₂. Solo dopo aver fatto questo confronto estraiamo la radice positiva, ottenendo il rapporto delle rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_2^2}{V_1^2}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\sqrt{\\kappa_1\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto senza radice confronta i quadrati; il rapporto dentro la radice metterebbe h al denominatore. Elevare soltanto uno dei fattori a radice tratta diversamente due ingressi che compaiono simmetricamente. La semisomma dei fattori non deriva dalla legge del moto."
+        }
+      ],
+      "hints": [
+        "Confronta prima V², poi usa la positività per scegliere la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto senza radice confronta i quadrati; il rapporto dentro la radice metterebbe h al denominatore. Elevare soltanto uno dei fattori a radice tratta diversamente due ingressi che compaiono simmetricamente. La semisomma dei fattori non deriva dalla legge del moto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2391,
+      "title": "Cambiano campo e dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Due cadute da fermo senza aria hanno campi uniformi e dati (g₁,h₁)=(2 m/s²,1 m) e (g₂,h₂)=(8 m/s²,4 m). V₁,V₂ sono le rapidità finali. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi gli ingressi sono moltiplicati per quattro. Il radicando riceve un fattore sedici e la radice lo trasforma in quattro. Direttamente troviamo V₁=√4 m/s=2 m/s e V₂=√64 m/s=8 m/s, tutte radici perfette."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=4"
+        },
+        {
+          "type": "text",
+          "text": "Sedici sarebbe il rapporto dei quadrati e due terrebbe conto di un solo cambiamento. I campi diversi appartengono a prove diverse; nessun campo varia durante una singola caduta. Le componenti verso un asse positivo in alto sarebbero negative, ma il rapporto dei moduli qui richiesto è positivo."
+        }
+      ],
+      "hints": [
+        "La radice di quattro per quattro è quattro, non sedici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici sarebbe il rapporto dei quadrati e due terrebbe conto di un solo cambiamento. I campi diversi appartengono a prove diverse; nessun campo varia durante una singola caduta. Le componenti verso un asse positivo in alto sarebbero negative, ma il rapporto dei moduli qui richiesto è positivo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2392,
+      "title": "Media di due rapidità di arrivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 2,
+      "prompt": "Due prove di caduta da fermo senza aria hanno campi uniformi e coppie (g,h)=(2 m/s²,1 m) e (8 m/s²,4 m). Con uguale peso statistico delle prove, qual è la media aritmetica delle due rapidità finali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m/s",
+          "5 m/s",
+          "6 m/s",
+          "10 m/s",
+          "5/2 m/s"
+        ],
+        "value": "5 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità sono due e otto metri al secondo. La media fra letture è la loro semisomma, cinque. Il confronto riguarda due uscite di prove diverse e non una velocità media durante una singola caduta, che richiederebbe anche il suo intervallo temporale."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{2+8}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+8}{2}\\,\\mathrm{m/s}=5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci omette la divisione e cinque mezzi la applica due volte. Qui gli ingressi medi g=5 m/s²,h=5/2 m producono anch’essi √25=5 m/s perché le coppie sono proporzionali. Non è una proprietà generale della radice di un prodotto: per coppie non proporzionali occorre sempre ricalcolare le due uscite."
+        }
+      ],
+      "hints": [
+        "Calcola prima le due radici esatte, poi media le rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci omette la divisione e cinque mezzi la applica due volte. Qui gli ingressi medi g=5 m/s²,h=5/2 m producono anch’essi √25=5 m/s perché le coppie sono proporzionali. Non è una proprietà generale della radice di un prodotto: per coppie non proporzionali occorre sempre ricalcolare le due uscite.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2393,
+      "title": "Il dislivello necessario nel nuovo campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 3,
+      "prompt": "Due cadute da fermo senza aria avvengono in campi uniformi. La prima ha g₁=2 m/s²,h₁=1 m. Nella seconda si impone g₂=8 m/s² e si vuole V₂=4V₁, dove V è la rapidità finale. Quale rapporto h₂/h₁ occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore quattro nella rapidità richiede un fattore sedici nel suo quadrato. Il campo fornisce già un fattore quattro al radicando; il dislivello deve fornire il restante fattore quattro. Eleviamo al quadrato il rapporto solo dopo aver riconosciuto che è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{V_2}{V_1}\\right)^2=\\frac{g_2}{g_1}\\frac{h_2}{h_1}"
+        },
+        {
+          "type": "formula",
+          "text": " 16=4\\frac{h_2}{h_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{h_2}{h_1}=4"
+        },
+        {
+          "type": "text",
+          "text": "Ne segue h₂=4 m e V₂=8 m/s, quattro volte i due iniziali. Un dislivello raddoppiato darebbe un radicando solo otto volte maggiore, non sedici. Il ragionamento usa rapporti puri e non richiede approssimare alcuna radice."
+        }
+      ],
+      "hints": [
+        "Porta la richiesta sulla rapidità al quadrato prima di compensare il campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ne segue h₂=4 m e V₂=8 m/s, quattro volte i due iniziali. Un dislivello raddoppiato darebbe un radicando solo otto volte maggiore, non sedici. Il ragionamento usa rapporti puri e non richiede approssimare alcuna radice.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2394,
+      "title": "Dal display al campo gravitazionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 3,
+      "prompt": "Ogni prova è una caduta da fermo senza aria in campo uniforme g>0. V è il modulo della velocità finale e un display conta S=cV, con c>0 costante e offset nullo. Per g=2 m/s²,h=1 m indica 6. Nella prova ignota indica 24 e h=4 m. Quanto vale g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha rapidità due metri al secondo, quindi c=3 s/m. La lettura ventiquattro corrisponde a V=8 m/s. Per ricostruire il modulo del campo eleviamo al quadrato questa rapidità fisica e dividiamo per 2h, non il conteggio grezzo del display."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{24}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{24}{3\\,\\mathrm{s/m}}=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{V^2}{2h}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{64}{8}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{64}{8}\\,\\mathrm{m/s^2}=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce V=√64 m/s=8 m/s e S=(3 s/m)(8 m/s)=24. Il guadagno converte velocità in un conteggio e ha unità inversa di velocità. Trattare ventiquattro come una rapidità senza togliere il guadagno amplificherebbe ulteriormente l’errore quando si fa il quadrato."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di elevare la rapidità al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce V=√64 m/s=8 m/s e S=(3 s/m)(8 m/s)=24. Il guadagno converte velocità in un conteggio e ha unità inversa di velocità. Trattare ventiquattro come una rapidità senza togliere il guadagno amplificherebbe ulteriormente l’errore quando si fa il quadrato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2395,
+      "title": "Due riferimenti per una rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 3,
+      "prompt": "Ogni prova è una caduta da fermo senza aria in campo uniforme. V è la rapidità finale. Un display conta S=cV+d, con c>0,d costanti. I riferimenti (g,h)=(2 m/s²,1 m) e (8 m/s²,4 m) danno S=5 e S=17. Una prova con h=1 m dà S=9. Quanto vale g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s²",
+          "4 m/s²",
+          "8 m/s²",
+          "16 m/s²",
+          "32 m/s²"
+        ],
+        "value": "8 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità dei riferimenti sono due e otto metri al secondo. Dodici tacche per sei metri al secondo danno c=2 s/m; dal primo riferimento d=1. Dalla lettura nove otteniamo quindi V=4 m/s, poi usiamo l’inversa g=V²/(2h)."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{17-5}{(8-2)\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-5}{(8-2)\\,\\mathrm{m/s}}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{9-1}{2\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{2\\,\\mathrm{s/m}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{16}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{2}\\,\\mathrm{m/s^2}=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto metri al secondo quadrato ricostruisce V=4 m/s e S=2·4+1=9. Quattro è il valore numerico della rapidità intermedia, non del campo; sedici dimentica il fattore 2h. Il rapporto delle letture non elimina l’offset: prima sottrazione, poi divisione, infine quadrato."
+        }
+      ],
+      "hints": [
+        "Ricava guadagno e offset prima di applicare l’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto metri al secondo quadrato ricostruisce V=4 m/s e S=2·4+1=9. Quattro è il valore numerico della rapidità intermedia, non del campo; sedici dimentica il fattore 2h. Il rapporto delle letture non elimina l’offset: prima sottrazione, poi divisione, infine quadrato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-speed-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2396,
+      "title": "Un vincolo fra i dati delle prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-speed",
+      "difficulty": 3,
+      "prompt": "Una caduta da fermo avviene senza aria in un campo uniforme. I dati scelti soddisfano g=(2 s⁻²)h, con h>0 dislivello della prova e g costante durante l’intera caduta. La rapidità finale è V=2 m/s. Quanto vale h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2 m",
+          "1 m",
+          "2 m",
+          "4 m",
+          "−1 m"
+        ],
+        "value": "1 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente 2 s⁻² trasforma una lunghezza in un’accelerazione. Il vincolo collega le condizioni selezionate fra prove, non il valore locale del campo alla quota istantanea. Sostituendolo in V²=2gh si ottiene V²=(4 s⁻²)h². La radice positiva determina il dislivello."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=(4\\,\\mathrm{s^{-2}})h^2"
+        },
+        {
+          "type": "formula",
+          "text": " h^2=\\frac{(2\\,\\mathrm{m/s})^2}{4\\,\\mathrm{s^{-2}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s})^2}{4\\,\\mathrm{s^{-2}}}=1\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Ne segue g=2 m/s², costante nella prova, e V=2 m/s come richiesto. Il dislivello negativo è escluso dal dominio; due metri darebbero rapidità quattro, non due. Non si sta descrivendo un campo che diminuisce mentre il corpo scende: sarebbe un altro modello."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con il suo coefficiente dimensionale, poi scegli h positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ne segue g=2 m/s², costante nella prova, e V=2 m/s come richiesto. Il dislivello negativo è escluso dal dominio; due metri darebbero rapidità quattro, non due. Non si sta descrivendo un campo che diminuisce mentre il corpo scende: sarebbe un altro modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Moduli e componenti",
+        "Dislivello e quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0bfde22bd943a3af5b11a81a7cf531b96773d2b583ce633b1d54e60d9a61d265",
+      "name": "freefall-speed-height-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTAzMCIgdmlld0JveD0iMCAwIDY0MCAxMDMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlF1b3RhIHJpbWFzdGEgZSBkaXNsaXZlbGxvIGdpw6AgY2FkdXRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlLiBEdWUgaXN0YW50aSBkZWxsYSBzdGVzc2EgY2FkdXRhIHNvbm8gY29uZnJvbnRhdGkgY29uIG9yaWdpbmUgYWwgc3VvbG8gZSBzY2FsYSBjb211bmUgdmVudGkgcGl4ZWwgcGVyIG1ldHJvLiBBbCByaWxhc2NpbyBsYSBxdW90YSDDqCBkaWNpb3R0byBtZXRyaSBlIGxhIHZlbG9jaXTDoCBudWxsYS4gUXVhbmRvIGxhIHJhcGlkaXTDoCDDqCB1biB0ZXJ6byBkaSBxdWVsbGEgZmluYWxlIGlsIGNvcnBvIMOoIHNjZXNvIGRpIGR1ZSBtZXRyaSwgcXVhcmFudGEgcGl4ZWwsIGUgcmVzdGEgYSBxdW90YSBzZWRpY2kgbWV0cmksIHRyZWNlbnRvdmVudGkgcGl4ZWwgc29wcmEgaWwgc3VvbG8uIElsIGNhbXBvIHVuaWZvcm1lIHB1bnRhIHZlcnNvIGlsIGJhc3NvOyBpbCB2YWxvcmUgZGkgZyBzaSBjYW5jZWxsYSBuZWwgcmFwcG9ydG8gZGVpIHF1YWRyYXRpIGRlbGxlIHJhcGlkaXTDoC48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNzNkNTAiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTAzMCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmaWxsPSIjMTczZDUwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIGlzdGFudGksIGxhIHN0ZXNzYSBvcmlnaW5lIGFsIHN1b2xvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4MiI+U2NhbGE6IDIwIHB4L20gwrcgcXVvdGEgcG9zaXRpdmEgdmVyc28gbOKAmWFsdG88L3RleHQ+CjxwYXRoIGQ9Ik03MCA1MzBWMTQwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIyOSIgeT0iMTI3Ij4reTwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNzBINTQwTTMwMCAyMTBINTQwIiBzdHJva2U9IiM4NzliOWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTEwMCA1MzBINTQwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIxOCIgeT0iMTc3Ij4xODwvdGV4dD48dGV4dCB4PSIxOCIgeT0iMjE3Ij4xNjwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNTM3Ij4wPC90ZXh0Pjx0ZXh0IHg9IjQ1MCIgeT0iNTY3Ij5zdW9sbzwvdGV4dD4KPGNpcmNsZSBjeD0iMTgwIiBjeT0iMTcwIiByPSI4Ii8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMjEwIiByPSI4Ii8+PHRleHQgeD0iMTIzIiB5PSIxMjQiPnJpbGFzY2lvLCB0ID0gMDwvdGV4dD48dGV4dCB4PSIzODciIHk9IjEyNCI+diA9IHZfZiAvIDM8L3RleHQ+CjxwYXRoIGQ9Ik0yMDUgMTcwVjUzME0xOTcgMTcwSDIxM00xOTcgNTMwSDIxM000NzUgMjEwVjUzME00NjcgMjEwSDQ4M000NjcgNTMwSDQ4MyIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHRleHQgeD0iMjI1IiB5PSIzNjciPkggPSAxOCBtPC90ZXh0Pjx0ZXh0IHg9IjQ5MiIgeT0iMzgyIj55ID0gMTYgbTwvdGV4dD4KPHBhdGggZD0iTTM1MCAyODJWMzU4IiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMTUiIHk9IjM5MyI+ZyB2ZXJzbyBpbCBiYXNzbzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYzNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUHJpbWEgaWwgcXVhZHJhdG8gZGVsbGEgZnJhemlvbmU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI2ODIiPnbCsiAvIHZfZsKyID0gaCAvIEggPSAoMS8zKcKyID0gMS85PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3MzAiPkRpc2xpdmVsbG8gZ2nDoCBjYWR1dG86IGggPSAxOCBtIC8gOSA9IDIgbTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgwNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgUG9pIGxhIHF1b3RhIGFuY29yYSBzb3ByYSBpbCBzdW9sbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODUwIj55ID0gSCDiiJIgaCA9IDE4IG0g4oiSIDIgbSA9IDE2IG08L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI5MDgiPjIgbSBjYWR1dGkg4oaSIDQwIHB4IHNvdHRvIGlsIHJpbGFzY2lvLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTU4Ij4xNiBtIHJlc2lkdWkg4oaSIDMyMCBweCBzb3ByYSBpbCBzdW9sby48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

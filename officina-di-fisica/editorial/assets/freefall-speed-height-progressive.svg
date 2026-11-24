@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1030" viewBox="0 0 640 1030" role="img" aria-labelledby="title desc">
+<title id="title">Quota rimasta e dislivello già caduto</title><desc id="desc">Tre tappe. Due istanti della stessa caduta sono confrontati con origine al suolo e scala comune venti pixel per metro. Al rilascio la quota è diciotto metri e la velocità nulla. Quando la rapidità è un terzo di quella finale il corpo è sceso di due metri, quaranta pixel, e resta a quota sedici metri, trecentoventi pixel sopra il suolo. Il campo uniforme punta verso il basso; il valore di g si cancella nel rapporto dei quadrati delle rapidità.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="640" height="1030" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="42" font-weight="bold">1 · Due istanti, la stessa origine al suolo</text><text x="28" y="82">Scala: 20 px/m · quota positiva verso l’alto</text>
+<path d="M70 530V140" stroke="#173d50" stroke-width="2" marker-end="url(#arrow)"/><text x="29" y="127">+y</text>
+<path d="M100 170H540M300 210H540" stroke="#879b9a" stroke-width="2" stroke-dasharray="6 5"/><path d="M100 530H540" stroke="#173d50" stroke-width="3"/>
+<text x="18" y="177">18</text><text x="18" y="217">16</text><text x="30" y="537">0</text><text x="450" y="567">suolo</text>
+<circle cx="180" cy="170" r="8"/><circle cx="420" cy="210" r="8"/><text x="123" y="124">rilascio, t = 0</text><text x="387" y="124">v = v_f / 3</text>
+<path d="M205 170V530M197 170H213M197 530H213M475 210V530M467 210H483M467 530H483" stroke="#173d50" stroke-width="2" fill="none"/>
+<text x="225" y="367">H = 18 m</text><text x="492" y="382">y = 16 m</text>
+<path d="M350 282V358" stroke="#173d50" stroke-width="3" marker-end="url(#arrow)"/><text x="315" y="393">g verso il basso</text>
+<text x="28" y="636" font-weight="bold">2 · Prima il quadrato della frazione</text>
+<text x="28" y="682">v² / v_f² = h / H = (1/3)² = 1/9</text><text x="28" y="730">Dislivello già caduto: h = 18 m / 9 = 2 m</text>
+<text x="28" y="804" font-weight="bold">3 · Poi la quota ancora sopra il suolo</text><text x="28" y="850">y = H − h = 18 m − 2 m = 16 m</text>
+<text x="28" y="908">2 m caduti → 40 px sotto il rilascio.</text><text x="28" y="958">16 m residui → 320 px sopra il suolo.</text>
+</g></svg>
