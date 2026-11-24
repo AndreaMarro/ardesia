@@ -11,3 +11,5 @@ Sedici originali letti individualmente dal riferimento 5cfbdcb055ba3ba136f97fb56
 SVG allegato a 03/07: triangolo 3–4–5 (160,120,200 px), esempio s3/5 e cosθ4/5 già dati. Con m1 kg,g10: peso10 N (100px), normale8 N (80px), componenti6/8 N (60/80px). La normale equilibra solo la componente perpendicolare. Componenti tratteggiate sostitutive, non forze ulteriori. A6 m/s² (60px) in pannello distinto con scala dimensionalmente diversa. Anteprima letta; fonte e asset legati con SHA256.
 
 Prova tecnica su SQLite temporaneo con importatore canonico: 16 nuove bozze, ripetizione 0 scritture/16 invariate; 991 pubblicati e relative versioni storiche invariati, hash prima/dopo 99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Assemblaggio deterministico e binding confrontati. Questa è prova strutturale dell’autore, non revisione scientifica indipendente.
+
+Finding indipendente di leggibilità: etichetta del peso spostata sotto l’estremità della linea del piano. Geometria, scale e valori invariati; rigenerati asset embedded e binding dei soli record con figura.
