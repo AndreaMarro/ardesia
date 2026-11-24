@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="650" viewBox="0 0 320 650" role="img" aria-labelledby="title desc">
+<title id="title">Dalla posizione meno due alla posizione cinque</title>
+<desc id="desc">Tre assi identici, tutti orientati verso est e con la stessa origine e scala: trentaquattro unità grafiche per metro. La partenza è a meno due metri. Una freccia di tre metri arriva a più uno, poi una freccia di quattro metri arriva a più cinque. Lo spostamento totale è sette metri; la coordinata finale è cinque metri.</desc>
+<defs><marker id="axis" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#193d43"/></marker><marker id="step" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#8e4b16"/></marker></defs>
+<rect width="320" height="650" fill="#fffdf8"/>
+<g fill="#193d43" font-family="sans-serif" font-size="18">
+<text x="16" y="31">1. Fissa origine e partenza</text><text x="16" y="62" font-size="16">Il punto iniziale è a −2 m.</text>
+<text x="16" y="225">2. Aggiungi 3 m verso est</text><text x="16" y="256" font-size="16">−2 m + 3 m = +1 m</text>
+<text x="16" y="419">3. Aggiungi altri 4 m</text><text x="16" y="450" font-size="16">+1 m + 4 m = +5 m</text>
+<text x="16" y="606" font-size="17">Coordinata finale: +5 m</text><text x="16" y="635" font-size="17">Spostamento totale: +7 m</text>
+</g>
+<g stroke="#193d43" stroke-width="1.5" fill="none">
+<path d="M18 128H294" marker-end="url(#axis)"/><path d="M32 121v14M100 121v14M134 121v14M270 121v14"/>
+<path d="M18 322H294" marker-end="url(#axis)"/><path d="M32 315v14M100 315v14M134 315v14M270 315v14"/>
+<path d="M18 516H294" marker-end="url(#axis)"/><path d="M32 509v14M100 509v14M134 509v14M270 509v14"/>
+</g>
+<g fill="#193d43" font-family="sans-serif" font-size="16" text-anchor="middle">
+<text x="32" y="156">−2</text><text x="100" y="156">0</text><text x="134" y="156">1</text><text x="270" y="156">5</text>
+<text x="32" y="350">−2</text><text x="100" y="350">0</text><text x="134" y="350">1</text><text x="270" y="350">5</text>
+<text x="32" y="544">−2</text><text x="100" y="544">0</text><text x="134" y="544">1</text><text x="270" y="544">5</text>
+</g>
+<g fill="#193d43"><circle cx="32" cy="128" r="5"/><circle cx="134" cy="322" r="5"/><circle cx="270" cy="516" r="5"/></g>
+<g stroke="#8e4b16" stroke-width="3" marker-end="url(#step)"><path d="M32 297H134"/><path d="M134 491H270"/></g>
+<g stroke="#8e4b16" stroke-width="1" stroke-dasharray="3 3"><path d="M32 297v25M134 297v25M134 491v25M270 491v25"/></g>
+<g fill="#8e4b16" font-family="sans-serif" font-size="16" text-anchor="middle"><text x="83" y="286">+3 m</text><text x="202" y="480">+4 m</text></g>
+<g fill="#193d43" font-family="sans-serif" font-size="14" text-anchor="end"><text x="304" y="181">x (m), est →</text><text x="304" y="375">x (m), est →</text><text x="304" y="569">x (m), est →</text></g>
+</svg>

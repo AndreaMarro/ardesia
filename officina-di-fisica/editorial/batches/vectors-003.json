@@ -1,0 +1,1153 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-vector-sum-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2081,
+      "title": "Due passi nello stesso verso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 1,
+      "prompt": "Una persona compie due spostamenti consecutivi lungo la stessa retta: 2 m verso est e altri 2 m verso est. Quanto vale il modulo D dello spostamento totale, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento totale collega il punto di partenza a quello di arrivo. Prendiamo positivo il verso est: entrambe le componenti sono positive e si sommano. Non compare una durata, quindi la domanda non riguarda una velocità."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=+2\\,\\mathrm m+2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "+2\\,\\mathrm m+2\\,\\mathrm m=+4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D=|\\Delta x|"
+        },
+        {
+          "type": "formula",
+          "text": "|\\Delta x|=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La persona termina quattro metri a est del punto iniziale. In questo percorso senza inversioni anche la distanza percorsa vale quattro metri; con un ritorno indietro distanza e modulo dello spostamento potrebbero invece differire."
+        }
+      ],
+      "hints": [
+        "Disegna due frecce consecutive, entrambe verso est.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La persona termina quattro metri a est del punto iniziale. In questo percorso senza inversioni anche la distanza percorsa vale quattro metri; con un ritorno indietro distanza e modulo dello spostamento potrebbero invece differire.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2082,
+      "title": "L’unità di uno spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 1,
+      "prompt": "Due spostamenti concordi producono uno spostamento totale. Quale fra queste unità è dimensionalmente compatibile con il suo modulo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "m²",
+          "N",
+          "s"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uno spostamento confronta due posizioni nello spazio e possiede dimensione di lunghezza. Sommare componenti della stessa dimensione conserva quella dimensione. Il fatto che lo spostamento sia un vettore non introduce un’unità speciale: le sue componenti e il suo modulo si misurano con unità di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta x]=L"
+        },
+        {
+          "type": "formula",
+          "text": "[D]=L"
+        },
+        {
+          "type": "formula",
+          "text": "[D]_{\\rm SI}=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il metro è adatto. Metri al secondo descriverebbero una velocità, metri quadrati un’area e newton una forza. La scelta si può fare prima di conoscere i valori numerici."
+        }
+      ],
+      "hints": [
+        "Chiediti quale grandezza si confronta sottraendo due posizioni.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il metro è adatto. Metri al secondo descriverebbero una velocità, metri quadrati un’area e newton una forza. La scelta si può fare prima di conoscere i valori numerici.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2083,
+      "title": "Quando si possono sommare i moduli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 1,
+      "prompt": "Due spostamenti consecutivi hanno moduli a>0 e b>0 e sono entrambi diretti verso est lungo la stessa retta. Quale formula dà il modulo totale D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D=a+b",
+          "D=|a−b|",
+          "D=√(a²+b²)",
+          "D=ab",
+          "D=(a+b)/2"
+        ],
+        "value": "D=a+b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge generale somma i vettori, non sempre i loro moduli. Qui le due componenti sull’asse est sono +a e +b. La componente risultante è positiva e il suo modulo coincide quindi con la somma a+b. Le ipotesi di stessa retta e stesso verso sono essenziali."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=a+b>0"
+        },
+        {
+          "type": "formula",
+          "text": " D=|a+b|"
+        },
+        {
+          "type": "formula",
+          "text": "|a+b|=a+b"
+        },
+        {
+          "type": "text",
+          "text": "La differenza dei moduli servirebbe per versi opposti; la radice di a²+b² per componenti perpendicolari. Il prodotto ab avrebbe dimensione di area, mentre la media dimezzerebbe il cammino senza una ragione fisica."
+        }
+      ],
+      "hints": [
+        "Proietta le due frecce sull’asse orientato verso est.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La differenza dei moduli servirebbe per versi opposti; la radice di a²+b² per componenti perpendicolari. Il prodotto ab avrebbe dimensione di area, mentre la media dimezzerebbe il cammino senza una ragione fisica.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2084,
+      "title": "Raddoppiare solo uno dei due tratti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 1,
+      "prompt": "In entrambe le prove i due tratti restano sulla stessa retta e verso est. Nella prima a=2 m e b=2 m; nella seconda a diventa 4 m e b resta 2 m. Come cambia il modulo totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Passa da 4 m a 6 m",
+          "Raddoppia da 4 m a 8 m",
+          "Si dimezza da 4 m a 2 m",
+          "Resta 4 m",
+          "Diventa 3 m, mediando i nuovi tratti"
+        ],
+        "value": "Passa da 4 m a 6 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È cambiato soltanto il primo addendo. Il tratto b continua a contribuire con due metri in entrambe le prove. Scrivere i due totali evita di attribuire all’intera somma il raddoppio di una sola parte."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=2\\,\\mathrm m+2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm m+2\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=4\\,\\mathrm m+2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m+2\\,\\mathrm m=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il totale aumenta di due metri e passa da quattro a sei. Il rapporto è 6/4=3/2: l’aumento relativo è del 50%, non del 100%. Raddoppierebbe anche il totale se raddoppiassero entrambi i tratti."
+        }
+      ],
+      "hints": [
+        "Conserva il secondo tratto di 2 m quando cambi il primo.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il totale aumenta di due metri e passa da quattro a sei. Il rapporto è 6/4=3/2: l’aumento relativo è del 50%, non del 100%. Raddoppierebbe anche il totale se raddoppiassero entrambi i tratti.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2085,
+      "title": "Ricostruire il primo tratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "Due spostamenti consecutivi verso est hanno modulo totale D=4 m. Il secondo misura b=2 m. Quanto misura il primo, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione D=a+b permette di ricavare il tratto mancante. Sottraiamo b da entrambi i membri dell’uguaglianza: il secondo addendo si elimina e rimane a. Tutte le quantità sottratte devono essere espresse nella stessa unità."
+        },
+        {
+          "type": "formula",
+          "text": "D-b=a+b-b"
+        },
+        {
+          "type": "formula",
+          "text": "a+b-b=a"
+        },
+        {
+          "type": "formula",
+          "text": " a=4\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-2\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il primo tratto misura due metri verso est. La somma di controllo 2 m+2 m restituisce 4 m. Un risultato negativo contraddirebbe l’ipotesi che a sia il modulo di un tratto concorde con il secondo."
+        }
+      ],
+      "hints": [
+        "Sottrai dal totale il tratto che conosci già.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il primo tratto misura due metri verso est. La somma di controllo 2 m+2 m restituisce 4 m. Un risultato negativo contraddirebbe l’ipotesi che a sia il modulo di un tratto concorde con il secondo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2086,
+      "title": "Una coordinata può essere negativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coordinate-versus-displacement",
+      "difficulty": 2,
+      "prompt": "Un asse ha origine fissa e verso positivo a est. La persona parte da x₀=−2 m, si sposta di 3 m verso est e poi di altri 4 m verso est. Qual è la coordinata finale, in metri?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7",
+          "9",
+          "1",
+          "−5",
+          "5"
+        ],
+        "value": "5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La coordinata iniziale indica dove si trova la persona rispetto all’origine; gli spostamenti indicano quanto cambia quella coordinata. Partire a −2 m non significa muoversi verso ovest. Il primo spostamento di +3 m porta da −2 m a +1 m; il secondo aggiunge altri quattro metri."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5781e46393a09cacf669b382d0cbe47fd29f2ea3156b475d16f3230435a70859",
+          "text": "Tre tappe con origine e scala fisse: partenza a −2 m; arrivo a +1 m dopo tre metri verso est; arrivo a +5 m dopo altri quattro. La coordinata finale è 5 m e lo spostamento totale è 7 m."
+        },
+        {
+          "type": "formula",
+          "text": "x_1=-2\\,\\mathrm m+3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "-2\\,\\mathrm m+3\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_f=1\\,\\mathrm m+4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm m+4\\,\\mathrm m=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La coordinata finale è +5 m. Lo spostamento totale vale invece x_f−x₀=5−(−2)=7 m verso est. Il numero sette risponde a una domanda diversa: quanto è cambiata la posizione, non quale sia la sua coordinata finale."
+        }
+      ],
+      "hints": [
+        "Segna −2 m sull’asse prima di aggiungere le frecce.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coordinata finale è +5 m. Lo spostamento totale vale invece x_f−x₀=5−(−2)=7 m verso est. Il numero sette risponde a una domanda diversa: quanto è cambiata la posizione, non quale sia la sua coordinata finale.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2087,
+      "title": "Un rapporto fra due risultanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "Due prove iniziano dallo stesso punto e hanno tratti entrambi verso est. Nella prima a=2 m,b=2 m; nella seconda a=2 m,b=4 m. Qual è il rapporto D₂/D₁ fra i moduli totali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3/2",
+          "1/2",
+          "3/4",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima ciascuno spostamento totale. Il primo vale quattro metri, il secondo sei metri. Nel rapporto si cancellano i metri: confrontiamo due grandezze omogenee. Semplifichiamo la frazione dividendo numeratore e denominatore per due."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{D_2}{D_1}=\\frac64"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac64=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi significa una volta e mezza. Il valore è maggiore di uno perché il secondo spostamento totale è maggiore. Il rapporto inverso varrebbe invece 2/3, non 3/2."
+        }
+      ],
+      "hints": [
+        "Forma il rapporto fra i due totali, non fra i soli secondi tratti.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi significa una volta e mezza. Il valore è maggiore di uno perché il secondo spostamento totale è maggiore. Il rapporto inverso varrebbe invece 2/3, non 3/2.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2088,
+      "title": "Lo scarto conserva il segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "Due tratti di 2 m verso est danno un modulo totale D. Una soluzione propone D_proposto=8 m. Quanto vale lo scarto con segno D_proposto−D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+4 m",
+          "−4 m",
+          "+8 m",
+          "0 m",
+          "+2 m"
+        ],
+        "value": "+4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima troviamo il valore corretto: due metri più due metri fanno quattro metri. Poi applichiamo l’ordine della sottrazione dichiarato nel testo. Lo scarto non è un nuovo spostamento della persona: misura l’errore della proposta rispetto al risultato."
+        },
+        {
+          "type": "formula",
+          "text": "D=2\\,\\mathrm m+2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm m+2\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=8\\,\\mathrm m-4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm m-4\\,\\mathrm m=+4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo indica una sovrastima di quattro metri. Se la definizione fosse valore corretto meno valore proposto, lo stesso confronto avrebbe segno negativo. Il segno dipende dall’ordine richiesto, non dal fatto che le distanze siano positive."
+        }
+      ],
+      "hints": [
+        "Scrivi le parole «proposto meno corretto» sopra la sottrazione.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Il segno positivo indica una sovrastima di quattro metri. Se la definizione fosse valore corretto meno valore proposto, lo stesso confronto avrebbe segno negativo. Il segno dipende dall’ordine richiesto, non dal fatto che le distanze siano positive.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2089,
+      "title": "L’inversa della somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "Per due tratti concordi vale D=a+b. Si conoscono D e b, con D>b>0. Quale formula isola a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=D−b",
+          "a=D+b",
+          "a=b−D",
+          "a=D/b",
+          "a=Db"
+        ],
+        "value": "a=D−b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "a è sommato a b. L’operazione inversa è sottrarre b da entrambi i membri: non dividere, perché a e b non sono moltiplicati. La condizione D>b assicura che il modulo ricavato sia positivo."
+        },
+        {
+          "type": "formula",
+          "text": "D-b=a+b-b"
+        },
+        {
+          "type": "formula",
+          "text": " a=D-b"
+        },
+        {
+          "type": "text",
+          "text": "Sostituendo nella relazione originaria otteniamo (D−b)+b=D. La differenza mantiene dimensione di lunghezza; D/b sarebbe un numero puro e Db avrebbe dimensione di area."
+        }
+      ],
+      "hints": [
+        "Elimina l’addendo b facendo la stessa sottrazione sui due membri.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sostituendo nella relazione originaria otteniamo (D−b)+b=D. La differenza mantiene dimensione di lunghezza; D/b sarebbe un numero puro e Db avrebbe dimensione di area.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2090,
+      "title": "Variazioni di una legge additiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "In entrambe le prove i due tratti restano sulla stessa retta e verso est. I moduli iniziali sono a,b>0; nella seconda prova diventano κ₁a e κ₂b, con κ₁,κ₂>0. Quale formula dà il rapporto fra il nuovo e il vecchio modulo totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁+κ₂",
+          "(κ₁a+κ₂b)/(a+b)",
+          "(κ₁a−κ₂b)/(a+b)",
+          "(κ₁+κ₂)/2, sempre"
+        ],
+        "value": "(κ₁a+κ₂b)/(a+b)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di partenza è una somma. Inseriamo i due nuovi tratti nella stessa somma e dividiamo per il totale iniziale. Non si possono moltiplicare direttamente i fattori κ₁ e κ₂, perché agiscono su addendi diversi."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=a+b"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\kappa_1a+\\kappa_2b"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{D_2}{D_1}=\\frac{\\kappa_1a+\\kappa_2b}{a+b}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è una media pesata di κ₁ e κ₂, con pesi a/(a+b) e b/(a+b): rimane fra i due fattori. Se i tratti hanno uguale modulo diventa (κ₁+κ₂)/2; con tratti diversi questa media semplice non vale in generale."
+        }
+      ],
+      "hints": [
+        "Sostituisci i due tratti nella somma prima di fare il rapporto.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il rapporto è una media pesata di κ₁ e κ₂, con pesi a/(a+b) e b/(a+b): rimane fra i due fattori. Se i tratti hanno uguale modulo diventa (κ₁+κ₂)/2; con tratti diversi questa media semplice non vale in generale.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2091,
+      "title": "Raddoppiare entrambi i tratti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "In entrambe le prove i due tratti restano sulla stessa retta e verso est. Nella prima misurano 2 m ciascuno; nella seconda 4 m ciascuno. Quanto vale il rapporto D₂/D₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo totale è quattro metri, il secondo otto metri. Quando tutti gli addendi sono moltiplicati per lo stesso fattore, quel fattore si può raccogliere davanti alla somma: anche il totale raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "D_2=2a+2b"
+        },
+        {
+          "type": "formula",
+          "text": "2a+2b=2(a+b)"
+        },
+        {
+          "type": "formula",
+          "text": "2(a+b)=2D_1"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{D_2}{D_1}=\\frac84"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è due, senza unità. Il fattore quattro deriverebbe dal moltiplicare due raddoppi come se la legge fosse un prodotto. Qui i tratti si sommano."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore due comune ai due nuovi tratti.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è due, senza unità. Il fattore quattro deriverebbe dal moltiplicare due raddoppi come se la legge fosse un prodotto. Qui i tratti si sommano.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2092,
+      "title": "La media di due spostamenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 2,
+      "prompt": "Due prove hanno tratti concordi verso est, misurati in metri. Nella prima i tratti sono 2 m e 2 m, nella seconda 4 m e 4 m. Con uguale peso statistico, quanto vale la media dei due moduli totali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 m",
+          "4 m",
+          "6 m",
+          "8 m",
+          "12 m"
+        ],
+        "value": "6 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali delle due prove sono quattro e otto metri. Per la media aritmetica sommiamo i risultati e dividiamo per il numero delle prove, che è due. La direzione comune e l’unità comune rendono il confronto omogeneo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline D=\\frac{4\\,\\mathrm m+8\\,\\mathrm m}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m+8\\,\\mathrm m}{2}=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "In questo caso si ottiene lo stesso risultato anche mediando prima i tratti: 3 m+3 m=6 m. È una conseguenza della linearità della somma, non una proprietà universale: per leggi con quadrati o potenze la media degli ingressi può dare un’altra uscita."
+        }
+      ],
+      "hints": [
+        "Fai la media dei totali 4 m e 8 m.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "In questo caso si ottiene lo stesso risultato anche mediando prima i tratti: 3 m+3 m=6 m. È una conseguenza della linearità della somma, non una proprietà universale: per leggi con quadrati o potenze la media degli ingressi può dare un’altra uscita.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2093,
+      "title": "Trovare il tratto necessario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 3,
+      "prompt": "In tutte le prove i due tratti restano sulla stessa retta e verso est. All’inizio a₁=b₁=2 m. Nella seconda prova si impone a₂=4 m e si vuole D₂=2D₁. Quale rapporto b₂/b₁ è necessario?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale iniziale è quattro metri e il totale desiderato è otto metri. Il nuovo primo tratto ne occupa già quattro. Al secondo tratto devono quindi rimanere gli altri quattro metri. Solo dopo averlo ricavato confrontiamo b₂ con b₁."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " b_2=D_2-a_2"
+        },
+        {
+          "type": "formula",
+          "text": "D_2-a_2=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{b_2}{b_1}=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Il secondo tratto deve raddoppiare. La verifica 4 m+4 m=8 m soddisfa il totale richiesto. Nei problemi additivi si ricostruisce il contributo mancante mediante una sottrazione, prima di calcolare il suo fattore di variazione."
+        }
+      ],
+      "hints": [
+        "Togli dal nuovo totale il tratto a₂ già assegnato.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il secondo tratto deve raddoppiare. La verifica 4 m+4 m=8 m soddisfa il totale richiesto. Nei problemi additivi si ricostruisce il contributo mancante mediante una sottrazione, prima di calcolare il suo fattore di variazione.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2094,
+      "title": "Un display con guadagno costante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 3,
+      "prompt": "In tutte le prove i due tratti restano sulla stessa retta e verso est. Un display indica un numero S=gD, con guadagno g>0 costante e offset nullo. Due tratti di 2 m ciascuno danno S=12. In una nuova prova S=24 e il secondo tratto misura 4 m. Quanto misura il primo tratto, in metri? Le letture S sono numeri di tacche del display.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha spostamento totale quattro metri. Dodici tacche per quattro metri significano tre tacche per metro. La lettura di ventiquattro tacche rappresenta quindi otto metri. Da questo totale sottraiamo il secondo tratto di quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{12}{4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{4\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{24}{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{24}{3\\,\\mathrm{m^{-1}}}=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=8\\,\\mathrm m-4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm m-4\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il guadagno ha dimensione di lunghezza inversa perché S è un conteggio. Ricostruendo il display si trova 3 m⁻¹·(4 m+4 m)=24. Confondere tacche e metri porterebbe a sottrarre grandezze diverse."
+        }
+      ],
+      "hints": [
+        "Converti le tacche in metri usando il riferimento.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il guadagno ha dimensione di lunghezza inversa perché S è un conteggio. Ricostruendo il display si trova 3 m⁻¹·(4 m+4 m)=24. Confondere tacche e metri porterebbe a sottrarre grandezze diverse.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2095,
+      "title": "Rimuovere anche l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 3,
+      "prompt": "In tutte le prove i due tratti restano sulla stessa retta e verso est. Un display segue S=gD+c, dove S è un conteggio e g,c sono costanti. Per due tratti di 2 m ciascuno indica 9; per due tratti di 4 m ciascuno indica 17. Nella prova ignota indica 13 e il secondo tratto misura 2 m. Quanto misura il primo, in metri?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due riferimenti danno D₁=4 m e D₂=8 m. Sottraendo le letture eliminiamo l’offset c: l’aumento di otto tacche corrisponde a quattro metri, quindi g=2 m⁻¹. Il primo riferimento lascia c=9−2·4=1. Dalla lettura ignota togliamo una tacca e dividiamo per il guadagno."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{17-9}{8\\,\\mathrm m-4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-9}{8\\,\\mathrm m-4\\,\\mathrm m}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " c=1"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{13-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{13-1}{2\\,\\mathrm{m^{-1}}}=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=6\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m-2\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo è S=2 m⁻¹·(4 m+2 m)+1=13. La lettera c indica qui l’offset del display e non uno spostamento: sottrarla direttamente a una distanza sarebbe dimensionalmente scorretto."
+        }
+      ],
+      "hints": [
+        "Usa la differenza fra i due riferimenti per eliminare l’offset.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo è S=2 m⁻¹·(4 m+2 m)+1=13. La lettera c indica qui l’offset del display e non uno spostamento: sottrarla direttamente a una distanza sarebbe dimensionalmente scorretto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-sum-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2096,
+      "title": "Il vincolo di uguaglianza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-concordant-displacements",
+      "difficulty": 3,
+      "prompt": "Due tratti concordi verso est hanno uguale modulo: a=b>0. Il modulo totale è D=4 m. Quanto misura b, in metri?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza fra i tratti fornisce l’informazione che mancava: possiamo sostituire a con b nella somma. Il totale diventa b+b=2b. Dividendo entrambi i membri per due ricaviamo ciascun tratto."
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m=a+b"
+        },
+        {
+          "type": "formula",
+          "text": "a+b=b+b"
+        },
+        {
+          "type": "formula",
+          "text": "b+b=2b"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac{4\\,\\mathrm m}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m}{2}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La soluzione è positiva e unica. Senza il vincolo a=b, lo stesso totale ammetterebbe molte coppie, come 1 m e 3 m: conoscere il totale da solo non significa poterlo dividere a metà."
+        }
+      ],
+      "hints": [
+        "Sostituisci a con b prima di isolare il tratto richiesto.",
+        "Ricomponi i tratti e controlla origine, verso e unità."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La soluzione è positiva e unica. Senza il vincolo a=b, lo stesso totale ammetterebbe molte coppie, come 1 m e 3 m: conoscere il totale da solo non significa poterlo dividere a metà.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5781e46393a09cacf669b382d0cbe47fd29f2ea3156b475d16f3230435a70859",
+      "name": "vector-sum-coordinates.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iNjUwIiB2aWV3Qm94PSIwIDAgMzIwIDY1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EYWxsYSBwb3NpemlvbmUgbWVubyBkdWUgYWxsYSBwb3NpemlvbmUgY2lucXVlPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlRyZSBhc3NpIGlkZW50aWNpLCB0dXR0aSBvcmllbnRhdGkgdmVyc28gZXN0IGUgY29uIGxhIHN0ZXNzYSBvcmlnaW5lIGUgc2NhbGE6IHRyZW50YXF1YXR0cm8gdW5pdMOgIGdyYWZpY2hlIHBlciBtZXRyby4gTGEgcGFydGVuemEgw6ggYSBtZW5vIGR1ZSBtZXRyaS4gVW5hIGZyZWNjaWEgZGkgdHJlIG1ldHJpIGFycml2YSBhIHBpw7kgdW5vLCBwb2kgdW5hIGZyZWNjaWEgZGkgcXVhdHRybyBtZXRyaSBhcnJpdmEgYSBwacO5IGNpbnF1ZS4gTG8gc3Bvc3RhbWVudG8gdG90YWxlIMOoIHNldHRlIG1ldHJpOyBsYSBjb29yZGluYXRhIGZpbmFsZSDDqCBjaW5xdWUgbWV0cmkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJheGlzIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI2IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNiAzTDAgNnoiIGZpbGw9IiMxOTNkNDMiLz48L21hcmtlcj48bWFya2VyIGlkPSJzdGVwIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI2IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNiAzTDAgNnoiIGZpbGw9IiM4ZTRiMTYiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iNjUwIiBmaWxsPSIjZmZmZGY4Ii8+CjxnIGZpbGw9IiMxOTNkNDMiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4Ij4KPHRleHQgeD0iMTYiIHk9IjMxIj4xLiBGaXNzYSBvcmlnaW5lIGUgcGFydGVuemE8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjYyIiBmb250LXNpemU9IjE2Ij5JbCBwdW50byBpbml6aWFsZSDDqCBhIOKIkjIgbS48L3RleHQ+Cjx0ZXh0IHg9IjE2IiB5PSIyMjUiPjIuIEFnZ2l1bmdpIDMgbSB2ZXJzbyBlc3Q8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjI1NiIgZm9udC1zaXplPSIxNiI+4oiSMiBtICsgMyBtID0gKzEgbTwvdGV4dD4KPHRleHQgeD0iMTYiIHk9IjQxOSI+My4gQWdnaXVuZ2kgYWx0cmkgNCBtPC90ZXh0Pjx0ZXh0IHg9IjE2IiB5PSI0NTAiIGZvbnQtc2l6ZT0iMTYiPisxIG0gKyA0IG0gPSArNSBtPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iNjA2IiBmb250LXNpemU9IjE3Ij5Db29yZGluYXRhIGZpbmFsZTogKzUgbTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iNjM1IiBmb250LXNpemU9IjE3Ij5TcG9zdGFtZW50byB0b3RhbGU6ICs3IG08L3RleHQ+CjwvZz4KPGcgc3Ryb2tlPSIjMTkzZDQzIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0xOCAxMjhIMjk0IiBtYXJrZXItZW5kPSJ1cmwoI2F4aXMpIi8+PHBhdGggZD0iTTMyIDEyMXYxNE0xMDAgMTIxdjE0TTEzNCAxMjF2MTRNMjcwIDEyMXYxNCIvPgo8cGF0aCBkPSJNMTggMzIySDI5NCIgbWFya2VyLWVuZD0idXJsKCNheGlzKSIvPjxwYXRoIGQ9Ik0zMiAzMTV2MTRNMTAwIDMxNXYxNE0xMzQgMzE1djE0TTI3MCAzMTV2MTQiLz4KPHBhdGggZD0iTTE4IDUxNkgyOTQiIG1hcmtlci1lbmQ9InVybCgjYXhpcykiLz48cGF0aCBkPSJNMzIgNTA5djE0TTEwMCA1MDl2MTRNMTM0IDUwOXYxNE0yNzAgNTA5djE0Ii8+CjwvZz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgo8dGV4dCB4PSIzMiIgeT0iMTU2Ij7iiJIyPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iMTU2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjEzNCIgeT0iMTU2Ij4xPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMTU2Ij41PC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzUwIj7iiJIyPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iMzUwIj4wPC90ZXh0Pjx0ZXh0IHg9IjEzNCIgeT0iMzUwIj4xPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMzUwIj41PC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTQ0Ij7iiJIyPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iNTQ0Ij4wPC90ZXh0Pjx0ZXh0IHg9IjEzNCIgeT0iNTQ0Ij4xPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iNTQ0Ij41PC90ZXh0Pgo8L2c+CjxnIGZpbGw9IiMxOTNkNDMiPjxjaXJjbGUgY3g9IjMyIiBjeT0iMTI4IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTM0IiBjeT0iMzIyIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjcwIiBjeT0iNTE2IiByPSI1Ii8+PC9nPgo8ZyBzdHJva2U9IiM4ZTRiMTYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNzdGVwKSI+PHBhdGggZD0iTTMyIDI5N0gxMzQiLz48cGF0aCBkPSJNMTM0IDQ5MUgyNzAiLz48L2c+CjxnIHN0cm9rZT0iIzhlNGIxNiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSIzIDMiPjxwYXRoIGQ9Ik0zMiAyOTd2MjVNMTM0IDI5N3YyNU0xMzQgNDkxdjI1TTI3MCA0OTF2MjUiLz48L2c+CjxnIGZpbGw9IiM4ZTRiMTYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSI4MyIgeT0iMjg2Ij4rMyBtPC90ZXh0Pjx0ZXh0IHg9IjIwMiIgeT0iNDgwIj4rNCBtPC90ZXh0PjwvZz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJlbmQiPjx0ZXh0IHg9IjMwNCIgeT0iMTgxIj54IChtKSwgZXN0IOKGkjwvdGV4dD48dGV4dCB4PSIzMDQiIHk9IjM3NSI+eCAobSksIGVzdCDihpI8L3RleHQ+PHRleHQgeD0iMzA0IiB5PSI1NjkiPnggKG0pLCBlc3Qg4oaSPC90ZXh0PjwvZz4KPC9zdmc+Cg=="
+    }
+  ]
+}

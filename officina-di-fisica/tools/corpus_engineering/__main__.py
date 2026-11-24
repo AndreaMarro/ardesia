@@ -9,6 +9,7 @@ from jsonschema import Draft202012Validator
 
 from .pipeline import VERSION, build_entry, canonical, checkpoint, digest, duplicate_candidates, git_bytes, sha, load_checkpoint
 from .evidence import apply_evidence
+from sympy import __version__ as sympy_version
 
 BANK = "packages/engine/lessonos/study/content/physics-semestre-2026-bank"
 APP = Path(__file__).resolve().parents[2]
@@ -61,8 +62,10 @@ def main():
     parser.add_argument("--destination", type=Path, default=APP / "editorial/corpus")
     args = parser.parse_args()
     questions, activities = load_sources(REPO, args.source_ref, args.cric_ref)
-    own_files = sorted(Path(__file__).parent.glob("*.py")) + [APP / "contracts/corpus-entry-v1.schema.json"]
-    verifier = digest({p.name: sha(p.read_bytes()) for p in own_files})
+    # Source-assertion caching depends on its actual evaluator and schema.
+    # Family judgments are always revalidated by their own pinned report/verifier.
+    own_files = [Path(__file__).with_name("pipeline.py"), Path(__file__).with_name("requirements.txt"), APP / "contracts/corpus-entry-v1.schema.json"]
+    verifier = digest({"files":{p.name: sha(p.read_bytes()) for p in own_files},"sympyVersion":sympy_version})
     old = {}
     pointer = args.destination / "checkpoint.json"
     if pointer.exists():
@@ -74,18 +77,25 @@ def main():
         entry = build_entry(origin, row, provenance, verifier, old.get(key))
         rule.validate(entry)
         entries.append(entry)
-    evidence_counts = apply_evidence(REPO, APP, args.source_ref, entries, questions)
+    evidence_counts,revisions = apply_evidence(REPO, APP, args.source_ref, entries, questions)
     for entry in entries: rule.validate(entry)
-    candidates = duplicate_candidates([(o, r) for o, r, _ in questions])
+    source_candidates = duplicate_candidates([(o, r) for o, r, _ in questions])
+    effective=[]
+    for origin,row,_ in questions:
+        key=row["id"] if origin=="cric" else "AR-"+row["id"]
+        current=revisions.get(key)
+        effective.append((origin,{**row,"prompt":current["prompt"]} if current else row))
+    candidates=duplicate_candidates(effective)
     metadata = {"schemaVersion": VERSION, **evidence_counts, "sourceRefs": {"ardesia": args.source_ref, "cric": args.cric_ref},
         "verifierSha256": verifier, "semanticCandidateCount": len(candidates),
         "semanticDeduplication": "candidate_groups_only_no_automatic_removal",
+        "semanticCandidateScope":"reviewed_drafts_and_unrevised_sources",
         "automaticArithmetic": dict(Counter(r["automatic"]["sourceArithmetic"]["status"] for r in entries)),
         "pendingQuestionIds": [r["id"] for r in entries if r["review"]["independentSolution"] == "NOT_RUN"],
         "limits": ["Human scientific approval NOT_RUN", "Full scientific/pedagogical revision remains open",
                    "Calculator-free feasibility is not inferred from source flags or exact answers"]}
     result = checkpoint(args.destination, entries, sorted(activities, key=lambda x: x["id"]), metadata,
-                        {"semantic-candidates.json": candidates})
+                        {"semantic-candidates.json": candidates,"source-semantic-candidates.json":source_candidates})
     print(canonical({**result, "activities": len(activities), "automaticArithmetic": metadata["automaticArithmetic"]}))
 
 

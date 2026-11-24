@@ -128,16 +128,17 @@ def build_entry(origin, row, provenance, verifier, previous=None):
     key = row["id"] if origin == "cric" else "AR-" + row["id"]
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,95}", key):
         raise ValueError("Invalid canonical ID: " + key)
-    if (previous and previous["sourceSha256"] == content_hash
-            and previous["verifierSha256"] == verifier and previous["provenance"] == provenance):
-        return deepcopy(previous)
+    same=(previous and previous["sourceSha256"]==content_hash and previous["verifierSha256"]==verifier and previous["provenance"]==provenance)
+    # Reconstruct source metadata even on cache hits: draft taxonomy belongs to
+    # its reviewed edition. Only this evaluator's arithmetic result is reusable.
+    automatic=deepcopy(previous["automatic"]) if same else {"sourceArithmetic":arithmetic(row)}
     return {"schemaVersion": VERSION, "id": key, "origin": origin, "sourceId": row["id"],
             "sourceVersion": row.get("version", 1), "sourceSha256": content_hash,
             "provenance": provenance, "verifierSha256": verifier,
             "visibility": "protected_exam" if row.get("exam") else "draft" if origin == "ardesia" else "existing_published",
             "family": row.get("familyId", row.get("family", "")),
             "competency": row.get("skill", ""),
-            "state": "ACCOUNTED", "automatic": {"sourceArithmetic": arithmetic(row)},
+            "state": "ACCOUNTED", "automatic": automatic,
             "review": dict.fromkeys(STAGES, "NOT_RUN"), "evidence": [], "blocked": []}
 
 

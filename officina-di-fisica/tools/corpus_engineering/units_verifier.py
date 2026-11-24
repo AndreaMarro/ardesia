@@ -147,6 +147,7 @@ def verify(package, bindings, asset_root=None):
             "candidateSha256": digest(row), "ok": not errors, "errors": errors,
             "reviewedSignature": signature, "assetChecksums": asset_checksums,
             "expectedExact": str(wanted), "dimension": dimension,
+            "verificationMode": "AI_CONCEPTUAL" if isinstance(wanted,str) else "EXACT_ORACLE",
             "manualArithmetic": MANUAL[family][n-1],
             "methods": ["independent_cell_enumeration_or_SI_or_simultaneous_equations",
                         "exact_sympy", "pint_dimensions", "individual_AI_reading_of_statement_and_distractors"],
