@@ -26,3 +26,5 @@ Tutte16fonti lette alla5cfbdcb055ba3ba136f97fb56e997f06e6cf3605,U2-05.json. M è
 SVG lettoXML+PNG:distanzar200px=2m a100px/m,forza2N40px e8N160px a stessa scala20px/N. Primo casoFaltaadestradiO dà momentoantiorario+4N·m;arco di orientazione è simbolico. Ultimo caso retta d’azione contieneO,b0,M0. Label non attraversate;marker-end referenziati e arco sweep coerente col verso.
 
 Controlli tecnici canonici:rigenerazioneidentica,hashsource/candidate/provenance,importtemporaneo16poi0/16,991pubblicatiimmutati,live0. Browser finale48/48 a1440/768/320 senza failure. NessunCSS/guard/registro modificato.
+
+Rilievo del revisore separato su09: Mr ha N·m², non soltanto un metro spurio rispetto aF. Corretto il feedback in «Mr ha dimensioni N·m² invece di N», senza mutare chiave, legge o asset.
