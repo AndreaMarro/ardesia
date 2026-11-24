@@ -58,7 +58,49 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint del 24 novembre 2026
+## Ripresa del 24 novembre 2026 — lotti parametrizzati
+
+La PR #352 è integrata in `a599cc8c621ea5c2b8e62834cbe00419b4694b4f`;
+i 14 job post-merge sono terminati con successo. Il registro versionato
+`editorial/batches/registry.json` identifica i lotti e i loro ID disgiunti.
+L'aggregatore scopre i verificatori dal registro, controlla la completezza di ogni
+risultato e lega le prove ai byte del pacchetto, alle fonti, agli asset e alla
+versione del verificatore. Non dipende dal nome o dalla dimensione del primo lotto.
+
+Le 32 revisioni iniziali sono conservate; `scale-002` aggiunge 16 quesiti sulle
+potenze di dieci e `vectors-003` 16 su spostamenti concordi e coordinate.
+Sono quindi 64 i quesiti riscritti, 4.542 quelli ancora da revisionare integralmente.
+Le 385 attività restano inventariate con riesame `NOT_RUN`. I 199 controlli recuperati
+rimangono prove parziali distinte e il lotto Pro di 100 revisioni non è identificato.
+L'approvazione scientifica umana resta `NOT_RUN`; nessuna bozza è pubblicata.
+
+La cache riusa soltanto l'aritmetica sorgente quando coincidono fonte, provenienza,
+schema ed evaluatore. Famiglia, competenza e giudizi vengono ricostruiti, evitando
+che la rimozione di una revisione conservi una vecchia tassonomia. Le prove browser
+sono invalidate da cambiamenti al runtime del lettore, al protocollo di prova o
+alle dipendenze effettive; sono state rieseguite 192 anteprime su tre larghezze.
+Ogni importazione usa SQLite temporaneo, salva il numero registrato di bozze,
+non ne duplica alcuna alla ripetizione e conserva identici i 991 materiali pubblicati.
+
+Le controprove hanno rilevato un report di importazione non aggiornato dopo una
+modifica al diario degli errori: il gate lo ha rifiutato e l'importazione è stata
+rieseguita. Hanno inoltre corretto cache di tassonomia, prove browser non legate
+al runtime e accettazione di output scientifici incompleti. Le chiavi concettuali
+controllate mediante lettura AI sono dichiarate `AI_CONCEPTUAL`, separatamente dai
+risultati verificati tramite oracoli matematici esatti.
+
+Il collaudo dei permessi ha riprodotto un accesso ospite alle figure tramite alias
+URL. La correzione è nella PR #353: normalizzazione prima del dispatch e controllo
+dell'identità della directory nel fallback statico. Le controprove HTTP verificano
+il diniego agli ospiti e la lettura autorizzata sulle medesime varianti. La review
+indipendente è tecnica e non costituisce approvazione scientifica umana.
+
+La prosecuzione assegnata è `u1-vector-difference-01`: i successivi 96 ID U1 hanno
+ownership disgiunta in due worktree di authoring. I candidati in lavorazione non
+sono conteggiati come revisioni verificate. Un unico integratore aggiorna registro,
+prove e checkpoint dopo la verifica indipendente.
+
+## Primo checkpoint del 24 novembre 2026 — stato storico della PR #352
 
 Il [puntatore machine-readable](../editorial/corpus/checkpoint.json) identifica
 una generazione con checksum, 47 lotti e tutti i 4.606 ID. Le 385 altre attività
@@ -110,12 +152,11 @@ Dalla directory `officina-di-fisica/`, con Git che dispone dei due commit sorgen
 python3 -m venv var/corpus-venv
 var/corpus-venv/bin/pip install -r tools/corpus_engineering/requirements.txt
 var/corpus-venv/bin/python -m unittest discover -s tests/corpus -v
-var/corpus-venv/bin/python -m tools.corpus_engineering.units_verifier --directory editorial/batches --output var/units-review.json
-var/corpus-venv/bin/python -m tools.corpus_engineering.integration --output var/units-integration.json
+npm ci
+var/corpus-venv/bin/python -m tools.corpus_engineering.batches
 var/corpus-venv/bin/python -m tools.corpus_engineering --source-ref 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605 --cric-ref 5d1dc8dc7b601aef959d10d564c75462be74708d --destination var/corpus-reproduction
 cmp editorial/corpus/checkpoint.json var/corpus-reproduction/checkpoint.json
-npm ci
-node tests/corpus/browser-drafts.mjs
+node tests/corpus/browser-batches.mjs
 python3 tools/package_release.py var/corpus-release.zip --verify
 var/corpus-venv/bin/python -m tools.corpus_engineering.release_check var/corpus-release.zip
 ```
@@ -127,10 +168,10 @@ locali non sostituiscono la CI né dichiarano una pubblicazione.
 
 ## Prosecuzione obbligatoria
 
-1. Consolidare il lotto tramite PR verso `officina-di-fisica`, completare i gate
+1. Consolidare i nuovi lotti tramite PR verso `officina-di-fisica`, completare i gate
    e rileggere la CI sulla SHA risultante. Non eseguire deploy o promozioni editoriali.
-2. Continuare U1 da `u1-scientific-scale-01` per famiglie, preservando il legame al
-   testo letto e il riesame indipendente. Gli altri 128 ID U1 non sono già riscritti.
+2. Continuare U1 da `u1-vector-difference-01` per famiglie, preservando il legame al
+   testo letto e il riesame indipendente. Gli altri 96 ID U1 non sono già verificati.
 3. Applicare lo stesso protocollo agli altri 4.446 quesiti fuori da U1 e recuperare
    le prove pertinenti prima di riscrivere. I 199 recuperati hanno ancora fasi aperte.
 4. Rivedere lezioni, esempi, esperimenti ed esami; gli indicatori di approssimazione

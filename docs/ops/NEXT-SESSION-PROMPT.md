@@ -1,5 +1,29 @@
 # Prosecuzione corrente — Cric, revisione di 4.606 quesiti
 
+Aggiornamento operativo del 24 novembre: PR #352 MERGED su
+`a599cc8c621ea5c2b8e62834cbe00419b4694b4f`, CI post-merge 14/14 SUCCESS.
+La continuazione produce altri 32 svolgimenti (scale-002, vectors-003), portando
+a 64 i quesiti riscritti e verificati; 4.542 restano da revisionare integralmente.
+I 199 controlli recuperati sono parziali; Pro100 ancora NOT_IDENTIFIED; 385 altre
+attività ancora da riesaminare. Non ripetere scale/sum già presenti nel checkpoint.
+
+Il registro dei lotti è ora parametrico: leggere `editorial/batches/registry.json`,
+poi validare con `python -m tools.corpus_engineering.batches`. Cache sorgente,
+prove scientifiche e prove browser hanno invalidazioni distinte. Le 192 anteprime
+sono legate al runtime e ai byte dei pacchetti. La PR #353 protegge le figure anche
+dagli alias URL/filesystem; rileggere SHA, check e stato terminale su GitHub.
+
+Primo ID successivo: `u1-vector-difference-01`. Ownership isolata e temporanea:
+autore A = difference/perpendicular/scalar-product, 48 ID;
+autore B = product/projection/angle-ratio, 48 ID. Root unico integratore;
+reviewer indipendente dall'autore prima di congelare le firme. I candidati in
+lavorazione non entrano nei conteggi completati. Non attendere approvazione umana
+per lavorare sui lotti successivi; mantenere tutte le nuove edizioni DRAFT.
+
+Le righe sotto descrivono l'ingresso precedente alla PR #352 e sono conservate
+come contesto storico. Per conteggi e prossimo ID prevalgono checkpoint e questa
+riconciliazione, riletti con GitHub e con le somme della generazione.
+
 Mandato esplicito del proprietario del 24 novembre 2026. Target unico:
 branch `officina-di-fisica`, directory omonima. Base `5d1dc8dc7b601aef959d10d564c75462be74708d`;
 sorgente Ardesia main `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`.

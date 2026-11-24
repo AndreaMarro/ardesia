@@ -1247,3 +1247,46 @@ Priorità con accettazione:
    dipendenza: nuove edizioni e tentativi storici preservati, prova di riapertura.
 5. Raccogliere firma scientifica umana e validazione con persone quando disponibili;
    accettazione: evidenze separate da PASS automatici e autorizzazione editoriale.
+
+## 24 novembre 2026 · Ripresa del corpus, lotti e protezione delle figure
+
+Riletta la destinazione canonica: PR352 integrata su a599cc8c, job post-merge
+Officina e corpus terminati con successo. Si continua sulla stessa applicazione.
+Sono prodotti e verificati altri 32 quesiti, scientific-scale e vector-sum:
+64 revisioni complessive, 4.542 ancora aperte, 385 attività inventariate con
+riesame NOT_RUN. I 199 controlli recuperati sono parziali; Pro100 non identificato.
+Review scientifica umana NOT_RUN e zero nuove pubblicazioni.
+
+Registro schema-driven, ID disgiunti, discovery dei verificatori, conteggi dinamici,
+controllo di output completi, cache della sola aritmetica sorgente e prove browser
+legate al runtime. Le 192 anteprime passano alle tre larghezze; 39 test offline,
+55 test Python dell'applicazione, 260 JavaScript e due contratti passano localmente.
+Importazioni su SQLite temporanei: ripetizione senza duplicati e tutti i 991 oggetti
+pubblicati con identico checksum. Reviewer AI indipendente dall'autore ha confermato
+contenuti e binding esatti. Nessuna prova locale equivale a CI della nuova SHA.
+
+Controprove e correzioni: eliminata tassonomia obsoleta della cache; invalidazione
+su cambiamenti del lettore; rifiuto di output scientifici incompleti e dei report
+di importazione antecedenti a una modifica editoriale. Non si rigenera una firma
+per ottenere PASS: le firme sono congelate dopo lettura indipendente della versione.
+Il test HTTP ha riprodotto accesso ospite a figure mediante alias della URL.
+La PR353 normalizza prima del dispatch e controlla la directory risolta nel fallback;
+la review indipendente conferma diniego ospite e accesso autorizzato equivalenti.
+La CI e l'integrazione della PR353 vanno lette sullo stato effettivo di GitHub.
+
+Il proprietario ha richiesto prosecuzione completa e autorizzato authoring parallelo:
+due worktree con ownership disgiunta su 48 ID ciascuno, un integratore e reviewer
+separato. I candidati in corso non incrementano le revisioni verificate.
+
+Priorità e accettazione:
+
+1. Concludere PR353 e l'incremento corpus con tutti i gate reali, verificando CI
+   post-merge; nessuna promozione delle bozze o deploy implicito.
+2. Riprendere `u1-vector-difference-01` e gli altri 95 U1 assegnati: fonte letta,
+   calcolo indipendente, distrattori, prove manuali, import e browser per ciascun ID.
+3. Estendere alle altre famiglie e mantenere manifest e checksum dopo ogni lotto;
+   una prova recuperata non completa automaticamente le fasi mancanti.
+4. Riesaminare le 385 attività, preparando nuove edizioni per i calcoli non manuali
+   e preservando i tentativi e le 93 domande d'esame protette.
+5. Preparare coda di approvazione umana nominativa e prove d'uso distinte dalla CI;
+   nessuna certificazione WCAG/UDL o firma umana dedotta dai soli strumenti.

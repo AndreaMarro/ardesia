@@ -40,17 +40,14 @@ jobs:
       - name: Controprove scientifiche e importazione canonica senza pubblicazione
         run: |
           var/corpus-venv/bin/python -m unittest discover -s tests/corpus -v
-          var/corpus-venv/bin/python -m tools.corpus_engineering.units_verifier --directory editorial/batches --output var/units-review.json
-          cmp editorial/reviews/units-001.json var/units-review.json
-          var/corpus-venv/bin/python -m tools.corpus_engineering.integration --output var/units-integration.json
-          cmp editorial/reviews/units-001-integration.json var/units-integration.json
+          var/corpus-venv/bin/python -m tools.corpus_engineering.batches
       - name: Riproduzione del checkpoint di tutti i 4606 ID
         run: |
           var/corpus-venv/bin/python -c "from pathlib import Path; from tools.corpus_engineering.pipeline import load_checkpoint; load_checkpoint(Path('editorial/corpus'))"
           var/corpus-venv/bin/python -m tools.corpus_engineering --source-ref 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605 --cric-ref 5d1dc8dc7b601aef959d10d564c75462be74708d --destination var/corpus-reproduction
           cmp editorial/corpus/checkpoint.json var/corpus-reproduction/checkpoint.json
       - name: Anteprime private e controllo delle formule a tre larghezze
-        run: node tests/corpus/browser-drafts.mjs
+        run: node tests/corpus/browser-batches.mjs
       - name: Boundary del pacchetto distribuito
         run: |
           python3 tools/package_release.py var/corpus-release.zip --verify
@@ -62,7 +59,5 @@ jobs:
           name: cric-corpus-${{ github.sha }}
           path: |
             officina-di-fisica/var/corpus-browser/
-            officina-di-fisica/var/units-review.json
-            officina-di-fisica/var/units-integration.json
           if-no-files-found: warn
           retention-days: 14

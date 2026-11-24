@@ -1,0 +1,1132 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-scientific-scale-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2041,
+      "title": "Leggere una potenza di dieci",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 1,
+      "prompt": "Un rapporto senza unità è scritto R=a·10ⁿ. Sono dati a=2 e n=1. Qual è il valore di R?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’esponente uno indica un solo fattore dieci: 10¹=10. Il coefficiente due moltiplica questo fattore. Non bisogna sommare il coefficiente all’esponente né elevare due alla prima per ignorare la base dieci."
+        },
+        {
+          "type": "formula",
+          "text": "10^1=10"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times10=20"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è un numero puro perché anche R lo è. Il controllo inverso 20/10=2 restituisce il coefficiente assegnato. In un rapporto fra misure omogenee le unità si cancellano, ma il rapporto può essere maggiore di uno."
+        }
+      ],
+      "hints": [
+        "Scrivi 10¹ come un solo fattore dieci.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato è un numero puro perché anche R lo è. Il controllo inverso 20/10=2 restituisce il coefficiente assegnato. In un rapporto fra misure omogenee le unità si cancellano, ma il rapporto può essere maggiore di uno.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2042,
+      "title": "Le unità si cancellano nel rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 1,
+      "prompt": "Un rapporto R confronta due durate: R=t₁/t₂, con t₂>0 e le due durate espresse in secondi. Quale unità è dimensionalmente compatibile con R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "s²",
+          "1",
+          "m/s",
+          "Hz"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un rapporto conserva una dimensione soltanto se le grandezze confrontate hanno dimensioni diverse. Qui al numeratore e al denominatore troviamo due tempi, entrambi in secondi. La divisione cancella le unità, lasciando un numero di volte."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=\\frac{[t_1]}{[t_2]}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{[t_1]}{[t_2]}=\\frac{T}{T}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{T}{T}=1"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è 1, simbolo dell’unità uno. Secondi descriverebbero una durata, hertz l’inverso di una durata. Nessuna delle due grandezze coincide con il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Scrivi prima le unità della frazione t₁/t₂.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La risposta è 1, simbolo dell’unità uno. Secondi descriverebbero una durata, hertz l’inverso di una durata. Nessuna delle due grandezze coincide con il rapporto richiesto.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2043,
+      "title": "Confrontare due tempi molto piccoli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ratio-of-times",
+      "difficulty": 1,
+      "prompt": "Due durate valgono t₁=4×10⁻³ s e t₂=2×10⁻⁴ s. Quanto vale t₁/t₂? Puoi lasciare le potenze di dieci senza trasformarle in numeri decimali.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "20",
+          "1/20",
+          "200"
+        ],
+        "value": "20"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Conviene dividere separatamente i coefficienti e le potenze della stessa base. Quattro diviso due dà due; per le potenze si sottrae l’esponente del denominatore. La sottrazione di un numero negativo è un’addizione: −3−(−4)=1."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b81779cdfdf1776520cece03575d6f8271363a62c05228644cff51a10153655b",
+          "text": "Leggi dall’alto verso il basso: esprimi i due tempi nella stessa unità 10⁻⁴ s, poi conta 40 unità e 2 unità. Ogni cella grande del confronto finale vale il tempo più breve: ne servono 20 per il più lungo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{t_1}{t_2}=\\frac42\\,10^{-3-(-4)}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42\\,10^1=2\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times10=20"
+        },
+        {
+          "type": "text",
+          "text": "Il primo tempo è venti volte il secondo. Per controllare senza esponenti, riscriviamo 4×10⁻³ s come 40×10⁻⁴ s: i due tempi sono quaranta e due volte la stessa unità di tempo. Il rapporto 40/2 conferma venti."
+        }
+      ],
+      "hints": [
+        "Porta i due tempi alla stessa potenza di dieci, oppure sottrai gli esponenti.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il primo tempo è venti volte il secondo. Per controllare senza esponenti, riscriviamo 4×10⁻³ s come 40×10⁻⁴ s: i due tempi sono quaranta e due volte la stessa unità di tempo. Il rapporto 40/2 conferma venti.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2044,
+      "title": "Cambiare soltanto il coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 1,
+      "prompt": "Un rapporto è scritto R=a·10ⁿ. n resta uguale a 1 e a passa da 2 a 4. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Aumenta di dieci volte",
+          "Si dimezza",
+          "Resta invariato",
+          "Quadruplica"
+        ],
+        "value": "Raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza di dieci è identica nelle due scritture, quindi non produce alcun fattore di cambiamento. Il coefficiente passa invece da due a quattro: raddoppia. Possiamo verificare sia confrontando i due valori sia semplificando il fattore comune."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=2\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times10=20"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=4\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times10=40"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=\\frac{40}{20}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{20}=2"
+        },
+        {
+          "type": "text",
+          "text": "R raddoppia. Il fattore dieci della notazione era già presente anche prima: moltiplicarlo ancora significherebbe cambiare l’esponente, contrariamente al testo."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore 10¹, comune ai due valori.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "R raddoppia. Il fattore dieci della notazione era già presente anche prima: moltiplicarlo ancora significherebbe cambiare l’esponente, contrariamente al testo.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2045,
+      "title": "Ricavare il coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "La scrittura R=a·10ⁿ ha valore R=20 e n=1. Quanto vale il coefficiente a?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incognita è moltiplicata per una potenza già conosciuta. Dividiamo entrambi i membri per 10¹=10. Questa operazione è sempre lecita perché una potenza di dieci è positiva e non può essere zero."
+        },
+        {
+          "type": "formula",
+          "text": "20=a\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{10}=a"
+        },
+        {
+          "type": "formula",
+          "text": " a=2"
+        },
+        {
+          "type": "text",
+          "text": "Rimettendo il coefficiente nella scrittura iniziale troviamo 2·10=20. Il valore 2 appartiene anche all’intervallo 1≤a<10 della notazione scientifica normalizzata. Durante passaggi intermedi si possono usare altri coefficienti, purché se ne conservi il valore complessivo."
+        }
+      ],
+      "hints": [
+        "Per isolare a, dividi per la potenza di dieci assegnata.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Rimettendo il coefficiente nella scrittura iniziale troviamo 2·10=20. Il valore 2 appartiene anche all’intervallo 1≤a<10 della notazione scientifica normalizzata. Durante passaggi intermedi si possono usare altri coefficienti, purché se ne conservi il valore complessivo.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2046,
+      "title": "Riconoscere l’esponente senza logaritmi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "Un rapporto vale R=20 ed è scritto R=2·10ⁿ, con n intero. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima isoliamo la potenza: dividere venti per due dà dieci. La domanda è ora quale esponente della base dieci produce esattamente dieci. Basta riconoscere la potenza, senza calcolare logaritmi."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{2}=10^n"
+        },
+        {
+          "type": "formula",
+          "text": "10=10^n"
+        },
+        {
+          "type": "formula",
+          "text": " n=1"
+        },
+        {
+          "type": "text",
+          "text": "La funzione 10ⁿ cresce al crescere di n, quindi questa soluzione è unica. n è un esponente adimensionale, non un tempo o una lunghezza. La sostituzione 2·10¹=20 ricostruisce il dato."
+        }
+      ],
+      "hints": [
+        "Trova prima 20/2; poi confronta il risultato con 10⁰, 10¹ e 10².",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La funzione 10ⁿ cresce al crescere di n, quindi questa soluzione è unica. n è un esponente adimensionale, non un tempo o una lunghezza. La sostituzione 2·10¹=20 ricostruisce il dato.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2047,
+      "title": "Dai pascal ai nanopascal",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-nano-prefix",
+      "difficulty": 2,
+      "prompt": "Una differenza di pressione è 4×10⁻⁸ Pa. Si fornisce 1 nPa=10⁻⁹ Pa. Qual è la stessa differenza di pressione in nanopascal?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "0,4",
+          "40",
+          "400",
+          "4×10⁻¹⁷"
+        ],
+        "value": "40"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un nanopascal è un’unità più piccola del pascal: ne occorrono molte per descrivere la stessa pressione. Per trovare quante unità nPa sono contenute nel valore dato, dividiamo per il valore in pascal di un solo nanopascal. I pascal si cancellano nel conteggio."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{4\\times10^{-8}\\,\\mathrm{Pa}}{10^{-9}\\,\\mathrm{Pa}}"
+        },
+        {
+          "type": "formula",
+          "text": " N=4\\times10^{-8-(-9)}"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times10^{-8-(-9)}=4\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times10=40"
+        },
+        {
+          "type": "text",
+          "text": "La pressione vale 40 nPa. Riconvertendo, 40·10⁻⁹ Pa=4·10⁻⁸ Pa. Moltiplicare invece per 10⁻⁹ ridurrebbe ancora il numero, usando la conversione nel verso sbagliato."
+        }
+      ],
+      "hints": [
+        "Dividi la pressione per il valore, in pascal, di un solo nanopascal.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La pressione vale 40 nPa. Riconvertendo, 40·10⁻⁹ Pa=4·10⁻⁸ Pa. Moltiplicare invece per 10⁻⁹ ridurrebbe ancora il numero, usando la conversione nel verso sbagliato.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2048,
+      "title": "Ordine di grandezza con soglia dichiarata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "logarithmic-order-of-magnitude",
+      "difficulty": 2,
+      "prompt": "Una lunghezza vale 3×10⁵ m. In questo quesito l’ordine di grandezza è la potenza di dieci più vicina sulla scala logaritmica: la soglia fra 10⁵ m e 10⁶ m è √10×10⁵ m. Qual è l’ordine di grandezza? Confronta 3 e √10 senza approssimazioni decimali.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10³ m",
+          "10⁴ m",
+          "10⁵ m",
+          "10⁶ m",
+          "10⁷ m"
+        ],
+        "value": "10⁵ m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La convenzione è parte della domanda: non basta leggere l’esponente scritto. Dobbiamo decidere se il coefficiente tre precede o supera la soglia √10. Entrambi sono positivi, perciò possiamo confrontarne i quadrati senza invertire l’ordine. Poiché 3²=9<10, tre è minore di √10."
+        },
+        {
+          "type": "formula",
+          "text": "3^2=9<10"
+        },
+        {
+          "type": "formula",
+          "text": "9<10=(\\sqrt{10})^2"
+        },
+        {
+          "type": "formula",
+          "text": "3<\\sqrt{10}"
+        },
+        {
+          "type": "formula",
+          "text": " L_{\\rm ordine}=10^5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La lunghezza si trova sotto la soglia e si associa a 10⁵ m. Con questa stessa convenzione un coefficiente quattro darebbe invece 10⁶ m, perché 4²=16>10. Il criterio evita qualsiasi valore decimale di √10 o dei logaritmi."
+        }
+      ],
+      "hints": [
+        "Per due numeri positivi, il confronto fra i quadrati conserva l’ordine.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La lunghezza si trova sotto la soglia e si associa a 10⁵ m. Con questa stessa convenzione un coefficiente quattro darebbe invece 10⁶ m, perché 4²=16>10. Il criterio evita qualsiasi valore decimale di √10 o dei logaritmi.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2049,
+      "title": "L’inversa della scrittura scientifica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "È data R=a·10ⁿ, con R>0 e n intero noto. Quale formula isola il coefficiente a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=R·10ⁿ",
+          "a=R/10ⁿ",
+          "a=10ⁿ/R",
+          "a=R−10ⁿ",
+          "a=R/n"
+        ],
+        "value": "a=R/10ⁿ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "a moltiplica l’intero fattore 10ⁿ. Per lasciarlo solo dividiamo entrambi i membri per lo stesso fattore. La potenza di dieci non può annullarsi, anche se n fosse zero o negativo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R}{10^n}=\\frac{a\\,10^n}{10^n}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{a\\,10^n}{10^n}=a"
+        },
+        {
+          "type": "text",
+          "text": "L’inversa è a=R/10ⁿ. La verifica simbolica consiste nel sostituirla nella relazione iniziale: (R/10ⁿ)10ⁿ=R. Dividere per n scambierebbe il valore dell’esponente con quello dell’intera potenza."
+        }
+      ],
+      "hints": [
+        "L’operazione da invertire è la moltiplicazione per 10ⁿ, non per n.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inversa è a=R/10ⁿ. La verifica simbolica consiste nel sostituirla nella relazione iniziale: (R/10ⁿ)10ⁿ=R. Dividere per n scambierebbe il valore dell’esponente con quello dell’intera potenza.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2050,
+      "title": "Cambiare coefficiente ed esponente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "Si usa R=a·10ⁿ, con a>0 e n intero positivo; durante i passaggi a non deve essere normalizzato. Nel secondo stato a₂=κ₁a₁ e n₂=κ₂n₁, con κ₁,κ₂>0 e n₂ ancora intero. Qual è R₂/R₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁·10^(κ₂−1)",
+          "κ₁·10^[n₁(κ₂−1)]",
+          "κ₁·10^(κ₂n₁)",
+          "10^[n₁(κ₂−1)]/κ₁"
+        ],
+        "value": "κ₁·10^[n₁(κ₂−1)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione dell’esponente agisce dentro la potenza. Scriviamo l’uscita di ciascuno stato, poi dividiamo. Il coefficiente a₁ si semplifica; nel quoziente di potenze della stessa base sottraiamo l’esponente iniziale a quello finale. Non è lecito sostituire questo quoziente con κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=\\frac{\\kappa_1a_1\\,10^{\\kappa_2n_1}}{a_1\\,10^{n_1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=\\kappa_1\\,10^{\\kappa_2n_1-n_1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=\\kappa_1\\,10^{n_1(\\kappa_2-1)}"
+        },
+        {
+          "type": "text",
+          "text": "Se κ₂=1 l’esponente non cambia e il rapporto si riduce a κ₁. Se κ₁=1,n₁=1,κ₂=2 il rapporto è dieci: portare l’esponente da uno a due moltiplica il valore per dieci, non per due."
+        }
+      ],
+      "hints": [
+        "Scrivi due potenze e usa 10ᵘ/10ᵛ=10^(u−v).",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se κ₂=1 l’esponente non cambia e il rapporto si riduce a κ₁. Se κ₁=1,n₁=1,κ₂=2 il rapporto è dieci: portare l’esponente da uno a due moltiplica il valore per dieci, non per due.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2051,
+      "title": "Due cambiamenti con pesi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "R=a·10ⁿ. Si passa da a₁=2,n₁=1 ad a₂=4,n₂=2. Quanto vale R₂/R₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente raddoppia e fornisce un fattore due. L’esponente aumenta di un’unità, quindi la potenza di dieci fornisce un fattore dieci. I due contributi si moltiplicano. Non stiamo raddoppiando due fattori entrambi lineari."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=\\frac42\\,10^{2-1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{R_2}{R_1}=2\\times10"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times10=20"
+        },
+        {
+          "type": "text",
+          "text": "La verifica diretta usa R₁=20 e R₂=400: 400/20=20. In questo caso raddoppiare l’esponente da uno a due comporta un aumento di dieci volte della potenza; con altri esponenti iniziali il fattore sarebbe diverso."
+        }
+      ],
+      "hints": [
+        "Tratta separatamente il rapporto 4/2 e il rapporto 10²/10¹.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La verifica diretta usa R₁=20 e R₂=400: 400/20=20. In questo caso raddoppiare l’esponente da uno a due comporta un aumento di dieci volte della potenza; con altri esponenti iniziali il fattore sarebbe diverso.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2052,
+      "title": "Mediare dopo avere letto i numeri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 2,
+      "prompt": "Due rapporti adimensionali, con uguale peso statistico, sono R₁=2×10¹ e R₂=4×10². Qual è la loro media aritmetica?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "105",
+          "210",
+          "420",
+          "30",
+          "300"
+        ],
+        "value": "210"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima riconosciamo i valori completi: venti e quattrocento. Per la media sommiamo questi valori e dividiamo per due. È comodo dividere ogni addendo per due, così la somma finale resta piccola."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{20+400}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{20}{2}+\\frac{400}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{2}+\\frac{400}{2}=10+200"
+        },
+        {
+          "type": "formula",
+          "text": "10+200=210"
+        },
+        {
+          "type": "text",
+          "text": "La media è compresa fra venti e quattrocento. Mediare coefficienti ed esponenti separatamente non è un procedimento equivalente: l’esponente entra in una legge non lineare. La media aritmetica richiesta riguarda R, non la sua rappresentazione."
+        }
+      ],
+      "hints": [
+        "Trova prima i due valori R₁ e R₂; non mediare gli esponenti.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La media è compresa fra venti e quattrocento. Mediare coefficienti ed esponenti separatamente non è un procedimento equivalente: l’esponente entra in una legge non lineare. La media aritmetica richiesta riguarda R, non la sua rappresentazione.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2053,
+      "title": "Quanto deve cambiare l’esponente?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 3,
+      "prompt": "All’inizio R₁=2·10¹. Poi il coefficiente diventa 4 e si vuole R₂=20R₁, mantenendo R₂=4·10^(n₂) e n₂ intero positivo. Quale rapporto n₂/n₁ serve? Qui n₁=1 e il pedice 2 identifica il secondo esponente.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore venti richiesto si divide in un fattore due, già fornito dal raddoppio del coefficiente, e un fattore dieci, che deve arrivare dalla potenza. Per moltiplicare una potenza di dieci per dieci si aggiunge uno all’esponente. n₂ deve quindi passare da uno a due."
+        },
+        {
+          "type": "formula",
+          "text": "20=\\frac42\\,10^{n_2-1}"
+        },
+        {
+          "type": "formula",
+          "text": "10=10^{n_2-1}"
+        },
+        {
+          "type": "formula",
+          "text": " n_2-1=1"
+        },
+        {
+          "type": "formula",
+          "text": " n_2=2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{n_2}{n_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto richiesto è due. È però l’aumento additivo dell’esponente, da uno a due, a produrre il fattore dieci: non esiste una proporzionalità diretta generale fra R ed n. Il controllo è 4·10²=400=20·20."
+        }
+      ],
+      "hints": [
+        "Dopo aver tolto il raddoppio del coefficiente, resta un fattore dieci.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto richiesto è due. È però l’aumento additivo dell’esponente, da uno a due, a produrre il fattore dieci: non esiste una proporzionalità diretta generale fra R ed n. Il controllo è 4·10²=400=20·20.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2054,
+      "title": "Taratura senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 3,
+      "prompt": "Un display indica S=gR, con g>0 costante e offset nullo. R è scritto a·10ⁿ. Il riferimento a=2,n=1 dà S=60. Nella nuova prova il display indica 1200 e n=2. Quanto vale a? Le letture S usano la stessa unità strumentale.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento R vale venti; per ottenere sessanta il display lo moltiplica per tre. Nella prova ignota dividiamo la lettura per tre e otteniamo quattrocento. Poiché n=2, il coefficiente si ricava dividendo per cento."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{60}{20}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{60}{20}=3"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{1200}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1200}{3}=400"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{400}{10^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{400}{10^2}=4"
+        },
+        {
+          "type": "text",
+          "text": "Per il controllo ricostruiamo tutta la catena: a=4 e n=2 danno R=400; il display indica 3·400=1200. L’assenza di offset è essenziale per ricavare il guadagno dal solo rapporto fra indicazione e riferimento."
+        }
+      ],
+      "hints": [
+        "Calcola il valore del riferimento prima di confrontarlo con la lettura del display.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Per il controllo ricostruiamo tutta la catena: a=4 e n=2 danno R=400; il display indica 3·400=1200. L’assenza di offset è essenziale per ricavare il guadagno dal solo rapporto fra indicazione e riferimento.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2055,
+      "title": "Taratura con due riferimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scientific-scale",
+      "difficulty": 3,
+      "prompt": "Il display segue S=gR+b e R=a·10ⁿ. Due riferimenti danno (a=2,n=1,S=41) e (a=4,n=2,S=801). Nella prova ignota n=1 e S=81. g e b sono costanti. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "8",
+          "5"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono R₁=20 e R₂=400. Sottraendo le due letture si elimina b: 801−41=760 e 400−20=380. Il rapporto 760/380 è due, quindi g=2. Dal primo riferimento 41=2·20+b ricaviamo b=1. Per la lettura ignota togliamo l’offset prima di dividere per il guadagno."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{760}{380}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{760}{380}=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=41-2\\times20"
+        },
+        {
+          "type": "formula",
+          "text": "41-2\\times20=1"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{81-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{81-1}{2}=40"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{40}{10}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{10}=4"
+        },
+        {
+          "type": "text",
+          "text": "La catena inversa restituisce S=2·(4·10)+1=81. Il semplice rapporto 81/41 non darebbe il rapporto fra i valori veri, perché l’offset additivo è presente in entrambe le letture."
+        }
+      ],
+      "hints": [
+        "Sottrai i due riferimenti per eliminare b.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La catena inversa restituisce S=2·(4·10)+1=81. Il semplice rapporto 81/41 non darebbe il rapporto fra i valori veri, perché l’offset additivo è presente in entrambe le letture.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scientific-scale-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2056,
+      "title": "Un esponente sotto un quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "nested-powers-exponent",
+      "difficulty": 3,
+      "prompt": "Un rapporto senza unità è R=(4·10ⁿ)²/[2·10^(n+3)], con n intero positivo. Se R=8·10⁴, quanto vale n? Il quadrato riguarda tutto il prodotto al numeratore; al denominatore l’esponente è n+3.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "4",
+          "5",
+          "7",
+          "11"
+        ],
+        "value": "7"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato agisce sia sul coefficiente sia sulla potenza: 4²=16 e (10ⁿ)²=10^(2n). Dividiamo i coefficienti, ottenendo otto, e sottraiamo l’intero esponente del denominatore. Le parentesi servono a distribuire correttamente il segno meno: 2n−(n+3)=n−3."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac{16\\,10^{2n}}{2\\,10^{n+3}}"
+        },
+        {
+          "type": "formula",
+          "text": " R=8\\,10^{2n-(n+3)}"
+        },
+        {
+          "type": "formula",
+          "text": " R=8\\,10^{n-3}"
+        },
+        {
+          "type": "formula",
+          "text": "10^{n-3}=10^4"
+        },
+        {
+          "type": "formula",
+          "text": " n-3=4"
+        },
+        {
+          "type": "formula",
+          "text": " n=7"
+        },
+        {
+          "type": "text",
+          "text": "Le potenze della stessa base positiva, diversa da uno, sono uguali soltanto con esponenti uguali. Per controllare n=7, il numeratore vale 16·10¹⁴ e il denominatore 2·10¹⁰: il loro rapporto è proprio 8·10⁴. Non serve scrivere i numeri completi."
+        }
+      ],
+      "hints": [
+        "Applica il quadrato a entrambi i fattori del numeratore e conserva le parentesi n+3.",
+        "Verifica il risultato ricomponendo il dato iniziale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le potenze della stessa base positiva, diversa da uno, sono uguali soltanto con esponenti uguali. Per controllare n=7, il numeratore vale 16·10¹⁴ e il denominatore 2·10¹⁰: il loro rapporto è proprio 8·10⁴. Non serve scrivere i numeri completi.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Notazione scientifica",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b81779cdfdf1776520cece03575d6f8271363a62c05228644cff51a10153655b",
+      "name": "scale-time-ratio.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iNjUwIiB2aWV3Qm94PSIwIDAgMzIwIDY1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EdWUgdGVtcGkgbmVsbGEgc3Rlc3NhIHVuaXTDoDwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGUgdmVydGljYWxpLiBJIHRlbXBpIHF1YXR0cm8gcGVyIGRpZWNpIGFsbGEgbWVubyB0cmUgc2Vjb25kaSBlIGR1ZSBwZXIgZGllY2kgYWxsYSBtZW5vIHF1YXR0cm8gc2Vjb25kaSBkaXZlbnRhbm8gcXVhcmFudGEgZSBkdWUgdm9sdGUgZGllY2kgYWxsYSBtZW5vIHF1YXR0cm8gc2Vjb25kaS4gTmVsIGNvbmZyb250byBmaW5hbGUgb2duaSBjZWxsYSByYXBwcmVzZW50YSBkdWUgcGVyIGRpZWNpIGFsbGEgbWVubyBxdWF0dHJvIHNlY29uZGk6IGlsIHByaW1vIHRlbXBvIGNvbnRpZW5lIHZlbnRpIGNlbGxlIGUgaWwgc2Vjb25kbyB1bmEuIExlIGJhcnJlIGhhbm5vIGxhIHN0ZXNzYSBzY2FsYSBsaW5lYXJlLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSI2NTAiIGZpbGw9IiNmZmZkZjgiLz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiPgo8dGV4dCB4PSIxNiIgeT0iMzIiPjEuIExlZ2dpIGkgZHVlIHRlbXBpPC90ZXh0Pgo8dGV4dCB4PSIyNCIgeT0iODQiPnTigoEgPSA0IMOXIDEw4oG7wrMgczwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMTIyIj504oKCID0gMiDDlyAxMOKBu+KBtCBzPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iMjAzIj4yLiBVc2EgdW5hIHBvdGVuemEgY29tdW5lPC90ZXh0Pgo8dGV4dCB4PSIyNCIgeT0iMjU1Ij504oKBID0gNDAgw5cgMTDigbvigbQgczwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMjkzIj504oKCID0gMiDDlyAxMOKBu+KBtCBzPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iMzc0Ij4zLiBDb250YSBpbnRlcnZhbGxpIHVndWFsaTwvdGV4dD4KPHRleHQgeD0iMjQiIHk9IjQxMSIgZm9udC1zaXplPSIxNiI+VW5hIGNlbGxhIHZhbGUgMiDDlyAxMOKBu+KBtCBzLjwvdGV4dD4KPHRleHQgeD0iMTYiIHk9IjQ1NiI+dOKCgTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iNTE4Ij504oKCPC90ZXh0Pgo8dGV4dCB4PSIyNCIgeT0iNTg2Ij504oKBIC8gdOKCgiA9IDQwIC8gMiA9IDIwPC90ZXh0Pgo8dGV4dCB4PSIyNCIgeT0iNjI2IiBmb250LXNpemU9IjE2Ij5TdGVzc2Egc2NhbGEgcGVyIGVudHJhbWJlIGxlIGJhcnJlLjwvdGV4dD4KPC9nPgo8ZyBmaWxsPSIjZTZlZmVjIiBzdHJva2U9IiMxOTNkNDMiIHN0cm9rZS13aWR0aD0iMS41Ij4KPHJlY3QgeD0iNDgiIHk9IjQzMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNiIvPjxyZWN0IHg9IjQ4IiB5PSI0OTIiIHdpZHRoPSIxMiIgaGVpZ2h0PSIzNiIvPgo8cGF0aCBmaWxsPSJub25lIiBkPSJNNjAgNDMwdjM2TTcyIDQzMHYzNk04NCA0MzB2MzZNOTYgNDMwdjM2TTEwOCA0MzB2MzZNMTIwIDQzMHYzNk0xMzIgNDMwdjM2TTE0NCA0MzB2MzZNMTU2IDQzMHYzNk0xNjggNDMwdjM2TTE4MCA0MzB2MzZNMTkyIDQzMHYzNk0yMDQgNDMwdjM2TTIxNiA0MzB2MzZNMjI4IDQzMHYzNk0yNDAgNDMwdjM2TTI1MiA0MzB2MzZNMjY0IDQzMHYzNk0yNzYgNDMwdjM2Ii8+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
