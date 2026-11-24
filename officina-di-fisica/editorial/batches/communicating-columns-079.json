@@ -1,0 +1,1155 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-communicating-columns-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7901,
+      "title": "Due colonne, una pressione alla quota comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 1,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Con ρ₁=1 kg/L e ρ₂=2 kg/L, quanto vale h₂ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla quota dell’interfaccia la pressione si può raggiungere scendendo dal pelo libero sinistro oppure da quello destro nel liquido connesso. Le due atmosfere sono uguali e si cancellano; anche g è comune. Una colonna due volte più densa richiede metà altezza per fornire lo stesso incremento di pressione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/caf9476c5adf50e34224d244e5cdbeedc94ec9bdf349a5a471679909a24b7f76",
+          "text": "Equilibrio con ρ₁=1 kg/L,ρ₂=2 kg/L: riferimento z=0 all’interfaccia. Alla scala comune 20 px/cm, h₁=10 cm occupa 200 px e h₂=5 cm occupa 100 px. I punti A e B alla quota zero appartengono al liquido connesso e hanno uguale pressione. Il terzo pannello mostra separatamente ρ₁h₁=ρ₂h₂, senza attribuire alle aree colorate una misura di massa."
+        },
+        {
+          "type": "formula",
+          "text": "p_0+\\rho_1gh_1=p_0+\\rho_2gh_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_1h_1=\\rho_2h_2"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=h_1\\frac{\\rho_1}{\\rho_2}"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=10\\,\\mathrm{cm}\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "10\\,\\mathrm{cm}\\frac12=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci centimetri imporrebbero uguale altezza nonostante densità diverse. Venti invertirebbe il rapporto. Non si richiede che le superfici libere abbiano la stessa quota: è alla stessa quota nel liquido connesso che le pressioni coincidono."
+        }
+      ],
+      "hints": [
+        "Confronta le pressioni alla quota dell’interfaccia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci centimetri imporrebbero uguale altezza nonostante densità diverse. Venti invertirebbe il rapporto. Non si richiede che le superfici libere abbiano la stessa quota: è alla stessa quota nel liquido connesso che le pressioni coincidono.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7902,
+      "title": "Un rapporto di densità per una lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 1,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Quale unità proposta è adatta a h₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm",
+          "kg",
+          "s",
+          "Pa",
+          "kg/L"
+        ],
+        "value": "cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella legge h₂=h₁ρ₁/ρ₂ le densità hanno la stessa unità e il rapporto è puro. Rimane una lunghezza: il centimetro. Si potrebbe usare anche il metro, convertendo coerentemente il valore, ma fra le opzioni soltanto cm è una lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho_1/\\rho_2]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [h_2]=[h_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[h_1]=L"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{cm}=\\frac1{100}\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "kg è massa, s tempo, Pa pressione e kg/L densità. Il prefisso centi cambia la scala della lunghezza, non la sua dimensione. Non è necessario convertire le densità in kg/m³ se entrambe sono espresse in kg/L e compaiono soltanto in un rapporto."
+        }
+      ],
+      "hints": [
+        "Cancella prima le unità uguali delle densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg è massa, s tempo, Pa pressione e kg/L densità. Il prefisso centi cambia la scala della lunghezza, non la sua dimensione. Non è necessario convertire le densità in kg/m³ se entrambe sono espresse in kg/L e compaiono soltanto in un rapporto.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7903,
+      "title": "Il rapporto corretto fra colonne",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 1,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Quale relazione fornisce h₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h₂=h₁ρ₁/ρ₂",
+          "h₂=h₁ρ₂/ρ₁",
+          "h₂=2h₁ρ₁/ρ₂",
+          "h₂=h₁ρ₁/(2ρ₂)",
+          "h₂=h₁"
+        ],
+        "value": "h₂=h₁ρ₁/ρ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio idrostatico all’interfaccia è ρ₁gh₁=ρ₂gh₂. Dividiamo per ρ₂g>0; così h₂ cresce con la densità della prima colonna e diminuisce con quella della seconda. La pressione atmosferica non resta nel rapporto perché è comune ai due lati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/caf9476c5adf50e34224d244e5cdbeedc94ec9bdf349a5a471679909a24b7f76",
+          "text": "Le altezze sono verticali rispetto alla stessa interfaccia. Superfici libere entrambe a p₀; scendendo si aggiunge ρgh. Si confrontano la pressione all’interfaccia e quella alla stessa quota nel ramo destro, non le pressioni a quote diverse. Geometria con unica scala 20 px/cm."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1gh_1=\\rho_2gh_2"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=\\frac{\\rho_1gh_1}{\\rho_2g}"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=h_1\\frac{\\rho_1}{\\rho_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto inverso richiederebbe alla colonna più densa un’altezza maggiore. Doppio e metà non derivano da Stevino; h₂=h₁ vale solo se le densità sono uguali. La forma e la larghezza del tubo non entrano nel bilancio delle pressioni."
+        }
+      ],
+      "hints": [
+        "Isola h₂ dalla pressione alla quota comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto inverso richiederebbe alla colonna più densa un’altezza maggiore. Doppio e metà non derivano da Stevino; h₂=h₁ vale solo se le densità sono uguali. La forma e la larghezza del tubo non entrano nel bilancio delle pressioni.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7904,
+      "title": "Alleggerire soltanto la prima colonna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 1,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Fra prove ρ₂=2 kg/L rimane fissa, mentre ρ₁ passa da 1 a 4/5 kg/L; h₁ resta 10 cm. Come cambia h₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 4 cm",
+          "Da 5 a 25/4 cm",
+          "Resta 5 cm",
+          "Da 5 a 8 cm",
+          "Diventa zero"
+        ],
+        "value": "Da 5 a 4 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il liquido sinistro meno denso genera un incremento minore sulla stessa altezza. La colonna destra, con densità invariata, deve quindi essere più bassa. Il nuovo rapporto vale (4/5)/2=2/5 e dieci centimetri per due quinti dà quattro centimetri."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,A}=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=10\\,\\mathrm{cm}\\frac{4/5}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "25/4 cm inverte l’effetto; 8 cm dimentica che ρ₂ è ancora due; invarianza ignora la diversa densità. Zero non è compatibile con la prima colonna di altezza e densità positive. Si confrontano preparazioni distinte, non un cambiamento istantaneo di densità nello stesso liquido."
+        }
+      ],
+      "hints": [
+        "Moltiplica l’altezza precedente per 4/5.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "25/4 cm inverte l’effetto; 8 cm dimentica che ρ₂ è ancora due; invarianza ignora la diversa densità. Zero non è compatibile con la prima colonna di altezza e densità positive. Si confrontano preparazioni distinte, non un cambiamento istantaneo di densità nello stesso liquido.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7905,
+      "title": "Densità della colonna superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Si misura h₂=5 cm e si conosce ρ₂=2 kg/L. Quanto vale ρ₁ in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per isolare la prima densità moltiplichiamo l’altezza destra per ρ₂ e dividiamo per h₁. Il rapporto fra le altezze è 5/10=1/2, quindi la densità cercata è metà di 2 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1h_1=\\rho_2h_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_1=\\rho_2\\frac{h_2}{h_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_1=(2\\,\\mathrm{kg/L})\\frac5{10}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_1=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato rispetta ρ₁≤ρ₂. Dividere per h₂ anziché per h₁ darebbe 4 kg/L, invertendo la stratificazione e non riproducendo l’equilibrio assegnato. Il centimetro si cancella nel rapporto delle altezze."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la densità moltiplicando ρ₂ per h₂/h₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato rispetta ρ₁≤ρ₂. Dividere per h₂ anziché per h₁ darebbe 4 kg/L, invertendo la stratificazione e non riproducendo l’equilibrio assegnato. Il centimetro si cancella nel rapporto delle altezze.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7906,
+      "title": "Densità del liquido connesso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Si misura h₂=5 cm e si conosce ρ₁=1 kg/L. Quanto vale ρ₂ in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Questa volta la densità cercata è moltiplicata per h₂ nella legge. Dividiamo ρ₁h₁ per h₂: dieci centimetri su cinque raddoppiano la densità. È il liquido più denso, coerente con la posizione sotto l’interfaccia."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_2=\\frac{\\rho_1h_1}{h_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2=(1\\,\\mathrm{kg/L})\\frac{10}{5}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo kg/L farebbe una colonna destra di 20 cm nella legge e non di 5. Due kg/L corrispondono a 2000 kg/m³: si tratta di un liquido ideale assegnato, non dell’acqua che ha densità circa 1 kg/L."
+        }
+      ],
+      "hints": [
+        "Dividi il prodotto ρ₁h₁ per h₂, non per h₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo kg/L farebbe una colonna destra di 20 cm nella legge e non di 5. Due kg/L corrispondono a 2000 kg/m³: si tratta di un liquido ideale assegnato, non dell’acqua che ha densità circa 1 kg/L.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7907,
+      "title": "Densità uguali senza mescolamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. A ha ρ₁=1 kg/L,ρ₂,A=2 kg/L. In B resta ρ₁=1 kg/L e si usa un secondo liquido immiscibile con ρ₂,B=1 kg/L. Anche l’equilibrio a densità uguali è ammesso. Quanto vale h₂,B/h₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A servono 5 cm. In B le densità coincidono e le superfici hanno entrambe altezza 10 cm rispetto all’interfaccia. La non miscibilità permette di mantenere un’interfaccia anche con densità uguali; la stratificazione è neutra, non invertita."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,A}=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=10\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}/h_{2,A}=10/5"
+        },
+        {
+          "type": "formula",
+          "text": "10/5=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue direttamente ρ₂ invece della sua inversa; quattro introduce un quadrato; uno confonde l’uguaglianza delle densità in B con l’assenza di cambiamento rispetto ad A. Un rapporto negativo non confronta altezze positive."
+        }
+      ],
+      "hints": [
+        "Con densità uguali le due altezze diventano uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue direttamente ρ₂ invece della sua inversa; quattro introduce un quadrato; uno confonde l’uguaglianza delle densità in B con l’assenza di cambiamento rispetto ad A. Un rapporto negativo non confronta altezze positive.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7908,
+      "title": "Scarto rispetto a superfici supposte uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Con ρ₁=1 kg/L,ρ₂=2 kg/L si propone h₂=10 cm. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 cm",
+          "−5 cm",
+          "10 cm",
+          "0 cm",
+          "5/2 cm"
+        ],
+        "value": "5 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà h₂=5 cm. La proposta ha copiato h₁, trascurando la densità doppia nel ramo destro. Sottraiamo il corretto dalla proposta nell’ordine richiesto: 10−5=+5 cm."
+        },
+        {
+          "type": "formula",
+          "text": "h_2=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm{cm}-5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "−5 inverte la sottrazione; dieci ripete la proposta; zero la accetta e 5/2 dimezza ancora l’errore. Il segno dello scarto non specifica una direzione del fluido: si confrontano due altezze di equilibrio."
+        }
+      ],
+      "hints": [
+        "Trova prima h₂ dalla densità relativa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 inverte la sottrazione; dieci ripete la proposta; zero la accetta e 5/2 dimezza ancora l’errore. Il segno dello scarto non specifica una direzione del fluido: si confrontano due altezze di equilibrio.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7909,
+      "title": "L’inversa senza perdere la lunghezza fissa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Quale formula isola ρ₁ dalla relazione h₂=h₁ρ₁/ρ₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ₁=ρ₂h₂/h₁",
+          "ρ₁=ρ₂h₁/h₂",
+          "ρ₁=h₂/(ρ₂h₁)",
+          "ρ₁=2ρ₂h₂/h₁",
+          "ρ₁=ρ₂h₂/(2h₁)"
+        ],
+        "value": "ρ₁=ρ₂h₂/h₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per ρ₂ e dividiamo per h₁, che è la lunghezza fisica di 10 cm e non un numero puro. In questo modo le unità delle altezze si cancellano e l’inversa conserva quelle della densità."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_2h_2=\\rho_1h_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_1=\\frac{\\rho_2h_2}{h_1}"
+        },
+        {
+          "type": "formula",
+          "text": " h_1=10\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "L’inverso del rapporto delle altezze non risolve l’equazione. Mettere anche ρ₂ al denominatore dà un’inversa di densità; doppio e metà introducono fattori non presenti. Per la stratificazione scelta l’uscita deve inoltre rispettare h₂≤h₁."
+        }
+      ],
+      "hints": [
+        "Rimuovi il denominatore ρ₂ e poi il fattore h₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inverso del rapporto delle altezze non risolve l’equazione. Mettere anche ρ₂ al denominatore dà un’inversa di densità; doppio e metà introducono fattori non presenti. Per la stratificazione scelta l’uscita deve inoltre rispettare h₂≤h₁.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7910,
+      "title": "Scalare due densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Fra A e B si impongono ρ₁,B=κ₁ρ₁,A e ρ₂,B=κ₂ρ₂,A, con fattori positivi e stratificazione ammessa in entrambe le prove. Quanto vale h₂,B/h₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁² / κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima densità moltiplica h₂, la seconda la divide. Nel rapporto delle due leggi si cancellano h₁ e le densità di A, lasciando κ₁/κ₂. La condizione di stabilità va mantenuta anche per le densità scalate."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,B}=h_1\\frac{\\kappa_1\\rho_{1,A}}{\\kappa_2\\rho_{2,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}/h_{2,A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto dà alla seconda densità l’effetto sbagliato; il reciproco scambia A e B; la somma fallisce per κ₁=κ₂=1. Densità moltiplicate per uno stesso fattore lasciano l’altezza uguale, perché cambia solo la scala delle pressioni, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Confronta i due rapporti di densità prima dei numeri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto dà alla seconda densità l’effetto sbagliato; il reciproco scambia A e B; la somma fallisce per κ₁=κ₂=1. Densità moltiplicate per uno stesso fattore lasciano l’altezza uguale, perché cambia solo la scala delle pressioni, non il rapporto.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7911,
+      "title": "Una colonna meno densa e l’altra dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. A: ρ₁=1 kg/L,ρ₂=2 kg/L. B: ρ₁=4/5 kg/L,ρ₂=1 kg/L. Quanto vale h₂,B/h₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "5/8",
+          "4/5",
+          "2",
+          "8"
+        ],
+        "value": "8/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima altezza è 5 cm; la seconda è 10·(4/5)=8 cm. L’effetto della seconda densità dimezzata prevale sulla diminuzione della prima: l’altezza cresce. Otto diviso cinque è il rapporto puro richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,A}=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=8\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}/h_{2,A}=\\frac85"
+        },
+        {
+          "type": "text",
+          "text": "4/5 segue soltanto la prima densità; due soltanto la seconda. Otto è il valore numerico di h₂,B in cm, non il rapporto; 5/8 è il reciproco. Entrambe le coppie soddisfano ρ₁≤ρ₂."
+        }
+      ],
+      "hints": [
+        "Calcola 5 e 8 cm senza confonderli con il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/5 segue soltanto la prima densità; due soltanto la seconda. Otto è il valore numerico di h₂,B in cm, non il rapporto; 5/8 è il reciproco. Entrambe le coppie soddisfano ρ₁≤ρ₂.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7912,
+      "title": "Media di due altezze misurate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 2,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Due prove hanno uguale peso statistico: A con ρ₁=1 kg/L,ρ₂=2 kg/L; B con ρ₁=4/5 kg/L,ρ₂=1 kg/L. Qual è la media aritmetica delle due h₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 cm",
+          "13 cm",
+          "13/4 cm",
+          "6 cm",
+          "3 cm"
+        ],
+        "value": "13/2 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due altezze sono 5 e 8 cm. La somma 13 cm divisa per due dà 13/2 cm, tra i due valori. Non occorre arrotondare: la frazione è esatta."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,A}=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=8\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline h_2=\\frac{5+8}{2}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline h_2=\\frac{13}{2}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "13 è la somma, 13/4 divide due volte e tre è la differenza delle uscite. Le densità medie 9/10 e 3/2 kg/L darebbero 6 cm, non 13/2: il rapporto non commuta in generale con la media degli ingressi."
+        }
+      ],
+      "hints": [
+        "Trova ogni altezza e poi fai la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "13 è la somma, 13/4 divide due volte e tre è la differenza delle uscite. Le densità medie 9/10 e 3/2 kg/L darebbero 6 cm, non 13/2: il rapporto non commuta in generale con la media degli ingressi.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7913,
+      "title": "La seconda densità per l’altezza obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 3,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. A ha ρ₁,A=1 kg/L,ρ₂,A=2 kg/L. In B si impone ρ₁,B=4/5 kg/L e si vuole h₂,B=(8/5)h₂,A. Quanto vale ρ₂,B/ρ₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’altezza di A è 5 cm, quindi il bersaglio B è 8 cm. L’inversa della seconda densità dà ρ₂,B=ρ₁,Bh₁/h₂,B=(4/5)·10/8=1 kg/L. Rispetto ai 2 kg/L iniziali il rapporto è un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "h_{2,B}=8\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{2,B}=\\rho_{1,B}\\frac{h_1}{h_{2,B}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{2,B}=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{2,B}/\\rho_{2,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Uno lascerebbe l’uscita a 4 cm, non 8. Raddoppiare ρ₂ accorcerebbe ulteriormente la colonna. La nuova densità resta maggiore di 4/5 kg/L, quindi la stratificazione non viene invertita."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima l’altezza obiettivo e poi la densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno lascerebbe l’uscita a 4 cm, non 8. Raddoppiare ρ₂ accorcerebbe ulteriormente la colonna. La nuova densità resta maggiore di 4/5 kg/L, quindi la stratificazione non viene invertita.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7914,
+      "title": "Tarare un’altezza prima della densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 3,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Un display continuo adimensionale segue S=c h₂,c>0, senza offset. A con ρ₁=1 kg/L,ρ₂=2 kg/L dà S=15. B con ρ₂=1 kg/L dà S=24. Quanto vale ρ₁,B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "1 kg/L",
+          "8/5 kg/L",
+          "2/5 kg/L",
+          "−1/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha h₂=5 cm, quindi c=3 cm⁻¹. La lettura 24 rappresenta 8 cm; dall’inversa ρ₁=ρ₂h₂/h₁ segue ρ₁,B=4/5 kg/L. Il guadagno del display va rimosso prima del rapporto idrostatico."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,B}=24/c"
+        },
+        {
+          "type": "formula",
+          "text": "24/c=8\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{1,B}=\\rho_{2,B}\\frac{h_{2,B}}{h_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{1,B}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "1 kg/L darebbe S=30; 8/5 kg/L invertirebbe la stratificazione e darebbe un’altra altezza; 2/5 darebbe S=12. Una densità negativa non è ammessa. La misura del display è pura, non una lunghezza di 24 cm."
+        }
+      ],
+      "hints": [
+        "Decodifica h₂ e solo dopo isola ρ₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1 kg/L darebbe S=30; 8/5 kg/L invertirebbe la stratificazione e darebbe un’altra altezza; 2/5 darebbe S=12. Una densità negativa non è ammessa. La misura del display è pura, non una lunghezza di 24 cm.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7915,
+      "title": "L’offset nella lettura della colonna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 3,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Un display continuo adimensionale segue S=c h₂+d,c>0. A: ρ₁=1 kg/L,ρ₂=2 kg/L,S=11. B: ρ₁=4/5 kg/L,ρ₂=1 kg/L,S=17. C: ρ₂=2 kg/L,S=9. Quanto vale ρ₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "2/5 kg/L",
+          "1 kg/L",
+          "8/5 kg/L",
+          "−1/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono 5 e 8 cm. La differenza delle letture 6 divisa per 3 cm dà c=2 cm⁻¹, poi d=1. C ha altezza (9−1)/2=4 cm; la densità è quindi 2·4/10=4/5 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{17-11}{8-5}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-11}{8-5}\\,\\mathrm{cm^{-1}}=2\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=11-2\\cdot5"
+        },
+        {
+          "type": "formula",
+          "text": "11-2\\cdot5=1"
+        },
+        {
+          "type": "formula",
+          "text": " h_{2,C}=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{1,C}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con ρ₂=2 kg/L, densità 2/5,1,8/5 kg/L darebbero S=5,11,17; nessuna dà 9. Il valore negativo è escluso. Dividere la lettura per c senza sottrarre d cambierebbe l’altezza e la densità ricostruite."
+        }
+      ],
+      "hints": [
+        "Identifica guadagno e offset con le due altezze note.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con ρ₂=2 kg/L, densità 2/5,1,8/5 kg/L darebbero S=5,11,17; nessuna dà 9. Il valore negativo è escluso. Dividere la lettura per c senza sottrarre d cambierebbe l’altezza e la densità ricostruite.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-communicating-columns-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 7916,
+      "title": "Un rapporto fissato non identifica due densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "communicating-columns",
+      "difficulty": 3,
+      "prompt": "Un tubo a U contiene due liquidi omogenei immiscibili in quiete, con densità positive ρ₁≤ρ₂ e gravità uniforme. Il liquido 1 occupa la colonna sinistra sopra l’interfaccia; il liquido 2 è connesso sotto l’interfaccia e nel ramo destro. Entrambe le superfici libere sono alla stessa pressione atmosferica; si trascurano capillarità e pressione di vapore. Le altezze verticali h₁=10 cm e h₂ sono misurate verso l’alto dalla quota dell’interfaccia. Fra preparazioni vale ρ₁=ρ₂/2. Si misura h₂=5 cm. Quante coppie positive di densità sono determinate dai dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo fissa già il rapporto che determina l’altezza: h₂=h₁/2=5 cm. La misura è coerente ma non aggiunge una seconda equazione indipendente. Può cambiare la scala comune delle due densità senza alterare il rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1=\\rho_2/2"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=h_1\\frac{\\rho_2/2}{\\rho_2}"
+        },
+        {
+          "type": "formula",
+          "text": " h_2=h_1/2"
+        },
+        {
+          "type": "formula",
+          "text": "h_1/2=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio (ρ₁,ρ₂)=(1,2) kg/L e (4/5,8/5) kg/L sono coppie distinte ammesse. Il modello ideale offre una famiglia continua positiva: non una o due coppie soltanto. Densità nulle non sono liquidi del dominio assegnato."
+        }
+      ],
+      "hints": [
+        "Verifica se la misura aggiunge davvero un vincolo indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per esempio (ρ₁,ρ₂)=(1,2) kg/L e (4/5,8/5) kg/L sono coppie distinte ammesse. Il modello ideale offre una famiglia continua positiva: non una o due coppie soltanto. Densità nulle non sono liquidi del dominio assegnato.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Equilibrio idrostatico fra liquidi",
+        "Densità e altezze verticali",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "caf9476c5adf50e34224d244e5cdbeedc94ec9bdf349a5a471679909a24b7f76",
+      "name": "communicating-columns-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIGxpcXVpZGkgZSB1bmEgcXVvdGEgY29tdW5lPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHVibyBhIFU6IGxpcXVpZG8gdW5vIGNvbiBkZW5zaXTDoCB1biBjaGlsb2dyYW1tbyBhbCBsaXRybyBzb3ByYSBpbCBsaXF1aWRvIGR1ZSBkaSBkZW5zaXTDoCBkdWUgY2hpbG9ncmFtbWkgYWwgbGl0cm8uIEFsdGV6emUgZGllY2kgZSBjaW5xdWUgY2VudGltZXRyaSBhbGxhIHNjYWxhIHZlbnRpIHBpeGVsIHBlciBjZW50aW1ldHJvIGRhbGxhIHF1b3RhIGRlbGzigJlpbnRlcmZhY2NpYS4gUHJlc3Npb25pIGFsbGEgcXVvdGEgY29tdW5lIHVndWFsaS4gQ29uZnJvbnRvIGZpbmFsZSBzZXBhcmF0byBhIGRlbnNpdMOgIHVndWFsaSBlIGFsdGV6emUgZW50cmFtYmUgZGllY2kgY2VudGltZXRyaS48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjAwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxOTNhNDkiPjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNSI+MSDCtyBDb25mcm9udGEgbGEgcHJlc3Npb25lIGFsbGEgc3Rlc3NhIHF1b3RhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4OCI+U3VwZXJmaWNpIGxpYmVyZSBhbGxhIHN0ZXNzYSBwcmVzc2lvbmUgcOKCgC48L3RleHQ+PHBhdGggZD0iTTE0MCAzNTBIMjIwVjQ2MEg0MjBWMjUwSDUwMFY1NDBIMTQwWiIgZmlsbD0iI2JhZDllNSIvPjxyZWN0IHg9IjE0MCIgeT0iMTUwIiB3aWR0aD0iODAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZWRjZDk0Ii8+PHBhdGggZD0iTTE0MCAxMjBWNTQwSDUwMFYyMjBNMjIwIDEyMFY0NjBINDIwVjIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNMTIwIDM1MEg1MjAiIHN0cm9rZT0iIzE5M2E0OSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTgwIDE1MFYzNTBNNzAgMTUwSDkwTTcwIDM1MEg5ME01NTAgMjUwVjM1ME01NDAgMjUwSDU2ME01NDAgMzUwSDU2MCIgc3Ryb2tlPSIjMTkzYTQ5IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTUiIHk9IjI0NSI+MTAgY208L3RleHQ+PHRleHQgeD0iNTYwIiB5PSIzMDUiPjUgY208L3RleHQ+PHRleHQgeD0iMTQ1IiB5PSIxMzUiPnDigoA8L3RleHQ+PHRleHQgeD0iNDQwIiB5PSIyMzUiPnDigoA8L3RleHQ+PHRleHQgeD0iMjQ1IiB5PSIxOTAiPs+B4oKBID0gMSBrZy9MPC90ZXh0Pjx0ZXh0IHg9IjI0NSIgeT0iNDMwIj7PgeKCgiA9IDIga2cvTDwvdGV4dD48Y2lyY2xlIGN4PSIxODAiIGN5PSIzNTAiIHI9IjUiIGZpbGw9IiMxOTNhNDkiLz48Y2lyY2xlIGN4PSI0NjAiIGN5PSIzNTAiIHI9IjUiIGZpbGw9IiMxOTNhNDkiLz48dGV4dCB4PSIxNjUiIHk9IjM4NSI+QTwvdGV4dD48dGV4dCB4PSI0NTUiIHk9IjM4NSI+QjwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjMzNSI+eiA9IDA8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU5NSI+R2VvbWV0cmlhOiAyMCBweC9jbS4gaOKCgSA9IDEwIGNtOyBo4oKCID0gNSBjbS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjY0MCI+QSBlIEI6IHN0ZXNzYSBxdW90YSBuZWwgbGlxdWlkbyBjb25uZXNzby48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3MjAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgTGUgZHVlIGNvbG9ubmUgZGFubm8gbG8gc3Rlc3NvIGF1bWVudG88L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc2NSI+U29sbyBwZXIgcXVlc3RpIHZhbG9yaTogZyA9IDEwIG0vc8KyLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODE1Ij7PgeKCgSA9IDEwMDAga2cvbcKzOyBo4oKBID0gMS8xMCBtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODYwIj7PgeKCgiA9IDIwMDAga2cvbcKzOyBo4oKCID0gMS8yMCBtLjwvdGV4dD48cmVjdCB4PSIyNTAiIHk9IjkwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMiIgZmlsbD0iI2VkY2Q5NCIvPjxyZWN0IHg9IjI1MCIgeT0iOTc1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjYmFkOWU1Ii8+PHRleHQgeD0iMjgiIHk9IjkyNSI+z4HigoFnaOKCgTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAwMCI+z4HigoJnaOKCgjwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjkyNSI+MSBrUGE8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMDAwIj4xIGtQYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTA2MCI+UHJlc3Npb25pIHJlbGF0aXZlOiAyMDAgcHgva1BhLCBzY2FsYSBzZXBhcmF0YS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExMDUiPnBfQSA9IHBfQiA9IHDigoAgKyAxIGtQYS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIxMTg1IiBmb250LXNpemU9IjI1Ij4zIMK3IEFsdHJhIHByb3ZhOiBkZW5zaXTDoCB1Z3VhbGksIGxpcXVpZGkgZGlzdGludGk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyMzAiPs+B4oKBID0gz4HigoIgPSAxIGtnL0w7IGltbWlzY2liaWxpLCBlcXVpbGlicmlvIG5ldXRyby48L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMjgwIiB3aWR0aD0iODAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZWRjZDk0Ii8+PHJlY3QgeD0iNDIwIiB5PSIxMjgwIiB3aWR0aD0iODAiIGhlaWdodD0iMjAwIiBmaWxsPSIjYmFkOWU1Ii8+PHBhdGggZD0iTTEyMCAxNDgwSDUyME0xMjAgMTI4MEg1MjAiIHN0cm9rZT0iIzgwOWI5NyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHRleHQgeD0iMjQ1IiB5PSIxMzk1Ij4xMCBjbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTUzMCI+U3Rlc3NhIHNjYWxhIDIwIHB4L2NtOyBlbnRyYW1iZSBsZSBhbHRlenplIDEwIGNtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTU3NSI+TGEgbm9uIG1pc2NpYmlsaXTDoCBub24gcmljaGllZGUgZGVuc2l0w6AgZGl2ZXJzZS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
