@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1200" role="img" aria-labelledby="title desc">
+<title id="title">Normale: scegli l’asse del vincolo</title><desc id="desc">Tre tappe: geometria con coseno quattro quinti, forze normali opposte da sedici newton, bilancio perpendicolare nullo. Il peso totale da venti newton non è cancellato tutto dalla normale.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 4L0 8Z" fill="context-stroke"/></marker></defs>
+<rect width="640" height="1200" rx="25" fill="#faf8f2"/>
+<g font-family="sans-serif" font-size="20" fill="#183746">
+<text x="28" y="42" font-size="24" font-weight="bold">1 · Il dato è un rapporto geometrico</text>
+<path d="M130 120H290V240Z" fill="#e8efeb" stroke="#7c8d88" stroke-width="2"/>
+<text x="205" y="105">4</text><text x="303" y="190">3</text><text x="175" y="203">5</text>
+<text x="365" y="145">c = cosθ = 4/5</text><text x="365" y="195">sinθ = 3/5</text>
+<text x="28" y="295">Lati nella stessa unità: nessun angolo da calcolare.</text>
+<text x="28" y="355" font-size="24" font-weight="bold">2 · Guarda la direzione perpendicolare</text>
+<text x="28" y="398">Esempio: m = 2 kg, g = 10 m/s², mg = 20 N.</text>
+<path d="M130 470L450 710" stroke="#82918c" stroke-width="3"/>
+<g transform="matrix(.8 .6 -.6 .8 262 569)"><rect x="-40" y="-60" width="80" height="60" fill="#d7e8eb" stroke="#183746" stroke-width="2"/></g>
+<!-- Centro 280,545. Normale esterna .6,-.8; 80px per 16N. -->
+<circle cx="280" cy="545" r="4"/>
+<path d="M280 545L328 481" stroke="#16728a" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M280 545L232 609" stroke="#80639c" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+<path d="M280 545V645" stroke="#b84e32" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="350" y="480" fill="#16728a">N = 16 N</text>
+<text x="40" y="640" fill="#80639c">P⊥ = 16 N</text>
+<text x="325" y="650" fill="#b84e32">P = 20 N</text>
+<text x="28" y="760">Forze: 5 px/N. N e P⊥: stessa lunghezza, versi opposti.</text>
+<text x="28" y="800">P⊥ è una componente del peso, non una forza in più.</text>
+<text x="28" y="875" font-size="24" font-weight="bold">3 · Usa Newton solo lungo quest’asse</text>
+<text x="28" y="935">Verso positivo: uscente dal piano.</text>
+<text x="28" y="985">N − mgc = m · 0</text>
+<text x="28" y="1035">N = 2 · 10 · 4/5 N = 16 N</text>
+<text x="28" y="1090">16 N &lt; 20 N: la normale non equilibra tutto il peso.</text>
+<text x="28" y="1140">Lungo il piano il corpo può ancora accelerare.</text>
+</g></svg>
