@@ -11,3 +11,5 @@ Fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U2-03.json, sedici originali lett
 14: riferimentoA2,S6→q3s²/m; S9→A3,R4→F2·3+4=10N. 15: riferimentiA2e3,S5e7→q2s²/m,c1; S9→A4,R2→F10N. Distrattore11N corrisponde a omettere offset (A9/2),9N confonde S con forza. 16: F3R→MA2R; RMA/2=2N,F6N unico; alternativeR1,3,4 dannoA1,3,4, negativa viola il dominio.
 
 Figura progressiva01/09: frecce di forze120px,40px,80px su scala20px/N per F6,R2 e risultante4; accelerazione80px a40px/(m/s²) perA2. Proiezione orizzontale: verticale equilibrata omessa, non frecce N/P prive di scala. Pannelli distinti, risultante non sommata di nuovo alle componenti. Scale dimensionalmente diverse dichiarate. Anteprima controllata.
+
+Correzione di impaginazione a320px richiesta dal rerender indipendente: ID03 con formule locali abbreviate o separate, senza modificare helper o CSS. Risposte, ipotesi, dati e asset invariati; nuovi binding per i soli record modificati.

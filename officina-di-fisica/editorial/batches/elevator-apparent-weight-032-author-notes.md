@@ -13,3 +13,5 @@ Fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U2-03.json; letti individualmente
 SVG01/09: N480→120px alto e mg400→100px basso, scala0,25px/N; risultante80→20px alto in pannello distinto; a2→80px alto a40px/(m/s²), scala dimensionalmente diversa. Nessuna forza fittizia, risultante non aggiunta a N e peso. Anteprima controllata.
 
 Correzioni richieste dalla review indipendente prima del freeze: prodotti m·a disambiguati nella prosa degli ID01/03/07/09/12; in16 le radici alternative x2 e x−12 sono due formule separate, con testo di disgiunzione, per evitare una falsa catena generata da law_steps. Helper globale invariato.
+
+Correzione di impaginazione a320px richiesta dal rerender indipendente: ID06 e16 con formule locali abbreviate o separate, senza modificare helper o CSS. Risposte, ipotesi, dati e asset invariati; nuovi binding per i soli record modificati.

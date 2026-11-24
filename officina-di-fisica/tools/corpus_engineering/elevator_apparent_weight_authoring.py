@@ -28,8 +28,8 @@ TASKS=[
  r'm=\frac{N}{g+a}\qquad m=\frac{480\,\mathrm N}{12\,\mathrm{m/s^2}}=40\,\mathrm{kg}',
  'Usare N/g darebbe48kg, assumendo erroneamente accelerazione nulla. La ricostruzione40·12=480N verifica i dati. Non occorre conoscere la velocità della cabina, che non compare nella seconda legge per questa domanda.', 'Al denominatore compare g+a, non soltanto g.'),
 ('Dalla lettura all’accelerazione',SCENE+'Si misurano N=480 N e m=40 kg. Quanto vale a in m/s²?',2,
- 'Dividiamo prima N=m(g+a) per la massa. Il risultato dodici metri al secondo quadrato è g+a, non ancora a. Sottraiamo poi la gravità di dieci. Il valore positivo deve corrispondere al verso alto assegnato.',
- r'\frac Nm=g+a\qquad a=\frac Nm-g\qquad a=(480/40-10)\,\mathrm{m/s^2}=(12-10)\,\mathrm{m/s^2}=2\,\mathrm{m/s^2}',
+ 'Dividiamo prima N=m(g+a) per la massa. Il quoziente 480/40 dà dodici metri al secondo quadrato: è g+a, non ancora a. Sottraiamo poi la gravità di dieci. Il valore positivo deve corrispondere al verso alto assegnato.',
+ r'\frac Nm=g+a\qquad a=\frac Nm-g\qquad \frac Nm=12\,\mathrm{m/s^2}\qquad a=(12-10)\,\mathrm{m/s^2}\qquad a=2\,\mathrm{m/s^2}',
  'La lettura supera il peso400N e fornisce quindi una risultante80N verso l’alto. Questo verifica sia a=80/40=2m/s² sia il contatto N>0. Il quoziente N/m da solo avrebbe sovrastimato l’accelerazione di g.', 'Dopo la divisione per m manca ancora la sottrazione di g.'),
 ('Raddoppiare a non raddoppia N',SCENE+'Due prove con m=40 kg hanno a₁=2 m/s²,a₂=4 m/s². Quanto vale N₂/N₁?',['7/12','2','1/6','7/6','6/7'],
  'Il peso della stessa persona non cambia. Le somme g+a passano da12a14m/s², dunque il rapporto è14/12=7/6. Le due letture sono480e560N; solo il termine m·a raddoppia, non l’intera normale.',
@@ -68,8 +68,8 @@ TASKS=[
  r'q=\frac{1681-961}{(840-480)\,\mathrm N}=\frac{720}{360}\,\mathrm{N^{-1}}=2\,\mathrm{N^{-1}}\qquad c=961-2\times480=1\qquad N=\frac{1441-1}{q}=720\,\mathrm N\qquad m=\frac{720}{12}\,\mathrm{kg}=60\,\mathrm{kg}',
  '120e30kg raddoppiano o dimezzano la massa corretta.59e61kg, a questa accelerazione, darebbero letture1417e1465, distanti 24 unità strumentali da 1441. La massa60kg restituisce S=2·[60·(10+2)]+1=1441. Usare rapporti delle letture grezze non eliminerebbe c.', 'Sottrai le letture di riferimento prima di cercare q e c.'),
 ('Un vincolo quadratico fra prove',SCENE+'Si selezionano prove con m=ka, dove k=20 kg·s²/m è fisso. Il vincolo collega persone e prove diverse; ciascuna mantiene massa costante. Si misura N=480 N. Quanto vale a>0?',['1 m/s²','3 m/s²','−2 m/s²','2 m/s²','4 m/s²'],
- 'Sostituiamo m=ka nella normale: N=ka(g+a). Per svolgere il conto senza mescolare unità, poniamo u=1m/s² e x=a/u, numero puro. Si ha g=10u e k=20kg/u; l’equazione diventa480=20x(x+10), cioè x²+10x−24=0. La fattorizzazione intera evita qualsiasi approssimazione della formula quadratica. Le due radici sono alternative, non valori simultanei della stessa x.',
- r'u=1\,\mathrm{m/s^2}\qquad x=a/u\qquad N=ka(g+a)\qquad x(x+10)=24\qquad x^2+10x-24=(x-2)(x+12)=0\qquad x=2\qquad x=-12\qquad a=2u=2\,\mathrm{m/s^2}\qquad m=ka=40\,\mathrm{kg}',
+ 'Sostituiamo m=ka nella normale: N=ka(g+a). Per svolgere il conto senza mescolare unità, poniamo u=1m/s² e x=a/u, numero puro. Si ha g=10u e k=20kg/u; l’equazione diventa480=20x(x+10), cioè x²+10x−24=0. Per fattorizzare scegliamo 12 e −2, che hanno prodotto −24 e somma 10. Questo evita qualsiasi approssimazione della formula quadratica. Le due radici sono alternative, non valori simultanei della stessa x.',
+ r'u=1\,\mathrm{m/s^2}\qquad x=a/u\qquad N=ka(g+a)\qquad x(x+10)=24\qquad x^2+10x-24=0\qquad (x-2)(x+12)=0\qquad x=2\qquad x=-12\qquad a=2u=2\,\mathrm{m/s^2}\qquad m=ka=40\,\mathrm{kg}',
  'Il ramo−12 viola a>0 e renderebbe negativa la massa, quindi resta una sola soluzione. L’alternativa−2 viola anch’essa il dominio, ma non è neppure una radice. Le alternative1,3,4m/s² darebbero sotto il vincolo rispettivamente N220,780,1120N. La soluzione dà480N>mg400N, compatibile con il contatto.', 'Riduci a una quadratica nel numero puro x=a/(1m/s²).')]
 CHOICES={2:4,3:2,4:0,7:3,8:4,9:3,10:2,11:0,12:2,15:1,16:3}
 UNITS={1:'N',5:'kg',6:'m/s²',13:'1',14:'kg'}
