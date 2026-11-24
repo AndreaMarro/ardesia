@@ -101,8 +101,12 @@ def main():
                      'humanApproval':'NOT_RUN','publication':'DRAFT'}
                     for row in sorted(entries,key=lambda item:item['id']) if row['state']=='REVISED_DRAFT']
     activity_queue=[{'id':row['id'],'sourceSha256':row['sourceSha256'],
-                     'sciencePath':row['evidence'][0]['path'],'humanApproval':'NOT_RUN','publicationAction':'NONE'}
-                    for row in sorted(activities,key=lambda item:item['id']) if row['state']=='REVIEWED_EXISTING_EDITION']
+                     'sciencePath':row['evidence'][0]['path'],'humanApproval':'NOT_RUN',
+                     'publicationAction':'DRAFT' if row['state']=='REVISED_ACTIVITY_DRAFT' else 'NONE',
+                     'candidateSha256':row['evidence'][0].get('candidateSha256'),
+                     'revision':row['evidence'][0].get('revision'),
+                     'publishedEditionCalculatorFreeReview':row['publishedEditionCalculatorFreeReview']}
+                    for row in sorted(activities,key=lambda item:item['id']) if row['state'] in ('REVIEWED_EXISTING_EDITION','REVISED_ACTIVITY_DRAFT')]
     result = checkpoint(args.destination, entries, sorted(activities, key=lambda x: x["id"]), metadata,
                         {"semantic-candidates.json": candidates,"source-semantic-candidates.json":source_candidates,
                          'human-approval-queue.json':approval_queue,'human-activity-review-queue.json':activity_queue})

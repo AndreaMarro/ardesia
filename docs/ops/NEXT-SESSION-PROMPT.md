@@ -1,5 +1,37 @@
 # Prosecuzione corrente — Cric, revisione di 4.606 quesiti
 
+Checkpoint più recente:320/4606quesiti revisionati in bozza,37/385altre attività
+riesaminate; restano4286revisioni complete e348attività. Generazionefa1bbebaa9e3638a04508c21adcf8bc70d6340e920a5d8a088aece0887c0d8d6.
+U1 eU2-01 sono completati editorialmente;966anteprime terminali PASS. Le due nuove
+edizioni C1-E003/E008 sono DRAFT e i FAIL dei due originali pubblicati rimangono
+tracciati. Nessuna nuova pubblicazione o firma umana. Pro100 non identificato.
+
+Primo ID da consolidare: `u2-freefall-speed-01`, sourcequestions/U2-02.json.
+B scrive freefall-speed021/freefall-time022/vertical-maximum023; A scrive
+circular-speed024/centripetal-acceleration025/circular-force026. Reviewer separato
+da B per021–023; root/reviewer distinto per024–026. Non autoverificare gli ID.
+Leggere registry/checkpoint e SHA GitHub corrente prima di proseguire. I blocchi
+successivi di questo file conservano gli incrementi precedenti come storia.
+
+Ultimo checkpoint:256quesiti revisionati e29altre attività riesaminate,
+generazionec0ef6e38483d96d9421d448e7effd2c9eb43ab78291696916f74475d29417e19.
+Restano4350revisioni complete e356attività. Le nuove edizioni di C1-E003/E008
+sono DRAFT: i due originali ancora pubblicati conservano FAIL esplicito. Non
+dichiarare100%manuale il pubblicato e non simulare approvazioni umane.
+
+PR355 MERGED su ba6aec22008f2ac83de4959a6165bac5a8ee0a14, CI post-merge SUCCESS.
+La continuazione è sul ramo feat/cric-u2-first-families.774anteprime fresche
+con16lotti/4worker terminano exit0; precedenti processi di test fermi nel cleanup
+sono stati registrati come run non riuscito, non come PASS. Registro unico ora
+supporta revisionPackage delle attività, mantenendo source e candidate separati.
+
+Primo ID successivo: `u2-equal-time-average-01`. Le quattro famiglie017–020 sono
+candidate già recensite da A, autore B, ma ancora da consolidare con browser,
+import e checkpoint; non incrementare il conteggio sulla sola review scientifica.
+Leggere i report perID e le note di correzione prima di congelare altre versioni.
+Tutti i385record restano contabilizzati, le199prove recuperate sono parziali e
+Pro100 non è identificato. La storia sotto conserva gli incrementi precedenti.
+
 Checkpoint più recente della continuazione:160/4606 quesiti riscritti (tuttaU1),
 16/385 altre attività riesaminate (6 contenitori senza calcoli,10 percorsi di metodo).
 480 anteprime private e import idempotenti; umanoNOT_RUN, nuove pubblicazioni0.

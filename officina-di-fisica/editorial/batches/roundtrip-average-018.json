@@ -1,0 +1,1189 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-roundtrip-average-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2321,
+      "title": "Due tratti uguali alla stessa rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 1,
+      "prompt": "Un’andata e ritorno rettilinea comprende due tratti di uguale lunghezza d>0, senza soste. Le rapidità costanti nei due tratti sono entrambe 2 m/s; il tempo di inversione è trascurato nel modello. Quanto vale la rapidità media V sul viaggio completo, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità media divide la distanza totale per il tempo totale. Qui la rapidità non cambia di valore, anche se il verso si inverte. Ogni tratto dura d diviso 2 m/s; sommando distanze e tempi si conserva la stessa rapidità di due metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "t_1=\\frac d{v_1}"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=\\frac d{v_2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2d}{t_1+t_2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2v_1v_2}{v_1+v_2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2\\times2\\times2}{2+2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2\\times2}{2+2}\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La velocità media vettoriale dell’intero ritorno alla partenza è invece zero, perché lo spostamento netto è nullo. La domanda chiede la rapidità e usa la distanza percorsa, non lo spostamento. Sommare le due rapidità senza considerare il tempo totale darebbe erroneamente quattro."
+        }
+      ],
+      "hints": [
+        "Usa distanza totale e tempo totale, distinguendo il ritorno dal percorso nullo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La velocità media vettoriale dell’intero ritorno alla partenza è invece zero, perché lo spostamento netto è nullo. La domanda chiede la rapidità e usa la distanza percorsa, non lo spostamento. Sommare le due rapidità senza considerare il tempo totale darebbe erroneamente quattro.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2322,
+      "title": "Le unità della rapidità media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 1,
+      "prompt": "Un viaggio di andata e ritorno ha rapidità media definita come distanza totale divisa per tempo totale positivo. Quale unità SI la esprime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "m/s²",
+          "s/m",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza totale mantiene dimensione di lunghezza anche quando il punto finale coincide con quello iniziale. Il tempo totale è una durata. La loro divisione dà lunghezza su tempo, come per una rapidità istantanea; l’operazione di media non ne elimina l’unità."
+        },
+        {
+          "type": "formula",
+          "text": "[V]=\\frac{L}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " [V]_{\\rm SI}=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "m/s è adatto. m sarebbe la distanza prima della divisione, m/s² un’accelerazione; s/m sarebbe il tempo per unità di distanza, cioè il rapporto inverso. Un numero puro non può indicare una rapidità. Il ritorno rende nullo lo spostamento netto, non la dimensione della distanza percorsa."
+        }
+      ],
+      "hints": [
+        "Controlla cosa compare al numeratore della definizione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è adatto. m sarebbe la distanza prima della divisione, m/s² un’accelerazione; s/m sarebbe il tempo per unità di distanza, cioè il rapporto inverso. Un numero puro non può indicare una rapidità. Il ritorno rende nullo lo spostamento netto, non la dimensione della distanza percorsa.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2323,
+      "title": "Distanze uguali, tempi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 1,
+      "prompt": "Nel modello senza soste, andata e ritorno hanno ciascuna lunghezza d>0 e rapidità costanti positive v₁ e v₂. Il tempo di inversione è trascurato. Quale formula dà la rapidità media V, distinta dalla velocità media vettoriale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=(v₁+v₂)/2",
+          "V=2v₁v₂/(v₁+v₂)",
+          "V=0",
+          "V=v₁v₂/(v₁+v₂)",
+          "V=√(v₁v₂)"
+        ],
+        "value": "V=2v₁v₂/(v₁+v₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni tempo si calcola come distanza divisa per rapidità. La distanza totale è 2d e il tempo totale è d/v₁+d/v₂. Raccogliendo d, che è positivo e non nullo, si cancella la lunghezza del singolo tratto. Per sommare i reciproci usiamo il denominatore comune v₁v₂."
+        },
+        {
+          "type": "formula",
+          "text": "t_{\\rm tot}=d\\left(\\frac1{v_1}+\\frac1{v_2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{v_1}+\\frac1{v_2}=\\frac{v_1+v_2}{v_1v_2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2v_1v_2}{v_1+v_2}"
+        },
+        {
+          "type": "text",
+          "text": "È la media armonica, perché il tratto più lento dura di più e pesa maggiormente nel tempo. La semisomma delle rapidità richiederebbe tempi uguali. Zero è la velocità media vettoriale del ritorno, non la rapidità. Omettere il fattore due dimezza il percorso totale; la media geometrica non deriva dai tempi di questo viaggio."
+        }
+      ],
+      "hints": [
+        "Calcola i due tempi prima di fare una media delle rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "È la media armonica, perché il tratto più lento dura di più e pesa maggiormente nel tempo. La semisomma delle rapidità richiederebbe tempi uguali. Zero è la velocità media vettoriale del ritorno, non la rapidità. Omettere il fattore due dimezza il percorso totale; la media geometrica non deriva dai tempi di questo viaggio.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2324,
+      "title": "Andare più rapidamente non dimezza tutto il tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 1,
+      "prompt": "Due viaggi senza soste hanno tratti di andata e ritorno della stessa lunghezza. Nel primo v₁=v₂=2 m/s; nel secondo v₁=4 m/s e v₂=2 m/s. Le rapidità sono costanti per ogni tratto e l’inversione è trascurata. Come cambia la rapidità media?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3 m/s",
+          "Da 2 a 8/3 m/s",
+          "Da 2 a 4 m/s",
+          "Resta 2 m/s",
+          "Scende a 1 m/s"
+        ],
+        "value": "Da 2 a 8/3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raddoppiare la rapidità all’andata dimezza soltanto il tempo di quel tratto. Il tempo del ritorno resta uguale e continua a pesare di più nella nuova media. Applicando distanza totale su tempo totale troviamo due nel primo viaggio e otto terzi nel secondo."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{2\\times4\\times2}{4+2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{16}{6}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{6}\\,\\mathrm{m/s}=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto terzi è fra due e tre. Tre sarebbe la semisomma di quattro e due, che attribuisce pesi temporali uguali a tratti di durata diversa. Quattro farebbe pesare soltanto l’andata; una diminuzione contraddirebbe la riduzione del tempo totale a distanza invariata."
+        }
+      ],
+      "hints": [
+        "Conserva il tempo di ritorno quando accorci quello di andata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto terzi è fra due e tre. Tre sarebbe la semisomma di quattro e due, che attribuisce pesi temporali uguali a tratti di durata diversa. Quattro farebbe pesare soltanto l’andata; una diminuzione contraddirebbe la riduzione del tempo totale a distanza invariata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2325,
+      "title": "Invertire la media armonica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Un’andata e ritorno senza soste ha due distanze uguali e rapidità positive costanti nei tratti. La rapidità media totale è V=2 m/s e quella del ritorno v₂=2 m/s. Quanto vale v₁, in m/s? Il tempo di inversione è trascurato.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la relazione V=2v₁v₂/(v₁+v₂) per il denominatore positivo. Portiamo i termini con v₁ dallo stesso lato e raccogliamo v₁. L’inversa richiede 2v₂−V positivo per restituire una rapidità finita positiva, condizione soddisfatta dai dati."
+        },
+        {
+          "type": "formula",
+          "text": "V(v_1+v_2)=2v_1v_2"
+        },
+        {
+          "type": "formula",
+          "text": " Vv_2=v_1(2v_2-V)"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{Vv_2}{2v_2-V}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{2\\times2}{4-2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2}{4-2}\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ricostruisce V=2 m/s da due rapidità uguali. La formula v₁=2V−v₂ appartiene alla media con tempi uguali: qui darebbe lo stesso numero solo per la coincidenza dei dati. Non è l’inversa generale di questo problema con distanze uguali."
+        }
+      ],
+      "hints": [
+        "Raccogli tutti i termini contenenti v₁ dopo aver eliminato il denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo ricostruisce V=2 m/s da due rapidità uguali. La formula v₁=2V−v₂ appartiene alla media con tempi uguali: qui darebbe lo stesso numero solo per la coincidenza dei dati. Non è l’inversa generale di questo problema con distanze uguali.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2326,
+      "title": "Il tratto lento occupa più tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Un viaggio senza soste comprende 6 m all’andata a rapidità costante 3 m/s e 6 m al ritorno a 2 m/s; il tempo di inversione è trascurato. Quale frazione del tempo totale viene impiegata nel ritorno?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "1/2",
+          "3/5",
+          "2/3",
+          "3/2"
+        ],
+        "value": "3/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo dell’andata è sei diviso tre, cioè due secondi. Il ritorno, più lento, richiede sei diviso due, cioè tre secondi. La quota temporale del ritorno è quindi tre dei cinque secondi totali. Le distanze uguali non impongono durate uguali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3dca4938fedb293726eafb4bc221b7ad7da12bf00dbe1ad5d9b6d54cd3d5464a",
+          "text": "Tre tappe: le frecce di andata e ritorno sono entrambe lunghe sei metri; i tempi sono invece due e tre secondi. Il ritorno occupa tre quinti dei cinque secondi totali. Il percorso è dodici metri e lo spostamento netto è zero."
+        },
+        {
+          "type": "formula",
+          "text": "t_1=\\frac{6\\,\\mathrm m}{3\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6\\,\\mathrm m}{3\\,\\mathrm{m/s}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=\\frac{6\\,\\mathrm m}{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6\\,\\mathrm m}{2\\,\\mathrm{m/s}}=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t_2}{t_1+t_2}=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti supera metà: il ritorno pesa di più nella media temporale. Due quinti è la quota dell’andata; due terzi e tre mezzi confrontano un singolo tratto con l’altro anziché con il totale. La rapidità media complessiva è 12 m/5 s, non la semisomma di tre e due; la velocità media vettoriale è zero."
+        }
+      ],
+      "hints": [
+        "Trova prima i due tempi usando la stessa distanza di sei metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti supera metà: il ritorno pesa di più nella media temporale. Due quinti è la quota dell’andata; due terzi e tre mezzi confrontano un singolo tratto con l’altro anziché con il totale. La rapidità media complessiva è 12 m/5 s, non la semisomma di tre e due; la velocità media vettoriale è zero.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2327,
+      "title": "Confrontare due rapidità medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Due andate e ritorni senza soste hanno distanze uguali nei due sensi, rapidità costanti per tratto e inversione trascurata. Le coppie sono (2,2) m/s e (2,4) m/s. Quanto vale V₂/V₁ fra le rapidità medie totali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "4/3",
+          "2",
+          "3/4",
+          "1/2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima media vale due metri al secondo. La seconda è 2·2·4/(2+4)=8/3 m/s. Dividiamo quest’ultima per due, cancellando anche l’unità di velocità: resta quattro terzi. Il raddoppio della sola rapidità di ritorno non raddoppia l’uscita."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{8/3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{8/3}{2}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi deriverebbe dal confronto delle semisomme, non delle medie adatte a distanze uguali. Due confronta soltanto la rapidità modificata. Tre quarti è il rapporto inverso, mentre un mezzo direbbe che andare più rapidamente riduce la rapidità media, a distanza totale invariata."
+        }
+      ],
+      "hints": [
+        "Calcola la media con i tempi di ciascun viaggio, poi fai il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi deriverebbe dal confronto delle semisomme, non delle medie adatte a distanze uguali. Due confronta soltanto la rapidità modificata. Tre quarti è il rapporto inverso, mentre un mezzo direbbe che andare più rapidamente riduce la rapidità media, a distanza totale invariata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2328,
+      "title": "Sovrastimare la rapidità di un ritorno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Un viaggio senza soste ha due tratti di uguale distanza, percorsi entrambi alla rapidità costante di 2 m/s; si trascura il tempo di inversione. Una proposta assegna V_proposto=4 m/s alla rapidità media. Quanto vale lo scarto proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 m/s",
+          "+1 m/s",
+          "+2 m/s",
+          "+4 m/s",
+          "0 m/s"
+        ],
+        "value": "+2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due rapidità uguali danno una rapidità media di due metri al secondo. La somma quattro non tiene conto che anche i tempi dei due tratti vanno sommati. Lo scarto confronta proposta e media corretta nello stesso ordine dichiarato dal testo."
+        },
+        {
+          "type": "formula",
+          "text": "V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm{m/s}-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm{m/s}-2\\,\\mathrm{m/s}=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il valore positivo indica una sovrastima. −2 invertirebbe la sottrazione; quattro ripeterebbe la proposta e zero ignorerebbe l’errore. Non si deve usare la velocità media vettoriale nulla come valore corretto: quella è una grandezza diversa dalla rapidità media richiesta."
+        }
+      ],
+      "hints": [
+        "Non confondere il ritorno alla partenza con una distanza totale nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore positivo indica una sovrastima. −2 invertirebbe la sottrazione; quattro ripeterebbe la proposta e zero ignorerebbe l’errore. Non si deve usare la velocità media vettoriale nulla come valore corretto: quella è una grandezza diversa dalla rapidità media richiesta.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2329,
+      "title": "Il dominio dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Un viaggio senza soste ha due tratti di uguale distanza e rapidità positive v₁,v₂. La media è V=2v₁v₂/(v₁+v₂). Si conoscono v₂ e V, con 0<V<2v₂. Quale formula esprime v₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₁=Vv₂/(2v₂−V)",
+          "v₁=2V−v₂",
+          "v₁=Vv₂/(V−2v₂)",
+          "v₁=V/(2v₂−V)",
+          "v₁=Vv₂/(v₂−V)"
+        ],
+        "value": "v₁=Vv₂/(2v₂−V)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il denominatore iniziale è positivo, quindi possiamo moltiplicare senza perdere soluzioni del dominio. Espandiamo V(v₁+v₂), spostiamo Vv₁ sull’altro lato e raccogliamo v₁. Dividiamo infine per 2v₂−V, positivo per il vincolo assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "Vv_1+Vv_2=2v_1v_2"
+        },
+        {
+          "type": "formula",
+          "text": " Vv_2=v_1(2v_2-V)"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{Vv_2}{2v_2-V}"
+        },
+        {
+          "type": "text",
+          "text": "La formula dà una velocità, perché il numeratore ha dimensione di velocità al quadrato e il denominatore di velocità. Il denominatore col segno opposto darebbe una rapidità negativa. Omettere v₂ dal numeratore darebbe un numero puro; 2V−v₂ usa la media sbagliata. Se V raggiungesse 2v₂ servirebbe una prima rapidità infinita, fuori dal modello finito."
+        }
+      ],
+      "hints": [
+        "Dopo il raccoglimento verifica il segno del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La formula dà una velocità, perché il numeratore ha dimensione di velocità al quadrato e il denominatore di velocità. Il denominatore col segno opposto darebbe una rapidità negativa. Omettere v₂ dal numeratore darebbe un numero puro; 2V−v₂ usa la media sbagliata. Se V raggiungesse 2v₂ servirebbe una prima rapidità infinita, fuori dal modello finito.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2330,
+      "title": "I fattori cambiano anche il tempo totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Ogni viaggio senza soste ha due distanze uguali e rapidità positive costanti. Da una prova con v₁,v₂ si passa a κ₁v₁,κ₂v₂, con fattori positivi. V₁,V₂ sono le rispettive rapidità medie. Quale espressione dà V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁+κ₂",
+          "κ₁κ₂(v₁+v₂)/(κ₁v₁+κ₂v₂)",
+          "(κ₁v₁+κ₂v₂)/(v₁+v₂)",
+          "κ₁κ₂(v₁+v₂)/(κ₂v₁+κ₁v₂)"
+        ],
+        "value": "κ₁κ₂(v₁+v₂)/(κ₁v₁+κ₂v₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media armonica ha un prodotto al numeratore e una somma al denominatore: cambiano entrambi. Per rendere leggibile il conto chiamiamo P=κ₁κ₂, S₁=v₁+v₂ e S₂=κ₁v₁+κ₂v₂. Nel rapporto delle due medie si cancellano il due e il prodotto iniziale v₁v₂; restano P e il rapporto delle somme."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " S_1=v_1+v_2"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=\\kappa_1v_1+\\kappa_2v_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=P\\frac{S_1}{S_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo prodotto dei fattori dimentica il denominatore variabile; la formula da media aritmetica dimentica la diversa durata dei tratti. Scambiare i fattori nella somma li assegna alle rapidità sbagliate. Se κ₁=κ₂=κ, il rapporto deve valere κ: il prodotto κ² viene diviso per l’ulteriore fattore κ della somma."
+        }
+      ],
+      "hints": [
+        "Conserva il cambiamento sia del prodotto sia della somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo prodotto dei fattori dimentica il denominatore variabile; la formula da media aritmetica dimentica la diversa durata dei tratti. Scambiare i fattori nella somma li assegna alle rapidità sbagliate. Se κ₁=κ₂=κ, il rapporto deve valere κ: il prodotto κ² viene diviso per l’ulteriore fattore κ della somma.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2331,
+      "title": "Raddoppiare entrambe le rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Due viaggi senza soste hanno ciascuno andata e ritorno di uguale distanza. Nel primo le rapidità costanti sono 2 m/s in entrambi i tratti; nel secondo 4 m/s in entrambi. Si trascura l’inversione. V₁ e V₂ indicano le rapidità medie dei due viaggi. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con rapidità uguali nei due tratti la media coincide con quella rapidità. Possiamo anche ragionare sui tempi: a distanza fissata raddoppiare entrambe le rapidità dimezza entrambi i tempi e quindi il tempo totale. La distanza complessiva resta la stessa, così la media raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Non si ottiene quattro: nel prodotto al numeratore della media armonica compaiono due raddoppi, ma anche la somma al denominatore raddoppia. Il rapporto è puro. La velocità media vettoriale resta zero in entrambi i ritorni, ma qui si confrontano rapidità medie non nulle."
+        }
+      ],
+      "hints": [
+        "Ragiona su come cambiano i due tempi a distanze fissate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non si ottiene quattro: nel prodotto al numeratore della media armonica compaiono due raddoppi, ma anche la somma al denominatore raddoppia. Il rapporto è puro. La velocità media vettoriale resta zero in entrambi i ritorni, ma qui si confrontano rapidità medie non nulle.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2332,
+      "title": "Media fra viaggi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 2,
+      "prompt": "Due viaggi senza soste hanno ciascuno andata e ritorno di uguale distanza e rapidità costanti per tratto. Le coppie sono (2,2) e (4,4) m/s. Con uguale peso statistico dei viaggi, qual è la media aritmetica delle due rapidità medie?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "8/3 m/s"
+        ],
+        "value": "3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due rapidità medie dei viaggi sono due e quattro metri al secondo. Il registro assegna lo stesso peso a ciascun viaggio, quindi la media delle uscite è tre. Questo peso statistico non va confuso con la durata dei singoli tratti usata dentro ogni viaggio."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{2+4}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+4}{2}\\,\\mathrm{m/s}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è la somma senza divisione; due e quattro ripetono una sola lettura. Qui anche usare gli ingressi medi tre e tre dà tre, perché le coppie sono proporzionali. Non rende lineare la media armonica: per coppie non proporzionali, come (2,4) e (4,2), la media delle uscite è 8/3 e quella calcolata sugli ingressi medi è tre."
+        }
+      ],
+      "hints": [
+        "Distingui il peso statistico fra viaggi dai pesi temporali dentro il viaggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è la somma senza divisione; due e quattro ripetono una sola lettura. Qui anche usare gli ingressi medi tre e tre dà tre, perché le coppie sono proporzionali. Non rende lineare la media armonica: per coppie non proporzionali, come (2,4) e (4,2), la media delle uscite è 8/3 e quella calcolata sugli ingressi medi è tre.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2333,
+      "title": "Un ritorno da rendere più rapido",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 3,
+      "prompt": "Ogni viaggio senza soste comprende due distanze uguali, con rapidità costanti nei tratti e tempo di inversione trascurato. Inizialmente v₁=v₂=2 m/s. Si impone v₁,nuova=4 m/s e si vuole raddoppiare la rapidità media totale. Quale rapporto v₂,nuova/v₂,iniziale occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La vecchia media è due e la nuova deve essere quattro metri al secondo. Chiamiamo W=4 m/s la nuova media e u=4 m/s la nuova rapidità di andata. Usiamo l’inversa della media armonica per la rapidità di ritorno. Il denominatore 2v₁−V resta positivo e permette una soluzione finita."
+        },
+        {
+          "type": "formula",
+          "text": "W=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,\\rm nuova}=\\frac{Wu}{2u-W}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,\\rm nuova}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{2,\\rm nuova}}{v_{2,\\rm iniziale}}=2"
+        },
+        {
+          "type": "text",
+          "text": "Due rapidità entrambe quattro danno effettivamente media quattro. Non sarebbe sufficiente aumentare una sola rapidità lasciando a due l’altra: la parte più lenta continuerebbe a occupare più tempo. Il rapporto due qui emerge dai dati simmetrici e dall’inversa, non dalla sola richiesta di raddoppio dell’uscita."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la rapidità mancante dalla nuova media, poi fai il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due rapidità entrambe quattro danno effettivamente media quattro. Non sarebbe sufficiente aumentare una sola rapidità lasciando a due l’altra: la parte più lenta continuerebbe a occupare più tempo. Il rapporto due qui emerge dai dati simmetrici e dall’inversa, non dalla sola richiesta di raddoppio dell’uscita.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2334,
+      "title": "Tarare una rapidità media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 3,
+      "prompt": "Ogni viaggio senza soste ha due distanze uguali, rapidità positive costanti e inversione trascurata. V è la rapidità media dell’intero viaggio. Un display mostra S=gV, con g>0 costante e S conteggio. Il riferimento v₁=v₂=2 m/s dà S=6. Nella prova ignota S=12 e v₂=4 m/s. Quanto vale v₁, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal riferimento V=2 m/s si ricava g=3 s/m. La lettura dodici corrisponde quindi a V=4 m/s. Per risalire alla prima rapidità usiamo l’inversa con la seconda nota: il prodotto Vv₂ va diviso per 2v₂−V, non per la sola v₂."
+        },
+        {
+          "type": "formula",
+          "text": "g=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{12}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{3\\,\\mathrm{s/m}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{Vv_2}{2v_2-V}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{4\\times4}{8-4}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\times4}{8-4}\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ottiene media quattro e lettura (3 s/m)(4 m/s)=12. Le tacche sono adimensionali, quindi g ha unità inversa di velocità. La ricostruzione rispetta 0<V<2v₂; altrimenti una rapidità positiva finita non sarebbe determinata da questa inversa."
+        }
+      ],
+      "hints": [
+        "Togli la taratura prima di invertire la relazione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo ottiene media quattro e lettura (3 s/m)(4 m/s)=12. Le tacche sono adimensionali, quindi g ha unità inversa di velocità. La ricostruzione rispetta 0<V<2v₂; altrimenti una rapidità positiva finita non sarebbe determinata da questa inversa.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2335,
+      "title": "Una taratura con frazioni esatte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 3,
+      "prompt": "Ogni viaggio senza soste ha due distanze uguali e rapidità costanti positive; l’inversione è trascurata. V è la rapidità media dell’intero viaggio. Il display segue S=gV+c, con S conteggio e g>0,c costanti. I riferimenti (2,2) e (4,4) m/s danno S=5 e S=9. Una prova con v₂=2 m/s dà S=19/3. Quanto vale v₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "8 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno medie due e quattro, perciò g=2 s/m e c=1. Dalla nuova lettura togliamo uno, scritto come tre terzi: rimangono sedici terzi di tacche. Dividendo per due otteniamo V=8/3 m/s. Nell’inversa il denominatore è 4−8/3=4/3 m/s: le frazioni si semplificano esattamente."
+        },
+        {
+          "type": "formula",
+          "text": "g=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{19/3-1}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{19/3-1}{2}\\,\\mathrm{m/s}=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 2v_2-V=\\frac43\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\frac{16/3}{4/3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16/3}{4/3}\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Non occorrono decimali: dividere due frazioni con lo stesso denominatore lascia 16/4. Con v₁=4 e v₂=2 la media è 8/3 e il display dà 2·8/3+1=19/3. Tre non restituisce questa media; sei e otto aumenterebbero la lettura. L’offset va sottratto prima della divisione per il guadagno."
+        }
+      ],
+      "hints": [
+        "Usa frazioni con denominatore tre, poi semplifica il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non occorrono decimali: dividere due frazioni con lo stesso denominatore lascia 16/4. Con v₁=4 e v₂=2 la media è 8/3 e il display dà 2·8/3+1=19/3. Tre non restituisce questa media; sei e otto aumenterebbero la lettura. L’offset va sottratto prima della divisione per il guadagno.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-roundtrip-average-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2336,
+      "title": "Le due rapidità sono uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "roundtrip-average",
+      "difficulty": 3,
+      "prompt": "Un’andata e ritorno senza soste ha due distanze uguali e rapidità costanti positive con v₁=v₂. Si trascura il tempo di inversione. La rapidità media totale è V=2 m/s. Quanto vale v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s",
+          "2 m/s",
+          "4 m/s",
+          "0 m/s",
+          "−2 m/s"
+        ],
+        "value": "2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo v₁ con v₂ nella media armonica. Il numeratore diventa due volte il quadrato della rapidità, il denominatore due volte la rapidità. Quest’ultima è non nulla e si può semplificare: la media coincide con il valore comune."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{2v_2^2}{2v_2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2v_2^2}{2v_2}=v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due metri al secondo soddisfa sia il vincolo sia la lettura. Uno e quattro derivano da gestioni errate del fattore due; zero e −2 violano la positività del modello. La rapidità comune è determinata, mentre la lunghezza d dei tratti resta libera: non serve conoscerla per questa media."
+        }
+      ],
+      "hints": [
+        "Semplifica il fattore v₂ solo dopo aver usato il vincolo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due metri al secondo soddisfa sia il vincolo sia la lettura. Uno e quattro derivano da gestioni errate del fattore due; zero e −2 violano la positività del modello. La rapidità comune è determinata, mentre la lunghezza d dei tratti resta libera: non serve conoscerla per questa media.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Rapidità e velocità media",
+        "Distanza e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3dca4938fedb293726eafb4bc221b7ad7da12bf00dbe1ad5d9b6d54cd3d5464a",
+      "name": "roundtrip-average-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iOTQwIiB2aWV3Qm94PSIwIDAgNjQwIDk0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EaXN0YW56ZSB1Z3VhbGksIHRlbXBpIGRpdmVyc2kgbmVsIHJpdG9ybm88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGUuIEFuZGF0YSBlIHJpdG9ybm8gc29ubyBzZWkgbWV0cmkgY2lhc2N1bm8sIGZyZWNjZSB1Z3VhbGkgZGkgdHJlY2VudG9zZXNzYW50YSBwaXhlbCwgc2NhbGEgc2Vzc2FudGEgcGl4ZWwgcGVyIG1ldHJvLiBBbmRhdGEgYSB0cmUgbWV0cmkgYWwgc2Vjb25kbyBkdXJhIGR1ZSBzZWNvbmRpOyByaXRvcm5vIGEgZHVlIG1ldHJpIGFsIHNlY29uZG8gZHVyYSB0cmUgc2Vjb25kaS4gSWwgZGlhZ3JhbW1hIHRlbXBvcmFsZSB1c2Egc2Vzc2FudGEgcGl4ZWwgcGVyIHNlY29uZG86IGNlbnRvdmVudGkgcGVyIGzigJlhbmRhdGEgZSBjZW50b3R0YW50YSBwZXIgaWwgcml0b3Juby4gSWwgcml0b3JubyBvY2N1cGEgdHJlIHF1aW50aSBkZWwgdGVtcG8gdG90YWxlLCBsYSByYXBpZGl0w6AgbWVkaWEgw6ggZG9kaWNpIHF1aW50aSBkaSBtZXRybyBhbCBzZWNvbmRvIGUgbGEgdmVsb2NpdMOgIG1lZGlhIHZldHRvcmlhbGUgw6ggemVyby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNzNkNTAiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iOTQwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZpbGw9IiMxNzNkNTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBTdGVzc2EgZGlzdGFuemEgbmVpIGR1ZSBzZW5zaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODIiPlNjYWxhIHNwYXppYWxlOiA2MCBweC9tPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE2NEg0NjAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00NjAgMjY4SDEwMCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjE2MSIgeT0iMTQzIj42IG0gYSAzIG0vcyDCtyBhbmRhdGE8L3RleHQ+PHRleHQgeD0iMTYxIiB5PSIyNDUiPjYgbSBhIDIgbS9zIMK3IHJpdG9ybm88L3RleHQ+PHRleHQgeD0iNzQiIHk9IjMwOCI+aW5pemlvIGUgZmluZTwvdGV4dD48dGV4dCB4PSI0MjkiIHk9IjMwOCI+c3ZvbHRhPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMzgwIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBDYWxjb2xhcmUgZSBzb21tYXJlIGxlIGR1cmF0ZTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQyMyI+NiBtIC8gMyBtL3MgPSAyIHMgwrcgNiBtIC8gMiBtL3MgPSAzIHM8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NjciPlNjYWxhIHRlbXBvcmFsZTogNjAgcHgvczwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI1MDciIHdpZHRoPSIxMjAiIGhlaWdodD0iNDYiIGZpbGw9IiNjZWUyZGUiIHN0cm9rZT0iIzE3M2Q1MCIvPjxyZWN0IHg9IjIyMCIgeT0iNTA3IiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQ2IiBmaWxsPSIjZWZkOWMyIiBzdHJva2U9IiMxNzNkNTAiLz4KPHRleHQgeD0iMTQwIiB5PSI1MzkiPjIgczwvdGV4dD48dGV4dCB4PSIyODUiIHk9IjUzOSI+MyBzPC90ZXh0Pjx0ZXh0IHg9Ijg4IiB5PSI1ODciPjA8L3RleHQ+PHRleHQgeD0iMjA4IiB5PSI1ODciPjI8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSI1ODciPjUgczwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjY1NCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgSWwgcml0b3JubyBwZXNhIHRyZSBxdWludGk8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3MDAiPnRfcml0b3JubyAvIHRfdG90YWxlID0gMyBzIC8gNSBzID0gMy81PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzUzIj5SYXBpZGl0w6AgbWVkaWE6IDEyIG0gLyA1IHMgPSAxMi81IG0vczwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgwOSI+U3Bvc3RhbWVudG8gbmV0dG86ICs2IG0g4oiSIDYgbSA9IDAgbTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijg2NSI+VmVsb2NpdMOgIG1lZGlhIHZldHRvcmlhbGU6IDAgbS9zPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

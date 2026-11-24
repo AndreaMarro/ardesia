@@ -1,0 +1,1249 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-accelerated-final-speed-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2301,
+      "title": "Una velocità iniziale da conservare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un carrello si muove lungo un asse con velocità iniziale v₀=+2 m/s. Per t=2 s mantiene accelerazione costante a=+2 m/s². Quanto vale la componente finale V, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione costante aggiunge la stessa variazione di velocità in ogni secondo. In due secondi l’incremento è a·t=4 m/s. Il carrello aveva già +2 m/s all’inizio: questo valore va aggiunto all’incremento, non sostituito da esso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d2d3c5b08b7784f3ba31b2993109e2a8ad40056cf94ed2bffa046c03e084a241",
+          "text": "Esempio numerico in tre tappe e a scala fissa: v₀=2 m/s; incremento di 2 m/s in ciascun secondo con a costante; lettura finale V=6 m/s a t=2 s. Il grafico v–t è una retta perché qui l’accelerazione è costante."
+        },
+        {
+          "type": "formula",
+          "text": "V=v_0+at"
+        },
+        {
+          "type": "formula",
+          "text": " at=(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V=(2+4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+4)\\,\\mathrm{m/s}=+6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La velocità resta positiva per tutto l’intervallo, quindi in questo caso anche il suo modulo finale è 6 m/s. Quattro m/s è soltanto la variazione. Non stiamo calcolando uno spostamento: nel grafico v–t leggiamo l’altezza finale, non l’area."
+        }
+      ],
+      "hints": [
+        "Aggiungi alla velocità iniziale l’incremento accumulato nei due secondi.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La velocità resta positiva per tutto l’intervallo, quindi in questo caso anche il suo modulo finale è 6 m/s. Quattro m/s è soltanto la variazione. Non stiamo calcolando uno spostamento: nel grafico v–t leggiamo l’altezza finale, non l’area.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2302,
+      "title": "Il prodotto accelerazione per tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 1,
+      "prompt": "Una velocità finale si ricava sommando alla componente iniziale il prodotto di accelerazione costante e durata. Quale unità SI è adatta alla velocità finale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s²",
+          "kg",
+          "m/s",
+          "s"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Accelerazione per tempo ha dimensione (L/T²)T=L/T. Questo contributo può essere sommato alla velocità iniziale perché ha la stessa dimensione. Un’accelerazione da sola non è una velocità, anche se il suo numero compare nel calcolo."
+        },
+        {
+          "type": "formula",
+          "text": "[at]=(L/T^2)T"
+        },
+        {
+          "type": "formula",
+          "text": "(L/T^2)T=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=[v_0]"
+        },
+        {
+          "type": "formula",
+          "text": "[v_0]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m/s è corretto. m misura uno spostamento e m/s² l’accelerazione prima di moltiplicarla per il tempo. kg è una massa, s una durata: nessuna delle due può essere sommata a una velocità."
+        }
+      ],
+      "hints": [
+        "Moltiplica anche le unità di a e t.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è corretto. m misura uno spostamento e m/s² l’accelerazione prima di moltiplicarla per il tempo. kg è una massa, s una durata: nessuna delle due può essere sommata a una velocità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2303,
+      "title": "L’accelerazione è un coefficiente con unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un corpo parte con componente di velocità v₀>0 lungo un asse e mantiene accelerazione a=+2 m/s² per una durata t≥0. V indica la componente finale. Quale relazione descrive il moto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=v₀+a/t",
+          "V=v₀+at",
+          "V=at",
+          "V=(v₀+at)/2",
+          "V=v₀−at"
+        ],
+        "value": "V=v₀+at"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per accelerazione costante la variazione di velocità è a·t. Sommandola alla componente iniziale otteniamo il valore finale. Il simbolo a rappresenta +2 m/s² con le sue unità, non il solo numero due. La relazione vale anche all’inizio: con t=0 deve restituire v₀."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d2d3c5b08b7784f3ba31b2993109e2a8ad40056cf94ed2bffa046c03e084a241",
+          "text": "Esempio numerico in tre tappe e a scala fissa: v₀=2 m/s; incremento di 2 m/s in ciascun secondo con a costante; lettura finale V=6 m/s a t=2 s. Il grafico v–t è una retta perché qui l’accelerazione è costante."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta v=at"
+        },
+        {
+          "type": "formula",
+          "text": " V=v_0+at"
+        },
+        {
+          "type": "formula",
+          "text": " V=v_0+(2\\,\\mathrm{m/s^2})t"
+        },
+        {
+          "type": "text",
+          "text": "a/t avrebbe unità m/s³ e non si può sommare a v₀. at omette la velocità iniziale. La semisomma non è la velocità finale, mentre il segno meno descriverebbe un’accelerazione opposta a quella assegnata. Qui V>0 per ogni t≥0, perciò velocità componente e modulo hanno lo stesso valore numerico."
+        }
+      ],
+      "hints": [
+        "A t=0 la formula deve riprodurre la velocità iniziale.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "a/t avrebbe unità m/s³ e non si può sommare a v₀. at omette la velocità iniziale. La semisomma non è la velocità finale, mentre il segno meno descriverebbe un’accelerazione opposta a quella assegnata. Qui V>0 per ogni t≥0, perciò velocità componente e modulo hanno lo stesso valore numerico.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2304,
+      "title": "Una partenza più veloce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 1,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale mantengono entrambe a=+2 m/s² per t=2 s. La prima parte con v₀₁=+2 m/s, la seconda con v₀₂=+4 m/s. Come cambia la componente finale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 6 a 12 m/s",
+          "Resta 6 m/s",
+          "Aumenta da 6 a 8 m/s",
+          "Scende a 4 m/s",
+          "Diventa zero"
+        ],
+        "value": "Aumenta da 6 a 8 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo dell’accelerazione è lo stesso in entrambe le prove: +4 m/s. Aumenta soltanto la velocità iniziale, di due metri al secondo. Conserviamo quindi lo stesso incremento e calcoliamo separatamente i due valori finali."
+        },
+        {
+          "type": "formula",
+          "text": "at=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=(2+4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+4)\\,\\mathrm{m/s}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=(4+4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(4+4)\\,\\mathrm{m/s}=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto fra i valori finali è 8/6=4/3: raddoppiare una parte della somma non raddoppia tutta la somma. Invariata, diminuita e nulla ignorano il cambiamento positivo di v₀. Un raddoppio finale richiederebbe di raddoppiare anche l’incremento a·t."
+        }
+      ],
+      "hints": [
+        "Tieni fisso il contributo di quattro metri al secondo.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto fra i valori finali è 8/6=4/3: raddoppiare una parte della somma non raddoppia tutta la somma. Invariata, diminuita e nulla ignorano il cambiamento positivo di v₀. Un raddoppio finale richiederebbe di raddoppiare anche l’incremento a·t.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2305,
+      "title": "Togliere l’incremento già accumulato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un corpo si muove lungo un asse con v₀>0. Dopo t=2 s di accelerazione costante a=+2 m/s² termina con componente V=+6 m/s. Quanto vale v₀, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità finale è la somma di quella iniziale e dell’incremento. Per isolare v₀ sottraiamo a·t da entrambi i membri. L’incremento vale quattro metri al secondo; sottraendolo dai sei finali ricaviamo la partenza."
+        },
+        {
+          "type": "formula",
+          "text": "V=v_0+at"
+        },
+        {
+          "type": "formula",
+          "text": " V-at=v_0"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=6\\,\\mathrm{m/s}-(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=(6-4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(6-4)\\,\\mathrm{m/s}=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due m/s è positivo come richiede il testo. Il controllo 2 m/s+4 m/s=6 m/s ricostruisce la misura. Aggiungere l’incremento una seconda volta darebbe 10 m/s, che con accelerazione positiva porterebbero a 14 m/s, non a sei."
+        }
+      ],
+      "hints": [
+        "Sottrai dalla velocità finale il prodotto a·t.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due m/s è positivo come richiede il testo. Il controllo 2 m/s+4 m/s=6 m/s ricostruisce la misura. Aggiungere l’incremento una seconda volta darebbe 10 m/s, che con accelerazione positiva porterebbero a 14 m/s, non a sei.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2306,
+      "title": "Quanto dura l’accelerazione?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale, lungo un asse orientato, v₀=+2 m/s e a=+2 m/s² è costante. Si raggiunge la componente V=+6 m/s dopo una durata t≥0. Quanto vale t, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Serve un incremento di quattro metri al secondo. Con due metri al secondo di incremento per ogni secondo occorrono due secondi. Algebricamente sottraiamo v₀, poi dividiamo per a, che è positivo e diverso da zero."
+        },
+        {
+          "type": "formula",
+          "text": "V-v_0=at"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{V-v_0}{a}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{(6-2)\\,\\mathrm{m/s}}{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(6-2)\\,\\mathrm{m/s}}{2\\,\\mathrm{m/s^2}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "La divisione delle unità restituisce secondi. Il risultato è non negativo perché V≥v₀; se si imponesse V<v₀ con la stessa a>0 non esisterebbe una durata futura nel modello. Dividere soltanto V per a ignorerebbe i due m/s già presenti all’inizio."
+        }
+      ],
+      "hints": [
+        "Dividi l’aumento di velocità, non la velocità finale, per l’accelerazione.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La divisione delle unità restituisce secondi. Il risultato è non negativo perché V≥v₀; se si imponesse V<v₀ con la stessa a>0 non esisterebbe una durata futura nel modello. Dividere soltanto V per a ignorerebbe i due m/s già presenti all’inizio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2307,
+      "title": "Il tempo raddoppia, la velocità finale no",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale iniziano con v₀=+2 m/s e mantengono a=+2 m/s² costante. La prima dura t₁=2 s, la seconda t₂=4 s. V₁ e V₂ sono le componenti finali. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3/5",
+          "5/6",
+          "5/3",
+          "10/3"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli incrementi sono quattro e otto m/s, ma a ciascuno va aggiunta la stessa partenza di due m/s. Le velocità finali sono quindi sei e dieci, non quattro e otto. Il rapporto dieci sesti si semplifica dividendo per due."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=(2+2\\times2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+2\\times2)\\,\\mathrm{m/s}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=(2+2\\times4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+2\\times4)\\,\\mathrm{m/s}=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{10}{6}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{6}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto fra durate o incrementi, non fra velocità finali. 3/5 inverte il rapporto; 5/6 dimezza il corretto, mentre 10/3 lo raddoppia. Il risultato è fra uno e due perché soltanto una parte della somma finale è raddoppiata."
+        }
+      ],
+      "hints": [
+        "Aggiungi i due metri al secondo iniziali in entrambe le prove.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due è il rapporto fra durate o incrementi, non fra velocità finali. 3/5 inverte il rapporto; 5/6 dimezza il corretto, mentre 10/3 lo raddoppia. Il risultato è fra uno e due perché soltanto una parte della somma finale è raddoppiata.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2308,
+      "title": "Valutare uno scarto in velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un carrello parte con v₀=+2 m/s e mantiene accelerazione a=+2 m/s² per t=2 s lungo lo stesso asse. Una soluzione propone V_proposto=12 m/s per la componente finale. Quanto vale «proposto meno corretto»?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+7 m/s",
+          "+5 m/s",
+          "+6 m/s",
+          "−6 m/s",
+          "+12 m/s"
+        ],
+        "value": "+6 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità corretta contiene la partenza e l’incremento: 2+2·2=6 m/s. Lo scarto richiesto è la differenza fra dodici e sei, nell’ordine indicato. Non è un’accelerazione e non si divide nuovamente per la durata."
+        },
+        {
+          "type": "formula",
+          "text": "V=(2+2\\times2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+2\\times2)\\,\\mathrm{m/s}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(12-6)\\,\\mathrm{m/s}=+6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo indica sovrastima; −6 m/s invertirebbe il confronto. Sette e cinque non derivano dalla differenza richiesta; dodici omette il valore corretto. Il rapporto proposta/corretto sarebbe due, un numero puro, e risponderebbe a un altro compito."
+        }
+      ],
+      "hints": [
+        "Trova prima V, poi sottraila da dodici metri al secondo.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Il segno positivo indica sovrastima; −6 m/s invertirebbe il confronto. Sette e cinque non derivano dalla differenza richiesta; dodici omette il valore corretto. Il rapporto proposta/corretto sarebbe due, un numero puro, e risponderebbe a un altro compito.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2309,
+      "title": "La formula inversa conserva il segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un moto rettilineo ha accelerazione costante a=+2 m/s² e durata t≥0. La componente finale V e t sono note; si richiede v₀>0. Quale formula isola la componente iniziale v₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₀=V+at",
+          "v₀=V−at",
+          "v₀=V/(at)",
+          "v₀=(V−at)/2",
+          "v₀=at−V"
+        ],
+        "value": "v₀=V−at"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella relazione V=v₀+at il termine at è sommato a v₀. Sottraendolo su entrambi i membri rimane v₀=V−at. Per rispettare v₀>0 i dati devono soddisfare V>at: un valore algebrico negativo non sarebbe ammissibile per questo quesito."
+        },
+        {
+          "type": "formula",
+          "text": "V-at=v_0+at-at"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=V-at"
+        },
+        {
+          "type": "formula",
+          "text": " V>at\\quad(v_0>0)"
+        },
+        {
+          "type": "text",
+          "text": "La somma applica ancora l’incremento invece di rimuoverlo. V/(at) è adimensionale e non è una velocità. La divisione per due non è richiesta dall’equazione; at−V è il negativo dell’inversa corretta. Sostituendo (V−at)+at ritroviamo V."
+        }
+      ],
+      "hints": [
+        "Elimina l’addendo at con una sottrazione uguale sui due membri.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma applica ancora l’incremento invece di rimuoverlo. V/(at) è adimensionale e non è una velocità. La divisione per due non è richiesta dall’equazione; at−V è il negativo dell’inversa corretta. Sostituendo (V−at)+at ritroviamo V.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2310,
+      "title": "Fattori su partenza e durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In due prove rettilinee nello stesso riferimento inerziale l’accelerazione è sempre la costante a=+2 m/s². Nella prima v₀>0 e la durata è t>0; nella seconda sono κ₁v₀ e κ₂t, con κ₁,κ₂>0. V₁,V₂ indicano le componenti finali. Quale formula dà V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁+κ₂",
+          "(κ₁v₀−aκ₂t)/(v₀+at)",
+          "(κ₁v₀+aκ₂t)/(v₀+at)",
+          "(κ₁v₀+aκ₂t)/(2(v₀+at))"
+        ],
+        "value": "(κ₁v₀+aκ₂t)/(v₀+at)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge somma la partenza al contributo dell’accelerazione. Inseriamo i nuovi dati in ciascun addendo, lasciando a invariata, e dividiamo per la somma iniziale. V₁ è positivo, quindi il rapporto è definito."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=v_0+at"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\kappa_1v_0+a\\kappa_2t"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{\\kappa_1v_0+a\\kappa_2t}{v_0+at}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ tratta una somma come un prodotto; κ₁+κ₂ dà due senza cambiamenti invece di uno. Il segno meno cambierebbe accelerazione nella seconda prova, e il denominatore doppio dimezzerebbe il rapporto. Se κ₁=κ₂=κ, la formula corretta raccoglie κ e restituisce κ."
+        }
+      ],
+      "hints": [
+        "Trasforma separatamente v₀ e il contributo at prima del rapporto.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁κ₂ tratta una somma come un prodotto; κ₁+κ₂ dà due senza cambiamenti invece di uno. Il segno meno cambierebbe accelerazione nella seconda prova, e il denominatore doppio dimezzerebbe il rapporto. Se κ₁=κ₂=κ, la formula corretta raccoglie κ e restituisce κ.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2311,
+      "title": "Due contributi che raddoppiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale mantengono a=+2 m/s² costante. La prima ha v₀₁=+2 m/s,t₁=2 s; la seconda v₀₂=+4 m/s,t₂=4 s. V₁,V₂ sono le componenti finali. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella seconda prova raddoppiano sia la partenza sia il contributo dell’accelerazione, perché raddoppia la durata a parità di a. Tutta la somma finale è quindi due volte quella iniziale. Calcoliamo sei e dodici m/s per verificare il ragionamento."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=(2+2\\times2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2+2\\times2)\\,\\mathrm{m/s}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=(4+2\\times4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(4+2\\times4)\\,\\mathrm{m/s}=12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{12}{6}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{6}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplicherebbe fra loro i due raddoppi; qui i contributi sono addendi. Il rapporto non porta unità, mentre ogni velocità ne conserva una. Entrambe le prove mantengono componenti positive e nessuna inversione del moto."
+        }
+      ],
+      "hints": [
+        "Raccogli due dalla somma dei nuovi contributi.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplicherebbe fra loro i due raddoppi; qui i contributi sono addendi. Il rapporto non porta unità, mentre ogni velocità ne conserva una. Entrambe le prove mantengono componenti positive e nessuna inversione del moto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2312,
+      "title": "Media delle velocità finali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 2,
+      "prompt": "In due prove rettilinee nello stesso riferimento inerziale a=+2 m/s² è costante. La prima ha v₀=+2 m/s,t=2 s; la seconda v₀=+4 m/s,t=4 s. Con uguale peso, qual è la media aritmetica delle due componenti finali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 m/s",
+          "8 m/s",
+          "9 m/s",
+          "18 m/s",
+          "9/2 m/s"
+        ],
+        "value": "9 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità finali sono sei e dodici m/s. La media fra prove assegna metà peso a ciascun valore e vale nove m/s. Non si chiede la velocità media durante una delle accelerazioni: quella richiederebbe un confronto diverso fra tempi e spostamenti."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{6+12}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6+12}{2}\\,\\mathrm{m/s}=9\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto manca della divisione per due e nove mezzi la applica due volte; otto e dieci non sono la semisomma. Essendo a comune, anche gli ingressi medi v₀=3 m/s e t=3 s danno 3+2·3=9 m/s: la legge è lineare nei due ingressi in questo confronto."
+        }
+      ],
+      "hints": [
+        "Fai la media di sei e dodici, due uscite di prove diverse.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Diciotto manca della divisione per due e nove mezzi la applica due volte; otto e dieci non sono la semisomma. Essendo a comune, anche gli ingressi medi v₀=3 m/s e t=3 s danno 3+2·3=9 m/s: la legge è lineare nei due ingressi in questo confronto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2313,
+      "title": "Progettare la nuova durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 3,
+      "prompt": "Nello stesso riferimento inerziale due prove rettilinee mantengono a=+2 m/s² costante. La prima ha v₀₁=+2 m/s,t₁=2 s. Nella seconda si impone v₀₂=+4 m/s e si vuole V₂=2V₁, dove V è la componente finale. La nuova durata t₂ deve essere non negativa. Quanto vale t₂/t₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima prova termina a sei m/s, quindi l’obiettivo è dodici. Partendo da quattro occorre guadagnare otto m/s. Dividiamo questa variazione per l’accelerazione due m/s² per ricavare quattro secondi, poi confrontiamo con i due iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=\\frac{V_2-v_{02}}a"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=\\frac{(12-4)\\,\\mathrm{m/s}}{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(12-4)\\,\\mathrm{m/s}}{2\\,\\mathrm{m/s^2}}=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t_2}{t_1}=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "La durata positiva soddisfa il vincolo e il controllo 4+2·4=12 m/s ricostruisce la velocità voluta. Il fatto che il rapporto sia due deriva dai dati scelti: se cambiasse soltanto la durata, il rapporto delle velocità finali non sarebbe in generale lo stesso."
+        }
+      ],
+      "hints": [
+        "Togli dall’obiettivo la nuova velocità iniziale, poi dividi per a.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La durata positiva soddisfa il vincolo e il controllo 4+2·4=12 m/s ricostruisce la velocità voluta. Il fatto che il rapporto sia due deriva dai dati scelti: se cambiasse soltanto la durata, il rapporto delle velocità finali non sarebbe in generale lo stesso.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2314,
+      "title": "Separare guadagno e incremento fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 3,
+      "prompt": "In ogni prova rettilinea, osservata nello stesso riferimento inerziale, v₀>0 e a=+2 m/s² è costante. V è la componente finale. Un display conta tacche T=gV con g>0 costante e offset nullo. Il riferimento v₀=2 m/s,t=2 s dà T=18. La prova ignota ha T=36,t=4 s. Quanto vale v₀, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento termina con V=6 m/s: diciotto tacche indicano un guadagno g=3 s/m. La lettura trentasei rappresenta quindi 12 m/s. Nella nuova prova il contributo fisico at è 8 m/s: lo sottraiamo dalla velocità ricostruita."
+        },
+        {
+          "type": "formula",
+          "text": "V_{\\rm rif}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{18}{6\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{18}{6\\,\\mathrm{m/s}}=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{36}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{36}{3\\,\\mathrm{s/m}}=12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=V-at"
+        },
+        {
+          "type": "formula",
+          "text": "V-at=(12-2\\times4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(12-2\\times4)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Le tacche sono un conteggio puro; g converte fra quel conteggio e una velocità. Il controllo completo è T=3 s/m·[4 m/s+(2 m/s²)(4 s)]=36. Il valore v₀=4 m/s è positivo: la taratura e il vincolo fisico sono entrambi rispettati."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima di togliere l’incremento at.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le tacche sono un conteggio puro; g converte fra quel conteggio e una velocità. Il controllo completo è T=3 s/m·[4 m/s+(2 m/s²)(4 s)]=36. Il valore v₀=4 m/s è positivo: la taratura e il vincolo fisico sono entrambi rispettati.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2315,
+      "title": "Due riferimenti per una velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 3,
+      "prompt": "In ogni prova rettilinea nello stesso riferimento inerziale v₀>0 e a=+2 m/s² è costante. V è la componente finale. Un display conta tacche T=gV+c con g>0,c costanti. I riferimenti (v₀=2 m/s,t=2 s) e (v₀=4 m/s,t=4 s) danno T=13 e 25. La prova ignota ha T=17,t=2 s. Quanto vale v₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "5 m/s",
+          "3 m/s",
+          "4 m/s",
+          "8 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti terminano a sei e dodici m/s. Dodici tacche di differenza per sei m/s danno g=2 s/m; il primo riferimento lascia c=1. Togliamo l’offset dalla lettura diciassette e dividiamo per g: otteniamo V=8 m/s. Da questa velocità togliamo il contributo fisico di quattro m/s."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{25-13}{(12-6)\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{25-13}{(12-6)\\,\\mathrm{m/s}}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=13-2\\times6"
+        },
+        {
+          "type": "formula",
+          "text": "13-2\\times6=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{17-1}{2\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-1}{2\\,\\mathrm{s/m}}=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=V-at"
+        },
+        {
+          "type": "formula",
+          "text": "V-at=(8-2\\times2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(8-2\\times2)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto m/s si ferma alla velocità finale, non alla partenza. Due riusa il primo riferimento; tre e cinque non restituiscono T=17. Il controllo con v₀=4 m/s dà V=8 m/s e T=2·8+1=17, con componenti sempre positive."
+        }
+      ],
+      "hints": [
+        "L’offset si elimina sottraendo le due letture di riferimento.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto m/s si ferma alla velocità finale, non alla partenza. Due riusa il primo riferimento; tre e cinque non restituiscono T=17. Il controllo con v₀=4 m/s dà V=8 m/s e T=2·8+1=17, con componenti sempre positive.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-accelerated-final-speed-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2316,
+      "title": "Un vincolo che ha unità di accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constant-acceleration-final-velocity",
+      "difficulty": 3,
+      "prompt": "Si sceglie una prova rettilinea in un riferimento inerziale: la durata totale è t>0 e la componente iniziale è v₀=(1 m/s²)t. Questo vincolo collega i dati scelti per la prova. Durante il moto l’accelerazione è costante a=+2 m/s². La componente finale è V=+6 m/s. Quanto dura la prova?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 s",
+          "4 s",
+          "1 s",
+          "3 s",
+          "−2 s"
+        ],
+        "value": "2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente del vincolo è una accelerazione, così il prodotto con t è una velocità. Sostituiamo v₀ nella legge finale e sommiamo i due coefficienti con la stessa unità: uno più due dà tre m/s². Dividendo V per questo coefficiente ricaviamo una durata."
+        },
+        {
+          "type": "formula",
+          "text": "V=v_0+at"
+        },
+        {
+          "type": "formula",
+          "text": " V=(1\\,\\mathrm{m/s^2})t+(2\\,\\mathrm{m/s^2})t"
+        },
+        {
+          "type": "formula",
+          "text": " V=(3\\,\\mathrm{m/s^2})t"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{6\\,\\mathrm{m/s}}{3\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6\\,\\mathrm{m/s}}{3\\,\\mathrm{m/s^2}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due secondi rispettano t>0 e ricostruiscono 2+2·2=6 m/s. Quattro, uno e tre secondi darebbero finali 12,3,9 m/s. −2 s è una durata esclusa. Il vincolo non dice che la velocità iniziale cambi mentre la prova si svolge: seleziona una coppia di dati prima di iniziare."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo conservando l’unità del coefficiente uno.",
+        "Controlla componente iniziale, incremento a·t e durata non negativa."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due secondi rispettano t>0 e ricostruiscono 2+2·2=6 m/s. Quattro, uno e tre secondi darebbero finali 12,3,9 m/s. −2 s è una durata esclusa. Il vincolo non dice che la velocità iniziale cambi mentre la prova si svolge: seleziona una coppia di dati prima di iniziare.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d2d3c5b08b7784f3ba31b2993109e2a8ad40056cf94ed2bffa046c03e084a241",
+      "name": "accelerated-final-velocity.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5WZWxvY2l0w6AgZmluYWxlIGNvbiBhY2NlbGVyYXppb25lIGNvc3RhbnRlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIGdyYWZpY2kgdmVsb2NpdMOgLXRlbXBvIGNvbiBzY2FsYSBpZGVudGljYTogMTIwIHVuaXTDoCBTVkcgcGVyIHNlY29uZG8gZSA0MCBwZXIgbWV0cm8gYWwgc2Vjb25kby4gTGEgdmVsb2NpdMOgIGluaXppYWxlIMOoIGR1ZSBtZXRyaSBhbCBzZWNvbmRvOyBs4oCZYWNjZWxlcmF6aW9uZSBjb3N0YW50ZSBkaSBkdWUgbWV0cmkgYWwgc2Vjb25kbyBxdWFkcmF0byBwb3J0YSBhIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kbyBhIHVuIHNlY29uZG8gZSBzZWkgYSBkdWUgc2Vjb25kaS4gTGEgcmV0dGEgY29udGludWEgw6ggbGEgbGVnZ2UgZGVsbGEgdmVsb2NpdMOgLCBwZXJjaMOpIGzigJlhY2NlbGVyYXppb25lIMOoIGNvc3RhbnRlLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjIwIiByeD0iMTgiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZjNiIj48dGV4dCB4PSIyOCIgeT0iMzciIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI3MDAiPlBhcnRlbnphICsgaW5jcmVtZW50byA9IGZpbmFsZTwvdGV4dD4KPGcgZm9udC1zaXplPSIyMSIgZm9udC13ZWlnaHQ9IjY1MCI+PHRleHQgeD0iMjgiIHk9Ijc5Ij4xIMK3IENvbnNlcnZhIGxhIHZlbG9jaXTDoCBpbml6aWFsZTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDM5Ij4yIMK3IEFnZ2l1bmdpIDIgbS9zIG9nbmkgc2Vjb25kbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzk5Ij4zIMK3IExlZ2dpIGlsIHZhbG9yZSBmaW5hbGU8L3RleHQ+PC9nPgo8ZyBzdHJva2U9IiM1OTY5NmQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCA5MFYzNDBINDAwTTEwMCA0NTBWNzAwSDQwME0xMDAgODEwVjEwNjBINDAwIi8+PHBhdGggZD0iTTk0IDEwMEgxMDZNOTQgMTgwSDEwNk05NCAyNjBIMTA2TTIyMCAzMzRWMzQ2TTM0MCAzMzRWMzQ2TTk0IDQ2MEgxMDZNOTQgNTQwSDEwNk05NCA2MjBIMTA2TTIyMCA2OTRWNzA2TTM0MCA2OTRWNzA2TTk0IDgyMEgxMDZNOTQgOTAwSDEwNk05NCA5ODBIMTA2TTIyMCAxMDU0VjEwNjZNMzQwIDEwNTRWMTA2NiIvPjwvZz4KPGcgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHRleHQgeD0iMTAwIiB5PSIzNjciPjA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIzNjciPjE8L3RleHQ+PHRleHQgeD0iMzQwIiB5PSIzNjciPjI8L3RleHQ+PHRleHQgeD0iMTAwIiB5PSI3MjciPjA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSI3MjciPjE8L3RleHQ+PHRleHQgeD0iMzQwIiB5PSI3MjciPjI8L3RleHQ+PHRleHQgeD0iMTAwIiB5PSIxMDg3Ij4wPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iMTA4NyI+MTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjEwODciPjI8L3RleHQ+PC9nPgo8ZyBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj48dGV4dCB4PSI4MyIgeT0iMTA2Ij42PC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSIxODYiPjQ8L3RleHQ+PHRleHQgeD0iODMiIHk9IjI2NiI+MjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iMzQ2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI0NjYiPjY8L3RleHQ+PHRleHQgeD0iODMiIHk9IjU0NiI+NDwvdGV4dD48dGV4dCB4PSI4MyIgeT0iNjI2Ij4yPC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI3MDYiPjA8L3RleHQ+PHRleHQgeD0iODMiIHk9IjgyNiI+NjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iOTA2Ij40PC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI5ODYiPjI8L3RleHQ+PHRleHQgeD0iODMiIHk9IjEwNjYiPjA8L3RleHQ+PC9nPgo8ZyBmb250LXNpemU9IjE4Ij48dGV4dCB4PSIxMTAiIHk9IjExMiI+diAobS9zKTwvdGV4dD48dGV4dCB4PSI0MTEiIHk9IjM0NiI+dCAocyk8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI0NzIiPnYgKG0vcyk8L3RleHQ+PHRleHQgeD0iNDExIiB5PSI3MDYiPnQgKHMpPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iODMyIj52IChtL3MpPC90ZXh0Pjx0ZXh0IHg9IjQxMSIgeT0iMTA2NiI+dCAocyk8L3RleHQ+PC9nPgo8ZyBmaWxsPSIjMTI2MTdjIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIyNjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI2MjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSI0NjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSI5ODAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSI4MjAiIHI9IjYiLz48L2c+CjxnIHN0cm9rZT0iIzliNGIyMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTAwIDYyMEwzNDAgNDYwTTEwMCA5ODBMMzQwIDgyMCIvPjwvZz4KPGcgc3Ryb2tlPSIjMTI2MTdjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCA2MjBIMjIwVjU0MEgzNDBWNDYwTTM0MCA4MjBWMTA2MCIvPjwvZz48ZyBmaWxsPSIjMTI2MTdjIj48Y2lyY2xlIGN4PSIyMjAiIGN5PSI1NDAiIHI9IjUiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSI5MDAiIHI9IjUiLz48L2c+CjxnIGZvbnQtc2l6ZT0iMTkiPjx0ZXh0IHg9IjM2NSIgeT0iMTYyIj524bWiID0gMiBtL3M8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSIxOTUiPmEgPSAyIG0vc8KyPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iNTM1Ij5hwrd0ID0gNCBtL3M8L3RleHQ+PHRleHQgeD0iMTU1IiB5PSI2NTMiPs6UdCA9IDIgczwvdGV4dD48dGV4dCB4PSIzNjUiIHk9Ijg5NSI+ViA9ICs2IG0vczwvdGV4dD48dGV4dCB4PSIxNTUiIHk9IjEwMTMiPs6UdCA9IDIgczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE0MCI+UmV0dGEgY29udGludWE6IGFjY2VsZXJhemlvbmUgY29zdGFudGUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTc1Ij5MZWdnaSB1bmEgdmVsb2NpdMOgOiBub24gbOKAmWFyZWEgc290dG8gbGEgcmV0dGEuPC90ZXh0PjwvZz48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

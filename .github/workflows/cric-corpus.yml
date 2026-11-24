@@ -15,10 +15,12 @@ concurrency:
 jobs:
   evidence:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    # Full corpus rendering remains exhaustive, in bounded isolated processes.
+    timeout-minutes: 180
     env:
       ASTRA_CHROME: /usr/bin/google-chrome
       ASTRA_RESULTS: var/corpus-browser
+      ASTRA_BROWSER_WORKERS: '4'
     defaults:
       run:
         working-directory: officina-di-fisica

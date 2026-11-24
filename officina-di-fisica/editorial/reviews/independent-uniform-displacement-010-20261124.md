@@ -1,18 +1,18 @@
 # Revisione indipendente AI — uniform-displacement-010 — 24 novembre 2026
 
-Revisore `/root/review_corpus_increment`, distinto dall'autore `/root/author_vectors_b`. Lettura individuale di tutti i 16 enunciati, opzioni, spiegazioni, ipotesi, unità e figura, senza modificare i candidati. Verificatore e rapporti sono del revisore e non importano codice autore. **16/16 PASS; nessun finding scientifico residuo nell'edizione autore 4eb7d7c2. DRAFT; humanApproval=NOT_RUN.** Nessuna approvazione umana o pubblicazione.
+Revisore `/root/review_corpus_increment`, distinto dall'autore `/root/author_vectors_b`. Lettura individuale di tutti i 16 enunciati, opzioni, spiegazioni, ipotesi, unità e figura, senza modificare i candidati. Verificatore e rapporti sono del revisore e non importano codice autore. **16/16 PASS; nessun finding scientifico residuo nell'edizione autore 4c1f2370, dopo la rilettura della presentazione 08 descritta sotto. DRAFT; humanApproval=NOT_RUN.** Nessuna approvazione umana o pubblicazione.
 
 Sorgenti confrontate: Git `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`, `packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-01.json`. Verificati tutti gli ID `AR-<sourceId>`, commit e digest dei record originali/candidati; la firma indipendente è stata congelata solo dopo la lettura. Allegato Base64 e SVG locale corrispondenti.
 
 | Artefatto | Hash |
 |---|---|
-| Pacchetto, digest JSON canonico | `15c7f5d1f426241c4c8759a8625aeceec8b5fa9e7812f649d5e571cef66a48ec` |
-| Binding, digest JSON canonico | `4007f81c0bacc7557ed5547bad9da8d67040d83fd8dfc0e75e845f1b211e0fa5` |
-| Pacchetto, SHA-256 file | `7765a96c9d6f9265c18952970fe5b7db52a8529b40895ef4e538f3f7b2dc925f` |
-| Binding, SHA-256 file | `31cc4c0cb628d4db42b3aedb3891b8480049876daf2128f70599a59059f5dd15` |
+| Pacchetto, digest JSON canonico | `f4d3923ef8bf232f65513a086496fe957a1a48151f8a8941c7abe275f40e21b6` |
+| Binding, digest JSON canonico | `10fac8460d78704474e729c04726da72bfdc773e951d9a7188f62c268b3c04e3` |
+| Pacchetto, SHA-256 file | `c6c237e020a0aac4ea242e997077a83297b81106747f478526d5c69da7cc621f` |
+| Binding, SHA-256 file | `e9ba7ab84baa50237c2b506473773ecbf11514181c56f2a65c9628e377174fe8` |
 | SVG, SHA-256 | `2efc95e2aa57c1b4266f85eb38b94bad92c0a81b8bf5a8ff83879f6d2e632d81` |
-| Verificatore indipendente, SHA-256 | `b670702e41c5e14a4e5547dcef8bda74b303be5ecf6e1a3ab04e3601aa11db53` |
-| Rapporto scientifico JSON, SHA-256 | `65971ad5cbcef18af84c9f147ccf9d9d8601050d8e5d4b5d9249aa12488ae57a` |
+| Verificatore indipendente, SHA-256 | `b8b3d3ce44665640947cec6109dc66b658f75c5560500aa4c2b7bd59feb48d6d` |
+| Rapporto scientifico JSON, SHA-256 | `994e97b265db608786fa1bd03d5b27d173cafd1d1c5c38acf896470e764dec96` |
 
 ## Risultati individuali e casi esaminati
 
@@ -44,5 +44,11 @@ Figura riletta: nella seconda tappa le posizioni `0,2,4 m` hanno ascisse grafich
 L'oracolo ricava lo spostamento da differenze di coordinate e da integrali di velocità costante. Le inverse e le tarature sono risolte con SymPy; Pint controlla unità, 5 m/s→18 km/h e guadagni inversi di lunghezza. Il caso 16 usa due variabili diverse: durata selezionata T e tempo interno τ. Verificato in memoria che `∫₀ᵀ T dτ=T²`, mentre `∫₀ᵀ τ dτ=T²/2`: i due modelli non sono intercambiabili.
 
 Controprove eseguite: 11 chiavi numeriche errate e ribindate per 01/05/06/07/08/11/12/13/14/15/16 sono rifiutate anche dall'oracolo indipendente, oltre che dalle firme. In 03, sostituire la chiave con assenza di tutte le forze è rifiutato dal controllo concettuale; unità sbagliata per una velocità rifiutata. È stato controllato anche moto uniforme negativo `v=−2m/s,T=2s→D=−4m`. Enunciato alterato e ribindato, sorgente azzerata, batch vuoto/parziale/duplicato sono stati rifiutati.
+
+## Rilettura della presentazione 08
+
+La prima edizione scientificamente letta era `4eb7d7c2`, digest pacchetto `15c7f5d1f426241c4c8759a8625aeceec8b5fa9e7812f649d5e571cef66a48ec`. Il browser dell'integratore ha poi individuato un overflow della sua lunga formula di conversione a 320 px. L'autore ha scomposto soltanto il quesito 08 in sette blocchi in `4c1f2370`; gli altri 15 record sono stati confrontati e risultano identici. Nessuna modifica di enunciato, opzioni, risposta, sorgente o figura.
+
+Il revisore ha verificato che la vecchia firma rifiutasse prima la nuova presentazione, poi riletto ogni nuovo passaggio: `1h=3600s`; `d=(5m/s)(3600s)=18000m`; `d=(18000/1000)km=18km`; `v=18km/1h=18km/h`. Quantità, equivalenze e unità sono coerenti; il procedimento manuale già esaminato resta valido. Solo dopo questa lettura è stata aggiornata la firma 08 e rigenerato il rapporto: 16/16 PASS. Questa rilettura matematica non sostituisce la nuova esecuzione browser dell'integratore.
 
 Limiti: non attesta rendering browser, importazione canonica, CI, merge o pubblicazione di questo lotto. Nessuna prova empirica con studenti o certificazione di accessibilità; queste non derivano automaticamente dall'aritmetica esatta. Le firme valgono solo per gli hash sopra. Stato: **AI_REVIEWED_EXACT_EDITION / HUMAN_APPROVAL_NOT_RUN / DRAFT**.

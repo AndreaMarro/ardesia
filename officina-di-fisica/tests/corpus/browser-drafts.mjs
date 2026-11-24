@@ -67,6 +67,8 @@ try {
    await page.waitForFunction(()=>!document.querySelector('#edit-preview [data-tex]'),null,{timeout:15000});
    await page.evaluate(()=>document.fonts.ready);
    const images=preview.locator('img');
+   const figureCount=await images.count();
+   assert.ok(figureCount>=[...(row.blocks||[]),...(row.promptBlocks||[])].filter(b=>b.type==='figure').length,'Every authored figure is rendered');
    for(const img of await images.all()) await img.evaluate(el=>el.decode());
    await page.addScriptTag({path:path.join(root,'node_modules/axe-core/axe.min.js')});
    const result=await preview.evaluate(async el=>({
@@ -74,8 +76,9 @@ try {
     formulas:[...el.querySelectorAll('.math')].map(f=>({width:f.clientWidth,scroll:f.scrollWidth,typeset:f.querySelector('.katex-html').getBoundingClientRect().width})),
     overflow:document.documentElement.scrollWidth-innerWidth
    }));
-   results.push({id:row.id,width,...result});
-   if([pkg.records[0].id,pkg.records[2].id,pkg.records.at(-1).id].includes(row.id) && width!==768){
+   assert.ok(result.formulas.length>=[...(row.blocks||[]),...(row.promptBlocks||[])].filter(b=>b.type==='formula').length,'Every authored formula is rendered');
+   results.push({id:row.id,width,figureCount,...result});
+   if([pkg.records[0]?.id,pkg.records[2]?.id,pkg.records.at(-1)?.id].includes(row.id) && width!==768){
     await preview.scrollIntoViewIfNeeded();
     await page.screenshot({path:path.join(output,row.id+'-'+width+'.png'),animations:'disabled'});
    }
@@ -90,6 +93,10 @@ try {
  assert.equal(failures.length,0);
 } finally {
  server.kill('SIGKILL');
- await Promise.race([browser?.close(),new Promise(resolve=>setTimeout(resolve,5000))]);
+ server.stdout?.destroy();
+ server.unref();
+ let closeTimer;
+ try{await Promise.race([browser?.close(),new Promise(resolve=>{closeTimer=setTimeout(resolve,5000);})]);}
+ finally{clearTimeout(closeTimer);}
  await rm(data,{recursive:true,force:true});
 }

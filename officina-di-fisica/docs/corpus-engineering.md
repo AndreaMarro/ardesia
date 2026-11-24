@@ -58,7 +58,75 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint U1 — 160 quesiti e 16 altre attività
+## Checkpoint del primo shard U2 — 320 quesiti e 37 altre attività
+
+Completate le ulteriori64schede su medie a tempi uguali, andata/ritorno e primo
+arresto: tuttaU1 e tutti i160ID di U2-01 sono ora revisionati in bozza, per320
+quesiti complessivi. I quattro nuovi lotti hanno verifica indipendente per ID,
+88controprove, import idempotente e192anteprime terminali PASS. Il totale delle
+anteprime è966:960dei quesiti e6delle due nuove edizioni degli esempi.
+
+Anche C1-E009–E016 sono stati riesaminati individualmente:8originali validi con
+procedure manuali documentate,36controlli e figure verificate; nessuna nuova
+edizione necessaria. Le37attività riesaminate comprendono16percorsi/contenitori,
+5laboratori e16esempi, due dei quali hanno le candidate corrette v2. Restano
+4286quesiti da revisionare integralmente e348altre attività. I due problemi delle
+edizioni pubblicate C1-E003/E008 restano espliciti fino al gate editoriale umano.
+
+Checkpoint `fa1bbebaa9e3638a04508c21adcf8bc70d6340e920a5d8a088aece0887c0d8d6`;
+le generazioni precedenti rimangono conservate. La prosecuzione parte da
+`u2-freefall-speed-01` nello shard U2-02; caduta libera e moto circolare sono
+assegnati ad autori distinti, senza contare le candidate in corso come completate.
+
+## Checkpoint precedente U2 iniziale — 256 quesiti e 29 altre attività
+
+La PR355 è integrata in `ba6aec22008f2ac83de4959a6165bac5a8ee0a14`; le run
+post-merge Officina45466165934 e corpus45466165896 sono SUCCESS. Il successivo
+incremento è sul ramo `feat/cric-u2-first-families`, da integrare dopo la propria CI.
+
+Sono revisionati256quesiti, inclusi96nuovi U2 su moto uniforme, posizione,
+velocità media, accelerazione media, velocità finale e partenza da fermo. Autore
+e verificatore sono distinti per ciascun ID. Le procedure manuali e le controprove
+mantengono distinti componenti con segno, moduli, medie e vincoli fra prove.
+
+Sono riesaminate29altre attività:16precedenti,5laboratori classici e8esempi C1.
+Il riesame dei laboratori controlla anche il runtime tramite21configurazioni e131
+controlli indipendenti. C2 confronta le letture effettive a quattro cifre
+significative:4909/78540 si confronta con1/16 tramite78544 e78540, senza divisione
+decimale. Le consegne qualitative non vengono presentate come calcoli numerici.
+
+Due originali non sono certificati senza calcolatrice: C1-E003 conclude con un
+angolo decimale da trigonometria inversa; C1-E008 scrive approssimazioni come
+uguaglianze esatte e le propaga. Le nuove edizioni v2/base1 sostituiscono quel
+procedimento con seno3/5 e coseno4/5 nel primo quadrante, e conπ/5 eπ²/5 nel moto
+circolare. La review indipendente approva tecnicamente le candidate DRAFT, mentre
+conserva i due FAIL degli originali in `publishedEditionReview`. La pubblicazione
+rimane separata: non è dichiarato100%manuale il materiale attualmente pubblicato.
+
+`revisionPackage` estende il medesimo registro delle attività: identità, fonti,
+versioni, firme, import e browser sono controllati con gli stessi strumenti.
+Ogni nuova edizione conserva i live e i payload storici: nessun dato degli utenti
+è stato aperto. La generazione registra esplicitamente le due edizioni pubblicate
+problematiche e la coda delle nuove bozze, senza trasformare il loro PASS in un
+PASS degli originali. Un test rifiuta proprio tale contraddizione.
+
+Sono passate774anteprime (768dei quesiti e6delle due nuove edizioni) con exit0,
+completezza delle formule e figure, decodifica degli asset, controllo degli ospiti,
+axe e overflow. Un primo run parallelo era rimasto vivo nel cleanup dopo le
+asserzioni ed è stato interrotto con esito1. La correzione chiude esplicitamente
+la stdout del server di prova e ne rimuove il riferimento, senza forzare exit0 o
+chiudere browser dell'utente. Il successivo run completo termina con16lotti,
+quattro worker e zero errori. Corretto anche l'accesso al terzo record, inesistente
+nei pacchetti di due esempi. I contratti offline del corpus hanno invalidazione
+propria; non invalidano più il lettore, mentre CSS e contratti runtime sì.
+
+Il checkpoint `c0ef6e38483d96d9421d448e7effd2c9eb43ab78291696916f74475d29417e19`
+contabilizza4606quesiti e385attività: restano4350revisioni complete e356attività.
+HumanApproval rimaneNOT_RUN e zero nuovi contenuti sono pubblicati. La prossima
+famiglia da consolidare è `u2-equal-time-average-01`; altri64candidati sono già
+scritti e recensiti, ma non contano come completati prima del loro collaudo.
+
+## Checkpoint precedente U1 — 160 quesiti e 16 altre attività
 
 La PR354 è integrata in `f972c972ffdc8d229c2d55dc7cc43b8a335bf5a1` dopo i check
 tecnici; la CI corpus post-merge è SUCCESS, mentre il job Officina va riconciliato

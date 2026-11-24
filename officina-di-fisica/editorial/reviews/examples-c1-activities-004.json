@@ -1,0 +1,860 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-c1-activities-004",
+  "records": [
+    {
+      "id": "C1-E009",
+      "sourceSha256": "dc86fc860c30006fc3a5d25bd950e922077a371a55d9030e42bf55574b8a1695",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "accelerazione da risultante",
+          "independentExact": "1",
+          "printedValue": "1",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "cancellazione Newton/kg",
+          "independentExact": "1",
+          "printedValue": "1",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "risultante",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "accelerazione da risultante": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "cancellazione Newton/kg": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "risultante": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "10-6=4 N; dividere per4 kg da1 m/s2. In verticale N=mg, non serve assegnare g per il risultato orizzontale.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Riferimento inerziale, massa costante, piano orizzontale, fune orizzontale e contatto mantenuto; il blocco gia scorre a destra, quindi l'attrito assegnato e verso sinistra.",
+      "pedagogicalReview": "Isolamento e due assi coerenti; usare10N da solo darebbe2,5m/s2, mentre attrito opposto riduce la risultante. Accelerazione positiva e velocita iniziale positiva implicano aumento di rapidita.",
+      "assetChecksums": {
+        "/figures/C1-forze.svg": "23032966207743fa88c6b6c4491a80d13b9da68c1e913bd4ebd8719f610c620a"
+      },
+      "figureReview": "Quattro forze sul blocco: N alto e mg basso con uguali lunghezze80px; trazione destra e attrito sinistra. Caption dichiara direzioni/versi, non scala metrica:140px e79px non sono dati quantitativi da misurare.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E010",
+      "sourceSha256": "e98cbb30546f7e519a5eab3db8839adc5031535cf44fb83e63b0e7b81bf8821f",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "normale",
+          "independentExact": "339/5",
+          "printedValue": "339/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "peso",
+          "independentExact": "294/5",
+          "printedValue": "294/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "risultante verso alto",
+          "independentExact": "9",
+          "printedValue": "9",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "normale": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "peso": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "risultante verso alto": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "9,8+1,5=11,3;6*(11+0,3)=66+1,8=67,8 N. Peso6*(10-0,2)=58,8 N, differenza9 N=6*1,5.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Equazione nel riferimento del suolo approssimato inerziale; la cassa resta a contatto e condivide l'accelerazione verticale data. N e forza, non massa letta in kg; nessuna forza fittizia aggiunta nel riferimento inerziale.",
+      "pedagogicalReview": "Distingue normale, peso, risultante e massa;67,8N>58,8N e differenza9N. Freccia accelerazione esterna non e una terza forza sul corpo.",
+      "assetChecksums": {
+        "/figures/C1-ascensore.svg": "94d0a446107d71a2b193ede59de57c73d4c26db7fe2dbc81e6f64dcb4cd2c8e1"
+      },
+      "figureReview": "Normale alta81px, peso basso70px; rapporto qualitativo corretto N>mg, compatibile entro risoluzione con67,8/58,8. Accelerazione esterna alla cassa e verso l'alto; distinta dalle forze.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E011",
+      "sourceSha256": "4d6042e3255513074c58ab9506e4cb22a08940dbfab276d086e7d94104d23858",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "normale",
+          "independentExact": "80",
+          "printedValue": "80",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "soglia statica",
+          "independentExact": "32",
+          "printedValue": "32",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "attrito orientato necessario",
+          "independentExact": "-20",
+          "printedValue": "-20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "margine di adesione",
+          "independentExact": "12",
+          "printedValue": "12",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione effettiva",
+          "independentExact": "0",
+          "printedValue": "0",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "normale": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "soglia statica": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "attrito orientato necessario": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "margine di adesione": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "accelerazione effettiva": {
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "N=8*10=80 N;40/100 di80=32 N. Per quiete f=-20 N e |f|20<32; risultante20-20=0. Coefficiente dinamico non pertinente finche non scorre.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Scatola inizialmente ferma su piano orizzontale, tiro orizzontale, Coulomb statico adattivo e nessuna altra forza orizzontale; soglia non automaticamente forza effettiva.",
+      "pedagogicalReview": "Verifica prima fattibilita della quiete. Usare32N come attrito effettivo darebbe falsa risultante-12N; usare coefficiente dinamico darebbe24N ma non e il regime descritto.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E012",
+      "sourceSha256": "5028c3cbda1d0c5063bf599af0601f064a4d4620327fb8c20a1f5b1977de7e37",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "massa SI",
+          "independentExact": "3/20",
+          "printedValue": "3/20",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "allungamento SI",
+          "independentExact": "3/100",
+          "printedValue": "3/100",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "costante elastica",
+          "independentExact": "49",
+          "printedValue": "49",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "controllo dimensionale forza/allungamento",
+          "independentExact": "49",
+          "printedValue": "49",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "richiamo a un centimetro",
+          "independentExact": "49/100",
+          "printedValue": "49/100",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "massa SI": {
+          "[mass]": "1"
+        },
+        "allungamento SI": {
+          "[length]": "1"
+        },
+        "costante elastica": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "controllo dimensionale forza/allungamento": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "richiamo a un centimetro": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "150g=3/20kg,3cm=3/100m; k=(3/20)*(49/5)/(3/100)=49 N/m. Per1cm49/100=0,49 N.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Equilibrio dopo arresto; molla nel tratto lineare di Hooke e allungamento rispetto alla lunghezza naturale, nessun'altra forza verticale sul carico. Costante del modello lineare inferita dal punto di equilibrio.",
+      "pedagogicalReview": "Converte entrambe le unita e isola k da kx=mg; cm non convertiti darebbero errore100. Controllo aggiuntivo a1cm nel medesimo intervallo lineare.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E013",
+      "sourceSha256": "6ade4da8ce703237e74507ca793e7749054375717edc7755d08f63dfac681a2b",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "tensione",
+          "independentExact": "120",
+          "printedValue": "120",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "lavoro sul carico",
+          "independentExact": "180",
+          "printedValue": "180",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "potenza",
+          "independentExact": "60",
+          "printedValue": "60",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "lavoro del peso",
+          "independentExact": "-180",
+          "printedValue": "-180",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "controllo T per velocita",
+          "independentExact": "60",
+          "printedValue": "60",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "tensione": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "lavoro sul carico": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "potenza": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "lavoro del peso": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "controllo T per velocita": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "T=12*10=120 N;h=3/2m quindi lavoro120*(3/2)=180 J;180/3=60 W. Velocita(3/2)/3=1/2 m/s;120*(1/2)=60 W.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Velocita verticale costante, carico puntiforme di massa costante, peso e tensione uniche forze che lavorano; potenza meccanica trasferita al carico, non potenza elettrica o rendimento dell'argano.",
+      "pedagogicalReview": "Lavoro positivo della tensione, negativo del peso e somma zero coerenti con cinetica costante. Energia gravitazionale cresce, potenza meccanica non implica consumo elettrico uguale.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E014",
+      "sourceSha256": "459f015486eb5c372f5b3a1d4871bcba9f7e154d8f64b529411fbb4aff564872",
+      "sourceVersion": 2,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "lavoro integrale forza costante",
+          "independentExact": "12",
+          "printedValue": "12",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia iniziale",
+          "independentExact": "1",
+          "printedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia finale",
+          "independentExact": "13",
+          "printedValue": "13",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "quadrato rapidita",
+          "independentExact": "13",
+          "printedValue": "13",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "radice positiva esatta",
+          "independentExact": "sqrt(13)",
+          "printedValue": "sqrt(13)",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "controllo cinematico vi2+2as",
+          "independentExact": "13",
+          "printedValue": "13",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "approssimazione secondaria 3,61",
+          "independentExact": "sqrt(13)",
+          "printedValue": "3.61",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "explicit_approximation_nearest_hundredth",
+          "manualBounds": "3.605 < sqrt(13) < 3.615",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "lavoro integrale forza costante": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energia iniziale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energia finale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "quadrato rapidita": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "radice positiva esatta": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "controllo cinematico vi2+2as": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "approssimazione secondaria 3,61": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "L=4*3=12 J;Ki=(1/2)*2*1=1 J;Kf=13 J;vf2=2*13/2=13 m2/s2 e vf=+sqrt13 m/s. 9<13<16. Per3,61,721^2=519841<520000<522729=723^2, dividere per40000 da3,605<sqrt13<3,615.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Massa costante, risultante4N costante concorde al moto per3m; velocita non inverte segno. Teorema lavoro-energia della risultante, non di una forza parziale.",
+      "pedagogicalReview": "Conserva energia cinetica iniziale; lavoro12J non e Kf13J. Radice esatta esplicita e accettabile senza calcolatrice;3,61 e approssimazione secondaria corretta, non requisito di inversa numerica.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E015",
+      "sourceSha256": "9d515d5810a20bb0b2bd02db31525ef8d3edd335cac1265d15e4f9ae255bcaa8",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "energia gravitazionale",
+          "independentExact": "36",
+          "printedValue": "36",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia in fondo",
+          "independentExact": "25",
+          "printedValue": "25",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "rapidita in fondo",
+          "independentExact": "5",
+          "printedValue": "5",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "rapidita senza attrito",
+          "independentExact": "6",
+          "printedValue": "6",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "energia gravitazionale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energia in fondo": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "rapidita in fondo": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "rapidita senza attrito": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "1,8=9/5;2*10*9/5=36 J;36-11=25 J;vf=sqrt(2*25/2)=sqrt25=5 m/s. Senza perdita sqrt36=6 m/s.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Partenza da fermo; dislivello verticale assegnato, g costante, pista fissa e contatto ideale con normale perpendicolare allo spostamento. Lavoro dissipativo totale gia dato; il blocco raggiunge il fondo come descritto.",
+      "pedagogicalReview": "Usa quota verticale invece di lunghezza della pista, e somma algebrica36+(-11). Il segno positivo del lavoro d'attrito produrrebbe erroneamente piu energia; benchmark senza attrito6m/s correttamente superiore a5.",
+      "assetChecksums": {
+        "/figures/C1-energia.svg": "13899393ff8432b08112f3766b163b4223d5d6f3d3541630b24f5a56faa1d21b"
+      },
+      "figureReview": "Schema di discesa con A alto, B basso e quota h verticale, non lungo il piano; z=0 al livello di B. Il simbolo del blocco sopra la pista e schematico, non una misura aggiuntiva di quota o rotolamento.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E016",
+      "sourceSha256": "b22750f9423aabb67dc536c4416362c038c43bead0485d3ec1ff42b9431c98d1",
+      "sourceVersion": 1,
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "energia elastica iniziale",
+          "independentExact": "1/5",
+          "printedValue": "1/5",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "quadrato rapidita finale",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "rapidita positiva",
+          "independentExact": "2",
+          "printedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "controllo kx2/m",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "energia elastica iniziale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "quadrato rapidita finale": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "rapidita positiva": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "controllo kx2/m": {
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "4cm=1/25m;xi2=1/625m2;250/(1/10)=2500s^-2;2500/625=4m2/s2 e radice positiva2m/s. Energia(1/2)*250/625=1/5J.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Molla ideale nel regime lineare, guida orizzontale liscia, cursore inizialmente fermo; energia della molla trasferita al cursore alla lunghezza naturale, senza perdite o energia cinetica significativa della molla.",
+      "pedagogicalReview": "Compressione negativa ma energia quadratica positiva. Si chiede rapidita, quindi radice non negativa; il verso richiede geometria e richiamo, non il segno perso nel quadrato.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "69778cbd9f6acec05bc9b63a6830d947a6a812f160265362bf08a640224324e8",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C1.json",
+  "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_author",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

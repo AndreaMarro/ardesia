@@ -145,3 +145,9 @@ Prossimi passi del coordinatore/reviewer:
    C1-L003/C1-L005; nessuna ipotesi deve sparire con il cambio di rappresentazione.
 4. Mantenere DRAFT e approvazione umana NOT_RUN finché le rispettive fasi non siano
    state eseguite: la presente consegna non autorizza una promozione editoriale.
+
+Correzione successiva ricevuta dal reviewer: Position011-ID07 presentava due
+distrattori numericamente equivalenti,2 e8/4. La seconda opzione è ora1 e il
+feedback spiega che uno ignorerebbe il tempo trascorso diverso. Chiave5/3 invariata;
+pacchetto e binding rigenerati, import temporaneo16/0revisioni e pubblicati invariati.
+Nessun giudizio scientifico indipendente è attribuito all’autore di questa correzione.

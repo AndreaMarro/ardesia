@@ -4,8 +4,8 @@ import json
 import tempfile
 import unittest
 
-from tools.corpus_engineering.batches import load_activity_registry, load_registry
-from tools.corpus_engineering.pipeline import git_bytes
+from tools.corpus_engineering.batches import load_activity_registry, load_registry, assert_activity_identity
+from tools.corpus_engineering.pipeline import git_bytes,digest
 from tools.corpus_engineering.method_activity_verifier import verify
 
 APP=Path(__file__).resolve().parents[2]
@@ -13,6 +13,27 @@ REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
 
 
 class ActivityReviews(unittest.TestCase):
+    def test_activity_revision_cannot_forge_source_candidate_version_or_approval(self):
+        key='C1-E-test';source={'id':key,'kind':'example','version':1}
+        candidate={**source,'version':2,'baseVersion':1}
+        binding={'id':key,'sourceId':key,'sourceSha256':digest(source),'candidateSha256':digest(candidate)}
+        result={'id':key,'sourceSha256':digest(source),'candidateSha256':digest(candidate),'ok':True,
+                'originalEditionRetained':True,'humanApproval':'NOT_RUN','publicationAction':'DRAFT',
+                'calculationScope':'EXACT_MANUAL_CALCULATION','manualArithmetic':'Fixture only',
+                'physicalAssumptions':'Fixture only','pedagogicalReview':'Fixture only','reviewedSignature':'c'*64,
+                'candidateVersion':2,'baseVersion':1,'failedPublishedEdition':True,
+                'publishedEditionReview':{'sourceSha256':digest(source),'ok':False,'humanApproval':'NOT_RUN','publicationAction':'NONE'}}
+        assert_activity_identity([result],{key},{key:source},{key:candidate},{key:binding})
+        for field,value in [('candidateSha256','0'*64),('sourceSha256','0'*64),('humanApproval','APPROVED'),('publicationAction','PUBLISHED')]:
+            bad={**result,field:value}
+            with self.assertRaises(ValueError):assert_activity_identity([bad],{key},{key:source},{key:candidate},{key:binding})
+        with self.assertRaises(ValueError):assert_activity_identity([result],{key},{key:source},{key:candidate},{})
+        bad={**candidate,'version':1,'baseVersion':0}
+        with self.assertRaises(ValueError):assert_activity_identity([result],{key},{key:source},{key:bad},{key:binding})
+        with self.assertRaises(ValueError):assert_activity_identity([{**result,'publishedEditionReview':None}],{key},{key:source},{key:candidate},{key:binding})
+        contradictory={**result,'publicationAction':'NONE','failedPublishedEdition':True}
+        with self.assertRaises(ValueError):assert_activity_identity([contradictory],{key},{key:source})
+
     def sources(self):
         return {r['id']:r for file in ('catalog.json','metodo.json')
                 for r in json.loads(git_bytes(APP.parent,REF,'officina-di-fisica/content/'+file))}

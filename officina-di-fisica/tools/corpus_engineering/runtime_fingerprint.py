@@ -13,6 +13,9 @@ def runtime_fingerprint(app):
         for file in sorted((app/folder).rglob("*")):
             relative=file.relative_to(app)
             if not file.is_file() or any(part.startswith('.') or part=='__pycache__' for part in relative.parts):continue
+            # Build-only corpus contracts are never read by the preview importer
+            # or learner runtime; they have their own scientific/registry hashes.
+            if folder=='contracts' and file.name.startswith('corpus-'):continue
             if not file.resolve().is_relative_to(app):raise ValueError("Runtime fingerprint cannot follow external symlinks")
             files[relative.as_posix()]=file_sha(file)
     for name in ("package.json","package-lock.json","tools/corpus_engineering/draft_import.py",

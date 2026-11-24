@@ -29,6 +29,10 @@ Collegamento C1-L003, prerequisiti C1-L001/L002/L003 e riuso C6 già esistenti.
 | 15 | Riferimenti A=2,3 m/s²; g=2 s²/m,c=1; T=9 ⇒ A=4 ⇒ v_f=10 m/s. |
 | 16 | v_f=3vᵢ ⇒ AΔt=2vᵢ ⇒ vᵢ=2 m/s, v_f=6 m/s. |
 
+Correzione dopo finding indipendente sul feedback 08: il distrattore 1/40
+è 250/100² (fattore cento applicato due volte), non il reciproco di 250/100,
+che sarebbe 2/5. Corretto solo il feedback, rigenerati candidato e binding.
+
 La figura originale usa assi velocità-tempo, stessa scala nei tre pannelli e
 secante tratteggiata. Dichiara di non ricostruire le velocità intermedie. Le due
 misure danno Δv=4 m/s e Δt=2 s: il rapporto è medio, non automaticamente istantaneo.

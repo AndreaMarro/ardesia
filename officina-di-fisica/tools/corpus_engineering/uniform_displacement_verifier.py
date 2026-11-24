@@ -20,7 +20,7 @@ REVIEWED_CANDIDATES = {
     "AR-u2-uniform-displacement-05": "6fb1ae64267f28a3c7d09417e8a4e2c2d6f5f2c52a1b4344fce631bc70b0e47a",
     "AR-u2-uniform-displacement-06": "de450ae4b8dedd001276820c6dc5cfc856eff26347d62385c9ecf48125d2459e",
     "AR-u2-uniform-displacement-07": "f72b92f957b5dcc6c66a963d1685207d0dd656156a1c44fbc5678d71fed12b11",
-    "AR-u2-uniform-displacement-08": "c8f10ab7bb4e779c8081a2a66ff429eb3c658bef6ab0d46236d0af5c992f7b96",
+    "AR-u2-uniform-displacement-08": "c7f25396aa0a64f3cc2ef0dd9f99668b242b96db36e881357c76e5b7548598b3",
     "AR-u2-uniform-displacement-09": "c332830991e7cca12a09ce44a4a23348f4c1f9f5faa4c8dede5cd9cb5463e3fa",
     "AR-u2-uniform-displacement-10": "5a1d202deb81e8374f494707053ff258b3f32c750fadf02cef42c1f9506b3c0e",
     "AR-u2-uniform-displacement-11": "bf8644dbb8517f70e219586baaa9a08e7892f0c3ca48b1be15cfa2753dede720",
