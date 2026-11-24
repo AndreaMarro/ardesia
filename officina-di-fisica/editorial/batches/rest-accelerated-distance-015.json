@@ -1,0 +1,1304 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-rest-accelerated-distance-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2321,
+      "title": "Lo spostamento di una partenza da fermo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un carrello parte da fermo da x₀=0 lungo un asse orientato. Mantiene accelerazione costante a=+2 m/s² per t=2 s. Quanto vale lo spostamento D=x(t)−x₀, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità iniziale è nulla e cresce linearmente fino ad at=4 m/s. Nel grafico v–t lo spostamento è l’area del triangolo di base due secondi e altezza quattro m/s: metà del rettangolo corrispondente. È la stessa relazione D=at²/2 della legge oraria."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/fbe9b8792b63d2e904390be21c40db03a7dfb5aac7ed93c651ca3b1225ff04b4",
+          "text": "Esempio da fermo con a=2 m/s². Tre tappe alla stessa scala nel grafico v–t: costruisci v=at; leggi il triangolo totale di area 4 m nei primi 2 s; confronta le aree di 1 m nel primo secondo e 3 m nel secondo."
+        },
+        {
+          "type": "formula",
+          "text": "D=v_0t+\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=0"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac12(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)^2"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{2\\times4}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times4}{2}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il quadrato riguarda la durata completa, comprese le unità s². La velocità non diventa negativa, quindi qui anche la distanza percorsa vale 4 m. Otto metri sarebbe l’area del rettangolo costruito con la velocità finale, come se fosse stata mantenuta fin dall’inizio."
+        }
+      ],
+      "hints": [
+        "Nel grafico v–t usa il triangolo, perché il carrello parte da fermo.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quadrato riguarda la durata completa, comprese le unità s². La velocità non diventa negativa, quindi qui anche la distanza percorsa vale 4 m. Otto metri sarebbe l’area del rettangolo costruito con la velocità finale, come se fosse stata mantenuta fin dall’inizio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2322,
+      "title": "Le unità del tempo al quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 1,
+      "prompt": "Un carrello parte da fermo e mantiene accelerazione costante a lungo una retta per una durata t. La legge dello spostamento è D=at²/2. Quale unità SI è adatta a D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m/s²",
+          "s",
+          "m",
+          "m²"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore 1/2 è adimensionale. L’accelerazione porta m/s² e la durata al quadrato porta s²: i secondi si cancellano completamente e resta una lunghezza. Elevare al quadrato il tempo significa elevare al quadrato anche la sua unità."
+        },
+        {
+          "type": "formula",
+          "text": "[D]=(L/T^2)T^2"
+        },
+        {
+          "type": "formula",
+          "text": "(L/T^2)T^2=L"
+        },
+        {
+          "type": "formula",
+          "text": " (\\mathrm{m/s^2})\\mathrm{s^2}=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "m è corretto. m/s resta se si dimentica un fattore tempo; m/s² è l’unità dell’accelerazione prima del prodotto. s è una durata e m² sarebbe un’area. La divisione per due cambia il numero, non la dimensione."
+        }
+      ],
+      "hints": [
+        "Scrivi s² come unità di t² prima delle semplificazioni.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m è corretto. m/s resta se si dimentica un fattore tempo; m/s² è l’unità dell’accelerazione prima del prodotto. s è una durata e m² sarebbe un’area. La divisione per due cambia il numero, non la dimensione.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2323,
+      "title": "Il secondo secondo è un intervallo nuovo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-accelerated-increments",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un corpo parte da fermo all’istante t=0 e mantiene accelerazione costante positiva lungo una retta. Nel primo secondo percorre 1 m. Quanti metri percorre nel solo intervallo da t=1 s a t=2 s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 m",
+          "3 m",
+          "1 m",
+          "2 m",
+          "4 m"
+        ],
+        "value": "3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da fermo con accelerazione costante lo spostamento dall’inizio cresce come t². Se a un secondo vale un metro, a due secondi vale quattro metri perché il rapporto dei tempi è due e il suo quadrato è quattro. Il secondo intervallo comprende solo ciò che si aggiunge dopo il primo metro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/fbe9b8792b63d2e904390be21c40db03a7dfb5aac7ed93c651ca3b1225ff04b4",
+          "text": "Esempio da fermo con a=2 m/s². Tre tappe alla stessa scala nel grafico v–t: costruisci v=at; leggi il triangolo totale di area 4 m nei primi 2 s; confronta le aree di 1 m nel primo secondo e 3 m nel secondo."
+        },
+        {
+          "type": "formula",
+          "text": "D(t)=\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D(2\\,\\mathrm s)}{D(1\\,\\mathrm s)}=\\left(\\frac21\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac21\\right)^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " D(2\\,\\mathrm s)=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta D_{1\\to2}=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri sono il totale nei primi due secondi, non il solo secondo secondo. Un metro imporrebbe percorrenze uguali nonostante la velocità cresca; due moltiplicherebbe per il tempo senza quadrato. Otto non segue dalla legge e supera persino il totale di quattro. Con a>0 e partenza da fermo non vi sono ritorni: qui differenza degli spostamenti e distanza dell’intervallo coincidono."
+        }
+      ],
+      "hints": [
+        "Calcola il totale a due secondi e togli il metro già percorso.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro metri sono il totale nei primi due secondi, non il solo secondo secondo. Un metro imporrebbe percorrenze uguali nonostante la velocità cresca; due moltiplicherebbe per il tempo senza quadrato. Otto non segue dalla legge e supera persino il totale di quattro. Con a>0 e partenza da fermo non vi sono ritorni: qui differenza degli spostamenti e distanza dell’intervallo coincidono.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2324,
+      "title": "Cambiare solo l’accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 1,
+      "prompt": "In due prove rettilinee nello stesso riferimento inerziale un carrello parte da fermo e accelera costantemente nel verso positivo per t=2 s. L’accelerazione passa da a₁=2 m/s² ad a₂=4 m/s². Come cambia lo spostamento D dal punto di partenza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 4 m",
+          "Si dimezza a 2 m",
+          "Raddoppia da 4 m a 8 m",
+          "Quadruplica da 4 m a 16 m",
+          "Diventa zero"
+        ],
+        "value": "Raddoppia da 4 m a 8 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata e il suo quadrato sono uguali nelle due prove. Nella relazione D=at²/2 l’accelerazione compare alla prima potenza: raddoppiarla raddoppia lo spostamento. Il quadrato del tempo non deve essere attribuito anche ad a."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=\\frac{2\\times2^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2^2}{2}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\frac{4\\times2^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\times2^2}{2}\\,\\mathrm m=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore quattro si avrebbe raddoppiando soltanto la durata, non soltanto l’accelerazione. Le risposte invariata, dimezzata o nulla contraddicono la proporzionalità diretta con a positiva. Entrambe le velocità restano non negative e D è anche la distanza percorsa."
+        }
+      ],
+      "hints": [
+        "Tieni fisso t²/2 e confronta i due valori di a.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il fattore quattro si avrebbe raddoppiando soltanto la durata, non soltanto l’accelerazione. Le risposte invariata, dimezzata o nulla contraddicono la proporzionalità diretta con a positiva. Entrambe le velocità restano non negative e D è anche la distanza percorsa.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2325,
+      "title": "Ricavare l’accelerazione dallo spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un carrello parte da fermo e mantiene accelerazione costante a>0 lungo il verso positivo di un asse. In t=2 s lo spostamento dal punto iniziale è D=4 m. Quanto vale a, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incognita a moltiplica t²/2. Moltiplichiamo D=at²/2 per due e dividiamo per t², che non è nullo perché t=2 s. L’inversa non richiede radici: il quadrato è sulla durata nota, non sull’accelerazione cercata."
+        },
+        {
+          "type": "formula",
+          "text": "2D=at^2"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2D}{t^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2(4\\,\\mathrm m)}{(2\\,\\mathrm s)^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(4\\,\\mathrm m)}{(2\\,\\mathrm s)^2}=\\frac84\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La sostituzione (1/2)(2 m/s²)(2 s)²=4 m restituisce lo spostamento. Dividere D per t darebbe 2 m/s, una velocità media, e non l’accelerazione. Le unità distinguono questi risultati anche quando il numero è lo stesso."
+        }
+      ],
+      "hints": [
+        "Isola a moltiplicando per due e dividendo per il quadrato della durata.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sostituzione (1/2)(2 m/s²)(2 s)²=4 m restituisce lo spostamento. Dividere D per t darebbe 2 m/s, una velocità media, e non l’accelerazione. Le unità distinguono questi risultati anche quando il numero è lo stesso.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2326,
+      "title": "La radice sceglie una durata futura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un carrello parte da fermo e mantiene accelerazione costante a=+2 m/s² lungo un asse. Raggiunge lo spostamento D=4 m dal punto iniziale dopo una durata t≥0. Quanto vale t, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Questa volta l’incognita è il tempo al quadrato. Moltiplichiamo per due, dividiamo per a e prendiamo la radice non negativa. Il rapporto 2D/a ha unità s² e vale quattro s², il cui valore positivo ha radice due secondi."
+        },
+        {
+          "type": "formula",
+          "text": "D=\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": " t^2=\\frac{2D}{a}"
+        },
+        {
+          "type": "formula",
+          "text": " t^2=\\frac{2(4\\,\\mathrm m)}{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(4\\,\\mathrm m)}{2\\,\\mathrm{m/s^2}}=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\sqrt4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4\\,\\mathrm s=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "L’altra radice algebrica, −2 s, è esclusa per una durata dopo la partenza. Poiché a>0, D cresce strettamente per t>0 e il risultato è unico. Con D=0 si avrebbe t=0; uno spostamento negativo sarebbe incompatibile con questa partenza e accelerazione."
+        }
+      ],
+      "hints": [
+        "Semplifica prima 2D/a; poi fai la radice della durata al quadrato.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’altra radice algebrica, −2 s, è esclusa per una durata dopo la partenza. Poiché a>0, D cresce strettamente per t>0 e il risultato è unico. Con D=0 si avrebbe t=0; uno spostamento negativo sarebbe incompatibile con questa partenza e accelerazione.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2327,
+      "title": "Raddoppiare il tempo da fermo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale partono da fermo e mantengono a=+2 m/s² costante. La prima dura t₁=2 s, la seconda t₂=4 s. D₁,D₂ sono gli spostamenti dal rispettivo punto di partenza. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "5",
+          "3",
+          "4",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente a/2 resta invariato. Nel rapporto si cancella e rimane il quadrato del rapporto fra durate. Quattro secondi sono il doppio di due: lo spostamento diventa quattro volte maggiore. Un controllo diretto produce quattro e sedici metri."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=\\frac{2\\times2^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2^2}{2}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\frac{2\\times4^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times4^2}{2}\\,\\mathrm m=16\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due descrive il rapporto dei tempi o delle velocità finali, non degli spostamenti. Otto richiederebbe anche il raddoppio dell’accelerazione. Tre è l’aumento relativo (16−4)/4; cinque non deriva dal confronto richiesto. Il rapporto è puro."
+        }
+      ],
+      "hints": [
+        "Il fattore di tempo entra due volte nella legge dello spostamento.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due descrive il rapporto dei tempi o delle velocità finali, non degli spostamenti. Otto richiederebbe anche il raddoppio dell’accelerazione. Tre è l’aumento relativo (16−4)/4; cinque non deriva dal confronto richiesto. Il rapporto è puro.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2328,
+      "title": "La curva della posizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "quadratic-position-time-graph",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un punto parte da x₀=0 con v₀=0 all’istante t=0. Mantiene accelerazione costante a=+4 m/s² lungo l’asse x. Quale forma ha il grafico di x in funzione del tempo t≥0, con t orizzontale e x verticale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Retta crescente con pendenza costante",
+          "Retta orizzontale in x=0",
+          "Parabola con concavità verso l’alto e tangente orizzontale all’origine",
+          "Parabola con concavità verso il basso",
+          "Iperbole decrescente"
+        ],
+        "value": "Parabola con concavità verso l’alto e tangente orizzontale all’origine"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge oraria contiene t² con coefficiente positivo. La posizione parte da zero e la pendenza iniziale, che è la velocità, è nulla. Poi la pendenza cresce: a un secondo la posizione è due metri, a due secondi otto. Il corpo percorre quindi due metri nel primo secondo e sei nel successivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8841fec90f806c9697405619c9ae6078d752f66ef7449df264433312f174df9",
+          "text": "Tre grafici x–t alla stessa scala per a=4 m/s²: origine e tangente iniziale orizzontale; punti (1 s,2 m) e (2 s,8 m); incrementi di 2 m e 6 m in intervalli uguali. La linea curva nel grafico non è una traiettoria curva."
+        },
+        {
+          "type": "formula",
+          "text": "x(t)=\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12at^2=(2\\,\\mathrm{m/s^2})t^2"
+        },
+        {
+          "type": "formula",
+          "text": " v(t)=at"
+        },
+        {
+          "type": "formula",
+          "text": " v(0)=0"
+        },
+        {
+          "type": "formula",
+          "text": " x(1\\,\\mathrm s)=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x(2\\,\\mathrm s)=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La retta crescente descriverebbe velocità costante e la retta orizzontale una sosta. La concavità verso il basso richiederebbe accelerazione negativa; l’iperbole non rispetta né la legge né il punto iniziale. Il grafico curvo rappresenta la posizione nel tempo: il moto fisico resta su una retta."
+        }
+      ],
+      "hints": [
+        "Leggi cosa rappresentano gli assi prima di scegliere la forma della linea.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La retta crescente descriverebbe velocità costante e la retta orizzontale una sosta. La concavità verso il basso richiederebbe accelerazione negativa; l’iperbole non rispetta né la legge né il punto iniziale. Il grafico curvo rappresenta la posizione nel tempo: il moto fisico resta su una retta.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2329,
+      "title": "L’inversa senza una radice superflua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un carrello parte da fermo lungo un asse, mantiene accelerazione costante a>0 e dopo una durata t>0 ha spostamento D>0. Quale formula ricava a dalla legge D=at²/2?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=D/t²",
+          "a=2D/t²",
+          "a=2D/t",
+          "a=√(2D/t²)",
+          "a=Dt²/2"
+        ],
+        "value": "a=2D/t²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "a è alla prima potenza: moltiplicando entrambi i membri per due e dividendo per t² rimane isolata. t>0 garantisce che il denominatore sia diverso da zero. La positività di D rende positivo il risultato, coerente con il verso scelto."
+        },
+        {
+          "type": "formula",
+          "text": "D=\\frac{at^2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " 2D=at^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{2D}{t^2}=a"
+        },
+        {
+          "type": "text",
+          "text": "D/t² perde il fattore due; 2D/t ha dimensione di velocità. La radice cambierebbe sia il numero sia la dimensione e non inverte una potenza di a, che non c’è. Dt²/2 moltiplica il fattore che dovrebbe rimuovere. Sostituire a=2D/t² nella legge restituisce D."
+        }
+      ],
+      "hints": [
+        "Il tempo è al quadrato, l’incognita a no.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "D/t² perde il fattore due; 2D/t ha dimensione di velocità. La radice cambierebbe sia il numero sia la dimensione e non inverte una potenza di a, che non c’è. Dt²/2 moltiplica il fattore che dovrebbe rimuovere. Sostituire a=2D/t² nella legge restituisce D.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2330,
+      "title": "Un fattore semplice e uno quadratico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale partono da fermo. Nella prima l’accelerazione costante è a>0 e la durata t>0; nella seconda sono κ₁a e κ₂t con κ₁,κ₂>0, sempre costanti e positive. D₁,D₂ sono gli spostamenti dal punto iniziale. Quale rapporto D₂/D₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁²κ₂",
+          "κ₁κ₂²",
+          "κ₁/κ₂²",
+          "2κ₁κ₂²"
+        ],
+        "value": "κ₁κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inseriamo nella legge sia la nuova accelerazione sia la nuova durata. Il fattore sulla durata viene elevato al quadrato insieme a t; quello sull’accelerazione compare una volta. Nel rapporto si cancellano a, t² e il comune fattore un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\frac12(\\kappa_1a)(\\kappa_2t)^2"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\kappa_1\\kappa_2^2D_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ dimentica il quadrato del tempo; κ₁²κ₂ lo sposta sull’ingresso sbagliato. Il rapporto inverso sul tempo descriverebbe una legge diversa, e il fattore due aggiunto non si cancella correttamente. Senza cambiamenti κ₁=κ₂=1 la formula deve dare uno."
+        }
+      ],
+      "hints": [
+        "Applica il quadrato anche al fattore κ₂ dentro la parentesi.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁κ₂ dimentica il quadrato del tempo; κ₁²κ₂ lo sposta sull’ingresso sbagliato. Il rapporto inverso sul tempo descriverebbe una legge diversa, e il fattore due aggiunto non si cancella correttamente. Senza cambiamenti κ₁=κ₂=1 la formula deve dare uno.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2331,
+      "title": "Cambiano accelerazione e durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale partono da fermo nel verso positivo dell’asse. La prima ha accelerazione costante a₁=2 m/s² e durata t₁=2 s; la seconda a₂=4 m/s² e t₂=4 s. D₁,D₂ sono gli spostamenti dal rispettivo punto iniziale. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione raddoppia e fornisce un fattore due. La durata raddoppia e il suo quadrato fornisce un fattore quattro. I contributi si moltiplicano: due per quattro è otto. Possiamo controllare calcolando entrambi gli spostamenti."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=\\frac{2\\times2^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2^2}{2}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\frac{4\\times4^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\times4^2}{2}\\,\\mathrm m=32\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{32}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{32}{4}=8"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato quattro tratterebbe il tempo alla prima potenza, due terrebbe conto soltanto dell’accelerazione. Trentadue è lo spostamento della seconda prova in metri, non il rapporto richiesto. Entrambe le prove hanno velocità non negative e non richiedono correzioni per inversioni."
+        }
+      ],
+      "hints": [
+        "Combina il fattore due dell’accelerazione con il quattro del tempo al quadrato.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato quattro tratterebbe il tempo alla prima potenza, due terrebbe conto soltanto dell’accelerazione. Trentadue è lo spostamento della seconda prova in metri, non il rapporto richiesto. Entrambe le prove hanno velocità non negative e non richiedono correzioni per inversioni.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2332,
+      "title": "La media delle percorrenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale partono da fermo con accelerazioni costanti positive. La prima ha a=2 m/s²,t=2 s; la seconda a=4 m/s²,t=4 s. Qual è la media aritmetica, con uguale peso, degli spostamenti D dal punto di partenza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "17 m",
+          "18 m",
+          "36 m",
+          "9 m",
+          "19 m"
+        ],
+        "value": "18 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima prova dà D₁=4 m, la seconda D₂=32 m. Diamo metà peso a ciascuna: si può fare il conto mentale dimezzando prima i due contributi, due metri più sedici metri. Non inseriamo nella legge le medie degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=32\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline D=\\frac{4+32}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+32}{2}\\,\\mathrm m=(2+16)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(2+16)\\,\\mathrm m=18\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei è la somma senza divisione e nove dimezza due volte. Diciassette e diciannove sono scarti di un metro senza giustificazione. Usando invece a medio 3 m/s² e tempo medio 3 s si otterrebbe 27/2 m: il quadrato del tempo impedisce di scambiare in generale media e legge."
+        }
+      ],
+      "hints": [
+        "Fai la media dei due spostamenti già calcolati.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Trentasei è la somma senza divisione e nove dimezza due volte. Diciassette e diciannove sono scarti di un metro senza giustificazione. Usando invece a medio 3 m/s² e tempo medio 3 s si otterrebbe 27/2 m: il quadrato del tempo impedisce di scambiare in generale media e legge.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2333,
+      "title": "Progettare la durata con una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 3,
+      "prompt": "Due prove rettilinee nello stesso riferimento inerziale partono da fermo nel verso positivo dell’asse. La prima ha accelerazione costante a₁=2 m/s²,durata t₁=2 s. Nella seconda a₂=4 m/s² è costante e si vuole D₂=8D₁, dove D è lo spostamento dal punto iniziale. Si richiede t₂≥0. Quanto vale t₂/t₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo spostamento è quattro metri: l’obiettivo è trentadue. Dalla legge quadratica isoliamo t₂²=2D₂/a₂. Il rapporto numerico è 64/4=16 e l’unità è s². La radice non negativa è quattro secondi; rispetto ai due secondi iniziali il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=32\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " t_2^2=\\frac{2D_2}{a_2}"
+        },
+        {
+          "type": "formula",
+          "text": " t_2^2=\\frac{2(32\\,\\mathrm m)}{4\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(32\\,\\mathrm m)}{4\\,\\mathrm{m/s^2}}=16\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t_2}{t_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "La radice −4 s è esclusa dal dominio di una durata futura. Verificando, (1/2)(4 m/s²)(4 s)²=32 m. Il fattore otto dell’uscita contiene già il raddoppio di a: il solo tempo deve dare un fattore quattro nello spostamento e quindi due nella durata."
+        }
+      ],
+      "hints": [
+        "Calcola prima t₂², poi scegli la radice ammessa.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La radice −4 s è esclusa dal dominio di una durata futura. Verificando, (1/2)(4 m/s²)(4 s)²=32 m. Il fattore otto dell’uscita contiene già il raddoppio di a: il solo tempo deve dare un fattore quattro nello spostamento e quindi due nella durata.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2334,
+      "title": "Tarare una misura di spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 3,
+      "prompt": "Nel medesimo riferimento inerziale ogni prova rettilinea parte da fermo e mantiene accelerazione costante a>0 nel verso positivo. D è lo spostamento dal punto iniziale. Un display conta tacche T=gD con g>0 costante e offset nullo. Per a=2 m/s²,t=2 s indica T=12. La prova ignota dura t=4 s e indica T=96. Quanto vale a, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento percorre quattro metri, quindi il guadagno è tre per metro. La lettura novantasei corrisponde a trentadue metri. Solo dopo aver ricostruito lo spostamento usiamo l’inversa a=2D/t²: sessantaquattro diviso sedici vale quattro."
+        },
+        {
+          "type": "formula",
+          "text": "D_{\\rm rif}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{12}{4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{4\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{96}{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{96}{3\\,\\mathrm{m^{-1}}}=32\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2D}{t^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2D}{t^2}=\\frac{2(32\\,\\mathrm m)}{(4\\,\\mathrm s)^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(32\\,\\mathrm m)}{(4\\,\\mathrm s)^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La ricostruzione del display è T=3 m⁻¹·[(1/2)(4 m/s²)(4 s)²]=96. Confondere tacche e metri darebbe un’accelerazione tre volte maggiore. La nuova accelerazione è positiva e costante per tutta la prova, come richiesto dal modello."
+        }
+      ],
+      "hints": [
+        "Converti le tacche in metri prima di dividere per t².",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La ricostruzione del display è T=3 m⁻¹·[(1/2)(4 m/s²)(4 s)²]=96. Confondere tacche e metri darebbe un’accelerazione tre volte maggiore. La nuova accelerazione è positiva e costante per tutta la prova, come richiesto dal modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2335,
+      "title": "Due riferimenti per la legge quadratica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 3,
+      "prompt": "Nel medesimo riferimento inerziale ogni prova rettilinea parte da fermo e mantiene accelerazione costante a>0 nel verso positivo. D è lo spostamento dal punto iniziale. Un display conta tacche T=gD+c, con g>0,c costanti. I riferimenti (a=2 m/s²,t=2 s) e (a=4 m/s²,t=4 s) danno T=9 e 65. La prova ignota ha t=2 s,T=17. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 m/s²",
+          "2 m/s²",
+          "5 m/s²",
+          "3 m/s²",
+          "4 m/s²"
+        ],
+        "value": "4 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli spostamenti dei riferimenti sono quattro e trentadue metri. Sottraendo le letture eliminiamo c: cinquantasei tacche per ventotto metri danno g=2 m⁻¹. Il primo riferimento lascia c=1. La nuova lettura, corretta per offset e guadagno, dà otto metri: da qui ricaviamo l’accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{65-9}{(32-4)\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{65-9}{(32-4)\\,\\mathrm m}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " c=9-2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "9-2\\times4=1"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{17-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-1}{2\\,\\mathrm{m^{-1}}}=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2D}{t^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2D}{t^2}=\\frac{2(8\\,\\mathrm m)}{(2\\,\\mathrm s)^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(8\\,\\mathrm m)}{(2\\,\\mathrm s)^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto confonde il numero dello spostamento con l’accelerazione; due riusa il primo riferimento. Tre e cinque non ricostruiscono la lettura. Con a=4 m/s² e t=2 s si trova D=8 m e T=2·8+1=17. Un rapporto fra letture lascerebbe l’offset dentro la taratura."
+        }
+      ],
+      "hints": [
+        "Ricava prima gli spostamenti dei riferimenti, poi il guadagno.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto confonde il numero dello spostamento con l’accelerazione; due riusa il primo riferimento. Tre e cinque non ricostruiscono la lettura. Con a=4 m/s² e t=2 s si trova D=8 m e T=2·8+1=17. Un rapporto fra letture lascerebbe l’offset dentro la taratura.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u2-rest-accelerated-distance-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Cinematica rettilinea",
+      "order": 2336,
+      "title": "Un vincolo fra prove porta al cubo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "rest-constant-acceleration-displacement",
+      "difficulty": 3,
+      "prompt": "Si sceglie una prova rettilinea in un riferimento inerziale. Il corpo parte da fermo, la durata totale è t>0 e l’accelerazione scelta è a=(1 m/s³)t, mantenuta costante per tutta la prova nel verso positivo. Il vincolo lega i due dati prima della partenza; non descrive un’accelerazione variabile durante il moto. Lo spostamento finale D è 4 m. Quanto vale t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 s",
+          "3 s",
+          "−2 s",
+          "2 s",
+          "4 s"
+        ],
+        "value": "2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo k=1 m/s³ il coefficiente del vincolo. Sostituendo a=kt nella legge con accelerazione costante otteniamo D=kt³/2. Il cubo nasce dalla scelta di prove con a proporzionale alla loro durata totale. Isoliamo t³: 2D/k ha unità s³ e vale otto s³."
+        },
+        {
+          "type": "formula",
+          "text": "k=1\\,\\mathrm{m/s^3}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac12at^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12at^2=\\frac12kt^3"
+        },
+        {
+          "type": "formula",
+          "text": " t^3=\\frac{2D}{k}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2D}{k}=\\frac{2(4\\,\\mathrm m)}{1\\,\\mathrm{m/s^3}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(4\\,\\mathrm m)}{1\\,\\mathrm{m/s^3}}=8\\,\\mathrm{s^3}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\sqrt[3]8\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt[3]8\\,\\mathrm s=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " a=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo usa una accelerazione costante di 2 m/s² per due secondi e restituisce quattro metri. Uno, tre e quattro secondi darebbero rispettivamente 1/2 m,27/2 m,32 m. −2 s viola t>0 e darebbe D negativo nell’equazione cubica. La relazione è crescente per t>0, quindi la soluzione ammessa è unica."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con il suo coefficiente in m/s³, poi isola t³.",
+        "Controlla partenza da fermo, accelerazione costante e dominio del tempo."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo usa una accelerazione costante di 2 m/s² per due secondi e restituisce quattro metri. Uno, tre e quattro secondi darebbero rispettivamente 1/2 m,27/2 m,32 m. −2 s viola t>0 e darebbe D negativo nell’equazione cubica. La relazione è crescente per t>0, quindi la soluzione ammessa è unica.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto uniformemente accelerato",
+        "Grafici cinematici"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "fbe9b8792b63d2e904390be21c40db03a7dfb5aac7ed93c651ca3b1225ff04b4",
+      "name": "rest-accelerated-area.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5TcG9zdGFtZW50aSBjb21lIGFyZWUgZGEgZmVybW88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgZ3JhZmljaSB2ZWxvY2l0w6AtdGVtcG8gaWRlbnRpY2kgaW4gc2NhbGE6IDEyMCB1bml0w6AgU1ZHIHBlciBzZWNvbmRvLCA2MCBwZXIgbWV0cm8gYWwgc2Vjb25kby4gQ29uIGFjY2VsZXJhemlvbmUgY29zdGFudGUgZHVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8gbGEgcmV0dGEgcGFzc2EgZGEgemVybyBhIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kbyBpbiBkdWUgc2Vjb25kaS4gTOKAmWFyZWEgdG90YWxlIGRlbCB0cmlhbmdvbG8gw6ggcXVhdHRybyBtZXRyaS4gTmVsIHByaW1vIHNlY29uZG8gbOKAmWFyZWEgw6ggdW4gbWV0cm8sIG5lbCBzZWNvbmRvIHRyZSBtZXRyaS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTIyMCIgcng9IjE4IiBmaWxsPSIjZmFmOGYyIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmYzYiI+PHRleHQgeD0iMjgiIHk9IjM3IiBmb250LXNpemU9IjIzIiBmb250LXdlaWdodD0iNzAwIj5MbyBzcG9zdGFtZW50byDDqCB1buKAmWFyZWE8L3RleHQ+CjxnIGZvbnQtc2l6ZT0iMjEiIGZvbnQtd2VpZ2h0PSI2NTAiPjx0ZXh0IHg9IjI4IiB5PSI3OSI+MSDCtyBEYSBmZXJtbzogdiBjcmVzY2UgY29tZSBhwrd0PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0MzkiPjIgwrcgQ2FsY29sYSBs4oCZYXJlYSBkZWwgdHJpYW5nb2xvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3OTkiPjMgwrcgU2VwYXJhIGkgZHVlIHNlY29uZGk8L3RleHQ+PC9nPgo8cGF0aCBkPSJNMTAwIDcwMEgzNDBWNDYwWiIgZmlsbD0iI2M5ZTRlOCIvPjxwYXRoIGQ9Ik0xMDAgMTA2MEgyMjBWOTQwWiIgZmlsbD0iI2M5ZTRlOCIvPjxwYXRoIGQ9Ik0yMjAgMTA2MEgzNDBWODIwTDIyMCA5NDBaIiBmaWxsPSIjZWVkN2MyIi8+CjxnIHN0cm9rZT0iIzU5Njk2ZCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTAwIDkwVjM0MEg0MDBNMTAwIDQ1MFY3MDBINDAwTTEwMCA4MTBWMTA2MEg0MDAiLz48cGF0aCBkPSJNOTQgMTAwSDEwNk05NCAyMjBIMTA2TTIyMCAzMzRWMzQ2TTM0MCAzMzRWMzQ2TTk0IDQ2MEgxMDZNOTQgNTgwSDEwNk0yMjAgNjk0VjcwNk0zNDAgNjk0VjcwNk05NCA4MjBIMTA2TTk0IDk0MEgxMDZNMjIwIDEwNTRWMTA2Nk0zNDAgMTA1NFYxMDY2Ii8+PC9nPgo8ZyBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSIxMDAiIHk9IjM2NyI+MDwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjM2NyI+MTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjM2NyI+MjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjcyNyI+MDwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjcyNyI+MTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjcyNyI+MjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjEwODciPjA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIxMDg3Ij4xPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMTA4NyI+MjwvdGV4dD48L2c+CjxnIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjx0ZXh0IHg9IjgzIiB5PSIxMDYiPjQ8L3RleHQ+PHRleHQgeD0iODMiIHk9IjIyNiI+MjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iMzQ2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI0NjYiPjQ8L3RleHQ+PHRleHQgeD0iODMiIHk9IjU4NiI+MjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iNzA2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI4MjYiPjQ8L3RleHQ+PHRleHQgeD0iODMiIHk9Ijk0NiI+MjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iMTA2NiI+MDwvdGV4dD48L2c+CjxnIGZvbnQtc2l6ZT0iMTgiPjx0ZXh0IHg9IjExMCIgeT0iMTEyIj52IChtL3MpPC90ZXh0Pjx0ZXh0IHg9IjQxMSIgeT0iMzQ2Ij50IChzKTwvdGV4dD48dGV4dCB4PSIxMTAiIHk9IjQ3MiI+diAobS9zKTwvdGV4dD48dGV4dCB4PSI0MTEiIHk9IjcwNiI+dCAocyk8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI4MzIiPnYgKG0vcyk8L3RleHQ+PHRleHQgeD0iNDExIiB5PSIxMDY2Ij50IChzKTwvdGV4dD48L2c+CjxnIHN0cm9rZT0iIzEyNjE3YyIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTAwIDM0MEwzNDAgMTAwTTEwMCA3MDBMMzQwIDQ2ME0xMDAgMTA2MEwzNDAgODIwIi8+PC9nPgo8ZyBzdHJva2U9IiM1OTY5NmQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIj48cGF0aCBkPSJNMzQwIDQ2MFY3MDBNMjIwIDk0MFYxMDYwIi8+PC9nPgo8ZyBmaWxsPSIjMTI2MTdjIj48Y2lyY2xlIGN4PSIyMjAiIGN5PSIyMjAiIHI9IjUiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSIxMDAiIHI9IjUiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSI5NDAiIHI9IjUiLz48L2c+CjxnIGZvbnQtc2l6ZT0iMTkiPjx0ZXh0IHg9IjM2NSIgeT0iMTYyIj5hID0gMiBtL3PCsjwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjE5OCI+duKCgCA9IDA8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSI1MzAiPkJhc2U6IDIgczwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjU2NCI+QWx0ZXp6YTogNCBtL3M8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSI1OTgiPkFyZWE6IDQgbTwvdGV4dD48dGV4dCB4PSIzNjUiIHk9Ijg5MCI+MCDihpIgMSBzOiAxIG08L3RleHQ+PHRleHQgeD0iMzY1IiB5PSI5MjgiPjEg4oaSIDIgczogMyBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTQwIj5EdXJhdGUgdWd1YWxpLCBzcG9zdGFtZW50aSBkaXZlcnNpOjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE3NSI+bGEgdmVsb2NpdMOgIGNvbnRpbnVhIGFkIGF1bWVudGFyZS48L3RleHQ+PC9nPjwvZz48L3N2Zz4K"
+    },
+    {
+      "id": "d8841fec90f806c9697405619c9ae6078d752f66ef7449df264433312f174df9",
+      "name": "rest-accelerated-parabola.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3NpemlvbmUgcXVhZHJhdGljYSBuZWwgdGVtcG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgZ3JhZmljaSBwb3NpemlvbmUtdGVtcG8gY29uIHN0ZXNzYSBzY2FsYTogMTIwIHVuaXTDoCBTVkcgcGVyIHNlY29uZG8gZSAyNSBwZXIgbWV0cm8uIENvbiBwYXJ0ZW56YSBhbGzigJlvcmlnaW5lIGRhIGZlcm1vIGUgYWNjZWxlcmF6aW9uZSBjb3N0YW50ZSBxdWF0dHJvIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8sIHggdmFsZSBkdWUgdm9sdGUgdCBhbCBxdWFkcmF0byBpbiB1bml0w6AgU0kuIExhIGN1cnZhIMOoIHVuYSBwYXJhYm9sYSB2ZXJzbyBs4oCZYWx0byBjb24gdGFuZ2VudGUgaW5pemlhbGUgb3JpenpvbnRhbGUuIEkgcHVudGkgYSB1biBzZWNvbmRvIGUgZHVlIHNlY29uZGkgc29ubyBkdWUgZSBvdHRvIG1ldHJpOyBpIGR1ZSBpbmNyZW1lbnRpIHNvbm8gZHVlIGUgc2VpIG1ldHJpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjIwIiByeD0iMTgiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZjNiIj48dGV4dCB4PSIyOCIgeT0iMzciIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI3MDAiPlBvc2l6aW9uZSBlIHRlbXBvIHN1IGR1ZSBhc3NpPC90ZXh0Pgo8ZyBmb250LXNpemU9IjIxIiBmb250LXdlaWdodD0iNjUwIj48dGV4dCB4PSIyOCIgeT0iNzkiPjEgwrcgUGFydGkgZGFsbOKAmW9yaWdpbmUgY29uIHBlbmRlbnphIHplcm88L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQzOSI+MiDCtyBMZWdnaSBkdWUgcHVudGkgZGVsbGEgcGFyYWJvbGE8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc5OSI+MyDCtyBDb25mcm9udGEgZ2xpIGluY3JlbWVudGk8L3RleHQ+PC9nPgo8ZyBzdHJva2U9IiM1OTY5NmQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCAxMjBWMzQwSDQwME0xMDAgNDgwVjcwMEg0MDBNMTAwIDg0MFYxMDYwSDQwMCIvPjxwYXRoIGQ9Ik05NCAxNDBIMTA2TTk0IDE5MEgxMDZNOTQgMjQwSDEwNk05NCAyOTBIMTA2TTIyMCAzMzRWMzQ2TTM0MCAzMzRWMzQ2TTk0IDUwMEgxMDZNOTQgNTUwSDEwNk05NCA2MDBIMTA2TTk0IDY1MEgxMDZNMjIwIDY5NFY3MDZNMzQwIDY5NFY3MDZNOTQgODYwSDEwNk05NCA5MTBIMTA2TTk0IDk2MEgxMDZNOTQgMTAxMEgxMDZNMjIwIDEwNTRWMTA2Nk0zNDAgMTA1NFYxMDY2Ii8+PC9nPgo8ZyBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSIxMDAiIHk9IjM2NyI+MDwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjM2NyI+MTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjM2NyI+MjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjcyNyI+MDwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjcyNyI+MTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjcyNyI+MjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjEwODciPjA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIxMDg3Ij4xPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMTA4NyI+MjwvdGV4dD48L2c+CjxnIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjx0ZXh0IHg9IjgzIiB5PSIxNDYiPjg8L3RleHQ+PHRleHQgeD0iODMiIHk9IjE5NiI+NjwvdGV4dD48dGV4dCB4PSI4MyIgeT0iMjQ2Ij40PC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSIyOTYiPjI8L3RleHQ+PHRleHQgeD0iODMiIHk9IjM0NiI+MDwvdGV4dD48dGV4dCB4PSI4MyIgeT0iNTA2Ij44PC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI1NTYiPjY8L3RleHQ+PHRleHQgeD0iODMiIHk9IjYwNiI+NDwvdGV4dD48dGV4dCB4PSI4MyIgeT0iNjU2Ij4yPC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI3MDYiPjA8L3RleHQ+PHRleHQgeD0iODMiIHk9Ijg2NiI+ODwvdGV4dD48dGV4dCB4PSI4MyIgeT0iOTE2Ij42PC90ZXh0Pjx0ZXh0IHg9IjgzIiB5PSI5NjYiPjQ8L3RleHQ+PHRleHQgeD0iODMiIHk9IjEwMTYiPjI8L3RleHQ+PHRleHQgeD0iODMiIHk9IjEwNjYiPjA8L3RleHQ+PC9nPgo8ZyBmb250LXNpemU9IjE4Ij48dGV4dCB4PSIxMTAiIHk9IjEzNCI+eCAobSk8L3RleHQ+PHRleHQgeD0iNDExIiB5PSIzNDYiPnQgKHMpPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iNDk0Ij54IChtKTwvdGV4dD48dGV4dCB4PSI0MTEiIHk9IjcwNiI+dCAocyk8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI4NTQiPnggKG0pPC90ZXh0Pjx0ZXh0IHg9IjQxMSIgeT0iMTA2NiI+dCAocyk8L3RleHQ+PC9nPgo8ZyBzdHJva2U9IiMxMjYxN2MiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCAzNDBRMjIwIDM0MCAzNDAgMTQwTTEwMCA3MDBRMjIwIDcwMCAzNDAgNTAwTTEwMCAxMDYwUTIyMCAxMDYwIDM0MCA4NjAiLz48L2c+CjxnIHN0cm9rZT0iIzU5Njk2ZCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xMDAgMzQwSDE5ME0xMDAgNjUwSDIyMFY3MDBNMTAwIDUwMEgzNDBWNzAwTTIyMCAxMDEwSDQwME0zNDAgODYwSDQ1MCIvPjwvZz4KPGcgZmlsbD0iIzEyNjE3YyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMzQwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iNjUwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMzQwIiBjeT0iNTAwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTAxMCIgcj0iNSIvPjxjaXJjbGUgY3g9IjM0MCIgY3k9Ijg2MCIgcj0iNSIvPjwvZz4KPGcgc3Ryb2tlPSIjOWI0YjIwIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0zOTAgMTA2MFYxMDEwTTM4MiAxMDYwSDM5OE0zODIgMTAxMEgzOThNNDQwIDEwMTBWODYwTTQzMiAxMDEwSDQ0OE00MzIgODYwSDQ0OCIvPjwvZz4KPGcgZm9udC1zaXplPSIxOSI+PHRleHQgeD0iMzY1IiB5PSIxODAiPmEgPSA0IG0vc8KyPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMjE2Ij524oKAID0gMDwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjI1OCI+VGFuZ2VudGUgaW5pemlhbGU6PC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMjg3Ij5vcml6em9udGFsZTwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjU0OCI+eCgxIHMpID0gMiBtPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iNTg0Ij54KDIgcykgPSA4IG08L3RleHQ+PHRleHQgeD0iNDYwIiB5PSI5NDQiPjYgbTwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjEwNDMiPjIgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE0MCI+U3Rlc3NhIGR1cmF0YSBkaSAxIHM6IHByaW1hIDIgbSwgcG9pIDYgbS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNzUiPkxhIHRyYWlldHRvcmlhIG5lbGxvIHNwYXppbyByZXN0YSByZXR0aWxpbmVhLjwvdGV4dD48L2c+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
