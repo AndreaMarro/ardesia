@@ -191,7 +191,7 @@
         },
         {
           "type": "text",
-          "text": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse."
+          "text": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁ con v₁≠0, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse."
         }
       ],
       "hints": [
@@ -200,7 +200,7 @@
       ],
       "error": {
         "category": "concetto",
-        "message": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse.",
+        "message": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁ con v₁≠0, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse.",
         "target": "C1-L003"
       },
       "coverage": [
@@ -736,7 +736,7 @@
       ],
       "family": "equal-time-average",
       "difficulty": 2,
-      "prompt": "Ogni prova contiene due intervalli consecutivi di uguale durata. Le velocità sono entrambe +2 m/s nella prima prova ed entrambe +4 m/s nella seconda. Quanto vale il rapporto V₂/V₁?",
+      "prompt": "Ogni prova contiene due intervalli consecutivi di uguale durata. Le velocità sono entrambe +2 m/s nella prima prova ed entrambe +4 m/s nella seconda. V₁ e V₂ sono le rispettive velocità medie orientate complessive. Quanto vale V₂/V₁?",
       "answer": {
         "type": "numeric",
         "value": 2,
@@ -956,7 +956,7 @@
       ],
       "family": "equal-time-average",
       "difficulty": 3,
-      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. Un display mostra S=gV, con g>0 costante, offset nullo e S conteggio. La coppia (2,2) m/s dà S=6. Una nuova prova dà S=12 e ha v₂=4 m/s. Quanto vale v₁, in m/s?",
+      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. V è la velocità media orientata sull’intera prova. Un display mostra S=gV, con g>0 costante, offset nullo e S conteggio. La coppia (2,2) m/s dà S=6. Una nuova prova dà S=12 e ha v₂=4 m/s. Quanto vale v₁, in m/s?",
       "answer": {
         "type": "numeric",
         "value": 4,
@@ -1037,7 +1037,7 @@
       ],
       "family": "equal-time-average",
       "difficulty": 3,
-      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. Il display segue S=gV+c con g>0,c costanti e S conteggio. Le coppie (2,2) e (4,4) m/s danno S=5 e S=9. Una prova con v₂=2 m/s dà S=7. Quanto vale v₁?",
+      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. V è la velocità media orientata sull’intera prova. Il display segue S=gV+c con g>0,c costanti e S conteggio. Le coppie (2,2) e (4,4) m/s danno S=5 e S=9. Una prova con v₂=2 m/s dà S=7. Quanto vale v₁?",
       "answer": {
         "type": "choice",
         "options": [
