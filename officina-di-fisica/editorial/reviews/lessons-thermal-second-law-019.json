@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-thermal-second-law-019",
+  "records": [
+    {
+      "id": "C3-L09",
+      "sourceSha256": "aea4c6724c1f14307b97b8e2ca64b622d2a35248ef29f02f2c72b3212d22b214",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "engine work from signed heat balance",
+          "independentExact": "-Qc + Qh",
+          "expectedValue": "-Qc + Qh",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "efficiency divides work by absorbed heat",
+          "independentExact": "(-Qc + Qh)/Qh",
+          "expectedValue": "-Qc/Qh + 1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "engine efficiency dimensionless",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Carnot gap follows nonnegative total reservoir entropy",
+          "independentExact": "Sgen*Tc/Qh",
+          "expectedValue": "Sgen*Tc/Qh",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversible zero production recovers Carnot",
+          "independentExact": "-Tc/Th + 1",
+          "expectedValue": "-Tc/Th + 1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "same reservoir temperatures give zero Carnot efficiency",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "positive cold temperature makes Carnot smaller than one",
+          "independentExact": "Tc/Th",
+          "expectedValue": "Tc/Th",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two reversible adiabats preserve isotherm volume ratio",
+          "independentExact": "Vb/Va",
+          "expectedValue": "Vb/Va",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversible isotherm heats have temperature ratio",
+          "independentExact": "Tc/Th",
+          "expectedValue": "Tc/Th",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy source600K and300K boundonehalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy6Jin3Jout giveswork3J and efficiencyonehalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy6Jin4Jout givesreal-efficiencyonethird",
+          "independentExact": "1/3",
+          "expectedValue": "1/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy higherthanCarnot engine has negative reservoir entropy",
+          "independentExact": "-1/300",
+          "expectedValue": "-1/300",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "toy single bath complete cyclic heat-to-work removes entropy",
+          "independentExact": "-1/100",
+          "expectedValue": "-1/100",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "toy noncyclic isothermal expansion can compensate bathentropy",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "toy fridge cold3J plusinputwork3J delivers6Jhot",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy reversible fridge reservoir entropy balances",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "using Celsius would give wrong600K300K limit",
+          "independentExact": "2000/2179",
+          "expectedValue": "2000/2179",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "engine work from signed heat balance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "efficiency divides work by absorbed heat": {},
+        "engine efficiency dimensionless": {},
+        "Carnot gap follows nonnegative total reservoir entropy": {},
+        "reversible zero production recovers Carnot": {},
+        "same reservoir temperatures give zero Carnot efficiency": {},
+        "positive cold temperature makes Carnot smaller than one": {},
+        "two reversible adiabats preserve isotherm volume ratio": {},
+        "reversible isotherm heats have temperature ratio": {},
+        "toy source600K and300K boundonehalf": {},
+        "toy6Jin3Jout giveswork3J and efficiencyonehalf": {},
+        "toy6Jin4Jout givesreal-efficiencyonethird": {},
+        "toy higherthanCarnot engine has negative reservoir entropy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy single bath complete cyclic heat-to-work removes entropy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy noncyclic isothermal expansion can compensate bathentropy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy fridge cold3J plusinputwork3J delivers6Jhot": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy reversible fridge reservoir entropy balances": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "using Celsius would give wrong600K300K limit": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. Signed engine heat givesW=Qh-Qc andeta=1-Qc/Qh. ReservoirSgen=Qc/Tc-Qh/Th yieldsetaCarnot-eta=Tc*Sgen/Qh>=0. Reversibleadiabats of a Carnot ideal-gas realization makeVc/Vd=Vb/Va, so reversibleisotherm logarithms cancel andQc/Qh=Tc/Th. Reviewer probes:600/300K givebound1/2;heat6Jin3Jout giveswork3J,eta1/2;4Jout giveseta1/3. A would-be6Jin2Jout engine would lowerreservoirentropy1/300J/K. A fridge canmove3J fromcold with3Jwork anddeliver6Jhot. Celsius substitution wouldgive2000/2179,not1/2. Symboliclogarithms cancel;no studentdecimal evaluation is required.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Cyclic heat engine between only two fixed-temperature reservoirs,0<Tc<Th,Qh>0,Qc>=0 andW>=0,withnoothernetresourceoruncompensatedeffect. Qh/Qc arepositive magnitudes,not signed systemheats. ReversibleCarnot uses twoisotherms andtwoadiabats;generalboundfromisolatedsystem+environmententropy. Equaltemperatures givezerobound. A refrigeratorreceiveswork andisnot a heatengine towhich positive-outputeta is applied. Temperaturesabsolute;Celsiusnot permitted inratio.",
+      "pedagogicalReview": "Definesheatmagnitudesandcycleresourceboundarybeforeefficiency;Kelvin-PlanckandClausiusbothincludeuniqueeffectqualification. Refrigeratorworkinputavoidsspuriouscounterexample. CarnotconstraintsandabsoluteTprecedeformula;doesnotclaimallwork/heatprocessesarecyclicengines.",
+      "assetChecksums": {
+        "/figures/C3-macchina.svg": "d731c50778f96cbb5e0038adb43ee4196ed99af557dece4c7de381d1485fb193"
+      },
+      "figureReview": "XML/renderread:Qh entersenginefromleft hotreservoir,Qc leavesrighttocold,andWleavesdownward. LabelsQh/Qcaremagnitudes;arrowlengthsaretransportdirections,notscaledenergyvalues. No numericalreservoirtemperatureorheatassigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L10",
+      "sourceSha256": "d129e867749b91c95d0d0f7af9daa0179ccc38ba033dd3d1a7cad66bb011ab74",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "reservoirs receive opposite heats at own temperatures",
+          "independentExact": "-Qh/Th + Qh/Tc",
+          "expectedValue": "Qh*(-Tc + Th)/(Tc*Th)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "equal reservoir temperature reversible limit",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "entropy units joule per kelvin",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy hot reservoir losesone100JperK",
+          "independentExact": "-1/100",
+          "expectedValue": "-1/100",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy cold reservoir gainsone50JperK",
+          "independentExact": "1/50",
+          "expectedValue": "1/50",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy hot-to-cold total entropy positiveone100",
+          "independentExact": "1/100",
+          "expectedValue": "1/100",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy unassisted inverse conserves energy but decreases total entropy",
+          "independentExact": "-1/100",
+          "expectedValue": "-1/100",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "varying-temperature reversible reference integral",
+          "independentExact": "C*log(Tf) - C*log(Ti)",
+          "expectedValue": "C*log(Tf/Ti)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy equal finite capacities400K100K equilibrate250K",
+          "independentExact": "250",
+          "expectedValue": "250",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy finite-body entropy stays exact log25over16",
+          "independentExact": "C*(-3*log(2) + log(5)) + C*(-log(2) + log(5))",
+          "expectedValue": "C*log(25/16)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "statistical entropy difference is log microstate ratio",
+          "independentExact": "kb*log(Of) - kb*log(Oi)",
+          "expectedValue": "kb*log(Of/Oi)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "independent microstate counts make entropy additive",
+          "independentExact": "kb*(log(Of) + log(Oi))",
+          "expectedValue": "kb*log(Of) + kb*log(Oi)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two equally probable states giveklog2 from Gibbs formula",
+          "independentExact": "kb*log(2)",
+          "expectedValue": "kb*log(2)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "biased two-state entropy differs fromklogOmega",
+          "independentExact": "-kb*(-2*log(2) + 3*log(3)/4)",
+          "expectedValue": "kb*(-3*log(3)/4 + 2*log(2))",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "uniform minus biased entropy is positive log27over16 quarter",
+          "independentExact": "kb*(-log(4)/4 + 3*log(3/4)/4) + kb*log(2)",
+          "expectedValue": "kb*log(27/16)/4",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "doubling ideal configuration volume perparticle givesNklog2",
+          "independentExact": "kb*log(2**N)",
+          "expectedValue": "N*kb*log(2)",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "ten independent particles all in one compartment probability",
+          "independentExact": "1/512",
+          "expectedValue": "1/512",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "many-particle probability of one occupied compartment tendszero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "reservoirs receive opposite heats at own temperatures": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "equal reservoir temperature reversible limit": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "entropy units joule per kelvin": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy hot reservoir losesone100JperK": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy cold reservoir gainsone50JperK": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy hot-to-cold total entropy positiveone100": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy unassisted inverse conserves energy but decreases total entropy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "varying-temperature reversible reference integral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy equal finite capacities400K100K equilibrate250K": {
+          "[temperature]": "1"
+        },
+        "toy finite-body entropy stays exact log25over16": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "statistical entropy difference is log microstate ratio": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "independent microstate counts make entropy additive": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "two equally probable states giveklog2 from Gibbs formula": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "biased two-state entropy differs fromklogOmega": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "uniform minus biased entropy is positive log27over16 quarter": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "doubling ideal configuration volume perparticle givesNklog2": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "ten independent particles all in one compartment probability": {},
+        "many-particle probability of one occupied compartment tendszero": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned decimal calculation. ForreservoirtransferQ,DeltaStotal=Q(Th-Tc)/(ThTc)>0 whenTh>Tc>0. Reviewer6J from600to300K giveshot-1/100,cold+1/50,total+1/100J/K;unassistedinverse givesnegative1/100 despiteenergyconservation. Forfiniteconstantcapacities oneintegratesC/T;equalcapacities at400/100K end250K withDeltaS=C*ln(25/16)>0,not a singlearbitraryT denominator. Statisticaldifferencescombineexactlogratios. Equiprobabletwo-stateS=kb*ln2;biased3/4,1/4 probabilities insteadgivekb(2ln2-3ln3/4),strictlysmallerbecause27>16. DoublingaccessiblevolumeforNindependentidealparticles givesNkBln2;all-in-onecompartment probability2^(1-N) is1/512for10andvanishesforlargeN. Theseareconstructedprobes,notrequirednumbers.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Combinedsystemandenvironmentisolated fornonnegative totalentropy;localpartmayloseentropy. Positiveabsolutetemperatures. Qrev belongs toanauxiliaryreversiblepath betweenendstates,not necessarilyactualirreversibleheat. Q/T appliesdirectlytofixed-Treservoir orreversibleisothermalprocess;temperaturevariation needsintegral. BoltzmannlnOmega assumesaccessiblemicrostatesequiprobable,explicitinsource. Independentclassicalidealparticlecompartment probes areillustrations,not auniversalstatecountforinteractingorquantumgas.",
+      "pedagogicalReview": "Separatesenergyconservationfromspontaneousdirection,localfromtotalentropy,andactualirreversiblepathfromreversiblereference. Explicitfinite-temperaturewarningpreventsQ/arbitraryT. Statisticalformulaisequiprobability-qualified andmany-particleoutcomeisextremelyprobable,not anassertionaboutindividualmicroscopiccertainty. Exactlogsareallowedwithoutinventingdecimalwork.",
+      "assetChecksums": {
+        "/figures/C3-entropia.svg": "8d95c2e3952150bb1a206ee74e61635e13fa841522aa1a06383d736ed49c7782"
+      },
+      "figureReview": "XML/renderread:heatQ arrowfromhotlefttocoldright;labelsDeltaSh=-Q/Th andDeltaSc=+Q/Tc useeachfixedreservoirtemperature. No numericalT/Qscale orfinite-objectconstantTassumption introduced;captionexplicitlyreservoirs.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b068b6e8fb7a621c112d91c23ea69063c6cde6d0fec1de098e9c1c28e5015411",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C3.json",
+  "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 2,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
