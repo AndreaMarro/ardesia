@@ -1,0 +1,1182 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-center-mass-equal-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6101,
+      "title": "Stessa massa, stesso peso nella media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 1,
+      "prompt": "Due masse puntiformi uguali e positive hanno entrambe coordinata2 m lungo lo stesso asse. Si considera una configurazione istantanea ideale, senza imporre un vincolo di esclusione del volume. Quanto vale la coordinata X del centro di massa, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le masse uguali si semplificano nella definizione di centro di massa, lasciando la media aritmetica delle coordinate. Se le due coordinate coincidono, anche il centro ha quella coordinata. Non si impone che uno dei due corpi si trovi nell’origine."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{mx_1+mx_2}{2m}"
+        },
+        {
+          "type": "formula",
+          "text": " X=\\frac{x_1+x_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " X=\\frac{2+2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+2}{2}\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri è la somma senza divisione; un metro dimezzerebbe ancora. Due punti materiali coincidenti nel modello danno una distribuzione di massa concentrata nello stesso punto: la formula non li separa artificialmente."
+        }
+      ],
+      "hints": [
+        "Quando le coordinate sono identiche, il loro punto medio coincide con entrambe.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro metri è la somma senza divisione; un metro dimezzerebbe ancora. Due punti materiali coincidenti nel modello danno una distribuzione di massa concentrata nello stesso punto: la formula non li separa artificialmente.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6102,
+      "title": "Una coordinata ha unità di lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 1,
+      "prompt": "Due masse puntiformi uguali sono alle coordinate x₁, x₂ di uno stesso asse, espresse in metri. Il loro centro di massa ha X=(x₁+x₂)/2. Quale unità SI esprime X?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg",
+          "m/s",
+          "m",
+          "N",
+          "1"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si sommano due lunghezze e si divide per un numero puro. La divisione per due cambia la coordinata numerica, non la sua dimensione. La massa uguale dei due punti è stata semplificata fra numeratore e denominatore della definizione."
+        },
+        {
+          "type": "formula",
+          "text": "[x_1]=[x_2]"
+        },
+        {
+          "type": "formula",
+          "text": "[x_2]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [X]=L"
+        },
+        {
+          "type": "formula",
+          "text": " X\\text{ si misura in }\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "kg sarebbe una massa; m/s richiederebbe un intervallo; N una forza. X non è un rapporto puro: una coordinata mantiene la lunghezza anche quando vale zero o è negativa rispetto all’origine scelta."
+        }
+      ],
+      "hints": [
+        "La media di due coordinate espresse in metri resta una coordinata in metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg sarebbe una massa; m/s richiederebbe un intervallo; N una forza. X non è un rapporto puro: una coordinata mantiene la lunghezza anche quando vale zero o è negativa rispetto all’origine scelta.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6103,
+      "title": "Il punto medio dipende dall’origine come ogni coordinata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 1,
+      "prompt": "Due masse puntiformi uguali e positive sono alle coordinate x₁, x₂ dello stesso asse. Quale formula dà X, coordinata del centro di massa? Non si assume che una massa sia nell’origine.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "X=(x₁+x₂)/2",
+          "X=x₁+x₂",
+          "X=(x₂−x₁)/2",
+          "X=(x₁+x₂)/4",
+          "X=0"
+        ],
+        "value": "X=(x₁+x₂)/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel numeratore della media pesata ogni coordinata è moltiplicata per la stessa massa. Il denominatore è il doppio di quella massa: semplificando si ottiene la semisomma. La semidifferenza sarebbe invece metà della separazione orientata, non una coordinata del punto medio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c822cefeed85214a5f96c1f73efef078eff0181dccdab21c1ff4cfed6059b75f",
+          "text": "Il punto medio è definito dalle posizioni, mentre il suo numero cambia con l’origine. L’esempio di traslazione mostra coordinate4, 8 m e poi1, 5 m, con centro6 m e3 m; posizioni fisiche e distanza4 m immutate, scala40 px/m."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{mx_1+mx_2}{m+m}"
+        },
+        {
+          "type": "formula",
+          "text": " X=\\frac{x_1+x_2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "La somma raddoppia la posizione media; dividere per quattro la dimezza ancora. Zero vale soltanto quando x₁+x₂=0, in un riferimento con origine proprio nel centro. Il punto medio è geometrico, ma il suo numero cambia se trasliamo l’origine."
+        }
+      ],
+      "hints": [
+        "Semplifica le masse uguali senza cancellare nessuna delle due coordinate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma raddoppia la posizione media; dividere per quattro la dimezza ancora. Zero vale soltanto quando x₁+x₂=0, in un riferimento con origine proprio nel centro. Il punto medio è geometrico, ma il suo numero cambia se trasliamo l’origine.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6104,
+      "title": "Spostare soltanto una coordinata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 1,
+      "prompt": "Due masse puntiformi uguali sono osservate sullo stesso asse. Nella configurazioneA x₁=x₂=2 m. InB la prima massa è in x₁=4 m, mentre x₂ resta2 m. Come cambia la coordinata X del centro di massa?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3 m",
+          "Da 2 a 4 m",
+          "Resta 2 m",
+          "Da 2 a 1 m",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si sposta una sola massa di due metri, quindi il punto medio avanza di un metro. Le medie sono(2+2)/2=2 m e(4+2)/2=3 m. Non raddoppia l’intera coordinata perché la seconda massa non è stata spostata."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac{4+2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+2}{2}\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B-X_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri seguirebbe soltanto la massa mossa; uno invertirebbe l’effetto; invarianza o zero ignorano il nuovo punto medio. Il riferimento rimane lo stesso fra configurazioni: qui si muove un corpo, non l’origine."
+        }
+      ],
+      "hints": [
+        "Una variazione di una coordinata entra nella media con fattore un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro metri seguirebbe soltanto la massa mossa; uno invertirebbe l’effetto; invarianza o zero ignorano il nuovo punto medio. Il riferimento rimane lo stesso fra configurazioni: qui si muove un corpo, non l’origine.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6105,
+      "title": "Ricostruire la coordinata mancante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali e positive hanno centro di massa X=2 m nello stesso asse. La seconda coordinata è x₂=2 m. Quanto vale x₁, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo X=(x₁+x₂)/2 per due e togliamo x₂. Il risultato è2X−x₂, una differenza fra lunghezze. Qui dà2 m; non c’è alcuna radice o divisione per una coordinata."
+        },
+        {
+          "type": "formula",
+          "text": "2X=x_1+x_2"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=2X-x_2"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=(4-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre x₂ direttamente da X darebbe zero e fallirebbe la media iniziale. Il valore positivo rispetta il dominio scelto, ma una coordinata negativa in un altro problema sarebbe fisicamente lecita: non è un modulo."
+        }
+      ],
+      "hints": [
+        "Raddoppia X prima di sottrarre la coordinata nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre x₂ direttamente da X darebbe zero e fallirebbe la media iniziale. Il valore positivo rispetta il dominio scelto, ma una coordinata negativa in un altro problema sarebbe fisicamente lecita: non è un modulo.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6106,
+      "title": "Cambiare origine non sposta le masse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali hanno coordinate4 m e8 m su un asse positivo verso destra. Senza muoverle, si sceglie una nuova origine posta3 m a destra della vecchia e si mantiene lo stesso verso. Quanto vale X′, coordinata del centro di massa nella nuova origine, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il centro nel vecchio riferimento è6 m. Spostare l’origine a destra di3 m sottrae3 m a ogni coordinata: le masse diventano1 e5 m, il centro3 m. Lo stesso risultato si ottiene traslando direttamente X: è una descrizione diversa degli stessi punti fisici."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c822cefeed85214a5f96c1f73efef078eff0181dccdab21c1ff4cfed6059b75f",
+          "text": "Due masse uguali si trovano nei medesimi punti fisici lungo un asse orientato a destra: vecchia origine O, coordinate4 e8 m, centro6 m; nuova origine O′ a3 m daO, coordinate1 e5 m, centro3 m. Tre pannelli con stessa scala40 px/m per posizioni fisiche; il secondo sottrae3 m e il terzo controlla il punto medio e la separazione invariata4 m. Origine e versi espliciti, nessun corpo viene spostato."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{4+8}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+8}{2}\\,\\mathrm m=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_1'=4\\,\\mathrm m-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-3\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_2'=8\\,\\mathrm m-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm m-3\\,\\mathrm m=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X'=X-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "X-3\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Nove metri aggiungerebbe invece di sottrarre il nuovo spostamento dell’origine; sei manterrebbe il vecchio numero. Cinque è la nuova coordinata della seconda massa, due è la semidistanza fra i corpi. La loro separazione resta4 m e il centro non si è mosso fisicamente."
+        }
+      ],
+      "hints": [
+        "Un’origine spostata a destra fa diminuire dello stesso valore tutte le coordinate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove metri aggiungerebbe invece di sottrarre il nuovo spostamento dell’origine; sei manterrebbe il vecchio numero. Cinque è la nuova coordinata della seconda massa, due è la semidistanza fra i corpi. La loro separazione resta4 m e il centro non si è mosso fisicamente.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6107,
+      "title": "Confrontare due punti medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali sono su uno stesso asse. A ha x₁=x₂=2 m; B ha x₁=2 m, x₂=4 m. Quanto vale X_B/X_A? Le coordinate sono positive in questo riferimento.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le coordinate dei centri sono2 e3 m. Il loro rapporto è3/2, puro. Il dato x₁ comune contribuisce a entrambe le medie, perciò il raddoppio di x₂ non raddoppia il centro."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2 segue soltanto la seconda coordinata; 2/3 inverte A e B; 1/2 fa diminuire il centro; uno ignora lo spostamento. Un rapporto di coordinate ha senso qui nell’origine dichiarata e non è invariato da una traslazione arbitraria dell’origine."
+        }
+      ],
+      "hints": [
+        "Calcola le due medie prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2 segue soltanto la seconda coordinata; 2/3 inverte A e B; 1/2 fa diminuire il centro; uno ignora lo spostamento. Un rapporto di coordinate ha senso qui nell’origine dichiarata e non è invariato da una traslazione arbitraria dell’origine.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6108,
+      "title": "Una proposta uguale alla somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali sono entrambe a coordinata2 m nello stesso asse. Si propone X_proposto=4 m per il centro di massa. Quanto vale proposto meno corretto, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il centro corretto ha coordinata2 m: la proposta ha sommato senza dividere per due. Lo scarto richiesto è4−2=+2 m. Si confrontano coordinate nello stesso riferimento, quindi la sottrazione è ben definita."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{2+2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+2}{2}\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-2\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−2 m cambia l’ordine; 4 m ripete la proposta; 1 m dimezza ancora la differenza; 3 m non segue la sottrazione. Lo scarto non è la distanza fra le due masse, che qui è nulla."
+        }
+      ],
+      "hints": [
+        "Trova la semisomma, poi sottraila alla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 m cambia l’ordine; 4 m ripete la proposta; 1 m dimezza ancora la differenza; 3 m non segue la sottrazione. Lo scarto non è la distanza fra le due masse, che qui è nulla.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6109,
+      "title": "L’inversa lineare del punto medio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali hanno X=(x₁+x₂)/2 su uno stesso asse. Si conoscono X e x₂. Quale formula isola x₁? Nelle configurazioni richieste x₁>0, quindi si assume2X>x₂.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "x₁=2X−x₂",
+          "x₁=X−x₂",
+          "x₁=2X+x₂",
+          "x₁=(2X−x₂)/2",
+          "x₁=4X−2x₂"
+        ],
+        "value": "x₁=2X−x₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eliminiamo il mezzo moltiplicando entrambi i membri per due. Sottrarre x₂ isola x₁. La condizione2X>x₂ serve per il dominio positivo scelto, non perché le coordinate in generale debbano essere positive."
+        },
+        {
+          "type": "formula",
+          "text": "2X=x_1+x_2"
+        },
+        {
+          "type": "formula",
+          "text": " 2X-x_2=x_1"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=2X-x_2"
+        },
+        {
+          "type": "text",
+          "text": "X−x₂ dimentica il raddoppio; il più non toglie il termine noto. Le ultime due formule dimezzano o raddoppiano l’inversa corretta. Reinserire x₁ nella media permette un controllo senza dati numerici."
+        }
+      ],
+      "hints": [
+        "Prima togli il mezzo e poi il contributo della coordinata nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "X−x₂ dimentica il raddoppio; il più non toglie il termine noto. Le ultime due formule dimezzano o raddoppiano l’inversa corretta. Reinserire x₁ nella media permette un controllo senza dati numerici.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6110,
+      "title": "Due fattori che entrano in una somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali hanno coordinate x₁, x₂>0 su un asse fissato. FraA eB si scelgono x₁, B=κ₁x₁ e x₂, B=κ₂x₂, con fattori positivi. Le masse non cambiano. Quanto vale X_B/X_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ x₁ + κ₂ x₂) / (x₁ + x₂)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(x₁ + x₂) / (κ₁ x₁ + κ₂ x₂)",
+          "(κ₁ x₁ + κ₂ x₂) / (2x₁ + 2x₂)"
+        ],
+        "value": "(κ₁ x₁ + κ₂ x₂) / (x₁ + x₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il mezzo è presente in entrambi i centri e si cancella. Restano la nuova somma al numeratore e la vecchia al denominatore, positivo. I fattori di scala agiscono su addendi diversi e non si trasformano in un semplice prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=(x_1+x_2)/2"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=(\\kappa_1x_1+\\kappa_2x_2)/2"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=\\frac{\\kappa_1x_1+\\kappa_2x_2}{x_1+x_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto κ₁κ₂ perde il contributo relativo delle due coordinate; il quoziente inverte arbitrariamente un effetto. Il rapporto reciproco scambiaA eB e l’ultimo denominatore conserva un mezzo in più. Se κ₁=κ₂=κ, la risposta deve ridursi aκ."
+        }
+      ],
+      "hints": [
+        "Confronta due semisomme intere, poi cancella il mezzo comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto κ₁κ₂ perde il contributo relativo delle due coordinate; il quoziente inverte arbitrariamente un effetto. Il rapporto reciproco scambiaA eB e l’ultimo denominatore conserva un mezzo in più. Se κ₁=κ₂=κ, la risposta deve ridursi aκ.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6111,
+      "title": "Una dilatazione comune delle coordinate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi uguali hanno x₁=x₂=2 m nella configurazioneA e x₁=x₂=4 m inB, sullo stesso asse con origine invariata. Quanto vale X_B/X_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raddoppiano entrambe le coordinate, quindi raddoppia la loro semisomma. I centri hanno coordinate2 e4 m e il rapporto è due. Non si moltiplicano fra loro i due raddoppi perché la legge è una somma."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplicherebbe i cambiamenti; un mezzo inverte il rapporto. La stessa dilatazione rispetto all’origine cambia anche le distanze, mentre la sola traslazione dell’origine nel problema06non muoveva le masse."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore comune dalla somma delle coordinate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplicherebbe i cambiamenti; un mezzo inverte il rapporto. La stessa dilatazione rispetto all’origine cambia anche le distanze, mentre la sola traslazione dell’origine nel problema06non muoveva le masse.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6112,
+      "title": "Una media che distribuisce sulla somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 2,
+      "prompt": "Due configurazioni sullo stesso asse usano masse puntiformi uguali. A ha x₁=x₂=2 m e B x₁=x₂=4 m. Qual è la media aritmetica delle due coordinate X_A, X_B del centro, con uguale peso, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I centri sono2 e4 m, quindi la semisomma è3 m. Qui la legge del centro per masse uguali è lineare nelle coordinate: anche le coordinate medie3 e3 m darebbero3 m. Questa uguaglianza si giustifica dalla somma, non da una regola valida per ogni modello."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline X=\\frac{2+4}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+4}{2}\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sei metri è la somma; 3/2 m divide due volte; 2 e4 m ripetono una configurazione. La media si riferisce allo stesso asse e alla stessa origine: non si possono mescolare senza trasformazione coordinate riferite a origini diverse."
+        }
+      ],
+      "hints": [
+        "Media i due centri e spiega perché qui coincide anche la media degli ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei metri è la somma; 3/2 m divide due volte; 2 e4 m ripetono una configurazione. La media si riferisce allo stesso asse e alla stessa origine: non si possono mescolare senza trasformazione coordinate riferite a origini diverse.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6113,
+      "title": "La coordinata che completa l’obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 3,
+      "prompt": "Due masse puntiformi uguali hannoA: x₁=x₂=2 m. InB si impone x₁, B=4 m e si vuole X_B=2X_A, sullo stesso asse. Quanto vale x₂, B/x₂, A nel dominio positivo?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è X_B=4 m. Il punto medio di4 m e della coordinata incognita vale4 m soltanto se anche la seconda è4 m. L’inversa x₂, B=2X_B−x₁, B dà lo stesso risultato; il rapporto con2 m è due."
+        },
+        {
+          "type": "formula",
+          "text": "X_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_{2,B}=2X_B-x_{1,B}"
+        },
+        {
+          "type": "formula",
+          "text": " x_{2,B}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_{2,B}/x_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare x₂ a2 m darebbe un centro3 m, non4 m. Quattro metri è la nuova coordinata e non il rapporto. La condizione2X_B>x₁, B è soddisfatta e mantiene positiva la coordinata richiesta."
+        }
+      ],
+      "hints": [
+        "Ricava prima il secondo estremo dal punto medio desiderato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare x₂ a2 m darebbe un centro3 m, non4 m. Quattro metri è la nuova coordinata e non il rapporto. La condizione2X_B>x₁, B è soddisfatta e mantiene positiva la coordinata richiesta.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6114,
+      "title": "Un display che misura il punto medio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cX, con c>0, offset nullo. Due masse uguali hanno coordinate sullo stesso asse. Il riferimento x₁=x₂=2 m dà S=6. Una prova con x₂=4 m dà S=12. Quanto vale x₁, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha centro2 m e fornisce c=3 m⁻¹. La lettura12 corrisponde a X=4 m. L’inversa del punto medio dà x₁=2X−x₂=8−4=4 m. Il display va decodificato prima di usare una formula su coordinate in metri."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac6{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " X=12/c"
+        },
+        {
+          "type": "formula",
+          "text": "12/c=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=2X-x_2"
+        },
+        {
+          "type": "formula",
+          "text": "2X-x_2=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare12come metri darebbe20 m per x₁, includendo il guadagno strumentale. Il controllo della media4 m e della lettura12 ricostruisce entrambi i dati; la coordinata ottenuta è positiva."
+        }
+      ],
+      "hints": [
+        "Trova il centro vero dalla lettura e poi applica l’inversa lineare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare12come metri darebbe20 m per x₁, includendo il guadagno strumentale. Il controllo della media4 m e della lettura12 ricostruisce entrambi i dati; la coordinata ottenuta è positiva.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6115,
+      "title": "Offset e coordinate medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cX+a, con c>0, a costanti. Due masse uguali sono sullo stesso asse. A: x₁=x₂=2 m, S=5. B: x₁=x₂=4 m, S=9. C: x₂=2 m, S=7. Quanto vale x₁, C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "3 m",
+          "4 m",
+          "5 m",
+          "8 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I centri di riferimento sono2 e4 m. Il guadagno è(9−5)/(4−2)=2 m⁻¹ e l’offset1. La provaC ha centro(7−1)/2=3 m; la prima coordinata è quindi2·3−2=4 m."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a=1"
+        },
+        {
+          "type": "formula",
+          "text": " X_C=(7-1)/c"
+        },
+        {
+          "type": "formula",
+          "text": "(7-1)/c=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_{1,C}=2X_C-x_{2,C}"
+        },
+        {
+          "type": "formula",
+          "text": "2X_C-x_{2,C}=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con x₂, C=2 m, le alternative2, 3, 5, 8 m darebbero letture5, 6, 8, 11. Solo4 m dà7. Prendere un rapporto di letture senza togliere l’offset non restituisce un rapporto delle coordinate dei centri."
+        }
+      ],
+      "hints": [
+        "Separa guadagno e offset, poi ricostruisci l’estremo mancante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con x₂, C=2 m, le alternative2, 3, 5, 8 m darebbero letture5, 6, 8, 11. Solo4 m dà7. Prendere un rapporto di letture senza togliere l’offset non restituisce un rapporto delle coordinate dei centri.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6116,
+      "title": "Uguali coordinate, un solo valore del centro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-equal",
+      "difficulty": 3,
+      "prompt": "Due masse puntiformi uguali hanno coordinate positive con x₁=x₂ nello stesso asse. La misura del centro di massa è X=2 m. Quanto vale x₂, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire l’uguaglianza nella semisomma dà X=(x₂+x₂)/2=x₂. La misura determina quindi direttamente2 m e anche x₁=2 m. Non compare un quadrato perché la somma contiene due addendi uguali, non il loro prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{x_2+x_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " X=x_2"
+        },
+        {
+          "type": "formula",
+          "text": " x_2=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri dimenticherebbe il denominatore due; un metro dimezzerebbe ancora.−2 m non soddisfa la coordinata positiva misurata; 3 m darebbe un centro3 m. La coppia è unica nel dominio dichiarato."
+        }
+      ],
+      "hints": [
+        "Sostituisci l’uguaglianza prima di tentare una seconda equazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro metri dimenticherebbe il denominatore due; un metro dimezzerebbe ancora.−2 m non soddisfa la coordinata positiva misurata; 3 m darebbe un centro3 m. La coppia è unica nel dominio dichiarato.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Punto medio per masse uguali",
+        "Traslazione passiva dell’origine",
+        "Inverse e medie lineari"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c822cefeed85214a5f96c1f73efef078eff0181dccdab21c1ff4cfed6059b75f",
+      "name": "center-mass-equal-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlRyYXNsYXJlIGzigJlvcmlnaW5lLG5vbiBsZSBtYXNzZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBtYXNzZSB1Z3VhbGkgcmVzdGFubyBuZWdsaSBzdGVzc2kgcHVudGkgZmlzaWNpLiBTY2FsYSBjb211bmUgcXVhcmFudGEgcGl4ZWwgcGVyIG1ldHJvLiBQcmltYSBvcmlnaW5lIGEgb3R0YW50YSBwaXhlbDptYXNzZSBhIGR1ZWNlbnRvcXVhcmFudGEgZSBxdWF0dHJvY2VudG8gcGl4ZWwsY29vcmRpbmF0ZSBxdWF0dHJvIGUgb3R0byBtZXRyaTtjZW50cm8gYSB0cmVjZW50b3ZlbnRpIHBpeGVsLGNvb3JkaW5hdGEgc2VpIG1ldHJpLiBOdW92YSBvcmlnaW5lIGEgZHVlY2VudG8gcGl4ZWwsdHJlIG1ldHJpIGEgZGVzdHJhIGRlbGxhIHByZWNlZGVudGU6Y29vcmRpbmF0ZSB1bm8gZSBjaW5xdWUgbWV0cmksY2VudHJvIHRyZSBtZXRyaS4gU2VwYXJhemlvbmUgc2VtcHJlIHF1YXR0cm8gbWV0cmkuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjQwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMyM2YiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgVHJvdmEgaWwgY2VudHJvIG5lbCB2ZWNjaGlvIHJpZmVyaW1lbnRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+TWFzc2UgdWd1YWxpIMK3IHBvc2l6aW9uaTo0MCBweC9tLjwvdGV4dD48cGF0aCBkPSJNODAgMjI1SDQ5MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTgwIDIwN1YyNDVNMjQwIDI0MFYyNTNNNDAwIDI0MFYyNTMiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjQwIiBjeT0iMjI1IiByPSIxMCIgZmlsbD0iIzgxOTY4ZCIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjIyNSIgcj0iMTAiIGZpbGw9IiM4MTk2OGQiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMjUiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSI2MCIgeT0iMjg1Ij5POjA8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIyODUiPjQgbTwvdGV4dD48dGV4dCB4PSIzODAiIHk9IjI4NSI+OCBtPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMTg1IiBmaWxsPSIjMTQ2NDdiIj5YID0gNiBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNDUiPlggPSAoNCBtICsgOCBtKS8yID0gNiBtLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQzNSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBTcG9zdGEgbOKAmW9yaWdpbmUgZGkzbSB2ZXJzbyBkZXN0cmE8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQ4NSI+R2xpIHN0ZXNzaSBwdW50aSBmaXNpY2kgbWFudGVuZ29ubyBsZSBzdGVzc2UgcG9zaXppb25pLjwvdGV4dD48cGF0aCBkPSJNODAgNjE1SDIwMCIgc3Ryb2tlPSIjYjdjN2JmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPjxwYXRoIGQ9Ik0yMDAgNjE1SDQ5MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTgwIDU5N1Y2NDVNMjAwIDU5N1Y2NDUiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjQwIiBjeT0iNjE1IiByPSIxMCIgZmlsbD0iIzgxOTY4ZCIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjYxNSIgcj0iMTAiIGZpbGw9IiM4MTk2OGQiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSI2MTUiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSI2NyIgeT0iNjgwIj5PPC90ZXh0Pjx0ZXh0IHg9IjE4MiIgeT0iNjgwIj5P4oCyOjA8L3RleHQ+PHRleHQgeD0iMjI0IiB5PSI3MzUiPjEgbTwvdGV4dD48dGV4dCB4PSIzODQiIHk9IjczNSI+NSBtPC90ZXh0Pjx0ZXh0IHg9IjI5MyIgeT0iNTcwIiBmaWxsPSIjMTQ2NDdiIj5Y4oCyID0gMyBtPC90ZXh0PjxwYXRoIGQ9Ik04MCA1NDBIMjAwTTgwIDUzMFY1NTBNMjAwIDUzMFY1NTAiIHN0cm9rZT0iI2I0NGIyYyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTA1IiB5PSI1MjUiPjMgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzkwIj5Tb3R0cmFpM20gYSBvZ25pIGNvb3JkaW5hdGEsc2VuemEgbXVvdmVyZSBpIGNvcnBpLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijg4MCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDb250cm9sbGEgbWVkaWEgZSBzZXBhcmF6aW9uZTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTQwIj544oKB4oCyID0gNCBtIOKIkiAzIG0gPSAxIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk5MCI+eOKCguKAsiA9IDggbSDiiJIgMyBtID0gNSBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDQwIj5Y4oCyID0gKDEgbSArIDUgbSkvMiA9IDMgbSA9IFgg4oiSIDMgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTEwNSI+U2VwYXJhemlvbmU6OCBtIOKIkiA0IG0gPSA1IG0g4oiSIDEgbSA9IDQgbS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNjAiPklsIGNlbnRybyBmaXNpY28gw6ggaWRlbnRpY28sbGEgc3VhIGNvb3JkaW5hdGEgw6ggZGl2ZXJzYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyMTAiIGZvbnQtc2l6ZT0iMTgiPlN0ZXNzYSBzY2FsYTQwcHgvbSBlIHN0ZXNzbyB2ZXJzbyBwb3NpdGl2byBpbiBlbnRyYW1iaSBnbGkgYXNzaS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
