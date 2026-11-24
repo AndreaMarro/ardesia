@@ -71,7 +71,29 @@
               "pattern": "^AR-[a-z0-9-]+$"
             }
           }
-        }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "author": {
+                "const": "author_vectors_a"
+              },
+              "independentVerifier": {
+                "const": "author_vectors_b"
+              }
+            }
+          },
+          {
+            "properties": {
+              "author": {
+                "const": "author_vectors_b"
+              },
+              "independentVerifier": {
+                "const": "author_vectors_a"
+              }
+            }
+          }
+        ]
       }
     }
   }
