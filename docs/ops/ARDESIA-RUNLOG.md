@@ -1400,7 +1400,7 @@ Priorità verificabili:
 ## 24 novembre 2026 · Primo shard U2 completo e sedici esempi riesaminati
 
 Altre64candidate (medie e frenata) hanno terminato la catena indipendente: autore B,
-revisore A,88controprove,64import idempotenti e192anteprime PASS con exit0. Sono
+revisore A,88controprove,64schede importate in quattro lotti idempotenti e192anteprime PASS con exit0. Sono
 così320 i quesiti riscritti (U1 eU2-01 completi), con960anteprime dei quesiti più6
 delle due edizioni degli esempi. Tutti restano DRAFT/umanoNOT_RUN. Nei finding
 017 sono chiariti il caso nullo e i simboli delle medie;018 separa i path SVG
