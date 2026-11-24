@@ -1,0 +1,2190 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-area-conversion-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2000,
+      "title": "Le caselle cambiano, la superficie resta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 1,
+      "prompt": "Un rettangolo copre 2 vecchie unità di area. Ogni vecchia unità di lunghezza contiene 2 nuove unità di lunghezza. Quante nuove unità di area coprono lo stesso rettangolo?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una vecchia casella ha due lati da suddividere. Due intervalli lungo la base e due lungo l’altezza formano quattro caselle nuove. Il rettangolo contiene due vecchie caselle: contiamo quindi due gruppi da quattro. La superficie del rettangolo è invariata; cambia il campione con cui la misuriamo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b4c4bd45bedd5490f33953b55aea8551b644aa16ac3bc1b99589b89f906994c7",
+          "text": "Leggi le tre tappe dall’alto verso il basso. Ogni vecchia casella contiene 2 righe per 2 colonne; due caselle contengono 8 nuove unità di area."
+        },
+        {
+          "type": "formula",
+          "text": "B=A c^2"
+        },
+        {
+          "type": "formula",
+          "text": "A c^2=2\\times2^2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2^2=2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times4=8"
+        },
+        {
+          "type": "text",
+          "text": "Il numero 8 è un conteggio di unità di area, non una lunghezza. Riconvertendo, 8/4=2 vecchie unità: il percorso inverso ricostruisce il dato."
+        }
+      ],
+      "hints": [
+        "Una vecchia casella ha due lati da suddividere.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il numero 8 è un conteggio di unità di area, non una lunghezza. Riconvertendo, 8/4=2 vecchie unità: il percorso inverso ricostruisce il dato.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2001,
+      "title": "Unità di un valore numerico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 1,
+      "prompt": "L’area fisica si scrive S=B·u², dove u è una lunghezza usata come unità. La domanda riguarda B, cioè il solo valore numerico. Quale unità è dimensionalmente compatibile con B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m²",
+          "m",
+          "1",
+          "kg",
+          "s"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La grandezza S possiede dimensione di area. Questa dimensione è già contenuta nel fattore u². Dividendo S per u² otteniamo il numero di caselle, che è adimensionale. Se invece si chiedesse l’unità di S, m² sarebbe appropriato: qui si chiede esplicitamente B."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{S}{u^2},"
+        },
+        {
+          "type": "formula",
+          "text": " [B]=\\frac{L^2}{L^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{L^2}{L^2}=1"
+        },
+        {
+          "type": "text",
+          "text": "Un prefisso può cambiare il numero di caselle ma non trasforma B in una lunghezza o in una massa. La risposta è 1; nella scrittura ordinaria di un semplice numero si omette spesso questo simbolo."
+        }
+      ],
+      "hints": [
+        "La grandezza S possiede dimensione di area.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Un prefisso può cambiare il numero di caselle ma non trasforma B in una lunghezza o in una massa. La risposta è 1; nella scrittura ordinaria di un semplice numero si omette spesso questo simbolo.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2002,
+      "title": "Il fattore va applicato due volte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 1,
+      "prompt": "A è il valore numerico di un’area nella vecchia unità. Ogni vecchia unità di lunghezza contiene c nuove unità, con c>0. Quale relazione dà il nuovo valore numerico B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B=A c",
+          "B=A/c²",
+          "B=A c²",
+          "B=A+c²",
+          "B=A² c"
+        ],
+        "value": "B=A c²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conversione deve riguardare entrambe le direzioni della superficie. Su ogni lato il conteggio cresce di c; il prodotto dei due conteggi cresce di c·c. A rimane il numero iniziale di unità di area, non un lato da elevare al quadrato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b4c4bd45bedd5490f33953b55aea8551b644aa16ac3bc1b99589b89f906994c7",
+          "text": "Leggi le tre tappe dall’alto verso il basso. Ogni vecchia casella contiene 2 righe per 2 colonne; due caselle contengono 8 nuove unità di area."
+        },
+        {
+          "type": "formula",
+          "text": "S=A u_{\\rm vecchia}^2"
+        },
+        {
+          "type": "formula",
+          "text": "A u_{\\rm vecchia}^2=A(c u_{\\rm nuova})^2"
+        },
+        {
+          "type": "formula",
+          "text": "A(c u_{\\rm nuova})^2=A c^2u_{\\rm nuova}^2"
+        },
+        {
+          "type": "text",
+          "text": "Confrontando i coefficienti della stessa nuova unità quadrata troviamo B=A c². A c applicherebbe un solo fattore lineare; A/c² descriverebbe la conversione nel verso opposto."
+        }
+      ],
+      "hints": [
+        "La conversione deve riguardare entrambe le direzioni della superficie.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Confrontando i coefficienti della stessa nuova unità quadrata troviamo B=A c². A c applicherebbe un solo fattore lineare; A/c² descriverebbe la conversione nel verso opposto.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2003,
+      "title": "Confrontare a unità fissate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 1,
+      "prompt": "Il fattore lineare di conversione resta c=2. Il valore iniziale A passa da 2 a 4. Che cosa accade al valore convertito B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Si dimezza",
+          "Quadruplica",
+          "Resta uguale",
+          "Diventa nullo"
+        ],
+        "value": "Raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiché la coppia di unità resta la stessa, anche il fattore c² resta 4. Nel primo caso B vale 2·4=8; nel secondo 4·4=16. È cambiata la quantità di superficie misurata nella vecchia unità, non la scala della conversione."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B_2}{B_1}=\\frac{4\\times4}{2\\times4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\times4}{2\\times4}=2"
+        },
+        {
+          "type": "text",
+          "text": "B raddoppia. L’esponente due riguarda il fattore di lunghezza c, non ogni variabile della formula. Elevare al quadrato il raddoppio di A confonde il ruolo dei due dati."
+        }
+      ],
+      "hints": [
+        "Poiché la coppia di unità resta la stessa, anche il fattore c² resta 4.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "B raddoppia. L’esponente due riguarda il fattore di lunghezza c, non ogni variabile della formula. Elevare al quadrato il raddoppio di A confonde il ruolo dei due dati.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2004,
+      "title": "Tornare alla vecchia misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "Un’area occupa 8 nuove unità di area. Ogni vecchia unità di lunghezza contiene 2 nuove unità di lunghezza. Qual era il valore numerico A nella vecchia unità di area?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per passare al nuovo conteggio avevamo moltiplicato per c². Per tornare indietro dividiamo entrambi i membri della stessa uguaglianza per c². La divisione è lecita perché c=2 è diverso da zero."
+        },
+        {
+          "type": "formula",
+          "text": "B=A c^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B}{c^2}=A"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{8}{2^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{8}{2^2}=\\frac84"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84=2"
+        },
+        {
+          "type": "text",
+          "text": "Due vecchie caselle contengono ciascuna quattro caselle nuove e ricostruiscono le otto date. Dividere soltanto per due farebbe la conversione di una lunghezza, non di una superficie."
+        }
+      ],
+      "hints": [
+        "Per passare al nuovo conteggio avevamo moltiplicato per c².",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Due vecchie caselle contengono ciascuna quattro caselle nuove e ricostruiscono le otto date. Dividere soltanto per due farebbe la conversione di una lunghezza, non di una superficie.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2005,
+      "title": "Ricostruire la scala lineare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "La stessa area ha valore numerico A=2 nella vecchia unità e B=8 nella nuova unità. Quante nuove unità di lunghezza contiene una vecchia unità di lunghezza?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto fra i conteggi delle aree è 8/2=4. Questo rapporto è c²: il fattore lineare è la radice quadrata, non il rapporto stesso. Dividiamo per A e poi scegliamo la radice positiva, perché un rapporto fra lunghezze delle unità è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac BA=c^2"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\sqrt{\\frac BA}"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt{\\frac BA}=\\sqrt{\\frac82}"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt{\\frac82}=\\sqrt4"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4=2"
+        },
+        {
+          "type": "text",
+          "text": "Non occorre una calcolatrice: 2·2=4. Il controllo diretto dà 2·2²=8. La radice negativa risolverebbe l’equazione algebrica ma non rappresenterebbe la lunghezza di un’unità."
+        }
+      ],
+      "hints": [
+        "Il rapporto fra i conteggi delle aree è 8/2=4.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Non occorre una calcolatrice: 2·2=4. Il controllo diretto dà 2·2²=8. La radice negativa risolverebbe l’equazione algebrica ma non rappresenterebbe la lunghezza di un’unità.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2006,
+      "title": "Dimezzare il lato della casella",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "La superficie è fissa. Una prima scelta di unità dà c=2; una seconda dà c=4, sempre rispetto alla stessa vecchia unità. Qual è il rapporto fra il secondo e il primo valore numerico dell’area?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "8",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo fattore lineare è doppio del primo. Le nuove caselle hanno lati dimezzati e area ridotta a un quarto: per ricoprire la medesima superficie ne servono quattro volte tante. Possiamo eliminare A prima di usare i numeri."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B_2}{B_1}=\\frac{A c_2^2}{A c_1^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A c_2^2}{A c_1^2}=\\left(\\frac{c_2}{c_1}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{c_2}{c_1}\\right)^2=\\left(\\frac42\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac42\\right)^2=4"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è adimensionale. Non è la superficie fisica a quadruplicare: è il numero delle unità più piccole necessarie a descriverla."
+        }
+      ],
+      "hints": [
+        "Il secondo fattore lineare è doppio del primo.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il rapporto è adimensionale. Non è la superficie fisica a quadruplicare: è il numero delle unità più piccole necessarie a descriverla.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2007,
+      "title": "Concentrazione di massa in SI",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mass-concentration-si",
+      "difficulty": 2,
+      "prompt": "Una soluzione contiene 6 g di soluto in un volume finale di 2 cm³. La concentrazione di massa è massa del soluto divisa per volume finale della soluzione. Usa 1 g=10⁻³ kg e 1 cm=10⁻² m. Qual è la concentrazione in kg/m³?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "30",
+          "300",
+          "3000",
+          "30000"
+        ],
+        "value": "3000"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume è già quello della soluzione finale: non va ricostruito sommando volumi di soluto e solvente. Convertiamo massa e volume separatamente. Il centimetro entra tre volte nel centimetro cubo, quindi il volume è 2·10⁻⁶ m³. La massa è 6·10⁻³ kg."
+        },
+        {
+          "type": "formula",
+          "text": "C_m=\\frac{6\\times10^{-3}\\,\\mathrm{kg}}{2\\times10^{-6}\\,\\mathrm{m^3}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6\\times10^{-3}\\,\\mathrm{kg}}{2\\times10^{-6}\\,\\mathrm{m^3}}=\\frac62\\times10^{3}\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac62\\times10^{3}\\,\\mathrm{kg/m^3}=3000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "Abbiamo diviso 6 per 2 e sottratto gli esponenti: −3−(−6)=3. Un controllo utile è 1 g/cm³=1000 kg/m³. La concentrazione di soluto non va confusa con la densità dell’intera soluzione."
+        }
+      ],
+      "hints": [
+        "Il volume è già quello della soluzione finale: non va ricostruito sommando volumi di soluto e solvente.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Abbiamo diviso 6 per 2 e sottratto gli esponenti: −3−(−6)=3. Un controllo utile è 1 g/cm³=1000 kg/m³. La concentrazione di soluto non va confusa con la densità dell’intera soluzione.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2008,
+      "title": "Isolare il conteggio iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "La relazione fra i valori numerici di un’area è B=A c², con c>0. Si conoscono B e c. Quale formula permette di trovare A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A=B/c",
+          "A=B c²",
+          "A=B/c²",
+          "A=√(B/c)",
+          "A=B²/c"
+        ],
+        "value": "A=B/c²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incognita A è moltiplicata per c². Per lasciarla sola dobbiamo fare l’operazione inversa su entrambi i membri: dividere per c². Questo passaggio conserva l’uguaglianza e non richiede di spostare simboli cambiandoli a memoria."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B}{c^2}=\\frac{A c^2}{c^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A c^2}{c^2}=A"
+        },
+        {
+          "type": "text",
+          "text": "Sostituendo A=B/c² nella relazione iniziale otteniamo (B/c²)c²=B. La semplificazione è valida soltanto per c diverso da zero, condizione già garantita da c>0."
+        }
+      ],
+      "hints": [
+        "L’incognita A è moltiplicata per c².",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Sostituendo A=B/c² nella relazione iniziale otteniamo (B/c²)c²=B. La semplificazione è valida soltanto per c diverso da zero, condizione già garantita da c>0.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2009,
+      "title": "Due cambiamenti, due fattori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "Fra due misure A₂=κ₁A₁ e c₂=κ₂c₁, con tutti i fattori positivi. La legge è B=A c². Qual è B₂/B₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁²κ₂",
+          "κ₁κ₂²",
+          "κ₁/κ₂²",
+          "κ₂²/κ₁"
+        ],
+        "value": "κ₁κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo la legge due volte. Nella seconda misura sostituiamo sia A₂ sia c₂. Il quadrato di un prodotto è il prodotto dei quadrati: κ₂ è quindi elevato al quadrato insieme a c₁. Il fattore κ₁ resta alla prima potenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B_2}{B_1}=\\frac{(\\kappa_1 A_1)(\\kappa_2 c_1)^2}{A_1 c_1^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(\\kappa_1 A_1)(\\kappa_2 c_1)^2}{A_1 c_1^2}=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "Se κ₁=κ₂=1 il rapporto vale 1, come deve essere per due misure uguali. Se cambia soltanto A si recupera la proporzionalità diretta con A."
+        }
+      ],
+      "hints": [
+        "Scriviamo la legge due volte.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Se κ₁=κ₂=1 il rapporto vale 1, come deve essere per due misure uguali. Se cambia soltanto A si recupera la proporzionalità diretta con A.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2010,
+      "title": "Aumentare area e scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "Nella prima prova A₁=2 e c₁=2; nella seconda A₂=4 e c₂=4. Con B=A c², quanto vale B₂/B₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui A raddoppia e anche c raddoppia. Il primo cambiamento dà un fattore 2; il secondo dà un fattore 2²=4. Il prodotto dei fattori permette di evitare di calcolare due numeri grandi."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{B_2}{B_1}=\\frac42\\left(\\frac42\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42\\left(\\frac42\\right)^2=2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times4=8"
+        },
+        {
+          "type": "text",
+          "text": "Controlliamo anche direttamente: B₁=2·4=8 e B₂=4·16=64; 64/8=8. I due calcoli coincidono. Sommare i due fattori di variazione non descrive una legge moltiplicativa."
+        }
+      ],
+      "hints": [
+        "Qui A raddoppia e anche c raddoppia.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Controlliamo anche direttamente: B₁=2·4=8 e B₂=4·16=64; 64/8=8. I due calcoli coincidono. Sommare i due fattori di variazione non descrive una legge moltiplicativa.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2011,
+      "title": "La media delle indicazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 2,
+      "prompt": "Un convertitore visualizza soltanto il numero B=A c². Le due registrazioni sono (A=2,c=2) e (A=4,c=4), con lo stesso peso statistico. Qual è la media aritmetica dei due numeri visualizzati? Non si chiede una superficie media: le due conversioni usano unità di uscita diverse.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "27",
+          "32",
+          "36",
+          "64",
+          "72"
+        ],
+        "value": "36"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima costruiamo ciascuna indicazione: 2·2²=8 e 4·4²=64. Poi facciamo la media dei numeri visualizzati. L’operazione riguarda un registro di numeri, non due superfici da sommare in unità diverse. Questa distinzione è necessaria perché c cambia fra le registrazioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline B=\\frac{8+64}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{8+64}{2}=\\frac{72}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{72}{2}=36"
+        },
+        {
+          "type": "text",
+          "text": "Inserire nella legge le medie A=3 e c=3 darebbe 27: è un’operazione diversa. In generale la media dell’uscita di una legge non lineare non coincide con l’uscita calcolata sulle medie degli ingressi."
+        }
+      ],
+      "hints": [
+        "Prima costruiamo ciascuna indicazione: 2·2²=8 e 4·4²=64.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Inserire nella legge le medie A=3 e c=3 darebbe 27: è un’operazione diversa. In generale la media dell’uscita di una legge non lineare non coincide con l’uscita calcolata sulle medie degli ingressi.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2012,
+      "title": "Trovare il secondo cambiamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 3,
+      "prompt": "Il convertitore usa B=A c². A passa da 2 a 4; si vuole che B diventi 8 volte il valore iniziale. Quale rapporto c₂/c₁ serve, sapendo che c è positivo?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raddoppio di A fornisce già un fattore due. Il fattore ancora necessario nell’uscita è 8/2=4. Questo fattore deve essere il quadrato del rapporto fra le scale lineari."
+        },
+        {
+          "type": "formula",
+          "text": "8=2\\left(\\frac{c_2}{c_1}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "4=\\left(\\frac{c_2}{c_1}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{c_2}{c_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "La soluzione positiva è unica. Verifichiamo moltiplicando i contributi: 2·2²=8. Scegliere un rapporto quattro trasformerebbe il suo contributo in sedici e farebbe crescere B di trentadue volte."
+        }
+      ],
+      "hints": [
+        "Il raddoppio di A fornisce già un fattore due.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La soluzione positiva è unica. Verifichiamo moltiplicando i contributi: 2·2²=8. Scegliere un rapporto quattro trasformerebbe il suo contributo in sedici e farebbe crescere B di trentadue volte.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2013,
+      "title": "Tarare con un riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 3,
+      "prompt": "Un convertitore usa B=A c²; un display indica S=aB, con a>0 costante e offset nullo. Per A=2,c=2 il display indica 24. In una nuova prova, con c=4, indica 192. Quanto vale A nella nuova prova? Le due letture S hanno la stessa unità strumentale.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento B=2·2²=8, quindi il display moltiplica il numero vero per a=24/8=3. Nella nuova prova togliamo prima questo fattore strumentale: B=192/3=64. Solo allora invertiamo la conversione di area."
+        },
+        {
+          "type": "formula",
+          "text": "a=\\frac{24}{8}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{24}{8}=3,"
+        },
+        {
+          "type": "formula",
+          "text": " B_{\\rm nuovo}=\\frac{192}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{192}{3}=64,"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm nuovo}=\\frac{64}{4^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{64}{4^2}=4"
+        },
+        {
+          "type": "text",
+          "text": "Per dividere 192 per 3 basta scomporre 192=180+12: si ottiene 60+4. Ricostruendo il display troviamo 3·(4·16)=192. Usare direttamente 192 come B confonderebbe indicazione e valore convertito."
+        }
+      ],
+      "hints": [
+        "Nel riferimento B=2·2²=8, quindi il display moltiplica il numero vero per a=24/8=3.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Per dividere 192 per 3 basta scomporre 192=180+12: si ottiene 60+4. Ricostruendo il display troviamo 3·(4·16)=192. Usare direttamente 192 come B confonderebbe indicazione e valore convertito.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2014,
+      "title": "Separare guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 3,
+      "prompt": "Un display segue S=aB+b e il convertitore segue B=A c². I riferimenti sono (A=2,c=2,S=17) e (A=4,c=4,S=129). Nella prova ignota c=2 e S=33. a e b sono costanti: quanto vale A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "8",
+          "16"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due riferimenti corrispondono a B=8 e B=64. Sottraendo le letture eliminiamo b: 129−17=112 e 64−8=56, quindi a=112/56=2. Nel primo riferimento 17=2·8+b lascia b=1. La lettura ignota va corretta sia per l’offset sia per il guadagno."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{33-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-1}{2}=16,"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{16}{2^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{2^2}=4"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo completo dà S=2·(4·4)+1=33. Un rapporto fra letture non elimina un offset additivo: per questo la taratura con due riferimenti richiede prima una sottrazione."
+        }
+      ],
+      "hints": [
+        "I due riferimenti corrispondono a B=8 e B=64.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il controllo completo dà S=2·(4·4)+1=33. Un rapporto fra letture non elimina un offset additivo: per questo la taratura con due riferimenti richiede prima una sottrazione.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-area-conversion-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2015,
+      "title": "Un vincolo rende unico il risultato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-area",
+      "difficulty": 3,
+      "prompt": "I numeri positivi A e c soddisfano A=c. Il convertitore segue B=A c² e indica B=8. Quanto vale c? A e c sono qui valori numerici, non grandezze di dimensioni diverse.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2",
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sola uscita B lascerebbe molte coppie possibili: per esempio A=8,c=1. Il vincolo A=c elimina una delle incognite. Sostituendolo nella legge rimane c·c²=c³. Dobbiamo quindi riconoscere il numero positivo il cui cubo è otto."
+        },
+        {
+          "type": "formula",
+          "text": "8=c\\,c^2"
+        },
+        {
+          "type": "formula",
+          "text": "c\\,c^2=c^3,"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2\\times2=8"
+        },
+        {
+          "type": "formula",
+          "text": " c=2"
+        },
+        {
+          "type": "text",
+          "text": "Per c>0 la funzione c³ cresce strettamente, quindi la soluzione è unica. Il controllo con A=2 dà B=2·4=8. Senza il vincolo iniziale non sarebbe lecito dichiarare determinato c."
+        }
+      ],
+      "hints": [
+        "La sola uscita B lascerebbe molte coppie possibili: per esempio A=8,c=1.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Per c>0 la funzione c³ cresce strettamente, quindi la soluzione è unica. Il controllo con A=2 dà B=2·4=8. Senza il vincolo iniziale non sarebbe lecito dichiarare determinato c.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2016,
+      "title": "Contare i cubetti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 1,
+      "prompt": "Un volume occupa 2 vecchie unità cubiche. Una vecchia unità di lunghezza contiene 2 nuove unità di lunghezza. Quante nuove unità cubiche descrivono lo stesso volume?",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni vecchio cubo si divide in due parti lungo ciascuna delle tre direzioni: larghezza, profondità e altezza. Uno strato contiene 2·2=4 cubetti e gli strati sono due. Ogni vecchio cubo contiene dunque otto cubetti nuovi; i vecchi cubi sono due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/50fa0fcbe4f7bcf9c49939af872f82f89b61d65997a6f9c4fa2986f1bc286be5",
+          "text": "Leggi le tre tappe dall’alto verso il basso. Ogni vecchio cubo ha 2 strati da 4 cubetti; due cubi contengono 16 nuove unità di volume."
+        },
+        {
+          "type": "formula",
+          "text": "W=V c^3"
+        },
+        {
+          "type": "formula",
+          "text": "V c^3=2\\times2^3"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2^3=2\\times8"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times8=16"
+        },
+        {
+          "type": "text",
+          "text": "Il volume occupato resta identico. Tornando indietro, 16/8=2 vecchie unità cubiche. Il fattore quattro riguarderebbe solo due direzioni e lascerebbe fuori l’altezza."
+        }
+      ],
+      "hints": [
+        "Ogni vecchio cubo si divide in due parti lungo ciascuna delle tre direzioni: larghezza, profondità e altezza.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il volume occupato resta identico. Tornando indietro, 16/8=2 vecchie unità cubiche. Il fattore quattro riguarderebbe solo due direzioni e lascerebbe fuori l’altezza.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2017,
+      "title": "Il numero di unità cubiche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 1,
+      "prompt": "Il volume fisico è Q=W·u³, dove u è la lunghezza scelta come unità. Quale unità è dimensionalmente compatibile con il solo numero W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m³",
+          "m",
+          "1",
+          "kg",
+          "K"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q ha dimensione di volume e u³ ha la stessa dimensione. Il rapporto Q/u³ conta le unità cubiche: è un numero puro. Non si sta chiedendo l’unità del volume fisico Q, che potrebbe essere m³."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\frac{Q}{u^3},"
+        },
+        {
+          "type": "formula",
+          "text": "[W]=\\frac{L^3}{L^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{L^3}{L^3}=1"
+        },
+        {
+          "type": "text",
+          "text": "La risposta 1 indica l’adimensionalità. Cambiando u cambia W, ma il prodotto W·u³ continua a descrivere lo stesso volume."
+        }
+      ],
+      "hints": [
+        "Q ha dimensione di volume e u³ ha la stessa dimensione.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La risposta 1 indica l’adimensionalità. Cambiando u cambia W, ma il prodotto W·u³ continua a descrivere lo stesso volume.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2018,
+      "title": "Raddoppiare un campione omogeneo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "intensive-extensive",
+      "difficulty": 1,
+      "prompt": "Due porzioni identiche della stessa sostanza omogenea, alla stessa temperatura e pressione, vengono considerate insieme, senza spazi vuoti o variazioni di stato. Quali grandezze raddoppiano rispetto a una porzione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Massa, volume e densità",
+          "Solo la densità",
+          "Massa e volume; la densità resta uguale",
+          "Massa e densità; il volume resta uguale",
+          "Volume e densità; la massa resta uguale"
+        ],
+        "value": "Massa e volume; la densità resta uguale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le masse delle due porzioni si sommano e anche i volumi sono additivi nelle condizioni assegnate. La densità è invece il rapporto fra massa e volume: numeratore e denominatore raddoppiano insieme e il fattore due si semplifica."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_{\\rm insieme}=\\frac{2m}{2V}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2m}{2V}=\\frac mV"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac mV=\\rho"
+        },
+        {
+          "type": "text",
+          "text": "Massa e volume sono grandezze estensive; la densità, in queste condizioni, è intensiva. Non è una regola per qualsiasi miscela: mescolare sostanze diverse può comportare un volume finale diverso dalla somma dei volumi iniziali."
+        }
+      ],
+      "hints": [
+        "Le masse delle due porzioni si sommano e anche i volumi sono additivi nelle condizioni assegnate.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Massa e volume sono grandezze estensive; la densità, in queste condizioni, è intensiva. Non è una regola per qualsiasi miscela: mescolare sostanze diverse può comportare un volume finale diverso dalla somma dei volumi iniziali.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2019,
+      "title": "Il volume a scala fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 1,
+      "prompt": "Il convertitore usa W=V c³. Mantenendo c=2, V passa da 2 a 4. Che cosa accade a W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Quadruplica",
+          "Aumenta di otto volte",
+          "Si dimezza",
+          "Resta uguale"
+        ],
+        "value": "Raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cubo riguarda c e c non cambia. Il moltiplicatore resta c³=8. Il primo numero convertito è 2·8=16 e il secondo è 4·8=32. La legge è lineare rispetto a V."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W_2}{W_1}=\\frac{4\\times8}{2\\times8}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\times8}{2\\times8}=2"
+        },
+        {
+          "type": "text",
+          "text": "W raddoppia. Un aumento di otto volte si avrebbe raddoppiando soltanto il fattore lineare c, non il valore numerico iniziale V."
+        }
+      ],
+      "hints": [
+        "Il cubo riguarda c e c non cambia.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W raddoppia. Un aumento di otto volte si avrebbe raddoppiando soltanto il fattore lineare c, non il valore numerico iniziale V.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2020,
+      "title": "Invertire la conversione cubica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "Un volume occupa 16 nuove unità cubiche. Ogni vecchia unità di lunghezza contiene 2 nuove unità di lunghezza. Quante vecchie unità cubiche occupa?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione W=V c³ moltiplica il conteggio iniziale per otto. Dividiamo entrambi i membri per c³, che è positivo. Non serve estrarre una radice: l’incognita V compare alla prima potenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W}{c^3}=V,"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{16}{2^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{2^3}=\\frac{16}{8}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{8}=2"
+        },
+        {
+          "type": "text",
+          "text": "Due vecchi cubi, con otto nuovi cubetti ciascuno, danno sedici cubetti. La radice cubica servirebbe se l’incognita fosse c."
+        }
+      ],
+      "hints": [
+        "La relazione W=V c³ moltiplica il conteggio iniziale per otto.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Due vecchi cubi, con otto nuovi cubetti ciascuno, danno sedici cubetti. La radice cubica servirebbe se l’incognita fosse c.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2021,
+      "title": "Dal rapporto dei volumi al lato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "Lo stesso volume ha valore numerico V=2 nella vecchia unità e W=16 nella nuova. Il fattore lineare c è positivo e W=V c³. Quanto vale c?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo per V troviamo il rapporto fra i conteggi cubici: 16/2=8. Per ottenere il rapporto fra le lunghezze delle unità dobbiamo estrarre la radice cubica. Il numero due produce esattamente otto quando viene moltiplicato per sé tre volte."
+        },
+        {
+          "type": "formula",
+          "text": "c^3=\\frac{W}{V}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W}{V}=8,"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\sqrt[3]{8}"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt[3]{8}=2"
+        },
+        {
+          "type": "text",
+          "text": "La conversione ricostruita è 2·2³=16. Rispondere otto confonderebbe il rapporto fra volumi unitari con quello fra lunghezze unitarie."
+        }
+      ],
+      "hints": [
+        "Dividendo per V troviamo il rapporto fra i conteggi cubici: 16/2=8.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La conversione ricostruita è 2·2³=16. Rispondere otto confonderebbe il rapporto fra volumi unitari con quello fra lunghezze unitarie.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2022,
+      "title": "Cambiare solo la scala del cubo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "V resta fisso. Il fattore lineare di conversione passa da c₁=2 a c₂=4. Con W=V c³, quanto vale W₂/W₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "8",
+          "16",
+          "1/8"
+        ],
+        "value": "8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le unità nuove della seconda conversione hanno lati dimezzati rispetto a quelle della prima. Ogni vecchio cubetto si divide in due lungo tre direzioni, quindi contiene otto cubetti nuovi. Nel rapporto V si elimina."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W_2}{W_1}=\\left(\\frac{c_2}{c_1}\\right)^3"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{c_2}{c_1}\\right)^3=\\left(\\frac42\\right)^3"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac42\\right)^3=2^3"
+        },
+        {
+          "type": "formula",
+          "text": "2^3=8"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è un rapporto senza unità. La superficie di una faccia aumenterebbe il proprio conteggio di quattro volte; il volume richiede anche la terza direzione."
+        }
+      ],
+      "hints": [
+        "Le unità nuove della seconda conversione hanno lati dimezzati rispetto a quelle della prima.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il risultato è un rapporto senza unità. La superficie di una faccia aumenterebbe il proprio conteggio di quattro volte; il volume richiede anche la terza direzione.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2023,
+      "title": "Da decimetri cubici a millilitri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "litre-cubic-decimetre",
+      "difficulty": 2,
+      "prompt": "Un recipiente contiene 3/4 dm³ di acqua. Usa 1 dm³=1 L e 1 L=1000 mL. Quanti millilitri contiene?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "75",
+          "7500",
+          "3/4",
+          "3/4000",
+          "750"
+        ],
+        "value": "750"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il decimetro cubo e il litro rappresentano esattamente lo stesso volume. Tre quarti di decimetro cubo sono dunque tre quarti di litro. Per trovare tre quarti di mille, dividiamo prima mille per quattro e poi moltiplichiamo per tre."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac34\\,\\mathrm{dm^3}=\\frac34\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac34\\,\\mathrm L=\\frac{1000}{4}\\times3\\,\\mathrm{mL}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1000}{4}\\times3\\,\\mathrm{mL}=250\\times3\\,\\mathrm{mL}"
+        },
+        {
+          "type": "formula",
+          "text": "250\\times3\\,\\mathrm{mL}=750\\,\\mathrm{mL}"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti di litro devono essere meno di mille millilitri e più di mezzo litro, cioè cinquecento millilitri. Questo controllo esclude sia 7500 sia 75."
+        }
+      ],
+      "hints": [
+        "Il decimetro cubo e il litro rappresentano esattamente lo stesso volume.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Tre quarti di litro devono essere meno di mille millilitri e più di mezzo litro, cioè cinquecento millilitri. Questo controllo esclude sia 7500 sia 75.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2024,
+      "title": "Isolare V senza radici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "La conversione è W=V c³ e c>0. Quale relazione esprime V in funzione di W e c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=W/c",
+          "V=W/c³",
+          "V=W c³",
+          "V=∛(W/c)",
+          "V=W³/c"
+        ],
+        "value": "V=W/c³"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "V moltiplica l’intero fattore c³. Dividere entrambi i membri per quel fattore lascia V da solo. Il fatto che nella formula compaia un cubo non impone una radice per qualsiasi incognita: dipende da quale simbolo è elevato al cubo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W}{c^3}=\\frac{V c^3}{c^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V c^3}{c^3}=V"
+        },
+        {
+          "type": "text",
+          "text": "Inserendo l’inversa nella formula originale, (W/c³)c³=W. La condizione c>0 garantisce che il denominatore non sia nullo."
+        }
+      ],
+      "hints": [
+        "V moltiplica l’intero fattore c³.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Inserendo l’inversa nella formula originale, (W/c³)c³=W. La condizione c>0 garantisce che il denominatore non sia nullo.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2025,
+      "title": "La legge dei fattori nel volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "La legge è W=V c³. Fra due stati V₂=κ₁V₁ e c₂=κ₂c₁, con fattori positivi. Qual è W₂/W₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁³κ₂",
+          "κ₁κ₂³",
+          "κ₁/κ₂³",
+          "κ₂³/κ₁"
+        ],
+        "value": "κ₁κ₂³"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo i due nuovi valori nella stessa legge e dividiamo per l’uscita iniziale. Il fattore κ₁ moltiplica V una volta, mentre κ₂ compare tre volte perché moltiplica il lato di un’unità cubica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W_2}{W_1}=\\frac{(\\kappa_1V_1)(\\kappa_2c_1)^3}{V_1c_1^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(\\kappa_1V_1)(\\kappa_2c_1)^3}{V_1c_1^3}=\\kappa_1\\kappa_2^3"
+        },
+        {
+          "type": "text",
+          "text": "Se i due fattori sono entrambi due si ottiene 2·8=16. Se κ₂=1 si conserva la sola proporzionalità diretta con V: è un controllo del caso limite."
+        }
+      ],
+      "hints": [
+        "Sostituiamo i due nuovi valori nella stessa legge e dividiamo per l’uscita iniziale.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Se i due fattori sono entrambi due si ottiene 2·8=16. Se κ₂=1 si conserva la sola proporzionalità diretta con V: è un controllo del caso limite.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2026,
+      "title": "Due raddoppi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "Nella prima conversione V₁=2,c₁=2; nella seconda V₂=4,c₂=4. Con W=V c³, trova W₂/W₁.",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore iniziale V raddoppia e fornisce un fattore due. Il fattore lineare c raddoppia e il suo cubo fornisce un fattore otto. Il rapporto complessivo è il prodotto dei due contributi."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{W_2}{W_1}=\\frac42\\left(\\frac42\\right)^3"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42\\left(\\frac42\\right)^3=2\\times8"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times8=16"
+        },
+        {
+          "type": "text",
+          "text": "Un controllo diretto dà W₁=2·8=16 e W₂=4·64=256; 256/16=16. Sommare due e otto darebbe dieci, che non rispetta la legge di conversione."
+        }
+      ],
+      "hints": [
+        "Il valore iniziale V raddoppia e fornisce un fattore due.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Un controllo diretto dà W₁=2·8=16 e W₂=4·64=256; 256/16=16. Sommare due e otto darebbe dieci, che non rispetta la legge di conversione.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2027,
+      "title": "Media di due numeri visualizzati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 2,
+      "prompt": "Un convertitore registra solo il numero W=V c³. Le due registrazioni, con uguale peso, sono (V=2,c=2) e (V=4,c=4). Qual è la media aritmetica dei numeri W? Si media il registro numerico, non il volume fisico: le unità di uscita delle due conversioni sono diverse.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "81",
+          "128",
+          "136",
+          "256",
+          "272"
+        ],
+        "value": "136"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella prima registrazione W vale 2·8=16; nella seconda vale 4·64=256. Facciamo la media soltanto dopo avere ottenuto i due numeri. Per il calcolo mentale è comodo dividere ciascun addendo per due prima di sommarli."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline W=\\frac{16+256}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16+256}{2}=\\frac{16}{2}+\\frac{256}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{2}+\\frac{256}{2}=8+128"
+        },
+        {
+          "type": "formula",
+          "text": "8+128=136"
+        },
+        {
+          "type": "text",
+          "text": "Usare le medie V=3,c=3 nella formula produrrebbe 81, non la media richiesta. Il cambiamento di unità impedisce inoltre di interpretare questa media di indicazioni come una media di volumi senza prima fissare un’unità comune."
+        }
+      ],
+      "hints": [
+        "Nella prima registrazione W vale 2·8=16; nella seconda vale 4·64=256.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Usare le medie V=3,c=3 nella formula produrrebbe 81, non la media richiesta. Il cambiamento di unità impedisce inoltre di interpretare questa media di indicazioni come una media di volumi senza prima fissare un’unità comune.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2028,
+      "title": "Compensazione in tre direzioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 3,
+      "prompt": "W=V c³. V raddoppia da 2 a 4 e si vuole che W cresca di un fattore 16. Quale rapporto positivo c₂/c₁ occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cambiamento di V produce già un fattore due. Dividiamo l’aumento richiesto per questo contributo: 16/2=8. Il cubo del rapporto fra i fattori lineari deve quindi essere otto."
+        },
+        {
+          "type": "formula",
+          "text": "16=2\\left(\\frac{c_2}{c_1}\\right)^3"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{c_2}{c_1}\\right)^3=8"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{c_2}{c_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo è immediato: 2·2³=16. Il vincolo di positività esclude scale nulle o negative e la funzione cubica dà una sola soluzione positiva."
+        }
+      ],
+      "hints": [
+        "Il cambiamento di V produce già un fattore due.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il controllo è immediato: 2·2³=16. Il vincolo di positività esclude scale nulle o negative e la funzione cubica dà una sola soluzione positiva.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2029,
+      "title": "Taratura di un convertitore cubico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 3,
+      "prompt": "Un convertitore usa W=V c³; il display indica S=aW, con a>0 costante e offset nullo. Il riferimento V=2,c=2 dà S=48. La nuova prova ha c=4 e S=768. Quanto vale V? Le letture S usano la stessa unità strumentale.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento W=2·8=16, perciò il fattore del display è a=48/16=3. La lettura nuova corrisponde a W=768/3=256. Per trovare V dividiamo ora per c³=64."
+        },
+        {
+          "type": "formula",
+          "text": "a=3,"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\frac{768}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{768}{3}=256,"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{256}{4^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{256}{4^3}=\\frac{256}{64}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{256}{64}=4"
+        },
+        {
+          "type": "text",
+          "text": "La divisione per tre si può fare come (600+168)/3=200+56. Il controllo completo ricompone 3·(4·64)=768. La taratura deve essere rimossa prima di interpretare l’indicazione come numero di unità cubiche."
+        }
+      ],
+      "hints": [
+        "Nel riferimento W=2·8=16, perciò il fattore del display è a=48/16=3.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La divisione per tre si può fare come (600+168)/3=200+56. Il controllo completo ricompone 3·(4·64)=768. La taratura deve essere rimossa prima di interpretare l’indicazione come numero di unità cubiche.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2030,
+      "title": "Due riferimenti per il volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 3,
+      "prompt": "Un convertitore usa W=V c³ e un display usa S=aW+b. I riferimenti sono (V=2,c=2,S=33) e (V=4,c=4,S=513). Nella prova ignota c=2 e S=65. I coefficienti a,b sono costanti. Quanto vale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "8",
+          "16"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I numeri convertiti dei riferimenti sono 16 e 256. Sottraendo le letture eliminiamo l’offset: 513−33=480 e 256−16=240. Il guadagno è quindi a=480/240=2. Dal primo riferimento b=33−2·16=1."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\frac{65-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{65-1}{2}=32,"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{32}{2^3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{32}{2^3}=\\frac{32}{8}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{32}{8}=4"
+        },
+        {
+          "type": "text",
+          "text": "Rimettendo V nella catena troviamo W=4·8=32 e S=2·32+1=65. Usare 65/33 come rapporto fra volumi lascerebbe dentro l’offset e darebbe una taratura errata."
+        }
+      ],
+      "hints": [
+        "I numeri convertiti dei riferimenti sono 16 e 256.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Rimettendo V nella catena troviamo W=4·8=32 e S=2·32+1=65. Usare 65/33 come rapporto fra volumi lascerebbe dentro l’offset e darebbe una taratura errata.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-volume-conversion-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2031,
+      "title": "Il vincolo porta alla quarta potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "units-volume",
+      "difficulty": 3,
+      "prompt": "I valori numerici positivi V e c soddisfano V=c. La legge del convertitore è W=V c³ e si misura W=16. Quanto vale c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2",
+          "1",
+          "2",
+          "4",
+          "16"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo permette di sostituire V con c. La legge diventa W=c·c³=c⁴. Il numero positivo due soddisfa l’equazione perché 2²=4 e 4²=16. La quarta potenza ha anche una radice negativa, ma una scala lineare di unità non può essere negativa."
+        },
+        {
+          "type": "formula",
+          "text": "16=c^4,"
+        },
+        {
+          "type": "formula",
+          "text": " 2^4=(2^2)^2"
+        },
+        {
+          "type": "formula",
+          "text": "(2^2)^2=4^2"
+        },
+        {
+          "type": "formula",
+          "text": "4^2=16"
+        },
+        {
+          "type": "formula",
+          "text": " c=2\\;(c>0)"
+        },
+        {
+          "type": "text",
+          "text": "La funzione c⁴ è strettamente crescente sul dominio positivo, quindi il valore è unico. Da V=2 otteniamo W=2·2³=16. Senza il vincolo V=c l’uscita da sola non determinerebbe entrambi gli ingressi."
+        }
+      ],
+      "hints": [
+        "Il vincolo permette di sostituire V con c.",
+        "Riprendi la relazione e lascia sola l’incognita prima dei numeri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La funzione c⁴ è strettamente crescente sul dominio positivo, quindi il valore è unico. Da V=2 otteniamo W=2·2³=16. Senza il vincolo V=c l’uscita da sola non determinerebbe entrambi gli ingressi.",
+        "target": "C1-L001"
+      },
+      "coverage": [
+        "Unità e conversioni",
+        "Potenze e rapporti"
+      ],
+      "review": "Revisione AI con evidenze individuali; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b4c4bd45bedd5490f33953b55aea8551b644aa16ac3bc1b99589b89f906994c7",
+      "name": "corpus-area-units.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iNjMwIiB2aWV3Qm94PSIwIDAgMzIwIDYzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5MYSBzdGVzc2Egc3VwZXJmaWNpZSwgZGEgZHVlIGEgb3R0byBjYXNlbGxlPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZSB2ZXJ0aWNhbGkuIER1ZSBxdWFkcmF0aSB1Z3VhbGkgZm9ybWFubyBpbCByZXR0YW5nb2xvLiBPZ25pIGxhdG8gdmllbmUgZGl2aXNvIGluIGR1ZS4gT2duaSBxdWFkcmF0byBjb250aWVuZSBjb3PDrCBxdWF0dHJvIGNhc2VsbGUgbnVvdmUsIHBlciBvdHRvIGNhc2VsbGUgY29tcGxlc3NpdmUuIElsIGJvcmRvIGVzdGVybm8gw6ggaW52YXJpYXRvLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiNmZmZkZjgiLz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiPgo8dGV4dCB4PSIxNiIgeT0iMzAiPjEuIER1ZSB1bml0w6AgZGkgYXJlYTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iNTciIGZvbnQtc2l6ZT0iMTYiPklsIGJvcmRvIGZpc3NhIGxhIHN1cGVyZmljaWUuPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iMjI4Ij4yLiBEdWUgaW50ZXJ2YWxsaSBzdSBvZ25pIGxhdG88L3RleHQ+PHRleHQgeD0iMTYiIHk9IjI1NSIgZm9udC1zaXplPSIxNiI+T2duaSB2ZWNjaGlhIGNhc2VsbGE6IDIgw5cgMi48L3RleHQ+Cjx0ZXh0IHg9IjE2IiB5PSI0MjYiPjMuIENvbnRhIGxlIG51b3ZlIGNhc2VsbGU8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjQ1MyIgZm9udC1zaXplPSIxNiI+RHVlIGdydXBwaSBkYSBxdWF0dHJvOiA4LjwvdGV4dD4KPC9nPgo8ZyBmaWxsPSIjZTZlZmVjIiBzdHJva2U9IiMxOTNkNDMiIHN0cm9rZS13aWR0aD0iMiI+CjxwYXRoIGQ9Ik03MCA4NWgxODB2OTBINzB6TTE2MCA4NXY5MCIvPgo8cGF0aCBkPSJNNzAgMjgzaDE4MHY5MEg3MHpNMTYwIDI4M3Y5MCIvPgo8cGF0aCBkPSJNNzAgNDgxaDE4MHY5MEg3MHpNMTYwIDQ4MXY5MCIvPgo8L2c+CjxnIHN0cm9rZT0iIzhlNGIxNiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTExNSAyODN2OTBNMjA1IDI4M3Y5ME03MCAzMjhoMTgwTTExNSA0ODF2OTBNMjA1IDQ4MXY5ME03MCA1MjZoMTgwIi8+CjwvZz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgo8dGV4dCB4PSIxMTUiIHk9IjEzOCI+MTwvdGV4dD48dGV4dCB4PSIyMDUiIHk9IjEzOCI+MjwvdGV4dD4KPHRleHQgeD0iOTIiIHk9IjUxMSI+MTwvdGV4dD48dGV4dCB4PSIxMzciIHk9IjUxMSI+MjwvdGV4dD48dGV4dCB4PSIxODIiIHk9IjUxMSI+NTwvdGV4dD48dGV4dCB4PSIyMjciIHk9IjUxMSI+NjwvdGV4dD4KPHRleHQgeD0iOTIiIHk9IjU1NiI+MzwvdGV4dD48dGV4dCB4PSIxMzciIHk9IjU1NiI+NDwvdGV4dD48dGV4dCB4PSIxODIiIHk9IjU1NiI+NzwvdGV4dD48dGV4dCB4PSIyMjciIHk9IjU1NiI+ODwvdGV4dD4KPHRleHQgeD0iMTYwIiB5PSI2MTAiPlN1cGVyZmljaWUgaW52YXJpYXRhPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    },
+    {
+      "id": "50fa0fcbe4f7bcf9c49939af872f82f89b61d65997a6f9c4fa2986f1bc286be5",
+      "name": "corpus-volume-units.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iNjgwIiB2aWV3Qm94PSIwIDAgMzIwIDY4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EdWUgY3ViaTogc2VkaWNpIGN1YmV0dGk8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlIHZlcnRpY2FsaS4gSWwgdm9sdW1lIGNvbnRpZW5lIGR1ZSB2ZWNjaGllIHVuaXTDoCBjdWJpY2hlLiBDaWFzY3VuYSB1bml0w6Agw6ggc3VkZGl2aXNhIGluIGR1ZSBzdHJhdGkuIE9nbmkgc3RyYXRvIGNvbnRpZW5lIHF1YXR0cm8gY3ViZXR0aSwgZGlzcG9zdGkgaW4gZHVlIHJpZ2hlIGUgZHVlIGNvbG9ubmUuIER1ZSBjdWJpIHBlciBkdWUgc3RyYXRpIHBlciBxdWF0dHJvIGN1YmV0dGkgZGFubm8gc2VkaWNpIGN1YmV0dGkuPC9kZXNjPgo8cmVjdCB3aWR0aD0iMzIwIiBoZWlnaHQ9IjY4MCIgZmlsbD0iI2ZmZmRmOCIvPgo8ZyBmaWxsPSIjMTkzZDQzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCI+Cjx0ZXh0IHg9IjE2IiB5PSIzMCI+MS4gUGFydGkgZGEgZHVlIGN1Ymk8L3RleHQ+PHRleHQgeD0iMTYiIHk9IjU3IiBmb250LXNpemU9IjE2Ij5PZ25pIGxhdG8gY2FtYmlhIHNjYWxhIGRpIDIuPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iMjM2Ij4yLiBBcHJpIHVuIGN1Ym8gaW4gZHVlIHN0cmF0aTwvdGV4dD48dGV4dCB4PSIxNiIgeT0iMjYzIiBmb250LXNpemU9IjE2Ij5PZ25pIHN0cmF0bzogMiByaWdoZSDDlyAyIGNvbG9ubmUuPC90ZXh0Pgo8dGV4dCB4PSIxNiIgeT0iNDU1Ij4zLiBSaXVuaXNjaSBpbCBjb250ZWdnaW88L3RleHQ+PHRleHQgeD0iMTYiIHk9IjQ4MiIgZm9udC1zaXplPSIxNiI+OCBjdWJldHRpIHBlciBvZ25pIHZlY2NoaW8gY3Viby48L3RleHQ+CjwvZz4KPGcgZmlsbD0iI2U2ZWZlYyIgc3Ryb2tlPSIjMTkzZDQzIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgo8cGF0aCBkPSJNMzUgMTEwaDcwdjcwSDM1ek0zNSAxMTBsMjUtMjVoNzB2NzBsLTI1IDI1TTEwNSAxMTBsMjUtMjVNMzUgMTEwaDcwIi8+CjxwYXRoIGQ9Ik0xODAgMTEwaDcwdjcwaC03MHpNMTgwIDExMGwyNS0yNWg3MHY3MGwtMjUgMjVNMjUwIDExMGwyNS0yNU0xODAgMTEwaDcwIi8+CjxyZWN0IHg9IjQwIiB5PSIyOTUiIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIvPjxyZWN0IHg9IjE5MCIgeT0iMjk1IiB3aWR0aD0iOTAiIGhlaWdodD0iOTAiLz4KPHBhdGggZD0iTTg1IDI5NXY5ME00MCAzNDBoOTBNMjM1IDI5NXY5ME0xOTAgMzQwaDkwIi8+CjwvZz4KPGcgZmlsbD0iIzE5M2Q0MyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTciIHRleHQtYW5jaG9yPSJtaWRkbGUiPgo8dGV4dCB4PSI4NSIgeT0iNDE0Ij5zdHJhdG8gMTogNDwvdGV4dD48dGV4dCB4PSIyMzUiIHk9IjQxNCI+c3RyYXRvIDI6IDQ8L3RleHQ+Cjx0ZXh0IHg9IjE2MCIgeT0iNTM1Ij5VbiBjdWJvOiA0ICsgNCA9IDg8L3RleHQ+PHRleHQgeD0iMTYwIiB5PSI1NzgiPkR1ZSBjdWJpOiA4ICsgOCA9IDE2PC90ZXh0Pjx0ZXh0IHg9IjE2MCIgeT0iNjQyIj5Wb2x1bWUgZmlzaWNvIGludmFyaWF0bzwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

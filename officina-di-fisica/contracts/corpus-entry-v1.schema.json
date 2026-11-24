@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AndreaMarro/ardesia/officina-di-fisica/corpus-entry-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "origin", "sourceId", "sourceVersion", "sourceSha256", "provenance", "verifierSha256", "visibility", "family", "competency", "state", "automatic", "review", "evidence", "blocked"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"},
+    "origin": {"enum": ["ardesia", "cric"]},
+    "sourceId": {"type": "string", "minLength": 1},
+    "sourceVersion": {"type": "integer", "minimum": 1},
+    "sourceSha256": {"$ref": "#/$defs/sha"},
+    "verifierSha256": {"$ref": "#/$defs/sha"},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["commit", "path", "fileSha256"],
+      "properties": {"commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"}, "path": {"type": "string", "minLength": 1}, "fileSha256": {"$ref": "#/$defs/sha"}}
+    },
+    "visibility": {"enum": ["draft", "existing_published", "protected_exam"]},
+    "family": {"type": "string"}, "competency": {"type": "string"},
+    "state": {"enum": ["ACCOUNTED", "REVISED_DRAFT", "BLOCKED"]},
+    "automatic": {"type": "object", "required": ["sourceArithmetic"], "properties": {"sourceArithmetic": {"type": "object", "required": ["status", "checks", "scope"], "properties": {"status": {"enum": ["PASS", "FAIL", "NOT_RUN"]}, "checks": {"type": "array"}, "scope": {"const": "recomputed_source_assertions_not_independent_physics"}}}}, "additionalProperties": false},
+    "review": {"type": "object", "additionalProperties": false, "required": ["independentSolution", "dimensions", "physicalAssumptions", "manualArithmetic", "pedagogy", "distractors", "integration", "humanApproval"], "properties": {
+      "independentSolution": {"$ref": "#/$defs/stage"}, "dimensions": {"$ref": "#/$defs/stage"}, "physicalAssumptions": {"$ref": "#/$defs/stage"}, "manualArithmetic": {"$ref": "#/$defs/stage"}, "pedagogy": {"$ref": "#/$defs/stage"}, "distractors": {"$ref": "#/$defs/stage"}, "integration": {"$ref": "#/$defs/stage"}, "humanApproval": {"enum": ["NOT_RUN", "APPROVED", "REJECTED"]}
+    }},
+    "evidence": {"type": "array", "items": {"type": "object"}},
+    "blocked": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {"sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "stage": {"enum": ["NOT_RUN", "PASS_AUTO", "PASS_AI", "FAIL", "NOT_APPLICABLE"]}}
+}
