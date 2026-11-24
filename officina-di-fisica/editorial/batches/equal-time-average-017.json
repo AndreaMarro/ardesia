@@ -1,0 +1,1185 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-equal-time-average-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2301,
+      "title": "Due intervalli, un’unica media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 1,
+      "prompt": "Un oggetto si muove lungo un asse per due intervalli consecutivi di uguale durata τ>0. In entrambi la velocità è costante e vale +2 m/s. Quanto vale la velocità media orientata V sui due intervalli, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità media usa lo spostamento complessivo diviso per la durata complessiva. Ogni intervallo contribuisce con lo stesso spostamento, 2 m/s moltiplicati per τ. Anche il tempo deve essere contato due volte. Aggiungere due valori uguali e poi dividere per due restituisce il valore di ciascuno."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=v_1\\tau+v_2\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=2\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{v_1+v_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2+2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+2}{2}\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La media rimane +2 m/s, non diventa +4 m/s: quattro è la somma delle due velocità prima di tenere conto del tempo totale. Qui il moto non inverte il verso, quindi rapidità media e velocità media hanno lo stesso valore numerico. Con velocità di segno opposto occorrerebbe conservare i segni degli spostamenti."
+        }
+      ],
+      "hints": [
+        "Somma gli spostamenti e conta entrambi gli intervalli nel denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La media rimane +2 m/s, non diventa +4 m/s: quattro è la somma delle due velocità prima di tenere conto del tempo totale. Qui il moto non inverte il verso, quindi rapidità media e velocità media hanno lo stesso valore numerico. Con velocità di segno opposto occorrerebbe conservare i segni degli spostamenti.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2302,
+      "title": "Le unità della semisomma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 1,
+      "prompt": "Due velocità costanti lungo un asse sono mediate su intervalli di uguale durata. Quale unità SI è compatibile con la velocità media orientata V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "m/s",
+          "m/s²",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due velocità si sommano perché hanno la stessa dimensione. Il divisore due conta gli intervalli ed è adimensionale: non è una durata di due secondi. Perciò la media conserva l’unità delle velocità, come conferma anche la definizione spostamento su tempo."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{v_1+v_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m/s è corretto. Il metro esprimerebbe lo spostamento, il secondo il tempo; m/s² richiederebbe una variazione di velocità divisa per una durata. Un numero puro non può rappresentare una velocità solo perché è stata fatta una media. Il due della semisomma non aggiunge un secondo al denominatore."
+        }
+      ],
+      "hints": [
+        "Distingui il conteggio due dall’unità secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è corretto. Il metro esprimerebbe lo spostamento, il secondo il tempo; m/s² richiederebbe una variazione di velocità divisa per una durata. Un numero puro non può rappresentare una velocità solo perché è stata fatta una media. Il due della semisomma non aggiunge un secondo al denominatore.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2303,
+      "title": "La media conserva il segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 1,
+      "prompt": "Lungo un asse si considerano due intervalli consecutivi di uguale durata τ>0, con componenti di velocità costanti v₁ e v₂. Le componenti possono avere segni diversi. Quale formula dà la velocità media orientata V sull’intero intervallo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=(v₁+v₂)/2",
+          "V=(|v₁|+|v₂|)/2",
+          "V=v₁+v₂",
+          "V=(v₁−v₂)/2",
+          "V=√(v₁²+v₂²)"
+        ],
+        "value": "V=(v₁+v₂)/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione di coordinata nel primo intervallo è v₁τ e nel secondo v₂τ, con i rispettivi segni. Il tempo totale è 2τ. Nel quoziente il fattore τ si cancella: rimane la semisomma delle componenti. L’uguaglianza delle durate, non quella delle distanze, permette questa semplificazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=(v_1+v_2)\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{(v_1+v_2)\\tau}{2\\tau}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{v_1+v_2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse."
+        }
+      ],
+      "hints": [
+        "Parti da due spostamenti orientati, senza prendere valori assoluti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La formula con i moduli dà invece la rapidità media per questi due tratti. Se v₂=−v₁, gli spostamenti si cancellano e V=0, mentre la rapidità resta positiva. Sommare senza dividere conta due volte il peso; sottrarre v₂ ne cambia arbitrariamente il verso. Pitagora non combina due intervalli temporali lungo lo stesso asse.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2304,
+      "title": "Cambiare solo il primo tratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 1,
+      "prompt": "Due prove hanno ciascuna due intervalli consecutivi di uguale durata positiva. Nella prima v₁=v₂=+2 m/s; nella seconda v₁=+4 m/s e v₂=+2 m/s. Come cambia la velocità media orientata?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 2 a 4 m/s",
+          "Passa da 2 a 3 m/s",
+          "Resta 2 m/s",
+          "Si dimezza a 1 m/s",
+          "Diventa 6 m/s"
+        ],
+        "value": "Passa da 2 a 3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda velocità e i pesi temporali rimangono fissi. Il primo contributo aumenta di due metri al secondo, ma nella media pesa soltanto metà del totale. La media aumenta quindi di un metro al secondo. È utile scrivere entrambe le semisomme."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2+2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+2}{2}\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{4+2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+2}{2}\\,\\mathrm{m/s}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La media cresce di un fattore 3/2. Raddoppiare un solo addendo non raddoppia l’intera somma. Sei metri al secondo è la somma delle due velocità prima di dividere per due. L’aumento non dipende dal valore di τ, purché i due intervalli di ogni prova abbiano la stessa durata."
+        }
+      ],
+      "hints": [
+        "Conserva metà peso per ciascuna velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La media cresce di un fattore 3/2. Raddoppiare un solo addendo non raddoppia l’intera somma. Sei metri al secondo è la somma delle due velocità prima di dividere per due. L’aumento non dipende dal valore di τ, purché i due intervalli di ogni prova abbiano la stessa durata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2305,
+      "title": "Ricostruire la prima velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Un moto lungo un asse comprende due intervalli consecutivi di uguale durata τ>0, ciascuno con velocità costante positiva. La media complessiva è V=2 m/s e la seconda velocità è v₂=2 m/s. Quanto vale v₁, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media V=(v₁+v₂)/2 contiene una divisione per due. Moltiplichiamo entrambi i membri per due e poi sottraiamo v₂: la prima velocità resta isolata. Le operazioni coinvolgono sempre grandezze con unità di velocità."
+        },
+        {
+          "type": "formula",
+          "text": "2V=v_1+v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=2V-v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=(2\\times2-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\times2-2)\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce (2+2)/2=2 m/s. La positività della velocità cercata non va data per scontata in ogni inversa: nel modello con entrambe le velocità positive occorre 2V>v₂. I dati assegnati rispettano questa condizione."
+        }
+      ],
+      "hints": [
+        "Elimina il divisore due prima di togliere la velocità nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce (2+2)/2=2 m/s. La positività della velocità cercata non va data per scontata in ogni inversa: nel modello con entrambe le velocità positive occorre 2V>v₂. I dati assegnati rispettano questa condizione.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2306,
+      "title": "Metà tempo non significa metà spazio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Un oggetto si muove nel verso positivo per due intervalli di uguale durata τ>0. Le velocità costanti sono 2 m/s nel primo e 6 m/s nel secondo. Quale frazione della distanza totale viene percorsa nel secondo intervallo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "3/4",
+          "1/3",
+          "3"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza di ciascun intervallo è velocità per durata. Poiché la durata è comune, le due distanze stanno nel rapporto 2:6, cioè 1:3. Il totale contiene quattro parti uguali e il secondo tratto ne contiene tre. Non serve conoscere il valore di τ."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bb2dba0a3093684a41689a7dd2ac51115d7c28acb05cb945884a6dde41a07a96",
+          "text": "Tre tappe per due intervalli uguali: il disegno sceglie τ=1 s; le velocità 2 e 6 m/s producono distanze 2 e 6 m; il secondo tratto copre sei degli otto metri totali, cioè tre quarti. Il risultato resta lo stesso per ogni τ>0 comune."
+        },
+        {
+          "type": "formula",
+          "text": "d_1=(2\\,\\mathrm{m/s})\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " d_2=(6\\,\\mathrm{m/s})\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{d_2}{d_1+d_2}=\\frac6{2+6}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2+6}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "La frazione è tre quarti, maggiore di metà perché nel secondo intervallo si va più rapidamente. Un mezzo è la frazione del tempo, non dello spazio. Un quarto è la quota del primo tratto; tre e un terzo confrontano i due tratti tra loro, senza dividere per il totale. Le distanze coincidono qui con gli spostamenti positivi."
+        }
+      ],
+      "hints": [
+        "Confronta sei parti con il totale due più sei, non con il solo primo tratto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La frazione è tre quarti, maggiore di metà perché nel secondo intervallo si va più rapidamente. Un mezzo è la frazione del tempo, non dello spazio. Un quarto è la quota del primo tratto; tre e un terzo confrontano i due tratti tra loro, senza dividere per il totale. Le distanze coincidono qui con gli spostamenti positivi.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2307,
+      "title": "Un rapporto fra due medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Ogni prova contiene due intervalli consecutivi di uguale durata. Nella prima le velocità sono +2 e +2 m/s; nella seconda +2 e +4 m/s. Quanto vale V₂/V₁ fra le velocità medie orientate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "2/3",
+          "3/2",
+          "1/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima media è due metri al secondo e la seconda tre. Il rapporto deve confrontare queste due uscite, non soltanto la velocità che cambia. Possiamo anche semplificare il divisore due comune alle due semisomme."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il rapporto richiesto. Due confronterebbe le sole seconde velocità, mentre 2/3 invertirebbe l’ordine delle medie. Tre è il valore della seconda media in m/s e non un rapporto. Le unità si cancellano soltanto dopo aver formato il confronto fra grandezze omogenee."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le medie prima di confrontarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il rapporto richiesto. Due confronterebbe le sole seconde velocità, mentre 2/3 invertirebbe l’ordine delle medie. Tre è il valore della seconda media in m/s e non un rapporto. Le unità si cancellano soltanto dopo aver formato il confronto fra grandezze omogenee.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2308,
+      "title": "Un ritorno e uno scarto positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Due intervalli consecutivi di uguale durata τ>0 hanno velocità medie orientate +2 m/s e −2 m/s. Una proposta assegna V_proposto=+2 m/s alla media complessiva. Quanto vale lo scarto con segno proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 m/s",
+          "+2 m/s",
+          "0 m/s",
+          "+4 m/s",
+          "+1 m/s"
+        ],
+        "value": "+2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due intervalli hanno lo stesso peso temporale e le medie opposte producono spostamenti uguali e contrari. La media complessiva è quindi zero. Questa composizione vale anche se il moto varia dentro ogni intervallo: si usano le rispettive velocità medie, non un’ipotesi di inversione istantanea."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=(+2\\,\\mathrm{m/s})\\tau+(-2\\,\\mathrm{m/s})\\tau"
+        },
+        {
+          "type": "formula",
+          "text": "(+2\\,\\mathrm{m/s})\\tau+(-2\\,\\mathrm{m/s})\\tau=0"
+        },
+        {
+          "type": "formula",
+          "text": " V=0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{m/s}-0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm{m/s}-0\\,\\mathrm{m/s}=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto è positivo perché la proposta supera lo zero corretto. Prendere i moduli prima della media perderebbe il ritorno e produrrebbe proprio il valore proposto. −2 invertirebbe lo scarto; zero ignorerebbe l’errore della proposta. Una media complessiva nulla non significa essere rimasti fermi."
+        }
+      ],
+      "hints": [
+        "Conserva il segno meno del secondo spostamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lo scarto è positivo perché la proposta supera lo zero corretto. Prendere i moduli prima della media perderebbe il ritorno e produrrebbe proprio il valore proposto. −2 invertirebbe lo scarto; zero ignorerebbe l’errore della proposta. Una media complessiva nulla non significa essere rimasti fermi.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2309,
+      "title": "L’inversa della semisomma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Per due intervalli di uguale durata vale V=(v₁+v₂)/2. Le velocità sono positive e i dati soddisfano 2V>v₂. Quale formula isola v₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₁=V−v₂",
+          "v₁=2V−v₂",
+          "v₁=2V+v₂",
+          "v₁=(V−v₂)/2",
+          "v₁=Vv₂"
+        ],
+        "value": "v₁=2V−v₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima moltiplichiamo entrambi i membri per due, poi sottraiamo v₂. In questo ordine eliminiamo sia il divisore esterno sia l’addendo noto. Il vincolo 2V>v₂ rende positivo il risultato, come richiede il modello."
+        },
+        {
+          "type": "formula",
+          "text": "2V=v_1+v_2"
+        },
+        {
+          "type": "formula",
+          "text": " 2V-v_2=v_1"
+        },
+        {
+          "type": "text",
+          "text": "La sostituzione [(2V−v₂)+v₂]/2=V controlla la formula. V−v₂ dimentica il primo fattore due; la somma aggiunge il dato da togliere. Dividere ancora per due applica l’operazione opposta a quella necessaria; Vv₂ avrebbe dimensione di velocità al quadrato."
+        }
+      ],
+      "hints": [
+        "Togli il divisore comune prima dell’addendo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sostituzione [(2V−v₂)+v₂]/2=V controlla la formula. V−v₂ dimentica il primo fattore due; la somma aggiunge il dato da togliere. Dividere ancora per due applica l’operazione opposta a quella necessaria; Vv₂ avrebbe dimensione di velocità al quadrato.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2310,
+      "title": "Fattori su due velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Ogni prova contiene due intervalli di uguale durata con velocità costanti positive. Nella seconda prova le velocità iniziali v₁,v₂ diventano κ₁v₁,κ₂v₂, con fattori positivi. Quale formula dà V₂/V₁ fra le medie delle due prove?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁+κ₂",
+          "(κ₁v₁+κ₂v₂)/(v₁+v₂)",
+          "(κ₁v₁−κ₂v₂)/(v₁+v₂)",
+          "(κ₁+κ₂)/2, sempre"
+        ],
+        "value": "(κ₁v₁+κ₂v₂)/(v₁+v₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo una semisomma per ogni prova. Nel rapporto il divisore comune due si semplifica, ma rimangono le velocità nei rispettivi addendi. I due fattori non possono essere moltiplicati tra loro come se la legge fosse un prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{v_1+v_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{\\kappa_1v_1+\\kappa_2v_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{\\kappa_1v_1+\\kappa_2v_2}{v_1+v_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è una media dei fattori pesata dalle velocità positive iniziali. La semisomma dei soli fattori vale soltanto se v₁=v₂. La somma κ₁+κ₂ fallisce quando non cambia nulla; il segno meno trasformerebbe un tratto positivo in un ritorno senza che il testo lo assegni."
+        }
+      ],
+      "hints": [
+        "Sostituisci i dati nelle due somme prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è una media dei fattori pesata dalle velocità positive iniziali. La semisomma dei soli fattori vale soltanto se v₁=v₂. La somma κ₁+κ₂ fallisce quando non cambia nulla; il segno meno trasformerebbe un tratto positivo in un ritorno senza che il testo lo assegni.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2311,
+      "title": "Entrambe le velocità raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Ogni prova contiene due intervalli consecutivi di uguale durata. Le velocità sono entrambe +2 m/s nella prima prova ed entrambe +4 m/s nella seconda. Quanto vale il rapporto V₂/V₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quando tutti gli addendi di una media raddoppiano, si può raccogliere due davanti alla somma. Il divisore resta lo stesso, perciò anche la media raddoppia. Le durate uguali permettono di usare gli stessi pesi in entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2+2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+2}{2}\\,\\mathrm{m/s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{4+4}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+4}{2}\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è due e non quattro: i fattori agiscono su addendi, non su due fattori moltiplicati. Quattro metri al secondo è la nuova media, mentre due è il confronto privo di unità. Tutti i tratti restano nello stesso verso."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore due comune ai due nuovi addendi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è due e non quattro: i fattori agiscono su addendi, non su due fattori moltiplicati. Quattro metri al secondo è la nuova media, mentre due è il confronto privo di unità. Tutti i tratti restano nello stesso verso.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2312,
+      "title": "Media di due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 2,
+      "prompt": "Due prove contengono ciascuna due intervalli di uguale durata e velocità positive costanti. Le coppie di velocità sono (2,2) m/s e (4,4) m/s. Con uguale peso statistico delle prove, qual è la media aritmetica delle due velocità medie?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "3/2 m/s"
+        ],
+        "value": "3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima ricaviamo la media dentro ciascuna prova: due e quattro metri al secondo. Poi mediamo queste due uscite con uguale peso. Sono due livelli di media distinti, entrambi specificati dal testo; nessuna velocità viene sommata senza il relativo peso."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{2+4}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+4}{2}\\,\\mathrm{m/s}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Tre metri al secondo è compreso fra le due letture. Sei è la somma senza divisione; tre mezzi divide una volta di troppo. Poiché questa legge è lineare nei due ingressi, anche le velocità medie degli ingressi, entrambe tre, darebbero la stessa uscita. Non è una proprietà di ogni legge non lineare."
+        }
+      ],
+      "hints": [
+        "Fai prima la media di ogni prova, poi la semisomma dei risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre metri al secondo è compreso fra le due letture. Sei è la somma senza divisione; tre mezzi divide una volta di troppo. Poiché questa legge è lineare nei due ingressi, anche le velocità medie degli ingressi, entrambe tre, darebbero la stessa uscita. Non è una proprietà di ogni legge non lineare.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2313,
+      "title": "La seconda velocità necessaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 3,
+      "prompt": "Ogni prova usa due intervalli di uguale durata con velocità positive. Inizialmente v₁=v₂=2 m/s, quindi la media è V₁. Nella nuova prova v₁ diventa 4 m/s e si vuole V₂=2V₁. Quale rapporto v₂,nuova/v₂,iniziale serve?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La vecchia media vale due metri al secondo e l’obiettivo è quattro. Per avere una semisomma di quattro, la somma dei due nuovi contributi deve valere otto. Il primo vale già quattro, quindi anche il secondo deve valere quattro."
+        },
+        {
+          "type": "formula",
+          "text": "V_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,\\rm nuova}=2V_2-v_{1,\\rm nuova}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,\\rm nuova}=(8-4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(8-4)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{2,\\rm nuova}}{v_{2,\\rm iniziale}}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto richiesto è due. Il controllo (4+4)/2=4 m/s soddisfa il bersaglio. Non basta moltiplicare automaticamente l’incognita per il fattore dell’uscita in una somma: qui il raddoppio di entrambi i contributi funziona perché i dati lo consentono."
+        }
+      ],
+      "hints": [
+        "Raddoppia la media desiderata per ottenere la somma necessaria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto richiesto è due. Il controllo (4+4)/2=4 m/s soddisfa il bersaglio. Non basta moltiplicare automaticamente l’incognita per il fattore dell’uscita in una somma: qui il raddoppio di entrambi i contributi funziona perché i dati lo consentono.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2314,
+      "title": "Un display sulle medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 3,
+      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. Un display mostra S=gV, con g>0 costante, offset nullo e S conteggio. La coppia (2,2) m/s dà S=6. Una nuova prova dà S=12 e ha v₂=4 m/s. Quanto vale v₁, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha media due metri al secondo, dunque il guadagno è tre secondi per metro. La lettura dodici rappresenta una media di quattro metri al secondo. Da questa ricostruiamo la somma necessaria e sottraiamo la velocità nota."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac6{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm{m/s}}=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{12}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{3\\,\\mathrm{s/m}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=2V-v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=(8-4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(8-4)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce S=(3 s/m)·[(4+4)/2 m/s]=12. Il guadagno ha dimensione inversa di velocità perché trasforma una velocità in un conteggio. Le tacche non possono essere usate direttamente come se fossero già metri al secondo."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima di invertire la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce S=(3 s/m)·[(4+4)/2 m/s]=12. Il guadagno ha dimensione inversa di velocità perché trasforma una velocità in un conteggio. Le tacche non possono essere usate direttamente come se fossero già metri al secondo.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2315,
+      "title": "Rimuovere l’offset dal conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 3,
+      "prompt": "Ogni prova ha due intervalli di uguale durata con velocità costanti positive. Il display segue S=gV+c con g>0,c costanti e S conteggio. Le coppie (2,2) e (4,4) m/s danno S=5 e S=9. Una prova con v₂=2 m/s dà S=7. Quanto vale v₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "8 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le medie dei riferimenti sono due e quattro metri al secondo. Quattro tacche per un aumento di due metri al secondo danno g=2 s/m; dal primo riferimento c=1. La lettura sette, corretta di una tacca e divisa per il guadagno, dà V=3 m/s. La prima velocità vale allora due volte tre meno due."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{9-5}{(4-2)\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-5}{(4-2)\\,\\mathrm{m/s}}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{7-1}{2\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{7-1}{2\\,\\mathrm{s/m}}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=(2\\times3-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\times3-2)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri al secondo ricostruisce V=3 m/s e S=2·3+1=7. Tre è la media intermedia, non v₁; sei omette la sottrazione della seconda velocità. Un rapporto delle letture grezze non elimina l’offset additivo, perciò la taratura deve partire dalle differenze."
+        }
+      ],
+      "hints": [
+        "Trova g e c prima di interpretare la lettura come velocità media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro metri al secondo ricostruisce V=3 m/s e S=2·3+1=7. Tre è la media intermedia, non v₁; sei omette la sottrazione della seconda velocità. Un rapporto delle letture grezze non elimina l’offset additivo, perciò la taratura deve partire dalle differenze.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-equal-time-average-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Medie del moto e arresto",
+      "order": 2316,
+      "title": "Il vincolo di uguali velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "equal-time-average",
+      "difficulty": 3,
+      "prompt": "Due intervalli consecutivi hanno uguale durata τ>0 e velocità costanti positive con v₁=v₂. La velocità media complessiva è V=2 m/s. Quanto vale v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s",
+          "2 m/s",
+          "4 m/s",
+          "0 m/s",
+          "−2 m/s"
+        ],
+        "value": "2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza dei due contributi consente di sostituire v₁ con v₂ nella semisomma. Il numeratore diventa due volte v₂ e il divisore due si semplifica. La media di due velocità uguali coincide con ciascuna di esse, non con la loro somma."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{v_2+v_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v_2+v_2}{2}=v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è due metri al secondo. Uno applicherebbe una seconda divisione per due, quattro toglierebbe quella della media. Zero e −2 non rispettano né la media assegnata né la positività. Senza il vincolo v₁=v₂, la stessa media ammetterebbe molte coppie positive, come uno e tre."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di isolare la seconda velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La risposta è due metri al secondo. Uno applicherebbe una seconda divisione per due, quattro toglierebbe quella della media. Zero e −2 non rispettano né la media assegnata né la positività. Senza il vincolo v₁=v₂, la stessa media ammetterebbe molte coppie positive, come uno e tre.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Pesi temporali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bb2dba0a3093684a41689a7dd2ac51115d7c28acb05cb945884a6dde41a07a96",
+      "name": "equal-time-average-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iOTMwIiB2aWV3Qm94PSIwIDAgNjQwIDkzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5VZ3VhbGUgdGVtcG8sIGRpc3RhbnplIGRpdmVyc2U8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGUuIElsIGRpc2Vnbm8gc2NlZ2xpZSBkdWUgaW50ZXJ2YWxsaSBkYSB1biBzZWNvbmRvLiBWZWxvY2l0w6AgcG9zaXRpdmUgZGkgZHVlIGUgc2VpIG1ldHJpIGFsIHNlY29uZG8gZGFubm8gZGlzdGFuemUgZHVlIGUgc2VpIG1ldHJpLiBJbCBzZWNvbmRvIHRyYXR0byDDqCBzZWkgb3R0YXZpLCBjaW/DqCB0cmUgcXVhcnRpIGRlbGxhIGRpc3RhbnphIHRvdGFsZS4gTmVsIGdyYWZpY28gdmVsb2NpdMOgLXRlbXBvIGxlIHNjYWxlIHNvbm8gY2VudG8gcGl4ZWwgcGVyIHNlY29uZG8gZSB0cmVudGEgcGl4ZWwgcGVyIG1ldHJvIGFsIHNlY29uZG8uIExlIGJhcnJlIGRpIGRpc3RhbnphIHVzYW5vIHF1YXJhbnRhIHBpeGVsIHBlciBtZXRyby48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iOTMwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZpbGw9IiMxNzNkNTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBTdGVzc2EgZHVyYXRhOiDPhCA9IDEgcyBuZWwgZGlzZWdubzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgyIj524oCTdDogMTAwIHB4L3MgZSAzMCBweCBwZXIgbS9zPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjI1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2NlZTJkZSIvPjxyZWN0IHg9IjIwMCIgeT0iMTMwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2VmZDljMiIvPgo8cGF0aCBkPSJNMTAwIDExMFYzMTBIMzYwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTAwIDI1MEgyMDBNMjAwIDEzMEgzMDAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjx0ZXh0IHg9IjQ0IiB5PSIyNTciPjI8L3RleHQ+PHRleHQgeD0iNDQiIHk9IjEzNyI+NjwvdGV4dD48dGV4dCB4PSI4NiIgeT0iMzQ3Ij4wPC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iMzQ3Ij4xPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iMzQ3Ij4yIHM8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIxNzQiPnbigoIgPSA2IG0vczwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjI3MiI+duKCgSA9IDIgbS9zPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDEyIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMZSBkaXN0YW56ZSBub24gc29ubyB1Z3VhbGk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQ1MSI+QmFycmU6IDQwIHB4IHBlciBtZXRybzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI0ODkiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2NlZTJkZSIgc3Ryb2tlPSIjMTczZDUwIi8+PHJlY3QgeD0iMTAwIiB5PSI1NjQiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzAiIGZpbGw9IiNlZmQ5YzIiIHN0cm9rZT0iIzE3M2Q1MCIvPgo8dGV4dCB4PSIyMDUiIHk9IjUxMyI+ZOKCgSA9IDIgbTwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjU4OCI+ZOKCgiA9IDYgbTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjY2NiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgU2Vjb25kbyB0cmF0dG8gLyB0b3RhbGU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3MTMiPmTigoIgLyAoZOKCgSArIGTigoIpID0gNiAvIDggPSAzLzQ8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3NjgiPk1ldMOgIGRlbCB0ZW1wbywgdHJlIHF1YXJ0aSBkZWxsbyBzcGF6aW8uPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iODIzIj5EdXJhdGEgdG90YWxlOiAyIHMgwrcgZGlzdGFuemEgdG90YWxlOiA4IG08L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NzgiPk1lZGlhOiA4IG0gLyAyIHMgPSA0IG0vczwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
