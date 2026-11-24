@@ -29,7 +29,7 @@ TASKS=[
  'La tensione sul blocco posteriore vale soltanto mA=1N. Sul blocco anteriore rimane F−T=1N, uguale aMA. Il controllo sui singoli corpi mostra perché la forza esterna non coincide con T e non va dimezzata.', 'Moltiplica per la massa di entrambi i blocchi.'),
 ('Separare la massa fissa da quella ignota',SCENE+'Si misurano F=2 N e A=(1/2) m/s². Quanto vale m in kg?',2,
  'Il quoziente F/A fornisce prima la massa totale: dividere per un mezzo equivale a moltiplicare per due, quindi otteniamo quattro chilogrammi. Sottraiamo poi i due chilogrammi noti del blocco anteriore per isolare m.',
- r'M+m=\frac FA\qquad m=\frac FA-M\qquad m=\frac{2\,\mathrm N}{(1/2)\,\mathrm{m/s^2}}-2\,\mathrm{kg}=(4-2)\,\mathrm{kg}=2\,\mathrm{kg}',
+ r'M+m=\frac FA\qquad m=\frac FA-M\qquad \frac FA=4\,\mathrm{kg}\qquad m=4\,\mathrm{kg}-2\,\mathrm{kg}\qquad m=2\,\mathrm{kg}',
  'La condizione di massa positiva è F/A>M, qui4kg>2kg. Fermarsi aF/A darebbe4kg, la massa di tutto il sistema. Il risultato ricostruito dà A=2/(2+2)=1/2m/s² e tensione positiva.', 'La massa totale va ancora diminuita della massa fissa M.'),
 ('Più massa posteriore con la stessa forza',SCENE+'Fra due prove separate F resta2 N e m passa da2kg a4kg. Quanto vale A₂/A₁?',['2/3','4/3','1/2','3/2','−2/3'],
  'La massa totale passa da quattro a sei chilogrammi. Le accelerazioni sono1/2e1/3m/s². Per il rapporto dividiamo un terzo per un mezzo: moltiplichiamo un terzo per due e otteniamo2/3.',
