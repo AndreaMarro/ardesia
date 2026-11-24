@@ -1,0 +1,1157 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-differential-manometer-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8001,
+      "title": "Dal ramo basso al ramo alto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 1,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Con p₁=100 kPa e Δh=20 cm, quanto vale p₂ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 98,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel liquido fermo la pressione diminuisce salendo. Partiamo dall’interfaccia bassa 1 e saliamo di 20 cm all’interfaccia 2: dobbiamo sottrarre ρgΔh. La conversione 20 cm=1/5 m dà un salto di 2000 Pa, cioè 2 kPa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d57feb00b69e5ef499b70fd5ad0d081cf819f6d9b2aae80731d91baacbcfb434",
+          "text": "Interfaccia1 a quota z=0 e interfaccia2 a z=20 cm. Unica scala geometrica 10 px/cm: dislivello200 px; la linea tratteggiata collega quote uguali nel liquido connesso. Per salire dall’interfaccia1 alla2 si sottraggono 2 kPa: p₁=100 kPa,p₂=98 kPa. Il pannello delle pressioni usa una scala separata e mostra soltanto il salto, non due barre troncate presentate come moduli assoluti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta h=\\frac15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g\\Delta h=2000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": "2000\\,\\mathrm{Pa}=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=p_1-\\rho g\\Delta h"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=100\\,\\mathrm{kPa}-2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": "100\\,\\mathrm{kPa}-2\\,\\mathrm{kPa}=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "102 kPa avrebbe il segno sbagliato: il gas sul pelo più alto spinge meno. Due kPa è la differenza p₁−p₂, non p₂. Non si aggiunge una pressione atmosferica: p₁ è già una pressione assoluta assegnata."
+        }
+      ],
+      "hints": [
+        "Salendo nell’acqua sottrai il salto idrostatico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "102 kPa avrebbe il segno sbagliato: il gas sul pelo più alto spinge meno. Due kPa è la differenza p₁−p₂, non p₂. Non si aggiunge una pressione atmosferica: p₁ è già una pressione assoluta assegnata.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8002,
+      "title": "Una pressione in kilopascal",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 1,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Quale unità proposta esprime p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "kg",
+          "m",
+          "s",
+          "kg/m³"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "p₂ ha le stesse dimensioni di p₁ e del termine ρgΔh. La densità per accelerazione per altezza dà forza per area, dunque pascal. Il prefisso kilo moltiplica il pascal per mille e non cambia la grandezza fisica."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho g\\Delta h]=\\mathrm{kg/(m\\,s^2)}"
+        },
+        {
+          "type": "formula",
+          "text": " [p_2]=\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=1000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "kg è massa, m lunghezza, s tempo e kg/m³ densità. Pressione assoluta e differenza di pressione condividono l’unità, ma hanno significati diversi e non possono essere scambiate nel risultato."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità del salto ρgΔh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg è massa, m lunghezza, s tempo e kg/m³ densità. Pressione assoluta e differenza di pressione condividono l’unità, ma hanno significati diversi e non possono essere scambiate nel risultato.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8003,
+      "title": "La legge col segno della quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 1,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Quale relazione fornisce p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₂=p₁−ρgΔh",
+          "p₂=p₁+ρgΔh",
+          "p₂=ρgΔh",
+          "p₂=2(p₁−ρgΔh)",
+          "p₂=(p₁−ρgΔh)/2"
+        ],
+        "value": "p₂=p₁−ρgΔh"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla quota dell’interfaccia 1, nel ramo destro connesso, la pressione è p₂+ρgΔh perché si è scesi dall’interfaccia 2. Quella stessa quota deve avere p₁; quindi p₁=p₂+ρgΔh. Isolare p₂ conserva il meno davanti al salto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d57feb00b69e5ef499b70fd5ad0d081cf819f6d9b2aae80731d91baacbcfb434",
+          "text": "Il gas1 sul pelo più basso ha pressione maggiore. Nel ramo destro alla quota0 la pressione è p₂+ρgΔh=p₁; salendo fino al pelo2 torna p₂. Geometria10 px/cm, acqua e peso dei gas trascurabile. Il terzo pannello converte20 cm in1/5 m e poi2000 Pa in2 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=p_2+\\rho g\\Delta h"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=p_1-\\rho g\\Delta h"
+        },
+        {
+          "type": "text",
+          "text": "Il più scambia il verso del dislivello; ρgΔh da solo è la differenza, non la pressione assoluta. Doppio e metà non derivano dal bilancio. Il dominio positivo richiede p₁>ρgΔh per questa orientazione delle superfici."
+        }
+      ],
+      "hints": [
+        "Confronta le due pressioni alla quota dell’interfaccia più bassa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il più scambia il verso del dislivello; ρgΔh da solo è la differenza, non la pressione assoluta. Doppio e metà non derivano dal bilancio. Il dominio positivo richiede p₁>ρgΔh per questa orientazione delle superfici.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8004,
+      "title": "Abbassare p₁ lasciando il dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 1,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Fra preparazioni Δh=20 cm resta uguale e p₁ passa da 100 a 80 kPa. Come cambia p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 98 a 78 kPa",
+          "Da 98 a 392/5 kPa",
+          "Resta 98 kPa",
+          "Da 98 a 82 kPa",
+          "Diventa zero"
+        ],
+        "value": "Da 98 a 78 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto idrostatico resta 2 kPa. Si sottrae lo stesso valore da ciascuna pressione d’ingresso, quindi p₂ diminuisce degli stessi 20 kPa: 100−2=98 e 80−2=78. Non si mantiene invece costante il rapporto p₂/p₁."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho g\\Delta h=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,A}=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=80\\,\\mathrm{kPa}-2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": "80\\,\\mathrm{kPa}-2\\,\\mathrm{kPa}=78\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "392/5 kPa moltiplicherebbe 98 per 4/5 come se la relazione non avesse il termine sottratto. 82 kPa cambia il segno del salto. Le pressioni positive assegnate rendono entrambe le preparazioni ammissibili."
+        }
+      ],
+      "hints": [
+        "Mantieni fissa la differenza di 2 kPa, non un rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "392/5 kPa moltiplicherebbe 98 per 4/5 come se la relazione non avesse il termine sottratto. 82 kPa cambia il segno del salto. Le pressioni positive assegnate rendono entrambe le preparazioni ammissibili.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8005,
+      "title": "Ricostruire la pressione del gas più forte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Si misurano p₂=98 kPa e Δh=20 cm. Quanto vale p₁ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per tornare dall’interfaccia alta 2 a quella bassa 1 scendiamo e aggiungiamo pressione. I 20 cm d’acqua valgono 2 kPa; dunque p₁=98+2=100 kPa. Il gas 1 deve avere la pressione maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=p_2+\\rho g\\Delta h"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g\\Delta h=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=98\\,\\mathrm{kPa}+2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": "98\\,\\mathrm{kPa}+2\\,\\mathrm{kPa}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "96 kPa sottrarrebbe il salto anche nell’inversa. Non servono p_atm né una densità del gas: p₂ è assoluta e il peso del gas è stato trascurato. Il controllo 100−2=98 conferma il verso."
+        }
+      ],
+      "hints": [
+        "Scendendo dal pelo alto aggiungi ρgΔh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "96 kPa sottrarrebbe il salto anche nell’inversa. Non servono p_atm né una densità del gas: p₂ è assoluta e il peso del gas è stato trascurato. Il controllo 100−2=98 conferma il verso.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8006,
+      "title": "La distanza fra le superfici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Si misurano p₁=100 kPa e p₂=98 kPa. Quanto vale Δh in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza positiva è 2 kPa=2000 Pa. Dividiamo per ρg=10000 Pa/m e troviamo 1/5 m. Per passare ai centimetri moltiplichiamo per cento: il dislivello è 20 cm, non 2 cm."
+        },
+        {
+          "type": "formula",
+          "text": "p_1-p_2=2000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g=10000\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h=\\frac{p_1-p_2}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h=\\frac15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac15\\,\\mathrm m=20\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due è il numero della differenza in kPa; 1/5 è la lunghezza in metri, non in cm. Se p₁≤p₂, un dislivello positivo con l’orientazione dichiarata non sarebbe compatibile."
+        }
+      ],
+      "hints": [
+        "Converti in Pa prima di dividere e poi torna ai centimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il numero della differenza in kPa; 1/5 è la lunghezza in metri, non in cm. Se p₁≤p₂, un dislivello positivo con l’orientazione dichiarata non sarebbe compatibile.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8007,
+      "title": "Dimezzare il dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. A ha p₁=100 kPa,Δh_A=20 cm. B mantiene p₁ e usa Δh_B=10 cm. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "99/98",
+          "98/99",
+          "1/2",
+          "2",
+          "1/98"
+        ],
+        "value": "99/98"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto scende da 2 a 1 kPa e la pressione del gas 2 aumenta da 98 a 99 kPa. Il rapporto è 99/98, poco maggiore di uno; si conserva la frazione esatta. Dimezzare una differenza non dimezza la pressione assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=99\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=\\frac{99}{98}"
+        },
+        {
+          "type": "text",
+          "text": "98/99 inverte; 1/2 e due confondono il rapporto dei dislivelli con quello delle pressioni. 1/98 è l’incremento relativo di 1 kPa rispetto a 98 kPa, non la nuova pressione relativa ad A."
+        }
+      ],
+      "hints": [
+        "Ricalcola le due pressioni assolute prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "98/99 inverte; 1/2 e due confondono il rapporto dei dislivelli con quello delle pressioni. 1/98 è l’incremento relativo di 1 kPa rispetto a 98 kPa, non la nuova pressione relativa ad A.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8008,
+      "title": "Una proposta doppia della pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Con p₁=100 kPa e Δh=20 cm si propone p₂=196 kPa. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "98 kPa",
+          "−98 kPa",
+          "196 kPa",
+          "0 kPa",
+          "49 kPa"
+        ],
+        "value": "98 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 100−2=98 kPa. La proposta è il doppio e supera persino p₁, in contrasto con la salita nel liquido. Lo scarto nell’ordine richiesto è 196−98=+98 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "p_2=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=196\\,\\mathrm{kPa}-98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno rovescia la sottrazione; 196 copia la proposta, zero la accetta e 49 dimezza ancora lo scarto. Il controllo del verso p₂<p₁ avrebbe già segnalato un problema indipendentemente dall’aritmetica."
+        }
+      ],
+      "hints": [
+        "Controlla prima il verso del salto e poi forma la differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno rovescia la sottrazione; 196 copia la proposta, zero la accetta e 49 dimezza ancora lo scarto. Il controllo del verso p₂<p₁ avrebbe già segnalato un problema indipendentemente dall’aritmetica.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8009,
+      "title": "L’inversa della pressione di partenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Quale formula isola p₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₁=p₂+ρgΔh",
+          "p₁=p₂−ρgΔh",
+          "p₁=ρgΔh−p₂",
+          "p₁=2(p₂+ρgΔh)",
+          "p₁=(p₂+ρgΔh)/2"
+        ],
+        "value": "p₁=p₂+ρgΔh"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella legge p₂=p₁−ρgΔh aggiungiamo ρgΔh a entrambi i membri. Recuperiamo p₁=p₂+ρgΔh: la pressione maggiore si ricostruisce sommando il salto alla minore. Le due addende sono pressioni."
+        },
+        {
+          "type": "formula",
+          "text": "p_2+\\rho g\\Delta h=p_1"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=p_2+\\rho g\\Delta h"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre ancora lascia il segno sbagliato; cambiare l’ordine produce qui una pressione negativa. Doppio e metà non risolvono l’equazione e falliscono la sostituzione. Non si può aggiungere Δh da sola, perché una lunghezza non è una pressione."
+        }
+      ],
+      "hints": [
+        "Porta il termine idrostatico dall’altro lato con il segno opposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre ancora lascia il segno sbagliato; cambiare l’ordine produce qui una pressione negativa. Doppio e metà non risolvono l’equazione e falliscono la sostituzione. Non si può aggiungere Δh da sola, perché una lunghezza non è una pressione.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8010,
+      "title": "Scalare pressione e dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. B usa p₁,B=κ₁p₁,A e Δh_B=κ₂Δh_A, con fattori positivi e p₁,B>ρgΔh_B. Poniamo P_A=p₁,A−ρgΔh_A e P_B=κ₁p₁,A−ρgκ₂Δh_A. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P_B / P_A",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "P_A / P_B",
+          "2 P_B / P_A"
+        ],
+        "value": "P_B / P_A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione d’uscita è una differenza di due contributi. Va mantenuta intera in ciascuna prova: P_A e P_B sono proprio le due pressioni assolute cercate, positive per dominio. Il loro rapporto non si riduce in generale al rapporto dei fattori."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=P_A"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=P_B"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=P_B/P_A"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ o κ₁κ₂ perderebbero la sottrazione. Il reciproco scambia gli stati; il due residuo non è presente nella legge. Se entrambi i fattori sono lo stesso κ, tutti i termini della differenza scalano insieme e il rapporto diventa κ."
+        }
+      ],
+      "hints": [
+        "Confronta le differenze complete, non soltanto i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ o κ₁κ₂ perderebbero la sottrazione. Il reciproco scambia gli stati; il due residuo non è presente nella legge. Se entrambi i fattori sono lo stesso κ, tutti i termini della differenza scalano insieme e il rapporto diventa κ.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8011,
+      "title": "Due preparazioni con pressioni diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. A: p₁=100 kPa,Δh=20 cm. B: p₁=80 kPa,Δh=10 cm. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "79/98",
+          "98/79",
+          "4/5",
+          "1/2",
+          "79"
+        ],
+        "value": "79/98"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni d’uscita sono 98 e 79 kPa. L’ordine B/A dà 79/98, esatto. Il rapporto 4/5 degli ingressi non basta perché anche il salto idrostatico cambia da 2 a 1 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=98\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=80\\,\\mathrm{kPa}-1\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": "80\\,\\mathrm{kPa}-1\\,\\mathrm{kPa}=79\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=\\frac{79}{98}"
+        },
+        {
+          "type": "text",
+          "text": "98/79 è il reciproco; 1/2 segue soltanto il dislivello; 79 è il numero di p₂,B in kPa, non un rapporto. Entrambe le pressioni assolute rimangono positive."
+        }
+      ],
+      "hints": [
+        "Sottrai a ogni p₁ il proprio salto prima della divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "98/79 è il reciproco; 1/2 segue soltanto il dislivello; 79 è il numero di p₂,B in kPa, non un rapporto. Entrambe le pressioni assolute rimangono positive.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8012,
+      "title": "Media di due pressioni assolute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 2,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Due prove hanno uguale peso statistico: A con p₁=100 kPa,Δh=20 cm; B con p₁=80 kPa,Δh=10 cm. Quanto vale la media aritmetica delle due p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "177/2 kPa",
+          "177 kPa",
+          "177/4 kPa",
+          "19/2 kPa",
+          "90 kPa"
+        ],
+        "value": "177/2 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono 98 e 79 kPa. La semisomma è 177/2 kPa. In questo modello, con ρ e g fissi, p₂ è lineare in p₁ e Δh: gli ingressi medi 90 kPa e 15 cm danno quindi lo stesso risultato, 90−3/2=177/2 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p_2=\\frac{98+79}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p_2=\\frac{177}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2(90\\,\\mathrm{kPa},15\\,\\mathrm{cm})=\\frac{177}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "177 è la somma; 177/4 divide due volte; 19/2 è metà della differenza; 90 è la pressione media del gas 1 prima di togliere il salto. La coincidenza con gli ingressi medi qui segue dalla linearità e non va negata."
+        }
+      ],
+      "hints": [
+        "Calcola la semisomma; poi verifica la linearità della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "177 è la somma; 177/4 divide due volte; 19/2 è metà della differenza; 90 è la pressione media del gas 1 prima di togliere il salto. La coincidenza con gli ingressi medi qui segue dalla linearità e non va negata.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8013,
+      "title": "Il dislivello per la pressione obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 3,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. A ha p₁,A=100 kPa,Δh_A=20 cm. In B si impone p₁,B=80 kPa e p₂,B=(79/98)p₂,A. Quanto vale Δh_B/Δh_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "p₂,A vale 98 kPa, perciò il bersaglio B è 79 kPa. La differenza p₁,B−p₂,B è 1 kPa: con acqua e g assegnati corrisponde a 10 cm. Il rapporto ai 20 cm di A è un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,B}=79\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g\\Delta h_B=1\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h_B=10\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h_B/\\Delta h_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare 20 cm darebbe 78 kPa, non 79. Il bersaglio è minore di 80 kPa, quindi il dislivello ricostruito ha il segno positivo richiesto. Dieci cm è la nuova altezza, non il rapporto dieci."
+        }
+      ],
+      "hints": [
+        "Ricava il salto fra le due pressioni di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare 20 cm darebbe 78 kPa, non 79. Il bersaglio è minore di 80 kPa, quindi il dislivello ricostruito ha il segno positivo richiesto. Dieci cm è la nuova altezza, non il rapporto dieci.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8014,
+      "title": "Tarare una pressione già assoluta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 3,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Un display continuo adimensionale segue S=c p₂,c>0, senza offset. A con p₁=100 kPa,Δh=20 cm dà S=294. B con Δh=10 cm dà S=237. Quanto vale p₁,B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale 98 kPa, quindi c=3 kPa⁻¹. La lettura 237 rappresenta 79 kPa. Per tornare alla pressione del gas 1 aggiungiamo il salto di 10 cm d’acqua, 1 kPa, ottenendo 80 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=237/c"
+        },
+        {
+          "type": "formula",
+          "text": "237/c=79\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g\\Delta h_B=1\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,B}=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "237 è una lettura pura e non una pressione in kPa. Sottrarre 1 kPa darebbe 78 anziché la pressione maggiore. Non occorre una seconda aggiunta dell’atmosfera: l’uscita fisica del display è già assoluta."
+        }
+      ],
+      "hints": [
+        "Decodifica p₂ e aggiungi il salto per ricavare p₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "237 è una lettura pura e non una pressione in kPa. Sottrarre 1 kPa darebbe 78 anziché la pressione maggiore. Non occorre una seconda aggiunta dell’atmosfera: l’uscita fisica del display è già assoluta.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8015,
+      "title": "Due riferimenti e un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 3,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Un display continuo adimensionale segue S=c p₂+d,c>0. A: p₁=100 kPa,Δh=20 cm,S=197. B: p₁=80 kPa,Δh=10 cm,S=159. C: Δh=20 cm,S=157. Quanto vale p₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "80 kPa",
+          "79 kPa",
+          "81 kPa",
+          "40 kPa",
+          "160 kPa"
+        ],
+        "value": "80 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono p₂,A=98 e p₂,B=79 kPa. Le differenze delle letture e delle pressioni sono entrambe negative: (159−197)/(79−98)=2 kPa⁻¹. L’offset è 1. C dà p₂,C=(157−1)/2=78 kPa; aggiungendo 2 kPa si ricava p₁,C=80 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{-38}{-19}\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{-38}{-19}\\,\\mathrm{kPa^{-1}}=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=197-2\\cdot98"
+        },
+        {
+          "type": "formula",
+          "text": "197-2\\cdot98=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,C}=78\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,C}=78\\,\\mathrm{kPa}+2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": "78\\,\\mathrm{kPa}+2\\,\\mathrm{kPa}=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Con Δh=20 cm, p₁=79,81,40,160 kPa darebbero S=155,159,77,317. Solo 80 ricostruisce 157. È necessario rimuovere l’offset prima di applicare il salto e mantenere lo stesso ordine nelle differenze di taratura."
+        }
+      ],
+      "hints": [
+        "Trova c e d dalle pressioni fisiche note, poi inverti C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con Δh=20 cm, p₁=79,81,40,160 kPa darebbero S=155,159,77,317. Solo 80 ricostruisce 157. È necessario rimuovere l’offset prima di applicare il salto e mantenere lo stesso ordine nelle differenze di taratura.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-differential-manometer-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8016,
+      "title": "Un vincolo fra pressione e altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "differential-manometer",
+      "difficulty": 3,
+      "prompt": "Un manometro a U contiene acqua omogenea in quiete, ρ=1000 kg/m³ e g=10 m/s² uniforme, fra due gas. Le interfacce sono alla pressione assoluta p₁ e p₂ dei rispettivi gas; il peso dei gas e gli effetti capillari sono trascurabili. L’interfaccia 2 è più alta della 1 di Δh>0, misurato verticalmente. Entrambe le pressioni assolute restano positive. Fra preparazioni si impone p₁=aΔh con a=5 kPa/cm. Si misura p₂=98 kPa. Quanto vale Δh in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per questi ρ e g, un centimetro d’acqua produce 100 Pa=1/10 kPa. Poniamo b=1/10 kPa/cm: la legge è p₂=p₁−bΔh. Sostituire il vincolo dà p₂=(a−b)Δh=(49/10 kPa/cm)Δh; l’equazione è lineare e ha coefficiente positivo."
+        },
+        {
+          "type": "formula",
+          "text": "b=\\frac1{10}\\,\\mathrm{kPa/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " a-b=\\frac{49}{10}\\,\\mathrm{kPa/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=(a-b)\\Delta h"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h=\\frac{98}{49/10}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta h=20\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Si ricostruiscono p₁=100 kPa e salto 2 kPa, entrambi compatibili con p₂=98. Ignorare b userebbe soltanto p₁=aΔh e non la misura di p₂. Il vincolo lega preparazioni: non è un’ulteriore legge del liquido."
+        }
+      ],
+      "hints": [
+        "Esprimi il salto come pressione per centimetro e sottrai i due coefficienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Si ricostruiscono p₁=100 kPa e salto 2 kPa, entrambi compatibili con p₂=98. Ignorare b userebbe soltanto p₁=aΔh e non la misura di p₂. Il vincolo lega preparazioni: non è un’ulteriore legge del liquido.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Manometro differenziale",
+        "Pressioni assolute e dislivello con segno",
+        "Conversioni esatte e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d57feb00b69e5ef499b70fd5ad0d081cf819f6d9b2aae80731d91baacbcfb434",
+      "name": "differential-manometer-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ3MCIgdmlld0JveD0iMCAwIDY0MCAxNDcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+U2FsaXJlIG5lbCBsaXF1aWRvIGRpbWludWlzY2UgbGEgcHJlc3Npb25lPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+QWNxdWEgaW4gdW4gbWFub21ldHJvIGEgVSBmcmEgZHVlIGdhcy4gR2FzIHVubyBjZW50byBraWxvcGFzY2FsIGNvbiBpbnRlcmZhY2NpYSBiYXNzYSBhIHF1b3RhIHplcm87IGdhcyBkdWUgbm92YW50b3R0byBraWxvcGFzY2FsIGNvbiBpbnRlcmZhY2NpYSB2ZW50aSBjZW50aW1ldHJpIHBpw7kgYWx0YS4gU2NhbGEgZGllY2kgcGl4ZWwgcGVyIGNlbnRpbWV0cm8uIFNpIHNvdHRyYWdnb25vIGR1ZSBraWxvcGFzY2FsIHNhbGVuZG87IGJhcnJhIGRlbCBzb2xvIHNhbHRvIGNvbiBzY2FsYSBjZW50byBwaXhlbCBwZXIga2lsb3Bhc2NhbC48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDcwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IElsIGdhcyBjaGUgc3BpbmdlIGRpIHBpw7kgYWJiYXNzYSBpbCBwZWxvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+QWNxdWE7IHBlc28gZGVpIGdhcyBlIGNhcGlsbGFyaXTDoCB0cmFzY3VyYWJpbGkuPC90ZXh0Pjx0ZXh0IHg9Ijg1IiB5PSIxNTAiPkdhcyAxOiAxMDAga1BhPC90ZXh0Pjx0ZXh0IHg9IjM4NSIgeT0iMTUwIj5HYXMgMjogOTgga1BhPC90ZXh0PjxwYXRoIGQ9Ik0xNDAgNDIwSDIyMFY1MzBINDIwVjIyMEg1MDBWNjEwSDE0MFoiIGZpbGw9IiNiYWQ5ZTUiLz48cGF0aCBkPSJNMTQwIDE4MFY2MTBINTAwVjE4ME0yMjAgMTgwVjUzMEg0MjBWMTgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1OTdmODMiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0xMjAgNDIwSDUyMCIgc3Ryb2tlPSIjMTkzYTQ5IiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSI0MjAiIHI9IjUiIGZpbGw9IiMxOTNhNDkiLz48Y2lyY2xlIGN4PSI0NjAiIGN5PSI0MjAiIHI9IjUiIGZpbGw9IiMxOTNhNDkiLz48dGV4dCB4PSIxNjUiIHk9IjQ1NSI+QTwvdGV4dD48dGV4dCB4PSI0NTAiIHk9IjQ1NSI+QjwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjQwNSI+eiA9IDA8L3RleHQ+PHBhdGggZD0iTTU1MCAyMjBWNDIwTTU0MCAyMjBINTYwTTU0MCA0MjBINTYwIiBzdHJva2U9IiMxOTNhNDkiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSI1NjAiIHk9IjMzMCI+MjAgY208L3RleHQ+PHRleHQgeD0iMjgiIHk9IjY2NSI+U2NhbGEgZ2VvbWV0cmljYTogMTAgcHgvY20uIM6UaCA9IDIwIGNtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzEwIj5BIGUgQiBzb25vIGFsbGEgc3Rlc3NhIHF1b3RhOiBwX0EgPSBwX0IuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzkwIiBmb250LXNpemU9IjI1Ij4yIMK3IEFsbGEgcXVvdGEgYmFzc2EgbGUgcHJlc3Npb25pIGNvaW5jaWRvbm88L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg0NSI+cF9BID0gcOKCgTsgcF9CID0gcOKCgiArIM+BZ86UaC48L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg5NSI+cOKCgSDiiJIgcOKCgiA9IM+BZ86UaCA9IDIga1BhLjwvdGV4dD48cmVjdCB4PSIyMzAiIHk9IjkzMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzlhYzlkNCIvPjx0ZXh0IHg9IjI4IiB5PSI5NTUiPlNvbG8gaWwgc2FsdG86PC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iOTU1Ij4yIGtQYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAxMCI+U2NhbGEgZGVsIHNhbHRvOiAxMDAgcHgva1BhLCBkaXN0aW50YSBkYWxsYSBnZW9tZXRyaWEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDU1Ij5w4oKCID0gMTAwIGtQYSDiiJIgMiBrUGEgPSA5OCBrUGEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTEzNSIgZm9udC1zaXplPSIyNSI+MyDCtyBDb252ZXJ0aXJlIG1hbnRpZW5lIGlsIHNlZ25vIGNvcnJldHRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTkwIj4yMCBjbSA9IDEvNSBtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIzNSI+z4FnID0gMTAwMDAgUGEvbTsgz4FnzpRoID0gMjAwMCBQYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyODAiPjIwMDAgUGEgPSAyIGtQYTsgc2FsZW5kbyBzaSBzb3R0cmFnZ29uby48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMzUiPlByZXNzaW9uaSBhc3NvbHV0ZSBwb3NpdGl2ZTogcOKCgSAmZ3Q7IM+BZ86UaC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzODAiPnDigoEgw6ggZ2nDoCBhc3NvbHV0YTogbm9uIGFnZ2l1bmdlcmUgdW7igJlhdG1vc2ZlcmEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNDMwIj5MYSBiYXJyYSByYXBwcmVzZW50YSB1bmEgZGlmZmVyZW56YSwgbm9uIHDigoEgbyBw4oKCLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
