@@ -1,4 +1,4 @@
-"""Shared assembly for three authored vector batches; no verification or publication."""
+"""Shared authored-family assembly; no verification, alternative ETL or publication."""
 import base64
 import json
 from pathlib import Path
@@ -9,32 +9,36 @@ from .units_authoring import text, law_steps
 SOURCE_PATH = "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U1-01.json"
 
 
-def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name, figures, order):
-    originals = {r["id"]: r for r in json.loads(git_bytes(repo, source_ref, SOURCE_PATH))}
+def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name, figures, order, *,
+                    unit="u1", source_path=SOURCE_PATH, skill="C1-L002",
+                    prerequisites=None, section="Vettori e componenti", coverage=None, overrides=None):
+    originals = {r["id"]: r for r in json.loads(git_bytes(repo, source_ref, source_path))}
     path = Path(__file__).resolve().parents[2] / "editorial/assets" / asset_name
     raw = path.read_bytes()
     asset = {"id": sha(raw), "name": path.name, "mime": "image/svg+xml", "data": base64.b64encode(raw).decode()}
     records, bindings = [], []
     for n, (title, prompt, answer, before, law, after, hint) in enumerate(tasks, 1):
-        source_id = f"u1-{family}-{n:02}"
+        source_id = f"{unit}-{family}-{n:02}"
         original = originals[source_id]
         target = ({"type": "choice", "options": answer, "value": answer[choices[n]]}
                   if isinstance(answer, list) else
                   {"type": "numeric", "value": answer, "unit": units.get(n, "1"), "tolerance": 0})
-        row = {"id": "AR-" + source_id, "kind": "question", "course": "C1", "section": "Vettori e componenti",
+        row = {"id": "AR-" + source_id, "kind": "question", "course": "C1", "section": section,
                "order": order + n, "title": title, "version": 1, "baseVersion": 0,
-               "skill": "C1-L002", "prerequisites": ["C1-L001", "C1-L002"], "reuse": ["C6"],
+               "skill": skill, "prerequisites": prerequisites if prerequisites is not None else ["C1-L001", "C1-L002"], "reuse": ["C6"],
                "family": family, "difficulty": 1 if n <= 4 else 2 if n <= 12 else 3,
                "prompt": prompt, "answer": target, "blocks": [text(before), *law_steps(law), text(after)],
                "hints": [hint, "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."],
-               "error": {"category": "unità" if n == 2 else "concetto" if n in (3, 4, 16) else "algebra", "message": after, "target": "C1-L002"},
-               "coverage": ["Vettori", "Prodotti e componenti", "Rapporti e proporzionalità"],
+               "error": {"category": "unità" if n == 2 else "concetto" if n in (3, 4, 16) else "algebra", "message": after, "target": skill},
+               "coverage": coverage if coverage is not None else ["Vettori", "Prodotti e componenti", "Rapporti e proporzionalità"],
                "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"}
+        row.update((overrides or {}).get(n, {}))
+        row["error"]["target"] = row["skill"]
         assets = {}
         if n in figures:
             row["blocks"].insert(1, {"type": "figure", "src": "/asset/" + asset["id"], "text": figures[n]})
             assets[path.name] = asset["id"]
-        provenance = {"sourceRef": source_ref, "sourcePath": SOURCE_PATH, "sourceId": source_id,
+        provenance = {"sourceRef": source_ref, "sourcePath": source_path, "sourceId": source_id,
                       "sourceProvenance": original.get("provenance"),
                       "sourceReasoningTask": original["descriptors"]["reasoningTask"],
                       "authoringModule": f"tools.corpus_engineering.{family.replace('-', '_')}_authoring",

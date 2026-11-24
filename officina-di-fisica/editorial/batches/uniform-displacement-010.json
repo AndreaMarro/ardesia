@@ -1,0 +1,1101 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-uniform-displacement-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2201,
+      "title": "Due secondi sulla guida",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 1,
+      "prompt": "Un carrello si muove su una guida rettilinea con velocità costante v=+2 m/s. Il verso positivo dell’asse coincide con quello del moto. Quanto vale lo spostamento D in un intervallo Δt=2 s, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Velocità costante significa che ogni secondo aggiunge lo stesso spostamento con segno. In due secondi si accumulano due contributi di +2 m. Per il moto rettilineo uniforme la relazione D=vΔt dà direttamente la variazione di coordinata; la coordinata iniziale non serve per calcolare questa variazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2efc95e2aa57c1b4266f85eb38b94bad92c0a81b8bf5a8ff83879f6d2e632d81",
+          "text": "Tre tappe: scegli +x nel verso del moto; in ciascun secondo la posizione cresce di due metri; nel grafico velocità-tempo l’area del rettangolo di base due secondi e altezza due metri al secondo vale quattro metri. La figura sceglie x₀=0 solo per visualizzare lo spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "D=v\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " D=(+2\\,\\mathrm{m/s})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(+2\\,\\mathrm{m/s})(2\\,\\mathrm s)=+4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "I secondi al denominatore della velocità si cancellano con quelli dell’intervallo. Lo spostamento è quattro metri nel verso positivo. In questo moto senza inversioni anche la distanza percorsa è quattro metri; la coincidenza dipende dal fatto che il verso non cambia."
+        }
+      ],
+      "hints": [
+        "Conta due intervalli da un secondo, con due metri aggiunti in ciascuno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I secondi al denominatore della velocità si cancellano con quelli dell’intervallo. Lo spostamento è quattro metri nel verso positivo. In questo moto senza inversioni anche la distanza percorsa è quattro metri; la coincidenza dipende dal fatto che il verso non cambia.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2202,
+      "title": "L’unità dello spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 1,
+      "prompt": "Nel moto rettilineo uniforme lo spostamento lungo un asse è D=vΔt. v è espresso in m/s e l’intervallo Δt in secondi. Quale unità si ottiene per D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m/s²",
+          "m",
+          "s",
+          "m²"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento è una differenza fra coordinate e ha dimensione di lunghezza. Anche le unità della legge lo mostrano: la velocità contiene un secondo al denominatore e il tempo ne contiene uno al numeratore. La loro semplificazione lascia il metro."
+        },
+        {
+          "type": "formula",
+          "text": "[D]=\\frac LT\\,T"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac LT\\,T=L"
+        },
+        {
+          "type": "formula",
+          "text": " (\\mathrm{m/s})\\,\\mathrm s=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "m è la scelta corretta. m/s sarebbe ancora una velocità, m/s² un’accelerazione, s un intervallo e m² un’area. La moltiplicazione delle unità non produce metri quadrati perché solo uno dei due fattori contiene una lunghezza."
+        }
+      ],
+      "hints": [
+        "Semplifica il secondo al denominatore con quello al numeratore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m è la scelta corretta. m/s sarebbe ancora una velocità, m/s² un’accelerazione, s un intervallo e m² un’area. La moltiplicazione delle unità non produce metri quadrati perché solo uno dei due fattori contiene una lunghezza.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2203,
+      "title": "Muoversi non richiede una risultante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-motion-and-zero-resultant",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un carrello di massa costante procede lungo una retta con velocità costante non nulla. Quale affermazione sulla forza risultante è necessaria?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È costante e non nulla nel verso del moto",
+          "È nulla",
+          "Tutte le singole forze sono assenti",
+          "È opposta alla velocità",
+          "Cresce con il tempo"
+        ],
+        "value": "È nulla"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una velocità che non cambia né modulo né direzione ha accelerazione nulla. In un riferimento inerziale, per una massa costante positiva, la seconda legge di Newton collega la forza risultante all’accelerazione. Il primo principio descrive proprio la possibilità di mantenere un moto rettilineo uniforme con risultante nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf a=\\mathbf0"
+        },
+        {
+          "type": "formula",
+          "text": " \\sum\\mathbf F=m\\mathbf a"
+        },
+        {
+          "type": "formula",
+          "text": "m\\mathbf a=\\mathbf0"
+        },
+        {
+          "type": "text",
+          "text": "È nulla la somma vettoriale delle forze, non necessariamente ogni singola forza. Peso e reazione della guida possono compensarsi; eventuale trazione e attrito possono a loro volta equilibrarsi. Una risultante non nulla, concorde o opposta alla velocità, la cambierebbe; non basta osservare che il carrello si muove per dedurre una forza netta in avanti."
+        }
+      ],
+      "hints": [
+        "Domandati se cambia la velocità, non se il carrello è in movimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "È nulla la somma vettoriale delle forze, non necessariamente ogni singola forza. Peso e reazione della guida possono compensarsi; eventuale trazione e attrito possono a loro volta equilibrarsi. Una risultante non nulla, concorde o opposta alla velocità, la cambierebbe; non basta osservare che il carrello si muove per dedurre una forza netta in avanti.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Sistemi inerziali e primo principio",
+        "Moto rettilineo uniforme"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2204,
+      "title": "Stesso intervallo, velocità doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 1,
+      "prompt": "In due prove separate un carrello si muove uniformemente nel verso positivo per 2 s. La velocità è +2 m/s nella prima e +4 m/s nella seconda. Come cambia lo spostamento?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da +4 m a +8 m",
+          "Quadruplica da +4 m a +16 m",
+          "Resta +4 m",
+          "Si dimezza",
+          "Cambia segno"
+        ],
+        "value": "Raddoppia da +4 m a +8 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata è la stessa in entrambe le prove. In ogni secondo della seconda prova il carrello avanza il doppio, quindi anche lo spostamento accumulato nei due secondi raddoppia. Nella relazione D=vΔt cambia un solo fattore."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=(2\\,\\mathrm{m/s})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm{m/s})(2\\,\\mathrm s)=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=(4\\,\\mathrm{m/s})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(4\\,\\mathrm{m/s})(2\\,\\mathrm s)=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto D₂/D₁ è due, mentre l’aumento è quattro metri. Un quadruplicamento richiederebbe anche una durata doppia. Il segno resta positivo perché sia la velocità sia il tempo trascorso rimangono positivi; non è stata introdotta un’inversione del moto."
+        }
+      ],
+      "hints": [
+        "Conserva i due secondi quando cambi la velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto D₂/D₁ è due, mentre l’aumento è quattro metri. Un quadruplicamento richiederebbe anche una durata doppia. Il segno resta positivo perché sia la velocità sia il tempo trascorso rimangono positivi; non è stata introdotta un’inversione del moto.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2205,
+      "title": "Dallo spostamento alla velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Un carrello mantiene velocità costante lungo un asse. In Δt=2 s la coordinata aumenta di D=+4 m. Quanto vale la velocità v, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel moto uniforme D=vΔt. Dividiamo entrambi i membri per l’intervallo positivo Δt: la divisione lascia sola v. Lo spostamento positivo su un intervallo di tempo positivo impone una velocità positiva rispetto all’asse scelto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac D{\\Delta t}=v"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{+4\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{+4\\,\\mathrm m}{2\\,\\mathrm s}=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "In ciascun secondo si percorrono due metri nel verso positivo. Il controllo moltiplica 2 m/s per 2 s e restituisce +4 m. Moltiplicare invece D per il tempo darebbe m·s, un’unità incompatibile con una velocità, oltre a non invertire la legge iniziale."
+        }
+      ],
+      "hints": [
+        "Dividi la variazione di coordinata per la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "In ciascun secondo si percorrono due metri nel verso positivo. Il controllo moltiplica 2 m/s per 2 s e restituisce +4 m. Moltiplicare invece D per il tempo darebbe m·s, un’unità incompatibile con una velocità, oltre a non invertire la legge iniziale.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2206,
+      "title": "Quanto dura il tratto?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Un carrello avanza uniformemente a v=+2 m/s e compie D=+4 m di spostamento lungo l’asse. Quanto dura il tratto, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per isolare il tempo nella relazione D=vΔt dividiamo per la velocità non nulla. D e v hanno lo stesso segno: il loro rapporto dà una durata positiva, come richiesto. Se il tratto fosse nel verso opposto entrambi i segni cambierebbero, lasciando positiva la durata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=\\frac Dv"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac{+4\\,\\mathrm m}{+2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{+4\\,\\mathrm m}{+2\\,\\mathrm{m/s}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Metri divisi per metri al secondo lasciano secondi. Il conto è anche un conteggio di intervalli: per fare quattro metri avanzandone due ogni secondo servono due secondi. Una durata negativa segnalerebbe un errore di segno o dati incompatibili col verso assegnato."
+        }
+      ],
+      "hints": [
+        "Chiediti quanti gruppi da due metri sono contenuti in quattro metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Metri divisi per metri al secondo lasciano secondi. Il conto è anche un conteggio di intervalli: per fare quattro metri avanzandone due ogni secondo servono due secondi. Una durata negativa segnalerebbe un errore di segno o dati incompatibili col verso assegnato.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2207,
+      "title": "Lasciare scorrere più tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Un carrello viaggia a +2 m/s in entrambe le prove. Gli intervalli sono Δt₁=2 s e Δt₂=4 s. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A velocità invariata ogni secondo aggiunge lo stesso spostamento. La seconda prova dura il doppio e contiene due copie del tratto della prima. Nel rapporto tra D₂=vΔt₂ e D₁=vΔt₁ si semplifica la velocità comune."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{v\\Delta t_2}{v\\Delta t_1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v\\Delta t_2}{v\\Delta t_1}=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è due e non ha unità. Otto metri è lo spostamento finale della seconda prova, non il rapporto; quattro metri è quello della prima. Un mezzo sarebbe il rapporto nel verso inverso. La semplificazione richiede D₁ diverso da zero, condizione soddisfatta qui."
+        }
+      ],
+      "hints": [
+        "Confronta le durate perché la velocità è comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è due e non ha unità. Otto metri è lo spostamento finale della seconda prova, non il rapporto; quattro metri è quello della prima. Un mezzo sarebbe il rapporto nel verso inverso. La semplificazione richiede D₁ diverso da zero, condizione soddisfatta qui.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2208,
+      "title": "Cambiare entrambe le unità della velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Un carrello viaggia a 5 m/s. Usa le equivalenze esatte 1 km=1000 m e 1 h=3600 s. Quale velocità in km/h descrive lo stesso moto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 km/h",
+          "18 km/h",
+          "50 km/h",
+          "18000 km/h",
+          "5/3600 km/h"
+        ],
+        "value": "18 km/h"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una velocità è una lunghezza divisa per un tempo: la conversione deve riguardare entrambe le unità. In un’ora si percorrono 5·3600=18000 metri; divisi per mille diventano diciotto chilometri. Non stiamo facendo andare più veloce il carrello: cambiano i campioni di lunghezza e tempo."
+        },
+        {
+          "type": "formula",
+          "text": "5\\,\\frac{\\mathrm m}{\\mathrm s}\\times\\frac{1\\,\\mathrm{km}}{1000\\,\\mathrm m}\\times\\frac{3600\\,\\mathrm s}{1\\,\\mathrm h}=18\\,\\mathrm{km/h}"
+        },
+        {
+          "type": "text",
+          "text": "Per il conto manuale, 3600/1000=18/5 e 5·18/5=18. Diciottomila terrebbe ancora i metri; cinque manterrebbe il numero ignorando entrambe le conversioni. Dividere per 3600 nel passaggio al denominatore in ore invertirebbe il fattore temporale. Il controllo inverso 18·1000/3600 restituisce 5 m/s."
+        }
+      ],
+      "hints": [
+        "Calcola prima quanti metri si percorrono in un’ora, poi convertili in chilometri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Per il conto manuale, 3600/1000=18/5 e 5·18/5=18. Diciottomila terrebbe ancora i metri; cinque manterrebbe il numero ignorando entrambe le conversioni. Dividere per 3600 nel passaggio al denominatore in ore invertirebbe il fattore temporale. Il controllo inverso 18·1000/3600 restituisce 5 m/s.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2209,
+      "title": "L’inversa per la velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Nel moto rettilineo uniforme D=vΔt. L’intervallo Δt è positivo e D è uno spostamento con segno. Quale formula isola v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v=DΔt",
+          "v=Δt/D",
+          "v=D/Δt",
+          "v=D−Δt",
+          "v=√(D/Δt)"
+        ],
+        "value": "v=D/Δt"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "v è moltiplicata per Δt. Dividere per lo stesso intervallo entrambi i membri elimina quel fattore, senza alterare l’uguaglianza. La durata strettamente positiva impedisce una divisione per zero e permette anche di leggere il segno della velocità direttamente da quello dello spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac D{\\Delta t}=\\frac{v\\Delta t}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac D{\\Delta t}"
+        },
+        {
+          "type": "text",
+          "text": "La dimensione di D/Δt è L/T, quella di una velocità. Δt/D avrebbe dimensione inversa; DΔt darebbe L·T; D−Δt sottrarrebbe lunghezze e tempi. Una radice introdurrebbe potenze di unità che non compaiono nella grandezza cercata. Per Δt=0 questa inversa non è definita."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore tempo con una divisione, conservando il segno di D.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La dimensione di D/Δt è L/T, quella di una velocità. Δt/D avrebbe dimensione inversa; DΔt darebbe L·T; D−Δt sottrarrebbe lunghezze e tempi. Una radice introdurrebbe potenze di unità che non compaiono nella grandezza cercata. Per Δt=0 questa inversa non è definita.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2210,
+      "title": "Due cambiamenti del moto uniforme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "In due prove separate il moto è rettilineo uniforme con velocità positiva. Nella seconda v₂=κ₁v₁ e Δt₂=κ₂Δt₁, con durate e fattori positivi. Quale espressione dà D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁+κ₂",
+          "κ₁κ₂",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁κ₂²"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità rimane costante all’interno di ciascuna prova, anche se cambia fra le prove. Inseriamo le due nuove condizioni in D=vΔt. La velocità e la durata sono fattori distinti, ciascuno alla prima potenza: nel rapporto restano κ₁ e κ₂ moltiplicati."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{D_2}{D_1}=\\frac{(\\kappa_1v_1)(\\kappa_2\\Delta t_1)}{v_1\\Delta t_1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(\\kappa_1v_1)(\\kappa_2\\Delta t_1)}{v_1\\Delta t_1}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Se cambiasse soltanto la durata, recupereremmo il suo fattore; se nulla cambiasse, il rapporto sarebbe uno. La somma darebbe invece due quando entrambi i fattori sono uno. Un quadrato del tempo appartiene ad altre leggi del moto e non va aggiunto a una velocità costante."
+        }
+      ],
+      "hints": [
+        "Distingui velocità costante durante la prova da velocità uguale fra prove diverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se cambiasse soltanto la durata, recupereremmo il suo fattore; se nulla cambiasse, il rapporto sarebbe uno. La somma darebbe invece due quando entrambi i fattori sono uno. Un quadrato del tempo appartiene ad altre leggi del moto e non va aggiunto a una velocità costante.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2211,
+      "title": "Due raddoppi moltiplicati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "In una prova il carrello ha v₁=+2 m/s e dura Δt₁=2 s; in una seconda v₂=+4 m/s e Δt₂=4 s. Ogni prova è un moto uniforme. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda prova combina una velocità doppia e una durata doppia. Il primo cambiamento raddoppia lo spostamento per secondo e il secondo raddoppia il numero dei secondi: i contributi si moltiplicano. Calcolare anche i due spostamenti rende esplicito il confronto."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=16\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto quattro è adimensionale. Due conterebbe un solo raddoppio; sedici sarebbe la misura in metri della seconda prova. Il risultato non implica un’accelerazione durante il moto: sono due prove uniformi con condizioni iniziali diverse."
+        }
+      ],
+      "hints": [
+        "Moltiplica il fattore della velocità per quello della durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto quattro è adimensionale. Due conterebbe un solo raddoppio; sedici sarebbe la misura in metri della seconda prova. Il risultato non implica un’accelerazione durante il moto: sono due prove uniformi con condizioni iniziali diverse.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2212,
+      "title": "La media degli spostamenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 2,
+      "prompt": "Due prove uniformi nel verso positivo hanno (v,Δt)=(2 m/s,2 s) e (4 m/s,4 s). Le prove hanno uguale peso statistico. Qual è la media aritmetica dei due spostamenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 m",
+          "8 m",
+          "9 m",
+          "10 m",
+          "20 m"
+        ],
+        "value": "10 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due prove producono spostamenti di quattro e sedici metri. Sommiamo questi risultati e dividiamo per due, perché ogni prova ha lo stesso peso. Questa media non rappresenta il moto ottenuto sostituendo nella legge la velocità media degli ingressi e la durata media."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline D=\\frac{4\\,\\mathrm m+16\\,\\mathrm m}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m+16\\,\\mathrm m}{2}=10\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dieci metri è compreso fra i due spostamenti. Le medie degli ingressi, 3 m/s e 3 s, darebbero nove metri: il prodotto delle medie è un altro calcolo. Venti metri è la somma prima di dividerla per il numero delle prove; non è la media richiesta."
+        }
+      ],
+      "hints": [
+        "Trova lo spostamento di ogni prova prima di eseguire la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci metri è compreso fra i due spostamenti. Le medie degli ingressi, 3 m/s e 3 s, darebbero nove metri: il prodotto delle medie è un altro calcolo. Venti metri è la somma prima di dividerla per il numero delle prove; non è la media richiesta.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2213,
+      "title": "Quanto prolungare la prova?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 3,
+      "prompt": "Il moto è uniforme in ogni prova. All’inizio v₁=+2 m/s e Δt₁=2 s. Si impone v₂=+4 m/s e si vuole D₂=4D₁. Quale rapporto Δt₂/Δt₁ serve?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità doppia dà già un fattore due nello spostamento. Per ottenere un fattore quattro complessivo, anche la durata deve fornire un fattore due. Isoliamo il rapporto delle durate nella legge dei fattori, usando D₁ diverso da zero."
+        },
+        {
+          "type": "formula",
+          "text": "4=2\\frac{\\Delta t_2}{\\Delta t_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta t_2}{\\Delta t_1}=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_2=4\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "La verifica dà D₁=4 m e D₂=(4 m/s)(4 s)=16 m. Un tempo quattro volte maggiore, unito alla velocità doppia, darebbe un fattore otto. Il tempo cercato è una durata positiva, non un istante la cui origine possa essere scelta liberamente."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore totale desiderato per il raddoppio già imposto della velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La verifica dà D₁=4 m e D₂=(4 m/s)(4 s)=16 m. Un tempo quattro volte maggiore, unito alla velocità doppia, darebbe un fattore otto. Il tempo cercato è una durata positiva, non un istante la cui origine possa essere scelta liberamente.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2214,
+      "title": "Un display per lo spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 3,
+      "prompt": "In ogni prova il carrello ha velocità costante positiva. Il display mostra S=gD, con g>0 costante, offset nullo e S conteggio. Il riferimento v=2 m/s,Δt=2 s dà S=12. Una prova con Δt=4 s dà S=48. Quanto vale v, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento lo spostamento è quattro metri, quindi il guadagno vale dodici tacche ogni quattro metri, cioè 3 m⁻¹. La lettura nuova corrisponde a sedici metri. Solo dopo aver rimosso il guadagno possiamo dividere lo spostamento per i quattro secondi della prova."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{12}{4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{4\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{48}{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{48}{3\\,\\mathrm{m^{-1}}}=16\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{16\\,\\mathrm m}{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16\\,\\mathrm m}{4\\,\\mathrm s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo completo è S=3 m⁻¹·(4 m/s·4 s)=48. Dividere direttamente le tacche per i secondi non darebbe ancora metri al secondo. Il guadagno trasforma una lunghezza in un numero, dunque la sua dimensione inversa di lunghezza è necessaria."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per trasformare le tacche in metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo completo è S=3 m⁻¹·(4 m/s·4 s)=48. Dividere direttamente le tacche per i secondi non darebbe ancora metri al secondo. Il guadagno trasforma una lunghezza in un numero, dunque la sua dimensione inversa di lunghezza è necessaria.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2215,
+      "title": "Taratura con guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 3,
+      "prompt": "In ogni prova uniforme D=vΔt. Un display mostra S=gD+d, con S conteggio e g,d costanti. I riferimenti (v,Δt,S) sono (2 m/s,2 s,9) e (4 m/s,4 s,33). Nella prova ignota Δt=2 s e S=17. Quanto vale v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "8 m/s",
+          "16 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno D₁=4 m e D₂=16 m. La differenza di ventiquattro tacche per dodici metri elimina l’offset e fissa g=2 m⁻¹. Dalla prima lettura d=9−2·4=1. La lettura ignota va ridotta di una tacca e divisa per il guadagno prima di usarla nella legge del moto."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{33-9}{16\\,\\mathrm m-4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-9}{16\\,\\mathrm m-4\\,\\mathrm m}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{17-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-1}{2\\,\\mathrm{m^{-1}}}=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{8\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{8\\,\\mathrm m}{2\\,\\mathrm s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La risposta quattro metri al secondo ricostruisce S=2 m⁻¹·(4 m/s·2 s)+1=17. Otto è lo spostamento numerico intermedio, non la velocità. Un rapporto di letture non cancella un contributo additivo: l’offset deve essere trovato e sottratto."
+        }
+      ],
+      "hints": [
+        "Sottrai le due letture di riferimento per eliminare d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La risposta quattro metri al secondo ricostruisce S=2 m⁻¹·(4 m/s·2 s)+1=17. Otto è lo spostamento numerico intermedio, non la velocità. Un rapporto di letture non cancella un contributo additivo: l’offset deve essere trovato e sottratto.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-uniform-displacement-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2216,
+      "title": "Un vincolo fra prove, non un’accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-displacement",
+      "difficulty": 3,
+      "prompt": "Ogni prova è un moto rettilineo uniforme con velocità positiva v e durata Δt>0. La scelta dei dati impone v=(1 m/s²)Δt. Per una prova D=4 m. Quanto vale Δt, in secondi? Il vincolo collega le condizioni delle prove: v non cambia durante una prova.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 s",
+          "1 s",
+          "2 s",
+          "4 s",
+          "8 s"
+        ],
+        "value": "2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente 1 m/s² rende corrette le unità del vincolo fra velocità e durata. Sostituendolo in D=vΔt troviamo un quadrato della durata. Questo quadrato nasce dalla scelta congiunta dei dati, non da una velocità che cresce nel tempo: il moto della singola prova resta uniforme."
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m=(1\\,\\mathrm{m/s^2})(\\Delta t)^2"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta t)^2=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=2\\,\\mathrm s\\;(\\Delta t>0)"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà v=(1 m/s²)(2 s)=2 m/s e D=(2 m/s)(2 s)=4 m. −2 s risolve l’equazione quadratica ma non descrive una durata positiva. Quattro è il valore numerico del quadrato nelle unità dichiarate, non quello della durata."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di scegliere la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il controllo dà v=(1 m/s²)(2 s)=2 m/s e D=(2 m/s)(2 s)=4 m. −2 s risolve l’equazione quadratica ma non descrive una durata positiva. Quattro è il valore numerico del quadrato nelle unità dichiarate, non quello della durata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Moto rettilineo uniforme",
+        "Posizione e spostamento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2efc95e2aa57c1b4266f85eb38b94bad92c0a81b8bf5a8ff83879f6d2e632d81",
+      "name": "uniform-displacement-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iODkwIiB2aWV3Qm94PSIwIDAgNjAwIDg5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5TcG9zdGFtZW50byB1bmlmb3JtZSBpbiBkdWUgc2Vjb25kaTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGUuIFNpIHNjZWdsaWUgeCBwb3NpdGl2byB2ZXJzbyBkZXN0cmEgZSB4IGluaXppYWxlIHplcm8gcGVyIGlsIGRpc2Vnbm8uIExlIHBvc2l6aW9uaSBhIHplcm8sIHVubyBlIGR1ZSBzZWNvbmRpIHNvbm8gemVybywgZHVlIGUgcXVhdHRybyBtZXRyaSwgY29uIHNjYWxhIG9yaXp6b250YWxlIG90dGFudGEgcGl4ZWwgcGVyIG1ldHJvLiBOZWwgZ3JhZmljbyB2ZWxvY2l0w6AtdGVtcG8sIHVuYSBsaW5lYSBjb3N0YW50ZSBhIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIGRlbGltaXRhIGluIGR1ZSBzZWNvbmRpIHVuIHJldHRhbmdvbG8gZGkgYXJlYSBxdWF0dHJvIG1ldHJpLiBJbCBncmFmaWNvIHVzYSBjZW50byBwaXhlbCBwZXIgc2Vjb25kbyBlIHNlc3NhbnRhIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE3M2Q1MCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI4OTAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZmlsbD0iIzE3M2Q1MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiPgo8dGV4dCB4PSIyOCIgeT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFNjZWdsaWVyZSBpbCB2ZXJzbyBkZWxs4oCZYXNzZTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgyIj5JbCBjYXJyZWxsbyBhdmFuemEgYSArMiBtL3MuPC90ZXh0Pgo8cGF0aCBkPSJNOTUgMjIwSDUwMCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9Ijk1IiB5PSIxNDYiIHdpZHRoPSI3MiIgaGVpZ2h0PSI0MiIgcng9IjYiIGZpbGw9IiNjZWUyZGUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjE5NyIgcj0iOSIvPjxjaXJjbGUgY3g9IjE1MSIgY3k9IjE5NyIgcj0iOSIvPgo8cGF0aCBkPSJNMTkwIDE2NkgzNzAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzOTAiIHk9IjE3NCI+diAmZ3Q7IDA8L3RleHQ+PHRleHQgeD0iNTE0IiB5PSIyMjgiPit4PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMjgyIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBBZ2dpdW5nZXJlIGR1ZSBtZXRyaSBvZ25pIHNlY29uZG88L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIzMjIiPk5lbCBkaXNlZ25vOiB44oKAID0gMCDCtyBzY2FsYSA4MCBweC9tLjwvdGV4dD4KPHBhdGggZD0iTTcwIDQ0MEg1MTAiIHN0cm9rZT0iIzg3OWI5YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMTAwIDQyOFY0NTJNMjYwIDQyOFY0NTJNNDIwIDQyOFY0NTIiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjQ0MCIgcj0iNiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjQ0MCIgcj0iNiIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjQ0MCIgcj0iNiIvPgo8dGV4dCB4PSI3NSIgeT0iMzgwIj4wIHM8L3RleHQ+PHRleHQgeD0iMjM1IiB5PSIzODAiPjEgczwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjM4MCI+MiBzPC90ZXh0Pgo8dGV4dCB4PSI3NSIgeT0iNDE0Ij4wIG08L3RleHQ+PHRleHQgeD0iMjM1IiB5PSI0MTQiPjIgbTwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjQxNCI+NCBtPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDkwIj5EID0geF9maW5hbGUg4oiSIHhfaW5pemlhbGUgPSArNCBtPC90ZXh0Pgo8cGF0aCBkPSJNMjggNTE2SDU3MiIgc3Ryb2tlPSIjODc5YjlhIi8+Cjx0ZXh0IHg9IjI4IiB5PSI1NTgiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IEzigJlhcmVhIG5lbCBncmFmaWNvIHZlbG9jaXTDoC10ZW1wbzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYwMCI+TGEgdmVsb2NpdMOgIHJlc3RhIGNvc3RhbnRlIHBlciAyIHMuPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjY4MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNjZWUyZGUiLz4KPHBhdGggZD0iTTEwMCA4MDBWNjMyTTEwMCA4MDBINDYwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTEwMCA2ODBIMzAwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzAwIDY4MFY4MDAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KPHRleHQgeD0iMzAiIHk9IjY4OCI+MiBtL3M8L3RleHQ+PHRleHQgeD0iMTUwIiB5PSI3NTAiIGZvbnQtd2VpZ2h0PSJib2xkIj5EID0gNCBtPC90ZXh0Pgo8dGV4dCB4PSI4OCIgeT0iODMwIj4wPC90ZXh0Pjx0ZXh0IHg9IjI4MCIgeT0iODMwIj4yIHM8L3RleHQ+PHRleHQgeD0iNDcyIiB5PSI4MDgiPs6UdDwvdGV4dD48dGV4dCB4PSIxMTgiIHk9IjY0OCI+djwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijg3NSI+RCA9IHYgzpR0ID0gKDIgbS9zKSgyIHMpID0gNCBtPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
