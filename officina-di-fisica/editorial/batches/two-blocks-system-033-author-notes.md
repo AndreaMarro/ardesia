@@ -9,3 +9,5 @@ Fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605,U2-03.json,16originali letti indiv
 14:S_ref3/2,A_ref1/2→q3s²/m;S2→A2/3,m4total6→F4N. S dichiarato lettura continua adimensionale, non conteggio intero.15:ΔS7/3−2=1/3,ΔA2/3−1/2=1/6→q2s²/m,c1;S3→A1,m2→F4. Distrattore6N ometteoffset,3N scambia S con forza,2N ripete riferimento,8N raddoppia risultato.16:F=km,k1m/s²→A(M+m)=km→AM=(k−A)m→m=AM/(k−A)=2kg,F2N. Positività richiede0<A<k; a A=k nessuna massa finita con M>0. m1,3,4 dannoA1/3,3/5,2/3;−2kgannulla denominatore e viola dominio.
 
 SVG01/09: F2N freccia80px,T1N frecce40px nei versi corretti sui corpi distinti, scala comune40px/N. Sistema totale4kg con F2N esterna e A1/2m/s². Blocchi separati e fune presente; proiezioni orizzontali, verticali equilibrate omesse; geometria senza scala spaziale. Anteprima controllata.
+
+Rilettura tecnica a 320 px: formula inversa ID06 separata in massa totale e sottrazione (033), oppure spazi nelle cinque opzioni ID10 (034). Algebra e indice corretto invariati; nuova impronta candidato per il solo record interessato. Nessuna firma scientifica dell’autore.

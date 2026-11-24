@@ -11,3 +11,5 @@ Fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605,U2-03.json,16originali letti indiv
 14:q18/6=3s²/m;S15→A5,m2→M2·15/5=6kg.15:ΔS11−13=−2,ΔA5−6=−1→q2s²/m,c1;S107/7continuo→(107/7−7/7)/2=50/7m/s²;g+A120/7,g−A20/7→M(120/7)/(20/7)·1kg=6kg. M7dàS16;M5dà43/3,diversi da107/7;12e3 doppio/metà.16:M4m→A10·3m/(5m)=6indipendente da m>0; infinitecoppie,esempi(4kg,1kg),(8kg,2kg); coppianulla esclusa,non informazioneindipendente sulla scala.
 
 SVG01/09: apparato ideale poi due diagrammi separati e Newton. Scala3px/N: pesoM40N120px,basso;pesom10N30px,basso;T16N48pxalto suentrambi. Nessuna tensionezero o tensioneugualepeso. Risultanti24e6N distinte,non aggiuntecomealtreforze; accelerazionecomune6m/s². Geometria schematica senza scalaspaziale. Anteprima controllata.
+
+Rilettura tecnica a 320 px: formula inversa ID06 separata in massa totale e sottrazione (033), oppure spazi nelle cinque opzioni ID10 (034). Algebra e indice corretto invariati; nuova impronta candidato per il solo record interessato. Nessuna firma scientifica dell’autore.
