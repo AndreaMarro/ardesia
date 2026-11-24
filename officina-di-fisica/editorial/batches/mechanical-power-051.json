@@ -1,0 +1,1230 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-mechanical-power-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5101,
+      "title": "Energia trasferita nell’istante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale una forza di modulo F=2 N è parallela e concorde alla velocità istantanea del suo punto di applicazione, di modulo v=2 m/s. Quanto vale la potenza meccanica istantanea P di questa forza, in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è il ritmo del trasferimento di energia. Per una forza la definizione istantanea è P=F vettore scalare velocità. Essendo i due vettori concordi, il coseno vale uno e il prodotto scalare si riduce a Fv: due newton per due metri al secondo danno quattro joule al secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed4a45d7a67bcb9603682eaf7560fc5caf0d71581020a7785751ef5501e2b560",
+          "text": "Esempio F=2 N, v=2 m/s concordi: forza160 px a80 px/N e velocità160 px a80 px per m/s in pannelli separati. Le lunghezze grafiche uguali non indicano grandezze fisiche uguali. Terzo pannello: se le condizioni restano costanti per2 s, la potenza della forza è4 W e l’area del rettangoloP–t vale8 J; scale80 px/s e30 px/W. Le altre forze possono compensare questa potenza nel moto costante."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\vec F\\cdot\\vec v"
+        },
+        {
+          "type": "formula",
+          "text": " P=Fv"
+        },
+        {
+          "type": "formula",
+          "text": " P=(2\\,\\mathrm N)(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\,\\mathrm{J/s}"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm{J/s}=4\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Quattro watt non è una quantità di energia già trasferita: per un’energia occorre integrare P su un intervallo, o moltiplicare per la durata se P resta costante. Il dato riguarda questa forza, non necessariamente la somma delle potenze di tutte le forze."
+        }
+      ],
+      "hints": [
+        "Moltiplica forza e velocità concordi, conservando il secondo al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro watt non è una quantità di energia già trasferita: per un’energia occorre integrare P su un intervallo, o moltiplicare per la durata se P resta costante. Il dato riguarda questa forza, non necessariamente la somma delle potenze di tutte le forze.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5102,
+      "title": "Dal joule al joule per secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 1,
+      "prompt": "P è la potenza istantanea di una forza parallela e concorde alla velocità del suo punto di applicazione. Con F in N e v in m/s, quale unità SI esprime P=Fv?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "N",
+          "W",
+          "m/s",
+          "kg"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto N·m sarebbe un lavoro; la velocità introduce anche la divisione per secondo. Ne risulta J/s, che prende il nome watt. L’unità della potenza distingue quindi un trasferimento rapido da uno lento a parità di energia."
+        },
+        {
+          "type": "formula",
+          "text": "[Fv]=ML^2/T^3"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm N\\,\\mathrm{m/s}=\\mathrm{J/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm W=1\\,\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "J è un’energia senza la durata al denominatore; N è soltanto forza. m/s e kg descrivono altri dati. La lettera W come unità indica watt; non va confusa con una lettera usata altrove per il lavoro."
+        }
+      ],
+      "hints": [
+        "Sostituisci il prodotto N·m con J e mantieni la divisione per s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è un’energia senza la durata al denominatore; N è soltanto forza. m/s e kg descrivono altri dati. La lettera W come unità indica watt; non va confusa con una lettera usata altrove per il lavoro.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5103,
+      "title": "La trazione lavora anche a velocità costante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 1,
+      "prompt": "Un carrello, in un riferimento inerziale, si muove rettilineamente a velocità costante e percorre4 m in2 s. Una trazione costante di5 N è parallela e concorde alla velocità del suo punto di applicazione. Quanto vale la potenza della sola trazione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0 W",
+          "10 W",
+          "20 W",
+          "5/2 W",
+          "40 W"
+        ],
+        "value": "10 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità costante è distanza su durata, cioè2 m/s. Il prodotto della trazione per questa rapidità dà10 W. Si può controllare anche dal suo lavoro20 J diviso2 s: poiché forza e velocità sono costanti, la potenza istantanea coincide con la media su questo intervallo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed4a45d7a67bcb9603682eaf7560fc5caf0d71581020a7785751ef5501e2b560",
+          "text": "La figura distingue potenza della singola forza e bilancio totale. Il suo esempio numerico usa2 N, 2 m/s, P4 W ed eventualmente2 s con energia8 J; la domanda usa invece trazione5 N e stesso v2 m/s, P10 W. Pannelli di forza e velocità con scale di dimensioni distinte; graficoP–t riferito alla sola forza scelta."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{4\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m}{2\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{tr}=5\\cdot2\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": "5\\cdot2\\,\\mathrm W=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " W_{tr}=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P_{tr}=W_{tr}/\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": "W_{tr}/\\Delta t=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Zero è la potenza totale delle forze sul carrello se K resta costante, non quella della trazione: altri contributi compensano il suo lavoro.20confonderebbe joule e watt; 5/2 ometterebbe la distanza nel lavoro; 40 moltiplicherebbe ancora per la durata invece di dividere."
+        }
+      ],
+      "hints": [
+        "Trova v e distingui la potenza della trazione dalla potenza totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero è la potenza totale delle forze sul carrello se K resta costante, non quella della trazione: altri contributi compensano il suo lavoro.20confonderebbe joule e watt; 5/2 ometterebbe la distanza nel lavoro; 40 moltiplicherebbe ancora per la durata invece di dividere.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5104,
+      "title": "Raddoppia F, resta la stessa velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 1,
+      "prompt": "In due istanti di prove differenti una forza è parallela e concorde alla velocità, v=2 m/s in entrambi. Il suo modulo passa da F_A=2 N a F_B=4 N. Nel riferimento inerziale, come cambia la potenza di questa forza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 4 W",
+          "Da 4 a 8 W",
+          "Da 4 a 16 W",
+          "Da 4 a 2 W",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 8 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità è tenuta fissa nel confronto, quindi P varia direttamente con F. Si ottengono quattro e otto watt. Non stiamo affermando che aumentare una forza lasci automaticamente costante la velocità futura: sono condizioni istantanee assegnate a due prove."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=(2\\,\\mathrm N)(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm N)(2\\,\\mathrm{m/s})=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=(4\\,\\mathrm N)(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": "(4\\,\\mathrm N)(2\\,\\mathrm{m/s})=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "16 W raddoppierebbe anche v; 2 W userebbe una dipendenza inversa; zero richiederebbe un fattore nullo o un angolo retto. La direzione relativa è concorde in entrambi gli istanti, quindi il segno non cambia."
+        }
+      ],
+      "hints": [
+        "Confronta Fv con la stessa v, senza dedurre l’evoluzione successiva del moto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "16 W raddoppierebbe anche v; 2 W userebbe una dipendenza inversa; zero richiederebbe un fattore nullo o un angolo retto. La direzione relativa è concorde in entrambi gli istanti, quindi il segno non cambia.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5105,
+      "title": "Risalire alla forza da una potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Una forza è parallela e concorde alla velocità istantanea v=2 m/s del suo punto di applicazione. La sua potenza è P=4 W nel riferimento inerziale. Quanto vale il modulo F, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo P=Fv per v>0. Un joule al secondo diviso per un metro al secondo è un joule al metro, cioè un newton. Si ricostruisce la forza in quell’istante, non un’energia totale o un impulso."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\frac Pv"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{4\\,\\mathrm W}{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm W}{2\\,\\mathrm{m/s}}=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ancora per v darebbe dimensioni diverse.4 W è la potenza da usare, non un modulo di forza. Il controllo2 N·2 m/s=4 W verifica la risposta; la divisione non sarebbe lecita per v=0, caso escluso."
+        }
+      ],
+      "hints": [
+        "Dividi per la velocità positiva e semplifica i secondi nelle unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ancora per v darebbe dimensioni diverse.4 W è la potenza da usare, non un modulo di forza. Il controllo2 N·2 m/s=4 W verifica la risposta; la divisione non sarebbe lecita per v=0, caso escluso.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5106,
+      "title": "La rapidità dalla potenza della forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Una forza di modulo F=2 N è parallela e concorde alla velocità istantanea del suo punto di applicazione. Nel riferimento inerziale trasferisce P=4 W. Quanto vale la rapidità v, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto scalare si è ridotto a Fv, quindi dividiamo per la forza positiva. Watt su newton lascia metri al secondo. Non serve conoscere massa o accelerazione per questa ricostruzione istantanea."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac PF"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{4\\,\\mathrm W}{2\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm W}{2\\,\\mathrm N}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro ripeterebbe il numero della potenza; un mezzo invertirebbe i dati. La velocità vettoriale completa richiederebbe anche la direzione nello spazio; qui si chiede soltanto il modulo, con concordanza già dichiarata."
+        }
+      ],
+      "hints": [
+        "Isola v dal prodotto e controlla W/N=m/s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro ripeterebbe il numero della potenza; un mezzo invertirebbe i dati. La velocità vettoriale completa richiederebbe anche la direzione nello spazio; qui si chiede soltanto il modulo, con concordanza già dichiarata.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5107,
+      "title": "Più rapidità sotto la stessa forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Due prove in riferimento inerziale usano una forza di2 N parallela e concorde alla velocità. A ha v_A=2 m/s, B ha v_B=4 m/s. Quanto vale il rapporto delle potenze istantanee P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa forza trasferisce energia due volte più rapidamente quando il punto di applicazione si muove al doppio della rapidità. Le potenze sono4 e8 W, quindi il rapporto è due. Non è il confronto fra energie trasferite su intervalli non assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac84"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto; quattro importerebbe il quadrato dell’energia cinetica; uno ignora il cambiamento.−2 richiederebbe una potenza di segno opposto, mentre forza e velocità restano concordi."
+        }
+      ],
+      "hints": [
+        "Semplifica F e confronta le due rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto; quattro importerebbe il quadrato dell’energia cinetica; uno ignora il cambiamento.−2 richiederebbe una potenza di segno opposto, mentre forza e velocità restano concordi.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5108,
+      "title": "La potenza proposta è doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale F=2 N è parallela e concorde alla velocità istantanea v=2 m/s del suo punto di applicazione. Si propone P_proposta=8 W. Quanto vale proposta meno corretta, in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza corretta è il prodotto2·2=4 W. La proposta è doppia e lo scarto con l’ordine richiesto è8−4=4 W. Il calcolo non riguarda l’energia: per quella mancherebbe un intervallo temporale e l’andamento di P."
+        },
+        {
+          "type": "formula",
+          "text": "P=Fv"
+        },
+        {
+          "type": "formula",
+          "text": "Fv=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=8\\,\\mathrm W-4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm W-4\\,\\mathrm W=4\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−4 W cambierebbe l’ordine della sottrazione; 8 W ripete la proposta; 2 W dimezza ancora lo scarto.5 o3 W aggiungono uno scarto arbitrario di un watt a un prodotto esatto."
+        }
+      ],
+      "hints": [
+        "Calcola prima Fv, poi sottrai al valore proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 W cambierebbe l’ordine della sottrazione; 8 W ripete la proposta; 2 W dimezza ancora lo scarto.5 o3 W aggiungono uno scarto arbitrario di un watt a un prodotto esatto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5109,
+      "title": "L’inversa istantanea",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Una forza F>0 e la velocità istantanea di modulo v>0 del suo punto di applicazione sono parallele e concordi, in un riferimento inerziale. Quale formula ricostruisce F dalla sua potenza P=Fv?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=Pv",
+          "F=v/P",
+          "F=P/v",
+          "F=2P/v",
+          "F=P/(2v)"
+        ],
+        "value": "F=P/v"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "v è il fattore positivo che moltiplica F. La stessa divisione per v nei due membri isola la forza; il risultato ha unità W/(m/s)=N. Non compare un mezzo: la potenza della forza non è la formula dell’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "P=Fv"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac Pv=F"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac Pv"
+        },
+        {
+          "type": "text",
+          "text": "Pv non elimina la velocità e ha dimensioni diverse; v/P è un inverso di forza. Il doppio e la metà non ricostruiscono P se sostituiti in Fv. La formula è limitata al v>0 dichiarato."
+        }
+      ],
+      "hints": [
+        "Dividi entrambi i membri per il fattore velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Pv non elimina la velocità e ha dimensioni diverse; v/P è un inverso di forza. Il doppio e la metà non ricostruiscono P se sostituiti in Fv. La formula è limitata al v>0 dichiarato.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5110,
+      "title": "Scalare forza e rapidità concordi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Fra due condizioni istantanee in riferimento inerziale si passa da F_A, v_A>0 a F_B=κ₁F_A e v_B=κ₂v_A. I fattori sono positivi e forza e velocità restano parallele e concordi. Quanto vale P_B/P_A per la potenza della forza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella nuova potenza moltiplichiamo entrambi i fattori di scala. Il rapporto fra i due prodotti cancella i valori iniziali e lascia κ₁κ₂. Non si tratta di integrare potenze su durate differenti: il confronto è istantaneo."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=F_Av_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\kappa_1\\kappa_2P_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti assegnano un effetto inverso; la somma vale due quando nulla cambia; κ₁κ₂² farebbe dipendere P dal quadrato della rapidità. L’eventuale fattore angolare generale resta uno per l’ipotesi di concordanza."
+        }
+      ],
+      "hints": [
+        "Confronta due prodotti Fv mantenendo uguale la convenzione sul verso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti assegnano un effetto inverso; la somma vale due quando nulla cambia; κ₁κ₂² farebbe dipendere P dal quadrato della rapidità. L’eventuale fattore angolare generale resta uno per l’ipotesi di concordanza.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5111,
+      "title": "Entrambi i fattori raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale, A ha F=2 N, v=2 m/s; B ha F=4 N, v=4 m/s. In ciascuna condizione la forza è parallela e concorde alla velocità del punto di applicazione. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo prodotto dà4 W, il secondo16 W. Raddoppiano sia la forza sia la rapidità: due per due produce un fattore quattro. La risposta è un rapporto e quindi non ha l’unità watt."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=16\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due tiene conto di un solo cambiamento; sedici è la potenzaB e non il rapporto. Otto attribuirebbe un quadrato alla rapidità oltre al raddoppio della forza; un quarto invertirebbe l’ordine."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le potenze o moltiplica i due fattori due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due tiene conto di un solo cambiamento; sedici è la potenzaB e non il rapporto. Otto attribuirebbe un quadrato alla rapidità oltre al raddoppio della forza; un quarto invertirebbe l’ordine.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5112,
+      "title": "Media di due potenze istantanee",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 2,
+      "prompt": "Due condizioni nel medesimo riferimento inerziale hanno A: F=2 N, v=2 m/s e B: F=4 N, v=4 m/s. Forza e velocità sono sempre parallele e concordi. Qual è la media aritmetica delle due potenze con uguale peso alle letture, in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture fisiche sono4 e16 W e la loro semisomma è10 W. Si chiede una media statistica delle due potenze istantanee, senza assegnare intervalli temporali. Una media temporale su un moto richiederebbe l’andamento della potenza nel tempo oppure durate e valori costanti per ciascun tratto."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=16\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=\\frac{4+16}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+16}{2}\\,\\mathrm W=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "20 W è la somma; 5 W divide due volte. Le medie degli ingressi3 N e3 m/s darebbero9 W, non10 W.11 W non è la semisomma; qui non occorre arrotondare né assumere che le due letture durino quanto i due numeri di velocità."
+        }
+      ],
+      "hints": [
+        "Fai la media dei prodotti già trovati e mantieni distinta una media nel tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 W è la somma; 5 W divide due volte. Le medie degli ingressi3 N e3 m/s darebbero9 W, non10 W.11 W non è la semisomma; qui non occorre arrotondare né assumere che le due letture durino quanto i due numeri di velocità.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5113,
+      "title": "La rapidità per una potenza quadrupla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 3,
+      "prompt": "A ha F_A=2 N, v_A=2 m/s. Per B si sceglie F_B=4 N e si vuole P_B=4P_A. Nel medesimo riferimento inerziale forza e velocità sono parallele e concordi in ciascuna condizione. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è16 W, perché A vale4 W. Con forza4 N servono4 m/s; il rapporto col valore iniziale2 m/s è due. La forza doppia fornisce già metà del fattore quattro richiesto alla potenza."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=16\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=P_B/F_B"
+        },
+        {
+          "type": "formula",
+          "text": "P_B/F_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare v invariata darebbe soltanto8 W; quadruplicarla produrrebbe32 W.4 m/s è la nuova rapidità, non il rapporto. Non si stanno sommando due velocità: si seleziona una nuova condizione istantanea."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore obiettivo sulla potenza per il raddoppio già imposto alla forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare v invariata darebbe soltanto8 W; quadruplicarla produrrebbe32 W.4 m/s è la nuova rapidità, non il rapporto. Non si stanno sommando due velocità: si seleziona una nuova condizione istantanea.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5114,
+      "title": "Dal display alla forza che trasferisce potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cP, c>0 e offset nullo. Nel riferimento inerziale la forza è parallela e concorde alla velocità. Il riferimento F=2 N, v=2 m/s dà S=12. La provaB con v=4 m/s dà S=48. Quanto vale F_B, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza di riferimento è4 W, dunque il guadagno è3 W⁻¹. La lettura48 corrisponde a16 W. Dividiamo ora questa potenza per4 m/s per trovare4 N: si applica prima la taratura e poi l’inversa fisica."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " c=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=48/c"
+        },
+        {
+          "type": "formula",
+          "text": "48/c=16\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=P_B/v_B"
+        },
+        {
+          "type": "formula",
+          "text": "P_B/v_B=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Usare48come watt darebbe12 N, includendo il guadagno spurio tre. Il prodotto4 N·4 m/s=16 W e la lettura3·16=48 verificano entrambi i passaggi. Il display non misura una forza direttamente."
+        }
+      ],
+      "hints": [
+        "Ricava P dalla lettura strumentale prima di dividerla per v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare48come watt darebbe12 N, includendo il guadagno spurio tre. Il prodotto4 N·4 m/s=16 W e la lettura3·16=48 verificano entrambi i passaggi. Il display non misura una forza direttamente.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5115,
+      "title": "Togliere l’offset prima di usare P/v",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cP+d, c>0, d costanti. Nel riferimento inerziale forza e velocità sono parallele e concordi. A: F=2 N, v=2 m/s, S=9. B: F=4 N, v=4 m/s, S=33. C: v=2 m/s, S=17. Quanto vale F_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N",
+          "3 N",
+          "4 N",
+          "5 N",
+          "8 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenzeA eB sono4 e16 W. La differenza24 nelle letture divisa per12 W dà c=2 W⁻¹; dalla prima lettura si ricava d=1. La lettura17 decodifica8 W: la forza che li trasferisce a2 m/s ha modulo4 N."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{33-9}{16-4}\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-9}{16-4}\\,\\mathrm{W^{-1}}=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=9-2\\cdot4"
+        },
+        {
+          "type": "formula",
+          "text": "9-2\\cdot4=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=(17-1)/c"
+        },
+        {
+          "type": "formula",
+          "text": "(17-1)/c=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=P_C/v_C"
+        },
+        {
+          "type": "formula",
+          "text": "P_C/v_C=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Con v_C=2 m/s, le alternative2, 3, 5, 8 N danno letture9, 13, 21, 33. Solo4 N restituisce17. Senza togliere l’offset, un rapporto fra letture non coincide con quello delle potenze."
+        }
+      ],
+      "hints": [
+        "Calibra guadagno e offset su due potenze note, poi isola F_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con v_C=2 m/s, le alternative2, 3, 5, 8 N danno letture9, 13, 21, 33. Solo4 N restituisce17. Senza togliere l’offset, un rapporto fra letture non coincide con quello delle potenze.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mechanical-power-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 5116,
+      "title": "Un vincolo che rende quadratica la potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mechanical-power",
+      "difficulty": 3,
+      "prompt": "Si selezionano condizioni istantanee nel riferimento inerziale con F=(1 N·s/m)v, v>0. La forza è parallela e concorde alla velocità del suo punto di applicazione. Il coefficiente collega i due moduli nelle condizioni scelte. Se la potenza della forza è P=4 W, quanto vale v, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente ha unità forza diviso velocità: moltiplicandolo per v si ottiene una forza. Sostituendolo in P=Fv compare v². P/a vale4m²/s² e la radice positiva è2 m/s, riconoscibile esattamente senza calcolatrice."
+        },
+        {
+          "type": "formula",
+          "text": "a=1\\,\\mathrm{N\\,s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " F=av"
+        },
+        {
+          "type": "formula",
+          "text": " P=av^2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=P/a"
+        },
+        {
+          "type": "formula",
+          "text": "P/a=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_+=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_-=-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Con v=2 m/s si ha F=2 N e P=4 W. Il ramo negativo non è il modulo v>0 e renderebbe negativo anche il modulo F nel vincolo; non descrive una forza frenante, per la quale andrebbe riformulata la convenzione del prodotto scalare.4 confonde v² con v; 1 e3 non riproducono la potenza."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con le sue unità e scegli il ramo dei moduli positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Con v=2 m/s si ha F=2 N e P=4 W. Il ramo negativo non è il modulo v>0 e renderebbe negativo anche il modulo F nel vincolo; non descrive una forza frenante, per la quale andrebbe riformulata la convenzione del prodotto scalare.4 confonde v² con v; 1 e3 non riproducono la potenza.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza istantanea di una forza",
+        "Distinzione energia e potenza",
+        "Taratura e medie di letture"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ed4a45d7a67bcb9603682eaf7560fc5caf0d71581020a7785751ef5501e2b560",
+      "name": "mechanical-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlBvdGVuemEgZGkgdW5hIGZvcnphIGVkIGVuZXJnaWEgbmVsIHRlbXBvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RXNlbXBpbzogZm9yemEgZHVlIG5ld3RvbiBlIHZlbG9jaXTDoCBkdWUgbWV0cmkgYWwgc2Vjb25kbyBjb25jb3JkaS4gRm9yemEgbHVuZ2EgY2VudG9zZXNzYW50YSBwaXhlbCBhIG90dGFudGEgcGl4ZWwgcGVyIG5ld3Rvbi4gVmVsb2NpdMOgIGx1bmdhIGNlbnRvc2Vzc2FudGEgcGl4ZWwgYSBvdHRhbnRhIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvIGluIHVuIHBhbm5lbGxvIHNlcGFyYXRvLiBMYSBwb3RlbnphIGRpIHF1ZXN0YSBmb3J6YSDDqCBxdWF0dHJvIHdhdHQuIFNlIHF1ZXN0YSBjb25kaXppb25lIHNpIG1hbnRpZW5lIHBlciBkdWUgc2Vjb25kaSxpbCBncmFmaWNvIHBvdGVuemEgdGVtcG8gaGEgYmFzZSBjZW50b3Nlc3NhbnRhIHBpeGVsIGEgb3R0YW50YSBwaXhlbCBwZXIgc2Vjb25kbyBlIGFsdGV6emEgY2VudG92ZW50aSBwaXhlbCBhIHRyZW50YSBwaXhlbCBwZXIgd2F0dDogZW5lcmdpYSBvdHRvIGpvdWxlLiBOZWwgbW90byBjb3N0YW50ZSBhbHRyaSBsYXZvcmkgcG9zc29ubyBjb21wZW5zYXJlIHF1ZXN0YSBlbmVyZ2lhLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTMzMCIgcng9IjI0IiBmaWxsPSIjZmFmOGYyIi8+PGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMjNmIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFNjZWdsaSBsYSBmb3J6YSBkaSBjdWkgY2FsY29saSBQPC90ZXh0PjxwYXRoIGQ9Ik0xNDAgMTg1SDMwMCIgc3Ryb2tlPSIjYjQ0YjJjIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTg1IiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PHRleHQgeD0iMzMwIiB5PSIxOTEiIGZpbGw9IiNiNDRiMmMiPkYgPSAyIE48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjI2NSI+Rm9yemE6IDgwIHB4L04uIExlIGFsdHJlIGZvcnplIG5vbiBzb25vIG1vc3RyYXRlLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjM2MCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBMZWdnaSBsYSB2ZWxvY2l0w6AgbmVsbG8gc3Rlc3NvIHJpZmVyaW1lbnRvPC90ZXh0PjxwYXRoIGQ9Ik0xNDAgNTAwSDMwMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNTAwIiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PHRleHQgeD0iMzMwIiB5PSI1MDYiIGZpbGw9IiMxNDY0N2IiPnYgPSAyIG0vczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTc1Ij5WZWxvY2l0w6A6IDgwIHB4IHBlciBtL3MsIHNjYWxhIGRpIGRpbWVuc2lvbmUgZGl2ZXJzYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjYyNSI+RiBlIHYgY29uY29yZGk6IFAgPSBGdiA9IDQgVy48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3MjAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgU29sbyBzZSBQIHJlc3RhIGNvc3RhbnRlIHB1b2kgdXNhcmUgUCDOlHQ8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc3NSI+RXNlbXBpbyBlc3Rlc286IHN0ZXNzaSBGIGUgdiBwZXIgzpR0ID0gMiBzLjwvdGV4dD48cGF0aCBkPSJNMTIwIDEwODBWODUwTTEyMCAxMDgwSDQxMCIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHJlY3QgeD0iMTIwIiB5PSI5NjAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjYjdkOGNmIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQwIiB5PSI5NTAiPjQgVzwvdGV4dD48dGV4dCB4PSI4NSIgeT0iMTExNSI+MDwvdGV4dD48dGV4dCB4PSIyNjUiIHk9IjExMTUiPjIgczwvdGV4dD48dGV4dCB4PSIxMzUiIHk9IjEwMzAiPjggSjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9Ijg4MCI+UDwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjEwODYiPnQ8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNzAiPkFyZWEgPSAoNCBXKSgyIHMpID0gOCBKIGRlbGxhIGZvcnphIHNjZWx0YS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyMTAiIGZvbnQtc2l6ZT0iMTgiPkFzc2Ugb3JpenpvbnRhbGU6IDgwIHB4L3MuIEFzc2UgdmVydGljYWxlOiAzMCBweC9XLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTI1NSI+QSB2IGNvc3RhbnRlIGFsdHJpIGNvbnRyaWJ1dGkgY29tcGVuc2FubyBxdWVzdGk4Si48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyOTUiPkxhIHBvdGVuemEgdG90YWxlIHB1w7IgZXNzZXJlIHplcm87IHF1ZXN0YSB2YWxlNFcuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
