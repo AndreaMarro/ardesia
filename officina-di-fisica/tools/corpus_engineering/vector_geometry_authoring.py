@@ -10,7 +10,7 @@ SOURCE_PATH = "packages/engine/lessonos/study/content/physics-semestre-2026-bank
 
 
 def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name, figures, order, *,
-                    unit="u1", source_path=SOURCE_PATH, skill="C1-L002",
+                    unit="u1", source_path=SOURCE_PATH, skill="C1-L002", course="C1",
                     prerequisites=None, section="Vettori e componenti", coverage=None, overrides=None):
     originals = {r["id"]: r for r in json.loads(git_bytes(repo, source_ref, source_path))}
     path = Path(__file__).resolve().parents[2] / "editorial/assets" / asset_name
@@ -23,7 +23,7 @@ def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name,
         target = ({"type": "choice", "options": answer, "value": answer[choices[n]]}
                   if isinstance(answer, list) else
                   {"type": "numeric", "value": answer, "unit": units.get(n, "1"), "tolerance": 0})
-        row = {"id": "AR-" + source_id, "kind": "question", "course": "C1", "section": section,
+        row = {"id": "AR-" + source_id, "kind": "question", "course": course, "section": section,
                "order": order + n, "title": title, "version": 1, "baseVersion": 0,
                "skill": skill, "prerequisites": prerequisites if prerequisites is not None else ["C1-L001", "C1-L002"], "reuse": ["C6"],
                "family": family, "difficulty": 1 if n <= 4 else 2 if n <= 12 else 3,
