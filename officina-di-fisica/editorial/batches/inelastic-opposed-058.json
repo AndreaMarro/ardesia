@@ -1,0 +1,1198 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-inelastic-opposed-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5821,
+      "title": "Somma orientata delle quantità di moto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Con u=4 m/s,w=1 m/s, quanto vale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 m/s",
+          "5/2 m/s",
+          "3 m/s",
+          "−3/2 m/s",
+          "0 m/s"
+        ],
+        "value": "3/2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quantità di moto iniziali hanno segno opposto: p_i=mu−mw. Dopo l’urto la massa unita è 2m e si muove con un’unica V. Dividendo m(u−w)=2mV per la massa positiva rimane V=(u−w)/2. Quattro meno uno dà tre, diviso due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4e44052eea86aa5783e80e609fa7fa95b1eaf8b5f9a4eef85bed5820b73c2e59",
+          "text": "Esempio u4m/s,w1m/s e masse uguali illustrative4kg: velocità iniziali+4 e−1, finale+3/2m/s, frecce160,40,60px alla stessa scala40px per m/s. Quantità di moto totale+12kg·m/s prima e dopo. Senza lavoro esterno: Ki34J170px,Kf9J45px alla scala distinta5px/J;25J diventano energia interna. Masseuguali si cancellano nella formula generale di V; corpi senza scala spaziale."
+        },
+        {
+          "type": "formula",
+          "text": "mu-mw=2mV"
+        },
+        {
+          "type": "formula",
+          "text": " V=(u-w)/2"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno è verso destra, perché u>w a masse uguali. Sommare le rapidità darebbe 5/2 m/s e perderebbe il verso del secondo corpo; tre dimentica la massa finale doppia. L’energia cinetica diminuisce: la perdita è m(u+w)²/4>0 nel modello senza lavoro esterno, anche se p totale resta conservata."
+        }
+      ],
+      "hints": [
+        "Assegna −w alla velocità del corpo che arriva da destra.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno è verso destra, perché u>w a masse uguali. Sommare le rapidità darebbe 5/2 m/s e perderebbe il verso del secondo corpo; tre dimentica la massa finale doppia. L’energia cinetica diminuisce: la perdita è m(u+w)²/4>0 nel modello senza lavoro esterno, anche se p totale resta conservata.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5822,
+      "title": "La massa si cancella, la velocità no",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 1,
+      "prompt": "In un urto completamente anelastico fra due masse uguali, con velocità iniziali +u e −w, si ottiene V=(u−w)/2. Quale unità SI esprime V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg·m/s",
+          "m/s",
+          "N",
+          "J",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "u e w sono rapidità espresse nella stessa unità e la loro differenza, con i versi già incorporati, è ancora una velocità. Il divisore due è puro: non cambia la dimensione. La cancellazione delle masse non rende V adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "[u-w]=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "kg·m/s è quantità di moto prima della divisione per massa finale; N forza e J energia. Uno puro non è una velocità. È necessario sommare quantità di moto orientate prima di passare alla velocità comune."
+        }
+      ],
+      "hints": [
+        "Il due è un numero puro che divide una differenza di velocità.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg·m/s è quantità di moto prima della divisione per massa finale; N forza e J energia. Uno puro non è una velocità. È necessario sommare quantità di moto orientate prima di passare alla velocità comune.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5823,
+      "title": "La differenza nasce dal verso opposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Quale formula dà V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=(u−w)/2",
+          "V=(u+w)/2",
+          "V=u−w",
+          "V=(w−u)/2",
+          "V=(u−w)/4"
+        ],
+        "value": "V=(u−w)/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo corpo contribuisce con +mu, il secondo con −mw. Con impulso esterno nullo la somma resta uguale alla quantità di moto finale (2m)V. Le due masse uguali si raccolgono dopo l’urto e producono il divisore due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4e44052eea86aa5783e80e609fa7fa95b1eaf8b5f9a4eef85bed5820b73c2e59",
+          "text": "Esempio u4m/s,w1m/s e masse uguali illustrative4kg: velocità iniziali+4 e−1, finale+3/2m/s, frecce160,40,60px alla stessa scala40px per m/s. Quantità di moto totale+12kg·m/s prima e dopo. Senza lavoro esterno: Ki34J170px,Kf9J45px alla scala distinta5px/J;25J diventano energia interna. Masseuguali si cancellano nella formula generale di V; corpi senza scala spaziale."
+        },
+        {
+          "type": "formula",
+          "text": "p_i=m(u-w)"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=2mV"
+        },
+        {
+          "type": "formula",
+          "text": " m(u-w)=2mV"
+        },
+        {
+          "type": "formula",
+          "text": " V=(u-w)/2"
+        },
+        {
+          "type": "text",
+          "text": "Il più tratta i due moti come concordi; u−w dimentica che dopo si muove massa doppia. Il reciproco d’ordine w−u dà il verso sbagliato nel dominio u>w; il quattro dimezza ancora V. Le rapidità non si conservano: si conserva la quantità di moto totale con segno."
+        }
+      ],
+      "hints": [
+        "Somma prima i vettori quantità di moto, poi dividi per 2m.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il più tratta i due moti come concordi; u−w dimentica che dopo si muove massa doppia. Il reciproco d’ordine w−u dà il verso sbagliato nel dominio u>w; il quattro dimezza ancora V. Le rapidità non si conservano: si conserva la quantità di moto totale con segno.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5824,
+      "title": "Aumentare la rapidità verso destra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. w=1 m/s resta uguale e u passa da 4 a 6 m/s. Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3/2 a 5/2 m/s",
+          "Resta 3/2 m/s",
+          "Da 3/2 a 9/4 m/s",
+          "Da 3/2 a 3 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 3/2 a 5/2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima differenza u−w è tre metri al secondo, la seconda cinque. Dividendo entrambe per due troviamo 3/2 e 5/2 m/s. V non è direttamente proporzionale al solo u quando w resta un termine sottratto non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac{4-1}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_A=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{6-1}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac52\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "9/4 scalerebbe V_A col rapporto lineare 6/4, ignorando il termine w fisso. Tre m/s ometterebbe w nella seconda prova; invarianza e zero ignorano lo squilibrio maggiore verso destra. Entrambi gli urti mantengono u>w."
+        }
+      ],
+      "hints": [
+        "Ricalcola la differenza prima di dividerla per due.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "9/4 scalerebbe V_A col rapporto lineare 6/4, ignorando il termine w fisso. Tre m/s ometterebbe w nella seconda prova; invarianza e zero ignorano lo squilibrio maggiore verso destra. Entrambi gli urti mantengono u>w.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5825,
+      "title": "Ricavare la rapidità verso destra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Si misura V=3/2 m/s e si conosce w=1 m/s. Quanto vale u in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo V=(u−w)/2 per due e aggiungiamo w. Il doppio di 3/2 m/s è tre metri al secondo; aggiungendo il metro al secondo assegnato otteniamo u=4 m/s. La soluzione è maggiore di w, come richiede V positivo."
+        },
+        {
+          "type": "formula",
+          "text": "2V=u-w"
+        },
+        {
+          "type": "formula",
+          "text": " u=2V+w"
+        },
+        {
+          "type": "formula",
+          "text": " u=(3+1)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 2V−w darebbe due m/s e produrrebbe V=1/2 m/s, non 3/2. La rapidità w positiva rappresenta una velocità negativa nell’asse: aggiungerla nell’inversa recupera la sottrazione presente nel bilancio diretto."
+        }
+      ],
+      "hints": [
+        "Rimuovi il mezzo e poi riporta w dall’altro lato.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 2V−w darebbe due m/s e produrrebbe V=1/2 m/s, non 3/2. La rapidità w positiva rappresenta una velocità negativa nell’asse: aggiungerla nell’inversa recupera la sottrazione presente nel bilancio diretto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5826,
+      "title": "Ricavare la rapidità del corpo verso sinistra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Si misura V=3/2 m/s e si conosce u=4 m/s. Quanto vale w in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla differenza u−w=2V isoliamo w=u−2V. Il doppio dell’uscita è tre metri al secondo, quindi quattro meno tre dà un metro al secondo. Questo è il modulo della velocità iniziale verso sinistra, non la sua componente negativa."
+        },
+        {
+          "type": "formula",
+          "text": "w=u-2V"
+        },
+        {
+          "type": "formula",
+          "text": " w=(4-3)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La componente iniziale del secondo corpo è −1 m/s, mentre w è positivo. L’inversa richiede 0<V<u/2 per mantenere w>0; qui 3/2<2. A V=u/2 il secondo corpo sarebbe fermo, escluso dal dominio w>0."
+        }
+      ],
+      "hints": [
+        "Sottrai 2V da u e controlla che il modulo trovato sia positivo.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La componente iniziale del secondo corpo è −1 m/s, mentre w è positivo. L’inversa richiede 0<V<u/2 per mantenere w>0; qui 3/2<2. A V=u/2 il secondo corpo sarebbe fermo, escluso dal dominio w>0.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5827,
+      "title": "Un contributo maggiore verso sinistra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. u=4 m/s resta uguale e w passa da 1 a 2 m/s. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "1/2",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto del corpo verso sinistra cresce in modulo e riduce quella totale verso destra. Le uscite sono V_A=3/2 m/s e V_B=1 m/s. Dividere uno per tre mezzi equivale a moltiplicare per due terzi."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac1{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte il confronto; due segue w come fosse un fattore di tutta V. Un mezzo presume una semplice dipendenza inversa; un terzo è la diminuzione relativa (3/2−1)/(3/2), non il rapporto finale su iniziale. Il secondo urto ha ancora 4>2, perciò V resta verso destra."
+        }
+      ],
+      "hints": [
+        "Confronta 1 con 3/2, non le sole rapidità w.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Tre mezzi inverte il confronto; due segue w come fosse un fattore di tutta V. Un mezzo presume una semplice dipendenza inversa; un terzo è la diminuzione relativa (3/2−1)/(3/2), non il rapporto finale su iniziale. Il secondo urto ha ancora 4>2, perciò V resta verso destra.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5828,
+      "title": "Scarto da una proposta senza il divisore due",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Con u=4 m/s,w=1 m/s si propone V_proposto=3 m/s. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+3/2 m/s",
+          "−3/2 m/s",
+          "+3 m/s",
+          "0 m/s",
+          "+3/4 m/s"
+        ],
+        "value": "+3/2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il risultato corretto è (4−1)/2=3/2 m/s. Scrivendo la proposta tre come sei mezzi, lo scarto è (6−3)/2=+3/2 m/s. La proposta ha usato u−w senza dividere per la massa finale doppia."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\left(3-\\frac32\\right)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−3/2 cambia l’ordine; tre ripete la proposta; zero la accetta; 3/4 divide ancora lo scarto. La risposta è una differenza di velocità orientate già verso destra nel dominio, non la rapidità iniziale di uno dei corpi."
+        }
+      ],
+      "hints": [
+        "Porta tre a sei mezzi prima della sottrazione.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−3/2 cambia l’ordine; tre ripete la proposta; zero la accetta; 3/4 divide ancora lo scarto. La risposta è una differenza di velocità orientate già verso destra nel dominio, non la rapidità iniziale di uno dei corpi.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5829,
+      "title": "Un’inversa lineare con segni espliciti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Quale formula isola u dalla relazione V=(u−w)/2?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "u=2V+w",
+          "u=2V−w",
+          "u=V/2+w",
+          "u=2(V+w)",
+          "u=w−2V"
+        ],
+        "value": "u=2V+w"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare per due elimina il denominatore e dà 2V=u−w. Aggiungendo w a entrambi i membri si ottiene u=2V+w. La positività di V e w rende automaticamente u>w."
+        },
+        {
+          "type": "formula",
+          "text": "2V=u-w"
+        },
+        {
+          "type": "formula",
+          "text": " 2V+w=u"
+        },
+        {
+          "type": "formula",
+          "text": " u=2V+w"
+        },
+        {
+          "type": "text",
+          "text": "Il meno davanti a w non elimina la sottrazione; V/2 dimezza invece di raddoppiare. 2(V+w) raddoppia anche w, che non era diviso per due nell’inversa già sviluppata; w−2V inverte il verso della differenza. Tutti i termini devono conservare unità di velocità."
+        }
+      ],
+      "hints": [
+        "Aggiungi w soltanto dopo aver tolto il divisore due.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno davanti a w non elimina la sottrazione; V/2 dimezza invece di raddoppiare. 2(V+w) raddoppia anche w, che non era diviso per due nell’inversa già sviluppata; w−2V inverte il verso della differenza. Tutti i termini devono conservare unità di velocità.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5830,
+      "title": "Cambiare separatamente i due moti iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. B usa u_B=κ₁u,w_B=κ₂w, con κ₁,κ₂>0 e κ₁u>κ₂w; u,w sono riferiti ad A. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ u − κ₂ w) / (u − w)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(u − w) / (κ₁ u − κ₂ w)",
+          "2 (κ₁ u − κ₂ w) / (u − w)"
+        ],
+        "value": "(κ₁ u − κ₂ w) / (u − w)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda differenza contiene i fattori sui rispettivi termini. Il mezzo comune alle due velocità si cancella nel rapporto. Resta una differenza divisa per l’altra, con denominatore e numeratore positivi per i due domini dichiarati."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=(u-w)/2"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=(\\kappa_1u-\\kappa_2w)/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_B}{V_A}=\\frac{\\kappa_1u-\\kappa_2w}{u-w}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei soli fattori non descrivono una sottrazione. L’inverso scambia A e B; il due aggiuntivo non si cancella correttamente. Se κ₁=κ₂=κ, la differenza comune scala di κ e il rapporto torna κ. Se si violasse κ₁u>κ₂w si cambierebbe il verso finale, uscendo dal dominio scelto."
+        }
+      ],
+      "hints": [
+        "Tieni insieme ogni differenza di velocità prima di fare il rapporto.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Prodotto e quoziente dei soli fattori non descrivono una sottrazione. L’inverso scambia A e B; il due aggiuntivo non si cancella correttamente. Se κ₁=κ₂=κ, la differenza comune scala di κ e il rapporto torna κ. Se si violasse κ₁u>κ₂w si cambierebbe il verso finale, uscendo dal dominio scelto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5831,
+      "title": "Due nuovi valori opposti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. A usa u=4 m/s,w=1 m/s; B usa u=6 m/s,w=2 m/s. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "3/2",
+          "2",
+          "8/3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà V_A=3/2 m/s. In B la differenza sei meno due vale quattro metri al secondo e la massa finale doppia porta V_B=2 m/s. Il rapporto due diviso tre mezzi vale quattro terzi."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac2{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il reciproco; tre mezzi segue solo u e due solo w, che entra con segno sottratto. Otto terzi raddoppia il rapporto corretto. Le masse uguali si sono cancellate e non occorre assegnarne un valore per trovare V."
+        }
+      ],
+      "hints": [
+        "Usa il reciproco di 3/2 nella divisione.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il reciproco; tre mezzi segue solo u e due solo w, che entra con segno sottratto. Otto terzi raddoppia il rapporto corretto. Le masse uguali si sono cancellate e non occorre assegnarne un valore per trovare V.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5832,
+      "title": "Media di due differenze lineari",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. A ha u=4 m/s,w=1 m/s; B ha u=6 m/s,w=2 m/s. Qual è la media aritmetica di V_A,V_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/4 m/s",
+          "7/2 m/s",
+          "7/8 m/s",
+          "1/2 m/s",
+          "2 m/s"
+        ],
+        "value": "7/4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 3/2 e 2 m/s. Scriviamo due come quattro mezzi: la somma è sette mezzi e la divisione per due dà sette quarti. Qui la legge è lineare nella differenza: anche i dati medi u=5 m/s,w=3/2 m/s danno (5−3/2)/2=7/4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{3/2+2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac74\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sette mezzi è la somma, sette ottavi dimezza ancora, un mezzo è la differenza e due ripete solo B. La coincidenza con la risposta agli ingressi medi è giustificata dalla linearità della sottrazione e del fattore 1/2; non va negata per abitudine a modelli non lineari."
+        }
+      ],
+      "hints": [
+        "Porta entrambe le uscite a mezzi e poi fai la semisomma.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Sette mezzi è la somma, sette ottavi dimezza ancora, un mezzo è la differenza e due ripete solo B. La coincidenza con la risposta agli ingressi medi è giustificata dalla linearità della sottrazione e del fattore 1/2; non va negata per abitudine a modelli non lineari.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5833,
+      "title": "Scegliere la nuova rapidità verso sinistra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. A ha u_A=4 m/s,w_A=1 m/s. Si impone u_B=6 m/s e si vuole V_B=(4/3)V_A. Quanto vale w_B/w_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uscita iniziale è tre mezzi e l’obiettivo è (4/3)(3/2)=2 m/s. Nell’inversa w_B=u_B−2V_B troviamo sei meno quattro, cioè due metri al secondo. Dividendo per w_A=1 m/s il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w_B=u_B-2V_B"
+        },
+        {
+          "type": "formula",
+          "text": " w_B=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w_B/w_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare w a un metro al secondo darebbe V_B=5/2 m/s, non due. Quattro terzi è il rapporto delle uscite, non quello di w. Il valore trovato soddisfa 0<w_B<u_B e mantiene il moto finale verso destra."
+        }
+      ],
+      "hints": [
+        "Ricava w_B dalla differenza dopo aver calcolato l’obiettivo V_B.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare w a un metro al secondo darebbe V_B=5/2 m/s, non due. Quattro terzi è il rapporto delle uscite, non quello di w. Il valore trovato soddisfa 0<w_B<u_B e mantiene il moto finale verso destra.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5834,
+      "title": "Una taratura con riferimento frazionario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Un display continuo adimensionale legge S=qV, con q>0 costante e offset nullo. Il riferimento u=4 m/s,w=1 m/s dà S=9/2. Una prova con w=2 m/s dà S=6. Quanto vale u in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha V=3/2 m/s. Il rapporto (9/2)/(3/2) vale tre e dà q=3 s/m. La lettura sei significa V=2 m/s. Recuperiamo u=2V+w=4+2=6 m/s, con una frazione esatta nella sola taratura."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=6/q"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u=2V+w"
+        },
+        {
+          "type": "formula",
+          "text": " u=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Usare S=6 come velocità SI darebbe u=14 m/s, includendo indebitamente il guadagno. Con u=6,w=2 si trova V=2 e S=3·2=6. Il display è continuo: 9/2 non è un numero obbligatoriamente intero di tacche."
+        }
+      ],
+      "hints": [
+        "Dividi le due metà del riferimento prima di usare l’inversa u=2V+w.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S=6 come velocità SI darebbe u=14 m/s, includendo indebitamente il guadagno. Con u=6,w=2 si trova V=2 e S=3·2=6. Il display è continuo: 9/2 non è un numero obbligatoriamente intero di tacche.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5835,
+      "title": "Guadagno e offset per una velocità orientata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Un display continuo adimensionale legge S=qV+b, con q>0,b costanti. A: u=4 m/s,w=1 m/s,S=4. B: u=6 m/s,w=2 m/s,S=5. C: w=1 m/s,S=6. Quanto vale u_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m/s",
+          "5 m/s",
+          "6 m/s",
+          "7 m/s",
+          "12 m/s"
+        ],
+        "value": "6 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite note sono 3/2 e 2 m/s, differenti di un mezzo. La differenza delle letture è uno: q=2 s/m. Dal primo riferimento b=4−2·3/2=1. La lettura sei corrisponde a V_C=5/2 m/s; poi u_C=2·5/2+1=6 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=(6-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=\\frac52\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_C=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Con w_C=1 m/s le alternative u=4,5,7,12 m/s darebbero S=4,5,7,12: soltanto sei restituisce la lettura assegnata. L’uguaglianza numerica tra u_C e S_C in questo caso non è una conversione universale: deriva proprio da questa taratura e da w_C."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di dividere per q e poi recupera u_C.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con w_C=1 m/s le alternative u=4,5,7,12 m/s darebbero S=4,5,7,12: soltanto sei restituisce la lettura assegnata. L’uguaglianza numerica tra u_C e S_C in questo caso non è una conversione universale: deriva proprio da questa taratura e da w_C.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-inelastic-opposed-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5836,
+      "title": "Un vincolo che lascia una sola potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "inelastic-opposed",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio due corpi classici di uguale massa m>0 si muovono lungo la stessa retta uno verso l’altro. L’asse +x è verso destra: il primo ha velocità +u, il secondo −w, con rapidità u>w>0. Restano uniti dopo l’urto. Il sistema comprende entrambi, con impulso esterno totale e lavoro esterno trascurati durante il contatto; le masse restano costanti. V indica la componente della velocità finale comune, positiva nel dominio assegnato. Fra prove si impone u=4w. Si misura V=3/2 m/s. Quanto vale w in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inseriamo il vincolo nella differenza, non in un’energia cinetica: V=(4w−w)/2=3w/2. Moltiplicando V per due terzi otteniamo w=(2/3)(3/2)=1 m/s. La rapidità verso destra risulta u=4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V=(4w-w)/2"
+        },
+        {
+          "type": "formula",
+          "text": " V=3w/2"
+        },
+        {
+          "type": "formula",
+          "text": " w=2V/3"
+        },
+        {
+          "type": "formula",
+          "text": " w=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La soluzione positiva è unica: la legge è lineare in w e non richiede radici. Con w=2 m/s si avrebbe V=3 m/s; w=0 darebbe V=0 ed è escluso. Il vincolo u=4w garantisce u>w per ogni w positivo."
+        }
+      ],
+      "hints": [
+        "Semplifica 4w−w prima di isolare la rapidità positiva.",
+        "Includi entrambi i corpi nel sistema: si conserva la quantità di moto, non l’energia cinetica."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La soluzione positiva è unica: la legge è lineare in w e non richiede radici. Con w=2 m/s si avrebbe V=3 m/s; w=0 darebbe V=0 ed è escluso. Il vincolo u=4w garantisce u>w per ogni w positivo.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto frontale fra masse uguali",
+        "Velocità orientate e quantità di moto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "4e44052eea86aa5783e80e609fa7fa95b1eaf8b5f9a4eef85bed5820b73c2e59",
+      "name": "inelastic-opposed-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI3MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlVydG8gZnJhIG1hc3NlIHVndWFsaSBpbiB2ZXJzaSBvcHBvc3RpPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+TWFzc2UgdWd1YWxpIGlsbHVzdHJhdGl2ZSBxdWF0dHJvIGNoaWxvZ3JhbW1pLiBJbCBwcmltbyBjb3JwbyB2YSBhIGRlc3RyYSBhIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kbywgaWwgc2Vjb25kbyBhIHNpbmlzdHJhIGEgdW4gbWV0cm8gYWwgc2Vjb25kby4gRG9wbyBs4oCZdXJ0byBzaSB1bmlzY29ubyBlIHZhbm5vIGEgZGVzdHJhIGEgdHJlIG1lenppIG1ldHJpIGFsIHNlY29uZG8uIFF1YW50aXTDoCBkaSBtb3RvIHRvdGFsZSBkb2RpY2kgY2hpbG9ncmFtbWkgbWV0cm8gYWwgc2Vjb25kbzsgZW5lcmdpYSBjaW5ldGljYSBzY2VuZGUgZGEgdHJlbnRhcXVhdHRybyBhIG5vdmUgam91bGUuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEyNzAiIHJ4PSIyNCIgZmlsbD0iI2ZhZjhmMiIvPjxnIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNzQ2Ij4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBJIGR1ZSBjb250cmlidXRpIGhhbm5vIHNlZ25pIG9wcG9zdGk8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg4Ij5Bc3NlICt4IGEgZGVzdHJhLiBNYXNzYSBpbGx1c3RyYXRpdmE6IDQga2cgY2lhc2N1bm8uPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMjIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNTUiIGZpbGw9IiNjZmU0ZTUiIHN0cm9rZT0iIzE4Mzc0NiIvPjxyZWN0IHg9IjQwMCIgeT0iMjIwIiB3aWR0aD0iNjAiIGhlaWdodD0iNTUiIGZpbGw9IiNlN2Q4YmYiIHN0cm9rZT0iIzE4Mzc0NiIvPjxwYXRoIGQ9Ik0xMzAgMTgwSDI5MCIgc3Ryb2tlPSIjMTY3MjhhIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNNDMwIDE4MEgzOTAiIHN0cm9rZT0iI2I4NGUzMiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMTQwIiB5PSIxNDUiPit1ID0gKzQgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTQ1Ij7iiJJ3ID0g4oiSMSBtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjM1MCI+cF9pID0gNCDCtyA0IOKIkiA0IMK3IDEgPSArMTIga2fCt20vczwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQzMCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgTWFzc2EgZmluYWxlIGRvcHBpYSwgdmVsb2NpdMOgIGNvbXVuZTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjU2MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU1IiBmaWxsPSIjY2ZlNGU1IiBzdHJva2U9IiMxODM3NDYiLz48cmVjdCB4PSIyOTAiIHk9IjU2MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU1IiBmaWxsPSIjZTdkOGJmIiBzdHJva2U9IiMxODM3NDYiLz48cGF0aCBkPSJNMjkwIDUyMEgzNTAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMzgwIiB5PSI1MjciPlYgPSArMy8yIG0vczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjc1Ij5wX2YgPSA4IMK3ICgzLzIpID0gKzEyIGtnwrdtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjcyMCI+VmVsb2NpdMOgOiA0MCBweCBwZXIgbS9zLCB1Z3VhbGUgbmVpIGR1ZSBwYW5uZWxsaS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4MDAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IENvbnRyb2xsYSBhbmNoZSBs4oCZZW5lcmdpYSBjaW5ldGljYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODUwIj5TZW56YSBsYXZvcm8gZXN0ZXJuby4gRW5lcmdpYTogNSBweC9KLjwvdGV4dD48cGF0aCBkPSJNMTgwIDg5MFYxMDgwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE4MCIgeT0iOTE1IiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjY2ZlNGU1Ii8+PHJlY3QgeD0iMTgwIiB5PSIxMDEwIiB3aWR0aD0iNDUiIGhlaWdodD0iMzUiIGZpbGw9IiNjZmU0ZTUiLz48dGV4dCB4PSIyOCIgeT0iOTQwIj5LX2kgPSAzNCBKPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDM1Ij5LX2YgPSA5IEo8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSIxMDM1Ij7OlEsgPSDiiJIyNSBKPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTMwIj4yNSBKIHBhc3Nhbm8gYWxs4oCZZW5lcmdpYSBpbnRlcm5hOyBwIHJlc3RhIGNvbnNlcnZhdGEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTgwIj5QZXIgb2duaSBtICZndDsgMDogViA9ICh1IOKIkiB3KS8yLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIzMCIgZm9udC1zaXplPSIxOCI+Q29ycGkgc2NoZW1hdGljaTsgc2NhbGUgZGl2ZXJzZSBwZXIgdmVsb2NpdMOgIGVkIGVuZXJnaWEuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
