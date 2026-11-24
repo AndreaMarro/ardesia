@@ -51,7 +51,7 @@ TASKS=[
  r"E_A=2\,\mathrm J\qquad E_B=16\,\mathrm J\qquad \overline E=\frac{2+16}{2}\,\mathrm J\qquad \overline E=9\,\mathrm J",
  '18 J è la somma, 9/2 divide una seconda volta e 8 J dimezza solo il secondo risultato. Le medie m=3 kg,u=3 m/s darebbero 27/4 J, non 9 J: il prodotto con u² non è lineare negli ingressi congiunti.','Medi i due valori di E dopo averli calcolati separatamente.'),
 ('La rapidità per una dissipazione obiettivo',P+'A ha m_A=2 kg,u_A=2 m/s. In B ogni corpo ha m_B=4 kg e si vuole E_B=8E_A. Quanto vale u_B/u_A?',2,
- 'A dissipa 2 J; l’obiettivo B è 16 J. L’inversa u_B²=4E_B/m_B dà 16 m²/s², quindi u_B=4 m/s e il rapporto è due. La massa fornisce già metà del fattore energetico richiesto in termini di scalatura.',
+ 'A dissipa 2 J; l’obiettivo B è 16 J. L’inversa u_B²=4E_B/m_B dà 16 m²/s², quindi u_B=4 m/s e il rapporto è due. La massa fornisce un fattore due; il restante fattore quattro deriva dal quadrato della rapidità.',
  r"E_B=16\,\mathrm J\qquad u_B^2=\frac{4E_B}{m_B}=16\,\mathrm{m^2/s^2}\qquad u_B=4\,\mathrm{m/s}\qquad u_B/u_A=2",
  'Quattro confonderebbe il rapporto dei quadrati, otto quello delle energie. Con u invariata e massa doppia si otterrebbero solo 4 J; il valore 4 m/s produce effettivamente 16 J.','Dividi il fattore energetico otto per il fattore di massa due e prendi la radice.'),
 ('Un display della diminuzione cinetica',P+'Un display continuo adimensionale segue S=cE,c>0, senza offset. A con m=2 kg,u=2 m/s dà S=6. B con u=4 m/s dà S=48. Quanto vale m_B in kg?',4,

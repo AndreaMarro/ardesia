@@ -142,7 +142,7 @@
         },
         {
           "type": "text",
-          "text": "m/s è velocità, s è tempo, N forza, J energia. v/g da solo avrebbe unità di tempo e darebbe un tempo di arresto, non una distanza; nel numeratore serve v²."
+          "text": "m/s è velocità, s è tempo, N forza, J energia. v/g ha unità di tempo; il tempo di arresto è v/(μg), non una distanza. Per D nel numeratore serve v²."
         }
       ],
       "hints": [
@@ -151,7 +151,7 @@
       ],
       "error": {
         "category": "unità",
-        "message": "m/s è velocità, s è tempo, N forza, J energia. v/g da solo avrebbe unità di tempo e darebbe un tempo di arresto, non una distanza; nel numeratore serve v².",
+        "message": "m/s è velocità, s è tempo, N forza, J energia. v/g ha unità di tempo; il tempo di arresto è v/(μg), non una distanza. Per D nel numeratore serve v².",
         "target": "C1-L008"
       },
       "coverage": [
