@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1120" viewBox="0 0 600 1120" role="img" aria-labelledby="title desc">
+ <title id="title">Quota a un secondo: area, curva e perdita gravitazionale</title>
+ <desc id="desc">Lancio con componente verticale iniziale quattro metri al secondo e accelerazione meno due metri al secondo quadrato. Nel primo secondo la componente scende a due: area trapezoidale tre metri. La quota reale aumenta di tre metri, un metro meno del riferimento con velocità costante. Tutti gli assi hanno scale dichiarate e t zero al lancio.</desc>
+ <rect width="600" height="1120" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="17" fill="#172033">
+  <text x="28" y="35" font-size="22" font-weight="bold">1 · La velocità cambia durante il secondo</text>
+  <text x="28" y="70">t = 0 al lancio · 200 px/s; 40 px/(m/s)</text>
+  <path d="M100 300V140L300 220V300Z" fill="#dbeafe"/>
+  <path d="M100 320V110M80 300H390" stroke="#334155" stroke-width="2" fill="none"/>
+  <path d="M100 140L300 220" stroke="#245ca4" stroke-width="3"/>
+  <path d="M100 220H300V300" stroke="#94a3b8" stroke-dasharray="4 5" fill="none"/>
+  <text x="25" y="111">vᵧ (m/s)</text><text x="400" y="306">t (s)</text>
+  <text x="63" y="146">4</text><text x="63" y="226">2</text><text x="63" y="306">0</text>
+  <text x="95" y="344">0</text><text x="295" y="344">1</text>
+  <text x="138" y="270">area = (4 + 2)·1/2 = 3 m</text>
+  <text x="28" y="410" font-size="22" font-weight="bold">2 · Confronta due curve di posizione</text>
+  <text x="28" y="445">H = y(t) − y(0) · 200 px/s; 40 px/m</text>
+  <path d="M100 720V505M80 700H390" stroke="#334155" stroke-width="2" fill="none"/>
+  <path d="M100 700L300 540" stroke="#718096" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M100 700Q200 620 300 580" stroke="#245ca4" stroke-width="3" fill="none"/>
+  <path d="M100 540H300V700M100 580H300" stroke="#94a3b8" stroke-dasharray="4 5" fill="none"/>
+  <circle cx="300" cy="580" r="5" fill="#245ca4"/>
+  <text x="46" y="508">H (m)</text><text x="400" y="706">t (s)</text>
+  <text x="63" y="546">4</text><text x="63" y="586">3</text><text x="63" y="706">0</text>
+  <text x="95" y="744">0</text><text x="295" y="744">1</text>
+  <text x="330" y="542">uniforme: 4 m</text><text x="330" y="590">reale: 3 m</text>
+  <text x="28" y="812" font-size="22" font-weight="bold">3 · Sottrai la perdita, con le unità</text>
+  <text x="28" y="850">Scala delle barre: 40 px/m</text>
+  <rect x="100" y="880" width="55" height="160" fill="#e2e8f0" stroke="#64748b"/>
+  <rect x="300" y="920" width="55" height="120" fill="#dbeafe" stroke="#245ca4"/>
+  <rect x="300" y="880" width="55" height="40" fill="#fce7df" stroke="#9a5346" stroke-dasharray="4 3"/>
+  <path d="M80 1040H380" stroke="#334155" stroke-width="2"/>
+  <text x="95" y="875">wτ = 4 m</text><text x="370" y="905">gτ²/2 = 1 m</text>
+  <text x="370" y="982">H = 3 m</text>
+  <text x="28" y="1090">τ = 1 s; l’apice di questa prova è dopo 2 s</text>
+ </g>
+</svg>
