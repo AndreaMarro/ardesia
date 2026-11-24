@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="910" viewBox="0 0 600 910" role="img" aria-labelledby="title desc">
+<title id="title">Prodotto vettoriale: costruire il modulo e distinguere il verso</title>
+<desc id="desc">Quattro tappe verticali. Nel primo esempio a e b valgono due: due frecce perpendicolari delimitano un rettangolo suddiviso in quattro celle. Nel secondo esempio A vale due lungo x e B vale tre lungo y: A per B esce dal foglio, B per A entra. I due esempi hanno moduli rispettivamente quattro e sei.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="600" height="910" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="40" font-weight="bold">1 · Il modulo: a = b = 2</text>
+<text x="28" y="76">Base e altezza sono perpendicolari.</text>
+<g stroke="#173d50" stroke-width="3" marker-end="url(#arrow)"><path d="M110 230H330"/><path d="M110 230V110"/></g>
+<text x="350" y="237">A, a = 2</text><text x="133" y="132">B, b = 2</text>
+<text x="28" y="284" font-weight="bold">2 · Contare quattro celle</text>
+<rect x="110" y="317" width="220" height="120" fill="#cee2de" stroke="#173d50" stroke-width="3"/>
+<path d="M220 317V437M110 377H330" stroke="#173d50" stroke-width="2"/>
+<text x="350" y="376">C = 2 × 2</text><text x="350" y="412">C = 4</text>
+<text x="28" y="480">Le celle illustrano un’area geometrica.</text>
+<text x="28" y="516">Qui i vettori sono adimensionali: [C] = 1.</text>
+<path d="M28 540H572" stroke="#8a9f9c"/>
+<text x="28" y="578" font-weight="bold">3 · Un altro esempio: a = 2, b = 3</text>
+<text x="28" y="614">Terna destrorsa: +x a destra, +y in alto.</text>
+<g stroke="#173d50" stroke-width="3" marker-end="url(#arrow)"><path d="M110 748H300"/><path d="M110 748V650"/></g>
+<text x="320" y="755">A = 2 eₓ</text><text x="135" y="680">B = 3 eᵧ</text>
+<text x="28" y="798" font-weight="bold">4 · Stesso modulo, verso opposto</text>
+<circle cx="70" cy="844" r="20" fill="none" stroke="#173d50" stroke-width="3"/><circle cx="70" cy="844" r="5"/>
+<text x="106" y="852">A × B = +6 e_z · esce</text>
+<circle cx="70" cy="884" r="17" fill="none" stroke="#173d50" stroke-width="3"/><path d="M60 874L80 894M60 894L80 874" stroke="#173d50" stroke-width="3"/>
+<text x="106" y="892">B × A = −6 e_z · entra</text>
+</g></svg>

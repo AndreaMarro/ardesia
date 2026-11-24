@@ -1,0 +1,1178 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-vector-product-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2141,
+      "title": "Il rettangolo del prodotto vettoriale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 1,
+      "prompt": "Due vettori adimensionali A e B hanno moduli a=b=2 e sono perpendicolari. Quanto vale C=|A×B|? Si chiede il modulo, non una componente orientata.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo del prodotto vettoriale è l’area del parallelogramma costruito sui vettori. La base misura a e l’altezza b sinθ. Con θ=90° l’altezza coincide con b: il parallelogramma è un rettangolo. L’analogia con un’area descrive la geometria, ma qui le due frecce sono adimensionali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4f83eca4922fc7522144cf0c5b749191fa5152e6166b9c88c72a3d571434df74",
+          "text": "Leggi dall’alto: due frecce perpendicolari; il rettangolo con base due e altezza due; quattro celle. La figura illustra il modulo, mentre il verso si stabilisce separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "C=ab\\sin\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin90^\\circ=1"
+        },
+        {
+          "type": "formula",
+          "text": " C=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "text",
+          "text": "Contiamo due file da due unità: quattro in tutto, senza calcolatrice. Il prodotto scalare sarebbe nullo perché usa il coseno di 90°; il prodotto vettoriale ha invece modulo massimo a moduli fissati. Scambiare l’ordine cambia il verso, non questo numero positivo."
+        }
+      ],
+      "hints": [
+        "Usa un lato come base e l’altro, perpendicolare, come altezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Contiamo due file da due unità: quattro in tutto, senza calcolatrice. Il prodotto scalare sarebbe nullo perché usa il coseno di 90°; il prodotto vettoriale ha invece modulo massimo a moduli fissati. Scambiare l’ordine cambia il verso, non questo numero positivo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2142,
+      "title": "Quali unità ha il prodotto?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 1,
+      "prompt": "A e B sono vettori adimensionali. Quale unità è compatibile con C=|A×B|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m²",
+          "m",
+          "1",
+          "N",
+          "rad/s"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le unità del prodotto vettoriale si ottengono moltiplicando quelle dei due vettori. Il seno è un rapporto geometrico e non ha dimensione. La parola area nella rappresentazione del parallelogramma non assegna automaticamente metri quadrati a vettori che non misurano lunghezze."
+        },
+        {
+          "type": "formula",
+          "text": "[C]=[A][B]"
+        },
+        {
+          "type": "formula",
+          "text": "[A][B]=1\\times1"
+        },
+        {
+          "type": "formula",
+          "text": "1\\times1=1"
+        },
+        {
+          "type": "text",
+          "text": "La scelta è 1, cioè numero puro. m² sarebbe adatto al prodotto di due spostamenti in metri; N sarebbe adatto a una forza, non a questo prodotto adimensionale. La natura vettoriale determina direzione e verso, mentre l’unità dipende dalle grandezze moltiplicate."
+        }
+      ],
+      "hints": [
+        "Moltiplica le unità dichiarate dei due fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La scelta è 1, cioè numero puro. m² sarebbe adatto al prodotto di due spostamenti in metri; N sarebbe adatto a una forza, non a questo prodotto adimensionale. La natura vettoriale determina direzione e verso, mentre l’unità dipende dalle grandezze moltiplicate.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2143,
+      "title": "Dalla base all’altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 1,
+      "prompt": "A e B sono vettori adimensionali non nulli, perpendicolari, di moduli a e b. Quale relazione dà C=|A×B|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C=a+b",
+          "C=ab",
+          "C=a/b",
+          "C=0",
+          "C=√(a²+b²)"
+        ],
+        "value": "C=ab"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto vettoriale usa il seno dell’angolo compreso. Perpendicolarità significa θ=90° e sinθ=1. La legge generale si riduce quindi al prodotto dei moduli. Non stiamo calcolando il modulo di A+B, per il quale servirebbe invece Pitagora."
+        },
+        {
+          "type": "formula",
+          "text": "C=ab\\sin90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " C=ab"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è ab. La somma dei moduli rappresenterebbe due tratti concordi; il rapporto a/b perderebbe il fattore geometrico di area. Zero è il prodotto scalare nel caso perpendicolare e anche il modulo del prodotto vettoriale nel caso parallelo: due condizioni diverse da quella data."
+        }
+      ],
+      "hints": [
+        "Parti dalla formula con il seno, poi inserisci l’angolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La risposta è ab. La somma dei moduli rappresenterebbe due tratti concordi; il rapporto a/b perderebbe il fattore geometrico di area. Zero è il prodotto scalare nel caso perpendicolare e anche il modulo del prodotto vettoriale nel caso parallelo: due condizioni diverse da quella data.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2144,
+      "title": "Allargare solo la base",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 1,
+      "prompt": "Due vettori adimensionali restano perpendicolari. Il primo modulo passa da 2 a 4; il secondo resta 2. Come cambia C=|A×B|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 4 a 8",
+          "Quadruplica da 4 a 16",
+          "Resta 4",
+          "Si dimezza",
+          "Diventa 0"
+        ],
+        "value": "Raddoppia da 4 a 8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo modulo e il seno dell’angolo rimangono costanti. La legge C=ab contiene a alla prima potenza: raddoppiare solo a raddoppia il prodotto. Nel disegno il rettangolo raddoppia la base, conservando l’altezza."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=4\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times2=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_2}{C_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "L’incremento è quattro e il fattore di variazione è due: sono due descrizioni diverse. Un fattore quattro richiederebbe il raddoppio di entrambi i moduli. La perpendicolarità resta fissata; se cambiasse l’angolo andrebbe considerato anche il seno."
+        }
+      ],
+      "hints": [
+        "Conserva l’altezza mentre raddoppi la base.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’incremento è quattro e il fattore di variazione è due: sono due descrizioni diverse. Un fattore quattro richiederebbe il raddoppio di entrambi i moduli. La perpendicolarità resta fissata; se cambiasse l’angolo andrebbe considerato anche il seno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2145,
+      "title": "Ricostruire un modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali sono perpendicolari. C=|A×B|=4 e il modulo di B è b=2. Quanto vale il modulo a di A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla geometria perpendicolare sappiamo che C=ab. Per isolare a dividiamo entrambi i membri per b. La divisione è consentita perché b è un modulo non nullo. Non serve una radice: l’incognita compare una sola volta nel prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Cb=\\frac{ab}{b}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{ab}{b}=a"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Controlliamo ricostruendo C: 2·2=4. Sottrarre b dal prodotto non è l’operazione inversa corretta, anche se con questi numeri darebbe casualmente due. Il procedimento valido deve funzionare per qualsiasi b positivo, non soltanto per questa coincidenza numerica."
+        }
+      ],
+      "hints": [
+        "Dividi il prodotto per il fattore che conosci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Controlliamo ricostruendo C: 2·2=4. Sottrarre b dal prodotto non è l’operazione inversa corretta, anche se con questi numeri darebbe casualmente due. Il procedimento valido deve funzionare per qualsiasi b positivo, non soltanto per questa coincidenza numerica.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2146,
+      "title": "L’ordine stabilisce il verso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "In un riferimento cartesiano destrorso, +x è a destra, +y in alto e +z esce dal foglio. A=2 eₓ e B=3 eᵧ sono adimensionali. Quanto vale la componente z di B×A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+6",
+          "−6",
+          "0",
+          "+1",
+          "−1"
+        ],
+        "value": "−6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La terna destrorsa fissa eₓ×eᵧ=e_z. Dunque A×B punta fuori dal foglio e ha modulo sei. Il prodotto vettoriale è anticommutativo: invertendo i fattori cambia il verso del vettore. La componente z può quindi essere negativa, benché il modulo non possa esserlo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4f83eca4922fc7522144cf0c5b749191fa5152e6166b9c88c72a3d571434df74",
+          "text": "Le tre tappe distinguono geometria e verso: A va a destra, B in alto; A×B esce dal foglio (punto nel cerchio); B×A entra (croce nel cerchio). Il modulo rimane sei."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf A\\times\\mathbf B=6\\mathbf e_z"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathbf B\\times\\mathbf A=-6\\mathbf e_z"
+        },
+        {
+          "type": "formula",
+          "text": " (\\mathbf B\\times\\mathbf A)_z=-6"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è −6: il vettore entra nel foglio. +6 conserva per errore l’ordine A×B; zero confonde il prodotto vettoriale con quello scalare fra vettori perpendicolari. ±1 mantiene solo il verso del versore e trascura i moduli due e tre."
+        }
+      ],
+      "hints": [
+        "Trova prima eₓ×eᵧ, poi inverti l’ordine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La risposta è −6: il vettore entra nel foglio. +6 conserva per errore l’ordine A×B; zero confonde il prodotto vettoriale con quello scalare fra vettori perpendicolari. ±1 mantiene solo il verso del versore e trascura i moduli due e tre.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2147,
+      "title": "Confrontare due rettangoli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "In due prove i vettori adimensionali restano perpendicolari. Nella prima a=2,b=2; nella seconda a=2,b=4. Quanto vale C₂/C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due prodotti valgono quattro e otto. Il primo modulo resta uguale e si elimina nel rapporto; cambia soltanto l’altezza del rettangolo. Il risultato confronta due quantità adimensionali ed è a sua volta adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times4=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_2}{C_1}=\\frac84"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è due perché il secondo modulo raddoppia. Otto è il nuovo valore C₂, non il rapporto richiesto; quattro è il valore iniziale. Un mezzo descriverebbe il confronto inverso C₁/C₂."
+        }
+      ],
+      "hints": [
+        "Semplifica il fattore a comune ai due prodotti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è due perché il secondo modulo raddoppia. Otto è il nuovo valore C₂, non il rapporto richiesto; quattro è il valore iniziale. Un mezzo descriverebbe il confronto inverso C₁/C₂.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2148,
+      "title": "Misurare una sovrastima",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "A e B sono adimensionali, perpendicolari e hanno moduli due. Una proposta assegna C_proposto=8. Quanto vale lo scarto con segno C_proposto−|A×B|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−4",
+          "+4",
+          "+8",
+          "0",
+          "+2"
+        ],
+        "value": "+4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima il modulo corretto con la legge geometrica C=ab. Poi eseguiamo la sottrazione nell’ordine indicato. Lo scarto è un confronto fra due numeri: il suo segno non descrive il verso del prodotto vettoriale."
+        },
+        {
+          "type": "formula",
+          "text": "C=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " e=C_{\\rm proposto}-C"
+        },
+        {
+          "type": "formula",
+          "text": "C_{\\rm proposto}-C=8-4"
+        },
+        {
+          "type": "formula",
+          "text": "8-4=+4"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo segnala che la proposta è maggiore del valore corretto. −4 si otterrebbe invertendo la sottrazione; +8 ripeterebbe la proposta senza confrontarla. Lo scarto relativo sarebbe 4/4=1, cioè il 100%, ma qui si chiede lo scarto assoluto con segno."
+        }
+      ],
+      "hints": [
+        "Scrivi prima «proposto meno corretto».",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno positivo segnala che la proposta è maggiore del valore corretto. −4 si otterrebbe invertendo la sottrazione; +8 ripeterebbe la proposta senza confrontarla. Lo scarto relativo sarebbe 4/4=1, cioè il 100%, ma qui si chiede lo scarto assoluto con segno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2149,
+      "title": "L’inversa del prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "Per due vettori adimensionali perpendicolari vale C=ab, con a,b>0. Si conoscono C e b. Quale formula isola a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=Cb",
+          "a=C−b",
+          "a=C/b",
+          "a=b/C",
+          "a=√(C/b)"
+        ],
+        "value": "a=C/b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa divisione per b va applicata a entrambi i membri. Sul lato destro b/b vale uno e lascia soltanto a. Il dominio b>0 garantisce sia il denominatore non nullo sia la positività del modulo ottenuto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Cb=\\frac{ab}{b}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac Cb"
+        },
+        {
+          "type": "text",
+          "text": "Rimettendo il risultato nel prodotto troviamo (C/b)b=C. Cb moltiplicherebbe una seconda volta il fattore già presente; b/C sarebbe il reciproco di a. La radice non è giustificata perché nella relazione di partenza a non è elevato al quadrato."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore b facendo la stessa divisione sui due membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Rimettendo il risultato nel prodotto troviamo (C/b)b=C. Cb moltiplicherebbe una seconda volta il fattore già presente; b/C sarebbe il reciproco di a. La radice non è giustificata perché nella relazione di partenza a non è elevato al quadrato.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2150,
+      "title": "Due fattori indipendenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali restano perpendicolari. In una seconda prova i moduli diventano κ₁a e κ₂b, con κ₁,κ₂>0. Quale espressione dà C₂/C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁+κ₂",
+          "κ₁/κ₂",
+          "κ₁κ₂",
+          "κ₁²κ₂",
+          "(κ₁+κ₂)/2"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo entrambi i moduli nella medesima relazione C=ab. Il prodotto nuovo contiene i due fattori di variazione una volta ciascuno. Dividendo per ab, non nullo, si eliminano i moduli iniziali e resta il prodotto dei fattori."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=ab"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=(\\kappa_1a)(\\kappa_2b)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_2}{C_1}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Se entrambi i fattori valgono uno il rapporto torna uno; se solo uno raddoppia il rapporto è due. Sommare i fattori darebbe due anche quando non cambia nulla. Il risultato richiede angolo invariato: un angolo diverso aggiungerebbe il rapporto dei seni."
+        }
+      ],
+      "hints": [
+        "Inserisci le due variazioni nel prodotto prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se entrambi i fattori valgono uno il rapporto torna uno; se solo uno raddoppia il rapporto è due. Sommare i fattori darebbe due anche quando non cambia nulla. Il risultato richiede angolo invariato: un angolo diverso aggiungerebbe il rapporto dei seni.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2151,
+      "title": "Raddoppiare i due lati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "I vettori adimensionali restano perpendicolari. Da a=b=2 si passa ad a=b=4. Quanto vale C₂/C₁, con C=|A×B|?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel primo rettangolo entrambi i lati valgono due, nel secondo quattro. Raddoppiare la base crea due copie; raddoppiare anche l’altezza raddoppia ciascuna copia. Il prodotto riceve quindi due fattori due."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=4\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times4=16"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_2}{C_1}=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Il modulo quadruplica. La direzione normale al piano può essere mantenuta nelle due prove e il modulo resta positivo. Il rapporto due terrebbe conto di un solo cambiamento; sedici sarebbe C₂, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Moltiplica i due fattori di raddoppio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il modulo quadruplica. La direzione normale al piano può essere mantenuta nelle due prove e il modulo resta positivo. Il rapporto due terrebbe conto di un solo cambiamento; sedici sarebbe C₂, non il rapporto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2152,
+      "title": "Media dei prodotti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 2,
+      "prompt": "In due prove di uguale peso i vettori adimensionali sono perpendicolari. I moduli sono (a,b)=(2,2) nella prima e (4,4) nella seconda. Quanto vale la media aritmetica dei due valori C=|A×B|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6",
+          "8",
+          "9",
+          "10",
+          "20"
+        ],
+        "value": "10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima applichiamo la legge a ciascuna coppia: otteniamo quattro e sedici. La media richiesta confronta queste due uscite, quindi le somma e divide per due. Possiamo dimezzare ciascun addendo prima della somma per eseguire il conto a mente."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline C=\\frac{4+16}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+16}{2}=2+8"
+        },
+        {
+          "type": "formula",
+          "text": "2+8=10"
+        },
+        {
+          "type": "text",
+          "text": "Il valore dieci è compreso fra quattro e sedici. Calcolare prima i moduli medi, entrambi uguali a tre, produrrebbe nove: il prodotto delle medie non coincide in generale con la media dei prodotti. Venti è soltanto la somma, prima della divisione per il numero delle prove."
+        }
+      ],
+      "hints": [
+        "Fai i due prodotti, poi la media delle uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore dieci è compreso fra quattro e sedici. Calcolare prima i moduli medi, entrambi uguali a tre, produrrebbe nove: il prodotto delle medie non coincide in generale con la media dei prodotti. Venti è soltanto la somma, prima della divisione per il numero delle prove.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2153,
+      "title": "Il fattore ancora necessario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 3,
+      "prompt": "Vettori adimensionali perpendicolari hanno inizialmente a₁=b₁=2. Si impone a₂=4 e si vuole C₂=4C₁. Quale rapporto b₂/b₁ occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raddoppio di a fornisce già un fattore due sul prodotto. Per ottenere un aumento totale di quattro volte manca un altro fattore due. Lo troviamo dividendo il rapporto richiesto per quello già imposto, perché i contributi si moltiplicano."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{C_2}{C_1}=\\frac{a_2}{a_1}\\frac{b_2}{b_1}"
+        },
+        {
+          "type": "formula",
+          "text": " 4=2\\frac{b_2}{b_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{b_2}{b_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Ne segue b₂=4 e il controllo dà C₂=4·4=16, quattro volte C₁=4. Un rapporto quattro per b produrrebbe un fattore complessivo otto. Il vincolo di perpendicolarità conserva il seno uguale a uno."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore totale per il contributo di a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ne segue b₂=4 e il controllo dà C₂=4·4=16, quattro volte C₁=4. Un rapporto quattro per b produrrebbe un fattore complessivo otto. Il vincolo di perpendicolarità conserva il seno uguale a uno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2154,
+      "title": "Tarare prima di invertire",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 3,
+      "prompt": "A e B sono vettori adimensionali perpendicolari; C=|A×B|. Un display mostra S=gC, con g>0 costante e nessun offset. Per a=b=2 mostra 12. In una nuova prova mostra 48 e b=4. Quanto vale a? S è un conteggio di tacche.",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento il modulo è C=2·2=4. Dodici tacche divise per quattro danno il guadagno tre. Nella prova nuova dobbiamo prima dividere le tacche per questo guadagno; solo il valore C così ricostruito può essere diviso per b."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{12}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{4}=3"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm nuovo}=\\frac{48}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{48}{3}=16"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Tutte le quantità sono adimensionali; tacche e modulo hanno tuttavia ruoli diversi nella taratura. Il controllo completo è S=3·(4·4)=48. Usare direttamente 48 come C darebbe a=12 e attribuirebbe al vettore l’amplificazione del display."
+        }
+      ],
+      "hints": [
+        "Ricava il guadagno dal riferimento, poi rimuovilo dalla nuova lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tutte le quantità sono adimensionali; tacche e modulo hanno tuttavia ruoli diversi nella taratura. Il controllo completo è S=3·(4·4)=48. Usare direttamente 48 come C darebbe a=12 e attribuirebbe al vettore l’amplificazione del display.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2155,
+      "title": "Eliminare l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 3,
+      "prompt": "Per vettori adimensionali perpendicolari C=ab. Il display segue S=gC+d, con g,d costanti e S conteggio. I riferimenti (a,b,S) sono (2,2,9) e (4,4,33). In una prova S=17 e b=2. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "8",
+          "16"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti corrispondono a C₁=4 e C₂=16. Sottrarre le letture elimina l’offset d: 33−9=24 tacche per un aumento di C pari a dodici. Il guadagno è due. Dal primo riferimento segue d=9−2·4=1; poi correggiamo la lettura ignota."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{33-9}{16-4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-9}{16-4}=2"
+        },
+        {
+          "type": "formula",
+          "text": " d=9-2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "9-2\\times4=1"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{17-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-1}{2}=8"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac82"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac82=4"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ricostruisce 2·(4·2)+1=17. Un rapporto fra letture non elimina un offset additivo. La risposta otto fermerebbe il procedimento al prodotto C; occorre ancora dividere per b=2 per ricavare il modulo richiesto."
+        }
+      ],
+      "hints": [
+        "Sottrai i riferimenti per trovare il guadagno senza l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo ricostruisce 2·(4·2)+1=17. Un rapporto fra letture non elimina un offset additivo. La risposta otto fermerebbe il procedimento al prodotto C; occorre ancora dividere per b=2 per ricavare il modulo richiesto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-product-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2156,
+      "title": "Uguali moduli, soluzione positiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-product",
+      "difficulty": 3,
+      "prompt": "Due vettori adimensionali perpendicolari hanno uguale modulo a=b>0. Si misura |A×B|=4. Quanto vale b?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2",
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo di uguaglianza permette di sostituire a con b nella legge C=ab. Si ottiene b²=4. Le radici algebriche sono due e opposte, ma il modulo di un vettore non nullo è positivo: resta soltanto b=2."
+        },
+        {
+          "type": "formula",
+          "text": "4=ab"
+        },
+        {
+          "type": "formula",
+          "text": "ab=b^2"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\sqrt4"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4=2\\;(b>0)"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo è a=b=2 e C=2·2=4. −2 risolve l’equazione quadratica ma viola il dominio dei moduli. Senza a=b il prodotto quattro ammetterebbe molte coppie, come a=1,b=4: conoscere il prodotto non basta per determinare ciascun fattore."
+        }
+      ],
+      "hints": [
+        "Usa il vincolo a=b prima di estrarre la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il controllo è a=b=2 e C=2·2=4. −2 risolve l’equazione quadratica ma viola il dominio dei moduli. Senza a=b il prodotto quattro ammetterebbe molte coppie, come a=1,b=4: conoscere il prodotto non basta per determinare ciascun fattore.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "4f83eca4922fc7522144cf0c5b749191fa5152e6166b9c88c72a3d571434df74",
+      "name": "vector-product-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iOTEwIiB2aWV3Qm94PSIwIDAgNjAwIDkxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qcm9kb3R0byB2ZXR0b3JpYWxlOiBjb3N0cnVpcmUgaWwgbW9kdWxvIGUgZGlzdGluZ3VlcmUgaWwgdmVyc288L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+UXVhdHRybyB0YXBwZSB2ZXJ0aWNhbGkuIE5lbCBwcmltbyBlc2VtcGlvIGEgZSBiIHZhbGdvbm8gZHVlOiBkdWUgZnJlY2NlIHBlcnBlbmRpY29sYXJpIGRlbGltaXRhbm8gdW4gcmV0dGFuZ29sbyBzdWRkaXZpc28gaW4gcXVhdHRybyBjZWxsZS4gTmVsIHNlY29uZG8gZXNlbXBpbyBBIHZhbGUgZHVlIGx1bmdvIHggZSBCIHZhbGUgdHJlIGx1bmdvIHk6IEEgcGVyIEIgZXNjZSBkYWwgZm9nbGlvLCBCIHBlciBBIGVudHJhLiBJIGR1ZSBlc2VtcGkgaGFubm8gbW9kdWxpIHJpc3BldHRpdmFtZW50ZSBxdWF0dHJvIGUgc2VpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE3M2Q1MCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI5MTAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZmlsbD0iIzE3M2Q1MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiPgo8dGV4dCB4PSIyOCIgeT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IElsIG1vZHVsbzogYSA9IGIgPSAyPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzYiPkJhc2UgZSBhbHRlenphIHNvbm8gcGVycGVuZGljb2xhcmkuPC90ZXh0Pgo8ZyBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiPjxwYXRoIGQ9Ik0xMTAgMjMwSDMzMCIvPjxwYXRoIGQ9Ik0xMTAgMjMwVjExMCIvPjwvZz4KPHRleHQgeD0iMzUwIiB5PSIyMzciPkEsIGEgPSAyPC90ZXh0Pjx0ZXh0IHg9IjEzMyIgeT0iMTMyIj5CLCBiID0gMjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjI4NCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQ29udGFyZSBxdWF0dHJvIGNlbGxlPC90ZXh0Pgo8cmVjdCB4PSIxMTAiIHk9IjMxNyIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNjZWUyZGUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0yMjAgMzE3VjQzN00xMTAgMzc3SDMzMCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzUwIiB5PSIzNzYiPkMgPSAyIMOXIDI8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSI0MTIiPkMgPSA0PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDgwIj5MZSBjZWxsZSBpbGx1c3RyYW5vIHVu4oCZYXJlYSBnZW9tZXRyaWNhLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjUxNiI+UXVpIGkgdmV0dG9yaSBzb25vIGFkaW1lbnNpb25hbGk6IFtDXSA9IDEuPC90ZXh0Pgo8cGF0aCBkPSJNMjggNTQwSDU3MiIgc3Ryb2tlPSIjOGE5ZjljIi8+Cjx0ZXh0IHg9IjI4IiB5PSI1NzgiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IFVuIGFsdHJvIGVzZW1waW86IGEgPSAyLCBiID0gMzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYxNCI+VGVybmEgZGVzdHJvcnNhOiAreCBhIGRlc3RyYSwgK3kgaW4gYWx0by48L3RleHQ+CjxnIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSI+PHBhdGggZD0iTTExMCA3NDhIMzAwIi8+PHBhdGggZD0iTTExMCA3NDhWNjUwIi8+PC9nPgo8dGV4dCB4PSIzMjAiIHk9Ijc1NSI+QSA9IDIgZeKCkzwvdGV4dD48dGV4dCB4PSIxMzUiIHk9IjY4MCI+QiA9IDMgZeG1pzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijc5OCIgZm9udC13ZWlnaHQ9ImJvbGQiPjQgwrcgU3Rlc3NvIG1vZHVsbywgdmVyc28gb3Bwb3N0bzwvdGV4dD4KPGNpcmNsZSBjeD0iNzAiIGN5PSI4NDQiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjcwIiBjeT0iODQ0IiByPSI1Ii8+Cjx0ZXh0IHg9IjEwNiIgeT0iODUyIj5BIMOXIEIgPSArNiBlX3ogwrcgZXNjZTwvdGV4dD4KPGNpcmNsZSBjeD0iNzAiIGN5PSI4ODQiIHI9IjE3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik02MCA4NzRMODAgODk0TTYwIDg5NEw4MCA4NzQiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjEwNiIgeT0iODkyIj5CIMOXIEEgPSDiiJI2IGVfeiDCtyBlbnRyYTwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
