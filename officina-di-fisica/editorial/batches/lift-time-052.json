@@ -1,0 +1,1235 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-lift-time-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2941,
+      "title": "Quaranta joule, due ogni secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 1,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Se m=2 kg e P=2 W, quanto dura il tratto, in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il carico guadagna energia potenziale mentre la sua energia cinetica rimane costante. Il lavoro utile dell’argano è quindi mgh: non è il lavoro totale delle forze, che qui è nullo. Due chilogrammi pesano venti newton e salire di due metri richiede quaranta joule. Due watt significano due joule al secondo: il tempo è quaranta diviso due."
+        },
+        {
+          "type": "formula",
+          "text": "F=mg"
+        },
+        {
+          "type": "formula",
+          "text": "mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_u=mgh"
+        },
+        {
+          "type": "formula",
+          "text": "mgh=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=W_u/T"
+        },
+        {
+          "type": "formula",
+          "text": " T=W_u/P"
+        },
+        {
+          "type": "formula",
+          "text": "W_u/P=20\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "La verifica (2 J/s)(20 s)=40 J restituisce l’energia utile. Dividere soltanto il peso20N per2W salterebbe l’altezza e non darebbe secondi;20N è una forza, non l’energia richiesta. Un rendimento della macchina servirebbe per risalire alla potenza assorbita, ma P è già quella utile al carico."
+        }
+      ],
+      "hints": [
+        "Trova il lavoro utile prima di dividere per la potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La verifica (2 J/s)(20 s)=40 J restituisce l’energia utile. Dividere soltanto il peso20N per2W salterebbe l’altezza e non darebbe secondi;20N è una forza, non l’energia richiesta. Un rendimento della macchina servirebbe per risalire alla potenza assorbita, ma P è già quella utile al carico.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2942,
+      "title": "L’unità nascosta nel rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 1,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Quale unità SI misura T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "kg",
+          "s",
+          "J",
+          "W"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza confronta un trasferimento di energia con la durata. Se conosciamo quanti joule occorrono e quanti joule arrivano ogni secondo, dividiamo le due quantità: il joule si semplifica e resta il secondo. Non occorre sostituire una massa particolare per leggere questa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{mgh}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " [mgh]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm{J/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [T]=\\frac{\\mathrm J}{\\mathrm{J/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm J}{\\mathrm{J/s}}=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il metro misura l’altezza e il chilogrammo la massa; nessuno dei due misura una durata. Il joule appartiene al numeratore energetico, il watt al denominatore. Anche se g e h sono fissi nel problema, le loro unità partecipano al prodotto e non possono sparire prima della divisione."
+        }
+      ],
+      "hints": [
+        "Scrivi un watt come un joule al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il metro misura l’altezza e il chilogrammo la massa; nessuno dei due misura una durata. Il joule appartiene al numeratore energetico, il watt al denominatore. Anche se g e h sono fissi nel problema, le loro unità partecipano al prodotto e non possono sparire prima della divisione.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2943,
+      "title": "Dal bilancio energetico alla durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 1,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Quale formula esprime T, conservando le unità fisiche di g e h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P / (mg h)",
+          "mP / (g h)",
+          "mg h / P",
+          "mg h P",
+          "g h / (mP)"
+        ],
+        "value": "mg h / P"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo come sistema il carico e la Terra per includere l’energia potenziale nel bilancio. Il lavoro utile in ingresso è ΔU_g=mgh, con ΔK=0. La potenza costante trasferisce nel tempo T l’energia PT. Uguagliamo le due energie e dividiamo per P, positiva."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00fff4945f634eac90cff28e557d34794c9699afa56cdfd1587c9a8a06fbaaa4",
+          "text": "Tre tappe per la prova m=2kg,h=2m,P=2W: le due quote differiscono di120px con scala60px/m; il lavoro utile40J è diviso in quattro porzioni uguali da10J. Ogni porzione richiede5s a2W e il tempo totale è20s. Il disegno del carico è schematico; la scala energetica e quella temporale sono distinte dalla scala delle quote."
+        },
+        {
+          "type": "formula",
+          "text": "PT=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{mgh}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " gh=20\\,\\mathrm{J/kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto mghP conterrebbe due energie e un tempo al denominatore, invece di una durata. Il reciproco P/(mgh) ha dimensione1/s. L’altezza è lo spostamento verticale del carico: non il percorso della fune su una puleggia non specificata. La figura confronta energia e tempo nello stesso tratto uniforme."
+        }
+      ],
+      "hints": [
+        "Scrivi prima energia trasferita uguale ad aumento di energia potenziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il prodotto mghP conterrebbe due energie e un tempo al denominatore, invece di una durata. Il reciproco P/(mgh) ha dimensione1/s. L’altezza è lo spostamento verticale del carico: non il percorso della fune su una puleggia non specificata. La figura confronta energia e tempo nello stesso tratto uniforme.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2944,
+      "title": "Raddoppiare il carico con gli stessi watt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 1,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Si passa da m_A=2 kg a m_B=4 kg, con P=2 W in entrambe le prove. Che cosa accade a T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Si dimezza",
+          "Resta uguale",
+          "Quadruplica",
+          "Si annulla"
+        ],
+        "value": "Raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’altezza e g non cambiano, quindi raddoppiare la massa raddoppia l’energia da trasferire. Gli stessi due joule ogni secondo richiedono il doppio dei secondi. Il conto delle due prove rende visibile perché una potenza costante non impone una velocità uguale con masse diverse."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{40\\,\\mathrm J}{2\\,\\mathrm W}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40\\,\\mathrm J}{2\\,\\mathrm W}=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{80\\,\\mathrm J}{2\\,\\mathrm W}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{80\\,\\mathrm J}{2\\,\\mathrm W}=40\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "La velocità vale P/(mg): con il peso doppio deve dimezzarsi per conservare la stessa potenza utile. Un dimezzamento del tempo richiederebbe invece energia minore o potenza maggiore. Non compare un quadrato della massa, perché l’energia potenziale gravitazionale è lineare in m nel campo uniforme."
+        }
+      ],
+      "hints": [
+        "Confronta le energie richieste prima dei tempi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La velocità vale P/(mg): con il peso doppio deve dimezzarsi per conservare la stessa potenza utile. Un dimezzamento del tempo richiederebbe invece energia minore o potenza maggiore. Non compare un quadrato della massa, perché l’energia potenziale gravitazionale è lineare in m nel campo uniforme.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2945,
+      "title": "La massa nascosta nella durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Il tratto dura T=20 s con P=2 W. Qual è m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto potenza per tempo ricostruisce il lavoro utile: due joule al secondo per venti secondi danno quaranta joule. Ogni chilogrammo sollevato di due metri in questo campo richiede venti joule. Dividere le due energie per unità di massa restituisce due chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "PT=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{PT}{gh}"
+        },
+        {
+          "type": "formula",
+          "text": " PT=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " gh=20\\,\\mathrm{J/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo mgh=2·10·2 J=40 J coincide con PT. La divisione per gh è lecita perché g e h sono positivi; una massa nulla non corrisponderebbe al trasferimento osservato. Moltiplicare per la durata, invece di dividerla, è necessario perché qui ricostruiamo prima un’energia."
+        }
+      ],
+      "hints": [
+        "Trasforma i watt e i secondi in joule, poi isola la massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo mgh=2·10·2 J=40 J coincide con PT. La divisione per gh è lecita perché g e h sono positivi; una massa nulla non corrisponderebbe al trasferimento osservato. Moltiplicare per la durata, invece di dividerla, è necessario perché qui ricostruiamo prima un’energia.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2946,
+      "title": "Dall’energia ai watt utili",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Il carico ha m=2 kg e il tratto dura T=20 s. Quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso di venti newton agisce lungo una salita di due metri: il lavoro utile dell’argano è quaranta joule. Distribuirli su venti secondi significa due joule al secondo. Qui la grandezza cercata è la potenza, quindi il tempo deve stare al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{mgh}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " mgh=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{40\\,\\mathrm J}{20\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40\\,\\mathrm J}{20\\,\\mathrm s}=2\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "La velocità uniforme è h/T=1/10m/s e il controllo P=Fv dà20N·(1/10m/s)=2W. È la stessa energia contata per unità di tempo, non un secondo modello indipendente del rendimento. Quaranta joule è l’energia totale; non va riportata come se fosse già una potenza."
+        }
+      ],
+      "hints": [
+        "Dividi il lavoro utile per la durata del tratto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La velocità uniforme è h/T=1/10m/s e il controllo P=Fv dà20N·(1/10m/s)=2W. È la stessa energia contata per unità di tempo, non un secondo modello indipendente del rendimento. Quaranta joule è l’energia totale; non va riportata come se fosse già una potenza.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2947,
+      "title": "Stessa energia, potenza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Per lo stesso carico m=2 kg si usano P_A=2 W e P_B=4 W. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "1",
+          "2",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le prove devono trasferire quaranta joule. La seconda macchina li fornisce al doppio del ritmo, quindi completa il tratto in metà tempo. Il rapporto richiesto mette B al numeratore: dieci secondi diviso venti, non l’inverso."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=10\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_B}{T_A}=\\frac{10}{20}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{20}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due sarebbe T_A/T_B oppure il rapporto delle potenze, non quello delle durate nell’ordine assegnato. Quattro introdurrebbe una dipendenza quadratica assente. Entrambi i tempi sono positivi, e la prova con più watt ha velocità uniforme maggiore senza cambiare il bilancio ΔK=0 nel tratto."
+        }
+      ],
+      "hints": [
+        "Il lavoro utile è identico: confronta i ritmi con cui viene trasferito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due sarebbe T_A/T_B oppure il rapporto delle potenze, non quello delle durate nell’ordine assegnato. Quattro introdurrebbe una dipendenza quadratica assente. Entrambi i tempi sono positivi, e la prova con più watt ha velocità uniforme maggiore senza cambiare il bilancio ΔK=0 nel tratto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2948,
+      "title": "Controllare una durata proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Con m=2 kg e P=2 W una soluzione propone T_proposto=40 s. Quanto vale proposto meno corretto, in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima determiniamo la durata fisica: quaranta joule divisi per due watt fanno venti secondi. La proposta di quaranta secondi è troppo grande; a quella potenza trasferirebbe ottanta joule. Lo scarto orientato si forma soltanto dopo il controllo energetico."
+        },
+        {
+          "type": "formula",
+          "text": "T=40\\,\\mathrm J/(2\\,\\mathrm W)"
+        },
+        {
+          "type": "formula",
+          "text": "40\\,\\mathrm J/(2\\,\\mathrm W)=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=T_{\\mathrm{proposto}}-T"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "(40-20)\\,\\mathrm s=20\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto positivo indica una sovrastima, non un moto verso l’alto o verso il basso. −20s invertirebbe l’ordine della sottrazione;40s ripeterebbe la proposta senza confrontarla con il modello. Un aumento di energia utile senza variazione di altezza o massa renderebbe incoerente il bilancio del tratto uniforme."
+        }
+      ],
+      "hints": [
+        "Verifica la proposta moltiplicandola per la potenza, poi calcola lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lo scarto positivo indica una sovrastima, non un moto verso l’alto o verso il basso. −20s invertirebbe l’ordine della sottrazione;40s ripeterebbe la proposta senza confrontarla con il modello. Un aumento di energia utile senza variazione di altezza o massa renderebbe incoerente il bilancio del tratto uniforme.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2949,
+      "title": "Isolare la massa senza perdere le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Quale espressione isola m in funzione di P,T,g,h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=PTgh",
+          "m=gh/(PT)",
+          "m=PT/(gh)",
+          "m=P/(Tgh)",
+          "m=Tgh/P"
+        ],
+        "value": "m=PT/(gh)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partiamo da PT=mgh. Per lasciare m sola dividiamo entrambi i membri per il prodotto positivo gh. Il numeratore PT è un’energia e gh ha unità di energia per massa: il loro rapporto ha unità kg. Questo controllo distingue l’inversa richiesta da un reciproco."
+        },
+        {
+          "type": "formula",
+          "text": "PT=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{PT}{gh}=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{PT}{gh}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\mathrm J}{\\mathrm{J/kg}}=\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per gh dà dimensioni estranee a una massa. Dividere per T invece di moltiplicare rompe la ricostruzione dell’energia trasferita. La formula usa la potenza utile: se fosse data quella assorbita occorrerebbe prima identificare la frazione effettivamente trasferita al carico."
+        }
+      ],
+      "hints": [
+        "Elimina dal membro della massa soltanto i fattori che la moltiplicano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per gh dà dimensioni estranee a una massa. Dividere per T invece di moltiplicare rompe la ricostruzione dell’energia trasferita. La formula usa la potenza utile: se fosse data quella assorbita occorrerebbe prima identificare la frazione effettivamente trasferita al carico.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2950,
+      "title": "Scalare carico e potenza insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Tra due prove m_B=κ₁m_A e P_B=κ₂P_A, con κ₁,κ₂>0. Qual è T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ / κ₂²"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa aggiunge il fattore κ₁ al lavoro necessario; la potenza fornisce il fattore κ₂ al ritmo di trasferimento. Inseriamo entrambi nella durata prima di formare il rapporto. g e h si semplificano perché le due prove avvengono nello stesso campo e sulla stessa altezza."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{m_Agh}{P_A}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{\\kappa_1m_Agh}{\\kappa_2P_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_B}{T_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto κ₁κ₂ tratterebbe più potenza come causa di una durata maggiore. Il rapporto inverso cambierebbe l’ordine delle due prove. La somma darebbe due anche quando nessun dato cambia; la formula corretta dà uno perκ₁=κ₂=1 e anche quando massa e potenza crescono nello stesso rapporto."
+        }
+      ],
+      "hints": [
+        "Confronta lavoro richiesto e ritmo utile come due fattori distinti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto κ₁κ₂ tratterebbe più potenza come causa di una durata maggiore. Il rapporto inverso cambierebbe l’ordine delle due prove. La somma darebbe due anche quando nessun dato cambia; la formula corretta dà uno perκ₁=κ₂=1 e anche quando massa e potenza crescono nello stesso rapporto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2951,
+      "title": "Carico triplo e potenza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. A usa m_A=2 kg,P_A=2 W; B usa m_B=6 kg,P_B=4 W. Qual è T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2/3",
+          "3/2",
+          "2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima energia è quaranta joule e la seconda centoventi: il carico triplica. La potenza però raddoppia, quindi la durata cresce soltanto di tre mezzi. Possiamo verificarlo con tempi interi, venti e trenta secondi, evitando conti decimali."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{40}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{2}\\,\\mathrm s=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{120}{4}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{120}{4}\\,\\mathrm s=30\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=30/20"
+        },
+        {
+          "type": "formula",
+          "text": "30/20=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Tre conterebbe soltanto il carico, un mezzo soltanto la potenza; due terzi è il reciproco del rapporto richiesto. L’energia trasferita in B è (4W)(30s)=120J, coerente con il sollevamento di6kg per2m. Non si è sommata la potenza delle due prove, che sono esperimenti distinti."
+        }
+      ],
+      "hints": [
+        "Combina il fattore tre al numeratore con il fattore due al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre conterebbe soltanto il carico, un mezzo soltanto la potenza; due terzi è il reciproco del rapporto richiesto. L’energia trasferita in B è (4W)(30s)=120J, coerente con il sollevamento di6kg per2m. Non si è sommata la potenza delle due prove, che sono esperimenti distinti.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2952,
+      "title": "Mediare due durate misurate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 2,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Le prove A:m=2 kg,P=2 W e B:m=6 kg,P=4 W hanno uguale peso statistico. Qual è la media aritmetica delle due durate, in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo ogni durata con la propria coppia di dati: venti secondi per A, trenta per B. Dare uguale peso alle due letture significa sommarle e dividere per due. Non stiamo mettendo insieme i carichi o chiedendo quanto impiegherebbe un unico argano con parametri medi."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=30\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=\\frac{20+30}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20+30}{2}\\,\\mathrm s=25\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è compreso tra le due durate e si trova cinque secondi da ciascuna. Usare le medie m=4kg e P=3W darebbe80/3s, diverso da25s: la media di rapporti non coincide in generale con il rapporto delle medie. Cinquanta secondi sarebbe il totale delle durate, non la loro media."
+        }
+      ],
+      "hints": [
+        "Prima le due durate, poi metà della loro somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato è compreso tra le due durate e si trova cinque secondi da ciascuna. Usare le medie m=4kg e P=3W darebbe80/3s, diverso da25s: la media di rapporti non coincide in generale con il rapporto delle medie. Cinquanta secondi sarebbe il totale delle durate, non la loro media.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2953,
+      "title": "Scegliere la potenza per un tempo prefissato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 3,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. A ha m_A=2 kg,P_A=2 W. In B la massa è6kg e si vuole T_B=(3/2)T_A. Quanto deve valere P_B/P_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata iniziale è venti secondi; tre mezzi di venti si calcolano come dieci per tre, cioè trenta secondi. Il nuovo carico richiede centoventi joule, quindi occorrono quattro watt. La potenza è doppia di quella iniziale: parte della massa aggiunta è compensata dal maggior ritmo utile."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=30\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=120\\,\\mathrm J/(30\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "120\\,\\mathrm J/(30\\,\\mathrm s)=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo per fattori dà3/(3/2)=3·2/3=2. Triplicare anche la potenza lascerebbe invariata la durata; lasciarla uguale la triplicherebbe. Il rapporto due non è la nuova potenza in watt, che vale quattro: grandezza fisica e rapporto puro vanno distinti."
+        }
+      ],
+      "hints": [
+        "Quanto della massa tripla deve essere compensato perché il tempo cresca soltanto di tre mezzi?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo per fattori dà3/(3/2)=3·2/3=2. Triplicare anche la potenza lascerebbe invariata la durata; lasciarla uguale la triplicherebbe. Il rapporto due non è la nuova potenza in watt, che vale quattro: grandezza fisica e rapporto puro vanno distinti.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2954,
+      "title": "Dal display al tempo, dal tempo alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 3,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Un display continuo adimensionale legge S=aT, con a>0 costante e nessun offset. A:m=2 kg,P=2 W dà S=60. In B:P=4 W e S=90. Qual è la massa B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova di riferimento dura venti secondi, quindi a=60/(20s)=3s⁻¹. La lettura90 non è già una durata: divisa per il guadagno dà trenta secondi. In quei trenta secondi quattro watt trasferiscono centoventi joule; ogni chilogrammo richiede venti joule per la salita assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=90/a"
+        },
+        {
+          "type": "formula",
+          "text": "90/a=30\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{P_BT_B}{gh}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{120\\,\\mathrm J}{20\\,\\mathrm{J/kg}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{120\\,\\mathrm J}{20\\,\\mathrm{J/kg}}=6\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La verifica6·10·2J=120J e aT=90 ricostruisce sia il sollevamento sia il display. Usare90come secondi farebbe apparire una massa18kg: l’errore viene dal guadagno, non dal modello gravitazionale. Il display è continuo, quindi non impone al tempo una quantizzazione in tacche intere."
+        }
+      ],
+      "hints": [
+        "Taratura, durata, energia utile: risali la catena in questo ordine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La verifica6·10·2J=120J e aT=90 ricostruisce sia il sollevamento sia il display. Usare90come secondi farebbe apparire una massa18kg: l’errore viene dal guadagno, non dal modello gravitazionale. Il display è continuo, quindi non impone al tempo una quantizzazione in tacche intere.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2955,
+      "title": "Due riferimenti eliminano l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 3,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Il display continuo segue S=aT+b, con a>0,b costanti. A:m=2 kg,P=2 W,S=41. B:m=6 kg,P=4 W,S=61. C:P=2 W,S=81. Qual è m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti durano20s e30s. Sottraendo le letture si elimina b: venti unità di display corrispondono a dieci secondi, quindi a=2s⁻¹. Dalla lettura41 troviamo b=1. La lettura81, privata dell’offset, corrisponde a40s: a due watt sono ottanta joule e quindi quattro chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "a=\\frac{61-41}{(30-20)\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{61-41}{(30-20)\\,\\mathrm s}=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=41-a(20\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "41-a(20\\,\\mathrm s)=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=\\frac{81-1}{a}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{81-1}{a}=40\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Le alternative2,3,5,8kg darebbero rispettivamente T=20,30,50,80s e letture41,61,101,161. Soltanto4kg restituisce81. Il rapporto delle letture grezze non è il rapporto delle durate perché contiene ancora l’offset; qui conta una differenza tra riferimenti, poi una divisione."
+        }
+      ],
+      "hints": [
+        "Sottrai i due riferimenti per determinare il guadagno prima dell’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le alternative2,3,5,8kg darebbero rispettivamente T=20,30,50,80s e letture41,61,101,161. Soltanto4kg restituisce81. Il rapporto delle letture grezze non è il rapporto delle durate perché contiene ancora l’offset; qui conta una differenza tra riferimenti, poi una divisione.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lift-time-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, potenza e rendimento",
+      "order": 2956,
+      "title": "Un dato che conferma il vincolo senza fissare la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lift-time",
+      "difficulty": 3,
+      "prompt": "Nel tratto osservato un argano solleva verticalmente una massa m>0 a velocità costante per h=2 m, in gravità uniforme g=10 m/s². La potenza meccanica utile P>0 trasferita al carico è costante. Le fasi di avvio e arresto sono fuori dall’intervallo di durata T; l’energia cinetica nel tratto non varia. Fra prove diverse si impone m=cP con c=1 kg/W, e si misura T=20 s. Quante coppie positive(m,P) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una sola",
+          "Due",
+          "Infinite",
+          "Un numero finito maggiore di due"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c porta l’unità necessaria: una massa non può essere uguagliata a una potenza senza di esso. Sostituendo m=cP nella durata, P si semplifica e T diventa cgh. Il dato20s conferma il vincolo ma non determina la scala della potenza: più massa e più potenza nello stesso rapporto lasciano lo stesso tempo."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{cPgh}{P}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{cPgh}{P}=cgh"
+        },
+        {
+          "type": "formula",
+          "text": " cgh=(1\\,\\mathrm{kg/W})(20\\,\\mathrm{J/kg})"
+        },
+        {
+          "type": "formula",
+          "text": " cgh=20\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "P=1W,m=1kg e P=2W,m=2kg sono due esempi, ma ogni P positivo ne genera un altro con m=cP. Il modello non limita le coppie a interi. Una misura di potenza o di massa fisserebbe la scala; ripetere il medesimo rapporto energetico non aggiunge una condizione indipendente."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di tentare di risolvere separatamente le due incognite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "P=1W,m=1kg e P=2W,m=2kg sono due esempi, ma ogni P positivo ne genera un altro con m=cP. Il modello non limita le coppie a interi. Una misura di potenza o di massa fisserebbe la scala; ripetere il medesimo rapporto energetico non aggiunge una condizione indipendente.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Potenza utile e durata",
+        "Bilancio energetico",
+        "Taratura e indipendenza dei vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "00fff4945f634eac90cff28e557d34794c9699afa56cdfd1587c9a8a06fbaaa4",
+      "name": "lift-time-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTA0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Tb2xsZXZhcmU6IGVuZXJnaWEgcmljaGllc3RhIGUgdGVtcG8gdXRpbGU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlLiBJbCBjYXJpY28gZGkgZHVlIGNoaWxvZ3JhbW1pIHNhbGUgZGkgZHVlIG1ldHJpIGNvbiB2ZWxvY2l0w6AgY29zdGFudGUuIElsIGxhdm9ybyB1dGlsZSDDqCBxdWFyYW50YSBqb3VsZSwgcmFwcHJlc2VudGF0byBkYSBxdWF0dHJvIHBvcnppb25pIHVndWFsaSBkaSBkaWVjaSBqb3VsZS4gQSBkdWUgd2F0dCBjaWFzY3VuYSBwb3J6aW9uZSByaWNoaWVkZSBjaW5xdWUgc2Vjb25kaSwgcGVyIHZlbnRpIHNlY29uZGkgdG90YWxpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMDQwIiBmaWxsPSIjZmFmOGYwIi8+CjxnIGZpbGw9IiMyNDFlMzUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMzAiIHk9IjQyIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBRdWFudG8gc2FsZSBpbCBjYXJpY28/PC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iODIiPm0gPSAyIGtnOyBnID0gMTAgbS9zwrI7IHZlbG9jaXTDoCBjb3N0YW50ZS48L3RleHQ+CjxwYXRoIGQ9Ik02NSAxNTVoMTgwTTY1IDI3NWgxODAiIHN0cm9rZT0iIzdjNzI4YiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9Ijg1IiB5PSIxMzUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2RlZDdlZCIgc3Ryb2tlPSIjMjQxZTM1IiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iODUiIHk9IjI1NSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGVkN2VkIiBzdHJva2U9IiMyNDFlMzUiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjIwIDE1NXYxMjBtLTctMTEyIDctOCA3IDhtLTE0IDEwNCA3IDggNy04IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNDFlMzUiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNzUiIHk9IjE4NyI+aCA9IDIgbTwvdGV4dD48dGV4dCB4PSIyNzUiIHk9IjIyNiI+zpRLID0gMDwvdGV4dD4KPHRleHQgeD0iMjc1IiB5PSIyNjYiPlBlc28gPSAyMCBOPC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iMzI4IiBmb250LXNpemU9IjE5Ij5RdW90ZSBkZWkgY2VudHJpOiBzY2FsYTYwcHgvbTsgY2FyaWNvIHNjaGVtYXRpY28uPC90ZXh0Pgo8cGF0aCBkPSJNMzAgMzUzaDU4MCIgc3Ryb2tlPSIjOGI4Mjk4Ii8+Cjx0ZXh0IHg9IjMwIiB5PSI0MDAiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFF1YW50YSBlbmVyZ2lhIG9jY29ycmU/PC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iNDQ2Ij5XIHV0aWxlID0gbWdoID0gNDAgSjwvdGV4dD4KPGcgZmlsbD0iI2RlZDdlZCIgc3Ryb2tlPSIjMjQxZTM1IiBzdHJva2Utd2lkdGg9IjIiPjxyZWN0IHg9IjQwIiB5PSI0NzYiIHdpZHRoPSIxMjUiIGhlaWdodD0iNjQiLz48cmVjdCB4PSIxNjUiIHk9IjQ3NiIgd2lkdGg9IjEyNSIgaGVpZ2h0PSI2NCIvPjxyZWN0IHg9IjI5MCIgeT0iNDc2IiB3aWR0aD0iMTI1IiBoZWlnaHQ9IjY0Ii8+PHJlY3QgeD0iNDE1IiB5PSI0NzYiIHdpZHRoPSIxMjUiIGhlaWdodD0iNjQiLz48L2c+Cjx0ZXh0IHg9Ijc2IiB5PSI1MTYiPjEwIEo8L3RleHQ+PHRleHQgeD0iMjAxIiB5PSI1MTYiPjEwIEo8L3RleHQ+PHRleHQgeD0iMzI2IiB5PSI1MTYiPjEwIEo8L3RleHQ+PHRleHQgeD0iNDUxIiB5PSI1MTYiPjEwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMwIiB5PSI1ODUiPlF1YXR0cm8gcG9yemlvbmkgdWd1YWxpOiA0IMOXIDEwIEogPSA0MCBKLjwvdGV4dD4KPHBhdGggZD0iTTMwIDYyMGg1ODAiIHN0cm9rZT0iIzhiODI5OCIvPgo8dGV4dCB4PSIzMCIgeT0iNjY4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBBIHF1YWxlIHJpdG1vIGFycml2YT88L3RleHQ+Cjx0ZXh0IHg9IjMwIiB5PSI3MTIiPlAgdXRpbGUgPSAyIFcgPSAyIEovczwvdGV4dD4KPHRleHQgeD0iMzAiIHk9Ijc1NyI+T2duaSBwb3J6aW9uZTogMTAgSiAvICgyIEovcykgPSA1IHMuPC90ZXh0Pgo8cGF0aCBkPSJNNDAgODEwaDUwME00MCA3OTd2MjZtMTI1LTI2djI2bTEyNS0yNnYyNm0xMjUtMjZ2MjZtMTI1LTI2djI2IiBzdHJva2U9IiMyNDFlMzUiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzNSIgeT0iODU1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjE1MiIgeT0iODU1Ij41PC90ZXh0Pjx0ZXh0IHg9IjI3MyIgeT0iODU1Ij4xMDwvdGV4dD48dGV4dCB4PSIzOTgiIHk9Ijg1NSI+MTU8L3RleHQ+PHRleHQgeD0iNTIzIiB5PSI4NTUiPjIwIHM8L3RleHQ+Cjx0ZXh0IHg9IjMwIiB5PSI5MTAiPlQgPSA0MCBKIC8gKDIgSi9zKSA9IDIwIHMuPC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iOTU2Ij5JbCBsYXZvcm8gZGVsbGEgZ3Jhdml0w6Agw6ggbmVnYXRpdm87PC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iOTkxIj5pbCBsYXZvcm8gdXRpbGUgZGVsbOKAmWFyZ2FubyDDqCBwb3NpdGl2by48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

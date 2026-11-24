@@ -1,0 +1,1182 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-static-spring-extension-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4621,
+      "title": "L’allungamento si trova dal bilancio delle forze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Con m=2 kg e k=2 N/m, quanto vale ℓ in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione della massa ferma è nulla. Sull’asse verticale positivo verso il basso, il peso è positivo e il richiamo della molla negativo: mg−kℓ=0. Il peso vale venti newton; dividendo per due newton al metro troviamo dieci metri di allungamento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/60c0d9e96cc1e82e66f9fd9ce0896a667c2e9de4f07775ff0970c11c5554f1dd",
+          "text": "Esempio m=2 kg,k=2 N/m,g=10 m/s²: peso e richiamo 20 N, allungamento 10 m. Lunghezza naturale illustrativa 2 m, lunghezza finale 12 m; scala 20 px/m, allungamento 200 px. Forze in pannello distinto a 5 px/N, frecce opposte di 100 px. Zigzag simbolico, equilibrio finale nel regime lineare ideale, senza altre forze."
+        },
+        {
+          "type": "formula",
+          "text": "mg-k\\ell=0"
+        },
+        {
+          "type": "formula",
+          "text": " k\\ell=mg"
+        },
+        {
+          "type": "formula",
+          "text": " mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=mg/k"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=10\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dieci metri è un dato del modello ideale molto cedevole, esplicitamente assunto lineare anche a questo allungamento. Non è una previsione su una molla reale fuori dal suo regime elastico. Non abbiamo lasciato cadere da ferma la massa da ℓ=0: quel problema dinamico avrebbe condizioni diverse."
+        }
+      ],
+      "hints": [
+        "Imponi risultante nulla sull’equilibrio osservato.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci metri è un dato del modello ideale molto cedevole, esplicitamente assunto lineare anche a questo allungamento. Non è una previsione su una molla reale fuori dal suo regime elastico. Non abbiamo lasciato cadere da ferma la massa da ℓ=0: quel problema dinamico avrebbe condizioni diverse.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4622,
+      "title": "La lunghezza che resta dopo la divisione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 1,
+      "prompt": "Per una massa ferma appesa a una molla verticale ideale si ha ℓ=mg/k. m è massa, g accelerazione e k costante elastica in N/m. Quale unità SI esprime l’allungamento ℓ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "kg",
+          "m",
+          "N/m",
+          "1"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto mg ha unità di forza. Dividere newton per newton al metro lascia un metro. L’equilibrio collega una forza e una deformazione attraverso la rigidezza, ma non rende uguali le loro dimensioni."
+        },
+        {
+          "type": "formula",
+          "text": "[mg]=\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " [k]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " [mg/k]=L"
+        },
+        {
+          "type": "text",
+          "text": "N misura il peso, kg la massa e N/m la rigidezza. Un rapporto puro non può descrivere una variazione di lunghezza. La lunghezza naturale non serve per determinare ℓ, ma servirebbe per ottenere la lunghezza totale."
+        }
+      ],
+      "hints": [
+        "Espandi il divisore N/m: dividere per esso lascia metri.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N misura il peso, kg la massa e N/m la rigidezza. Un rapporto puro non può descrivere una variazione di lunghezza. La lunghezza naturale non serve per determinare ℓ, ma servirebbe per ottenere la lunghezza totale.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4623,
+      "title": "La forza di richiamo equilibra il peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Quale relazione dà ℓ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ℓ=mg/k",
+          "ℓ=mk/g",
+          "ℓ=k/(mg)",
+          "ℓ=mgk",
+          "ℓ=2mg/k"
+        ],
+        "value": "ℓ=mg/k"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo verso positivo in discesa. Il peso mg e il richiamo kℓ hanno versi opposti e devono avere uguale modulo alla quiete. Dividere per k>0 isola l’allungamento. Il segno meno appartiene alla componente del richiamo, non al valore positivo di ℓ."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/60c0d9e96cc1e82e66f9fd9ce0896a667c2e9de4f07775ff0970c11c5554f1dd",
+          "text": "Esempio m=2 kg,k=2 N/m,g=10 m/s²: peso e richiamo 20 N, allungamento 10 m. Lunghezza naturale illustrativa 2 m, lunghezza finale 12 m; scala 20 px/m, allungamento 200 px. Forze in pannello distinto a 5 px/N, frecce opposte di 100 px. Zigzag simbolico, equilibrio finale nel regime lineare ideale, senza altre forze."
+        },
+        {
+          "type": "formula",
+          "text": "mg-k\\ell=0"
+        },
+        {
+          "type": "formula",
+          "text": " mg=k\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=mg/k"
+        },
+        {
+          "type": "text",
+          "text": "mk/g e mgk hanno dimensioni diverse da una lunghezza; k/(mg) ha dimensione inversa. Il fattore due non nasce dall’equilibrio: può comparire in un diverso problema di caduta da molla indeformata, ma qui non si studia un punto di inversione del moto. È dichiarata una quiete finale."
+        }
+      ],
+      "hints": [
+        "Usa l’equilibrio, non una formula di massima elongazione durante una caduta.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "mk/g e mgk hanno dimensioni diverse da una lunghezza; k/(mg) ha dimensione inversa. Il fattore due non nasce dall’equilibrio: può comparire in un diverso problema di caduta da molla indeformata, ma qui non si studia un punto di inversione del moto. È dichiarata una quiete finale.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4624,
+      "title": "Più massa con la stessa rigidezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Fra due prove k=2 N/m resta uguale e m passa da 2 a 4 kg. Come cambia ℓ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 20 m",
+          "Resta 10 m",
+          "Da 10 a 5 m",
+          "Da 10 a 40 m",
+          "Diventa zero"
+        ],
+        "value": "Da 10 a 20 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso raddoppia da venti a quaranta newton. Per lo stesso k occorre un richiamo doppio e, nel regime lineare, un allungamento doppio. Le due masse sono costanti dentro ciascuna prova: il confronto non aggiunge materia durante un’oscillazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=20\\,\\mathrm N/(2\\,\\mathrm{N/m})"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_A=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=40\\,\\mathrm N/(2\\,\\mathrm{N/m})"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Cinque metri inverte l’effetto del peso, quaranta usa il nuovo peso come se fosse già una lunghezza. Invariabilità e zero ignorano il carico maggiore. Entrambi gli equilibri sono nel regime lineare assunto."
+        }
+      ],
+      "hints": [
+        "Con k e g fissi, l’allungamento segue la massa.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque metri inverte l’effetto del peso, quaranta usa il nuovo peso come se fosse già una lunghezza. Invariabilità e zero ignorano il carico maggiore. Entrambi gli equilibri sono nel regime lineare assunto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4625,
+      "title": "Dall’allungamento alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Si misurano ℓ=10 m e k=2 N/m. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo l’allungamento per k per ricostruire il richiamo: due newton al metro per dieci metri danno venti newton. Alla quiete questo è il peso. Dividiamo per g=10 m/s² e troviamo due chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "k\\ell=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=k\\ell/g"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{20\\,\\mathrm N}{10\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo mg/k=2·10/2=10 m restituisce l’allungamento. Venti newton non sono venti chilogrammi. La massa è positiva come richiesto; non abbiamo usato la lunghezza totale della molla."
+        }
+      ],
+      "hints": [
+        "Ricava prima il peso dalla forza elastica, poi dividi per g.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo mg/k=2·10/2=10 m restituisce l’allungamento. Venti newton non sono venti chilogrammi. La massa è positiva come richiesto; non abbiamo usato la lunghezza totale della molla.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4626,
+      "title": "Dalla quiete alla rigidezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Si misurano ℓ=10 m e m=2 kg. Quanto vale k in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è venti newton e viene equilibrato dal richiamo. Dividendo mg=kℓ per ℓ>0 otteniamo k=mg/ℓ. Venti newton su dieci metri danno due newton al metro."
+        },
+        {
+          "type": "formula",
+          "text": "mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " k=mg/\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " k=\\frac{20\\,\\mathrm N}{10\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " k=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo (2 N/m)(10 m)=20 N conferma l’equilibrio. Il quoziente inverso ℓ/(mg)=1/2 m/N sarebbe la cedevolezza, non la rigidezza. L’allungamento positivo permette la divisione e seleziona k positivo."
+        }
+      ],
+      "hints": [
+        "Dividi il peso per l’allungamento, non viceversa.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo (2 N/m)(10 m)=20 N conferma l’equilibrio. Il quoziente inverso ℓ/(mg)=1/2 m/N sarebbe la cedevolezza, non la rigidezza. L’allungamento positivo permette la divisione e seleziona k positivo.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4627,
+      "title": "Una molla più rigida si allunga meno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Con m=2 kg fisso, k passa da 2 a 4 N/m. Quanto vale ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso resta venti newton. La prima molla richiede dieci metri per svilupparlo, la seconda soltanto cinque. Il rapporto finale su iniziale è 5/10=1/2: la maggiore rigidezza riduce l’allungamento necessario."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due seguirebbe k invece del suo reciproco, quattro introdurrebbe un quadrato e uno ignorerebbe la molla diversa. Il segno negativo è escluso per due allungamenti positivi. Le forze elastiche in equilibrio sono invece uguali, entrambe venti newton."
+        }
+      ],
+      "hints": [
+        "Mantieni il peso uguale e confronta due divisioni per k.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due seguirebbe k invece del suo reciproco, quattro introdurrebbe un quadrato e uno ignorerebbe la molla diversa. Il segno negativo è escluso per due allungamenti positivi. Le forze elastiche in equilibrio sono invece uguali, entrambe venti newton.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4628,
+      "title": "Scarto di una proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Con m=2 kg,k=2 N/m si propone ℓ_proposto=20 m. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+10 m",
+          "−10 m",
+          "+20 m",
+          "0 m",
+          "+5 m"
+        ],
+        "value": "+10 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio dà ℓ=20 N/(2 N/m)=10 m. La proposta è doppia e lo scarto richiesto è venti meno dieci, cioè dieci metri positivi. Il segno dello scarto è distinto dal verso del richiamo."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=+10\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−10 inverte la sottrazione, venti ripete la proposta, zero la accetta e cinque dimezza ancora lo scarto. Una configurazione istantanea con allungamento venti metri non sarebbe l’equilibrio di questa massa e di questa molla senza altre forze."
+        }
+      ],
+      "hints": [
+        "Controlla la proposta nel bilancio kℓ=mg.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−10 inverte la sottrazione, venti ripete la proposta, zero la accetta e cinque dimezza ancora lo scarto. Una configurazione istantanea con allungamento venti metri non sarebbe l’equilibrio di questa massa e di questa molla senza altre forze.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4629,
+      "title": "Un’inversa che dà una massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Quale formula isola m dalla relazione ℓ=mg/k?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=kℓ/g",
+          "m=gℓ/k",
+          "m=k/(gℓ)",
+          "m=mg/k",
+          "m=2kℓ/g"
+        ],
+        "value": "m=kℓ/g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per k per eliminare il denominatore e dividiamo per g>0. Il prodotto kℓ è una forza; dividerlo per un’accelerazione dà una massa. Non resta il simbolo m a destra: l’incognita deve essere isolata."
+        },
+        {
+          "type": "formula",
+          "text": "k\\ell=mg"
+        },
+        {
+          "type": "formula",
+          "text": " k\\ell/g=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=k\\ell/g"
+        },
+        {
+          "type": "text",
+          "text": "gℓ/k ha dimensioni errate per una massa; k/(gℓ) ha una lunghezza al denominatore invece che al numeratore. La quarta opzione mantiene m nel secondo membro e il fattore due dell’ultima non appartiene al bilancio statico. Le unità aiutano a distinguere anche formule con numeri plausibili."
+        }
+      ],
+      "hints": [
+        "Ricostruisci mg dal prodotto kℓ prima di dividere per g.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "gℓ/k ha dimensioni errate per una massa; k/(gℓ) ha una lunghezza al denominatore invece che al numeratore. La quarta opzione mantiene m nel secondo membro e il fattore due dell’ultima non appartiene al bilancio statico. Le unità aiutano a distinguere anche formule con numeri plausibili.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4630,
+      "title": "Massa e rigidezza scalate fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. La prova B usa m_B=κ₁m e k_B=κ₂k, con κ₁,κ₂>0; m,k sono i dati di A. Quanto vale ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso riceve il fattore κ₁ e la rigidezza al denominatore riceve κ₂. Nel rapporto con la prima prova si cancellano m,g,k. Resta κ₁/κ₂: più massa aumenta la deformazione, più rigidezza la riduce."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=mg/k"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=\\kappa_1mg/(\\kappa_2k)"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto assegna alla rigidezza l’effetto sbagliato; il reciproco inverte il confronto; il quadrato conta la massa due volte. La somma darebbe due all’identità κ₁=κ₂=1. Se i due fattori sono uguali, l’allungamento resta invariato pur cambiando il peso."
+        }
+      ],
+      "hints": [
+        "Ricorda che k compare al denominatore.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il prodotto assegna alla rigidezza l’effetto sbagliato; il reciproco inverte il confronto; il quadrato conta la massa due volte. La somma darebbe due all’identità κ₁=κ₂=1. Se i due fattori sono uguali, l’allungamento resta invariato pur cambiando il peso.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4631,
+      "title": "Tre volte la massa e due volte la rigidezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. A ha m=2 kg,k=2 N/m; B ha m=6 kg,k=4 N/m. Quanto vale ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "2",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima prova dà dieci metri. Nella seconda il peso è sessanta newton e si divide per quattro N/m, ottenendo quindici metri. Il rapporto 15/10 si riduce a 3/2. È anche il rapporto fra i fattori tre sulla massa e due su k."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=\\frac{15}{10}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre considera solo la massa, due solo la rigidezza nel verso sbagliato, sei moltiplica entrambi i fattori e due terzi inverte il confronto. Quindici metri è il nuovo allungamento, mentre tre mezzi è il rapporto puro richiesto."
+        }
+      ],
+      "hints": [
+        "Calcola 60/4 prima di confrontarlo con dieci.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre considera solo la massa, due solo la rigidezza nel verso sbagliato, sei moltiplica entrambi i fattori e due terzi inverte il confronto. Quindici metri è il nuovo allungamento, mentre tre mezzi è il rapporto puro richiesto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4632,
+      "title": "Media delle due posizioni di equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. A ha m=2 kg,k=2 N/m; B ha m=6 kg,k=4 N/m. Qual è la media aritmetica di ℓ_A,ℓ_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25/2 m",
+          "25 m",
+          "25/4 m",
+          "40/3 m",
+          "5 m"
+        ],
+        "value": "25/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli allungamenti sono dieci e quindici metri. La loro media è 25/2 m, fra i due valori, e si conserva come frazione esatta. Usare invece gli ingressi medi m=4 kg,k=3 N/m darebbe 40/3 m, perché il quoziente non distribuisce sulla media di k."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\ell=\\frac{10+15}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\ell=\\frac{25}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque è la somma, 25/4 dimezza ancora e cinque è la differenza. 40/3 non coincide con 25/2: i prodotti incrociati sono 80 e 75. Non servono espansioni decimali per scegliere la media corretta."
+        }
+      ],
+      "hints": [
+        "Media i due allungamenti già ricavati dal rispettivo equilibrio.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Venticinque è la somma, 25/4 dimezza ancora e cinque è la differenza. 40/3 non coincide con 25/2: i prodotti incrociati sono 80 e 75. Non servono espansioni decimali per scegliere la media corretta.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4633,
+      "title": "Progettare la nuova rigidezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. A ha m_A=2 kg,k_A=2 N/m. Si impone m_B=6 kg e si vuole ℓ_B=(3/2)ℓ_A. Quanto vale k_B/k_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è (3/2)·10=15 m. Per equilibrare il peso nuovo da sessanta newton con quell’allungamento serve k_B=60/15=4 N/m. Dividendo per i due N/m iniziali troviamo il rapporto due."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_B=15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m_Bg=60\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " k_B=m_Bg/\\ell_B"
+        },
+        {
+          "type": "formula",
+          "text": " k_B=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_B/k_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare k invariato darebbe trenta metri, cioè il triplo dell’iniziale. Triplicare anche k manterrebbe invece dieci metri. Il nuovo k positivo e l’allungamento previsto sono compatibili con il regime lineare esplicitamente assunto."
+        }
+      ],
+      "hints": [
+        "Trova la rigidezza dal peso nuovo e dall’allungamento obiettivo.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare k invariato darebbe trenta metri, cioè il triplo dell’iniziale. Triplicare anche k manterrebbe invece dieci metri. Il nuovo k positivo e l’allungamento previsto sono compatibili con il regime lineare esplicitamente assunto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4634,
+      "title": "Un display tarato sull’allungamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Un display continuo adimensionale legge S=qℓ, con q>0 costante e offset nullo. Il riferimento m=2 kg,k=2 N/m dà S=30. Una prova con k=4 N/m dà S=45. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ℓ=10 m e quindi q=3 m⁻¹. La lettura quarantacinque significa quindici metri di allungamento. La molla da quattro N/m sviluppa sessanta newton: dividendo per g ricostruiamo sei chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=45/q"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " k\\ell=60\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=6\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 6·10/4=15 m e S=3·15=45 ricostruisce entrambe le tappe. Interpretare 45 come metri salterebbe il guadagno e produrrebbe diciotto chilogrammi. La lettura è continua, non una forza o una massa SI."
+        }
+      ],
+      "hints": [
+        "Decodifica ℓ prima di applicare m=kℓ/g.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 6·10/4=15 m e S=3·15=45 ricostruisce entrambe le tappe. Interpretare 45 come metri salterebbe il guadagno e produrrebbe diciotto chilogrammi. La lettura è continua, non una forza o una massa SI.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4635,
+      "title": "Taratura con offset prima dell’equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Un display continuo adimensionale legge S=qℓ+b, con q>0,b costanti. A: m=2 kg,k=2 N/m,S=21. B: m=6 kg,k=4 N/m,S=31. C: k=2 N/m,S=41. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "6 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno ℓ=10 e 15 m. La differenza delle letture è dieci su cinque metri: q=2 m⁻¹. Poi b=21−2·10=1. La lettura quarantuno, privata dell’offset e divisa per due, dà venti metri. Il richiamo vale quaranta newton e la massa quattro chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_C=(41-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_C=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=k\\ell_C/g"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Con k_C=2 N/m ogni chilogrammo dà cinque metri e dieci unità di lettura oltre l’offset. Le masse 2,3,6,8 kg darebbero S=21,31,61,81. Solo quattro ricostruisce quarantuno; l’offset va eliminato prima di usare il bilancio fisico."
+        }
+      ],
+      "hints": [
+        "Trova q dalle differenze, poi b e infine l’allungamento di C.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con k_C=2 N/m ogni chilogrammo dà cinque metri e dieci unità di lettura oltre l’offset. Le masse 2,3,6,8 kg darebbero S=21,31,61,81. Solo quattro ricostruisce quarantuno; l’offset va eliminato prima di usare il bilancio fisico.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-spring-extension-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4636,
+      "title": "Un allungamento che non fissa la scala dei parametri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-spring-extension",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio una massa m>0 è appesa a una molla verticale ideale di costante k>0 e massa trascurabile, con estremo superiore fissato. Si osserva la massa ferma all’equilibrio finale, senza altre forze oltre peso e richiamo elastico. Il campo uniforme vale g=10 m/s². ℓ>0 è l’allungamento dalla lunghezza naturale, non la lunghezza totale; tutte le configurazioni considerate sono ammesse nel regime elastico lineare ideale. Si selezionano prove con m=ck, dove c=1 kg·m/N è fisso. Il vincolo lega prove diverse; m e k restano costanti dentro ciascuna prova. Si misura ℓ=10 m. Quante coppie positive (m,k) sono ammesse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inseriamo m=ck nell’allungamento di equilibrio. Il fattore k positivo si cancella e rimane ℓ=cg. Le unità (kg·m/N)(m/s²) danno metri e il valore è dieci. La misura è dunque coerente ma ripete il vincolo senza determinare la scala di m e k."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=ckg/k"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=cg"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m=ck"
+        },
+        {
+          "type": "formula",
+          "text": " k>0"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio k=1 N/m,m=1 kg e k=2 N/m,m=2 kg danno entrambi ℓ=10 m; ogni altro k positivo genera una nuova coppia. Non sono soltanto due o tre: è una famiglia continua infinita. La coppia nulla è esclusa, perché k=0 non consentirebbe l’inversa né l’equilibrio dichiarato."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di tentare di ricavare due incognite da una sola misura indipendente.",
+        "Alla quiete il richiamo equilibra il peso; ℓ è un allungamento, non la lunghezza totale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Per esempio k=1 N/m,m=1 kg e k=2 N/m,m=2 kg danno entrambi ℓ=10 m; ogni altro k positivo genera una nuova coppia. Non sono soltanto due o tre: è una famiglia continua infinita. La coppia nulla è esclusa, perché k=0 non consentirebbe l’inversa né l’equilibrio dichiarato.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Equilibrio della molla verticale",
+        "Allungamento dalla lunghezza naturale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "60c0d9e96cc1e82e66f9fd9ce0896a667c2e9de4f07775ff0970c11c5554f1dd",
+      "name": "static-spring-extension-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Nb2xsYSB2ZXJ0aWNhbGU6IGFsbHVuZ2FtZW50byBkaSBlcXVpbGlicmlvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+Q29uIG1hc3NhIGR1ZSBjaGlsb2dyYW1taSBlIGNhbXBvIGRpZWNpIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8gaWwgcGVzbyDDqCB2ZW50aSBuZXd0b24uIFVuYSBtb2xsYSBpZGVhbGUgZGEgZHVlIG5ld3RvbiBhbCBtZXRybyBzaSBhbGx1bmdhIGRpIGRpZWNpIG1ldHJpIGFsbGEgcXVpZXRlLiBMYSBsdW5naGV6emEgbmF0dXJhbGUgaWxsdXN0cmF0aXZhIMOoIGR1ZSBtZXRyaS4gUGVzbyBlIHJpY2hpYW1vIG9wcG9zdGkgZWQgdWd1YWxpLCBub24gcHVudG8gZGkgaW52ZXJzaW9uZSBkaW5hbWljby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImEiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjgwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM3NDYiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IE1pc3VyYSBkYWxsYSBsdW5naGV6emEgbmF0dXJhbGU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4OCI+THVuZ2hlenplOiAyMCBweC9tLiBM4oKAID0gMiBtIGlsbHVzdHJhdGl2YS48L3RleHQ+CjxwYXRoIGQ9Ik0xMTAgMTIwSDE5ME0zMTAgMTIwSDM5MCIgc3Ryb2tlPSIjMTgzNzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTE1MCAxMjBWMTI1TDE0MCAxMzBMMTYwIDE0MEwxNDAgMTUwTDE1MCAxNTVWMTYwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMzUwIDEyMFYxMzBMMzM1IDE0MEwzNjUgMTYwTDMzNSAxODBMMzY1IDIwMEwzMzUgMjIwTDM2NSAyNDBMMzM1IDI2MEwzNjUgMjgwTDMzNSAzMDBMMzY1IDMyMEwzNTAgMzQwVjM2MCIgc3Ryb2tlPSIjMTY3MjhhIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTEyMCAxNjBINDkwTTQ3MCAxNjBWMzYwTTQ2MCAxNjBINDgwTTQ2MCAzNjBINDgwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxyZWN0IHg9IjMyNSIgeT0iMzYwIiB3aWR0aD0iNTAiIGhlaWdodD0iNDAiIGZpbGw9IiNkN2U4ZWIiIHN0cm9rZT0iIzE4Mzc0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjQ5NSIgeT0iMjcwIj7ihJMgPSAxMCBtPC90ZXh0Pgo8dGV4dCB4PSI3NiIgeT0iMjA1Ij5JbmRlZm9ybWF0YTwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjM5NSI+bSA9IDIga2c8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NTAiPkwgZmluYWxlID0gMTIgbTsg4oSTID0gMTIg4oiSIDIgPSAxMCBtLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQ5NSI+WmlnemFnIHNpbWJvbGljaS4gUmVnaW1lIGxpbmVhcmUgaWRlYWxlIGFzc3VudG8uPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNTYwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMYSBtYXNzYSDDqCBmZXJtYSBhbGzigJllcXVpbGlicmlvPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNjA1Ij5Gb3J6ZTogNSBweC9OLiBnID0gMTAgbS9zwrI7IGsgPSAyIE4vbS48L3RleHQ+CjxjaXJjbGUgY3g9IjI3MCIgY3k9Ijc0MCIgcj0iNiIvPgo8cGF0aCBkPSJNMjcwIDc0MFY2NDAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0yNzAgNzQwVjg0MCIgc3Ryb2tlPSIjYjg0ZTMyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHRleHQgeD0iMzI1IiB5PSI2NjUiIGZpbGw9IiMxNjcyOGEiPmvihJMgPSAyMCBOPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iODI1IiBmaWxsPSIjYjg0ZTMyIj5tZyA9IDIwIE48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4OTAiPlZlcnNvIHBvc2l0aXZvIGluIGRpc2Nlc2E6IG1nIOKIkiBr4oSTID0gMC48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI5NTUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IERpdmlkaSBpbCBwZXNvIHBlciBsYSByaWdpZGV6emE8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIxMDEwIj7ihJMgPSBtZy9rID0gMjAgTiAvICgyIE4vbSkgPSAxMCBtPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTA2NSI+Tm9uIHNpIGNlcmNhIGxhIGx1bmdoZXp6YSB0b3RhbGUgZGVsbGEgbW9sbGEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTEyMCI+Tm9uIMOoIHVuIHB1bnRvIGRpIGludmVyc2lvbmUgZHVyYW50ZSB1bmEgY2FkdXRhLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjExNzUiPlNpIG9zc2VydmEgbOKAmWVxdWlsaWJyaW8gZmluYWxlIHNlbnphIGFsdHJlIGZvcnplLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEyMzUiIGZvbnQtc2l6ZT0iMTgiPlNjYWxlIGRpc3RpbnRlOiBsdW5naGV6emUgMjAgcHgvbSwgZm9yemUgNSBweC9OLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

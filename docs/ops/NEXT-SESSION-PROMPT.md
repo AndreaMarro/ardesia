@@ -1,3 +1,53 @@
+## Checkpoint corrente — 640 quesiti e 85 altre attività
+
+Generazione `66e0af717843b2f3188e8340e143ee6c10f5c44addb56b53a78c6af8490ac433`; manifest `6473c92448fc78a8e1d2bdcffca404234143d7a34da723b226106d03d25da5e8`.
+Il registro contabilizza tutti i 4.606 quesiti e le 385 altre attività. Sono completate
+640 revisioni individuali DRAFT e 85 revisioni di attività: restano 3.966 quesiti e
+300 attività. U1 e i tre shard U2-01, U2-02, U2-03 sono revisionati in bozza.
+Il prossimo ID da consolidare è `u2-parallel-springs-01`, lotto 044 in U2-04.
+
+Le 1.935 anteprime private comprendono 1.920 casi dei quesiti e 15 delle cinque
+nuove edizioni di esempi, ciascuno a 1440, 768 e 320 pixel. Ogni pacchetto registrato
+ha verifica indipendente per ID, import canonico ripetuto senza nuove scritture e
+preservazione dei 991 pubblicati, dei live head e della storia. Tutti i 116 test
+editoriali passano; ricostruzione fresh e incrementale coincidono. I nuovi lotti
+036–041 includono 147 controprove; due etichette dei pesi intersecate dai piani sono
+state corrette dall'autore, rilette dal revisore e sottoposte a 96 nuove anteprime.
+
+Cinque edizioni originali conservano un giudizio negativo esplicito: C1-E003,
+C1-E008, C2-E005, C3-E003, C3-E020. Le cinque nuove v2 sono bozze separatamente
+verificate. C3-E020 lascia ln 2 simbolico, esplicita il percorso reversibile
+immaginato tra gli stessi stati e lo distingue dall'espansione libera reale.
+L'aritmetica manuale è documentata, senza pretendere una valutazione numerica del
+logaritmo. Nessuna firma umana o pubblicazione aggiunta.
+
+Il nuovo campo additivo `pendingFullQuestionRevisionIds` elenca tutti i 3.966 ID
+senza revisione completa; la coda precedente `pendingQuestionIds`, conservata per
+compatibilità, riguarda soltanto la soluzione indipendente ancora NOT_RUN. La sua
+lunghezza è 3.767: la differenza di 199 sono controlli recuperati ancora parziali,
+non revisioni complete. Il test ha riprodotto l'assenza del nuovo campo prima della
+correzione e passa sulla nuova generazione. Anche questo selettore è stato riletto
+da un revisore distinto. Le 100 revisioni Pro restano non identificate.
+
+PR #357 (544/69) è MERGED su `6ab24b975686fbfc72c1adefdad6845c48b1ce4d`, dopo 24
+check SUCCESS e uno SKIPPED sulla head `7bcf2ccbb5266ef6cbd1ec9bef5e244a05859390`.
+I workflow post-merge 45493606289 e 45493606308 sono ancora da verificare fino a
+conclusione. Il nuovo incremento 640/85 è sul ramo `feat/cric-u2-contact`, con la
+propria PR/CI ancora da completare. Non confondere autore, verifica AI, firma umana
+e pubblicazione. I candidati fuori registro non incrementano il completamento.
+
+Priorità operative:
+1. Verificare CI post-merge di #357 sulla SHA 6ab24b97 e integrare 640/85 con PR e CI effettive.
+2. Proseguire U2-04: A autore 044–047, B autore 048–051, root autore 052–053; review separata incrociata dei primi due gruppi e reviewer distinto sui 32 root.
+3. Dopo le verifiche, consolidare 800 quesiti e proseguire le altre attività dal registro dei 300 mancanti, senza attendere firme editoriali umane.
+4. Continuare l'intero corpus, accessibilità e percorso adattivo; nessuna pubblicazione automatica o modifica degli esami protetti.
+
+Checkout attivo: `/private/tmp/cric-resident-integrator`. Worktree autore A e B
+residenti fuori da iCloud. Vecchio checkout della workspace conservato e inattivo;
+non riprendere il vecchio sequencer Git o leggere un file dataless come recuperato.
+Il backup originale di config.worktree rimane indisponibile; nessun byte originale
+acquisito o artefatto Pro recuperato viene dichiarato senza evidenza.
+
 ## Ripresa corrente — 544 quesiti e 69 altre attività
 
 Generazione `446c3b28d505045e286a9523cf749bb897e836687c76b735fda01266c3797aff`, manifest `82ee5179209a9583a7dfd2d652a2aaf810db621ef55837c568678df31484d7ff`.

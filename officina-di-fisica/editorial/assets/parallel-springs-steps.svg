@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1230" role="img" aria-labelledby="title desc">
+<title id="title">Parallelo: stessa deformazione, forze sommate</title><desc id="desc">Due molle lineari di costanti uno e due newton al metro hanno allungamento comune due metri; il primo richiamo è due newton, il secondo quattro, il totale sei. Le lunghezze e le forze hanno scale distinte.</desc>
+<defs><marker id="a" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="context-stroke"/></marker></defs>
+<rect width="640" height="1230" rx="24" fill="#faf8f2"/>
+<g font-family="sans-serif" font-size="20" fill="#183746">
+<text x="28" y="42" font-size="24" font-weight="bold">1 · La traversa impone lo stesso ℓ</text>
+<text x="28" y="88">Lunghezze: 50 px/m. L₀ = 2 m per entrambe.</text>
+<path d="M100 155V310M300 155V310" stroke="#183746" stroke-width="4"/>
+<path d="M200 125V335" stroke="#81968d" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M100 190H110L120 175L140 205L160 175L180 205L200 175L220 205L240 175L260 205L280 175L290 190H300M100 270H110L120 255L140 285L160 255L180 285L200 255L220 285L240 255L260 285L280 255L290 270H300" stroke="#16728a" stroke-width="2" fill="none"/>
+<text x="335" y="195">k₁ = 1 N/m</text><text x="335" y="275">k₂ = 2 N/m</text>
+<text x="170" y="122" font-size="17">estremi naturali</text>
+<path d="M200 355H300M200 346V364M300 346V364" stroke="#81968d" stroke-width="2"/>
+<text x="215" y="395">ℓ = 2 m</text>
+<text x="28" y="445">Traversa guidata: trasla senza ruotare. Zigzag simbolici.</text>
+<text x="28" y="510" font-size="24" font-weight="bold">2 · Somma le rigidezze</text>
+<text x="28" y="565">K = k₁ + k₂ = 3 N/m</text>
+<text x="28" y="615">Con F = 6 N: ℓ = F/K = 2 m.</text>
+<text x="28" y="665">Ogni richiamo usa questo stesso allungamento.</text>
+<text x="28" y="740" font-size="24" font-weight="bold">3 · Ripartisci le forze, poi controlla</text>
+<text x="28" y="785">Proiezioni separate. Forze: 20 px/N.</text>
+<circle cx="300" cy="860" r="4"/><path d="M300 860H260" stroke="#16728a" stroke-width="3" marker-end="url(#a)"/><text x="350" y="867">F₁ = 2 N</text>
+<circle cx="300" cy="940" r="4"/><path d="M300 940H220" stroke="#16728a" stroke-width="3" marker-end="url(#a)"/><text x="350" y="947">F₂ = 4 N</text>
+<circle cx="300" cy="1020" r="4"/><path d="M300 1020H420" stroke="#b84e32" stroke-width="3" marker-end="url(#a)"/><text x="440" y="1027">F = 6 N</text>
+<text x="28" y="1100">Richiami a sinistra, trazione a destra: 2 + 4 = 6 N.</text>
+<text x="28" y="1150">Uguale ℓ non significa uguale forza sulle due molle.</text>
+<text x="28" y="1195" font-size="18">Scala delle forze distinta da quella delle lunghezze.</text>
+</g></svg>

@@ -93,6 +93,8 @@ def main():
         "semanticCandidateScope":"reviewed_drafts_and_unrevised_sources",
         "automaticArithmetic": dict(Counter(r["automatic"]["sourceArithmetic"]["status"] for r in entries)),
         "pendingQuestionIds": [r["id"] for r in entries if r["review"]["independentSolution"] == "NOT_RUN"],
+        # Recovered technical checks do not complete the full editorial chain.
+        "pendingFullQuestionRevisionIds": sorted(r["id"] for r in entries if r["state"] != "REVISED_DRAFT"),
         "limits": ["Human scientific approval NOT_RUN", "Full scientific/pedagogical revision remains open",
                    "Calculator-free feasibility is not inferred from source flags or exact answers"]}
     approval_queue=[{'id':row['id'],'batchId':row['evidence'][0]['batchId'],

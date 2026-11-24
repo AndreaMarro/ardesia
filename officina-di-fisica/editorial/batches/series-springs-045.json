@@ -1,0 +1,1161 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-series-springs-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4521,
+      "title": "Due deformazioni sotto la stessa forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 1,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Con k₁=k₂=2 N/m, quanto vale K in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni molla si allunga di F/kᵢ. A forza comune gli allungamenti si sommano: ℓ=F(1/k₁+1/k₂). Confrontiamo con ℓ=F/K e dividiamo per F>0. Nel caso di due rigidezze uguali si sommano due metà di metro per newton, ottenendo un metro per newton; il reciproco è 1 N/m."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=F/k_1+F/k_2"
+        },
+        {
+          "type": "formula",
+          "text": " 1/K=1/k_1+1/k_2"
+        },
+        {
+          "type": "formula",
+          "text": " 1/K=1\\,\\mathrm{m/N}"
+        },
+        {
+          "type": "formula",
+          "text": " K=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il gruppo è più cedevole di ogni molla: K deve essere minore di 2 N/m. La somma 4 N/m apparterrebbe al parallelo e violerebbe questo controllo. A F=2 N le due molle si allungherebbero di un metro ciascuna: due metri totali confermano K=2 N/2 m."
+        }
+      ],
+      "hints": [
+        "Somma gli allungamenti, non le rigidezze.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il gruppo è più cedevole di ogni molla: K deve essere minore di 2 N/m. La somma 4 N/m apparterrebbe al parallelo e violerebbe questo controllo. A F=2 N le due molle si allungherebbero di un metro ciascuna: due metri totali confermano K=2 N/2 m.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4522,
+      "title": "Rigidezza e cedevolezza hanno unità reciproche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 1,
+      "prompt": "Due molle ideali in serie hanno forza comune F e allungamento totale ℓ. La costante equivalente K soddisfa F=Kℓ. Quale unità SI esprime K?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "m/N",
+          "N/m",
+          "m",
+          "1"
+        ],
+        "value": "N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Anche per un collegamento in serie la rigidezza è forza su lunghezza. Sono invece le cedevolezze 1/kᵢ a sommarsi e ad avere unità m/N. Dopo la somma occorre prendere il reciproco per tornare a K."
+        },
+        {
+          "type": "formula",
+          "text": "[K]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " [1/K]=\\mathrm{m/N}"
+        },
+        {
+          "type": "formula",
+          "text": " [K]=M/T^2"
+        },
+        {
+          "type": "text",
+          "text": "m/N misura la cedevolezza, non la rigidezza. N è una forza, m un allungamento e 1 è puro. L’unità non cambia perché le molle sono state collegate in modo diverso; cambia la relazione fra le costanti."
+        }
+      ],
+      "hints": [
+        "La somma delle cedevolezze va invertita per ottenere la rigidezza.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/N misura la cedevolezza, non la rigidezza. N è una forza, m un allungamento e 1 è puro. L’unità non cambia perché le molle sono state collegate in modo diverso; cambia la relazione fra le costanti.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4523,
+      "title": "Ricavare la legge dal raccordo ideale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 1,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Quale formula dà K?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "K=k₁+k₂",
+          "K=k₁k₂/(k₁+k₂)",
+          "K=(k₁+k₂)/2",
+          "K=k₁−k₂",
+          "K=1/k₁+1/k₂"
+        ],
+        "value": "K=k₁k₂/(k₁+k₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio del raccordo di massa trascurabile impone uguale modulo di forza nelle molle. Le deformazioni non sono necessariamente uguali: valgono F/k₁ e F/k₂. Portiamo la somma dei reciproci a denominatore comune e poi invertiamo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/543a63ac4db6a17e9d3eaca9cbfe9a1e8868e213efa8e0de2f580872a57db345",
+          "text": "Esempio k₁=2 N/m,k₂=4 N/m,F=4 N: allungamenti 2 m e 1 m, totale 3 m,K=4/3 N/m. Lunghezze naturali illustrative 1 m ciascuna: figura naturale 60+60 px e deformata 180+120 px, scala 60 px/m; zigzag simbolici. Raccordo ideale con richiami opposti 4 N, frecce 80 px alla scala distinta 20 px/N."
+        },
+        {
+          "type": "formula",
+          "text": "1/K=1/k_1+1/k_2"
+        },
+        {
+          "type": "formula",
+          "text": " 1/K=\\frac{k_1+k_2}{k_1k_2}"
+        },
+        {
+          "type": "formula",
+          "text": " K=\\frac{k_1k_2}{k_1+k_2}"
+        },
+        {
+          "type": "text",
+          "text": "La somma è il parallelo, la media non nasce dal bilancio e la differenza potrebbe dare zero per molle identiche. L’ultima opzione è 1/K ed ha unità m/N. Il prodotto su somma è positivo ed è minore di ciascun kᵢ positivo."
+        }
+      ],
+      "hints": [
+        "Il raccordo equilibra le forze; l’estremo complessivo accumula entrambe le deformazioni.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La somma è il parallelo, la media non nasce dal bilancio e la differenza potrebbe dare zero per molle identiche. L’ultima opzione è 1/K ed ha unità m/N. Il prodotto su somma è positivo ed è minore di ciascun kᵢ positivo.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4524,
+      "title": "Rendere più rigida una sola molla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 1,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. k₂ resta 2 N/m; k₁ passa da 2 a 4 N/m fra due prove. Come cambia K?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 4/3 N/m",
+          "Resta 1 N/m",
+          "Da 1 a 2 N/m",
+          "Da 1 a 6 N/m",
+          "Da 1 a 3/4 N/m"
+        ],
+        "value": "Da 1 a 4/3 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo gruppo ha K=1 N/m. Il secondo ha prodotto 4·2=8 e somma 4+2=6: il quoziente è 8/6=4/3 N/m. Il gruppo diventa più rigido, ma rimane più cedevole della molla da 2 N/m rimasta in serie."
+        },
+        {
+          "type": "formula",
+          "text": "K_A=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=\\frac{4\\times2}{4+2}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=\\frac43\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Due N/m sarebbe il limite raggiunto solo rendendo la prima molla infinitamente rigida, non con k₁=4 N/m. Sei somma le costanti come nel parallelo. Tre quarti inverte il quoziente; invarianza ignorerebbe la riduzione della prima cedevolezza."
+        }
+      ],
+      "hints": [
+        "Semplifica 8/6 e controlla che il risultato sia sotto 2 N/m.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due N/m sarebbe il limite raggiunto solo rendendo la prima molla infinitamente rigida, non con k₁=4 N/m. Sei somma le costanti come nel parallelo. Tre quarti inverte il quoziente; invarianza ignorerebbe la riduzione della prima cedevolezza.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4525,
+      "title": "Invertire senza perdere il dominio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Si misura K=1 N/m e si conosce k₂=2 N/m. Quanto vale k₁ in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo K=k₁k₂/(k₁+k₂) per la somma positiva. Raccogliendo k₁ otteniamo Kk₂=k₁(k₂−K). Il denominatore k₂−K è positivo perché una serie di molle positive ha K<k₂. Inserendo i dati il prodotto al numeratore e la differenza al denominatore danno due N/m."
+        },
+        {
+          "type": "formula",
+          "text": "K(k_1+k_2)=k_1k_2"
+        },
+        {
+          "type": "formula",
+          "text": " Kk_2=k_1(k_2-K)"
+        },
+        {
+          "type": "formula",
+          "text": " k_1=\\frac{Kk_2}{k_2-K}"
+        },
+        {
+          "type": "formula",
+          "text": " k_1=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 2·2/(2+2)=1 N/m restituisce K. K=k₂ annullerebbe il denominatore: non esiste una prima rigidezza finita positiva in quel caso. K>k₂ produrrebbe una costante negativa, fuori dal modello."
+        }
+      ],
+      "hints": [
+        "Raccogli i termini con k₁ prima di dividere per k₂−K.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 2·2/(2+2)=1 N/m restituisce K. K=k₂ annullerebbe il denominatore: non esiste una prima rigidezza finita positiva in quel caso. K>k₂ produrrebbe una costante negativa, fuori dal modello.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4526,
+      "title": "La molla più cedevole si allunga di più",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Con k₁=2 N/m,k₂=4 N/m entrambe trasmettono F=4 N. Quanto vale ℓ₁/ℓ₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "4",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la forza comune per ciascuna rigidezza. La prima molla si allunga di due metri, la seconda di un metro. Il rapporto degli allungamenti è due, inverso del rapporto delle rigidezze. L’uguaglianza della forza non impone l’uguaglianza della deformazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/543a63ac4db6a17e9d3eaca9cbfe9a1e8868e213efa8e0de2f580872a57db345",
+          "text": "Esempio k₁=2 N/m,k₂=4 N/m,F=4 N: allungamenti 2 m e 1 m, totale 3 m,K=4/3 N/m. Lunghezze naturali illustrative 1 m ciascuna: figura naturale 60+60 px e deformata 180+120 px, scala 60 px/m; zigzag simbolici. Raccordo ideale con richiami opposti 4 N, frecce 80 px alla scala distinta 20 px/N."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_1=F/k_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_1=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_2=F/k_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_2=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_1/\\ell_2=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue direttamente k₁/k₂ invece del reciproco. Uno confonde serie e parallelo; quattro ripete il numero della forza e −2 viola allungamenti positivi. Il totale è 3 m e F/ℓ=4/3 N/m, coerente con la rigidezza equivalente."
+        }
+      ],
+      "hints": [
+        "La stessa forza divisa per una rigidezza minore dà un allungamento maggiore.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue direttamente k₁/k₂ invece del reciproco. Uno confonde serie e parallelo; quattro ripete il numero della forza e −2 viola allungamenti positivi. Il totale è 3 m e F/ℓ=4/3 N/m, coerente con la rigidezza equivalente.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4527,
+      "title": "Confrontare due rigidezze equivalenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. A ha k₁=k₂=2 N/m; B ha k₁=2 N/m,k₂=4 N/m. Quanto vale K_B/K_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima equivalente è 1 N/m; la seconda è 8/6=4/3 N/m. Dividere per la prima non modifica il numero, ma cancella le unità e dà un rapporto puro. Solo una delle due molle è stata resa doppia."
+        },
+        {
+          "type": "formula",
+          "text": "K_A=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=\\frac43\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B/K_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Due trattava come raddoppiata l’intera serie; tre quarti inverte il confronto; un mezzo e uno non descrivono la maggiore rigidezza. Il rapporto è tra uno e due, coerentemente con un ramo modificato e l’altro fisso."
+        }
+      ],
+      "hints": [
+        "Calcola prima ciascun prodotto su somma.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due trattava come raddoppiata l’intera serie; tre quarti inverte il confronto; un mezzo e uno non descrivono la maggiore rigidezza. Il rapporto è tra uno e due, coerentemente con un ramo modificato e l’altro fisso.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4528,
+      "title": "Scarto da una proposta pari al singolo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Con k₁=k₂=2 N/m si propone K_proposto=2 N/m. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+1 N/m",
+          "−1 N/m",
+          "+2 N/m",
+          "0 N/m",
+          "+1/2 N/m"
+        ],
+        "value": "+1 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La serie corretta vale 1 N/m. La proposta ha mantenuto la rigidezza di una sola molla e dimenticato l’allungamento della seconda. Sottraiamo 1 da 2 e otteniamo una sovrastima positiva di 1 N/m."
+        },
+        {
+          "type": "formula",
+          "text": "K=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte l’ordine, due ripete la proposta, zero la accetta e un mezzo dimezza ancora lo scarto. La differenza mantiene unità di rigidezza, non di forza o cedevolezza."
+        }
+      ],
+      "hints": [
+        "Due molle identiche in serie hanno metà rigidezza della singola.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−1 inverte l’ordine, due ripete la proposta, zero la accetta e un mezzo dimezza ancora lo scarto. La differenza mantiene unità di rigidezza, non di forza o cedevolezza.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4529,
+      "title": "L’inversa della serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Si conoscono k₂ e K, con 0<K<k₂. Quale formula isola k₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "k₁=Kk₂/(k₂−K)",
+          "k₁=K−k₂",
+          "k₁=Kk₂/(k₂+K)",
+          "k₁=Kk₂/(K−k₂)",
+          "k₁=K/k₂"
+        ],
+        "value": "k₁=Kk₂/(k₂−K)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eliminiamo il denominatore k₁+k₂, poi spostiamo Kk₁ dallo stesso lato di k₁k₂. Il coefficiente che resta è k₂−K. Il dominio dichiarato permette la divisione e assicura una rigidezza positiva."
+        },
+        {
+          "type": "formula",
+          "text": "Kk_1+Kk_2=k_1k_2"
+        },
+        {
+          "type": "formula",
+          "text": " Kk_2=k_1(k_2-K)"
+        },
+        {
+          "type": "formula",
+          "text": " k_1=\\frac{Kk_2}{k_2-K}"
+        },
+        {
+          "type": "text",
+          "text": "K−k₂ è l’inversa sbagliata del parallelo e sarebbe negativa qui. Il più al denominatore non isola la stessa equazione; il denominatore opposto cambia segno. K/k₂ è puro e non può essere una rigidezza. Il limite K→k₂ dal basso richiede k₁ sempre maggiore."
+        }
+      ],
+      "hints": [
+        "Il termine Kk₁ va raccolto con l’altro termine contenente k₁.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "K−k₂ è l’inversa sbagliata del parallelo e sarebbe negativa qui. Il più al denominatore non isola la stessa equazione; il denominatore opposto cambia segno. K/k₂ è puro e non può essere una rigidezza. Il limite K→k₂ dal basso richiede k₁ sempre maggiore.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4530,
+      "title": "Due fattori dentro prodotto e somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Fra due prove k₁,B=κ₁k₁ e k₂,B=κ₂k₂, con κ₁,κ₂>0 e k₁,k₂ riferiti ad A. Definiamo S=k₁+k₂. Definiamo inoltre S_B=κ₁k₁+κ₂k₂. Quale rapporto K_B/K_A segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ S / S_B",
+          "κ₁ κ₂ S_B / S",
+          "κ₁ / κ₂",
+          "(κ₁ + κ₂) S / S_B",
+          "κ₁ κ₂ S / (2 S_B)"
+        ],
+        "value": "κ₁ κ₂ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo prodotto riceve entrambi i fattori κ, mentre la nuova somma è S_B. Dividendo K_B per K_A si moltiplica per il reciproco del primo prodotto su somma. Il prodotto k₁k₂ si cancella e la somma iniziale S passa al numeratore."
+        },
+        {
+          "type": "formula",
+          "text": "K_A=k_1k_2/S"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=\\kappa_1\\kappa_2k_1k_2/S_B"
+        },
+        {
+          "type": "formula",
+          "text": " K_B/K_A=\\kappa_1\\kappa_2S/S_B"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare S e S_B inverte l’effetto della somma. Il solo κ₁/κ₂ non tiene conto di entrambi i rami. Sommare κ al numeratore o aggiungere un due al denominatore non segue dalla legge. Se κ₁=κ₂=κ, S_B=κS e il rapporto si riduce a κ, non κ²."
+        }
+      ],
+      "hints": [
+        "Scrivi entrambi i prodotti su somma prima di cancellare i fattori comuni.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Scambiare S e S_B inverte l’effetto della somma. Il solo κ₁/κ₂ non tiene conto di entrambi i rami. Sommare κ al numeratore o aggiungere un due al denominatore non segue dalla legge. Se κ₁=κ₂=κ, S_B=κS e il rapporto si riduce a κ, non κ².",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4531,
+      "title": "La serie conserva un fattore comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. A ha k₁=k₂=2 N/m; B ha k₁=k₂=4 N/m. Quanto vale K_B/K_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per le due molle uguali la rigidezza di gruppo è metà della singola. A dà uno N/m e B dà due N/m. Raddoppiare entrambe le costanti raddoppia il prodotto due volte, ma raddoppia anche il denominatore: nel quoziente resta un solo due."
+        },
+        {
+          "type": "formula",
+          "text": "K_A=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=\\frac{4\\times4}{4+4}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B/K_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro conserverebbe il doppio fattore del prodotto dimenticando la somma raddoppiata. Un mezzo è il rapporto inverso; uno ignorerebbe il cambiamento. La nuova equivalente rimane inferiore a ogni ramo da quattro N/m."
+        }
+      ],
+      "hints": [
+        "Considera il raddoppio sia del prodotto sia della somma.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro conserverebbe il doppio fattore del prodotto dimenticando la somma raddoppiata. Un mezzo è il rapporto inverso; uno ignorerebbe il cambiamento. La nuova equivalente rimane inferiore a ogni ramo da quattro N/m.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4532,
+      "title": "Una media che qui coincide con gli ingressi medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 2,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. A usa k₁=k₂=2 N/m e B usa k₁=k₂=4 N/m. Qual è la media aritmetica di K_A,K_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 N/m",
+          "3 N/m",
+          "3/4 N/m",
+          "1 N/m",
+          "2 N/m"
+        ],
+        "value": "3/2 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti sono uno e due N/m. La semisomma è 3/2 N/m. Qui le coppie di ingressi sono proporzionali e le loro medie, entrambe 3 N/m, darebbero ancora 3/2 N/m. Questa coincidenza non rende lineare in generale la legge della serie."
+        },
+        {
+          "type": "formula",
+          "text": "K_A=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline K=\\frac{1+2}{2}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline K=\\frac32\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Tre è la somma, tre quarti dimezza ancora, uno o due ripetono una prova. Per vedere che la coincidenza non è universale, le coppie (1,3) e (3,1) N/m danno entrambe K=3/4 N/m, mentre i loro ingressi medi (2,2) danno K=1 N/m. Non confondere il caso proporzionale assegnato con ogni possibile media."
+        }
+      ],
+      "hints": [
+        "Media le due equivalenti già calcolate, senza arrotondarle.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Tre è la somma, tre quarti dimezza ancora, uno o due ripetono una prova. Per vedere che la coincidenza non è universale, le coppie (1,3) e (3,1) N/m danno entrambe K=3/4 N/m, mentre i loro ingressi medi (2,2) danno K=1 N/m. Non confondere il caso proporzionale assegnato con ogni possibile media.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4533,
+      "title": "Progettare il secondo ramo della serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 3,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. A ha k₁,A=k₂,A=2 N/m. Si impone k₁,B=4 N/m e si vuole K_B=2K_A. Quanto vale k₂,B/k₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equivalente iniziale è uno N/m e l’obiettivo è due. Usando l’inversa per il secondo ramo otteniamo k₂,B=K_Bk₁,B/(k₁,B−K_B). Il prodotto numerico è otto e la differenza due: k₂,B=4 N/m. Il rapporto ai due iniziali è due."
+        },
+        {
+          "type": "formula",
+          "text": "K_B=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_{2,B}=\\frac{K_Bk_{1,B}}{k_{1,B}-K_B}"
+        },
+        {
+          "type": "formula",
+          "text": " k_{2,B}=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_{2,B}/k_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare il secondo ramo a due N/m darebbe soltanto 4/3 N/m. Quattro N/m è la nuova costante, non il rapporto. L’obiettivo è minore del primo ramo da quattro, perciò la soluzione finita positiva esiste."
+        }
+      ],
+      "hints": [
+        "Il ramo incognito si ricava con il denominatore k₁,B−K_B positivo.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare il secondo ramo a due N/m darebbe soltanto 4/3 N/m. Quattro N/m è la nuova costante, non il rapporto. L’obiettivo è minore del primo ramo da quattro, perciò la soluzione finita positiva esiste.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4534,
+      "title": "Tarare prima dell’inversa della serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 3,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Un display continuo adimensionale legge S=qK, con q>0 costante e offset nullo. Il riferimento k₁=k₂=2 N/m dà S=3. Una nuova prova dà S=6 e k₂=4 N/m. Quanto vale k₁ in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima equivalente è uno N/m: q=3 m/N. La nuova lettura sei significa K=2 N/m. Con k₂=4 N/m l’inversa dà k₁=(2·4)/(4−2)=4 N/m, con unità di rigidezza dopo la divisione."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m/N}"
+        },
+        {
+          "type": "formula",
+          "text": " K=6/q"
+        },
+        {
+          "type": "formula",
+          "text": " K=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_1=\\frac{Kk_2}{k_2-K}"
+        },
+        {
+          "type": "formula",
+          "text": " k_1=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 4·4/(4+4)=2 N/m e S=3·2=6 ricostruisce il dato. Usare S=6 come rigidezza porterebbe K>k₂ e quindi a un’inversa negativa: sarebbe un errore di decodifica, non una molla fisica negativa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci K e controlla K<k₂ prima di usare la formula inversa.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 4·4/(4+4)=2 N/m e S=3·2=6 ricostruisce il dato. Usare S=6 come rigidezza porterebbe K>k₂ e quindi a un’inversa negativa: sarebbe un errore di decodifica, non una molla fisica negativa.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4535,
+      "title": "Una lettura frazionaria continua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 3,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Un display continuo adimensionale legge S=qK+b, con q>0,b costanti. A: k₁=k₂=2 N/m,S=3. B: k₁=k₂=4 N/m,S=5. C: k₂=2 N/m,S=11/3. Quanto vale k₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N/m",
+          "3 N/m",
+          "4 N/m",
+          "6 N/m",
+          "8 N/m"
+        ],
+        "value": "4 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti dei riferimenti sono uno e due N/m: q=(5−3)/(2−1)=2 m/N e b=1. Togliamo uno da 11/3, cioè tre terzi: resta 8/3. La divisione per due dà K_C=4/3 N/m. Nell’inversa il denominatore è 2−4/3=2/3 N/m; dividere 8/3 per 2/3 dà quattro N/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m/N}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " K_C=\\frac43\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_{1,C}=\\frac{K_Ck_2}{k_2-K_C}"
+        },
+        {
+          "type": "formula",
+          "text": " k_{1,C}=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Le alternative k₁=2,3,6,8 N/m danno rispettivamente K=1,6/5,3/2,8/5 N/m e letture 3,17/5,4,21/5. Nessuna è 11/3; per esempio 17·3=51 contro 11·5=55. La lettura continua può essere una frazione: non occorre arrotondare."
+        }
+      ],
+      "hints": [
+        "Lavora con terzi esatti dopo aver tolto l’offset.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le alternative k₁=2,3,6,8 N/m danno rispettivamente K=1,6/5,3/2,8/5 N/m e letture 3,17/5,4,21/5. Nessuna è 11/3; per esempio 17·3=51 contro 11·5=55. La lettura continua può essere una frazione: non occorre arrotondare.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-series-springs-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4536,
+      "title": "Due rami uguali nella serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-springs",
+      "difficulty": 3,
+      "prompt": "Due molle ideali lineari di costanti k₁,k₂>0 sono collegate in serie fra un supporto fisso e un estremo tirato lungo il loro asse. Molle e raccordo hanno massa trascurabile; il raccordo non riceve altre forze. Nel riferimento inerziale del laboratorio si confrontano equilibri quasistatici. Ogni molla trasmette la stessa forza di modulo F>0; gli allungamenti positivi ℓ₁,ℓ₂ dalla rispettiva lunghezza naturale si sommano in ℓ. Le deformazioni restano nel regime lineare. K è definita da F=Kℓ. Si selezionano coppie con k₁=k₂ e si misura K=1 N/m. Quanto vale k₂ in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo l’uguaglianza delle costanti nella legge di serie. Il prodotto diventa k₂² e la somma 2k₂; il fattore k₂ positivo si cancella, lasciando K=k₂/2. La costante del singolo ramo è dunque doppia dell’equivalente."
+        },
+        {
+          "type": "formula",
+          "text": "K=\\frac{k_2^2}{2k_2}"
+        },
+        {
+          "type": "formula",
+          "text": " K=k_2/2"
+        },
+        {
+          "type": "formula",
+          "text": " k_2=2K"
+        },
+        {
+          "type": "formula",
+          "text": " k_2=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "La soluzione unica positiva è k₁=k₂=2 N/m. Dividere ancora K per due applicherebbe l’effetto della serie nel verso sbagliato. Il quadrato apparso al numeratore non richiede una radice, perché un fattore si semplifica con il denominatore non nullo."
+        }
+      ],
+      "hints": [
+        "Semplifica k₂ prima di isolare la costante.",
+        "In serie è comune la forza; si sommano gli allungamenti e le cedevolezze."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La soluzione unica positiva è k₁=k₂=2 N/m. Dividere ancora K per due applicherebbe l’effetto della serie nel verso sbagliato. Il quadrato apparso al numeratore non richiede una radice, perché un fattore si semplifica con il denominatore non nullo.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Molle in serie",
+        "Forza comune e somma delle cedevolezze"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "543a63ac4db6a17e9d3eaca9cbfe9a1e8868e213efa8e0de2f580872a57db345",
+      "name": "series-springs-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5TZXJpZTogc3Rlc3NhIGZvcnphIGUgYWxsdW5nYW1lbnRpIHNvbW1hdGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgbW9sbGUgY29uIHJpZ2lkZXp6ZSBkdWUgZSBxdWF0dHJvIG5ld3RvbiBhbCBtZXRybyB0cmFzbWV0dG9ubyBxdWF0dHJvIG5ld3Rvbi4gTGUgbG9ybyBsdW5naGV6emUgbmF0dXJhbGkgaWxsdXN0cmF0aXZlIHNvbm8gdW4gbWV0cm8gY2lhc2N1bmE7IHNpIGFsbHVuZ2FubyBkaSBkdWUgZSB1biBtZXRyby4gQWxsdW5nYW1lbnRvIHRvdGFsZSB0cmUgbWV0cmkgZSBjb3N0YW50ZSBlcXVpdmFsZW50ZSBxdWF0dHJvIHRlcnppIGRpIG5ld3RvbiBhbCBtZXRyby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImEiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjUwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM3NDYiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IExlIGx1bmdoZXp6ZSBzaSBhY2N1bXVsYW5vPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iODgiPlNjYWxhOiA2MCBweC9tLiBM4oKALOKCgSA9IEzigoAs4oKCID0gMSBtIGlsbHVzdHJhdGl2ZS48L3RleHQ+CjxwYXRoIGQ9Ik04MCAxMjBWMTkwTTgwIDE1NUg4NUw5MCAxNDVMMTAwIDE2NUwxMTAgMTQ1TDEyMCAxNjVMMTMwIDE0NUwxMzUgMTU1SDE0ME0xNDAgMTU1SDE0NUwxNTAgMTQ1TDE2MCAxNjVMMTcwIDE0NUwxODAgMTY1TDE5MCAxNDVMMTk1IDE1NUgyMDAiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjE1NSIgcj0iNCIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1NSIgcj0iNCIvPgo8dGV4dCB4PSIyNDUiIHk9IjE2MiI+UmlmZXJpbWVudG8gbmF0dXJhbGU8L3RleHQ+CjxwYXRoIGQ9Ik04MCAyNjBWMzQwTTgwIDMwMEg5MEwxMDAgMjg1TDEyMCAzMTVMMTQwIDI4NUwxNjAgMzE1TDE4MCAyODVMMjAwIDMxNUwyMjAgMjg1TDI0MCAzMTVMMjUwIDMwMEgyNjBNMjYwIDMwMEgyNzBMMjgwIDI4NUwzMDAgMzE1TDMyMCAyODVMMzQwIDMxNUwzNjAgMjg1TDM3MCAzMDBIMzgwIiBzdHJva2U9IiMxNjcyOGEiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyNjAiIGN5PSIzMDAiIHI9IjQiLz48Y2lyY2xlIGN4PSIzODAiIGN5PSIzMDAiIHI9IjQiLz4KPHRleHQgeD0iMTI4IiB5PSIzNjUiPkzigoEgPSAzIG08L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIzNjUiPkzigoIgPSAyIG08L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0MjAiPmvigoEgPSAyIE4vbTsga+KCgiA9IDQgTi9tOyBGID0gNCBOLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQ2NSI+4oST4oKBID0gMyDiiJIgMSA9IDIgbTsg4oST4oKCID0gMiDiiJIgMSA9IDEgbS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI1MTUiPlppZ3phZyBzaW1ib2xpY2kuIEx1bmdoZXp6ZSBkYWxsYSBwYXJldGUgaW4gc2NhbGEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNTg1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBJbCByYWNjb3JkbyBlcXVpbGlicmEgbGUgZm9yemU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI2MzAiPlJhY2NvcmRvIGRpIG1hc3NhIHRyYXNjdXJhYmlsZSwgbmVzc3VuIGFsdHJvIGNhcmljby48L3RleHQ+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjcxMCIgcj0iNiIvPgo8cGF0aCBkPSJNMzAwIDcxMEgyMjAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTMwMCA3MTBIMzgwIiBzdHJva2U9IiMxNjcyOGEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8dGV4dCB4PSIxMjciIHk9IjY4MCI+NCBOPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iNjgwIj40IE48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3NzUiPkZvcnplOiAyMCBweC9OLiBEdWUgcmljaGlhbWkgb3Bwb3N0aSBkaSA4MCBweC48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4MzUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IFNvbW1hIGdsaSBhbGx1bmdhbWVudGk8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4OTUiPuKEkyA9IOKEk+KCgSArIOKEk+KCgiA9IDMgbTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijk0NSI+SyA9IEYv4oSTID0gNC8zIE4vbTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEwMDAiPksgJmx0OyAyIE4vbSBlIEsgJmx0OyA0IE4vbTogZ3J1cHBvIHBpw7kgY2VkZXZvbGUuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTA1NSI+UGVyIG9nbmkgcmFtbzog4oST4bWiID0gRi9r4bWiLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjExMTAiPjEvSyA9IDEva+KCgSArIDEva+KCgjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjExNzAiPkZvcnphIGNvbXVuZSBub24gc2lnbmlmaWNhIGFsbHVuZ2FtZW50aSB1Z3VhbGkuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTIyMCIgZm9udC1zaXplPSIxOCI+U2NhbGUgZGlzdGludGU6IGx1bmdoZXp6ZSA2MCBweC9tLCBmb3J6ZSAyMCBweC9OLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

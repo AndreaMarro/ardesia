@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-hooke-force-01",
+      "sourceSha256": "34231602d8b9a6d44548e9694d4a2a70d99140e060dcb2ec24dd288d6ea0f9a8",
+      "candidateSha256": "d0ba59bb24c8315731a2b1e2a77f00232443b01168e4df78103f77c4f2a0133a",
+      "reviewedSignature": "97ca54fa7dde575fd0713474d01d13048e3a8f4e56079fac955355e94e8b4885",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "200cm/100=2m; F=(2N/m)(2m)=4N. Per x+2m la componente−kx=−4N; modulo4N. Usare200 come metri darebbe400N.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "F_x−4N non è modulo negativo;400N nasce dal mancato passaggio cm→m. Scala100 evidente nel fattore200/100.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. 200cm/100=2m; F=(2N/m)(2m)=4N. Per x+2m la componente−kx=−4N; modulo4N. Usare200 come metri darebbe400N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-02",
+      "sourceSha256": "465c222bf1e84ab2f2b1860c5812dba2793663b3b4d1f092badec2cbddec6a62",
+      "candidateSha256": "a139319d85b09ac1258c855a4cd0badc1a0eb87093ccea30bf48f054083c33e7",
+      "reviewedSignature": "e7fb8047879a67fb3f19802e6e0392563951c4a88c8965f30076a47f4612d3f0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "k inN/m eℓ inmetri: unitàN. [k]=M/T², [kℓ]=ML/T²; energia richiederebbe un altro fattorelunghezza.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "N/m unitàcostante,m deformazione,J energia,1numero puro; soloN forza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. k inN/m eℓ inmetri: unitàN. [k]=M/T², [kℓ]=ML/T²; energia richiederebbe un altro fattorelunghezza.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-03",
+      "sourceSha256": "42f3aab4a543a8fd1a595294110586003ab3ff21ecb6452e0781ea98bb4e1912",
+      "candidateSha256": "1ec2327073dfbc3736ee6ef3bfaadd923bb9a8e9fa3ac1862fcca157f10a699b",
+      "reviewedSignature": "2e4d2c1bddd6542a73f56015b90e5c6ef7316a3366f167bce63639574d2e660a",
+      "assetChecksums": {
+        "hooke-force-progressive.svg": "14f085b35dbeaf8d4a2f2157310e60f5c48acf6a684a06657bcb851b29a50ebf"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "F=kℓ",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Fx=−kx da forza di richiamo nel modello lineare; modulo|Fx|=k|x|=kℓ conk>0. Siax+2 siax−2 conk2 danno modulo4N e segni opposti.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "−kℓ negativo impossibile permodulo; k/ℓ haN/m²,ℓ/k m²/N,kℓ² energia. Segnorichiamo rimane inFx.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Fx=−kx da forza di richiamo nel modello lineare; modulo|Fx|=k|x|=kℓ conk>0. Siax+2 siax−2 conk2 danno modulo4N e segni opposti.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-04",
+      "sourceSha256": "1ba6c96e9f3cb80d2de4f7075bfee6fd65fba06c8e4637f07e902f15ba5d2754",
+      "candidateSha256": "4d2a3032de516d04b8619c873e1a487ab99af34cf3d66eb9d71307f6b354792f",
+      "reviewedSignature": "13debe906d09ddad2ae57525e1adfc68210affaa64bda02b99038d872136aeb4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Raddoppia da 4 a 8 N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ℓ2m fissato,k2→4 N/m: F4→8N, rapporto2. Si confrontano molle/costanti distinte, non stessa costante variabile durante deformazione.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "16raddoppierebbe ancheℓ;2Ninvertirebbe rigidezza;invarianza ignoraknuova;modulonegativo impossibile.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ2m fissato,k2→4 N/m: F4→8N, rapporto2. Si confrontano molle/costanti distinte, non stessa costante variabile durante deformazione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-05",
+      "sourceSha256": "e0775e432d237255e82c077be403639e6a4fe981df7b9846769272abc5eb66c6",
+      "candidateSha256": "8bca94955270af61667bde778490d26e7219906da8ca9dc25af14531a663904c",
+      "reviewedSignature": "06230113c71f2fd5f7ec32c3ae1605983ec9ff46fe0552ac47885e489ec887e2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ℓ200cm=2m; k=F/ℓ=4N/(2m)=2N/m. InN/cm vale4/200=1/50 N/cm; moltiplicare per100 ricostruisce2N/m.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "1/50N/cm è esattamente2N/m; copiare1/50 inN/m introducefattore100errato. Nonforzaallungamento ma rapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ200cm=2m; k=F/ℓ=4N/(2m)=2N/m. InN/cm vale4/200=1/50 N/cm; moltiplicare per100 ricostruisce2N/m.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-06",
+      "sourceSha256": "7fcf8ed97aec1e037f46be9d255f7e5a6119c43ccb7f2d6122d7e2d192b3e430",
+      "candidateSha256": "56eb7a8d70f27f7fd8f6eab3f364f1f75842b4f6b71150f38b82fc6aadeaf021",
+      "reviewedSignature": "093b76c8ccd6338ca57b5ac25b6bcfd565fe15bd53017f758a15aa6d6ab52fc5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "ℓ=F/k=4N/(2N/m)=2m=200cm. È deformazione dalla lunghezza naturale, non lunghezza totale.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "Possibilex−2m incompressione conservaℓ2m. SenzaL0 non si ricavalunghezzafinale; ℓnonL.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ=F/k=4N/(2N/m)=2m=200cm. È deformazione dalla lunghezza naturale, non lunghezza totale.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-07",
+      "sourceSha256": "ec5c7f22e5f72bfceee0a1f6d9b557be1b7673e3d20b421d31af582037e55eda",
+      "candidateSha256": "5b62268818a2e7d25c4153a4060720f085078960be2e527675bbc4195d0f7b24",
+      "reviewedSignature": "84bca87ac7f243d7a0e91b8875ab03ced468e6250b712bc667c076c9b32ccf14",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Stessak2N/m: F_A4N,F_B8N→rapporto2. Energia crescerebbe di4 perché dipende daℓ², ma non forza.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "4 confondequadratoenergia,1/2rapporto inverso. Entrambeconfigurazioni esplicitamenteelastichelineari.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Stessak2N/m: F_A4N,F_B8N→rapporto2. Energia crescerebbe di4 perché dipende daℓ², ma non forza.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-08",
+      "sourceSha256": "d4913f006703d224f064733598ea2013d07a6a4325d7c41dfebad6e3ed7c4cf2",
+      "candidateSha256": "a65af0b702bf878ccc0226cf0f157aee8aa3612433f7e47d7ae147ff7ba39664",
+      "reviewedSignature": "f0213f85fbafa4cbe7b135324522023ab4d4ef4cdbd5e0e6c6a8e0a123ad6e69",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ℓ200cm=2m,F4N; proposta8 meno4=+4N. Errorecentimetri darebbe400N e non coincide con proposta8.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "−4ordineinverso;8ripeteproposta;400erroreconversionediverso. Scartodimoduli noncomponenteorientata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ200cm=2m,F4N; proposta8 meno4=+4N. Errorecentimetri darebbe400N e non coincide con proposta8.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-09",
+      "sourceSha256": "a68011a69549ba196cb71e15459b01054a1c9f4c0a0e3ec06e634cd36f80af19",
+      "candidateSha256": "f4fb0b1d8e21e4eb5c89430d72e87d0b9ab002ff1ada6d1ac650c1e9c436efe2",
+      "reviewedSignature": "745195d876296aa0d55ce20867c74338a9cb4cfd6a4886443662de33b20bc8fa",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "k=F/ℓ",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "F=kℓ conℓ>0→k=F/ℓ>0, unitàN/m. Con componenti orientate sarebbe invecek=−Fx/x.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "Fℓ energia,ℓ/F cedevolezza(1/rigidezza),−F/ℓ negativo,F/ℓ² unitàN/m² inveceN/m.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=kℓ conℓ>0→k=F/ℓ>0, unitàN/m. Con componenti orientate sarebbe invecek=−Fx/x.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-10",
+      "sourceSha256": "5143c7e087ba9e69e03581c3531a1c603e91e215d01872113f496ba4b806dfd5",
+      "candidateSha256": "8dee0969721d9d321a7be7891f3ef49d923c3e350cb22901e2fc498b0eaa17d7",
+      "reviewedSignature": "4e29362401f684597acf5916437db2f0f667516a836cb187a37d7392bc2caaf9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "F_B=(κ₁k)(κ₂ℓ)→rapportoκ₁κ₂. Energia quadraticainℓ avrebbeκ₁κ₂², diversa grandezza.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "Quozientiinvertonounfattore;κ₁κ₂² energia,nonforza;somma2allidentità invece1. Forze diestremidiversi nonsono sommate.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F_B=(κ₁k)(κ₂ℓ)→rapportoκ₁κ₂. Energia quadraticainℓ avrebbeκ₁κ₂², diversa grandezza.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-11",
+      "sourceSha256": "c63d95414f5ce7dc3d698dca0f5e07a40f06caaa75627844e52f46d8e17c04b8",
+      "candidateSha256": "44fb8f68458dc3a0434b636773c86c444cfde2b00e1661fbe55e6b4f38661264",
+      "reviewedSignature": "a3e7da26db0f8d6bbc27622ad1331e1fa89513b43cb1f9c36f88ecc464726a4b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "A2·2=4N,B4·4=16N→rapporto4, non16N; fattori2·2.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "2 consideraunfattore;8propriodellenergia quandoanchekraddoppia;16èmoduloB nonrapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A2·2=4N,B4·4=16N→rapporto4, non16N; fattori2·2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-12",
+      "sourceSha256": "59932dc01f9e4410bc0b1d80ef9af6f69894cade9cdb0b11293bf944fe44a9dc",
+      "candidateSha256": "e62077c1df45f0dfd6d244f0c7f64fe0261a2c63de3558247abbce9800101a9d",
+      "reviewedSignature": "c52a281986de1ee7b09d12252eb2b1556ebea8f42c0dc5b657f618cc8195cff9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(4+16)/2=10N. kmedio3N/m,ℓmedia3m darebbero9N, non10N. Intensità inprovedistinte, non risultante.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "20somma,4o16singolemisure,9prodottodati medi. Nessun segnovettorialedamediare.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(4+16)/2=10N. kmedio3N/m,ℓmedia3m darebbero9N, non10N. Intensità inprovedistinte, non risultante.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-13",
+      "sourceSha256": "8d1b4c10414fc07e9eff85ba115521e7a277750594a6eddc31ec58dd0e53a5ec",
+      "candidateSha256": "bba965b55d573b5d391879692b37f56b5defbb84ad54655f7d41385953280bfb",
+      "reviewedSignature": "a470e0f5cf6880a3433d3a34348b616c0ae0f90281dbc401f4a0572d0b6bf614",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetF_B4·4=16N,k_B4N/m→ℓ_B4m; suℓ_A2m rapporto2.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "ℓquadrupla conkraddoppiata→Fottupla;ℓinvariata→Fdoppia;4mnuovi nonrapporto4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetF_B4·4=16N,k_B4N/m→ℓ_B4m; suℓ_A2m rapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-14",
+      "sourceSha256": "d1b87e52642aabb9913647ddaf70de6aa8e63ab608ef5e9fa0962ec9e8e34ea5",
+      "candidateSha256": "20580bbc73bd98268fe52b008ab8b3f0862a65212a96fe131061312ee694877b",
+      "reviewedSignature": "ae949fda6b712dd06ad05491b24cc68ab92b3b522c7eaca1ca9ab93ab268d3a7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Fref4N,Sref12→c3N⁻¹;S48→F16N;ℓ4m→k4N/m. Inavanti4·4=16,S48.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "S48comeforzaSI→k12N/m invece4; la taratura nonestende validitàfisicadelregimelineare.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Fref4N,Sref12→c3N⁻¹;S48→F16N;ℓ4m→k4N/m. Inavanti4·4=16,S48.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-15",
+      "sourceSha256": "d3729b0c0d5ab5ae70a4d589f6d1ed10df0fa541c188d2cf643d886cc58d4716",
+      "candidateSha256": "b30e49940e53234ba37fda5e05f73d6580b6bc00607a440c501335ed69c9d038",
+      "reviewedSignature": "592b5b27aa9b753bb45f9a1ac89395d985f3f19876232861a74c5ce2b1c5ff63",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ΔS33−9=24,ΔF16−4=12N→c2N⁻¹;d1;S17→F8N;ℓ2m→k4N/m.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione.",
+      "distractors": "k2,3,5,8N/m aℓ2m dannoS9,13,21,33;solo4dà17. Rapportoletturegrezzenontoglieoffset.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS33−9=24,ΔF16−4=12N→c2N⁻¹;d1;S17→F8N;ℓ2m→k4N/m.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-hooke-force-16",
+      "sourceSha256": "2d829b836423b4f8f1a7f9786f2910bdee8f69abdfbdaf354fc1d82f0b451b33",
+      "candidateSha256": "6c5f6efb838e93957ea26238027d2d9b26b2ba9249a1d6ad85d6329b33e5e64e",
+      "reviewedSignature": "86da49946fb556d40af501f3417f134cca5d4ae61a08635f883547c800740041",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "k=αℓ conα1N/m² tra prove→F=αℓ²;ℓ²4N/(1N/m²)=4m². Rami±2m, moduloℓ>0 seleziona2m e k2N/m; xnegativo non significaℓnegativo.",
+      "physicalAssumptions": "Molla ideale lineare, k>0 costante nella prova e deformazione dal riferimento naturale entro regime elastico dichiarato; ℓ=|x|>0, F modulo positivo, componente Fx=−kx. Costante e deformazione espresse inunitàcompatibili, nessuna confusionelunghezzatotale/deformazione. Relazione k=(1N/m²)ℓ seleziona molle/configurazioni di prove diverse: non una rigidezza variabile conℓ nella stessa prova.",
+      "distractors": "−2m vietato permodulo e renderebbeknegativo nelvincolo; compressionex<0 haℓ|x|>0 e nonforniscealtroℓfisico.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. k=αℓ conα1N/m² tra prove→F=αℓ²;ℓ²4N/(1N/m²)=4m². Rami±2m, moduloℓ>0 seleziona2m e k2N/m; xnegativo non significaℓnegativo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "5298b76354a7588e0bce192fe06689480e47d1857ee35ae3c2ca46df5b682f9c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "2ad5a41ba9f1604027574245a0beba81a4a8fb83",
+  "packageSha256": "71108cf0adca5da59d9948bcb69cdfc04b2dae10d8b732297012cc8989b7ea76",
+  "bindingsSha256": "b42a99f64a004bcf4dc99ebd050f83a4db63557354d936c36ba78ba7d265b96e",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-03.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}
