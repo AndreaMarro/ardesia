@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1060" viewBox="0 0 600 1060" role="img" aria-labelledby="title desc">
+<title id="title">Dalla freccia alla proiezione orientata</title>
+<desc id="desc">Tre pannelli verticali con una scala comune di trenta pixel per metro. Prima un vettore di quattro metri forma sessanta gradi con x; poi la sua proiezione è due metri. Infine un vettore di dieci metri forma centoventi gradi con x e ha proiezione negativa di cinque metri. Le perpendicolari tratteggiate mostrano come costruire la proiezione.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="600" height="1060" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="40" font-weight="bold">1 · Un vettore a 60°</text>
+<text x="28" y="76">R = 4 m · scala: 30 px per metro</text>
+<path d="M110 240H440" stroke="#879b9a" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M170 240L230 136.0769515" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M210 240A40 40 0 0 0 190 205.358984" fill="none" stroke="#173d50" stroke-width="2"/>
+<text x="231" y="222">60°</text><text x="250" y="147">R = 4 m</text><text x="462" y="247">+x</text>
+<text x="28" y="300" font-weight="bold">2 · Abbassare la perpendicolare</text>
+<text x="28" y="336">Il cateto adiacente è la componente.</text>
+<path d="M170 490L230 386.0769515L230 490Z" fill="#cee2de"/>
+<path d="M110 490H440" stroke="#879b9a" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M170 490L230 386.0769515" stroke="#173d50" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M230 386.0769515V490" stroke="#173d50" stroke-width="2" stroke-dasharray="7 6"/>
+<path d="M170 490H230" stroke="#173d50" stroke-width="5" marker-end="url(#arrow)"/>
+<path d="M220 490V480H230" fill="none" stroke="#173d50" stroke-width="2"/>
+<text x="265" y="436">P = 4 m × 1/2</text><text x="265" y="474">P = +2 m</text><text x="462" y="497">+x</text>
+<path d="M28 535H572" stroke="#879b9a"/>
+<text x="28" y="578" font-weight="bold">3 · Un angolo ottuso cambia il segno</text>
+<text x="28" y="614">R = 10 m · stessa scala · θ = 120°</text>
+<path d="M130 940H520" stroke="#879b9a" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M360 940L210 680.1923789" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M210 680.1923789V940" stroke="#173d50" stroke-width="2" stroke-dasharray="7 6"/>
+<path d="M360 940H210" stroke="#173d50" stroke-width="5" marker-end="url(#arrow)"/>
+<path d="M410 940A50 50 0 0 0 335 896.69873" fill="none" stroke="#173d50" stroke-width="2"/>
+<text x="392" y="880">120°</text><text x="236" y="728">R = 10 m</text><text x="540" y="947">+x</text>
+<text x="250" y="978">P = −5 m</text><text x="28" y="1024">P = R cosθ · il modulo R resta positivo.</text>
+</g></svg>
