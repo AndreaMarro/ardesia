@@ -1,0 +1,1210 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-static-threshold-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2701,
+      "title": "La soglia non è ogni forza d’attrito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un blocco di massa m=2 kg poggia su un piano orizzontale. La sola trazione applicata è orizzontale e cresce lentamente verso destra fino al limite della quiete. Il contatto permane, g=10 m/s² e il coefficiente statico è μ_s=1/2. Qual è la massima trazione F_max sostenibile senza scorrimento, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La trazione non ha componente verticale: la normale equilibra il peso, quindi N=mg. Finché il blocco resta fermo, l’attrito si adegua alla trazione con verso opposto. La massima intensità ammessa dal modello di Coulomb è μ_sN; solo alla soglia la forza effettiva raggiunge quel massimo."
+        },
+        {
+          "type": "formula",
+          "text": "N=mg"
+        },
+        {
+          "type": "formula",
+          "text": "mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " 0\\leq |f_s|\\leq\\mu_sN"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max}=\\mu_sN"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max}=\\frac12(20\\,\\mathrm N)"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12(20\\,\\mathrm N)=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Dieci newton è la soglia, non l’attrito presente per qualsiasi trazione. Per una trazione di 4 N il blocco fermo richiederebbe soltanto 4 N di attrito verso sinistra. Oltre 10 N la quiete non è più compatibile con questo modello statico; non si può dedurre il nuovo attrito dinamico senza altri dati."
+        }
+      ],
+      "hints": [
+        "Trova prima la normale, poi il massimo statico, distinguendolo dalla forza effettiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci newton è la soglia, non l’attrito presente per qualsiasi trazione. Per una trazione di 4 N il blocco fermo richiederebbe soltanto 4 N di attrito verso sinistra. Oltre 10 N la quiete non è più compatibile con questo modello statico; non si può dedurre il nuovo attrito dinamico senza altri dati.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2702,
+      "title": "L’unità del massimo statico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 1,
+      "prompt": "Un blocco in contatto con un piano orizzontale è tirato solo orizzontalmente. La soglia di quiete è F_max=μ_smg, con μ_s coefficiente statico adimensionale, m massa e g accelerazione gravitazionale. Quale unità SI esprime F_max?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg",
+          "m/s²",
+          "N",
+          "s",
+          "1"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente non modifica la dimensione del prodotto massa per accelerazione. mg è un peso e si misura in newton, perciò anche il massimo attrito e la trazione alla soglia hanno dimensione di forza. Il fatto che μ_s sia un numero non rende adimensionale il risultato."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu_s]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [F_{\\max}]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm N=1\\,\\mathrm{kg\\,m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "N è corretto. kg è la sola massa, m/s² la sola accelerazione, s una durata e 1 il coefficiente puro. L’uguaglianza alla soglia mette a confronto due forze; non consente di confondere il loro modulo con una massa."
+        }
+      ],
+      "hints": [
+        "Espandi il newton e confrontalo con le unità di μ_smg.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è corretto. kg è la sola massa, m/s² la sola accelerazione, s una durata e 1 il coefficiente puro. L’uguaglianza alla soglia mette a confronto due forze; non consente di confondere il loro modulo con una massa.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2703,
+      "title": "Quattro newton sotto una soglia di dieci",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 1,
+      "prompt": "Un blocco è fermo su un piano orizzontale in un riferimento inerziale. Il massimo attrito statico vale 10 N. Una spinta di 4 N verso destra non lo mette in moto e non ci sono altre forze orizzontali applicate. Qual è il modulo dell’attrito effettivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0 N",
+          "4 N",
+          "6 N",
+          "10 N",
+          "14 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quiete impone risultante orizzontale nulla. La spinta di quattro newton deve essere bilanciata da quattro newton verso sinistra; questo valore è ammesso perché inferiore al massimo dieci. La forza statica non prende automaticamente il valore μ_sN."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7ba38d516657fe3f46373bdacb51214a769420882e1894911e8b86c42e55560a",
+          "text": "Tre tappe sul caso P=4N e massimo10N: le sole forze orizzontali hanno scala10px/N e versi opposti; il grafico del modulo statico richiesto mostra |f_s|=P soltanto da0a10N, con30px/N su entrambi gli assi; l’intervallo orientato −10N≤f_s≤10N, con20px/N, contiene f_s=−4N per una spinta P positiva. La zona oltre10N non viene descritta come un attrito statico costante né come una legge dinamica."
+        },
+        {
+          "type": "formula",
+          "text": "P+f_s=0"
+        },
+        {
+          "type": "formula",
+          "text": " f_s=-P"
+        },
+        {
+          "type": "formula",
+          "text": "-P=-4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " |f_s|=4\\,\\mathrm N<10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Zero lascerebbe la spinta senza equilibrio. Dieci newton verso sinistra produrrebbero una risultante di 6 N verso sinistra, non la quiete dichiarata. Sei è la riserva fra massimo e valore necessario, non l’attrito; quattordici somma due grandezze con ruoli diversi. Senza spinta né altre tendenze orizzontali l’attrito richiesto potrebbe invece essere zero."
+        }
+      ],
+      "hints": [
+        "Usa l’equilibrio per trovare la forza necessaria e soltanto dopo confrontala con il massimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero lascerebbe la spinta senza equilibrio. Dieci newton verso sinistra produrrebbero una risultante di 6 N verso sinistra, non la quiete dichiarata. Sei è la riserva fra massimo e valore necessario, non l’attrito; quattordici somma due grandezze con ruoli diversi. Senza spinta né altre tendenze orizzontali l’attrito richiesto potrebbe invece essere zero.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2704,
+      "title": "Cambiare superficie, stessa normale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 1,
+      "prompt": "Due prove di trazione orizzontale crescente usano un blocco di massa 2 kg su un piano orizzontale, con g=10 m/s². Il contatto resta mantenuto. Si cerca ogni volta il limite della quiete; μ_s passa da 1/2 a 1/4. Come cambia la soglia F_max?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 10 N",
+          "Raddoppia a 20 N",
+          "Si dimezza da 10 a 5 N",
+          "Scende a zero",
+          "Diventa −5 N"
+        ],
+        "value": "Si dimezza da 10 a 5 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "N=mg rimane venti newton perché né massa né direzione della trazione cambiano. Il massimo statico segue linearmente il coefficiente: un quarto di venti è cinque, metà dei dieci iniziali. Confrontiamo massimi di due prove, non forze effettive a una trazione non assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "N=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,1}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,2}=\\frac14(20\\,\\mathrm N)"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac14(20\\,\\mathrm N)=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,2}/F_{\\max,1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare invertirebbe l’effetto di μ_s; lasciare invariato il massimo ignorerebbe il nuovo contatto. Entrambi i massimi sono moduli positivi. La normale resta uguale ma non coincide con il massimo attrito, salvo il particolare coefficiente unitario."
+        }
+      ],
+      "hints": [
+        "Il peso è uguale nelle due prove; cambia soltanto la frazione della normale disponibile alla soglia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Raddoppiare invertirebbe l’effetto di μ_s; lasciare invariato il massimo ignorerebbe il nuovo contatto. Entrambi i massimi sono moduli positivi. La normale resta uguale ma non coincide con il massimo attrito, salvo il particolare coefficiente unitario.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2705,
+      "title": "Misurare μ_s dalla soglia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "In una prova orizzontale lenta su un piano orizzontale si misura F_max=10 N al limite della quiete. La massa è m=2 kg, g=10 m/s² e non ci sono altre forze verticali. Quanto vale μ_s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "1",
+          "2",
+          "5"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’osservazione è proprio una soglia: possiamo uguagliare F_max a μ_smg. La normale vale venti newton. Dividendo la soglia per questa normale otteniamo un rapporto puro pari a un mezzo, senza confondere una prova sotto soglia con una misura del massimo."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max}=\\mu_smg"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_s=\\frac{F_{\\max}}{mg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_s=\\frac{10\\,\\mathrm N}{20\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10\\,\\mathrm N}{20\\,\\mathrm N}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto darebbe 5 N e uno darebbe 20 N; due e cinque darebbero massimi ancora maggiori. Non è necessario imporre in generale μ_s<1: è un coefficiente di contatto, non una probabilità. Qui il valore un mezzo segue dai dati della misura al limite."
+        }
+      ],
+      "hints": [
+        "La misura al limite fornisce il massimo, da dividere per la normale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto darebbe 5 N e uno darebbe 20 N; due e cinque darebbero massimi ancora maggiori. Non è necessario imporre in generale μ_s<1: è un coefficiente di contatto, non una probabilità. Qui il valore un mezzo segue dai dati della misura al limite.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2706,
+      "title": "Ricostruire la massa dal limite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Un blocco su piano orizzontale resta in contatto mentre una trazione orizzontale crescente raggiunge la soglia F_max=10 N. Si conoscono μ_s=1/2 e g=10 m/s², senza altre forze verticali. Quanto vale m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente e il campo sono non nulli. Dalla soglia F_max=μ_smg dividiamo per μ_sg: il prodotto al denominatore è cinque metri al secondo quadrato, non una forza. Dieci newton divisi per quell’accelerazione restituiscono la massa."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{F_{\\max}}{\\mu_sg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_sg=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{10\\,\\mathrm N}{5\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10\\,\\mathrm N}{5\\,\\mathrm{m/s^2}}=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà N=mg=20 N e μ_sN=10 N. Un chilogrammo farebbe confondere la soglia col peso; quattro chilogrammi darebbero una soglia di 20 N. La normale risulta positiva, coerente col contatto e con la trazione puramente orizzontale."
+        }
+      ],
+      "hints": [
+        "Isola la massa dividendo per entrambi i fattori che la moltiplicano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà N=mg=20 N e μ_sN=10 N. Un chilogrammo farebbe confondere la soglia col peso; quattro chilogrammi darebbero una soglia di 20 N. La normale risulta positiva, coerente col contatto e con la trazione puramente orizzontale.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2707,
+      "title": "Un carico doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Due prove di soglia usano trazione solo orizzontale e piano orizzontale, con μ_s=1/2 e g=10 m/s². La massa passa da m_A=2 kg a m_B=4 kg. Il contatto permane in entrambe. Quanto vale F_max,B/F_max,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa doppia raddoppia il peso e quindi la normale. A coefficiente fissato raddoppia anche il massimo statico. Calcolare le due soglie distingue questo confronto dal valore dell’attrito che si eserciterebbe sotto una spinta fissata minore di entrambe le soglie."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}/F_{\\max,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un rapporto un mezzo sarebbe A su B. Quattro introdurrebbe un quadrato della massa non presente nel modello. Se si applicassero invece 4 N in entrambe le prove mantenendo la quiete, l’attrito effettivo sarebbe 4 N in entrambe: a raddoppiare qui è la capacità massima, non ogni forza di attrito."
+        }
+      ],
+      "hints": [
+        "Confronta le capacità al limite, non una forza statica richiesta da una spinta inferiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un rapporto un mezzo sarebbe A su B. Quattro introdurrebbe un quadrato della massa non presente nel modello. Se si applicassero invece 4 N in entrambe le prove mantenendo la quiete, l’attrito effettivo sarebbe 4 N in entrambe: a raddoppiare qui è la capacità massima, non ogni forza di attrito.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2708,
+      "title": "Lo scarto di una soglia proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Per un blocco su piano orizzontale con m=2 kg, μ_s=1/2 e g=10 m/s², una trazione solo orizzontale viene aumentata lentamente. Una soluzione propone F_max,proposto=20 N. Quanto vale «proposto meno massimo corretto», in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale è venti newton e il coefficiente ne ammette metà come massimo statico. La soglia corretta è dunque dieci newton. La proposta ha usato l’intera normale; lo scarto assegnato è venti meno dieci."
+        },
+        {
+          "type": "formula",
+          "text": "N=mg"
+        },
+        {
+          "type": "formula",
+          "text": "mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max}=\\mu_sN"
+        },
+        {
+          "type": "formula",
+          "text": "\\mu_sN=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm N-10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "20\\,\\mathrm N-10\\,\\mathrm N=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto positivo segnala una sovrastima. −10 N userebbe l’ordine inverso, mentre 20 N ripeterebbe il dato errato. Normale e attrito sono forze diverse: moltiplicare per μ_s non è facoltativo solo perché entrambe hanno unità di newton."
+        }
+      ],
+      "hints": [
+        "La proposta coincide con la normale: controlla se è stato perso il coefficiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lo scarto positivo segnala una sovrastima. −10 N userebbe l’ordine inverso, mentre 20 N ripeterebbe il dato errato. Normale e attrito sono forze diverse: moltiplicare per μ_s non è facoltativo solo perché entrambe hanno unità di newton.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2709,
+      "title": "L’inversa deve usare una soglia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Un blocco su piano orizzontale, senza altre azioni verticali, è tirato solo orizzontalmente. Si misura il limite F_max della quiete e si conoscono m,g>0. Quale formula ricostruisce μ_s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "μ_s=F_max/(mg)",
+          "μ_s=F_max/m",
+          "μ_s=mg/F_max",
+          "μ_s=F_max·mg",
+          "μ_s=F_max/(2mg)"
+        ],
+        "value": "μ_s=F_max/(mg)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Al limite vale l’uguaglianza F_max=μ_smg. Dividiamo entrambi i membri per mg positivo. Il risultato deve essere adimensionale. Una forza di equilibrio misurata prima del limite darebbe invece soltanto un limite inferiore per μ_s, non necessariamente il coefficiente esatto."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max}=\\mu_smg"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_{\\max}}{mg}=\\mu_s"
+        },
+        {
+          "type": "text",
+          "text": "F_max/m ha dimensione di accelerazione; F_max·mg di forza al quadrato. Il reciproco mg/F_max può essere puro ma non isola μ_s; il due aggiunto lo dimezza. La prova al limite è ciò che autorizza l’uguaglianza, al posto della sola disuguaglianza statica."
+        }
+      ],
+      "hints": [
+        "Controlla sia le unità sia il fatto che la misura sia al massimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "F_max/m ha dimensione di accelerazione; F_max·mg di forza al quadrato. Il reciproco mg/F_max può essere puro ma non isola μ_s; il due aggiunto lo dimezza. La prova al limite è ciò che autorizza l’uguaglianza, al posto della sola disuguaglianza statica.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2710,
+      "title": "Scalare coefficiente e massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Si confrontano soglie su piano orizzontale, con trazione solo orizzontale e lo stesso g>0. Nella prova B μ_s,B=κ₁μ_s,A e m_B=κ₂m_A, con fattori positivi; tutte le grandezze sono costanti durante ciascuna prova. Quanto vale F_max,B/F_max,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁κ₂",
+          "κ₁²κ₂",
+          "κ₁+κ₂"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La soglia è il prodotto del coefficiente per la normale e, qui, la normale è mg. Nel rapporto fra le due soglie g e i dati della prima prova si cancellano; rimangono i due fattori di variazione moltiplicati. Non si sta mantenendo fissa una spinta sotto soglia."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=\\mu_{s,A}m_Ag"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=\\kappa_1\\kappa_2F_{\\max,A}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}/F_{\\max,A}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertirebbero l’effetto di uno dei due ingressi. Il quadrato conterebbe due volte la variazione del coefficiente; la somma darebbe due quando entrambi i fattori valgono uno, anziché lasciare invariata la soglia. Non c’è un vincolo generale che renda μ_s una probabilità compresa fra zero e uno."
+        }
+      ],
+      "hints": [
+        "Forma prima il massimo della seconda prova e confrontalo con quello della prima.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertirebbero l’effetto di uno dei due ingressi. Il quadrato conterebbe due volte la variazione del coefficiente; la somma darebbe due quando entrambi i fattori valgono uno, anziché lasciare invariata la soglia. Non c’è un vincolo generale che renda μ_s una probabilità compresa fra zero e uno.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2711,
+      "title": "Due cambiamenti della soglia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Due prove statiche su piano orizzontale usano trazione solo orizzontale e g=10 m/s². A: μ_s=1/2,m=2 kg. B: μ_s=1,m=3 kg. Quanto vale il rapporto delle soglie F_max,B/F_max,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente raddoppia e la massa cresce di tre mezzi. I fattori si moltiplicano, dando tre. Equivalentemente, nella prima prova il massimo è metà di venti newton, nella seconda è l’intera normale di trenta newton."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}/F_{\\max,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo μ_s e tre mezzi solo la massa. Uno ignorerebbe entrambi i cambiamenti; sei aggiungerebbe un raddoppio. Un coefficiente statico pari a uno è ammissibile nel modello: significa che in B massimo statico e normale hanno uguale modulo, non uguale direzione."
+        }
+      ],
+      "hints": [
+        "Confronta i massimi 10 N e 30 N, mantenendo distinto un rapporto puro da una forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo μ_s e tre mezzi solo la massa. Uno ignorerebbe entrambi i cambiamenti; sei aggiungerebbe un raddoppio. Un coefficiente statico pari a uno è ammissibile nel modello: significa che in B massimo statico e normale hanno uguale modulo, non uguale direzione.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2712,
+      "title": "Media di due capacità statiche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 2,
+      "prompt": "Su un piano orizzontale, in prove con trazione solo orizzontale e g=10 m/s², le coppie sono A: μ_s=1/2,m=2 kg e B: μ_s=1,m=3 kg. Qual è la media aritmetica dei due massimi F_max, assegnando uguale peso alle prove, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le soglie delle due prove sono dieci e trenta newton. Con uguale peso ne sommiamo i valori e dividiamo per due. Si mediano due capacità al limite, non forze orientate applicate contemporaneamente sullo stesso blocco."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F_{\\max}=\\frac{10+30}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10+30}{2}\\,\\mathrm N=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta newton sarebbe la somma; dieci e trenta ripetono una sola prova. Usare gli ingressi medi μ_s=3/4 e m=5/2 kg darebbe 75/4 N, diverso da 20 N=80/4 N: la media del prodotto non è il prodotto delle medie. Nessun valore decimale è necessario per distinguerli."
+        }
+      ],
+      "hints": [
+        "Calcola i due massimi prima della semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta newton sarebbe la somma; dieci e trenta ripetono una sola prova. Usare gli ingressi medi μ_s=3/4 e m=5/2 kg darebbe 75/4 N, diverso da 20 N=80/4 N: la media del prodotto non è il prodotto delle medie. Nessun valore decimale è necessario per distinguerli.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2713,
+      "title": "Compensare una superficie diversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 3,
+      "prompt": "La prima prova di soglia orizzontale ha μ_s,A=1/2,m_A=2 kg e g=10 m/s². Nella seconda μ_s,B=1 e si vuole F_max,B=3F_max,A. La trazione è orizzontale e il contatto permane. Quale rapporto m_B/m_A è necessario?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "3/2",
+          "2/3",
+          "1/2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il massimo iniziale è dieci newton e quello obiettivo è trenta. Con coefficiente unitario il nuovo massimo coincide col peso: serve una massa di tre chilogrammi. Rispetto ai due iniziali il rapporto è tre mezzi; non occorre triplicare la massa perché il coefficiente è già raddoppiato."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{F_{\\max,B}}{\\mu_{s,B}g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_{\\max,B}}{\\mu_{s,B}g}=3\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B/m_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre ignorerebbe il coefficiente doppio e darebbe una soglia sei volte maggiore. Due darebbe un fattore quattro; i rapporti inferiori a uno non raggiungerebbero l’obiettivo assegnato. Tre chilogrammi è la nuova massa, mentre tre mezzi è il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore desiderato tre per il fattore due già fornito da μ_s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre ignorerebbe il coefficiente doppio e darebbe una soglia sei volte maggiore. Due darebbe un fattore quattro; i rapporti inferiori a uno non raggiungerebbero l’obiettivo assegnato. Tre chilogrammi è la nuova massa, mentre tre mezzi è il rapporto richiesto.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2714,
+      "title": "Dal display alla superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 3,
+      "prompt": "Un display ideale continuo mostra S=cF_max, con c>0 costante e offset nullo. Le prove sono trazioni orizzontali al limite statico su piano orizzontale, con g=10 m/s². Il riferimento μ_s=1/2,m=2 kg dà S=30. Una prova con m=3 kg dà S=90. Quanto vale μ_s nella seconda prova?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La soglia del riferimento è dieci newton, perciò il display ha guadagno c=3 N⁻¹. La nuova lettura novanta rappresenta trenta newton di soglia. La nuova normale è anch’essa trenta newton: il rapporto fra massimo e normale vale uno."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{30}{10\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{30}{10\\,\\mathrm N}=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,B}=\\frac{90}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{90}{c}=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_{s,B}=\\frac{30\\,\\mathrm N}{30\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{30\\,\\mathrm N}{30\\,\\mathrm N}=1"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura novanta come forza in newton darebbe un coefficiente tre, includendo per errore il guadagno. Il valore corretto uno è un coefficiente di contatto ammissibile. Verificando in avanti, μ_smg=30 N e S=90 riproducono entrambi i dati."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno del display prima di dividere la soglia per la normale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura novanta come forza in newton darebbe un coefficiente tre, includendo per errore il guadagno. Il valore corretto uno è un coefficiente di contatto ammissibile. Verificando in avanti, μ_smg=30 N e S=90 riproducono entrambi i dati.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2715,
+      "title": "L’offset prima della soglia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 3,
+      "prompt": "Un display continuo segue S=cF_max+d, con c>0,d costanti. Ogni prova è una trazione orizzontale al limite statico su piano orizzontale, g=10 m/s². A: μ_s=1/2,m=2 kg,S=21. B: μ_s=1,m=3 kg,S=61. In C m=2 kg e S=11. Qual è μ_s,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/4",
+          "1",
+          "2",
+          "1/8"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le soglie note sono dieci e trenta newton. La differenza di quaranta unità di lettura per venti newton dà c=2 N⁻¹; il riferimento A lascia d=1. La lettura undici, corretta per l’offset, diventa cinque newton. Dividendo per la normale di venti newton troviamo un quarto."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{61-21}{30\\,\\mathrm N-10\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{61-21}{30\\,\\mathrm N-10\\,\\mathrm N}=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=21-c(10\\,\\mathrm N)"
+        },
+        {
+          "type": "formula",
+          "text": "21-c(10\\,\\mathrm N)=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\max,C}=\\frac{11-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{11-1}{c}=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_{s,C}=\\frac5{20}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac5{20}=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo ripete A e darebbe S=21; uno, due e un ottavo darebbero rispettivamente S=41,81,6. L’offset impedisce di identificare il rapporto fra letture grezze con quello fra soglie. Il risultato un quarto ricostruisce F_max=5 N e S=11."
+        }
+      ],
+      "hints": [
+        "Usa le differenze fra riferimenti per isolare il guadagno, poi sottrai l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo ripete A e darebbe S=21; uno, due e un ottavo darebbero rispettivamente S=41,81,6. L’offset impedisce di identificare il rapporto fra letture grezze con quello fra soglie. Il risultato un quarto ricostruisce F_max=5 N e S=11.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-static-threshold-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2716,
+      "title": "Un vincolo fra massa e superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "static-threshold",
+      "difficulty": 3,
+      "prompt": "In prove distinte su piano orizzontale si seleziona μ_s=m/(4 kg), con m>0 costante in ogni prova. La trazione è solo orizzontale, g=10 m/s² e il contatto permane. Si misura la soglia F_max=10 N. Quanto vale m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il denominatore quattro chilogrammi rende il coefficiente adimensionale. Inserendo il vincolo nella soglia μ_smg compare m². Isoliamo il quadrato e scegliamo la radice positiva, perché l’incognita è una massa. Il vincolo confronta contatti di prove diverse e non fa variare la massa durante il moto."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\max}=\\frac{gm^2}{4\\,\\mathrm{kg}}"
+        },
+        {
+          "type": "formula",
+          "text": " m^2=\\frac{(4\\,\\mathrm{kg})F_{\\max}}g"
+        },
+        {
+          "type": "formula",
+          "text": " m^2=4\\,\\mathrm{kg^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_+=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_-=-2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Solo m=2 kg è nel dominio; segue μ_s=1/2 e la soglia torna dieci newton. Il ramo negativo renderebbe negativi massa e coefficiente. Usare una proporzionalità solo lineare in m dimenticherebbe che nel confronto cresce anche μ_s, quindi il massimo dipende dal quadrato della massa."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con le sue unità prima di cercare la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Solo m=2 kg è nel dominio; segue μ_s=1/2 e la soglia torna dieci newton. Il ramo negativo renderebbe negativi massa e coefficiente. Usare una proporzionalità solo lineare in m dimenticherebbe che nel confronto cresce anche μ_s, quindi il massimo dipende dal quadrato della massa.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Intervallo dell’attrito statico",
+        "Soglia e normale",
+        "Equilibrio e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7ba38d516657fe3f46373bdacb51214a769420882e1894911e8b86c42e55560a",
+      "name": "static-threshold-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMTE3MCIgdmlld0JveD0iMCAwIDYwMCAxMTcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiA8dGl0bGUgaWQ9InRpdGxlIj5BdHRyaXRvIHN0YXRpY28gZWZmZXR0aXZvIGUgaW50ZXJ2YWxsbyBhbW1lc3NvPC90aXRsZT4KIDxkZXNjIGlkPSJkZXNjIj5TcGludGEgcXVhdHRybyBuZXd0b24gdmVyc28gZGVzdHJhLCBhdHRyaXRvIHF1YXR0cm8gbmV3dG9uIHZlcnNvIHNpbmlzdHJhLCBzb3R0byB1biBtYXNzaW1vIGRpIGRpZWNpLiBOZWxsYSBzZWNvbmRhIHRhcHBhIGlsIG1vZHVsbyByaWNoaWVzdG8gY3Jlc2NlIGNvbiBsYSBzcGludGEgZmlubyBhIGRpZWNpIG5ld3Rvbjsgb2x0cmUgcXVlbCBsaW1pdGUgaWwgbW9kZWxsbyBzdGF0aWNvIG5vbiBwZXJtZXR0ZSBsYSBxdWlldGUuIE5lbGxhIHRlcnphLCBsYSBjb21wb25lbnRlIG1lbm8gcXVhdHRybyBuZXd0b24gw6ggaW50ZXJuYSBhbGzigJlpbnRlcnZhbGxvIGRhIG1lbm8gZGllY2kgYSBwacO5IGRpZWNpLjwvZGVzYz4KIDxkZWZzPjxtYXJrZXIgaWQ9ImEiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjYiIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDcgMy41TDAgN1oiIGZpbGw9IiMyNDVjYTQiLz48L21hcmtlcj48L2RlZnM+CiA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjExNzAiIGZpbGw9IndoaXRlIi8+CiA8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MjAzMyI+CiAgPHRleHQgeD0iMjgiIHk9IjM1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBFcXVpbGlicmEgbGEgc3BpbnRhIGFzc2VnbmF0YTwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNzgiPlByb2llemlvbmkgb3JpenpvbnRhbGkgwrcgc2NhbGEgMTAgcHgvTjwvdGV4dD4KICA8cmVjdCB4PSIyNjAiIHk9IjE2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZGJlYWZlIiBzdHJva2U9IiMzMzQxNTUiLz4KICA8cGF0aCBkPSJNMzQwIDE5MEgzODAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CiAgPHBhdGggZD0iTTI2MCAxOTBIMjIwIiBzdHJva2U9IiMyNDVjYTQiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgogIDxwYXRoIGQ9Ik0xMjAgMjMySDUwMCIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyNjciIHk9IjE5OCIgZm9udC1zaXplPSIxNyI+YmxvY2NvPC90ZXh0PgogIDx0ZXh0IHg9IjM2NSIgeT0iMTQ2Ij5QID0gNCBOPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTQ2Ij5m4oKbID0g4oiSNCBOPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSIyODUiPkZvcnplIHZlcnRpY2FsaSBlcXVpbGlicmF0ZSwgcXVpIG9tZXNzZS48L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjMyNiI+TGEgbWFzc2Egbm9uIHNlcnZlOiDDqCBub3RvIGlsIG1hc3NpbW8gMTAgTi48L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjM4NiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQ29udHJvbGxhIGlsIGxpbWl0ZSBkZWxsYSBxdWlldGU8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjQyMiI+U2NhbGE6IDMwIHB4L04gc3UgZW50cmFtYmkgZ2xpIGFzc2k8L3RleHQ+CiAgPHJlY3QgeD0iNDAwIiB5PSI0NjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNmZmYxZTkiLz4KICA8cGF0aCBkPSJNMTAwIDc4MFY0NDBNODAgNzYwSDQ3NSIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KICA8cGF0aCBkPSJNMTAwIDQ2MEg0MDBNMTAwIDY0MEgyMjBWNzYwTTQwMCA0NjBWNzYwIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0xMDAgNzYwTDQwMCA0NjAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGNpcmNsZSBjeD0iMjIwIiBjeT0iNjQwIiByPSI2IiBmaWxsPSIjMjQ1Y2E0Ii8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iNDYwIiByPSI2IiBmaWxsPSIjMjQ1Y2E0Ii8+CiAgPHRleHQgeD0iMjAiIHk9IjQ1MyIgZm9udC1zaXplPSIxNyI+fGbigpt8IChOKTwvdGV4dD48dGV4dCB4PSI0ODYiIHk9Ijc2NiI+UCAoTik8L3RleHQ+CiAgPHRleHQgeD0iNTMiIHk9IjQ2NiI+MTA8L3RleHQ+PHRleHQgeD0iNjUiIHk9IjY0NiI+NDwvdGV4dD48dGV4dCB4PSI2NSIgeT0iNzY2Ij4wPC90ZXh0PgogIDx0ZXh0IHg9Ijk0IiB5PSI4MDUiPjA8L3RleHQ+PHRleHQgeD0iMjE0IiB5PSI4MDUiPjQ8L3RleHQ+PHRleHQgeD0iMzg5IiB5PSI4MDUiPjEwPC90ZXh0Pjx0ZXh0IHg9IjQ0OSIgeT0iODA1Ij4xMjwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iODUyIj5PbHRyZSAxMCBOOiBuZXNzdW4gZXF1aWxpYnJpbyBzdGF0aWNvLjwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iOTE3IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBMZWdnaSBhbmNoZSBsYSBjb21wb25lbnRlPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI5NTciPkludGVydmFsbG8gYW1tZXNzbzogc2NhbGEgMjAgcHgvTjwvdGV4dD4KICA8cGF0aCBkPSJNMTAwIDEwMjBINTAwTTEwMCAxMDA4VjEwMzJNMzAwIDEwMDhWMTAzMk01MDAgMTAwOFYxMDMyIiBzdHJva2U9IiM2NDc0OGIiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0zMDAgMTAyMEgyMjAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CiAgPHRleHQgeD0iODIiIHk9IjEwNjMiPuKIkjEwIE48L3RleHQ+PHRleHQgeD0iMjkyIiB5PSIxMDYzIj4wPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iMTA2MyI+KzEwIE48L3RleHQ+CiAgPHRleHQgeD0iMTY1IiB5PSI5OTciPmbigpsgPSDiiJI0IE48L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjExMjAiPlAgPSArNCBOIHJpY2hpZWRlIGbigpsgPSDiiJJQLCBub24g4oiSMTAgTi48L3RleHQ+CiA8L2c+Cjwvc3ZnPgo="
+    }
+  ]
+}
