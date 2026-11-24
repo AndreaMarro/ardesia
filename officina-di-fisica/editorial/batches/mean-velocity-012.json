@@ -1,0 +1,1180 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-mean-velocity-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2241,
+      "title": "La velocità fra due rilevazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 1,
+      "prompt": "Fra due rilevazioni una coordinata aumenta di Δx=+2 m in un intervallo Δt=2 s. Quanto vale la velocità media orientata V, in m/s? Il moto può essere non uniforme durante l’intervallo.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità media orientata è definita come variazione di coordinata divisa per tempo trascorso. Non occorre che la velocità istantanea sia costante: bastano le due posizioni e i due istanti. L’intervallo deve essere positivo; il segno della media segue quello dello spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{\\Delta x}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{+2\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{+2\\,\\mathrm m}{2\\,\\mathrm s}=+1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo dice che la coordinata finale supera quella iniziale. Il risultato non afferma che in ogni secondo il punto si sia mosso esattamente di un metro: può aver rallentato, accelerato o invertito temporaneamente il verso. La media usa soltanto il bilancio dello spostamento sull’intero intervallo."
+        }
+      ],
+      "hints": [
+        "Dividi lo spostamento con segno per la durata positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno positivo dice che la coordinata finale supera quella iniziale. Il risultato non afferma che in ogni secondo il punto si sia mosso esattamente di un metro: può aver rallentato, accelerato o invertito temporaneamente il verso. La media usa soltanto il bilancio dello spostamento sull’intero intervallo.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2242,
+      "title": "L’unità di una velocità media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 1,
+      "prompt": "La velocità media orientata è V=(x_f−x_i)/(t_f−t_i), con coordinate in metri e istanti in secondi, t_f>t_i. Quale unità è compatibile con V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "m/s²",
+          "s/m",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottrarre due coordinate nella stessa unità dà ancora metri; sottrarre due istanti dà secondi. La divisione fra questi due incrementi produce lunghezza su tempo. La parola media non elimina le unità della grandezza né introduce una divisione per il numero delle rilevazioni."
+        },
+        {
+          "type": "formula",
+          "text": "[V]=\\frac{[\\Delta x]}{[\\Delta t]}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{[\\Delta x]}{[\\Delta t]}=\\frac LT"
+        },
+        {
+          "type": "formula",
+          "text": " [V]_{\\rm SI}=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "m/s è corretto. Il metro sarebbe uno spostamento e m/s² un’accelerazione, che richiederebbe una variazione di velocità divisa per tempo. s/m è il rapporto inverso, utile per un tempo per unità di lunghezza; 1 richiederebbe un rapporto fra grandezze omogenee, che qui non sono omogenee."
+        }
+      ],
+      "hints": [
+        "Confronta le dimensioni del numeratore e del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è corretto. Il metro sarebbe uno spostamento e m/s² un’accelerazione, che richiederebbe una variazione di velocità divisa per tempo. s/m è il rapporto inverso, utile per un tempo per unità di lunghezza; 1 richiederebbe un rapporto fra grandezze omogenee, che qui non sono omogenee.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2243,
+      "title": "Andare e tornare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 1,
+      "prompt": "Una persona cammina 6 m verso est e poi 6 m verso ovest, tornando esattamente alla partenza. L’intero percorso dura 4 s. Quali sono, nell’ordine, il modulo della velocità media vettoriale e la rapidità media?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 m/s e 3 m/s",
+          "0 m/s e 3 m/s",
+          "3 m/s e 0 m/s",
+          "0 m/s e 0 m/s",
+          "3/2 m/s e 3 m/s"
+        ],
+        "value": "0 m/s e 3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo est come verso positivo. I due spostamenti sono +6 m e −6 m e si cancellano: la posizione finale coincide con quella iniziale. La distanza percorsa somma invece le lunghezze dei tratti, senza segno, e vale dodici metri. Le due medie usano lo stesso tempo totale ma numeratori differenti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3c38ee6706474cebfa48f95a87a180d4e96f3a4bc0dba9e4e6b0092700d8ed01",
+          "text": "Tre tappe: sei metri verso est, sei metri di ritorno verso ovest, confronto fra spostamento netto zero e distanza totale dodici metri. Dividendo entrambi per quattro secondi si ottengono modulo della velocità media zero e rapidità media tre metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=+6\\,\\mathrm m-6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "+6\\,\\mathrm m-6\\,\\mathrm m=0"
+        },
+        {
+          "type": "formula",
+          "text": " |\\mathbf V|=\\frac0{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac0{4\\,\\mathrm s}=0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=6\\,\\mathrm m+6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m+6\\,\\mathrm m=12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline u=\\frac{12\\,\\mathrm m}{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12\\,\\mathrm m}{4\\,\\mathrm s}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La coppia è zero e tre metri al secondo. Una velocità media nulla non implica che la persona sia rimasta ferma: descrive il ritorno alla partenza. Tre mezzi dividerebbe per il tempo l’unico tratto di sei metri, ignorando metà del percorso. Non sono necessarie le durate separate di andata e ritorno per queste due medie complessive."
+        }
+      ],
+      "hints": [
+        "Separa il bilancio con segno dalla somma delle lunghezze percorse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coppia è zero e tre metri al secondo. Una velocità media nulla non implica che la persona sia rimasta ferma: descrive il ritorno alla partenza. Tre mezzi dividerebbe per il tempo l’unico tratto di sei metri, ignorando metà del percorso. Non sono necessarie le durate separate di andata e ritorno per queste due medie complessive.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2244,
+      "title": "Due spostamenti nello stesso intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 1,
+      "prompt": "In due rilevazioni indipendenti il tempo trascorso è sempre 2 s. Gli spostamenti sono Δx₁=+2 m e Δx₂=+4 m. Come cambia la velocità media orientata? Non si assume un moto uniforme all’interno degli intervalli.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da +1 m/s a +2 m/s",
+          "Resta +1 m/s",
+          "Si dimezza",
+          "Quadruplica",
+          "Diventa negativa"
+        ],
+        "value": "Raddoppia da +1 m/s a +2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione V=Δx/Δt divide entrambi gli spostamenti per lo stesso intervallo. Raddoppiare il numeratore a denominatore fisso raddoppia il rapporto. La positività dei due spostamenti conserva il segno positivo delle medie."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{2\\,\\mathrm s}=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{4\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m}{2\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La media raddoppia: non si può però concludere che la velocità istantanea della seconda prova sia doppia in ogni istante. Le sole rilevazioni iniziali e finali non descrivono il dettaglio del moto. Un quadruplicamento aggiungerebbe un cambiamento del denominatore che non è presente."
+        }
+      ],
+      "hints": [
+        "Conserva la stessa durata nei due rapporti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La media raddoppia: non si può però concludere che la velocità istantanea della seconda prova sia doppia in ogni istante. Le sole rilevazioni iniziali e finali non descrivono il dettaglio del moto. Un quadruplicamento aggiungerebbe un cambiamento del denominatore che non è presente.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2245,
+      "title": "Ricostruire lo spostamento netto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "In un intervallo positivo Δt=2 s la velocità media orientata è V=+1 m/s. Quanto vale lo spostamento netto Δx, in metri? Il moto può avere velocità istantanea variabile.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per Δt entrambi i membri della definizione V=Δx/Δt. Il tempo al denominatore si elimina e rimane Δx. Questa è un’identità basata sulla media dell’intero intervallo, quindi non richiede una velocità costante in ogni suo istante."
+        },
+        {
+          "type": "formula",
+          "text": "V\\Delta t=\\Delta x"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=(+1\\,\\mathrm{m/s})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(+1\\,\\mathrm{m/s})(2\\,\\mathrm s)=+2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La coordinata finale è due metri maggiore di quella iniziale. Non è necessariamente la distanza percorsa: eventuali ritorni aumenterebbero la distanza senza cambiare questo bilancio. I secondi si cancellano e il risultato ha unità di lunghezza, come deve avere uno spostamento."
+        }
+      ],
+      "hints": [
+        "Moltiplica la media per l’intero intervallo a cui si riferisce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La coordinata finale è due metri maggiore di quella iniziale. Non è necessariamente la distanza percorsa: eventuali ritorni aumenterebbero la distanza senza cambiare questo bilancio. I secondi si cancellano e il risultato ha unità di lunghezza, come deve avere uno spostamento.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2246,
+      "title": "Ricavare una durata positiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "Una rilevazione dà Δx=+2 m e velocità media V=+1 m/s sullo stesso intervallo. Quanto vale Δt, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla definizione moltiplichiamo prima per Δt, ottenendo VΔt=Δx, poi dividiamo per V non nulla. Il rapporto fra spostamento e velocità media conserva una durata positiva perché i due dati hanno lo stesso segno."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=\\frac{\\Delta x}{V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac{+2\\,\\mathrm m}{+1\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{+2\\,\\mathrm m}{+1\\,\\mathrm{m/s}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce V=2 m/2 s=1 m/s. Se entrambi i dati fossero negativi il loro rapporto sarebbe ancora positivo: il segno della velocità indica il verso, non un tempo che scorre all’indietro. Con V=0 questa divisione non sarebbe lecita e servirebbero altri dati per la durata."
+        }
+      ],
+      "hints": [
+        "Controlla che spostamento e velocità media abbiano segni compatibili.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce V=2 m/2 s=1 m/s. Se entrambi i dati fossero negativi il loro rapporto sarebbe ancora positivo: il segno della velocità indica il verso, non un tempo che scorre all’indietro. Con V=0 questa divisione non sarebbe lecita e servirebbero altri dati per la durata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2247,
+      "title": "Lo stesso spostamento in più tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "In due intervalli lo spostamento netto è sempre +2 m. Le durate sono Δt₁=2 s e Δt₂=4 s. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel primo intervallo la media è un metro al secondo; nel secondo è mezzo metro al secondo. Il tempo è al denominatore: raddoppiare la durata per compiere lo stesso spostamento dimezza la velocità media, senza invertirne il segno."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è un mezzo, privo di unità. Due invertirebbe il confronto e quattro ripeterebbe la durata finale. Il segno resta positivo perché la coordinata aumenta in entrambe le rilevazioni. Nessuno dei dati richiede che il moto sia uniforme durante i due intervalli."
+        }
+      ],
+      "hints": [
+        "Un denominatore doppio rende il rapporto dimezzato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è un mezzo, privo di unità. Due invertirebbe il confronto e quattro ripeterebbe la durata finale. Il segno resta positivo perché la coordinata aumenta in entrambe le rilevazioni. Nessuno dei dati richiede che il moto sia uniforme durante i due intervalli.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2248,
+      "title": "Una media negativa e uno scarto positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "In 2 s la coordinata passa da +2 m a 0 m. Una proposta assegna V_proposto=0 m/s alla velocità media orientata. Quanto vale lo scarto con segno V_proposto−V, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’oggetto termina a una coordinata minore di quella iniziale: Δx=0−2 m è negativo. La velocità media è dunque −1 m/s. Lo scarto usa poi l’ordine proposto meno corretto e sottrae un numero negativo: un errore positivo può confrontarsi con una velocità corretta negativa."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=0\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "0\\,\\mathrm m-2\\,\\mathrm m=-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{-2\\,\\mathrm m}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{-2\\,\\mathrm m}{2\\,\\mathrm s}=-1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=0\\,\\mathrm{m/s}-(-1\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": "0\\,\\mathrm{m/s}-(-1\\,\\mathrm{m/s})=+1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto è +1 m/s. Arrivare alla coordinata zero non significa avere velocità media zero: conta la differenza rispetto alla partenza. Usare il valore assoluto dello spostamento perderebbe il verso e darebbe una media positiva; invertire la sottrazione finale darebbe invece −1 m/s."
+        }
+      ],
+      "hints": [
+        "Prima calcola finale meno iniziale, poi proposto meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lo scarto è +1 m/s. Arrivare alla coordinata zero non significa avere velocità media zero: conta la differenza rispetto alla partenza. Usare il valore assoluto dello spostamento perderebbe il verso e darebbe una media positiva; invertire la sottrazione finale darebbe invece −1 m/s.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2249,
+      "title": "Un’inversa che vale anche senza moto uniforme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "La velocità media orientata sull’intervallo Δt>0 è V=Δx/Δt. Quale formula esprime lo spostamento netto Δx?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Δx=V/Δt",
+          "Δx=VΔt",
+          "Δx=Δt/V",
+          "Δx=V+Δt",
+          "Δx=√(VΔt)"
+        ],
+        "value": "Δx=VΔt"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare i due membri per l’intervallo positivo elimina il denominatore. Il risultato riguarda V media sullo stesso intervallo, non una velocità istantanea scelta arbitrariamente. È quindi valido anche se il moto ha accelerazioni o inversioni intermedie."
+        },
+        {
+          "type": "formula",
+          "text": "V\\Delta t=\\frac{\\Delta x}{\\Delta t}\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=V\\Delta t"
+        },
+        {
+          "type": "text",
+          "text": "Le unità danno (m/s)·s=m. V/Δt avrebbe dimensione di accelerazione; Δt/V non quella di una lunghezza. La somma mescolerebbe tempo e velocità, mentre la radice cambierebbe la dimensione. Se V è negativa e Δt positiva, anche lo spostamento ricostruito è negativo."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore moltiplicando per l’intero intervallo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le unità danno (m/s)·s=m. V/Δt avrebbe dimensione di accelerazione; Δt/V non quella di una lunghezza. La somma mescolerebbe tempo e velocità, mentre la radice cambierebbe la dimensione. Se V è negativa e Δt positiva, anche lo spostamento ricostruito è negativo.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2250,
+      "title": "La legge dei fattori per una media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "Una prima rilevazione ha Δx₁>0,Δt₁>0 e V₁=Δx₁/Δt₁. Nella seconda Δx₂=κ₁Δx₁ e Δt₂=κ₂Δt₁, con κ₁,κ₂>0. Quale espressione dà V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂",
+          "κ₁+κ₂",
+          "κ₁−κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore dello spostamento entra al numeratore, quello del tempo al denominatore. Sostituendo nella definizione, V₂ diventa κ₁/κ₂ volte V₁. Dividere per V₁, non nulla nel dominio dichiarato, lascia il rapporto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "V_2=\\frac{\\kappa_1\\Delta x_1}{\\kappa_2\\Delta t_1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\kappa_1\\Delta x_1}{\\kappa_2\\Delta t_1}=\\frac{\\kappa_1}{\\kappa_2}V_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Se spostamento e tempo crescono dello stesso fattore la media resta uguale. Il prodotto non rispetterebbe questo controllo; il rapporto inverso scambierebbe i ruoli di distanza netta e durata. Somma e differenza falliscono già quando i dati restano invariati, caso in cui il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Mantieni il fattore del tempo al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se spostamento e tempo crescono dello stesso fattore la media resta uguale. Il prodotto non rispetterebbe questo controllo; il rapporto inverso scambierebbe i ruoli di distanza netta e durata. Somma e differenza falliscono già quando i dati restano invariati, caso in cui il rapporto deve essere uno.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2251,
+      "title": "Spostamento triplo, durata doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "In una prima rilevazione Δx₁=+2 m,Δt₁=2 s; nella seconda Δx₂=+6 m,Δt₂=4 s. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "3",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento è triplo, ma il tempo disponibile è anche doppio. I due cambiamenti agiscono in versi opposti sul quoziente: il fattore complessivo è tre diviso due. Possiamo confermare il conto calcolando le due medie esatte."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{6\\,\\mathrm m}{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6\\,\\mathrm m}{4\\,\\mathrm s}=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è tre mezzi. Due terzi sarebbe il confronto inverso; tre ignorerebbe la durata maggiore; sei moltiplicherebbe i fattori anziché dividerli. La media cresce, ma meno dello spostamento perché la seconda rilevazione dura più a lungo."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore tre dello spostamento per il fattore due del tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è tre mezzi. Due terzi sarebbe il confronto inverso; tre ignorerebbe la durata maggiore; sei moltiplicherebbe i fattori anziché dividerli. La media cresce, ma meno dello spostamento perché la seconda rilevazione dura più a lungo.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2252,
+      "title": "Media di due letture, con peso uguale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 2,
+      "prompt": "Due rilevazioni indipendenti danno (Δx,Δt)=(+2 m,2 s) e (+6 m,4 s). Il registro assegna lo stesso peso a ciascuna rilevazione. Qual è la media aritmetica delle due velocità medie? Non si chiede la velocità media di un viaggio formato dai due intervalli consecutivi.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s",
+          "5/4 m/s",
+          "4/3 m/s",
+          "3/2 m/s",
+          "5/2 m/s"
+        ],
+        "value": "5/4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture sono un metro al secondo e tre mezzi metri al secondo. Sommiamo queste uscite con uguale peso e dividiamo per due. Per il conto a mente scriviamo uno come due mezzi: la somma è cinque mezzi e la media è cinque quarti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline V=\\frac{1+3/2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1+3/2}{2}\\,\\mathrm{m/s}=\\frac{2/2+3/2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2/2+3/2}{2}\\,\\mathrm{m/s}=\\frac54\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti è compreso fra uno e tre mezzi. Se gli intervalli fossero tratti consecutivi di uno stesso viaggio, la media complessiva sarebbe (2+6)m/(2+4)s=4/3 m/s, con pesi temporali diversi. Cinque mezzi sarebbe la somma prima di dividerla per due. La domanda specifica il peso per evitare di confondere queste due medie."
+        }
+      ],
+      "hints": [
+        "Distingui peso uguale per lettura da peso proporzionale alla durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque quarti è compreso fra uno e tre mezzi. Se gli intervalli fossero tratti consecutivi di uno stesso viaggio, la media complessiva sarebbe (2+6)m/(2+4)s=4/3 m/s, con pesi temporali diversi. Cinque mezzi sarebbe la somma prima di dividerla per due. La domanda specifica il peso per evitare di confondere queste due medie.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2253,
+      "title": "La durata che compensa lo spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 3,
+      "prompt": "Una prima rilevazione ha Δx₁=+2 m e Δt₁=2 s. Nella seconda lo spostamento diventa +6 m e si vuole V₂=(3/2)V₁. Quale rapporto Δt₂/Δt₁ serve?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento triplo tenderebbe a triplicare la media se il tempo restasse uguale. Per ottenere soltanto un fattore tre mezzi dobbiamo aumentare anche il denominatore. Poniamo r=Δt₂/Δt₁ e risolviamo 3/r=3/2 con r positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32=\\frac3r"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac32r=3"
+        },
+        {
+          "type": "formula",
+          "text": " r=3\\times\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": "3\\times\\frac23=2"
+        },
+        {
+          "type": "text",
+          "text": "La nuova durata è quattro secondi, quindi V₂=6 m/4 s=3/2 m/s rispetto a V₁=1 m/s. Dividere tre per tre mezzi significa moltiplicare per due terzi; non occorrono decimali. Un intervallo più corto aumenterebbe ulteriormente la velocità media e non soddisferebbe il valore richiesto."
+        }
+      ],
+      "hints": [
+        "Ricava il denominatore necessario per trasformare il fattore tre in tre mezzi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La nuova durata è quattro secondi, quindi V₂=6 m/4 s=3/2 m/s rispetto a V₁=1 m/s. Dividere tre per tre mezzi significa moltiplicare per due terzi; non occorrono decimali. Un intervallo più corto aumenterebbe ulteriormente la velocità media e non soddisferebbe il valore richiesto.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2254,
+      "title": "Dal display allo spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 3,
+      "prompt": "Un display mostra S=gV con guadagno costante g>0, offset nullo e S conteggio. La rilevazione Δx=+2 m,Δt=2 s dà S=3. Una nuova lettura S=9/2 riguarda Δt=4 s. Quanto vale Δx, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento V=1 m/s e il guadagno è tre tacche per metro al secondo, con dimensione tempo su lunghezza. La lettura 9/2, divisa per questo guadagno, dà V=3/2 m/s. Moltiplichiamo poi per l’intervallo a cui quella media si riferisce."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{3}{1\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3}{1\\,\\mathrm{m/s}}=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{9/2}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9/2}{3\\,\\mathrm{s/m}}=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=\\left(\\frac32\\,\\mathrm{m/s}\\right)(4\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac32\\,\\mathrm{m/s}\\right)(4\\,\\mathrm s)=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Semplifichiamo quattro con due prima di moltiplicare per tre. Il controllo dà S=(3 s/m)(6 m/4 s)=9/2. Il moto può essere non uniforme: basta che V sia la media sull’intero intervallo di quattro secondi. Usare le tacche direttamente come m/s ignorerebbe la taratura."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di moltiplicare per il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Semplifichiamo quattro con due prima di moltiplicare per tre. Il controllo dà S=(3 s/m)(6 m/4 s)=9/2. Il moto può essere non uniforme: basta che V sia la media sull’intero intervallo di quattro secondi. Usare le tacche direttamente come m/s ignorerebbe la taratura.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2255,
+      "title": "Una taratura affine delle medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 3,
+      "prompt": "Il display segue S=gV+d con S conteggio e g,d costanti. I riferimenti (Δx,Δt,S) sono (+2 m,2 s,3) e (+6 m,4 s,4). Una prova di durata 2 s dà S=5. Quanto vale lo spostamento netto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "2 m",
+          "3 m",
+          "4 m",
+          "8 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità medie dei riferimenti sono uno e tre mezzi metri al secondo. L’aumento di una tacca corrisponde a mezzo metro al secondo, quindi g=2 s/m. Dal primo riferimento d=3−2·1=1. Dalla nuova lettura togliamo l’offset e dividiamo per il guadagno, poi ricaviamo lo spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{4-3}{(3/2-1)\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4-3}{(3/2-1)\\,\\mathrm{m/s}}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{5-1}{2\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5-1}{2\\,\\mathrm{s/m}}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=(2\\,\\mathrm{m/s})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm{m/s})(2\\,\\mathrm s)=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ricostruisce S=(2 s/m)(4 m/2 s)+1=5. Due è il valore numerico della velocità media intermedia, non dello spostamento finale. La taratura usa la differenza fra medie dei riferimenti: dividere semplicemente le letture non eliminerebbe l’offset."
+        }
+      ],
+      "hints": [
+        "Trova g e d prima di applicare Δx=VΔt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo ricostruisce S=(2 s/m)(4 m/2 s)+1=5. Due è il valore numerico della velocità media intermedia, non dello spostamento finale. La taratura usa la differenza fra medie dei riferimenti: dividere semplicemente le letture non eliminerebbe l’offset.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-mean-velocity-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto rettilineo e misure nel tempo",
+      "order": 2256,
+      "title": "Una velocità non fissa un intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mean-velocity",
+      "difficulty": 3,
+      "prompt": "Le rilevazioni hanno Δt>0 e vincolo Δx=(1 m/s)Δt. Si misura anche V=Δx/Δt=1 m/s. Quante coppie positive (Δx,Δt) sono compatibili con questi dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una sola: (1 m,1 s)",
+          "Due coppie",
+          "Infinite coppie positive",
+          "Una sola: (2 m,2 s)"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo è già la definizione di una media uguale a un metro al secondo. Inserendolo nel rapporto si ottiene quella stessa velocità per ogni durata positiva. La misura ripete l’informazione del vincolo: non assegna né una durata né uno spostamento particolari."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta t=\\tau>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=(1\\,\\mathrm{m/s})\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{(1\\,\\mathrm{m/s})\\tau}{\\tau}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(1\\,\\mathrm{m/s})\\tau}{\\tau}=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie (1 m,1 s), (2 m,2 s) e (3 m,3 s) sono solo tre esempi di infinite possibilità. Il coefficiente 1 m/s rende il vincolo dimensionalmente corretto; non va scritto come uguaglianza fra una lunghezza e un tempo. Per determinare una coppia unica serve un ulteriore dato indipendente, come la durata."
+        }
+      ],
+      "hints": [
+        "Scegli due durate diverse e costruisci lo spostamento richiesto dal vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie (1 m,1 s), (2 m,2 s) e (3 m,3 s) sono solo tre esempi di infinite possibilità. Il coefficiente 1 m/s rende il vincolo dimensionalmente corretto; non va scritto come uguaglianza fra una lunghezza e un tempo. Per determinare una coppia unica serve un ulteriore dato indipendente, come la durata.",
+        "target": "C1-L003"
+      },
+      "coverage": [
+        "Velocità media e istantanea",
+        "Posizione e spostamento",
+        "Scalari e vettori"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3c38ee6706474cebfa48f95a87a180d4e96f3a4bc0dba9e4e6b0092700d8ed01",
+      "name": "mean-velocity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iODgwIiB2aWV3Qm94PSIwIDAgNjAwIDg4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5BbmRhdGEgZSByaXRvcm5vOiBzcG9zdGFtZW50byBlIGRpc3RhbnphPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZSBjb24gZXN0IHBvc2l0aXZvIHZlcnNvIGRlc3RyYS4gVW4gdHJhdHRvIGRpIHNlaSBtZXRyaSB2ZXJzbyBlc3QgZSB1bm8gZGkgc2VpIG1ldHJpIHZlcnNvIG92ZXN0IHNvbm8gZGlzZWduYXRpIGNvbiB1Z3VhbGUgbHVuZ2hlenphIGUgZnJlY2NlIG9wcG9zdGUuIExhIHBvc2l6aW9uZSBmaW5hbGUgY29pbmNpZGUgY29uIHF1ZWxsYSBpbml6aWFsZTogc3Bvc3RhbWVudG8gemVyby4gTGUgZHVlIGx1bmdoZXp6ZSBzaSBzb21tYW5vOiBkaXN0YW56YSBkb2RpY2kgbWV0cmkuIEluIHF1YXR0cm8gc2Vjb25kaSBsYSB2ZWxvY2l0w6AgbWVkaWEgdmV0dG9yaWFsZSDDqCB6ZXJvLCBsYSByYXBpZGl0w6AgbWVkaWEgw6ggdHJlIG1ldHJpIGFsIHNlY29uZG8uPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTczZDUwIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9Ijg4MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmaWxsPSIjMTczZDUwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjI4IiB5PSI0MCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgQW5kYXJlIHBlciBzZWkgbWV0cmkgdmVyc28gZXN0PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iODIiPit4IHZlcnNvIGVzdCDCtyBzY2FsYSA2MCBweC9tPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE3NEg0NjAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIyMTgiIHk9IjE0NiI+zpR4X2FuZGF0YSA9ICs2IG08L3RleHQ+Cjx0ZXh0IHg9IjcyIiB5PSIyMTQiPmluaXppbzwvdGV4dD48dGV4dCB4PSI0MjQiIHk9IjIxNCI+c3ZvbHRhPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMjgyIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBUb3JuYXJlIHBlciBzZWkgbWV0cmkgdmVyc28gb3Zlc3Q8L3RleHQ+CjxwYXRoIGQ9Ik00NjAgMzcySDEwMCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjIxMiIgeT0iMzQwIj7OlHhfcml0b3JubyA9IOKIkjYgbTwvdGV4dD4KPHRleHQgeD0iNzIiIHk9IjQxNCI+YXJyaXZvPC90ZXh0Pjx0ZXh0IHg9IjQyNCIgeT0iNDE0Ij5zdm9sdGE8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NjQiPlN0ZXNzbyBwdW50byBpbml6aWFsZSBlIGZpbmFsZS48L3RleHQ+CjxwYXRoIGQ9Ik0yOCA0OTRINTcyIiBzdHJva2U9IiM4NzliOWEiLz4KPHRleHQgeD0iMjgiIHk9IjUzOCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIG51bWVyYXRvcmksIHN0ZXNzbyB0ZW1wbzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjU4MCI+RHVyYXRhIHRvdGFsZTogNCBzPC90ZXh0Pgo8cmVjdCB4PSIyOCIgeT0iNjA4IiB3aWR0aD0iNTQ0IiBoZWlnaHQ9IjEwNCIgcng9IjgiIGZpbGw9IiNjZWUyZGUiLz4KPHRleHQgeD0iNDgiIHk9IjY0NiI+U3Bvc3RhbWVudG86ICs2IG0g4oiSIDYgbSA9IDAgbTwvdGV4dD4KPHRleHQgeD0iNDgiIHk9IjY4OCI+TW9kdWxvIHZlbG9jaXTDoCBtZWRpYTogMCBtL3M8L3RleHQ+CjxyZWN0IHg9IjI4IiB5PSI3MzgiIHdpZHRoPSI1NDQiIGhlaWdodD0iMTA0IiByeD0iOCIgZmlsbD0iI2VlZjFkZiIvPgo8dGV4dCB4PSI0OCIgeT0iNzc2Ij5EaXN0YW56YTogNiBtICsgNiBtID0gMTIgbTwvdGV4dD4KPHRleHQgeD0iNDgiIHk9IjgxOCI+UmFwaWRpdMOgIG1lZGlhOiAxMiBtIC8gNCBzID0gMyBtL3M8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NzIiPk1lZGlhIG51bGxhIG5vbiBzaWduaWZpY2EgZXNzZXJlIHJpbWFzdGkgZmVybWkuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

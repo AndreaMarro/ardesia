@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="880" viewBox="0 0 600 880" role="img" aria-labelledby="title desc">
+<title id="title">Andata e ritorno: spostamento e distanza</title>
+<desc id="desc">Tre tappe con est positivo verso destra. Un tratto di sei metri verso est e uno di sei metri verso ovest sono disegnati con uguale lunghezza e frecce opposte. La posizione finale coincide con quella iniziale: spostamento zero. Le due lunghezze si sommano: distanza dodici metri. In quattro secondi la velocità media vettoriale è zero, la rapidità media è tre metri al secondo.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="600" height="880" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="40" font-weight="bold">1 · Andare per sei metri verso est</text>
+<text x="28" y="82">+x verso est · scala 60 px/m</text>
+<path d="M100 174H460" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="218" y="146">Δx_andata = +6 m</text>
+<text x="72" y="214">inizio</text><text x="424" y="214">svolta</text>
+<text x="28" y="282" font-weight="bold">2 · Tornare per sei metri verso ovest</text>
+<path d="M460 372H100" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="212" y="340">Δx_ritorno = −6 m</text>
+<text x="72" y="414">arrivo</text><text x="424" y="414">svolta</text>
+<text x="28" y="464">Stesso punto iniziale e finale.</text>
+<path d="M28 494H572" stroke="#879b9a"/>
+<text x="28" y="538" font-weight="bold">3 · Due numeratori, stesso tempo</text>
+<text x="28" y="580">Durata totale: 4 s</text>
+<rect x="28" y="608" width="544" height="104" rx="8" fill="#cee2de"/>
+<text x="48" y="646">Spostamento: +6 m − 6 m = 0 m</text>
+<text x="48" y="688">Modulo velocità media: 0 m/s</text>
+<rect x="28" y="738" width="544" height="104" rx="8" fill="#eef1df"/>
+<text x="48" y="776">Distanza: 6 m + 6 m = 12 m</text>
+<text x="48" y="818">Rapidità media: 12 m / 4 s = 3 m/s</text>
+<text x="28" y="872">Media nulla non significa essere rimasti fermi.</text>
+</g></svg>
