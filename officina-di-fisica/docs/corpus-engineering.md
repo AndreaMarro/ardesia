@@ -1,3 +1,57 @@
+## Checkpoint corrente — 1.088 quesiti e 119 altre attività, 25 novembre 2026
+
+Generazione `c0201cafe7ce3b2d7f9fcea13eff3e257419b5b6d4b9daa6bc19d1711877d1f3`, manifest `f6d246073d29b3aa3ebda873df32dc9821f1e32ecd934a110c1d86f91249279d`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati. Le revisioni complete
+in bozza sono 1.088; le altre attività riesaminate sono 119. Restano **3.518 quesiti
+e 266 attività**. U1 e tutti gli shard U2-01..06 sono revisionati in DRAFT.
+Prossimo ID da consolidare: `u3-pressure-area-01`, lotto `pressure-area-074` in U3-01.
+
+Le otto nuove famiglie 065–072 coprono coppie di forze, gravità, orbite, discesa con
+perdite, lancio elastico, urti e frenata. Autori e verificatori distinti hanno
+congelato i singoli candidati dopo le correzioni; 196 controprove verificano anche
+chiavi e binding falsificati in memoria. Conservate ipotesi, inversi, unità, passaggi
+manuali e lettura fisica dei risultati per ogni ID. Le 14 lezioni aggiunte dai lotti
+016–019 completano C3 e le prime quattro C4: 180 controlli esatti, originali invariati.
+La controreview di elettrostatica conferma la distinzione tra carica libera e tensione
+fissate per i dielettrici e tra conduttore in equilibrio e filo resistivo in corrente.
+Le costanti tabulate arrotondate restano distinte dai valori SI esatti, senza inventare
+una richiesta di calcolo decimale non presente nella lezione.
+
+La suite tracciata passa **215 test** in 141,629 s. I 384 nuovi casi browser hanno
+uscita regolare 0; con i report precedenti ancora validi sul medesimo runtime sono
+3.288 anteprime: 3.264 dei quesiti e 24 delle otto nuove edizioni di attività.
+Le ricostruzioni fresh e incrementale hanno gli stessi byte del checkpoint.
+Nel medesimo SQLite temporaneo convivono 1.096 edizioni: secondo import senza
+scritture, tutti i 991 pubblicati e la storia invariati, nessuna pubblicazione o
+scrittura su database degli utenti. Le prove adattive sono fixture private sintetiche,
+non evidenze di apprendimento reale. Le 93 domande d'esame restano protette.
+
+Restano otto problemi nelle edizioni originali, affiancati da otto bozze corrette:
+C1-E003, C1-E008, C1-L002, C1-L003, C2-E005, C2-L007, C3-E003 e C3-E020.
+Approvazione umana NOT_RUN; nuove pubblicazioni zero. Le 100 revisioni Pro non sono
+identificate; i 199 controlli recuperati rimangono parziali. Il backlog completo ha
+3.518 ID, quello della sola risoluzione indipendente 3.319: sono code diverse.
+
+Il canone remoto verificato resta 800/89 su `884c06422a570fc021401285550ad43ab0ecb132`,
+con CI post-merge 14/14 SUCCESS. PR #360 contiene 960/105 sulla head
+`4490b7025bee534d1e2ed96b14c1e5c3bdce63cd`, ma non è ancora MERGED: il job web ha
+riprodotto una corsa nella fixture di revoca della sessione. La sola attesa del test
+è stata corretta in una worktree dedicata; target 3/3, typecheck e suite web 893/893
+PASS. La review indipendente conferma il fix; è stato pushato e la nuova CI sulla head corretta precede il merge.
+Questo incremento 1.088/119 è sul ramo successivo `feat/cric-u2-closure` e richiede
+la propria integrazione dopo #360. Nessuna prova locale è chiamata CI post-merge.
+
+I 160 candidati U3-01 sono già salvati: review incrociate in chiusura e 480 nuove
+anteprime in esecuzione; non sono conteggiati in 1.088. L'authoring U3-02 è iniziato
+con ownership disgiunta su altri 160 ID reali, lotti 084–093. Il terzo revisore prosegue
+le lezioni C4. L'ownership assegna lavoro, non completa record: l'autorità resta
+`editorial/corpus/checkpoint.json`.
+
+Proseguire senza attendere firme umane: concludere PR #360 con tutti i gate sulla SHA
+finale e post-merge; integrare 1.088/119; consolidare 1.248 dopo la verifica completa
+di U3-01; continuare U3-02 e tutte le famiglie residue. Le sezioni seguenti conservano
+snapshot storici. La pubblicazione resta un gate separato.
+
 ## Checkpoint corrente — 960 quesiti e 105 altre attività, 25 novembre 2026
 
 Generazione `debb91ed15d80c101a2c0fa244640b37ad78bfb1f6f70e12e768e0100170de7a`, manifest `36e7878ea400b1e243590d8f22b05948463fc3724775931369e7dcde69c51189`.
