@@ -1,0 +1,475 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-elastic-target-speed-01",
+      "sourceSha256": "b6c1b37e1ac2c87cf7e78af3c0c068c61a818a5214215e7ff33dcfe25ecb38f1",
+      "candidateSha256": "44ffec77dbd22fa7f091ab2cfdb6a6caf1294810a0f803a45cb2e460d9a60d8a",
+      "reviewedSignature": "c860445894d442f036c472be80bfe7dbbc168492bf168dff1571eda548d65f0e",
+      "assetChecksums": {
+        "elastic-target-speed-progressive.svg": "49ef1a6a4bbacf441aee70cfd34ecde2b0f169193b48bc9085ce7afce290167b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Sistemaentrambi,p/Kconservati. Masseuguali2kg,u2→w0,V2; p_i=p_f4kgm/s,K_i=K_f4J. Sono velocità componenti assegnate,non velocità comune.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "Anelastico darebbeVcomune1m/s eKpersa;qui4Jconservati e incidentefermo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Sistemaentrambi,p/Kconservati. Masseuguali2kg,u2→w0,V2; p_i=p_f4kgm/s,K_i=K_f4J. Sono velocità componenti assegnate,non velocità comune.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-02",
+      "sourceSha256": "f202cab30285eea13e0fd24572d367a970a131f49dccd5933b09a9fdb6f39a7b",
+      "candidateSha256": "3db838d9db99a9aa9500d767ed17f8960055f606faac528966f2cb9af15006ba",
+      "reviewedSignature": "573ca98de6292ffa95ad6ed4bbb2d2b854ce3a525b5322f25b62d5f0de8efcbc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "2m/(m+M) puro,moltiplicato u in m/s→V m/s;unità nonvaria conconvenzionedelsegno.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "kgm/s quantitàdimoto,Jenergia,Nforza,mlunghezza;unica m/s.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. 2m/(m+M) puro,moltiplicato u in m/s→V m/s;unità nonvaria conconvenzionedelsegno.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-03",
+      "sourceSha256": "4ee211c62354c72d9b812adeae41daa7b2a795c846315145ddd0c18725bca548",
+      "candidateSha256": "a95c930135a31ccc30038a3aec9cb7be2663f711868c14135dbfdcf1f4236fae",
+      "reviewedSignature": "b179120beae38a2b615f6cb08333fd659ef7c0aaf2ddf47996023ca6b25b4283",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "V=2mu/(m+M)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "p:m(u−w)=MV;energia:m(u−w)(u+w)=MV². NelramoeffettivoV>0 dividere dàu+w=V; sostituzione→V2mu/(m+M),wV−u. Altro ramoV0,wu nontrasferisceimpulso e nonsepara dopo collisione.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "Anelastico manca2;4mu/(m+M)doppio,2mu/Mdenominatoreparziale,negativoviolaverso. V0wuramo senza contatto effettivo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. p:m(u−w)=MV;energia:m(u−w)(u+w)=MV². NelramoeffettivoV>0 dividere dàu+w=V; sostituzione→V2mu/(m+M),wV−u. Altro ramoV0,wu nontrasferisceimpulso e nonsepara dopo collisione.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-04",
+      "sourceSha256": "b5c15534bcb95d8c841637990e51fc034398ef43da0e36e4c3ae3c12a0655aa6",
+      "candidateSha256": "e6daf45de659bfbe10e829706033bb314cb45874a9f32c899f58870b52bd0aa2",
+      "reviewedSignature": "bd0c41c37cf800128720cbd6db9484b99b9a2623f8a9832164d6849911d24ae6",
+      "assetChecksums": {
+        "elastic-target-speed-progressive.svg": "49ef1a6a4bbacf441aee70cfd34ecde2b0f169193b48bc9085ce7afce290167b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 8/3 m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "m2→4kg,u2,M2→V2→8/3m/s,w_B2/3. p_B4·2/3+2·8/3=8,K_B8/9+64/9=8J. V>u lecito,maV<2u.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "Vnonraddoppiaperchédenominatorecresce;1inverso,2ignora,zeroimpossibile;V8/3<4limitepositivo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m2→4kg,u2,M2→V2→8/3m/s,w_B2/3. p_B4·2/3+2·8/3=8,K_B8/9+64/9=8J. V>u lecito,maV<2u.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-05",
+      "sourceSha256": "8b10ad79d0bf80a19641fc8bfb05ade2f4026884d82d107068a7755fcb42a177",
+      "candidateSha256": "904ac7d67c72c3b5b0ab10a2d43f3106bf14d77f35fd3f0014995bb6737dfb4f",
+      "reviewedSignature": "6636daac59d847534d30f5d1a45b6613a5489441c3656dcc5cefa1d10b9145b2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "V(m+M)=2mu→m=MV/(2u−V),0<V<2u. DatiM2,V2,u2→m2kg. V2u limite di massa infinita,oltre massanegativa.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso. Inversa0<V<2u necessaria per massafinitapositiva.",
+      "distractors": "u−Vdenominatorezero perquestidati e formulaanelastica;2u−Vpositivo;V≥2u nonmassafinitapositiva.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V(m+M)=2mu→m=MV/(2u−V),0<V<2u. DatiM2,V2,u2→m2kg. V2u limite di massa infinita,oltre massanegativa.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-06",
+      "sourceSha256": "b5494260cbf04ad6d655f884e998e69ebf064d96e0300582dbc4437c01129454",
+      "candidateSha256": "118296312aedc205084240827a524a46e08a802bfaa6d5fe8d6ac028aecb34c9",
+      "reviewedSignature": "d7f6834473fce02275164da6e049cf316274e0e553c98b437d7bed83870d3f97",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "u=V(m+M)/(2m)=2m/s,con masseuguali w0 e tutto p/K trasferito albersaglio.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "4omette2,1conta2duevolte,0nonpinizialepositivo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. u=V(m+M)/(2m)=2m/s,con masseuguali w0 e tutto p/K trasferito albersaglio.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-07",
+      "sourceSha256": "e1d811087393d32eef62411f88392a1ee3a98e0597aa46b5f3c49d8805ea99bd",
+      "candidateSha256": "7b6ce425831efe9ea56d490d7d2abebedadb24bf5e60521b0f7c9aeee1cbbd09",
+      "reviewedSignature": "6d499964dfde25c9f608784c4245141d00f93bc7c65d91e119bc5c99c4acda37",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "m=M2costanti,u2→4→V2→4,rapporto2;energiaquadrupla nonvelocitàquadrupla.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "4rapportodienergie,1/2inverso,1ignora,−2signoincompatibile.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=M2costanti,u2→4→V2→4,rapporto2;energiaquadrupla nonvelocitàquadrupla.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-08",
+      "sourceSha256": "9129d558c01336efa3e39c0bde260a55ab659a023c22fa3817818413257cea63",
+      "candidateSha256": "ee363b72631b5781cf90cd02d27d8809cdae4ea25645a09fa7670de2900e90c6",
+      "reviewedSignature": "111c8547e541aeddd4847a8bc0dce0f575a101d6a269e66e1b52ac16da73a47b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Vcorretto2,proposto4→scarto+2m/s. Bersaglio solo a4 avrebbe16J>4Jiniziali.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "−2ordineinverso,4proposta,0accetta,1dimezza;energiaproposta impossibile.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Vcorretto2,proposto4→scarto+2m/s. Bersaglio solo a4 avrebbe16J>4Jiniziali.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-09",
+      "sourceSha256": "87454251beb57f4a1116f8fb3f2caed4ea653f80adc8eb00f45143c0e3500bc6",
+      "candidateSha256": "d9ed9db1fe7a535c34733e6541b52f20bb61e7ed6067edeae4804419962f861f",
+      "reviewedSignature": "1743ff7dda53d32fbef226c2c477b42334793ba24be4ff9fdb91ed367a2f73d1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m=MV/(2u−V)",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=MV/(2u−V);M resta dimensionale,denominatorepositivo,unitàkg. Segno e coefficiente2 essenziali.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso. Inversa0<V<2u necessaria per massafinitapositiva.",
+      "distractors": "u−Vformulaanelastica,piùsegnoerrato,V−2unegativa,2MVdoppiomassainversa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=MV/(2u−V);M resta dimensionale,denominatorepositivo,unitàkg. Segno e coefficiente2 essenziali.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-10",
+      "sourceSha256": "825e9514232d0b539495f42de95134e1750a6895024c37de4eaf9ecbbdaca9ff",
+      "candidateSha256": "e5dc3f4fdd1e23505c70d750d562f881a3763b8b5ac44e188a245e599f6b6fba",
+      "reviewedSignature": "908355b7d662bb22c034f4ecf2f97094b6acf9e38a8169eb9d89396027189fc2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂ S / S_B",
+      "dimension": {},
+      "manualArithmetic": "V_A2mu/S,V_B2κ1κ2mu/S_B→rapportoκ1κ2S/S_B,S=m+M,S_Bκ1m+M;M invariata.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "Prodottoignoramassatotale;S_B/Sinvertel’effetto;reciprocoinverteuscite;2extra noncancella. κ1=1→κ2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V_A2mu/S,V_B2κ1κ2mu/S_B→rapportoκ1κ2S/S_B,S=m+M,S_Bκ1m+M;M invariata.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-11",
+      "sourceSha256": "a14b1b7e24794926a896439b9ec4a7acb04399c2388efdc150cad5bd2e68412e",
+      "candidateSha256": "7e8a3790a2ff3983fb920addd4d4bbe94955002b3ab6d6fc396a33d036b05b90",
+      "reviewedSignature": "5bef527a09e1f57332a1fcb2796c0f510fc02e9f644c9fb559ed057ca4f6a5e7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8/3",
+      "dimension": {},
+      "manualArithmetic": "V_A2m/s,V_B2·4·4/6=16/3m/s;rapporto8/3,puro.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "3/8reciproco,4ignora somma masse,2solou,16/3valoreBnonrapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V_A2m/s,V_B2·4·4/6=16/3m/s;rapporto8/3,puro.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-12",
+      "sourceSha256": "9b718ae077b6314f2b6ce185d28a714c0ace4d31ff39aabaa9b57974a8826cfa",
+      "candidateSha256": "9293e306920a410c9a1f6eb091cced09bb7398b9dc3b18ce898a6bb96fae36ec",
+      "reviewedSignature": "88752bfcbf7d5a0bf83945343483dbafa1758b86cf9221588db4a4532fc53163",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "11/3",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media(2+16/3)/2=11/3m/s. Ingressimedim3kg,u3→18/5m/s;differenza(55−54)/15=1/15m/s.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "22/3somma,11/6doppiametà,18/5ingressimedi,8/3rapportononmedia.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+16/3)/2=11/3m/s. Ingressimedim3kg,u3→18/5m/s;differenza(55−54)/15=1/15m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-13",
+      "sourceSha256": "59780102e13b325f5d9f16a6cf8a8c23fa43d17eca5107fe7c9e6b11d227ce99",
+      "candidateSha256": "559f997f5e017ecdf6df4e4c7fa3c5809afca5fe6921402b041bcfe6fb3f3dde",
+      "reviewedSignature": "46c2d7d580de60e6dccdbffd6dc512d63211157df3af5b6dc3ae837ffe6b7a9d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetV_B(8/3)·2=16/3,m_B4→u_B=(16/3)·6/8=4m/s,rapporto2.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "uB2dàV8/3metàtarget;8/3fattoreuscitanonrapportoingresso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetV_B(8/3)·2=16/3,m_B4→u_B=(16/3)·6/8=4m/s,rapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-14",
+      "sourceSha256": "9c4b6670f188f64a6cf1d1c660152ee528e61b3a5e1a6b9f413b88844ec9f78a",
+      "candidateSha256": "854ca4a265a27de7942b173b74e934179a3ee5a34d28017dfb71cf2c2cc4f27e",
+      "reviewedSignature": "1b73aa0b879963999e6fe1169f0af07652e8e2b7caea8780cd84afad2ac4f352",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "q6/2=3s/m,S16→V16/3,u4→denominatore8−16/3=8/3,m=2·(16/3)/(8/3)=4kg.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "S16comeV16>2u8inammissibile;4kgconw4/3,V16/3 riproducep16,K32J.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q6/2=3s/m,S16→V16/3,u4→denominatore8−16/3=8/3,m=2·(16/3)/(8/3)=4kg.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-15",
+      "sourceSha256": "6c8a38fee4b96525d8bd2309f91769cb42f65ce5e294d1a2e3b8d8357e5fd6cc",
+      "candidateSha256": "a7d69542f3e34c0d37c488838d09621f15a4467cff863848083940b7521b02ae",
+      "reviewedSignature": "96d71372f874f92f4ad7ddde620a9008b82c75386af4ec39dae777179af7d082",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "ΔS35/3−5=20/3,ΔV16/3−2=10/3m/s→q2s/m,offset1;SC19/3→V8/3,u2→m4kg.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso.",
+      "distractors": "m2,3,5,8kg au2 dannoS5,29/5,47/7,37/5;solom4dà19/3. Rapportiletture noneliminanooffset.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS35/3−5=20/3,ΔV16/3−2=10/3m/s→q2s/m,offset1;SC19/3→V8/3,u2→m4kg.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-16",
+      "sourceSha256": "bc913ed554ca199367c54ec1cde26569fe2a80b236351b8d2a0ea353051ea09e",
+      "candidateSha256": "4ca4f05ae20bb27678e1ba92556a332032240d5a9e683716f8dc5e33e088b39b",
+      "reviewedSignature": "1d2643768e0291f3be33979b691ebf52d653c95d7d57f24d135c94a2d6710451",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "m=cu,c1kg s/m tra prove;u=x(1m/s)→2=2x²/(x+2),x²−x−2=(x−2)(x+1)=0. Radici2,−1;solo u2m/s,m2kgpositive.",
+      "physicalAssumptions": "Urtofrontale elastico effettivo,classico,inriferimento inerziale. Sistema entrambi,massepositivecostanti,M2kg inizialmenteferma,impulso/lavoro esterni trascurabili,p eKtotaliconservati,+xnelversou>0. V>0componente bersaglio,walgebrica incidente;ramononinterazione escluso. m=(1kg s/m)u tra prove,non massa variabile durantelurto;dueradici alternative esaminate.",
+      "distractors": "−1radiceesatta ma m/u negativi;−2nonradice;1o3nonriproduconodataV2. Massafissa rendequadraticononsimmetrico.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=cu,c1kg s/m tra prove;u=x(1m/s)→2=2x²/(x+2),x²−x−2=(x−2)(x+1)=0. Radici2,−1;solo u2m/s,m2kgpositive.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "743a4f46b4658924daee81b2d58736700fe280bc3e629910b1fd17445ed3cb5e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "45e860fd4ce439fa9b7b3f0840d9f9dac13c982f",
+  "packageSha256": "9b210596db11aa2a7f9e75fdf2b6bfd8594ed7811821843536a942eb966290d9",
+  "bindingsSha256": "bb75a5473d93dc6f9829fe3b469f16d7aa61b6a4db51b38cf72d540e04be00f7",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-06.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}
