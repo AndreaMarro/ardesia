@@ -1,0 +1,1230 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-vector-difference-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2101,
+      "title": "Quattro metri avanti, uno indietro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 1,
+      "prompt": "Una persona parte dall’origine, percorre 4 m verso est e poi 1 m verso ovest sulla stessa retta. Quanto vale, in metri, il modulo D dello spostamento complessivo?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Orientiamo l’asse verso est. Il primo spostamento ha componente +4 m; il ritorno ha componente −1 m. La somma delle componenti collega partenza e arrivo. Il suo valore è positivo, perciò il modulo coincide con la componente risultante."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e71767d634cac9cdd0ed03a4557cf4a959e7cfb9e35cf7b2ced4b6c7987600c6",
+          "text": "Tre tappe, origine e scala fisse: andata da 0 a 4 m; ritorno da 4 a 3 m; freccia risultante da 0 a 3 m. Il cammino misura 5 m e il modulo dello spostamento 3 m."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=4\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-1\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D=|\\Delta x|"
+        },
+        {
+          "type": "formula",
+          "text": "|\\Delta x|=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "L’arrivo è tre metri a est della partenza. I cinque metri ottenuti sommando 4+1 misurano invece il cammino percorso. Uno sarebbe soltanto il ritorno e quattro soltanto l’andata: nessuno dei due rappresenta il cambiamento complessivo di posizione."
+        }
+      ],
+      "hints": [
+        "Segna il punto a 4 m, poi torna indietro di una tacca.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’arrivo è tre metri a est della partenza. I cinque metri ottenuti sommando 4+1 misurano invece il cammino percorso. Uno sarebbe soltanto il ritorno e quattro soltanto l’andata: nessuno dei due rappresenta il cambiamento complessivo di posizione.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2102,
+      "title": "L’unità sopravvive alla sottrazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 1,
+      "prompt": "D è il modulo dello spostamento risultante di due tratti sulla stessa retta in versi opposti. Quale unità è dimensionalmente adatta a D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "K",
+          "A",
+          "m",
+          "kg",
+          "s"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La posizione iniziale e quella finale sono lunghezze. La loro differenza è ancora una lunghezza: il valore assoluto ne toglie il segno senza cambiarne la dimensione. La direzione di un vettore non costituisce un’unità aggiuntiva."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta x]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [D]=[|\\Delta x|]"
+        },
+        {
+          "type": "formula",
+          "text": "[|\\Delta x|]=L"
+        },
+        {
+          "type": "text",
+          "text": "Il metro è compatibile. Kelvin, ampere, chilogrammo e secondo misurano rispettivamente temperatura, corrente, massa e tempo; non diventano unità di spostamento quando i due tratti si compensano."
+        }
+      ],
+      "hints": [
+        "Riconosci la dimensione della differenza fra due posizioni.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il metro è compatibile. Kelvin, ampere, chilogrammo e secondo misurano rispettivamente temperatura, corrente, massa e tempo; non diventano unità di spostamento quando i due tratti si compensano.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2103,
+      "title": "Quando il modulo diventa una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 1,
+      "prompt": "Due spostamenti consecutivi hanno moduli a verso est e b verso ovest, sulla stessa retta. Si sa che a>b>0. Quale relazione dà il modulo totale D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D=a−b",
+          "D=a+b",
+          "D=b−a",
+          "D=√(a²+b²)",
+          "D=ab"
+        ],
+        "value": "D=a−b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con l’est positivo, le componenti sono +a e −b. La regola è sempre la somma vettoriale: in una dimensione diventa a−b. La condizione a>b dice che questa componente è positiva e consente di togliere il valore assoluto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e71767d634cac9cdd0ed03a4557cf4a959e7cfb9e35cf7b2ced4b6c7987600c6",
+          "text": "Tre tappe, origine e scala fisse: andata da 0 a 4 m; ritorno da 4 a 3 m; freccia risultante da 0 a 3 m. Il cammino misura 5 m e il modulo dello spostamento 3 m."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=a+(-b)"
+        },
+        {
+          "type": "formula",
+          "text": "a+(-b)=a-b"
+        },
+        {
+          "type": "formula",
+          "text": " D=|a-b|"
+        },
+        {
+          "type": "formula",
+          "text": "|a-b|=a-b\\quad(a>b)"
+        },
+        {
+          "type": "text",
+          "text": "a+b è il cammino; b−a è negativo e non può essere un modulo. Pitagora richiederebbe tratti perpendicolari, mentre ab avrebbe dimensione di area. Se venisse tolta l’ipotesi a>b occorrerebbe conservare |a−b| e stabilire il verso separatamente."
+        }
+      ],
+      "hints": [
+        "Assegna il segno a ogni componente prima di calcolare il modulo.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "a+b è il cammino; b−a è negativo e non può essere un modulo. Pitagora richiederebbe tratti perpendicolari, mentre ab avrebbe dimensione di area. Se venisse tolta l’ipotesi a>b occorrerebbe conservare |a−b| e stabilire il verso separatamente.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2104,
+      "title": "Allungare soltanto l’andata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 1,
+      "prompt": "In due prove i tratti restano sulla stessa retta: a verso est e b verso ovest. Inizialmente a=4 m,b=1 m; poi a=6 m,b=1 m. Come cambia D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Aumenta da 3 m a 5 m",
+          "Raddoppia da 3 m a 6 m",
+          "Resta 3 m",
+          "Diminuisce a 1 m",
+          "Diventa nullo"
+        ],
+        "value": "Aumenta da 3 m a 5 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ritorno resta di un metro. Nella seconda prova si sottrae quindi lo stesso contributo da un’andata maggiore. Entrambe le prove rispettano a>b>0: la risultante resta verso est e il modulo è la differenza."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-1\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=6\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m-1\\,\\mathrm m=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "L’aumento è di due metri, uguale all’aumento dell’andata. Non c’è un raddoppio: 5/3 è il rapporto fra i risultati. Un modulo nullo richiederebbe a=b; la diminuzione richiederebbe un ritorno maggiore a parità di andata."
+        }
+      ],
+      "hints": [
+        "Mantieni il ritorno di un metro in entrambi i conti.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’aumento è di due metri, uguale all’aumento dell’andata. Non c’è un raddoppio: 5/3 è il rapporto fra i risultati. Un modulo nullo richiederebbe a=b; la diminuzione richiederebbe un ritorno maggiore a parità di andata.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2105,
+      "title": "Ricostruire l’andata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Un percorso rettilineo comprende a metri verso est e b=1 m verso ovest. Il modulo finale è D=3 m e l’arrivo è a est della partenza, con a>b>0. Quanto vale a, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ritorno ha tolto un metro all’andata. Per ricostruire l’andata dobbiamo restituire quel metro al risultato. Partiamo da D=a−b e aggiungiamo b a entrambi i membri: l’operazione conserva l’uguaglianza."
+        },
+        {
+          "type": "formula",
+          "text": "D+b=a-b+b"
+        },
+        {
+          "type": "formula",
+          "text": "a-b+b=a"
+        },
+        {
+          "type": "formula",
+          "text": " a=D+b"
+        },
+        {
+          "type": "formula",
+          "text": " a=3\\,\\mathrm m+1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "3\\,\\mathrm m+1\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 4−1=3 restituisce il modulo dato e 4>1 soddisfa il vincolo. Sottrarre ancora b darebbe due metri: dopo il ritorno ne resterebbe uno, quindi non ricostruirebbe la misura."
+        }
+      ],
+      "hints": [
+        "Per annullare il termine −b aggiungi b su entrambi i lati.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 4−1=3 restituisce il modulo dato e 4>1 soddisfa il vincolo. Sottrarre ancora b darebbe due metri: dopo il ritorno ne resterebbe uno, quindi non ricostruirebbe la misura.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2106,
+      "title": "Quanto si è tornati indietro?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Si percorrono a=4 m verso est e poi b metri verso ovest sulla stessa retta. Si resta a est della partenza e il modulo finale è D=3 m, con 0<b<a. Quanto vale b, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza fra il tratto di andata e la posizione raggiunta misura quanto si è tornati indietro. Nell’equazione D=a−b possiamo aggiungere b e sottrarre D da entrambi i membri: rimane b=a−D."
+        },
+        {
+          "type": "formula",
+          "text": "D+b=a"
+        },
+        {
+          "type": "formula",
+          "text": " b=a-D"
+        },
+        {
+          "type": "formula",
+          "text": " b=4\\,\\mathrm m-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-3\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un metro di ritorno porta da +4 m a +3 m. La quantità b è il modulo positivo del ritorno; la sua componente sull’asse est sarebbe −1 m. Confondere b con tale componente produrrebbe un segno sbagliato nell’equazione."
+        }
+      ],
+      "hints": [
+        "Confronta i quattro metri di andata con i tre metri rimasti.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un metro di ritorno porta da +4 m a +3 m. La quantità b è il modulo positivo del ritorno; la sua componente sull’asse est sarebbe −1 m. Confondere b con tale componente produrrebbe un segno sbagliato nell’equazione.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2107,
+      "title": "Un ritorno maggiore riduce il modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "In due prove rettilinee l’andata è sempre a=4 m verso est. Il ritorno verso ovest passa da b₁=1 m a b₂=2 m. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "1/3",
+          "−2/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima ricostruiamo i due risultati: restano tre metri nella prima prova e due nella seconda. Il rapporto richiesto ha il secondo risultato al numeratore. I metri si semplificano e la frazione due terzi è già ridotta."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=(4-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{2\\,\\mathrm m}{3\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{3\\,\\mathrm m}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto deve stare fra zero e uno. 3/2 inverte il confronto; 2 confronta i ritorni invece dei risultati; 1/3 è la diminuzione relativa (3−2)/3. Il valore negativo non può essere un rapporto fra questi moduli positivi."
+        }
+      ],
+      "hints": [
+        "Calcola le due differenze prima di formare la frazione.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Il rapporto deve stare fra zero e uno. 3/2 inverte il confronto; 2 confronta i ritorni invece dei risultati; 1/3 è la diminuzione relativa (3−2)/3. Il valore negativo non può essere un rapporto fra questi moduli positivi.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2108,
+      "title": "Il segno della sovrastima",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Una persona percorre 4 m a est e 1 m a ovest sulla stessa retta. Una soluzione propone D_proposto=6 m per il modulo finale. Quanto vale lo scarto definito come «proposto meno corretto»?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+3 m",
+          "−3 m",
+          "+6 m",
+          "+2 m",
+          "0 m"
+        ],
+        "value": "+3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La risposta corretta è |4−1|=3 m. Lo scarto confronta la proposta con quel risultato e va calcolato nell’ordine indicato, senza sostituire al valore corretto la lunghezza del cammino."
+        },
+        {
+          "type": "formula",
+          "text": "D=|4-1|\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "|4-1|\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm m-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m-3\\,\\mathrm m=+3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo segnala una sovrastima. −3 m sarebbe lo scarto con ordine opposto; +6 m trascura il valore corretto. +2 m usa l’andata come confronto e zero presuppone che la proposta sia già corretta."
+        }
+      ],
+      "hints": [
+        "Scrivi 6 m meno il modulo ottenuto sommando le componenti.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Il segno positivo segnala una sovrastima. −3 m sarebbe lo scarto con ordine opposto; +6 m trascura il valore corretto. +2 m usa l’andata come confronto e zero presuppone che la proposta sia già corretta.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2109,
+      "title": "Invertire una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Due tratti rettilinei sono a verso est e b verso ovest, con a>b>0. Si conoscono D=a−b>0 e b. Quale relazione ricava a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=D+b",
+          "a=D−b",
+          "a=b−D",
+          "a=D/b",
+          "a=Db"
+        ],
+        "value": "a=D+b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per isolare a dobbiamo eliminare la sottrazione di b. Aggiungiamo la stessa lunghezza b a entrambi i membri. D e b possono essere sommati perché hanno la stessa dimensione e devono essere espressi nella stessa unità."
+        },
+        {
+          "type": "formula",
+          "text": "D+b=a-b+b"
+        },
+        {
+          "type": "formula",
+          "text": " a=D+b"
+        },
+        {
+          "type": "text",
+          "text": "L’inversa ricostruisce a−b=(D+b)−b=D e assicura a>b perché D>0. D−b sottrae due volte il ritorno; b−D può persino risultare negativo. D/b è adimensionale e Db è un’area, quindi non possono esprimere a."
+        }
+      ],
+      "hints": [
+        "Quale operazione annulla −b?",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inversa ricostruisce a−b=(D+b)−b=D e assicura a>b perché D>0. D−b sottrae due volte il ritorno; b−D può persino risultare negativo. D/b è adimensionale e Db è un’area, quindi non possono esprimere a.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2110,
+      "title": "Fattori dentro una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Nella prima prova a>b>0 sono i moduli dei tratti verso est e ovest. Nella seconda diventano κ₁a e κ₂b, con κ₁,κ₂>0 e κ₁a>κ₂b. Quale formula dà D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁a−κ₂b)/(a−b)",
+          "κ₁κ₂",
+          "κ₁−κ₂",
+          "(κ₁a+κ₂b)/(a−b)",
+          "(κ₁a−κ₂b)/(a+b)"
+        ],
+        "value": "(κ₁a−κ₂b)/(a−b)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le ipotesi impongono una risultante verso est in entrambe le prove. Sostituiamo i due tratti nella differenza e dividiamo per la differenza iniziale, diversa da zero. I fattori moltiplicano addendi distinti: non si combinano in un prodotto indipendente da a e b."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=a-b>0"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\kappa_1a-\\kappa_2b>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac{\\kappa_1a-\\kappa_2b}{a-b}"
+        },
+        {
+          "type": "text",
+          "text": "Con κ₁=κ₂=1 il rapporto deve essere uno: κ₁−κ₂ fallisce già questo controllo. κ₁κ₂ fallisce quando entrambi i tratti raddoppiano, perché darebbe quattro anziché due. Le alternative con una somma confondono cammino e spostamento in una delle due prove."
+        }
+      ],
+      "hints": [
+        "Scrivi il nuovo modulo prima di confrontarlo con quello iniziale.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Con κ₁=κ₂=1 il rapporto deve essere uno: κ₁−κ₂ fallisce già questo controllo. κ₁κ₂ fallisce quando entrambi i tratti raddoppiano, perché darebbe quattro anziché due. Le alternative con una somma confondono cammino e spostamento in una delle due prove.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2111,
+      "title": "Cambiano entrambi i tratti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Due percorsi sulla stessa retta hanno un tratto a verso est e uno b verso ovest. La prima prova ha a₁=4 m,b₁=1 m; la seconda a₂=6 m,b₂=2 m. Quanto vale D₂/D₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "3",
+          "2",
+          "1/3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Non basta confrontare le andate o i ritorni: cambiano entrambi. Nella prima prova il ritorno cancella un metro dei quattro; nella seconda ne cancella due dei sei. Entrambe terminano a est e possiamo usare le differenze positive."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=4\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-1\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=6\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m-2\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{D_2}{D_1}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto 4/3 è maggiore di uno ma minore del rapporto 6/4 fra le andate. 3/4 inverte le prove; 3 moltiplica i fattori 6/4 e 2/1 come se D fosse un prodotto. 2 confronta soltanto i ritorni e 1/3 è l’aumento relativo del modulo."
+        }
+      ],
+      "hints": [
+        "Trova prima i tre metri e i quattro metri rimasti.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto 4/3 è maggiore di uno ma minore del rapporto 6/4 fra le andate. 3/4 inverte le prove; 3 moltiplica i fattori 6/4 e 2/1 come se D fosse un prodotto. 2 confronta soltanto i ritorni e 1/3 è l’aumento relativo del modulo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2112,
+      "title": "Media di due risultati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 2,
+      "prompt": "Due prove rettilinee hanno tratti a verso est e b verso ovest. La prima usa a=4 m,b=1 m; la seconda a=6 m,b=2 m. Con uguale peso statistico, qual è la media dei due moduli D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 m",
+          "7 m",
+          "7/4 m",
+          "9/2 m",
+          "5/2 m"
+        ],
+        "value": "7/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli sono 3 m e 4 m. Per dare uguale peso alle due prove sommiamo i risultati e dividiamo per due, senza arrotondare. Sette mezzi è una misura esatta e sta fra tre e quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=(6-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(6-2)\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline D=\\frac{3+4}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3+4}{2}\\,\\mathrm m=\\frac72\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "7 m è la somma senza la divisione; 7/4 m divide due volte. 9/2 m e 5/2 m non sono neppure fra i due risultati. In questo dominio anche la differenza delle medie dà 5−3/2=7/2 m; la linearità vale qui perché nessuna delle risultanti cambia verso."
+        }
+      ],
+      "hints": [
+        "La media di tre e quattro deve trovarsi fra quei due numeri.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7 m è la somma senza la divisione; 7/4 m divide due volte. 9/2 m e 5/2 m non sono neppure fra i due risultati. In questo dominio anche la differenza delle medie dà 5−3/2=7/2 m; la linearità vale qui perché nessuna delle risultanti cambia verso.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2113,
+      "title": "Progettare il ritorno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 3,
+      "prompt": "I tratti sono sempre rettilinei, a verso est e b verso ovest, con a>b>0 in ogni prova. Inizialmente a₁=4 m,b₁=1 m. Poi si impone a₂=6 m e si vuole D₂=(4/3)D₁. Quanto deve valere b₂/b₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo iniziale è tre metri. Il nuovo obiettivo è quattro terzi di tre, cioè quattro metri: il tre si semplifica senza decimali. Dal tratto di andata di sei metri dobbiamo sottrarre un ritorno che lasci esattamente quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "D_1=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_2=\\frac43\\times3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac43\\times3\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " b_2=a_2-D_2"
+        },
+        {
+          "type": "formula",
+          "text": "a_2-D_2=(6-4)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(6-4)\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{b_2}{b_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il nuovo ritorno è positivo e inferiore a 6 m, quindi conserva il ramo previsto. La sostituzione 6−2=4 controlla l’obiettivo. Moltiplicare semplicemente b per 4/3 ignorerebbe che è cambiata anche l’andata."
+        }
+      ],
+      "hints": [
+        "Ricava il nuovo D, poi usa b=a−D.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il nuovo ritorno è positivo e inferiore a 6 m, quindi conserva il ramo previsto. La sostituzione 6−2=4 controlla l’obiettivo. Moltiplicare semplicemente b per 4/3 ignorerebbe che è cambiata anche l’andata.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2114,
+      "title": "Una taratura senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 3,
+      "prompt": "I tratti rettilinei sono a verso est e b verso ovest, con a>b>0 in tutte le prove. Un display dà il conteggio T=gD, con g>0 costante e offset nullo. Per a=4 m,b=1 m indica T=9. Nella prova ignota indica T=12 e b=2 m. Quanto vale a, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento D=3 m: nove tacche corrispondono a tre metri, quindi il guadagno è tre tacche per metro. T è un numero puro e g ha unità m⁻¹. Correggiamo la lettura nuova dividendo per g; poi invertiamo D=a−b aggiungendo b."
+        },
+        {
+          "type": "formula",
+          "text": "D_{\\rm rif}=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{9}{3\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9}{3\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{12}{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{3\\,\\mathrm{m^{-1}}}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=D+b"
+        },
+        {
+          "type": "formula",
+          "text": "D+b=(4+2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4+2)\\,\\mathrm m=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La ricostruzione dà T=3 m⁻¹·(6 m−2 m)=12. Il vincolo 6>2>0 è rispettato. Sottrarre due metri da dodici tacche mescolerebbe grandezze diverse; la correzione strumentale precede il calcolo del tratto."
+        }
+      ],
+      "hints": [
+        "Trasforma prima dodici tacche in metri.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La ricostruzione dà T=3 m⁻¹·(6 m−2 m)=12. Il vincolo 6>2>0 è rispettato. Sottrarre due metri da dodici tacche mescolerebbe grandezze diverse; la correzione strumentale precede il calcolo del tratto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2115,
+      "title": "Due riferimenti separano guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 3,
+      "prompt": "In tutte le prove a>b>0 sono tratti sulla stessa retta, a verso est e b verso ovest. Il display conta tacche T=gD+c con g>0,c costanti. I riferimenti sono (a=4 m,b=1 m,T=7) e (a=6 m,b=2 m,T=9). La prova ignota ha T=11,b=1 m. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 m",
+          "5 m",
+          "7 m",
+          "3 m",
+          "12 m"
+        ],
+        "value": "6 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno D₁=3 m e D₂=4 m. Sottraendo le letture l’offset scompare: due tacche per un metro danno g=2 m⁻¹. Il primo riferimento lascia c=7−2·3=1. Dalla nuova lettura sottraiamo l’offset e dividiamo per il guadagno prima di ricostruire l’andata."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{9-7}{(4-3)\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-7}{(4-3)\\,\\mathrm m}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " c=7-2\\times3"
+        },
+        {
+          "type": "formula",
+          "text": "7-2\\times3=1"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{11-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{11-1}{2\\,\\mathrm{m^{-1}}}=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=D+b"
+        },
+        {
+          "type": "formula",
+          "text": "D+b=(5+1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(5+1)\\,\\mathrm m=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo completo è 2 m⁻¹·(6 m−1 m)+1=11. 5 m è il modulo D prima di restituire il ritorno; 7 m non riproduce la lettura. 3 m riusa il primo riferimento e 12 m tratta le tacche come metri. a=6 m soddisfa anche a>b>0."
+        }
+      ],
+      "hints": [
+        "Trova il guadagno usando la differenza fra i due riferimenti.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo completo è 2 m⁻¹·(6 m−1 m)+1=11. 5 m è il modulo D prima di restituire il ritorno; 7 m non riproduce la lettura. 3 m riusa il primo riferimento e 12 m tratta le tacche come metri. a=6 m soddisfa anche a>b>0.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-vector-difference-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2116,
+      "title": "Un rapporto fra i tratti rende unica la risposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collinear-opposite-displacements",
+      "difficulty": 3,
+      "prompt": "Un percorso rettilineo comprende a verso est e b verso ovest. Si sa che a=4b, con b>0, e che il modulo finale D è 3 m. Quanto vale b?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "1/2 m",
+          "0 m",
+          "−1 m",
+          "2 m"
+        ],
+        "value": "1 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo a=4b assicura a>b e permette di sostituire l’andata nella differenza. Quattro copie di b meno una copia di b lasciano tre copie: il modulo misurato è dunque 3b. Dividiamo entrambi i membri per tre."
+        },
+        {
+          "type": "formula",
+          "text": "D=a-b"
+        },
+        {
+          "type": "formula",
+          "text": "a-b=4b-b"
+        },
+        {
+          "type": "formula",
+          "text": "4b-b=3b"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac D3"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac D3=\\frac{3\\,\\mathrm m}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3\\,\\mathrm m}{3}=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " a=4b"
+        },
+        {
+          "type": "formula",
+          "text": "4b=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La coppia (4 m,1 m) riproduce sia il vincolo sia D=3 m. Mezzo metro darebbe D=3/2 m e due metri darebbero D=6 m. Zero e −1 m violano b>0. Senza a=4b la sola differenza ammetterebbe molte coppie positive."
+        }
+      ],
+      "hints": [
+        "Sostituisci a con 4b prima di fare operazioni numeriche.",
+        "Controlla il verso finale e ricostruisci la differenza con unità omogenee."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La coppia (4 m,1 m) riproduce sia il vincolo sia D=3 m. Mezzo metro darebbe D=3/2 m e due metri darebbero D=6 m. Zero e −1 m violano b>0. Senza a=4b la sola differenza ammetterebbe molte coppie positive.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Spostamento e posizione"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e71767d634cac9cdd0ed03a4557cf4a959e7cfb9e35cf7b2ced4b6c7987600c6",
+      "name": "vector-difference-return.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNzUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkFuZGF0YSwgcml0b3JubyBlIHNwb3N0YW1lbnRvIHJpc3VsdGFudGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkgY29uIGFzc2UgZGEgemVybyBhIGNpbnF1ZSBtZXRyaS4gUHJpbWEgZnJlY2NpYSB2ZXJzbyBlc3QgZGEgemVybyBhIHF1YXR0cm8sIHNlY29uZGEgZnJlY2NpYSB2ZXJzbyBvdmVzdCBkYSBxdWF0dHJvIGEgdHJlLCB0ZXJ6YSBmcmVjY2lhIHJpc3VsdGFudGUgZGEgemVybyBhIHRyZS4gSWwgY2FtbWlubyDDqCBjaW5xdWUgbWV0cmkgZSBsbyBzcG9zdGFtZW50byBoYSBtb2R1bG8gdHJlIG1ldHJpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iZWFzdCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI4IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI3NTAiIHJ4PSIyMCIgZmlsbD0iI2ZhZjhmMiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJmM2IiPgo8dGV4dCB4PSIyOCIgeT0iMzgiIGZvbnQtc2l6ZT0iMjMiIGZvbnQtd2VpZ2h0PSI3MDAiPlN0ZXNzYSBvcmlnaW5lLCBzdGVzc2Egc2NhbGE8L3RleHQ+CjxnIGZvbnQtc2l6ZT0iMTkiPjx0ZXh0IHg9IjI4IiB5PSI4NCI+MSDCtyBBbmRhdGE6ICs0IG0gdmVyc28gZXN0PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIyOTIiPjIgwrcgUml0b3Jubzog4oiSMSBtIHZlcnNvIG92ZXN0PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1MDAiPjMgwrcgUGFydGVuemEg4oaSIGFycml2bzogKzMgbTwvdGV4dD48L2c+CjxnIHN0cm9rZT0iIzZiNzQ3NyIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNNjAgMTc1SDU2ME02MCAzODNINTYwTTYwIDU5MUg1NjAiLz48cGF0aCBkPSJNNjAgMTY4VjE4Mk0xNjAgMTY4VjE4Mk0yNjAgMTY4VjE4Mk0zNjAgMTY4VjE4Mk00NjAgMTY4VjE4Mk01NjAgMTY4VjE4Mk02MCAzNzZWMzkwTTE2MCAzNzZWMzkwTTI2MCAzNzZWMzkwTTM2MCAzNzZWMzkwTTQ2MCAzNzZWMzkwTTU2MCAzNzZWMzkwTTYwIDU4NFY1OThNMTYwIDU4NFY1OThNMjYwIDU4NFY1OThNMzYwIDU4NFY1OThNNDYwIDU4NFY1OThNNTYwIDU4NFY1OTgiLz48L2c+CjxnIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjx0ZXh0IHg9IjYwIiB5PSIyMDUiPjA8L3RleHQ+PHRleHQgeD0iMTYwIiB5PSIyMDUiPjE8L3RleHQ+PHRleHQgeD0iMjYwIiB5PSIyMDUiPjI8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSIyMDUiPjM8L3RleHQ+PHRleHQgeD0iNDYwIiB5PSIyMDUiPjQ8L3RleHQ+PHRleHQgeD0iNTYwIiB5PSIyMDUiPjUgbTwvdGV4dD48dGV4dCB4PSI2MCIgeT0iNDEzIj4wPC90ZXh0Pjx0ZXh0IHg9IjE2MCIgeT0iNDEzIj4xPC90ZXh0Pjx0ZXh0IHg9IjI2MCIgeT0iNDEzIj4yPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iNDEzIj4zPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iNDEzIj40PC90ZXh0Pjx0ZXh0IHg9IjU2MCIgeT0iNDEzIj41IG08L3RleHQ+PHRleHQgeD0iNjAiIHk9IjYyMSI+MDwvdGV4dD48dGV4dCB4PSIxNjAiIHk9IjYyMSI+MTwvdGV4dD48dGV4dCB4PSIyNjAiIHk9IjYyMSI+MjwvdGV4dD48dGV4dCB4PSIzNjAiIHk9IjYyMSI+MzwvdGV4dD48dGV4dCB4PSI0NjAiIHk9IjYyMSI+NDwvdGV4dD48dGV4dCB4PSI1NjAiIHk9IjYyMSI+NSBtPC90ZXh0PjwvZz4KPHBhdGggZD0iTTYwIDEzM0g0NjAiIHN0cm9rZT0iIzEyNjE3YyIgc3Ryb2tlLXdpZHRoPSI2IiBtYXJrZXItZW5kPSJ1cmwoI2Vhc3QpIi8+PHBhdGggZD0iTTQ2MCAzNDFIMzYwIiBzdHJva2U9IiM5YjRiMjAiIHN0cm9rZS13aWR0aD0iNiIgbWFya2VyLWVuZD0idXJsKCNlYXN0KSIvPjxwYXRoIGQ9Ik02MCA1NDlIMzYwIiBzdHJva2U9IiMxMjYxN2MiIHN0cm9rZS13aWR0aD0iNiIgbWFya2VyLWVuZD0idXJsKCNlYXN0KSIvPgo8ZyBmb250LXNpemU9IjE4Ij48dGV4dCB4PSI2MCIgeT0iMjM1Ij5QYXJ0ZW56YTwvdGV4dD48dGV4dCB4PSI0MzAiIHk9IjIzNSI+RmluZSBhbmRhdGE8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSI0NDUiPkFycml2byBhIDMgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjgwIj5DYW1taW5vOiA0IG0gKyAxIG0gPSA1IG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjcxNiI+TW9kdWxvIGRlbGxvIHNwb3N0YW1lbnRvOiB8NCBtIOKIkiAxIG18ID0gMyBtPC90ZXh0PjwvZz48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
