@@ -58,7 +58,27 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint del primo shard U2 — 320 quesiti e 37 altre attività
+## Checkpoint corrente — 416 quesiti e 45 altre attività
+
+Generazione `ee506766c87603c1be333fb3d4323b65a1346006c0d9b0959614fe8f1eec6f12`:
+416quesiti riscritti DRAFT e45/385attività riesaminate; restano4190revisioni
+complete e340attività. Sei nuove famiglie021–026 hanno96soluzioni individuali,
+verificatori separati dagli autori e288anteprime private terminali exit0. Il totale
+è1254casi:1248quesiti e6revisioni di esempi. Le otto attività aggiunte sono
+C1-E017..020 eC2-E001..004, con49controlli esatti e sette figure storiche rilette.
+
+I test avversari provano96risposte sbagliate con binding e firme rinnovati soltanto
+in memoria: gli oracoli matematici le rifiutano. Le firme congelate rifiutano anche
+testi, fonti, asset e forme incomplete. Nessuna prova deriva dalla chiave originaria.
+Ricostruzione fresh identica all'incrementale; import idempotenti e991pubblicati/
+storico invariati. I due FAIL delle vecchie edizioni E003/E008 restano aperti.
+
+Primo ID successivo `u2-vertical-flight-01` (027); authoring027–030 e031–034 in
+worktree isolati non equivale a revisione completata. C1-E021..023 sono ancora da
+riesaminare nel file `content/esempi-di-copertura.json`, non nel fileC1.json.
+Approvazione umana NOT_RUN e nuove pubblicazioni0. Le sezioni sotto sono snapshot.
+
+## Checkpoint precedente del primo shard U2 — 320 quesiti e 37 altre attività
 
 Completate le ulteriori64schede su medie a tempi uguali, andata/ritorno e primo
 arresto: tuttaU1 e tutti i160ID di U2-01 sono ora revisionati in bozza, per320
@@ -280,9 +300,9 @@ locali non sostituiscono la CI né dichiarano una pubblicazione.
 
 1. Consolidare i nuovi lotti tramite PR verso `officina-di-fisica`, completare i gate
    e rileggere la CI sulla SHA risultante. Non eseguire deploy o promozioni editoriali.
-2. Continuare U1 da `u1-vector-difference-01` per famiglie, preservando il legame al
-   testo letto e il riesame indipendente. Gli altri 96 ID U1 non sono già verificati.
-3. Applicare lo stesso protocollo agli altri 4.446 quesiti fuori da U1 e recuperare
+2. Continuare da `u2-vertical-flight-01` per famiglie, preservando il legame al
+   testo letto e il riesame indipendente. U1 e U2-01 sono già revisionati.
+3. Applicare lo stesso protocollo ai4.190quesiti ancora aperti e recuperare
    le prove pertinenti prima di riscrivere. I 199 recuperati hanno ancora fasi aperte.
 4. Rivedere lezioni, esempi, esperimenti ed esami; gli indicatori di approssimazione
    sono priorità di lettura, non prova automatica di necessità della calcolatrice.

@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-c1-activities-005",
+  "records": [
+    {
+      "id": "C1-E017",
+      "sourceSha256": "af066f803cfa281a955b951d439b91bddc809465fd1942e5e2bf18a5a3df1ac1",
+      "sourceVersion": 2,
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "impulso tratto crescente da integrale",
+          "independentExact": "2",
+          "printedValue": "2",
+          "unit": "N*s",
+          "dimension": {
+            "[time]": "-1",
+            "[mass]": "1",
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "impulso tratto decrescente ancora positivo",
+          "independentExact": "2",
+          "printedValue": "2",
+          "unit": "N*s",
+          "dimension": {
+            "[time]": "-1",
+            "[mass]": "1",
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "impulso totale",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "N*s",
+          "dimension": {
+            "[time]": "-1",
+            "[mass]": "1",
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita orientata finale da variazione quantita di moto",
+          "independentExact": "2",
+          "printedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "forza media temporale",
+          "independentExact": "20",
+          "printedValue": "20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "impulso dimensionale Pint",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita da unita impulso/massa",
+          "independentExact": "2",
+          "printedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "distrattore picco mantenuto darebbe doppia velocita",
+          "independentExact": "4",
+          "printedValue": "4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "impulso tratto crescente da integrale": {
+          "[time]": "-1",
+          "[mass]": "1",
+          "[length]": "1"
+        },
+        "impulso tratto decrescente ancora positivo": {
+          "[time]": "-1",
+          "[mass]": "1",
+          "[length]": "1"
+        },
+        "impulso totale": {
+          "[time]": "-1",
+          "[mass]": "1",
+          "[length]": "1"
+        },
+        "velocita orientata finale da variazione quantita di moto": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "forza media temporale": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "impulso dimensionale Pint": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "velocita da unita impulso/massa": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "distrattore picco mantenuto darebbe doppia velocita": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "0,10=1/10s; ogni triangolo (1/2)*(1/10)*40=2N s; somma4N s. Massa2kg e vi0 danno vf=+4/2=+2m/s. Durata1/5s: media4/(1/5)=20N. Picco40 per tutto1/5s darebbe impulso8 e vf4, doppio.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Riferimento del laboratorio approssimato inerziale; massa2kg costante; forza orizzontale dichiarata netta, positiva e lineare nei due intervalli. Carrello inizialmente fermo; nessun impulso aggiuntivo da sommare alla risultante assegnata.",
+      "pedagogicalReview": "Forza decrescente non significa forza negativa: entrambe le aree sono positive. Picco non uguale a media; usare40N per0,20s raddoppia impulso e velocita. Impulso della risultante, non lavoro o forza istantanea divisa per massa; segno finale coerente con asse dichiarato.",
+      "assetChecksums": {
+        "/figures/C1-impulso.svg": "da0e022c6e42c1509d6a7c3f5721cc633f046ff164b2ab06878cab7b931f8402"
+      },
+      "figureReview": "Triangolo interamente sopra lasse del tempo, picco40N a0,10s e zeri0e0,20s; basi uguali176px per0,10s. Picco y49, base y165; asse y167, scarto2px da spessore grafico, non ulteriore forza fisica. Area e non lunghezza del perimetro rappresenta impulso. Figura pinned letta e renderizzata.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E018",
+      "sourceSha256": "803d1e0b3fd728c70e52541ea09ace41d460b3165599589a75a3b7ced793a56d",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "quantita di moto totale orientata",
+          "independentExact": "5",
+          "printedValue": "5",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita comune da conservazione",
+          "independentExact": "5/3",
+          "printedValue": "5/3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia cinetica iniziale",
+          "independentExact": "19/2",
+          "printedValue": "19/2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia cinetica finale",
+          "independentExact": "25/6",
+          "printedValue": "25/6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "perdita di energia cinetica",
+          "independentExact": "16/3",
+          "printedValue": "16/3",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "perdita da massa ridotta e velocita relativa",
+          "independentExact": "16/3",
+          "printedValue": "16/3",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "energia finale dimensionale Pint",
+          "independentExact": "25/6",
+          "printedValue": "25/6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "approssimazione secondaria 5,33 J",
+          "independentExact": "16/3",
+          "printedValue": "5.33",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "explicit_approximation_nearest_hundredth",
+          "manualBounds": "5.325 < 16/3 < 5.335; 639<640 and 3200<3201",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "quantita di moto totale orientata": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "velocita comune da conservazione": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "energia cinetica iniziale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energia cinetica finale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "perdita di energia cinetica": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "perdita da massa ridotta e velocita relativa": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energia finale dimensionale Pint": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "approssimazione secondaria 5,33 J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "pi=2*3+1*(-1)=6-1=5kg m/s; massa3kg, vf=5/3m/s. Ki=9+1/2=19/2J; Kf=(3/2)*(25/9)=25/6J. Perdita57/6-25/6=32/6=16/3J. 16/3=5+1/3=5,333...; arrotondamento5,33 secondario. Soglie5,325=213/40 e5,335=1067/200: 213*3=639<640=16*40 e16*200=3200<3201=1067*3.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Riferimento inerziale della guida e asse positivo verso destra; masse costanti; impulso esterno orizzontale trascurabile durante urto, non necessaria assenza di forze verticali. Aggancio permanente e unica velocita traslazionale finale; sistema comprende entrambi i carrelli.",
+      "pedagogicalReview": "Quantita di moto algebrica, energia cinetica quadratica: il carrello sinistrorso contribuisce-1kg m/s ma+1/2J. Non si conserva K in urto con aggancio. Sommare i moduli del momento darebbe7/3m/s e violerebbe il momento iniziale5. Radice o trigonometria non necessarie; perdita16/3 esatta prima del decimale esplicito.",
+      "assetChecksums": {
+        "/figures/C1-aggancio.svg": "94627f0e1d0c8ad0326d7ccf7894ab420ad9a5b8a40772809b4176362773db95"
+      },
+      "figureReview": "Carrello2kg a sinistra con freccia destra+3m/s, carrello1kg a destra con freccia sinistra-1m/s; convergono. Frecce64e22px qualitativamente e quasi proporzionalmente3:1, nessuna scala metrica dichiarata. Dopo i rettangoli si toccano e caption indica velocita unica, senza imporre energia conservata.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E019",
+      "sourceSha256": "e21ec19bc649f93ee8efb56012dcca940ee5673e1e574b901a6bde7b3c505d8d",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "forza muscolare da equilibrio dei momenti",
+          "independentExact": "120",
+          "printedValue": "120",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "reazione verticale orientata",
+          "independentExact": "-102",
+          "printedValue": "-102",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "modulo momento del carico",
+          "independentExact": "27/5",
+          "printedValue": "27/5",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "momento muscolare opposto",
+          "independentExact": "27/5",
+          "printedValue": "27/5",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "risultante verticale",
+          "independentExact": "0",
+          "printedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "unita momento diviso braccio",
+          "independentExact": "120",
+          "printedValue": "120",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "forza muscolare da equilibrio dei momenti": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "reazione verticale orientata": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "modulo momento del carico": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "momento muscolare opposto": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "risultante verticale": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "unita momento diviso braccio": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Bracci0,045=9/200m e0,30=3/10m. Momento carico18*(3/10)=27/5=5,4N m; Fm=(27/5)/(9/200)=(27*40)/9=120N. Ry=18-120=-102N. Momento120*(9/200)=27/5, risultante-102+120-18=0. Bracci perpendicolari per forze verticali e avambraccio orizzontale.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Modello statico bidimensionale: avambraccio orizzontale rigido di peso trascurabile; carico18N verticale in basso; muscolo verticale in alto. Gomito come giunto che puo esercitare reazione anche verso il basso, non semplice appoggio unilaterale; nessuna coppia vincolare aggiuntiva nel modello. Distanze dal gomito uguali ai bracci per la perpendicolarita delle forze.",
+      "pedagogicalReview": "Separati equilibrio dei momenti ed equilibrio delle forze. Reazione non compare nei momenti presi in O, ma non e nulla. Fm120N grande per braccio corto; Ry negativo significa verso il basso, non impossibilita del giunto. Usare Fm18N ignorerebbe il rapporto dei bracci e non bilancerebbe il momento.",
+      "assetChecksums": {
+        "/figures/C1-leva.svg": "e708c2fc539832a2dc4f5de2015f9b3cba8584883f3a7900ba2e1ad74a6f1d41"
+      },
+      "figureReview": "O e giunto al gomito; forza muscolare alta e carico basso danno momenti opposti. Caption dichiara bracci schematici: non si estraggono0,045e0,30m dalle lunghezze in pixel. Simbolo triangolare rappresenta il giunto del modello, non aggiunge un vincolo di reazione solo verso lalto. Nessuna scala quantitativa delle frecce, ne pretesa Fm/carico dal rapporto84/59px.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-E020",
+      "sourceSha256": "fe6f77e518f0a96cc9af42e77b52974dc558a3663bc2ffcb9f1ffd15f2275b1f",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "primo momento di massa orientato",
+          "independentExact": "0",
+          "printedValue": "0",
+          "unit": "kg*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "centro di massa",
+          "independentExact": "0",
+          "printedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "momento sinistro antiorario",
+          "independentExact": "6",
+          "printedValue": "6",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "momento destro orario",
+          "independentExact": "-6",
+          "printedValue": "-6",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "momento gravitazionale totale",
+          "independentExact": "0",
+          "printedValue": "0",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "reazione del sostegno per equilibrio di forze",
+          "independentExact": "40",
+          "printedValue": "40",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "primo momento di massa orientato": {
+          "[mass]": "1",
+          "[length]": "1"
+        },
+        "centro di massa": {
+          "[length]": "1"
+        },
+        "momento sinistro antiorario": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "momento destro orario": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "momento gravitazionale totale": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "reazione del sostegno per equilibrio di forze": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "3*(-1/5)+1*(3/5)=-3/5+3/5=0kg m, diviso massa4kg da xCM0. In g10m/s2 pesi30e10N; momenti+30/5=+6 e-10*(3/5)=-6N m. Reazione verticale40N equilibra il peso totale. Stesso risultato per ogni g uniforme positivo per cancellazione del fattore comune.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Masse puntiformi fissate a unasta di massa trascurabile; coordinate orientate sulla medesima retta. Gravita uniforme; sostegno puntiforme verticale nellorigine, con portata sufficiente. Si dimostra equilibrio orizzontale, senza rivendicare stabilita o un momento di richiamo.",
+      "pedagogicalReview": "Coordinate negative e positive conservate: media semplice(-0,20+0,60)/2=0,20m sarebbe sbagliata per masse diverse. Centro piu vicino alla massa maggiore; bracci0,20e0,60 in rapporto1:3. Momento nullo richiede anche equilibrio delle forze: conclusione lo ricorda, oracolo ne trova40N per g10.",
+      "assetChecksums": {
+        "/figures/C1-cdm.svg": "3906b02224c15b11aa2dd7ec3dae9d455eeb3c2f44c15ebaeb3490c8d077ef77"
+      },
+      "figureReview": "Asse x in metri: origine216px, massa3kg a146px e1kg a426px, distanze70e210px esattamente1:3 coerenti con0,20e0,60m (350px/m). Dimensioni dei dischi distinguono simbolicamente masse puntiformi; non sono raggi o ulteriori dati del problema. Segni e origine corretti.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-E001",
+      "sourceSha256": "d65274b8635a663da2c2bffdbf1226f94bf621bb3cb8d56a10be353c75171444",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "massa del liquido senza tara",
+          "independentExact": "51/2000",
+          "printedValue": "51/2000",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "volume in SI",
+          "independentExact": "3/100000",
+          "printedValue": "3/100000",
+          "unit": "m**3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "densita dal rapporto massa liquido/volume",
+          "independentExact": "850",
+          "printedValue": "850",
+          "unit": "kg/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "densita in grammi per millilitro",
+          "independentExact": "17/20",
+          "printedValue": "17/20",
+          "unit": "g/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "ricostruzione massa totale",
+          "independentExact": "99/2",
+          "printedValue": "99/2",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "massa del liquido senza tara": {
+          "[mass]": "1"
+        },
+        "volume in SI": {
+          "[length]": "3"
+        },
+        "densita dal rapporto massa liquido/volume": {
+          "[mass]": "1",
+          "[length]": "-3"
+        },
+        "densita in grammi per millilitro": {
+          "[mass]": "1",
+          "[length]": "-3"
+        },
+        "ricostruzione massa totale": {
+          "[mass]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Massa liquido49,5-24,0=25,5g=51/2000kg. Volume30mL=30/1000000m3=3/100000m3. Rapporto(51/2000)/(3/100000)=51*50/3=850kg/m3. In g/mL25,5/30=255/300=17/20=0,850. Ricostruzione850*(3/100000)=51/2000kg=25,5g; piu24g restituisce49,5g.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Liquido omogeneo, recipiente invariato fra tara e misura piena, nessuna massa di tappo o materiale aggiunto;30mL e il volume del solo liquido. Densita media del campione nelle condizioni di misura, non identificazione univoca di una sostanza. Confronto qualitativo con acqua liquida ordinaria a temperatura ambiente, senza usarne un valore preciso nel calcolo.",
+      "pedagogicalReview": "Sottrae tara prima del rapporto; massa piena49,5g al posto di25,5 darebbe1650kg/m3 e non densita del liquido. Volume30mL del solo liquido, fattore10^-6 nella conversione volumica. Risultati850kg/m3 e0,850g/mL equivalenti; densita minore dellacqua ordinaria non identifica automaticamente il materiale.",
+      "assetChecksums": {},
+      "figureReview": "No figure in this source record",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-E002",
+      "sourceSha256": "41aa637013b76d7e559642a8a28a2d847926cd471ea223815b434e8e48d56454",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "area convertita col quadrato del prefisso",
+          "independentExact": "3/5000",
+          "printedValue": "3/5000",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "differenza pressione assoluta",
+          "independentExact": "4000",
+          "printedValue": "4000",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "forza della camera a104kPa",
+          "independentExact": "312/5",
+          "printedValue": "312/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "forza opposta della camera a100kPa",
+          "independentExact": "60",
+          "printedValue": "60",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "risultante da differenza di forze",
+          "independentExact": "12/5",
+          "printedValue": "12/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "verifica simbolica pressione comune si cancella",
+          "independentExact": "12/5",
+          "printedValue": "12/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "area convertita col quadrato del prefisso": {
+          "[length]": "2"
+        },
+        "differenza pressione assoluta": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "forza della camera a104kPa": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "forza opposta della camera a100kPa": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "risultante da differenza di forze": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "verifica simbolica pressione comune si cancella": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "1cm2=(1/100m)^2=1/10000m2;6cm2=3/5000m2. Differenza(104-100)kPa=4*1000=4000Pa. Prodotto4000*6/10000=24/10=12/5=2,4N. Forze separate104000*(3/5000)=62,4N e100000*(3/5000)=60N; differenza2,4N verso la camera a100kPa.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Membrana piana, area6cm2 effettiva uguale su entrambe le facce; pressioni uniformi assolute riferite alla stessa convenzione. Si chiede soltanto la risultante dovuta alle pressioni, non tensione della membrana o reazione dei supporti. Spinte normali e opposte, fluido in quiete senza contributi viscosi.",
+      "pedagogicalReview": "Forze opposte sulla stessa area: differenza e non somma delle pressioni. Usare una sola pressione assoluta darebbe62,4 o60N; sommarle122,4N. Convertire6cm2 come6*10^-2m2 produrrebbe errore100; il prefisso della lunghezza va elevato al quadrato.",
+      "assetChecksums": {
+        "/figures/C2-membrana.svg": "772b8d0bfb56f06eb29bf1e5d3fd29ea669f2ec099393f2866fc9bc5fb117ebd"
+      },
+      "figureReview": "Membrana verticale al centro:104kPa a sinistra e100kPa a destra; frecce normali verso le facce opposte. Caption dichiara versi, non scala metrica:77e71px sono schematici e non servono a stimare il rapporto104/100. Area6cm2 esplicita; risultante verso destra corretta.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-E003",
+      "sourceSha256": "d123a3563b4d8a791827318d3dbff1f4af56eff21ac9dda57bb534ba4b3128ba",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "dislivello in SI",
+          "independentExact": "3/25",
+          "printedValue": "3/25",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "pressione relativa da integrazione idrostatica",
+          "independentExact": "1176",
+          "printedValue": "1176",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "conversione dimensionale Pint della colonna",
+          "independentExact": "1176",
+          "printedValue": "1176",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "pressione relativa esatta in kPa",
+          "independentExact": "147/125",
+          "printedValue": "147/125",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "approssimazione secondaria1,18kPa",
+          "independentExact": "147/125",
+          "printedValue": "1.18",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "explicit_approximation_nearest_hundredth",
+          "manualBounds": "1.175 < 1.176 < 1.185, or 1175 < 1176 < 1185 after multiplying by1000",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "dislivello in SI": {
+          "[length]": "1"
+        },
+        "pressione relativa da integrazione idrostatica": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "conversione dimensionale Pint della colonna": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "pressione relativa esatta in kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "approssimazione secondaria1,18kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "12cm=3/25m;9,8=49/5m/s2. Incremento1000*(49/5)*(3/25)=8*147=1176Pa. In kPa1176/1000=147/125=1,176 esatto, arrotondato1,18;1175<1176<1185 delimita1,175<1,176<1,185 senza calcolatrice. Segno positivo per superficie del gas piu bassa.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Acqua connessa in quiete a densita1000kg/m3 costante, gravita uniforme9,8m/s2; superfici misurate a differenza di quota12cm, non spostamento di ciascun ramo. Gas e atmosfera agiscono sulle rispettive superfici; trascurati salti capillari e contributi di colonne di gas. Pressione relativa definita pgas-patm.",
+      "pedagogicalReview": "Un percorso idrostatico collega livelli: scendere dal ramo atmosferico aumenta p. Quota del gas piu bassa implica pgas>patm. Invertire il segno o usare2*12cm confonderebbe differenza totale di livelli con due spostamenti.1176Pa esatto precede esplicita approssimazione1,18kPa, sostenuta da soli interi.",
+      "assetChecksums": {
+        "/figures/C2-manometro.svg": "6422c8e2f436ca33deee8b7d18294ffed0c4095e40d3fba6205dd616ea0bd90c"
+      },
+      "figureReview": "Acqua connessa nei due rami; gas a sinistra con interfaccia y104, atmosfera a destra con superficie y64. Quota gas piu bassa, segmenti tratteggiati e simbolo delta_h mostrano una sola differenza verticale40px, non due colonne da sommare. Nessuna scala numerica ulteriore o fluido diverso rappresentato.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-E004",
+      "sourceSha256": "62a44af04a479a8e175ac243ba00080d24b5a02d1271757f949fe857ef96004c",
+      "sourceVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "contributo olio da integrazione",
+          "independentExact": "800",
+          "printedValue": "800",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "contributo acqua da integrazione",
+          "independentExact": "2500",
+          "printedValue": "2500",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "somma degli incrementi in discesa",
+          "independentExact": "3300",
+          "printedValue": "3300",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "conversione SI e somma Pint",
+          "independentExact": "33/10",
+          "printedValue": "33/10",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "spessore totale come controllo non sostituisce le densita",
+          "independentExact": "7/20",
+          "printedValue": "7/20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "contributo olio da integrazione": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "contributo acqua da integrazione": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "somma degli incrementi in discesa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "conversione SI e somma Pint": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "spessore totale come controllo non sostituisce le densita": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Olio10cm=1/10m:800*10*(1/10)=800Pa. Acqua25cm=1/4m:1000*10/4=2500Pa. Discesa in entrambi:800+2500=3300Pa=33/10kPa=3,3kPa. Spessore totale1/10+1/4=7/20m non giustifica usare ununica densita arbitraria.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "failedPublishedEdition": false,
+      "physicalAssumptions": "Due liquidi omogenei immiscibili in quiete, olio sopra acqua, densita e g costanti; vaso aperto con superficie a pressione atmosferica. Interfaccia piana con effetti capillari trascurati esplicitamente; pressione continua attraverso interfaccia. Si chiede pressione relativa al fondo, senza aggiungere patm al numero richiesto.",
+      "pedagogicalReview": "Somma gli incrementi a densita diversa e conserva la pressione acquisita nello strato precedente. Usare soltanto acqua per35cm darebbe3500Pa, soltanto olio2800Pa; entrambi diversi da3300. Cambiare segno allo strato inferiore sarebbe errato: si scende ancora. Densita efficace ponderata per spessori funzionerebbe, ma non una densita arbitraria.",
+      "assetChecksums": {
+        "/figures/C2-strati.svg": "f46f81593447ebc68faa77ba1f0537cf8ff0714beb4f43e5c058aa17f01dc87a"
+      },
+      "figureReview": "Vaso aperto, olio superiore etichettato10cm e acqua inferiore25cm; spessori grafici40e98px circa in rapporto1:2,5, senza scala quantitativa dichiarata. Confine comune y81, superficie libera e fondo coerenti con discesa attraverso entrambi gli strati. Numeri del prompt governano il calcolo, non misurazioni dello stroke.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "cd5c27d9d7c1ebf85f3c9c13227ec1e7c8d3b8fd60b38ed3f3259ee1053e6849",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C1.json",
+  "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "scopeNote": "Eight original examples: C1-E017..020 and C2-E001..004, from two pinned course files.",
+  "sourcePaths": [
+    "officina-di-fisica/content/C1.json",
+    "officina-di-fisica/content/C2.json"
+  ],
+  "sourceFileSha256ByPath": {
+    "officina-di-fisica/content/C1.json": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+    "officina-di-fisica/content/C2.json": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_author",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "originalEditionRetained": true
+}

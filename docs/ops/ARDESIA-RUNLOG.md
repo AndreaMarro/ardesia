@@ -1435,3 +1435,5 @@ Prossime priorità:
    preservando dati e tentativi. Tracciare separatamente i FAIL del pubblicato.
 5. Preparare approvazioni umane e prove con studenti a partire dalle code;
    l'assenza di tali prove non viene trasformata in PASS o pubblicazione automatica.
+
+2026-11-24 — Cric416: altre96revisioni U2-02 e8attività originali portano il registro a416/4606 e45/385. Generazione ee506766c87603c1be333fb3d4323b65a1346006c0d9b0959614fe8f1eec6f12; fresh/incrementale identici,288nuoveanteprime terminali PASS (1254totali), import idempotenti e991pubblicati/storico invariati. Due FAIL pubblicati E003/E008 preservati, umano NOT_RUN, pubblicazioni0. PR356 resta320/37 e riceve solo due riparazioni CI: fixture Insights con893testweb PASS e runnerS19 fissatoUbuntu24.04 perché lockPlaywright1.60.0 rifiuta26.04. Attendere CI effettiva prima di merge. Le100revisioniPro non identificate,199controlli parziali. C1-E021..023 esistono nel fileesempi-di-copertura e restanoNOT_RUN. ProssimoID027vertical-flight, altri64U2-02 inauthoring isolato; rootunico integratore.

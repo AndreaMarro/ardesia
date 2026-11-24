@@ -1,3 +1,19 @@
+# Checkpoint corrente — 416 quesiti, 45 altre attività
+
+Generazione ee506766c87603c1be333fb3d4323b65a1346006c0d9b0959614fe8f1eec6f12.
+Restano4190revisioni complete e340attività;1254anteprime private PASS,991pubblicati
+inalterati, DRAFT/humanNOT_RUN, due originali E003/E008 ancora FAIL. U1 eU2-01
+revisionati; U2-02 restano64ID027–030. Primo ID `u2-vertical-flight-01`.
+A autore031–034 (forze/ascensore/dueblocchi/Atwood), B autore027–030 (volo/gittata/
+unsecondo/frequenza), reviewer separato perB, rootreviewA e unico integratore.
+Non contare candidati fuori registry. C1-E021..023 sono nel file degli esempi di
+copertura e restano NOT_RUN: non dedurne assenza dal soloC1.json.
+
+PR356 contiene320/37, con riparazione mirata fixture Insights f59c1f36 e pin runner
+S19Ubuntu24.04 5ffe1655; leggere CI sulla head effettiva e poi post-merge.
+Il nuovo incremento416/45 va su ramo separato, senza invalidare quel collaudo.
+La storia sotto conserva snapshot precedenti; leggere sempre il puntatore attuale.
+
 # Prosecuzione corrente — Cric, revisione di 4.606 quesiti
 
 Checkpoint più recente:320/4606quesiti revisionati in bozza,37/385altre attività
