@@ -99,7 +99,7 @@ TASKS=[('Il braccio moltiplica la forza',
   'Dividiamo entrambi i membri per r. Il risultato ha unità N·m/m=N e resta positivo. La perpendicolarità '
   'evita un ulteriore fattore seno; non compare nessun mezzo geometrico.',
   'M=Fr\\qquad M/r=F\\qquad F=M/r',
-  'Mr ha un metro di troppo; r/M è un inverso di forza. Il doppio e la metà non restituisconoM quando si '
+  'Mr ha dimensioni N·m² invece di N; r/M è un inverso di forza. Il doppio e la metà non restituisconoM quando si '
   'reinseriscono inFr. Il denominatore non nullo è parte delle ipotesi, non una formalità.',
   'Elimina il fattore r dividendo per il braccio positivo.'),
  ('Scalare forza e braccio',
