@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1400" viewBox="0 0 600 1400" role="img" aria-labelledby="title desc">
+ <title id="title">Discesa sul piano tre–quattro–cinque con attrito dinamico</title>
+ <desc id="desc">Il triangolo del piano ha cateti tre e quattro e ipotenusa cinque. La massa illustrativa è un chilogrammo, il campo dieci metri al secondo quadrato, coefficiente un mezzo. Il peso dieci newton ha componenti sei lungo il piano e otto verso il piano; la normale è otto verso l’esterno. L’attrito quattro punta a monte; risultante due a valle e accelerazione due metri al secondo quadrato. Le forze hanno scala comune dieci pixel per newton.</desc>
+ <defs><marker id="a" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#245ca4"/></marker><marker id="r" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#a44931"/></marker></defs>
+ <rect width="600" height="1400" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="19" fill="#172033">
+  <text x="28" y="36" font-size="24" font-weight="bold">1 · Usa i rapporti, non un angolo decimale</text>
+  <text x="28" y="80">u: unità grafica di lunghezza · scala 80 px/u</text>
+  <path d="M120 130V370H440Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M120 130L440 370" stroke="#334155" stroke-width="3"/>
+  <path d="M264 238L296 262L308 246L276 222Z" fill="#dbeafe" stroke="#334155"/>
+  <path d="M340 240L388 276" stroke="#245ca4" stroke-width="2" marker-end="url(#a)"/>
+  <text x="57" y="260">3 u</text><text x="263" y="410">4 u</text><text x="285" y="218">5 u</text>
+  <text x="365" y="230">v verso valle</text>
+  <text x="28" y="450">sinθ = 3/5; cosθ = 4/5; scorrimento già avviato.</text>
+  <text x="28" y="510" font-size="24" font-weight="bold">2 · Proietta il solo peso</text>
+  <text x="28" y="550">m illustrativa = 1 kg; g = 10 m/s²</text>
+  <text x="28" y="587">Forze: 10 px/N in questa e nella terza tappa</text>
+  <path d="M180 650L420 830" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M300 740V840" stroke="#334155" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M300 740L348 776" stroke="#a44931" stroke-width="3" marker-end="url(#r)"/>
+  <path d="M300 740L252 804" stroke="#a44931" stroke-width="3" marker-end="url(#r)"/>
+  <path d="M300 740L348 676" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M348 776L300 840M252 804L300 840" stroke="#94a3b8" stroke-dasharray="4 4" fill="none"/>
+  <circle cx="300" cy="740" r="4" fill="#334155"/>
+  <text x="365" y="677">N = 8 N</text><text x="370" y="780">P∥ = 6 N</text>
+  <text x="108" y="811">P⊥ = 8 N</text><text x="315" y="863">P = 10 N</text>
+  <text x="28" y="921">P∥ e P⊥ sono componenti, non nuove forze.</text>
+  <text x="28" y="962">N equilibra P⊥; il contatto ha N &gt; 0.</text>
+  <text x="28" y="1030" font-size="24" font-weight="bold">3 · Sottrai l’attrito a monte</text>
+  <text x="28" y="1070">Asse +s verso valle · stessa scala 10 px/N</text>
+  <path d="M100 1140H480" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M240 1140H300" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M240 1140H200" stroke="#a44931" stroke-width="3" marker-end="url(#r)"/>
+  <text x="305" y="1125">P∥ = 6 N</text><text x="67" y="1125">f = μN = 4 N</text>
+  <path d="M240 1230H260" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <text x="280" y="1237">Risultante: 2 N verso valle</text>
+  <text x="28" y="1315">A = (6 N − 4 N)/(1 kg) = 2 m/s²</text>
+  <text x="28" y="1360">L’attrito si oppone alla velocità, non ad A.</text>
+ </g>
+</svg>
