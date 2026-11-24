@@ -26,7 +26,7 @@ TASKS=[
 ('Dall’energia ai watt utili',SCENE+'Il carico ha m=2 kg e il tratto dura T=20 s. Quanto vale P in W?',2,
  'Il peso di venti newton agisce lungo una salita di due metri: il lavoro utile dell’argano è quaranta joule. Distribuirli su venti secondi significa due joule al secondo. Qui la grandezza cercata è la potenza, quindi il tempo deve stare al denominatore.',
  r'P=\frac{mgh}{T}\qquad mgh=40\,\mathrm J\qquad P=\frac{40\,\mathrm J}{20\,\mathrm s}=2\,\mathrm W',
- 'La velocità uniforme è h/T=1/10m/s e il controllo P=Fv dà20N·(1/10m/s)=2W. È la stessa energia contata per unità di tempo, non un secondo modello indipendente del rendimento. Quaranta joule è l’energia totale; non va riportata come se fosse già una potenza.', 'Dividi il lavoro utile per la durata del tratto.'),
+ 'La velocità uniforme è h/T=1/10m/s e il controllo P=Fv dà20N·(1/10m/s)=2W. È la stessa energia contata per unità di tempo, non un secondo modello indipendente del rendimento. Quaranta joule è l’energia utile totale del tratto; non va riportata come se fosse già una potenza.', 'Dividi il lavoro utile per la durata del tratto.'),
 ('Stessa energia, potenza doppia',SCENE+'Per lo stesso carico m=2 kg si usano P_A=2 W e P_B=4 W. Quanto vale T_B/T_A?',['1/4','1/2','1','2','4'],
  'Entrambe le prove devono trasferire quaranta joule. La seconda macchina li fornisce al doppio del ritmo, quindi completa il tratto in metà tempo. Il rapporto richiesto mette B al numeratore: dieci secondi diviso venti, non l’inverso.',
  r'T_A=20\,\mathrm s\qquad T_B=10\,\mathrm s\qquad \frac{T_B}{T_A}=\frac{10}{20}=\frac12',

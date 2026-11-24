@@ -17,3 +17,8 @@ da160px, scala80px/J; conserva il bilancio e separa frazione1/2da50%. Browser48c
 1440/768/320 senza failure e asset riservato403. Import16poi0/16con991pubblicati e
 storia/live invariati. Sono controlli strutturali autore; scientific/humanNOT_RUN
 alla consegna, reviewer distinto assegnato. Nessuna pubblicazione.
+
+Correzione dopo finding del revisore distinto: nell'ID02 W e J/s erano distrattori
+equivalenti. Sostituito soltanto J/s con N e aggiornato il richiamo a potenza/forza;
+risposta corretta e altri15record invariati. Nuovo browser48/48 PASS, nuovo import
+16poi0/16con991pubblicati invariati. Il revisore rilegge l'ID finale prima del freeze.
