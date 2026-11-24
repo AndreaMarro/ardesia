@@ -1191,3 +1191,59 @@ La base ufficiale `250673b6` contiene il nuovo lettore. Una prova reale in C4 ha
 Sul merge C4 `d2c9e0a6` è stato riprodotto un ritorno della GPU ignorato dall’app. La ripresa conserva camera, tempo e misura A. Una scelta esplicita di tavola resta valida. La sorgente `efef256b` corregge anche i segmenti a lunghezza nulla e i tappi sovrapposti nella lente. Chromium e WebKit hanno verificato il ritorno effettivo di immagine e letture su quattro profili. La griglia scientifica confronta 181 voci e 1.199 stati. Gli hash delle letture coincidono a parità di versione Node. Un primo confronto tra runtime diversi differiva nell’ultima cifra di alcune potenze. [Contratto e prove](../../officina-di-fisica/docs/verifica-prodotto/continuita-banchi.md) · [C4 verificato sul merge](https://github.com/AndreaMarro/ardesia/pull/345#issuecomment-7108434480)
 
 Priorità successive: riconciliare il pacchetto sulla SHA effettiva, applicare le altre decisioni editoriali per ID preservando i tentativi, provare con studenti la rappresentazione del verso e dei campi nulli e completare il collaudo touch fisico quando disponibile.
+
+## 24 novembre 2026 · Cric, registro integrale e primo lotto di conversioni
+
+Mandato FULL-CORPUS del proprietario. Base canonica `5d1dc8dc`, ramo di lavoro
+`feat/cric-corpus-engineering`; fonte main fissata a `5cfbdcb0`. Sono stati
+contabilizzati 4.606 quesiti e 385 altri materiali. Recuperati e rieseguiti 199
+controlli tecnici del verificatore originario, senza presentare questa selezione
+come le 100 revisioni Pro non identificate. Le edizioni e le funzionalità già
+integrate sono preservate. Il vecchio status locale di `recupero-q027` non ha
+risposto; i risultati acquisiti provengono dai commit e dai byte verificabili.
+
+Trentadue schede sono state effettivamente riscritte con passaggi algebrici,
+aritmetica manuale, distrattori e due disegni progressivi. Il validatore scientifico
+usa SymPy, Pint e conteggi indipendenti; Hypothesis esercita proprietà e sono
+presenti controprove di alterazione. La review AI indipendente ha confutato cinque
+difetti di integrità/pubblicazione e due bypass successivi, corretti con test.
+Il test browser ha trovato 18 formule lunghe: le uguaglianze sono state suddivise
+in passaggi, poi ricontrollate a 1440/768/320 px. La review non è approvazione umana.
+
+L'importazione canonica nel solo SQLite temporaneo crea 32 bozze, ne salta 32 alla
+riesecuzione e conserva tutti i 991 oggetti pubblicati. Nessuna promozione live.
+I sorgenti editoriali che incorporano bozze sono esclusi dallo ZIP distribuito;
+le figure usano gli asset protetti dell'importatore. I manifest non contengono
+risposte. Il checkpoint verifica checksum e indirizzo del contenuto prima di
+riusare stati; conserva l'elenco dei lavori pendenti indipendentemente dalla chat.
+
+Prove locali: 54 test Python e 260 JavaScript preesistenti superati, contratti
+TypeScript e due test del client superati, 991 record validati. L'esecuzione del
+journey browser preesistente ha stampato PASS, ma la chiusura del processo Chrome
+è rimasta pendente sull'host ed è stata interrotta: non equivale a exit 0.
+Il nuovo harness limita la pulizia e produce un esito terminale. CI, ZIP della SHA
+committata e merge restano da rileggere su GitHub; non sono dedotti dai test locali.
+[Dettagli, controprove, limiti e comandi](../../officina-di-fisica/docs/corpus-engineering.md).
+Nessun salvataggio nel servizio AgentMemory esterno è rivendicato.
+
+Consolidamento locale successivo: 23 test del nuovo corpus e 96 anteprime terminano
+con esito positivo. L'ispezione dello ZIP ha inizialmente segnalato il modulo
+runtime `server/editorial/service.py` a causa di un confronto di sottostringhe
+troppo ampio; il controllo ora distingue la directory editoriale offline dal
+modulo canonico preservato, con una controprova specifica. Il checkpoint include
+519 asserzioni sorgente ricalcolate e 4.087 stati NOT_RUN: non sono 519 risoluzioni
+fisiche indipendenti. I 199 controlli recuperati e le 32 nuove revisioni restano
+conteggi e livelli di evidenza diversi.
+
+Priorità con accettazione:
+
+1. Rileggere SHA/PR/CI del ramo e completare l'integrazione canonica dopo i gate,
+   senza promuovere le bozze; prova: CI della SHA integrata e checkpoint identico.
+2. Riprendere U1 dalla famiglia scientific-scale, con ownership verificata prima
+   degli edit; accettazione: altri 16 testi risolti, prove individuali e import idempotente.
+3. Estendere la revisione alle altre famiglie, riusando le prove recuperate;
+   accettazione: ogni ID ha fasi vere e mancanti esplicite, nessun conteggio duplicato.
+4. Esaminare tutte le altre attività e gli esami per il vincolo senza calcolatrice;
+   dipendenza: nuove edizioni e tentativi storici preservati, prova di riapertura.
+5. Raccogliere firma scientifica umana e validazione con persone quando disponibili;
+   accettazione: evidenze separate da PASS automatici e autorizzazione editoriale.

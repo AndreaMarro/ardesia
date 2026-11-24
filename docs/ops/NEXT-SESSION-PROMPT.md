@@ -1,4 +1,29 @@
-# Prossimo incarico — accettazione di Fluidi e termodinamica
+# Prosecuzione corrente — Cric, revisione di 4.606 quesiti
+
+Mandato esplicito del proprietario del 24 novembre 2026. Target unico:
+branch `officina-di-fisica`, directory omonima. Base `5d1dc8dc7b601aef959d10d564c75462be74708d`;
+sorgente Ardesia main `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`.
+Leggere [contratto, risultati e comandi](../../officina-di-fisica/docs/corpus-engineering.md)
+e [checkpoint per ID](../../officina-di-fisica/editorial/corpus/checkpoint.json).
+Questo ingresso sostituisce le vecchie priorità operative; non modifica i canoni
+o gli stati editoriali. Le sezioni precedenti sono conservate sotto come contesto datato.
+
+Sono contabilizzati 4.000+606 quesiti e 385 altre attività. Sono stati recuperati
+199 controlli tecnici distinti e prodotti 32 nuovi svolgimenti importabili in bozza.
+Il lotto Pro di 100 revisioni non è identificato: non dichiararlo acquisito.
+Nessun nuovo materiale pubblicato, nessun database degli utenti modificato.
+Il registro distingue fasi automatiche, review AI e approvazione umana NOT_RUN.
+Restano 4.574 revisioni complete, incluse le fasi mancanti dei 199 recuperati.
+
+Primo passo: rileggere GitHub per la PR del branch `feat/cric-corpus-engineering`,
+la sua SHA e le CI; completare l'integrazione nel target prima di rivendicarla.
+Poi continuare con `u1-scientific-scale-01` e gli altri 128 U1, secondo le cinque
+priorità e i criteri di accettazione nel documento collegato. Non fermarsi alla
+pipeline: ogni successivo incremento deve produrre contenuti effettivi e prove.
+Le bozze sono sotto `editorial/`, mai `content/` o `static/`; i pacchetti riusano
+il validatore/importatore e i prerequisiti/adattività dell'unica applicazione.
+
+## Ingresso precedente — accettazione di Fluidi e termodinamica
 
 Snapshot del28 ottobre2026, preparato prima del merge finale. Il mandato CHIUSURA1 riguarda l'intero corso. Leggere prima lo stato generato con `python3 bin/state/project_state.py`, poi la [PR336](https://github.com/AndreaMarro/ardesia/pull/336), il suo record terminale, l'ultima voce del [RUNLOG](ARDESIA-RUNLOG.md) e la [prova di integrazione](closure1-20261028/integration-evidence.json). Un PENDING datato non dimostra un blocco attuale: rileggere GitHub, main, CI e deployment.
 

@@ -16,6 +16,13 @@ DIRECTORIES = {'content', 'contracts', 'docs', 'examples', 'materials', 'migrati
 TOP = {'app.py', 'Area autore.command', 'Avvia Officina.command', 'README.md', 'package.json', 'package-lock.json'}
 
 
+def included(name):
+    # Offline editorial sources contain unpublished questions/keys, unlike runtime tools.
+    if name.startswith(('tools/corpus_engineering/', 'tests/corpus/')):
+        return False
+    return name.split('/')[0] in DIRECTORIES or name in TOP
+
+
 def build(target):
     # The Git archive supplies the exact blob and executable bit. The index and private archive never enter it.
     import io
@@ -24,8 +31,7 @@ def build(target):
     source = subprocess.check_output(['git','archive','--format=tar',tree.decode().strip()], cwd=APP.parent)
     with tarfile.open(fileobj=io.BytesIO(source)) as archive, zipfile.ZipFile(target, 'w') as result:
         for item in sorted(archive.getmembers(), key=lambda m:m.name):
-            first = item.name.split('/')[0]
-            if not item.isfile() or (first not in DIRECTORIES and item.name not in TOP):
+            if not item.isfile() or not included(item.name):
                 continue
             entry = zipfile.ZipInfo(PROJECT+'/'+item.name, (1980,1,1,0,0,0))
             entry.create_system = 3
