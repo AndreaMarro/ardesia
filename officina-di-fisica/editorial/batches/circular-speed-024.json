@@ -975,7 +975,7 @@
       ],
       "family": "uniform-circular-speed",
       "difficulty": 3,
-      "prompt": "Ogni prova è un moto circolare uniforme con raggio r e periodo T positivi costanti, in un riferimento inerziale; V è la rapidità tangenziale. Un display conta tacche S=gV con g>0 costante e offset nullo. Il riferimento r=1 m,T=π s dà S=6. La nuova prova dà S=12π e T=1 s. Quanto vale r, in metri? Usa π esatto.",
+      "prompt": "Ogni prova è un moto circolare uniforme con raggio r e periodo T positivi costanti, in un riferimento inerziale; V è la rapidità tangenziale. Un display ideale fornisce una lettura continua adimensionale S=gV con g>0 costante e offset nullo. Il riferimento r=1 m,T=π s dà S=6. La nuova prova dà S=12π e T=1 s. Quanto vale r, in metri? Usa π esatto.",
       "answer": {
         "type": "numeric",
         "value": 2,
@@ -1017,16 +1017,16 @@
         },
         {
           "type": "text",
-          "text": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. Le tacche sono un conteggio puro; non si possono trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi."
+          "text": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. La lettura è un numero puro su una scala continua; non si può trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi."
         }
       ],
       "hints": [
-        "Usa il riferimento per convertire le tacche in rapidità.",
+        "Usa il riferimento per convertire la lettura in rapidità.",
         "Conserva π esatto e distingui rapidità, percorso e spostamento."
       ],
       "error": {
         "category": "algebra",
-        "message": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. Le tacche sono un conteggio puro; non si possono trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi.",
+        "message": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. La lettura è un numero puro su una scala continua; non si può trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi.",
         "target": "C1-L004"
       },
       "coverage": [
@@ -1055,7 +1055,7 @@
       ],
       "family": "uniform-circular-speed",
       "difficulty": 3,
-      "prompt": "Ogni prova è un moto circolare uniforme in un riferimento inerziale, con r,T>0 costanti e rapidità tangenziale V. Il display conta S=gV+c con g>0,c costanti. I riferimenti (r=1 m,T=π s) e (r=2 m,T=1 s) danno S=5 e S=1+8π. La prova ignota ha T=π s,S=9. Quanto vale r? Mantieni π esatto.",
+      "prompt": "Ogni prova è un moto circolare uniforme in un riferimento inerziale, con r,T>0 costanti e rapidità tangenziale V. Il display ideale fornisce una lettura continua adimensionale S=gV+c con g>0,c costanti. I riferimenti (r=1 m,T=π s) e (r=2 m,T=1 s) danno S=5 e S=1+8π. La prova ignota ha T=π s,S=9. Quanto vale r? Mantieni π esatto.",
       "answer": {
         "type": "choice",
         "options": [
@@ -1118,7 +1118,7 @@
         },
         {
           "type": "text",
-          "text": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero conteggi 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza."
+          "text": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero letture 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza."
         }
       ],
       "hints": [
@@ -1127,7 +1127,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero conteggi 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza.",
+        "message": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero letture 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza.",
         "target": "C1-L004"
       },
       "coverage": [

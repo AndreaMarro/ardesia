@@ -51,3 +51,5 @@ e `--destination editorial/batches`, dalla directory Officina.
 Prossimi passi: confutazione scientifica indipendente per ID e per byte;
 lettura delle formule e figura sul consumer; integrazione canonica con i gate;
 valutazione umana separata. Queste note non autorizzano promozione editoriale.
+
+Correzione su richiesta della review indipendente: negli ID14/15 S è esplicitamente una lettura continua adimensionale del display ideale, non un conteggio discreto di tacche; 12π e 1+8π sono dunque valori ammessi. Dati, formule e risultati restano quelli della derivazione sopra.
