@@ -1,0 +1,489 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-mechanical-power-01",
+      "sourceSha256": "ecbca5a00455c987e5188a64aaae09f295a8335866d8cdbd7b1972313ab2f80e",
+      "candidateSha256": "08b176761ec4a65cb4bd2a3baf41b8a34993eca92c72d6fa03efd8b767c7ec0c",
+      "reviewedSignature": "03863a1a6c14f5c2ca64fc2a84cfe9bca781ab3e76ccab7084c56cca6b058c24",
+      "assetChecksums": {
+        "mechanical-power-progressive.svg": "ed4a45d7a67bcb9603682eaf7560fc5caf0d71581020a7785751ef5501e2b560"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P=F·v, angolo0→Fv=2N·2m/s=4J/s=4W. Istantanea; nessunaenergia totale senza intervallo.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "4W nonenergia4J;Psoloquesta forza,nonnecessariamentesommadipotenzeditutteleforze.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. P=F·v, angolo0→Fv=2N·2m/s=4J/s=4W. Istantanea; nessunaenergia totale senza intervallo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-02",
+      "sourceSha256": "493f62dbb2db773837402477122520ab8154d3f36cf6dee49d1214a5c12b1499",
+      "candidateSha256": "86c9843363bac7c3bd0db111de8ad3fcc3e0f9a0ebd1799cce2d3e17c33dfa29",
+      "reviewedSignature": "d70756506e0d70b7b7a72ac078761168e6df5921b077b04395ab59bf0fec307c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "N·m/s=J/s=W, dimensioneML²/T³. Wattunità non letteraWdel lavorousataaltrove.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "J energia,N forza,m/s velocità,kg massa;soloWpotenza. Ilsecondo aldenominatore nonva perso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. N·m/s=J/s=W, dimensioneML²/T³. Wattunità non letteraWdel lavorousataaltrove.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-03",
+      "sourceSha256": "8d6a7f36c80ff9060041da358aca6b48642d4fdcec7d7658b5a3376edbf7632f",
+      "candidateSha256": "a9a0c3fd9966faf8127d9cb752be87b338f95f2a80af78469beb546d579408ed",
+      "reviewedSignature": "198650a795f6e25962d32dbb277a3ea984422f2bd7ada2a38617a403f423b02f",
+      "assetChecksums": {
+        "mechanical-power-progressive.svg": "ed4a45d7a67bcb9603682eaf7560fc5caf0d71581020a7785751ef5501e2b560"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Moto rettilineo uniforme: v4m/2s=2m/s. Trazione5N→P10W; suo lavoro20J/2s=10W. Altraforza−5N darebbe−10W e potenzatotale0, nonpotenzatrazione0.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee. Moto rettilineo uniforme4m in2s, trazione5N costante; altri contributi possono compensarne lapotenza, Kcostante nonrende nullala singola potenza.",
+      "distractors": "0potenzarisultanteaseKcostante,nontrazione;20JnonW;5/2omettedistanza,40moltiplicadurata invece didividerelavoro.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Moto rettilineo uniforme: v4m/2s=2m/s. Trazione5N→P10W; suo lavoro20J/2s=10W. Altraforza−5N darebbe−10W e potenzatotale0, nonpotenzatrazione0.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-04",
+      "sourceSha256": "bb47bba4e4712eeb66404de435438176bb05dce743bf60ea55bf18b67a97b98d",
+      "candidateSha256": "c21199b43c74b9a601d4b5bd61d2c4472afbe2398798d8d6d54c35a67e48022f",
+      "reviewedSignature": "29ba8cb22354a3d6ab0d8027271d771b9534a722211b02a418bc9a160a6a1a55",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 a 8 W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "v2m/s comune,F2→4N→P4→8W; condizioniistantanee assegnate, nonaffermazione divelocitàfuturainvariata.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "16raddoppiaanchev;2dipendenzainversa;0richiedefattorenullooangoloretto,noncasoassegnato.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v2m/s comune,F2→4N→P4→8W; condizioniistantanee assegnate, nonaffermazione divelocitàfuturainvariata.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-05",
+      "sourceSha256": "1dd0df2335e8c715b181e1a3094e5d18169ea8467939845e561ec01432abc218",
+      "candidateSha256": "b587e65a721b918b1ab0796a7f5a10c443d308a414ba362c731fc27163d66bd3",
+      "reviewedSignature": "3ecfdc6513c919acce3558c8a752cfa9240934e5be5ec5e2eb11f299caca5ff3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "F=P/v=4W/(2m/s)=2N, divisione ammessa v>0.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "Pvnonisola,4ripetenumeroPnonforza;controllo2N·2m/s=4W. v0vietatoperinversa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=P/v=4W/(2m/s)=2N, divisione ammessa v>0.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-06",
+      "sourceSha256": "2b62546f83ea4d6378199315469c4eeebc50f8bfc4ef25619127b00c55f7b31b",
+      "candidateSha256": "00e4ba30065fdf50c9d42c56fcd0b5841263dcaf9c1f3b73fbfb2a42afab9ba4",
+      "reviewedSignature": "8a52c5d6f723ed3990b6b3b992174a23bbd566e5ae2cedbe1d39174a640b5fe3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "v=P/F=4W/2N=2m/s. Solo modulo; non direzionevettoriale completa.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "4ripeteP,1/2inverte;massaeaccelerazionenonnecessarieperquestacondizioneistantanea.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v=P/F=4W/2N=2m/s. Solo modulo; non direzionevettoriale completa.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-07",
+      "sourceSha256": "b0ef32b31d34c6bdec99b5005faf7c8522c55027030201ad4a3f70bf6f4a491b",
+      "candidateSha256": "0de3961b756325b1740a2469d2d30c6eaf902e2150c1280c4cfbfc377edb42e8",
+      "reviewedSignature": "a1bcb88d7f490a1bbdb870774d9b89bfc52307c1debe082ce4162860b8fc60ef",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "F2N,v2→4m/s→P4→8W,rapporto2. Nonenergiesudurate nonassegnate.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "1/2inverso,4quadratoenergia nonpotenza,1ignora cambiamento,−2richiedesegnoopposto nonconcorde.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F2N,v2→4m/s→P4→8W,rapporto2. Nonenergiesudurate nonassegnate.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-08",
+      "sourceSha256": "62b36be9ff3452fcb5ab7599fb7f5bd42be5ef28c9abf1830f5e883935daed48",
+      "candidateSha256": "6471f6b0641ad4afdeecff2c84fd55dcdf62dcec6170b7932e88cd0748effd58",
+      "reviewedSignature": "8d28b6c6f6b23253c40b55bf132be9569a0688a8cc26bdebde9e952d129f449c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Pcorretta2·2=4W;proposta8−4=+4W. Nessunadurataperenergiaassegnata.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "−4ordineinverso,8proposta,2altradivisione,5/3scartiarbitrari. Differenzaconservawatt.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Pcorretta2·2=4W;proposta8−4=+4W. Nessunadurataperenergiaassegnata.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-09",
+      "sourceSha256": "6c80ec120b1785677e10b8d39822569b5dfd09a7c52355d73ccdbc9271626f14",
+      "candidateSha256": "5bb2597e4634923bf0e5c4bd0f4865b1483c273b4a52a0f49e29611a08f99988",
+      "reviewedSignature": "7805f0ed141e949671e12e02f5014c40c6f81e603eea58cf77892b77232584da",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "F=P/v",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "P=Fv→F=P/v, unità W/(m/s)=N;vpositivo.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "Pvdimensioneerrata,v/Pinversoforza;2extraometànonricostruisconoP. Nessunmezzocinetico.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. P=Fv→F=P/v, unità W/(m/s)=N;vpositivo.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-10",
+      "sourceSha256": "85bc2f4c25990973d775c96a8d4019266c30abb72da2869cac7eac96419f68e9",
+      "candidateSha256": "5bffcb5f55bd6034cecb4191c9b4526d3f3773ea25c2c0bcfe1a1bdb1436cfd9",
+      "reviewedSignature": "5b602af9642f9bca7230cbc1e5516bbe3e7c674301dfac29371cea89cd45f557",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "F_Bκ₁F_A,v_Bκ₂v_A→P_B/P_Aκ₁κ₂. Angoloconcordeuguale1,rapportoistantaneo.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "Quozientiinvertonoeffetto;somma2allidentità;κ₁κ₂²mettequadratononpresente. Nonintegralenergetico.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F_Bκ₁F_A,v_Bκ₂v_A→P_B/P_Aκ₁κ₂. Angoloconcordeuguale1,rapportoistantaneo.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-11",
+      "sourceSha256": "9cf245df83c14da48837bd56cd6b79f74f5d9c83f1920d79b02906d9548d90ba",
+      "candidateSha256": "43aad6d896a7da7fd9e7f586972fe46be121203ea2ac22a663e9434ec8d65978",
+      "reviewedSignature": "62ca1ff4c38f41f2f2482e197ea3a3bc7fb2b1b25d6da6658522de0273ac3c0e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "P_A4W,P_B16W→rapporto4,non16W.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "2unsoloingresso,16potenzaB,8quadratoextravelocità,1/4inverso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. P_A4W,P_B16W→rapporto4,non16W.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-12",
+      "sourceSha256": "585c1d5040e85bed88891cc2cf6144fd4bad479465ab6dc2f9491255e44acf7e",
+      "candidateSha256": "8ed28a4601ca044c1f70aa804698b255caab7c844d85daa12ce7e58b9c10b7f4",
+      "reviewedSignature": "3b1678a48eb63849a23c5c3e2d535fcf8f73d0511dd7cee5eb4bbc0d106da4fb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Media aritmeticaugualepeso(4+16)/2=10W;medieingressi3,3→9W. Nonmediatemporale: con durate1s e3s siavrebbe(4+48)/4=13W, dationonassegnati.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee. Media statistica conugualepeso, nonmediatemporale senza durate.",
+      "distractors": "20somma,5divideduevolte,9ingressimedi,11nonsemisomma. Tempi noninferibili dai valori di velocità.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media aritmeticaugualepeso(4+16)/2=10W;medieingressi3,3→9W. Nonmediatemporale: con durate1s e3s siavrebbe(4+48)/4=13W, dationonassegnati.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-13",
+      "sourceSha256": "dcd5063799d12eb5adf38e0faa68200cee900f8dbec7eb51fc50098890b9e5f7",
+      "candidateSha256": "f2ed6a797a34ea94435af176e1ee65bfef57ecb0561d38069b509ff4ad8bcdff",
+      "reviewedSignature": "33ae538f753bd553591c8f1511f344e7ecceb565cfdeeebfe0745d59258edd83",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetP16W,F_B4N→v_B4m/s;su2m/sinizialirapporto2.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "vinvariata→P8W;vquadrupla→P32W;4m/snuovi nonrapporto4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetP16W,F_B4N→v_B4m/s;su2m/sinizialirapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-14",
+      "sourceSha256": "72db3750b0eb440783fa1a3afde59013b61cec907d8a312b4a3b1d9ee071d34a",
+      "candidateSha256": "3c074f5d23c06ddd6282b1676123fd0c5cc78fd0c862c12dc4a04016a24913e4",
+      "reviewedSignature": "2060f4d8b07eddd24a9dfe3b1615bac63251fd687e3cfdcb1084cfc364f1ad92",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Pref4W,Sref12→c3W⁻¹;S48→P16W;v4m/s→F4N.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "S48comeW→F12N;4N·4m/s=16W eS48controllano entrambi passaggi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Pref4W,Sref12→c3W⁻¹;S48→P16W;v4m/s→F4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-15",
+      "sourceSha256": "21677cd10cdc2f6c4bb2d78b1f924b60977927d28b48b975c1ee061e8b2efa70",
+      "candidateSha256": "423ba8cbdd2a7fd373e70efed8f5be85a836cd1b883cbd2a2ad9f9259cf5c547",
+      "reviewedSignature": "3d3a81a858c6d76dc8319af63dd5a990ed8f6870abc10ba70de31b81a52b5351",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ΔS33−9=24,ΔP16−4=12W→c2W⁻¹;d1;S17→P8W;v2m/s→F4N.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee.",
+      "distractors": "F2,3,5,8N av2→S9,13,21,33;solo4dà17. Offsetvaeliminato primadellinversa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS33−9=24,ΔP16−4=12W→c2W⁻¹;d1;S17→P8W;v2m/s→F4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-mechanical-power-16",
+      "sourceSha256": "a52235bb1064811c38537ab62a7be425e5cefd3728dd85ae751119cc127f70d4",
+      "candidateSha256": "e45f8dee9ad915b08d84e896c3618307223629b7c58c32c31fb9f418249c8b42",
+      "reviewedSignature": "139f51a65649cd1a7d6e0d055d0fe469d7549601b8195232e34ea2f9a2cf063e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "F=av,a1N·s/m→P=av²=4W→v²4m²/s²;rami±2,solo+2moduloammesso,F2N. Vincolosceltoistantaneo, nonfrenaturadisegno negativo.",
+      "physicalAssumptions": "Riferimento inerziale; potenza istantanea della forza assegnata al suo punto di applicazione; F,v>0 paralleli e concordi. Nessuna uguaglianza imposta con potenza totale né energia suintervallo; i confronti sono fra condizioniistantanee. Coefficientea1N·s/m collega modulidelle condizioniistantanee selezionate, conramopositivo perF e v.",
+      "distractors": "−2nonmoduloeFnegativo nelvincolo;4quadratononvalore;v1o3dannoP1o9W. Noncorrisponde aforzafrenante senza nuova convenzione.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=av,a1N·s/m→P=av²=4W→v²4m²/s²;rami±2,solo+2moduloammesso,F2N. Vincolosceltoistantaneo, nonfrenaturadisegno negativo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_time_derivative_and_vector_power",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "604fab17380ba4fbd728c0a87a5a6a023a7968bf4666b7527adacea4f8bae43c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "13e5c50700d9bd0ee69b340202e69d411a6f9c82",
+  "packageSha256": "03e032b3993b8889abaf4530fc1eff60d6c859be9d37b44c2c0c93363964c523",
+  "bindingsSha256": "e325dc49d64fa06f774075b4b99c49e7a750d9eed7ee3a7996373507f448ee7d",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-04.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}
