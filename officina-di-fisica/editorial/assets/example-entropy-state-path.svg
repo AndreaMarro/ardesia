@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1140" role="img" aria-labelledby="title desc">
+<title id="title">Entropia: distinguere stati e percorsi</title>
+<desc id="desc">Tre pannelli schematici. Una mole di gas occupa prima metà di un recipiente isolato e poi tutto il recipiente. Il percorso reale non scambia calore e lavoro. Un percorso reversibile ausiliario tra gli stessi stati consente il calcolo dell'entropia. Il rapporto dei volumi è due e la variazione esatta è 4157 su 500 per logaritmo naturale di due joule per kelvin, positiva.</desc>
+<rect width="640" height="1140" fill="#faf8f0"/>
+<g fill="#241e35" font-family="Georgia,serif" font-size="23">
+<text x="30" y="42" font-size="27" font-weight="bold">1 · Il processo reale</text>
+<text x="30" y="78">Recipiente rigido e isolato; n = 1 mol.</text>
+<rect x="40" y="103" width="250" height="100" fill="#e5e0f5" stroke="#241e35" stroke-width="3"/>
+<path d="M165 103v100" stroke="#241e35" stroke-width="3"/>
+<text x="65" y="145">gas</text><text x="183" y="145">vuoto</text>
+<text x="65" y="182">V, T</text><text x="205" y="182">V</text>
+<path d="M310 153h35m-10-8 10 8-10 8" fill="none" stroke="#241e35" stroke-width="3"/>
+<rect x="365" y="103" width="235" height="100" fill="#e5e0f5" stroke="#241e35" stroke-width="3"/>
+<text x="389" y="145">gas in equilibrio</text><text x="436" y="182">2V, T</text>
+<text x="30" y="245">Espansione libera: Q = 0, W = 0.</text>
+<text x="30" y="280">ΔU = 0; gas perfetto: T finale = T iniziale.</text>
+<text x="30" y="320" font-size="19">Camere schematiche; nessuna scala di tempi o velocità.</text>
+<path d="M30 343h580" stroke="#8b8298"/>
+<text x="30" y="385" font-size="27" font-weight="bold">2 · Un percorso per il calcolo</text>
+<text x="30" y="427">Stessi stati: (V, T) e (2V, T).</text>
+<text x="30" y="468">Immaginiamo un’isoterma reversibile.</text>
+<text x="30" y="509">Una sorgente mantiene la temperatura T.</text>
+<text x="30" y="550">Qui Q rev = W rev e dS = δQ rev / T.</text>
+<text x="30" y="591">Con p = nRT/V: dS = nR dV/V.</text>
+<text x="30" y="632">Il calore di questo percorso è diverso</text>
+<text x="30" y="665">dal calore nullo dell’espansione libera.</text>
+<path d="M30 695h580" stroke="#8b8298"/>
+<text x="30" y="738" font-size="27" font-weight="bold">3 · Il risultato senza calcolatrice</text>
+<text x="30" y="783">Il rapporto dei volumi è 2V/V = 2.</text>
+<text x="30" y="824">ΔS = nR ln 2</text>
+<text x="30" y="865">ΔS = (4157/500) ln 2 J/K &gt; 0</text>
+<text x="30" y="906">ln 2 resta simbolico: nessun logaritmo</text>
+<text x="30" y="939">da valutare numericamente.</text>
+<text x="30" y="983">Controllo a mano: 1/2 &lt; ln 2 &lt; 1.</text>
+<text x="30" y="1024">Quindi 4,157 J/K &lt; ΔS &lt; 8,314 J/K.</text>
+<text x="30" y="1073">Nel sistema isolato l’entropia cresce</text>
+<text x="30" y="1106">per l’irreversibilità, anche con Q = 0.</text>
+</g></svg>
