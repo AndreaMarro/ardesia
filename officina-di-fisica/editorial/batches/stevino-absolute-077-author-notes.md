@@ -2,7 +2,7 @@
 
 16 originali letti individualmente alla fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U3-01. Rilette le lezioni C2 reali: primaria C2-L002, prerequisiti C2-L001/L002, corso C2 e riuso C6. Assembler esistente unico con course C2/unit u3/source_path U3-01. Nessuna autoapprovazione scientifica.
 
-Acqua omogenea incomprimibile in quiete,ρ1000kg/m³,g10m/s²; profondità verticale positiva, gas superiore a pressione assoluta p_s positiva. γ=ρg=10kPa/m è un coefficiente dimensionale, non un numero puro. Capillarità esclusa. p=p_s+γh assoluta riferita al vuoto: non si aggiunge nuovamente l’atmosfera. p_s,h variano fra prove, non lungo una singola colonna.
+Acqua omogenea incomprimibile in quiete,ρ1000kg/m³,g10m/s²; profondità verticale positiva, gas superiore a pressione assoluta p_s positiva. γ=ρg=10kPa/m è un coefficiente dimensionale, non un numero puro. Capillarità esclusa. p=p_s+γh assoluta riferita al vuoto: non si aggiunge nuovamente l’atmosfera. p_s è uniforme sulla superficie in ogni prova; h individua il punto d’osservazione e può variare lungo la colonna.
 
 01:100+10·2=120kPa;20kPa è solo il contributo relativo. 02:kPa unica pressione tra le opzioni dimensionalmente differenti. 03:h→0 dal liquido implica p→p_s, non0 né necessariamente atmosfera. 04:p_s100→80kPa a h2m dà p120→100kPa; rapporto5/6, non4/5 perché la colonna resta20kPa.
 
@@ -17,3 +17,7 @@ Acqua omogenea incomprimibile in quiete,ρ1000kg/m³,g10m/s²; profondità verti
 SVG01/03: punto2m a200px sotto la superficie,scala100px/m; barra assoluta120kPa=100+20,lunghezze300+60px,scala3px/kPa. Grafico con asse pressione orizzontale e profondità verso il basso: p100 a h0, p120 a h2; coordinate differiscono60px e200px, medesime scale. Intercetta esplicita, frecce assi ciascuna in path separato. XML e rendering completo letti.
 
 Assembly e binding deterministici controllati;16metadati C2/L002/prereqL001,L002. Import canonico ROOT in SQLite temporaneo:16DRAFT poi0nuove/16invariate;991pubblicati/versioni storiche invariati SHA25699c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. PackageSHA256a88dd1063e1d454f65282fddfda52e797c553d47b47c6026628a11a098cc56af. Prove tecniche d’autore soltanto; DRAFT, independentReview NOT_RUN, human NOT_RUN, publication NONE.
+
+Finding del reviewer B: il precedente prefisso comune attribuiva impropriamente anche alla profondità h l’impossibilità di cambiare lungo la colonna. Corretto il solo testo comune dei15prompt che usano la scena comune (02 ha consegna dimensionale autonoma): p_s uniforme sulla superficie, h variabile col punto d’osservazione. Formule, chiavi e SVG invariati; rigenerati package/binding. L’autore non aggiorna né congela proprie firme di review.
+
+Controllo post-fix: cambiato esclusivamente il prompt nei15record con scena comune;02 interamente invariato. Blocchi/formule/risposte/asset byte identici al commit precedente. Assembly/binding deterministici. Import canonico ROOT sul nuovo packageSHA256248ddfe23e3f1309160b66a1c8627c645bf077a4f59c2f01447d4e9c10dfc84c:16poi0/16,991pubblicati/storico invariati. Le prove sopra sul precedente hash restano storiche, non sono firme della nuova edizione.
