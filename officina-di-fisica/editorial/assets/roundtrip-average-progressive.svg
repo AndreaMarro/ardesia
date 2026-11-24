@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="940" viewBox="0 0 640 940" role="img" aria-labelledby="title desc">
+<title id="title">Distanze uguali, tempi diversi nel ritorno</title><desc id="desc">Tre tappe. Andata e ritorno sono sei metri ciascuno, frecce uguali di trecentosessanta pixel, scala sessanta pixel per metro. Andata a tre metri al secondo dura due secondi; ritorno a due metri al secondo dura tre secondi. Il diagramma temporale usa sessanta pixel per secondo: centoventi per l’andata e centottanta per il ritorno. Il ritorno occupa tre quinti del tempo totale, la rapidità media è dodici quinti di metro al secondo e la velocità media vettoriale è zero.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="640" height="940" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="42" font-weight="bold">1 · Stessa distanza nei due sensi</text><text x="28" y="82">Scala spaziale: 60 px/m</text>
+<path d="M100 164H460M460 268H100" stroke="#173d50" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="161" y="143">6 m a 3 m/s · andata</text><text x="161" y="245">6 m a 2 m/s · ritorno</text><text x="74" y="308">inizio e fine</text><text x="429" y="308">svolta</text>
+<text x="28" y="380" font-weight="bold">2 · Calcolare e sommare le durate</text>
+<text x="28" y="423">6 m / 3 m/s = 2 s · 6 m / 2 m/s = 3 s</text>
+<text x="28" y="467">Scala temporale: 60 px/s</text>
+<rect x="100" y="507" width="120" height="46" fill="#cee2de" stroke="#173d50"/><rect x="220" y="507" width="180" height="46" fill="#efd9c2" stroke="#173d50"/>
+<text x="140" y="539">2 s</text><text x="285" y="539">3 s</text><text x="88" y="587">0</text><text x="208" y="587">2</text><text x="390" y="587">5 s</text>
+<text x="28" y="654" font-weight="bold">3 · Il ritorno pesa tre quinti</text>
+<text x="28" y="700">t_ritorno / t_totale = 3 s / 5 s = 3/5</text>
+<text x="28" y="753">Rapidità media: 12 m / 5 s = 12/5 m/s</text>
+<text x="28" y="809">Spostamento netto: +6 m − 6 m = 0 m</text>
+<text x="28" y="865">Velocità media vettoriale: 0 m/s</text>
+</g></svg>
