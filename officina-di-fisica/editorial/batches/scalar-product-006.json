@@ -1,0 +1,1254 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-scalar-product-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2141,
+      "title": "Il prodotto di due vettori concordi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 1,
+      "prompt": "Due vettori adimensionali A e B sono paralleli e concordi. I loro moduli sono a=2 e b=2. Quanto vale il prodotto scalare S=A·B?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto scalare è definito dal prodotto dei moduli moltiplicato per il coseno dell’angolo fra i vettori. Per versi concordi l’angolo è zero e il coseno vale uno. Il risultato è uno scalare: non occorre assegnargli un verso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0e7bd5ef092fefa536a21af4dabbf59a907ac66ace1cc11aeb1fc130a2af14b1",
+          "text": "Leggi le tre tappe: identifica l’angolo; proietta B sulla direzione di A ottenendo b cosθ; moltiplica la proiezione con a. A 0° il risultato è ab, a 90° è zero, a 180° è −ab. Il disegno obliquo è uno schema, non il dato angolare del quesito."
+        },
+        {
+          "type": "formula",
+          "text": "S=ab\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=0^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " S=2\\times2\\times\\cos0^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " S=2\\times2\\times1"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2\\times1=4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è un numero puro perché entrambi i vettori sono adimensionali. In questo esempio anche la somma 2+2 vale quattro: è una coincidenza numerica, non la legge del prodotto scalare. Con moduli due e tre il prodotto sarebbe sei e la somma cinque."
+        }
+      ],
+      "hints": [
+        "Stabilisci l’angolo fra le direzioni prima di moltiplicare.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è un numero puro perché entrambi i vettori sono adimensionali. In questo esempio anche la somma 2+2 vale quattro: è una coincidenza numerica, non la legge del prodotto scalare. Con moduli due e tre il prodotto sarebbe sei e la somma cinque.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2142,
+      "title": "Uno scalare può avere dimensioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 1,
+      "prompt": "A e B sono esplicitamente vettori adimensionali. Quale unità è dimensionalmente compatibile con S=A·B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "K",
+          "1",
+          "kg",
+          "s"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La dimensione di un prodotto scalare è il prodotto delle dimensioni dei vettori: il coseno è adimensionale. Qui entrambe sono uno. Il risultato è perciò adimensionale, ma questo dipende dai dati e non dal solo fatto che il risultato sia uno scalare."
+        },
+        {
+          "type": "formula",
+          "text": "[S]=[A][B][\\cos\\theta]"
+        },
+        {
+          "type": "formula",
+          "text": " [S]=1\\times1\\times1"
+        },
+        {
+          "type": "formula",
+          "text": "1\\times1\\times1=1"
+        },
+        {
+          "type": "text",
+          "text": "1 indica un numero puro; nella scrittura usuale spesso si omette. m, K, kg e s introdurrebbero rispettivamente lunghezza, temperatura, massa e tempo assenti nei dati. Per confronto, il prodotto scalare fra due spostamenti avrebbe dimensione L²: «scalare» non significa sempre «senza unità»."
+        }
+      ],
+      "hints": [
+        "Moltiplica le dimensioni dei due vettori, non i loro nomi.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1 indica un numero puro; nella scrittura usuale spesso si omette. m, K, kg e s introdurrebbero rispettivamente lunghezza, temperatura, massa e tempo assenti nei dati. Per confronto, il prodotto scalare fra due spostamenti avrebbe dimensione L²: «scalare» non significa sempre «senza unità».",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2143,
+      "title": "Vettori non nulli, prodotto nullo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-scalar-product",
+      "difficulty": 1,
+      "prompt": "Due vettori adimensionali A e B sono perpendicolari e hanno moduli a>0,b>0. Quanto vale A·B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Zero",
+          "Il prodotto positivo ab",
+          "La somma a+b",
+          "Il rapporto a/b",
+          "Un vettore perpendicolare a entrambi"
+        ],
+        "value": "Zero"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo retto rende nulla la proiezione di un vettore sulla direzione dell’altro. Nella definizione del prodotto scalare compare cos90°=0: questo fattore annulla il risultato anche se i moduli non sono nulli."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0e7bd5ef092fefa536a21af4dabbf59a907ac66ace1cc11aeb1fc130a2af14b1",
+          "text": "Leggi le tre tappe: identifica l’angolo; proietta B sulla direzione di A ottenendo b cosθ; moltiplica la proiezione con a. A 0° il risultato è ab, a 90° è zero, a 180° è −ab. Il disegno obliquo è uno schema, non il dato angolare del quesito."
+        },
+        {
+          "type": "formula",
+          "text": "S=ab\\cos90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos90^\\circ=0"
+        },
+        {
+          "type": "formula",
+          "text": " S=ab\\times0"
+        },
+        {
+          "type": "formula",
+          "text": "ab\\times0=0"
+        },
+        {
+          "type": "text",
+          "text": "ab omette il fattore angolare e varrebbe per vettori concordi; a+b e a/b descrivono altre operazioni. Il risultato non è un vettore perpendicolare: quella descrizione riguarda il prodotto vettoriale in tre dimensioni. Prodotto scalare nullo non impone qui un vettore nullo."
+        }
+      ],
+      "hints": [
+        "Quanto vale il coseno di un angolo retto?",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "ab omette il fattore angolare e varrebbe per vettori concordi; a+b e a/b descrivono altre operazioni. Il risultato non è un vettore perpendicolare: quella descrizione riguarda il prodotto vettoriale in tre dimensioni. Prodotto scalare nullo non impone qui un vettore nullo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2144,
+      "title": "Raddoppiare un solo modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 1,
+      "prompt": "Due vettori adimensionali restano paralleli e concordi in entrambe le prove. b resta 2, mentre a passa da 2 a 4. Come cambia il loro prodotto scalare S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 4 a 8",
+          "Quadruplica da 4 a 16",
+          "Resta 4",
+          "Si dimezza a 2",
+          "Diventa zero"
+        ],
+        "value": "Raddoppia da 4 a 8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo rimane zero, quindi il coseno resta uno. Il fattore b è costante: S=ab è direttamente proporzionale ad a quando b e l’orientamento non cambiano. Raddoppiare uno solo dei due moduli dà un solo fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=4\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times2=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_2}{S_1}=\\frac84"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac84=2"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore quattro richiederebbe due raddoppi, uno per ciascun modulo. Le risposte invariato o dimezzato contraddicono il prodotto con b positivo costante. Zero richiederebbe un modulo nullo o un angolo retto, esclusi dalle ipotesi."
+        }
+      ],
+      "hints": [
+        "Conserva b=2 e cosθ=1 quando cambi a.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il fattore quattro richiederebbe due raddoppi, uno per ciascun modulo. Le risposte invariato o dimezzato contraddicono il prodotto con b positivo costante. Zero richiederebbe un modulo nullo o un angolo retto, esclusi dalle ipotesi.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2145,
+      "title": "Ritrovare il primo modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali sono paralleli e concordi, con moduli a,b>0. Il loro prodotto scalare è S=4 e b=2. Quanto vale a?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’orientamento assegnato riduce S=ab cosθ a S=ab. a moltiplica b: per isolarlo dividiamo entrambi i membri per b. Il vincolo b>0 garantisce che questa divisione sia possibile; non occorre estrarre una radice, perché a non è al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "S=ab"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac Sb=\\frac{ab}{b}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{ab}{b}=a"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 2·2·cos0°=4 ricostruisce la misura. Sottrarre b da S darebbe qui ancora due per coincidenza: con S=6,b=2 la sottrazione darebbe quattro mentre la divisione corretta darebbe tre."
+        }
+      ],
+      "hints": [
+        "Quale operazione annulla una moltiplicazione per b?",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 2·2·cos0°=4 ricostruisce la misura. Sottrarre b da S darebbe qui ancora due per coincidenza: con S=6,b=2 la sottrazione darebbe quattro mentre la divisione corretta darebbe tre.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2146,
+      "title": "Una sola misura non determina due moduli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "scalar-product-identifiability",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali A e B sono paralleli e concordi con moduli a,b>0. L’unico dato numerico è A·B=6. Quale conclusione è giustificata?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Devono valere a=2 e b=3",
+          "La somma deve essere 6",
+          "Uno dei moduli deve essere zero",
+          "Più coppie positive sono compatibili: i moduli non sono univoci",
+          "Entrambi devono valere 6"
+        ],
+        "value": "Più coppie positive sono compatibili: i moduli non sono univoci"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura impone un’equazione, ab=6, per due incognite. Per provare che i moduli non sono univoci basta esibire due coppie diverse che rispettino positività e orientamento. Le coppie (2,3) e (1,6) danno entrambe prodotto sei."
+        },
+        {
+          "type": "formula",
+          "text": "ab=6"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac6a\\quad(a>0)"
+        },
+        {
+          "type": "formula",
+          "text": " 2\\times3=6"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\times6=6"
+        },
+        {
+          "type": "text",
+          "text": "(2,3) è possibile ma non obbligatoria. Le due coppie hanno somme cinque e sette, quindi la somma non è fissata. Un modulo nullo darebbe prodotto zero; (6,6) darebbe trentasei. Occorrerebbe un altro dato indipendente, per esempio un modulo o un rapporto fra i moduli, per ottenere una coppia unica."
+        }
+      ],
+      "hints": [
+        "Cerca due coppie diverse di numeri positivi con prodotto sei.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "(2,3) è possibile ma non obbligatoria. Le due coppie hanno somme cinque e sette, quindi la somma non è fissata. Un modulo nullo darebbe prodotto zero; (6,6) darebbe trentasei. Occorrerebbe un altro dato indipendente, per esempio un modulo o un rapporto fra i moduli, per ottenere una coppia unica.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2147,
+      "title": "Il rapporto quando cambia b",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali restano paralleli e concordi. La prima prova ha a₁=2,b₁=2; la seconda a₂=2,b₂=4. Indicando con S il prodotto scalare, quanto vale S₂/S₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1",
+          "3",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo a e il coseno restano uguali nelle due prove. Calcoliamo i prodotti quattro e otto e formiamo il rapporto secondo su primo. Si può anche semplificare il fattore comune a=2 prima delle moltiplicazioni."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times4=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_2}{S_1}=\\frac{2\\times4}{2\\times2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times4}{2\\times2}=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro richiederebbe di raddoppiare anche a. Uno ignorerebbe il cambiamento; tre somma i due fattori di variazione uno e due. −2 contraddice il prodotto scalare positivo di vettori concordi e non nulli."
+        }
+      ],
+      "hints": [
+        "Cancella il modulo a, comune al numeratore e al denominatore.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Quattro richiederebbe di raddoppiare anche a. Uno ignorerebbe il cambiamento; tre somma i due fattori di variazione uno e due. −2 contraddice il prodotto scalare positivo di vettori concordi e non nulli.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2148,
+      "title": "Scarto fra proposta e prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali paralleli e concordi hanno moduli a=b=2. Una soluzione propone S_proposto=8 per il prodotto scalare. Quanto vale lo scarto «proposto meno corretto»?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+8",
+          "+2",
+          "+4",
+          "−4",
+          "0"
+        ],
+        "value": "+4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto si ottiene da 2·2·cos0° e vale quattro. La proposta è otto. Lo scarto con segno è la differenza tra questi risultati nell’ordine richiesto; non è il rapporto fra essi."
+        },
+        {
+          "type": "formula",
+          "text": "S=2\\times2\\times1"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2\\times1=4"
+        },
+        {
+          "type": "formula",
+          "text": " e=8-4"
+        },
+        {
+          "type": "formula",
+          "text": "8-4=+4"
+        },
+        {
+          "type": "text",
+          "text": "+4 indica la sovrastima; −4 corrisponderebbe all’ordine opposto. +2 è il rapporto 8/4, non lo scarto. +8 omette il risultato corretto e zero presuppone erroneamente l’uguaglianza fra proposta e misura. Lo scarto è adimensionale come S."
+        }
+      ],
+      "hints": [
+        "Calcola il prodotto con il coseno prima della sottrazione.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "+4 indica la sovrastima; −4 corrisponderebbe all’ordine opposto. +2 è il rapporto 8/4, non lo scarto. +8 omette il risultato corretto e zero presuppone erroneamente l’uguaglianza fra proposta e misura. Lo scarto è adimensionale come S.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2149,
+      "title": "La divisione è l’inversa del prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali restano paralleli e concordi e hanno moduli a,b>0. Si conoscono il prodotto scalare S=ab e b. Quale formula ricava a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=S−b",
+          "a=Sb",
+          "a=b/S",
+          "a=S/b",
+          "a=√(S/b)"
+        ],
+        "value": "a=S/b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo S=ab per b su entrambi i lati. Il fattore b si cancella al secondo membro; il suo valore positivo esclude il denominatore nullo. Non prendiamo una radice: il prodotto contiene a una sola volta, anche se nasce da due vettori."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Sb=\\frac{ab}{b}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac Sb"
+        },
+        {
+          "type": "text",
+          "text": "S−b invertirebbe una somma, mentre Sb applica di nuovo il fattore da eliminare. b/S è il reciproco del risultato corretto. La radice introdurrebbe senza motivo una seconda potenza. La sostituzione (S/b)b=S verifica l’inversa per ogni b>0."
+        }
+      ],
+      "hints": [
+        "Mantieni il denominatore b quando annulli il fattore b.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "S−b invertirebbe una somma, mentre Sb applica di nuovo il fattore da eliminare. b/S è il reciproco del risultato corretto. La radice introdurrebbe senza motivo una seconda potenza. La sostituzione (S/b)b=S verifica l’inversa per ogni b>0.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2150,
+      "title": "Due cambiamenti in una legge a prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "In entrambe le prove due vettori adimensionali sono paralleli e concordi. I moduli iniziali a,b>0 diventano κ₁a,κ₂b, con κ₁,κ₂>0. Indicando con S il prodotto scalare, quanto vale S₂/S₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁+κ₂",
+          "κ₁κ₂",
+          "κ₁/κ₂",
+          "κ₁²κ₂²",
+          "(κ₁+κ₂)/2"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo rimane zero in entrambe le prove. Sostituiamo i nuovi moduli nel prodotto e raccogliamo κ₁κ₂. Il prodotto iniziale ab è positivo e si può semplificare nel rapporto. Qui i fattori si moltiplicano perché la legge moltiplica i due moduli."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=ab"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=(\\kappa_1a)(\\kappa_2b)"
+        },
+        {
+          "type": "formula",
+          "text": "(\\kappa_1a)(\\kappa_2b)=\\kappa_1\\kappa_2ab"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_2}{S_1}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁+κ₂ fallisce già senza cambiamenti: darebbe due anziché uno. κ₁/κ₂ renderebbe invariato il prodotto quando entrambi i moduli raddoppiano. I quadrati inseriscono potenze assenti; la media dei fattori descriverebbe un’altra legge. Per κ₁=κ₂=2 il controllo dà quattro."
+        }
+      ],
+      "hints": [
+        "Sostituisci i due nuovi moduli nel prodotto prima di semplificare.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁+κ₂ fallisce già senza cambiamenti: darebbe due anziché uno. κ₁/κ₂ renderebbe invariato il prodotto quando entrambi i moduli raddoppiano. I quadrati inseriscono potenze assenti; la media dei fattori descriverebbe un’altra legge. Per κ₁=κ₂=2 il controllo dà quattro.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2151,
+      "title": "Due raddoppi producono quattro volte il risultato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due vettori adimensionali sono paralleli e concordi in ogni prova. I moduli passano da (a₁=2,b₁=2) a (a₂=4,b₂=4). Indicando con S il prodotto scalare, quanto vale S₂/S₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto iniziale è quattro e il nuovo è sedici. Ciascun modulo porta un fattore due: nel prodotto i fattori si moltiplicano e danno quattro. L’angolo invariato non contribuisce a cambiare il rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=4\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "4\\times4=16"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_2}{S_1}=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "La risposta due considererebbe un solo raddoppio. La differenza sedici meno quattro vale dodici e risponde a una domanda diversa; qui serve un rapporto. Tutte le quantità sono numeri puri e il prodotto rimane positivo."
+        }
+      ],
+      "hints": [
+        "Conta un fattore due per ognuno dei due moduli.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La risposta due considererebbe un solo raddoppio. La differenza sedici meno quattro vale dodici e risponde a una domanda diversa; qui serve un rapporto. Tutte le quantità sono numeri puri e il prodotto rimane positivo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2152,
+      "title": "Media dei prodotti, prodotto delle medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 2,
+      "prompt": "Due prove hanno vettori adimensionali paralleli e concordi. I moduli sono (2,2) nella prima e (4,4) nella seconda. Con uguale peso statistico, qual è la media aritmetica dei due prodotti scalari?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9",
+          "10",
+          "20",
+          "5",
+          "11"
+        ],
+        "value": "10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima i prodotti quattro e sedici, poi la loro semisomma. Per il calcolo manuale si possono dimezzare separatamente i due risultati: metà di quattro è due e metà di sedici è otto."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=4"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=16"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline S=\\frac{4+16}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4+16}{2}=\\frac42+\\frac{16}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42+\\frac{16}{2}=2+8"
+        },
+        {
+          "type": "formula",
+          "text": "2+8=10"
+        },
+        {
+          "type": "text",
+          "text": "Nove è il prodotto dei moduli medi (3·3): non è la media dei prodotti. Venti manca della divisione per due e cinque dimezza una seconda volta. Undici non è la semisomma. La differenza fra nove e dieci mostra che il prodotto non è lineare quando i due ingressi cambiano insieme."
+        }
+      ],
+      "hints": [
+        "Media i risultati quattro e sedici, non i moduli due e quattro.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Nove è il prodotto dei moduli medi (3·3): non è la media dei prodotti. Venti manca della divisione per due e cinque dimezza una seconda volta. Undici non è la semisomma. La differenza fra nove e dieci mostra che il prodotto non è lineare quando i due ingressi cambiano insieme.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2153,
+      "title": "Imporre l’aumento del prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 3,
+      "prompt": "I vettori restano adimensionali, paralleli e concordi in ogni prova, con moduli positivi. All’inizio a₁=b₁=2. Si impone a₂=4 e si vuole S₂=4S₁, dove S è il prodotto scalare. Quanto deve valere b₂/b₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto iniziale vale quattro, quindi il nuovo obiettivo è sedici. Dividiamo l’obiettivo per il nuovo modulo a₂=4 per ricavare b₂=4. Solo a questo punto confrontiamo il nuovo b con il vecchio b=2."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=4S_1"
+        },
+        {
+          "type": "formula",
+          "text": "4S_1=16"
+        },
+        {
+          "type": "formula",
+          "text": " b_2=\\frac{S_2}{a_2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{S_2}{a_2}=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{b_2}{b_1}=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "La nuova coppia (4,4) dà prodotto sedici e mantiene entrambi i moduli positivi. Anche la regola dei fattori conferma 4=2·(b₂/b₁). Far crescere b di quattro volte darebbe un prodotto otto volte maggiore, perché a è già raddoppiato."
+        }
+      ],
+      "hints": [
+        "Il raddoppio di a fornisce già una parte del fattore quattro.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La nuova coppia (4,4) dà prodotto sedici e mantiene entrambi i moduli positivi. Anche la regola dei fattori conferma 4=2·(b₂/b₁). Far crescere b di quattro volte darebbe un prodotto otto volte maggiore, perché a è già raddoppiato.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2154,
+      "title": "Taratura di un prodotto scalare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 3,
+      "prompt": "In tutte le prove i vettori sono adimensionali, paralleli e concordi, con moduli positivi. S indica il prodotto scalare. Un display conta tacche T=gS, con g>0 costante e offset nullo. Il riferimento a=b=2 dà T=12. La nuova prova ha T=48 e b=4. Quanto vale a?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento S=2·2=4: dodici tacche significano un guadagno tre. Anche g è adimensionale perché T e S sono numeri puri. Dividiamo quarantotto per tre per ottenere il prodotto reale sedici, poi dividiamo per il modulo b=4."
+        },
+        {
+          "type": "formula",
+          "text": "S_{\\rm rif}=2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "2\\times2=4"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{12}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{4}=3"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\frac{48}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{48}{3}=16"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac Sb"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Sb=\\frac{16}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}=4"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo completo dà T=3·(4·4)=48. Usare direttamente 48 come S porterebbe ad a=12, ancora positivo ma incompatibile con la taratura. La positività da sola non basta: bisogna ricostruire tutti i dati del problema."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno del display prima di dividere per b.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo completo dà T=3·(4·4)=48. Usare direttamente 48 come S porterebbe ad a=12, ancora positivo ma incompatibile con la taratura. La positività da sola non basta: bisogna ricostruire tutti i dati del problema.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2155,
+      "title": "Un offset altera i rapporti delle letture",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 3,
+      "prompt": "In tutte le prove i vettori adimensionali sono paralleli e concordi, con moduli positivi. S indica il prodotto scalare. Un display conta tacche T=gS+c, con g>0,c costanti. I riferimenti sono (a=2,b=2,T=9) e (a=4,b=4,T=33). La prova ignota ha b=2,T=17. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "4",
+          "8",
+          "2",
+          "5"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti corrispondono a prodotti quattro e sedici. La differenza fra le letture elimina c: ventiquattro tacche per dodici unità di prodotto danno g=2. Il primo riferimento impone c=1. Decodifichiamo diciassette togliendo uno e dividendo per due; poi dividiamo il prodotto ottenuto per b."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{33-9}{16-4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-9}{16-4}=\\frac{24}{12}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{24}{12}=2"
+        },
+        {
+          "type": "formula",
+          "text": " c=9-2\\times4"
+        },
+        {
+          "type": "formula",
+          "text": "9-2\\times4=1"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\frac{17-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-1}{2}=8"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac82"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac82=4"
+        },
+        {
+          "type": "text",
+          "text": "La risposta otto si ferma al prodotto S senza isolare a. Due riusa il primo riferimento; tre e cinque si discostano di un’unità senza riprodurre la lettura. Con a=4,b=2 il controllo è T=2·(4·2)+1=17. I rapporti delle letture non eliminano un offset additivo."
+        }
+      ],
+      "hints": [
+        "Sottrai i due riferimenti per trovare il guadagno senza l’offset.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La risposta otto si ferma al prodotto S senza isolare a. Due riusa il primo riferimento; tre e cinque si discostano di un’unità senza riprodurre la lettura. Con a=4,b=2 il controllo è T=2·(4·2)+1=17. I rapporti delle letture non eliminano un offset additivo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    },
+    {
+      "id": "AR-u1-scalar-product-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2156,
+      "title": "Il vincolo seleziona una sola coppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "concordant-scalar-product",
+      "difficulty": 3,
+      "prompt": "Due vettori adimensionali sono paralleli e concordi, con moduli uguali a=b>0. Il loro prodotto scalare è S=4. Quanto vale b?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2",
+          "2",
+          "4",
+          "1",
+          "3"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza dei moduli permette di sostituire a con b. Il prodotto diventa b²=4. L’equazione quadratica ha radici due e meno due; il dominio b>0 elimina quella negativa e lascia un unico modulo possibile."
+        },
+        {
+          "type": "formula",
+          "text": "S=ab"
+        },
+        {
+          "type": "formula",
+          "text": "ab=b^2"
+        },
+        {
+          "type": "formula",
+          "text": " b^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\sqrt4"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4=2\\quad(b>0)"
+        },
+        {
+          "type": "formula",
+          "text": " a=b"
+        },
+        {
+          "type": "formula",
+          "text": "b=2"
+        },
+        {
+          "type": "text",
+          "text": "Meno due non è un modulo positivo; quattro darebbe prodotto sedici, uno darebbe uno e tre darebbe nove. La coppia (2,2) ricostruisce S=4. Senza il vincolo a=b resterebbero molte coppie positive, per esempio (1,4)."
+        }
+      ],
+      "hints": [
+        "Usa l’uguaglianza a=b prima di cercare la radice.",
+        "Controlla orientamento, positività e dati sufficienti prima delle operazioni."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due non è un modulo positivo; quattro darebbe prodotto sedici, uno darebbe uno e tre darebbe nove. La coppia (2,2) ricostruisce S=4. Senza il vincolo a=b resterebbero molte coppie positive, per esempio (1,4).",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotto scalare"
+      ],
+      "review": "Candidato autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN; DRAFT"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0e7bd5ef092fefa536a21af4dabbf59a907ac66ace1cc11aeb1fc130a2af14b1",
+      "name": "scalar-product-projection.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTAzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EYWxs4oCZYW5nb2xvIGFsIHByb2RvdHRvIHNjYWxhcmU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5QcmltYSB0YXBwYTogZHVlIHZldHRvcmkgQSBlIEIgY29uIG9yaWdpbmUgY29tdW5lIGUgYW5nb2xvIHRoZXRhLiBTZWNvbmRhIHRhcHBhOiBsYSBwcm9pZXppb25lIG9yaWVudGF0YSBkaSBCIHN1bGxhIGRpcmV6aW9uZSBkaSBBIMOoIGIgY29zIHRoZXRhLiBUZXJ6YSB0YXBwYTogaWwgcHJvZG90dG8gc2NhbGFyZSDDqCBhIHZvbHRlIHRhbGUgcHJvaWV6aW9uZS4gUGVyIHplcm8gZ3JhZGkgw6ggYWIsIHBlciBub3ZhbnRhIGdyYWRpIHplcm8sIHBlciBjZW50b3R0YW50YSBncmFkaSBtZW5vIGFiLiBJbCBkaXNlZ25vIG9ibGlxdW8gw6ggc2NoZW1hdGljbyBlIG5vbiBhc3NlZ25hIHVuIGFuZ29sbyBhaSBxdWVzaXRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOCIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTAzMCIgcng9IjE4IiBmaWxsPSIjZmFmOGYyIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmYzYiI+PHRleHQgeD0iMjgiIHk9IjM4IiBmb250LXNpemU9IjIzIiBmb250LXdlaWdodD0iNzAwIj5M4oCZYW5nb2xvIGRlY2lkZSBpbCBjb250cmlidXRvPC90ZXh0Pgo8ZyBmb250LXNpemU9IjIxIiBmb250LXdlaWdodD0iNjUwIj48dGV4dCB4PSIyOCIgeT0iODQiPjEgwrcgTGVnZ2kgbOKAmWFuZ29sbyBmcmEgaSB2ZXR0b3JpPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0MTQiPjIgwrcgUHJvaWV0dGEgQiBzdWxsYSBkaXJlemlvbmUgZGkgQTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzY0Ij4zIMK3IE1vbHRpcGxpY2EgbGEgcHJvaWV6aW9uZSBwZXIgYTwvdGV4dD48L2c+CjxnIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiPjxwYXRoIGQ9Ik05MCAzMDBINDUwIiBzdHJva2U9IiMxMjYxN2MiLz48cGF0aCBkPSJNOTAgNjMwSDQ1MCIgc3Ryb2tlPSIjMTI2MTdjIi8+PHBhdGggZD0iTTkwIDMwMEwzMzAgMTIwIiBzdHJva2U9IiM5YjRiMjAiLz48cGF0aCBkPSJNOTAgNjMwTDMzMCA0NTAiIHN0cm9rZT0iIzliNGIyMCIvPjwvZz4KPGcgc3Ryb2tlPSIjMTQyZjNiIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNDAgMzAwQTUwIDUwIDAgMCAwIDEzMCAyNzBNMTQwIDYzMEE1MCA1MCAwIDAgMCAxMzAgNjAwIi8+PHBhdGggZD0iTTMzMCA0NTBWNjY1IiBzdHJva2UtZGFzaGFycmF5PSI3IDYiLz48cGF0aCBkPSJNOTAgNjUwVjY3NE05MCA2NjJIMzMwTTMzMCA2NTBWNjc0Ii8+PHBhdGggZD0iTTMxMiA2MzBWNjEySDMzMCIvPjwvZz4KPGcgZm9udC1zaXplPSIyMCI+PHRleHQgeD0iNDY0IiB5PSIzMDciPkEgKG1vZHVsbyBhKTwvdGV4dD48dGV4dCB4PSIzNDIiIHk9IjEyOCI+QiAobW9kdWxvIGIpPC90ZXh0Pjx0ZXh0IHg9IjE0NyIgeT0iMjg4Ij7OuDwvdGV4dD48dGV4dCB4PSI0NjQiIHk9IjYzNyI+QTwvdGV4dD48dGV4dCB4PSIzNDIiIHk9IjQ1OCI+QjwvdGV4dD48dGV4dCB4PSIxNDciIHk9IjYxOCI+zrg8L3RleHQ+PHRleHQgeD0iMTU0IiB5PSI2OTkiPmIgY29zIM64PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNTIiPlNjaGVtYSBvYmxpcXVvOiDOuCBub24gw6ggdW4gZGF0byBudW1lcmljby48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgwOCI+UyA9IGEgwrcgKGIgY29zIM64KSA9IGFiIGNvcyDOuDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODYwIj5Db25jb3JkaTogzrggPSAwwrAg4oaSIFMgPSBhYjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAyIj5QZXJwZW5kaWNvbGFyaTogzrggPSA5MMKwIOKGkiBTID0gMDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTQ0Ij5PcHBvc3RpOiDOuCA9IDE4MMKwIOKGkiBTID0g4oiSYWI8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk5NiI+UyDDqCB1bm8gc2NhbGFyZTsgaWwgc2Vnbm8gZGlwZW5kZSBkYWwgY29zZW5vLjwvdGV4dD48L2c+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,0 +1,1173 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-vector-angle-ratio-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2181,
+      "title": "Una direzione a quarantacinque gradi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 1,
+      "prompt": "Uno spostamento nel primo quadrante ha componente orizzontale a=2 m e verticale b=2 m. θ è misurato da +x. Quanto vale T=tanθ? Si chiede il rapporto, non l’angolo in gradi.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due componenti formano i cateti di un triangolo rettangolo: rispetto a θ, b è il cateto opposto e a quello adiacente. La tangente è il rapporto opposto/adiacente. Componenti uguali danno un triangolo rettangolo isoscele e un angolo di 45°, ma per T basta una divisione."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac ba"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2\\,\\mathrm m}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{2\\,\\mathrm m}=1"
+        },
+        {
+          "type": "text",
+          "text": "I metri si cancellano e la tangente è un numero puro. Sommare le componenti darebbe quattro metri, che non descrivono una direzione; applicare Pitagora darebbe invece il modulo dello spostamento. Raddoppiare entrambe le componenti lascia il rapporto uguale a uno."
+        }
+      ],
+      "hints": [
+        "Individua il cateto opposto e quello adiacente all’angolo dato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I metri si cancellano e la tangente è un numero puro. Sommare le componenti darebbe quattro metri, che non descrivono una direzione; applicare Pitagora darebbe invece il modulo dello spostamento. Raddoppiare entrambe le componenti lascia il rapporto uguale a uno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2182,
+      "title": "La pendenza non è una lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 1,
+      "prompt": "Un vettore nel primo quadrante ha componenti a e b espresse entrambe in metri. Quale unità è compatibile con T=b/a=tanθ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m²",
+          "1",
+          "m/s",
+          "grado"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tangente confronta due componenti della stessa grandezza. Prima di dividere le esprimiamo nella stessa unità; poi l’unità al numeratore si semplifica con quella al denominatore. Il rapporto determina una direzione e non dipende dalla scala scelta per disegnare il vettore."
+        },
+        {
+          "type": "formula",
+          "text": "[T]=\\frac{L}{L}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{L}{L}=1"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è 1. Metri e metri quadrati attribuirebbero una dimensione a un rapporto fra lunghezze; m/s richiederebbe un tempo al denominatore. Il grado esprime l’angolo θ, mentre qui si chiede la sua tangente: θ e tanθ sono oggetti differenti."
+        }
+      ],
+      "hints": [
+        "Cancella l’unità comune delle due componenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La risposta è 1. Metri e metri quadrati attribuirebbero una dimensione a un rapporto fra lunghezze; m/s richiederebbe un tempo al denominatore. Il grado esprime l’angolo θ, mentre qui si chiede la sua tangente: θ e tanθ sono oggetti differenti.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2183,
+      "title": "Il triangolo tre, quattro, cinque",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 1,
+      "prompt": "In un triangolo rettangolo l’ipotenusa misura 5 cm e il cateto opposto a un angolo acuto θ misura 3 cm. Quale coppia dà, nell’ordine, sinθ e cosθ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 e 3/5",
+          "3/4 e 4/3",
+          "3/5 e 4/5",
+          "9/25 e 16/25",
+          "3 e 4"
+        ],
+        "value": "3/5 e 4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno è il cateto opposto diviso per l’ipotenusa. Per il coseno manca il cateto adiacente: Pitagora dà il suo quadrato come 5²−3²=25−9=16, quindi quel cateto misura quattro centimetri. Scegliamo la radice positiva perché è una lunghezza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/461a07da35deaa01ef9f4727831a60ad472ccf326a85578d16fab2ff6835ee8c",
+          "text": "Tre tappe dall’alto: individua ipotenusa cinque e cateto opposto tre; ricava il cateto adiacente quattro con Pitagora; dividi entrambi i cateti per la stessa ipotenusa. La figura usa una scala comune sui due assi, 40 pixel per centimetro."
+        },
+        {
+          "type": "formula",
+          "text": "a^2=(5\\,\\mathrm{cm})^2-(3\\,\\mathrm{cm})^2"
+        },
+        {
+          "type": "formula",
+          "text": "(5\\,\\mathrm{cm})^2-(3\\,\\mathrm{cm})^2=16\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos\\theta=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "I rapporti sono adimensionali e positivi. La coppia 4/5,3/5 scambia opposto e adiacente; 3/4,4/3 divide i cateti tra loro invece di usare l’ipotenusa. 9/25 e 16/25 sono i quadrati dei rapporti. Tre e quattro sono lunghezze numeriche, troppo grandi per seni o coseni. Il controllo è (3/5)²+(4/5)²=1."
+        }
+      ],
+      "hints": [
+        "Trova prima il cateto mancante con 25−9=16.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I rapporti sono adimensionali e positivi. La coppia 4/5,3/5 scambia opposto e adiacente; 3/4,4/3 divide i cateti tra loro invece di usare l’ipotenusa. 9/25 e 16/25 sono i quadrati dei rapporti. Tre e quattro sono lunghezze numeriche, troppo grandi per seni o coseni. Il controllo è (3/5)²+(4/5)²=1.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2184,
+      "title": "Allungare la componente orizzontale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 1,
+      "prompt": "Uno spostamento resta nel primo quadrante. La componente orizzontale passa da a₁=2 m ad a₂=4 m, mentre la verticale resta b=2 m. Come cambia T=b/a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 1 a 2",
+          "Si dimezza da 1 a 1/2",
+          "Resta 1",
+          "Quadruplica",
+          "Diventa negativa"
+        ],
+        "value": "Si dimezza da 1 a 1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aumento riguarda il denominatore del rapporto, mentre il numeratore resta fisso. La freccia diventa meno ripida: a pari altezza, la base è doppia. La tangente deve quindi diminuire, e la divisione dei due casi quantifica quanto."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=\\frac22"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac22=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=\\frac24"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac24=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "La tangente si dimezza. Il rapporto cresce se cresce b a parità di a, non se cresce soltanto a. La positività delle due componenti impedisce una tangente negativa. Il modulo dello spostamento aumenta, ma la sua pendenza diminuisce: modulo e direzione rispondono a domande diverse."
+        }
+      ],
+      "hints": [
+        "Guarda quale componente compare al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La tangente si dimezza. Il rapporto cresce se cresce b a parità di a, non se cresce soltanto a. La positività delle due componenti impedisce una tangente negativa. Il modulo dello spostamento aumenta, ma la sua pendenza diminuisce: modulo e direzione rispondono a domande diverse.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2185,
+      "title": "Ricostruire la base",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Uno spostamento nel primo quadrante ha T=tanθ=1 e componente verticale b=2 m. Quanto vale la componente orizzontale a, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla definizione T=b/a moltiplichiamo entrambi i membri per a, positivo, e otteniamo Ta=b. Poi dividiamo per T, anch’esso non nullo. Una tangente uguale a uno indica che i due cateti devono avere la stessa lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac ba"
+        },
+        {
+          "type": "formula",
+          "text": " Ta=b"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac bT"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2\\,\\mathrm m}{1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{1}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Rimettendo a nel rapporto si ottiene 2 m/2 m=1. Il dato T determina il rapporto fra componenti; il dato b fissa anche la scala del triangolo. Senza b non si potrebbe ricavare una lunghezza soltanto da un angolo."
+        }
+      ],
+      "hints": [
+        "Moltiplica per a prima di dividere per T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Rimettendo a nel rapporto si ottiene 2 m/2 m=1. Il dato T determina il rapporto fra componenti; il dato b fissa anche la scala del triangolo. Senza b non si potrebbe ricavare una lunghezza soltanto da un angolo.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2186,
+      "title": "Ricostruire l’altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Uno spostamento nel primo quadrante ha componente orizzontale a=2 m e T=tanθ=1. Quanto vale la componente verticale b, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per isolare il numeratore b nella relazione T=b/a basta moltiplicare entrambi i membri per a. La tangente è adimensionale: il prodotto Ta ha la stessa unità della componente orizzontale, cioè metri, come deve avere anche b."
+        },
+        {
+          "type": "formula",
+          "text": "Ta=\\frac ba\\,a"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac ba\\,a=b"
+        },
+        {
+          "type": "formula",
+          "text": " b=1\\times2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "1\\times2\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà b/a=2 m/2 m=1. Qui dividere a per T darebbe lo stesso numero soltanto perché T vale uno; la formula corretta resta b=Ta. Per esempio, con T=2 e a=2 m servirebbe b=4 m, non un metro."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore moltiplicando per a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà b/a=2 m/2 m=1. Qui dividere a per T darebbe lo stesso numero soltanto perché T vale uno; la formula corretta resta b=Ta. Per esempio, con T=2 e a=2 m servirebbe b=4 m, non un metro.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2187,
+      "title": "Aumentare la salita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Due spostamenti nel primo quadrante hanno a₁=a₂=2 m. Le componenti verticali sono b₁=2 m e b₂=4 m. Quanto vale T₂/T₁, con T=b/a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1",
+          "2",
+          "4",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La base del triangolo non cambia e l’altezza raddoppia. La tangente, cioè altezza divisa per base, passa da uno a due. Nel confronto fra le due tangenti possiamo anche semplificare la componente orizzontale comune."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=\\frac22"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac22=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto è due. Quattro è la componente verticale finale in metri, non la sua pendenza; un mezzo è il rapporto nel verso inverso. Una tangente può superare uno: questo significa un angolo acuto maggiore di 45°, mentre il limite di valore uno riguarda seno e coseno."
+        }
+      ],
+      "hints": [
+        "A base costante la pendenza segue direttamente l’altezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto è due. Quattro è la componente verticale finale in metri, non la sua pendenza; un mezzo è il rapporto nel verso inverso. Una tangente può superare uno: questo significa un angolo acuto maggiore di 45°, mentre il limite di valore uno riguarda seno e coseno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2188,
+      "title": "L’errore su una tangente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Uno spostamento nel primo quadrante ha a=b=2 m. Una soluzione propone T_proposto=2. Quanto vale lo scarto con segno T_proposto−b/a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−1",
+          "0",
+          "+1",
+          "+2",
+          "+4"
+        ],
+        "value": "+1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è il rapporto fra due componenti uguali, quindi uno. La proposta due sembra confondere una componente numerica con il rapporto fra componenti. Lo scarto richiesto confronta due numeri puri e segue l’ordine proposto meno corretto."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{2\\,\\mathrm m}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{2\\,\\mathrm m}=1"
+        },
+        {
+          "type": "formula",
+          "text": " e=2-1"
+        },
+        {
+          "type": "formula",
+          "text": "2-1=+1"
+        },
+        {
+          "type": "text",
+          "text": "La proposta sovrastima di uno. −1 invertirebbe l’ordine della sottrazione; zero ignorerebbe la differenza fra la componente e la tangente; +2 ripeterebbe la proposta invece di calcolarne l’errore. Lo scarto non va espresso in metri perché anche T è adimensionale."
+        }
+      ],
+      "hints": [
+        "Calcola il rapporto prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La proposta sovrastima di uno. −1 invertirebbe l’ordine della sottrazione; zero ignorerebbe la differenza fra la componente e la tangente; +2 ripeterebbe la proposta invece di calcolarne l’errore. Lo scarto non va espresso in metri perché anche T è adimensionale.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2189,
+      "title": "L’inversa della pendenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Uno spostamento nel primo quadrante soddisfa T=b/a, con a,b,T>0. Si conoscono T e b. Quale formula ricava la componente orizzontale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "a=bT",
+          "a=T/b",
+          "a=b/T",
+          "a=T−b",
+          "a=√(b/T)"
+        ],
+        "value": "a=b/T"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incognita è inizialmente al denominatore. Moltiplichiamo l’uguaglianza per a e poi dividiamo per T. Entrambe le operazioni sono lecite nel dominio positivo. È utile scrivere la tappa Ta=b: evita di invertire a memoria il rapporto sbagliato."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac ba"
+        },
+        {
+          "type": "formula",
+          "text": " Ta=b"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac bT"
+        },
+        {
+          "type": "text",
+          "text": "Sostituendo l’inversa, b/(b/T)=T. Il rapporto b/T conserva i metri di b; T/b avrebbe dimensione di lunghezza inversa. T−b sottrarrebbe un numero puro e una lunghezza. Non serve una radice perché a compare alla prima potenza dopo aver eliminato il denominatore."
+        }
+      ],
+      "hints": [
+        "Porta l’incognita fuori dal denominatore con la stessa moltiplicazione sui due membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sostituendo l’inversa, b/(b/T)=T. Il rapporto b/T conserva i metri di b; T/b avrebbe dimensione di lunghezza inversa. T−b sottrarrebbe un numero puro e una lunghezza. Non serve una radice perché a compare alla prima potenza dopo aver eliminato il denominatore.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2190,
+      "title": "La pendenza confronta due fattori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "In una prima prova T₁=b/a, con a,b>0. Nella seconda a₂=κ₁a e b₂=κ₂b, con κ₁,κ₂>0. Quale espressione dà T₂/T₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁+κ₂",
+          "κ₂−κ₁"
+        ],
+        "value": "κ₂/κ₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo le nuove componenti nello stesso rapporto verticale/orizzontale. κ₂ moltiplica il numeratore e κ₁ il denominatore. Il rapporto fra le tangenti elimina poi b/a e lascia il rapporto dei fattori, nell’ordine verticale su orizzontale."
+        },
+        {
+          "type": "formula",
+          "text": "T_2=\\frac{\\kappa_2b}{\\kappa_1a}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\kappa_2b}{\\kappa_1a}=\\frac{\\kappa_2}{\\kappa_1}T_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac{\\kappa_2}{\\kappa_1}"
+        },
+        {
+          "type": "text",
+          "text": "Se entrambi i fattori sono uguali la pendenza resta invariata: il vettore cambia modulo conservando la direzione. Il prodotto dei fattori non rispetterebbe questo controllo; il rapporto inverso scambierebbe orizzontale e verticale. Somma e differenza falliscono già con κ₁=κ₂=1, quando il rapporto corretto è uno."
+        }
+      ],
+      "hints": [
+        "Mantieni l’ordine verticale su orizzontale anche per i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se entrambi i fattori sono uguali la pendenza resta invariata: il vettore cambia modulo conservando la direzione. Il prodotto dei fattori non rispetterebbe questo controllo; il rapporto inverso scambierebbe orizzontale e verticale. Somma e differenza falliscono già con κ₁=κ₂=1, quando il rapporto corretto è uno.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2191,
+      "title": "Più lungo, ma meno ripido",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Nella prima prova uno spostamento ha a₁=b₁=2 m; nella seconda a₂=6 m e b₂=4 m. Entrambi sono nel primo quadrante. Quanto vale T₂/T₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "3",
+          "6"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente orizzontale triplica e quella verticale raddoppia. La pendenza riceve quindi un fattore due al numeratore e tre al denominatore. La nuova freccia ha componenti entrambe maggiori ma è meno inclinata rispetto a +x."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=\\frac22"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac22=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=\\frac46"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac46=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato esatto è due terzi: basta semplificare quattro sesti dividendo per due. Tre mezzi sarebbe il rapporto inverso. Due e tre isolerebbero un solo cambiamento; sei moltiplicherebbe i fattori come se T fosse un prodotto, mentre è un quoziente."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore verticale due per il fattore orizzontale tre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato esatto è due terzi: basta semplificare quattro sesti dividendo per due. Tre mezzi sarebbe il rapporto inverso. Due e tre isolerebbero un solo cambiamento; sei moltiplicherebbe i fattori come se T fosse un prodotto, mentre è un quoziente.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2192,
+      "title": "Media delle pendenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 2,
+      "prompt": "Due spostamenti nel primo quadrante hanno componenti (a,b)=(2 m,2 m) e (6 m,4 m). Le due prove hanno lo stesso peso. Qual è la media aritmetica delle due tangenti T=b/a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/4",
+          "5/6",
+          "1",
+          "5/3"
+        ],
+        "value": "5/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima calcoliamo le due tangenti: uno e due terzi. Per sommarle esprimiamo uno come tre terzi, ottenendo cinque terzi; la divisione per due dà cinque sesti. Tutto il conto usa frazioni esatte e non richiede angoli né decimali."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline T=\\frac{1+2/3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1+2/3}{2}=\\frac{3/3+2/3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3/3+2/3}{2}=\\frac56"
+        },
+        {
+          "type": "text",
+          "text": "Cinque sesti è compreso fra due terzi e uno, come deve essere una media con pesi positivi. Il rapporto delle componenti medie darebbe 3 m/4 m=3/4: è un altro procedimento. Cinque terzi è la somma delle tangenti prima di dividere per due."
+        }
+      ],
+      "hints": [
+        "Porta uno e due terzi allo stesso denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque sesti è compreso fra due terzi e uno, come deve essere una media con pesi positivi. Il rapporto delle componenti medie darebbe 3 m/4 m=3/4: è un altro procedimento. Cinque terzi è la somma delle tangenti prima di dividere per due.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2193,
+      "title": "Compensare una base tripla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 3,
+      "prompt": "Uno spostamento ha inizialmente a₁=b₁=2 m. Si impone a₂=6 m e si vuole T₂=(2/3)T₁, sempre nel primo quadrante. Quale rapporto b₂/b₁ occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente orizzontale triplica e da sola dividerebbe la tangente per tre. Per ottenere due terzi della tangente iniziale, l’altezza deve fornire il fattore due che manca. Ricaviamo il rapporto incognito dalla legge dei fattori senza cercare l’angolo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{T_2}{T_1}=\\frac{b_2/b_1}{a_2/a_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac23=\\frac{b_2/b_1}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{b_2}{b_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "La nuova componente verticale vale quattro metri. Il controllo dà T₂=4/6=2/3, mentre T₁=1. Moltiplicare il rapporto richiesto per tre annulla la divisione dovuta alla base; dividerlo ancora per tre conterebbe due volte lo stesso effetto."
+        }
+      ],
+      "hints": [
+        "Moltiplica per tre per compensare il nuovo denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La nuova componente verticale vale quattro metri. Il controllo dà T₂=4/6=2/3, mentre T₁=1. Moltiplicare il rapporto richiesto per tre annulla la divisione dovuta alla base; dividerlo ancora per tre conterebbe due volte lo stesso effetto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2194,
+      "title": "Tarare una misura di pendenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 3,
+      "prompt": "Un display mostra S=gT con g>0 costante e nessun offset; S conta tacche e T=b/a. Il riferimento a=b=2 m dà S=3. Una prova nuova dà S=2 e b=4 m. Quanto vale a, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha T=1, quindi il guadagno è tre. La lettura due corrisponde alla tangente T=2/3. Per ricavare la base dalla relazione T=b/a usiamo a=b/T: dividere per due terzi equivale a moltiplicare per tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac31"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac31=3"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{4\\,\\mathrm m}{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m}{2/3}=4\\,\\mathrm m\\times\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m\\times\\frac32=6\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Possiamo semplificare quattro con due prima di moltiplicare per tre. Il controllo completo è S=3·(4 m/6 m)=2. T e S sono adimensionali ma hanno ruoli differenti: il fattore di taratura deve essere rimosso prima di interpretare la lettura come pendenza."
+        }
+      ],
+      "hints": [
+        "Correggi il display, poi inverti il rapporto geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Possiamo semplificare quattro con due prima di moltiplicare per tre. Il controllo completo è S=3·(4 m/6 m)=2. T e S sono adimensionali ma hanno ruoli differenti: il fattore di taratura deve essere rimosso prima di interpretare la lettura come pendenza.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2195,
+      "title": "Una taratura con offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 3,
+      "prompt": "Un display segue S=gT+d, con g,d costanti, S conteggio e T=b/a. I riferimenti (a,b,S) sono (2 m,2 m,3) e (6 m,4 m,7/3). Una prova dà S=2 e b=2 m. Quanto vale a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "2 m",
+          "3 m",
+          "4 m",
+          "6 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno tangenti uno e due terzi. La differenza di lettura è 7/3−3=−2/3; la differenza di tangente è 2/3−1=−1/3. Dividendo due numeri negativi otteniamo il guadagno positivo due. Dal primo riferimento d=3−2·1=1. Ora correggiamo la lettura ignota."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{-2/3}{-1/3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{-2/3}{-1/3}=2"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2-1}{2}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{2\\,\\mathrm m}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{1/2}=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo è S=2·(2 m/4 m)+1=2. Due metri ripeterebbe il cateto verticale senza ricostruire quello orizzontale; tre e sei potrebbero emergere mescolando la taratura con il rapporto geometrico. Un rapporto di sole letture non elimina l’offset: serve prima la differenza dei riferimenti."
+        }
+      ],
+      "hints": [
+        "Usa le differenze, anche quando entrambe sono negative.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo è S=2·(2 m/4 m)+1=2. Due metri ripeterebbe il cateto verticale senza ricostruire quello orizzontale; tre e sei potrebbero emergere mescolando la taratura con il rapporto geometrico. Un rapporto di sole letture non elimina l’offset: serve prima la differenza dei riferimenti.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-angle-ratio-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2196,
+      "title": "Una direzione non fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-angle-ratio",
+      "difficulty": 3,
+      "prompt": "Uno spostamento nel primo quadrante ha componenti positive con vincolo a=b. Si misura anche T=b/a=1. Quante coppie (a,b) soddisfano questi dati? Non è assegnato il modulo dello spostamento.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna coppia",
+          "Una sola: (1 m,1 m)",
+          "Due coppie",
+          "Infinite coppie positive con a=b",
+          "Una sola: (2 m,2 m)"
+        ],
+        "value": "Infinite coppie positive con a=b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo a=b rende T=b/b=1 per qualsiasi b positivo. La misura della tangente ripete quindi la stessa informazione del vincolo: non aggiunge un dato indipendente sulla scala. Possiamo scegliere liberamente una lunghezza positiva λ e porre a=b=λ."
+        },
+        {
+          "type": "formula",
+          "text": "a=b"
+        },
+        {
+          "type": "formula",
+          "text": "b=\\lambda>0"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{\\lambda}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\lambda}{\\lambda}=1"
+        },
+        {
+          "type": "text",
+          "text": "Esistono infinite coppie: per esempio (1 m,1 m), (2 m,2 m) e ogni loro moltiplo positivo. Tutte hanno direzione a 45° ma moduli diversi. Le alternative che fissano una o due coppie aggiungono una lunghezza assente nel testo; nessuna coppia ignorerebbe gli esempi espliciti. Un modulo noto aggiungerebbe invece un vincolo indipendente."
+        }
+      ],
+      "hints": [
+        "Prova due scale diverse che conservino lo stesso rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Esistono infinite coppie: per esempio (1 m,1 m), (2 m,2 m) e ogni loro moltiplo positivo. Tutte hanno direzione a 45° ma moduli diversi. Le alternative che fissano una o due coppie aggiungono una lunghezza assente nel testo; nessuna coppia ignorerebbe gli esempi espliciti. Un modulo noto aggiungerebbe invece un vincolo indipendente.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "461a07da35deaa01ef9f4727831a60ad472ccf326a85578d16fab2ff6835ee8c",
+      "name": "vector-angle-ratio-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iOTcwIiB2aWV3Qm94PSIwIDAgNjAwIDk3MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5TZW5vIGUgY29zZW5vIG5lbCB0cmlhbmdvbG8gdHJlLCBxdWF0dHJvLCBjaW5xdWU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlIGNvbiBsYSBzdGVzc2Egc2NhbGEgc3VpIGR1ZSBhc3NpLCBxdWFyYW50YSBwaXhlbCBwZXIgY2VudGltZXRyby4gSWwgdHJpYW5nb2xvIGhhIGJhc2UgcXVhdHRybyBjZW50aW1ldHJpLCBhbHRlenphIHRyZSBjZW50aW1ldHJpIGUgaXBvdGVudXNhIGNpbnF1ZSBjZW50aW1ldHJpLiBM4oCZYW5nb2xvIHRoZXRhIMOoIGFsbOKAmWVzdHJlbWl0w6Agc2luaXN0cmEgZGVsbGEgYmFzZS4gUGl0YWdvcmEgcmljb3N0cnVpc2NlIGlsIGNhdGV0byBhZGlhY2VudGU6IHJhZGljZSBkaSB2ZW50aWNpbnF1ZSBtZW5vIG5vdmUgdWd1YWxlIHF1YXR0cm8uIFBvaSBzZW5vIHRyZSBxdWludGkgZSBjb3Nlbm8gcXVhdHRybyBxdWludGkuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9Ijk3MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmaWxsPSIjMTczZDUwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjI4IiB5PSI0MCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgQ29sbG9jYXJlIGkgZGF0aSByaXNwZXR0byBhIM64PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzgiPlNjYWxhIGNvbXVuZTogNDAgcHggcGVyIGNlbnRpbWV0cm8uPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDI4MEgyNjBWMTYwWiIgZmlsbD0iI2NlZTJkZSIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTI0NSAyODBWMjY1SDI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0MCAyODBBNDAgNDAgMCAwIDAgMTMyIDI1NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTQ1IiB5PSIyNjciPs64PC90ZXh0Pjx0ZXh0IHg9IjI4MCIgeT0iMjI0Ij5vcHBvc3RvOiAzIGNtPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iMTQ3Ij5pcG90ZW51c2E6IDUgY208L3RleHQ+PHRleHQgeD0iMTA1IiB5PSIzMTYiPmFkaWFjZW50ZTogYSA9ID88L3RleHQ+CjxwYXRoIGQ9Ik0yOCAzNDJINTcyIiBzdHJva2U9IiM4NzliOWEiLz4KPHRleHQgeD0iMjgiIHk9IjM4MiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUmljb3N0cnVpcmUgaWwgY2F0ZXRvIG1hbmNhbnRlPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDI0Ij5hwrIgPSAoNSBjbSnCsiDiiJIgKDMgY20pwrI8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NjYiPmHCsiA9IDE2IGNtwrIgwrcgYSA9IDQgY20gKHBvc2l0aXZvKTwvdGV4dD4KPHBhdGggZD0iTTEwMCA2NDhIMjYwVjUyOFoiIGZpbGw9IiNjZWUyZGUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0yNDUgNjQ4VjYzM0gyNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjEwOCIgeT0iNjg2Ij5hZGlhY2VudGU6IDQgY208L3RleHQ+PHRleHQgeD0iMjc4IiB5PSI1OTQiPjMgY208L3RleHQ+PHRleHQgeD0iMTE5IiB5PSI1MjMiPjUgY208L3RleHQ+CjxwYXRoIGQ9Ik0yOCA3MjBINTcyIiBzdHJva2U9IiM4NzliOWEiLz4KPHRleHQgeD0iMjgiIHk9Ijc2MCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRGl2aWRlcmUgcGVyIGzigJlpcG90ZW51c2E8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4MDQiPnNpbs64ID0gb3Bwb3N0byAvIGlwb3RlbnVzYSA9IDMvNTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijg0OCI+Y29zzrggPSBhZGlhY2VudGUgLyBpcG90ZW51c2EgPSA0LzU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4OTgiPkxlIHVuaXTDoCBzaSBjYW5jZWxsYW5vOiBjbSAvIGNtID0gMS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI5NDIiPkNvbnRyb2xsbzogKDMvNSnCsiArICg0LzUpwrIgPSAxLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

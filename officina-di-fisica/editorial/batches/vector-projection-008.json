@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u1-vector-projection-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2161,
+      "title": "L’ombra sull’asse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 1,
+      "prompt": "Uno spostamento ha modulo R=4 m e forma un angolo θ=60° con il verso positivo dell’asse x. Usa cos60°=1/2. Quanto vale la componente orientata P lungo x, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente è la proiezione ortogonale del vettore sull’asse. Nel triangolo rettangolo il modulo R è l’ipotenusa e P è il cateto adiacente all’angolo con +x. Per definizione del coseno, P/R=cosθ. Il coseno positivo garantisce che la componente punti verso +x."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0eeab80a351c1b8ef8bced06598f56d67e64021f41cefb24af82e84ba1c01678",
+          "text": "Tre tappe: un vettore di quattro metri a 60°; la perpendicolare all’asse delimita il cateto adiacente; la proiezione vale due metri. L’ultimo confronto mostra il segno negativo a 120°."
+        },
+        {
+          "type": "formula",
+          "text": "P=R\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\,\\mathrm m\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m\\times\\frac12=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Basta prendere metà di quattro: due metri. La componente è minore del modulo, come deve essere per un angolo acuto. Usare il seno sceglierebbe il cateto perpendicolare all’asse, mentre usare direttamente R ignorerebbe l’inclinazione del vettore."
+        }
+      ],
+      "hints": [
+        "Individua l’ipotenusa e il cateto adiacente all’angolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Basta prendere metà di quattro: due metri. La componente è minore del modulo, come deve essere per un angolo acuto. Usare il seno sceglierebbe il cateto perpendicolare all’asse, mentre usare direttamente R ignorerebbe l’inclinazione del vettore.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2162,
+      "title": "Le unità della componente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 1,
+      "prompt": "Un vettore spostamento è misurato in metri. Quale unità è compatibile con la sua componente lungo un asse cartesiano?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m²",
+          "1",
+          "m/s",
+          "N"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Proiettare un vettore cambia il suo valore lungo una direzione ma non la natura della grandezza fisica. Il fattore cosθ è un numero puro. Perciò P=R cosθ conserva la dimensione di lunghezza di R: anche le componenti dello spostamento si misurano in metri."
+        },
+        {
+          "type": "formula",
+          "text": "[P]=[R][\\cos\\theta]"
+        },
+        {
+          "type": "formula",
+          "text": "[R][\\cos\\theta]=L\\times1"
+        },
+        {
+          "type": "formula",
+          "text": "L\\times1=L"
+        },
+        {
+          "type": "text",
+          "text": "Il metro è la scelta adatta. m² sarebbe un’area e m/s una velocità; nessuna delle due nasce dalla proiezione. 1 è l’unità del coseno, non dello spostamento proiettato. N misurerebbe una forza: componenti di forze avrebbero newton, componenti di spostamenti hanno metri."
+        }
+      ],
+      "hints": [
+        "Il coseno modifica il numero, senza introdurre una nuova unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il metro è la scelta adatta. m² sarebbe un’area e m/s una velocità; nessuna delle due nasce dalla proiezione. 1 è l’unità del coseno, non dello spostamento proiettato. N misurerebbe una forza: componenti di forze avrebbero newton, componenti di spostamenti hanno metri.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2163,
+      "title": "La componente oltre novanta gradi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 1,
+      "prompt": "Uno spostamento di modulo 10 m forma un angolo di 120° con +x. Usa cos120°=−1/2. Qual è la componente orientata P lungo x?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+5 m",
+          "−5 m",
+          "+10 m",
+          "−10 m",
+          "0 m"
+        ],
+        "value": "−5 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo è misurato dal verso positivo dell’asse. A 120° la freccia cade nella metà del piano con x negativo. La proiezione conserva questo segno: P=R cosθ, non il valore assoluto di quel prodotto. Il modulo R resta invece sempre non negativo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0eeab80a351c1b8ef8bced06598f56d67e64021f41cefb24af82e84ba1c01678",
+          "text": "Leggi il confronto finale: a 60° la proiezione è positiva, a 120° è negativa. L’esempio finale usa R=10 m e dà P=−5 m; il vettore conserva modulo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "P=10\\,\\mathrm m\\times\\left(-\\frac12\\right)"
+        },
+        {
+          "type": "formula",
+          "text": "10\\,\\mathrm m\\times\\left(-\\frac12\\right)=-5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è −5 m: cinque metri nel verso −x. +5 m sarebbe il modulo della componente e perderebbe l’orientazione. ±10 m richiederebbero un vettore parallelo all’asse; zero richiederebbe un angolo di 90°, non 120°. Il segno negativo non rende negativo il modulo dello spostamento."
+        }
+      ],
+      "hints": [
+        "Localizza prima il vettore rispetto al verso +x.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La risposta è −5 m: cinque metri nel verso −x. +5 m sarebbe il modulo della componente e perderebbe l’orientazione. ±10 m richiederebbero un vettore parallelo all’asse; zero richiederebbe un angolo di 90°, non 120°. Il segno negativo non rende negativo il modulo dello spostamento.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2164,
+      "title": "Stessa direzione, modulo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 1,
+      "prompt": "Due spostamenti hanno lo stesso angolo acuto θ con +x, con cosθ=1/2. Il modulo passa da R₁=4 m a R₂=8 m. Come cambia la componente P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 2 m a 4 m",
+          "Quadruplica da 2 m a 8 m",
+          "Resta 2 m",
+          "Si dimezza",
+          "Diventa nulla"
+        ],
+        "value": "Raddoppia da 2 m a 4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A direzione fissata il coseno resta uguale. La relazione P=Rc è lineare rispetto a R: moltiplicare R per due moltiplica P per due. Si allunga la freccia senza ruotarla, e anche la sua ombra sull’asse raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "P_1=4\\,\\mathrm m\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m\\times\\frac12=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " P_2=8\\,\\mathrm m\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm m\\times\\frac12=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La componente aumenta di due metri e il rapporto P₂/P₁ vale due. Il quadruplicamento introdurrebbe un secondo raddoppio assente nei dati. Restare uguale richiederebbe un coseno dimezzato, cioè una rotazione; diventare nulla richiederebbe un vettore perpendicolare all’asse."
+        }
+      ],
+      "hints": [
+        "Mantieni c=1/2 anche nella seconda prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La componente aumenta di due metri e il rapporto P₂/P₁ vale due. Il quadruplicamento introdurrebbe un secondo raddoppio assente nei dati. Restare uguale richiederebbe un coseno dimezzato, cioè una rotazione; diventare nulla richiederebbe un vettore perpendicolare all’asse.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2165,
+      "title": "Dalla proiezione al modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Uno spostamento forma un angolo acuto con +x, con c=cosθ=1/2. La componente P lungo x è 2 m. Quanto vale il modulo R, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con P=Rc l’incognita R è moltiplicata per il coseno. Dividiamo entrambi i membri per c, che è non nullo. Dividere per un mezzo equivale a moltiplicare per due: il modulo deve superare la componente perché il vettore non è parallelo all’asse."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Pc=\\frac{Rc}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Rc}{c}=R"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{2\\,\\mathrm m}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{1/2}=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà 4 m·1/2=2 m. Moltiplicare invece 2 m per 1/2 darebbe 1 m, un modulo più piccolo della propria componente: questo contraddice |P|≤R. Il controllo geometrico affianca quello algebrico."
+        }
+      ],
+      "hints": [
+        "Dividere per un mezzo significa chiedersi quante metà contiene il valore dato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà 4 m·1/2=2 m. Moltiplicare invece 2 m per 1/2 darebbe 1 m, un modulo più piccolo della propria componente: questo contraddice |P|≤R. Il controllo geometrico affianca quello algebrico.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2166,
+      "title": "Ricostruire il coseno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Uno spostamento di modulo R=4 m ha componente positiva P=2 m lungo x e forma un angolo acuto con +x. Qual è c=cosθ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "2",
+          "−1/2",
+          "2 m"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo P=Rc per R, positivo. Il rapporto fra due lunghezze espresse nella stessa unità è adimensionale. Due metri sono metà di quattro metri, quindi c=1/2. Si può riconoscere θ=60°, ma per rispondere non serve calcolare un angolo."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac PR"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac PR=\\frac{2\\,\\mathrm m}{4\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m}{4\\,\\mathrm m}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un coseno acuto deve stare fra zero e uno. Due è impossibile per un coseno; −1/2 darebbe una componente negativa e un angolo ottuso. 2 m confonde la componente con il rapporto richiesto; 1/4 introdurrebbe una seconda divisione per due che la formula non contiene."
+        }
+      ],
+      "hints": [
+        "Dividi la componente per l’ipotenusa, cancellando i metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un coseno acuto deve stare fra zero e uno. Due è impossibile per un coseno; −1/2 darebbe una componente negativa e un angolo ottuso. 2 m confonde la componente con il rapporto richiesto; 1/4 introdurrebbe una seconda divisione per due che la formula non contiene.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2167,
+      "title": "Ruotare a modulo fissato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Uno spostamento mantiene modulo R=4 m. In due prove acute il coseno passa da c₁=1/2 a c₂=3/4. Quanto vale il rapporto P₂/P₁ delle componenti lungo x? Non occorre ricavare gli angoli.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2/3",
+          "3/2",
+          "2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le componenti sono P₁=4·1/2=2 m e P₂=4·3/4=3 m. Il coseno maggiore corrisponde a una direzione più vicina a +x, dunque la proiezione cresce. Nel rapporto il modulo comune si semplifica e basta confrontare i due coseni."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{P_2}{P_1}=\\frac{Rc_2}{Rc_1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Rc_2}{Rc_1}=\\frac{3/4}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3/4}{1/2}=\\frac34\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac34\\times2=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "La seconda componente è una volta e mezza la prima. 2/3 sarebbe il rapporto inverso; tre è il valore numerico di P₂ in metri, non il confronto. Entrambi i coseni sono fra zero e uno e le componenti rimangono inferiori a quattro metri."
+        }
+      ],
+      "hints": [
+        "Confronta due frazioni dividendo per la prima, non sottraendola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La seconda componente è una volta e mezza la prima. 2/3 sarebbe il rapporto inverso; tre è il valore numerico di P₂ in metri, non il confronto. Entrambi i coseni sono fra zero e uno e le componenti rimangono inferiori a quattro metri.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2168,
+      "title": "Scarto fra modulo e proiezione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Uno spostamento ha R=4 m e c=cosθ=1/2. Una proposta assegna P_proposto=4 m. Quanto vale lo scarto con segno P_proposto−P, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La proposta coincide con l’intero modulo, come se il vettore fosse allineato all’asse. Ma il coseno assegnato riduce la componente alla metà. Prima calcoliamo questa componente corretta, poi facciamo la sottrazione nell’ordine richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "P=4\\,\\mathrm m\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m\\times\\frac12=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm m-2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m-2\\,\\mathrm m=+2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo indica una sovrastima di due metri. P non è una lunghezza da sottrarre al modulo prima della proiezione: è il risultato di una moltiplicazione per il coseno. Invertire l’ordine del confronto darebbe −2 m, che risponde a una definizione diversa di scarto."
+        }
+      ],
+      "hints": [
+        "Trova la proiezione prima di confrontarla con la proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno positivo indica una sovrastima di due metri. P non è una lunghezza da sottrarre al modulo prima della proiezione: è il risultato di una moltiplicazione per il coseno. Invertire l’ordine del confronto darebbe −2 m, che risponde a una definizione diversa di scarto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2169,
+      "title": "Isolare il modulo simbolicamente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Per una proiezione positiva vale P=Rc, dove R>0 e 0<c=cosθ<1. Si conoscono P e c. Quale formula esprime R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R=Pc",
+          "R=P/c",
+          "R=c/P",
+          "R=P−c",
+          "R=√(P/c)"
+        ],
+        "value": "R=P/c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’operazione inversa della moltiplicazione per c è la divisione per c. La applichiamo a entrambi i membri dell’uguaglianza. La condizione c>0 garantisce che la divisione sia lecita e restituisca un modulo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Pc=\\frac{Rc}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac Pc"
+        },
+        {
+          "type": "text",
+          "text": "Sostituendo l’inversa si ritrova (P/c)c=P. P/c conserva l’unità di P perché c è adimensionale. P−c sottrarrebbe una lunghezza e un numero puro; c/P avrebbe dimensione inversa di lunghezza. La radice non compare perché R non è al quadrato."
+        }
+      ],
+      "hints": [
+        "Elimina l’intero fattore c con una divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sostituendo l’inversa si ritrova (P/c)c=P. P/c conserva l’unità di P perché c è adimensionale. P−c sottrarrebbe una lunghezza e un numero puro; c/P avrebbe dimensione inversa di lunghezza. La radice non compare perché R non è al quadrato.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2170,
+      "title": "Variazioni compatibili con un coseno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Nella prima prova P₁=Rc con R>0 e 0<c<1. Nella seconda R₂=κ₁R e c₂=κ₂c, con κ₁,κ₂>0 e 0<κ₂c<1. Quale relazione dà P₂/P₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁+κ₂",
+          "κ₁κ₂²"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le prove rispettano P=Rc. Sostituire le due variazioni dà P₂=(κ₁R)(κ₂c). Nel rapporto si eliminano R e c: restano due fattori alla prima potenza. La condizione sul nuovo coseno è fisica: non ogni fattore positivo produce un coseno ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{P_2}{P_1}=\\frac{(\\kappa_1R)(\\kappa_2c)}{Rc}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(\\kappa_1R)(\\kappa_2c)}{Rc}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare i fattori descrive i due cambiamenti. Dividerli tratterebbe il coseno come un denominatore; elevarlo al quadrato cambierebbe la legge. Sommarli fallisce già per κ₁=κ₂=1, quando non cambia nulla ma darebbe due. Non si possono raddoppiare coseni già maggiori di un mezzo mantenendo un angolo acuto."
+        }
+      ],
+      "hints": [
+        "Controlla anche che il nuovo coseno resti minore di uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare i fattori descrive i due cambiamenti. Dividerli tratterebbe il coseno come un denominatore; elevarlo al quadrato cambierebbe la legge. Sommarli fallisce già per κ₁=κ₂=1, quando non cambia nulla ma darebbe due. Non si possono raddoppiare coseni già maggiori di un mezzo mantenendo un angolo acuto.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2171,
+      "title": "Allungare e ruotare insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "In una prima prova R₁=4 m,c₁=1/2; nella seconda R₂=8 m,c₂=3/4. In entrambi i casi c è il coseno dell’angolo acuto con +x. Quanto vale P₂/P₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo raddoppia e il coseno cresce di un fattore (3/4)/(1/2)=3/2. Poiché la componente è il prodotto Rc, il rapporto complessivo è 2·3/2. Possiamo semplificare il due prima di moltiplicare."
+        },
+        {
+          "type": "formula",
+          "text": "P_1=4\\,\\mathrm m\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm m\\times\\frac12=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " P_2=8\\,\\mathrm m\\times\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": "8\\,\\mathrm m\\times\\frac34=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_2}{P_1}=\\frac62"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac62=3"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto tre è adimensionale. Per ottenere sei metri mentalmente, un quarto di otto è due e tre quarti sono sei. Un rapporto due conterebbe soltanto il cambiamento del modulo; 3/2 conterebbe soltanto la rotazione."
+        }
+      ],
+      "hints": [
+        "Moltiplica il rapporto dei moduli per quello dei coseni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto tre è adimensionale. Per ottenere sei metri mentalmente, un quarto di otto è due e tre quarti sono sei. Un rapporto due conterebbe soltanto il cambiamento del modulo; 3/2 conterebbe soltanto la rotazione.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2172,
+      "title": "Media di due proiezioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 2,
+      "prompt": "Due prove di uguale peso hanno (R,c)=(4 m,1/2) e (8 m,3/4), dove c è il coseno dell’angolo con +x. Quanto vale la media aritmetica delle due componenti P=Rc?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 m",
+          "15/4 m",
+          "4 m",
+          "6 m",
+          "8 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo le due componenti nella medesima unità: due metri e sei metri. La media richiesta è la somma delle componenti divisa per due. Non stiamo chiedendo la proiezione ottenuta inserendo nella legge il modulo medio e il coseno medio."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{2\\,\\mathrm m+6\\,\\mathrm m}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\,\\mathrm m+6\\,\\mathrm m}{2}=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri è il punto medio fra due e sei. Le medie degli ingressi sarebbero R=6 m e c=5/8, con prodotto 15/4 m: un’operazione diversa. Otto metri è la somma prima di dividere per due; sei metri ripete soltanto la seconda componente."
+        }
+      ],
+      "hints": [
+        "Applica la proiezione a ciascuna prova, poi media i risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro metri è il punto medio fra due e sei. Le medie degli ingressi sarebbero R=6 m e c=5/8, con prodotto 15/4 m: un’operazione diversa. Otto metri è la somma prima di dividere per due; sei metri ripete soltanto la seconda componente.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2173,
+      "title": "Quanto deve cambiare il coseno?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 3,
+      "prompt": "All’inizio R₁=4 m,c₁=1/2 e P₁=R₁c₁. Si impone R₂=8 m e si vuole P₂=3P₁, conservando un angolo acuto. Quale rapporto c₂/c₁ serve?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2/3",
+          "3/2",
+          "2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raddoppio del modulo produce già un fattore due nella componente. Per arrivare al fattore tre richiesto, il coseno deve fornire il fattore residuo 3/2. Ricostruiamo poi il nuovo coseno per verificare che sia ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "3=2\\frac{c_2}{c_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{c_2}{c_1}=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " c_2=\\frac32\\times\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32\\times\\frac12=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Il coseno 3/4 è positivo e minore di uno, quindi il nuovo angolo acuto esiste. Il controllo dà P₂=8 m·3/4=6 m, tre volte due metri. Un rapporto due porterebbe c₂ a uno, sull’asse e fuori dal dominio strettamente acuto; tre produrrebbe un coseno impossibile di 3/2."
+        }
+      ],
+      "hints": [
+        "Togli dal fattore totale il contributo già dato da R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il coseno 3/4 è positivo e minore di uno, quindi il nuovo angolo acuto esiste. Il controllo dà P₂=8 m·3/4=6 m, tre volte due metri. Un rapporto due porterebbe c₂ a uno, sull’asse e fuori dal dominio strettamente acuto; tre produrrebbe un coseno impossibile di 3/2.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2174,
+      "title": "Dalle tacche allo spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 3,
+      "prompt": "Uno strumento mostra S=gP con guadagno costante g>0 e offset nullo; S conta tacche e P=Rc è una componente di spostamento. Il riferimento R=4 m,c=1/2 dà S=6. Una nuova prova dà S=18 con c=3/4. Quanto vale R, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento P=2 m. Sei tacche per due metri danno un guadagno di tre tacche per metro. Diciotto tacche corrispondono allora a P=6 m. Per ottenere R dividiamo la componente per c=3/4, cioè moltiplichiamo per 4/3."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{6}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6}{2\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{18}{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{18}{3\\,\\mathrm{m^{-1}}}=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R=6\\,\\mathrm m\\times\\frac43"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m\\times\\frac43=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Semplifichiamo sei con tre prima di moltiplicare per quattro. Il controllo completo restituisce 3 m⁻¹·(8 m·3/4)=18. Il guadagno ha dimensione inversa di lunghezza perché converte metri in un conteggio: tacche e metri non possono essere scambiati direttamente."
+        }
+      ],
+      "hints": [
+        "Rimuovi prima il guadagno e poi il fattore geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Semplifichiamo sei con tre prima di moltiplicare per quattro. Il controllo completo restituisce 3 m⁻¹·(8 m·3/4)=18. Il guadagno ha dimensione inversa di lunghezza perché converte metri in un conteggio: tacche e metri non possono essere scambiati direttamente.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2175,
+      "title": "Due riferimenti per il display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 3,
+      "prompt": "Il display segue S=gP+d, con S conteggio e g,d costanti; P=Rc. I riferimenti (R,c,S) sono (4 m,1/2,5) e (8 m,3/4,13). Nella prova ignota c=1/2 e S=9. Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "4 m",
+          "6 m",
+          "8 m",
+          "16 m"
+        ],
+        "value": "8 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le componenti dei riferimenti sono 2 m e 6 m. La differenza di otto tacche per quattro metri elimina d e dà g=2 m⁻¹. Dalla prima lettura si ricava d=5−2·2=1 tacca. La lettura ignota, corretta di una tacca, corrisponde a quattro metri di componente."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{13-5}{6\\,\\mathrm m-2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{13-5}{6\\,\\mathrm m-2\\,\\mathrm m}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{9-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{2\\,\\mathrm{m^{-1}}}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{4\\,\\mathrm m}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm m}{1/2}=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà S=2 m⁻¹·(8 m·1/2)+1=9. Quattro metri è la componente intermedia, non il modulo richiesto. Usare direttamente il rapporto 9/5 non elimina l’offset e attribuisce alla geometria una parte della lettura strumentale."
+        }
+      ],
+      "hints": [
+        "Trova il guadagno con le differenze, poi correggi la lettura ignota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà S=2 m⁻¹·(8 m·1/2)+1=9. Quattro metri è la componente intermedia, non il modulo richiesto. Usare direttamente il rapporto 9/5 non elimina l’offset e attribuisce alla geometria una parte della lettura strumentale.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u1-vector-projection-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Vettori e componenti",
+      "order": 2176,
+      "title": "Un vincolo con unità esplicite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vector-projection",
+      "difficulty": 3,
+      "prompt": "Uno spostamento ha P=Rc, con c=cosθ e 0<c<1. Un vincolo assegna R=(8 m)c e si misura P=2 m. Quale valore di c soddisfa entrambi i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−1/2",
+          "1/4",
+          "1/2",
+          "2",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente otto metri rende il vincolo dimensionalmente corretto: R è una lunghezza, c un numero puro. Sostituendo R nella proiezione si ottiene P=(8 m)c². Dividiamo per otto metri e scegliamo la radice positiva perché il coseno è quello di un angolo acuto."
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm m=(8\\,\\mathrm m)c^2"
+        },
+        {
+          "type": "formula",
+          "text": " c^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac12\\;(0<c<1)"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ricostruisce R=8 m·1/2=4 m e P=4 m·1/2=2 m. −1/2 è l’altra radice algebrica, esclusa dal dominio; 1/4 è il quadrato del coseno. Due e quattro violano il limite |cosθ|≤1. Sul dominio positivo il quadrato è crescente, quindi la soluzione è unica."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di risolvere per il coseno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il controllo ricostruisce R=8 m·1/2=4 m e P=4 m·1/2=2 m. −1/2 è l’altra radice algebrica, esclusa dal dominio; 1/4 è il quadrato del coseno. Due e quattro violano il limite |cosθ|≤1. Sul dominio positivo il quadrato è crescente, quindi la soluzione è unica.",
+        "target": "C1-L002"
+      },
+      "coverage": [
+        "Vettori",
+        "Prodotti e componenti",
+        "Rapporti e proporzionalità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0eeab80a351c1b8ef8bced06598f56d67e64021f41cefb24af82e84ba1c01678",
+      "name": "vector-projection-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMTA2MCIgdmlld0JveD0iMCAwIDYwMCAxMDYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkRhbGxhIGZyZWNjaWEgYWxsYSBwcm9pZXppb25lIG9yaWVudGF0YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkgdmVydGljYWxpIGNvbiB1bmEgc2NhbGEgY29tdW5lIGRpIHRyZW50YSBwaXhlbCBwZXIgbWV0cm8uIFByaW1hIHVuIHZldHRvcmUgZGkgcXVhdHRybyBtZXRyaSBmb3JtYSBzZXNzYW50YSBncmFkaSBjb24geDsgcG9pIGxhIHN1YSBwcm9pZXppb25lIMOoIGR1ZSBtZXRyaS4gSW5maW5lIHVuIHZldHRvcmUgZGkgZGllY2kgbWV0cmkgZm9ybWEgY2VudG92ZW50aSBncmFkaSBjb24geCBlIGhhIHByb2llemlvbmUgbmVnYXRpdmEgZGkgY2lucXVlIG1ldHJpLiBMZSBwZXJwZW5kaWNvbGFyaSB0cmF0dGVnZ2lhdGUgbW9zdHJhbm8gY29tZSBjb3N0cnVpcmUgbGEgcHJvaWV6aW9uZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNzNkNTAiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iMTA2MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmaWxsPSIjMTczZDUwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjI4IiB5PSI0MCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgVW4gdmV0dG9yZSBhIDYwwrA8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3NiI+UiA9IDQgbSDCtyBzY2FsYTogMzAgcHggcGVyIG1ldHJvPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDI0MEg0NDAiIHN0cm9rZT0iIzg3OWI5YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMTcwIDI0MEwyMzAgMTM2LjA3Njk1MTUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMjEwIDI0MEE0MCA0MCAwIDAgMCAxOTAgMjA1LjM1ODk4NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjMxIiB5PSIyMjIiPjYwwrA8L3RleHQ+PHRleHQgeD0iMjUwIiB5PSIxNDciPlIgPSA0IG08L3RleHQ+PHRleHQgeD0iNDYyIiB5PSIyNDciPit4PC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMzAwIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBBYmJhc3NhcmUgbGEgcGVycGVuZGljb2xhcmU8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIzMzYiPklsIGNhdGV0byBhZGlhY2VudGUgw6ggbGEgY29tcG9uZW50ZS48L3RleHQ+CjxwYXRoIGQ9Ik0xNzAgNDkwTDIzMCAzODYuMDc2OTUxNUwyMzAgNDkwWiIgZmlsbD0iI2NlZTJkZSIvPgo8cGF0aCBkPSJNMTEwIDQ5MEg0NDAiIHN0cm9rZT0iIzg3OWI5YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMTcwIDQ5MEwyMzAgMzg2LjA3Njk1MTUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMjMwIDM4Ni4wNzY5NTE1VjQ5MCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPgo8cGF0aCBkPSJNMTcwIDQ5MEgyMzAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMjIwIDQ5MFY0ODBIMjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNjUiIHk9IjQzNiI+UCA9IDQgbSDDlyAxLzI8L3RleHQ+PHRleHQgeD0iMjY1IiB5PSI0NzQiPlAgPSArMiBtPC90ZXh0Pjx0ZXh0IHg9IjQ2MiIgeT0iNDk3Ij4reDwvdGV4dD4KPHBhdGggZD0iTTI4IDUzNUg1NzIiIHN0cm9rZT0iIzg3OWI5YSIvPgo8dGV4dCB4PSIyOCIgeT0iNTc4IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBVbiBhbmdvbG8gb3R0dXNvIGNhbWJpYSBpbCBzZWdubzwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYxNCI+UiA9IDEwIG0gwrcgc3Rlc3NhIHNjYWxhIMK3IM64ID0gMTIwwrA8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgOTQwSDUyMCIgc3Ryb2tlPSIjODc5YjlhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0zNjAgOTQwTDIxMCA2ODAuMTkyMzc4OSIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0yMTAgNjgwLjE5MjM3ODlWOTQwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA2Ii8+CjxwYXRoIGQ9Ik0zNjAgOTQwSDIxMCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik00MTAgOTQwQTUwIDUwIDAgMCAwIDMzNSA4OTYuNjk4NzMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjM5MiIgeT0iODgwIj4xMjDCsDwvdGV4dD48dGV4dCB4PSIyMzYiIHk9IjcyOCI+UiA9IDEwIG08L3RleHQ+PHRleHQgeD0iNTQwIiB5PSI5NDciPit4PC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9Ijk3OCI+UCA9IOKIkjUgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAyNCI+UCA9IFIgY29zzrggwrcgaWwgbW9kdWxvIFIgcmVzdGEgcG9zaXRpdm8uPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

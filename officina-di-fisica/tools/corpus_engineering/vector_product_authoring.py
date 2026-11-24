@@ -1,0 +1,77 @@
+"""Sixteen original rewrites: cross-product magnitude, orientation and inverse problems."""
+from .vector_geometry_authoring import assemble_family, write_family
+
+TASKS = [
+("Il rettangolo del prodotto vettoriale", "Due vettori adimensionali A e B hanno moduli a=b=2 e sono perpendicolari. Quanto vale C=|A×B|? Si chiede il modulo, non una componente orientata.", 4,
+ "Il modulo del prodotto vettoriale è l’area del parallelogramma costruito sui vettori. La base misura a e l’altezza b sinθ. Con θ=90° l’altezza coincide con b: il parallelogramma è un rettangolo. L’analogia con un’area descrive la geometria, ma qui le due frecce sono adimensionali.",
+ r"C=ab\sin\theta\qquad \sin90^\circ=1\qquad C=2\times2=4",
+ "Contiamo due file da due unità: quattro in tutto, senza calcolatrice. Il prodotto scalare sarebbe nullo perché usa il coseno di 90°; il prodotto vettoriale ha invece modulo massimo a moduli fissati. Scambiare l’ordine cambia il verso, non questo numero positivo.", "Usa un lato come base e l’altro, perpendicolare, come altezza."),
+("Quali unità ha il prodotto?", "A e B sono vettori adimensionali. Quale unità è compatibile con C=|A×B|?", ["m²", "m", "1", "N", "rad/s"],
+ "Le unità del prodotto vettoriale si ottengono moltiplicando quelle dei due vettori. Il seno è un rapporto geometrico e non ha dimensione. La parola area nella rappresentazione del parallelogramma non assegna automaticamente metri quadrati a vettori che non misurano lunghezze.",
+ r"[C]=[A][B]=1\times1=1",
+ "La scelta è 1, cioè numero puro. m² sarebbe adatto al prodotto di due spostamenti in metri; N sarebbe adatto a una forza, non a questo prodotto adimensionale. La natura vettoriale determina direzione e verso, mentre l’unità dipende dalle grandezze moltiplicate.", "Moltiplica le unità dichiarate dei due fattori."),
+("Dalla base all’altezza", "A e B sono vettori adimensionali non nulli, perpendicolari, di moduli a e b. Quale relazione dà C=|A×B|?", ["C=a+b", "C=ab", "C=a/b", "C=0", "C=√(a²+b²)"],
+ "Il prodotto vettoriale usa il seno dell’angolo compreso. Perpendicolarità significa θ=90° e sinθ=1. La legge generale si riduce quindi al prodotto dei moduli. Non stiamo calcolando il modulo di A+B, per il quale servirebbe invece Pitagora.",
+ r"C=ab\sin90^\circ\qquad C=ab",
+ "La risposta è ab. La somma dei moduli rappresenterebbe due tratti concordi; il rapporto a/b perderebbe il fattore geometrico di area. Zero è il prodotto scalare nel caso perpendicolare e anche il modulo del prodotto vettoriale nel caso parallelo: due condizioni diverse da quella data.", "Parti dalla formula con il seno, poi inserisci l’angolo."),
+("Allargare solo la base", "Due vettori adimensionali restano perpendicolari. Il primo modulo passa da 2 a 4; il secondo resta 2. Come cambia C=|A×B|?", ["Raddoppia da 4 a 8", "Quadruplica da 4 a 16", "Resta 4", "Si dimezza", "Diventa 0"],
+ "Il secondo modulo e il seno dell’angolo rimangono costanti. La legge C=ab contiene a alla prima potenza: raddoppiare solo a raddoppia il prodotto. Nel disegno il rettangolo raddoppia la base, conservando l’altezza.",
+ r"C_1=2\times2=4\qquad C_2=4\times2=8\qquad \frac{C_2}{C_1}=2",
+ "L’incremento è quattro e il fattore di variazione è due: sono due descrizioni diverse. Un fattore quattro richiederebbe il raddoppio di entrambi i moduli. La perpendicolarità resta fissata; se cambiasse l’angolo andrebbe considerato anche il seno.", "Conserva l’altezza mentre raddoppi la base."),
+("Ricostruire un modulo", "Due vettori adimensionali sono perpendicolari. C=|A×B|=4 e il modulo di B è b=2. Quanto vale il modulo a di A?", 2,
+ "Dalla geometria perpendicolare sappiamo che C=ab. Per isolare a dividiamo entrambi i membri per b. La divisione è consentita perché b è un modulo non nullo. Non serve una radice: l’incognita compare una sola volta nel prodotto.",
+ r"\frac Cb=\frac{ab}{b}=a\qquad a=\frac42=2",
+ "Controlliamo ricostruendo C: 2·2=4. Sottrarre b dal prodotto non è l’operazione inversa corretta, anche se con questi numeri darebbe casualmente due. Il procedimento valido deve funzionare per qualsiasi b positivo, non soltanto per questa coincidenza numerica.", "Dividi il prodotto per il fattore che conosci."),
+("L’ordine stabilisce il verso", "In un riferimento cartesiano destrorso, +x è a destra, +y in alto e +z esce dal foglio. A=2 eₓ e B=3 eᵧ sono adimensionali. Quanto vale la componente z di B×A?", ["+6", "−6", "0", "+1", "−1"],
+ "La terna destrorsa fissa eₓ×eᵧ=e_z. Dunque A×B punta fuori dal foglio e ha modulo sei. Il prodotto vettoriale è anticommutativo: invertendo i fattori cambia il verso del vettore. La componente z può quindi essere negativa, benché il modulo non possa esserlo.",
+ r"\mathbf A\times\mathbf B=6\mathbf e_z\qquad \mathbf B\times\mathbf A=-6\mathbf e_z\qquad (\mathbf B\times\mathbf A)_z=-6",
+ "La risposta è −6: il vettore entra nel foglio. +6 conserva per errore l’ordine A×B; zero confonde il prodotto vettoriale con quello scalare fra vettori perpendicolari. ±1 mantiene solo il verso del versore e trascura i moduli due e tre.", "Trova prima eₓ×eᵧ, poi inverti l’ordine."),
+("Confrontare due rettangoli", "In due prove i vettori adimensionali restano perpendicolari. Nella prima a=2,b=2; nella seconda a=2,b=4. Quanto vale C₂/C₁?", ["1/2", "1", "2", "4", "8"],
+ "I due prodotti valgono quattro e otto. Il primo modulo resta uguale e si elimina nel rapporto; cambia soltanto l’altezza del rettangolo. Il risultato confronta due quantità adimensionali ed è a sua volta adimensionale.",
+ r"C_1=2\times2=4\qquad C_2=2\times4=8\qquad \frac{C_2}{C_1}=\frac84=2",
+ "Il rapporto è due perché il secondo modulo raddoppia. Otto è il nuovo valore C₂, non il rapporto richiesto; quattro è il valore iniziale. Un mezzo descriverebbe il confronto inverso C₁/C₂.", "Semplifica il fattore a comune ai due prodotti."),
+("Misurare una sovrastima", "A e B sono adimensionali, perpendicolari e hanno moduli due. Una proposta assegna C_proposto=8. Quanto vale lo scarto con segno C_proposto−|A×B|?", ["−4", "+4", "+8", "0", "+2"],
+ "Calcoliamo prima il modulo corretto con la legge geometrica C=ab. Poi eseguiamo la sottrazione nell’ordine indicato. Lo scarto è un confronto fra due numeri: il suo segno non descrive il verso del prodotto vettoriale.",
+ r"C=2\times2=4\qquad e=C_{\rm proposto}-C=8-4=+4",
+ "Il segno positivo segnala che la proposta è maggiore del valore corretto. −4 si otterrebbe invertendo la sottrazione; +8 ripeterebbe la proposta senza confrontarla. Lo scarto relativo sarebbe 4/4=1, cioè il 100%, ma qui si chiede lo scarto assoluto con segno.", "Scrivi prima «proposto meno corretto»."),
+("L’inversa del prodotto", "Per due vettori adimensionali perpendicolari vale C=ab, con a,b>0. Si conoscono C e b. Quale formula isola a?", ["a=Cb", "a=C−b", "a=C/b", "a=b/C", "a=√(C/b)"],
+ "La stessa divisione per b va applicata a entrambi i membri. Sul lato destro b/b vale uno e lascia soltanto a. Il dominio b>0 garantisce sia il denominatore non nullo sia la positività del modulo ottenuto.",
+ r"\frac Cb=\frac{ab}{b}\qquad a=\frac Cb",
+ "Rimettendo il risultato nel prodotto troviamo (C/b)b=C. Cb moltiplicherebbe una seconda volta il fattore già presente; b/C sarebbe il reciproco di a. La radice non è giustificata perché nella relazione di partenza a non è elevato al quadrato.", "Elimina il fattore b facendo la stessa divisione sui due membri."),
+("Due fattori indipendenti", "Due vettori adimensionali restano perpendicolari. In una seconda prova i moduli diventano κ₁a e κ₂b, con κ₁,κ₂>0. Quale espressione dà C₂/C₁?", ["κ₁+κ₂", "κ₁/κ₂", "κ₁κ₂", "κ₁²κ₂", "(κ₁+κ₂)/2"],
+ "Sostituiamo entrambi i moduli nella medesima relazione C=ab. Il prodotto nuovo contiene i due fattori di variazione una volta ciascuno. Dividendo per ab, non nullo, si eliminano i moduli iniziali e resta il prodotto dei fattori.",
+ r"C_1=ab\qquad C_2=(\kappa_1a)(\kappa_2b)\qquad \frac{C_2}{C_1}=\kappa_1\kappa_2",
+ "Se entrambi i fattori valgono uno il rapporto torna uno; se solo uno raddoppia il rapporto è due. Sommare i fattori darebbe due anche quando non cambia nulla. Il risultato richiede angolo invariato: un angolo diverso aggiungerebbe il rapporto dei seni.", "Inserisci le due variazioni nel prodotto prima di semplificare."),
+("Raddoppiare i due lati", "I vettori adimensionali restano perpendicolari. Da a=b=2 si passa ad a=b=4. Quanto vale C₂/C₁, con C=|A×B|?", 4,
+ "Nel primo rettangolo entrambi i lati valgono due, nel secondo quattro. Raddoppiare la base crea due copie; raddoppiare anche l’altezza raddoppia ciascuna copia. Il prodotto riceve quindi due fattori due.",
+ r"C_1=2\times2=4\qquad C_2=4\times4=16\qquad \frac{C_2}{C_1}=\frac{16}{4}=4",
+ "Il modulo quadruplica. La direzione normale al piano può essere mantenuta nelle due prove e il modulo resta positivo. Il rapporto due terrebbe conto di un solo cambiamento; sedici sarebbe C₂, non il rapporto.", "Moltiplica i due fattori di raddoppio."),
+("Media dei prodotti", "In due prove di uguale peso i vettori adimensionali sono perpendicolari. I moduli sono (a,b)=(2,2) nella prima e (4,4) nella seconda. Quanto vale la media aritmetica dei due valori C=|A×B|?", ["6", "8", "9", "10", "20"],
+ "Prima applichiamo la legge a ciascuna coppia: otteniamo quattro e sedici. La media richiesta confronta queste due uscite, quindi le somma e divide per due. Possiamo dimezzare ciascun addendo prima della somma per eseguire il conto a mente.",
+ r"\overline C=\frac{4+16}{2}=2+8=10",
+ "Il valore dieci è compreso fra quattro e sedici. Calcolare prima i moduli medi, entrambi uguali a tre, produrrebbe nove: il prodotto delle medie non coincide in generale con la media dei prodotti. Venti è soltanto la somma, prima della divisione per il numero delle prove.", "Fai i due prodotti, poi la media delle uscite."),
+("Il fattore ancora necessario", "Vettori adimensionali perpendicolari hanno inizialmente a₁=b₁=2. Si impone a₂=4 e si vuole C₂=4C₁. Quale rapporto b₂/b₁ occorre?", 2,
+ "Il raddoppio di a fornisce già un fattore due sul prodotto. Per ottenere un aumento totale di quattro volte manca un altro fattore due. Lo troviamo dividendo il rapporto richiesto per quello già imposto, perché i contributi si moltiplicano.",
+ r"\frac{C_2}{C_1}=\frac{a_2}{a_1}\frac{b_2}{b_1}\qquad 4=2\frac{b_2}{b_1}\qquad \frac{b_2}{b_1}=2",
+ "Ne segue b₂=4 e il controllo dà C₂=4·4=16, quattro volte C₁=4. Un rapporto quattro per b produrrebbe un fattore complessivo otto. Il vincolo di perpendicolarità conserva il seno uguale a uno.", "Dividi il fattore totale per il contributo di a."),
+("Tarare prima di invertire", "A e B sono vettori adimensionali perpendicolari; C=|A×B|. Un display mostra S=gC, con g>0 costante e nessun offset. Per a=b=2 mostra 12. In una nuova prova mostra 48 e b=4. Quanto vale a? S è un conteggio di tacche.", 4,
+ "Nel riferimento il modulo è C=2·2=4. Dodici tacche divise per quattro danno il guadagno tre. Nella prova nuova dobbiamo prima dividere le tacche per questo guadagno; solo il valore C così ricostruito può essere diviso per b.",
+ r"g=\frac{12}{4}=3\qquad C_{\rm nuovo}=\frac{48}{3}=16\qquad a=\frac{16}{4}=4",
+ "Tutte le quantità sono adimensionali; tacche e modulo hanno tuttavia ruoli diversi nella taratura. Il controllo completo è S=3·(4·4)=48. Usare direttamente 48 come C darebbe a=12 e attribuirebbe al vettore l’amplificazione del display.", "Ricava il guadagno dal riferimento, poi rimuovilo dalla nuova lettura."),
+("Eliminare l’offset", "Per vettori adimensionali perpendicolari C=ab. Il display segue S=gC+d, con g,d costanti e S conteggio. I riferimenti (a,b,S) sono (2,2,9) e (4,4,33). In una prova S=17 e b=2. Quanto vale a?", ["2", "3", "4", "8", "16"],
+ "I riferimenti corrispondono a C₁=4 e C₂=16. Sottrarre le letture elimina l’offset d: 33−9=24 tacche per un aumento di C pari a dodici. Il guadagno è due. Dal primo riferimento segue d=9−2·4=1; poi correggiamo la lettura ignota.",
+ r"g=\frac{33-9}{16-4}=2\qquad d=9-2\times4=1\qquad C=\frac{17-1}{2}=8\qquad a=\frac82=4",
+ "Il controllo ricostruisce 2·(4·2)+1=17. Un rapporto fra letture non elimina un offset additivo. La risposta otto fermerebbe il procedimento al prodotto C; occorre ancora dividere per b=2 per ricavare il modulo richiesto.", "Sottrai i riferimenti per trovare il guadagno senza l’offset."),
+("Uguali moduli, soluzione positiva", "Due vettori adimensionali perpendicolari hanno uguale modulo a=b>0. Si misura |A×B|=4. Quanto vale b?", ["−2", "1", "2", "4", "8"],
+ "Il vincolo di uguaglianza permette di sostituire a con b nella legge C=ab. Si ottiene b²=4. Le radici algebriche sono due e opposte, ma il modulo di un vettore non nullo è positivo: resta soltanto b=2.",
+ r"4=ab=b^2\qquad b=\sqrt4=2\;(b>0)",
+ "Il controllo è a=b=2 e C=2·2=4. −2 risolve l’equazione quadratica ma viola il dominio dei moduli. Senza a=b il prodotto quattro ammetterebbe molte coppie, come a=1,b=4: conoscere il prodotto non basta per determinare ciascun fattore.", "Usa il vincolo a=b prima di estrarre la radice.")
+]
+CHOICES={2:2,3:1,4:0,6:1,7:2,8:1,9:2,10:2,12:3,15:2,16:2}
+FIGURES={1:"Leggi dall’alto: due frecce perpendicolari; il rettangolo con base due e altezza due; quattro celle. La figura illustra il modulo, mentre il verso si stabilisce separatamente.", 6:"Le quattro tappe distinguono geometria e verso; le ultime due usano un secondo esempio: A va a destra, B in alto; A×B esce dal foglio (punto nel cerchio); B×A entra (croce nel cerchio). Il modulo rimane sei."}
+
+def assemble(repo,source_ref):
+    return assemble_family(repo,source_ref,"vector-product",TASKS,CHOICES,{},"vector-product-progressive.svg",FIGURES,2140)
+
+if __name__ == "__main__":
+    write_family(assemble,"vector-product-007")

@@ -8,7 +8,7 @@ import subprocess
 from jsonschema import Draft202012Validator
 
 from .pipeline import VERSION, build_entry, canonical, checkpoint, digest, duplicate_candidates, git_bytes, sha, load_checkpoint
-from .evidence import apply_evidence
+from .evidence import apply_evidence,apply_activity_evidence
 from sympy import __version__ as sympy_version
 
 BANK = "packages/engine/lessonos/study/content/physics-semestre-2026-bank"
@@ -78,6 +78,7 @@ def main():
         rule.validate(entry)
         entries.append(entry)
     evidence_counts,revisions = apply_evidence(REPO, APP, args.source_ref, entries, questions)
+    activity_counts=apply_activity_evidence(REPO,APP,activities)
     for entry in entries: rule.validate(entry)
     source_candidates = duplicate_candidates([(o, r) for o, r, _ in questions])
     effective=[]
@@ -86,7 +87,7 @@ def main():
         current=revisions.get(key)
         effective.append((origin,{**row,"prompt":current["prompt"]} if current else row))
     candidates=duplicate_candidates(effective)
-    metadata = {"schemaVersion": VERSION, **evidence_counts, "sourceRefs": {"ardesia": args.source_ref, "cric": args.cric_ref},
+    metadata = {"schemaVersion": VERSION, **evidence_counts, **activity_counts, "sourceRefs": {"ardesia": args.source_ref, "cric": args.cric_ref},
         "verifierSha256": verifier, "semanticCandidateCount": len(candidates),
         "semanticDeduplication": "candidate_groups_only_no_automatic_removal",
         "semanticCandidateScope":"reviewed_drafts_and_unrevised_sources",
@@ -94,8 +95,17 @@ def main():
         "pendingQuestionIds": [r["id"] for r in entries if r["review"]["independentSolution"] == "NOT_RUN"],
         "limits": ["Human scientific approval NOT_RUN", "Full scientific/pedagogical revision remains open",
                    "Calculator-free feasibility is not inferred from source flags or exact answers"]}
+    approval_queue=[{'id':row['id'],'batchId':row['evidence'][0]['batchId'],
+                     'candidateSha256':row['evidence'][0]['candidateSha256'],
+                     'packagePath':row['evidence'][0]['path'],'sciencePath':row['evidence'][0]['sciencePath'],
+                     'humanApproval':'NOT_RUN','publication':'DRAFT'}
+                    for row in sorted(entries,key=lambda item:item['id']) if row['state']=='REVISED_DRAFT']
+    activity_queue=[{'id':row['id'],'sourceSha256':row['sourceSha256'],
+                     'sciencePath':row['evidence'][0]['path'],'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+                    for row in sorted(activities,key=lambda item:item['id']) if row['state']=='REVIEWED_EXISTING_EDITION']
     result = checkpoint(args.destination, entries, sorted(activities, key=lambda x: x["id"]), metadata,
-                        {"semantic-candidates.json": candidates,"source-semantic-candidates.json":source_candidates})
+                        {"semantic-candidates.json": candidates,"source-semantic-candidates.json":source_candidates,
+                         'human-approval-queue.json':approval_queue,'human-activity-review-queue.json':activity_queue})
     print(canonical({**result, "activities": len(activities), "automaticArithmetic": metadata["automaticArithmetic"]}))
 
 

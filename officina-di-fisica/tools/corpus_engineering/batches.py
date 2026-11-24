@@ -43,7 +43,18 @@ def load_registry(file=None):
         if batch["id"] in seen_batches or seen_ids.intersection(batch["questionIds"]):
             raise ValueError("Duplicate batch or question identity")
         seen_batches.add(batch["id"]);seen_ids.update(batch["questionIds"])
+    seen_activities=set()
+    for batch in registry.get("activityBatches",[]):
+        if batch["id"] in seen_batches or seen_activities.intersection(batch["activityIds"]):
+            raise ValueError("Duplicate activity batch or activity identity")
+        seen_batches.add(batch["id"]);seen_activities.update(batch["activityIds"])
     return registry["batches"]
+
+
+def load_activity_registry(file=None):
+    file=file or APP/"editorial/batches/registry.json"
+    load_registry(file)
+    return json.loads(file.read_text()).get("activityBatches",[])
 
 
 def validate_batch(spec,app=APP):
@@ -84,6 +95,29 @@ def validate_batch(spec,app=APP):
     return {"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":len(cases),
             "paths":{key:file.relative_to(app).as_posix() for key,file in files.items()},
             "checksums":{key:sha(file.read_bytes()) for key,file in files.items()}}
+
+
+def validate_activity_batch(spec,sources,app=APP):
+    rule=json.loads((APP/"contracts/corpus-batches-v1.schema.json").read_text())["properties"]["activityBatches"]["items"]
+    try:Draft202012Validator(rule).validate(spec)
+    except ValidationError as error:raise ValueError("Invalid activity batch specification") from error
+    expected=set(spec['activityIds'])
+    if not expected.issubset(sources):raise ValueError('Activity source identity missing')
+    module=importlib.import_module('.'+spec['verifier'],__package__)
+    file=app/'editorial/reviews'/(spec['id']+'.json')
+    saved=json.loads(file.read_text());current=module.report(sources)
+    records=current['records'];ids=[r['id'] for r in records]
+    if len(ids)!=len(expected) or set(ids)!=expected:raise ValueError('Activity proof has incomplete or duplicate IDs')
+    if saved!=current or saved['verifierSha256']!=sha(Path(module.__file__).read_bytes()):
+        raise ValueError('Activity evidence changed: '+spec['id'])
+    for result in records:
+        if (result.get('ok') is not True or result.get('sourceSha256')!=digest(sources[result['id']])
+            or result.get('humanApproval')!='NOT_RUN' or result.get('publicationAction')!='NONE'
+            or result.get('originalEditionRetained') is not True
+            or result.get('calculationScope') not in ('NO_STUDENT_CALCULATION','EXACT_MANUAL_CALCULATION')
+            or not all(result.get(key) for key in ('manualArithmetic','physicalAssumptions','pedagogicalReview'))):
+            raise ValueError('Invalid individual activity evidence: '+result['id'])
+    return {'spec':spec,'records':records,'path':file.relative_to(app).as_posix(),'sha256':sha(file.read_bytes())}
 
 
 if __name__=="__main__":

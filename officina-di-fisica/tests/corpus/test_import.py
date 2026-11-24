@@ -5,11 +5,25 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import json
+from tools.corpus_engineering.integration import exercise_package
 
 APP = Path(__file__).resolve().parents[2]
 
 
 class DraftIntegration(unittest.TestCase):
+    def test_a_new_cric_edition_preserves_the_existing_live_head_and_versions(self):
+        row=next(r for r in json.loads((APP/'content/C1.json').read_text()) if r['id']=='C1-Q001')
+        row={**row,'version':row['version']+1,'baseVersion':row['version'],'prompt':row['prompt']+' (Prova editoriale isolata.)'}
+        with tempfile.TemporaryDirectory() as home:
+            package=Path(home)/'revision.json'
+            package.write_text(json.dumps({'schema':'astra/1','records':[row],'assets':[]}))
+            result=exercise_package(package)
+        self.assertEqual(result['firstImport']['saved'],1)
+        self.assertEqual(result['repeatedImport']['saved'],0)
+        self.assertEqual(result['preservedLiveHeads'],1)
+        self.assertEqual(result['beforePublishedSha256'],result['afterPublishedSha256'])
+
     def test_import_is_idempotent_private_and_keeps_existing_edition(self):
         code = '''
 import json
