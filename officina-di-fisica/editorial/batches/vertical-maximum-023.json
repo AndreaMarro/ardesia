@@ -1,0 +1,1196 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-vertical-maximum-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2421,
+      "title": "La quota guadagnata fino all’apice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 1,
+      "prompt": "Un corpo è lanciato verticalmente verso l’alto con rapidità iniziale v₀=2 m/s in un campo uniforme assegnato g=2 m/s², senza aria. Il tempo zero è il lancio, y è positivo verso l’alto e aᵧ=−g. Quanto vale l’aumento massimo di quota H rispetto al punto di lancio, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente di velocità diminuisce come u(t)=v₀−gt. All’apice si annulla dopo T=v₀/g=1 s. Durante la salita la velocità resta non negativa e lo spostamento è l’area del triangolo sotto il grafico u–t: metà della velocità iniziale per il tempo di salita."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9056a183f8c81d0a5e5c3de602f90e7f1b668fefd3fbfda33308719021385a81",
+          "text": "Tre tappe per v₀=2 m/s e g=2 m/s²: fissa y₀ al punto di lancio e t=0 al lancio; il grafico della componente u mostra il primo zero a 1 s e area positiva H=1 m; il grafico del guadagno z=y−y₀ raggiunge un metro con tangente orizzontale, mentre l’accelerazione resta −g. Ogni grafico dichiara le proprie scale e mostra la sola salita."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{v_0}{g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v_0}{g}=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac12v_0T"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{v_0^2}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{2^2}{2\\times2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2^2}{2\\times2}\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il corpo guadagna un metro rispetto alla quota di lancio; non si sta assegnando la sua quota assoluta sopra il suolo. All’apice u=0, ma l’accelerazione resta −g: il corpo non rimane in equilibrio. Due metri sarebbero l’area del rettangolo con rapidità iniziale mantenuta per tutta la salita."
+        }
+      ],
+      "hints": [
+        "Trova l’istante con u=0 e usa l’area del triangolo di salita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il corpo guadagna un metro rispetto alla quota di lancio; non si sta assegnando la sua quota assoluta sopra il suolo. All’apice u=0, ma l’accelerazione resta −g: il corpo non rimane in equilibrio. Due metri sarebbero l’area del rettangolo con rapidità iniziale mantenuta per tutta la salita.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2422,
+      "title": "L’unità di un aumento di quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 1,
+      "prompt": "Un lancio verticale senza aria in campo uniforme ha aumento massimo di quota H=v₀²/(2g), con v₀ rapidità iniziale e g modulo del campo. Quale unità SI è compatibile con H?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "s",
+          "m",
+          "m/s²",
+          "m²"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato della rapidità ha dimensione L²/T²; il modulo del campo L/T². Dividendo si cancellano i tempi e un fattore lunghezza, quindi rimane una lunghezza. Il coefficiente due è puro e non modifica le unità."
+        },
+        {
+          "type": "formula",
+          "text": "[H]=\\frac{L^2/T^2}{L/T^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{L^2/T^2}{L/T^2}=L"
+        },
+        {
+          "type": "text",
+          "text": "m è corretto. m/s sarebbe una velocità, m/s² il campo e s il tempo di salita v₀/g. m² conserverebbe un fattore lunghezza di troppo. H è una differenza di quote e conserva dimensione di lunghezza qualunque sia la coordinata scelta per il punto di lancio."
+        }
+      ],
+      "hints": [
+        "Dividi le unità di v₀² per quelle di g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m è corretto. m/s sarebbe una velocità, m/s² il campo e s il tempo di salita v₀/g. m² conserverebbe un fattore lunghezza di troppo. H è una differenza di quote e conserva dimensione di lunghezza qualunque sia la coordinata scelta per il punto di lancio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2423,
+      "title": "Dalla velocità nulla alla massima quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 1,
+      "prompt": "Un corpo parte verso l’alto con rapidità v₀>0, in campo gravitazionale uniforme g>0 e senza aria. H è il guadagno di quota dal punto di lancio fino all’apice. Quale relazione lo esprime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "H=v₀/g",
+          "H=v₀²/(2g)",
+          "H=v₀²/g",
+          "H=2v₀²/g",
+          "H=g/(2v₀²)"
+        ],
+        "value": "H=v₀²/(2g)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliendo y positivo verso l’alto, la legge senza il tempo è u²=v₀²−2g(y−y₀). All’apice u=0 e y−y₀=H. Ne segue 2gH=v₀². La velocità nulla è una condizione su quell’istante, mentre il campo continua ad agire per tutta la salita."
+        },
+        {
+          "type": "formula",
+          "text": "0=v_0^2-2gH"
+        },
+        {
+          "type": "formula",
+          "text": " 2gH=v_0^2"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{v_0^2}{2g}"
+        },
+        {
+          "type": "text",
+          "text": "v₀/g è il tempo di salita, non una quota. v₀²/g manca del fattore un mezzo e 2v₀²/g dà quattro volte il risultato corretto. g/(2v₀²) ha dimensione inversa di lunghezza. La quota iniziale y₀ si elimina perché la domanda riguarda l’aumento, non la coordinata dell’apice."
+        }
+      ],
+      "hints": [
+        "Nella legge senza tempo imponi u=0 soltanto all’apice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "v₀/g è il tempo di salita, non una quota. v₀²/g manca del fattore un mezzo e 2v₀²/g dà quattro volte il risultato corretto. g/(2v₀²) ha dimensione inversa di lunghezza. La quota iniziale y₀ si elimina perché la domanda riguarda l’aumento, non la coordinata dell’apice.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2424,
+      "title": "Lancio doppio, salita più alta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 1,
+      "prompt": "Due lanci verticali nello stesso campo uniforme g=2 m/s² avvengono senza aria, con rapidità iniziali verso l’alto v₀₁=2 m/s e v₀₂=4 m/s. H₁,H₂ sono i guadagni di quota fino ai rispettivi apici. Come cambiano?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia da 1 m a 2 m",
+          "Quadruplica da 1 m a 4 m",
+          "Resta 1 m",
+          "Si dimezza",
+          "Diventa 8 m"
+        ],
+        "value": "Quadruplica da 1 m a 4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo di salita raddoppia perché occorre più tempo per annullare una rapidità doppia con lo stesso g. Anche la velocità media nella salita raddoppia. Il loro prodotto, cioè H, riceve due fattori due: lo mostra direttamente il quadrato di v₀ nella formula."
+        },
+        {
+          "type": "formula",
+          "text": "H_1=\\frac{2^2}{2\\times2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2^2}{2\\times2}\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_2=\\frac{4^2}{2\\times2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4^2}{2\\times2}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{H_2}{H_1}=4"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore due descriverebbe il tempo di salita, non il guadagno di quota. Otto metri perderebbe il fattore un mezzo oltre al cambiamento già presente. I corpi sono lanciati in prove separate e H è sempre misurata rispetto al rispettivo punto di lancio, anche se le quote iniziali fossero diverse."
+        }
+      ],
+      "hints": [
+        "Combina il raddoppio della durata con quello della velocità media di salita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il fattore due descriverebbe il tempo di salita, non il guadagno di quota. Otto metri perderebbe il fattore un mezzo oltre al cambiamento già presente. I corpi sono lanciati in prove separate e H è sempre misurata rispetto al rispettivo punto di lancio, anche se le quote iniziali fossero diverse.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2425,
+      "title": "Quale rapidità iniziale per guadagnare un metro?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Un corpo è lanciato verso l’alto senza aria in un campo uniforme g=2 m/s² e guadagna H=1 m prima dell’apice. Quanto vale la rapidità iniziale v₀, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge H=v₀²/(2g) isoliamo v₀²=2gH. Il radicando è positivo e ha dimensione di velocità al quadrato. La radice positiva rappresenta la rapidità di un lancio verso l’alto; una componente iniziale negativa non realizzerebbe il guadagno futuro richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "v_0^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": " v_0^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due metri al secondo dà tempo di salita un secondo e guadagno un metro. La radice è esatta: 2²=4. Il segno negativo della componente di accelerazione non rende negativa la rapidità iniziale; sono due dati orientati in versi opposti nel modello."
+        }
+      ],
+      "hints": [
+        "Trova il quadrato della rapidità e scegli il ramo di lancio verso l’alto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due metri al secondo dà tempo di salita un secondo e guadagno un metro. La radice è esatta: 2²=4. Il segno negativo della componente di accelerazione non rende negativa la rapidità iniziale; sono due dati orientati in versi opposti nel modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2426,
+      "title": "Il campo da un’altezza guadagnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Un lancio verticale verso l’alto, senza aria, parte con rapidità v₀=2 m/s e guadagna H=1 m fino all’apice. Il campo gravitazionale è uniforme durante il moto. Quanto vale il modulo g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo H=v₀²/(2g) per 2g e poi dividiamo per 2H, positivo. Così ricostruiamo il modulo del campo che annulla la velocità iniziale dopo una salita di un metro. La componente dell’accelerazione su un asse verso l’alto è invece −g."
+        },
+        {
+          "type": "formula",
+          "text": "2gH=v_0^2"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{v_0^2}{2H}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{(2\\,\\mathrm{m/s})^2}{2(1\\,\\mathrm m)}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s})^2}{2(1\\,\\mathrm m)}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il modulo è due metri al secondo quadrato e resta tale anche quando il corpo raggiunge l’apice. Dedurre g=0 dalla velocità istantaneamente nulla confonderebbe velocità e accelerazione. La legge ricostruita dà H=4/(2·2)m=1 m, confermando il dato."
+        }
+      ],
+      "hints": [
+        "Isola g dalla relazione fra il quadrato della rapidità e la quota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il modulo è due metri al secondo quadrato e resta tale anche quando il corpo raggiunge l’apice. Dedurre g=0 dalla velocità istantaneamente nulla confonderebbe velocità e accelerazione. La legge ricostruita dà H=4/(2·2)m=1 m, confermando il dato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2427,
+      "title": "Salire nello stesso modo in campi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Due lanci verso l’alto partono entrambi con rapidità v₀=2 m/s, senza aria. I campi sono uniformi nelle rispettive prove, con g₁=2 m/s² e g₂=4 m/s². H₁,H₂ sono gli aumenti massimi di quota. Quanto vale H₂/H₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A rapidità iniziale fissata il numeratore v₀² non cambia. Il campo al denominatore raddoppia e dimezza H. Il secondo corpo arriva all’apice più presto: la stessa rapidità iniziale viene ridotta a zero in un tempo minore, quindi anche l’area positiva sotto u(t) è minore."
+        },
+        {
+          "type": "formula",
+          "text": "H_1=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_2=\\frac{2^2}{2\\times4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2^2}{2\\times4}\\,\\mathrm m=\\frac12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{H_2}{H_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto introdurrebbe un quadrato su g che nella legge non compare. Due invertirebbe la dipendenza dal campo. Il rapporto negativo non è compatibile con due guadagni di quota positivi: il segno meno appartiene alla componente dell’accelerazione, non a g o a H."
+        }
+      ],
+      "hints": [
+        "Mantieni fisso v₀² e raddoppia soltanto il denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto introdurrebbe un quadrato su g che nella legge non compare. Due invertirebbe la dipendenza dal campo. Il rapporto negativo non è compatibile con due guadagni di quota positivi: il segno meno appartiene alla componente dell’accelerazione, non a g o a H.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2428,
+      "title": "Lo scarto di una quota proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Un corpo è lanciato verso l’alto a 2 m/s, senza aria, in un campo uniforme g=2 m/s². Una soluzione propone H_proposto=2 m per l’aumento di quota fino all’apice, rispetto al punto di lancio. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−1 m",
+          "0 m",
+          "+1 m",
+          "+2 m",
+          "+3 m"
+        ],
+        "value": "+1 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aumento corretto è v₀²/(2g)=1 m. Il tempo di salita è un secondo, ma non si può moltiplicarlo per la velocità iniziale come se questa restasse costante: la velocità scende a zero e la sua media è un metro al secondo. La proposta due metri equivale al rettangolo invece del triangolo."
+        },
+        {
+          "type": "formula",
+          "text": "H=\\frac{2^2}{2\\times2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2^2}{2\\times2}\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm m-1\\,\\mathrm m=+1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo segnala una sovrastima di un metro. −1 invertirebbe l’ordine della sottrazione; due ripeterebbe la proposta. Non è possibile giustificare due come quota assoluta senza un dato sulla quota iniziale: il quesito chiede esplicitamente il guadagno dal lancio."
+        }
+      ],
+      "hints": [
+        "Calcola H come area del triangolo prima di valutare lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno positivo segnala una sovrastima di un metro. −1 invertirebbe l’ordine della sottrazione; due ripeterebbe la proposta. Non è possibile giustificare due come quota assoluta senza un dato sulla quota iniziale: il quesito chiede esplicitamente il guadagno dal lancio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2429,
+      "title": "L’inversa per il lancio verso l’alto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Un lancio verticale senza aria in campo uniforme soddisfa H=v₀²/(2g), con guadagno H>0 e modulo g>0. Si cerca la rapidità iniziale v₀>0 del lancio verso l’alto. Quale formula è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₀=2gH",
+          "v₀=√(2gH)",
+          "v₀=−√(2gH)",
+          "v₀=√(gH)",
+          "v₀=√(2H/g)"
+        ],
+        "value": "v₀=√(2gH)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eliminiamo il denominatore moltiplicando per 2g, quindi v₀²=2gH. Il ramo positivo della radice è quello richiesto dal lancio verso l’alto. Una radice negativa sarebbe una componente iniziale verso il basso sull’asse assegnato, non una rapidità negativa ammessa."
+        },
+        {
+          "type": "formula",
+          "text": "v_0^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=\\sqrt{2gH}\\;(v_0>0)"
+        },
+        {
+          "type": "formula",
+          "text": " [2gH]=L^2/T^2"
+        },
+        {
+          "type": "text",
+          "text": "2gH è il quadrato della rapidità; √(gH) perde il fattore due. √(2H/g) ha unità di tempo e darebbe il tempo di salita per la quota H, non la rapidità di lancio. La scelta del ramo non può essere fatta senza la direzione iniziale e il dominio dichiarati."
+        }
+      ],
+      "hints": [
+        "Isola v₀² e usa il segno coerente con il lancio assegnato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2gH è il quadrato della rapidità; √(gH) perde il fattore due. √(2H/g) ha unità di tempo e darebbe il tempo di salita per la quota H, non la rapidità di lancio. La scelta del ramo non può essere fatta senza la direzione iniziale e il dominio dichiarati.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2430,
+      "title": "Fattori della massima salita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Due lanci verso l’alto avvengono senza aria, ciascuno in un campo uniforme. Nella seconda prova v₀₂=κ₁v₀₁ e g₂=κ₂g₁, con tutti i dati e i fattori positivi. H₁,H₂ sono gli aumenti massimi di quota. Quale espressione dà H₂/H₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁²/κ₂",
+          "κ₁/κ₂",
+          "κ₁κ₂",
+          "κ₁²κ₂",
+          "κ₂/κ₁²"
+        ],
+        "value": "κ₁²/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità iniziale compare al quadrato, il campo al denominatore alla prima potenza. Inseriamo entrambi i cambiamenti nella stessa legge e dividiamo per il vecchio valore. Si cancellano il fattore due e i dati iniziali, rimanendo κ₁² diviso κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "H_1=\\frac{v_{01}^2}{2g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " H_2=\\frac{(\\kappa_1v_{01})^2}{2\\kappa_2g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{H_2}{H_1}=\\frac{\\kappa_1^2}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ sarebbe il fattore del tempo di salita, non della quota. Moltiplicare per κ₂ farebbe aumentare l’altezza con il campo, invertendo il fenomeno; l’ultima alternativa inverte tutto il rapporto. Campi diversi fra prove non significano un campo variabile lungo la salita di una prova."
+        }
+      ],
+      "hints": [
+        "Il fattore sulla rapidità va al quadrato; quello su g divide.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ sarebbe il fattore del tempo di salita, non della quota. Moltiplicare per κ₂ farebbe aumentare l’altezza con il campo, invertendo il fenomeno; l’ultima alternativa inverte tutto il rapporto. Campi diversi fra prove non significano un campo variabile lungo la salita di una prova.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2431,
+      "title": "Stesso tempo all’apice, quota diversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Due lanci verso l’alto senza aria hanno campi uniformi e dati (v₀₁,g₁)=(2 m/s,2 m/s²) e (v₀₂,g₂)=(4 m/s,4 m/s²). H₁,H₂ sono i guadagni di quota fino agli apici. Quanto vale H₂/H₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato della rapidità cresce di un fattore quattro, mentre il campo cresce di due: il rapporto delle quote è due. I tempi fino all’apice v₀/g sono entrambi un secondo, ma nella seconda salita la velocità media è doppia. Uguale durata non impone uguale spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "H_1=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_2=\\frac{4^2}{2\\times4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4^2}{2\\times4}\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{H_2}{H_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro conterebbe soltanto il cambiamento di v₀², un mezzo soltanto il campo maggiore. Due metri è il nuovo guadagno e due è anche il rapporto solo per i numeri assegnati: le due grandezze hanno comunque unità differenti, che vanno tenute distinte."
+        }
+      ],
+      "hints": [
+        "Confronta il fattore quattro del numeratore con il due del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro conterebbe soltanto il cambiamento di v₀², un mezzo soltanto il campo maggiore. Due metri è il nuovo guadagno e due è anche il rapporto solo per i numeri assegnati: le due grandezze hanno comunque unità differenti, che vanno tenute distinte.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2432,
+      "title": "Media degli aumenti massimi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 2,
+      "prompt": "Due lanci verso l’alto senza aria hanno campi uniformi e coppie (v₀,g)=(2 m/s,2 m/s²) e (4 m/s,4 m/s²). Con uguale peso statistico, qual è la media aritmetica dei due guadagni massimi di quota rispetto ai rispettivi punti di lancio?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "3/2 m",
+          "2 m",
+          "3 m",
+          "9/4 m"
+        ],
+        "value": "3/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due salite guadagnano uno e due metri. La media delle uscite è la semisomma, tre mezzi di metro. In entrambe il tempo all’apice è un secondo: lungo questo particolare confronto H=(v₀/2)T cresce linearmente con v₀, pur derivando da una legge generale quadratica in v₀."
+        },
+        {
+          "type": "formula",
+          "text": "H_1=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_2=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline H=\\frac{1+2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1+2}{2}\\,\\mathrm m=\\frac32\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Tre metri è la somma e uno o due ripetono una sola prova. Nove quarti userebbe la rapidità media iniziale tre con il solo primo campo due, mescolando dati. Gli ingressi medi corretti tre e tre danno qui anch’essi 3/2 m: la coincidenza dipende dalla proporzionalità dei dati, non autorizza a scambiare sempre media e legge."
+        }
+      ],
+      "hints": [
+        "Ricava le due salite prima di attribuire loro lo stesso peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre metri è la somma e uno o due ripetono una sola prova. Nove quarti userebbe la rapidità media iniziale tre con il solo primo campo due, mescolando dati. Gli ingressi medi corretti tre e tre danno qui anch’essi 3/2 m: la coincidenza dipende dalla proporzionalità dei dati, non autorizza a scambiare sempre media e legge.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2433,
+      "title": "Il campo necessario per la nuova quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 3,
+      "prompt": "Due lanci verso l’alto avvengono senza aria in campi uniformi. Il primo ha v₀₁=2 m/s,g₁=2 m/s². Nel secondo si impone v₀₂=4 m/s e si vuole H₂=2H₁. Quale rapporto g₂/g₁ occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità iniziale doppia darebbe una quota quadrupla se il campo non cambiasse. Per limitare il guadagno a un fattore due serve raddoppiare il campo al denominatore. Possiamo vedere la compensazione direttamente nel rapporto generale delle quote."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{H_2}{H_1}=\\frac{(v_{02}/v_{01})^2}{g_2/g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " 2=\\frac4{g_2/g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{g_2}{g_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il nuovo campo vale 4 m/s² e il guadagno è 16/(2·4)m=2 m, doppio di uno. Un campo quadruplo manterrebbe invece la quota invariata; un campo identico al primo darebbe quattro metri. In ogni prova il campo resta uniforme fino all’apice."
+        }
+      ],
+      "hints": [
+        "Dividi l’effetto quattro della rapidità al quadrato per l’aumento desiderato due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il nuovo campo vale 4 m/s² e il guadagno è 16/(2·4)m=2 m, doppio di uno. Un campo quadruplo manterrebbe invece la quota invariata; un campo identico al primo darebbe quattro metri. In ogni prova il campo resta uniforme fino all’apice.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2434,
+      "title": "Un display per il guadagno di quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 3,
+      "prompt": "Ogni prova è un lancio verso l’alto senza aria in campo uniforme. H è il guadagno massimo di quota dal lancio. Il display conta S=cH, con c>0 costante e offset nullo. Per v₀=2 m/s,g=2 m/s² indica 3. Una prova con g=4 m/s² indica 6. Quanto vale v₀, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento H=1 m, quindi il guadagno del display è 3 m⁻¹. La lettura sei rappresenta un aumento di quota di due metri. Dall’inversa v₀²=2gH otteniamo sedici metri quadrati al secondo quadrato, la cui radice positiva è quattro metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac6{3\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{3\\,\\mathrm{m^{-1}}}=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_0^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": "2gH=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo H=16/(2·4)m=2 m e S=(3 m⁻¹)(2 m)=6 ricostruisce la lettura. Le tacche non sono quote in metri: usarle direttamente come H altererebbe anche il radicando. La radice scelta corrisponde al lancio verso l’alto richiesto dal modello."
+        }
+      ],
+      "hints": [
+        "Prima ricostruisci H, poi il quadrato della rapidità iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo H=16/(2·4)m=2 m e S=(3 m⁻¹)(2 m)=6 ricostruisce la lettura. Le tacche non sono quote in metri: usarle direttamente come H altererebbe anche il radicando. La radice scelta corrisponde al lancio verso l’alto richiesto dal modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2435,
+      "title": "Una taratura con offset sulla quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 3,
+      "prompt": "Ogni lancio verso l’alto senza aria avviene in campo uniforme e ha aumento massimo H. Il display conta S=cH+d, con c>0,d costanti. I riferimenti (v₀,g)=(2 m/s,2 m/s²) e (4 m/s,4 m/s²) danno S=3 e S=5. Una prova con g=2 m/s² dà S=9. Quanto vale v₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "8 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti guadagnano uno e due metri. La differenza di due tacche per un metro dà c=2 m⁻¹; il primo riferimento lascia d=1. Dalla lettura nove troviamo H=(9−1)/c=4 m. Con g=2 m/s² la rapidità iniziale positiva è √(2gH)=√16 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{9-1}{2\\,\\mathrm{m^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{2\\,\\mathrm{m^{-1}}}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_0^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro metri al secondo dà H=4 m e S=2·4+1=9. Tre darebbe H=9/4 m e lettura 11/2; due è il primo riferimento, mentre sei e otto aumenterebbero troppo il guadagno. Non basta fare un rapporto delle letture grezze per eliminare un offset additivo."
+        }
+      ],
+      "hints": [
+        "Togli l’offset e il guadagno prima della radice che ricostruisce v₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro metri al secondo dà H=4 m e S=2·4+1=9. Tre darebbe H=9/4 m e lettura 11/2; due è il primo riferimento, mentre sei e otto aumenterebbero troppo il guadagno. Non basta fare un rapporto delle letture grezze per eliminare un offset additivo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-maximum-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2436,
+      "title": "Un vincolo fra lancio e campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-maximum",
+      "difficulty": 3,
+      "prompt": "Si sceglie un lancio verso l’alto senza aria in campo uniforme g>0. La rapidità iniziale e il modulo del campo sono legati da v₀=(1 s)g; g resta costante durante il moto. Il guadagno massimo di quota dal lancio è H=1 m. Quanto vale g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 m/s²",
+          "1 m/s²",
+          "2 m/s²",
+          "4 m/s²",
+          "8 m/s²"
+        ],
+        "value": "2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo c=1 s il coefficiente del vincolo. Sostituendo v₀=cg in H=v₀²/(2g) si semplifica un fattore g, non nullo. Rimane H=c²g/2, da cui g=2H/c². Il vincolo fissa un tempo di salita di un secondo; la quota nota fissa anche il modulo del campo."
+        },
+        {
+          "type": "formula",
+          "text": "c=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=cg"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{c^2g^2}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{c^2g^2}{2g}=\\frac{c^2g}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2H}{c^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Segue v₀=2 m/s e H=1 m, come richiesto. Il modulo negativo è escluso; uno, quattro e otto m/s² darebbero nel vincolo rispettivamente 1/2 m,2 m,4 m di salita. La relazione seleziona i dati prima del lancio e non rende il campo variabile durante il moto."
+        }
+      ],
+      "hints": [
+        "Sostituisci il coefficiente con la sua unità di tempo prima di semplificare g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Segue v₀=2 m/s e H=1 m, come richiesto. Il modulo negativo è escluso; uno, quattro e otto m/s² darebbero nel vincolo rispettivamente 1/2 m,2 m,4 m di salita. La relazione seleziona i dati prima del lancio e non rende il campo variabile durante il moto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Lancio verticale",
+        "Quota e punto di lancio",
+        "Apice e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9056a183f8c81d0a5e5c3de602f90e7f1b668fefd3fbfda33308719021385a81",
+      "name": "vertical-maximum-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM4MCIgdmlld0JveD0iMCAwIDY0MCAxMzgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkd1YWRhZ25vIGRpIHF1b3RhIGZpbm8gYWxs4oCZYXBpY2U8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGUgcGVyIGxhbmNpbyB2ZXJzbyBs4oCZYWx0byBhIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIGNvbiBjYW1wbyB1bmlmb3JtZSBkaSBtb2R1bG8gZHVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8uIFplcm8gdGVtcG9yYWxlIGFsIGxhbmNpbywgemVybyBkZWxsYSBxdW90YSByZWxhdGl2YSBhbCBwdW50byBkaSBsYW5jaW8uIElsIGRpc2Vnbm8gc3BhemlhbGUgdXNhIGNlbnRvdmVudGkgcGl4ZWwgcGVyIG1ldHJvIGUgbW9zdHJhIHVuIG1ldHJvIGRpIHNhbGl0YS4gSWwgZ3JhZmljbyBkZWxsYSBjb21wb25lbnRlIGRpIHZlbG9jaXTDoCB1c2EgY2VudG9zZXNzYW50YSBwaXhlbCBwZXIgc2Vjb25kbyBlIG90dGFudGEgcGVyIG1ldHJvIGFsIHNlY29uZG86IHZlbG9jaXTDoCBkdWUgYWwgbGFuY2lvIGUgemVybyBhIHVuIHNlY29uZG8sIGFyZWEgdW4gbWV0cm8uIElsIGdyYWZpY28gZGVsIGd1YWRhZ25vIGRpIHF1b3RhIHVzYSBjZW50b3Nlc3NhbnRhIHBpeGVsIHBlciBzZWNvbmRvIGUgY2VudG9zZXNzYW50YSBwZXIgbWV0cm86IHo9MnTiiJJ0wrIgaW4gdW5pdMOgIFNJLCB0YW5nZW50ZSBvcml6em9udGFsZSBhbGzigJlhcGljZSBkaSB1biBtZXRybyBhIHVuIHNlY29uZG8uIEzigJlhY2NlbGVyYXppb25lIHJpbWFuZSBuZWdhdGl2YSBhbmNoZSBhbGzigJlhcGljZS4gU2kgbW9zdHJhIGxhIHNvbGEgc2FsaXRhLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE3M2Q1MCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzgwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZpbGw9IiMxNzNkNTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBMYSBxdW90YSBzaSBtaXN1cmEgZGFsIGxhbmNpbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODIiPnogPSB5IOKIkiB54oKAIMK3IGRpc2Vnbm8gc3BhemlhbGU6IDEyMCBweC9tPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDM0MFYxNzYiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0xNTAgMzQwSDUwMCIgc3Ryb2tlPSIjODc5YjlhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTIwMCAzNDBWMjIwIiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIzNDAiIHI9IjciLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIyMjAiIHI9IjciLz4KPHRleHQgeD0iNjIiIHk9IjE2NiI+K3o8L3RleHQ+PHRleHQgeD0iNzEiIHk9IjM0NyI+MDwvdGV4dD48dGV4dCB4PSI2MSIgeT0iMjI3Ij4xIG08L3RleHQ+PHRleHQgeD0iMjMwIiB5PSIyMjYiPmFwaWNlOiB1ID0gMDwvdGV4dD48dGV4dCB4PSIyMzAiIHk9IjM0OCI+bGFuY2lvOiB0ID0gMDwvdGV4dD4KPHRleHQgeD0iMzMwIiB5PSIyNzgiPnbigoAgPSArMiBtL3M8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIzMTQiPmHhtacgPSDiiJIyIG0vc8KyPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDQ0IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBJbCBwcmltbyB6ZXJvIGRlbGxhIHZlbG9jaXTDoDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDg2Ij514oCTdDogMTYwIHB4L3M7IDgwIHB4IHBlciBtL3M8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNzYwVjYwMEwyNjAgNzYwWiIgZmlsbD0iI2NlZTJkZSIvPgo8cGF0aCBkPSJNMTAwIDU3MFY3NjBIMzUwIiBzdHJva2U9IiM4NzliOWEiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMDAgNjAwTDI2MCA3NjAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjExMCIgeT0iNTc2Ij51IChtL3MpPC90ZXh0Pjx0ZXh0IHg9IjUxIiB5PSI2MDciPisyPC90ZXh0Pjx0ZXh0IHg9Ijc2IiB5PSI3NjciPjA8L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijc5OCI+MDwvdGV4dD48dGV4dCB4PSIyNTAiIHk9Ijc5OCI+MTwvdGV4dD48dGV4dCB4PSIzNjIiIHk9Ijc2OCI+dCAocyk8L3RleHQ+Cjx0ZXh0IHg9IjM4NSIgeT0iNjExIj5UID0gduKCgC9nID0gMSBzPC90ZXh0Pjx0ZXh0IHg9IjM4NSIgeT0iNjU4Ij5BcmVhOiBIID0gMSBtPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iOTAxIiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBMYSBxdW90YSBoYSB0YW5nZW50ZSBvcml6em9udGFsZTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTQ0Ij564oCTdDogMTYwIHB4L3M7IDE2MCBweC9tPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDEwMjBWMTIxMEgzNTAiIHN0cm9rZT0iIzg3OWI5YSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xMDAgMTIxMFExODAgMTA1MCAyNjAgMTA1MCIgc3Ryb2tlPSIjMTczZDUwIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTIzMCAxMDUwSDMzMCIgc3Ryb2tlPSIjODc5YjlhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjEwNTAiIHI9IjYiLz4KPHRleHQgeD0iMTEwIiB5PSIxMDI0Ij56IChtKTwvdGV4dD48dGV4dCB4PSI2MiIgeT0iMTA1NyI+MTwvdGV4dD48dGV4dCB4PSI3NiIgeT0iMTIxNyI+MDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTI0OCI+MDwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjEyNDgiPjE8L3RleHQ+PHRleHQgeD0iMzYyIiB5PSIxMjE4Ij50IChzKTwvdGV4dD48dGV4dCB4PSIzMzUiIHk9IjEwOTQiPnooMSBzKSA9IEggPSAxIG08L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIxMzIwIj5BbGzigJlhcGljZSB1ID0gMCwgbWEgYeG1pyA9IOKIkmcgcmltYW5lIG5vbiBudWxsYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzNjQiPkkgZ3JhZmljaSBtb3N0cmFubyBsYSBzb2xhIHNhbGl0YS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
