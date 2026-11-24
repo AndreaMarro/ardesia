@@ -4,6 +4,7 @@ import hmac
 import json
 import mimetypes
 import os
+import posixpath
 import re
 import secrets
 import sqlite3
@@ -218,6 +219,15 @@ class Handler(BaseHTTPRequestHandler):
         self.cookie_header = None
         try:
             path = unquote(urlparse(self.path).path)
+            require(not any(char in path for char in ("\0", "\\", ":")), "Percorso non valido.")
+            # Authorization and file lookup must see the same decoded canonical
+            # path. Otherwise dot/encoded-slash aliases reach private figures
+            # through the public presentation-file branch.
+            path = "/" + posixpath.normpath(path).lstrip("/")
+            parts = path.split("/")
+            if len(parts)>1 and parts[1].casefold() in {"api", "asset", "figures", "download"}:
+                parts[1] = parts[1].casefold()
+                path = "/".join(parts)
             if not write and not (
                 path.startswith("/api/")
                 or path.startswith("/asset/")
@@ -232,6 +242,14 @@ class Handler(BaseHTTPRequestHandler):
                     "Risorsa non trovata.",
                     404,
                 )
+                # Filesystem aliases can differ from URL spelling on APFS/Win32
+                # (case, trailing dots/spaces). This public port must never serve
+                # a file inside the private figures tree, regardless of spelling.
+                private_figures = ROOT / "static" / "figures"
+                parent = f.parent
+                while private_figures.is_dir() and parent.is_relative_to(ROOT / "static"):
+                    require(not parent.samefile(private_figures), "Accesso al file richiesto.", 403)
+                    parent = parent.parent
                 return self.response(
                     f.read_bytes(),
                     mime=mimetypes.guess_type(f.name)[0] or "application/octet-stream",
