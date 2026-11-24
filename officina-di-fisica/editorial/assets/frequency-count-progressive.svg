@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="920" viewBox="0 0 600 920" role="img" aria-labelledby="title desc">
+ <title id="title">Due cicli completi: conta gli intervalli fra ritorni alla stessa fase</title>
+ <desc id="desc">Traccia periodica esemplificativa con periodo un secondo. Le creste a zero, uno e due secondi delimitano due cicli, non tre. Scala orizzontale duecento pixel per secondo, scala verticale arbitraria. Conteggio due, durata due secondi, frequenza un hertz; nel moto regolare disegnato periodo un secondo.</desc>
+ <rect width="600" height="920" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="17" fill="#172033">
+  <text x="28" y="36" font-size="22" font-weight="bold">1 · Ritrova la stessa fase</text>
+  <text x="28" y="73">Traccia periodica di esempio · verticale arbitraria</text>
+  <text x="28" y="107">Scala temporale: 200 px/s · t = 0 all’inizio osservazione</text>
+  <path d="M100 160C150 160 150 260 200 260S250 160 300 160S350 260 400 260S450 160 500 160" stroke="#245ca4" stroke-width="3" fill="none"/>
+  <path d="M100 160V320M300 160V320M500 160V320" stroke="#94a3b8" stroke-dasharray="5 5"/>
+  <g fill="#245ca4"><circle cx="100" cy="160" r="6"/><circle cx="300" cy="160" r="6"/><circle cx="500" cy="160" r="6"/></g>
+  <path d="M80 320H520M100 313V327M300 313V327M500 313V327" stroke="#334155" stroke-width="2"/>
+  <text x="94" y="355">0</text><text x="294" y="355">1</text><text x="494" y="355">2</text><text x="531" y="326">t (s)</text>
+  <text x="28" y="425" font-size="22" font-weight="bold">2 · Conta gli intervalli completi</text>
+  <path d="M100 470H300M300 470H500M100 459V481M300 459V481M500 459V481" stroke="#334155" stroke-width="2"/>
+  <text x="154" y="510">primo ciclo</text><text x="351" y="510">secondo ciclo</text>
+  <text x="28" y="560">Tre marcatori di fase delimitano N = 2 cicli.</text>
+  <text x="28" y="600">Durata totale: t = 2 s − 0 s = 2 s.</text>
+  <text x="28" y="675" font-size="22" font-weight="bold">3 · Distingui frequenza e periodo</text>
+  <text x="28" y="730">f = N/t = 2/(2 s) = 1 Hz</text>
+  <text x="28" y="780">Nel moto regolare disegnato: T = t/N = 1 s.</text>
+  <text x="28" y="833">Una frequenza può essere frazionaria;</text>
+  <text x="28" y="868">N resta un conteggio intero di cicli completi.</text>
+ </g>
+</svg>
