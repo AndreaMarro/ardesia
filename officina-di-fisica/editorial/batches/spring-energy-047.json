@@ -10,12 +10,13 @@
       "title": "L’energia è l’area sotto una forza crescente",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -67,7 +68,7 @@
       "error": {
         "category": "algebra",
         "message": "Moltiplicare la forza finale per tutta la deformazione darebbe 8 J, come se la forza fosse stata costante fin dall’inizio. L’area triangolare incorpora invece la crescita lineare. Il lavoro della forza elastica durante l’allungamento è −4 J; l’energia immagazzinata è +4 J rispetto allo zero scelto.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -84,12 +85,13 @@
       "title": "Il quadrato della lunghezza cambia la dimensione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -137,7 +139,7 @@
       "error": {
         "category": "unità",
         "message": "N è una forza, N/m una rigidezza e m una lunghezza; 1 è puro. Nessuna di queste unità sostituisce J per un’energia. Il quadrato si applica anche all’unità della deformazione, non soltanto al suo numero.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -154,12 +156,13 @@
       "title": "Dal triangolo alla legge dell’energia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -212,7 +215,7 @@
       "error": {
         "category": "modello",
         "message": "kℓ² senza mezzo è l’area del rettangolo, doppia di quella necessaria. kℓ è la forza e ha unità errata. Il segno negativo appartiene al lavoro di richiamo quando ci si allontana da x=0, non all’energia positiva rispetto al minimo. Il quoziente per ℓ² ha dimensione diversa da energia.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -229,12 +232,13 @@
       "title": "Due molle diverse alla stessa deformazione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -286,7 +290,7 @@
       "error": {
         "category": "concetto",
         "message": "Sedici introdurrebbe un quadrato del cambiamento di k che la legge non contiene. Due J inverte l’effetto della rigidezza e il valore negativo è incompatibile con k>0 e lo zero al minimo naturale. L’invarianza ignorerebbe il lavoro maggiore necessario alla molla più rigida.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -303,12 +307,13 @@
       "title": "Ricavare k dall’energia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -359,7 +364,7 @@
       "error": {
         "category": "algebra",
         "message": "Il controllo (1/2)(2 N/m)(2 m)²=4 J restituisce l’energia. Omettere il fattore due nell’inversa darebbe k=1 N/m e soltanto 2 J. Dividere per ℓ invece che per ℓ² produrrebbe una forza, non la rigidezza.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -376,12 +381,13 @@
       "title": "Una radice quadrata con unità di lunghezza",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -428,7 +434,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro m scambierebbe il numero del quadrato con quello della lunghezza e darebbe energia 16 J. Il ramo negativo −2 m non è un modulo; per una compressione si mantiene ℓ=2 m pur usando x<0. Non si contano due valori distinti di ℓ per quei due versi.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -445,12 +451,13 @@
       "title": "Raddoppiare la deformazione quadruplica l’energia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -507,7 +514,7 @@
       "error": {
         "category": "calcolo",
         "message": "Due è il rapporto delle forze finali, non delle energie. Un quarto e un mezzo invertono confronti; otto aggiunge un fattore due che richiederebbe anche k doppia. La potenza due riguarda la deformazione, non ogni ingresso della legge.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -524,12 +531,13 @@
       "title": "Scarto da un’area rettangolare",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -577,7 +585,7 @@
       "error": {
         "category": "calcolo",
         "message": "−4 inverte l’ordine, otto ripete la proposta, zero la accetta e due dimezza ancora lo scarto. Il segno del lavoro della forza elastica non cambia l’ordine della sottrazione fra energie assegnata nella domanda.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -594,12 +602,13 @@
       "title": "L’inversa conserva il quadrato",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -647,7 +656,7 @@
       "error": {
         "category": "algebra",
         "message": "U/(2ℓ²) è quattro volte più piccolo della formula corretta, perché divide per due anziché moltiplicare. Il divisore ℓ semplice dà una forza; il reciproco ha dimensione di cedevolezza. Il meno renderebbe k negativo per due moduli positivi, fuori dal regime assunto.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -664,12 +673,13 @@
       "title": "Scalare rigidezza e deformazione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -717,7 +727,7 @@
       "error": {
         "category": "modello",
         "message": "κ₁κ₂ è il rapporto delle forze finali, non delle energie. κ₁²κ₂ mette il quadrato sull’ingresso sbagliato; il quoziente inverte l’effetto di ℓ. La somma darebbe due quando κ₁=κ₂=1, mentre l’energia dovrebbe restare identica.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -734,12 +744,13 @@
       "title": "Entrambi gli ingressi raddoppiano",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -786,7 +797,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro seguirebbe il rapporto delle forze oppure solo il quadrato della deformazione; due considererebbe soltanto k. Trentadue J è l’energia della seconda prova, non la risposta pura. Non occorrono decimali per eseguire 32/4.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -803,12 +814,13 @@
       "title": "Media delle energie, non degli ingressi",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -860,7 +872,7 @@
       "error": {
         "category": "modello",
         "message": "Trentasei è la somma, nove dimezza ancora e ventotto è la differenza. 27/2 J è il risultato sugli ingressi medi, diverso da 18 J=36/2 J. La media richiesta deve essere compresa fra quattro e trentadue.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -877,12 +889,13 @@
       "title": "Un obiettivo energetico fissa una radice",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -933,7 +946,7 @@
       "error": {
         "category": "algebra",
         "message": "Il rapporto quattro confonderebbe il fattore residuo sull’energia con la sua radice: con k doppia e ℓ quadrupla si avrebbe un fattore trentadue su U. Il ramo negativo non è un modulo e non aggiunge una seconda soluzione per ℓ_B.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -950,12 +963,13 @@
       "title": "Tarare l’energia prima della rigidezza",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -1006,7 +1020,7 @@
       "error": {
         "category": "algebra",
         "message": "Il controllo (1/2)·4·4²=32 J e S=3·32=96 ricostruisce lettura ed energia. Scambiare S con joule darebbe k=12 N/m, con un guadagno spurio tre. La conversione strumentale precede l’inversa fisica.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -1023,12 +1037,13 @@
       "title": "Taratura affine dell’energia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -1088,7 +1103,7 @@
       "error": {
         "category": "algebra",
         "message": "Per la deformazione di C le alternative k=2,3,5,8 N/m danno energie 4,6,10,16 J e letture 9,13,21,33. Solo quattro restituisce diciassette. Le letture grezze non possono essere rapportate come energie senza togliere l’offset.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",
@@ -1105,12 +1120,13 @@
       "title": "Un vincolo che introduce il cubo della deformazione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C1-L005",
+      "skill": "C1-L007",
       "prerequisites": [
         "C1-L001",
         "C1-L002",
-        "C1-L004",
-        "C1-L005"
+        "C1-L005",
+        "C1-L006",
+        "C1-L007"
       ],
       "reuse": [
         "C6"
@@ -1161,7 +1177,7 @@
       "error": {
         "category": "modello",
         "message": "La funzione cubica è strettamente crescente per ℓ>0, quindi questa soluzione positiva è unica. Un modulo negativo non è ammesso e, nel vincolo, produrrebbe anche k negativo. Il controllo (1/2)(2 N/m)(2 m)²=4 J verifica entrambe le condizioni dimensionali e numeriche.",
-        "target": "C1-L005"
+        "target": "C1-L007"
       },
       "coverage": [
         "Energia potenziale elastica",

@@ -11,3 +11,5 @@
 SVG01/03/07: primo grafico forza–deformazione,scalax120px/m,y60px/N,base2m240px,altezza4N240px;areatriangolare28800px² divisa7200px²/(N·m)=4J. Puntointermedio1m,2N. Secondografico80px/m,10px/J: origine(100,1180), BézierQcontrol(260,1180),end(420,1020), parametrizzazione ℓ4t eU16t², dunque parabolaesatta; punto2m,4J=(260,1140). 4m,16J=(420,1020). Scale e assiunitaridistintiespliciti;zeroUnaturale. Render completo letto senza sovrapposizioni.
 
 Assemblaggio e binding ripetuti identici; importatorecanonico SQLite temporaneo16bozze poi0/16invariate,991pubblicati/versionistoriche invariati,hash99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Prove tecniche autore, nessuna propria firma scientifica indipendente.
+
+Finding indipendente di mappatura recepito: skill primaria C1-L007 (Trasferire energia con una forza), letta nella competenza esistente e pertinente ad area e energia elastica. Prerequisiti L001,L002,L005,L006,L007, riuso C6; feedbacktarget L007. Testi, calcoli, chiavi e figure invariati.
