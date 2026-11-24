@@ -43,3 +43,10 @@ riferimento uniforme tratteggiato M100,700 L300,540, perdita verticale40px=1m.
 Barre finali4m160px,3m120px,perdita1m40px, stessa scala40px/m. Si dichiara
 che l’apice della prova avverrebbe a2s, oltre il tratto rappresentato. Nessuna
 etichetta di arrivo viene attraversata dalle linee di riferimento.
+
+Rilievo del revisore separato su12/13: il simbolo τ appariva rispettivamente
+nella spiegazione della linearità e nell’inversa senza una definizione locale.
+In entrambi è stata aggiunta prima del suo impiego la definizione esplicita
+τ=1s come intervallo dal lancio. Chiavi, dati, formule e asset non cambiano;
+package/binding e nota strutturale sono rigenerati. Il revisore separato deve
+rileggere i nuovi byte: questa correzione d’autore non rinnova alcuna firma.
