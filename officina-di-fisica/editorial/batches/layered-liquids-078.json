@@ -1,0 +1,1112 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-layered-liquids-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7821,
+      "title": "Due strati, due contributi di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 1,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Con h_o=1 m e h_a=1 m, quanto vale p_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "18 kPa",
+          "10 kPa",
+          "8 kPa",
+          "20 kPa",
+          "36 kPa"
+        ],
+        "value": "18 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scendendo prima nell’olio la pressione cresce di otto kPa; scendendo poi nell’acqua cresce di altri dieci kPa. Alla fine la differenza rispetto all’atmosfera è la somma diciotto kPa. L’interfaccia non azzera la pressione: il contributo dello strato superiore si conserva nel passaggio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/89c8c5a18ba2cb0305dfcef02ae11489440b2b571cc9a2353e44f372173e0e3f",
+          "text": "Stratificazione stabile:olio800kg/m³ sopra acqua1000kg/m³,immiscibili in quiete. Ogni strato è alto1m,100px alla scala100px/m. La pressione relativa vale0 alla superficie,8kPa all’interfaccia,18kPa al fondo. Barre80+100px alla scala10px/kPa,contributi sommati e non mediati."
+        },
+        {
+          "type": "formula",
+          "text": "p_r=\\gamma_oh_o+\\gamma_ah_a"
+        },
+        {
+          "type": "formula",
+          "text": " p_r=(8+10)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_r=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci conta soltanto l’acqua, otto soltanto l’olio. Venti tratta anche l’olio come acqua; trentasei raddoppia entrambi i contributi. Per l’assoluta servirebbe aggiungere p_atm una volta sola; qui non è richiesto. Non si fa una media semplice delle densità senza tenere conto dei rispettivi spessori."
+        }
+      ],
+      "hints": [
+        "Somma gli incrementi incontrati scendendo attraverso ogni strato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci conta soltanto l’acqua, otto soltanto l’olio. Venti tratta anche l’olio come acqua; trentasei raddoppia entrambi i contributi. Per l’assoluta servirebbe aggiungere p_atm una volta sola; qui non è richiesto. Non si fa una media semplice delle densità senza tenere conto dei rispettivi spessori.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7822,
+      "title": "L’unità della somma stratificata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 1,
+      "prompt": "In due strati omogenei in quiete si calcola p_r=ρ_o g h_o+ρ_a g h_a, dove ρ indica densità di massa, g gravità e h altezza verticale dello strato. Quale unità proposta esprime p_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "kg/m³",
+          "N",
+          "m",
+          "kg/m²"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni addendo è peso della propria colonna per unità di area, dunque una pressione. Anche la somma si esprime in pascal o nei loro multipli. L’altezza, la densità e la massa per area da sole non sono ancora una pressione."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho gh]=\\frac{M}{L T^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [p_r]=[\\rho gh]"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=1000\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "kg/m³ è densità; N forza totale; m lunghezza. kg/m² sarebbe massa per area e richiederebbe ancora g per diventare peso per area. Tra queste alternative soltanto kPa ha la dimensione completa richiesta dalla somma."
+        }
+      ],
+      "hints": [
+        "Entrambi gli addendi devono avere la dimensione di forza su area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg/m³ è densità; N forza totale; m lunghezza. kg/m² sarebbe massa per area e richiederebbe ancora g per diventare peso per area. Tra queste alternative soltanto kPa ha la dimensione completa richiesta dalla somma.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7823,
+      "title": "La legge al fondo attraversa entrambi gli strati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 1,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Quale formula dà p_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p_r = γ_o h_o + γ_a h_a",
+          "p_r = γ_o h_o − γ_a h_a",
+          "p_r = γ_a (h_o + h_a)",
+          "p_r = γ_o (h_o + h_a)",
+          "p_r = (γ_o h_o + γ_a h_a) / 2"
+        ],
+        "value": "p_r = γ_o h_o + γ_a h_a"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione parte da p_atm sulla superficie libera. Ogni discesa aumenta la pressione del prodotto densità per g per spessore di quello strato. La continuità all’interfaccia permette di sommare i due incrementi: il fondo riceve il contributo di entrambi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/89c8c5a18ba2cb0305dfcef02ae11489440b2b571cc9a2353e44f372173e0e3f",
+          "text": "Il grafico ha profondità verticale verso il basso e pressione relativa orizzontale. Segmenti dall’origine all’interfaccia (h1m,p_r8kPa) e poi al fondo(h2m,p_r18kPa). Scala100px/m verticale e10px/kPa orizzontale:la diversa pendenza rende visibili i gradienti8 e10kPa/m,con continuità all’interfaccia."
+        },
+        {
+          "type": "formula",
+          "text": "p_i-p_{atm}=\\gamma_oh_o"
+        },
+        {
+          "type": "formula",
+          "text": " p_f-p_i=\\gamma_ah_a"
+        },
+        {
+          "type": "formula",
+          "text": " p_r=\\gamma_oh_o+\\gamma_ah_a"
+        },
+        {
+          "type": "text",
+          "text": "La sottrazione farebbe diminuire la pressione scendendo nell’acqua. Usare soloγ_a o soloγ_o assegna la stessa densità a liquidi diversi. La metà costruisce una media non richiesta: al fondo serve la somma completa. p_i è la pressione all’interfaccia, p_f quella al fondo; non ci sono due aggiunte dell’atmosfera."
+        }
+      ],
+      "hints": [
+        "Segui il cammino superficie, interfaccia, fondo e somma le differenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La sottrazione farebbe diminuire la pressione scendendo nell’acqua. Usare soloγ_a o soloγ_o assegna la stessa densità a liquidi diversi. La metà costruisce una media non richiesta: al fondo serve la somma completa. p_i è la pressione all’interfaccia, p_f quella al fondo; non ci sono due aggiunte dell’atmosfera.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7824,
+      "title": "Aumenta soltanto lo strato d’acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 1,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A ha h_o=1 m,h_a=1 m. B mantiene h_o=1 m e porta h_a a2 m. Come cambia p_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 18 a 28 kPa",
+          "Da 18 a 36 kPa",
+          "Resta 18 kPa",
+          "Da 18 a 26 kPa",
+          "Da 18 a 9 kPa"
+        ],
+        "value": "Da 18 a 28 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’olio contribuisce sempre otto kPa. L’acqua passa da dieci a venti kPa, perché il suo spessore raddoppia. Le somme sono quindi otto più dieci e otto più venti: diciotto e ventotto kPa. L’incremento di dieci coincide col peso per area del metro d’acqua aggiunto."
+        },
+        {
+          "type": "formula",
+          "text": "p_{r,A}=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}=(8+20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}=28\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei raddoppierebbe anche l’olio. Diciotto ignora il nuovo metro; ventisei aumenterebbe invece lo strato d’olio di un metro. Nove dimezza tutta la pressione. Il rapporto finale14/9 non è due, perché è cambiato solo uno dei due addendi."
+        }
+      ],
+      "hints": [
+        "Lascia invariato il contributo dell’olio e ricalcola quello dell’acqua.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trentasei raddoppierebbe anche l’olio. Diciotto ignora il nuovo metro; ventisei aumenterebbe invece lo strato d’olio di un metro. Nove dimezza tutta la pressione. Il rapporto finale14/9 non è due, perché è cambiato solo uno dei due addendi.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7825,
+      "title": "Trovare lo spessore d’acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Si conoscono p_r=18 kPa e h_o=1 m. Quanto vale h_a in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’olio già noto spiega otto kPa. Dalla misura relativa si sottraggono questi otto e restano dieci kPa dovuti all’acqua. Dividendo per il suo gradiente dieci kPa/m si ottiene un metro. Il dominio richiede p_r>γ_o h_o per avere acqua di spessore positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_ah_a=p_r-\\gamma_oh_o"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=\\frac{18-8}{10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "18/10 attribuirebbe all’acqua anche il contributo dell’olio. Dividere per otto userebbe la densità sbagliata; aggiungere otto aumenterebbe il contributo da eliminare. Il controllo8·1+10·1=18 kPa riproduce il dato al fondo."
+        }
+      ],
+      "hints": [
+        "Rimuovi la pressione dello strato noto, poi usa il gradiente dell’acqua.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/10 attribuirebbe all’acqua anche il contributo dell’olio. Dividere per otto userebbe la densità sbagliata; aggiungere otto aumenterebbe il contributo da eliminare. Il controllo8·1+10·1=18 kPa riproduce il dato al fondo.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7826,
+      "title": "Trovare lo spessore d’olio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Si conoscono p_r=18 kPa e h_a=1 m. Quanto vale h_o in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’acqua spiega dieci kPa. Gli otto kPa residui appartengono all’olio, il cui gradiente è otto kPa/m. Il rapporto dà un metro. Il numeratore p_r−γ_a h_a deve essere positivo, come accade qui, per conservare h_o>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_oh_o=p_r-\\gamma_ah_a"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=\\frac{18-10}{8}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto diviso otto conterebbe di nuovo l’acqua come olio; dividere gli otto residui per dieci darebbe uno spessore relativo all’altro liquido. Nessuna radice è necessaria: la relazione è affine nello spessore incognito, a densità fisse."
+        }
+      ],
+      "hints": [
+        "Sottrai il contributo d’acqua e dividi per8 kPa/m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto diviso otto conterebbe di nuovo l’acqua come olio; dividere gli otto residui per dieci darebbe uno spessore relativo all’altro liquido. Nessuna radice è necessaria: la relazione è affine nello spessore incognito, a densità fisse.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7827,
+      "title": "Raddoppia soltanto l’olio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A ha h_a=1 m,h_o=1 m. B mantiene h_a=1 m e porta h_o a2 m. Quanto vale p_r,B/p_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/9",
+          "2",
+          "9/13",
+          "14/9",
+          "1"
+        ],
+        "value": "13/9"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha dieci più otto uguale diciotto kPa. B ha dieci più sedici uguale ventisei kPa. Il rapporto26/18 ridotto per due è tredici noni. Il contributo d’acqua resta uguale e impedisce il raddoppio della somma."
+        },
+        {
+          "type": "formula",
+          "text": "p_{r,A}=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}=26\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}/p_{r,A}=13/9"
+        },
+        {
+          "type": "text",
+          "text": "Due raddoppia anche l’acqua; nove tredicesimi inverte il confronto. Quattordici noni corrisponde ad aggiungere un metro d’acqua invece d’olio; uno ignora lo strato aggiunto. Il rapporto è puro, mentre i singoli contributi hanno unità kPa."
+        }
+      ],
+      "hints": [
+        "Mantieni10 kPa e sostituisci8 kPa con16 kPa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due raddoppia anche l’acqua; nove tredicesimi inverte il confronto. Quattordici noni corrisponde ad aggiungere un metro d’acqua invece d’olio; uno ignora lo strato aggiunto. Il rapporto è puro, mentre i singoli contributi hanno unità kPa.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7828,
+      "title": "Lo scarto di una proposta al fondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Con h_a=h_o=1 m si propone p_r,proposta=36 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+18 kPa",
+          "−18 kPa",
+          "+36 kPa",
+          "0 kPa",
+          "+9 kPa"
+        ],
+        "value": "+18 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calcolo dei due contributi dà dieci più otto, diciotto kPa. La differenza richiesta è trentasei meno diciotto, cioè+18 kPa. La proposta sarebbe invece coerente col raddoppio di entrambi gli spessori, non con gli spessori assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "p_r=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(36-18)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno cambia l’ordine della differenza; trentasei è la proposta e zero la considera corretta. Nove dimezza lo scarto una seconda volta. L’atmosfera non entra nello scarto tra queste due pressioni relative allo stesso riferimento."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima i due addendi e poi sottrai il totale dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno cambia l’ordine della differenza; trentasei è la proposta e zero la considera corretta. Nove dimezza lo scarto una seconda volta. L’atmosfera non entra nello scarto tra queste due pressioni relative allo stesso riferimento.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7829,
+      "title": "Isolare l’altezza dell’acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Quale formula isola h_a, con dati p_r>γ_o h_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h_a = (p_r − γ_o h_o) / γ_a",
+          "h_a = (p_r + γ_o h_o) / γ_a",
+          "h_a = p_r / γ_a",
+          "h_a = (p_r − γ_o h_o) / γ_o",
+          "h_a = γ_a / (p_r − γ_o h_o)"
+        ],
+        "value": "h_a = (p_r − γ_o h_o) / γ_a"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si sottrae l’incremento di pressione dovuto all’olio e si divide per il gradiente positivo dell’acqua. Il numeratore è una pressione, il denominatore una pressione per metro: il risultato è una lunghezza. La disuguaglianza del prompt garantisce spessore positivo."
+        },
+        {
+          "type": "formula",
+          "text": "p_r-\\gamma_oh_o=\\gamma_ah_a"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=\\frac{p_r-\\gamma_oh_o}{\\gamma_a}"
+        },
+        {
+          "type": "text",
+          "text": "La somma aggiunge l’olio anziché eliminarlo; p_r/γ_a lo ignora. Usareγ_o nel denominatore sostituisce la densità dell’olio a quella dell’acqua. Il reciproco ha unità di lunghezza inversa. Non basta che il numero sia positivo: deve anche ricostruire la somma originale."
+        }
+      ],
+      "hints": [
+        "Sottrai lo strato noto e dividi per il coefficiente dello strato incognito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma aggiunge l’olio anziché eliminarlo; p_r/γ_a lo ignora. Usareγ_o nel denominatore sostituisce la densità dell’olio a quella dell’acqua. Il reciproco ha unità di lunghezza inversa. Non basta che il numero sia positivo: deve anche ricostruire la somma originale.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7830,
+      "title": "Due altezze scalate separatamente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A usa h_a,h_o. B usa h_a,B=κ₁h_a e h_o,B=κ₂h_o, con fattori positivi. Per abbreviare definiamo W=γ_a h_a, contributo dell’acqua, e O=γ_o h_o, contributo dell’olio: entrambi sono pressioni. Quanto vale p_r,B/p_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ W + κ₂ O) / (W + O)",
+          "κ₁ κ₂",
+          "(κ₂ W + κ₁ O) / (W + O)",
+          "(κ₁ W + κ₂ O) / W",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁ W + κ₂ O) / (W + O)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione A èW+O; nella prova B l’acqua contribuisceκ₁W e l’olioκ₂O. Il rapporto è quello fra queste due somme. Le densità restano le stesse nelle due prove; i due fattori agiscono soltanto sui rispettivi spessori."
+        },
+        {
+          "type": "formula",
+          "text": "p_{r,A}=W+O"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}=\\kappa_1W+\\kappa_2O"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{p_{r,B}}{p_{r,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1W+\\kappa_2O}{W+O}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodottoκ₁κ₂ tratterebbe i contributi come moltiplicati. Scambiare i fattori assegna il nuovo spessore al liquido sbagliato; dividere soltanto perW omette l’olio della prova A. La somma dei fattori darebbe due per prove identiche. Seκ₁=κ₂, si estrae invece il loro unico fattore comune."
+        }
+      ],
+      "hints": [
+        "Scala ogni addendo prima di dividere la somma nuova per quella iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodottoκ₁κ₂ tratterebbe i contributi come moltiplicati. Scambiare i fattori assegna il nuovo spessore al liquido sbagliato; dividere soltanto perW omette l’olio della prova A. La somma dei fattori darebbe due per prove identiche. Seκ₁=κ₂, si estrae invece il loro unico fattore comune.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7831,
+      "title": "Entrambi gli strati raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A ha h_a=h_o=1 m. B ha h_a=h_o=2 m. Quanto vale p_r,B/p_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "3/2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale diciotto kPa. In B il contributo d’acqua è venti e quello d’olio sedici kPa: totale trentasei. Il rapporto36/18 è due. Entrambi gli addendi sono raddoppiati, così si può raccogliere un fattore comune due."
+        },
+        {
+          "type": "formula",
+          "text": "p_{r,A}=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}=36\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,B}/p_{r,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplica i due raddoppi come se le altezze fossero in un prodotto; un mezzo inverte il rapporto. Uno ignora le variazioni; tre mezzi non è il rapporto dei totali. La legge è una somma di due termini lineari, non il prodotto delle altezze."
+        }
+      ],
+      "hints": [
+        "Un fattore comune a tutti gli addendi scala tutta la pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplica i due raddoppi come se le altezze fossero in un prodotto; un mezzo inverte il rapporto. Uno ignora le variazioni; tre mezzi non è il rapporto dei totali. La legge è una somma di due termini lineari, non il prodotto delle altezze.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7832,
+      "title": "Media aritmetica di due colonne stratificate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 2,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A ha h_a=h_o=1 m e B h_a=h_o=2 m. Qual è la media aritmetica di p_r,A e p_r,B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "27 kPa",
+          "54 kPa",
+          "27/2 kPa",
+          "18 kPa",
+          "36 kPa"
+        ],
+        "value": "27 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni sono diciotto e trentasei kPa. La semisomma54/2 vale27 kPa. In questo modello lineare a densità fisse le altezze medie3/2 m per ciascuno strato danno anch’esse10·3/2+8·3/2=27 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p_r=\\frac{18+36}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p_r=27\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Cinquantaquattro è la somma,27/2 divide ancora. Diciotto e trentasei sono singole uscite. La coincidenza col calcolo sulle altezze medie deriva dalla linearità con gli stessi coefficienti, non da una regola valida per qualsiasi funzione o per densità che cambiano anch’esse fra prove."
+        }
+      ],
+      "hints": [
+        "Calcola le due pressioni e dimezza la loro somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquantaquattro è la somma,27/2 divide ancora. Diciotto e trentasei sono singole uscite. La coincidenza col calcolo sulle altezze medie deriva dalla linearità con gli stessi coefficienti, non da una regola valida per qualsiasi funzione o per densità che cambiano anch’esse fra prove.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7833,
+      "title": "Scegliere l’olio per il bersaglio di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 3,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. A ha h_a=h_o=1 m. In B si fissa h_a,B=2 m e si richiede p_r,B=2p_r,A. Quanto vale h_o,B/h_o,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "3"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è trentasei kPa. I due metri d’acqua spiegano venti kPa; ne restano sedici per l’olio. Dividere per otto kPa/m dà h_o,B=2 m, quindi il rapporto rispetto al metro iniziale è due."
+        },
+        {
+          "type": "formula",
+          "text": "p_{r,B}=36\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_oh_{o,B}=16\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{o,B}=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_{o,B}/h_{o,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro raddoppierebbe due volte il parametro; un mezzo inverte la scelta corretta. Con olio1 m si avrebbe28 kPa e con3 m44 kPa, non36. Il residuo positivo assicura che l’altezza d’olio richiesta esista nel dominio stabile indicato."
+        }
+      ],
+      "hints": [
+        "Sottrai il contributo d’acqua dal bersaglio e ricostruisci l’olio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro raddoppierebbe due volte il parametro; un mezzo inverte la scelta corretta. Con olio1 m si avrebbe28 kPa e con3 m44 kPa, non36. Il residuo positivo assicura che l’altezza d’olio richiesta esista nel dominio stabile indicato.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7834,
+      "title": "Dalla lettura al fondo all’altezza d’acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 3,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Un display continuo adimensionale segue S=qp_r con q>0 e offset nullo. Il riferimento h_a=h_o=1 m dà S=54. Una prova con h_o=2 m dà S=108. Quanto vale h_a in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha p_r18 kPa, quindi q=54/(18 kPa)=3 kPa⁻¹. La nuova lettura corrisponde a108/3=36 kPa. L’olio alto due metri ne spiega sedici: i venti residui, divisi per10 kPa/m, danno due metri d’acqua."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_r=36\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=\\frac{36-16}{10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "108 è una lettura pura, non una pressione. Dividere tutta la pressione per10 senza togliere l’olio darebbe18/5 m, contando anche lo strato superiore come acqua. Il controllo8·2+10·2=36 kPa produceS108 e preserva la stratificazione."
+        }
+      ],
+      "hints": [
+        "Decodifica la pressione, sottrai l’olio e isola lo spessore d’acqua.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "108 è una lettura pura, non una pressione. Dividere tutta la pressione per10 senza togliere l’olio darebbe18/5 m, contando anche lo strato superiore come acqua. Il controllo8·2+10·2=36 kPa produceS108 e preserva la stratificazione.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7835,
+      "title": "Due tarature, poi il contributo sconosciuto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 3,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Un display continuo adimensionale segue S=qp_r+b, con q>0,b costanti. A:h_a=h_o=1 m,S=37. B:h_a=h_o=2 m,S=73. C:h_o=1 m,S=57. Quanto vale h_a,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "3/2 m",
+          "2 m",
+          "5/2 m",
+          "3 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno pressioni18 e36 kPa. Il guadagno è(73−37)/(36−18)=2 kPa⁻¹, poi b=37−2·18=1. C indica p_r=(57−1)/2=28 kPa. Tolti gli otto kPa del suo olio restano venti per l’acqua, cioè due metri."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_{r,C}=28\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{a,C}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con h_o,C1 m, le altezze d’acqua1,3/2,5/2,3 m darebbero pressioni18,23,33,38 kPa e letture37,47,67,77. Solo2 m dà57. L’offset del display si rimuove prima dell’inversa e non va confuso con l’atmosfera, già eliminata nella definizione di p_r."
+        }
+      ],
+      "hints": [
+        "Trova q,b dai due riferimenti e poi togli il contributo dell’olio C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con h_o,C1 m, le altezze d’acqua1,3/2,5/2,3 m darebbero pressioni18,23,33,38 kPa e letture37,47,67,77. Solo2 m dà57. L’offset del display si rimuove prima dell’inversa e non va confuso con l’atmosfera, già eliminata nella definizione di p_r.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-layered-liquids-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Liquidi stratificati in quiete",
+      "order": 7836,
+      "title": "Due spessori vincolati a essere uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "layered-liquids",
+      "difficulty": 3,
+      "prompt": "Un recipiente aperto contiene due liquidi immiscibili in quiete: olio omogeneo di densità ρ_o=800 kg/m³ sopra acqua omogenea di densità ρ_a=1000 kg/m³, stratificazione stabile. Le altezze verticali sono h_o>0 e h_a>0. Con g=10 m/s² uniforme e capillarità trascurata, la pressione è continua all’interfaccia. Si cerca al fondo p_r=p_fondo−p_atm, relativa all’atmosfera comune. Poniamo γ_o=ρ_o g=8 kPa/m e γ_a=ρ_a g=10 kPa/m. Densità costanti; fra prove possono cambiare le altezze. Fra prove si sceglie h_a=h_o=h>0. Si misura p_r=18 kPa. Quante coppie positive(h_a,h_o) soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Una"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo permette di raccogliere lo stesso spessore nei due addendi. La somma dei gradienti vale18 kPa/m, perciò h=18/18 m=1 m. C’è una sola coppia positiva: un metro per ciascuno strato. Il vincolo non rende identiche le densità, soltanto le altezze."
+        },
+        {
+          "type": "formula",
+          "text": "p_r=(\\gamma_a+\\gamma_o)h"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_a+\\gamma_o=18\\,\\mathrm{kPa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_a=h_o"
+        },
+        {
+          "type": "formula",
+          "text": "h_o=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Non compare un quadrato: gli spessori si sommano con coefficienti, non si moltiplicano. Il coefficiente positivo rende la relazione crescente e la soluzione unica. Senza l’uguaglianza fra altezze una sola pressione ammetterebbe più coppie; qui il vincolo aggiuntivo elimina quella libertà."
+        }
+      ],
+      "hints": [
+        "Raccogli h e dividi per la somma dei gradienti dei due liquidi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non compare un quadrato: gli spessori si sommano con coefficienti, non si moltiplicano. Il coefficiente positivo rende la relazione crescente e la soluzione unica. Senza l’uguaglianza fra altezze una sola pressione ammetterebbe più coppie; qui il vincolo aggiuntivo elimina quella libertà.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Continuità della pressione fra strati",
+        "Somma dei contributi idrostatici e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "89c8c5a18ba2cb0305dfcef02ae11489440b2b571cc9a2353e44f372173e0e3f",
+      "name": "layered-liquids-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTczMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzMwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMxODJkNDIiIGZvbnQtc2l6ZT0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+T2xpbyBlIGFjcXVhOiBjb250aW51aXTDoCBlIHNvbW1hIGRlbGxhIHByZXNzaW9uZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVubyBzdHJhdG8gZGkgb2xpbyBhbHRvIHVuIG1ldHJvIHNvcHJhIHVubyBzdHJhdG8gZCdhY3F1YSBhbHRvIHVuIG1ldHJvLiBQcmVzc2lvbmkgcmVsYXRpdmUgemVybyBzdWxsYSBzdXBlcmZpY2llLCBvdHRvIGNoaWxvcGFzY2FsIGFsbCdpbnRlcmZhY2NpYSwgZGljaW90dG8gYWwgZm9uZG8uIElsIGdyYWZpY28gY29udGludW8gY2FtYmlhIHBlbmRlbnphIGFsbCdpbnRlcmZhY2NpYSBwZXJjaMOpIGNhbWJpYW5vIGxlIGRlbnNpdMOgLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzMzNGY2NiIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzMwIiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIzMiIgeT0iNDYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBPcmRpbmEgZ2xpIHN0cmF0aSBzdGFiaWxpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4NCI+SW1taXNjaWJpbGkgaW4gcXVpZXRlLCBnID0gMTAgbS9zwrIuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjYiPlN1cGVyZmljaWUgYXBlcnRhOiBwX3IgPSAwLjwvdGV4dD4KPHJlY3QgeD0iMTAxIiB5PSIxODAiIHdpZHRoPSIxOTgiIGhlaWdodD0iMTAwIiBmaWxsPSIjZTliYjcwIi8+PHJlY3QgeD0iMTAxIiB5PSIyODAiIHdpZHRoPSIxOTgiIGhlaWdodD0iMTAwIiBmaWxsPSIjODRjN2ViIi8+CjxwYXRoIGQ9Ik0xMDAgMTYwVjM4MEgzMDBWMTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik04NSAxODBIMzE1TTg1IDI4MEgzMTUiIHN0cm9rZT0iIzRkN2E5OSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjM1MCIgeT0iMjA4Ij5PbGlvOiBoX28gPSAxIG0uPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMjQyIj7PgV9vID0gODAwIGtnL23Csy48L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIzMTAiPkFjcXVhOiBoX2EgPSAxIG0uPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMzQ0Ij7PgV9hID0gMTAwMCBrZy9twrMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDM0Ij5PZ25pIHN0cmF0bzogMTAwIHB4LCBzY2FsYSAxMDAgcHgvbS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ3MCI+TOKAmW9saW8gbWVubyBkZW5zbyByZXN0YSBzb3ByYSBs4oCZYWNxdWEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MDQiPk5lc3N1biBzYWx0byBjYXBpbGxhcmUgYWxs4oCZaW50ZXJmYWNjaWEuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNTQ2SDYwOCIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjU5NiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIFNvbW1hIGdsaSBpbmNyZW1lbnRpPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2MzYiPk9saW86ICg4IGtQYS9tKSDCtyAxIG0gPSA4IGtQYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjY3NCI+QWNxdWE6ICgxMCBrUGEvbSkgwrcgMSBtID0gMTAga1BhLjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MzAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2U5YmI3MCIvPjxyZWN0IHg9IjE4MCIgeT0iNzMwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjODRjN2ViIi8+Cjx0ZXh0IHg9IjMyMCIgeT0iNzYzIj5Ub3RhbGU6IDE4IGtQYS48L3RleHQ+PHRleHQgeD0iOTUiIHk9IjgyMCI+OCBrUGE8L3RleHQ+PHRleHQgeD0iMTk4IiB5PSI4MjAiPjEwIGtQYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg3NiI+QmFycmU6IDgwIHB4ICsgMTAwIHB4ID0gMTgwIHB4LjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTEwIiBmb250LXNpemU9IjE4Ij5TY2FsYSBkaSBwcmVzc2lvbmU6IDEwIHB4L2tQYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk2MiI+cF9yID0gcF9mb25kbyDiiJIgcF9hdG0uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5OTgiPsOIIHVuYSBwcmVzc2lvbmUgcmVsYXRpdmEsIG5vbiBhc3NvbHV0YS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMDQwSDYwOCIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjEwOTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBBdHRyYXZlcnNhIGzigJlpbnRlcmZhY2NpYSBzZW56YSBzYWx0bzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEzMCI+UHJlc3Npb25lIG9yaXp6b250YWxlLCBwcm9mb25kaXTDoCBpbiBiYXNzby48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNjQiPkxhIGRlbnNpdMOgIGNhbWJpYSBpbCBncmFkaWVudGUuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDEyNzBINTAwIiBzdHJva2U9IiMzMzRmNjYiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTQwIDEyNzBWMTUzMCIgc3Ryb2tlPSIjMzM0ZjY2IiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0xNDAgMTI3MEwyMjAgMTM3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjA3YjI1IiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMjIwIDEzNzBMMzIwIDE0NzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI4N2FhYiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xNDAgMTM3MEgyMjBWMTI3ME0xNDAgMTQ3MEgzMjBWMTI3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEyNzAiIHI9IjUiIGZpbGw9IiMyNjNmNTUiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSIxMzcwIiByPSI1IiBmaWxsPSIjMjYzZjU1Ii8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTQ3MCIgcj0iNSIgZmlsbD0iIzI2M2Y1NSIvPgo8dGV4dCB4PSIxMjUiIHk9IjEyNDYiPjA8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSIxMjQ2Ij44PC90ZXh0Pjx0ZXh0IHg9IjMwNiIgeT0iMTI0NiI+MTg8L3RleHQ+PHRleHQgeD0iNDc4IiB5PSIxMzA1Ij5wX3IgKGtQYSk8L3RleHQ+PHRleHQgeD0iMTAwIiB5PSIxMzc4Ij4xPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iMTQ3OCI+MjwvdGV4dD48dGV4dCB4PSIxNTIiIHk9IjE1MzAiPmggdG90YWxlIChtKTwvdGV4dD4KPHRleHQgeD0iMzUwIiB5PSIxMzYwIj5JbnRlcmZhY2NpYTogOCBrUGEuPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMTQ2NCI+Rm9uZG86IDE4IGtQYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTkwIj5TY2VuZGVuZG8sIGxhIHByZXNzaW9uZSBjcmVzY2Ugc2VtcHJlLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTYzMCI+QWxs4oCZaW50ZXJmYWNjaWEgw6ggY29udGludWEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNjg0IiBmb250LXNpemU9IjE4Ij4xMDAgcHgvbSBlIDEwIHB4L2tQYTogc2NhbGUgaW5kaXBlbmRlbnRpLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}

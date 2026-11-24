@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1730" width="640" height="1730" font-family="Arial, sans-serif" fill="#182d42" font-size="20" role="img" aria-labelledby="title desc">
+<title id="title">Olio e acqua: continuità e somma della pressione</title><desc id="desc">Uno strato di olio alto un metro sopra uno strato d'acqua alto un metro. Pressioni relative zero sulla superficie, otto chilopascal all'interfaccia, diciotto al fondo. Il grafico continuo cambia pendenza all'interfaccia perché cambiano le densità.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#334f66"/></marker></defs>
+<rect width="640" height="1730" fill="white"/>
+<text x="32" y="46" font-size="24" font-weight="bold">1. Ordina gli strati stabili</text><text x="32" y="84">Immiscibili in quiete, g = 10 m/s².</text><text x="32" y="126">Superficie aperta: p_r = 0.</text>
+<rect x="101" y="180" width="198" height="100" fill="#e9bb70"/><rect x="101" y="280" width="198" height="100" fill="#84c7eb"/>
+<path d="M100 160V380H300V160" fill="none" stroke="#263f55" stroke-width="3"/><path d="M85 180H315M85 280H315" stroke="#4d7a99" stroke-width="2"/>
+<text x="350" y="208">Olio: h_o = 1 m.</text><text x="350" y="242">ρ_o = 800 kg/m³.</text><text x="350" y="310">Acqua: h_a = 1 m.</text><text x="350" y="344">ρ_a = 1000 kg/m³.</text>
+<text x="32" y="434">Ogni strato: 100 px, scala 100 px/m.</text><text x="32" y="470">L’olio meno denso resta sopra l’acqua.</text><text x="32" y="504">Nessun salto capillare all’interfaccia.</text>
+<path d="M32 546H608" stroke="#6a7d8a" stroke-width="2"/>
+<text x="32" y="596" font-size="24" font-weight="bold">2. Somma gli incrementi</text><text x="32" y="636">Olio: (8 kPa/m) · 1 m = 8 kPa.</text><text x="32" y="674">Acqua: (10 kPa/m) · 1 m = 10 kPa.</text>
+<rect x="100" y="730" width="80" height="50" fill="#e9bb70"/><rect x="180" y="730" width="100" height="50" fill="#84c7eb"/>
+<text x="320" y="763">Totale: 18 kPa.</text><text x="95" y="820">8 kPa</text><text x="198" y="820">10 kPa</text>
+<text x="32" y="876">Barre: 80 px + 100 px = 180 px.</text><text x="32" y="910" font-size="18">Scala di pressione: 10 px/kPa.</text><text x="32" y="962">p_r = p_fondo − p_atm.</text><text x="32" y="998">È una pressione relativa, non assoluta.</text>
+<path d="M32 1040H608" stroke="#6a7d8a" stroke-width="2"/>
+<text x="32" y="1090" font-size="24" font-weight="bold">3. Attraversa l’interfaccia senza salto</text><text x="32" y="1130">Pressione orizzontale, profondità in basso.</text><text x="32" y="1164">La densità cambia il gradiente.</text>
+<path d="M140 1270H500" stroke="#334f66" stroke-width="2" marker-end="url(#arrow)"/><path d="M140 1270V1530" stroke="#334f66" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M140 1270L220 1370" fill="none" stroke="#b07b25" stroke-width="4"/><path d="M220 1370L320 1470" fill="none" stroke="#287aab" stroke-width="4"/>
+<path d="M140 1370H220V1270M140 1470H320V1270" fill="none" stroke="#6a7d8a" stroke-width="1.5" stroke-dasharray="6 4"/>
+<circle cx="140" cy="1270" r="5" fill="#263f55"/><circle cx="220" cy="1370" r="5" fill="#263f55"/><circle cx="320" cy="1470" r="5" fill="#263f55"/>
+<text x="125" y="1246">0</text><text x="210" y="1246">8</text><text x="306" y="1246">18</text><text x="478" y="1305">p_r (kPa)</text><text x="100" y="1378">1</text><text x="100" y="1478">2</text><text x="152" y="1530">h totale (m)</text>
+<text x="350" y="1360">Interfaccia: 8 kPa.</text><text x="350" y="1464">Fondo: 18 kPa.</text>
+<text x="32" y="1590">Scendendo, la pressione cresce sempre.</text><text x="32" y="1630">All’interfaccia è continua.</text><text x="32" y="1684" font-size="18">100 px/m e 10 px/kPa: scale indipendenti.</text>
+</svg>
