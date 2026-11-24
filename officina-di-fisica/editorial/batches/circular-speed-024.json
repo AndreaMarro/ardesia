@@ -1,0 +1,1228 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-circular-speed-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2421,
+      "title": "Un giro senza approssimare π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un punto percorre una circonferenza fissa di raggio r=1 m con moto uniforme. Un giro dura T=π s. Quanto vale la rapidità tangenziale V, cioè il modulo della velocità, in m/s? Mantieni π esatto.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza percorsa in un giro è la lunghezza della circonferenza, 2πr. Dividiamo questa lunghezza per il periodo. Poiché il moto è uniforme, il rapporto coincide con la rapidità in ogni istante. Il fattore π compare sia nella distanza sia nella durata e si può semplificare prima di fare qualsiasi conto decimale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/306104b22952b555bc7cd05b2735da391dea79370dc3530ad24fef549317a829",
+          "text": "Tre tappe per r=1 m,T=π s: misura del giro 2π m; velocità tangenti in due istanti con uguale modulo 2 m/s; divisione del giro per il periodo. Scala spaziale 100 px/m; frecce di velocità 40 px per m/s. Lunghezze geometriche e frecce di velocità hanno unità diverse."
+        },
+        {
+          "type": "formula",
+          "text": "C=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": "2\\pi r=2\\pi\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac CT"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac CT=\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il modulo è due metri al secondo; la velocità vettoriale è tangente alla circonferenza e cambia direzione. Su un giro completo lo spostamento netto è zero, quindi la velocità media vettoriale sarebbe zero: quel valore non risponde alla domanda sulla rapidità."
+        }
+      ],
+      "hints": [
+        "Semplifica π nel rapporto fra circonferenza e periodo.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il modulo è due metri al secondo; la velocità vettoriale è tangente alla circonferenza e cambia direzione. Su un giro completo lo spostamento netto è zero, quindi la velocità media vettoriale sarebbe zero: quel valore non risponde alla domanda sulla rapidità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2422,
+      "title": "L’unità della rapidità lungo la circonferenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 1,
+      "prompt": "La rapidità tangenziale V in un moto circolare uniforme è la lunghezza di un giro divisa per il suo periodo positivo. Quale unità SI è compatibile con V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s²",
+          "m/s",
+          "s",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio e la circonferenza hanno dimensione di lunghezza. Il fattore 2π è puro e non cambia la dimensione. Il periodo è una durata: il rapporto conserva dunque lunghezza su tempo, anche se la traiettoria è curva."
+        },
+        {
+          "type": "formula",
+          "text": "[2\\pi r]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [T]=T"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m/s è corretto. m è l’unità della lunghezza prima della divisione; s quella del periodo. m/s² descrive un’accelerazione, mentre 1 un numero puro. La parola «tangenziale» indica la direzione locale della velocità, non introduce un’unità diversa."
+        }
+      ],
+      "hints": [
+        "Conta una lunghezza al numeratore e una durata al denominatore.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è corretto. m è l’unità della lunghezza prima della divisione; s quella del periodo. m/s² descrive un’accelerazione, mentre 1 un numero puro. La parola «tangenziale» indica la direzione locale della velocità, non introduce un’unità diversa.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2423,
+      "title": "Quale distanza entra in un giro?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un punto compie un moto circolare uniforme di raggio fisso r>0 e periodo T>0. V è la rapidità tangenziale. Quale relazione ricava V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=πr/T",
+          "V=2πr/T",
+          "V=2r/T",
+          "V=2πrT",
+          "V=0"
+        ],
+        "value": "V=2πr/T"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un periodo il punto percorre la circonferenza intera, non il diametro e non soltanto un semicerchio. La rapidità uniforme è la distanza percorsa divisa per il tempo necessario. Il periodo positivo garantisce che il denominatore non sia nullo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/306104b22952b555bc7cd05b2735da391dea79370dc3530ad24fef549317a829",
+          "text": "Tre tappe per r=1 m,T=π s: misura del giro 2π m; velocità tangenti in due istanti con uguale modulo 2 m/s; divisione del giro per il periodo. Scala spaziale 100 px/m; frecce di velocità 40 px per m/s. Lunghezze geometriche e frecce di velocità hanno unità diverse."
+        },
+        {
+          "type": "formula",
+          "text": "C=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac CT"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2\\pi r}{T}"
+        },
+        {
+          "type": "text",
+          "text": "πr/T usa mezzo giro; 2r/T usa il diametro invece dell’arco percorso. Il prodotto 2πrT avrebbe dimensione lunghezza per tempo. Zero è la velocità media vettoriale sul giro chiuso, perché confronta i punti iniziale e finale: la rapidità è invece positiva."
+        }
+      ],
+      "hints": [
+        "Il punto segue l’arco della circonferenza per tutto il giro.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "πr/T usa mezzo giro; 2r/T usa il diametro invece dell’arco percorso. Il prodotto 2πrT avrebbe dimensione lunghezza per tempo. Zero è la velocità media vettoriale sul giro chiuso, perché confronta i punti iniziale e finale: la rapidità è invece positiva.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2424,
+      "title": "Raggio doppio nello stesso periodo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 1,
+      "prompt": "Due prove, ciascuna di moto circolare uniforme in un riferimento inerziale, hanno lo stesso periodo T=π s. Il raggio fisso passa da r₁=1 m a r₂=2 m fra le prove. V₁ e V₂ sono le rapidità tangenziali. Come cambiano?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V passa da 2 a 4 m/s",
+          "V resta 2 m/s",
+          "V passa da 2 a 8 m/s",
+          "V passa da 2 a 1 m/s",
+          "V diventa zero"
+        ],
+        "value": "V passa da 2 a 4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella seconda prova la circonferenza è doppia, ma il tempo per percorrerla è lo stesso. Occorre quindi una rapidità doppia. Stiamo confrontando due circonferenze diverse: durante ciascuna prova il raggio rimane costante e il punto non descrive una spirale."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2\\pi(1\\,\\mathrm m)}{\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi(1\\,\\mathrm m)}{\\pi\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{2\\pi(2\\,\\mathrm m)}{\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi(2\\,\\mathrm m)}{\\pi\\,\\mathrm s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore quattro confonderebbe questa legge con una dipendenza quadratica dal raggio. L’invariabilità o il dimezzamento contraddicono il percorso doppio nello stesso tempo; zero non può descrivere un giro compiuto in un periodo finito. La direzione della velocità continua a cambiare anche se il modulo resta costante in ogni prova."
+        }
+      ],
+      "hints": [
+        "Confronta le due circonferenze mantenendo lo stesso periodo.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il fattore quattro confonderebbe questa legge con una dipendenza quadratica dal raggio. L’invariabilità o il dimezzamento contraddicono il percorso doppio nello stesso tempo; zero non può descrivere un giro compiuto in un periodo finito. La direzione della velocità continua a cambiare anche se il modulo resta costante in ogni prova.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2425,
+      "title": "Dal giro al raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un punto compie un moto circolare uniforme con rapidità tangenziale V=2 m/s e periodo T=π s. Quanto vale il raggio fisso r, in metri? Usa π esatto.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge V=2πr/T moltiplichiamo entrambi i membri per T. Otteniamo la lunghezza della circonferenza; poi dividiamo per 2π per isolare il raggio. V e T sono positivi e il prodotto ha unità di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "VT=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{VT}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{(2\\,\\mathrm{m/s})(\\pi\\,\\mathrm s)}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s})(\\pi\\,\\mathrm s)}{2\\pi}=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 2π·1 m/(π s)=2 m/s restituisce la rapidità data. Fermarsi a VT darebbe la circonferenza, non il raggio. Semplificare il fattore 2π mantiene il risultato esatto e non richiede di sostituire 3,14 a π."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima la circonferenza VT, poi dividila per 2π.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 2π·1 m/(π s)=2 m/s restituisce la rapidità data. Fermarsi a VT darebbe la circonferenza, non il raggio. Semplificare il fattore 2π mantiene il risultato esatto e non richiede di sostituire 3,14 a π.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2426,
+      "title": "Un periodo espresso con π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un punto percorre uniformemente una circonferenza fissa di raggio r=1 m con rapidità tangenziale V=2 m/s. Quanto vale il periodo T? Mantieni π esatto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "π s",
+          "2π s",
+          "(π/2) s",
+          "(1/π) s",
+          "1 s"
+        ],
+        "value": "π s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il periodo è il tempo necessario a percorrere 2π metri. Isoliamolo senza invertire grandezze a caso: moltiplichiamo V=2πr/T per T, poi dividiamo per la rapidità positiva V. Si cancellano i fattori due e i metri, lasciando secondi."
+        },
+        {
+          "type": "formula",
+          "text": "VT=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2\\pi r}{V}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2\\pi\\,\\mathrm m}{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi\\,\\mathrm m}{2\\,\\mathrm{m/s}}=\\pi\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "2π s ometterebbe la divisione per due; π/2 s la applicherebbe una seconda volta. (1/π) s inverte il valore numerico del periodo e 1 s cancella anche il π che deve restare. Non serve un valore decimale: π s è la risposta esatta."
+        }
+      ],
+      "hints": [
+        "Dividi la lunghezza dell’intero giro per la rapidità.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2π s ometterebbe la divisione per due; π/2 s la applicherebbe una seconda volta. (1/π) s inverte il valore numerico del periodo e 1 s cancella anche il π che deve restare. Non serve un valore decimale: π s è la risposta esatta.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2427,
+      "title": "Più tempo per lo stesso giro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "Due prove di moto circolare uniforme hanno raggio fisso r=1 m nello stesso riferimento inerziale. Il periodo passa da T₁=π s a T₂=2π s. V₁,V₂ sono le rapidità tangenziali. Quanto vale V₂/V₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/4",
+          "1/2",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il percorso di un giro non cambia. Nella seconda prova si impiega il doppio del tempo per percorrerlo, quindi la rapidità si dimezza. Calcolando i due valori con π esatto otteniamo due e un metro al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{2\\pi\\,\\mathrm m}{2\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi\\,\\mathrm m}{2\\pi\\,\\mathrm s}=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte la dipendenza dal periodo; un quarto la applica due volte. Uno ignora il tempo cambiato. Il valore negativo non è un rapporto fra moduli positivi: il senso di rotazione non è rappresentato dal segno di questa rapidità."
+        }
+      ],
+      "hints": [
+        "Il periodo compare al denominatore, mentre il percorso rimane fisso.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due inverte la dipendenza dal periodo; un quarto la applica due volte. Uno ignora il tempo cambiato. Il valore negativo non è un rapporto fra moduli positivi: il senso di rotazione non è rappresentato dal segno di questa rapidità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2428,
+      "title": "Lo scarto della rapidità proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "Un moto circolare uniforme, osservato in un riferimento inerziale, ha raggio fisso r=1 m e periodo T=π s. Una proposta assegna V_proposto=4 m/s al modulo della velocità. Quanto vale lo scarto proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 m/s",
+          "+2 m/s",
+          "+4 m/s",
+          "0 m/s",
+          "+1 m/s"
+        ],
+        "value": "+2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima la rapidità corretta dalla circonferenza e dal periodo. Il fattore π si semplifica e lascia due metri al secondo. La sottrazione successiva segue l’ordine dichiarato: proposta meno quel valore corretto."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi\\,\\mathrm m}{\\pi\\,\\mathrm s}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm{m/s}=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto positivo segnala una sovrastima. −2 m/s inverte il confronto; +4 m/s ripete la proposta o la confronta con la velocità media vettoriale nulla, che è un’altra grandezza. Zero ignora l’errore e +1 m/s non segue dalla differenza richiesta."
+        }
+      ],
+      "hints": [
+        "Non usare lo spostamento nullo del giro per trovare la rapidità corretta.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Lo scarto positivo segnala una sovrastima. −2 m/s inverte il confronto; +4 m/s ripete la proposta o la confronta con la velocità media vettoriale nulla, che è un’altra grandezza. Zero ignora l’errore e +1 m/s non segue dalla differenza richiesta.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2429,
+      "title": "L’inversa del raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "Un punto compie un moto circolare uniforme in un riferimento inerziale. Raggio r, periodo T e rapidità tangenziale V sono positivi e soddisfano V=2πr/T. Quale formula isola r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r=VT/π",
+          "r=V/(2πT)",
+          "r=VT/(2π)",
+          "r=2πV/T",
+          "r=T/(2πV)"
+        ],
+        "value": "r=VT/(2π)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio moltiplica 2π ed è diviso per T. Moltiplichiamo l’uguaglianza per T e poi dividiamo per 2π. Il prodotto VT è una lunghezza; dividere per un numero puro non ne cambia l’unità."
+        },
+        {
+          "type": "formula",
+          "text": "VT=2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{VT}{2\\pi}=r"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{VT}{2\\pi}"
+        },
+        {
+          "type": "text",
+          "text": "VT/π sarebbe il doppio del raggio. Le alternative che dividono V per T hanno dimensione di accelerazione, mentre T/V ha dimensione tempo quadrato su lunghezza. Il controllo diretto 2π·[VT/(2π)]/T=V ricostruisce la legge, con T>0."
+        }
+      ],
+      "hints": [
+        "Elimina prima il denominatore T e poi il fattore 2π.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "VT/π sarebbe il doppio del raggio. Le alternative che dividono V per T hanno dimensione di accelerazione, mentre T/V ha dimensione tempo quadrato su lunghezza. Il controllo diretto 2π·[VT/(2π)]/T=V ricostruisce la legge, con T>0.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2430,
+      "title": "Due fattori fra due circonferenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "In due prove distinte di moto circolare uniforme, ciascuna con raggio e periodo costanti, i dati r,T>0 della prima diventano κ₁r,κ₂T nella seconda, con κ₁,κ₂>0. V₁,V₂ sono i moduli delle velocità nello stesso riferimento inerziale. Quale rapporto V₂/V₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂",
+          "κ₁²/κ₂",
+          "κ₁+κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore sul raggio moltiplica la circonferenza, mentre il fattore sul periodo divide la rapidità. Scriviamo la legge in entrambe le prove e cancelliamo il fattore 2π e i dati iniziali non nulli nel rapporto. Nessun parametro cambia durante un singolo giro."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=\\frac{2\\pi r}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=\\frac{2\\pi\\kappa_1r}{\\kappa_2T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto κ₁κ₂ farebbe aumentare V anche quando aumenta soltanto il periodo; il rapporto inverso scambia i ruoli degli ingressi. Il quadrato su κ₁ è assente dalla circonferenza. La somma fallisce senza cambiamenti, dando due anziché uno. Se entrambi i fattori sono uguali, V resta uguale."
+        }
+      ],
+      "hints": [
+        "Conserva il fattore del periodo al denominatore.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il prodotto κ₁κ₂ farebbe aumentare V anche quando aumenta soltanto il periodo; il rapporto inverso scambia i ruoli degli ingressi. Il quadrato su κ₁ è assente dalla circonferenza. La somma fallisce senza cambiamenti, dando due anziché uno. Se entrambi i fattori sono uguali, V resta uguale.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2431,
+      "title": "Un rapporto che contiene π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "Due prove di moto circolare uniforme hanno dati (r₁=1 m,T₁=π s) e (r₂=2 m,T₂=1 s), costanti nella singola prova e osservati nello stesso riferimento inerziale. V₁,V₂ sono le rapidità tangenziali. Quanto vale V₂/V₁? Mantieni π esatto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "π",
+          "2π",
+          "4π",
+          "π/2",
+          "1/(2π)"
+        ],
+        "value": "2π"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima circonferenza viene percorsa a due metri al secondo perché π si cancella. La seconda ha lunghezza 4π metri ed è percorsa in un secondo, quindi V₂=4π m/s. Dividiamo questa nuova rapidità per quella iniziale: resta 2π, senza unità."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\pi\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_2}{V_1}=\\frac{4\\pi}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\pi}{2}=2\\pi"
+        },
+        {
+          "type": "text",
+          "text": "π trascura il raddoppio del raggio; 4π ripete la seconda rapidità senza dividerla per la prima. π/2 divide ancora per quattro rispetto al risultato corretto e 1/(2π) inverte il rapporto. π rimane qui perché il secondo periodo è 1 s, non π s."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i moduli prima di cancellare le unità nel rapporto.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "π trascura il raddoppio del raggio; 4π ripete la seconda rapidità senza dividerla per la prima. π/2 divide ancora per quattro rispetto al risultato corretto e 1/(2π) inverte il rapporto. π rimane qui perché il secondo periodo è 1 s, non π s.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2432,
+      "title": "Media di due letture esatte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 2,
+      "prompt": "Due prove uniformi su circonferenze fisse, nello stesso riferimento inerziale, hanno (r=1 m,T=π s) e (r=2 m,T=1 s). Con V=2πr/T si ottengono due rapidità tangenziali. Qual è la loro media aritmetica con uguale peso statistico? Mantieni π esatto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(2+4π) m/s",
+          "(1/2+π) m/s",
+          "2π m/s",
+          "(1+2π) m/s",
+          "(2+2π) m/s"
+        ],
+        "value": "(1+2π) m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due rapidità sono 2 m/s e 4π m/s. Mediamo le uscite già calcolate, assegnando metà peso a ciascuna. Dividendo separatamente i due addendi per due otteniamo uno e due π. La somma resta un’espressione esatta."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\pi\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{2+4\\pi}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=(1+2\\pi)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "2+4π manca della divisione per due; 1/2+π dimezza una seconda volta. 2π omette il contributo della prima prova e 2+2π non dimezza il suo due. Non sostituiamo nella legge r e T medi: il periodo sta al denominatore, quindi quella sarebbe un’altra operazione."
+        }
+      ],
+      "hints": [
+        "Dimezza separatamente 2 e 4π, poi somma.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "2+4π manca della divisione per due; 1/2+π dimezza una seconda volta. 2π omette il contributo della prima prova e 2+2π non dimezza il suo due. Non sostituiamo nella legge r e T medi: il periodo sta al denominatore, quindi quella sarebbe un’altra operazione.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2433,
+      "title": "Scegliere il nuovo periodo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 3,
+      "prompt": "La prima prova di moto circolare uniforme ha r₁=1 m,T₁=π s e rapidità tangenziale V₁. Nella seconda si sceglie r₂=2 m e si vuole V₂=2πV₁. Ogni prova mantiene raggio e periodo positivi costanti in un riferimento inerziale. Quanto deve valere T₂/T₁? Usa π esatto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/π",
+          "2/π",
+          "1/(2π)",
+          "π",
+          "2π"
+        ],
+        "value": "1/π"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima rapidità è due metri al secondo, quindi il nuovo obiettivo è 4π m/s. Il nuovo giro misura 4π metri. Dividendo giro per rapidità troviamo un secondo: soltanto dopo confrontiamo questo periodo con il precedente π secondi."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=4\\pi\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=\\frac{2\\pi r_2}{V_2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi r_2}{V_2}=\\frac{4\\pi\\,\\mathrm m}{4\\pi\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\pi\\,\\mathrm m}{4\\pi\\,\\mathrm{m/s}}=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac1\\pi"
+        },
+        {
+          "type": "text",
+          "text": "2/π non imporrebbe l’aumento voluto perché lascerebbe T₂=2 s; 1/(2π) darebbe T₂=1/2 s e una rapidità doppia dell’obiettivo. π e 2π allungherebbero il periodo nella direzione sbagliata. Il risultato è positivo e lascia entrambe le prove uniformi, senza cambiare raggio nel tempo."
+        }
+      ],
+      "hints": [
+        "Ricava T₂ come un tempo, poi dividilo per T₁.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/π non imporrebbe l’aumento voluto perché lascerebbe T₂=2 s; 1/(2π) darebbe T₂=1/2 s e una rapidità doppia dell’obiettivo. π e 2π allungherebbero il periodo nella direzione sbagliata. Il risultato è positivo e lascia entrambe le prove uniformi, senza cambiare raggio nel tempo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2434,
+      "title": "Tarare prima di trovare il raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 3,
+      "prompt": "Ogni prova è un moto circolare uniforme con raggio r e periodo T positivi costanti, in un riferimento inerziale; V è la rapidità tangenziale. Un display conta tacche S=gV con g>0 costante e offset nullo. Il riferimento r=1 m,T=π s dà S=6. La nuova prova dà S=12π e T=1 s. Quanto vale r, in metri? Usa π esatto.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha V=2 m/s, quindi il guadagno è tre secondi per metro. La nuova lettura rappresenta V=4π m/s. Ricostruiamo poi il raggio con r=VT/(2π): il π rimane esatto e si semplifica, insieme al fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac6{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm{m/s}}=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{12\\pi}{3\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12\\pi}{3\\,\\mathrm{s/m}}=4\\pi\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{VT}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{VT}{2\\pi}=\\frac{(4\\pi\\,\\mathrm{m/s})(1\\,\\mathrm s)}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(4\\pi\\,\\mathrm{m/s})(1\\,\\mathrm s)}{2\\pi}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. Le tacche sono un conteggio puro; non si possono trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per convertire le tacche in rapidità.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La ricostruzione completa restituisce V=4π m/s e S=(3 s/m)(4π m/s)=12π. Le tacche sono un conteggio puro; non si possono trattare direttamente come metri al secondo o come un raggio. Tutti i dati della nuova prova sono positivi.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2435,
+      "title": "Un offset con π nei riferimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 3,
+      "prompt": "Ogni prova è un moto circolare uniforme in un riferimento inerziale, con r,T>0 costanti e rapidità tangenziale V. Il display conta S=gV+c con g>0,c costanti. I riferimenti (r=1 m,T=π s) e (r=2 m,T=1 s) danno S=5 e S=1+8π. La prova ignota ha T=π s,S=9. Quanto vale r? Mantieni π esatto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "2 m",
+          "4 m",
+          "−2 m",
+          "3 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità di riferimento sono 2 e 4π m/s. Chiamiamo h=4π−2 il numero positivo della loro differenza in m/s. La differenza delle letture è 8π−4=2h: dividendo per h m/s si trova g=2 s/m senza approssimare π. Dal primo riferimento segue c=1. Correggiamo la lettura nuova prima di invertire la legge del moto."
+        },
+        {
+          "type": "formula",
+          "text": "h=4\\pi-2>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=h\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=2h"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2h}{h\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2h}{h\\,\\mathrm{m/s}}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=5-2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "5-2\\times2=1"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{9-1}{2\\,\\mathrm{s/m}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{2\\,\\mathrm{s/m}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{(4\\,\\mathrm{m/s})(\\pi\\,\\mathrm s)}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(4\\,\\mathrm{m/s})(\\pi\\,\\mathrm s)}{2\\pi}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero conteggi 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza."
+        }
+      ],
+      "hints": [
+        "Fattorizza la differenza 8π−4 come 2(4π−2).",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con r=2 m e T=π s si ottiene V=4 m/s e S=2·4+1=9. Un metro ripete il primo riferimento; quattro e tre metri darebbero conteggi 17 e 13. −2 m viola il raggio positivo. Il rapporto fra letture grezze non eliminerebbe l’offset: serve prima la differenza.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-speed-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto circolare",
+      "order": 2436,
+      "title": "Una misura che ripete il vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "uniform-circular-speed",
+      "difficulty": 3,
+      "prompt": "Si scelgono prove di moto circolare uniforme in un riferimento inerziale. Durante ciascuna prova il raggio r>0 e il periodo T>0 restano costanti. I dati scelti rispettano r=kT, con k=(1/π) m/s. Si misura anche la rapidità tangenziale V=2 m/s. Quante coppie positive (r,T) sono compatibili? Il vincolo lega prove diverse, non descrive un raggio variabile durante il moto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna coppia",
+          "Una sola coppia",
+          "Due coppie",
+          "Infinite coppie positive",
+          "Solo la coppia r=T=0"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente k ha unità di velocità: moltiplicato per il periodo dà un raggio. Sostituiamo r=kT nella legge V=2πr/T. T si cancella perché è positivo e la rapidità è già fissata dal solo coefficiente k. La misura ripete quindi l’informazione del vincolo."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{2\\pi kT}{T}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\pi kT}{T}=2\\pi k"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\pi\\left(\\frac1\\pi\\,\\mathrm{m/s}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": "2\\pi\\left(\\frac1\\pi\\,\\mathrm{m/s}\\right)=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " T>0"
+        },
+        {
+          "type": "formula",
+          "text": " r=kT"
+        },
+        {
+          "type": "text",
+          "text": "T=π s con r=1 m e T=2π s con r=2 m sono due esempi; ogni altro T positivo fornisce un altro r positivo compatibile. Non sono soltanto due possibilità. La coppia nulla è esclusa e non servirebbe a definire V=2πr/T. Il vincolo non individua una scala unica del moto."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di tentare di risolvere per un’incognita.",
+        "Conserva π esatto e distingui rapidità, percorso e spostamento."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "T=π s con r=1 m e T=2π s con r=2 m sono due esempi; ogni altro T positivo fornisce un altro r positivo compatibile. Non sono soltanto due possibilità. La coppia nulla è esclusa e non servirebbe a definire V=2πr/T. Il vincolo non individua una scala unica del moto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Moto circolare uniforme e accelerazione centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "306104b22952b555bc7cd05b2735da391dea79370dc3530ad24fef549317a829",
+      "name": "circular-speed-tangents.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5HaXJvLCB0YW5nZW50aSBlIHJhcGlkaXTDoDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZSBwZXIgbW90byBjaXJjb2xhcmUgdW5pZm9ybWUgZGkgcmFnZ2lvIHVuIG1ldHJvIGUgcGVyaW9kbyBwaSBncmVjbyBzZWNvbmRpLiBJbCBnaXJvIG1pc3VyYSBkdWUgcGkgZ3JlY28gbWV0cmkuIER1ZSBpc3RhbnRpIG1vc3RyYW5vIHZlbG9jaXTDoCB0YW5nZW50aSBkaSBtb2R1bG8gZHVlIG1ldHJpIGFsIHNlY29uZG86IHZlcnNvIGzigJlhbHRvIGEgZGVzdHJhIGUgdmVyc28gc2luaXN0cmEgaW4gYWx0bywgcGVyIHJvdGF6aW9uZSBhbnRpb3JhcmlhLiBMYSByYXBpZGl0w6Agw6ggZHVlIG1ldHJpIGFsIHNlY29uZG8sIG1lbnRyZSBzdWwgZ2lybyBjb21wbGV0byBsYSB2ZWxvY2l0w6AgbWVkaWEgdmV0dG9yaWFsZSDDqCB6ZXJvLiBHZW9tZXRyaWEgYSBjZW50byB1bml0w6AgU1ZHIHBlciBtZXRybzsgZnJlY2NlIGRlbGxhIHZlbG9jaXTDoCBhIHF1YXJhbnRhIHBlciBtZXRybyBhbCBzZWNvbmRvLiBMZSBkdWUgc2NhbGUgbWlzdXJhbm8gZ3JhbmRlenplIGRpdmVyc2UuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJ2ZWxvY2l0eSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzEyNjE3YyIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTAwIiByeD0iMTgiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZjNiIj48ZyBmb250LXNpemU9IjIzIiBmb250LXdlaWdodD0iNzAwIj48dGV4dCB4PSIyOCIgeT0iNDIiPjEgwrcgTWlzdXJhIGxhIGx1bmdoZXp6YSBkZWwgZ2lybzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDAyIj4yIMK3IE9zc2VydmEgZHVlIGlzdGFudGkgZGlzdGludGk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgwMiI+MyDCtyBEaXZpZGkgcGVyIGlsIHBlcmlvZG88L3RleHQ+PC9nPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2YjdiN2QiIHN0cm9rZS13aWR0aD0iMiI+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMjEwIiByPSIxMDAiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSI1NjAiIHI9IjEwMCIvPjxwYXRoIGQ9Ik0xODAgMjEwSDI4MCIvPjwvZz4KPGcgZmlsbD0iIzE0MmYzYiI+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMjEwIiByPSI0Ii8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iNTYwIiByPSI0Ii8+PC9nPgo8ZyBmb250LXNpemU9IjIwIj48dGV4dCB4PSIxNjEiIHk9IjIzOSI+TzwvdGV4dD48dGV4dCB4PSIxOTQiIHk9IjE5MiI+ciA9IDEgbTwvdGV4dD48dGV4dCB4PSIzMjUiIHk9IjE4MSI+VW4gZ2lybzogQyA9IDLPgCBtPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMjIzIj5QZXJpb2RvOiBUID0gz4AgczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMzQ1Ij5HZW9tZXRyaWE6IDEwMCBweC9tPC90ZXh0PjwvZz4KPGcgc3Ryb2tlPSIjMTI2MTdjIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIG1hcmtlci1lbmQ9InVybCgjdmVsb2NpdHkpIj48cGF0aCBkPSJNMjgwIDU2MFY0ODAiLz48cGF0aCBkPSJNMTgwIDQ2MEgxMDAiLz48L2c+CjxnIGZpbGw9IiMxMjYxN2MiPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjU2MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjQ2MCIgcj0iNSIvPjwvZz4KPGcgZm9udC1zaXplPSIyMCI+PHRleHQgeD0iMjg4IiB5PSI1ODgiPlA8L3RleHQ+PHRleHQgeD0iMTg4IiB5PSI0NDgiPlE8L3RleHQ+PHRleHQgeD0iMTQ2IiB5PSI1ODYiPk88L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI0OTUiPnYgaW4gUDogMiBtL3M8L3RleHQ+PHRleHQgeD0iMzYiIHk9IjQzOCI+diBpbiBROiAyIG0vczwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjU0OSI+VWd1YWxlIG1vZHVsbyw8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI1ODAiPmRpcmV6aW9uaSBkaXZlcnNlLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzIwIj5WZWxvY2l0w6A6IDQwIHB4IHBlciBtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc1NCI+TGUgZnJlY2NlIG5vbiBtaXN1cmFubyBkaXN0YW56ZSBwZXJjb3JzZS48L3RleHQ+PC9nPgo8ZyBmb250LXNpemU9IjIzIj48dGV4dCB4PSIyOCIgeT0iODU4Ij5WID0gQy9UID0gKDLPgCBtKS8oz4AgcykgPSAyIG0vczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTIxIj5TdWwgZ2lybyBjb21wbGV0bzo8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk2NCI+c3Bvc3RhbWVudG8gbmV0dG8gPSAwIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEwMDciPnZlbG9jaXTDoCBtZWRpYSB2ZXR0b3JpYWxlID0gMCBtL3M8L3RleHQ+PC9nPjwvZz48L3N2Zz4K"
+    }
+  ]
+}
