@@ -1,0 +1,1266 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-elevator-apparent-weight-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3221,
+      "title": "La bilancia misura una forza di contatto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 1,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Con m=40 kg,a=2 m/s², quanto vale N in newton?",
+      "answer": {
+        "type": "numeric",
+        "value": 480,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Essere fermi rispetto alla cabina non significa avere accelerazione nulla rispetto al suolo. La persona condivide l’accelerazione dell’ascensore. La risultante verticale è N−mg, perciò la normale deve superare il peso della quantità m·a necessaria ad accelerare la persona verso l’alto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/de804231474c01893713b800d741c48141d3348ff5f2713e8f6f1d50342f76dc",
+          "text": "Tre tappe per m=40 kg,a=2 m/s²,g=10 m/s²: peso400 N e normale480 N sulla persona; risultante80 N verso alto; accelerazione2 m/s². Forze a0,25 px/N; accelerazione a40 px per m/s², scala di dimensione diversa. Risultante e accelerazione in pannelli separati dalle forze reali."
+        },
+        {
+          "type": "formula",
+          "text": "N-mg=ma"
+        },
+        {
+          "type": "formula",
+          "text": " N=m(g+a)"
+        },
+        {
+          "type": "formula",
+          "text": " N=(40\\,\\mathrm{kg})(12\\,\\mathrm{m/s^2})"
+        },
+        {
+          "type": "formula",
+          "text": "(40\\,\\mathrm{kg})(12\\,\\mathrm{m/s^2})=480\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il peso vale400N e la risultante80N; la bilancia legge480N, non uno di questi altri due valori. N>0 conferma che il contatto richiesto è possibile. Il risultato dipende dall’accelerazione, non dal fatto che la cabina stia istantaneamente salendo o scendendo."
+        }
+      ],
+      "hints": [
+        "La bilancia deve fornire sia il sostegno del peso sia la risultante m·a.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il peso vale400N e la risultante80N; la bilancia legge480N, non uno di questi altri due valori. N>0 conferma che il contatto richiesto è possibile. Il risultato dipende dall’accelerazione, non dal fatto che la cabina stia istantaneamente salendo o scendendo.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3222,
+      "title": "Forza letta oppure massa?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 1,
+      "prompt": "Una bilancia dinamometrica sotto i piedi di una persona legge direttamente il modulo N della forza normale esercitata dal suo piatto. Quale unità SI è adatta a N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg",
+          "s",
+          "m",
+          "m/s²",
+          "N"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La grandezza misurata è una forza di contatto. Dalla seconda legge di Newton una forza ha la dimensione di massa per accelerazione. Il suo nome di unità SI è newton, anche quando nel linguaggio quotidiano la lettura viene chiamata peso apparente."
+        },
+        {
+          "type": "formula",
+          "text": "[N]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm N=1\\,\\mathrm{kg\\,m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "kg è una massa: richiederebbe una diversa taratura per convertire la forza in una massa indicata. m/s² misura l’accelerazione; m e s non sono forze. Qui il prompt dichiara una bilancia dinamometrica e non una scala graduata in chilogrammi."
+        }
+      ],
+      "hints": [
+        "Il piatto esercita una forza, non una massa.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg è una massa: richiederebbe una diversa taratura per convertire la forza in una massa indicata. m/s² misura l’accelerazione; m e s non sono forze. Qui il prompt dichiara una bilancia dinamometrica e non una scala graduata in chilogrammi.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3223,
+      "title": "Scrivere l’equazione nel riferimento esterno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 1,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Quale relazione ricava N usando i simboli definiti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N=m(g−a)",
+          "N=ma",
+          "N=m(g+a)",
+          "N=mg",
+          "N=2m(g+a)"
+        ],
+        "value": "N=m(g+a)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommiamo soltanto le forze che agiscono sulla persona. La normale ha segno positivo, il peso negativo. Nel riferimento inerziale esterno non si aggiunge una forza fittizia: il prodotto m·a è il secondo membro della legge di Newton. Isolando N si deve compensare il peso e lasciare una risultante positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\sum F_y=N-mg"
+        },
+        {
+          "type": "formula",
+          "text": " N-mg=ma"
+        },
+        {
+          "type": "formula",
+          "text": " N=mg+ma"
+        },
+        {
+          "type": "formula",
+          "text": "mg+ma=m(g+a)"
+        },
+        {
+          "type": "text",
+          "text": "m(g−a) descriverebbe un’accelerazione orientata in basso di modulo a, soltanto per a≤g se si vuole mantenere N≥0: oltre g non si ammette una normale negativa, ma si perde il contatto. Il prodotto m·a è la risultante e non la normale. mg varrebbe per accelerazione nulla. Il fattore due nell’ultima alternativa non deriva dalle due forze: il peso è già incluso nella somma g+a."
+        }
+      ],
+      "hints": [
+        "Alto positivo: N e mg entrano con segni opposti.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "m(g−a) descriverebbe un’accelerazione orientata in basso di modulo a, soltanto per a≤g se si vuole mantenere N≥0: oltre g non si ammette una normale negativa, ma si perde il contatto. Il prodotto m·a è la risultante e non la normale. mg varrebbe per accelerazione nulla. Il fattore due nell’ultima alternativa non deriva dalle due forze: il peso è già incluso nella somma g+a.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3224,
+      "title": "Due persone alla stessa accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 1,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Due prove separate hanno a=2 m/s² e masse m₁=40 kg,m₂=60 kg. Come cambia la lettura N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 480 a 720 N",
+          "Da 480 a 960 N",
+          "Resta 480 N",
+          "Da 480 a 320 N",
+          "Diventa zero"
+        ],
+        "value": "Da 480 a 720 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione efficace g+a vale12m/s² in entrambe le prove. La massa aumenta del fattore60/40=3/2, perciò anche N aumenta dello stesso fattore. Il corpo della seconda prova ha massa costante: non descriviamo una persona che cambia massa durante il moto."
+        },
+        {
+          "type": "formula",
+          "text": "N_1=40(10+2)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "40(10+2)\\,\\mathrm N=480\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2=60(10+2)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "60(10+2)\\,\\mathrm N=720\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2/N_1=3/2"
+        },
+        {
+          "type": "text",
+          "text": "960N raddoppierebbe la massa anziché moltiplicarla per3/2.320N inverte il rapporto, invariabilità ignora m e zero contraddice il contatto con accelerazione verso l’alto. Entrambe le normali sono maggiori dei rispettivi pesi."
+        }
+      ],
+      "hints": [
+        "Moltiplica lo stesso12m/s² per ciascuna massa.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "960N raddoppierebbe la massa anziché moltiplicarla per3/2.320N inverte il rapporto, invariabilità ignora m e zero contraddice il contatto con accelerazione verso l’alto. Entrambe le normali sono maggiori dei rispettivi pesi.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3225,
+      "title": "Dalla lettura alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Si misurano N=480 N e a=2 m/s². Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo la massa da N=m(g+a) dividendo per la somma di accelerazioni, positiva. Dodici metri al secondo quadrato al denominatore convertono la forza in una massa. Il conto480/12 si può fare riconoscendo12·4=48 e aggiungendo uno zero."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{N}{g+a}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{480\\,\\mathrm N}{12\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{480\\,\\mathrm N}{12\\,\\mathrm{m/s^2}}=40\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare N/g darebbe48kg, assumendo erroneamente accelerazione nulla. La ricostruzione40·12=480N verifica i dati. Non occorre conoscere la velocità della cabina, che non compare nella seconda legge per questa domanda."
+        }
+      ],
+      "hints": [
+        "Al denominatore compare g+a, non soltanto g.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare N/g darebbe48kg, assumendo erroneamente accelerazione nulla. La ricostruzione40·12=480N verifica i dati. Non occorre conoscere la velocità della cabina, che non compare nella seconda legge per questa domanda.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3226,
+      "title": "Dalla lettura all’accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Si misurano N=480 N e m=40 kg. Quanto vale a in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo prima N=m(g+a) per la massa. Il quoziente 480/40 dà dodici metri al secondo quadrato: è g+a, non ancora a. Sottraiamo poi la gravità di dieci. Il valore positivo deve corrispondere al verso alto assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Nm=g+a"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac Nm-g"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac Nm=12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a=(12-10)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura supera il peso400N e fornisce quindi una risultante80N verso l’alto. Questo verifica sia a=80/40=2m/s² sia il contatto N>0. Il quoziente N/m da solo avrebbe sovrastimato l’accelerazione di g."
+        }
+      ],
+      "hints": [
+        "Dopo la divisione per m manca ancora la sottrazione di g.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura supera il peso400N e fornisce quindi una risultante80N verso l’alto. Questo verifica sia a=80/40=2m/s² sia il contatto N>0. Il quoziente N/m da solo avrebbe sovrastimato l’accelerazione di g.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3227,
+      "title": "Raddoppiare a non raddoppia N",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Due prove con m=40 kg hanno a₁=2 m/s²,a₂=4 m/s². Quanto vale N₂/N₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/12",
+          "2",
+          "1/6",
+          "7/6",
+          "6/7"
+        ],
+        "value": "7/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso della stessa persona non cambia. Le somme g+a passano da12a14m/s², dunque il rapporto è14/12=7/6. Le due letture sono480e560N; solo il termine m·a raddoppia, non l’intera normale."
+        },
+        {
+          "type": "formula",
+          "text": "N_1=40\\times12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "40\\times12\\,\\mathrm N=480\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2=40\\times14\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "40\\times14\\,\\mathrm N=560\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2/N_1=560/480"
+        },
+        {
+          "type": "formula",
+          "text": "560/480=7/6"
+        },
+        {
+          "type": "text",
+          "text": "Due usa il rapporto delle accelerazioni ignorando il peso;6/7 inverte le prove;7/12 dimezza il rapporto corretto.1/6 è l’aumento relativo (560−480)/480, non il rapporto finale/iniziale. Le forze rimangono positive in entrambe le prove."
+        }
+      ],
+      "hints": [
+        "Confronta g+a₂ con g+a₁.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due usa il rapporto delle accelerazioni ignorando il peso;6/7 inverte le prove;7/12 dimezza il rapporto corretto.1/6 è l’aumento relativo (560−480)/480, non il rapporto finale/iniziale. Le forze rimangono positive in entrambe le prove.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3228,
+      "title": "Valutare uno scarto in newton",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Con m=40 kg,a=2 m/s², si propone N_proposto=960 N. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+960 N",
+          "+240 N",
+          "−480 N",
+          "0 N",
+          "+480 N"
+        ],
+        "value": "+480 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale corretta è quaranta per dodici, cioè480N. La proposta è il doppio. Per lo scarto con segno sottraiamo il valore corretto dalla proposta:960−480=480N."
+        },
+        {
+          "type": "formula",
+          "text": "N=m(g+a)"
+        },
+        {
+          "type": "formula",
+          "text": "m(g+a)=40\\times12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "40\\times12\\,\\mathrm N=480\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=(960-480)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(960-480)\\,\\mathrm N=+480\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "−480N invertirebbe l’ordine, zero accetterebbe la proposta,960N la ripeterebbe e240N dimezzerebbe ancora lo scarto. Il segno positivo è una sovrastima della lettura, non una normale diretta in un verso diverso da quello dichiarato."
+        }
+      ],
+      "hints": [
+        "Ricava prima la normale e poi confrontala con960N.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−480N invertirebbe l’ordine, zero accetterebbe la proposta,960N la ripeterebbe e240N dimezzerebbe ancora lo scarto. Il segno positivo è una sovrastima della lettura, non una normale diretta in un verso diverso da quello dichiarato.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3229,
+      "title": "L’inversa con un denominatore positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Quale formula isola m da N=m(g+a)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=N/[2(g+a)]",
+          "m=N/g",
+          "m=N/a",
+          "m=N/(g+a)",
+          "m=2N/(g+a)"
+        ],
+        "value": "m=N/(g+a)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa moltiplica la somma g+a. Dividiamo entrambi i membri per quella somma, che è strettamente positiva per le ipotesi g>0,a>0. Un newton diviso un metro al secondo quadrato produce un chilogrammo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/de804231474c01893713b800d741c48141d3348ff5f2713e8f6f1d50342f76dc",
+          "text": "Tre tappe per m=40 kg,a=2 m/s²,g=10 m/s²: peso400 N e normale480 N sulla persona; risultante80 N verso alto; accelerazione2 m/s². Forze a0,25 px/N; accelerazione a40 px per m/s², scala di dimensione diversa. Risultante e accelerazione in pannelli separati dalle forze reali."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{N}{g+a}=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{N}{g+a}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\frac{ML/T^2}{L/T^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{ML/T^2}{L/T^2}=M"
+        },
+        {
+          "type": "text",
+          "text": "I fattori due aggiunti o tolti dimezzano o raddoppiano la massa senza motivo. N/g assumerebbe assente la risultante m·a; N/a confonderebbe N con la risultante. Nel dominio dichiarato ogni lettura N positiva fornisce una massa positiva e una normale compatibile con il contatto."
+        }
+      ],
+      "hints": [
+        "Dividi per tutta la parentesi g+a.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I fattori due aggiunti o tolti dimezzano o raddoppiano la massa senza motivo. N/g assumerebbe assente la risultante m·a; N/a confonderebbe N con la risultante. Nel dominio dichiarato ogni lettura N positiva fornisce una massa positiva e una normale compatibile con il contatto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3230,
+      "title": "Scalare m e a mantenendo la gravità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Fra due prove separate m₂=κ₁m e a₂=κ₂a, con κ₁,κ₂>0; m,a indicano i dati della prima. N₁,N₂ sono le normali. Quale rapporto N₂/N₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₁(g+κ₂a)/[2(g+a)]",
+          "κ₁(g+κ₂a)/(g+a)",
+          "κ₁(g+a)/(g+κ₂a)",
+          "κ₁(g+κ₂a)/a"
+        ],
+        "value": "κ₁(g+κ₂a)/(g+a)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore della massa moltiplica tutta la lettura. Il fattore dell’accelerazione, invece, moltiplica soltanto a e non il campo gravitazionale, che rimane lo stesso. Scriviamo entrambe le normali e cancelliamo la massa iniziale nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "N_1=m(g+a)"
+        },
+        {
+          "type": "formula",
+          "text": " N_2=\\kappa_1m(g+\\kappa_2a)"
+        },
+        {
+          "type": "formula",
+          "text": " N_2/N_1=\\frac{\\kappa_1(g+\\kappa_2a)}{g+a}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ scalerebbe anche il termine mg. Il mezzo supplementare non deriva da alcuna forza; invertire le parentesi scambia l’effetto del cambiamento di a. L’ultimo denominatore a trascura il contributo g della prima lettura. Con κ₂=1 rimane soltanto κ₁, come richiede una variazione della sola massa."
+        }
+      ],
+      "hints": [
+        "Il parametro g non viene moltiplicato perκ₂.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁κ₂ scalerebbe anche il termine mg. Il mezzo supplementare non deriva da alcuna forza; invertire le parentesi scambia l’effetto del cambiamento di a. L’ultimo denominatore a trascura il contributo g della prima lettura. Con κ₂=1 rimane soltanto κ₁, come richiede una variazione della sola massa.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3231,
+      "title": "Massa e accelerazione entrambe diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Le due prove hanno (m₁=40 kg,a₁=2 m/s²) e (m₂=60 kg,a₂=4 m/s²). Quanto vale N₂/N₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/4",
+          "4/7",
+          "3/2",
+          "2",
+          "7/2"
+        ],
+        "value": "7/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima lettura è40·12=480N; la seconda60·14=840N. Riduciamo la frazione840/480: cancellando120 otteniamo7/4. Il risultato combina un fattore3/2 di massa con un fattore7/6 di g+a."
+        },
+        {
+          "type": "formula",
+          "text": "N_1=480\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2=840\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2/N_1=840/480"
+        },
+        {
+          "type": "formula",
+          "text": "840/480=7/4"
+        },
+        {
+          "type": "text",
+          "text": "4/7 inverte il rapporto,3/2 considera soltanto la massa e due soltanto a.7/2 raddoppia il rapporto corretto. La frazione7/4 è esatta e adimensionale, senza bisogno di una lettura decimale."
+        }
+      ],
+      "hints": [
+        "Puoi semplificare840/480 dividendo numeratore e denominatore per120.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/7 inverte il rapporto,3/2 considera soltanto la massa e due soltanto a.7/2 raddoppia il rapporto corretto. La frazione7/4 è esatta e adimensionale, senza bisogno di una lettura decimale.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3232,
+      "title": "La media delle forze lette",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 2,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Due prove separate hanno (m=40 kg,a=2 m/s²) e (m=60 kg,a=4 m/s²). Qual è la media aritmetica delle due normali con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "650 N",
+          "480 N",
+          "660 N",
+          "1320 N",
+          "330 N"
+        ],
+        "value": "660 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima480N e840N. Per la media possiamo dimezzare separatamente le letture:240+420=660N. Non stiamo leggendo la bilancia con massa e accelerazione medie: quei dati50kg e3m/s² darebbero650N, perché il prodotto m·a lega i due ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "N_1=480\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " N_2=840\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline N=\\frac{480+840}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{480+840}{2}\\,\\mathrm N=(240+420)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(240+420)\\,\\mathrm N=660\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "650N appartiene al modello applicato agli ingressi medi;480N usa una sola prova;1320N è la somma e330N dimezza ancora la media. La media corretta cade fra le due letture e mantiene l’unità di forza."
+        }
+      ],
+      "hints": [
+        "Media le uscite già calcolate, ciascuna con peso1/2.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "650N appartiene al modello applicato agli ingressi medi;480N usa una sola prova;1320N è la somma e330N dimezza ancora la media. La media corretta cade fra le due letture e mantiene l’unità di forza.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3233,
+      "title": "Scegliere l’accelerazione per una nuova persona",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 3,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. La prima prova ha m₁=40 kg,a₁=2 m/s². Nella seconda si impone m₂=60 kg e si vuole N₂=(7/4)N₁. Quanto vale a₂/a₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale iniziale480N, moltiplicata per7/4, dà840N: prima480/4=120, poi120·7=840. Per la massa nuova60kg la somma g+a₂ deve valere14m/s². Sottraendo g troviamo a₂=4m/s² e poi il rapporto con i due iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "N_2=\\frac74(480\\,\\mathrm N)"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac74(480\\,\\mathrm N)=840\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " g+a_2=N_2/m_2"
+        },
+        {
+          "type": "formula",
+          "text": "N_2/m_2=14\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a_2=(14-10)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "(14-10)\\,\\mathrm{m/s^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a_2/a_1=2"
+        },
+        {
+          "type": "text",
+          "text": "a₂ è positiva e N₂ supera il nuovo peso600N, quindi il contatto è coerente. Moltiplicare a₁ direttamente per7/4 ignorerebbe il cambio della massa e il termine g: l’obiettivo riguarda N, non a da sola."
+        }
+      ],
+      "hints": [
+        "Ricava a₂=N₂/m₂−g dopo aver trovato la forza obiettivo.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "a₂ è positiva e N₂ supera il nuovo peso600N, quindi il contatto è coerente. Moltiplicare a₁ direttamente per7/4 ignorerebbe il cambio della massa e il termine g: l’obiettivo riguarda N, non a da sola.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3234,
+      "title": "Una taratura proporzionale della forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 3,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Un secondo display ideale legge S=qN, continuo e adimensionale, con q>0 costante e offset nullo. Il riferimento m=40 kg,a=2 m/s² dà S=1440. La nuova prova dà S=2520 e a=4 m/s². Quanto vale m nella nuova prova in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento corrisponde a N=480N, perciò q=1440/480=3N⁻¹. La nuova lettura equivale a2520/3=840N. Dividiamo poi questa forza per g+a=14m/s²:840/14=60kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{1440}{480\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1440}{480\\,\\mathrm N}=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{2520}{q}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2520}{q}=840\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{N}{g+a}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{N}{g+a}=\\frac{840\\,\\mathrm N}{14\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{840\\,\\mathrm N}{14\\,\\mathrm{m/s^2}}=60\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura S non è direttamente una massa né una forza in SI. Il controllo completo è60·14=840N e3·840=2520. La normale positiva è maggiore del peso600N, come richiesto da accelerazione verso l’alto e contatto mantenuto."
+        }
+      ],
+      "hints": [
+        "Taratura prima: converti2520 in newton.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura S non è direttamente una massa né una forza in SI. Il controllo completo è60·14=840N e3·840=2520. La normale positiva è maggiore del peso600N, come richiesto da accelerazione verso l’alto e contatto mantenuto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3235,
+      "title": "Riconoscere l’offset di una seconda lettura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 3,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Un secondo display ideale dà S=qN+c, continuo e adimensionale, con q>0,c costanti. I riferimenti (m=40 kg,a=2 m/s²) e (m=60 kg,a=4 m/s²) danno S=961 e1681. La prova ignota ha a=2 m/s²,S=1441. Quanto vale m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "59 kg",
+          "60 kg",
+          "120 kg",
+          "30 kg",
+          "61 kg"
+        ],
+        "value": "60 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti fisici sono480e840N. Le differenze sono720nelle letture e360N nelle forze: q=2N⁻¹. Dal primo riferimento c=961−2·480=1. Tolto l’offset,1440diviso2 dà720N; dividendo per12m/s² si trova60kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{1681-961}{(840-480)\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1681-961}{(840-480)\\,\\mathrm N}=\\frac{720}{360}\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{720}{360}\\,\\mathrm{N^{-1}}=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " c=961-2\\times480"
+        },
+        {
+          "type": "formula",
+          "text": "961-2\\times480=1"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{1441-1}{q}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1441-1}{q}=720\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{720}{12}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{720}{12}\\,\\mathrm{kg}=60\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "120e30kg raddoppiano o dimezzano la massa corretta.59e61kg, a questa accelerazione, darebbero letture1417e1465, distanti 24 unità strumentali da 1441. La massa60kg restituisce S=2·[60·(10+2)]+1=1441. Usare rapporti delle letture grezze non eliminerebbe c."
+        }
+      ],
+      "hints": [
+        "Sottrai le letture di riferimento prima di cercare q e c.",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "120e30kg raddoppiano o dimezzano la massa corretta.59e61kg, a questa accelerazione, darebbero letture1417e1465, distanti 24 unità strumentali da 1441. La massa60kg restituisce S=2·[60·(10+2)]+1=1441. Usare rapporti delle letture grezze non eliminerebbe c.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elevator-apparent-weight-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3236,
+      "title": "Un vincolo quadratico fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elevator-apparent-weight",
+      "difficulty": 3,
+      "prompt": "Una persona di massa costante m>0 resta ferma rispetto alla bilancia sul pavimento di un ascensore. Il contatto è mantenuto. Nel riferimento inerziale esterno, alto positivo, entrambi accelerano verso l’alto con a>0. Il campo gravitazionale ha g=10 m/s². Le sole forze verticali sulla persona sono il peso mg in basso e la normale N in alto, letta in newton. Si selezionano prove con m=ka, dove k=20 kg·s²/m è fisso. Il vincolo collega persone e prove diverse; ciascuna mantiene massa costante. Si misura N=480 N. Quanto vale a>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s²",
+          "3 m/s²",
+          "−2 m/s²",
+          "2 m/s²",
+          "4 m/s²"
+        ],
+        "value": "2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo m=ka nella normale: N=ka(g+a). Per svolgere il conto senza mescolare unità, poniamo u=1m/s² e x=a/u, numero puro. Si ha g=10u e k=20kg/u; l’equazione diventa480=20x(x+10), cioè x²+10x−24=0. Per fattorizzare scegliamo 12 e −2, che hanno prodotto −24 e somma 10. Questo evita qualsiasi approssimazione della formula quadratica. Le due radici sono alternative, non valori simultanei della stessa x."
+        },
+        {
+          "type": "formula",
+          "text": "u=1\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " x=a/u"
+        },
+        {
+          "type": "formula",
+          "text": " N=ka(g+a)"
+        },
+        {
+          "type": "formula",
+          "text": " x(x+10)=24"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+10x-24=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-2)(x+12)=0"
+        },
+        {
+          "type": "formula",
+          "text": " x=2"
+        },
+        {
+          "type": "formula",
+          "text": " x=-12"
+        },
+        {
+          "type": "formula",
+          "text": " a=2u"
+        },
+        {
+          "type": "formula",
+          "text": "2u=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=ka"
+        },
+        {
+          "type": "formula",
+          "text": "ka=40\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo−12 viola a>0 e renderebbe negativa la massa, quindi resta una sola soluzione. L’alternativa−2 viola anch’essa il dominio, ma non è neppure una radice. Le alternative1,3,4m/s² darebbero sotto il vincolo rispettivamente N220,780,1120N. La soluzione dà480N>mg400N, compatibile con il contatto."
+        }
+      ],
+      "hints": [
+        "Riduci a una quadratica nel numero puro x=a/(1m/s²).",
+        "Usa il riferimento esterno inerziale: N−mg=ma, con contatto mantenuto."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il ramo−12 viola a>0 e renderebbe negativa la massa, quindi resta una sola soluzione. L’alternativa−2 viola anch’essa il dominio, ma non è neppure una radice. Le alternative1,3,4m/s² darebbero sotto il vincolo rispettivamente N220,780,1120N. La soluzione dà480N>mg400N, compatibile con il contatto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda legge di Newton",
+        "Peso apparente e contatto in ascensore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "de804231474c01893713b800d741c48141d3348ff5f2713e8f6f1d50342f76dc",
+      "name": "elevator-apparent-weight-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTE1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk5vcm1hbGUsIHBlc28gZSBhY2NlbGVyYXppb25lIGluIGFzY2Vuc29yZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlBlcnNvbmEgZGkgcXVhcmFudGEgY2hpbG9ncmFtbWkgaW4gY29udGF0dG8gY29uIGxhIGJpbGFuY2lhLCB2aXN0YSBkYWwgcmlmZXJpbWVudG8gZXN0ZXJubyBpbmVyemlhbGUuIFByaW1vIHBhbm5lbGxvOiBub3JtYWxlIHF1YXR0cm9jZW50b3R0YW50YSBuZXd0b24gdmVyc28gYWx0bywgbHVuZ2EgY2VudG92ZW50aSBwaXhlbCwgZSBwZXNvIHF1YXR0cm9jZW50byBuZXd0b24gdmVyc28gYmFzc28gbHVuZ28gY2VudG8gcGl4ZWwuIFNlY29uZG8gcGFubmVsbG86IHJpc3VsdGFudGUgb3R0YW50YSBuZXd0b24gdmVyc28gYWx0bywgdmVudGkgcGl4ZWwuIEZvcnplIGEgdW4gcXVhcnRvIGRpIHBpeGVsIHBlciBuZXd0b24uIFRlcnpvOiBhY2NlbGVyYXppb25lIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIHF1YWRyYXRvIHZlcnNvIGFsdG8sIG90dGFudGEgcGl4ZWwgYSBxdWFyYW50YSBwaXhlbCBwZXIgbWV0cm8gYWwgc2Vjb25kbyBxdWFkcmF0by4gU2NhbGUgZGkgZGltZW5zaW9uaSBkaXZlcnNlLCBwYW5uZWxsaSBhbHRlcm5hdGl2aSBkYSBub24gc29tbWFyZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9Im4iIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjUuNSIgcmVmWT0iMyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwIEw2IDMgTDAgNiBaIiBmaWxsPSIjMTQ2NDdiIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0icCIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgcmVmWD0iNS41IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDAgTDYgMyBMMCA2IFoiIGZpbGw9IiNiNDRiMmMiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTUwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzIzZiI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBJc29sYSBsYSBwZXJzb25hLCBhbHRvIHBvc2l0aXZvPC90ZXh0Pgo8cmVjdCB4PSIxODAiIHk9IjIwMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2Q2ZTZkZiIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxOTAiIHk9IjIzNiI+bSA9IDQwIGtnPC90ZXh0Pgo8cGF0aCBkPSJNMjMwIDIwMCBMMjMwIDgwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNuKSIvPjxwYXRoIGQ9Ik0yMzAgMjYwIEwyMzAgMzYwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNwKSIvPgo8dGV4dCB4PSIyNzAiIHk9IjEyNSI+TiA9IDQ4MCBOPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMzI1Ij5tZyA9IDQwMCBOPC90ZXh0Pjx0ZXh0IHg9IjM0NSIgeT0iMjMwIj5Db250YXR0byBtYW50ZW51dG8uPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDEwIj5Gb3J6ZSByZWFsaTogbm9ybWFsZSBlIHBlc28gc3VsbGEgcGVyc29uYS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NzAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgTGEgcmlzdWx0YW50ZSDDqCBsYSBkaWZmZXJlbnphPC90ZXh0Pgo8cmVjdCB4PSIxODAiIHk9IjU2MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2Q2ZTZkZiIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxOTAiIHk9IjU5NiI+bSA9IDQwIGtnPC90ZXh0PjxwYXRoIGQ9Ik0yMzAgNTYwIEwyMzAgNTQwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNuKSIvPgo8dGV4dCB4PSIzMTAiIHk9IjU1MCI+TiDiiJIgbWcgPSA4MCBOIHZlcnNvIGFsdG88L3RleHQ+PHRleHQgeD0iMjgiIHk9IjY3NSI+U2NhbGUgZGVpIHBhbm5lbGxpIDEgZSAyOiAwLDI1IHB4L04uPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzEwIj5MYSByaXN1bHRhbnRlIHNvc3RpdHVpc2NlIGxlIGZvcnplLCBub24gc2kgYWdnaXVuZ2UuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzgwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IFZlcmlmaWNhIGzigJlhY2NlbGVyYXppb25lPC90ZXh0Pgo8cmVjdCB4PSIxODAiIHk9IjkwMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2Q2ZTZkZiIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxOTAiIHk9IjkzNiI+bSA9IDQwIGtnPC90ZXh0PjxwYXRoIGQ9Ik0yMzAgOTAwIEwyMzAgODIwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNuKSIvPgo8dGV4dCB4PSIzMTAiIHk9Ijg2MCI+YSA9ICg4MCBOKS8oNDAga2cpID0gMiBtL3PCsjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEwMTAiPkFjY2VsZXJhemlvbmU6IDQwIHB4IHBlciBtL3PCsi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEwNTAiPlNjYWxhIGRpIGRpbWVuc2lvbmUgZGl2ZXJzYSBkYSBxdWVsbGEgZGVsbGUgZm9yemUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTAwIj5OID0gbShnICsgYSkgPSA0MCDCtyAxMiBOID0gNDgwIE48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

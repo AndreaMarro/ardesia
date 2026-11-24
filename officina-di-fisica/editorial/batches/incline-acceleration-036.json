@@ -1,0 +1,1184 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-incline-acceleration-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3621,
+      "title": "La componente che fa accelerare lungo il piano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Con g=10 m/s² e s=1/2, quanto vale A in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso non è tutto parallelo al piano. La sua componente lungo la discesa è mgs, mentre la normale è perpendicolare e non entra in questa equazione. Newton dà mA=mgs. La massa positiva si cancella: a parità di campo e inclinazione il modulo A non dipende da quanto pesa il corpo."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\parallel}=mgs"
+        },
+        {
+          "type": "formula",
+          "text": " mA=mgs"
+        },
+        {
+          "type": "formula",
+          "text": " A=gs"
+        },
+        {
+          "type": "formula",
+          "text": " A=10\\times\\frac12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "A è minore di g, perché il rapporto s è fra zero e uno. Non è una caduta libera verticale: il vincolo elimina l’accelerazione perpendicolare. Il verso dell’accelerazione è in discesa anche se il corpo fosse momentaneamente in moto verso l’alto; il verso della velocità non è stato assegnato."
+        }
+      ],
+      "hints": [
+        "Proietta il peso lungo il piano prima di dividere per la massa.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A è minore di g, perché il rapporto s è fra zero e uno. Non è una caduta libera verticale: il vincolo elimina l’accelerazione perpendicolare. Il verso dell’accelerazione è in discesa anche se il corpo fosse momentaneamente in moto verso l’alto; il verso della velocità non è stato assegnato.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3622,
+      "title": "Il seno non introduce un’unità di misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 1,
+      "prompt": "Nel modello di un piano liscio l’accelerazione lungo il piano vale A=gs, dove g è un’accelerazione e s=sinθ è un rapporto puro. Quale unità SI è adatta ad A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "N",
+          "m/s²",
+          "kg",
+          "s"
+        ],
+        "value": "m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno è il rapporto fra due lunghezze in un triangolo e non porta una dimensione fisica. Moltiplicare g per s cambia il valore, ma lascia invariata l’unità di accelerazione. Non compare qui un angolo da convertire in radianti o da valutare con una calcolatrice."
+        },
+        {
+          "type": "formula",
+          "text": "[s]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=[g][s]"
+        },
+        {
+          "type": "formula",
+          "text": "[g][s]=L/T^2"
+        },
+        {
+          "type": "text",
+          "text": "m/s² è corretto. N misura la componente di forza prima della divisione per massa; kg una massa, m una lunghezza e s una durata. L’unità secondo, scritta s dopo un numero, è distinta dal simbolo s che qui indica il seno."
+        }
+      ],
+      "hints": [
+        "Tratta il seno come un numero puro che moltiplica g.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s² è corretto. N misura la componente di forza prima della divisione per massa; kg una massa, m una lunghezza e s una durata. L’unità secondo, scritta s dopo un numero, è distinta dal simbolo s che qui indica il seno.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3623,
+      "title": "Due proiezioni, una sola accelerazione tangenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Quale relazione dà A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A=g/s",
+          "A=gs",
+          "A=g",
+          "A=0",
+          "A=gs²"
+        ],
+        "value": "A=gs"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo due assi: uno parallelo al piano e uno normale. La reazione di contatto equilibra soltanto la componente normale del peso. Lungo il piano resta invece mgs: non c’è attrito che la compensi. Dividendo Newton per m>0 otteniamo l’accelerazione richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/acb1d5ec3e9d15265b4036586317ad3f35db58d76feb388834817c4b183f051b",
+          "text": "Esempio di proiezione per la prova con g=10 m/s²,s=3/5 e cosθ=4/5: nel solo disegno si sceglie m=1 kg per mostrare forze di 10, 6 e 8 N. L’accelerazione è 6 m/s² per ogni massa positiva. Geometria 3-4-5, forze a 10 px/N; A a 10 px per m/s² in pannello distinto, con unità diversa."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\parallel}=mgs"
+        },
+        {
+          "type": "formula",
+          "text": " mA=P_{\\parallel}"
+        },
+        {
+          "type": "formula",
+          "text": " A=gs"
+        },
+        {
+          "type": "text",
+          "text": "g/s sarebbe maggiore di g nel dominio assegnato; g ignorerebbe l’inclinazione e varrebbe solo per la direzione verticale libera. Zero confonde l’equilibrio perpendicolare con quello lungo il piano. gs² proietta due volte la stessa componente. La normale non è una forza opposta all’intero peso: ha una direzione diversa."
+        }
+      ],
+      "hints": [
+        "La normale non ha una componente lungo un piano liscio.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "g/s sarebbe maggiore di g nel dominio assegnato; g ignorerebbe l’inclinazione e varrebbe solo per la direzione verticale libera. Zero confonde l’equilibrio perpendicolare con quello lungo il piano. gs² proietta due volte la stessa componente. La normale non è una forza opposta all’intero peso: ha una direzione diversa.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3624,
+      "title": "Stessa pendenza in due campi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Due prove separate mantengono s=1/2 e usano g₁=10 m/s²,g₂=20 m/s². Come cambia A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 10 m/s²",
+          "Resta 5 m/s²",
+          "Da 5 a 20 m/s²",
+          "Da 5 a 5/2 m/s²",
+          "Diventa zero"
+        ],
+        "value": "Da 5 a 10 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione del campo proiettata lungo il piano resta un mezzo. Se il campo raddoppia fra prove, anche questa componente raddoppia. Ogni prova mantiene il proprio g costante: il confronto non descrive una gravità che cambia nel tempo durante la discesa."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=10\\times\\frac12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=20\\times\\frac12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "20 m/s² usa il nuovo g senza proiezione;5/2 inverte l’effetto del campo. Invariabilità o zero non seguono dalla componente del peso aumentata. La massa non deve essere raddoppiata per ottenere questo risultato: si cancella in entrambe le equazioni."
+        }
+      ],
+      "hints": [
+        "Il rapporto s è identico, quindi segue lo stesso fattore di g.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "20 m/s² usa il nuovo g senza proiezione;5/2 inverte l’effetto del campo. Invariabilità o zero non seguono dalla componente del peso aumentata. La massa non deve essere raddoppiata per ottenere questo risultato: si cancella in entrambe le equazioni.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3625,
+      "title": "Dal moto al modulo del campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Si misurano A=5 m/s² e s=1/2. Quanto vale g in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione A=gs dividiamo entrambi i membri per s, che è positivo. Dividere per un mezzo significa moltiplicare per due. L’operazione non cambia l’unità di accelerazione, perché s è un rapporto puro."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac As"
+        },
+        {
+          "type": "formula",
+          "text": " g=5\\times2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 10·(1/2)=5 restituisce A. Moltiplicare invece per s darebbe 5/2 m/s², minore dell’accelerazione sul piano e incompatibile con 0<s<1. Non abbiamo ricavato un angolo: il rapporto necessario alla proiezione era già fornito."
+        }
+      ],
+      "hints": [
+        "Per s=1/2, dividere per s equivale a raddoppiare A.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 10·(1/2)=5 restituisce A. Moltiplicare invece per s darebbe 5/2 m/s², minore dell’accelerazione sul piano e incompatibile con 0<s<1. Non abbiamo ricavato un angolo: il rapporto necessario alla proiezione era già fornito.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3626,
+      "title": "Ricavare il rapporto geometrico, non l’angolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Si misurano A=5 m/s² e g=10 m/s². Quanto vale s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "−1/2",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo il rapporto s dividendo A=gs per g>0. Le unità uguali si cancellano:5/10=1/2. La richiesta si ferma al seno dell’inclinazione; non occorre calcolare una funzione trigonometrica inversa o esprimere θ in gradi."
+        },
+        {
+          "type": "formula",
+          "text": "s=\\frac Ag"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\frac{5\\,\\mathrm{m/s^2}}{10\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto inverso e supera il limite superiore del seno;−1/2 viola il dominio positivo. Uno richiederebbe un piano verticale, escluso, e darebbe A=g.1/4 dimezza ancora il risultato senza motivo. Il valore 1/2 soddisfa 0<s<1 e ricostruisce A5 m/s²."
+        }
+      ],
+      "hints": [
+        "Confronta A con g e conserva il risultato come frazione pura.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto inverso e supera il limite superiore del seno;−1/2 viola il dominio positivo. Uno richiederebbe un piano verticale, escluso, e darebbe A=g.1/4 dimezza ancora il risultato senza motivo. Il valore 1/2 soddisfa 0<s<1 e ricostruisce A5 m/s².",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3627,
+      "title": "Una pendenza espressa da un rapporto maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Due prove hanno g=10 m/s² e rapporti s₁=1/2,s₂=3/5. Quanto vale A₂/A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5",
+          "5/6",
+          "6/5",
+          "12/5",
+          "1/5"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima accelerazione vale cinque, la seconda sei metri al secondo quadrato. Il rapporto cercato è sei su cinque. Possiamo anche cancellare il campo comune e dividere(3/5) per(1/2): il reciproco del mezzo introduce il fattore due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/acb1d5ec3e9d15265b4036586317ad3f35db58d76feb388834817c4b183f051b",
+          "text": "Esempio di proiezione per la prova con g=10 m/s²,s=3/5 e cosθ=4/5: nel solo disegno si sceglie m=1 kg per mostrare forze di 10, 6 e 8 N. L’accelerazione è 6 m/s² per ogni massa positiva. Geometria 3-4-5, forze a 10 px/N; A a 10 px per m/s² in pannello distinto, con unità diversa."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=6\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_2}{A_1}=\\frac{3/5}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_2}{A_1}=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "3/5 ripete il secondo seno;5/6 inverte il confronto;12/5 raddoppia ancora il rapporto.1/5 è l’aumento relativo(6−5)/5, non il rapporto finale su iniziale. Non si confrontano direttamente i due angoli: la legge usa i loro seni già dati."
+        }
+      ],
+      "hints": [
+        "La seconda accelerazione è 6 m/s², da confrontare con 5 m/s².",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "3/5 ripete il secondo seno;5/6 inverte il confronto;12/5 raddoppia ancora il rapporto.1/5 è l’aumento relativo(6−5)/5, non il rapporto finale su iniziale. Non si confrontano direttamente i due angoli: la legge usa i loro seni già dati.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3628,
+      "title": "Una proposta uguale a g",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Con g=10 m/s²,s=1/2, viene proposto A_proposto=10 m/s². Quanto vale lo scarto proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+5 m/s²",
+          "+10 m/s²",
+          "−5 m/s²",
+          "0 m/s²",
+          "+5/2 m/s²"
+        ],
+        "value": "+5 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente corretta è metà di g, cioè 5 m/s². La proposta tratta il vincolo come se il corpo fosse in caduta libera verticale. Nell’ordine richiesto sottraiamo 5 da 10 e otteniamo uno scarto positivo di 5 m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "A=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "−5 inverte l’ordine,10 ripete la proposta,zero la dichiara corretta e 5/2 dimezza ancora lo scarto. Il segno positivo indica sovrastima del modulo; la scelta del verso dell’asse lungo il piano è già stata fissata."
+        }
+      ],
+      "hints": [
+        "Prima proietta g, poi sottrai il risultato dalla proposta.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−5 inverte l’ordine,10 ripete la proposta,zero la dichiara corretta e 5/2 dimezza ancora lo scarto. Il segno positivo indica sovrastima del modulo; la scelta del verso dell’asse lungo il piano è già stata fissata.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3629,
+      "title": "Un’inversa senza trigonometria inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Quale formula isola g dalla relazione A=gs?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g=A/s",
+          "g=As",
+          "g=s/A",
+          "g=2 A/s",
+          "g=A/(2 s)"
+        ],
+        "value": "g=A/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "s moltiplica g ed è diverso da zero. Dividiamo l’uguaglianza per s, mantenendo visibile che si tratta del seno e non dell’unità secondo. Poiché 0<s<1, il campo ricostruito deve risultare maggiore di A."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac As=g"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac As"
+        },
+        {
+          "type": "formula",
+          "text": " 0<A<g"
+        },
+        {
+          "type": "text",
+          "text": "As moltiplica invece di dividere e produrrebbe un valore minore di A. s/A ha dimensione inversa di accelerazione. Il due aggiunto o tolto non appartiene alla proiezione del peso. La formula isola g senza cercare θ: il dato geometrico utile era s."
+        }
+      ],
+      "hints": [
+        "Dividi per il rapporto puro s, non per una durata.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "As moltiplica invece di dividere e produrrebbe un valore minore di A. s/A ha dimensione inversa di accelerazione. Il due aggiunto o tolto non appartiene alla proiezione del peso. La formula isola g senza cercare θ: il dato geometrico utile era s.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3630,
+      "title": "Cambiare campo e rapporto di pendenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Nella seconda prova g₂=κ₁g e s₂=κ₂s, con κ₁,κ₂>0 e 0<κ₂s<1. g,s sono i dati della prima. Quale rapporto A₂/A₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁κ₂",
+          "κ₁+κ₂",
+          "κ₁κ₂²"
+        ],
+        "value": "κ₁κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge contiene il prodotto di due ingressi. Inserendo i due nuovi fattori troviamo A₂=(κ₁g)(κ₂s). Nel rapporto con A₁=gs si cancellano i dati iniziali positivi, lasciando il prodotto dei fattori. Il limite sul nuovo seno è un vincolo geometrico e non si può dimenticare dopo l’algebra."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=gs"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\kappa_1\\kappa_2gs"
+        },
+        {
+          "type": "formula",
+          "text": " A_2/A_1=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I due rapporti trasformano uno degli aumenti in una diminuzione; il quadrato suκ₂ proietta due volte. La somma dà 2 quando entrambi i fattori valgono 1, mentre la prova identica deve dare rapporto 1. Per esempio con s 1/2 non è ammessoκ₂=3, perché produrrebbe un seno 3/2."
+        }
+      ],
+      "hints": [
+        "Moltiplica i fattori, ma verifica anche il dominio del nuovo seno.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "I due rapporti trasformano uno degli aumenti in una diminuzione; il quadrato suκ₂ proietta due volte. La somma dà 2 quando entrambi i fattori valgono 1, mentre la prova identica deve dare rapporto 1. Per esempio con s 1/2 non è ammessoκ₂=3, perché produrrebbe un seno 3/2.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3631,
+      "title": "Due fattori favorevoli alla discesa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Le prove hanno(g₁=10 m/s²,s₁=1/2) e(g₂=20 m/s²,s₂=3/5). Quanto vale A₂/A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12/5",
+          "5/12",
+          "2",
+          "6/5",
+          "24/5"
+        ],
+        "value": "12/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima proiezione è 5 m/s²; nella seconda 20·(3/5)=4·3=12 m/s². Il rapporto è 12/5. Il campo raddoppia e il seno cresce di 6/5: i due effetti si moltiplicano, non si sommano."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2/A_1=\\frac{12}{5}"
+        },
+        {
+          "type": "text",
+          "text": "5/12 inverte il confronto;2 considera soltanto il campo e 6/5 soltanto il seno.24/5 raddoppia di nuovo la risposta. Le due accelerazioni restano inferiori ai rispettivi campi,5<10 e 12<20, coerentemente con i due seni minori di uno."
+        }
+      ],
+      "hints": [
+        "Semplifica 20 diviso 5 prima di moltiplicare per 3.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/12 inverte il confronto;2 considera soltanto il campo e 6/5 soltanto il seno.24/5 raddoppia di nuovo la risposta. Le due accelerazioni restano inferiori ai rispettivi campi,5<10 e 12<20, coerentemente con i due seni minori di uno.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3632,
+      "title": "Media di due proiezioni del campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Due prove hanno(g=10 m/s²,s=1/2) e(g=20 m/s²,s=3/5). Qual è la media aritmetica delle accelerazioni con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "17/2 m/s²",
+          "17 m/s²",
+          "17/4 m/s²",
+          "33/4 m/s²",
+          "7 m/s²"
+        ],
+        "value": "17/2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima le accelerazioni 5 e 12 m/s². La semisomma è 17/2 m/s². Usare prima i due ingressi medi darebbe un’altra operazione: g_medio 15 m/s² e s_medio 11/20 produrrebbero 33/4 m/s², perché la legge contiene un prodotto fra ingressi entrambi variabili."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A=\\frac{5+12}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A=\\frac{17}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "17 è la somma,17/4 divide ancora per due e 7 è la differenza fra le accelerazioni.33/4 è il risultato sui dati medi, non la media richiesta.17/2 sta fra 5 e 12 e rimane una frazione esatta, senza bisogno di decimalizzare."
+        }
+      ],
+      "hints": [
+        "Media le due uscite dopo averle calcolate.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "17 è la somma,17/4 divide ancora per due e 7 è la differenza fra le accelerazioni.33/4 è il risultato sui dati medi, non la media richiesta.17/2 sta fra 5 e 12 e rimane una frazione esatta, senza bisogno di decimalizzare.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3633,
+      "title": "Scegliere la nuova pendenza come rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. La prima prova ha g₁=10 m/s²,s₁=1/2. Si impone poi g₂=20 m/s² e si vuole A₂=(12/5)A₁. Quale rapporto s₂/s₁ occorre?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5",
+          "5/6",
+          "12/5",
+          "3/5",
+          "2"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione iniziale è 5 m/s², quindi l’obiettivo è 12 m/s². Per il nuovo campo 20 m/s² serve s₂=A₂/g₂=12/20=3/5. Solo adesso dividiamo per il seno iniziale 1/2, ottenendo 6/5. Il problema richiede un rapporto di seni e non una misura in gradi."
+        },
+        {
+          "type": "formula",
+          "text": "A_2=12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_2=\\frac{A_2}{g_2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_2=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " s_2/s_1=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "3/5 è il seno nuovo da solo;5/6 inverte il confronto.12/5 copia il rapporto delle accelerazioni ignorando il campo raddoppiato. Due darebbe s₂=1, limite verticale escluso e accelerazione 20 m/s² anziché 12. Il valore 3/5 è nel dominio geometrico richiesto."
+        }
+      ],
+      "hints": [
+        "Distingui s₂ dal rapporto s₂/s₁.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 è il seno nuovo da solo;5/6 inverte il confronto.12/5 copia il rapporto delle accelerazioni ignorando il campo raddoppiato. Due darebbe s₂=1, limite verticale escluso e accelerazione 20 m/s² anziché 12. Il valore 3/5 è nel dominio geometrico richiesto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3634,
+      "title": "Convertire il display prima di trovare g",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Un display ideale fornisce una lettura continua adimensionale S=qA, con q>0 costante e offset nullo. Il riferimento g=10 m/s²,s=1/2 dà S=15. La nuova prova dà S=36 e s=3/5. Quanto vale g in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha A=5 m/s², dunque q=15/5=3 s²/m. La lettura 36 diventa A=12 m/s². Per il seno 3/5 la divisione g=A/s equivale a moltiplicare 12 per 5/3: si semplifica 12/3=4 e rimane 20."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{36}{q}"
+        },
+        {
+          "type": "formula",
+          "text": " A=12\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac As"
+        },
+        {
+          "type": "formula",
+          "text": " g=20\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 20·(3/5)=12 m/s² e S=3·12=36 ricostruisce le due tappe. La lettura non è il campo g né una pendenza. g>A soddisfa il vincolo 0<s<1; non è stata richiesta alcuna valutazione di funzioni trigonometriche."
+        }
+      ],
+      "hints": [
+        "Trova A dal riferimento strumentale, poi dividi per s.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 20·(3/5)=12 m/s² e S=3·12=36 ricostruisce le due tappe. La lettura non è il campo g né una pendenza. g>A soddisfa il vincolo 0<s<1; non è stata richiesta alcuna valutazione di funzioni trigonometriche.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3635,
+      "title": "Taratura con offset e pendenza nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Un display ideale legge S=qA+b, continuo e adimensionale, con q>0,b costanti. I riferimenti(g=10 m/s²,s=1/2) e(g=20 m/s²,s=3/5) danno S=11 e 25. La prova ignota ha s=1/2,S=21. Quanto vale g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "21 m/s²",
+          "19 m/s²",
+          "20 m/s²",
+          "40 m/s²",
+          "10 m/s²"
+        ],
+        "value": "20 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno accelerazioni 5 e 12 m/s². La differenza delle letture è 14, quella delle accelerazioni 7 m/s², quindi q=2 s²/m. Dal primo riferimento segue b=11−2·5=1. Togliendo l’offset da 21 e dividendo per due ricostruiamo A=10 m/s²; per s 1/2 il campo è doppio."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{25-11}{(12-5)\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{21-1}{q}"
+        },
+        {
+          "type": "formula",
+          "text": " A=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=20\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "21 m/s² deriva dal saltare l’offset prima della divisione per q;19 m/s² darebbe S20 anziché 21.40 raddoppia ancora il campo corretto,10 si ferma al valore dell’accelerazione sul piano. Per g 20,s 1/2 si ritrova S=2·10+1=21."
+        }
+      ],
+      "hints": [
+        "Elimina l’offset prima di usare l’inversa g=A/s.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21 m/s² deriva dal saltare l’offset prima della divisione per q;19 m/s² darebbe S20 anziché 21.40 raddoppia ancora il campo corretto,10 si ferma al valore dell’accelerazione sul piano. Per g 20,s 1/2 si ritrova S=2·10+1=21.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-acceleration-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3636,
+      "title": "Un vincolo quadratico fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-acceleration",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un corpo di massa costante m>0 scivola su un piano fisso liscio, restando in contatto. Agiscono solo peso e normale. Il campo g>0 è uniforme e l’inclinazione θ è costante nella prova, con 0<θ<π/2. È dato il rapporto s=sinθ, quindi 0<s<1: non occorre ricavare θ. L’asse parallelo è positivo verso il basso e A è il modulo dell’accelerazione in quel verso. Si selezionano prove con g=ks, dove k=20 m/s² è fisso. Campo e inclinazione restano costanti dentro ciascuna prova: il vincolo collega prove diverse. Si misura A=5 m/s². Quanto vale s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "−1/2",
+          "1/2",
+          "1",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo g=ks nella proiezione A=gs otteniamo A=ks². Dividiamo per k positivo: s²=5/20=1/4, numero puro. La radice positiva di 1/4 è 1/2; la negativa è incompatibile con il seno di un’inclinazione acuta. Ricostruiamo poi g=ks."
+        },
+        {
+          "type": "formula",
+          "text": "A=ks^2"
+        },
+        {
+          "type": "formula",
+          "text": " s^2=\\frac Ak"
+        },
+        {
+          "type": "formula",
+          "text": " s^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " g=ks"
+        },
+        {
+          "type": "formula",
+          "text": " g=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "3/2 supera il limite del seno,−1/2 viola la positività e 1 è il piano verticale escluso. Con s 1/4 il vincolo darebbe A20/16=5/4 m/s², non 5. La soluzione 1/2 è unica nel dominio 0<s<1 e rende A10·1/2=5 m/s². Non si sta introducendo una gravità variabile mentre il corpo scivola."
+        }
+      ],
+      "hints": [
+        "La radice è esatta e il ramo va scelto con 0<s<1.",
+        "Usa il rapporto s già dato; distingui la componente parallela da quella normale."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "3/2 supera il limite del seno,−1/2 viola la positività e 1 è il piano verticale escluso. Con s 1/4 il vincolo darebbe A20/16=5/4 m/s², non 5. La soluzione 1/2 è unica nel dominio 0<s<1 e rende A10·1/2=5 m/s². Non si sta introducendo una gravità variabile mentre il corpo scivola.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Piano inclinato liscio",
+        "Componenti del peso e seconda legge di Newton"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "acb1d5ec3e9d15265b4036586317ad3f35db58d76feb388834817c4b183f051b",
+      "name": "incline-acceleration-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkxhIGNvbXBvbmVudGUgZGVsIHBlc28gc3UgdW4gcGlhbm8gbGlzY2lvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RXNlbXBpbyBjb24gc2VubyB0cmUgcXVpbnRpIGUgY29zZW5vIHF1YXR0cm8gcXVpbnRpLCBmb3JuaXRpIGNvbWUgcmFwcG9ydGkgZGkgdW4gdHJpYW5nb2xvIHRyZS1xdWF0dHJvLWNpbnF1ZS4gSWwgY2FtcG8gdmFsZSBkaWVjaSBtZXRyaSBhbCBzZWNvbmRvIHF1YWRyYXRvLiBOZWwgZGlzZWdubyBzaSBzY2VnbGllIG1hc3NhIHVuIGNoaWxvZ3JhbW1vIHBlciBtb3N0cmFyZSBwZXNvIGRpZWNpIG5ld3RvbiwgY29tcG9uZW50ZSBwYXJhbGxlbGEgc2VpIG5ld3RvbiBlIG5vcm1hbGUgb3R0byBuZXd0b24uIFNjYWxhIGRpIHR1dHRlIGxlIGZvcnplIGRpZWNpIHBpeGVsIHBlciBuZXd0b246IHBlc28gY2VudG8gcGl4ZWwsIGNvbXBvbmVudGUgcGFyYWxsZWxhIHNlc3NhbnRhIHBpeGVsIGUgY29tcG9uZW50ZSBub3JtYWxlIG90dGFudGEgcGl4ZWwuIExlIGNvbXBvbmVudGkgdHJhdHRlZ2dpYXRlIHNvc3RpdHVpc2Nvbm8gaWwgcGVzbywgbm9uIHNvbm8gYWx0cmUgZm9yemUuIEFjY2VsZXJhemlvbmUgc2VpIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8gaW4gZGlzY2VzYSwgaW5kaXBlbmRlbnRlIGRhbGxhIG1hc3NhLCByYXBwcmVzZW50YXRhIGluIHBhbm5lbGxvIHNlcGFyYXRvIGEgZGllY2kgcGl4ZWwgcGVyIG1ldHJvIGFsIHNlY29uZG8gcXVhZHJhdG8uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9InAiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjUuNSIgcmVmWT0iMyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwIEw2IDMgTDAgNiBaIiBmaWxsPSIjYjQ0YjJjIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibiIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgcmVmWD0iNS41IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDAgTDYgMyBMMCA2IFoiIGZpbGw9IiMxNDY0N2IiLz48L21hcmtlcj48bWFya2VyIGlkPSJjIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI1LjUiIHJlZlk9IjMiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMNiAzIEwwIDYgWiIgZmlsbD0iIzc4NjQ5YSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjQwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMjNmIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFVzYSBpIHJhcHBvcnRpIGdpw6Agbm90aTwvdGV4dD4KPHBhdGggZD0iTTE2MCAxMzBIMzIwVjI1MFoiIGZpbGw9IiNlOWVlZTciIHN0cm9rZT0iIzc4ODc4MSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTIwMCAxMzAgQTQwIDQwIDAgMCAxIDE5MiAxNTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzIzZiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjIzNSIgeT0iMTE1Ij40PC90ZXh0Pjx0ZXh0IHg9IjMzMyIgeT0iMTk1Ij4zPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iMjE1Ij41PC90ZXh0Pjx0ZXh0IHg9IjIwNSIgeT0iMTU5Ij7OuDwvdGV4dD4KPHRleHQgeD0iMzgwIiB5PSIxMzUiPnNpbs64ID0gMy81PC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTgwIj5jb3POuCA9IDQvNTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMzAwIj5MYXRpIG5lbGxhIHN0ZXNzYSB1bml0w6A6IHJhcHBvcnRpIHB1cmkuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNDAiPk5lc3N1biBhbmdvbG8gbnVtZXJpY28gZGEgY2FsY29sYXJlLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQxNSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBTY29tcG9uaSBpbCBwZXNvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0NTciPk5lbCBkaXNlZ25vOiBtID0gMSBrZywgZyA9IDEwIG0vc8KyLjwvdGV4dD4KPHBhdGggZD0iTTEzNCA1MDhMNDIyIDcyNCIgc3Ryb2tlPSIjNzg4NzgxIiBzdHJva2Utd2lkdGg9IjMiLz48ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjggMC42IC0wLjYgMC44IDI2MiA2MDQpIj48cmVjdCB4PSItNDAiIHk9Ii02MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZDZlNmRmIiBzdHJva2U9IiMxNjMyM2YiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48Y2lyY2xlIGN4PSIyODAiIGN5PSI1ODAiIHI9IjQiIGZpbGw9IiMxNjMyM2YiLz4KPHBhdGggZD0iTTI4MCA1ODBMMjgwIDY4MCIgc3Ryb2tlPSIjYjQ0YjJjIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjcCkiLz48cGF0aCBkPSJNMjgwIDU4MEwzMjggNTE2IiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNuKSIvPgo8cGF0aCBkPSJNMjgwIDU4MEwzMjggNjE2IiBzdHJva2U9IiM3ODY0OWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIiBtYXJrZXItZW5kPSJ1cmwoI2MpIi8+PHBhdGggZD0iTTI4MCA1ODBMMjMyIDY0NCIgc3Ryb2tlPSIjNzg2NDlhIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIgbWFya2VyLWVuZD0idXJsKCNjKSIvPgo8cGF0aCBkPSJNMzI4IDYxNkwyODAgNjgwTDIzMiA2NDQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I3YTljOSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPgo8dGV4dCB4PSIzNTAiIHk9IjUxOCIgZmlsbD0iIzE0NjQ3YiI+TiA9IDggTjwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjYxOCIgZmlsbD0iIzc4NjQ5YSI+UOKIpSA9IDYgTjwvdGV4dD48dGV4dCB4PSI1OCIgeT0iNjczIiBmaWxsPSIjNzg2NDlhIj5Q4oqlID0gOCBOPC90ZXh0Pjx0ZXh0IHg9IjI5MyIgeT0iNzEwIiBmaWxsPSIjYjQ0YjJjIj5QID0gbWcgPSAxMCBOPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzcwIj5Gb3J6ZTogMTAgcHgvTi4gTiBlcXVpbGlicmEgUOKKpSwgbm9uIHR1dHRvIFAuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4MTAiPkxlIGNvbXBvbmVudGkgdHJhdHRlZ2dpYXRlIHNvc3RpdHVpc2Nvbm8gaWwgcGVzby48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4ODUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgRGl2aWRpIGxhIHJpc3VsdGFudGUgcGVyIGxhIG1hc3NhPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDk0MEwzMDAgMTA5MCIgc3Ryb2tlPSIjNzg4NzgxIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxMDAwIiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PHBhdGggZD0iTTE4MCAxMDAwTDIyOCAxMDM2IiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNuKSIvPgo8dGV4dCB4PSIzMTUiIHk9IjEwMTUiPkEgPSA2IG0vc8KyPC90ZXh0Pjx0ZXh0IHg9IjMxNSIgeT0iMTA1NSI+VmVyc28gbGEgZGlzY2VzYS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIxMTMwIj5tQSA9IG1nczsgQSA9IGdzID0gNiBtL3PCsiBwZXIgb2duaSBtICZndDsgMC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNzUiIGZvbnQtc2l6ZT0iMTgiPkE6IDEwIHB4IHBlciBtL3PCsi4gU2NhbGEgZGkgZGltZW5zaW9uZSBkaXZlcnNhIGRhbGxlIGZvcnplLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

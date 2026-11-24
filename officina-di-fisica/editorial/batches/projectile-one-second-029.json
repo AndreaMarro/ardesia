@@ -1,0 +1,1236 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-projectile-one-second-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2501,
+      "title": "Il guadagno di quota a un secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 1,
+      "prompt": "Un lancio parte a t=0 con componente verticale iniziale w=4 m/s verso l’alto. Il campo uniforme ha modulo g=2 m/s² e l’aria è trascurata. Con y positivo verso l’alto, quanto vale in metri H=y(1 s)−y(0)? Il punto materiale resta libero durante l’intervallo osservato.",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente verticale diminuisce linearmente sotto l’azione della gravità. Per ricavare lo spostamento occorre integrare quella variazione, oppure usare la legge del moto uniformemente accelerato. Il contributo iniziale wτ viene ridotto di gτ²/2, con τ=1 s: il fattore un mezzo tiene conto del fatto che la velocità non diminuisce tutta all’inizio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/375b8914eca74894261068877465d11ad8b1132a6d733c178d6cbc5651560142",
+          "text": "Tre tappe per w=4 m/s,g=2 m/s² e τ=1s dal lancio: la componente vᵧ passa da4 a2m/s con scala200px/s e40px/(m/s), e l’area del trapezio dà3m; la curva di quota confronta il moto reale H3m con il riferimento uniforme4m, con scala200px/s e40px/m; l’ultimo confronto separa il contributo4m dalla perdita1m. La curva termina all’istante osservato, non all’apice che in questa prova verrebbe dopo2s."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " H=w\\tau-\\frac12g\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " w\\tau=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac12g\\tau^2=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sommare il contributo gravitazionale darebbe 5 m, ma la gravità è diretta verso il basso. Sottrarre gτ² senza metà darebbe 2 m. La componente finale è 2 m/s, quindi la media sull’intervallo è 3 m/s e produce lo stesso spostamento di 3 m. H è relativo alla quota iniziale, qualunque sia la sua coordinata assoluta."
+        }
+      ],
+      "hints": [
+        "Confronta il moto uniforme iniziale con la perdita di quota dovuta all’accelerazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sommare il contributo gravitazionale darebbe 5 m, ma la gravità è diretta verso il basso. Sottrarre gτ² senza metà darebbe 2 m. La componente finale è 2 m/s, quindi la media sull’intervallo è 3 m/s e produce lo stesso spostamento di 3 m. H è relativo alla quota iniziale, qualunque sia la sua coordinata assoluta.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2502,
+      "title": "Due termini devono avere unità di quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 1,
+      "prompt": "Nel lancio senza aria con g costante, si definisce H=y(τ)−y(0)=wτ−gτ²/2 all’istante τ=1 s dal lancio, con w componente iniziale verso l’alto. Qual è l’unità SI di H?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m/s²",
+          "s",
+          "m",
+          "1"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "wτ è una velocità moltiplicata per un tempo e gτ² è un’accelerazione moltiplicata per un tempo al quadrato. Entrambi sono lunghezze e quindi si possono sottrarre. Il fatto che τ valga numericamente uno non autorizza a sopprimerne le unità."
+        },
+        {
+          "type": "formula",
+          "text": "[w\\tau]=(L/T)T"
+        },
+        {
+          "type": "formula",
+          "text": "(L/T)T=L"
+        },
+        {
+          "type": "formula",
+          "text": " [g\\tau^2]=(L/T^2)T^2"
+        },
+        {
+          "type": "formula",
+          "text": "(L/T^2)T^2=L"
+        },
+        {
+          "type": "formula",
+          "text": " [H]=L"
+        },
+        {
+          "type": "text",
+          "text": "H si esprime in m. m/s è una componente di velocità, m/s² un’accelerazione, s un intervallo e 1 un numero puro. Scrivere direttamente w−g/2 senza ricordare i fattori di tempo sommerebbe dimensioni incompatibili: è solo un’eventuale scorciatoia fra valori numerici in unità fissate."
+        }
+      ],
+      "hints": [
+        "Rimetti in vista il secondo e il secondo quadrato nei due termini.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "H si esprime in m. m/s è una componente di velocità, m/s² un’accelerazione, s un intervallo e 1 un numero puro. Scrivere direttamente w−g/2 senza ricordare i fattori di tempo sommerebbe dimensioni incompatibili: è solo un’eventuale scorciatoia fra valori numerici in unità fissate.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2503,
+      "title": "La legge al tempo fissato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 1,
+      "prompt": "Un corpo è lanciato con componente verticale w>0 verso l’alto in campo uniforme g>0, senza aria. Si osserva H=y(τ)−y(0)>0 dopo τ=1 s dal lancio; w>gτ/2. Quale espressione dà questo guadagno di quota?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "H=wτ+gτ²/2",
+          "H=wτ−gτ²/2",
+          "H=wτ−gτ²",
+          "H=gτ²/2",
+          "H=w−g/2"
+        ],
+        "value": "H=wτ−gτ²/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con asse positivo verso l’alto l’accelerazione è −g. La legge y(t)=y(0)+wt−gt²/2 va valutata al tempo osservato τ. Il guadagno è la differenza delle quote e conserva dunque il termine iniziale positivo e quello gravitazionale negativo."
+        },
+        {
+          "type": "formula",
+          "text": "a_y=-g"
+        },
+        {
+          "type": "formula",
+          "text": " H=w\\tau+\\frac12a_y\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " H=w\\tau-\\frac12g\\tau^2"
+        },
+        {
+          "type": "text",
+          "text": "Il più nel primo distrattore farebbe accelerare il corpo verso l’alto; togliere la metà raddoppia la perdita rispetto al moto uniforme. gτ²/2 è il dislivello caduto da fermo e non include il lancio. w−g/2 non è una relazione dimensionale fra grandezze. H>0 non significa necessariamente che la componente finale sia ancora positiva: si può essere già in discesa ma sopra il punto di lancio."
+        }
+      ],
+      "hints": [
+        "Parti dalla componente orientata dell’accelerazione, poi valuta la posizione a τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il più nel primo distrattore farebbe accelerare il corpo verso l’alto; togliere la metà raddoppia la perdita rispetto al moto uniforme. gτ²/2 è il dislivello caduto da fermo e non include il lancio. w−g/2 non è una relazione dimensionale fra grandezze. H>0 non significa necessariamente che la componente finale sia ancora positiva: si può essere già in discesa ma sopra il punto di lancio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2504,
+      "title": "Più gravità, meno quota allo stesso istante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 1,
+      "prompt": "Si confrontano lanci senza aria con w=4 m/s, osservati entrambi a τ=1 s dal lancio. In A il campo uniforme è g_A=2 m/s²; in B è g_B=4 m/s². Come cambia H=y(τ)−y(0)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Aumenta da 3 a 5 m",
+          "Resta 3 m",
+          "Diminuisce da 3 a 2 m",
+          "Si annulla in B",
+          "Diventa −2 m"
+        ],
+        "value": "Diminuisce da 3 a 2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo wτ resta quattro metri; la sottrazione gravitazionale passa da uno a due metri. La seconda quota resta positiva, anche se nella prova B la componente verticale a un secondo è già nulla. Il confronto riguarda un istante fissato e non le due quote massime in generale."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=(4-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm m=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_{yB}(\\tau)=4-4"
+        },
+        {
+          "type": "formula",
+          "text": "4-4=0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Zero è la componente finale di B, non il suo guadagno di quota. La quota massima raggiunta in B è proprio 2 m; non ricade istantaneamente all’origine quando si ferma all’apice. Un guadagno negativo o un aumento a cinque metri userebbero male il segno o il significato della gravità."
+        }
+      ],
+      "hints": [
+        "Tieni il tempo di osservazione uguale, senza sostituirlo con il tempo dell’apice di A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero è la componente finale di B, non il suo guadagno di quota. La quota massima raggiunta in B è proprio 2 m; non ricade istantaneamente all’origine quando si ferma all’apice. Un guadagno negativo o un aumento a cinque metri userebbero male il segno o il significato della gravità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2505,
+      "title": "Ricavare il campo da una quota osservata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "A τ=1 s da un lancio senza aria si misura H=3 m sopra la quota iniziale. La componente verticale iniziale è w=4 m/s e il campo g>0 è costante. Quanto vale g in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza wτ−H è la perdita di quota rispetto a un moto che mantenesse la componente iniziale. Essa vale gτ²/2. Moltiplicando per due e dividendo per τ² ricaviamo il modulo del campo, positivo perché H è minore di wτ."
+        },
+        {
+          "type": "formula",
+          "text": "w\\tau-H=\\frac12g\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2(w\\tau-H)}{\\tau^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2(4-3)\\,\\mathrm m}{(1\\,\\mathrm s)^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(4-3)\\,\\mathrm m}{(1\\,\\mathrm s)^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce H=4 m−1 m=3 m. Omettere il fattore due darebbe 1 m/s²; usare H−wτ darebbe un modulo negativo e un’accelerazione verso l’alto. Il valore H/(wτ) sarebbe invece un rapporto puro, non un campo."
+        }
+      ],
+      "hints": [
+        "La quantità da attribuire all’accelerazione è il ritardo rispetto a wτ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce H=4 m−1 m=3 m. Omettere il fattore due darebbe 1 m/s²; usare H−wτ darebbe un modulo negativo e un’accelerazione verso l’alto. Il valore H/(wτ) sarebbe invece un rapporto puro, non un campo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2506,
+      "title": "Ricostruire la componente iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "In un lancio senza aria il campo uniforme ha g=2 m/s². Dopo τ=1 s il corpo si trova H=3 m sopra la quota di partenza. Quanto vale la componente iniziale verso l’alto w, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla quota guadagnata va riaggiunta la perdita gravitazionale per ottenere lo spostamento che si avrebbe con componente costante w. Poi dividiamo per l’intervallo, non nullo. La formula inversa è w=H/τ+gτ/2."
+        },
+        {
+          "type": "formula",
+          "text": "w\\tau=H+\\frac12g\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " w=\\frac H\\tau+\\frac{g\\tau}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " w=(3+1)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "(3+1)\\,\\mathrm{m/s}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "H/τ=3 m/s è la componente media sull’intervallo e non quella iniziale. Il valore 2 m/s sottrarrebbe ancora la perdita anziché recuperarla. Con w=4 m/s la componente finale è 2 m/s e la media dei due estremi è proprio 3 m/s."
+        }
+      ],
+      "hints": [
+        "La componente iniziale deve essere maggiore della media, perché la gravità la riduce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "H/τ=3 m/s è la componente media sull’intervallo e non quella iniziale. Il valore 2 m/s sottrarrebbe ancora la perdita anziché recuperarla. Con w=4 m/s la componente finale è 2 m/s e la media dei due estremi è proprio 3 m/s.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2507,
+      "title": "Più lancio non significa lo stesso fattore sulla quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "In due prove senza aria, con g=2 m/s² uniforme e osservazione a τ=1 s, w_A=4 m/s e w_B=6 m/s. H_A,H_B indicano gli aumenti di quota dai rispettivi lanci. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "5/3",
+          "2/3",
+          "2",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla prima componente iniziale corrispondono quattro metri di moto uniforme meno un metro gravitazionale, alla seconda sei metri meno lo stesso metro. La presenza della sottrazione fissa impedisce di trasferire direttamente il rapporto 6/4 delle componenti al rapporto delle quote."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il rapporto delle componenti iniziali, non delle differenze dopo la perdita comune. Due terzi inverte quel rapporto sbagliato. Due confonde l’aumento assoluto di due metri con un fattore; uno ignorerebbe il lancio più forte. Il rapporto richiesto è adimensionale."
+        }
+      ],
+      "hints": [
+        "Sottrai il contributo gravitazionale a ciascuna prova prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il rapporto delle componenti iniziali, non delle differenze dopo la perdita comune. Due terzi inverte quel rapporto sbagliato. Due confonde l’aumento assoluto di due metri con un fattore; uno ignorerebbe il lancio più forte. Il rapporto richiesto è adimensionale.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2508,
+      "title": "Una quota proposta con scarto positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "Un lancio senza aria ha w=4 m/s verso l’alto e g=2 m/s² costante. A τ=1 s viene proposto H_proposto=6 m come aumento di quota. Qual è lo scarto «proposto meno corretto», in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge a un secondo dà H=4 m−1 m=3 m. La proposta supera persino i quattro metri del moto uniforme senza gravità: è già un segnale che non descrive questo lancio. Lo scarto con il verso assegnato è sei meno tre."
+        },
+        {
+          "type": "formula",
+          "text": "H=w\\tau-\\frac12g\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": "w\\tau-\\frac12g\\tau^2=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta H=H_{\\rm prop}-H"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta H=6\\,\\mathrm m-3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm m-3\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−3 m corrisponderebbe a corretto meno proposto; sei metri ripete il dato errato. La proposta può nascere sommando gτ²=2 m al termine wτ=4 m, cioè sbagliando insieme il verso e il fattore un mezzo. Correggere solo uno dei due errori non basta a ottenere il modello."
+        }
+      ],
+      "hints": [
+        "Controlla se una gravità diretta verso il basso può dare più quota del moto uniforme iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 m corrisponderebbe a corretto meno proposto; sei metri ripete il dato errato. La proposta può nascere sommando gτ²=2 m al termine wτ=4 m, cioè sbagliando insieme il verso e il fattore un mezzo. Correggere solo uno dei due errori non basta a ottenere il modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2509,
+      "title": "Il campo nell’inversa simbolica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "Per un lancio senza aria in campo uniforme, H=wτ−gτ²/2 è l’aumento di quota a τ=1 s dal lancio. Sono noti w e 0<H<wτ. Quale formula isola il modulo positivo g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g=2(wτ−H)/τ²",
+          "g=2(H−wτ)/τ²",
+          "g=(wτ−H)/τ²",
+          "g=2(wτ+H)/τ²",
+          "g=H/(wτ)"
+        ],
+        "value": "g=2(wτ−H)/τ²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Portiamo il termine gravitazionale dall’altro lato: gτ²/2=wτ−H. Ora moltiplichiamo per due e dividiamo per τ². La condizione H<wτ garantisce il numeratore positivo e quindi il verso di accelerazione previsto dal modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12g\\tau^2=w\\tau-H"
+        },
+        {
+          "type": "formula",
+          "text": " g\\tau^2=2(w\\tau-H)"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2(w\\tau-H)}{\\tau^2}"
+        },
+        {
+          "type": "text",
+          "text": "Invertire la differenza darebbe g<0; omettere il due dimezza il campo; sommare H e wτ non ricostruisce la perdita gravitazionale. H/(wτ) è privo di dimensione. Anche quando τ=1 s occorre conservarlo nella formula fra grandezze, per non sottrarre velocità e lunghezza."
+        }
+      ],
+      "hints": [
+        "Isola prima il termine gτ²/2 come perdita di quota positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Invertire la differenza darebbe g<0; omettere il due dimezza il campo; sommare H e wτ non ricostruisce la perdita gravitazionale. H/(wτ) è privo di dimensione. Anche quando τ=1 s occorre conservarlo nella formula fra grandezze, per non sottrarre velocità e lunghezza.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2510,
+      "title": "La scalatura di una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "Due prove senza aria sono osservate a τ=1 s dal lancio. In A g,w>0 danno H_A=wτ−gτ²/2>0. In B g_B=κ₁g e w_B=κ₂w, con κ₁,κ₂>0 e H_B>0; ogni campo resta uniforme nel proprio moto. Quale espressione dà H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₂wτ−κ₁gτ²/2)/(wτ−gτ²/2)",
+          "κ₂/κ₁",
+          "κ₂−κ₁",
+          "κ₁κ₂",
+          "κ₁/κ₂"
+        ],
+        "value": "(κ₂wτ−κ₁gτ²/2)/(wτ−gτ²/2)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La gravità e il lancio moltiplicano due termini che poi si sottraggono. Non possiamo cancellarli come se la legge fosse un prodotto o un quoziente. Occorre prima formare H_B con entrambi i fattori, poi dividerlo per l’aumento positivo di A."
+        },
+        {
+          "type": "formula",
+          "text": "H_B=\\kappa_2w\\tau-\\frac12\\kappa_1g\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{H_B}{H_A}=\\frac{\\kappa_2w\\tau-\\kappa_1g\\tau^2/2}{w\\tau-g\\tau^2/2}"
+        },
+        {
+          "type": "text",
+          "text": "I soli rapporti κ₂/κ₁ e κ₁/κ₂ non tengono conto del peso dei due termini iniziali. Il prodotto neppure rispetta la sottrazione; κ₂−κ₁ darebbe zero con fattori entrambi uno, mentre il rapporto deve valere uno. Se κ₁=κ₂=k, l’intera differenza scala invece di k, caso utile di controllo."
+        }
+      ],
+      "hints": [
+        "Trasforma separatamente i due termini prima di cercare semplificazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I soli rapporti κ₂/κ₁ e κ₁/κ₂ non tengono conto del peso dei due termini iniziali. Il prodotto neppure rispetta la sottrazione; κ₂−κ₁ darebbe zero con fattori entrambi uno, mentre il rapporto deve valere uno. Se κ₁=κ₂=k, l’intera differenza scala invece di k, caso utile di controllo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2511,
+      "title": "Due parametri cambiano, due quote da calcolare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "Due lanci senza aria in campi uniformi sono osservati a un secondo. A ha g=2 m/s²,w=4 m/s; B ha g=4 m/s²,w=6 m/s. H è in ciascuna prova la quota rispetto al punto di lancio. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2",
+          "4/3",
+          "3/4",
+          "3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima quota è quattro meno uno, la seconda sei meno due, in metri. Il campo maggiore sottrae più quota, ma la componente iniziale maggiore prevale: B arriva quattro metri sopra il suo punto di lancio, contro i tre di A. Solo questi due risultati vanno messi in rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=(4-1)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(4-1)\\,\\mathrm m=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=(6-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "(6-2)\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue soltanto il rapporto delle componenti; due segue soltanto il rapporto dei campi ignorandone il segno nella legge. Tre quarti è il rapporto inverso; tre moltiplica i due fattori anziché valutare le differenze. Le due quote restano positive e gli istanti sono entrambi riferiti al rispettivo lancio."
+        }
+      ],
+      "hints": [
+        "Valuta quattro meno uno e sei meno due prima di formare B/A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue soltanto il rapporto delle componenti; due segue soltanto il rapporto dei campi ignorandone il segno nella legge. Tre quarti è il rapporto inverso; tre moltiplica i due fattori anziché valutare le differenze. Le due quote restano positive e gli istanti sono entrambi riferiti al rispettivo lancio.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2512,
+      "title": "Media di quote a un istante comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 2,
+      "prompt": "Due lanci senza aria hanno dati A: g=2 m/s²,w=4 m/s e B: g=4 m/s²,w=6 m/s. Ogni campo è uniforme. Si misura in entrambi H=y(1 s)−y(0). Qual è la media aritmetica delle due letture, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 m",
+          "4 m",
+          "7 m",
+          "7/2 m",
+          "5 m"
+        ],
+        "value": "7/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo τ=1 s, l’intervallo fra il lancio e la lettura in entrambe le prove. Le letture sono tre e quattro metri, perciò la loro semisomma è sette mezzi. In questa particolare legge, a tempo τ fissato, H è una combinazione lineare di w e g: anche i due ingressi medi darebbero qui la stessa media. Questo non autorizza ad applicare la stessa proprietà a formule con prodotti o rapporti."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline H=\\frac{3+4}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3+4}{2}\\,\\mathrm m=\\frac72\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Tre e quattro ripetono una lettura, sette è la somma senza metà. Cinque metri sarebbe w medio per un secondo, ignorando la perdita gravitazionale media di 3/2 m. Non si chiede una media temporale dentro un volo, ma la media di due quote misurate allo stesso tempo trascorso."
+        }
+      ],
+      "hints": [
+        "Calcola le due letture; osserva poi perché la linearità a τ fisso consente il controllo sui dati medi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre e quattro ripetono una lettura, sette è la somma senza metà. Cinque metri sarebbe w medio per un secondo, ignorando la perdita gravitazionale media di 3/2 m. Non si chiede una media temporale dentro un volo, ma la media di due quote misurate allo stesso tempo trascorso.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2513,
+      "title": "Compensare una gravità maggiore a un secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 3,
+      "prompt": "Un lancio A senza aria ha g_A=2 m/s²,w_A=4 m/s. Per B si impone g_B=4 m/s² e si vuole H_B=(4/3)H_A, con H=y(1 s)−y(0). Ogni campo è uniforme. Quale rapporto w_B/w_A occorre?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "2",
+          "3/2",
+          "2/3",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo τ=1 s, l’intervallo osservato dal lancio in ciascuna prova. A guadagna tre metri, quindi B deve guadagnarne quattro. Nel campo B la perdita rispetto al moto uniforme a un secondo è due metri: per restarne quattro serve un contributo iniziale di sei metri. La nuova componente è dunque sei metri al secondo, non una semplice copia del fattore desiderato su H."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " w_B=\\frac{H_B}{\\tau}+\\frac{g_B\\tau}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{H_B}{\\tau}+\\frac{g_B\\tau}{2}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w_B/w_A=\\frac64"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac64=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi trasferirebbe il rapporto delle quote a w senza compensare il cambiamento di campo; due darebbe H_B=6 m, troppo grande. Due terzi ridurrebbe il lancio e uno lascerebbe H_B=2 m. Il vincolo H_B>0 è rispettato dalla soluzione e il tempo di osservazione resta un secondo."
+        }
+      ],
+      "hints": [
+        "Alla quota obiettivo aggiungi la perdita di quota del nuovo campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi trasferirebbe il rapporto delle quote a w senza compensare il cambiamento di campo; due darebbe H_B=6 m, troppo grande. Due terzi ridurrebbe il lancio e uno lascerebbe H_B=2 m. Il vincolo H_B>0 è rispettato dalla soluzione e il tempo di osservazione resta un secondo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2514,
+      "title": "La quota ricostruita dal display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 3,
+      "prompt": "Un display mostra S=cH, c>0 costante senza offset, dove H=y(1 s)−y(0) per lanci senza aria in campi uniformi. Il riferimento g=2 m/s²,w=4 m/s dà S=9. Una nuova prova con w=6 m/s dà S=12. Quanto vale il modulo g nella nuova prova, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota del riferimento è tre metri, quindi c=3 m⁻¹. La lettura dodici diventa quattro metri di guadagno fisico. Con τ=1 s e w=6 m/s l’inversa g=2(wτ−H)/τ² dà quattro metri al secondo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac9{3\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac9{3\\,\\mathrm m}=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=\\frac{12}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{c}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=\\frac{2(w_B\\tau-H_B)}{\\tau^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(w_B\\tau-H_B)}{\\tau^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La quota ricostruita è positiva e minore di wτ=6 m: il modulo gravitazionale è ammissibile. Scambiare la lettura dodici per metri darebbe g negativo, segnalando l’errore di taratura. Il controllo H_B=6 m−2 m=4 m e S=12 ricostruisce entrambi i livelli della misura."
+        }
+      ],
+      "hints": [
+        "Il display conta tacche: convertile in H prima di cercare il campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La quota ricostruita è positiva e minore di wτ=6 m: il modulo gravitazionale è ammissibile. Scambiare la lettura dodici per metri darebbe g negativo, segnalando l’errore di taratura. Il controllo H_B=6 m−2 m=4 m e S=12 ricostruisce entrambi i livelli della misura.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2515,
+      "title": "Un offset prima dell’inversa gravitazionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 3,
+      "prompt": "Un display segue S=cH+d, c>0,d costanti, per H=y(1 s)−y(0) in lanci senza aria e campi uniformi. A: g=2 m/s²,w=4 m/s,S=7. B: g=4 m/s²,w=6 m/s,S=9. C: w=4 m/s,S=5. Qual è g_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s²",
+          "2 m/s²",
+          "4 m/s²",
+          "6 m/s²",
+          "8 m/s²"
+        ],
+        "value": "4 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo τ=1 s. Le quote note sono tre e quattro metri. La differenza di due tacche per un metro dà c=2 m⁻¹; sostituendo in A resta d=1. La lettura cinque di C corrisponde quindi a due metri. Nella legge cinematica quei due metri risultano da quattro metri di contributo iniziale meno due metri gravitazionali."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " H_A=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " c=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " H_C=\\frac{5-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5-1}{c}=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " g_C=\\frac{2(w_C\\tau-H_C)}{\\tau^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(w_C\\tau-H_C)}{\\tau^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Con g_C=4 m/s² si ritrova H_C=2 m e S=5. I moduli 1,2,6,8 darebbero rispettivamente H=7/2,3,1,0 m: l’ultimo viola anche il guadagno positivo. Non si deve confondere la lettura di C con la quota né usare rapporti grezzi di letture per cancellare l’offset."
+        }
+      ],
+      "hints": [
+        "Determina guadagno e offset dai due riferimenti, poi ricostruisci H_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con g_C=4 m/s² si ritrova H_C=2 m e S=5. I moduli 1,2,6,8 darebbero rispettivamente H=7/2,3,1,0 m: l’ultimo viola anche il guadagno positivo. Non si deve confondere la lettura di C con la quota né usare rapporti grezzi di letture per cancellare l’offset.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-projectile-one-second-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2516,
+      "title": "Un vincolo dimensionale fra campo e lancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projectile-one-second",
+      "difficulty": 3,
+      "prompt": "Si preparano lanci senza aria scegliendo g=w/(2 s), con g,w>0 e campo costante durante ciascun moto. A τ=1 s si misura H=y(τ)−y(0)=3 m. Quanto vale w, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lega i dati iniziali di una prova: non descrive un campo che cambia mentre il corpo sale. Sostituendolo in H=wτ−gτ²/2, a τ=1 s il termine gravitazionale vale un quarto di w moltiplicato per un secondo. Rimane H=(3/4)w·1 s, una relazione lineare con un’unica soluzione positiva."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{w}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " H=w(1\\,\\mathrm s)-\\frac{w(1\\,\\mathrm s)^2}{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac34w(1\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " w=\\frac{4H}{3(1\\,\\mathrm s)}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4H}{3(1\\,\\mathrm s)}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Segue g=2 m/s² e il controllo restituisce H=4 m−1 m=3 m. Usare H=w·1 s ignorerebbe il campo; sottrarre metà anziché un quarto tratterebbe g come w/(1 s). Il vincolo conserva H>0 per ogni w>0, mentre la quota misurata ne fissa qui il valore."
+        }
+      ],
+      "hints": [
+        "Inserisci il coefficiente con la sua unità prima di sommare i termini di quota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Segue g=2 m/s² e il controllo restituisce H=4 m−1 m=3 m. Usare H=w·1 s ignorerebbe il campo; sottrarre metà anziché un quarto tratterebbe g come w/(1 s). Il vincolo conserva H>0 per ogni w>0, mentre la quota misurata ne fissa qui il valore.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Spostamento a un istante fissato",
+        "Componenti e gravità",
+        "Inversa e taratura della quota"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "375b8914eca74894261068877465d11ad8b1132a6d733c178d6cbc5651560142",
+      "name": "projectile-one-second-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMTEyMCIgdmlld0JveD0iMCAwIDYwMCAxMTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiA8dGl0bGUgaWQ9InRpdGxlIj5RdW90YSBhIHVuIHNlY29uZG86IGFyZWEsIGN1cnZhIGUgcGVyZGl0YSBncmF2aXRhemlvbmFsZTwvdGl0bGU+CiA8ZGVzYyBpZD0iZGVzYyI+TGFuY2lvIGNvbiBjb21wb25lbnRlIHZlcnRpY2FsZSBpbml6aWFsZSBxdWF0dHJvIG1ldHJpIGFsIHNlY29uZG8gZSBhY2NlbGVyYXppb25lIG1lbm8gZHVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8uIE5lbCBwcmltbyBzZWNvbmRvIGxhIGNvbXBvbmVudGUgc2NlbmRlIGEgZHVlOiBhcmVhIHRyYXBlem9pZGFsZSB0cmUgbWV0cmkuIExhIHF1b3RhIHJlYWxlIGF1bWVudGEgZGkgdHJlIG1ldHJpLCB1biBtZXRybyBtZW5vIGRlbCByaWZlcmltZW50byBjb24gdmVsb2NpdMOgIGNvc3RhbnRlLiBUdXR0aSBnbGkgYXNzaSBoYW5ubyBzY2FsZSBkaWNoaWFyYXRlIGUgdCB6ZXJvIGFsIGxhbmNpby48L2Rlc2M+CiA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjExMjAiIGZpbGw9IndoaXRlIi8+CiA8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzE3MjAzMyI+CiAgPHRleHQgeD0iMjgiIHk9IjM1IiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBMYSB2ZWxvY2l0w6AgY2FtYmlhIGR1cmFudGUgaWwgc2Vjb25kbzwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNzAiPnQgPSAwIGFsIGxhbmNpbyDCtyAyMDAgcHgvczsgNDAgcHgvKG0vcyk8L3RleHQ+CiAgPHBhdGggZD0iTTEwMCAzMDBWMTQwTDMwMCAyMjBWMzAwWiIgZmlsbD0iI2RiZWFmZSIvPgogIDxwYXRoIGQ9Ik0xMDAgMzIwVjExME04MCAzMDBIMzkwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0xMDAgMTQwTDMwMCAyMjAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHBhdGggZD0iTTEwMCAyMjBIMzAwVjMwMCIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2UtZGFzaGFycmF5PSI0IDUiIGZpbGw9Im5vbmUiLz4KICA8dGV4dCB4PSIyNSIgeT0iMTExIj524bWnIChtL3MpPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMzA2Ij50IChzKTwvdGV4dD4KICA8dGV4dCB4PSI2MyIgeT0iMTQ2Ij40PC90ZXh0Pjx0ZXh0IHg9IjYzIiB5PSIyMjYiPjI8L3RleHQ+PHRleHQgeD0iNjMiIHk9IjMwNiI+MDwvdGV4dD4KICA8dGV4dCB4PSI5NSIgeT0iMzQ0Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI5NSIgeT0iMzQ0Ij4xPC90ZXh0PgogIDx0ZXh0IHg9IjEzOCIgeT0iMjcwIj5hcmVhID0gKDQgKyAyKcK3MS8yID0gMyBtPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI0MTAiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IENvbmZyb250YSBkdWUgY3VydmUgZGkgcG9zaXppb25lPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI0NDUiPkggPSB5KHQpIOKIkiB5KDApIMK3IDIwMCBweC9zOyA0MCBweC9tPC90ZXh0PgogIDxwYXRoIGQ9Ik0xMDAgNzIwVjUwNU04MCA3MDBIMzkwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogIDxwYXRoIGQ9Ik0xMDAgNzAwTDMwMCA1NDAiIHN0cm9rZT0iIzcxODA5NiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KICA8cGF0aCBkPSJNMTAwIDcwMFEyMDAgNjIwIDMwMCA1ODAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CiAgPHBhdGggZD0iTTEwMCA1NDBIMzAwVjcwME0xMDAgNTgwSDMwMCIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2UtZGFzaGFycmF5PSI0IDUiIGZpbGw9Im5vbmUiLz4KICA8Y2lyY2xlIGN4PSIzMDAiIGN5PSI1ODAiIHI9IjUiIGZpbGw9IiMyNDVjYTQiLz4KICA8dGV4dCB4PSI0NiIgeT0iNTA4Ij5IIChtKTwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjcwNiI+dCAocyk8L3RleHQ+CiAgPHRleHQgeD0iNjMiIHk9IjU0NiI+NDwvdGV4dD48dGV4dCB4PSI2MyIgeT0iNTg2Ij4zPC90ZXh0Pjx0ZXh0IHg9IjYzIiB5PSI3MDYiPjA8L3RleHQ+CiAgPHRleHQgeD0iOTUiIHk9Ijc0NCI+MDwvdGV4dD48dGV4dCB4PSIyOTUiIHk9Ijc0NCI+MTwvdGV4dD4KICA8dGV4dCB4PSIzMzAiIHk9IjU0MiI+dW5pZm9ybWU6IDQgbTwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjU5MCI+cmVhbGU6IDMgbTwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iODEyIiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBTb3R0cmFpIGxhIHBlcmRpdGEsIGNvbiBsZSB1bml0w6A8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9Ijg1MCI+U2NhbGEgZGVsbGUgYmFycmU6IDQwIHB4L208L3RleHQ+CiAgPHJlY3QgeD0iMTAwIiB5PSI4ODAiIHdpZHRoPSI1NSIgaGVpZ2h0PSIxNjAiIGZpbGw9IiNlMmU4ZjAiIHN0cm9rZT0iIzY0NzQ4YiIvPgogIDxyZWN0IHg9IjMwMCIgeT0iOTIwIiB3aWR0aD0iNTUiIGhlaWdodD0iMTIwIiBmaWxsPSIjZGJlYWZlIiBzdHJva2U9IiMyNDVjYTQiLz4KICA8cmVjdCB4PSIzMDAiIHk9Ijg4MCIgd2lkdGg9IjU1IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZmNlN2RmIiBzdHJva2U9IiM5YTUzNDYiIHN0cm9rZS1kYXNoYXJyYXk9IjQgMyIvPgogIDxwYXRoIGQ9Ik04MCAxMDQwSDM4MCIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI5NSIgeT0iODc1Ij53z4QgPSA0IG08L3RleHQ+PHRleHQgeD0iMzcwIiB5PSI5MDUiPmfPhMKyLzIgPSAxIG08L3RleHQ+CiAgPHRleHQgeD0iMzcwIiB5PSI5ODIiPkggPSAzIG08L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjEwOTAiPs+EID0gMSBzOyBs4oCZYXBpY2UgZGkgcXVlc3RhIHByb3ZhIMOoIGRvcG8gMiBzPC90ZXh0PgogPC9nPgo8L3N2Zz4K"
+    }
+  ]
+}

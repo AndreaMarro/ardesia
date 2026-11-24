@@ -1,15 +1,26 @@
 """Stdlib-only fingerprint of the actual private-preview runtime and audit dependencies."""
 import hashlib
 import json
+import os
 from pathlib import Path
 
 
 def file_sha(file):return hashlib.sha256(file.read_bytes()).hexdigest()
 
 
+def assert_bundled_runtime(app):
+    """The corpus harness proves the bundled installation, never an unseen override."""
+    configured=os.environ.get('ASTRA_EXTENSIONS')
+    if configured is not None and Path(configured).resolve()!=(app/'extensions').resolve():
+        raise ValueError('Corpus evidence requires bundled engines; external ASTRA_EXTENSIONS is outside this proof')
+
+
 def runtime_fingerprint(app):
-    app=app.resolve();files={}
-    for folder in ("server","static","content","contracts","migrations"):
+    app=app.resolve();assert_bundled_runtime(app);files={}
+    # The state endpoint reads exam policies lazily; initialization also binds
+    # bundled engine manifests and code. They are runtime inputs, even when no
+    # learner content or renderer source has changed.
+    for folder in ("server","static","content","contracts","migrations","policies","extensions"):
         for file in sorted((app/folder).rglob("*")):
             relative=file.relative_to(app)
             if not file.is_file() or any(part.startswith('.') or part=='__pycache__' for part in relative.parts):continue

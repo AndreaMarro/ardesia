@@ -8,6 +8,7 @@ import tempfile
 import re
 
 from .pipeline import canonical, digest
+from .runtime_fingerprint import assert_bundled_runtime
 
 APP = Path(__file__).resolve().parents[2]
 CODE = '''
@@ -46,10 +47,11 @@ def exercise(batch="units-001"):
 
 
 def exercise_package(package):
+    assert_bundled_runtime(APP)
     package=Path(package).resolve()
     with tempfile.TemporaryDirectory(prefix="cric-integration-") as home:
         run = subprocess.run([sys.executable, "-c", CODE, str(package)], cwd=APP,
-            env={**os.environ, "ASTRA_DATA": home, "ASTRA_HOSTED": "0"}, capture_output=True, text=True, timeout=60)
+            env={**os.environ, "ASTRA_DATA": home, "ASTRA_HOSTED": "0", "ASTRA_EXTENSIONS": str(APP/"extensions")}, capture_output=True, text=True, timeout=60)
     if run.returncode: raise ValueError(run.stdout + run.stderr)
     return json.loads(run.stdout)
 

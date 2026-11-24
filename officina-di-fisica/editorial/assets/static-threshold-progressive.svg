@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1170" viewBox="0 0 600 1170" role="img" aria-labelledby="title desc">
+ <title id="title">Attrito statico effettivo e intervallo ammesso</title>
+ <desc id="desc">Spinta quattro newton verso destra, attrito quattro newton verso sinistra, sotto un massimo di dieci. Nella seconda tappa il modulo richiesto cresce con la spinta fino a dieci newton; oltre quel limite il modello statico non permette la quiete. Nella terza, la componente meno quattro newton è interna all’intervallo da meno dieci a più dieci.</desc>
+ <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#245ca4"/></marker></defs>
+ <rect width="600" height="1170" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="19" fill="#172033">
+  <text x="28" y="35" font-size="24" font-weight="bold">1 · Equilibra la spinta assegnata</text>
+  <text x="28" y="78">Proiezioni orizzontali · scala 10 px/N</text>
+  <rect x="260" y="160" width="80" height="60" fill="#dbeafe" stroke="#334155"/>
+  <path d="M340 190H380" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M260 190H220" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M120 232H500" stroke="#94a3b8" stroke-width="2"/>
+  <text x="267" y="198" font-size="17">blocco</text>
+  <text x="365" y="146">P = 4 N</text><text x="128" y="146">fₛ = −4 N</text>
+  <text x="28" y="285">Forze verticali equilibrate, qui omesse.</text>
+  <text x="28" y="326">La massa non serve: è noto il massimo 10 N.</text>
+  <text x="28" y="386" font-size="24" font-weight="bold">2 · Controlla il limite della quiete</text>
+  <text x="28" y="422">Scala: 30 px/N su entrambi gli assi</text>
+  <rect x="400" y="460" width="60" height="300" fill="#fff1e9"/>
+  <path d="M100 780V440M80 760H475" stroke="#334155" stroke-width="2" fill="none"/>
+  <path d="M100 460H400M100 640H220V760M400 460V760" stroke="#94a3b8" stroke-dasharray="5 5" fill="none"/>
+  <path d="M100 760L400 460" stroke="#245ca4" stroke-width="3"/>
+  <circle cx="220" cy="640" r="6" fill="#245ca4"/><circle cx="400" cy="460" r="6" fill="#245ca4"/>
+  <text x="20" y="453" font-size="17">|fₛ| (N)</text><text x="486" y="766">P (N)</text>
+  <text x="53" y="466">10</text><text x="65" y="646">4</text><text x="65" y="766">0</text>
+  <text x="94" y="805">0</text><text x="214" y="805">4</text><text x="389" y="805">10</text><text x="449" y="805">12</text>
+  <text x="28" y="852">Oltre 10 N: nessun equilibrio statico.</text>
+  <text x="28" y="917" font-size="24" font-weight="bold">3 · Leggi anche la componente</text>
+  <text x="28" y="957">Intervallo ammesso: scala 20 px/N</text>
+  <path d="M100 1020H500M100 1008V1032M300 1008V1032M500 1008V1032" stroke="#64748b" stroke-width="2"/>
+  <path d="M300 1020H220" stroke="#245ca4" stroke-width="4" marker-end="url(#a)"/>
+  <text x="82" y="1063">−10 N</text><text x="292" y="1063">0</text><text x="475" y="1063">+10 N</text>
+  <text x="165" y="997">fₛ = −4 N</text>
+  <text x="28" y="1120">P = +4 N richiede fₛ = −P, non −10 N.</text>
+ </g>
+</svg>

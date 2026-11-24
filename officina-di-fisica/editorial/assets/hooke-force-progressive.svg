@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1330" viewBox="0 0 600 1330" role="img" aria-labelledby="title desc">
+ <title id="title">Molla: deformazione orientata e forza di richiamo</title>
+ <desc id="desc">Costante due newton al metro. Lunghezza naturale illustrativa tre metri. L’estremo naturale è a zero di deformazione. Allungamento più due metri e compressione meno due hanno entrambi modulo due metri e forza di modulo quattro newton in versi opposti. Lunghezze a quaranta pixel per metro e forze a venti pixel per newton. Le molle a zigzag sono simboliche e il regime è assunto lineare elastico.</desc>
+ <defs><marker id="a" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#245ca4"/></marker></defs>
+ <rect width="600" height="1330" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="19" fill="#172033">
+  <text x="28" y="35" font-size="24" font-weight="bold">1 · Fissa la lunghezza naturale</text>
+  <text x="28" y="78">Scala lunghezze: 40 px/m · L₀ = 3 m illustrativa</text>
+  <path d="M100 130V220M100 180H110L117 168L131 192L145 168L159 192L173 168L187 192L201 168L210 180H220" stroke="#334155" stroke-width="2" fill="none"/>
+  <circle cx="220" cy="180" r="5" fill="#245ca4"/><text x="241" y="187">x = 0</text>
+  <path d="M100 235H220M100 228V242M220 228V242" stroke="#94a3b8" stroke-width="2"/>
+  <text x="143" y="267">3 m</text>
+  <text x="28" y="329" font-size="24" font-weight="bold">2 · Confronta i due versi di x</text>
+  <text x="28" y="370">k = 2 N/m · forze: 20 px/N · zigzag simbolico</text>
+  <path d="M100 390V460M220 390V490" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M100 430H110L122 418L145 442L168 418L191 442L214 418L237 442L260 418L283 442L290 430H300" stroke="#334155" stroke-width="2" fill="none"/>
+  <circle cx="300" cy="430" r="5" fill="#245ca4"/>
+  <path d="M220 465H300M220 458V472M300 458V472M300 435V540" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+  <text x="330" y="472">x = +2 m</text>
+  <path d="M300 540H220" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <text x="330" y="547">Fₓ = −4 N</text>
+  <path d="M100 600V670M220 600V790" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M100 640H104L106 630L110 650L114 630L118 650L122 630L126 650L130 630L134 650L137 640H140" stroke="#334155" stroke-width="2" fill="none"/>
+  <circle cx="140" cy="640" r="5" fill="#245ca4"/>
+  <path d="M140 675H220M140 668V682M220 668V682M140 645V750" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+  <text x="250" y="682">x = −2 m</text>
+  <path d="M140 750H220" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <text x="250" y="757">Fₓ = +4 N</text>
+  <text x="28" y="829">In entrambi: ℓ = |x| = 2 m e F = 4 N.</text>
+  <text x="28" y="899" font-size="24" font-weight="bold">3 · La componente cambia segno</text>
+  <text x="28" y="939">x: 40 px/m · Fₓ: 20 px/N · solo regime lineare</text>
+  <path d="M220 1180V975M120 1080H340" stroke="#334155" stroke-width="2" fill="none"/>
+  <path d="M140 1000L300 1160" stroke="#245ca4" stroke-width="3"/>
+  <path d="M140 1000H220M220 1160H300M140 1000V1080M300 1080V1160" stroke="#94a3b8" stroke-dasharray="4 4" fill="none"/>
+  <g fill="#245ca4"><circle cx="140" cy="1000" r="5"/><circle cx="220" cy="1080" r="5"/><circle cx="300" cy="1160" r="5"/></g>
+  <text x="175" y="967">Fₓ (N)</text><text x="355" y="1086">x (m)</text>
+  <text x="95" y="1006">+4</text><text x="178" y="1166">−4</text>
+  <text x="130" y="1118">−2</text><text x="196" y="1118">0</text><text x="315" y="1118">+2</text>
+  <text x="374" y="1033">Fₓ = −kx</text>
+  <text x="28" y="1251">Compressione: x &lt; 0, ma ℓ &gt; 0.</text>
+  <text x="28" y="1293">Il modulo F = kℓ non è una forza negativa.</text>
+ </g>
+</svg>

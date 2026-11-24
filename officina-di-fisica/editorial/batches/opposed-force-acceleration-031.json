@@ -1,0 +1,1250 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-opposed-force-acceleration-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3121,
+      "title": "Sommare le forze sul solo blocco",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Con F=6 N e R=2 N, quanto vale A in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due forze agiscono sul medesimo blocco, quindi entrano nella stessa somma algebrica. F contribuisce positivamente e R negativamente. Prima ricaviamo la risultante, poi la dividiamo per la massa; la forza maggiore determina il verso dell’accelerazione, non necessariamente il verso della velocità iniziale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d23650ff41afa1d16d9740a204252d86647ff5e566477c39bc4312179615136d",
+          "text": "Tre tappe orizzontali: F=6 N e R=2 N sul medesimo blocco; risultante4 N verso destra; accelerazione2 m/s² per M=2 kg. Forze a20 px/N e accelerazione a40 px per m/s²: le due scale hanno dimensioni diverse. Forze verticali equilibrate, omesse dalla proiezione orizzontale."
+        },
+        {
+          "type": "formula",
+          "text": "F_x=F-R"
+        },
+        {
+          "type": "formula",
+          "text": "F-R=(6-2)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(6-2)\\,\\mathrm N=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " MA=F_x"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{4\\,\\mathrm N}{2\\,\\mathrm{kg}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm N}{2\\,\\mathrm{kg}}=+2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "L’accelerazione è verso destra. Se il blocco si stesse muovendo a sinistra, questa stessa accelerazione ne ridurrebbe inizialmente la rapidità: il testo non assegna la velocità. Sommare i moduli 6+2 darebbe una risultante sbagliata, perché ignora i versi."
+        }
+      ],
+      "hints": [
+        "Sottrai i moduli delle forze opposte prima di dividere per M.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’accelerazione è verso destra. Se il blocco si stesse muovendo a sinistra, questa stessa accelerazione ne ridurrebbe inizialmente la rapidità: il testo non assegna la velocità. Sommare i moduli 6+2 darebbe una risultante sbagliata, perché ignora i versi.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3122,
+      "title": "L’unità di risultante divisa per massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 1,
+      "prompt": "La seconda legge di Newton scritta lungo un asse inerziale dà A=(F−R)/M, dove F,R sono forze e M è una massa positiva. Quale unità SI è adatta all’accelerazione A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "m",
+          "kg",
+          "m/s²",
+          "N"
+        ],
+        "value": "m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza fra due forze ha ancora unità di forza. Un newton equivale a un chilogrammo per metro al secondo quadrato. Dividendo per la massa si cancella il chilogrammo e rimane l’unità di accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "[F-R]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=\\frac{ML/T^2}{M}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{ML/T^2}{M}=L/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{N/kg}=\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "m/s² è corretto. N misura la risultante prima della divisione, kg il denominatore, m una lunghezza e s una durata. Il segno dell’accelerazione dipende dall’asse, ma non ne cambia l’unità."
+        }
+      ],
+      "hints": [
+        "Espandi N come kg·m/s² e cancella kg.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s² è corretto. N misura la risultante prima della divisione, kg il denominatore, m una lunghezza e s una durata. Il segno dell’accelerazione dipende dall’asse, ma non ne cambia l’unità.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3123,
+      "title": "Una coppia di interazione attraversa il confine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 1,
+      "prompt": "Una persona spinge un carrello. Il carrello esercita contemporaneamente sulla persona una forza uguale e opposta. Perché queste due forze non si annullano nel calcolo dell’accelerazione del solo carrello, osservato in un riferimento inerziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il carrello non obbedisce alla seconda legge",
+          "Agiscono su due corpi diversi",
+          "La forza della persona è sempre maggiore",
+          "La reazione nasce solo quando il carrello si muove",
+          "La reazione non ha effetti meccanici"
+        ],
+        "value": "Agiscono su due corpi diversi"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indichiamo con P la persona e con C il carrello; m_c e a_c sono la massa e l’accelerazione del carrello. Scegliamo come sistema soltanto C. Nella sua equazione compaiono le forze esercitate su di lui, fra cui la spinta della persona. La forza opposta ha invece come destinataria la persona. È una forza reale e simultanea, ma appartiene al diagramma di un altro corpo."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_{P\\to C}=-\\vec F_{C\\to P}"
+        },
+        {
+          "type": "formula",
+          "text": " m_c\\vec a_c=\\sum\\vec F_{sul\\ carrello}"
+        },
+        {
+          "type": "text",
+          "text": "La terza legge non sostituisce la seconda: l’uguaglianza delle forze dell’interazione vale sempre, senza aspettare il movimento. Se il sistema comprendesse persona e carrello, la coppia sarebbe interna e si cancellerebbe nella somma totale; l’accelerazione del sistema dipenderebbe dalle altre forze esterne, per esempio quelle del suolo."
+        }
+      ],
+      "hints": [
+        "Per ogni freccia domanda: su quale corpo agisce?",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La terza legge non sostituisce la seconda: l’uguaglianza delle forze dell’interazione vale sempre, senza aspettare il movimento. Se il sistema comprendesse persona e carrello, la coppia sarebbe interna e si cancellerebbe nella somma totale; l’accelerazione del sistema dipenderebbe dalle altre forze esterne, per esempio quelle del suolo.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3124,
+      "title": "Più spinta con la stessa opposizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Due prove separate hanno R=2 N e rispettivamente F₁=6 N,F₂=10 N. Come cambia l’accelerazione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 m/s²",
+          "Da 2 a 5 m/s²",
+          "Resta 2 m/s²",
+          "Da 2 a 1 m/s²",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella prima prova la risultante è quattro newton; nella seconda è otto. La massa resta due chilogrammi, quindi anche l’accelerazione raddoppia. Usiamo entrambe le forze prima della divisione: il rapporto fra le spinte 10/6 da solo non è il rapporto fra accelerazioni."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=\\frac{6-2}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6-2}{2}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{10-2}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10-2}{2}\\,\\mathrm{m/s^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque m/s² userebbe solo la nuova spinta senza R; invariabilità o diminuzione ignorerebbero il maggiore squilibrio verso destra. Lo zero richiederebbe F=R, escluso in entrambe le prove. La nuova risultante è doppia pur non essendo doppia F."
+        }
+      ],
+      "hints": [
+        "Confronta 6−2 e 10−2, non soltanto 6 e10.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque m/s² userebbe solo la nuova spinta senza R; invariabilità o diminuzione ignorerebbero il maggiore squilibrio verso destra. Lo zero richiederebbe F=R, escluso in entrambe le prove. La nuova risultante è doppia pur non essendo doppia F.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3125,
+      "title": "Ricostruire la spinta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Si misurano A=2 m/s² e R=2 N. Quanto vale F in newton?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla risultante MA=F−R aggiungiamo R a entrambi i membri. Il prodotto massa per accelerazione vale quattro newton: la spinta deve fornire questi quattro newton di squilibrio più i due necessari a compensare R."
+        },
+        {
+          "type": "formula",
+          "text": "MA=F-R"
+        },
+        {
+          "type": "formula",
+          "text": " F=MA+R"
+        },
+        {
+          "type": "formula",
+          "text": " F=(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s^2})+2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s^2})+2\\,\\mathrm N=6\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo (6−2)/2=2 restituisce l’accelerazione. Quattro newton è la risultante, non la forza F presa singolarmente. Il valore trovato soddisfa F>R>0, quindi mantiene il dominio dichiarato."
+        }
+      ],
+      "hints": [
+        "La spinta supera R della quantità MA.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo (6−2)/2=2 restituisce l’accelerazione. Quattro newton è la risultante, non la forza F presa singolarmente. Il valore trovato soddisfa F>R>0, quindi mantiene il dominio dichiarato.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3126,
+      "title": "Quanto vale la forza opposta?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Si misurano A=2 m/s² e F=6 N. Quanto vale R in newton?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto MA è la parte della spinta che resta dopo la sottrazione di R. Dall’equazione MA=F−R aggiungiamo R e sottraiamo MA: rimane R=F−MA. Tutti i termini della sottrazione sono forze."
+        },
+        {
+          "type": "formula",
+          "text": "MA=F-R"
+        },
+        {
+          "type": "formula",
+          "text": " R+MA=F"
+        },
+        {
+          "type": "formula",
+          "text": " R=F-MA"
+        },
+        {
+          "type": "formula",
+          "text": " R=6\\,\\mathrm N-4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\mathrm N-4\\,\\mathrm N=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "La forza opposta è minore della spinta e positiva. La condizione per questa inversa è F>MA>0, verificata da6>4>0. Se si ottenesse R negativo, il verso assegnato a R non descriverebbe più il modello richiesto."
+        }
+      ],
+      "hints": [
+        "Togli dalla spinta la risultante MA.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La forza opposta è minore della spinta e positiva. La condizione per questa inversa è F>MA>0, verificata da6>4>0. Se si ottenesse R negativo, il verso assegnato a R non descriverebbe più il modello richiesto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3127,
+      "title": "Aumentare soltanto la forza opposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Fra due prove separate F resta6 N e R passa da R₁=2 N a R₂=4 N. Quanto vale A₂/A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "1/4",
+          "2",
+          "−1/2",
+          "1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La risultante passa da quattro a due newton. Dividendo per la stessa massa otteniamo accelerazioni due e un metro al secondo quadrato. Il rapporto secondo su primo è la frazione un mezzo, positiva perché F rimane maggiore di R."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=\\frac{6-2}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6-2}{2}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{6-4}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6-4}{2}\\,\\mathrm{m/s^2}=1\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2/A_1=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Uno ignora il cambiamento, due inverte il rapporto, un quarto dimezza due volte. Il segno negativo sarebbe incompatibile con F>R in entrambe le prove. R è raddoppiata, ma entra in una differenza: non si può sostituire il rapporto R₂/R₁ a quello delle accelerazioni."
+        }
+      ],
+      "hints": [
+        "Trova prima le due risultanti orientate.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Uno ignora il cambiamento, due inverte il rapporto, un quarto dimezza due volte. Il segno negativo sarebbe incompatibile con F>R in entrambe le prove. R è raddoppiata, ma entra in una differenza: non si può sostituire il rapporto R₂/R₁ a quello delle accelerazioni.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3128,
+      "title": "Lo scarto dopo la divisione per la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Con F=6 N,R=2 N si propone A_proposto=4 m/s². Quanto vale lo scarto proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+1 m/s²",
+          "0 m/s²",
+          "−2 m/s²",
+          "+2 m/s²",
+          "+4 m/s²"
+        ],
+        "value": "+2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro newton è la risultante orizzontale, non ancora l’accelerazione. Divisa per due chilogrammi dà due metri al secondo quadrato. La proposta vale quattro, quindi la sottrazione richiesta è quattro meno due."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{6-2}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6-2}{2}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm{m/s^2}=+2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "−2 inverte l’ordine dello scarto; +4 ripete la proposta; zero la accetterebbe; +1 dimezza ancora la differenza. Il segno dello scarto esprime sovrastima e non è una nuova scelta del verso dell’asse."
+        }
+      ],
+      "hints": [
+        "La risultante4 N deve ancora essere divisa per2 kg.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−2 inverte l’ordine dello scarto; +4 ripete la proposta; zero la accetterebbe; +1 dimezza ancora la differenza. Il segno dello scarto esprime sovrastima e non è una nuova scelta del verso dell’asse.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3129,
+      "title": "L’inversa conserva la massa come grandezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Quale formula isola F dalla relazione A=(F−R)/M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=2MA+R",
+          "F=MA−R",
+          "F=MA+R",
+          "F=A/M+R",
+          "F=M(A+R)"
+        ],
+        "value": "F=MA+R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per M, che è la massa positiva due chilogrammi, poi aggiungiamo R. Manteniamo il simbolo M con la sua dimensione: scrivere soltanto2A senza l’unità della massa nasconderebbe il controllo dimensionale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d23650ff41afa1d16d9740a204252d86647ff5e566477c39bc4312179615136d",
+          "text": "Tre tappe orizzontali: F=6 N e R=2 N sul medesimo blocco; risultante4 N verso destra; accelerazione2 m/s² per M=2 kg. Forze a20 px/N e accelerazione a40 px per m/s²: le due scale hanno dimensioni diverse. Forze verticali equilibrate, omesse dalla proiezione orizzontale."
+        },
+        {
+          "type": "formula",
+          "text": "MA=F-R"
+        },
+        {
+          "type": "formula",
+          "text": " MA+R=F"
+        },
+        {
+          "type": "formula",
+          "text": " F=MA+R"
+        },
+        {
+          "type": "formula",
+          "text": " [MA]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": "ML/T^2=[R]"
+        },
+        {
+          "type": "text",
+          "text": "2MA+R raddoppia indebitamente la risultante richiesta. MA−R sottrae la forza che andava compensata. A/M non ha unità di forza, mentre A+R somma accelerazione e forza senza una conversione fisica. La formula corretta dà F>R quando A>0."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore M e poi il termine−R.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2MA+R raddoppia indebitamente la risultante richiesta. MA−R sottrae la forza che andava compensata. A/M non ha unità di forza, mentre A+R somma accelerazione e forza senza una conversione fisica. La formula corretta dà F>R quando A>0.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3130,
+      "title": "Scalare forze che si sottraggono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Una seconda prova usa F₂=κ₁F,R₂=κ₂R, con κ₁,κ₂>0 e κ₁F>κ₂R. Nella prima prova A₁=(F−R)/M e nella seconda A₂. Quale rapporto A₂/A₁ segue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "(κ₁F+κ₂R)/(F−R)",
+          "(κ₁F−κ₂R)/(κ₁F+κ₂R)",
+          "2(κ₁F−κ₂R)/(F−R)",
+          "(κ₁F−κ₂R)/(F−R)"
+        ],
+        "value": "(κ₁F−κ₂R)/(F−R)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo le due risultanti, ciascuna con il proprio segno. La massa è uguale e si cancella nel rapporto; le forze iniziali invece rimangono, perché una differenza non si fattorizza in un rapporto dei due fattori indipendenti. Il vincolo sulla seconda prova garantisce accelerazione positiva."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=\\frac{F-R}{M}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{\\kappa_1F-\\kappa_2R}{M}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_2}{A_1}=\\frac{\\kappa_1F-\\kappa_2R}{F-R}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ sarebbe adatto a un quoziente di ingressi, non alla loro differenza. Il segno più somma forze opposte; il denominatore κ₁F+κ₂R cambia il confronto richiesto. Il fattore due supplementare non deriva da nessuna massa nuova. Se κ₁=κ₂=κ, il rapporto èκ: questo controllo conferma la struttura della formula."
+        }
+      ],
+      "hints": [
+        "Cancella la massa comune, mantenendo le due differenze.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁/κ₂ sarebbe adatto a un quoziente di ingressi, non alla loro differenza. Il segno più somma forze opposte; il denominatore κ₁F+κ₂R cambia il confronto richiesto. Il fattore due supplementare non deriva da nessuna massa nuova. Se κ₁=κ₂=κ, il rapporto èκ: questo controllo conferma la struttura della formula.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3131,
+      "title": "Due cambiamenti, due risultanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Le due prove hanno (F₁=6 N,R₁=2 N) e (F₂=10 N,R₂=4 N). Quanto vale A₂/A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/3",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le risultanti sono quattro e sei newton. Le accelerazioni sono dunque due e tre metri al secondo quadrato. Dividendo tre per due rimane una frazione esatta, senza bisogno di convertirla in decimale."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=\\frac{6-2}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{6-2}{2}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{10-4}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10-4}{2}\\,\\mathrm{m/s^2}=3\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2/A_1=3/2"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il rapporto,5/3 confronta soltanto le spinte10/6, due confronta soltanto le forze opposte4/2 e uno ignora che la risultante cresce. Le unità si cancellano nel rapporto di accelerazioni."
+        }
+      ],
+      "hints": [
+        "Il confronto riguarda6 N e4 N di risultante.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il rapporto,5/3 confronta soltanto le spinte10/6, due confronta soltanto le forze opposte4/2 e uno ignora che la risultante cresce. Le unità si cancellano nel rapporto di accelerazioni.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3132,
+      "title": "La media di due accelerazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Due prove hanno (F=6 N,R=2 N) e (F=10 N,R=4 N). Qual è la media aritmetica delle due accelerazioni, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 m/s²",
+          "5/2 m/s²",
+          "5 m/s²",
+          "5/4 m/s²",
+          "7/2 m/s²"
+        ],
+        "value": "5/2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo le uscite due e tre metri al secondo quadrato. La loro somma è cinque, e ciascuna ha metà peso nella media. Qui la legge è lineare nelle due forze a massa fissata: anche usare le forze medie F=8 N,R=3 N darebbe lo stesso risultato, non una scorciatoia vietata in generale."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=3\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A=\\frac{2+3}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+3}{2}\\,\\mathrm{m/s^2}=\\frac52\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è la somma;5/4 dimezza ancora la media;3/2 è il rapporto delle accelerazioni;7/2 non è la media delle due uscite e cade sopra entrambe: una media dovrebbe invece trovarsi fra2e3. I pesi sono statistici e non tempi di una traiettoria composta."
+        }
+      ],
+      "hints": [
+        "Una media con uguali pesi sta fra2e3.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Cinque è la somma;5/4 dimezza ancora la media;3/2 è il rapporto delle accelerazioni;7/2 non è la media delle due uscite e cade sopra entrambe: una media dovrebbe invece trovarsi fra2e3. I pesi sono statistici e non tempi di una traiettoria composta.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3133,
+      "title": "Scegliere la nuova forza opposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. La prima prova ha F₁=6 N,R₁=2 N. Nella seconda si impone F₂=10 N e si vuole A₂=(3/2)A₁. Quanto deve valere R₂/R₁?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima accelerazione vale due, quindi l’obiettivo è tre metri al secondo quadrato. La risultante richiesta è M A₂=6 N. Dalla spinta nuova dieci togliamo questa risultante per ricavare i quattro newton della forza opposta; solo alla fine confrontiamo con i due iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=3\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=F_2-MA_2"
+        },
+        {
+          "type": "formula",
+          "text": "F_2-MA_2=(10-6)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(10-6)\\,\\mathrm N=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " R_2/R_1=4/2"
+        },
+        {
+          "type": "formula",
+          "text": "4/2=2"
+        },
+        {
+          "type": "text",
+          "text": "I nuovi dati rispettano10>4>0. Il controllo (10−4)/2=3 verifica l’obiettivo, mentre moltiplicare R₁ direttamente per3/2 non funzionerebbe: l’accelerazione dipende dalla differenza F−R, non da R da sola."
+        }
+      ],
+      "hints": [
+        "Ricava la nuova risultante prima di cercare R₂.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I nuovi dati rispettano10>4>0. Il controllo (10−4)/2=3 verifica l’obiettivo, mentre moltiplicare R₁ direttamente per3/2 non funzionerebbe: l’accelerazione dipende dalla differenza F−R, non da R da sola.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3134,
+      "title": "Tarare una lettura di accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Un display ideale fornisce S=qA, lettura continua adimensionale, con q>0 costante e offset nullo. Il riferimento F=6 N,R=2 N dà S=6. La nuova prova dà S=9 e R=4 N. Quanto vale F nella nuova prova in newton?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha accelerazione due metri al secondo quadrato. Il guadagno è dunque6/2=3 s²/m. La lettura nuova nove equivale ad accelerazione tre. Trasformiamo questa in risultante con M=2 kg, poi aggiungiamo i quattro newton di R."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac6{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm{m/s^2}}=3\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac9q"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac9q=3\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " F=MA+R"
+        },
+        {
+          "type": "formula",
+          "text": "MA+R=(2\\times3+4)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\times3+4)\\,\\mathrm N=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo completo dà A=(10−4)/2=3m/s² e S=3·3=9. S non è direttamente una forza o un’accelerazione in SI: il guadagno ne definisce la conversione. Il nuovo F resta maggiore di R."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per ricavare q prima dell’inversa F=MA+R.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo completo dà A=(10−4)/2=3m/s² e S=3·3=9. S non è direttamente una forza o un’accelerazione in SI: il guadagno ne definisce la conversione. Il nuovo F resta maggiore di R.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3135,
+      "title": "Due riferimenti trovano anche l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Un display ideale legge S=qA+c, continuo e adimensionale, con q>0,c costanti. I riferimenti (F=6 N,R=2 N) e (F=10 N,R=4 N) danno S=5 e7. La prova ignota ha R=2 N,S=9. Quanto vale F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 N",
+          "10 N",
+          "20 N",
+          "5 N",
+          "11 N"
+        ],
+        "value": "10 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti producono accelerazioni due e tre. Sottrarre le letture elimina l’offset: il guadagno è due per una differenza di1m/s², cioè2s²/m. Poi c=5−2·2=1. La nuova lettura corretta per l’offset è otto, quindi A=4m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{7-5}{(3-2)\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{7-5}{(3-2)\\,\\mathrm{m/s^2}}=2\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=5-2\\times2"
+        },
+        {
+          "type": "formula",
+          "text": "5-2\\times2=1"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{9-1}{q}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{q}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " F=MA+R"
+        },
+        {
+          "type": "formula",
+          "text": "MA+R=(2\\times4+2)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\times4+2)\\,\\mathrm N=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Undici newton deriverebbe dal dividere9 per2 senza sottrarre l’offset. Cinque dimezza la forza corretta e venti la raddoppia. Nove confonde la lettura strumentale con una forza in newton. La coppia F10,R2 restituisce S=2·[(10−2)/2]+1=9."
+        }
+      ],
+      "hints": [
+        "Una differenza trova q, un riferimento trova c, poi ricostruisci A.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Undici newton deriverebbe dal dividere9 per2 senza sottrarre l’offset. Cinque dimezza la forza corretta e venti la raddoppia. Nove confonde la lettura strumentale con una forza in newton. La coppia F10,R2 restituisce S=2·[(10−2)/2]+1=9.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-opposed-force-acceleration-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 3136,
+      "title": "Un vincolo di proporzione fra le due forze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "opposed-force-acceleration",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale un blocco di massa costante M=2 kg è su un piano orizzontale. Le forze verticali si equilibrano. Le sole forze orizzontali sul blocco sono F verso destra e R verso sinistra, costanti nella prova, con F>R>0. Destra è positiva e A è l’accelerazione orientata del blocco. Le prove selezionate soddisfano inoltre F=3R, con3 fattore puro. Si misura A=2 m/s². Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 N",
+          "−2 N",
+          "2 N",
+          "4 N",
+          "1 N"
+        ],
+        "value": "2 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo la proporzione nella risultante prima di risolvere:3R−R=2R. La seconda legge diventa MA=2R. Dividiamo per il numero puro due, mantenendo la massa M con la propria unità. Dato A positivo, troviamo R positivo e poi F triplo."
+        },
+        {
+          "type": "formula",
+          "text": "MA=3R-R"
+        },
+        {
+          "type": "formula",
+          "text": "3R-R=2R"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{MA}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{MA}{2}=\\frac{(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s^2})}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s^2})}{2}=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F=3R"
+        },
+        {
+          "type": "formula",
+          "text": "3R=6\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "La coppia è unica e soddisfa F>R>0. R=1,3,4N darebbe rispettivamente A=1,3,4m/s² sotto il vincolo. −2N viola il modulo positivo assegnato a R e produrrebbe anche F negativo. Il confronto fra prove non implica una massa variabile."
+        }
+      ],
+      "hints": [
+        "Sostituisci F=3R nella differenza, non nel solo numeratore F.",
+        "Isola il corpo e somma le forze orientate prima di applicare Newton."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La coppia è unica e soddisfa F>R>0. R=1,3,4N darebbe rispettivamente A=1,3,4m/s² sotto il vincolo. −2N viola il modulo positivo assegnato a R e produrrebbe anche F negativo. Il confronto fra prove non implica una massa variabile.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Seconda e terza legge di Newton",
+        "Forze opposte sullo stesso corpo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d23650ff41afa1d16d9740a204252d86647ff5e566477c39bc4312179615136d",
+      "name": "opposed-force-acceleration-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTAwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkZvcnplIG9wcG9zdGUsIHJpc3VsdGFudGUgZSBhY2NlbGVyYXppb25lPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHByb2llemlvbmkgb3JpenpvbnRhbGkgZGlzdGludGUsIHNlbnphIHNvbW1hcmUgbGUgZnJlY2NlIGRpIHBhbm5lbGxpIGRpdmVyc2kuIFByaW1hIHN1bCBibG9jY28gZGkgZHVlIGNoaWxvZ3JhbW1pIGFnaXNjb25vIHNlaSBuZXd0b24gYSBkZXN0cmEgZSBkdWUgYSBzaW5pc3RyYSwgYSB2ZW50aSBwaXhlbCBwZXIgbmV3dG9uLiBTZWNvbmRhOiByaXN1bHRhbnRlIHF1YXR0cm8gbmV3dG9uIGEgZGVzdHJhLiBUZXJ6YTogYWNjZWxlcmF6aW9uZSBkdWUgbWV0cmkgYWwgc2Vjb25kbyBxdWFkcmF0byBhIHF1YXJhbnRhIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvIHF1YWRyYXRvLiBGb3J6ZSB2ZXJ0aWNhbGkgZXF1aWxpYnJhdGUgb21lc3NlLiBMZSBzY2FsZSBkaSBmb3J6YSBlIGFjY2VsZXJhemlvbmUgaGFubm8gZGltZW5zaW9uaSBkaXZlcnNlLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0icmlnaHQiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjYuNSIgcmVmWT0iMy41IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDAgTDcgMy41IEwwIDcgWiIgZmlsbD0iIzE0NjQ3YiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9ImxlZnQiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjYuNSIgcmVmWT0iMy41IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDAgTDcgMy41IEwwIDcgWiIgZmlsbD0iI2I0NGIyYyIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMDAwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMjNmIj4KPHRleHQgeD0iMjgiIHk9IjQ1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IElzb2xhIGxlIGZvcnplIHN1bCBibG9jY288L3RleHQ+CjxyZWN0IHg9IjI1MCIgeT0iMTMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjcwIiBmaWxsPSIjZDZlNmRmIiBzdHJva2U9IiMxNjMyM2YiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI2OCIgeT0iMTcyIj5NID0gMiBrZzwvdGV4dD4KPHBhdGggZD0iTTM2MCAxNjUgTDQ4MCAxNjUiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3JpZ2h0KSIvPjxwYXRoIGQ9Ik0yNTAgMTY1IEwyMTAgMTY1IiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNsZWZ0KSIvPgo8dGV4dCB4PSIzOTUiIHk9IjEzNSI+RiA9IDYgTjwvdGV4dD48dGV4dCB4PSIxMTIiIHk9IjEzNSI+UiA9IDIgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMjQ1Ij5Tb2xvIHByb2llemlvbmUgb3JpenpvbnRhbGU7IHZlcnRpY2FsZSBlcXVpbGlicmF0YS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIzMTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgU29zdGl0dWlzY2kgY29uIGxhIHJpc3VsdGFudGU8L3RleHQ+CjxyZWN0IHg9IjI1MCIgeT0iMzg1IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjcwIiBmaWxsPSIjZDZlNmRmIiBzdHJva2U9IiMxNjMyM2YiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI2OCIgeT0iNDI3Ij5NID0gMiBrZzwvdGV4dD48cGF0aCBkPSJNMzYwIDQyMCBMNDQwIDQyMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjcmlnaHQpIi8+Cjx0ZXh0IHg9IjM4MiIgeT0iMzg1Ij5GIOKIkiBSID0gNCBOPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1MDUiPkZvcnplIG5laSBwYW5uZWxsaSAxIGUgMjogMjAgcHgvTi48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI1NDAiPkxlIGR1ZSByYXBwcmVzZW50YXppb25pIG5vbiBzaSBzb21tYW5vIGZyYSBsb3JvLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYxMCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBEaXZpZGkgcGVyIGxhIG1hc3NhPC90ZXh0Pgo8cmVjdCB4PSIyNTAiIHk9IjY4NSIgd2lkdGg9IjExMCIgaGVpZ2h0PSI3MCIgZmlsbD0iI2Q2ZTZkZiIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNjgiIHk9IjcyNyI+TSA9IDIga2c8L3RleHQ+PHBhdGggZD0iTTM2MCA3MjAgTDQ0MCA3MjAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3JpZ2h0KSIvPgo8dGV4dCB4PSIzODUiIHk9IjY4MiI+QSA9IDIgbS9zwrI8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgxMCI+QSA9IChGIOKIkiBSKS9NID0gKDQgTikvKDIga2cpID0gKzIgbS9zwrI8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NjAiPkFjY2VsZXJhemlvbmU6IDQwIHB4IHBlciBtL3PCsi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwNSI+U2NhbGEgZGkgQSBkaXZlcnNhIGRpbWVuc2lvbmFsbWVudGUgZGEgcXVlbGxhIGRpIEYuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iOTUwIj5EZXN0cmEgcG9zaXRpdmE7IGxhIHZlbG9jaXTDoCBpbml6aWFsZSBub24gw6ggYXNzZWduYXRhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

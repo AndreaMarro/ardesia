@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-freefall-time-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2401,
+      "title": "Il primo arrivo al livello inferiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 1,
+      "prompt": "Un oggetto è lasciato da fermo a h=2 m sopra un livello di arrivo, in campo gravitazionale uniforme assegnato g=1 m/s², senza aria. L’asse y è positivo verso l’alto e t=0 è il rilascio. Quanto vale il tempo T prima di raggiungere il livello, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente di accelerazione è −g e il corpo inizia con velocità nulla. Se poniamo y=0 al livello di arrivo, la legge è y(t)=h−gt²/2. Il primo arrivo futuro soddisfa y(T)=0, quindi T²=2h/g. La durata si ottiene scegliendo la radice non negativa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6d785e6a36707b5298f39cef5f4643959b357f82301027e0893eb46f38b84e53",
+          "text": "Tre tappe con h=2 m e g=1 m/s²: il corpo parte da fermo a t=0; il grafico y–t, con y=0 al livello di arrivo e y positivo verso l’alto, segue y=2 m−gt²/2; il primo zero futuro è a T=2 s. Il punto intermedio a 1 s ha quota 3/2 m. Il grafico termina al livello di arrivo."
+        },
+        {
+          "type": "formula",
+          "text": "0=h-\\frac12gT^2"
+        },
+        {
+          "type": "formula",
+          "text": " T^2=\\frac{2h}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " T^2=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "La radice −2 s non è una durata dopo il rilascio. La caduta termina qui al livello di arrivo: prolungare la parabola oltre il suolo non descriverebbe un moto assegnato dal problema. g=1 m/s² è il valore esatto del campo del modello, non una sostituzione implicita del campo terrestre."
+        }
+      ],
+      "hints": [
+        "Imponi y(T)=0 e scegli il primo tempo futuro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La radice −2 s non è una durata dopo il rilascio. La caduta termina qui al livello di arrivo: prolungare la parabola oltre il suolo non descriverebbe un moto assegnato dal problema. g=1 m/s² è il valore esatto del campo del modello, non una sostituzione implicita del campo terrestre.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2402,
+      "title": "La radice restituisce secondi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 1,
+      "prompt": "Il tempo di caduta da fermo senza aria in campo uniforme è T=√(2h/g), con h>0 e g>0 modulo dell’accelerazione. Quale unità SI è compatibile con T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "s",
+          "m/s²",
+          "s²"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto h/g ha dimensione lunghezza divisa per accelerazione, quindi tempo al quadrato. Il due è puro e la radice quadrata agisce anche sull’unità. Dopo la radice rimane un tempo, non il suo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "[2h/g]=\\frac L{L/T^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac L{L/T^2}=T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [T]=T"
+        },
+        {
+          "type": "text",
+          "text": "s è corretto. s² sarebbe l’unità del radicando prima della radice. m descriverebbe il dislivello, m/s la velocità di arrivo e m/s² il campo. Una formula numerica senza il controllo della radice sulle unità può confondere il valore di T² con quello di T."
+        }
+      ],
+      "hints": [
+        "Distingui il radicando in s² dal tempo finale in s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "s è corretto. s² sarebbe l’unità del radicando prima della radice. m descriverebbe il dislivello, m/s la velocità di arrivo e m/s² il campo. Una formula numerica senza il controllo della radice sulle unità può confondere il valore di T² con quello di T.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2403,
+      "title": "La massa maggiore non arriva prima",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 1,
+      "prompt": "Due corpi di masse m e 3m sono lasciati contemporaneamente da fermi dalla stessa altezza h>0, nello stesso campo gravitazionale uniforme g>0 e senza resistenza dell’aria. T_m e T₃m sono i tempi di arrivo al medesimo livello inferiore. Quanto vale T₃m/T_m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "√3",
+          "1",
+          "9"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello di caduta libera l’accelerazione è g per entrambi i corpi. La forza peso del corpo triplo è tripla, ma lo è anche la sua massa inerziale: dalla relazione mg=ma si ottiene a=g. Le condizioni iniziali e il dislivello sono uguali, quindi anche le leggi di posizione e i tempi coincidono."
+        },
+        {
+          "type": "formula",
+          "text": "T_m=\\sqrt{\\frac{2h}{g}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{3m}=\\sqrt{\\frac{2h}{g}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_{3m}}{T_m}=1"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto uno esprime arrivo simultaneo. Tre e un terzo introducono una dipendenza dalla massa che non compare nella legge, mentre √3 e nove la trasformano ulteriormente senza fondamento. La conclusione richiede l’assenza di resistenza dell’aria: con aria, forma e forze resistenti possono cambiare i tempi."
+        }
+      ],
+      "hints": [
+        "Controlla se la massa compare nella legge dopo aver ricavato l’accelerazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto uno esprime arrivo simultaneo. Tre e un terzo introducono una dipendenza dalla massa che non compare nella legge, mentre √3 e nove la trasformano ulteriormente senza fondamento. La conclusione richiede l’assenza di resistenza dell’aria: con aria, forma e forze resistenti possono cambiare i tempi.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2404,
+      "title": "Altezza quadrupla, tempo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 1,
+      "prompt": "Due oggetti sono lasciati da fermi senza aria in campi uniformi dello stesso modulo g=1 m/s². Le altezze sopra i rispettivi livelli di arrivo sono h₁=2 m e h₂=8 m. Come cambia il tempo di caduta T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Quadruplica da 2 a 8 s",
+          "Raddoppia da 2 a 4 s",
+          "Resta 2 s",
+          "Si dimezza",
+          "Diventa negativo"
+        ],
+        "value": "Raddoppia da 2 a 4 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’altezza entra sotto radice nella legge del tempo. Portarla a quattro volte il valore iniziale moltiplica T² per quattro e T per due. Le cadute partono entrambe da ferme: non si sta continuando la prima caduta per un ulteriore tratto con velocità iniziale già acquisita."
+        },
+        {
+          "type": "formula",
+          "text": "T_1^2=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T_1=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_2^2=16\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=4\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il quadruplicamento riguarderebbe il quadrato del tempo, non il tempo. In entrambe le prove la radice futura è positiva. I due valori si riconoscono come radici di quattro e sedici senza una calcolatrice o un’approssimazione di g."
+        }
+      ],
+      "hints": [
+        "Applica la radice anche al fattore quattro dell’altezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il quadruplicamento riguarderebbe il quadrato del tempo, non il tempo. In entrambe le prove la radice futura è positiva. I due valori si riconoscono come radici di quattro e sedici senza una calcolatrice o un’approssimazione di g.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2405,
+      "title": "L’altezza ricostruita dal tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Un corpo è lasciato da fermo e cade senza aria in un campo uniforme g=1 m/s². Raggiunge un livello inferiore dopo T=2 s dal rilascio. Quanto vale l’altezza iniziale h sopra quel livello, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partiamo da T²=2h/g. Moltiplichiamo per g e dividiamo per due: h=gT²/2. La velocità iniziale nulla è essenziale, perché elimina un termine lineare in T. Facciamo il quadrato della durata completa, compresa l’unità di secondi."
+        },
+        {
+          "type": "formula",
+          "text": "gT^2=2h"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac12gT^2"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac12(1\\,\\mathrm{m/s^2})(2\\,\\mathrm s)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12(1\\,\\mathrm{m/s^2})(2\\,\\mathrm s)^2=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due metri ricostruisce T=√4 s=2 s. h è la differenza positiva di quota fra rilascio e arrivo, non una coordinata assoluta fissata senza origine. Non basta moltiplicare g per T: quel prodotto avrebbe unità di velocità e descriverebbe il modulo della velocità finale."
+        }
+      ],
+      "hints": [
+        "Dopo il quadrato isola h e conserva il fattore un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due metri ricostruisce T=√4 s=2 s. h è la differenza positiva di quota fra rilascio e arrivo, non una coordinata assoluta fissata senza origine. Non basta moltiplicare g per T: quel prodotto avrebbe unità di velocità e descriverebbe il modulo della velocità finale.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2406,
+      "title": "Il campo ricostruito dalla caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Una caduta da fermo senza aria percorre un dislivello h=2 m in T=2 s dal rilascio al livello di arrivo. Il campo gravitazionale è uniforme durante la prova. Quanto vale il suo modulo g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione h=gT²/2 è lineare in g. Moltiplichiamo per due e dividiamo per T², che è positivo. I metri divisi per secondi quadrati danno l’unità corretta del modulo dell’accelerazione, senza dover estrarre una radice."
+        },
+        {
+          "type": "formula",
+          "text": "2h=gT^2"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2h}{T^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2(2\\,\\mathrm m)}{(2\\,\\mathrm s)^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(2\\,\\mathrm m)}{(2\\,\\mathrm s)^2}=1\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il modulo è positivo. Con asse verticale verso l’alto, la componente sarebbe aᵧ=−1 m/s², ma la domanda chiede g. Dividere h per T darebbe invece una velocità media di caduta; non è la stessa grandezza anche se alcuni dati possono produrre numeri simili."
+        }
+      ],
+      "hints": [
+        "Isola il coefficiente del tempo al quadrato, non il tempo stesso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il modulo è positivo. Con asse verticale verso l’alto, la componente sarebbe aᵧ=−1 m/s², ma la domanda chiede g. Dividere h per T darebbe invece una velocità media di caduta; non è la stessa grandezza anche se alcuni dati possono produrre numeri simili.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2407,
+      "title": "Un campo più intenso accorcia il tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Due cadute da fermo senza aria hanno lo stesso dislivello h=2 m. I campi uniformi nelle rispettive prove sono g₁=1 m/s² e g₂=4 m/s². T₁,T₂ sono i tempi dal rilascio all’arrivo. Quanto vale T₂/T₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo è al denominatore del radicando. Aumentarlo di quattro volte divide T² per quattro e T per due. La prima prova dura due secondi, la seconda uno. Il confronto usa moduli positivi e durate future, quindi il rapporto non può cambiare segno."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto confronterebbe i quadrati dei tempi. Due e quattro farebbero aumentare il tempo con il campo, invertendo la dipendenza. Il valore uno ignorerebbe il cambiamento di g. I due campi differiscono fra prove, restando uniformi e costanti durante ciascuna caduta."
+        }
+      ],
+      "hints": [
+        "Raddoppiare la radice del campo dimezza il tempo a dislivello fisso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto confronterebbe i quadrati dei tempi. Due e quattro farebbero aumentare il tempo con il campo, invertendo la dipendenza. Il valore uno ignorerebbe il cambiamento di g. I due campi differiscono fra prove, restando uniformi e costanti durante ciascuna caduta.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2408,
+      "title": "Uno scarto fra tempi di arrivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Un corpo cade da fermo senza aria per h=2 m in un campo uniforme g=1 m/s². Una proposta assegna T_proposto=4 s al tempo dal rilascio al primo arrivo. Quanto vale lo scarto proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−2 s",
+          "0 s",
+          "+2 s",
+          "+4 s",
+          "+1 s"
+        ],
+        "value": "+2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto 2h/g vale quattro secondi quadrati: è T², non T. La radice positiva dà due secondi. La proposta quattro sembra usare direttamente il valore numerico del radicando; lo scarto richiesto è la differenza fra quattro e due nella stessa unità di tempo."
+        },
+        {
+          "type": "formula",
+          "text": "T^2=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm s-2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm s-2\\,\\mathrm s=+2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Lo scarto positivo è una sovrastima. −2 inverte il confronto e +4 ripete la proposta senza sottrarre la soluzione. Nel modello la caduta assegnata termina all’arrivo a due secondi: una continuazione algebrica della posizione fino a quattro secondi finirebbe sotto il livello di arrivo e non definisce il primo contatto."
+        }
+      ],
+      "hints": [
+        "Prima estrai la radice del radicando, poi calcola lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lo scarto positivo è una sovrastima. −2 inverte il confronto e +4 ripete la proposta senza sottrarre la soluzione. Nel modello la caduta assegnata termina all’arrivo a due secondi: una continuazione algebrica della posizione fino a quattro secondi finirebbe sotto il livello di arrivo e non definisce il primo contatto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2409,
+      "title": "L’inversa per l’altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Per una caduta da fermo senza aria in un campo uniforme g>0 vale T=√(2h/g), con h>0 e durata T>0. Quale formula isola h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h=gT²",
+          "h=gT²/2",
+          "h=gT/2",
+          "h=T²/(2g)",
+          "h=√(gT²/2)"
+        ],
+        "value": "h=gT²/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Elevare al quadrato i due membri elimina la radice, poi la moltiplicazione per g e la divisione per due isolano h. Il fatto che T sia il tempo fisico positivo garantisce coerenza con il ramo della radice da cui siamo partiti."
+        },
+        {
+          "type": "formula",
+          "text": "T^2=\\frac{2h}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " gT^2=2h"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{gT^2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "gT² perde il fattore un mezzo; gT/2 ha dimensione di velocità. T²/(2g) divide per il fattore che andrebbe moltiplicato, e la radice finale introdurrebbe un’unità diversa da una lunghezza. La sostituzione dell’inversa riproduce T perché √(T²)=T sul dominio positivo."
+        }
+      ],
+      "hints": [
+        "Elimina la radice prima di fare l’operazione inversa sul coefficiente g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "gT² perde il fattore un mezzo; gT/2 ha dimensione di velocità. T²/(2g) divide per il fattore che andrebbe moltiplicato, e la radice finale introdurrebbe un’unità diversa da una lunghezza. La sostituzione dell’inversa riproduce T perché √(T²)=T sul dominio positivo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2410,
+      "title": "I fattori dentro un rapporto sotto radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Due cadute da fermo senza aria avvengono in campi uniformi. Fra la prima e la seconda h₂=κ₁h₁ e g₂=κ₂g₁, con altezze, campi e fattori positivi. T₁,T₂ indicano le durate dal rilascio all’arrivo. Quale formula dà T₂/T₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁/κ₂)",
+          "κ₁/κ₂",
+          "√(κ₁κ₂)",
+          "κ₁/√κ₂",
+          "√(κ₂/κ₁)"
+        ],
+        "value": "√(κ₁/κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo la legge per i quadrati dei tempi, così il rapporto contiene κ₁ al numeratore e κ₂ al denominatore. Dopo aver semplificato i dati iniziali e il fattore due, prendiamo la radice positiva. Non occorre manipolare radici con segni sconosciuti perché tutto il dominio è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{T_2^2}{T_1^2}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\sqrt{\\frac{\\kappa_1}{\\kappa_2}}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto senza radice confronta T². Il prodotto farebbe aumentare il tempo con il campo; il rapporto invertito scambierebbe altezza e accelerazione. Applicare la radice soltanto al denominatore dimenticherebbe quella dell’altezza. Fattori uguali lasciano il tempo invariato."
+        }
+      ],
+      "hints": [
+        "Trova il rapporto dei quadrati prima di tornare alle durate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto senza radice confronta T². Il prodotto farebbe aumentare il tempo con il campo; il rapporto invertito scambierebbe altezza e accelerazione. Applicare la radice soltanto al denominatore dimenticherebbe quella dell’altezza. Fattori uguali lasciano il tempo invariato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2411,
+      "title": "Altezza dimezzata e campo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Due cadute partono da ferme senza aria. Nella prima h₁=2 m,g₁=1 m/s²; nella seconda h₂=1 m,g₂=2 m/s². Ogni campo è uniforme durante la propria prova. Quanto vale T₂/T₁ fra le durate di caduta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto h/g si riduce di un fattore quattro: metà al numeratore e due al denominatore. La radice rende il tempo la metà. Direttamente il primo tempo è √4 s=2 s, il secondo √1 s=1 s, entrambe radici esatte."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_2}{T_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il rapporto dei radicandi e non dei tempi. Due e quattro rovesciano il cambiamento previsto; uno terrebbe conto di una compensazione che qui non c’è. Il corpo è rilasciato da fermo all’inizio di ciascuna prova, non trasferito dalla prima alla seconda con la velocità già acquisita."
+        }
+      ],
+      "hints": [
+        "Combina metà altezza con il reciproco del campo doppio, poi fai la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il rapporto dei radicandi e non dei tempi. Due e quattro rovesciano il cambiamento previsto; uno terrebbe conto di una compensazione che qui non c’è. Il corpo è rilasciato da fermo all’inizio di ciascuna prova, non trasferito dalla prima alla seconda con la velocità già acquisita.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2412,
+      "title": "Media di due durate di caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 2,
+      "prompt": "Due prove di caduta da fermo senza aria hanno campi uniformi e dati (h,g)=(2 m,1 m/s²) e (1 m,2 m/s²). Con uguale peso statistico delle prove, qual è la media aritmetica dei due tempi di caduta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 s",
+          "3/2 s",
+          "2 s",
+          "3 s",
+          "√2 s"
+        ],
+        "value": "3/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima i tempi delle prove: due secondi e un secondo. La media delle letture di durata è quindi tre secondi divisi per due. La domanda non chiede il tempo di una terza caduta con altezza e campo medi."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=\\frac{2+1}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+1}{2}\\,\\mathrm s=\\frac32\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Tre secondi è la somma e uno o due ripetono una sola prova. √2 s si ottiene invece con gli ingressi medi h=3/2 m e g=3/2 m/s²: non è la stessa operazione. Le due quantità sono diverse anche senza approssimare: (3/2)²=9/4, che non è due."
+        }
+      ],
+      "hints": [
+        "Fai le due radici perfette, poi la media dei tempi già trovati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre secondi è la somma e uno o due ripetono una sola prova. √2 s si ottiene invece con gli ingressi medi h=3/2 m e g=3/2 m/s²: non è la stessa operazione. Le due quantità sono diverse anche senza approssimare: (3/2)²=9/4, che non è due.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2413,
+      "title": "Quale campo per dimezzare il tempo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 3,
+      "prompt": "La prima caduta da fermo senza aria ha h₁=2 m,g₁=1 m/s². Nella seconda si impone h₂=1 m e si vuole T₂=T₁/2. Entrambi i campi sono uniformi durante le rispettive prove. Quale rapporto g₂/g₁ serve?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dimezzare il tempo richiede ridurre il suo quadrato a un quarto. L’altezza dimezzata produce già un fattore un mezzo nel radicando: un ulteriore fattore un mezzo deve arrivare dal campo al denominatore. Quindi il campo deve raddoppiare."
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{T_2}{T_1}\\right)^2=\\frac{h_2/h_1}{g_2/g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac14=\\frac{1/2}{g_2/g_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{g_2}{g_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Con g₂=2 m/s² e h₂=1 m si ottiene T₂=1 s, metà dei due secondi iniziali. Un campo invariato darebbe soltanto il fattore √(1/2), non un mezzo; il rapporto quattro conterebbe due volte la riduzione richiesta al campo."
+        }
+      ],
+      "hints": [
+        "Usa il rapporto dei quadrati per separare i due cambiamenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con g₂=2 m/s² e h₂=1 m si ottiene T₂=1 s, metà dei due secondi iniziali. Un campo invariato darebbe soltanto il fattore √(1/2), non un mezzo; il rapporto quattro conterebbe due volte la riduzione richiesta al campo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2414,
+      "title": "Dal cronometro tarato all’altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 3,
+      "prompt": "Ogni prova è una caduta da fermo senza aria in campo uniforme. T è il tempo dal rilascio al livello di arrivo. Un display conta S=cT, con c>0 costante e offset nullo. Il riferimento h=2 m,g=1 m/s² dà S=6. Una prova dà S=3 con g=2 m/s². Quanto vale h, in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dura due secondi, dunque il guadagno è tre per secondo. La lettura tre corrisponde a una durata di un secondo. Solo dopo la correzione del display ricostruiamo l’altezza con h=gT²/2, facendo il quadrato della durata fisica."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac6{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm s}=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac3{3\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac3{3\\,\\mathrm{s^{-1}}}=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac12gT^2"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo dà T=√(2·1/2) s=1 s e S=(3 s⁻¹)(1 s)=3. Le tacche non sono secondi: usarle direttamente nell’altezza farebbe anche il quadrato del guadagno. La massa non è necessaria nel modello di caduta libera assegnato."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima del quadrato della durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo dà T=√(2·1/2) s=1 s e S=(3 s⁻¹)(1 s)=3. Le tacche non sono secondi: usarle direttamente nell’altezza farebbe anche il quadrato del guadagno. La massa non è necessaria nel modello di caduta libera assegnato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2415,
+      "title": "Due riferimenti su tempi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 3,
+      "prompt": "Ogni prova è una caduta da fermo senza aria in campo uniforme, con tempo T dal rilascio all’arrivo. Il display conta S=cT+d, con c>0,d costanti. I riferimenti (h,g)=(2 m,1 m/s²) e (1 m,2 m/s²) danno S=5 e S=3. Una prova con g=1 m/s² dà S=9. Quanto vale h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "4 m",
+          "8 m",
+          "16 m",
+          "32 m"
+        ],
+        "value": "8 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate dei riferimenti sono due e un secondo. La differenza di due tacche per un secondo dà c=2 s⁻¹; dal primo riferimento d=1. La lettura nove, corretta di una tacca e divisa per il guadagno, dà T=4 s. Il quadrato sedici entra nella ricostruzione h=gT²/2."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{5-3}{2\\,\\mathrm s-1\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5-3}{2\\,\\mathrm s-1\\,\\mathrm s}=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{9-1}{2\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{2\\,\\mathrm{s^{-1}}}=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{1\\times4^2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1\\times4^2}{2}\\,\\mathrm m=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Otto metri restituisce T=√16 s=4 s e S=2·4+1=9. Quattro è il numero della durata intermedia, non l’altezza; sedici omette il fattore un mezzo. Guadagno e offset devono essere rimossi prima del quadrato: un rapporto delle sole letture non elimina d."
+        }
+      ],
+      "hints": [
+        "Ricava c e d dalle durate dei riferimenti, poi trova l’altezza ignota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto metri restituisce T=√16 s=4 s e S=2·4+1=9. Quattro è il numero della durata intermedia, non l’altezza; sedici omette il fattore un mezzo. Guadagno e offset devono essere rimossi prima del quadrato: un rapporto delle sole letture non elimina d.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-freefall-time-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Caduta libera e lancio verticale",
+      "order": 2416,
+      "title": "La misura ripete il vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freefall-time",
+      "difficulty": 3,
+      "prompt": "Si scelgono prove di caduta da fermo senza aria con altezza h>0 e campo uniforme g>0, legati dal vincolo iniziale h=(2 s²)g. Il campo resta costante in ciascuna prova. Si misura anche il tempo di caduta T=2 s. Quante coppie positive (h,g) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna coppia",
+          "Una sola coppia",
+          "Due coppie",
+          "Infinite coppie positive",
+          "Tre coppie"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente due secondi quadrati rende il vincolo dimensionale. Sostituendolo nel tempo di caduta, g si semplifica e si ottiene sempre T²=4 s². La misura T=2 s non aggiunge quindi una condizione indipendente: qualunque g positivo, con l’altezza corrispondente, soddisfa i dati."
+        },
+        {
+          "type": "formula",
+          "text": "h=(2\\,\\mathrm{s^2})g"
+        },
+        {
+          "type": "formula",
+          "text": " T^2=\\frac{2h}{g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2h}{g}=4\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio g=1 m/s²,h=2 m e g=2 m/s²,h=4 m sono due delle infinite coppie. Il vincolo collega dati iniziali di prove diverse e non modifica g durante una caduta. Per individuare una coppia unica servirebbe un ulteriore dato, come h o g, non una ripetizione del loro rapporto."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se rimane davvero un’incognita da determinare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per esempio g=1 m/s²,h=2 m e g=2 m/s²,h=4 m sono due delle infinite coppie. Il vincolo collega dati iniziali di prove diverse e non modifica g durante una caduta. Per individuare una coppia unica servirebbe un ulteriore dato, come h o g, non una ripetizione del loro rapporto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Caduta libera",
+        "Radici e durate fisiche",
+        "Massa e accelerazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6d785e6a36707b5298f39cef5f4643959b357f82301027e0893eb46f38b84e53",
+      "name": "freefall-time-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTExMCIgdmlld0JveD0iMCAwIDY0MCAxMTEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlRlbXBvIGRpIGNhZHV0YSBmaW5vIGFsIGxpdmVsbG8gZGkgYXJyaXZvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlIHBlciB1biBjb3JwbyBsYXNjaWF0byBkYSBmZXJtbyBhIHF1b3RhIGR1ZSBtZXRyaSwgaW4gY2FtcG8gZ3Jhdml0YXppb25hbGUgdW5pZm9ybWUgZGkgbW9kdWxvIHVubyBtZXRybyBhbCBzZWNvbmRvIHF1YWRyYXRvLCBzZW56YSBhcmlhLiBJbCB0ZW1wbyB6ZXJvIMOoIGlsIHJpbGFzY2lvIGUgbGEgcXVvdGEgemVybyBpbCBsaXZlbGxvIGRpIGFycml2by4gTGEgc2NhbGEgc3BhemlhbGUgw6ggb3R0YW50YSBwaXhlbCBwZXIgbWV0cm8uIE5lbCBncmFmaWNvIHBvc2l6aW9uZS10ZW1wbyBzaSB1c2FubyBjZW50byBwaXhlbCBwZXIgc2Vjb25kbyBlIG90dGFudGEgcGVyIG1ldHJvOiBxdW90YSBkdWUgbWV0cmkgYWwgdGVtcG8gemVybywgdHJlIG1lenppIGRpIG1ldHJvIGEgdW4gc2Vjb25kbyBlIHplcm8gYSBkdWUgc2Vjb25kaS4gTGEgcGFyYWJvbGEgdGVybWluYSBhbCBwcmltbyBhcnJpdm8gZnV0dXJvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE3M2Q1MCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTEwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZpbGw9IiMxNzNkNTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBGaXNzYSBpbCByaWxhc2NpbyBlIGlsIGxpdmVsbG8gZGkgYXJyaXZvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4MiI+aCA9IDIgbSDCtyBnID0gMSBtL3PCsiDCtyB24oKAID0gMDwvdGV4dD4KPHBhdGggZD0iTTEwMCAzMTBWMTI4IiBzdHJva2U9IiMxNzNkNTAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTUwIDMxMEg0NzAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjIyMCIgY3k9IjE1MCIgcj0iOCIvPjx0ZXh0IHg9IjI1NSIgeT0iMTU4Ij50ID0gMCDCtyB5ID0gMiBtPC90ZXh0Pjx0ZXh0IHg9IjI1NSIgeT0iMzQ1Ij55ID0gMCDCtyBhcnJpdm88L3RleHQ+PHRleHQgeD0iNTQiIHk9IjEyNiI+K3k8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIzOTQiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IExlZ2dpIGlsIGdyYWZpY28gcG9zaXppb25l4oCTdGVtcG88L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQzNiI+U2NhbGU6IDEwMCBweC9zOyA4MCBweC9tPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDUxNFY3MDBIMzYwIiBzdHJva2U9IiM4NzliOWEiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTAwIDU0MFEyMDAgNTQwIDMwMCA3MDAiIHN0cm9rZT0iIzE3M2Q1MCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xMDAgNTgwSDIwMFY3MDAiIHN0cm9rZT0iIzg3OWI5YSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iNTQwIiByPSI2Ii8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iNTgwIiByPSI2Ii8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iNzAwIiByPSI2Ii8+Cjx0ZXh0IHg9IjExMCIgeT0iNTIwIj55IChtKTwvdGV4dD48dGV4dCB4PSI1NyIgeT0iNTQ3Ij4yPC90ZXh0Pjx0ZXh0IHg9IjM4IiB5PSI1ODciPjMvMjwvdGV4dD48dGV4dCB4PSI2NyIgeT0iNzA3Ij4wPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI3MzgiPjA8L3RleHQ+PHRleHQgeD0iMTkwIiB5PSI3MzgiPjE8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSI3MzgiPjI8L3RleHQ+PHRleHQgeD0iMzcyIiB5PSI3MDgiPnQgKHMpPC90ZXh0Pgo8dGV4dCB4PSIzOTAiIHk9IjU1OCI+eSA9IGgg4oiSIGd0wrIvMjwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjYwNyI+eSgyIHMpID0gMDwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgxMiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgU2NlZ2xpIGxhIHJhZGljZSBmdXR1cmE8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NjAiPlTCsiA9IDJoL2cgPSA0IHPCsjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTA4Ij5UID0gMiBzIMK3IGxhIHJhZGljZSDiiJIyIHMgw6ggZXNjbHVzYTwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijk3NCI+QSB0ID0gMCBsYSBwZW5kZW56YSDDqCB6ZXJvOiByaWxhc2NpbyBkYSBmZXJtby48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEwMjQiPklsIG1vZGVsbG8gdGVybWluYSBhbCBsaXZlbGxvIGRpIGFycml2by48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

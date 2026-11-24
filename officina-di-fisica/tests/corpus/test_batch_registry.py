@@ -3,17 +3,55 @@ from copy import deepcopy
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
+from contextlib import chdir
 
 from tools.corpus_engineering.batches import load_registry, validate_batch, assert_record_identity, assert_browser_identity,validate_browser_preview
 from tools.corpus_engineering.pipeline import build_entry,digest,sha
 from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
-from tools.corpus_engineering.integration import exercise
+from tools.corpus_engineering.integration import exercise,exercise_package
 from tools.corpus_engineering.review_contract import reviewed_rows
 
 APP=Path(__file__).resolve().parents[2]
 
 
 class BatchRegistry(unittest.TestCase):
+    def test_relative_bundled_override_is_absolute_in_the_import_child(self):
+        from tools.corpus_engineering import integration
+        with tempfile.TemporaryDirectory() as home:
+            app=Path(home)/'app';app.mkdir()
+            with chdir(home),patch.object(integration,'APP',app),patch.dict('os.environ',{'ASTRA_EXTENSIONS':'app/extensions'}),patch.object(integration.subprocess,'run',return_value=SimpleNamespace(returncode=0,stdout='{}')) as run:
+                integration.exercise_package(app/'unused.json')
+                self.assertEqual(run.call_args.kwargs['env']['ASTRA_EXTENSIONS'],str(app/'extensions'))
+
+    def test_external_engine_override_cannot_obtain_a_bundled_runtime_proof(self):
+        with tempfile.TemporaryDirectory() as home:
+            app=Path(home)/'app';app.mkdir()
+            with patch.dict('os.environ',{'ASTRA_EXTENSIONS':str(Path(home)/'external')}):
+                with self.assertRaises(ValueError):runtime_fingerprint(app)
+                # Rejection precedes reading a package or creating a disposable DB.
+                with self.assertRaises(ValueError):exercise_package(app/'absent.json')
+            with patch.dict('os.environ',{'ASTRA_EXTENSIONS':str(app/'extensions')}):
+                explicit=runtime_fingerprint(app)
+            with patch.dict('os.environ') as environment:
+                environment.pop('ASTRA_EXTENSIONS',None)
+                self.assertEqual(explicit,runtime_fingerprint(app))
+
+    def test_exam_policy_and_installed_engine_bytes_invalidate_the_runtime_proof(self):
+        with tempfile.TemporaryDirectory() as home:
+            app=Path(home)
+            policy=app/'policies/exams.json';policy.parent.mkdir();policy.write_text('{"C1":null}')
+            engine=app/'extensions/test/1/engine.js';engine.parent.mkdir(parents=True);engine.write_text('export const value=1;')
+            before=runtime_fingerprint(app)
+            self.assertIn('policies/exams.json',before['files'])
+            self.assertIn('extensions/test/1/engine.js',before['files'])
+            policy.write_text('{"C1":{"minutes":[60]}}')
+            changed=runtime_fingerprint(app)
+            self.assertNotEqual(before,changed)
+            engine.write_text('export const value=2;')
+            self.assertNotEqual(changed,runtime_fingerprint(app))
+
     def test_empty_formula_metrics_cannot_certify_a_rendered_formula(self):
         with tempfile.TemporaryDirectory() as home:
             app=Path(home)

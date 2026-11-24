@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1110" viewBox="0 0 640 1110" role="img" aria-labelledby="title desc">
+<title id="title">Tempo di caduta fino al livello di arrivo</title><desc id="desc">Tre tappe per un corpo lasciato da fermo a quota due metri, in campo gravitazionale uniforme di modulo uno metro al secondo quadrato, senza aria. Il tempo zero è il rilascio e la quota zero il livello di arrivo. La scala spaziale è ottanta pixel per metro. Nel grafico posizione-tempo si usano cento pixel per secondo e ottanta per metro: quota due metri al tempo zero, tre mezzi di metro a un secondo e zero a due secondi. La parabola termina al primo arrivo futuro.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#173d50"/></marker></defs>
+<rect width="640" height="1110" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="42" font-weight="bold">1 · Fissa il rilascio e il livello di arrivo</text><text x="28" y="82">h = 2 m · g = 1 m/s² · v₀ = 0</text>
+<path d="M100 310V128" stroke="#173d50" stroke-width="2" marker-end="url(#arrow)"/><path d="M150 310H470" stroke="#173d50" stroke-width="3"/>
+<circle cx="220" cy="150" r="8"/><text x="255" y="158">t = 0 · y = 2 m</text><text x="255" y="345">y = 0 · arrivo</text><text x="54" y="126">+y</text>
+<text x="28" y="394" font-weight="bold">2 · Leggi il grafico posizione–tempo</text><text x="28" y="436">Scale: 100 px/s; 80 px/m</text>
+<path d="M100 514V700H360" stroke="#879b9a" stroke-width="2" fill="none"/>
+<path d="M100 540Q200 540 300 700" stroke="#173d50" stroke-width="4" fill="none"/>
+<path d="M100 580H200V700" stroke="#879b9a" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+<circle cx="100" cy="540" r="6"/><circle cx="200" cy="580" r="6"/><circle cx="300" cy="700" r="6"/>
+<text x="110" y="520">y (m)</text><text x="57" y="547">2</text><text x="38" y="587">3/2</text><text x="67" y="707">0</text><text x="90" y="738">0</text><text x="190" y="738">1</text><text x="290" y="738">2</text><text x="372" y="708">t (s)</text>
+<text x="390" y="558">y = h − gt²/2</text><text x="390" y="607">y(2 s) = 0</text>
+<text x="28" y="812" font-weight="bold">3 · Scegli la radice futura</text>
+<text x="28" y="860">T² = 2h/g = 4 s²</text><text x="28" y="908">T = 2 s · la radice −2 s è esclusa</text>
+<text x="28" y="974">A t = 0 la pendenza è zero: rilascio da fermo.</text><text x="28" y="1024">Il modello termina al livello di arrivo.</text>
+</g></svg>

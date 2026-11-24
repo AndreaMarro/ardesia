@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1000" viewBox="0 0 600 1000" role="img" aria-labelledby="title desc">
+ <title id="title">Componenti del lancio, apice e gittata completa</title>
+ <desc id="desc">Lancio senza aria con u quattro e w cinque metri al secondo, g dieci metri al secondo quadrato. Le due componenti hanno scala comune. L’apice è a x due metri e quota cinque quarti di metro a mezzo secondo; il ritorno alla quota iniziale è a x quattro metri a un secondo. La traiettoria usa ottanta pixel per metro su entrambi gli assi.</desc>
+ <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#334155"/></marker></defs>
+ <rect width="600" height="1000" fill="white"/>
+ <g font-family="Arial,sans-serif" font-size="17" fill="#172033">
+  <text x="28" y="36" font-size="22" font-weight="bold">1 · Leggi le componenti iniziali</text>
+  <text x="28" y="70">Scala comune: 20 px/(m/s) · t = 0 al lancio</text>
+  <path d="M100 220H180" stroke="#334155" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M100 220V120" stroke="#334155" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M100 220L180 120" stroke="#245ca4" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M100 120H180V220" stroke="#94a3b8" stroke-dasharray="4 4" fill="none"/>
+  <text x="44" y="112">w = 5 m/s</text><text x="106" y="252">u = 4 m/s</text>
+  <text x="266" y="135">+x orizzontale, +y verso l’alto</text>
+  <text x="266" y="174">aₓ = 0; aᵧ = −10 m/s²</text>
+  <text x="266" y="213">vᵧ = 0 all’apice; u resta 4 m/s</text>
+  <text x="28" y="315" font-size="22" font-weight="bold">2 · Separa apice e ritorno</text>
+  <text x="28" y="349">Scala spaziale: 80 px/m su entrambi gli assi</text>
+  <text x="28" y="379">x = 4t; y = 5t − 5t² nelle unità SI</text>
+  <path d="M100 575V412" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M80 550H500" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M100 450H260V550M420 450V550" stroke="#94a3b8" stroke-dasharray="4 5" fill="none"/>
+  <path d="M100 550Q260 350 420 550" stroke="#245ca4" stroke-width="3" fill="none"/>
+  <g fill="#245ca4"><circle cx="100" cy="550" r="5"/><circle cx="260" cy="450" r="5"/><circle cx="420" cy="550" r="5"/></g>
+  <text x="51" y="418">y (m)</text><text x="505" y="556">x (m)</text>
+  <text x="48" y="456">5/4</text><text x="72" y="556">0</text>
+  <text x="95" y="595">0</text><text x="255" y="595">2</text><text x="415" y="595">4</text>
+  <text x="277" y="440">apice: t = 1/2 s</text>
+  <text x="113" y="637">y = 0 alla partenza e all’arrivo (t = 1 s)</text>
+  <text x="28" y="705" font-size="22" font-weight="bold">3 · Usa il tempo richiesto</text>
+  <text x="28" y="740">Scala temporale: 400 px/s</text>
+  <path d="M80 800H480" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M80 790V810M280 790V810M480 790V810" stroke="#334155" stroke-width="2"/>
+  <text x="74" y="839">0</text><text x="257" y="839">1/2 s</text><text x="467" y="839">1 s</text>
+  <text x="70" y="878">lancio</text><text x="256" y="878">apice</text><text x="448" y="878">ritorno</text>
+  <text x="28" y="929">Fino all’apice: Δx = (4 m/s)(1/2 s) = 2 m</text>
+  <text x="28" y="966">Fino al ritorno: R = (4 m/s)(1 s) = 4 m</text>
+ </g>
+</svg>

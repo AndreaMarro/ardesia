@@ -58,7 +58,68 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint del primo shard U2 — 320 quesiti e 37 altre attività
+## Checkpoint corrente — 544 quesiti e 69 altre attività
+
+Generazione `446c3b28d505045e286a9523cf749bb897e836687c76b735fda01266c3797aff`, manifest `82ee5179209a9583a7dfd2d652a2aaf810db621ef55837c568678df31484d7ff`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati; 544 quesiti hanno
+revisioni complete DRAFT e 69 attività hanno riesame individuale. Restano 4.062
+revisioni complete e 316 attività. U1, U2-01 e U2-02 sono revisionati in bozza;
+U2-03 ha i primi 64 ID completati. Primo ID successivo: `u2-incline-acceleration-01`.
+
+Le 1.644 anteprime private (1.632 dei quesiti, 12 delle quattro nuove edizioni di
+esempi) sono riferite ai pacchetti e al protocollo attuali. Sono stati corretti
+cinque testi/formule troppo larghi sui piccoli schermi; una seconda prova ha
+localizzato nel prompt di Atwood una sequenza di definizioni senza spazi.
+97 test editoriali, 55 Python applicativi, 260 Node e due dei contratti PASS.
+Ricostruzione fresh identica all'incrementale, import idempotenti; tutti i 991
+pubblicati, i live head e le versioni storiche preservati nei database di prova.
+
+Quattro originali pubblicati conservano un problema esplicito: C1-E003, C1-E008,
+C2-E005 (approssimazione idrostatica non dichiarata) e C3-E003 (uguaglianza usata
+per un arrotondamento). Le nuove v2 sono DRAFT separatamente verificate. Il calcolo
+originale di C3-E003 è manualmente fattibile: il difetto riguarda la precisione
+presentata, non una necessità di calcolatrice. Nessuna firma umana o pubblicazione.
+
+Il fingerprint delle prove include ora politiche d'esame e motori installati;
+l'harness rifiuta override esterni non compresi nella prova e passa al processo
+figlio il percorso assoluto dei motori verificati. Due controesempi indipendenti
+sono stati corretti. Tutte le anteprime sono state riprodotte sotto il protocollo
+finale; le prove precedenti non sono state rietichettate.
+
+PR #356 è MERGED su `0b5f3a8bce91f1c9aa9ac273829bc6c67e72023c`; entrambi i workflow
+post-merge sono SUCCESS (45478253510 e 45478253343). Questo incremento è sul ramo
+`feat/cric-u2-orbits`, in attesa della propria PR/CI/integrazione. I candidati 036–041
+fuori registro non incrementano le revisioni complete. Le 199 verifiche recuperate
+restano parziali; le 100 revisioni Pro non sono identificate.
+
+L'integratore attivo è `/private/tmp/cric-resident-integrator`, checkout dello stesso
+repository fuori da iCloud; i due worktree autore residenti hanno ownership disgiunta.
+Il vecchio checkout nella workspace è conservato per recupero, non è la copia attiva.
+Le ricostruzioni da Git di file offloaded sono state verificate byte per byte; il
+backup originale di `config.worktree` non è disponibile e i suoi byte non sono
+stati acquisiti. Non dedurre da questo il recupero di artefatti scientifici mancanti.
+
+## Snapshot precedente — 416 quesiti e 45 altre attività
+
+Generazione `ee506766c87603c1be333fb3d4323b65a1346006c0d9b0959614fe8f1eec6f12`:
+416quesiti riscritti DRAFT e45/385attività riesaminate; restano4190revisioni
+complete e340attività. Sei nuove famiglie021–026 hanno96soluzioni individuali,
+verificatori separati dagli autori e288anteprime private terminali exit0. Il totale
+è1254casi:1248quesiti e6revisioni di esempi. Le otto attività aggiunte sono
+C1-E017..020 eC2-E001..004, con49controlli esatti e sette figure storiche rilette.
+
+I test avversari provano96risposte sbagliate con binding e firme rinnovati soltanto
+in memoria: gli oracoli matematici le rifiutano. Le firme congelate rifiutano anche
+testi, fonti, asset e forme incomplete. Nessuna prova deriva dalla chiave originaria.
+Ricostruzione fresh identica all'incrementale; import idempotenti e991pubblicati/
+storico invariati. I due FAIL delle vecchie edizioni E003/E008 restano aperti.
+
+Primo ID successivo `u2-vertical-flight-01` (027); authoring027–030 e031–034 in
+worktree isolati non equivale a revisione completata. C1-E021..023 sono ancora da
+riesaminare nel file `content/esempi-di-copertura.json`, non nel fileC1.json.
+Approvazione umana NOT_RUN e nuove pubblicazioni0. Le sezioni sotto sono snapshot.
+
+## Checkpoint precedente del primo shard U2 — 320 quesiti e 37 altre attività
 
 Completate le ulteriori64schede su medie a tempi uguali, andata/ritorno e primo
 arresto: tuttaU1 e tutti i160ID di U2-01 sono ora revisionati in bozza, per320
@@ -280,9 +341,9 @@ locali non sostituiscono la CI né dichiarano una pubblicazione.
 
 1. Consolidare i nuovi lotti tramite PR verso `officina-di-fisica`, completare i gate
    e rileggere la CI sulla SHA risultante. Non eseguire deploy o promozioni editoriali.
-2. Continuare U1 da `u1-vector-difference-01` per famiglie, preservando il legame al
-   testo letto e il riesame indipendente. Gli altri 96 ID U1 non sono già verificati.
-3. Applicare lo stesso protocollo agli altri 4.446 quesiti fuori da U1 e recuperare
+2. Continuare da `u2-vertical-flight-01` per famiglie, preservando il legame al
+   testo letto e il riesame indipendente. U1 e U2-01 sono già revisionati.
+3. Applicare lo stesso protocollo ai4.190quesiti ancora aperti e recuperare
    le prove pertinenti prima di riscrivere. I 199 recuperati hanno ancora fasi aperte.
 4. Rivedere lezioni, esempi, esperimenti ed esami; gli indicatori di approssimazione
    sono priorità di lettura, non prova automatica di necessità della calcolatrice.

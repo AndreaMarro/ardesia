@@ -1,0 +1,1208 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-frequency-count-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2521,
+      "title": "Due cicli osservati in due secondi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 1,
+      "prompt": "Un moto periodico completa esattamente N=2 cicli interi durante un intervallo di durata t=2 s. L’intervallo parte e termina nella stessa fase del ciclo. Quanto vale la frequenza media f=N/t, in Hz? N è un conteggio, non un tempo né un angolo.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza media esprime quanti cicli completi corrispondono a un secondo di osservazione. Dividiamo il conteggio due per la durata due secondi. Il conteggio è adimensionale, mentre l’unità temporale resta al denominatore. Se il moto è regolare, lo stesso valore coincide con il reciproco del periodo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/19c4440c1b2034262b2728b25aa3274a765ac15743b35e69012fae8b139d0337",
+          "text": "Tre tappe di un moto regolare di esempio: traccia due cicli completi fra0e2s con scala200px/s e marcatori alla stessa fase a0,1,2s; separa il conteggio N=2 dalla durata2s; dividi per ottenere1Hz e, soltanto per il moto regolare disegnato, periodo1s. Le tre creste includono quella iniziale: delimitano due intervalli di ciclo, non tre cicli."
+        },
+        {
+          "type": "formula",
+          "text": "N=2"
+        },
+        {
+          "type": "formula",
+          "text": " t=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac Nt"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Nt=\\frac2{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{2\\,\\mathrm s}=1\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{s^{-1}}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Due hertz ripeterebbe il conteggio senza dividere per la durata. t/N=1 s è invece il tempo medio per ciclo; il suo numero coincide qui con quello della frequenza, ma le unità e il significato sono diversi. Per un moto regolare il periodo è un secondo, non due secondi: due è la durata di due cicli."
+        }
+      ],
+      "hints": [
+        "Distribuisci i due cicli sui due secondi osservati, conservando il secondo al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due hertz ripeterebbe il conteggio senza dividere per la durata. t/N=1 s è invece il tempo medio per ciclo; il suo numero coincide qui con quello della frequenza, ma le unità e il significato sono diversi. Per un moto regolare il periodo è un secondo, non due secondi: due è la durata di due cicli.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2522,
+      "title": "L’unità di una frequenza di ripetizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 1,
+      "prompt": "Durante t>0 si contano N cicli interi, con N intero positivo. La frequenza media è f=N/t. Quale unità SI tra quelle proposte è adatta a f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "m/s",
+          "m",
+          "Hz",
+          "1"
+        ],
+        "value": "Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di cicli è un conteggio adimensionale. Dividere per una durata dà l’inverso di un tempo; l’hertz è il nome SI di s⁻¹ quando esprime una frequenza di ripetizione. Non serve introdurre radianti o un fattore due pi greco per contare cicli."
+        },
+        {
+          "type": "formula",
+          "text": "[N]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [f]=T^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Hz}=1\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "s è l’unità di un periodo o di una durata, m/s di una velocità e m di una lunghezza. Il numero puro 1 può misurare N ma non f. Il conteggio non aggiunge una dimensione meccanica, tuttavia la divisione per t impedisce di trattare anche la frequenza come un numero senza unità."
+        }
+      ],
+      "hints": [
+        "Il ciclo si conta; l’intervallo si misura in secondi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "s è l’unità di un periodo o di una durata, m/s di una velocità e m di una lunghezza. Il numero puro 1 può misurare N ma non f. Il conteggio non aggiunge una dimensione meccanica, tuttavia la divisione per t impedisce di trattare anche la frequenza come un numero senza unità.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2523,
+      "title": "Quale rapporto conta cicli per secondo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 1,
+      "prompt": "Un moto periodico completa N cicli interi in un intervallo t>0, delimitato dalla stessa fase iniziale e finale. N è un intero positivo. Quale relazione definisce la frequenza media di ripetizione f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "f=t/N",
+          "f=N/t",
+          "f=Nt",
+          "f=N²/t",
+          "f=1/(Nt)"
+        ],
+        "value": "f=N/t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La domanda è quanti cicli per unità di tempo, quindi il numero dei cicli deve stare al numeratore e la durata al denominatore. L’intervallo può comprendere molti cicli: non va scambiato automaticamente con la durata di uno solo. La definizione media resta valida anche se i cicli non hanno tutti la stessa durata."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac Nt"
+        },
+        {
+          "type": "formula",
+          "text": " N\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "formula",
+          "text": " t>0"
+        },
+        {
+          "type": "text",
+          "text": "t/N è il tempo medio per ciclo, non la frequenza. Nt ha dimensione di tempo. N²/t conterebbe ancora un fattore N non giustificato; 1/(Nt) diminuirebbe aumentando il numero di cicli a durata fissa. Il reciproco della frequenza è t/N; coincide con un periodo comune soltanto quando il moto è regolare."
+        }
+      ],
+      "hints": [
+        "Leggi la barra di frazione come «cicli durante ogni secondo».",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "t/N è il tempo medio per ciclo, non la frequenza. Nt ha dimensione di tempo. N²/t conterebbe ancora un fattore N non giustificato; 1/(Nt) diminuirebbe aumentando il numero di cicli a durata fissa. Il reciproco della frequenza è t/N; coincide con un periodo comune soltanto quando il moto è regolare.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2524,
+      "title": "Stessa durata, più cicli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 1,
+      "prompt": "Due osservazioni di moti periodici durano entrambe t=2 s. Nella prima si completano N_A=2 cicli interi, nella seconda N_B=4 cicli interi. Come cambia la frequenza media?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 1 Hz",
+          "Raddoppia da 1 a 2 Hz",
+          "Quadruplica a 4 Hz",
+          "Si dimezza a 1/2 Hz",
+          "Diventa negativa"
+        ],
+        "value": "Raddoppia da 1 a 2 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata è controllata e uguale. Un conteggio doppio nello stesso tempo significa una frequenza doppia; non occorre assumere una legge del moto nello spazio. Entrambi i conteggi sono interi positivi, quindi le due osservazioni sono ammissibili come conteggi di cicli completi."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=\\frac2{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{2\\,\\mathrm s}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac4{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac4{2\\,\\mathrm s}=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro hertz confonde il nuovo conteggio con una frequenza già divisa per secondi. Un mezzo segue invece il tempo medio per ciclo, che effettivamente si dimezza; la frequenza aumenta. Il verso con cui un oggetto gira non rende negativo il numero di cicli qui contato né la frequenza di ripetizione."
+        }
+      ],
+      "hints": [
+        "Con lo stesso denominatore il rapporto delle frequenze è quello dei conteggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro hertz confonde il nuovo conteggio con una frequenza già divisa per secondi. Un mezzo segue invece il tempo medio per ciclo, che effettivamente si dimezza; la frequenza aumenta. Il verso con cui un oggetto gira non rende negativo il numero di cicli qui contato né la frequenza di ripetizione.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2525,
+      "title": "Ricostruire quanti cicli sono avvenuti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Durante t=2 s un moto periodico ha frequenza media f=1 Hz. L’osservazione parte e termina alla stessa fase, quindi comprende N cicli interi completi. Qual è N? I dati sono esatti e compatibili con N intero positivo.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo f=N/t per la durata positiva. Il prodotto di hertz per secondi è un conteggio adimensionale. In questo caso dà due, un intero positivo; non è necessario arrotondare e non sarebbe lecito trasformare una frazione di ciclo in un conteggio intero senza cambiare i dati."
+        },
+        {
+          "type": "formula",
+          "text": "ft=N"
+        },
+        {
+          "type": "formula",
+          "text": " N=(1\\,\\mathrm{s^{-1}})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "(1\\,\\mathrm{s^{-1}})(2\\,\\mathrm s)=2"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 2/(2 s)=1 Hz riproduce la misura. N=1 userebbe il reciproco f⁻¹ come se fosse il conteggio, mentre N=4 moltiplicherebbe nuovamente per due. Se altri dati producessero ft non intero, non descriverebbero l’osservazione di cicli completi dichiarata: il vincolo discreto va controllato, non nascosto."
+        }
+      ],
+      "hints": [
+        "Calcola ft e controlla che appartenga agli interi positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 2/(2 s)=1 Hz riproduce la misura. N=1 userebbe il reciproco f⁻¹ come se fosse il conteggio, mentre N=4 moltiplicherebbe nuovamente per due. Se altri dati producessero ft non intero, non descriverebbero l’osservazione di cicli completi dichiarata: il vincolo discreto va controllato, non nascosto.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2526,
+      "title": "La durata dedotta dal conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Un’osservazione delimitata dalla stessa fase comprende esattamente N=2 cicli interi. La frequenza media è f=1 Hz. Quanto dura l’osservazione, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla definizione f=N/t moltiplichiamo per t, quindi dividiamo per f>0. La durata totale è N/f, cioè due volte il tempo medio per ciclo. Il numero di cicli non è il numero di intervalli fra due tacche segnate arbitrariamente: qui sono proprio due cicli completi."
+        },
+        {
+          "type": "formula",
+          "text": "ft=N"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac Nf"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac2{1\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{1\\,\\mathrm{s^{-1}}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Un secondo sarebbe la durata media di un solo ciclo e manca quindi un fattore due. f/N non ha unità di durata e invertirebbe il rapporto corretto. Il risultato è positivo come richiesto; in un moto regolare ogni ciclo dura un secondo, coerentemente con i due secondi totali."
+        }
+      ],
+      "hints": [
+        "Il reciproco della frequenza è il tempo per ciclo: per N cicli moltiplicalo per N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un secondo sarebbe la durata media di un solo ciclo e manca quindi un fattore due. f/N non ha unità di durata e invertirebbe il rapporto corretto. Il risultato è positivo come richiesto; in un moto regolare ogni ciclo dura un secondo, coerentemente con i due secondi totali.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2527,
+      "title": "Stesso conteggio in un tempo più lungo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Si completano N=2 cicli interi in ciascuna di due prove. In A la durata è t_A=2 s, in B t_B=4 s. Quanto vale f_B/f_A per le frequenze medie di ripetizione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di cicli è uguale, ma in B occorre il doppio del tempo. La frequenza, conteggio per secondo, si dimezza. Calcolare separatamente i valori mantiene visibile l’ordine B su A e impedisce di confondere il tempo medio per ciclo con il suo reciproco."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac2{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{4\\,\\mathrm s}=\\frac12\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto dei tempi, non delle frequenze. Uno ignorerebbe la diversa durata; quattro aggiungerebbe un quadrato senza ragione. Il rapporto non è negativo: qui il ciclo è contato positivamente, indipendentemente dall’eventuale verso di rotazione."
+        }
+      ],
+      "hints": [
+        "Al conteggio fissato, un tempo doppio significa metà dei cicli al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto dei tempi, non delle frequenze. Uno ignorerebbe la diversa durata; quattro aggiungerebbe un quadrato senza ragione. Il rapporto non è negativo: qui il ciclo è contato positivamente, indipendentemente dall’eventuale verso di rotazione.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2528,
+      "title": "Uno scarto da misurare in hertz",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Un moto compie N=2 cicli interi in t=2 s. Una soluzione propone f_proposta=2 Hz. Calcola lo scarto con segno «frequenza proposta meno frequenza media corretta», in Hz.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione dà un hertz. La proposta ripete il conteggio due come se l’intervallo fosse un secondo, mentre l’osservazione dura due secondi. Sottraiamo nel verso richiesto e conserviamo l’unità di frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac2{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{2\\,\\mathrm s}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta f=f_{\\rm prop}-f"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta f=(2-1)\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": "(2-1)\\,\\mathrm{Hz}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "−1 Hz userebbe la differenza inversa; due hertz ripete soltanto la proposta. Un secondo è invece il tempo medio per ciclo e non l’unità dello scarto. Il fatto che lo scarto valga numericamente uno non lo rende un conteggio di un ciclo: è una differenza tra frequenze."
+        }
+      ],
+      "hints": [
+        "Confronta due grandezze nella stessa unità e nello stesso ordine indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 Hz userebbe la differenza inversa; due hertz ripete soltanto la proposta. Un secondo è invece il tempo medio per ciclo e non l’unità dello scarto. Il fatto che lo scarto valga numericamente uno non lo rende un conteggio di un ciclo: è una differenza tra frequenze.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2529,
+      "title": "L’inversa rispetta il conteggio intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Si conoscono f>0, frequenza media di cicli completi, e la durata t>0 di un’osservazione delimitata dalla stessa fase. I dati sono compatibili con un conteggio N intero positivo. Quale formula ricostruisce N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N=f/t",
+          "N=t/f",
+          "N=ft",
+          "N=1/(ft)",
+          "N=f+t"
+        ],
+        "value": "N=ft"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare la definizione f=N/t per t elimina il denominatore e lascia N=ft. La formula non trasforma ogni coppia di reali positivi in un conteggio valido: nel dominio dichiarato si richiede anche ft∈ℕ positivo. La compatibilità fa parte dei dati, non di un arrotondamento finale."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac Nt"
+        },
+        {
+          "type": "formula",
+          "text": " ft=N"
+        },
+        {
+          "type": "formula",
+          "text": " N=ft\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "f/t ha dimensione T⁻² e t/f dimensione T². 1/(ft) sarebbe adimensionale come N, ma è il reciproco del conteggio e fallisce già con N=2. f+t somma dimensioni diverse. Controllare solo le unità escluderebbe alcuni errori, ma non quello del reciproco: serve anche ricostruire la relazione iniziale."
+        }
+      ],
+      "hints": [
+        "Dopo l’algebra verifica sia la dimensione sia l’appartenenza al dominio discreto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "f/t ha dimensione T⁻² e t/f dimensione T². 1/(ft) sarebbe adimensionale come N, ma è il reciproco del conteggio e fallisce già con N=2. f+t somma dimensioni diverse. Controllare solo le unità escluderebbe alcuni errori, ma non quello del reciproco: serve anche ricostruire la relazione iniziale.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2530,
+      "title": "Scalature ammesse per un conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "A contiene N cicli interi positivi in t>0. In B N_B=κ₁N e t_B=κ₂t, con κ₁,κ₂>0; si impone inoltre κ₁N intero positivo, perché anche B conta cicli completi. Qual è il rapporto f_B/f_A delle frequenze medie?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂",
+          "κ₁²/κ₂",
+          "κ₁+κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo il nuovo conteggio sopra la nuova durata. Nel rapporto con f_A=N/t si cancellano N e t, entrambi non nulli. Il fattore del conteggio rimane al numeratore e quello del tempo al denominatore. Il vincolo intero riguarda il prodotto κ₁N: non richiede che il fattore κ₁ sia sempre un intero."
+        },
+        {
+          "type": "formula",
+          "text": "f_B=\\frac{\\kappa_1N}{\\kappa_2t}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{f_B}{f_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_1N\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto dei fattori sbaglia l’effetto del tempo, il rapporto inverso scambia A e B; il quadrato conta un fattore κ₁ di troppo. La somma darebbe due invece di uno quando i dati non cambiano. Per N=2 è ammesso κ₁=3/2, che dà tre cicli, ma non κ₁=1/4, che darebbe mezzo ciclo nel conteggio dichiarato."
+        }
+      ],
+      "hints": [
+        "Cancellare simboli non elimina il vincolo che i cicli contati siano interi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto dei fattori sbaglia l’effetto del tempo, il rapporto inverso scambia A e B; il quadrato conta un fattore κ₁ di troppo. La somma darebbe due invece di uno quando i dati non cambiano. Per N=2 è ammesso κ₁=3/2, che dà tre cicli, ma non κ₁=1/4, che darebbe mezzo ciclo nel conteggio dichiarato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2531,
+      "title": "Tre volte i cicli in due volte il tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "La prova A completa N_A=2 cicli interi in t_A=2 s; la prova B completa N_B=6 cicli interi in t_B=4 s. Quanto vale f_B/f_A? Entrambe le frequenze sono medie sui rispettivi intervalli.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "3/2",
+          "2/3",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il conteggio è triplo, ma la durata è doppia. La frequenza cresce quindi di tre mezzi. In termini di valori, A dà un ciclo al secondo e B tre mezzi di ciclo al secondo: una frequenza frazionaria è ammissibile anche se il numero totale di cicli è intero."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=\\frac2{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac2{2\\,\\mathrm s}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac6{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{4\\,\\mathrm s}=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre dimentica la durata doppia, due dimentica il conteggio triplo e sei moltiplica invece di dividere i fattori. Due terzi capovolge il rapporto. Tre mezzi hertz non significa aver contato un ciclo e mezzo: nella prova B i cicli effettivamente contati sono sei."
+        }
+      ],
+      "hints": [
+        "Distingui una frequenza frazionaria da un conteggio frazionario di cicli completi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre dimentica la durata doppia, due dimentica il conteggio triplo e sei moltiplica invece di dividere i fattori. Due terzi capovolge il rapporto. Tre mezzi hertz non significa aver contato un ciclo e mezzo: nella prova B i cicli effettivamente contati sono sei.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2532,
+      "title": "Uguale peso alle due frequenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 2,
+      "prompt": "Due osservazioni contano cicli interi: A ha N=2,t=2 s e B ha N=6,t=4 s. Si chiede la media aritmetica delle due frequenze medie, con lo stesso peso per ciascuna osservazione. Qual è il risultato?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Hz",
+          "3/2 Hz",
+          "5/4 Hz",
+          "4/3 Hz",
+          "5/2 Hz"
+        ],
+        "value": "5/4 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima f_A=1 Hz e f_B=3/2 Hz. La loro somma è cinque mezzi di hertz; dividendo per due otteniamo cinque quarti. Lo stesso peso alle prove è diverso dal peso proporzionale alle loro durate, perché la seconda osservazione dura il doppio."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline f=\\frac{1+3/2}{2}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1+3/2}{2}\\,\\mathrm{Hz}=\\frac54\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Un hertz e tre mezzi scelgono una sola prova, cinque mezzi è la somma. Quattro terzi hertz è il rapporto aggregato (2+6)/(2 s+4 s)=8/(6 s), quindi usa pesi temporali diversi. Anche N medio4 e t medio3 s darebbero quattro terzi: qui non è la media aritmetica richiesta. Tutti i conteggi effettivi restano interi."
+        }
+      ],
+      "hints": [
+        "Chiediti se il peso è uguale per prova oppure proporzionale al tempo osservato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un hertz e tre mezzi scelgono una sola prova, cinque mezzi è la somma. Quattro terzi hertz è il rapporto aggregato (2+6)/(2 s+4 s)=8/(6 s), quindi usa pesi temporali diversi. Anche N medio4 e t medio3 s darebbero quattro terzi: qui non è la media aritmetica richiesta. Tutti i conteggi effettivi restano interi.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2533,
+      "title": "La durata che compensa più cicli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 3,
+      "prompt": "La prova A conta N_A=2 cicli in t_A=2 s. In B si devono contare esattamente N_B=6 cicli interi e si vuole f_B=(3/2)f_A. Quale rapporto t_B/t_A è necessario? Le durate sono positive.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha frequenza un hertz, quindi il valore obiettivo di B è tre mezzi di hertz. Per sei cicli completi la durata deve essere N_B/f_B: dividere per tre mezzi equivale a moltiplicare per due terzi. Ne risultano quattro secondi, il doppio dei due iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac6{(3/2)\\,\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{(3/2)\\,\\mathrm{s^{-1}}}=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Triplicare anche la durata manterrebbe la frequenza invariata; lasciare la durata a due secondi darebbe 3 Hz, cioè tre volte A. Il rapporto è due e non quattro: quattro secondi è la durata assoluta. Nessun conteggio è stato interpolato fra interi per ottenere il risultato."
+        }
+      ],
+      "hints": [
+        "Fissa la frequenza obiettivo, poi dividi il conteggio intero per essa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Triplicare anche la durata manterrebbe la frequenza invariata; lasciare la durata a due secondi darebbe 3 Hz, cioè tre volte A. Il rapporto è due e non quattro: quattro secondi è la durata assoluta. Nessun conteggio è stato interpolato fra interi per ottenere il risultato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2534,
+      "title": "Una frequenza decodificata prima di contare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 3,
+      "prompt": "Un display indica S=cf, con c>0 costante e offset nullo. A conta due cicli completi in due secondi e dà S=3. B dura t_B=4 s e dà S=9/2. Quanti cicli interi N_B comprende B? Le letture sono numeri nella stessa scala e i dati sono esatti.",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha f_A=1 Hz, quindi c=3 s. Dividere nove mezzi per il guadagno ricostruisce f_B=3/2 Hz. Moltiplicare per quattro secondi dà sei cicli, un intero positivo compatibile con l’osservazione di cicli completi."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac3{1\\,\\mathrm{Hz}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac3{1\\,\\mathrm{Hz}}=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{9/2}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9/2}{c}=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=f_Bt_B"
+        },
+        {
+          "type": "formula",
+          "text": "f_Bt_B=6"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura 9/2 come frequenza darebbe diciotto cicli, includendo per errore il guadagno del display. Arrotondare prima 3/2 Hz a un intero produrrebbe un conteggio diverso e non è richiesto: una frequenza può essere frazionaria. È il numero finale di cicli completi, non la frequenza, a dover essere intero."
+        }
+      ],
+      "hints": [
+        "Prima converti la lettura in hertz; solo dopo moltiplica per la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura 9/2 come frequenza darebbe diciotto cicli, includendo per errore il guadagno del display. Arrotondare prima 3/2 Hz a un intero produrrebbe un conteggio diverso e non è richiesto: una frequenza può essere frazionaria. È il numero finale di cicli completi, non la frequenza, a dover essere intero.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2535,
+      "title": "Due riferimenti prima del conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 3,
+      "prompt": "Un display segue S=cf+d, con c>0,d costanti. A: N=2 cicli interi,t=2 s,S=3. B: N=6 cicli interi,t=4 s,S=4. C: t=2 s,S=5. Ogni osservazione comprende cicli completi e i dati sono esatti. Quanti cicli N_C ha completato C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno frequenze 1 e 3/2 Hz. La differenza delle letture divisa per la differenza delle frequenze dà c=2 s; il primo riferimento lascia d=1. In C togliamo l’offset e dividiamo per c, ottenendo due hertz. Durante due secondi corrispondono a quattro cicli interi."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{4-3}{(3/2-1)\\,\\mathrm{Hz}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4-3}{(3/2-1)\\,\\mathrm{Hz}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " f_C=\\frac{5-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5-1}{c}=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " N_C=f_Ct_C"
+        },
+        {
+          "type": "formula",
+          "text": "f_Ct_C=4"
+        },
+        {
+          "type": "text",
+          "text": "Uno, due e tre cicli in due secondi darebbero letture rispettivamente 2,3,4; cinque cicli darebbero 6. La lettura cinque non è dunque il numero di cicli, anche se entrambi sono numeri puri. Il risultato quattro riproduce f_C=2 Hz e S=2 s·2 Hz+1=5 senza arrotondamenti."
+        }
+      ],
+      "hints": [
+        "La frequenza viene dal display tarato; il conteggio viene poi dalla durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno, due e tre cicli in due secondi darebbero letture rispettivamente 2,3,4; cinque cicli darebbero 6. La lettura cinque non è dunque il numero di cicli, anche se entrambi sono numeri puri. Il risultato quattro riproduce f_C=2 Hz e S=2 s·2 Hz+1=5 senza arrotondamenti.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-frequency-count-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto periodico e frequenza",
+      "order": 2536,
+      "title": "Infinite osservazioni, ma conteggi discreti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "frequency-count",
+      "difficulty": 3,
+      "prompt": "Un moto periodico è osservato per un numero intero positivo N di cicli completi. Si sceglie la durata t>0 imponendo N=(1 s⁻¹)t; si misura inoltre f=1 Hz. Quante coppie ammesse (N,t) soddisfano questi dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una sola",
+          "Esattamente due",
+          "Infinite",
+          "Tutte le coppie reali positive senza restrizioni"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire il vincolo in f=N/t restituisce già un hertz, quindi la misura non seleziona un’osservazione particolare. Ma il conteggio resta intero: possiamo scegliere N=n con n=1,2,3,… e allora t=n s. Otteniamo infinite coppie discrete, non una scelta continua arbitraria di N."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac{(1\\,\\mathrm{s^{-1}})t}{t}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(1\\,\\mathrm{s^{-1}})t}{t}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " (N,t)=(n,n\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " n\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie (1,1 s),(2,2 s),(3,3 s) sono solo i primi esempi e continuano senza limite. (1/2,1/2 s) soddisfarebbe il rapporto reale ma viola il conteggio intero dichiarato. Le coppie arbitrarie non rispettano necessariamente il vincolo; lo zero non è ammesso e renderebbe il rapporto indefinito. La frequenza nota conferma il vincolo, non fissa il numero di cicli."
+        }
+      ],
+      "hints": [
+        "Parametrizza le soluzioni con un intero positivo, non con un conteggio reale libero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie (1,1 s),(2,2 s),(3,3 s) sono solo i primi esempi e continuano senza limite. (1/2,1/2 s) soddisfarebbe il rapporto reale ma viola il conteggio intero dichiarato. Le coppie arbitrarie non rispettano necessariamente il vincolo; lo zero non è ammesso e renderebbe il rapporto indefinito. La frequenza nota conferma il vincolo, non fissa il numero di cicli.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Conteggio intero dei cicli",
+        "Frequenza e periodo",
+        "Medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "19c4440c1b2034262b2728b25aa3274a765ac15743b35e69012fae8b139d0337",
+      "name": "frequency-count-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iOTIwIiB2aWV3Qm94PSIwIDAgNjAwIDkyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogPHRpdGxlIGlkPSJ0aXRsZSI+RHVlIGNpY2xpIGNvbXBsZXRpOiBjb250YSBnbGkgaW50ZXJ2YWxsaSBmcmEgcml0b3JuaSBhbGxhIHN0ZXNzYSBmYXNlPC90aXRsZT4KIDxkZXNjIGlkPSJkZXNjIj5UcmFjY2lhIHBlcmlvZGljYSBlc2VtcGxpZmljYXRpdmEgY29uIHBlcmlvZG8gdW4gc2Vjb25kby4gTGUgY3Jlc3RlIGEgemVybywgdW5vIGUgZHVlIHNlY29uZGkgZGVsaW1pdGFubyBkdWUgY2ljbGksIG5vbiB0cmUuIFNjYWxhIG9yaXp6b250YWxlIGR1ZWNlbnRvIHBpeGVsIHBlciBzZWNvbmRvLCBzY2FsYSB2ZXJ0aWNhbGUgYXJiaXRyYXJpYS4gQ29udGVnZ2lvIGR1ZSwgZHVyYXRhIGR1ZSBzZWNvbmRpLCBmcmVxdWVuemEgdW4gaGVydHo7IG5lbCBtb3RvIHJlZ29sYXJlIGRpc2VnbmF0byBwZXJpb2RvIHVuIHNlY29uZG8uPC9kZXNjPgogPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI5MjAiIGZpbGw9IndoaXRlIi8+CiA8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzE3MjAzMyI+CiAgPHRleHQgeD0iMjgiIHk9IjM2IiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBSaXRyb3ZhIGxhIHN0ZXNzYSBmYXNlPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI3MyI+VHJhY2NpYSBwZXJpb2RpY2EgZGkgZXNlbXBpbyDCtyB2ZXJ0aWNhbGUgYXJiaXRyYXJpYTwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iMTA3Ij5TY2FsYSB0ZW1wb3JhbGU6IDIwMCBweC9zIMK3IHQgPSAwIGFsbOKAmWluaXppbyBvc3NlcnZhemlvbmU8L3RleHQ+CiAgPHBhdGggZD0iTTEwMCAxNjBDMTUwIDE2MCAxNTAgMjYwIDIwMCAyNjBTMjUwIDE2MCAzMDAgMTYwUzM1MCAyNjAgNDAwIDI2MFM0NTAgMTYwIDUwMCAxNjAiIHN0cm9rZT0iIzI0NWNhNCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CiAgPHBhdGggZD0iTTEwMCAxNjBWMzIwTTMwMCAxNjBWMzIwTTUwMCAxNjBWMzIwIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgogIDxnIGZpbGw9IiMyNDVjYTQiPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjE2MCIgcj0iNiIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNiIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjE2MCIgcj0iNiIvPjwvZz4KICA8cGF0aCBkPSJNODAgMzIwSDUyME0xMDAgMzEzVjMyN00zMDAgMzEzVjMyN001MDAgMzEzVjMyNyIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI5NCIgeT0iMzU1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI5NCIgeT0iMzU1Ij4xPC90ZXh0Pjx0ZXh0IHg9IjQ5NCIgeT0iMzU1Ij4yPC90ZXh0Pjx0ZXh0IHg9IjUzMSIgeT0iMzI2Ij50IChzKTwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNDI1IiBmb250LXNpemU9IjIyIiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBDb250YSBnbGkgaW50ZXJ2YWxsaSBjb21wbGV0aTwvdGV4dD4KICA8cGF0aCBkPSJNMTAwIDQ3MEgzMDBNMzAwIDQ3MEg1MDBNMTAwIDQ1OVY0ODFNMzAwIDQ1OVY0ODFNNTAwIDQ1OVY0ODEiIHN0cm9rZT0iIzMzNDE1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMTU0IiB5PSI1MTAiPnByaW1vIGNpY2xvPC90ZXh0Pjx0ZXh0IHg9IjM1MSIgeT0iNTEwIj5zZWNvbmRvIGNpY2xvPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI1NjAiPlRyZSBtYXJjYXRvcmkgZGkgZmFzZSBkZWxpbWl0YW5vIE4gPSAyIGNpY2xpLjwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNjAwIj5EdXJhdGEgdG90YWxlOiB0ID0gMiBzIOKIkiAwIHMgPSAyIHMuPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI2NzUiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IERpc3Rpbmd1aSBmcmVxdWVuemEgZSBwZXJpb2RvPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI3MzAiPmYgPSBOL3QgPSAyLygyIHMpID0gMSBIejwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNzgwIj5OZWwgbW90byByZWdvbGFyZSBkaXNlZ25hdG86IFQgPSB0L04gPSAxIHMuPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI4MzMiPlVuYSBmcmVxdWVuemEgcHXDsiBlc3NlcmUgZnJhemlvbmFyaWE7PC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI4NjgiPk4gcmVzdGEgdW4gY29udGVnZ2lvIGludGVybyBkaSBjaWNsaSBjb21wbGV0aS48L3RleHQ+CiA8L2c+Cjwvc3ZnPgo="
+    }
+  ]
+}

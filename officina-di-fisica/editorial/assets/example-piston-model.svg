@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1000" role="img" aria-labelledby="title desc">
+<title id="title">Pressa con variazione idrostatica trascurata nel modello</title>
+<desc id="desc">Tre tappe senza scala: pressione aggiuntiva comune, volume conservato e lavori uguali nell'approssimazione dichiarata. Il piccolo scende dodici centimetri mentre il grande sale un centimetro; non restano alla stessa quota.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7Z" fill="#14647b"/></marker></defs>
+<rect width="640" height="1000" rx="20" fill="#faf8f2"/>
+<g font-family="system-ui,sans-serif" font-size="22" fill="#16323f">
+<text x="28" y="44" font-size="25" font-weight="700">1 · Confronta le superfici</text>
+<path d="M100 120V260H490V120M185 120V210H345V120" fill="none" stroke="#16323f" stroke-width="3"/>
+<path d="M104 165H181V214H349V165H486V256H104Z" fill="#c8e3db"/>
+<path d="M98 160H187M343 160H492" stroke="#665c4e" stroke-width="10"/>
+<path d="M142 84V143" fill="none" stroke="#14647b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M416 144V84" fill="none" stroke="#14647b" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="40" y="80">40 N</text><text x="452" y="80">480 N</text>
+<text x="78" y="302">A₁ = 5 cm²</text><text x="350" y="302">A₂ = 60 cm²</text>
+<text x="28" y="346">Rapporto delle aree: 60/5 = 12.</text>
+<text x="28" y="414" font-size="25" font-weight="700">2 · Conserva il volume spostato</text>
+<path d="M140 460V548" stroke="#14647b" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M415 548V460" stroke="#14647b" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="52" y="596">Piccolo: giù 12 cm</text><text x="346" y="596">Grande: su 1 cm</text>
+<text x="28" y="644">5 × 12 = 60 × 1 = 60 cm³.</text>
+<text x="28" y="712" font-size="25" font-weight="700">3 · Controlla il lavoro del modello</text>
+<text x="28" y="766">40 N × 0,12 m = 480 N × 0,01 m</text>
+<text x="28" y="810">= 24/5 J = 4,8 J.</text>
+<text x="28" y="874" font-size="20">Variazione idrostatica trascurata esplicitamente.</text>
+<text x="28" y="918" font-size="20">I pistoni non restano alla stessa quota.</text>
+<text x="28" y="960" font-size="20">Schema e frecce non in scala.</text>
+</g></svg>

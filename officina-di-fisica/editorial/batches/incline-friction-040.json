@@ -1,0 +1,1259 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-incline-friction-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2721,
+      "title": "La discesa accelera malgrado l’attrito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale un corpo di massa m>0 scivola già verso il basso su un piano rettilineo fisso con sinθ=3/5 e cosθ=4/5. Agiscono solo peso, normale e attrito dinamico; il contatto permane. Con g=10 m/s² e μ=1/2, quanto vale la componente A dell’accelerazione lungo il piano, positiva verso il basso, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il moto è discendente, quindi l’attrito dinamico è diretto verso l’alto lungo il piano. Perpendicolarmente al piano non c’è accelerazione: N=mg cosθ. Lungo il piano la componente del peso è mg sinθ; sottraiamo μN e dividiamo per m. La massa si semplifica, ma la normale non è mg."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b09d5bd791e3944d59b3a70e083372968d6a2464146c9c5ce06d0bb3d55c45eb",
+          "text": "Tre tappe per una massa illustrativa m=1kg, g=10m/s² e μ=1/2: triangolo del piano 3–4–5 con uguale scala spaziale; decomposizione del peso10N in componente parallela6N e perpendicolare8N, con10px/N per tutte le frecce di forza; lungo il piano attrito4N verso monte e risultante2N verso valle. Il corpo scivola già verso valle; i valori non sono una soglia statica. La massa illustrativa si semplifica nella previsione A=2m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac45mg>0"
+        },
+        {
+          "type": "formula",
+          "text": " mA=\\frac35mg-\\mu N"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac g5(3-4\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " 3-4\\mu=1"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La componente del peso da sola darebbe 6 m/s²; l’attrito ne sottrae 4 m/s². Il corpo accelera in discesa perché μ<3/4, non perché l’attrito punti in discesa. Scivolare verso il basso non impone in generale un’accelerazione verso il basso: qui il segno segue dal coefficiente assegnato."
+        }
+      ],
+      "hints": [
+        "Proietta prima il peso nelle due direzioni e usa il verso reale dello scorrimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La componente del peso da sola darebbe 6 m/s²; l’attrito ne sottrae 4 m/s². Il corpo accelera in discesa perché μ<3/4, non perché l’attrito punti in discesa. Scivolare verso il basso non impone in generale un’accelerazione verso il basso: qui il segno segue dal coefficiente assegnato.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2722,
+      "title": "Il rapporto trigonometrico non cambia l’unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 1,
+      "prompt": "Per una discesa con attrito dinamico su un piano con sinθ=3/5,cosθ=4/5 si ha A=g(3−4μ)/5. g è un’accelerazione e μ è adimensionale. Quale unità SI esprime A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "m/s",
+          "m/s²",
+          "kg",
+          "1"
+        ],
+        "value": "m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Seni, coseni e coefficiente d’attrito sono rapporti puri. Anche il fattore (3−4μ)/5 è puro, perciò A conserva la dimensione di g. Le proiezioni modificano i valori delle componenti, non la loro natura dimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu]=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\left[\\frac{3-4\\mu}{5}\\right]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=[g]"
+        },
+        {
+          "type": "formula",
+          "text": "[g]=L/T^2"
+        },
+        {
+          "type": "text",
+          "text": "m/s² è corretto. N sarebbe una forza prima della divisione per massa, kg una massa, m/s una velocità e 1 il solo fattore geometrico. Non occorre ricavare θ in gradi per usare i rapporti assegnati."
+        }
+      ],
+      "hints": [
+        "Controlla la dimensione del fattore che moltiplica g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s² è corretto. N sarebbe una forza prima della divisione per massa, kg una massa, m/s una velocità e 1 il solo fattore geometrico. Non occorre ricavare θ in gradi per usare i rapporti assegnati.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2723,
+      "title": "Il verso dell’attrito nella legge",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 1,
+      "prompt": "Un corpo scivola verso il basso su un piano fisso con sinθ=3/5 e cosθ=4/5, in un riferimento inerziale. Agiscono solo peso, normale e attrito dinamico di coefficiente 0<μ<3/4; g>0 e il contatto permane. Quale formula dà A, componente dell’accelerazione positiva verso il basso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A=g(3+4μ)/5",
+          "A=g(3−4μ)/5",
+          "A=g(4−3μ)/5",
+          "A=g(3−5μ)/5",
+          "A=μg"
+        ],
+        "value": "A=g(3−4μ)/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale è la proiezione perpendicolare mg cosθ e l’attrito ha modulo μN. Poiché lo scorrimento è verso il basso, questo attrito va sottratto alla componente parallela mg sinθ. La seconda legge lungo il piano restituisce g(sinθ−μ cosθ)."
+        },
+        {
+          "type": "formula",
+          "text": "N=mg\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " mA=mg\\sin\\theta-\\mu N"
+        },
+        {
+          "type": "formula",
+          "text": " A=g\\left(\\frac35-\\frac45\\mu\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac g5(3-4\\mu)"
+        },
+        {
+          "type": "text",
+          "text": "Il più sommerebbe l’attrito nel verso dello scorrimento. Scambiare tre e quattro scambia le due proiezioni; il cinque davanti a μ userebbe N=mg, corretto su un piano orizzontale ma non qui. μg omette anche il fattore cosθ: il contributo frenante per unità di massa è μg cosθ=4μg/5, e da solo non include la gravità parallela. Il dominio μ<3/4 rende positivo il risultato scelto."
+        }
+      ],
+      "hints": [
+        "La componente parallela del peso e la normale usano rapporti diversi: tre quinti e quattro quinti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il più sommerebbe l’attrito nel verso dello scorrimento. Scambiare tre e quattro scambia le due proiezioni; il cinque davanti a μ userebbe N=mg, corretto su un piano orizzontale ma non qui. μg omette anche il fattore cosθ: il contributo frenante per unità di massa è μg cosθ=4μg/5, e da solo non include la gravità parallela. Il dominio μ<3/4 rende positivo il risultato scelto.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2724,
+      "title": "Un campo doppio, stesso contatto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 1,
+      "prompt": "Due corpi scivolano verso il basso su piani fissi con sinθ=3/5,cosθ=4/5 e μ=1/2. Agiscono solo peso, normale e attrito dinamico; si resta in contatto. In due prove distinte il campo uniforme passa da g_A=10 a g_B=20 m/s². Come cambia A verso il basso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 2 m/s²",
+          "Raddoppia da 2 a 4 m/s²",
+          "Quadruplica a 8 m/s²",
+          "Si dimezza a 1 m/s²",
+          "Si annulla"
+        ],
+        "value": "Raddoppia da 2 a 4 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore geometrico con attrito resta (3−4·1/2)/5=1/5. Il campo raddoppia sia la componente del peso sia la normale e quindi l’attrito. La loro differenza mantiene lo stesso fattore, moltiplicato per il nuovo g."
+        },
+        {
+          "type": "formula",
+          "text": "A_A=\\frac{10}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{5}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=\\frac{20}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{5}\\,\\mathrm{m/s^2}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto introdurrebbe un quadrato di g. Tenere invariato l’attrito mentre raddoppia g sarebbe incoerente, perché cresce anche N. La geometria e μ sono fissati, mentre il campo cambia solo fra prove, non durante una singola discesa."
+        }
+      ],
+      "hints": [
+        "Raccogli g nella differenza fra peso parallelo e attrito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto introdurrebbe un quadrato di g. Tenere invariato l’attrito mentre raddoppia g sarebbe incoerente, perché cresce anche N. La geometria e μ sono fissati, mentre il campo cambia solo fra prove, non durante una singola discesa.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2725,
+      "title": "Ricostruire il campo dalla discesa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Un corpo scivola verso il basso su un piano fisso con sinθ=3/5,cosθ=4/5 e μ=1/2. In un riferimento inerziale agiscono solo peso, normale e attrito dinamico, con contatto mantenuto. Si misura A=2 m/s² verso il basso. Quanto vale g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge lungo il piano è A=g(3−4μ)/5. Per isolare g moltiplichiamo per cinque e dividiamo per il fattore positivo 3−4μ. Con μ=1/2 questo fattore è uno, quindi la componente misurata è soltanto un quinto del campo."
+        },
+        {
+          "type": "formula",
+          "text": "5A=g(3-4\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{5A}{3-4\\mu}"
+        },
+        {
+          "type": "formula",
+          "text": " 3-4\\mu=1"
+        },
+        {
+          "type": "formula",
+          "text": " g=5(2\\,\\mathrm{m/s^2})"
+        },
+        {
+          "type": "formula",
+          "text": "5(2\\,\\mathrm{m/s^2})=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo restituisce 10/5=2 m/s². Usare g=A ignorerebbe proiezioni e attrito. Il coefficiente μ=3/4 annullerebbe questo denominatore e darebbe A=0 per qualunque g: non sarebbe compatibile con la misura positiva qui assegnata."
+        }
+      ],
+      "hints": [
+        "Isola il fattore g solo dopo aver controllato che il denominatore sia positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo restituisce 10/5=2 m/s². Usare g=A ignorerebbe proiezioni e attrito. Il coefficiente μ=3/4 annullerebbe questo denominatore e darebbe A=0 per qualunque g: non sarebbe compatibile con la misura positiva qui assegnata.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2726,
+      "title": "Il coefficiente ricavato da A",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale un corpo scivola verso il basso su un piano fisso con sinθ=3/5 e cosθ=4/5. Con sole forze peso, normale e attrito dinamico, contatto mantenuto, g=10 m/s² e A=2 m/s² verso il basso, quale μ in 0<μ<3/4 è compatibile?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "3/4",
+          "1",
+          "2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la legge per g, moltiplichiamo per cinque e isoliamo il termine 4μ. Il rapporto A/g è puro, quindi può essere sottratto al numero tre dopo il fattore cinque. La differenza tre meno uno vale due: dividendola per quattro otteniamo un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5A}{g}=3-4\\mu"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{3-5A/g}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{5A}{g}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{3-1}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3-1}{4}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto darebbe A=4 m/s² e tre quarti darebbe A=0. Uno e due sono fuori dal dominio dichiarato di accelerazione discendente positiva. La condizione μ>0 richiede anche A<3g/5: qui 2<6, coerentemente con una frenatura dovuta all’attrito."
+        }
+      ],
+      "hints": [
+        "Ricava prima il rapporto puro A/g e confrontalo con la discesa senza attrito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto darebbe A=4 m/s² e tre quarti darebbe A=0. Uno e due sono fuori dal dominio dichiarato di accelerazione discendente positiva. La condizione μ>0 richiede anche A<3g/5: qui 2<6, coerentemente con una frenatura dovuta all’attrito.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2727,
+      "title": "Meno attrito, maggiore accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Due discese già in scorrimento avvengono su un piano fisso con sinθ=3/5,cosθ=4/5 e g=10 m/s², con sole forze peso, normale e attrito dinamico. Il coefficiente passa da μ_A=1/2 a μ_B=1/4. Quanto vale A_B/A_A, con accelerazioni positive verso il basso?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo del peso è uguale, mentre l’attrito si dimezza. La differenza disponibile lungo il piano passa da g/5 a 2g/5. Le due accelerazioni sono due e quattro metri al secondo quadrato: il loro rapporto è due, non il rapporto dei coefficienti."
+        },
+        {
+          "type": "formula",
+          "text": "3-4\\mu_A=1"
+        },
+        {
+          "type": "formula",
+          "text": " 3-4\\mu_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " A_A=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo seguirebbe direttamente μ invece del suo contributo sottratto alla gravità. L’attrito resta rivolto verso l’alto in entrambe le discese, perché il verso della velocità non cambia. Una forza frenante più debole può lasciare un’accelerazione più forte verso il basso."
+        }
+      ],
+      "hints": [
+        "Sottrai l’attrito in ciascuna prova prima di confrontare le accelerazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo seguirebbe direttamente μ invece del suo contributo sottratto alla gravità. L’attrito resta rivolto verso l’alto in entrambe le discese, perché il verso della velocità non cambia. Una forza frenante più debole può lasciare un’accelerazione più forte verso il basso.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2728,
+      "title": "Lo scarto di una discesa proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Un corpo scivola verso il basso su un piano con sinθ=3/5,cosθ=4/5, g=10 m/s² e μ=1/2. Si trascurano altre forze oltre peso, normale e attrito dinamico; il contatto permane. Si propone A=4 m/s² verso il basso. Quanto vale proposta meno valore corretto, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente parallela del peso per unità di massa è 6 m/s², mentre quella dell’attrito è 4 m/s² verso l’alto. La componente risultante è quindi 2 m/s² verso il basso. La proposta supera il valore corretto di due, nell’ordine richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "g\\sin\\theta=6\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu g\\cos\\theta=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=(6-4)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "(6-4)\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "(4-2)\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "La proposta quattro può aver scambiato il contributo frenante con la risultante. −2 inverte lo scarto e sei ignorerebbe del tutto l’attrito. Non si deve invece aggiungere l’attrito al peso parallelo: così si otterrebbe 10 m/s², contrario al verso dell’attrito nello scorrimento dichiarato."
+        }
+      ],
+      "hints": [
+        "Distingui contributo gravitazionale, contributo d’attrito e loro differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La proposta quattro può aver scambiato il contributo frenante con la risultante. −2 inverte lo scarto e sei ignorerebbe del tutto l’attrito. Non si deve invece aggiungere l’attrito al peso parallelo: così si otterrebbe 10 m/s², contrario al verso dell’attrito nello scorrimento dichiarato.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2729,
+      "title": "L’inversa con denominatore positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Per una discesa con attrito dinamico su piano fisso di rapporti sinθ=3/5 e cosθ=4/5 si ha A=g(3−4μ)/5. Si conoscono A>0 e 0<μ<3/4, con contatto mantenuto. Quale relazione isola g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g=A(3−4μ)/5",
+          "g=5A/(3+4μ)",
+          "g=5A/(3−4μ)",
+          "g=−5A/(3−4μ)",
+          "g=5/[A(3−4μ)]"
+        ],
+        "value": "g=5A/(3−4μ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare per cinque porta a 5A=g(3−4μ). La parentesi è strettamente positiva nel dominio; dividerci isola un campo positivo senza cambiare ramo fisico. Il rapporto moltiplica A per un numero puro e mantiene l’unità di accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "5A=g(3-4\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{5A}{3-4\\mu}"
+        },
+        {
+          "type": "formula",
+          "text": " 3-4\\mu>0"
+        },
+        {
+          "type": "text",
+          "text": "La prima opzione applica nuovamente la legge diretta anziché invertirla. Il più davanti a 4μ cambia la fisica dell’attrito; il meno esterno rende g negativo. L’ultima formula ha dimensione inversa di accelerazione. La condizione sul denominatore è necessaria, non una scelta di arrotondamento."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore (3−4μ)/5 mediante il suo reciproco positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La prima opzione applica nuovamente la legge diretta anziché invertirla. Il più davanti a 4μ cambia la fisica dell’attrito; il meno esterno rende g negativo. L’ultima formula ha dimensione inversa di accelerazione. La condizione sul denominatore è necessaria, non una scelta di arrotondamento.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2730,
+      "title": "Scalare campo e attrito nella differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Due discese con attrito dinamico avvengono sullo stesso piano fisso, sinθ=3/5,cosθ=4/5. In A g>0 e 0<μ<3/4; in B g_B=κ₁g,μ_B=κ₂μ, con κ₁,κ₂>0 e 0<κ₂μ<3/4. Il contatto permane e la velocità è verso il basso. Qual è A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₁ (3 − 4 κ₂ μ) / (3 − 4 μ)",
+          "κ₁ (3 − 4 μ) / (3 − 4 κ₂ μ)",
+          "κ₂ (3 − 4 κ₁ μ) / (3 − 4 μ)"
+        ],
+        "value": "κ₁ (3 − 4 κ₂ μ) / (3 − 4 μ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo moltiplica tutta la differenza, mentre il coefficiente agisce solo sulla parte d’attrito. Scriviamo la legge B e dividiamola per quella A: g e il cinque si semplificano, ma le due parentesi non sono uguali in generale. I vincoli mantengono entrambe positive."
+        },
+        {
+          "type": "formula",
+          "text": "A_A=\\frac g5(3-4\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=\\frac{\\kappa_1g}{5}(3-4\\kappa_2\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_B}{A_A}=\\frac{\\kappa_1(3-4\\kappa_2\\mu)}{3-4\\mu}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto e il quoziente semplici dei fattori non descrivono una differenza fra gravità e attrito. Scambiare le parentesi inverte l’effetto del coefficiente; l’ultima opzione scambia i ruoli di κ₁ e κ₂. Se κ₂=1 il rapporto torna κ₁; se aumentasse troppo μ_B si uscirebbe dal dominio scelto, non si dovrebbe chiamare positivo un risultato negativo."
+        }
+      ],
+      "hints": [
+        "Applica κ₁ al campo intero e κ₂ soltanto a μ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto e il quoziente semplici dei fattori non descrivono una differenza fra gravità e attrito. Scambiare le parentesi inverte l’effetto del coefficiente; l’ultima opzione scambia i ruoli di κ₁ e κ₂. Se κ₂=1 il rapporto torna κ₁; se aumentasse troppo μ_B si uscirebbe dal dominio scelto, non si dovrebbe chiamare positivo un risultato negativo.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2731,
+      "title": "Campo doppio e attrito dimezzato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Due corpi già in discesa su piani fissi identici, sinθ=3/5,cosθ=4/5, mantengono il contatto. Con sole forze peso, normale e attrito dinamico, A ha g=10 m/s²,μ=1/2; B ha g=20 m/s²,μ=1/4. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo raddoppia e il fattore 3−4μ passa da uno a due. I due effetti si moltiplicano, portando l’accelerazione da due a otto metri al secondo quadrato. Il coefficiente dimezzato non dimezza la risultante: riduce il termine che veniva sottratto."
+        },
+        {
+          "type": "formula",
+          "text": "A_A=\\frac{10}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{5}\\,\\mathrm{m/s^2}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=\\frac{20\\times2}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20\\times2}{5}\\,\\mathrm{m/s^2}=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considererebbe solo g; un mezzo solo μ come fosse un fattore della risultante; uno moltiplicherebbe ingenuamente quei due rapporti. Quattro è un rapporto puro e otto m/s² è la seconda accelerazione: non sono la stessa risposta fisica."
+        }
+      ],
+      "hints": [
+        "Confronta anche la parentesi 3−4μ, oltre al campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considererebbe solo g; un mezzo solo μ come fosse un fattore della risultante; uno moltiplicherebbe ingenuamente quei due rapporti. Quattro è un rapporto puro e otto m/s² è la seconda accelerazione: non sono la stessa risposta fisica.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2732,
+      "title": "La media delle due discese",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 2,
+      "prompt": "Due prove di discesa su piani fissi con sinθ=3/5,cosθ=4/5 e contatto mantenuto hanno coppie (g,μ)=(10 m/s²,1/2) e (20 m/s²,1/4). Agiscono solo peso, normale e attrito dinamico. Qual è la media aritmetica delle accelerazioni verso il basso con uguale peso, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due leggi danno rispettivamente due e otto metri al secondo quadrato. La media aritmetica delle letture è la semisomma e cade fra questi due valori. Non è la discesa in un campo e su una superficie ottenuti mediando separatamente gli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A=\\frac{2+8}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+8}{2}\\,\\mathrm{m/s^2}=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci sarebbe la somma. I dati medi g=15 m/s² e μ=3/8 darebbero A=9/2 m/s², diverso da cinque: la legge contiene il prodotto gμ. La differenza si riconosce esattamente perché 5=10/2, senza ricorrere a decimali."
+        }
+      ],
+      "hints": [
+        "Media i risultati completi, non i due ingressi prima della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci sarebbe la somma. I dati medi g=15 m/s² e μ=3/8 darebbero A=9/2 m/s², diverso da cinque: la legge contiene il prodotto gμ. La differenza si riconosce esattamente perché 5=10/2, senza ricorrere a decimali.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2733,
+      "title": "Quale contatto per l’accelerazione obiettivo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 3,
+      "prompt": "Sul piano fisso con sinθ=3/5,cosθ=4/5, A scivola verso il basso con g_A=10 m/s²,μ_A=1/2. Si sceglie per B g_B=20 m/s² e si vuole A_B=4A_A, restando in discesa accelerata e in contatto. Quale rapporto μ_B/μ_A serve?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore iniziale è due, quindi l’obiettivo è otto metri al secondo quadrato. Nell’inversa del coefficiente inseriamo questo obiettivo e il nuovo campo: 5A_B/g_B=2, dunque 4μ_B=3−2=1. Il coefficiente è un quarto e il suo rapporto col mezzo iniziale è un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "A_B=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_B=\\frac{3-5A_B/g_B}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3-5A_B/g_B}{4}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\mu_B}{\\mu_A}=\\frac{1/4}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1/4}{1/2}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il nuovo coefficiente, non il rapporto; due o quattro aumenterebbero tanto l’attrito da violare il dominio μ_B<3/4. Lasciare μ invariato darebbe solo il raddoppio dovuto a g. Il coefficiente trovato è positivo e minore di tre quarti."
+        }
+      ],
+      "hints": [
+        "Trova prima μ_B dall’accelerazione obiettivo e poi dividilo per μ_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il nuovo coefficiente, non il rapporto; due o quattro aumenterebbero tanto l’attrito da violare il dominio μ_B<3/4. Lasciare μ invariato darebbe solo il raddoppio dovuto a g. Il coefficiente trovato è positivo e minore di tre quarti.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2734,
+      "title": "Il campo dietro una lettura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cA, con c>0 costante senza offset. Le prove sono discese con attrito dinamico sul piano fisso sinθ=3/5,cosθ=4/5. Il riferimento g=10 m/s²,μ=1/2 dà S=6. Una prova con μ=1/4 dà S=24. In contatto e senza altre forze, quanto vale g della nuova prova, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha A=2 m/s², quindi c=3 s²/m. Ventiquattro unità di lettura corrispondono a otto metri al secondo quadrato. Con μ=1/4 il fattore geometrico con attrito è due quinti; dividendo A per esso ricostruiamo g=20 m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac6{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm{m/s^2}}=3\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=\\frac{24}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{24}{c}=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 3-4\\mu_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=\\frac{5A_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5A_B}{2}=20\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura ventiquattro come accelerazione lascerebbe un guadagno spurio tre e darebbe g=60 m/s². Il controllo 20·2/5=8 m/s² e S=3·8=24 riproduce entrambe le grandezze, mantenendo l’attrito verso l’alto e N positivo."
+        }
+      ],
+      "hints": [
+        "Decodifica A prima di applicare la sua inversa rispetto a g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura ventiquattro come accelerazione lascerebbe un guadagno spurio tre e darebbe g=60 m/s². Il controllo 20·2/5=8 m/s² e S=3·8=24 riproduce entrambe le grandezze, mantenendo l’attrito verso l’alto e N positivo.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2735,
+      "title": "Un offset prima del campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 3,
+      "prompt": "Il display continuo S=cA+d ha c>0 e d costanti. Le prove sono discese con attrito dinamico su piano fisso con sinθ=3/5,cosθ=4/5 e contatto mantenuto. A: g=10 m/s²,μ=1/2,S=5. B: g=20 m/s²,μ=1/4,S=17. C: μ=1/2,S=9. Qual è g_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 m/s²",
+          "15 m/s²",
+          "20 m/s²",
+          "25 m/s²",
+          "40 m/s²"
+        ],
+        "value": "20 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le accelerazioni note sono due e otto metri al secondo quadrato. Il rapporto delle differenze (17−5)/(8−2) dà c=2 s²/m; dal primo riferimento segue d=1. La lettura nove significa allora A_C=4 m/s². Con μ=1/2 la legge è A=g/5, quindi il campo deve essere venti."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=\\frac{9-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{c}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g_C=5A_C"
+        },
+        {
+          "type": "formula",
+          "text": "5A_C=20\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "I campi 10,15,25,40 m/s² darebbero rispettivamente letture 5,7,11,17 con il coefficiente di C. Solo venti ricostruisce nove. Saltare l’offset produrrebbe A_C=9/2 m/s² e un campo 45/2 m/s²: un valore razionale plausibile ma incompatibile con la lettura tarata."
+        }
+      ],
+      "hints": [
+        "Usa entrambi i riferimenti per togliere il termine additivo prima della legge fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I campi 10,15,25,40 m/s² darebbero rispettivamente letture 5,7,11,17 con il coefficiente di C. Solo venti ricostruisce nove. Saltare l’offset produrrebbe A_C=9/2 m/s² e un campo 45/2 m/s²: un valore razionale plausibile ma incompatibile con la lettura tarata.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-incline-friction-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto e deformazione elastica",
+      "order": 2736,
+      "title": "Due contatti ammessi dallo stesso vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incline-friction",
+      "difficulty": 3,
+      "prompt": "Per discese già avviate su piano fisso sinθ=3/5,cosθ=4/5 si selezionano prove con g=(20 m/s²)μ e 0<μ<3/4. Peso, normale e attrito dinamico sono le sole forze, con contatto mantenuto. Si misura A=2 m/s² verso il basso. Quante coppie distinte (μ,g) sono ammesse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Due"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo confronta parametri di prove diverse, non un campo che varia lungo una discesa. Inserendolo nella legge compare una parabola in μ. Dopo aver diviso per l’unità comune di accelerazione si ottiene 8μ²−6μ+1=0, che si fattorizza in due fattori lineari. Entrambe le radici sono interne al dominio, quindi nessuna va scartata."
+        },
+        {
+          "type": "formula",
+          "text": "2=4\\mu(3-4\\mu)"
+        },
+        {
+          "type": "formula",
+          "text": " 8\\mu^2-6\\mu+1=0"
+        },
+        {
+          "type": "formula",
+          "text": " (4\\mu-1)(2\\mu-1)=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_1=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " g_1=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_2=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " g_2=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie (1/4,5 m/s²) e (1/2,10 m/s²) danno entrambe A=2 m/s², con 0<μ<3/4 e N>0. Prenderne soltanto una perderebbe un ramo fisico. Non sono infinite, perché la misura aggiunge qui un vincolo quadratico non identicamente soddisfatto. Tre soluzioni non sono possibili per questa quadratica non nulla."
+        }
+      ],
+      "hints": [
+        "Fattorizza e controlla separatamente ogni radice col suo campo e col dominio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie (1/4,5 m/s²) e (1/2,10 m/s²) danno entrambe A=2 m/s², con 0<μ<3/4 e N>0. Prenderne soltanto una perderebbe un ramo fisico. Non sono infinite, perché la misura aggiunge qui un vincolo quadratico non identicamente soddisfatto. Tre soluzioni non sono possibili per questa quadratica non nulla.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Proiezioni sul piano inclinato",
+        "Attrito dinamico e verso",
+        "Dominio e due soluzioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b09d5bd791e3944d59b3a70e083372968d6a2464146c9c5ce06d0bb3d55c45eb",
+      "name": "incline-friction-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMTQwMCIgdmlld0JveD0iMCAwIDYwMCAxNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiA8dGl0bGUgaWQ9InRpdGxlIj5EaXNjZXNhIHN1bCBwaWFubyB0cmXigJNxdWF0dHJv4oCTY2lucXVlIGNvbiBhdHRyaXRvIGRpbmFtaWNvPC90aXRsZT4KIDxkZXNjIGlkPSJkZXNjIj5JbCB0cmlhbmdvbG8gZGVsIHBpYW5vIGhhIGNhdGV0aSB0cmUgZSBxdWF0dHJvIGUgaXBvdGVudXNhIGNpbnF1ZS4gTGEgbWFzc2EgaWxsdXN0cmF0aXZhIMOoIHVuIGNoaWxvZ3JhbW1vLCBpbCBjYW1wbyBkaWVjaSBtZXRyaSBhbCBzZWNvbmRvIHF1YWRyYXRvLCBjb2VmZmljaWVudGUgdW4gbWV6em8uIElsIHBlc28gZGllY2kgbmV3dG9uIGhhIGNvbXBvbmVudGkgc2VpIGx1bmdvIGlsIHBpYW5vIGUgb3R0byB2ZXJzbyBpbCBwaWFubzsgbGEgbm9ybWFsZSDDqCBvdHRvIHZlcnNvIGzigJllc3Rlcm5vLiBM4oCZYXR0cml0byBxdWF0dHJvIHB1bnRhIGEgbW9udGU7IHJpc3VsdGFudGUgZHVlIGEgdmFsbGUgZSBhY2NlbGVyYXppb25lIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIHF1YWRyYXRvLiBMZSBmb3J6ZSBoYW5ubyBzY2FsYSBjb211bmUgZGllY2kgcGl4ZWwgcGVyIG5ld3Rvbi48L2Rlc2M+CiA8ZGVmcz48bWFya2VyIGlkPSJhIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjYiIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDcgMy41TDAgN1oiIGZpbGw9IiMyNDVjYTQiLz48L21hcmtlcj48bWFya2VyIGlkPSJyIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjYiIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDcgMy41TDAgN1oiIGZpbGw9IiNhNDQ5MzEiLz48L21hcmtlcj48L2RlZnM+CiA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjE0MDAiIGZpbGw9IndoaXRlIi8+CiA8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MjAzMyI+CiAgPHRleHQgeD0iMjgiIHk9IjM2IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBVc2EgaSByYXBwb3J0aSwgbm9uIHVuIGFuZ29sbyBkZWNpbWFsZTwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iODAiPnU6IHVuaXTDoCBncmFmaWNhIGRpIGx1bmdoZXp6YSDCtyBzY2FsYSA4MCBweC91PC90ZXh0PgogIDxwYXRoIGQ9Ik0xMjAgMTMwVjM3MEg0NDBaIiBmaWxsPSIjZjFmNWY5IiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0xMjAgMTMwTDQ0MCAzNzAiIHN0cm9rZT0iIzMzNDE1NSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHBhdGggZD0iTTI2NCAyMzhMMjk2IDI2MkwzMDggMjQ2TDI3NiAyMjJaIiBmaWxsPSIjZGJlYWZlIiBzdHJva2U9IiMzMzQxNTUiLz4KICA8cGF0aCBkPSJNMzQwIDI0MEwzODggMjc2IiBzdHJva2U9IiMyNDVjYTQiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgogIDx0ZXh0IHg9IjU3IiB5PSIyNjAiPjMgdTwvdGV4dD48dGV4dCB4PSIyNjMiIHk9IjQxMCI+NCB1PC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iMjE4Ij41IHU8L3RleHQ+CiAgPHRleHQgeD0iMzY1IiB5PSIyMzAiPnYgdmVyc28gdmFsbGU8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjQ1MCI+c2luzrggPSAzLzU7IGNvc864ID0gNC81OyBzY29ycmltZW50byBnacOgIGF2dmlhdG8uPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI1MTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFByb2lldHRhIGlsIHNvbG8gcGVzbzwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNTUwIj5tIGlsbHVzdHJhdGl2YSA9IDEga2c7IGcgPSAxMCBtL3PCsjwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iNTg3Ij5Gb3J6ZTogMTAgcHgvTiBpbiBxdWVzdGEgZSBuZWxsYSB0ZXJ6YSB0YXBwYTwvdGV4dD4KICA8cGF0aCBkPSJNMTgwIDY1MEw0MjAgODMwIiBzdHJva2U9IiNjYmQ1ZTEiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0zMDAgNzQwVjg0MCIgc3Ryb2tlPSIjMzM0MTU1IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KICA8cGF0aCBkPSJNMzAwIDc0MEwzNDggNzc2IiBzdHJva2U9IiNhNDQ5MzEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgogIDxwYXRoIGQ9Ik0zMDAgNzQwTDI1MiA4MDQiIHN0cm9rZT0iI2E0NDkzMSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI3IpIi8+CiAgPHBhdGggZD0iTTMwMCA3NDBMMzQ4IDY3NiIgc3Ryb2tlPSIjMjQ1Y2E0IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KICA8cGF0aCBkPSJNMzQ4IDc3NkwzMDAgODQwTTI1MiA4MDRMMzAwIDg0MCIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2UtZGFzaGFycmF5PSI0IDQiIGZpbGw9Im5vbmUiLz4KICA8Y2lyY2xlIGN4PSIzMDAiIGN5PSI3NDAiIHI9IjQiIGZpbGw9IiMzMzQxNTUiLz4KICA8dGV4dCB4PSIzNjUiIHk9IjY3NyI+TiA9IDggTjwvdGV4dD48dGV4dCB4PSIzNzAiIHk9Ijc4MCI+UOKIpSA9IDYgTjwvdGV4dD4KICA8dGV4dCB4PSIxMDgiIHk9IjgxMSI+UOKKpSA9IDggTjwvdGV4dD48dGV4dCB4PSIzMTUiIHk9Ijg2MyI+UCA9IDEwIE48L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjkyMSI+UOKIpSBlIFDiiqUgc29ubyBjb21wb25lbnRpLCBub24gbnVvdmUgZm9yemUuPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSI5NjIiPk4gZXF1aWxpYnJhIFDiiqU7IGlsIGNvbnRhdHRvIGhhIE4gJmd0OyAwLjwvdGV4dD4KICA8dGV4dCB4PSIyOCIgeT0iMTAzMCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgU290dHJhaSBs4oCZYXR0cml0byBhIG1vbnRlPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSIxMDcwIj5Bc3NlICtzIHZlcnNvIHZhbGxlIMK3IHN0ZXNzYSBzY2FsYSAxMCBweC9OPC90ZXh0PgogIDxwYXRoIGQ9Ik0xMDAgMTE0MEg0ODAiIHN0cm9rZT0iI2NiZDVlMSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHBhdGggZD0iTTI0MCAxMTQwSDMwMCIgc3Ryb2tlPSIjMjQ1Y2E0IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KICA8cGF0aCBkPSJNMjQwIDExNDBIMjAwIiBzdHJva2U9IiNhNDQ5MzEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgogIDx0ZXh0IHg9IjMwNSIgeT0iMTEyNSI+UOKIpSA9IDYgTjwvdGV4dD48dGV4dCB4PSI2NyIgeT0iMTEyNSI+ZiA9IM68TiA9IDQgTjwvdGV4dD4KICA8cGF0aCBkPSJNMjQwIDEyMzBIMjYwIiBzdHJva2U9IiMyNDVjYTQiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgogIDx0ZXh0IHg9IjI4MCIgeT0iMTIzNyI+UmlzdWx0YW50ZTogMiBOIHZlcnNvIHZhbGxlPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSIxMzE1Ij5BID0gKDYgTiDiiJIgNCBOKS8oMSBrZykgPSAyIG0vc8KyPC90ZXh0PgogIDx0ZXh0IHg9IjI4IiB5PSIxMzYwIj5WZXJzbyBkaSBmIGRlY2lzbyBkYWxsbyBzY29ycmltZW50byByZWxhdGl2by48L3RleHQ+CiA8L2c+Cjwvc3ZnPgo="
+    }
+  ]
+}
