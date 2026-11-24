@@ -1,0 +1,1236 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-center-mass-weighted-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6001,
+      "title": "Una media pesata lungo l’asse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 1,
+      "prompt": "In una configurazione osservata lungo un asse cartesiano inerziale, la massa M=2 kg si trova in x=0 e una seconda massa m=2 kg in x=d=2 m. Le masse sono puntiformi e positive. Quanto vale la coordinata X del centro di massa, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La coordinata del centro di massa è la somma delle coordinate moltiplicate per le rispettive masse, divisa per la massa totale. Il primo contributo è nullo perché la prima coordinata è zero, non perché la sua massa scompaia dal denominatore. Le masse uguali mettono qui il centro nel punto medio."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{M\\cdot0+md}{M+m}"
+        },
+        {
+          "type": "formula",
+          "text": " M+m=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " md=4\\,\\mathrm{kg\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " X=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il centro cade fra0 e2 m.2 m ignorerebbe la massa nell’origine e collocherebbe il centro sul secondo punto; zero ignorerebbe il secondo contributo. M=2 kg è il valore fissato della prima massa, non l’affermazione che un supporto la blocchi durante un moto successivo."
+        }
+      ],
+      "hints": [
+        "La massa posta a coordinata zero resta nella massa totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il centro cade fra0 e2 m.2 m ignorerebbe la massa nell’origine e collocherebbe il centro sul secondo punto; zero ignorerebbe il secondo contributo. M=2 kg è il valore fissato della prima massa, non l’affermazione che un supporto la blocchi durante un moto successivo.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6002,
+      "title": "Il denominatore restituisce una lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 1,
+      "prompt": "Per due masse puntiformi positive M, m alle coordinate0 e d dello stesso asse si definisce X=md/(M+m). Quale unità SI esprime la coordinata X?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg",
+          "m",
+          "m/s",
+          "N",
+          "1"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore è una massa per una lunghezza, il denominatore una massa. I chilogrammi si semplificano e rimane un metro. Non si sta calcolando né una forza né una velocità: il centro di massa ha una posizione nello stesso sistema di coordinate degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "[md]=ML"
+        },
+        {
+          "type": "formula",
+          "text": " [M+m]=M"
+        },
+        {
+          "type": "formula",
+          "text": " [X]=L"
+        },
+        {
+          "type": "text",
+          "text": "kg descrive la massa totale; m/s richiederebbe un tempo; N una forza. Il rapporto non è puro perché soltanto le masse si cancellano. Una coordinata potrebbe anche essere negativa con un’origine diversa, senza cambiare la sua unità."
+        }
+      ],
+      "hints": [
+        "Semplifica la massa nel rapporto, non la coordinata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg descrive la massa totale; m/s richiederebbe un tempo; N una forza. Il rapporto non è puro perché soltanto le masse si cancellano. Una coordinata potrebbe anche essere negativa con un’origine diversa, senza cambiare la sua unità.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6003,
+      "title": "La molla interna non accelera il centro di massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 1,
+      "prompt": "Due punti materiali di masse costanti positive interagiscono tramite una molla ideale di massa trascurabile e scorrono senza attrito su un piano orizzontale. Nel riferimento inerziale la risultante esterna orizzontale sull’intero sistema è nulla. Come si muove il suo centro di massa lungo l’orizzontale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Oscilla necessariamente",
+          "Accelera verso la massa maggiore",
+          "Ha velocità costante, eventualmente nulla",
+          "È sempre fermo",
+          "Segue l’accelerazione della massa minore"
+        ],
+        "value": "Ha velocità costante, eventualmente nulla"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommiamo le due equazioni di Newton: le forze interne della molla si cancellano nella somma perché sono uguali e opposte. La massa totale costante moltiplica l’accelerazione del centro di massa. Con risultante esterna nulla, questa accelerazione è zero, quindi la velocità iniziale del centro resta la stessa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/84675dea61f9a98aa1fcc61ea13a8b594806ddc5589db200c2d93e063c0bd6c6",
+          "text": "Il terzo pannello mostra un esempio di centro con accelerazione nulla ma velocità non nulla: da1 m a3 m in2 s con V_CM=+1 m/s. Scala comune90 px/m, riferimento e istanti espliciti. I primi pannelli riguardano invece medie pesate in configurazioni, senza descrivere la legge intermedia di moto delle singole masse."
+        },
+        {
+          "type": "formula",
+          "text": "(m_1+m_2)a_{CM,x}=F_{ext,x}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{ext,x}=0"
+        },
+        {
+          "type": "formula",
+          "text": " a_{CM,x}=0"
+        },
+        {
+          "type": "formula",
+          "text": " V_{CM,x}=\\mathrm{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Le masse possono oscillare l’una rispetto all’altra mentre il centro trasla uniformemente. Centro sempre fermo richiederebbe anche V_CM iniziale nulla; la sola forza esterna nulla non la impone. La molla può cambiare le velocità individuali, ma non la quantità di moto totale orizzontale."
+        }
+      ],
+      "hints": [
+        "Somma le equazioni del sistema e separa forze interne ed esterne.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le masse possono oscillare l’una rispetto all’altra mentre il centro trasla uniformemente. Centro sempre fermo richiederebbe anche V_CM iniziale nulla; la sola forza esterna nulla non la impone. La molla può cambiare le velocità individuali, ma non la quantità di moto totale orizzontale.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6004,
+      "title": "Più massa alla stessa coordinata destra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 1,
+      "prompt": "Si confrontano configurazioni su uno stesso asse: la massa M=2 kg è in0 e la seconda in d=2 m. Fra le prove il valore della seconda massa passa da m_A=2 kg a m_B=4 kg. Quanto cambia X, coordinata del centro di massa?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 4/3 m",
+          "Da 1 a 2 m",
+          "Resta 1 m",
+          "Da 1 a 2/3 m",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 4/3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Cresce il peso relativo della coordinata destra. Nella prima configurazione le masse sono uguali e X vale1 m; nella seconda il numeratore diventa8 kg·m e la massa totale6 kg, dando4/3 m. Non raddoppia X, perché aumenta anche il denominatore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/84675dea61f9a98aa1fcc61ea13a8b594806ddc5589db200c2d93e063c0bd6c6",
+          "text": "Due configurazioni a scala comune90 px/m: M2 kg in0 e m2 kg in2 m danno X1 m; con m4 kg nello stesso punto2 m il centro è4/3 m. I simboli delle masse sono schematici, non codificano i moduli con le aree. Terzo pannello separato: se la risultante esterna orizzontale è zero e il centro parte da1 m con velocità+1 m/s, le sue coordinate sono1, 2, 3 m agli istanti0, 1, 2 s. Questa velocità iniziale è solo un esempio dichiarato, non dedotta dalla forza nulla."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac{4\\cdot2}{2+4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac43\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due metri coinciderebbe con il punto destro, raggiungibile solo come limite quando la sua massa domina indefinitamente M.2/3 m sposterebbe il centro dalla parte sbagliata. Le masse sono costanti all’interno di ciascuna prova: si confrontano configurazioni con dati diversi."
+        }
+      ],
+      "hints": [
+        "Aggiorna sia il numeratore sia la massa totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due metri coinciderebbe con il punto destro, raggiungibile solo come limite quando la sua massa domina indefinitamente M.2/3 m sposterebbe il centro dalla parte sbagliata. Le masse sono costanti all’interno di ciascuna prova: si confrontano configurazioni con dati diversi.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6005,
+      "title": "Una massa dalla posizione del centro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi positive sono su un asse: M=2 kg in0 e m in d=2 m. Si misura X=1 m per il centro di massa. Quanto vale m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo X=md/(M+m) per la massa totale e raccogliamo i termini con m. Ne risulta MX=m(d−X). Il centro deve stare strettamente fra le due masse: 0<X<d rende positivo il denominatore dell’inversa."
+        },
+        {
+          "type": "formula",
+          "text": "X(M+m)=md"
+        },
+        {
+          "type": "formula",
+          "text": " MX=m(d-X)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{MX}{d-X}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{(2\\,\\mathrm{kg})(1\\,\\mathrm m)}{1\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{kg})(1\\,\\mathrm m)}{1\\,\\mathrm m}=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La massa ricostruita uguaglia quella nell’origine, quindi il punto medio è corretto. Sommare d e X al denominatore darebbe2/3 kg e un centro diverso. X=d non permetterebbe una massa finita positiva quando M resta positiva."
+        }
+      ],
+      "hints": [
+        "Raccogli m dopo aver eliminato il denominatore; controlla0<X<d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La massa ricostruita uguaglia quella nell’origine, quindi il punto medio è corretto. Sommare d e X al denominatore darebbe2/3 kg e un centro diverso. X=d non permetterebbe una massa finita positiva quando M resta positiva.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6006,
+      "title": "La distanza dai pesi uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "Una massa M=2 kg si trova in0 e una massa m=2 kg in d>0 sullo stesso asse. Se il centro di massa ha coordinata X=1 m, quanto vale d, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo la distanza nella media pesata, d=X(M+m)/m. Le masse uguali fanno sì che il fattore totale su m sia due. La distanza fra i punti è quindi doppia della coordinata del centro rispetto all’origine posta sul primo."
+        },
+        {
+          "type": "formula",
+          "text": "X(M+m)=md"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{X(M+m)}m"
+        },
+        {
+          "type": "formula",
+          "text": " d=(1\\,\\mathrm m)\\frac{4\\,\\mathrm{kg}}{2\\,\\mathrm{kg}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un metro sarebbe X, non la separazione fra le masse. La formula del punto medio non andrebbe applicata senza il dato di masse uguali: con masse diverse il centro resta interno ma si avvicina alla più grande."
+        }
+      ],
+      "hints": [
+        "La coordinata del centro è metà della distanza soltanto perché le masse sono uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un metro sarebbe X, non la separazione fra le masse. La formula del punto medio non andrebbe applicata senza il dato di masse uguali: con masse diverse il centro resta interno ma si avvicina alla più grande.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6007,
+      "title": "Raddoppiare la separazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "Su uno stesso asse la prima massa M=2 kg è in0 e la seconda m=2 kg in d>0. A usa d_A=2 m, B usa d_B=4 m. Quanto vale X_B/X_A per le coordinate dei centri di massa?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "4",
+          "2",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con entrambe le masse immutate, la frazione m/(M+m) è comune. X è proporzionale a d: le coordinate sono1 e2 m. Il rapporto cancella i metri e vale due."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto; quattro introduce un quadrato che non compare; uno ignora la separazione nuova. Il rapporto negativo è escluso per entrambe le coordinate positive in questo riferimento; non è una proprietà universale delle coordinate rispetto a ogni origine."
+        }
+      ],
+      "hints": [
+        "Semplifica la stessa frazione di masse nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto; quattro introduce un quadrato che non compare; uno ignora la separazione nuova. Il rapporto negativo è escluso per entrambe le coordinate positive in questo riferimento; non è una proprietà universale delle coordinate rispetto a ogni origine.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6008,
+      "title": "Una proposta sul punto destro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "M=2 kg è in0 e m=2 kg in d=2 m sullo stesso asse. Si propone X_proposto=2 m per il centro di massa. Quanto vale proposto meno corretto, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Masse uguali hanno centro nel punto medio1 m. La proposta lo colloca invece sul secondo punto. Lo scarto richiesto è2 m meno1 m, cioè+1 m; il segno appartiene a questa sottrazione fra coordinate nello stesso riferimento."
+        },
+        {
+          "type": "formula",
+          "text": "X=\\frac{2\\cdot2}{2+2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\cdot2}{2+2}\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "2\\,\\mathrm m-1\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−1 m invertirebbe la sottrazione; 2 m ripete la proposta; 1/2 m dimezza ancora l’errore; zero accetta il punto sbagliato. Il centro non può coincidere con il punto destro quando entrambe le masse sono finite e positive."
+        }
+      ],
+      "hints": [
+        "Trova il punto medio e poi conserva l’ordine della differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 m invertirebbe la sottrazione; 2 m ripete la proposta; 1/2 m dimezza ancora l’errore; zero accetta il punto sbagliato. Il centro non può coincidere con il punto destro quando entrambe le masse sono finite e positive.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6009,
+      "title": "L’inversa con la massa M esplicita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "Su uno stesso asse una massa M=2 kg è in0 e una massa incognita m>0 in d>0. Si conosce la coordinata X del centro, con0<X<d. Quale formula isola m nella legge X=md/(M+m)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=MX/(d−X)",
+          "m=MX/(d+X)",
+          "m=M(d−X)/X",
+          "m=X/(d−X)",
+          "m=2MX/(d−X)"
+        ],
+        "value": "m=MX/(d−X)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eliminiamo il denominatore, raccogliamo m e dividiamo per d−X positivo. La massa M deve restare nella formula con la sua unità: il solo numero due non basterebbe a rendere dimensionale un rapporto di lunghezze."
+        },
+        {
+          "type": "formula",
+          "text": "MX+Xm=md"
+        },
+        {
+          "type": "formula",
+          "text": " MX=m(d-X)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{MX}{d-X}"
+        },
+        {
+          "type": "text",
+          "text": "Il più non nasce dal raccoglimento; M(d−X)/X inverte la frazione; X/(d−X) è puro e non può essere una massa. Il fattore due aggiuntivo conta di nuovo la massa già presente in M. La formula corretta ricostruisce la misura quando reinserita nella media pesata."
+        }
+      ],
+      "hints": [
+        "Separa la lunghezza d−X e mantieni M come grandezza dimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più non nasce dal raccoglimento; M(d−X)/X inverte la frazione; X/(d−X) è puro e non può essere una massa. Il fattore due aggiuntivo conta di nuovo la massa già presente in M. La formula corretta ricostruisce la misura quando reinserita nella media pesata.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6010,
+      "title": "Scalare una massa e una coordinata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "La massa M=2 kg resta in0. La configurazioneA ha massa m>0 in d>0; B ha massa κ₁m in κ₂d, con κ₁, κ₂>0. Definiamo T_A=M+m, la massa totale di A. T_B=M+κ₁m è la massa totale di B. Quanto vale X_B/X_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ T_A / T_B",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₁ κ₂ T_B / T_A",
+          "κ₂ / κ₁"
+        ],
+        "value": "κ₁ κ₂ T_A / T_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore md riceve entrambi i fattori di scala, ma nel denominatore cambia soltanto la massa m, mentre M resta fissata. Dividendo la seconda media pesata per la prima, la massa totale iniziale passa al numeratore e quella nuova resta al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=md/T_A"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\kappa_1\\kappa_2md/T_B"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=\\kappa_1\\kappa_2T_A/T_B"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ omette la modifica della massa totale; scambiare T_A e T_B ne inverte l’effetto. I quozienti dei soli fattori non seguono la media pesata. Se cambia soltanto d, κ₁=1 e T_A=T_B: resta correttamente κ₂."
+        }
+      ],
+      "hints": [
+        "La massa aggiunta alla destra entra anche nella massa totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ omette la modifica della massa totale; scambiare T_A e T_B ne inverte l’effetto. I quozienti dei soli fattori non seguono la media pesata. Se cambia soltanto d, κ₁=1 e T_A=T_B: resta correttamente κ₂.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6011,
+      "title": "Due cambiamenti nella media pesata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "La massa M=2 kg rimane in0. InA m_A=2 kg si trova a d_A=2 m; inB m_B=4 kg a d_B=4 m. Nel medesimo riferimento, quanto vale X_B/X_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/3",
+          "3/8",
+          "4",
+          "2",
+          "4/3"
+        ],
+        "value": "8/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il centroA vale1 m. PerB il numeratore è16 kg·m e la massa totale6 kg, quindi X_B=8/3 m. La coordinata resta minore della separazione4 m: il rapporto con1 m è8/3, esatto come frazione."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac{4\\cdot4}{2+4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac83\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B/X_A=\\frac83"
+        },
+        {
+          "type": "text",
+          "text": "Quattro considera soltanto il numeratore quadruplicato; due considera soltanto d; 4/3 considera soltanto la massa cambiata.3/8 inverte il rapporto. La massa totale passa da4 a6 kg e attenua l’aumento del numeratore."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i denominatori prima di confrontare le coordinate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro considera soltanto il numeratore quadruplicato; due considera soltanto d; 4/3 considera soltanto la massa cambiata.3/8 inverte il rapporto. La massa totale passa da4 a6 kg e attenua l’aumento del numeratore.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6012,
+      "title": "Media delle coordinate di due centri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 2,
+      "prompt": "Su uno stesso asse la massa M=2 kg è sempre in0. Le due configurazioni usanoA: m=2 kg, d=2 m; B: m=4 kg, d=4 m. Qual è la media aritmetica di X_A, X_B con uguale peso alle configurazioni?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/6 m",
+          "11/3 m",
+          "11/12 m",
+          "9/5 m",
+          "5/3 m"
+        ],
+        "value": "11/6 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le coordinate sono1 m e8/3 m. Scriviamo uno come tre terzi, sommiamo undici terzi e dividiamo per due. La risposta11/6 m sta fra le due coordinate e resta una frazione esatta, senza conversione decimale."
+        },
+        {
+          "type": "formula",
+          "text": "X_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " X_B=\\frac83\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline X=\\frac{1+8/3}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline X=\\frac{11}{6}\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "11/3 m è la somma; 11/12 m divide ancora per due; 5/3 m è la differenza. Gli ingressi medi m=3 kg, d=3 m darebbero9/5 m, non11/6 m: i prodotti incrociati55 e54 distinguono le frazioni molto vicine."
+        }
+      ],
+      "hints": [
+        "Somma le due coordinate con denominatore comune e poi dimezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "11/3 m è la somma; 11/12 m divide ancora per due; 5/3 m è la differenza. Gli ingressi medi m=3 kg, d=3 m darebbero9/5 m, non11/6 m: i prodotti incrociati55 e54 distinguono le frazioni molto vicine.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6013,
+      "title": "Quanto allontanare la nuova massa?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 3,
+      "prompt": "M=2 kg è in0. A usa m_A=2 kg, d_A=2 m. InB si sceglie m_B=4 kg e si vuole X_B=(8/3)X_A. Quanto vale d_B/d_A, con d_B>0?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "X_A è1 m, quindi l’obiettivo è8/3 m. Isolando d nella media pesata con la nuova massa si ottiene d_B=X_B(M+m_B)/m_B. I fattori6 e4 portano a4 m; rispetto ai2 m iniziali il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "X_B=\\frac83\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=X_B\\frac{M+m_B}{m_B}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un rapporto8/3 seguirebbe X senza correggere la frazione di massa; quattro è la nuova distanza in metri, non il rapporto. Il controllo(4 kg)(4 m)/(6 kg)=8/3 m rispetta anche0<X_B<d_B."
+        }
+      ],
+      "hints": [
+        "Ricostruisci d con la massa nuova e solo dopo dividilo per d_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un rapporto8/3 seguirebbe X senza correggere la frazione di massa; quattro è la nuova distanza in metri, non il rapporto. Il controllo(4 kg)(4 m)/(6 kg)=8/3 m rispetta anche0<X_B<d_B.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6014,
+      "title": "Tarare una coordinata prima di trovare una massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cX, con c>0 e offset nullo. La massa M=2 kg è in0 e m in d>0. Il riferimento m=2 kg, d=2 m dà S=3. Una prova con d=4 m dà S=8. Quanto vale m della prova, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha X=1 m, perciò c=3 m⁻¹. La lettura8 rappresenta X=8/3 m, interno alla separazione4 m. Applichiamo l’inversa m=MX/(d−X): il denominatore è4/3 m e il numeratore16/3 kg·m, dando4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " X=8/c"
+        },
+        {
+          "type": "formula",
+          "text": "8/c=\\frac83\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d-X=\\frac43\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{MX}{d-X}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{MX}{d-X}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura8come metri darebbe X>d e una massa inferita negativa: la contraddizione segnalerebbe la mancata taratura. Con m=4 kg la coordinata8/3 m e il display8 sono entrambi ricostruiti."
+        }
+      ],
+      "hints": [
+        "Decodifica X e verifica che sia interno ai due punti prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura8come metri darebbe X>d e una massa inferita negativa: la contraddizione segnalerebbe la mancata taratura. Con m=4 kg la coordinata8/3 m e il display8 sono entrambi ricostruiti.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6015,
+      "title": "Una taratura con frazioni esatte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale legge S=cX+a, con c>0, a costanti. M=2 kg è in0. A: m=2 kg, d=2 m, S=3. B: m=4 kg, d=4 m, S=19/3. C: d=2 m, S=11/3. Quanto vale la massa m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno X_A=1 m e X_B=8/3 m. La differenza delle letture è10/3 su una differenza di coordinate5/3 m, quindi c=2 m⁻¹. Dalla prima lettura l’offset è1. C corrisponde a X_C=4/3 m, da cui la massa è4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{10/3}{5/3}\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10/3}{5/3}\\,\\mathrm{m^{-1}}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a=1"
+        },
+        {
+          "type": "formula",
+          "text": " X_C=\\frac{11/3-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " X_C=\\frac43\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac{MX_C}{d_C-X_C}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{MX_C}{d_C-X_C}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "A d_C=2 m, le masse2, 3, 5, 8 kg darebbero coordinate1, 6/5, 10/7, 8/5 m e letture3, 17/5, 27/7, 21/5: nessuna è11/3. La lettura continua ammette frazioni e non deve essere arrotondata prima dell’inversa."
+        }
+      ],
+      "hints": [
+        "Usa differenze esatte per il guadagno, togli l’offset e poi ricostruisci m_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A d_C=2 m, le masse2, 3, 5, 8 kg darebbero coordinate1, 6/5, 10/7, 8/5 m e letture3, 17/5, 27/7, 21/5: nessuna è11/3. La lettura continua ammette frazioni e non deve essere arrotondata prima dell’inversa.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-center-mass-weighted-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6016,
+      "title": "Una massa legata alla separazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L005",
+        "C1-L009",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "center-mass-weighted",
+      "difficulty": 3,
+      "prompt": "In configurazioni differenti una massa M=2 kg è in0 e una massa m=(1 kg/m)d in d>0. Le masse sono costanti dentro ogni singola configurazione. La coordinata del centro di massa è X=1 m. Quanto vale d, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente a=1 kg/m rende dimensionale il legame m=ad. Sostituendolo in X=md/(M+m) e moltiplicando per il denominatore positivo otteniamo un’equazione quadratica. Dividendo per a e inserendo X=1 m, M/a=2 m si riconosce d²−(1 m)d−2m²=0."
+        },
+        {
+          "type": "formula",
+          "text": "a=1\\,\\mathrm{kg/m}"
+        },
+        {
+          "type": "formula",
+          "text": " m=ad"
+        },
+        {
+          "type": "formula",
+          "text": " X(M+ad)=ad^2"
+        },
+        {
+          "type": "formula",
+          "text": " d^2-Xd-MX/a=0"
+        },
+        {
+          "type": "formula",
+          "text": " (d-2\\,\\mathrm m)(d+1\\,\\mathrm m)=0"
+        },
+        {
+          "type": "formula",
+          "text": " d_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_-=-1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Solo d=2 m rispetta d>0 e dà m=2 kg, X=1 m. Il secondo ramo è−1 m, non−2 m: la presenza del termine lineare rende le radici asimmetriche. Inoltre la radice negativa darebbe m<0 nel vincolo, quindi non descrive una diversa scelta dell’origine per masse positive."
+        }
+      ],
+      "hints": [
+        "Mantieni M nel denominatore e controlla entrambi i fattori della quadratica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Solo d=2 m rispetta d>0 e dà m=2 kg, X=1 m. Il secondo ramo è−1 m, non−2 m: la presenza del termine lineare rende le radici asimmetriche. Inoltre la radice negativa darebbe m<0 nel vincolo, quindi non descrive una diversa scelta dell’origine per masse positive.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Media pesata e coordinate",
+        "Moto del centro di massa",
+        "Domini delle inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "84675dea61f9a98aa1fcc61ea13a8b594806ddc5589db200c2d93e063c0bd6c6",
+      "name": "center-mass-weighted-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlBlc2kgZGVsbGUgbWFzc2UgZSBtb3RvIGRlbCBsb3JvIGNlbnRybzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkNvb3JkaW5hdGUgYSBub3ZhbnRhIHBpeGVsIHBlciBtZXRyby4gUHJpbW8gY2FzbzpkdWUgbWFzc2UgZGEgZHVlIGNoaWxvZ3JhbW1pIGFsbGUgY29vcmRpbmF0ZSB6ZXJvIGUgZHVlIG1ldHJpLGNlbnRybyBhIHVuIG1ldHJvLiBTZWNvbmRvIGNhc286cHJpbWEgbWFzc2EgZHVlIGNoaWxvZ3JhbW1pIGUgc2Vjb25kYSBxdWF0dHJvIGFsbGUgc3Rlc3NlIGNvb3JkaW5hdGUsY2VudHJvIGEgcXVhdHRybyB0ZXJ6aSBkaSBtZXRyby4gVGVyem8gY2FzbyBzZXBhcmF0bzpzZSBsYSBmb3J6YSBlc3Rlcm5hIMOoIHplcm8sdW4gY2VudHJvIGluaXppYWxtZW50ZSBhIHVuIG1ldHJvIGNvbiB2ZWxvY2l0w6AgdW4gbWV0cm8gYWwgc2Vjb25kbyBoYSBjb29yZGluYXRlIHVubyxkdWUgZSB0cmUgbWV0cmkgYWkgdGVtcGkgemVybyx1bm8gZSBkdWUgc2Vjb25kaS4gTGUgZGltZW5zaW9uaSBkZWkgc2ltYm9saSBkZWxsZSBtYXNzZSBzb25vIHNjaGVtYXRpY2hlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTMxMCIgcng9IjI0IiBmaWxsPSIjZmFmOGYyIi8+PGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMjNmIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IE1hc3NlIHVndWFsaSxwdW50byBtZWRpbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkNvbmZpZ3VyYXppb25lIEEgwrcgY29vcmRpbmF0ZTo5MCBweC9tLjwvdGV4dD48cGF0aCBkPSJNNzUgMjIwSDQzMCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMjIwIiByPSIxMSIgZmlsbD0iIzgxOTY4ZCIvPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjIyMCIgcj0iMTEiIGZpbGw9IiM4MTk2OGQiLz48Y2lyY2xlIGN4PSIxOTAiIGN5PSIyMjAiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48cGF0aCBkPSJNMTAwIDI0MFYyNTJNMjgwIDI0MFYyNTJNMTkwIDIzNVYyNzUiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDgiIHk9IjE4MCI+TSA9IDIga2c8L3RleHQ+PHRleHQgeD0iMjgwIiB5PSIxODAiPm0gPSAyIGtnPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyODYiPjA8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSIyODYiPjIgbTwvdGV4dD48dGV4dCB4PSIxNTMiIHk9IjMyMiIgZmlsbD0iIzE0NjQ3YiI+WF9BID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNzUiPkxhIG1hc3NhIG5lbGzigJlvcmlnaW5lIHJlc3RhIG5lbCBkZW5vbWluYXRvcmUuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDU1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IFBpw7kgbWFzc2EgYSBkZXN0cmEgc3Bvc3RhIGlsIGNlbnRybzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTAwIj5Db25maWd1cmF6aW9uZSBCIMK3IHN0ZXNzaSBwdW50aSBlIHNjYWxhLjwvdGV4dD48cGF0aCBkPSJNNzUgNjAwSDQzMCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNjAwIiByPSIxMSIgZmlsbD0iIzgxOTY4ZCIvPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjYwMCIgcj0iMTEiIGZpbGw9IiM4MTk2OGQiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSI2MDAiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48cGF0aCBkPSJNMTAwIDYyMFY2MzJNMjgwIDYyMFY2MzJNMjIwIDYxNVY2NTUiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDgiIHk9IjU2MCI+TSA9IDIga2c8L3RleHQ+PHRleHQgeD0iMjgwIiB5PSI1NjAiPm0gPSA0IGtnPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI2NjYiPjA8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSI2NjYiPjIgbTwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjcxMiIgZmlsbD0iIzE0NjQ3YiI+WF9CID0gNC8zIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc1NyI+SWwgY2VudHJvIHJlc3RhIGludGVybm8scGnDuSB2aWNpbm8gYWxsYSBtYXNzYSBtYWdnaW9yZS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4MzUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgQ2FzbyBzZXBhcmF0bzpmb3J6YSBlc3Rlcm5hIG51bGxhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4ODAiPkVzZW1waW86IFhfQ00oMCkgPSAxIG0sIFZfQ00gPSArMSBtL3MuPC90ZXh0PjxwYXRoIGQ9Ik0xMDAgOTUwSDQzME0xMDAgMTAzMEg0MzBNMTAwIDExMTBINDMwIiBzdHJva2U9IiNiN2M3YmYiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xMDAgOTI1VjExMzUiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz48Y2lyY2xlIGN4PSIxOTAiIGN5PSI5NTAiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxMDMwIiByPSI2IiBmaWxsPSIjMTQ2NDdiIi8+PGNpcmNsZSBjeD0iMzcwIiBjeT0iMTExMCIgcj0iNiIgZmlsbD0iIzE0NjQ3YiIvPjx0ZXh0IHg9IjE3NSIgeT0iOTM0Ij4xIG08L3RleHQ+PHRleHQgeD0iMjY1IiB5PSIxMDE0Ij4yIG08L3RleHQ+PHRleHQgeD0iMzU1IiB5PSIxMDk0Ij4zIG08L3RleHQ+PHRleHQgeD0iNDY1IiB5PSI5NTYiPnQgPSAwPC90ZXh0Pjx0ZXh0IHg9IjQ2NSIgeT0iMTAzNiI+dCA9IDEgczwvdGV4dD48dGV4dCB4PSI0NjUiIHk9IjExMTYiPnQgPSAyIHM8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjExNjAiPnggPSAwIMK3IHN0ZXNzYSBvcmlnaW5lIG5lbGxlIHRyZSByaWdoZTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIxNSI+QWNjZWxlcmF6aW9uZSBudWxsYSBub24gaW1wb25lIHZlbG9jaXTDoCBudWxsYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyNjAiPkxlIG1hc3NlIHBvc3Nvbm8gbXVvdmVyc2kgYW5jaGUgcmlzcGV0dG8gYWwgY2VudHJvLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTI5NSIgZm9udC1zaXplPSIxOCI+VHV0dGUgbGUgY29vcmRpbmF0ZTo5MCBweC9tLiBTaW1ib2xpIGRlbGxlIG1hc3NlIHNjaGVtYXRpY2kuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
