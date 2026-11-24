@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1240" viewBox="0 0 640 1240" role="img" aria-labelledby="title desc">
+<title id="title">Distanza frenante come area del triangolo</title><desc id="desc">Tre grafici velocità-tempo con scale comuni cento pixel per secondo e cinquanta pixel per metro al secondo. L’accelerazione è meno due metri al secondo quadrato fino al primo arresto. Partendo da due metri al secondo si arriva a zero in un secondo e si percorre un metro, area del triangolo. Partendo da quattro metri al secondo si arriva a zero in due secondi e si percorrono quattro metri: base e altezza raddoppiano, area quadruplica. Le rette terminano ai primi arresti.</desc>
+<rect width="640" height="1240" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="42" font-weight="bold">1 · Dalla velocità iniziale al primo zero</text><text x="28" y="80">aₓ = −2 m/s² · b = 2 m/s²</text>
+<path d="M100 100V300H340" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 200L200 300" stroke="#173d50" stroke-width="4" fill="none"/>
+<text x="110" y="122">u (m/s)</text><text x="51" y="207">+2</text><text x="76" y="307">0</text><text x="90" y="337">0</text><text x="190" y="337">1</text><text x="290" y="337">2</text><text x="350" y="307">t (s)</text>
+<text x="385" y="175">v = 2 m/s</text><text x="385" y="220">T = v/b = 1 s</text>
+<text x="28" y="410" font-weight="bold">2 · Calcola soltanto l’area del triangolo</text>
+<path d="M100 650V550L200 650Z" fill="#cee2de"/>
+<path d="M100 450V650H340" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 550L200 650" stroke="#173d50" stroke-width="4" fill="none"/>
+<text x="110" y="472">u (m/s)</text><text x="51" y="557">+2</text><text x="76" y="657">0</text><text x="90" y="687">0</text><text x="190" y="687">1</text><text x="290" y="687">2</text><text x="350" y="657">t (s)</text>
+<text x="385" y="523">D = vT / 2</text><text x="385" y="568">D = 1 m</text><text x="28" y="744">Il rettangolo vT conterebbe due volte l’area.</text>
+<text x="28" y="818" font-weight="bold">3 · Raddoppia solo la rapidità iniziale</text>
+<path d="M100 1080V880L300 1080Z" fill="#efd9c2"/>
+<path d="M100 860V1080H340" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 880L300 1080" stroke="#173d50" stroke-width="4" fill="none"/>
+<text x="110" y="868">u (m/s)</text><text x="51" y="887">+4</text><text x="51" y="987">+2</text><text x="76" y="1087">0</text><text x="90" y="1117">0</text><text x="190" y="1117">1</text><text x="290" y="1117">2</text><text x="350" y="1087">t (s)</text>
+<text x="385" y="915">v = 4 m/s</text><text x="385" y="960">T = 2 s</text><text x="385" y="1005">D = 4 m</text>
+<text x="28" y="1180">Scale: 100 px/s; 50 px per m/s.</text><text x="28" y="1218">Sola frenata: nessuna distanza di reazione.</text>
+</g></svg>
