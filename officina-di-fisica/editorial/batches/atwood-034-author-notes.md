@@ -13,3 +13,5 @@ Fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf3605,U2-03.json,16originali letti indiv
 SVG01/09: apparato ideale poi due diagrammi separati e Newton. Scala3px/N: pesoM40N120px,basso;pesom10N30px,basso;T16N48pxalto suentrambi. Nessuna tensionezero o tensioneugualepeso. Risultanti24e6N distinte,non aggiuntecomealtreforze; accelerazionecomune6m/s². Geometria schematica senza scalaspaziale. Anteprima controllata.
 
 Rilettura tecnica a 320 px: formula inversa ID06 separata in massa totale e sottrazione (033), oppure spazi nelle cinque opzioni ID10 (034). Algebra e indice corretto invariati; nuova impronta candidato per il solo record interessato. Nessuna firma scientifica dell’autore.
+
+Diagnosi successiva DOM320: overflow del nodo di testo nel prompt10, non delle formule o scelte. Le quattro definizioni D,S,D₂,S₂ sono ora distribuite in due frasi con spazi; algebra e altre parti del record invariate.
