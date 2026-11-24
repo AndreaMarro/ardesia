@@ -1396,3 +1396,42 @@ Priorità verificabili:
    senza cancellare o correggere in-place una versione usata in tentativi storici.
 5. Sottoporre le code umane quando disponibili; tenere espliciti i FAIL del pubblicato
    e la mancanza di prove d'uso con studenti, senza fermare il lavoro tecnico-editoriale.
+
+## 24 novembre 2026 · Primo shard U2 completo e sedici esempi riesaminati
+
+Altre64candidate (medie e frenata) hanno terminato la catena indipendente: autore B,
+revisore A,88controprove,64import idempotenti e192anteprime PASS con exit0. Sono
+così320 i quesiti riscritti (U1 eU2-01 completi), con960anteprime dei quesiti più6
+delle due edizioni degli esempi. Tutti restano DRAFT/umanoNOT_RUN. Nei finding
+017 sono chiariti il caso nullo e i simboli delle medie;018 separa i path SVG
+per mostrare la punta di entrambe le frecce. Il revisore non modifica i candidati.
+
+Gli otto originali C1-E009–E016 sono riesaminati senza difetti accertati:36controlli,
+procedure manuali e asset verificati. Le37attività riesaminate comprendono16record
+di metodo/catalogo,5LAB e16esempi. E014 conserva la propria versione2 e sqrt13
+esatta con approssimazione secondaria esplicita; non ogni decimale richiede una
+nuova edizione se la procedura manuale è già accessibile. Le sole nuove edizioni
+di attività sono ancora C1-E003/E008; i due FAIL del pubblicato rimangono espliciti.
+
+Checkpointfa1bbebaa9e3638a04508c21adcf8bc70d6340e920a5d8a088aece0887c0d8d6;
+54test corpus PASS. Proseguono autore B su caduta libera e autore A su moto
+circolare nello shardU2-02, con ownership disgiunta; la review ha già segnalato
+una frase sulla media temporale di021 e l'autore l'ha chiarita senza cambiare la
+chiave. Le candidate in corso restano escluse dal conteggio dei completati.
+
+Restano4286 revisioni complete e348altre attività.199controlli recuperati ancora
+parziali; Pro100 non identificato; zero pubblicazioni e zero nuove firme umane.
+Le SHA effettivamente integrate e la CI non si deducono dalle prove locali.
+
+Prossime priorità:
+
+1. Completare CI e integrazione del ramo corrente, controllare il merge effettivo
+   e la CI post-merge; non modificare i gate per abbreviare l'attesa.
+2. Consolidare u2-freefall-speed-01 e le famiglie021–026 dopo lettura indipendente,
+   import, formule/figure e browser per ID. Primo passo: confrontare fix021-ID12.
+3. Continuare U2-02 oltre le famiglie assegnate e proseguire C1-E017 in poi;
+   dipendenza: ownership esplicita, fonte immutabile e nessuna auto-approvazione.
+4. Riesaminare le348altre attività con nuove edizioni per difetti concreti,
+   preservando dati e tentativi. Tracciare separatamente i FAIL del pubblicato.
+5. Preparare approvazioni umane e prove con studenti a partire dalle code;
+   l'assenza di tali prove non viene trasformata in PASS o pubblicazione automatica.

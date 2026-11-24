@@ -58,7 +58,27 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint U2 iniziale — 256 quesiti e 29 altre attività
+## Checkpoint del primo shard U2 — 320 quesiti e 37 altre attività
+
+Completate le ulteriori64schede su medie a tempi uguali, andata/ritorno e primo
+arresto: tuttaU1 e tutti i160ID di U2-01 sono ora revisionati in bozza, per320
+quesiti complessivi. I quattro nuovi lotti hanno verifica indipendente per ID,
+88controprove, import idempotente e192anteprime terminali PASS. Il totale delle
+anteprime è966:960dei quesiti e6delle due nuove edizioni degli esempi.
+
+Anche C1-E009–E016 sono stati riesaminati individualmente:8originali validi con
+procedure manuali documentate,36controlli e figure verificate; nessuna nuova
+edizione necessaria. Le37attività riesaminate comprendono16percorsi/contenitori,
+5laboratori e16esempi, due dei quali hanno le candidate corrette v2. Restano
+4286quesiti da revisionare integralmente e348altre attività. I due problemi delle
+edizioni pubblicate C1-E003/E008 restano espliciti fino al gate editoriale umano.
+
+Checkpoint `fa1bbebaa9e3638a04508c21adcf8bc70d6340e920a5d8a088aece0887c0d8d6`;
+le generazioni precedenti rimangono conservate. La prosecuzione parte da
+`u2-freefall-speed-01` nello shard U2-02; caduta libera e moto circolare sono
+assegnati ad autori distinti, senza contare le candidate in corso come completate.
+
+## Checkpoint precedente U2 iniziale — 256 quesiti e 29 altre attività
 
 La PR355 è integrata in `ba6aec22008f2ac83de4959a6165bac5a8ee0a14`; le run
 post-merge Officina45466165934 e corpus45466165896 sono SUCCESS. Il successivo

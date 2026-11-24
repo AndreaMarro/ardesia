@@ -1,5 +1,18 @@
 # Prosecuzione corrente — Cric, revisione di 4.606 quesiti
 
+Checkpoint più recente:320/4606quesiti revisionati in bozza,37/385altre attività
+riesaminate; restano4286revisioni complete e348attività. Generazionefa1bbebaa9e3638a04508c21adcf8bc70d6340e920a5d8a088aece0887c0d8d6.
+U1 eU2-01 sono completati editorialmente;966anteprime terminali PASS. Le due nuove
+edizioni C1-E003/E008 sono DRAFT e i FAIL dei due originali pubblicati rimangono
+tracciati. Nessuna nuova pubblicazione o firma umana. Pro100 non identificato.
+
+Primo ID da consolidare: `u2-freefall-speed-01`, sourcequestions/U2-02.json.
+B scrive freefall-speed021/freefall-time022/vertical-maximum023; A scrive
+circular-speed024/centripetal-acceleration025/circular-force026. Reviewer separato
+da B per021–023; root/reviewer distinto per024–026. Non autoverificare gli ID.
+Leggere registry/checkpoint e SHA GitHub corrente prima di proseguire. I blocchi
+successivi di questo file conservano gli incrementi precedenti come storia.
+
 Ultimo checkpoint:256quesiti revisionati e29altre attività riesaminate,
 generazionec0ef6e38483d96d9421d448e7effd2c9eb43ab78291696916f74475d29417e19.
 Restano4350revisioni complete e356attività. Le nuove edizioni di C1-E003/E008
