@@ -1,0 +1,1129 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-floating-fraction-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8521,
+      "title": "Mezzo volume immerso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Con ρ_c=1/2 kg/L e ρ_l=1 kg/L, quanto vale f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso èρ_cVg e la spintaρ_lV_i g. Per l’equilibrio si uguagliano e si cancellano g e il volume totale: f=ρ_c/ρ_l. La densità del corpo è metà di quella del liquido, quindi basta immergere metà del volume esterno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/83d1f1145e59727a98815673364b59a58b096322a5ab249209e5f51f6620cf59",
+          "text": "Esempio prismatico stabile:base4×4dm,altezza1dm,V16L,densitàcorpo1/2kg/L,liquido1kg/L. Sezione frontale200×50px a50px/dm:25px immersi rappresentano1/2dm e metà volume8L. Massa8kg;cong10m/s² peso e spinta80N,proiezioni separate80px a1px/N."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_lV_i g=\\rho_cVg"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{V_i}{V}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{\\rho_c}{\\rho_l}"
+        },
+        {
+          "type": "formula",
+          "text": " f=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto e richiederebbe più volume immerso di quello disponibile; uno è immersione completa. Un quarto introduce un quadrato e zero non equilibra un peso positivo. Il risultato non è una lunghezza: tradurlo in una profondità richiederebbe la forma del corpo."
+        }
+      ],
+      "hints": [
+        "Uguaglia il peso del corpo al peso del liquido escluso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto e richiederebbe più volume immerso di quello disponibile; uno è immersione completa. Un quarto introduce un quadrato e zero non equilibra un peso positivo. Il risultato non è una lunghezza: tradurlo in una profondità richiederebbe la forma del corpo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8522,
+      "title": "L’unità di una frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Quale unità proposta esprime f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "L",
+          "kg/L",
+          "kg",
+          "N"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume immerso si divide per il volume totale, espresso nella stessa unità. I litri si cancellano: f è adimensionale, indicato con unità1. Ancheρ_c/ρ_l ha questa proprietà."
+        },
+        {
+          "type": "formula",
+          "text": "[f]=[V_i/V]"
+        },
+        {
+          "type": "formula",
+          "text": " [V_i/V]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho_c/\\rho_l]=1"
+        },
+        {
+          "type": "text",
+          "text": "L sarebbe un volume, kg/L una densità, kg una massa e N una forza. Si può esprimere lo stesso rapporto in percentuale moltiplicando per cento, ma il numero percentuale non è la frazione f stessa."
+        }
+      ],
+      "hints": [
+        "Semplifica le unità uguali nel rapporto di volumi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L sarebbe un volume, kg/L una densità, kg una massa e N una forza. Si può esprimere lo stesso rapporto in percentuale moltiplicando per cento, ma il numero percentuale non è la frazione f stessa.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8523,
+      "title": "Tagliare cambia la quantità, non la frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Un blocco viene tagliato in due pezzi non nulli della stessa sostanza. Ogni pezzo resta impermeabile e viene fatto galleggiare separatamente nello stesso liquido, senza contatti reciproci. Quale grandezza resta uguale a quella del blocco iniziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frazione di volume immerso",
+          "Il volume immerso assoluto",
+          "La massa di ciascun pezzo",
+          "Il peso di ciascun pezzo",
+          "Il volume totale di ciascun pezzo"
+        ],
+        "value": "La frazione di volume immerso"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ciascun pezzo conserva la densitàρ_c della sostanza e incontra lo stessoρ_l. Il rapportoρ_c/ρ_l, dunque f, resta uguale. Ogni pezzo ha però meno massa e meno volume dell’intero blocco; all’equilibrio anche la sua spinta diminuisce col suo peso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/83d1f1145e59727a98815673364b59a58b096322a5ab249209e5f51f6620cf59",
+          "text": "Il blocco iniziale4×4×1dm viene diviso in due pezzi2×4×1dm. Fronti larghi200px prima e100px ciascuno dopo,a50px/dm;altezza50px e immersione25px invariati. Ogni pezzo ha metà massa e metà volume immerso,ma la stessa frazione1/2. Geometria e forze hanno scale indipendenti."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm blocco}=\\rho_c/\\rho_l"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm pezzo}=\\rho_c/\\rho_l"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm pezzo}=f_{\\rm blocco}"
+        },
+        {
+          "type": "text",
+          "text": "Non resta uguale il volume immerso assoluto: vale f per un volume totale più piccolo. Massa, peso e volume di ogni pezzo sono minori dei totali iniziali. La conclusione riguarda la frazione di volume, non necessariamente la forma o l’altezza della parte emersa."
+        }
+      ],
+      "hints": [
+        "Controlla quali densità cambiano dopo il taglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non resta uguale il volume immerso assoluto: vale f per un volume totale più piccolo. Massa, peso e volume di ogni pezzo sono minori dei totali iniziali. La conclusione riguarda la frazione di volume, non necessariamente la forma o l’altezza della parte emersa.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8524,
+      "title": "Un corpo più denso nello stesso liquido",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. A ha ρ_c=1/2 kg/L e B ρ_c=4/5 kg/L, con ρ_l=1 kg/L. Come cambia f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a 4/5",
+          "Da 1/2 a 5/4",
+          "Resta 1/2",
+          "Da 1/2 a 2/5",
+          "Diventa 1"
+        ],
+        "value": "Da 1/2 a 4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo corpo deve spostare più liquido per unità di volume esterno, perché pesa di più a parità di volume. Il rapporto passa da1/2 a4/5. Entrambe le densità del corpo restano inferiori a quella del liquido: si conserva un volume emerso positivo."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{4/5}{1}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=4/5"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti è il reciproco e supera il volume disponibile; un mezzo ignora la densità nuova e due quinti dimezza senza motivo. Uno sarebbe la sogliaρ_c=ρ_l, non il dato quattro quinti. Non è la trasformazione della stessa sostanza a stato invariato."
+        }
+      ],
+      "hints": [
+        "Un rapporto di densità maggiore richiede una frazione immersa maggiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque quarti è il reciproco e supera il volume disponibile; un mezzo ignora la densità nuova e due quinti dimezza senza motivo. Uno sarebbe la sogliaρ_c=ρ_l, non il dato quattro quinti. Non è la trasformazione della stessa sostanza a stato invariato.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8525,
+      "title": "La densità del corpo dalla frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Si misura f=1/2 e si conosce ρ_l=1 kg/L. Quanto vale ρ_c in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da f=ρ_c/ρ_l moltiplichiamo per la densità del liquido. La metà di un kg/L è1/2 kg/L. Il valore è positivo e inferiore aρ_l, quindi compatibile col galleggiamento parziale assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=f\\rho_l"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\frac12(1\\,\\mathrm{kg/L})"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\frac12\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Dividereρ_l per f darebbe2 kg/L, un corpo più denso del liquido che non soddisfa questo equilibrio libero. La frazione è pura: il risultato mantiene l’unità di densità del liquido e non quella di un volume."
+        }
+      ],
+      "hints": [
+        "Moltiplica f perρ_l e controllaρ_c<ρ_l.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividereρ_l per f darebbe2 kg/L, un corpo più denso del liquido che non soddisfa questo equilibrio libero. La frazione è pura: il risultato mantiene l’unità di densità del liquido e non quella di un volume.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8526,
+      "title": "La densità del liquido dal galleggiamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Si misura f=1/2 e si conosce ρ_c=1/2 kg/L. Quanto vale ρ_l in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamoρ_l=ρ_c/f. Dividere un mezzo per un mezzo dà uno: il liquido ha densità1 kg/L. Il fatto che il corpo sia immerso per metà non significa che il liquido abbia densità metà di quella del corpo: è il contrario."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_l=\\frac{\\rho_c}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_l=\\frac{1/2}{1/2}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_l=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare darebbe1/4 kg/L, inferiore alla densità del corpo e incompatibile con f<1. Non occorre conoscere g né il volume totale: entrambi si sono cancellati nell’equilibrio."
+        }
+      ],
+      "hints": [
+        "Dividi la densità del corpo per la frazione immersa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare darebbe1/4 kg/L, inferiore alla densità del corpo e incompatibile con f<1. Non occorre conoscere g né il volume totale: entrambi si sono cancellati nell’equilibrio.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8527,
+      "title": "Un liquido più denso fa emergere di più",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. A ha ρ_c=1/2 kg/L,ρ_l,A=1 kg/L. B mantieneρ_c e usa ρ_l,B=2 kg/L. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la frazione è1/2; in B è(1/2)/2=1/4. Il rapporto(1/4)/(1/2)=1/2: nel liquido più denso serve meno volume escluso per sostenere lo stesso corpo. Il liquido B è generico, non viene chiamato acqua."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=1/4"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la densità del liquido nel verso sbagliato. Un quarto è f_B, non il rapporto; uno ignora il cambio e un valore negativo non confronta frazioni positive. La spinta all’equilibrio resta il peso del medesimo corpo, pur cambiando il volume immerso."
+        }
+      ],
+      "hints": [
+        "Calcola prima1/2 e1/4, poi il loro rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la densità del liquido nel verso sbagliato. Un quarto è f_B, non il rapporto; uno ignora il cambio e un valore negativo non confronta frazioni positive. La spinta all’equilibrio resta il peso del medesimo corpo, pur cambiando il volume immerso.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8528,
+      "title": "Lo scarto di un’immersione completa proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Per ρ_c=1/2 kg/L e ρ_l=1 kg/L si propone f=1. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1",
+          "0",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione corretta è1/2. Lo scarto richiesto è1−1/2=+1/2, puro come le due frazioni. La proposta renderebbe la spinta massima doppia del peso per questo corpo: non sarebbe il suo equilibrio libero."
+        },
+        {
+          "type": "formula",
+          "text": "f=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " e=1-1/2"
+        },
+        {
+          "type": "formula",
+          "text": " e=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Il meno scambia l’ordine; uno copia la proposta; zero la accetta e un quarto divide ancora. Mezzo è uno scarto in frazione del volume totale, non mezzo litro senza un valore assegnato diV."
+        }
+      ],
+      "hints": [
+        "Sottrai la frazione corretta da quella proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno scambia l’ordine; uno copia la proposta; zero la accetta e un quarto divide ancora. Mezzo è uno scarto in frazione del volume totale, non mezzo litro senza un valore assegnato diV.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8529,
+      "title": "L’inversa della densità del corpo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Quale formula isolaρ_c, con0<f<1?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ_c = f ρ_l",
+          "ρ_c = ρ_l / f",
+          "ρ_c = f / ρ_l",
+          "ρ_c = 2f ρ_l",
+          "ρ_c = f ρ_l / 2"
+        ],
+        "value": "ρ_c = f ρ_l"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo f=ρ_c/ρ_l perρ_l positivo. Si ottieneρ_c=fρ_l, con unità di densità e valore minore diρ_l perché f<1. Il bilancio dei pesi non richiede un’ulteriore divisione per g."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\rho_c/\\rho_l"
+        },
+        {
+          "type": "formula",
+          "text": " f\\rho_l=\\rho_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=f\\rho_l"
+        },
+        {
+          "type": "text",
+          "text": "Il rapportoρ_l/f darebbe una densità maggiore del liquido; f/ρ_l ha dimensioni inverse di densità. Doppio e metà non riproducono la frazione assegnata sostituendo nella legge. Il dominio deve essere controllato anche nelle inverse."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatoreρ_l con una moltiplicazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapportoρ_l/f darebbe una densità maggiore del liquido; f/ρ_l ha dimensioni inverse di densità. Doppio e metà non riproducono la frazione assegnata sostituendo nella legge. Il dominio deve essere controllato anche nelle inverse.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8530,
+      "title": "Scalare le due densità mantenendo l’emersione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. B usaρ_c,B=κ₁ρ_c,A eρ_l,B=κ₂ρ_l,A, con fattori positivi eρ_c,B<ρ_l,B. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità del corpo agisce direttamente sulla frazione e quella del liquido inversamente. Il rapporto fra le due leggi cancella le densità A e lasciaκ₁/κ₂. La condizione sullo stato B impedisce di estendere il calcolo a un corpo che affonda."
+        },
+        {
+          "type": "formula",
+          "text": "f_B=\\frac{\\kappa_1\\rho_{c,A}}{\\kappa_2\\rho_{l,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto assegna al liquido un effetto diretto; il reciproco scambia gli stati. Il quadrato duplica la densità del corpo e la somma darebbe due per prove identiche. Uno stesso fattore sulle due densità lascia f invariata."
+        }
+      ],
+      "hints": [
+        "Confronta i due rapporti rispettando il dominio di entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto assegna al liquido un effetto diretto; il reciproco scambia gli stati. Il quadrato duplica la densità del corpo e la somma darebbe due per prove identiche. Uno stesso fattore sulle due densità lascia f invariata.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8531,
+      "title": "Cambiano corpo e liquido insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. A haρ_c=1/2 kg/L,ρ_l=1 kg/L. B haρ_c=4/5 kg/L,ρ_l=2 kg/L. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "8/5",
+          "1/2",
+          "2/5"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha f1/2; B ha(4/5)/2=2/5. Dividendo due quinti per un mezzo si ottiene quattro quinti. Il corpo B è più denso ma il liquido aumenta ancora di più in proporzione, quindi la frazione immersa diminuisce."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=2/5"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=4/5"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti inverte il rapporto; otto quinti segue soltantoρ_c e un mezzo soltantoρ_l. Due quinti è f_B stesso. Entrambi gli stati conservano f<1, come richiede l’emersione del corpo."
+        }
+      ],
+      "hints": [
+        "Dividi2/5 per1/2 prima di interpretare il confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque quarti inverte il rapporto; otto quinti segue soltantoρ_c e un mezzo soltantoρ_l. Due quinti è f_B stesso. Entrambi gli stati conservano f<1, come richiede l’emersione del corpo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8532,
+      "title": "Media di due frazioni immerse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. A haρ_c=1/2 kg/L,ρ_l=1 kg/L; Bρ_c=4/5 kg/L,ρ_l=2 kg/L. Qual è la media aritmetica delle due f con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/20",
+          "9/10",
+          "9/40",
+          "13/30",
+          "1/10"
+        ],
+        "value": "9/20"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono1/2 e2/5. Con denominatore dieci si sommano5/10+4/10=9/10; dimezzando si trova9/20. È una media statistica di due frazioni, non una miscela fisica dei corpi o dei liquidi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline f=\\frac{1/2+2/5}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline f=9/20"
+        },
+        {
+          "type": "text",
+          "text": "9/10 è la somma,9/40 divide due volte e1/10 è la differenza. Le densità medie13/20 e3/2 kg/L darebbero13/30, diverso da9/20 di1/60. Il rapporto non commuta con la media dei due ingressi."
+        }
+      ],
+      "hints": [
+        "Porta le due frazioni a un denominatore comune prima della metà.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/10 è la somma,9/40 divide due volte e1/10 è la differenza. Le densità medie13/20 e3/2 kg/L darebbero13/30, diverso da9/20 di1/60. Il rapporto non commuta con la media dei due ingressi.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8533,
+      "title": "Il liquido per una frazione obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. A usaρ_c,A=1/2 kg/L,ρ_l,A=1 kg/L. B haρ_c,B=4/5 kg/L e deve avere f_B=(4/5)f_A. Quanto valeρ_l,B/ρ_l,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4/5",
+          "8/5",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione bersaglio è(4/5)(1/2)=2/5. L’inversa dàρ_l,B=(4/5)/(2/5)=2 kg/L. Il rapporto al liquido iniziale da1 kg/L è due, e la densità nuova supera quella del corpo."
+        },
+        {
+          "type": "formula",
+          "text": "f_B=2/5"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{l,B}=\\rho_{c,B}/f_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{l,B}=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{l,B}/\\rho_{l,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto; quattro quinti ripete il target e otto quinti il fattore della densità del corpo. Uno lascerebbe f_B4/5, non2/5. Il bersaglio deve restare fra zero e uno per questa inversa di galleggiamento parziale."
+        }
+      ],
+      "hints": [
+        "Trova la frazione B e poi la densità del liquido che la realizza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto; quattro quinti ripete il target e otto quinti il fattore della densità del corpo. Uno lascerebbe f_B4/5, non2/5. Il bersaglio deve restare fra zero e uno per questa inversa di galleggiamento parziale.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8534,
+      "title": "Una taratura con letture frazionarie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Un display continuo adimensionale segue S=qf,q>0,senza offset. A conρ_c=1/2 kg/L,ρ_l=1 kg/L dà S=3/2. B conρ_l=2 kg/L dà S=6/5. Quanto valeρ_c,B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "1/2 kg/L",
+          "2/5 kg/L",
+          "1 kg/L",
+          "8/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha f1/2, quindi q=(3/2)/(1/2)=3, puro. B ha f=(6/5)/3=2/5. Moltiplicando perρ_l,B2 kg/L si ottieneρ_c,B4/5 kg/L, ancora minore della densità del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=2/5"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=f_B\\rho_{l,B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Le densità alternative1/2,2/5,1,8/5 kg/L darebbero S3/4,3/5,3/2,12/5. Solo4/5 dà6/5. Le letture possono superare uno: è f a essere una frazione, mentre il display include un guadagno."
+        }
+      ],
+      "hints": [
+        "Il display non è direttamente f: prima dividi perq.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le densità alternative1/2,2/5,1,8/5 kg/L darebbero S3/4,3/5,3/2,12/5. Solo4/5 dà6/5. Le letture possono superare uno: è f a essere una frazione, mentre il display include un guadagno.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8535,
+      "title": "Rimuovere l’offset prima della frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Un display continuo adimensionale segue S=qf+b,q>0. A:ρ_c=1/2 kg/L,ρ_l=1 kg/L,S=2. B:ρ_c=4/5 kg/L,ρ_l=2 kg/L,S=9/5. C:ρ_l=1 kg/L,S=13/5. Quanto valeρ_c,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "1/2 kg/L",
+          "2/5 kg/L",
+          "1 kg/L",
+          "8/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno f_A1/2 e f_B2/5. Le differenze−1/5 e−1/10 danno q=2; poi b=1. C ha f=(13/5−1)/2=4/5, quindiρ_c,C=4/5 kg/L. L’emersione resta positiva."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{-1/5}{-1/10}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " f_C=4/5"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,C}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "A C, le densità1/2 e2/5 darebbero S2 e9/5. Una densità1 kg/L corrisponderebbe alla soglia f1, senza parte emersa;8/5 kg/L supera il dominio del galleggiamento libero parziale. Il rapporto delle letture grezze non rimuove b."
+        }
+      ],
+      "hints": [
+        "Usa le differenze dei riferimenti e controlla poi0<f_C<1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A C, le densità1/2 e2/5 darebbero S2 e9/5. Una densità1 kg/L corrisponderebbe alla soglia f1, senza parte emersa;8/5 kg/L supera il dominio del galleggiamento libero parziale. Il rapporto delle letture grezze non rimuove b.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-floating-fraction-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Galleggiamento libero e frazione immersa",
+      "order": 8536,
+      "title": "Una misura già contenuta nel rapporto imposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "floating-fraction",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo, rigido e impermeabile galleggia liberamente in equilibrio in un liquido omogeneo in quiete. Non ci sono carichi, fili o appoggi; si trascurano aria e tensione superficiale. La gravità è uniforme. Le densità di massa soddisfano 0<ρ_c<ρ_l, così una parte del corpo emerge. V è il volume esterno totale e V_i quello che esclude liquido: f=V_i/V è la frazione immersa, con 0<f<1. Fra prove si possono cambiare sostanza o liquido. Fra prove si imponeρ_c=ρ_l/2. Si misura inoltre f=1/2. Quante coppie positive di densità soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo fissa già il rapporto delle densità a un mezzo, quindi la misura della frazione lo conferma senza fissarne la scala. Ogniρ_l>0 conρ_c=ρ_l/2 rispetta ancheρ_c<ρ_l. Esistono infinite coppie positive."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_l/2"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{\\rho_l/2}{\\rho_l}"
+        },
+        {
+          "type": "formula",
+          "text": " f=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio(1/2,1) e(1,2) kg/L sono coppie diverse con la stessa frazione immersa. Una o due soluzioni confonderebbero un rapporto con due valori assoluti; nessuna contraddice gli esempi. La coppia nulla è esclusa e non permette il rapporto."
+        }
+      ],
+      "hints": [
+        "Verifica se la misura aggiunge un’equazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per esempio(1/2,1) e(1,2) kg/L sono coppie diverse con la stessa frazione immersa. Una o due soluzioni confonderebbero un rapporto con due valori assoluti; nessuna contraddice gli esempi. La coppia nulla è esclusa e non permette il rapporto.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio fra spinta e peso",
+        "Densità relative e frazione di volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "83d1f1145e59727a98815673364b59a58b096322a5ab249209e5f51f6620cf59",
+      "name": "floating-fraction-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTUyMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODJkNDIiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+U3Rlc3NhIGZyYXppb25lIGltbWVyc2EgcHJpbWEgZSBkb3BvIGlsIHRhZ2xpbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVuIGJsb2NjbyBsYXJnbyBlIHBpYXR0bywgcXVhdHRybyBwZXIgcXVhdHRybyBwZXIgdW4gZGVjaW1ldHJvLCBoYSBkZW5zaXTDoCBtZXTDoCBkZWwgbGlxdWlkbyBlIGdhbGxlZ2dpYSBjb24gbWV0w6Agdm9sdW1lIGltbWVyc28uIFZpZW5lIGRpdmlzbyBpbiBkdWUgcGV6emkgdWd1YWxpLiBDaWFzY3VubyBtYW50aWVuZSBsYSBzdGVzc2EgZnJhemlvbmUgaW1tZXJzYSBtYSBoYSBtZXTDoCBtYXNzYSwgbWV0w6AgcGVzbyBlIG1ldMOgIHZvbHVtZSBpbW1lcnNvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MjAiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIFVndWFnbGlhIHNwaW50YSBlIHBlc288L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0Ij7PgV9jID0gMS8yIGtnL0w7IM+BX2wgPSAxIGtnL0wuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjIiPkJsb2NjbzogNCDDlyA0IMOXIDEgZG0sIFYgPSAxNiBMLjwvdGV4dD4KPHJlY3QgeD0iODAiIHk9IjI3NSIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNiNWRjZjEiLz48cmVjdCB4PSIxODAiIHk9IjI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2U5YmI3MCIgc3Ryb2tlPSIjMjYzZjU1IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTY1IDI3NUg1NzUiIHN0cm9rZT0iIzI4N2FhYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz48dGV4dCB4PSI0MjUiIHk9IjI1MiI+TWV0w6AgZW1lcnNhLjwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjMyNCI+TWV0w6AgaW1tZXJzYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0NzAiPlNlemlvbmU6IDIwMCDDlyA1MCBweCBhbGxhIHNjYWxhIDUwIHB4L2RtLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTA4Ij5JbW1lcnNpb25lOiAyNSBweCA9IDEvMiBkbSwgVl9pID0gOCBMLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTQyIiBmb250LXNpemU9IjE4Ij5MYSBkaW1lbnNpb25lIHBlcnBlbmRpY29sYXJlIGFsIGZvZ2xpbyDDqCA0IGRtLjwvdGV4dD4KPHBhdGggZD0iTTMyIDU4MEg2MDgiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2MzAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBMYSBmcmF6aW9uZSBkaXBlbmRlIGRhbGxlIGRlbnNpdMOgPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDc3MFY2OTAiIHN0cm9rZT0iIzIzN2I5OCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTE1MCA3NzBWODUwIiBzdHJva2U9IiNiNDYxNDUiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9Ijc3MCIgcj0iNSIgZmlsbD0iIzI2M2Y1NSIvPgo8dGV4dCB4PSIyMDAiIHk9IjcxOCI+Rl9BID0gODAgTiB2ZXJzbyBs4oCZYWx0by48L3RleHQ+PHRleHQgeD0iMjAwIiB5PSI4MzIiPlAgPSA4MCBOIHZlcnNvIGlsIGJhc3NvLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkwNiI+RXNlbXBpbyBjb24gZyA9IDEwIG0vc8KyOiBtYXNzYSA4IGtnLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTQ0Ij5Gb3J6ZSBpbiBwcm9pZXppb25lOiA4MCBweCBhIDEgcHgvTi48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk4MiI+z4FfbCBWX2kgZyA9IM+BX2MgVmcg4oaSIGYgPSDPgV9jL8+BX2wgPSAxLzIuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTAyMEg2MDgiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDcwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+My4gRHVlIHBlenppLCBsbyBzdGVzc28gcmFwcG9ydG88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExMTAiPlRhZ2xpbyBpbiBkdWUgcGFydGkgMiDDlyA0IMOXIDEgZG0uPC90ZXh0Pgo8cmVjdCB4PSI1NSIgeT0iMTE5NSIgd2lkdGg9IjU1MCIgaGVpZ2h0PSI2NSIgZmlsbD0iI2I1ZGNmMSIvPjxyZWN0IHg9IjcwIiB5PSIxMTcwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjZTliYjcwIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjM1MCIgeT0iMTE3MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2U5YmI3MCIgc3Ryb2tlPSIjMjYzZjU1IiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSI0OTAiIHk9IjExNzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNlOWJiNzAiIHN0cm9rZT0iIzI2M2Y1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik00NSAxMTk1SDYxNSIgc3Ryb2tlPSIjMjg3YWFiIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNCIvPgo8dGV4dCB4PSI3MCIgeT0iMTMwNCI+UHJpbWE6IFYgPSAxNiBMLjwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjEzMDQiPkRvcG86IFYgPSA4IEwgY2lhc2N1bm8uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTM2MiI+T2duaSBwZXp6bzogVl9pID0gNCBMLCBtYXNzYSA0IGtnLCBwZXNvIDQwIE4uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDAwIj5MYSBmcmF6aW9uZSByZXN0YSA0LzggPSAxLzIuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDUwIiBmb250LXNpemU9IjE4Ij5HZW9tZXRyaWEgc2VtcHJlIGEgNTAgcHgvZG07IGZvcnplIGNvbiBzY2FsYSBkaXN0aW50YS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0ODQiIGZvbnQtc2l6ZT0iMTgiPkkgcGV6emkgZ2FsbGVnZ2lhbm8gc2VwYXJhdGkgZSBub24gc2kgc29zdGVuZ29ubyBhIHZpY2VuZGEuPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}
