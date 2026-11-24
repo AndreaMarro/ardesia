@@ -68,7 +68,7 @@ TASKS = [
  "Il controllo è a=b=2 e C=2·2=4. −2 risolve l’equazione quadratica ma viola il dominio dei moduli. Senza a=b il prodotto quattro ammetterebbe molte coppie, come a=1,b=4: conoscere il prodotto non basta per determinare ciascun fattore.", "Usa il vincolo a=b prima di estrarre la radice.")
 ]
 CHOICES={2:2,3:1,4:0,6:1,7:2,8:1,9:2,10:2,12:3,15:2,16:2}
-FIGURES={1:"Leggi dall’alto: due frecce perpendicolari; il rettangolo con base due e altezza due; quattro celle. La figura illustra il modulo, mentre il verso si stabilisce separatamente.", 6:"Le tre tappe distinguono geometria e verso: A va a destra, B in alto; A×B esce dal foglio (punto nel cerchio); B×A entra (croce nel cerchio). Il modulo rimane sei."}
+FIGURES={1:"Leggi dall’alto: due frecce perpendicolari; il rettangolo con base due e altezza due; quattro celle. La figura illustra il modulo, mentre il verso si stabilisce separatamente.", 6:"Le quattro tappe distinguono geometria e verso; le ultime due usano un secondo esempio: A va a destra, B in alto; A×B esce dal foglio (punto nel cerchio); B×A entra (croce nel cerchio). Il modulo rimane sei."}
 
 def assemble(repo,source_ref):
     return assemble_family(repo,source_ref,"vector-product",TASKS,CHOICES,{},"vector-product-progressive.svg",FIGURES,2140)
