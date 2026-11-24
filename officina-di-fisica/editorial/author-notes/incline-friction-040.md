@@ -50,3 +50,11 @@ Anteprima d’autore sul lettore canonico:48casi, tutti16ID a1440/768/320px,
 processo exit0 e zero failure per presenza formule/figure, overflow e criteri
 axe eseguiti. Asset negato all’ospite. Nessun CSS o gate cambiato; evidenza
 soltanto tecnica e di presentazione, non revisione scientifica indipendente.
+
+Rilievi del revisore separato: nel feedback03 il termineμg non è più descritto
+come il contributo d’attrito di questo piano; è esplicitato il fattorecosθ e
+il corretto termine4μg/5. La frase finale dell’SVG ora dice che il verso di f
+è deciso dallo scorrimento relativo: evita di suggerire che qui non sia opposto
+anche all’accelerazione. Chiavi, calcoli e geometria restano uguali. Cambiano
+testo/feedback03 e asset collegato01, con nuovi binding e anteprima sui byte
+finali; solo il revisore separato può rinnovare la propria firma dopo rilettura.
