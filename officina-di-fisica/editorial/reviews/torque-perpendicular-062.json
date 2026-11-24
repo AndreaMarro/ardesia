@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-torque-perpendicular-01",
+      "sourceSha256": "2510b6a95823bea9c839493c918986a8f00657fd576ed0b98ae62bd297f95b9c",
+      "candidateSha256": "211c182e5ef36847f887747c0afad136b7faeb8b0af41bec48db6e272fcc90db",
+      "reviewedSignature": "0fa00c46eb208949f8141dfb8cb26aa8a02ae918f027f1df5578a708d4359634",
+      "assetChecksums": {
+        "torque-perpendicular-progressive.svg": "07da3e823c3a9a7da9aaa86aaee4b1e62193779dac269ec4288e0468f7306b8b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Prodotto vettoriale r=(r,0,0),forza=(0,+F,0):τz=rF positivo antiorario. Perpendicolarità dàmoduloM=rF=2·2=4Nm;consegna richiede modulo,nonversoassoluto nonassegnato.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "Forza2N nonmomento4Nm;nonèenergia giàtrasferita;segno orientato richiede verso scelto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Prodotto vettoriale r=(r,0,0),forza=(0,+F,0):τz=rF positivo antiorario. Perpendicolarità dàmoduloM=rF=2·2=4Nm;consegna richiede modulo,nonversoassoluto nonassegnato.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-02",
+      "sourceSha256": "1512dea10b41f4cf04ba9a01de55e90a28d5277968eb3e36bef1f23a85b73a9a",
+      "candidateSha256": "47ed57453aed9010fed6d8cae0fefd38cabab9d4e1ce8a2f5569dbd39dd54eff",
+      "reviewedSignature": "5fa798331b4b8ad3857bd8cb4cff1197870ee6f75f10e58f87a6b274215b55fe",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N·m",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "N·m=kg m²/s²;stessa dimensioneJ,grandezza meccanica diversa dal lavoro. Nessuna altra unità equivalente nelle cinque opzioni.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "N forza,N/m rigidezza,kgmassa,m lunghezza. Nm corretto;non affermata dimensione differente daJ.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. N·m=kg m²/s²;stessa dimensioneJ,grandezza meccanica diversa dal lavoro. Nessuna altra unità equivalente nelle cinque opzioni.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-03",
+      "sourceSha256": "24a78abc168569afbc57e55fe5c23c7ed108516c9605699e3d8e80749d730e52",
+      "candidateSha256": "57a6e9ee002e4795b9d2874b28d9f7cc8e8a4ed020e5553ca72feec14717ae44",
+      "reviewedSignature": "30e8ae2e2ba1d3d827d14cb58f920a1f36d1152a4d337f624277790a8db02ce1",
+      "assetChecksums": {
+        "torque-perpendicular-progressive.svg": "07da3e823c3a9a7da9aaa86aaee4b1e62193779dac269ec4288e0468f7306b8b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "0 N·m",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Retta d’azione perO→braccio perpendicolareb0→M=8N·0m=0Nm. Il punto di applicazione può essere diverso daO,ma r eF collineari dannoprodottovettoriale0.",
+      "physicalAssumptions": "Caso distinto:retta d’azione passa perfulcro,forza8N nonnulla,puntodiapplicazione potenzialmentediverso dalfulcro. Braccioperpendicolare0,momento0.",
+      "distractors": "2,4,8,16Nm richiedono braccio nonnullo assente;forza8Nnonmomentonecessariamente8Nm. Momento0 nonforza0 o risultante0.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Retta d’azione perO→braccio perpendicolareb0→M=8N·0m=0Nm. Il punto di applicazione può essere diverso daO,ma r eF collineari dannoprodottovettoriale0.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-04",
+      "sourceSha256": "7b2fcb7ee2334246ee03796b62d0e05e0667e548c071da906e7dd4f2149f4dfb",
+      "candidateSha256": "2b12b8703748164e287ad28c9c9df2bfe046273344938d89a77e20aa84a9166c",
+      "reviewedSignature": "c9bc1c5b256e0def86dd35d3bd85e6032d06ceb81a32108436d12fb0cc6206a7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 a 8 N·m",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "r2m comune,F2→4N: moduliM4→8Nm;rapporto2. Nessuna previsione di accelerazione senza momento totale e inerzia.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "4 invariatoignoraF,16raddoppiaancher,2inverte,zeroimpossibilepermodulipositiviperpendicolari.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. r2m comune,F2→4N: moduliM4→8Nm;rapporto2. Nessuna previsione di accelerazione senza momento totale e inerzia.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-05",
+      "sourceSha256": "bb06de3d1eec7cb05da08e91d3e1ea73071b84e633975333f6ac56d8c0528adf",
+      "candidateSha256": "53fb8f4225f3cb2644e09122c8442d59ba490946a538910d0ebfde8041f2136c",
+      "reviewedSignature": "958dbd01dcd2ad21d761d878b32222178e6fc5ce859e872fbc1540522ff20c70",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "F=M/r=4Nm/2m=2N. r>0 consente divisione eperpendicolarità evita fattore seno ulteriore.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "Moltiplicareperr nonisolaF,4numeromomentononforza;2Nricostruisce4Nm.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=M/r=4Nm/2m=2N. r>0 consente divisione eperpendicolarità evita fattore seno ulteriore.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-06",
+      "sourceSha256": "1d68efef4fe193a1329facf4ae55c9c0f838d0164b42a32ac8c85c6e8a2db0a2",
+      "candidateSha256": "d8d8741bf96e78ce758d4cd51d65b4e681283a43dedf47eda0b448b5fd360209",
+      "reviewedSignature": "32821c9c404d119cfb502748eba4e7b26cc952303684177ef740b1c5fe6b5487",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "r=M/F=4Nm/2N=2m. Distanza al punto coincideconbraccioperipotesi90°;nelcasoobliquoM/Fdarebbesolobraccioperpendicolare.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "Fnonzero necessario;senzaangolodatoladistanza noncoincide necessariamente conM/F,maqui90°.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. r=M/F=4Nm/2N=2m. Distanza al punto coincideconbraccioperipotesi90°;nelcasoobliquoM/Fdarebbesolobraccioperpendicolare.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-07",
+      "sourceSha256": "ec2012c90be0057f934c54d0182d9205bf5026ddc0ca4cc4a5a245bb4bcb7a49",
+      "candidateSha256": "d51b34747ebbc9bb8eb74233cc0ce72940903e043a7a2fb74bdc4fb3ebae6e86",
+      "reviewedSignature": "2145ae78885d550d2676153011eb36a627d9bf648bea476a5534caa3d6abe0bc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "F2Ncomune,r2→4m dàM4→8Nm,rapporto2.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "1/2inverte,4quadrato,1ignora,−2 nonrapporto di moduli positivi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F2Ncomune,r2→4m dàM4→8Nm,rapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-08",
+      "sourceSha256": "c5c0ef4bf518305d1b654fd3fced89684839e7d30ab5acfecbf1bcadd8beae74",
+      "candidateSha256": "55cd464322c79fe46db800a0840db91b105b875bebc7c09f4260f1c0815f6de7",
+      "reviewedSignature": "a430cf290ad381dd3976e00f172a2b87b4557ef2362d5eee1c5eca2260b71290",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "CorrettoM4Nm;proposto8Nm;scarto8−4=+4Nm. Segno dello scarto non convenzione di rotazione.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "−4ordine inverso,8proposta,2dimezza,5o3noncalcolo esatto.4J nonlavoro assegnato.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. CorrettoM4Nm;proposto8Nm;scarto8−4=+4Nm. Segno dello scarto non convenzione di rotazione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-09",
+      "sourceSha256": "3f97a1b9b936b3474fb57f0e4ee3caf41b7913438f190d0172060c8ffd5156b1",
+      "candidateSha256": "d5d2e5e9706d2fb7a123ae63619c89b2948f3a3b855ae2a301efe8c596373639",
+      "reviewedSignature": "2fa669e6a1b213f1d8cc3e803bc43bbe4c8d959ca9e100cfbcfe06c407148360",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "F=M/r",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "M=Fr→F=M/r. MrhaN m² inveceN; r/Mha1/N. Positività di r esplicita.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "MrhaN m²,nonN;r/M1/N;2M/r doppio,M/(2r)metà,nonriproduconoM.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. M=Fr→F=M/r. MrhaN m² inveceN; r/Mha1/N. Positività di r esplicita.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-10",
+      "sourceSha256": "55612fffab93a284419f4fc683173220a4a953f8e7052801f7918cfacd637ea6",
+      "candidateSha256": "bb80a4fa96027a1aef3623c3e62d12479fae97585999a239a865edb3b0737019",
+      "reviewedSignature": "6cbbe24c2f18b5dc90dbd5b1c1726cbea0fa12bfee21b6b4c2f779a0e8255c59",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "M_B=(κ1F)(κ2r),M_A=Fr→rapportoκ1κ2. Angoli entrambi90°,nessun rapporto di seni mancante.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "Quozienti inversi,somma2allidentità,κ2²confondemomentodinerzia,nonmomentodiforza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. M_B=(κ1F)(κ2r),M_A=Fr→rapportoκ1κ2. Angoli entrambi90°,nessun rapporto di seni mancante.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-11",
+      "sourceSha256": "f7d6963af6bdbcb215a69978f3e5f8d55c55dcc5b72e44c9068b59046106e46a",
+      "candidateSha256": "38dfff4522c55e8e251b14c92e186ebd70aed2a12c3f31d41d46cf3151609781",
+      "reviewedSignature": "f2965703771e2f0dff8103a2291e64a296598229a2a6a67904b96b8842b22bf2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "M_A4Nm,M_B4·4=16Nm;rapporto16/4=4,puro.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "2un cambiamento,1/4reciproco,8quadratoindebito,16NmvaloreB nonrapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. M_A4Nm,M_B4·4=16Nm;rapporto16/4=4,puro.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-12",
+      "sourceSha256": "c9e3857af5aa240c7a766cbac11accc989b74f96778270960a89364c8b13e2d5",
+      "candidateSha256": "e5a6bc7c9147f897530da1867e77a7116e50caa74a60e12f4c4c93561eb8e6a8",
+      "reviewedSignature": "bed8c0623cbff7b526ff2ad6c4586ef860671b78a284981716f1832ba143b24e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media dei moduli(4+16)/2=10Nm;ingressi medi3N,3m danno9Nm. Prove distinte,non somma di momenti simultanei.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "20somma,5doppiametà,9ingressimedi,11nonsemisomma. Nessun momento risultante unico di prove distinte.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media dei moduli(4+16)/2=10Nm;ingressi medi3N,3m danno9Nm. Prove distinte,non somma di momenti simultanei.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-13",
+      "sourceSha256": "e03e0bbb05a0933b1c5f42f8c9fd79819398e1a9efba4a11e832f927420cd7fb",
+      "candidateSha256": "2e2c12d46c3c0681db5049433ec7f80006583d3b4f2321f6523001964d693c21",
+      "reviewedSignature": "906a746b19cb20c1445447778e508a52f1292edc71c5bbecaa49b753fd46bfbf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetM_B16Nm,F_B4N→r_B4m;rapporto a r_A2m uguale2.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "rquadruplicato conFdoppia→8volteM;rinvariato→2volte,non4;4mbracciononrapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetM_B16Nm,F_B4N→r_B4m;rapporto a r_A2m uguale2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-14",
+      "sourceSha256": "65652057e1b1b9611e1e7ebe2ee27e7b8b5b539a62e030d9b0ba00e9268fe12c",
+      "candidateSha256": "ec11bc9bb6180178373f250a001393906616e393a28b5d4f47c4e82a59778a95",
+      "reviewedSignature": "45e7db908d3df9e318d94482d6d019c8d27c1cce94ce09f898a7abf2eec8a19b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefM4Nm,S12→c3(Nm)⁻¹;S48→M16Nm; r4m→F4N.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "S48come48Nm dàF12N,guadagnospurio3;corretto4NricostruisceS48.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefM4Nm,S12→c3(Nm)⁻¹;S48→M16Nm; r4m→F4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-15",
+      "sourceSha256": "c10b380762d25c9496ab75d6e7c1ea4dc9109a30a72ec1cca83aadd78e3e14ec",
+      "candidateSha256": "feab923e94902e997e3ab9dc9a8a257dc836c9f4530e63e29441846f8f8ea50a",
+      "reviewedSignature": "609a81358c40530d0688c23927b033511220964c1df26ed22a9dae7750f9293f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefM4,16Nm;ΔS24/ΔM12Nm→c2(Nm)⁻¹,a1;S17→M8Nm;r2m→F4N.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta.",
+      "distractors": "F2,3,5,8N ar2m dannoS9,13,21,33;solo4Ndà17. Offset noneliminatodarapporto letture.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefM4,16Nm;ΔS24/ΔM12Nm→c2(Nm)⁻¹,a1;S17→M8Nm;r2m→F4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-16",
+      "sourceSha256": "dfa7b8a0cbeee3bcce2e1253c9735ff2dee033b6f02aedcab812d42dbd5b93d6",
+      "candidateSha256": "7d5592b202481eaee553e4af9e96f90c2bc00939171c946b19e4ae6515e1a045",
+      "reviewedSignature": "81198c5b2bbab205498a117ac530586d871dc1d187ec9bd2143f36741f7ef1dd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "F=ar,a1N/m tra configurazioni→M=ar²4Nm→r²4m². Radici±2m,solo+2 con r>0 eF>0;non integrazione di lavoro.",
+      "physicalAssumptions": "Forza perpendicolare all’asta e braccio r>0,moduloF>0;M modulo positivo del momento della singola forza rispetto alfulcro,non momento totale né lavoro. Configurazioni distinte,nessuna legge di variazione neltempo presupposta. F=(1N/m)r fra prove,rami±2 considerati,solo positivo.",
+      "distractors": "−2braccio neg eFneg;4confonder²;1o3danno1o9Nmnon4. Vincolofraprove,nonlavoro.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=ar,a1N/m tra configurazioni→M=ar²4Nm→r²4m². Radici±2m,solo+2 con r>0 eF>0;non integrazione di lavoro.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "a9ec1383ebfa9e8e75f22a2c9e69083236231cc2c2bc358465a8f73be4b9f574",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "6af2ce6c5fc9ab23fd36e6fa98bbab98773b2639",
+  "packageSha256": "35efba6cbd7805bf4cc8fa5358fff2c04724b00e8f8b2947969d5fc3791662eb",
+  "bindingsSha256": "d3fa70a6002b6530deee26e67492663edf2004598e95c9b094d9c8095990e903",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-05.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

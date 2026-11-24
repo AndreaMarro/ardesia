@@ -1,0 +1,483 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-biceps-lever-01",
+      "sourceSha256": "064b672af470529e45a9503817d78734dd76f52cae91529ccb1b60f95c9b3bb9",
+      "candidateSha256": "89f13cbd8a2837fb97d8635aac80da8086a7e6492d63c8dfa8356969caf8808a",
+      "reviewedSignature": "753fb4f487813204abe20effa8ee551417939eb1f71217e868e30883ace1e7c9",
+      "assetChecksums": {
+        "biceps-lever-progressive.svg": "ed76fbdf710ab04706e88b0f1f51d40b257f2bffd2f2dad907eafb8026b69c12"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Bracci30cm e5cm inunità uguale: rapporto6. Momenti+Fb−WL=0→F=10·6=60N. 30cm=3/10m,5cm=1/20m. Momenti±3Nm;reazione verticaleH=W−F=−50N,modulo50versobasso.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "F=W noncompensa bracci diversi;grandeF necessaria perb breve;reazione nonfornisce coppia. Il disegno è modellomeccanico ideale,non dato anatomico.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Bracci30cm e5cm inunità uguale: rapporto6. Momenti+Fb−WL=0→F=10·6=60N. 30cm=3/10m,5cm=1/20m. Momenti±3Nm;reazione verticaleH=W−F=−50N,modulo50versobasso.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-02",
+      "sourceSha256": "3efe76a1e8fa89b1a8db3b1d0a89edf834a89332bab740a93a99b40523d23a6a",
+      "candidateSha256": "b1ac7acc4c85cd13b3769172f5d2f62cf447dbeea0e13dd9e0969117c9c82e48",
+      "reviewedSignature": "a442cd72e7a54a2552829b4f55b06606ff4d94300de830829bf7b6090624fcb9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "WL/b:N·m/m=N. W indica forza delcarico,non potenza watt né lavoro.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "kgmassa,Nm momento,m lunghezza,1puro,nonforze.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. WL/b:N·m/m=N. W indica forza delcarico,non potenza watt né lavoro.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-03",
+      "sourceSha256": "90f3fcb63afc6eaef0d1338dfa60426ed502bbc43bd7143ea601e401776ffa76",
+      "candidateSha256": "bfd57862acd12456fced30b6cdf646c010b93c9308bfc3892d70125aa5445cd1",
+      "reviewedSignature": "8e94202679292876d94d86f39cc8af08a9f44cd39e3f9576ac828568b3785dde",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "F=WL/b",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Verticale versoalto muscolo a destra delgomito→+Fb,caricoinbasso→−WL. Somma0→F=WL/b;0<b<L implicaF>W.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "Wb/L darebbeF<W,F=W richiedeb=L escluso,doppio/metà nonstessobilancio.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Verticale versoalto muscolo a destra delgomito→+Fb,caricoinbasso→−WL. Somma0→F=WL/b;0<b<L implicaF>W.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-04",
+      "sourceSha256": "826cce4997631ec5e2d6a901f45ecc7450f5f0e0e644dab82672f1fe96d1c73f",
+      "candidateSha256": "dfa68d00342868a6b16fc2364c8c0f7176dad484a307a4b18693fe83d7a0c258",
+      "reviewedSignature": "e12e1ea795062b3a34b2ce054ade385bb64452665de513eeb363759871744e20",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 60 a 120 N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "GeometriaL/b6 costante:W10→20N dàF60→120N. Reazione cambia,nessuna coppia alfulcro.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "240N richiederebbeancheb dimezzato,30N inversa;reazione nonmomentoinO.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. GeometriaL/b6 costante:W10→20N dàF60→120N. Reazione cambia,nessuna coppia alfulcro.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-05",
+      "sourceSha256": "455d03f0f5e238b95307587f947efd904442b8b9139c00a14973fcc4bb5a9b23",
+      "candidateSha256": "82ca39d6d0d879676bab506353528a2ed0a57fb0b5fdcb6552b05085a875b478",
+      "reviewedSignature": "dabbdfb392192852dfa6b86d258ddef319ee80c8a32ae094f6d274555226bf33",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "W=Fb/L=(60·1/20)/(3/10)=3·10/3=10N. W è forza,nessun g necessario.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "60N ripeteF;360N usaL/binverso;dividereperg cambierebbequantità in massa nonrichiesta.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. W=Fb/L=(60·1/20)/(3/10)=3·10/3=10N. W è forza,nessun g necessario.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-06",
+      "sourceSha256": "fbac43bccb702e70ea6d07a0572b0e2c7d279ca8fc0e0aa4bec34f0a32c60bd5",
+      "candidateSha256": "72993c5d2154a047ea3276522f01e4e593241b28fe990e18a0b2cc990277ca16",
+      "reviewedSignature": "971e5cddd1782521c1bcd3f9c57b958b6113571712e36ac471ad0ccc87395670",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/20",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "b=WL/F=(10·3/10)/60=3/60=1/20m=5cm. 0<b<3/10m.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "Bracci1/10,3/20,1/40m danno momenti6,9,3/2Nm;3/10m uguagliabracci noncompensa60Nvs10N.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. b=WL/F=(10·3/10)/60=3/60=1/20m=5cm. 0<b<3/10m.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-07",
+      "sourceSha256": "8ebee9b3aafae18dde09250fe150743807702ac8912dc9e4853c641e872017aa",
+      "candidateSha256": "6513d50ca3b5ac8a4d4dd4c2c31bc27ab59e90bafbc84d28e53489d30b46e9f4",
+      "reviewedSignature": "fc12cf3730cf9a430d34894ffc160b6e5623c14ea19248a797df18868fb1a196",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "W10N,L3/10m fissi: momentocarico3Nm;F_A60N,F_B3/(1/10)=30N;rapporto1/2.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "2 direttaanzichéinversa;1/4 quadrato;1 ignora;−1/2 impossibilepermoduli.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. W10N,L3/10m fissi: momentocarico3Nm;F_A60N,F_B3/(1/10)=30N;rapporto1/2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-08",
+      "sourceSha256": "88b1157668c3b2d18d474dac3d3d348fd4d40d457122cf65f56bd28537e5c193",
+      "candidateSha256": "a4bc0b4c6abde05f394eebd5d02f279c58b2c829515e8d8361945fd5aa54e0ef",
+      "reviewedSignature": "46ffdd93c796317a31e7a79a3b7329ec5be05393cb0bb45306eacae3f362aedf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Corretto60N,proposto120N: scarto+60N;proposta dà6Nm contro3Nm. Reazione nelgomito non annulla momento residuo.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "−60 ordine inverso,120 proposta,30 dimezza,61/59 noncalcoloesatto;nessun arrotondamento necessario.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Corretto60N,proposto120N: scarto+60N;proposta dà6Nm contro3Nm. Reazione nelgomito non annulla momento residuo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-09",
+      "sourceSha256": "81f5d030cc415119b54346f93110d898b032e1b91abc110726db7257a4f5b489",
+      "candidateSha256": "5e0a59dba60d40507395baa9da5d9076666517fd2eb393534d3e12c968b6bbd6",
+      "reviewedSignature": "ba3402f4e4afb09133b4da7cebb7e0a477a6e5485cdc4096bdd880525a65a6cf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W=Fb/L",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Fb=WL→W=Fb/L. 0<b<L→0<W<F; lunghezzaL dimensionale.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "FL/binverte rapporto,F/(Lb)haN/m²,doppio/metà nonbilancio;corretta mantieneW<F.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Fb=WL→W=Fb/L. 0<b<L→0<W<F; lunghezzaL dimensionale.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-10",
+      "sourceSha256": "fb0b3a842e053a7ea1c56ecf5d510e52b70208624760a8240ca368c3bce73db1",
+      "candidateSha256": "4a73eb12141cfca64f76138e6150f4af365b5ffab9523a976153a2f34ca2d777",
+      "reviewedSignature": "8962b5085848575c8aac0f7f4c41052f8630fddee7033049a254f6760bea9c64",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "F_B/F_A=(κ1W L/(κ2b))/(WL/b)=κ1/κ2; entrambi b_A,b_B in(0,L).",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "Prodottosegnoeffettoberrato,reciproco inverte,κ1²duplicaW,somma2allidentità. Fattoriuguali→Fcostante.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F_B/F_A=(κ1W L/(κ2b))/(WL/b)=κ1/κ2; entrambi b_A,b_B in(0,L).",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-11",
+      "sourceSha256": "a2d7415cc3af53e849af302fa727d30c37076b52d68af16954fb0b4e6d7c26ca",
+      "candidateSha256": "aac74e4d3fc0a40753920d5c26e9327fcffc92731208a31d05e44e3baea5554f",
+      "reviewedSignature": "c02052970ef75d25c60d45405671e771efb1a83a5dab0f6bcd861794a9967fc6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "A60N,B30·(3/10)/(1/10)=90N;rapporto90/60=3/2.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "2/3reciproco,3 segueWsoltanto,2 seguebraccionelversosbagliato,6 moltiplica invece divide.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A60N,B30·(3/10)/(1/10)=90N;rapporto90/60=3/2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-12",
+      "sourceSha256": "7cfc1a5e5ed6723e28e80308bb118d3f0813cef6ed9e7c9fc67c1aa4e790b6c3",
+      "candidateSha256": "f1ad0c5b93e1834c4b7a735072bdb575fdc6caa34c351cf83fdca58d345bea96",
+      "reviewedSignature": "4048452909b38b119681e2096bc3f81be95e4d9d0460b49ffb8590e49d209883",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "75",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(60+90)/2=75N;ingressi mediW20N,b(1/20+1/10)/2=3/40m→80N,non75. Differenza5N esatta.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "150somma,75/2doppiametà,30differenza,80ingressimedi;74/76 nonsemisomma esatta.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(60+90)/2=75N;ingressi mediW20N,b(1/20+1/10)/2=3/40m→80N,non75. Differenza5N esatta.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-13",
+      "sourceSha256": "2855904ace09f3aafcb930c66c1d87154632e0d7afed1b2df4640c8ae15c8250",
+      "candidateSha256": "20bcd9f927e59237df6d59c77fa82359c6e3c8466990c788fbc38df8870a7e29",
+      "reviewedSignature": "da8b93741d25b5e091123c410caea2c3d1140b66bd07e9bb2e9fda3b5436dce7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetF_B90N,W_B30N: b_B=9/90m=1/10m;rapporto a1/20m uguale2,dominio rispettato.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "b invariato→180N,triplo→60N;1/10m coordinata bracciononrapportopuro.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetF_B90N,W_B30N: b_B=9/90m=1/10m;rapporto a1/20m uguale2,dominio rispettato.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-14",
+      "sourceSha256": "628685284420dec1d73811ded105ee29badfe06149271ef65b11c448d56a8e5d",
+      "candidateSha256": "55c4cc4672b985bba53f82a870770e1c8dc205a507170b646ef7a029be2bafee",
+      "reviewedSignature": "ff1f026a697934b745e802cb8b98140e9b424f38e6c56c74e6da55e0fcf94944",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefF60N,S180→c3N⁻¹;S270→F90N;W=90·(1/10)/(3/10)=30N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "270lettura nonforza,90N muscolononcarico;rapportoL/binverso violateW<F.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefF60N,S180→c3N⁻¹;S270→F90N;W=90·(1/10)/(3/10)=30N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-15",
+      "sourceSha256": "2d022827eeb58cc98f416d299e2cd888c400eaddc771ea16905996717fb35361",
+      "candidateSha256": "5780680e492a18f565eb3ce52ca86128033cff1f3efd4671e6e432a749c67cae",
+      "reviewedSignature": "e0cc08fa6b9ec10a72f1a4da3c5f45e8d3d7b2f26f6eea5c5763358d1d06112b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefF60,90N;ΔS60/ΔF30N→c2N⁻¹,a1;S241→F120N;W=120/6=20N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale.",
+      "distractors": "W10,19,21,40N dannoS121,229,253,481;solo20Ndà241. Offset noneliminabilecolrapportogrezzo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefF60,90N;ΔS60/ΔF30N→c2N⁻¹,a1;S241→F120N;W=120/6=20N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-biceps-lever-16",
+      "sourceSha256": "f812ef4247b180c733317942a7cb1fbc27c1fcdf31c099b58f9608c64c2412cb",
+      "candidateSha256": "a93574d58ea30ac0b1890ad84b83e52a7f2388a870ceb65bf4e815cccadad9dc",
+      "reviewedSignature": "cd2a2e80c7f6d54dd710e21d954752f044c7b151f11bdb0b1f08b473301d06f5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite",
+      "dimension": {},
+      "manualArithmetic": "W=cb,c200N/m→F=cbL/b=cL=60N identicamente perogni b in(0,3/10m). Infinitecoppie; esempi b1/20,W10 e b1/10,W20 e b1/5,W40. TutteW<F,nessun valore unico delbraccio.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. Avambraccio come asta orizzontale,carico verso basso e muscolo verticale versoalto;L=3/10m fisso,0<b<L. Modello biomeccanico dichiarato,non anatomia quantitativa reale. W=(200N/m)b,misuraF60N ridondante,intervallo continuo di soluzioni.",
+      "distractors": "Nessuna falsoperchéesempiesistono;una,due,tre falsoperintervallocontinuodib. b0 escluso,non richiedezeroW;bordob=L escluso;una misura coerente ridondante nonidentifica scala.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. W=cb,c200N/m→F=cbL/b=cL=60N identicamente perogni b in(0,3/10m). Infinitecoppie; esempi b1/20,W10 e b1/10,W20 e b1/5,W40. TutteW<F,nessun valore unico delbraccio.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b46e6f54d1d0561e0649029d0395cdd14ebaded3e27fead3c610bacd84b2b29e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "05bf40aa45dfd016f05f820b3bebfb1c662339ed",
+  "packageSha256": "99379929e2ad83909559f656f1c8ae123e1a19f605341b204cb3d088eb3075b9",
+  "bindingsSha256": "a0e4fc1f779dcfb811fb2dc15b909f982577834727540141c22619da6ba72016",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-05.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

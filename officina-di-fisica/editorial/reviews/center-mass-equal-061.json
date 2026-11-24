@@ -1,0 +1,467 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-center-mass-equal-01",
+      "sourceSha256": "0db1bafabdfcc1d85d7034795418d3579ea3382869d8d43a7e31ca12b8a8cc16",
+      "candidateSha256": "b05e7b8cb3b11018426729b5349f2b3274bdb0731bc2d12d7202e597fa22acae",
+      "reviewedSignature": "543e3242ce499261c84cc89c32e30e7dc26d25b2ebe61bf86d36d38701821167",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "X=(m·2+m·2)/(2m)=(2+2)/2=2m. Punti materiali coincidenti ammessi nel modello dichiarato.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo. Punti materiali coincidenti ammessi esplicitamente,senza vincolo di volume.",
+      "distractors": "4m somma,1m doppia divisione. Coincidenza dei punti materiali non impone separazione artificiale.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. X=(m·2+m·2)/(2m)=(2+2)/2=2m. Punti materiali coincidenti ammessi nel modello dichiarato.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-02",
+      "sourceSha256": "8ac8168d5270f1b6db978395ff7b809352636f2f34a611b7329345c9fcb01773",
+      "candidateSha256": "eb05ecadf80a14ef53ec1bd2c8811caff4ddcaf0f11e473d23a1c2e39ecc791e",
+      "reviewedSignature": "bffb4209f926658a9298dd48fe9394fd034ef0d421468544bd613421645f2174",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Semisomma di coordinate con unità m, divisa per2 puro: dimensione L, unità m.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "kg,m/s,N,1 non sono lunghezza; unità non muta col segno della coordinata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Semisomma di coordinate con unità m, divisa per2 puro: dimensione L, unità m.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-03",
+      "sourceSha256": "541f1542824a77b8e9e1ef93ea437e9df859450e4eeb0280876bec0b752a183e",
+      "candidateSha256": "1a8b5cc85d94a23aae1fcb4eddc4d667657879e7e6ffd09885acb18dcb989784",
+      "reviewedSignature": "f1070aaae85347f17a4dcc86d684dee17f10ff718313495dfecc407e57d6fdda",
+      "assetChecksums": {
+        "center-mass-equal-progressive.svg": "c822cefeed85214a5f96c1f73efef078eff0181dccdab21c1ff4cfed6059b75f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "X=(x₁+x₂)/2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Masse positive uguali: (mx1+mx2)/(m+m)=(x1+x2)/2. Semidifferenza è metà separazione orientata, non coordinata.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "Somma raddoppia; semidifferenza è semiseparazione e manca origine; quarto dimezza,zero non legge generale. Presenti soltanto cinque alternative distinte come funzioni.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Masse positive uguali: (mx1+mx2)/(m+m)=(x1+x2)/2. Semidifferenza è metà separazione orientata, non coordinata.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-04",
+      "sourceSha256": "25b00924ae9643360340bf128dd22381b7fb23481c4d9b244fbead0246755a78",
+      "candidateSha256": "33d9580c604964364fa8d9e7058c8c9de0195555926dc283c8fabb0596cccd64",
+      "reviewedSignature": "41a0ea6e7b9ff4ab11988d04a06ca1b6cdacc94d26b7ee83c763aec79a9ed70c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 3 m",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A(2+2)/2=2m,B(4+2)/2=3m: muovere una massa di2m muove il centro di1m, riferimento fisso.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "4m segue solo primo corpo;2m ignora movimento;1m inverte;zero non media4e2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A(2+2)/2=2m,B(4+2)/2=3m: muovere una massa di2m muove il centro di1m, riferimento fisso.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-05",
+      "sourceSha256": "cff8fe9807f27119bd36619e52e1ae0507a6ce6a657d0c6a9ad0689286ec9a2e",
+      "candidateSha256": "ce28503c06daa0ffbdf8bc428bc674a08ebf0badeca7a28a86cf2937c6eaa93c",
+      "reviewedSignature": "e93d3bb7af56d579431325e8e21ff4f32a6a0972ebeaacb17d73ab3fdb7180c3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "2X=x1+x2→x1=2X−x2=4−2=2m; dominio scelto2X>x2.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "X−x2=0 omette raddoppio e non ricostruisce X2; segno positivo richiesto esplicitamente.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. 2X=x1+x2→x1=2X−x2=4−2=2m; dominio scelto2X>x2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-06",
+      "sourceSha256": "985908fc1291f6be390123649dd75f4789c70697eeec2e9d6020c25c9dc1e9e9",
+      "candidateSha256": "b710847fe12b2c4fd71ac4b1558406462eb9a6c7e58e27223908c24eb89e8910",
+      "reviewedSignature": "21279c319c2756e0d3e6cb94f38cb125097d801fd6b5e23e667effbc0b2b282d",
+      "assetChecksums": {
+        "center-mass-equal-progressive.svg": "c822cefeed85214a5f96c1f73efef078eff0181dccdab21c1ff4cfed6059b75f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Vecchio centro(4+8)/2=6m. Nuova origine3m a destra: coordinate1,5m; centro(1+5)/2=3m,anche6−3=3m. Separazione4m invariata.",
+      "physicalAssumptions": "Masse uguali immobili negli stessi punti fisici: cambia soltanto origine di+3m,verso invariato. Coordinate nuove si ottengono sottraendo3m; nessuna traslazione fisica delle masse.",
+      "distractors": "9m aggiunge origine anziché sottrarla;6 vecchio centro;5 secondo punto nuovo;2 semidistanza. Nessuno spostamento reale dei corpi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Vecchio centro(4+8)/2=6m. Nuova origine3m a destra: coordinate1,5m; centro(1+5)/2=3m,anche6−3=3m. Separazione4m invariata.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-07",
+      "sourceSha256": "5352ab41e848a7cdb8d860803fefa4b59b4c89156dd692b28abbbe26b2294b48",
+      "candidateSha256": "da17af8325660ce11bd1df4e8f28799594eb56383ced406ecd22848b6932264f",
+      "reviewedSignature": "867b91c6145d2c3b395cbc37185a680caa2bb5072ad514ab9a033e4f14cce0ec",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "X_A2m,X_B3m; rapporto3/2. Raddoppiare il solo x2 non raddoppia la somma con x1 fisso.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "2 segue solo x2,2/3 inverte,1/2 diminuisce,1 ignora. Rapporto coordinate non invariante per cambio origine.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. X_A2m,X_B3m; rapporto3/2. Raddoppiare il solo x2 non raddoppia la somma con x1 fisso.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-08",
+      "sourceSha256": "c0767745a9b05bfdf36e8f371cca458c8bb029947cfd468ce2d337cff0205d66",
+      "candidateSha256": "7e63c8b59d70b9cbdb9bf9203ccfa36701f07e7b2ef0d764b1daf98073997558",
+      "reviewedSignature": "41eb6c61a0cdabfe0d9edbf5eea961de6e519f37304aeb52f9dfc7a572333c21",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Corretto2m,proposto4m: scarto4−2=+2m. Separazione delle masse è invece0.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "−2 ordine inverso,4 proposta,1 doppia divisione,3 non differenza. Scarto≠separazione0.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Corretto2m,proposto4m: scarto4−2=+2m. Separazione delle masse è invece0.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-09",
+      "sourceSha256": "92e21b7698bd3302707973aadaf720c7a6ffa70d54f14f25f550a97a2dc76163",
+      "candidateSha256": "7f6022f92450b56fdb6cd94fad13a1806c00655976a18a9de365989cbe865bfd",
+      "reviewedSignature": "6cb9b487f463fbd5a6d1528cf9d35cd7d9a892cc0ca8fe915c991ff6ac065950",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "x₁=2X−x₂",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Moltiplicare per2 e sottrarre x2 dà x1=2X−x2. Positività nel dominio scelto richiede2X>x2; coordinate negative in altri riferimenti ammesse.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo. Nel dominio positivo scelto 2X>x2; non vincolo universale di positività delle coordinate.",
+      "distractors": "X−x2 omette2;2X+x2 segno;mezzo ulteriore dimezza;4X−2x2 raddoppia. Inverse distinte in generale.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Moltiplicare per2 e sottrarre x2 dà x1=2X−x2. Positività nel dominio scelto richiede2X>x2; coordinate negative in altri riferimenti ammesse.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-10",
+      "sourceSha256": "7ab05717a8bd776f51ede47afefcf07bb83c8ccf63699b22c79941132dc7716c",
+      "candidateSha256": "f9ac54b9c9d3c190274b4caa6c9117a8505cdebc39d0b5d7372317704ff8f1df",
+      "reviewedSignature": "4f18c5782fc63c15a2129683832adea34a24830effb86d995a52ef128e670f75",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(κ₁ x₁ + κ₂ x₂) / (x₁ + x₂)",
+      "dimension": {},
+      "manualArithmetic": "Rapporto di due semisomme cancella2: (κ1x1+κ2x2)/(x1+x2). Seκ1=κ2=κ si riduce aκ,nonκ².",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "κ1κ2 errato prodotto,κ1/κ2 effetto inverso,reciproco scambia prove,denominatore2x1+2x2 conserva mezzo spurio. Subcaso fattori comuni discrimina.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Rapporto di due semisomme cancella2: (κ1x1+κ2x2)/(x1+x2). Seκ1=κ2=κ si riduce aκ,nonκ².",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-11",
+      "sourceSha256": "b664a92b52f44b61a463d91af5a873873d419f61e0ac27628dde56bd23de8678",
+      "candidateSha256": "0e8824ad2ba9f0c2dc77673e2217ff02982957f5bfb5a200b342229b50ee5960",
+      "reviewedSignature": "170d5f0891c50d2336b479e1bee1e7a867aa30650b678ed68b94476beb7c88ab",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Entrambe le coordinate da2a4m: centri2e4m,rapporto2; legge lineare,non prodotto.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "4 moltiplica due raddoppi invece sommarli;1/2 reciproco.4m coordinata B non rapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Entrambe le coordinate da2a4m: centri2e4m,rapporto2; legge lineare,non prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-12",
+      "sourceSha256": "b9803529514b190dfe53150a14683e6c958b9feacb2dd9a26048362ca31e7e98",
+      "candidateSha256": "ad6f22d25afa60937fe0a2105235d15e3740d243d48e1f9ab90f64fc52378454",
+      "reviewedSignature": "39e47d3418b4eb2c53904742338e181ce2713744e95d424ec0c79f81e30ffb04",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Media(2+4)/2=3m. Media degli ingressi3,3m dà3m: uguaglianza esatta per linearità della semisomma.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "6 somma,3/2 doppia metà,2e4 singole prove. Non sostenuta falsa differenza fra medie per modello lineare.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+4)/2=3m. Media degli ingressi3,3m dà3m: uguaglianza esatta per linearità della semisomma.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-13",
+      "sourceSha256": "36840536964005b4b3508b94eb31e0ee08b847610bc8f752f193001b88dadc13",
+      "candidateSha256": "495a6b9710dacabc4ea1441718df27a318b51405183e58fc764c0387df7dd480",
+      "reviewedSignature": "40136fe96d05736e71d65718fe7ed4d6f0c98354fd5d928589233841e21b5640",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Target X_B4m,x1B4m: x2B=2·4−4=4m; rapporto al precedente2m=2.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "x2 invariato2 dàX3,non4;4m uscita coordinata non rapporto4. Dominio positivo soddisfatto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Target X_B4m,x1B4m: x2B=2·4−4=4m; rapporto al precedente2m=2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-14",
+      "sourceSha256": "725ea35e755654e2469a934f7842d9237ff8926fd88da178a75ab608b942e6d7",
+      "candidateSha256": "836a1fd1cff09579c911f7e391b1f76f9615f31f3a1033b9ac1fbdabbdf22a18",
+      "reviewedSignature": "8607035ca9d6b4d03fee950f049b5d80d4dbd71c302869c8754fb7f58848c4f8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Ref X2m,S6→c3m⁻¹; S12→X4m; x1=2·4−4=4m. Lettura12 non è coordinata12m.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "UsareS12come12m dàx1=20m,errore di unità e guadagno; x1=4 ricostruisce centro4 eS12.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Ref X2m,S6→c3m⁻¹; S12→X4m; x1=2·4−4=4m. Lettura12 non è coordinata12m.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-15",
+      "sourceSha256": "63d29287080dc3323d1fe697be7501688cbf2f7de77f584d7aff1f564ab5fabf",
+      "candidateSha256": "b7d76bce773ed1a5c9ff56af084f807ab39dd37806ec18b0fea9724480c2b008",
+      "reviewedSignature": "4c2d90d3c4cae9cb88480c374bb261fe425d80be6152edfbce1fb3bcc6bd012a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "ΔS9−5=4,ΔX4−2=2m→c2m⁻¹;a1. S7→X3m;x1=2·3−2=4m. Alternative2,3,5,8m dannoS5,6,8,11.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo.",
+      "distractors": "2,3,5,8m danno S5,6,8,11; solo4m dà7. Rapporti grezzi conservano offset.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS9−5=4,ΔX4−2=2m→c2m⁻¹;a1. S7→X3m;x1=2·3−2=4m. Alternative2,3,5,8m dannoS5,6,8,11.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-center-mass-equal-16",
+      "sourceSha256": "91b6e369490fbb394b6d9cdd408ce24cfd15d4b429076dc7d5c18702629f8d0d",
+      "candidateSha256": "ab9dad48aefc83b3d062f7761032133fd65a1e899d715321a51f3b4f7950c00c",
+      "reviewedSignature": "f416cc423adf09b40eb3ed6a37aa0a32f7e668ab6f3562fdbad27d815adca986",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "x1=x2→X=(x2+x2)/2=x2=2m; unica coppiax1=x2=2m. Vincolo lineare,nessuna radice o ramo negativo.",
+      "physicalAssumptions": "Masse puntiformi positive e costanti nella configurazione. Coordinate sullo stesso asse e origine; centro come media pesata, coordinate non moduli. Confronti tra prove non legge di massa variabile nel tempo. Vincolo x1=x2,unica equazione lineare;nessuna massa dipende dal tempo.",
+      "distractors": "4m omette denominatore,1m divide ancora,−2 viola misura positiva,3 riproduceX3 e non2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. x1=x2→X=(x2+x2)/2=x2=2m; unica coppiax1=x2=2m. Vincolo lineare,nessuna radice o ramo negativo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_mass_moments_and_Newton_sum",
+        "SymPy_origin_translation_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b96d53f17a043c866e5d1b4383d976c293cbdc8678678c431ed900bdaada9656",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "bdc66e619c2abc330ccfa86d42fc0151e0112c13",
+  "packageSha256": "8f276792cb91b7943bbf78b43f1a328380cce2b2e466f2ef7105443bfb4e28b4",
+  "bindingsSha256": "ed41d135627535b832a5158abbf90b3e7795192f4153b1df47604954085baf89",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-05.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}
