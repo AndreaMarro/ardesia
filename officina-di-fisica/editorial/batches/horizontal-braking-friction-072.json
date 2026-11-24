@@ -1,0 +1,1278 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-horizontal-braking-friction-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7201,
+      "title": "Un metro fino all’arresto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 1,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Con v=2 m/s e μ=1/5, quanto vale D in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale vale mg. Durante lo scorrimento l’attrito è opposto allo spostamento e compie lavoro negativo −μmgD; peso e normale non compiono lavoro. Il teorema dell’energia cinetica impone che questo lavoro tolga tutta la cinetica iniziale. La massa si cancella perché compare sia nella resistenza sia nell’inerzia."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/818a2d11ea23c9b2da72363703db5d434c343c8197b7e38a80fd6fad469b27fd",
+          "text": "Caso illustrativo m=2 kg,v=2 m/s,μ=1/5: peso e normale 20 N, attrito 4 N opposto allo scorrimento. Forze a 5 px/N. Il primo pannello separa i vettori dal piano; il secondo mostra x da 0 a 1 m a 240 px/m. Il grafico v_x(t) usa 240 px/s e 80 px per m/s: triangolo di base 1 s e altezza 2 m/s, area 1 m. Dopo t=1 s il blocco resta fermo."
+        },
+        {
+          "type": "formula",
+          "text": "N=mg"
+        },
+        {
+          "type": "formula",
+          "text": " W_f=-\\mu mgD"
+        },
+        {
+          "type": "formula",
+          "text": " 0-\\frac12mv^2=-\\mu mgD"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{v^2}{2\\mu g}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{4}{4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4}{4}\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dopo il primo arresto non si prosegue con la stessa accelerazione negativa: senza forza motrice orizzontale non c’è tendenza a ripartire e l’attrito statico richiesto è zero. Il calo di energia cinetica va in energia interna dei corpi a contatto."
+        }
+      ],
+      "hints": [
+        "Uguaglia il modulo del lavoro d’attrito alla cinetica iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dopo il primo arresto non si prosegue con la stessa accelerazione negativa: senza forza motrice orizzontale non c’è tendenza a ripartire e l’attrito statico richiesto è zero. Il calo di energia cinetica va in energia interna dei corpi a contatto.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7202,
+      "title": "Quadrato di velocità diviso accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 1,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Quale unità SI esprime D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "s",
+          "N",
+          "J"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente μ è adimensionale e g è un’accelerazione. Il rapporto v²/g ha quindi dimensione di lunghezza; il fattore due e μ non la modificano. Il nome distanza richiede un risultato positivo ma non un’unità diversa dal metro."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [D]=\\frac{\\mathrm{m^2/s^2}}{\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " [D]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "m/s è velocità, s è tempo, N forza, J energia. v/g da solo avrebbe unità di tempo e darebbe un tempo di arresto, non una distanza; nel numeratore serve v²."
+        }
+      ],
+      "hints": [
+        "Confronta le unità di v² e g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è velocità, s è tempo, N forza, J energia. v/g da solo avrebbe unità di tempo e darebbe un tempo di arresto, non una distanza; nel numeratore serve v².",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7203,
+      "title": "Il lavoro negativo ferma il blocco",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 1,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Quale espressione dà la distanza di arresto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D=v²/(2μg)",
+          "D=v²/(μg)",
+          "D=v²/(4μg)",
+          "D=−v²/(2μg)",
+          "D=v/(μg)"
+        ],
+        "value": "D=v²/(2μg)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La cinetica passa da mv²/2 a zero, quindi la sua variazione è negativa. Anche il lavoro dell’attrito è negativo: uguagliando i due termini si ottiene una distanza positiva. La semplificazione di m è specifica della legge d’attrito μmg su questo piano."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/818a2d11ea23c9b2da72363703db5d434c343c8197b7e38a80fd6fad469b27fd",
+          "text": "Si legge solo lo scorrimento fino al primo arresto: a_x=−μg=−2 m/s², durata 1 s, distanza 1 m. Il grafico v_x(t) scende da 2 a 0 m/s e poi rimane sull’asse, senza proseguire verso valori negativi. Scale temporale e di velocità esplicite; i vettori delle forze sono in un pannello separato con 5 px/N."
+        },
+        {
+          "type": "formula",
+          "text": "-\\frac12mv^2=-\\mu mgD"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac12v^2=\\mu gD"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{v^2}{2\\mu g}"
+        },
+        {
+          "type": "text",
+          "text": "Senza il mezzo la distanza raddoppia; il quattro la dimezza. Il segno negativo confonde il lavoro con la distanza; v/(μg) misura invece il tempo fino all’arresto. Non ogni resistenza rende la distanza indipendente dalla massa."
+        }
+      ],
+      "hints": [
+        "Conserva i segni finché non cancelli i due meno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Senza il mezzo la distanza raddoppia; il quattro la dimezza. Il segno negativo confonde il lavoro con la distanza; v/(μg) misura invece il tempo fino all’arresto. Non ogni resistenza rende la distanza indipendente dalla massa.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7204,
+      "title": "Rapidità doppia, corsa quadrupla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 1,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Si passa da v_A=2 m/s a v_B=4 m/s mantenendo μ=1/5. Come cambia D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 4 m",
+          "Da 1 a 2 m",
+          "Da 1 a 1/2 m",
+          "Resta 1 m",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza frenante non cambia per la stessa massa e lo stesso coefficiente, mentre l’energia cinetica iniziale quadruplica. Occorre una distanza quadrupla perché il lavoro dell’attrito assorba quattro volte l’energia."
+        },
+        {
+          "type": "formula",
+          "text": "2\\mu g=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " D_A=\\frac44\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac44\\,\\mathrm m=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=\\frac{16}{4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{4}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due metri seguirebbero la rapidità invece del suo quadrato; un mezzo inverte l’effetto. L’arresto esiste sempre per μ>0 finito e v>0, quindi la distanza non diventa zero."
+        }
+      ],
+      "hints": [
+        "Confronta le energie da togliere con la stessa forza frenante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due metri seguirebbero la rapidità invece del suo quadrato; un mezzo inverte l’effetto. L’arresto esiste sempre per μ>0 finito e v>0, quindi la distanza non diventa zero.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7205,
+      "title": "La rapidità prima di un metro di scorrimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Si osservano D=1 m e μ=1/5. Quanto vale v>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per l’inversa isoliamo prima v²=2μgD. Il prodotto ha dimensioni di velocità al quadrato e vale 4 m²/s². Le radici algebriche sono ±2, ma v è la rapidità iniziale positiva; il verso era già definito nel testo."
+        },
+        {
+          "type": "formula",
+          "text": "v^2=2\\mu gD"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_+=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_-=-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonde il quadrato con la rapidità. −2 non è un modulo ammesso. Il controllo D=(2 m/s)²/[2(1/5)(10 m/s²)]=1 m torna senza approssimazioni."
+        }
+      ],
+      "hints": [
+        "Calcola v² e poi scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonde il quadrato con la rapidità. −2 non è un modulo ammesso. Il controllo D=(2 m/s)²/[2(1/5)(10 m/s²)]=1 m torna senza approssimazioni.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7206,
+      "title": "Ricavare il coefficiente dinamico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Si misurano D=1 m e v=2 m/s. Quanto vale μ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/5",
+          "2/5",
+          "1/10",
+          "5",
+          "1"
+        ],
+        "value": "1/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza e la velocità iniziale determinano μ=v²/(2gD). Il numeratore e il denominatore hanno entrambi unità m²/s², che si cancellano. Quattro diviso venti si riduce a un quinto."
+        },
+        {
+          "type": "formula",
+          "text": "2\\mu gD=v^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{v^2}{2gD}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac4{20}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac4{20}=\\frac15"
+        },
+        {
+          "type": "text",
+          "text": "2/5 omette il due nel bilancio energetico, 1/10 lo conta due volte, cinque è il reciproco e uno copia la distanza numerica. Non si richiede una regola generale μ≤1: qui il valore positivo nasce dai dati, non da un limite universale."
+        }
+      ],
+      "hints": [
+        "Isola μ e semplifica le unità prima della frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/5 omette il due nel bilancio energetico, 1/10 lo conta due volte, cinque è il reciproco e uno copia la distanza numerica. Non si richiede una regola generale μ≤1: qui il valore positivo nasce dai dati, non da un limite universale.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7207,
+      "title": "Raddoppiare soltanto l’attrito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. A ha v=2 m/s,μ_A=1/5; B ha la stessa rapidità e μ_B=2/5. Quanto vale D_B/D_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa energia iniziale viene tolta da una forza d’attrito doppia, quindi basta metà strada. D_A=1 m e D_B=1/2 m; la distanza non può diventare negativa perché il lavoro abbia segno negativo."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=\\frac{4}{8}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4}{8}\\,\\mathrm m=\\frac12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B/D_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la forza anziché l’inversa della distanza; uno ignora il cambiamento; un quarto eleva al quadrato anche il coefficiente; il segno meno è quello del lavoro, non di D."
+        }
+      ],
+      "hints": [
+        "A energia fissata distanza e forza frenante sono inversamente proporzionali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la forza anziché l’inversa della distanza; uno ignora il cambiamento; un quarto eleva al quadrato anche il coefficiente; il segno meno è quello del lavoro, non di D.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7208,
+      "title": "L’effetto di un mezzo omesso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Con v=2 m/s e μ=1/5 si propone D=2 m. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "−1 m",
+          "2 m",
+          "0 m",
+          "1/2 m"
+        ],
+        "value": "1 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 1 m. Due metri sarebbero ottenuti usando mv² come energia iniziale, senza il mezzo; la proposta eccede quindi la distanza corretta di un metro."
+        },
+        {
+          "type": "formula",
+          "text": "D=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm m-1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte l’ordine; due ripete la proposta; zero accetta una corsa che dissiperebbe energia doppia rispetto a quella disponibile; un mezzo divide ancora lo scarto. Il modello va fermato al primo arresto."
+        }
+      ],
+      "hints": [
+        "Calcola D e mantieni l’ordine proposto meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 inverte l’ordine; due ripete la proposta; zero accetta una corsa che dissiperebbe energia doppia rispetto a quella disponibile; un mezzo divide ancora lo scarto. Il modello va fermato al primo arresto.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7209,
+      "title": "La radice dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Si conoscono μ e D. Quale formula dà v>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v=√(2μgD)",
+          "v=−√(2μgD)",
+          "v=2√(2μgD)",
+          "v=√(2μgD)/2",
+          "v=2μgD"
+        ],
+        "value": "v=√(2μgD)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando D=v²/(2μg) per il denominatore positivo otteniamo v²=2μgD. La radice positiva ha unità di velocità e restituisce la rapidità cercata. Non basta togliere il quadrato senza prendere una radice."
+        },
+        {
+          "type": "formula",
+          "text": "D=\\frac{v^2}{2\\mu g}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=2\\mu gD"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\sqrt{2\\mu gD}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è una rapidità; doppio e metà falliscono la sostituzione; 2μgD ha dimensioni di velocità al quadrato. Il segno della componente iniziale è stato fissato con l’asse, non ricavato dal solo bilancio energetico."
+        }
+      ],
+      "hints": [
+        "Isola v² e controlla sia la radice sia le unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il ramo negativo non è una rapidità; doppio e metà falliscono la sostituzione; 2μgD ha dimensioni di velocità al quadrato. Il segno della componente iniziale è stato fissato con l’asse, non ricavato dal solo bilancio energetico.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7210,
+      "title": "Scalare rapidità e coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Da A a B si impongono v_B=κ₁v_A e μ_B=κ₂μ_A, con fattori positivi e lo stesso g. Quanto vale D_B/D_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁² / κ₂",
+          "κ₁ / κ₂",
+          "κ₁² κ₂",
+          "κ₂ / κ₁²",
+          "κ₁ κ₂"
+        ],
+        "value": "κ₁² / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo quadrato iniziale prende κ₁²; il nuovo denominatore prende κ₂. Semplificando i dati di A e la costante 2g rimane il rapporto puro κ₁²/κ₂. La massa non compare perché già cancellata nel bilancio di ogni prova."
+        },
+        {
+          "type": "formula",
+          "text": "D_B=\\frac{(\\kappa_1v_A)^2}{2\\kappa_2\\mu_Ag}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=\\frac{\\kappa_1^2}{\\kappa_2}D_A"
+        },
+        {
+          "type": "formula",
+          "text": " D_B/D_A=\\frac{\\kappa_1^2}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ perde il quadrato, κ₁²κ₂ inverte l’effetto dell’attrito; κ₂/κ₁² rovescia gli stati; κ₁κ₂ sbaglia entrambe le dipendenze. Se κ₂=κ₁² la distanza rimane invariata."
+        }
+      ],
+      "hints": [
+        "Il fattore su v viene elevato al quadrato, quello su μ resta al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ perde il quadrato, κ₁²κ₂ inverte l’effetto dell’attrito; κ₂/κ₁² rovescia gli stati; κ₁κ₂ sbaglia entrambe le dipendenze. Se κ₂=κ₁² la distanza rimane invariata.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7211,
+      "title": "Energia quadrupla e resistenza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. A: v=2 m/s,μ=1/5. B: v=4 m/s,μ=2/5. Quanto vale D_B/D_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B l’energia da dissipare è quattro volte quella di A per una stessa massa, ma il modulo dell’attrito è doppio. La distanza risulta due volte maggiore: D_A=1 m e D_B=16/8=2 m."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B/D_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro considera soltanto v; un mezzo soltanto μ; otto moltiplica i due effetti invece di dividerli. Il fatto che B freni più intensamente non impedisce una corsa più lunga quando aumenta anche l’energia iniziale."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore energetico quattro per il fattore d’attrito due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro considera soltanto v; un mezzo soltanto μ; otto moltiplica i due effetti invece di dividerli. Il fatto che B freni più intensamente non impedisce una corsa più lunga quando aumenta anche l’energia iniziale.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7212,
+      "title": "Media di due spazi d’arresto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 2,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Due prove hanno uguale peso statistico: A con v=2 m/s,μ=1/5; B con v=4 m/s,μ=2/5. Qual è la media aritmetica delle due D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 m",
+          "3 m",
+          "3/4 m",
+          "1/2 m",
+          "2 m"
+        ],
+        "value": "3/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 1 e 2 m. La semisomma è 3/2 m, tra le due distanze. In questi dati particolari, anche gli ingressi medi v=3 m/s e μ=3/10 restituiscono 9/6=3/2 m; la coincidenza va riconosciuta senza scambiarla per una regola generale."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline D=\\frac{1+2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1+2}{2}\\,\\mathrm m=\\frac32\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D(3,3/10)=\\frac96\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac96\\,\\mathrm m=\\frac32\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Tre è la somma, 3/4 divide due volte, 1/2 è metà della prima uscita e due è solo B. La legge v²/μ non è lineare: per esempio a μ=1/5 fisso e v=2,4 m/s la media delle distanze è 5/2 m, mentre v medio3 darebbe 9/4 m."
+        }
+      ],
+      "hints": [
+        "Media prima le uscite; controlla perché qui gli ingressi medi coincidono.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è la somma, 3/4 divide due volte, 1/2 è metà della prima uscita e due è solo B. La legge v²/μ non è lineare: per esempio a μ=1/5 fisso e v=2,4 m/s la media delle distanze è 5/2 m, mentre v medio3 darebbe 9/4 m.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7213,
+      "title": "Il coefficiente per una corsa obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 3,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. A ha v_A=2 m/s,μ_A=1/5. In B si impone v_B=4 m/s e D_B=2D_A. Quanto vale μ_B/μ_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "D_A vale 1 m, quindi l’obiettivo è 2 m. Con il nuovo quadrato v_B²=16 m²/s² l’inversa dà μ_B=16/[2·10·2]=2/5. Rispetto a 1/5 è un raddoppio."
+        },
+        {
+          "type": "formula",
+          "text": "D_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_B=\\frac{v_B^2}{2gD_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_B=\\frac{16}{40}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{40}=\\frac25"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_B/\\mu_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare μ invariato darebbe 4 m; quadruplicarlo manterrebbe la distanza di 1 m. Il fattore due richiesto nel coefficiente compensa solo parte dell’energia iniziale quadrupla."
+        }
+      ],
+      "hints": [
+        "Imponi la distanza prima di risolvere per μ_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare μ invariato darebbe 4 m; quadruplicarlo manterrebbe la distanza di 1 m. Il fattore due richiesto nel coefficiente compensa solo parte dell’energia iniziale quadrupla.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7214,
+      "title": "Decodificare uno spazio prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 3,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Un display continuo adimensionale segue S=cD,c>0, senza offset. A con v=2 m/s,μ=1/5 dà S=3. B con μ=2/5 dà S=6. Quanto vale v_B>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento percorre 1 m, quindi c=3 m⁻¹. La nuova lettura equivale a D_B=2 m. Con μ_B=2/5, il prodotto 2μ_BgD_B vale 16 m²/s² e la radice positiva è 4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=6/c"
+        },
+        {
+          "type": "formula",
+          "text": "6/c=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=2\\mu_BgD_B"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è una lettura adimensionale e non una distanza in metri. Sedici è il quadrato della velocità, non la rapidità. Il controllo D_B=4²/[2(2/5)10]=2 m e S=3·2=6 verifica insieme taratura e fisica."
+        }
+      ],
+      "hints": [
+        "Ricava D_B dal display e solo dopo usa la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è una lettura adimensionale e non una distanza in metri. Sedici è il quadrato della velocità, non la rapidità. Il controllo D_B=4²/[2(2/5)10]=2 m e S=3·2=6 verifica insieme taratura e fisica.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7215,
+      "title": "Offset nella misura della frenata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 3,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Un display continuo adimensionale segue S=cD+d,c>0. A: v=2 m/s,μ=1/5,S=3. B: v=4 m/s,μ=2/5,S=5. C: μ=1/5,S=9. Quanto vale v_C>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m/s",
+          "2 m/s",
+          "3 m/s",
+          "5 m/s",
+          "8 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno distanze 1 e 2 m. La differenza delle letture dà c=2 m⁻¹ e poi d=1. La prova C percorre D_C=(9−1)/2=4 m; con μ=1/5 serve v_C²=16 m²/s², dunque v_C=4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{5-3}{2-1}\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{5-3}{2-1}\\,\\mathrm{m^{-1}}=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=3-2"
+        },
+        {
+          "type": "formula",
+          "text": "3-2=1"
+        },
+        {
+          "type": "formula",
+          "text": " D_C=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_C^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "A μ=1/5 le rapidità 2,3,5,8 m/s darebbero letture 3,11/2,27/2,33. Solo 4 m/s dà 9. Fare il rapporto delle letture senza togliere d o estrarre una radice dalla lettura grezza non ricostruisce D."
+        }
+      ],
+      "hints": [
+        "Trova c e d con due distanze note, poi risali da D_C a v_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A μ=1/5 le rapidità 2,3,5,8 m/s darebbero letture 3,11/2,27/2,33. Solo 4 m/s dà 9. Fare il rapporto delle letture senza togliere d o estrarre una radice dalla lettura grezza non ricostruisce D.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7216,
+      "title": "La rapidità legata al coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-braking-friction",
+      "difficulty": 3,
+      "prompt": "Un blocco classico di massa costante m>0 scivola su un piano orizzontale fisso nel laboratorio inerziale. Parte con componente +v,v>0, lungo l’asse x; poi non viene più spinto. Agiscono solo peso, normale e attrito secco, con coefficiente dinamico costante μ>0 e g=10 m/s² uniforme. Il contatto resta mantenuto e non c’è accelerazione verticale. D>0 è la distanza percorsa fino al primo arresto. Fra prove diverse si impone v=cμ, con c=10 m/s; μ è costante durante lo scorrimento di ogni prova. Si misura D=1 m. Quanto vale μ>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/5",
+          "2/5",
+          "1/10",
+          "6/5",
+          "−4/5"
+        ],
+        "value": "1/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo v=cμ nella legge dello spazio: D=c²μ²/(2μg). Poiché μ>0 possiamo cancellarne un fattore e ottenere D=[c²/(2g)]μ. Il coefficiente ha unità di lunghezza e vale 5 m, quindi μ=1/5 e v=2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "D=\\frac{c^2\\mu^2}{2\\mu g}"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{c^2}{2g}\\mu"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{c^2}{2g}=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac{1\\,\\mathrm m}{5\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1\\,\\mathrm m}{5\\,\\mathrm m}=\\frac15"
+        },
+        {
+          "type": "formula",
+          "text": " v=c\\mu"
+        },
+        {
+          "type": "formula",
+          "text": "c\\mu=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Non resta un quadratico dopo aver semplificato μ>0. 2/5 darebbe 2 m, 1/10 darebbe 1/2 m e 6/5 darebbe 6 m; −4/5 viola il dominio positivo. Il vincolo lega prove diverse e non rende μ dipendente dalla velocità durante una singola frenata."
+        }
+      ],
+      "hints": [
+        "Semplifica un fattore μ solo dopo aver usato il vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non resta un quadratico dopo aver semplificato μ>0. 2/5 darebbe 2 m, 1/10 darebbe 1/2 m e 6/5 darebbe 6 m; −4/5 viola il dominio positivo. Il vincolo lega prove diverse e non rende μ dipendente dalla velocità durante una singola frenata.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro dell’attrito dinamico",
+        "Bilancio fino al primo arresto",
+        "Spazio, radici e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "818a2d11ea23c9b2da72363703db5d434c343c8197b7e38a80fd6fad469b27fd",
+      "name": "horizontal-braking-friction-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ5MCIgdmlld0JveD0iMCAwIDY0MCAxNDkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+QXR0cml0byBmaW5vIGFsIHByaW1vIGFycmVzdG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IGRpYWdyYW1tYSBkZWxsZSBmb3J6ZSwgZGlzdGFuemEgZGkgdW4gbWV0cm8gZSBncmFmaWNvIHZlbG9jaXTDoCB0ZW1wbyBmaW5vIGEgdW4gc2Vjb25kbyBjb24gcHJvc2VjdXppb25lIGEgdmVsb2NpdMOgIHplcm8uIEZvcnplIGNpbnF1ZSBwaXhlbCBwZXIgbmV3dG9uOyBkaXN0YW56YSBkdWVjZW50b3F1YXJhbnRhIHBpeGVsIHBlciBtZXRybzsgdGVtcG8gZHVlY2VudG9xdWFyYW50YSBwaXhlbCBwZXIgc2Vjb25kbyBlIHZlbG9jaXTDoCBvdHRhbnRhIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDkwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxOTNhNDkiPjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNSI+MSDCtyBGb3J6ZSBkdXJhbnRlIGxvIHNjb3JyaW1lbnRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+RXNlbXBpbzogbSA9IDIga2c7IM68ID0gMS81OyBnID0gMTAgbS9zwrIuPC90ZXh0PjxjaXJjbGUgY3g9IjMwMCIgY3k9IjI0NSIgcj0iNyIgZmlsbD0iIzE5M2E0OSIvPjxwYXRoIGQ9Ik0zMDAgMjQ1VjE0NSIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMzAwIDI0NVYzNDUiIHN0cm9rZT0iI2JlNjI0OSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTMwMCAyNDVIMjgwIiBzdHJva2U9IiNiZTYyNDkiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjMzMCIgeT0iMTYwIj5OID0gMjAgTjwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjM1MCI+UCA9IDIwIE48L3RleHQ+PHRleHQgeD0iODAiIHk9IjIzNSI+ZiA9IDQgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDA1Ij5Gb3J6ZTogNSBweC9OLiBOZXNzdW5hIGZvcnphIG1vdHJpY2UuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0NTAiPlNjb3JyaW1lbnRvIHZlcnNvIGRlc3RyYSwgYXR0cml0byB2ZXJzbyBzaW5pc3RyYS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI1MzAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgSWwgYmxvY2NvIHBlcmNvcnJlIHVuIG1ldHJvPC90ZXh0PjxwYXRoIGQ9Ik04MCA2ODBINTQwIiBzdHJva2U9IiM3ZTk5OTIiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjEwMCIgeT0iNjIwIiB3aWR0aD0iNTAiIGhlaWdodD0iNjAiIGZpbGw9IiNjZGU0ZTYiIHN0cm9rZT0iIzE5M2E0OSIvPjxyZWN0IHg9IjM0MCIgeT0iNjIwIiB3aWR0aD0iNTAiIGhlaWdodD0iNjAiIGZpbGw9IiNlNmQ4YmMiIHN0cm9rZT0iIzE5M2E0OSIvPjxwYXRoIGQ9Ik0xMDAgNzEwSDM0ME0xMDAgNzAwVjcyME0zNDAgNzAwVjcyMCIgc3Ryb2tlPSIjMTkzYTQ5IiBmaWxsPSJub25lIi8+PHRleHQgeD0iODUiIHk9IjU5MCI+diA9IDIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iNTkwIj52ID0gMDwvdGV4dD48dGV4dCB4PSI4NSIgeT0iNzY1Ij54ID0gMDwvdGV4dD48dGV4dCB4PSIzMzAiIHk9Ijc2NSI+eCA9IDEgbTwvdGV4dD48dGV4dCB4PSIxOTAiIHk9IjcxNSI+IDwvdGV4dD48dGV4dCB4PSIxODUiIHk9IjgxMCI+RCA9IDEgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODU1Ij5EaXN0YW56YTogMjQwIHB4L20uIENvcnBpIHNjaGVtYXRpY2kuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iOTQ1IiBmb250LXNpemU9IjI1Ij4zIMK3IExhIHZlbG9jaXTDoCBub24gY2FtYmlhIHZlcnNvPC90ZXh0PjxwYXRoIGQ9Ik0xMDAgMTI0MFYxMDAwTTc1IDEyMTBINTQwIiBzdHJva2U9IiM3ZTk5OTIiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMDAgMTIxMFYxMDUwTDM0MCAxMjEwWiIgZmlsbD0iI2NkZTRlNiIvPjxwYXRoIGQ9Ik0xMDAgMTA1MEwzNDAgMTIxMEg1MDAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHRleHQgeD0iMjgiIHk9IjEwMDAiPnZfeCAobS9zKTwvdGV4dD48dGV4dCB4PSI2NSIgeT0iMTA2MCI+MjwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTIzNSI+MDwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjEyNTAiPjE8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxMjUwIj50IChzKTwvdGV4dD48dGV4dCB4PSIxNDUiIHk9IjExNjUiPmFyZWEgPSAxIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMDAiPlRlbXBvOiAyNDAgcHgvcy4gVmVsb2NpdMOgOiA4MCBweCBwZXIgbS9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTM0NSI+RHVyYW50ZSBpbCBtb3RvOiBhX3ggPSDiiJIyIG0vc8KyOyBhcnJlc3RvIGEgMSBzLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTM5MCI+RG9wbzogbmVzc3VuYSBzcGludGEsIGF0dHJpdG8gc3RhdGljbyByaWNoaWVzdG8gMC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0MzUiPkxhdm9ybyBk4oCZYXR0cml0byDiiJI0IEo7IGNhbG8gY2luZXRpY28gNCBKLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ3MCI+TOKAmWF0dHJpdG8gZGluYW1pY28gbm9uIHNpIHByb2x1bmdhIG9sdHJlIGzigJlhcnJlc3RvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
