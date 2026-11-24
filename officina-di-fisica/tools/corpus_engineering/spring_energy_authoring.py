@@ -85,11 +85,11 @@ def assemble(repo,source_ref):
         source_id=f'u2-spring-energy-{n:02}'
         target={'type':'choice','options':answer,'value':answer[CHOICES[n]]} if isinstance(answer,list) else {'type':'numeric','value':answer,'unit':UNITS[n],'tolerance':0}
         row={'id':'AR-'+source_id,'kind':'question','course':'C1','section':'Dinamica delle forze','order':4720+n,
-            'title':title,'version':1,'baseVersion':0,'skill':'C1-L005','prerequisites':['C1-L001','C1-L002','C1-L004','C1-L005'],'reuse':['C6'],
+            'title':title,'version':1,'baseVersion':0,'skill':'C1-L007','prerequisites':['C1-L001','C1-L002','C1-L005','C1-L006','C1-L007'],'reuse':['C6'],
             'family':'spring-energy','difficulty':1 if n<=4 else 2 if n<=12 else 3,
             'prompt':prompt,'answer':target,'blocks':[text(before),*law_steps(law),text(after)],
             'hints':[hint,'U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione.'],
-            'error':{'category':{2:'unità',3:'modello',4:'concetto',7:'calcolo',8:'calcolo',10:'modello',12:'modello',16:'modello'}.get(n,'algebra'),'message':after,'target':'C1-L005'},
+            'error':{'category':{2:'unità',3:'modello',4:'concetto',7:'calcolo',8:'calcolo',10:'modello',12:'modello',16:'modello'}.get(n,'algebra'),'message':after,'target':'C1-L007'},
             'coverage':['Energia potenziale elastica','Lavoro e area forza-deformazione'],'review':'DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN'}
         checksums={}
         if n in (1,3,7):
