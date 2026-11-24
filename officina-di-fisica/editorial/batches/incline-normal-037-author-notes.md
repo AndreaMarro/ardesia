@@ -11,3 +11,5 @@ Fonte 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U2-03.json: tutti i 16 originali
 Figura per03/07: geometria3–4–5, cos4/5 e sin3/5 già dati. m2 kg,g10: P20 N (100px), N16 N e P⊥16 N (80px ciascuna) alla stessa scala5px/N; versi perpendicolari opposti. Peso componente distinta, non forza aggiuntiva. Anteprima letta senza sovrapposizioni; non si deduce che la risultante parallela sia nulla.
 
 Prova tecnica con importatore canonico e SQLite temporaneo:16 bozze, seconda importazione0 scritture/16 invariate;991 pubblicati e versioni storiche invariati, SHA256 prima/dopo99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Assemblaggio ripetuto e binding esatti. Non è una firma scientifica indipendente.
+
+Finding indipendente di leggibilità: etichetta del peso spostata sotto l’estremità della linea del piano. Geometria, scale e valori invariati; rigenerati asset embedded e binding dei soli record con figura.
