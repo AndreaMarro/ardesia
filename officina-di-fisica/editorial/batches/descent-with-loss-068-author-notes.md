@@ -11,3 +11,5 @@ Letti individualmente16originali U2-06 fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf
 SVG01/03:guida conh1m,L2m alla scala120px/m,dislivello120px,lunghezza240px;proiezioneorizzontale120√3px resa con coordinata208circa (207.8460969082653),nonun calcolotrigonometricorichiestoallostudente. BarreunitàJ/kgalla scala30px/(J/kg):peso10→300px,perdita2→60px,cineticafinale8→240px. Ultimocaso distinto h1,L8,nessunafalsageometriaidentica:perdita8→240px,cinetica2→60px,stessascala,V2contro4m/s. Renderingcompleto letto,nessunasovrapposizione.
 
 Assembly/binding deterministici,importcanonico suSQLitetemporaneo16poi0/16;991pubblicati/versionistoricheinvariati,hash99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Soloprovetecnicheautore,nessunproprioPASSscientifico.
+
+Rilievo del revisore distinto B suID16: separati esplicitamente i due esiti alternativi V²=8 m²/s² e V²=24 m²/s² nel feedback, per evitare una lettura come notazione scientifica. Chiave, formule e modello immutati; package/binding16 rigenerati per nuova lettura indipendente.

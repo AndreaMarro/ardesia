@@ -68,7 +68,7 @@ TASKS=[
 ('Un’inclinazione fissata dal vincolo',SCENE+'Fra guide si impone h=L/2. Se V=4 m/s, quanto vale L in m?',2,
  'Sostituendo h=L/2 nel bilancio troviamo V²=gL−2cL=(g−2c)L. Il coefficiente g−2c=8 m/s² è positivo. Quindi L=16/8=2 m e h=1 m. Dopo avere eliminato la radice, il vincolo lascia un’equazione lineare in L.',
  r'V^2=(g-2c)L\qquad g-2c=8\,\mathrm{m/s^2}\qquad L=V^2/(g-2c)\qquad L=2\,\mathrm m\qquad h=1\,\mathrm m',
- 'Non si cerca una radice quadrata di L: la radice apparteneva alla rapidità e si è già eliminata. Quattro confonde una rapidità numerica con una lunghezza; uno e tre metri danno V²=8e24 m²/s², non16. Il vincolo rispetta h≤L e gh>cL per ogni L positivo, e la misura ne seleziona uno.', 'Sostituisci il rapporto geometrico prima di isolare L.')]
+ 'Non si cerca una radice quadrata di L: la radice apparteneva alla rapidità e si è già eliminata. Quattro confonde una rapidità numerica con una lunghezza; uno e tre metri danno V²=8 m²/s² e V²=24 m²/s², non16. Il vincolo rispetta h≤L e gh>cL per ogni L positivo, e la misura ne seleziona uno.', 'Sostituisci il rapporto geometrico prima di isolare L.')]
 CHOICES={2:1,3:0,4:0,7:0,9:0,10:0,15:2}
 UNITS={1:'m/s',5:'m',6:'m',8:'m/s',11:'1',12:'m/s',13:'1',14:'m',16:'m'}
 

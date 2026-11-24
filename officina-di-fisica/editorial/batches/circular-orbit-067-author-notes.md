@@ -11,3 +11,5 @@ Letti individualmente16originali U2-06 fonte5cfbdcb055ba3ba136f97fb56e997f06e6cf
 SVG01/03:primoesempioμ4,r1geometria100px/m,raggio100px;Vtangente2freccia100px a50px/(m/s);accelerazionecentripeta4freccia80px a20px/(m/s²). Secondopannellobilancioradiale. Confrontoμ4r1/r4 araggi40/160px alla scala40px/m diversa esplicita;V2/V1mostrateinproiezioniseparatecon100/50px,scala50px/(m/s),versiproiettaticonvenzionali dichiarati. Renderingcompletoletto,testi fuori circonferenze.
 
 Assembly/binding deterministici,importcanonicaletemporaneo16poi0/16;991pubblicati/versionistoricheinvariati,hash99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Soleprove tecnicheautore,nessunproprioPASSscientifico.
+
+Rilievo del revisore distinto B: nei path con due sottotracciati marker-end compariva soltanto sull’ultimo. Correzione locale: ogni forza/proiezione è ora un path separato con la propria punta. Coordinate, scale, testo e risposte immutati. Package e binding degli ID01/03 rigenerati; nuova lettura indipendente richiesta sui byte finali.
