@@ -1,0 +1,1134 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-apparent-weight-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8621,
+      "title": "Il dinamometro sostiene ciò che la spinta non sostiene",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 1,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Con m=3 kg e V=1 L, quanto vale T in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso reale è trenta N; il litro d’acqua escluso pesa dieci N e dà una spinta verso l’alto. Nell’equilibrio T+F_A=mg, quindi al filo restano da sostenere venti N. Non si sottrae massa al corpo: si sommano forze su di esso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6d3e9e4dfa6bb5ad27b123c6ea67ac21e3a909053e19dd7e981dacc6718347d0",
+          "text": "Corpo completamente immerso di volume1L e massa3kg:esempio cubico10×10×10cm,fronte40×40px alla scala4px/cm. Nell’acqua1kg/L,g10m/s²,peso30N,spinta10N,tensione20N. Le tre proiezioni verticali sono lunghe120,40,80px alla scala4px/N,distinta dalla geometria."
+        },
+        {
+          "type": "formula",
+          "text": "P=mg"
+        },
+        {
+          "type": "formula",
+          "text": " P=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_A=\\rho gV"
+        },
+        {
+          "type": "formula",
+          "text": " F_A=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T=P-F_A"
+        },
+        {
+          "type": "formula",
+          "text": " T=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Trenta N è il peso reale e dieci la sola spinta. Quaranta N sommerebbe il sostegno dell’acqua al peso anziché sottrarlo dal compito del filo. T è una forza misurata in N, non una massa in kg."
+        }
+      ],
+      "hints": [
+        "Disegna peso, spinta e tensione prima del bilancio verticale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta N è il peso reale e dieci la sola spinta. Quaranta N sommerebbe il sostegno dell’acqua al peso anziché sottrarlo dal compito del filo. T è una forza misurata in N, non una massa in kg.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8622,
+      "title": "L’unità di una lettura di tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 1,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Quale unità proposta esprime T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "kg",
+          "L",
+          "Pa",
+          "kg/L"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il dinamometro qui legge la forza di trazione del filo. Nel bilancio T=mg−ρgV entrambi i termini sono forze, quindi anche la differenza si esprime in newton. Una scala eventualmente graduata in kg richiederebbe una diversa convenzione di strumento, non usata qui."
+        },
+        {
+          "type": "formula",
+          "text": "[T]=[mg]"
+        },
+        {
+          "type": "formula",
+          "text": " [mg]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm N=1\\,\\mathrm{kg\\,m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "kg è massa, L volume, Pa pressione e kg/L densità. Nessuna di queste sostituisce il newton nella tensione. La minore lettura non significa minore massa del corpo, ma presenza di una seconda forza verso l’alto."
+        }
+      ],
+      "hints": [
+        "La lettura è una forza del filo, non il numero dei chilogrammi del corpo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg è massa, L volume, Pa pressione e kg/L densità. Nessuna di queste sostituisce il newton nella tensione. La minore lettura non significa minore massa del corpo, ma presenza di una seconda forza verso l’alto.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8623,
+      "title": "Il segno della spinta nel bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 1,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Quale formula dà T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T = (m − ρV) g",
+          "T = (m + ρV) g",
+          "T = mg",
+          "T = ρVg",
+          "T = 2(m − ρV) g"
+        ],
+        "value": "T = (m − ρV) g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliendo positivo verso l’alto, le forze sono+T,+ρgV e−mg. La loro somma è zero e isolando T si sottrae la spinta dal peso. Il dominio m>ρV assicura che il filo dall’alto possa fornire la forza richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6d3e9e4dfa6bb5ad27b123c6ea67ac21e3a909053e19dd7e981dacc6718347d0",
+          "text": "Bilancio verso l’alto:T+F_A−P=0. T20N e spinta10N si sommano al peso30N,non al contrario. Proiezioni separate dei vettori,non punti di applicazione nel disegno;ultimo pannello ricompone30N come20+10 con barre80+40px a4px/N."
+        },
+        {
+          "type": "formula",
+          "text": "T+\\rho gV-mg=0"
+        },
+        {
+          "type": "formula",
+          "text": " T=mg-\\rho gV"
+        },
+        {
+          "type": "formula",
+          "text": " T=(m-\\rho V)g"
+        },
+        {
+          "type": "text",
+          "text": "Il più attribuisce alla spinta il verso del peso; mg trascura l’acqua eρVg scambia la tensione con la spinta. Il doppio è arbitrario. Se m<ρV il corpo richiederebbe una forza verso il basso: il filo sospeso dall’alto non può esercitare tensione negativa."
+        }
+      ],
+      "hints": [
+        "Le due forze verso l’alto insieme devono eguagliare il peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il più attribuisce alla spinta il verso del peso; mg trascura l’acqua eρVg scambia la tensione con la spinta. Il doppio è arbitrario. Se m<ρV il corpo richiederebbe una forza verso il basso: il filo sospeso dall’alto non può esercitare tensione negativa.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8624,
+      "title": "Più massa con lo stesso volume escluso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 1,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. A ha m=3 kg e B m=4 kg, entrambi con V=1 L. Come cambia T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 30 N",
+          "Da 20 a 40 N",
+          "Da 20 a 80/3 N",
+          "Resta 20 N",
+          "Diventa 10 N"
+        ],
+        "value": "Da 20 a 30 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta resta dieci N, perché il volume escluso non cambia. Il peso passa da trenta a quaranta N; sottraendo lo stesso contributo d’acqua si ottengono tensioni venti e trenta N. Si confrontano corpi diversi, non l’aggiunta di massa a un materiale a stato e volume invariati senza precisazioni."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=(30-10)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=(40-10)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=30\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta dimentica la spinta;80/3 scala direttamente la tensione col rapporto delle masse4/3, ignorando il termine sottratto fisso. Venti ignora la massa nuova e dieci assegna alla massa maggiore l’effetto opposto."
+        }
+      ],
+      "hints": [
+        "Tieni invariati i10 N di spinta e cambia soltanto il peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quaranta dimentica la spinta;80/3 scala direttamente la tensione col rapporto delle masse4/3, ignorando il termine sottratto fisso. Venti ignora la massa nuova e dieci assegna alla massa maggiore l’effetto opposto.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8625,
+      "title": "La massa vera da una tensione apparente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Si leggono T=20 N e si conosce V=1 L. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla tensione divisa per g si ottengono due kg, ma non sono tutta la massa del corpo: l’acqua ne sostiene l’equivalente di un altro kg. L’inversa m=T/g+ρV dà tre kg, maggiori del kg d’acqua spostato."
+        },
+        {
+          "type": "formula",
+          "text": "m=T/g+\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " T/g=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho V=1\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=3\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Due kg confonderebbero T/g con la massa vera. Sottrarre ancora la massa spostata darebbe un kg e una tensione nulla, non venti N. La massa non dipende dal fatto che lo strumento venga letto in acqua: è la lettura della forza a cambiare."
+        }
+      ],
+      "hints": [
+        "Aggiungi a T/g la massa del liquido escluso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due kg confonderebbero T/g con la massa vera. Sottrarre ancora la massa spostata darebbe un kg e una tensione nulla, non venti N. La massa non dipende dal fatto che lo strumento venga letto in acqua: è la lettura della forza a cambiare.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8626,
+      "title": "Il volume dalla differenza di forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Si conoscono m=3 kg e T=20 N. Quanto vale V in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso reale è trenta N. La differenza trenta meno venti deve essere la spinta, dieci N. Dividendo per il peso dell’acqua per litro, dieci N/L, si ottiene un litro. Per un volume positivo e tensione positiva serve0<T<mg, verificato dai dati."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=mg-T"
+        },
+        {
+          "type": "formula",
+          "text": " F_A=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{mg-T}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " V=1\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Usare T come spinta darebbe due litri e non riprodurrebbe la tensione assegnata. Invertire la differenza darebbe volume negativo. Il volume è quello esterno impermeabile completamente immerso, non la quantità d’acqua eventualmente contenuta nel corpo."
+        }
+      ],
+      "hints": [
+        "Ricava la spinta dal peso reale meno la tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare T come spinta darebbe due litri e non riprodurrebbe la tensione assegnata. Invertire la differenza darebbe volume negativo. Il volume è quello esterno impermeabile completamente immerso, non la quantità d’acqua eventualmente contenuta nel corpo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8627,
+      "title": "Stessa massa, più volume spostato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. A ha m=3 kg,V_A=1 L. B mantiene m=3 kg e ha V_B=2 L. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/3",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso resta trenta N, mentre la spinta aumenta da dieci a venti N. Le tensioni sono venti e dieci N, dunque il rapporto è un mezzo. Entrambi i corpi sono più densi dell’acqua: anche con due litri la massa spostata è solo due kg."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la spinta invece della tensione; un terzo non è10/20. Uno ignora il volume e un segno negativo violerebbe il dominio del filo teso. Aumentare ancora V oltre3 L farebbe perdere il modello di sospensione positiva, non proseguire a tensioni negative."
+        }
+      ],
+      "hints": [
+        "Sottrai ciascuna spinta dallo stesso peso prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la spinta invece della tensione; un terzo non è10/20. Uno ignora il volume e un segno negativo violerebbe il dominio del filo teso. Aumentare ancora V oltre3 L farebbe perdere il modello di sospensione positiva, non proseguire a tensioni negative.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8628,
+      "title": "Lo scarto di una somma al posto della differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Per m=3 kg,V=1 L si propone T=40 N. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 N",
+          "−20 N",
+          "40 N",
+          "0 N",
+          "10 N"
+        ],
+        "value": "20 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è30−10=20 N. La proposta40 N ha sommato peso e spinta, pur essendo opposte nel bilancio. Lo scarto nell’ordine richiesto è40−20=+20 N."
+        },
+        {
+          "type": "formula",
+          "text": "T=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il meno inverte l’ordine; quaranta ripete la proposta; zero la accetta. Dieci è la spinta, non lo scarto. La proposta supera perfino il peso reale, mentre una spinta positiva deve ridurre il carico richiesto al filo in questa configurazione."
+        }
+      ],
+      "hints": [
+        "Il sostegno dell’acqua si sottrae, non si aggiunge al peso richiesto al filo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno inverte l’ordine; quaranta ripete la proposta; zero la accetta. Dieci è la spinta, non lo scarto. La proposta supera perfino il peso reale, mentre una spinta positiva deve ridurre il carico richiesto al filo in questa configurazione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8629,
+      "title": "Isolare m senza confondere unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Quale formula isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = T/g + ρV",
+          "m = T/g − ρV",
+          "m = gT + ρV",
+          "m = T + ρV",
+          "m = 2(T/g + ρV)"
+        ],
+        "value": "m = T/g + ρV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo T=(m−ρV)g per g e poi aggiungiamoρV. Ogni addendo della formula m=T/g+ρV è una massa: forza su accelerazione e densità per volume. La positività di T rende automaticamente m>ρV."
+        },
+        {
+          "type": "formula",
+          "text": "T/g=m-\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " m=T/g+\\rho V"
+        },
+        {
+          "type": "text",
+          "text": "Il meno toglierebbe due volte il sostegno dell’acqua. gT non è una massa e T+ρV somma una forza a una massa. Il fattore due cambia il peso ricostruito senza derivare dall’equazione."
+        }
+      ],
+      "hints": [
+        "Dividi prima per g, poi sposta l’addendo−ρV.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno toglierebbe due volte il sostegno dell’acqua. gT non è una massa e T+ρV somma una forza a una massa. Il fattore due cambia il peso ricostruito senza derivare dall’equazione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8630,
+      "title": "Scalare una differenza di masse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. B usa m_B=κ₁m_A e V_B=κ₂V_A, con fattori positivi e m_B>ρV_B. Poniamo U=m_A e W=ρV_A, entrambi masse. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ U − κ₂ W) / (U − W)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₂ U − κ₁ W) / (U − W)",
+          "(U − W) / (κ₁ U − κ₂ W)"
+        ],
+        "value": "(κ₁ U − κ₂ W) / (U − W)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la tensione èg(U−W); in B èg(κ₁U−κ₂W). Si cancella soltanto g, non si trasformano le differenze in quozienti dei fattori. Le differenze sono positive in entrambi gli stati per ipotesi."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=g(U-W)"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=g(\\kappa_1U-\\kappa_2W)"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{T_B}{T_A}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1U-\\kappa_2W}{U-W}"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente e il prodotto dei soli fattori perdono la sottrazione; scambiareκ₁ eκ₂ modifica quali dati sono cambiati. Il reciproco inverte B/A. Se entrambi i fattori coincidono, tutta la tensione scala con il loro fattore comune."
+        }
+      ],
+      "hints": [
+        "Conserva intera la differenza m−ρV in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quoziente e il prodotto dei soli fattori perdono la sottrazione; scambiareκ₁ eκ₂ modifica quali dati sono cambiati. Il reciproco inverte B/A. Se entrambi i fattori coincidono, tutta la tensione scala con il loro fattore comune.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8631,
+      "title": "Più massa ma ancora meno tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. A ha m=3 kg,V=1 L. B ha m=4 kg,V=3 L. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "4/3",
+          "3",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha peso30 N e spinta10 N, quindi T20 N. B ha peso40 N e spinta30 N, quindi T10 N. Il rapporto è un mezzo: conta la differenza dei contributi, non soltanto la massa maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; quattro terzi segue solo la massa, tre solo il volume. Uno scambia l’aumento di peso con un’identica tensione. I dati B rispettano4 kg>3 kg di acqua spostata e il filo resta teso."
+        }
+      ],
+      "hints": [
+        "Calcola peso e spinta in ogni prova prima di confrontare T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; quattro terzi segue solo la massa, tre solo il volume. Uno scambia l’aumento di peso con un’identica tensione. I dati B rispettano4 kg>3 kg di acqua spostata e il filo resta teso.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8632,
+      "title": "Media delle letture e linearità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 2,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. A ha m=3 kg,V=1 L; B m=4 kg,V=3 L. Qual è la media aritmetica delle due T con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 N",
+          "30 N",
+          "15/2 N",
+          "10 N",
+          "20 N"
+        ],
+        "value": "15 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le tensioni sono20 e10 N. La semisomma vale15 N. Qui, conρ e g fissi, anche gli ingressi medi m=7/2 kg e V=2 L danno T=(7/2−2)·10=15 N: la relazione è lineare nei due ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline T=\\frac{20+10}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=15\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Trenta è la somma;15/2 divide ancora e dieci o venti ripetono una singola prova. La coincidenza con gli ingressi medi è giustificata dai coefficienti fissi, non una regola generale per qualsiasi modello con rapporti o prodotti."
+        }
+      ],
+      "hints": [
+        "Calcola la semisomma e riconosci perché qui la linearità la conserva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta è la somma;15/2 divide ancora e dieci o venti ripetono una singola prova. La coincidenza con gli ingressi medi è giustificata dai coefficienti fissi, non una regola generale per qualsiasi modello con rapporti o prodotti.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8633,
+      "title": "Il volume per dimezzare la tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 3,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. A ha m_A=3 kg,V_A=1 L. B deve avere m_B=4 kg e T_B=T_A/2. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "2",
+          "1/2",
+          "4"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A legge20 N e il bersaglio B è10 N. Dei40 N di peso B, l’acqua deve sostenerne30; con dieci N per litro occorrono3 L. Il rapporto al litro iniziale è tre e il corpo conserva densità maggiore dell’acqua."
+        },
+        {
+          "type": "formula",
+          "text": "T_B=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho gV_B=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=3\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il rapporto; due darebbe T20 N, non10. Un mezzo segue la tensione senza invertire il bilancio e quattro raggiungerebbe T0, fuori dal filo teso richiesto. Il bersaglio va verificato insieme al dominio."
+        }
+      ],
+      "hints": [
+        "Ricava la spinta che manca al bersaglio di tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il rapporto; due darebbe T20 N, non10. Un mezzo segue la tensione senza invertire il bilancio e quattro raggiungerebbe T0, fuori dal filo teso richiesto. Il bersaglio va verificato insieme al dominio.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8634,
+      "title": "Tarare una lettura ridotta dall’acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 3,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Un display continuo adimensionale segue S=qT,q>0,senza offset. A con m=3 kg,V=1 L dà S=60. B con V=3 L dà S=30. Quanto vale m_B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione A20 N fissa q=3 N⁻¹. B indica10 N; il suo volume spostato equivale a3 kg d’acqua. La massa vera èT/g+ρV=1+3=4 kg, non il solo kg corrispondente alla tensione."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=T_B/g+\\rho V_B"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta è una lettura pura, non30 N. Il valoreT/g trascura la massa d’acqua equivalente; il peso reale B è40 N e supera la tensione di30 N, come richiede il suo volume. Sostituendo si ricostruisce S30."
+        }
+      ],
+      "hints": [
+        "Decodifica T e poi aggiungiρV alla massa T/g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta è una lettura pura, non30 N. Il valoreT/g trascura la massa d’acqua equivalente; il peso reale B è40 N e supera la tensione di30 N, come richiede il suo volume. Sostituendo si ricostruisce S30.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8635,
+      "title": "Due riferimenti per ricostruire la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 3,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Un display continuo adimensionale segue S=qT+b,q>0. A:m=3 kg,V=1 L,S=41. B:m=4 kg,V=3 L,S=21. C:V=1 L,S=61. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kg",
+          "3 kg",
+          "5 kg",
+          "2 kg",
+          "6 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le tensioni note sono20 e10 N. Le differenze−20 nella lettura e−10 N nella forza danno q=2 N⁻¹; b=1. C indica(61−1)/2=30 N. La massa è30/10+1=4 kg, aggiungendo il kg di liquido spostato."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=30\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "A V_C=1 L, masse3,5,2,6 kg produrrebbero tensioni20,40,10,50 N e letture41,81,21,101. Solo4 kg ricostruisce61. Le due differenze di taratura vanno prese nello stesso ordine per mantenere q positivo."
+        }
+      ],
+      "hints": [
+        "Rimuovi offset e guadagno prima dell’inversa per la massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A V_C=1 L, masse3,5,2,6 kg produrrebbero tensioni20,40,10,50 N e letture41,81,21,101. Solo4 kg ricostruisce61. Le due differenze di taratura vanno prese nello stesso ordine per mantenere q positivo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-apparent-weight-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e peso apparente",
+      "order": 8636,
+      "title": "Un vincolo di densità del corpo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "apparent-weight",
+      "difficulty": 3,
+      "prompt": "Un corpo rigido, chiuso e impermeabile di massa m>0 e volume esterno V>0 è sospeso dall’alto a un dinamometro tramite filo verticale ideale. Corpo e acqua sono fermi, senza contatti con pareti o fondo. L’acqua ha densità uniforme ρ=1 kg/L e g=10 m/s². Si trascurano aria, capillarità e volume del filo. Si impone m>ρV, così la tensione T>0 letta dal dinamometro è diretta verso l’alto. Il peso reale resta mg. Fra prove si possono usare corpi diversi. Fra corpi si impone m=cV, con c=3 kg/L, maggiore diρ. Si misura T=20 N. Quanto vale V in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nella differenza si ottiene T=(c−ρ)gV. La differenza di densità è2 kg/L e il coefficiente vale20 N/L. Venti N diviso venti N/L dà1 L; la massa è3 kg e il filo resta teso."
+        },
+        {
+          "type": "formula",
+          "text": "T=(c-\\rho)gV"
+        },
+        {
+          "type": "formula",
+          "text": " (c-\\rho)g=20\\,\\mathrm{N/L}"
+        },
+        {
+          "type": "formula",
+          "text": " V=1\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " m=3\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Non compare un quadrato: m eρV sono addendi lineari in V. Se c≤ρ il modello di tensione positiva non sarebbe compatibile con questo vincolo; qui c>ρ garantisce una soluzione positiva unica. Il vincolo riguarda corpi diversi, non una massa che varia mentre si immerge lo stesso corpo."
+        }
+      ],
+      "hints": [
+        "Raccogli V nella differenza dopo aver sostituito m=cV.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non compare un quadrato: m eρV sono addendi lineari in V. Se c≤ρ il modello di tensione positiva non sarebbe compatibile con questo vincolo; qui c>ρ garantisce una soluzione positiva unica. Il vincolo riguarda corpi diversi, non una massa che varia mentre si immerge lo stesso corpo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Equilibrio con tensione e spinta",
+        "Massa vera e lettura del dinamometro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6d3e9e4dfa6bb5ad27b123c6ea67ac21e3a909053e19dd7e981dacc6718347d0",
+      "name": "apparent-weight-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTUwMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODJkNDIiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+VGVuc2lvbmUgZSBzcGludGEgc29zdGVuZ29ubyBpbnNpZW1lIGlsIHBlc288L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5VbiBjb3JwbyBkaSBtYXNzYSB0cmUgY2hpbG9ncmFtbWkgZSB2b2x1bWUgdW4gbGl0cm8gw6ggY29tcGxldGFtZW50ZSBpbW1lcnNvIGluIGFjcXVhLCBzb3NwZXNvIGRhbGwnYWx0by4gUGVzbyB0cmVudGEgbmV3dG9uIHZlcnNvIGlsIGJhc3NvLCBzcGludGEgZGllY2kgZSB0ZW5zaW9uZSB2ZW50aSB2ZXJzbyBsJ2FsdG8uIFByb2llemlvbmkgZGVpIHZldHRvcmkgZSBiYXJyZSBzZXBhcmF0ZSB2ZXJpZmljYW5vIGlsIGJpbGFuY2lvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MDAiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIElsIGNvcnBvIHJlc3RhIGNvbXBsZXRhbWVudGUgaW1tZXJzbzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODQiPm0gPSAzIGtnLCBWID0gMSBMOyBhY3F1YSBhIDEga2cvTC48L3RleHQ+CjxyZWN0IHg9IjgwIiB5PSIyMzUiIHdpZHRoPSI0NjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjYjVkY2YxIi8+PHBhdGggZD0iTTY1IDIzNUg1NTUiIHN0cm9rZT0iIzI4N2FhYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz4KPHBhdGggZD0iTTIwMCAxMjBWMTYwTTIwMCAyMDVWMjgwIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE4NSIgeT0iMTYwIiB3aWR0aD0iMzAiIGhlaWdodD0iNDUiIHJ4PSI2IiBmaWxsPSIjZGJlNWU2IiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxODAiIHk9IjI4MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTliYjcwIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNjAiIHk9IjE4NiI+RGluYW1vbWV0cm86IFQgPSAyMCBOLjwvdGV4dD48dGV4dCB4PSIyODAiIHk9IjMwNiI+Q3VibzogMTAgw5cgMTAgw5cgMTAgY20uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDQ2Ij5Gcm9udGUgNDAgw5cgNDAgcHgsIHNjYWxhIGdlb21ldHJpY2EgNCBweC9jbS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4NCI+RmlsbyBpZGVhbGU7IG5lc3N1biBjb250YXR0byBjb24gZm9uZG8gbyBwYXJldGkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNTI0SDYwOCIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjU3NCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIFByb2lldHRhIGxlIHRyZSBmb3J6ZSB2ZXJ0aWNhbGk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjYxNCI+ZyA9IDEwIG0vc8KyOyBvZ25pIGZyZWNjaWEgaGEgc2NhbGEgNCBweC9OLjwvdGV4dD4KPHBhdGggZD0iTTEwMCA4NTBWNzcwIiBzdHJva2U9IiM2YzZlYWEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0zMDAgODUwVjgxMCIgc3Ryb2tlPSIjMjM3Yjk4IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNNTAwIDc3MFY4OTAiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjU1IiB5PSI3MzQiPlQgPSAyMCBOLjwvdGV4dD48dGV4dCB4PSIyNDUiIHk9Ijc3NCI+Rl9BID0gMTAgTi48L3RleHQ+PHRleHQgeD0iNDQyIiB5PSI5MzQiPlAgPSAzMCBOLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk5NCI+THVuZ2hlenplOiA4MCBweCwgNDAgcHggZSAxMjAgcHguPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDMwIj5Tb25vIHByb2llemlvbmkgc2VwYXJhdGUsIG5vbiBwdW50aSBkaSBhcHBsaWNhemlvbmUuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTA3MEg2MDgiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMTIwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+My4gUmljb21wb25pIGzigJllcXVpbGlicmlvPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjExODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzkyOTRjNCIvPjxyZWN0IHg9IjIzMCIgeT0iMTE4MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjODRjN2ViIi8+PHRleHQgeD0iMzEwIiB5PSIxMjA4Ij5UICsgRl9BID0gMzAgTi48L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMTI2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2NmOTk4MyIvPjx0ZXh0IHg9IjMxMCIgeT0iMTI4OCI+UCA9IDMwIE4uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTM1MCI+VCA9IFAg4oiSIEZfQSA9IDMwIE4g4oiSIDEwIE4gPSAyMCBOLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM5NCI+TGUgYmFycmUgdXNhbm8gYW5jb3JhIDQgcHgvTi48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NDAiPklsIHBlc28gcmVhbGUgcmVzdGEgMzAgTjsgbGEgbWFzc2EgcmVzdGEgMyBrZy48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NzQiIGZvbnQtc2l6ZT0iMTgiPm0gJmd0OyDPgVY6IGlsIGZpbG8gZGFsbOKAmWFsdG8gbWFudGllbmUgdGVuc2lvbmUgcG9zaXRpdmEuPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}
