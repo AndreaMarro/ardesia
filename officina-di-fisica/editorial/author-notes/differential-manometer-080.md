@@ -24,3 +24,5 @@ Acqua ferma omogeneaρ1000kg/m³,g10m/s²,gas di peso trascurabile,capillarità 
 |16|p₁=aΔh,a5kPa/cm; b=ρg=1/10kPa/cm,p₂=(a−b)Δh,98/(49/10)=20cm.|
 
 SVG XML e rendering completo letti:10px/cm,interfaccey420 e220→20cm,quota comuneA/B420. Gas1p100 e gas2p98; solo la differenza2kPa rappresentata con barra200px a100px/kPa,non moduli assoluti troncati. Preview canonica finale48/48 su1440/768/320; import temporaneo16 poi0 nuovi/16 invariati,991 pubblicati immutati e nessun live head. Nessun CSS/gate/registro modificato. Le verifiche sono tecniche, non approvazione scientifica.
+
+Fix su rilievo del revisore distinto in08009: nel prompt simbolico il distrattoreρgΔh−p₂ non è necessariamente negativo (p₂1kPa,salto2kPa lo rendono+1kPa,mentre p₁ corretto3kPa). Feedback ora «cambiare l’ordine non ricostruisce p₁». Solo feedback/error.message e binding09 rigenerati,nessuna formula/chiave/figura cambiata. Preview fresca48/48 con exit0 e import tecnico16→0/16; firma scientifica riservata al revisore separato.
