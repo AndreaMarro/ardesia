@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u3-differential-manometer-01",
+      "sourceSha256": "9a584191aefe8423d1c3573c20d9a05da4b24621ff9e6a3cd09a83ac2d997d7c",
+      "candidateSha256": "4cd235dc8df7b3e230cd4b80aa3a4bf69da209e9b6a8955aa0b6f14810dcb0b3",
+      "reviewedSignature": "882ae8932a0c8d7e3d8b34f96c8b1a2cd773b49b024b4b5f0298a49a8b5443cd",
+      "assetChecksums": {
+        "differential-manometer-progressive.svg": "d57feb00b69e5ef499b70fd5ad0d081cf819f6d9b2aae80731d91baacbcfb434"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "98",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Si sale dalla superficie1bassa a2alta: p2=p1−ρgΔh.20cm=1/5m;salto1000·10/5Pa=2000Pa=2kPa;p2100−2=98kPa.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "Somma102kPa segnoerrato,2kPasolo salto; nessuna nuova atmosfera.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Si sale dalla superficie1bassa a2alta: p2=p1−ρgΔh.20cm=1/5m;salto1000·10/5Pa=2000Pa=2kPa;p2100−2=98kPa.",
+      "scientificAssetReview": "XML e rendering completo letti: interfaccia1y420,2y220,dislivello200px per20cm a10px/cm;A/B allastessaquota420nel liquidoconnesso,p_A=p_B. Barra delsolo salto200px per2kPaa100px/kPa,esplicitamente nonp1/p2assolute troncate. Conversione1/5m→2000Pa→2kPa e verso sottrattivo coerenti.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-02",
+      "sourceSha256": "d45bf9a6d95198dfdc0111b0cd835e228c26be07b33af3d753890676e41a2825",
+      "candidateSha256": "bed4fd4976c97f47cc0778439df1902a10b81b5ac1d45c830e518e878bf61a92",
+      "reviewedSignature": "76123da1ff98863d9281a79ff2205b4e5d137a892492db277ee87b8b62d77b07",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "kPa",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ρgΔh ha kg/(m·s²),cioè Pa. kPa=1000Pa,unica pressione nelle alternative; riferimento assoluto non cambia unità.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "kgmassa,mlunghezza,stempo,kg/m³densità:nessuna pressione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρgΔh ha kg/(m·s²),cioè Pa. kPa=1000Pa,unica pressione nelle alternative; riferimento assoluto non cambia unità.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-03",
+      "sourceSha256": "7c64b24391ab3442832fca885e9a443e11754f7f4167bbd87667852b9ecb20a6",
+      "candidateSha256": "d3034642ad13e5c650fc769da48e52f113e82c709fb86c800f15d34718ef984d",
+      "reviewedSignature": "837a63b8909b7ddfbdba7c1e2c1885a737761ed75268e414906e7cda68d6e180",
+      "assetChecksums": {
+        "differential-manometer-progressive.svg": "d57feb00b69e5ef499b70fd5ad0d081cf819f6d9b2aae80731d91baacbcfb434"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "p₂=p₁−ρgΔh",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Alla quota bassa nel ramo2 p=p2+ρgΔh=p1;isolando p2 compare il meno. Conp1>ρgΔh resta p2>0.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "Più inverte salita,solo salto non assoluta,doppio/metà spuri.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Alla quota bassa nel ramo2 p=p2+ρgΔh=p1;isolando p2 compare il meno. Conp1>ρgΔh resta p2>0.",
+      "scientificAssetReview": "XML e rendering completo letti: interfaccia1y420,2y220,dislivello200px per20cm a10px/cm;A/B allastessaquota420nel liquidoconnesso,p_A=p_B. Barra delsolo salto200px per2kPaa100px/kPa,esplicitamente nonp1/p2assolute troncate. Conversione1/5m→2000Pa→2kPa e verso sottrattivo coerenti.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-04",
+      "sourceSha256": "f9a2f0faaacaaec6f1525ebc5a427df0058c918e16e6f00830cd37036b3110f4",
+      "candidateSha256": "389a02847fe79a777a629282bf49fb8ee3748c213e9e879d70732ae0b6836f90",
+      "reviewedSignature": "0c3370ea85f31e0f921692b384f00b9f0f03e9b3be7be75c572a9375a59641d5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 98 a 78 kPa",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Salto fisso2kPa:100→80kPa dà98→78kPa. Differenza−20,non fattore4/5 sull’interauscita.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "392/5è98·4/5affineerrato,82somma il salto,98ignora cambiamento,zerononpositivo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Salto fisso2kPa:100→80kPa dà98→78kPa. Differenza−20,non fattore4/5 sull’interauscita.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-05",
+      "sourceSha256": "d3c1d5bcf3232684e3db70fd67542e529d18df70865bde9d231a252bfececb43",
+      "candidateSha256": "73f8b2c4f1a519534b318230edee6cffb4c2d53455501119efd6c5b08ede7b8f",
+      "reviewedSignature": "f69953644d369b1a20f473078124d8a8d68388afde14aa79ce137f7c453f52b5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Inversa p1=p2+salto=98+2=100kPa,scendendo si aggiunge pressione.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "96kPasottrae duevolte,atmosfera e peso gas non necessari.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Inversa p1=p2+salto=98+2=100kPa,scendendo si aggiunge pressione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-06",
+      "sourceSha256": "fc0329b5718fb0722034a9d6f3e49c6e2d1f16fafc1bb41e704c39e2f24ef306",
+      "candidateSha256": "dcddbbf048f51fdf1aadf1a273d383c11b309c962034f1bf7b1671c496503404",
+      "reviewedSignature": "20e50b714af2d2cd590decb16ba13109a7fae1a60cf984adbb2f85282a0e3b69",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Differenza2kPa2000Pa;Δh2000/(10000Pa/m)=1/5m=20cm.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "2ènumero del salto in kPa;1/5unità metri,noncm;segnoΔhpositivo richiede p1>p2.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Differenza2kPa2000Pa;Δh2000/(10000Pa/m)=1/5m=20cm.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-07",
+      "sourceSha256": "cfb4f1617fea98533f8b3c677e357312ea7ef5fa2667a508459a0ac386e1181f",
+      "candidateSha256": "fa9b0575da3f7cabc8cc47206dfbabc893a6e7bb714c3ce8efa130c915a18f53",
+      "reviewedSignature": "c053706815ef722cc8a3d26b2e0ab4f2b2836d075a462828acbc7f273f55f3a8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "99/98",
+      "dimension": {},
+      "manualArithmetic": "ConΔh10cm,salto1kPa,p2B99kPa;rapporto99/98>1,non dimezzamento della pressione assoluta.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "98/99reciproco,1/2e2seguonosoltantoΔh,1/98incrementorelativo nonrapporto finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ConΔh10cm,salto1kPa,p2B99kPa;rapporto99/98>1,non dimezzamento della pressione assoluta.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-08",
+      "sourceSha256": "1fa765ae91beeb1c6f278c8833ce63b4754996c2f1b53f17386956c970c554b9",
+      "candidateSha256": "0f828fede6a2999ce5d8e455ccee735f643c897cc0d8f6837cac5ad67938e566",
+      "reviewedSignature": "25294ab90043af816fb8db8f6b597897263a864309c25cd1dfae245fd2fd7558",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "98",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Proposta196 meno corretta98=+98kPa; proposta>p1 incoerente anche col verso.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "−98ordineinverso,196proposta,0accetta,49doppia metà.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta196 meno corretta98=+98kPa; proposta>p1 incoerente anche col verso.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-09",
+      "sourceSha256": "b9a65721d76fb92347b4ee75fa320a4dd4f85d246b7f5ffb5c8c8b95904af2b7",
+      "candidateSha256": "b5e595be9f6e89c18837d8a76e94f26e7ab0a8785a6393c7a7a1cd72df9c7b02",
+      "reviewedSignature": "c9fd036badffe22343b50ee4551f225d6d27bd7fa39edcc2ef44dc135d1cf1ce",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "p₁=p₂+ρgΔh",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "AggiungereρgΔh ad entrambi imembri: p1=p2+ρgΔh. Il distrattoreρgΔh−p2 non isola p1,ma non ha sempre segno negativo. Controesempio p2=1,salto2,p1=3kPa: distrattore+1kPa.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. Fix finaleae4c2c4 riletto: nessun segno universale assegnato al distrattore nel quesito simbolico. ",
+      "distractors": "Sottrazione ripetuta e ordineinvertito nonisolano p1;2e1/2spuri. Segno del distrattore invertito dipende dai dati,non è un criterio universale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. AggiungereρgΔh ad entrambi imembri: p1=p2+ρgΔh. Il distrattoreρgΔh−p2 non isola p1,ma non ha sempre segno negativo. Controesempio p2=1,salto2,p1=3kPa: distrattore+1kPa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-10",
+      "sourceSha256": "b0a261768410a9b0674832c227594dc18b4e33c14f906519372d0067065be6f8",
+      "candidateSha256": "fca450a27fdbb6e8caff2e47afaa9dfe1e4b8fe1f790618cb3492a28fab5ca5f",
+      "reviewedSignature": "cd710ca91a30fa9a88c4783b1c3b3438ddc9eb3cfef4e9baf2e745b3cd6d8841",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "P_B / P_A",
+      "dimension": {},
+      "manualArithmetic": "P_A=p1A−ρgΔhA e P_B=κ1p1A−ρgκ2ΔhA sono positivi per dominio. R=P_B/P_A,non quoziente dei fattori. Perκ1=κ2=κ,R=κ.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "κ1/κ2eprodotto perdono differenza,reciprocoscambiaA/B,duefattoreestraneo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. P_A=p1A−ρgΔhA e P_B=κ1p1A−ρgκ2ΔhA sono positivi per dominio. R=P_B/P_A,non quoziente dei fattori. Perκ1=κ2=κ,R=κ.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-11",
+      "sourceSha256": "bc6778e6a572a3dbb239efffcfebc5cebcd788425e72f8411a3d2d61f0b0bdfb",
+      "candidateSha256": "79ea27345c0071ba256de33766f70a83dfc3fe83f2054eaa3f394f30ac7b38ca",
+      "reviewedSignature": "d85b2a28e40c2a7439715e69af2989d0be4a05f7c05d040c06b9197c952146be",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "79/98",
+      "dimension": {},
+      "manualArithmetic": "A100−2=98,B80−1=79kPa;rapporto79/98esatto.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "98/79inverso,4/5solop1,1/2soloΔh,79uscita invece rapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A100−2=98,B80−1=79kPa;rapporto79/98esatto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-12",
+      "sourceSha256": "afefb7dfacdd0ec69689f0bbae76824a54149cb1ed385a44d35dd932184c2fc3",
+      "candidateSha256": "0c6ee83d9447923dd5ec5f0a7c5c0f745ee33b2cae525782ea9828a12c7ce325",
+      "reviewedSignature": "19d9066446980f5cb7e4355f0554094c5431fb349660209c433fa0c089e40f79",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "177/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "(98+79)/2=177/2kPa. Ingressi medi90kPa,15cm→90−3/2=177/2,coincidenza da linearità conρgcostante.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "177somma,177/4doppia metà,19/2metà differenza,90media p1nonp2.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. (98+79)/2=177/2kPa. Ingressi medi90kPa,15cm→90−3/2=177/2,coincidenza da linearità conρgcostante.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-13",
+      "sourceSha256": "38e4a37f65e38027711d9d8415412fe486bb31e1a4d31e9d21086305ac87e95d",
+      "candidateSha256": "707f56776ff9d3947f1837af49a18cc1576775df497f9797b37d78932f6a4e5b",
+      "reviewedSignature": "a82b9b90bfe9e7e6c47d95c5811b638e1f0dcea8a2ad0918953fb3060f2447e3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Target(79/98)98=79kPa,p1B80→salto1kPa→ΔhB10cm,rapporto10/20=1/2positivo.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "ΔhB20darebbe78non79;10èlunghezzaincm,nonrapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target(79/98)98=79kPa,p1B80→salto1kPa→ΔhB10cm,rapporto10/20=1/2positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-14",
+      "sourceSha256": "22cb84d026f5207ed88a59080191d90e3f75beff07b864614417af00638e9477",
+      "candidateSha256": "471ec6251583a15fc4c9abdbc1d24ef8ff4e293b6e1b61ad7c8e72ce30c7bd73",
+      "reviewedSignature": "7770df07ae88a8ae7a37ce55a360ae36b3f77734fbe348d9aa6bbe198ac3ceff",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "80",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "c294/(98kPa)=3kPa⁻¹;S237→p2B79kPa;Δh10cm→salto1kPa;p1B80kPa.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "237letturapura;79pressione2non1;78sottraeancora il salto invece sommarlo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. c294/(98kPa)=3kPa⁻¹;S237→p2B79kPa;Δh10cm→salto1kPa;p1B80kPa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-15",
+      "sourceSha256": "f91a7ed5a0b9bb5b8f31d3154398495a2c5bd26e8b00e60d5cc81d1b9bc747d6",
+      "candidateSha256": "0ef8e1c3bd153a0d5edf678a4a6d64fc4da073099128cfce215088c16c9f876c",
+      "reviewedSignature": "d31dac8c26ef3b299a0d4eb24b726952c08aa94e73adfffb872f27eb9a24397b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "80",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ΔS−38,Δp−19kPa→c2kPa⁻¹,d1. C(157−1)/2=78kPa;salto2→p1C80kPa.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. ",
+      "distractors": "ConΔh20cm,p179,81,40,160kPa produconoS155,159,77,317;solo80dà157.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ΔS−38,Δp−19kPa→c2kPa⁻¹,d1. C(157−1)/2=78kPa;salto2→p1C80kPa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-differential-manometer-16",
+      "sourceSha256": "adfd2b08a22b590cd797a4b1eb35a9e2d554d4eaad6eda6a41253dcc3f8dc9d3",
+      "candidateSha256": "6e79319680d80f8310bc1f5d18d1c3b9f29179b83c8cacbd142dfe0dfeb11a68",
+      "reviewedSignature": "642e8a9dd7023fb7b08a89db9783b834cb215e42ed1eb1d1adf661313e46c40b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "a5kPa/cm,b1/10kPa/cm; p2=(a−b)Δh=(49/10kPa/cm)Δh98kPa→Δh98·10/49=20cm. p1100,salto2,p298.",
+      "physicalAssumptions": "Acqua1000kg/m³ inquiete,g10uniforme,peso gas ecapillarità trascurati,interfaccia2più alta di1 diΔh>0. Pressioniassolutepositive p1>ρgΔh,p2=p1−ρgΔh;quotaorientata esplicita,conversionecm→m. Preparazioni distinte,stessifluidog. Vincolop1=(5kPa/cm)Δh fra preparazioni,a>ρg. ",
+      "distractors": "Ignoraregradiente usa5invece49/10;vincolodipreparazionenonleggeulteriore,coefficiente positivo garantisce unicità.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. a5kPa/cm,b1/10kPa/cm; p2=(a−b)Δh=(49/10kPa/cm)Δh98kPa→Δh98·10/49=20cm. p1100,salto2,p298.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "2b5c0fe5f64be0d80340f3dd950e646f21cfd47b0cbbdf819b6d367ec0e577da",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "ae4c2c4cdb288c8dcca53d989d225e5cc9a82554",
+  "packageSha256": "c9d13d71ac6309c6de1b4281419a495dfb036eac0db1cbb0043807256a03172b",
+  "bindingsSha256": "9077b336b658c3efc657b4d3a622d55bb8a9d9d1ad64db0850c38a96a3549176",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-01.json",
+    "reference": "All80original prompts individually read before candidate solutions, except accidental first07901 full-row display including key disclosed; that direct result independently rederived from equal-level hydrostatics. All16final candidate records, alternatives, feedback and SVG read before freezing; never imports authoring."
+  }
+}

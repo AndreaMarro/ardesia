@@ -1,0 +1,486 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u3-communicating-columns-01",
+      "sourceSha256": "7c3a69d508252d386f48ba9b311444cf0f05ccc373bf9c0627938b733723b674",
+      "candidateSha256": "5e2064a4ca4fddf885c8c1646e5cef518d55c1d3cdf0013a0b615c3a89439c18",
+      "reviewedSignature": "dd3dd4a1ced0e3ec1cfbcf6392582f3242eeb2e26cf29f48a94b49990d1af7a0",
+      "assetChecksums": {
+        "communicating-columns-progressive.svg": "caf9476c5adf50e34224d244e5cdbeedc94ec9bdf349a5a471679909a24b7f76"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Quota comune: p0+ρ1gH=p0+ρ2gh; si cancellano p0,g. H10cm,rapporto1/2→h5cm; incrementi entrambi1kPa se g10.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "10cm ignoraρ2doppia;20inverte rapporto; non si impongono superfici alla stessa quota.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Quota comune: p0+ρ1gH=p0+ρ2gh; si cancellano p0,g. H10cm,rapporto1/2→h5cm; incrementi entrambi1kPa se g10.",
+      "scientificAssetReview": "XML e rendering completo letti: H200px/h100px alla scala20px/cm;interfacciaz0,puntiA/B stessa quota in liquido2connesso. Incrementi1kPa entrambi,barre200px a200px/kPa. Ultimo pannello altra prova immiscibile a densitàuguali,altezze200/200px per10cm,neutralità esplicita;non aree interpretate come masse.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-02",
+      "sourceSha256": "657cdf53c7207e80e55b52168907171b11e5e7e432f1bb0559cfec0ddc2491f8",
+      "candidateSha256": "544193bb4898730da98039a0b8d886666fc8832979d4bb9fa5ce913ea01e594f",
+      "reviewedSignature": "f91b92d4d73fc8803d4172e110e85e4a23e88084a29cdcbddf979b551f935eb0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "cm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Il rapporto di densità è puro; H è lunghezza,quindi h in cm. 1cm=1/100m; nessun calcolo numerico autonomo oltre al riconoscimento dimensionale.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "kg massa,s tempo,Pa pressione,kg/L densità; soltanto cm lunghezza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il rapporto di densità è puro; H è lunghezza,quindi h in cm. 1cm=1/100m; nessun calcolo numerico autonomo oltre al riconoscimento dimensionale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-03",
+      "sourceSha256": "7983947a069dda5f068ef2e76980cdd26992bcd5f8806fe0dd98394e75dd53a7",
+      "candidateSha256": "559b334cbe0f07e6ea6246ff1ad3a374c1224ec28d93399507963c594b7702b4",
+      "reviewedSignature": "f49bf5c13507b5fcfe58d9490a4983801e8518e2f184aae3e77a8231c6f0c1a1",
+      "assetChecksums": {
+        "communicating-columns-progressive.svg": "caf9476c5adf50e34224d244e5cdbeedc94ec9bdf349a5a471679909a24b7f76"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "h₂=h₁ρ₁/ρ₂",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Dividere il bilancio perρ2g positivo dà h=Hρ1/ρ2. Più densità sopra richiede più altezza equivalente del secondo liquido.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "Rapporto inverso,doppio,metà e h=H falliscono l’identità generale; ultimo valido solo a densità uguali.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dividere il bilancio perρ2g positivo dà h=Hρ1/ρ2. Più densità sopra richiede più altezza equivalente del secondo liquido.",
+      "scientificAssetReview": "XML e rendering completo letti: H200px/h100px alla scala20px/cm;interfacciaz0,puntiA/B stessa quota in liquido2connesso. Incrementi1kPa entrambi,barre200px a200px/kPa. Ultimo pannello altra prova immiscibile a densitàuguali,altezze200/200px per10cm,neutralità esplicita;non aree interpretate come masse.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-04",
+      "sourceSha256": "94df94232e87ffea2b85b19d5b054ce4f41e6dfc8d2422b401dadb6ab479379f",
+      "candidateSha256": "bed62bf0153332fc8792dc6fd8f1e3a6486108763c748777aa6bf178106875a5",
+      "reviewedSignature": "e3b448e36e82c5dbbbd826bc51fb24ec805baba50555ffca7d8cc9a14538a5e1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 5 a 4 cm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A10·1/2=5cm; B10·(4/5)/2=4cm. Effetto direttoρ1,stati separati stabili.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "25/4 inverte variazione,8 ometteρ2due,5 ignora,zero viola positività.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A10·1/2=5cm; B10·(4/5)/2=4cm. Effetto direttoρ1,stati separati stabili.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-05",
+      "sourceSha256": "0202cafb86d7cbd5987a31f080a5548fafc67ea8477fb4a37d00f025e58fe726",
+      "candidateSha256": "194fea63e5a0436733c59b28b297b04dd18e19adde81d660da226f8f49d5d76e",
+      "reviewedSignature": "91eabfd2a04ae885b3ea0a863cf75d2b83e635ca1e96fdc6f162536dba0499bb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "ρ1=ρ2h/H=2·5/10=1kg/L; ρ1≤ρ2 verificata.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "Rapporto altezza inverso darebbe4kg/L e stratificazione invertita,non equilibrio richiesto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ1=ρ2h/H=2·5/10=1kg/L; ρ1≤ρ2 verificata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-06",
+      "sourceSha256": "cd2d54f019bd06992892fa24ea0dea70e8dbe479023bcc49c29812f783bba687",
+      "candidateSha256": "b28c31ad9225d6f65f70f9c2c44c1476e6a0606c22caee6c4c5761551ae0ac0b",
+      "reviewedSignature": "0423e2626d9f92bdd92935be8d1b30acfa794d2b4097910dd0e9f0d502022a3e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "ρ2=ρ1H/h=1·10/5=2kg/L=2000kg/m³; non chiamato acqua.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "1/2kg/L implicherebbe h20cm e violerebbe ordine stabile dato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ2=ρ1H/h=1·10/5=2kg/L=2000kg/m³; non chiamato acqua.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-07",
+      "sourceSha256": "5b5f3b4433606e678d0b2325ce6f5d6d6b6cad09f7d46a286e6c2ec437adeab0",
+      "candidateSha256": "1dd8a3c40a1896bca6671c743a736ddf4d9f4658035af92394bc19e8e3f2f70d",
+      "reviewedSignature": "3807c30e89dca1884e12c2e2396b0cacde5ffb7b6b7696c718d55ded33999a99",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A5cm; B10cm per densità uguali e immiscibilità mantenuta, equilibrio neutro. Rapporto10/5=2.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. Densità uguali restano immiscibili e sono ammesse in equilibrio neutro. ",
+      "distractors": "1/2 segueρ2diretto,4quadrato,1ignora cambiamento,−2impossibile per altezze positive.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A5cm; B10cm per densità uguali e immiscibilità mantenuta, equilibrio neutro. Rapporto10/5=2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-08",
+      "sourceSha256": "1f0cf80e411df3d8090a556324418b32032250908716cdcfc7c3fbcdfbb3f56f",
+      "candidateSha256": "39034d8e9a7b0999b2a128cd70bc523ede10d59afbdc20cdb63518f5f4334010",
+      "reviewedSignature": "b6a55f24f4313fd504e64d7178c45eae0a636b969a7b90551cc307b9bc791d80",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "hcorretta5cm;10−5=+5cm. Scarto fra altezze,non verso di moto.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "−5ordine invertito,10proposta,0accetta,5/2dimezza errore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. hcorretta5cm;10−5=+5cm. Scarto fra altezze,non verso di moto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-09",
+      "sourceSha256": "d7a121d967f95fde1a29895a278f406d3b83985e1116b077020df99250919328",
+      "candidateSha256": "b1f10ea3a3c5f9a6c42b53445ba701b79e3cbea747c3cac3d1b4fdbf7d9ab952",
+      "reviewedSignature": "b38e281612e5df366e348dae61561cf4ed87cd492403fdac7d0878f9a55811b5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ρ₁=ρ₂h₂/h₁",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "ρ1=ρ2h/H,lunghezze cancellate; stabilità impone0<h≤H.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "Rapporto h inverso non isolaρ1;ρ2 al denominatore inverse density;2 e1/2 spuri.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ1=ρ2h/H,lunghezze cancellate; stabilità impone0<h≤H.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-10",
+      "sourceSha256": "451bd8ffc2439300eb65379a376499b69cae431401d216ca4a1158e6434be85b",
+      "candidateSha256": "31f076df8ff5ffb4207b28f3a4bb1a6d8f905ef59d2967481c72dbfd535cadee",
+      "reviewedSignature": "86dabbe63586b2898748a36c641a587b4596190911473835de67bb63bcc74a52",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Sostituzione fattori positivi: (Hκ1ρ1/(κ2ρ2))/(Hρ1/ρ2)=κ1/κ2; entrambi gli stati nel dominio.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "Prodotto cresce conρ2,reciproco scambia stati,somma dà2 per fattoriunitari,quadrato duplicaκ1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Sostituzione fattori positivi: (Hκ1ρ1/(κ2ρ2))/(Hρ1/ρ2)=κ1/κ2; entrambi gli stati nel dominio.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-11",
+      "sourceSha256": "3376e3476349b970bf0be62d2df87055872cb45b2c3a90b91fb426460257a523",
+      "candidateSha256": "abb1acdb523bd1153e37c7a76b745fd324d9c57fe65931005f322fed2b0a465f",
+      "reviewedSignature": "c1baf320a0cf19a90afec6dcdd2d1451909ef4b964591ee2e038386fe9b7fe58",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8/5",
+      "dimension": {},
+      "manualArithmetic": "A5cm,B10·(4/5)/1=8cm;rapporto8/5,entrambe le densità ordinate.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "5/8inverso,4/5soloρ1,2soloρ2,8numero altezza B invece rapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A5cm,B10·(4/5)/1=8cm;rapporto8/5,entrambe le densità ordinate.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-12",
+      "sourceSha256": "90269c9539664e451df16fbdced6c2f14578880fcb53164b1b234b23dc6fee37",
+      "candidateSha256": "07bf1ea5f5e0239447a10f02538cb36f543f285ad719f90e6ee61c34f6e1e54a",
+      "reviewedSignature": "adf4c3b9363a533c6ce0ff4eadf6abdeb9fa4c86aa2794e7de3dff86879c7136",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13/2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "(5+8)/2=13/2cm. Densità medie9/10 e3/2 danno6cm;diff1/2cm,senza decimali.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "13somma,13/4doppia metà,6ingressi medi,3differenza non media.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. (5+8)/2=13/2cm. Densità medie9/10 e3/2 danno6cm;diff1/2cm,senza decimali.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-13",
+      "sourceSha256": "8a99d2138d93acc40c5f9b468944430def98e93e24c7a4453de3df2accd5a6e2",
+      "candidateSha256": "fd6c6ff656b53e740aab58ad7d37bb6d0927e7f45499e00a0568435ed4fdc9b0",
+      "reviewedSignature": "42a34c89c85d03d2b0986517fe584879f9f3f52241e2035339fdf3d583d911b0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Target(8/5)·5=8cm;ρ2B=(4/5)·10/8=1kg/L;rapporto1/2.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "Rapporto1 lascerebbe h4cm;ρ2raddoppiata accorcerebbe h. Bersaglio richiedeρ2B1kg/L.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target(8/5)·5=8cm;ρ2B=(4/5)·10/8=1kg/L;rapporto1/2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-14",
+      "sourceSha256": "444dbd6b20305fc8e1450d339f83bc9a21b44aadb797cda53a6cd2b582c06c70",
+      "candidateSha256": "ffa0b83d5677e81c1eff2ddd4a1d5c569abfbf8e277193030b1046d4113fcf36",
+      "reviewedSignature": "a4ce8b9a9e48e0bbb194e6e61e6c4d9fbb47e7234ec40a59deec89cbc22aa764",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Gain15/(5cm)=3cm⁻¹;S24→h8cm;ρ1=(1kg/L)8/10=4/5kg/L≤ρ2.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "ρ1=1dàS30;8/5violastabilità eformalmenteS48;2/5dàS12;negativa fuori dominio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain15/(5cm)=3cm⁻¹;S24→h8cm;ρ1=(1kg/L)8/10=4/5kg/L≤ρ2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-15",
+      "sourceSha256": "e695b5ffb6898ab5a962e662532df64b76f2c6959ae548007b80a42c507e1fbc",
+      "candidateSha256": "6d0f731d6dac23f1d1ea75465489fbe05af93418719206e95ddd8caf9cddc045",
+      "reviewedSignature": "0fb1121f5a00a009b2b6575fa7d13784bc38d6b3547b7dcceed1941a005efe90",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "ΔS6,Δh3cm→c2cm⁻¹,d1. C(9−1)/2=4cm;ρ1C=2·4/10=4/5kg/L.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. ",
+      "distractors": "ρ1=2/5,1,8/5dannoS5,11,17;negativa fuori dominio. Solo4/5dàS9.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ΔS6,Δh3cm→c2cm⁻¹,d1. C(9−1)/2=4cm;ρ1C=2·4/10=4/5kg/L.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-communicating-columns-16",
+      "sourceSha256": "8cdc7c02888ed40e0fef08f5d19a1d8df8aec53a434f6c0b6f252042a10c9b88",
+      "candidateSha256": "bcf8613395bd7c2a3af67fc95bf300f140435ea8dc60710813b92c877000ce65",
+      "reviewedSignature": "578eb4f3f747263fbcf250e6f75388d421d4c726a61269c62691ba162838c65e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite",
+      "dimension": {},
+      "manualArithmetic": "ρ1=ρ2/2→h=H/2=5cm per ogniρ2>0. Infinite scale positive: (1,2) e(4/5,8/5)kg/L,zero escluso.",
+      "physicalAssumptions": "Liquidi omogenei immiscibili in quiete,ρ1≤ρ2 positive,gravità uniforme,gas alla stessa pressione superiore,capillarità e pressione di vapore trascurate. Liquido2 connesso sotto interfaccia; H10cm e h misurate dalla stessa quota,0<h≤H. Dati variano fra preparazioni,non densità lungo la colonna. Vincoloρ1=ρ2/2 ridondante con misura h5cm. ",
+      "distractors": "Unica/due finite non riconoscono scala libera;nessuna contraddice esempi;coppi nulla esclusa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ1=ρ2/2→h=H/2=5cm per ogniρ2>0. Infinite scale positive: (1,2) e(4/5,8/5)kg/L,zero escluso.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL_WITH_SPECIFIC_PHYSICS_PROOF",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "20a926a4912ea3d3a1c9d81caf62e57814f952b2d0fc8496a033f27b76d77be3",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "007219e",
+  "packageSha256": "01c993793f468c3464f2ccdb8b9e4482607bff27e090fd2a308b332a2a5106c8",
+  "bindingsSha256": "dfd559575521fd0e1bf355116496e8049154ed9977fce6313085ac97844e69e8",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-01.json",
+    "reference": "All80original prompts individually read before candidate solutions, except accidental first07901 full-row display including key disclosed; that direct result independently rederived from equal-level hydrostatics. All16final candidate records, alternatives, feedback and SVG read before freezing; never imports authoring."
+  }
+}
