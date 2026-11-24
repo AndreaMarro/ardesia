@@ -1,0 +1,1218 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-descent-with-loss-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6821,
+      "title": "Dove va l’energia della discesa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 1,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Con h=1 m e L=2 m, quanto vale V in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso compie lavoro +mgh e la resistenza −mcL. La variazione di energia cinetica parte da zero, quindi mV²/2=mgh−mcL. Dividendo per la massa restano 10−2=8 J/kg; raddoppiare dà V²=16 m²/s² e la radice positiva è quattro metri al secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0e4cea3191f33236bec479fae30ac1b13c78015f96ddfb7f838eb3630b60ff23",
+          "text": "Primo esempio h1m,L2m: guida rettilinea disegnata alla scala 120px/m, dislivello120px e lunghezza240px. Il lavoro del peso per unità di massa è10J/kg, perdita2J/kg e cinetica finale8J/kg: barre300,60,240px alla scala30px per J/kg. Confronto separato a h1m,L8m: perdita8J/kg,cinetica2J/kg,barre240 e60px alla stessa scala. Rapidità4 e2m/s; i dati della pista lunga non sono rappresentati con una falsa geometria uguale a quella iniziale. Resistenza prescritta,non legge μN."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12mV^2=mgh-mcL"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=2gh-2cL"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La perdita meccanica mcL è positiva e minore di mgh: per unità di massa vale 2 J/kg contro 10 J/kg. L’energia meccanica non si conserva, mentre la perdita può alimentare energia interna dell’ambiente resistente. La massa si cancella perché il modello assegna una forza resistente proporzionale a m. La rapidità non dà da sola una componente cartesiana senza specificare la direzione della guida."
+        }
+      ],
+      "hints": [
+        "Somma i lavori con segno e usa ΔK, non la conservazione dell’energia meccanica.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La perdita meccanica mcL è positiva e minore di mgh: per unità di massa vale 2 J/kg contro 10 J/kg. L’energia meccanica non si conserva, mentre la perdita può alimentare energia interna dell’ambiente resistente. La massa si cancella perché il modello assegna una forza resistente proporzionale a m. La rapidità non dà da sola una componente cartesiana senza specificare la direzione della guida.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6822,
+      "title": "L’unità della rapidità dopo le perdite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 1,
+      "prompt": "Nel bilancio di una discesa V=√(2gh−2cL), g e c hanno unità m/s², mentre h e L sono lunghezze. Quale unità proposta esprime V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "m²/s²",
+          "J",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi i termini gh e cL sono accelerazione per lunghezza, dunque m²/s². Possono essere sottratti perché hanno la stessa dimensione. La radice lascia m/s, l’unità di una rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "[gh]=[cL]"
+        },
+        {
+          "type": "formula",
+          "text": " [gh]=L^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m²/s² è l’unità del radicando, non di V. J richiederebbe anche una massa per esprimere energia; m è solo una lunghezza e uno un rapporto puro. c=1 N/kg è un’accelerazione dimensionalmente, anche se descrive una forza per unità di massa."
+        }
+      ],
+      "hints": [
+        "Controlla la dimensione di ciascun termine prima della radice.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m²/s² è l’unità del radicando, non di V. J richiederebbe anche una massa per esprimere energia; m è solo una lunghezza e uno un rapporto puro. c=1 N/kg è un’accelerazione dimensionalmente, anche se descrive una forza per unità di massa.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6823,
+      "title": "Il segno del lavoro resistente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 1,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Quale formula dà V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=√(2gh−2cL)",
+          "V=√(2gh+2cL)",
+          "V=√(gh−cL)",
+          "V=2gh−2cL",
+          "V=√(2gh)"
+        ],
+        "value": "V=√(2gh−2cL)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso trasferisce energia alla parte cinetica, la resistenza la sottrae. Il bilancio mV²/2=mgh−mcL porta a V=√(2gh−2cL), selezionando la radice positiva. La condizione gh>cL mantiene positiva l’energia cinetica finale e, sulla guida rettilinea con forza prescritta, anche l’accelerazione lungo tutta la discesa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0e4cea3191f33236bec479fae30ac1b13c78015f96ddfb7f838eb3630b60ff23",
+          "text": "Primo esempio h1m,L2m: guida rettilinea disegnata alla scala 120px/m, dislivello120px e lunghezza240px. Il lavoro del peso per unità di massa è10J/kg, perdita2J/kg e cinetica finale8J/kg: barre300,60,240px alla scala30px per J/kg. Confronto separato a h1m,L8m: perdita8J/kg,cinetica2J/kg,barre240 e60px alla stessa scala. Rapidità4 e2m/s; i dati della pista lunga non sono rappresentati con una falsa geometria uguale a quella iniziale. Resistenza prescritta,non legge μN."
+        },
+        {
+          "type": "formula",
+          "text": "W_g=+mgh"
+        },
+        {
+          "type": "formula",
+          "text": " W_r=-mcL"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta K=W_g+W_r"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\sqrt{2gh-2cL}"
+        },
+        {
+          "type": "text",
+          "text": "Il più farebbe compiere lavoro positivo alla resistenza; togliere il fattore due dimentica il mezzo della cinetica. Il radicando senza radice ha unità di rapidità al quadrato. √(2gh) ignora la perdita: vale soltanto nel distinto limite di resistenza nulla. Qui 0<mcL<mgh."
+        }
+      ],
+      "hints": [
+        "Il lavoro resistente è negativo, mentre la perdita mcL è un modulo positivo.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il più farebbe compiere lavoro positivo alla resistenza; togliere il fattore due dimentica il mezzo della cinetica. Il radicando senza radice ha unità di rapidità al quadrato. √(2gh) ignora la perdita: vale soltanto nel distinto limite di resistenza nulla. Qui 0<mcL<mgh.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6824,
+      "title": "Dislivello maggiore sulla stessa lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 1,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha h=1 m,L=2 m; B ha h=2 m,L=2 m. Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 6 m/s",
+          "Da 4 a 8 m/s",
+          "Resta 4 m/s",
+          "Da 4 a 2 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 6 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La perdita per unità di massa resta cL=2 J/kg, ma il lavoro del peso passa da 10 a 20 J/kg. Le rapidità quadrate sono 2(10−2)=16 e 2(20−2)=36 m²/s². Le radici positive sono quattro e sei metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "V_A^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_A=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=36\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto renderebbe V direttamente proporzionale ad h; invarianza ignora il lavoro gravitazionale maggiore. B ha h=L e quindi guida verticale: è consentita, perché la resistenza è prescritta e non proporzionale alla normale. Non stiamo usando una forza d’attrito secco che si annullerebbe necessariamente con N."
+        }
+      ],
+      "hints": [
+        "Mantieni la stessa perdita e ricostruisci il nuovo radicando.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto renderebbe V direttamente proporzionale ad h; invarianza ignora il lavoro gravitazionale maggiore. B ha h=L e quindi guida verticale: è consentita, perché la resistenza è prescritta e non proporzionale alla normale. Non stiamo usando una forza d’attrito secco che si annullerebbe necessariamente con N.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6825,
+      "title": "Ricostruire il dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Si misura V=4 m/s e si conosce L=2 m. Quanto vale h, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eliminiamo la radice, riportiamo la perdita dall’altro lato e dividiamo per 2g. L’altezza vale (V²+2cL)/(2g). Il numeratore è 16+4=20 m²/s²; diviso per 20 m/s² dà un metro."
+        },
+        {
+          "type": "formula",
+          "text": "V^2+2cL=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{V^2+2cL}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{20\\,\\mathrm{m^2/s^2}}{20\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il più nell’inversa è necessario: il dislivello deve fornire sia la cinetica sia la perdita. La soluzione rispetta h≤L e gh=10>cL=2 m²/s². Ignorare la resistenza darebbe h=4/5 m, una pista che non riproduce i dati assegnati con c=1."
+        }
+      ],
+      "hints": [
+        "Ricostruisci tutta l’energia richiesta prima di dividere per g.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più nell’inversa è necessario: il dislivello deve fornire sia la cinetica sia la perdita. La soluzione rispetta h≤L e gh=10>cL=2 m²/s². Ignorare la resistenza darebbe h=4/5 m, una pista che non riproduce i dati assegnati con c=1.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6826,
+      "title": "La lunghezza dissipativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Si misura V=4 m/s e si conosce h=1 m. Quanto vale L, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da V²=2gh−2cL isoliamo 2cL=2gh−V². Il numeratore vale 20−16=4 m²/s²; dividendo per 2c=2 m/s² si trovano due metri. È la lunghezza percorsa dalla resistenza, non il solo dislivello verticale."
+        },
+        {
+          "type": "formula",
+          "text": "2cL=2gh-V^2"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{2gh-V^2}{2c}"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{4\\,\\mathrm{m^2/s^2}}{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " L=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La ricostruzione va controllata geometricamente: L=2≥h=1 e gh>cL. Una misura arbitraria di V potrebbe dare L negativo o minore di h, segnalando incompatibilità col modello. Non basta isolare un numero positivo per garantirne la validità fisica."
+        }
+      ],
+      "hints": [
+        "Sottrai la cinetica per unità di massa al contributo gravitazionale.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La ricostruzione va controllata geometricamente: L=2≥h=1 e gh>cL. Una misura arbitraria di V potrebbe dare L negativo o minore di h, segnalando incompatibilità col modello. Non basta isolare un numero positivo per garantirne la validità fisica.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6827,
+      "title": "Più percorso con lo stesso dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha h=1 m,L=2 m; B ha h=1 m,L=8 m. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro del peso per unità di massa resta dieci J/kg. Le perdite aumentano da due a otto J/kg, quindi la cinetica finale per unità di massa passa da otto a due J/kg. V_A=4 m/s e V_B=2 m/s: il rapporto è un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "V_A^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_A=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Uno seguirebbe soltanto la quota; due e quattro farebbero aumentare l’uscita con le perdite; un quarto confonde il rapporto dei quadrati con quello delle rapidità. B è ancora ammissibile: L8≥h1 e 10>8. L’accelerazione lungo la guida è gh/L−c=1/4 m/s², positiva."
+        }
+      ],
+      "hints": [
+        "Calcola prima quanto lavoro netto resta nelle due guide.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Uno seguirebbe soltanto la quota; due e quattro farebbero aumentare l’uscita con le perdite; un quarto confonde il rapporto dei quadrati con quello delle rapidità. B è ancora ammissibile: L8≥h1 e 10>8. L’accelerazione lungo la guida è gh/L−c=1/4 m/s², positiva.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6828,
+      "title": "Una proposta senza il controllo dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Con h=1 m,L=2 m si propone V_proposto=8 m/s. Quanto vale proposto meno corretto, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio dà V²=16 m²/s² e V=4 m/s. La proposta otto supera il corretto di quattro metri al secondo. Avrebbe una cinetica specifica 8²/2=32 J/kg, maggiore persino del lavoro gravitazionale disponibile dieci J/kg."
+        },
+        {
+          "type": "formula",
+          "text": "V=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−4 cambia l’ordine della sottrazione, otto ripete la proposta e due dimezza lo scarto. Non si può attribuire alla resistenza l’energia mancante: il suo lavoro è negativo. Il controllo energetico scarta la proposta anche prima del confronto numerico finale."
+        }
+      ],
+      "hints": [
+        "Confronta la proposta con il bilancio, poi rispetta l’ordine dello scarto.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−4 cambia l’ordine della sottrazione, otto ripete la proposta e due dimezza lo scarto. Non si può attribuire alla resistenza l’energia mancante: il suo lavoro è negativo. Il controllo energetico scarta la proposta anche prima del confronto numerico finale.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6829,
+      "title": "L’inversa riaggiunge la perdita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Quale formula isola h dalla relazione V=√(2gh−2cL)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h = (V² + 2 c L) / (2 g)",
+          "h = (V² − 2 c L) / (2 g)",
+          "h = V² / (2 g)",
+          "h = (V + 2 c L) / (2 g)",
+          "h = (V² + 2 c L) / g"
+        ],
+        "value": "h = (V² + 2 c L) / (2 g)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità positiva consente di elevare al quadrato senza introdurre un segno ambiguo. Portiamo −2cL nell’altro membro e dividiamo per 2g>0. h=(V²+2cL)/(2g); le due quantità al numeratore hanno la stessa unità m²/s²."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=2gh-2cL"
+        },
+        {
+          "type": "formula",
+          "text": " V^2+2cL=2gh"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{V^2+2cL}{2g}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno lascia la perdita dal lato sbagliato; V²/(2g) la ignora. V senza quadrato non può essere sommata a 2cL per dimensioni diverse. L’ultima formula dimentica il fattore due e raddoppia h. Anche l’inversa corretta richiede poi il controllo h≤L e gh>cL."
+        }
+      ],
+      "hints": [
+        "Quadra V e riporta il termine dissipativo con il segno opposto.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno lascia la perdita dal lato sbagliato; V²/(2g) la ignora. V senza quadrato non può essere sommata a 2cL per dimensioni diverse. L’ultima formula dimentica il fattore due e raddoppia h. Anche l’inversa corretta richiede poi il controllo h≤L e gh>cL.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6830,
+      "title": "Confrontare i lavori specifici residui",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha dati h,L. B ha h_B=κ₁h e L_B=κ₂L, con fattori positivi, κ₁h≤κ₂L e gκ₁h>cκ₂L. Definiamo e_A=gh−cL, lavoro netto per unità di massa di A. In B, e_B=gκ₁h−cκ₂L. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(e_B/e_A)",
+          "e_B/e_A",
+          "√(e_A/e_B)",
+          "κ₁/κ₂",
+          "√κ₁"
+        ],
+        "value": "√(e_B/e_A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il teorema dell’energia cinetica per unità di massa dà V_A²=2e_A e V_B²=2e_B. Il rapporto dei quadrati è e_B/e_A e quello delle rapidità positive la sua radice. Entrambi i lavori specifici sono positivi per le condizioni assegnate."
+        },
+        {
+          "type": "formula",
+          "text": "V_A^2=2e_A"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=2e_B"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2/V_A^2=e_B/e_A"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\sqrt{e_B/e_A}"
+        },
+        {
+          "type": "text",
+          "text": "e_B/e_A dimentica la radice; il reciproco scambia A e B. Un rapporto dei soli fattori non descrive in generale una differenza tra contributo gravitazionale e perdita. √κ₁ sarebbe valido solo per cambiamenti aggiuntivi che rendessero anche la perdita proporzionale nello stesso modo, qui non imposti."
+        }
+      ],
+      "hints": [
+        "Confronta i lavori netti completi prima delle radici.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "e_B/e_A dimentica la radice; il reciproco scambia A e B. Un rapporto dei soli fattori non descrive in generale una differenza tra contributo gravitazionale e perdita. √κ₁ sarebbe valido solo per cambiamenti aggiuntivi che rendessero anche la perdita proporzionale nello stesso modo, qui non imposti.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6831,
+      "title": "Una guida ingrandita con la stessa inclinazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha h=1 m,L=2 m; B ha h=4 m,L=8 m. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi i contributi gh e cL quadruplicano: il lavoro netto per unità di massa passa da otto a trentadue J/kg. V² passa da16 a64 m²/s², quindi le rapidità sono quattro e otto metri al secondo. Il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=64\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro segue il lavoro netto senza prendere la radice; un mezzo inverte il rapporto. Il rapporto h/L resta 1/2, perciò anche l’accelerazione tangenziale gh/L−c resta 4 m/s². La pista più lunga dà più tempo e più lavoro netto, non una forza resistente minore."
+        }
+      ],
+      "hints": [
+        "Conserva entrambi i termini e osserva il fattore comune quattro.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro segue il lavoro netto senza prendere la radice; un mezzo inverte il rapporto. Il rapporto h/L resta 1/2, perciò anche l’accelerazione tangenziale gh/L−c resta 4 m/s². La pista più lunga dà più tempo e più lavoro netto, non una forza resistente minore.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6832,
+      "title": "Media delle rapidità di due discese",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 2,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha h=1 m,L=2 m; B ha h=4 m,L=8 m. Qual è la media aritmetica di V_A,V_B con uguale peso, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità delle due prove sono quattro e otto metri al secondo. La loro semisomma è sei metri al secondo. Le perdite sono già state sottratte in ciascun bilancio prima della media."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{4+8}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici è la somma e tre divide ancora per due. Gli ingressi medi h=5/2 m,L=5 m darebbero V=√40=2√10 m/s, non sei: i quadrati 40 e36 sono diversi, senza dover approssimare √10. La media statistica non è la rapidità media durante una sola discesa."
+        }
+      ],
+      "hints": [
+        "Media le due uscite, non i dislivelli prima del calcolo.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Dodici è la somma e tre divide ancora per due. Gli ingressi medi h=5/2 m,L=5 m darebbero V=√40=2√10 m/s, non sei: i quadrati 40 e36 sono diversi, senza dover approssimare √10. La media statistica non è la rapidità media durante una sola discesa.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6833,
+      "title": "Scegliere quanto percorso dissipa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 3,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. A ha h_A=1 m,L_A=2 m. In B si impone h_B=4 m e si vuole V_B=2V_A. Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "V_A=4 m/s e l’obiettivo è V_B=8 m/s. Il contributo 2gh_B vale80 m²/s² e V_B² vale64. La differenza16 è 2cL_B; con 2c=2 m/s² segue L_B=8 m. Il rapporto a due metri è quattro."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 2cL_B=(80-64)\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 2cL_B=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due seguirebbe solo l’aumento della rapidità; otto è la lunghezza nuova e non il rapporto. Il controllo L_B8≥h_B4 e gh_B40>cL_B8 verifica geometria e avvio. La lunghezza non è libera di assumere qualunque valore pur di restare positiva."
+        }
+      ],
+      "hints": [
+        "Isola la perdita necessaria dopo avere quadrato la rapidità obiettivo.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due seguirebbe solo l’aumento della rapidità; otto è la lunghezza nuova e non il rapporto. Il controllo L_B8≥h_B4 e gh_B40>cL_B8 verifica geometria e avvio. La lunghezza non è libera di assumere qualunque valore pur di restare positiva.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6834,
+      "title": "Tarare la rapidità e poi la quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 3,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Un display continuo adimensionale segue S=qV, con q>0 costante e offset nullo. Il riferimento h=1 m,L=2 m dà S=12. Una prova con L=8 m dà S=24. Quanto vale h, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale V=4 m/s, quindi q=3 s/m. La lettura24 dà V=8 m/s. Nell’inversa dell’altezza sommiamo V²=64 e 2cL=16 m²/s², poi dividiamo per 2g=20 m/s²: h=4 m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=24/q"
+        },
+        {
+          "type": "formula",
+          "text": " V=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{V^2+2cL}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " h=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare24come metri al secondo darebbe h=148/5 m, maggiore di L=8m e incompatibile con la geometria: la mancata taratura può violare anche il dominio. Il risultato quattro ricostruisce V8,S24 e il lavoro netto positivo."
+        }
+      ],
+      "hints": [
+        "Togli q prima di fare il quadrato della rapidità.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare24come metri al secondo darebbe h=148/5 m, maggiore di L=8m e incompatibile con la geometria: la mancata taratura può violare anche il dominio. Il risultato quattro ricostruisce V8,S24 e il lavoro netto positivo.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6835,
+      "title": "Offset e verifica geometrica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 3,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Un display continuo adimensionale segue S=qV+b, con q>0,b costanti. A: h=1 m,L=2 m,S=9. B: h=4 m,L=8 m,S=17. C: L=2 m,S=13. Quanto vale h_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "3/2 m",
+          "2 m",
+          "3 m",
+          "4 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità note sono quattro e otto m/s. Il guadagno è (17−9)/(8−4)=2 s/m e l’offset uno. C ha V=(13−1)/2=6 m/s. L’altezza vale (36+4)/20=2 m: è proprio il caso di guida verticale ammesso dal modello di resistenza prescritta."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=(13-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " h_C=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Tre e quattro metri superano L_C=2 m e sono geometricamente esclusi. Un metro dà S=9; tre mezzi danno V²=26 m²/s² e lettura1+2√26, diversa da13 perché √26 non è6. Solo due metri ricostruiscono taratura e bilancio. Il rapporto grezzo delle letture non elimina b."
+        }
+      ],
+      "hints": [
+        "Calibra il display, ricava h e controlla h≤L anche per i distrattori.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre e quattro metri superano L_C=2 m e sono geometricamente esclusi. Un metro dà S=9; tre mezzi danno V²=26 m²/s² e lettura1+2√26, diversa da13 perché √26 non è6. Solo due metri ricostruiscono taratura e bilancio. Il rapporto grezzo delle letture non elimina b.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-descent-with-loss-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Bilanci energetici con resistenza",
+      "order": 6836,
+      "title": "Un’inclinazione fissata dal vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "descent-with-loss",
+      "difficulty": 3,
+      "prompt": "Un punto materiale di massa m>0 parte da fermo lungo una guida rettilinea fissa in discesa, di lunghezza L e dislivello verticale h, con 0<h≤L. Il campo è uniforme, g=10 m/s². Una resistenza tangenziale prescritta ha modulo mc, con c=1 N/kg=1 m/s² costante, opposta alla discesa; non è una legge μN e non ha una soglia statica aggiuntiva. La reazione normale ideale non compie lavoro; non ci sono altre forze che compiano lavoro. Nel riferimento inerziale del laboratorio, gh>cL rende positiva la risultante lungo la guida e consente l’avvio nel modello. V>0 è la rapidità finale. Fra guide si impone h=L/2. Se V=4 m/s, quanto vale L in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo h=L/2 nel bilancio troviamo V²=gL−2cL=(g−2c)L. Il coefficiente g−2c=8 m/s² è positivo. Quindi L=16/8=2 m e h=1 m. Dopo avere eliminato la radice, il vincolo lascia un’equazione lineare in L."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=(g-2c)L"
+        },
+        {
+          "type": "formula",
+          "text": " g-2c=8\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " L=V^2/(g-2c)"
+        },
+        {
+          "type": "formula",
+          "text": " L=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Non si cerca una radice quadrata di L: la radice apparteneva alla rapidità e si è già eliminata. Quattro confonde una rapidità numerica con una lunghezza; uno e tre metri danno V²=8e24 m²/s², non16. Il vincolo rispetta h≤L e gh>cL per ogni L positivo, e la misura ne seleziona uno."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto geometrico prima di isolare L.",
+        "Sottrai mcL dal lavoro mgh; controlla h≤L e gh>cL prima di prendere la radice positiva."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Non si cerca una radice quadrata di L: la radice apparteneva alla rapidità e si è già eliminata. Quattro confonde una rapidità numerica con una lunghezza; uno e tre metri danno V²=8e24 m²/s², non16. Il vincolo rispetta h≤L e gh>cL per ogni L positivo, e la misura ne seleziona uno.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Lavoro resistente e variazione di energia cinetica",
+        "Dominio geometrico e lavoro netto positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0e4cea3191f33236bec479fae30ac1b13c78015f96ddfb7f838eb3630b60ff23",
+      "name": "descent-with-loss-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkRpc2Nlc2EgcmV0dGlsaW5lYSBjb24gcmVzaXN0ZW56YSBwcmVzY3JpdHRhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJpbW8gZXNlbXBpbyBjb24gZGlzbGl2ZWxsbyB1biBtZXRybyBlIHBpc3RhIGx1bmdhIGR1ZSBtZXRyaSBhbGxhIHNjYWxhIGNlbnRvdmVudGkgcGl4ZWwgcGVyIG1ldHJvLiBMYSBndWlkYSBzY2VuZGUgZGkgY2VudG92ZW50aSBwaXhlbCBlIGhhIGx1bmdoZXp6YSBkdWVjZW50b3F1YXJhbnRhIHBpeGVsLiBSZXNpc3RlbnphIGNvc3RhbnRlIHBlciB1bml0w6AgZGkgbWFzc2EgdW4gbmV3dG9uIHBlciBjaGlsb2dyYW1tby4gTGF2b3JvIGRlbCBwZXNvIHBlciB1bml0w6AgZGkgbWFzc2EgZGllY2kgam91bGUgcGVyIGNoaWxvZ3JhbW1vLHBlcmRpdGEgZHVlIGUgY2luZXRpY2EgZmluYWxlIG90dG8sYmFycmUgYWxsYSBzY2FsYSB0cmVudGEgcGl4ZWwgcGVyIGpvdWxlIHBlciBjaGlsb2dyYW1tbyxsdW5naGUgdHJlY2VudG8sc2Vzc2FudGEgZSBkdWVjZW50b3F1YXJhbnRhIHBpeGVsLiBSYXBpZGl0w6AgZmluYWxlIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kby4gVWx0aW1vIGNhc28gZGlzdGludG8gY29uIHN0ZXNzbyBkaXNsaXZlbGxvIGUgcGlzdGEgbHVuZ2Egb3R0byBtZXRyaTpwZXJkaXRhIG90dG8gZSBjaW5ldGljYSBmaW5hbGUgZHVlLGJhcnJlIGR1ZWNlbnRvcXVhcmFudGEgZSBzZXNzYW50YSBwaXhlbCBhbGxhIHN0ZXNzYSBzY2FsYTtyYXBpZGl0w6AgZHVlIG1ldHJpIGFsIHNlY29uZG8uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTQwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmaWxsPSIjMTYzMjNmIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgUXVvdGEgZSBwZXJjb3JzbyBzb25vIGx1bmdoZXp6ZSBkaXZlcnNlPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+R3VpZGEgcmV0dGlsaW5lYTogc2NhbGEgMTIwIHB4L20uPC90ZXh0PjxwYXRoIGQ9Ik0xNTAgMjIwTDM1Ny44NDYwOTY5MDgyNjUzIDM0MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNMTUwIDIyMFYzNDBIMzU3Ljg0NjA5NjkwODI2NTMiIHN0cm9rZT0iI2I3YzdiZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIyMjAiIHI9IjciIGZpbGw9IiMxNDY0N2IiLz48Y2lyY2xlIGN4PSIzNTcuODQ2MDk2OTA4MjY1MyIgY3k9IjM0MCIgcj0iNyIgZmlsbD0iIzE0NjQ3YiIvPjx0ZXh0IHg9IjU1IiB5PSIyODUiPmggPSAxIG08L3RleHQ+PHRleHQgeD0iMjY1IiB5PSIyMTUiPkwgPSAyIG08L3RleHQ+PHRleHQgeD0iNzAiIHk9IjE4MCI+cGFydGUgZGEgZmVybW88L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIzNjAiPlYgPSA0IG0vczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDE1Ij5SZXNpc3RlbnphIHByZXNjcml0dGEgbWMsIG9wcG9zdGEgYWxsYSBkaXNjZXNhLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDYwIj5jID0gMSBOL2tnID0gMSBtL3PCsjsgZyA9IDEwIG0vc8KyLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjU0MCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBCaWxhbmNpbyBwZXIgdW5pdMOgIGRpIG1hc3NhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1ODUiPlNjYWxhIGRlbGxlIGJhcnJlOiAzMCBweCBwZXIgSi9rZy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjY0NSI+UGVzbzogZ2g8L3RleHQ+PHJlY3QgeD0iMjYwIiB5PSI2MTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzYiIGZpbGw9IiM4MTk2OGQiLz48dGV4dCB4PSI0OTAiIHk9IjY5MCI+MTAgSi9rZzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzQ1Ij5QZXJkaXRhOiBjTDwvdGV4dD48cmVjdCB4PSIyNjAiIHk9IjcxNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjYjQ0YjJjIi8+PHRleHQgeD0iMzUwIiB5PSI3NDMiPjIgSi9rZzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODQ1Ij5DaW5ldGljYTogVsKyLzI8L3RleHQ+PHJlY3QgeD0iMjYwIiB5PSI4MTUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzYiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSI1MTUiIHk9Ijg0MyI+OCBKL2tnPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MTAiPlbCsi8yID0gMTAg4oiSIDIgPSA4IEova2c7IFYgPSA0IG0vcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk1NSI+TGEgbWFzc2Egc2kgY2FuY2VsbGE7IGxhIHBlcmRpdGEgbWVjY2FuaWNhIHJlc3RhLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEwMzUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgQ2FzbyBzZXBhcmF0bzogc3Rlc3NhIHF1b3RhLCBwacO5IHBlcmNvcnNvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDgwIj5oID0gMSBtLCBMID0gOCBtLiBTdGVzc2Egc2NhbGEgZGVsbGUgYmFycmUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTQwIj5QZXNvOiBnaDwvdGV4dD48cmVjdCB4PSIyNjAiIHk9IjExMTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzYiIGZpbGw9IiM4MTk2OGQiLz48dGV4dCB4PSI0OTAiIHk9IjExODUiPjEwIEova2c8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyNDAiPlBlcmRpdGE6IGNMPC90ZXh0PjxyZWN0IHg9IjI2MCIgeT0iMTIxMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNiIgZmlsbD0iI2I0NGIyYyIvPjx0ZXh0IHg9IjUxNSIgeT0iMTIzOCI+OCBKL2tnPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzQwIj5DaW5ldGljYTogVsKyLzI8L3RleHQ+PHJlY3QgeD0iMjYwIiB5PSIxMzEwIiB3aWR0aD0iNjAiIGhlaWdodD0iMzYiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSIzNTAiIHk9IjEzMzgiPjIgSi9rZzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQwNSI+VsKyLzIgPSAxMCDiiJIgOCA9IDIgSi9rZzsgViA9IDIgbS9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ1MCI+MTAgJmd0OyA4OiBs4oCZYWNjZWxlcmF6aW9uZSBsdW5nbyBsYSBndWlkYSByZXN0YSBwb3NpdGl2YS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE1MDAiIGZvbnQtc2l6ZT0iMTgiPklsIGNhc28gbHVuZ28gbm9uIHJpdXNhIGxhIGdlb21ldHJpYSBkZWwgcHJpbW8uIE5lc3N1bmEgbGVnZ2UgzrxOLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
