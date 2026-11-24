@@ -1,0 +1,1120 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-stevino-gauge-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7621,
+      "title": "Due metri sotto la superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Con ρ=1 kg/L e h=2 m, quanto vale Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 kPa",
+          "2 kPa",
+          "200 kPa",
+          "10 kPa",
+          "40 kPa"
+        ],
+        "value": "20 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso della colonna per unità di area aumenta la pressione di ρgh. Un chilogrammo per litro è mille chilogrammi per metro cubo: mille per dieci per due dà ventimila pascal, ossia venti chilopascal. La sezione del recipiente si cancella nel bilancio della colonna."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ab0bdfa66b6161f63b9a3358b0175b94b71bc1647ed537d0509001969035e719",
+          "text": "Colonne in quiete di liquido con ρ=1 kg/L e g=10 m/s². Profondità verticali2 e3 m rappresentate con200 e300px alla scala100px/m; pressioni relative20 e30 kPa con barre160 e240px alla scala8px/kPa. La superficie è il riferimento Δp=0, non un vuoto assoluto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=20000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Due kPa omette il fattore dieci di g dopo la conversione; duecento lo conta in più. Dieci kPa corrispondono a un solo metro, quaranta a quattro metri con la stessa densità. La pressione assoluta sarebbe p_s+20 kPa e richiederebbe conoscere p_s."
+        }
+      ],
+      "hints": [
+        "Converti prima kg/L in kg/m³, poi usa ρgh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due kPa omette il fattore dieci di g dopo la conversione; duecento lo conta in più. Dieci kPa corrispondono a un solo metro, quaranta a quattro metri con la stessa densità. La pressione assoluta sarebbe p_s+20 kPa e richiederebbe conoscere p_s.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7622,
+      "title": "La dimensione della variazione idrostatica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 1,
+      "prompt": "Per un liquido omogeneo in quiete vale Δp=ρgh, con ρ densità di massa, g accelerazione e h profondità verticale. Quale unità proposta può esprimere Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "kg/L",
+          "N",
+          "m/s",
+          "kg·m"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto delle dimensioni dà massa su lunghezza per tempo al quadrato, la stessa di forza su area. Il pascal è N/m² e il chilopascal ne vale mille. Qui si chiede una pressione, non la forza totale sul fondo né la massa della colonna."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho gh]=\\frac{M}{L T^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa}=1\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=1000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "kg/L misura densità; N misura forza; m/s velocità e kg·m un prodotto massa-lunghezza. Nessuna di queste quattro ha dimensione di pressione. Il prefisso kilo cambia la scala dell’unità, non il tipo di grandezza."
+        }
+      ],
+      "hints": [
+        "Cerca la dimensione di una forza divisa per un’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg/L misura densità; N misura forza; m/s velocità e kg·m un prodotto massa-lunghezza. Nessuna di queste quattro ha dimensione di pressione. Il prefisso kilo cambia la scala dell’unità, non il tipo di grandezza.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7623,
+      "title": "Recipienti larghi e stretti allo stesso livello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Due recipienti aperti contengono lo stesso liquido, hanno la stessa pressione sulla superficie e superfici alla stessa quota. Il primo è più largo. Due punti sono alla stessa profondità h nei rispettivi liquidi. Come si confrontano le pressioni?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sono uguali",
+          "È maggiore nel recipiente largo",
+          "È maggiore nel recipiente stretto",
+          "Sono entrambe nulle",
+          "Dipendono dal volume totale"
+        ],
+        "value": "Sono uguali"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per entrambi i punti la differenza rispetto alla superficie è ρgh: densità, gravità e profondità coincidono. Poiché anche p_s è la stessa, coincidono sia le pressioni relative sia quelle assolute. La larghezza cambia la forza totale su una base, non la pressione a profondità assegnata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ab0bdfa66b6161f63b9a3358b0175b94b71bc1647ed537d0509001969035e719",
+          "text": "Due recipienti schematici larghi e stretti hanno la stessa superficie e punti a2 m di profondità,200px alla scala100px/m. Con lo stesso liquido e la stessa pressione superiore, entrambi hanno Δp20kPa e anche pressione assoluta uguale. La larghezza non entra nella legge."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_1=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_2=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=p_2"
+        },
+        {
+          "type": "text",
+          "text": "Un recipiente largo può contenere più liquido senza avere più pressione nel punto. La forza sul fondo richiederebbe moltiplicare per l’area. Le pressioni relative non sono nulle per h>0; il volume totale non entra nella legge locale di Stevino. La quiete e l’uguale pressione superiore sono essenziali al confronto."
+        }
+      ],
+      "hints": [
+        "Confronta ρ, g, h e la pressione sulla superficie, non i volumi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un recipiente largo può contenere più liquido senza avere più pressione nel punto. La forza sul fondo richiederebbe moltiplicare per l’area. Le pressioni relative non sono nulle per h>0; il volume totale non entra nella legge locale di Stevino. La quiete e l’uguale pressione superiore sono essenziali al confronto.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7624,
+      "title": "Un liquido due volte più denso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. A ha ρ_A=1 kg/L e B ρ_B=2 kg/L, entrambi con h=2 m. Come cambia Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 40 kPa",
+          "Da 20 a 10 kPa",
+          "Resta 20 kPa",
+          "Da 20 a 80 kPa",
+          "Diventa zero"
+        ],
+        "value": "Da 20 a 40 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A profondità fissata il peso della colonna per area è proporzionale alla densità. Si passa da mille a duemila kg/m³: il prodotto ρgh raddoppia, da venti a quaranta kPa. Si confrontano liquidi diversi: il secondo non è chiamato acqua e non si cambia densità alla stessa acqua incomprimibile."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=2\\Delta p_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=40\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci inverte la dipendenza; venti ignora la nuova densità e ottanta la eleva impropriamente al quadrato. Zero richiederebbe h o densità nulla, esclusi. Cambiare p_s da solo sposterebbe la pressione assoluta ma non questa differenza."
+        }
+      ],
+      "hints": [
+        "Raddoppiare la massa per volume raddoppia il peso della colonna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci inverte la dipendenza; venti ignora la nuova densità e ottanta la eleva impropriamente al quadrato. Zero richiederebbe h o densità nulla, esclusi. Cambiare p_s da solo sposterebbe la pressione assoluta ma non questa differenza.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7625,
+      "title": "La densità dalla sovrapressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Con h=2 m si misura Δp=20 kPa. Quanto vale ρ in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la pressione relativa per gh. Venti kPa sono ventimila Pa; il denominatore vale venti m²/s². Il rapporto è mille kg/m³, che diviso mille diventa un kg/L. Non usiamo p_s+Δp nel numeratore, perché la colonna spiega soltanto la differenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac{\\Delta p}{gh}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{20000}{20}\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il valore numerico mille è corretto in kg/m³ ma non in kg/L. Moltiplicare anziché dividere per gh non produce una densità; dividere per la sola profondità dà un gradiente di pressione. Il controllo 1000·10·2 Pa ricostruisce la misura."
+        }
+      ],
+      "hints": [
+        "Ricava la densità in SI e convertila in chilogrammi per litro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore numerico mille è corretto in kg/m³ ma non in kg/L. Moltiplicare anziché dividere per gh non produce una densità; dividere per la sola profondità dà un gradiente di pressione. Il controllo 1000·10·2 Pa ricostruisce la misura.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7626,
+      "title": "La profondità ricostruita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Con ρ=1 kg/L e Δp=20 kPa, quanto vale h in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità equivale a mille kg/m³: ρg vale diecimila Pa per metro. La profondità è quindi ventimila diviso diecimila, due metri. Il rapporto pressione/gradiente ha dimensione di lunghezza, non di area."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{\\Delta p}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g=10\\,\\mathrm{kPa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{20\\,\\mathrm{kPa}}{10\\,\\mathrm{kPa/m}}"
+        },
+        {
+          "type": "formula",
+          "text": " h=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Non serve una radice: la pressione cresce linearmente con la profondità in questo modello. La divisione per la sola densità avrebbe unità di velocità al quadrato, non di lunghezza. Il risultato è sotto la superficie perché h è positivo."
+        }
+      ],
+      "hints": [
+        "Dividi la variazione di pressione per il suo aumento per metro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non serve una radice: la pressione cresce linearmente con la profondità in questo modello. La divisione per la sola densità avrebbe unità di velocità al quadrato, non di lunghezza. Il risultato è sotto la superficie perché h è positivo.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7627,
+      "title": "Una profondità tre mezzi dell’altra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Con ρ=1 kg/L, A è a h_A=2 m e B a h_B=3 m. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni relative sono venti e trenta kPa. Nel rapporto 30/20 si cancella dieci e resta tre mezzi. Si può anche cancellare direttamente ρg: la variazione relativa segue il rapporto fra le profondità verticali."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=30\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto; tre è la profondità B come numero e un mezzo riguarda l’incremento relativo, non il rapporto finale. Uno ignorerebbe il metro aggiunto. Per pressioni assolute il rapporto non sarebbe in generale tre mezzi, per la presenza di p_s."
+        }
+      ],
+      "hints": [
+        "Usa le differenze rispetto alla superficie, non le pressioni assolute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto; tre è la profondità B come numero e un mezzo riguarda l’incremento relativo, non il rapporto finale. Uno ignorerebbe il metro aggiunto. Per pressioni assolute il rapporto non sarebbe in generale tre mezzi, per la presenza di p_s.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7628,
+      "title": "Valutare una proposta raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Per ρ=1 kg/L e h=2 m si propone Δp_proposta=40 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+20 kPa",
+          "−20 kPa",
+          "+40 kPa",
+          "0 kPa",
+          "+10 kPa"
+        ],
+        "value": "+20 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calcolo 1000·10·2 Pa dà venti kPa. Lo scarto richiesto è quaranta meno venti, positivo e uguale a venti kPa. La proposta corrisponderebbe a quattro metri con questo liquido, non ai due assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno cambia l’ordine; quaranta ripete la proposta; zero la accetta. Dieci dimezza ancora la differenza senza motivo. Anche lo scarto è una pressione: non è il rapporto puro fra i due valori."
+        }
+      ],
+      "hints": [
+        "Sottrai il valore ottenuto con Stevino da quello proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno cambia l’ordine; quaranta ripete la proposta; zero la accetta. Dieci dimezza ancora la differenza senza motivo. Anche lo scarto è una pressione: non è il rapporto puro fra i due valori.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7629,
+      "title": "Isolare simbolicamente la densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Quale formula isola ρ dalla legge Δp=ρgh? Tutte le grandezze della formula sono quantità fisiche con unità coerenti.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ = Δp / (g h)",
+          "ρ = Δp g h",
+          "ρ = g h / Δp",
+          "ρ = Δp / h",
+          "ρ = Δp / (g h²)"
+        ],
+        "value": "ρ = Δp / (g h)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto gh è positivo, quindi possiamo dividere entrambi i membri senza cambiare le condizioni del modello. La forma universale è ρ=Δp/(gh). Se si usano Pa, m e s si ottiene kg/m³; la successiva conversione a kg/L non cambia la formula fisica."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho gh=\\Delta p"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{\\Delta p}{gh}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto non annulla gh; il reciproco ha dimensioni inverse di densità. Δp/h è pressione per lunghezza, mentre dividere per gh² aggiunge un metro al denominatore della densità. Non basta sostituire numeri in kPa e kg/L senza mantenere le conversioni coerenti."
+        }
+      ],
+      "hints": [
+        "Dividi per entrambi i fattori che moltiplicano la densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto non annulla gh; il reciproco ha dimensioni inverse di densità. Δp/h è pressione per lunghezza, mentre dividere per gh² aggiunge un metro al denominatore della densità. Non basta sostituire numeri in kPa e kg/L senza mantenere le conversioni coerenti.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7630,
+      "title": "Densità e profondità scalate insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. A usa ρ,h e B usa ρ_B=κ₁ρ, h_B=κ₂h, con κ₁,κ₂ positivi. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità e la profondità compaiono entrambe al primo grado nel prodotto. Nella divisione si cancellano ρ,g,h e rimane il prodotto dei due fattori. I parametri cambiano fra prove, mentre ciascun liquido resta omogeneo e in quiete nella propria prova."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=\\kappa_1\\kappa_2\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti attribuiscono un effetto inverso a uno dei due dati; il quadrato ripete la densità e la somma darebbe due per prove identiche. Questa legge non descrive una densità che varia lungo la stessa colonna: lì servirebbe integrare, fuori dalle ipotesi."
+        }
+      ],
+      "hints": [
+        "Due fattori diretti si moltiplicano nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti attribuiscono un effetto inverso a uno dei due dati; il quadrato ripete la densità e la somma darebbe due per prove identiche. Questa legge non descrive una densità che varia lungo la stessa colonna: lì servirebbe integrare, fuori dalle ipotesi.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7631,
+      "title": "Due colonne con dati diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. A ha ρ_A=1 kg/L,h_A=2 m. B ha ρ_B=2 kg/L,h_B=3 m. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "3/2",
+          "1/3",
+          "6"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà venti kPa; B dà duemila per dieci per tre Pa, sessanta kPa. Il rapporto sessanta su venti è tre. Equivalentemente, il fattore due di densità moltiplica il fattore tre mezzi di profondità."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=60\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo la densità e tre mezzi solo la profondità. Un terzo inverte il confronto; sei moltiplica due per tre dimenticando la profondità iniziale due. Tutti i risultati di pressione precedenti sono differenze rispetto alle rispettive superfici."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le pressioni oppure moltiplica i due rapporti d’ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo la densità e tre mezzi solo la profondità. Un terzo inverte il confronto; sei moltiplica due per tre dimenticando la profondità iniziale due. Tutti i risultati di pressione precedenti sono differenze rispetto alle rispettive superfici.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7632,
+      "title": "Media delle due sovrapressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. A ha ρ_A=1 kg/L,h_A=2 m; B ρ_B=2 kg/L,h_B=3 m. Qual è la media aritmetica delle due Δp con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 kPa",
+          "80 kPa",
+          "20 kPa",
+          "75/2 kPa",
+          "50 kPa"
+        ],
+        "value": "40 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite valgono venti e sessanta kPa. La somma ottanta divisa per due dà quaranta kPa. È una media statistica di prove distinte, non la pressione ottenuta componendo fisicamente le due colonne."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta p}=\\frac{20+60}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta p}=40\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta è la somma e venti divide ancora. Cinquanta non è la semisomma. La densità media3/2 kg/L e la profondità media5/2 m darebbero10·(3/2)·(5/2)=75/2 kPa, diverso da40 di5/2 kPa: il prodotto non commuta con questa media."
+        }
+      ],
+      "hints": [
+        "Fai prima il prodotto in ogni prova, poi la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta è la somma e venti divide ancora. Cinquanta non è la semisomma. La densità media3/2 kg/L e la profondità media5/2 m darebbero10·(3/2)·(5/2)=75/2 kPa, diverso da40 di5/2 kPa: il prodotto non commuta con questa media.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7633,
+      "title": "Progettare una profondità obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. A ha ρ_A=1 kg/L,h_A=2 m. B deve avere Δp_B=3Δp_A e ρ_B=2 kg/L. Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "3",
+          "2/3",
+          "1/2",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è sessanta kPa. Nel liquido B il gradiente ρ_Bg è venti kPa per metro: sessanta diviso venti dà h_B=3 m. Il rapporto rispetto ai due metri iniziali vale tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_B=60\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=\\frac{60}{20}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Tre è la nuova profondità come numero, non il rapporto. Due terzi inverte il confronto e un mezzo usa soltanto il raddoppio di densità senza il bersaglio triplo. Sei moltiplica invece di compensare l’effetto della densità. Tutte le profondità ottenute rispettano h>0."
+        }
+      ],
+      "hints": [
+        "Dividi il rapporto desiderato di pressione per quello della densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è la nuova profondità come numero, non il rapporto. Due terzi inverte il confronto e un mezzo usa soltanto il raddoppio di densità senza il bersaglio triplo. Sei moltiplica invece di compensare l’effetto della densità. Tutte le profondità ottenute rispettano h>0.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7634,
+      "title": "Dal display alla densità del liquido",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Il display continuo adimensionale S=qΔp ha q>0 costante e offset nullo. Un riferimento ρ=1 kg/L,h=2 m dà S=60. Un’altra prova a h=3 m dà S=180. Quanto vale ρ in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale venti kPa, quindi q=60/(20 kPa)=3 kPa⁻¹. La nuova lettura divisa per tre dà sessanta kPa. A tre metri gh vale trenta m²/s²: sessantamila Pa diviso trenta dà duemila kg/m³, cioè due kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=60\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=2000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura180 è un numero puro, non180 kPa. Omettere il guadagno tre sovrastimerebbe la densità di tre volte. Il controllo con2 kg/L e3 m produce60 kPa e quindi S180; non si attribuisce questo valore alla densità dell’acqua."
+        }
+      ],
+      "hints": [
+        "Taratura, pressione decodificata, poi divisione per gh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura180 è un numero puro, non180 kPa. Omettere il guadagno tre sovrastimerebbe la densità di tre volte. Il controllo con2 kg/L e3 m produce60 kPa e quindi S180; non si attribuisce questo valore alla densità dell’acqua.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7635,
+      "title": "Due riferimenti e un offset di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Un display continuo adimensionale segue S=qΔp+b, con q>0,b costanti. A:ρ=1 kg/L,h=2 m,S=41. B:ρ=2 kg/L,h=3 m,S=121. C:h=2 m,S=81. Quanto vale ρ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 kg/L",
+          "3/2 kg/L",
+          "2 kg/L",
+          "3 kg/L",
+          "4 kg/L"
+        ],
+        "value": "2 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B valgono venti e sessanta kPa. Il guadagno è(121−41)/(60−20)=2 kPa⁻¹, poi b=41−2·20=1. La lettura C dà(81−1)/2=40 kPa. Alla profondità due metri la densità è quindi due kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_C=40\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_C=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Alle densità alternative1,3/2,3,4 kg/L corrisponderebbero pressioni20,30,60,80 kPa e letture41,61,121,161. Solo2 produce81. Dividere letture grezze non elimina b: si devono prima usare differenze di riferimento e poi sottrarre l’offset."
+        }
+      ],
+      "hints": [
+        "Trova q dalle differenze e rimuovi b prima di invertire Stevino.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Alle densità alternative1,3/2,3,4 kg/L corrisponderebbero pressioni20,30,60,80 kPa e letture41,61,121,161. Solo2 produce81. Dividere letture grezze non elimina b: si devono prima usare differenze di riferimento e poi sottrarre l’offset.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-gauge-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica relativa",
+      "order": 7636,
+      "title": "Un vincolo fra prove, non dentro la colonna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-gauge",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo e incomprimibile è in quiete in un campo uniforme g=10 m/s². La densità ρ>0 è espressa in kg/L e la profondità verticale h>0 si misura verso il basso dalla superficie. La pressione relativa è Δp=p−p_s rispetto alla pressione p_s sulla superficie; non è la pressione assoluta. Si trascurano capillarità e variazioni di densità. Fra prove possono cambiare liquido e profondità; 1 kg/L=1000 kg/m³. Fra prove si sceglie ρ=c h, con c=1/2 kg/(L·m) fisso; in ogni prova ρ è uniforme lungo la colonna. Si misura Δp=20 kPa. Quante coppie positive(ρ,h) soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Una"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lega la densità uniforme scelta per una prova alla sua profondità. Non significa ρ variabile con la quota. In SI c=500 kg/m⁴; sostituendo in Stevino si trovaΔp=cgh². La misura porta h²=4 m². Le radici algebriche sono+2 m e−2 m; soltanto quella positiva rispetta profondità e densità positive."
+        },
+        {
+          "type": "formula",
+          "text": "c=500\\,\\mathrm{kg/m^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=cgh^2"
+        },
+        {
+          "type": "formula",
+          "text": " h^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " h=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Esiste una sola coppia fisica. Il ramo negativo darebbe anche densità negativa, esclusa; zero non riproduce20 kPa. La dipendenza quadratica riguarda il confronto fra prove. All’interno di ciascuna colonna resta valida la legge lineare in profondità con la propria densità costante."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e scegli il ramo ammesso da h>0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Esiste una sola coppia fisica. Il ramo negativo darebbe anche densità negativa, esclusa; zero non riproduce20 kPa. La dipendenza quadratica riguarda il confronto fra prove. All’interno di ciascuna colonna resta valida la legge lineare in profondità con la propria densità costante.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Quiete e legge di Stevino",
+        "Profondità verticale e riferimento della pressione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ab0bdfa66b6161f63b9a3358b0175b94b71bc1647ed537d0509001969035e719",
+      "name": "stevino-gauge-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTgxMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODEwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMxODJkNDIiIGZvbnQtc2l6ZT0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+U3RldmlubzogbWlzdXJhIGxhIHByb2ZvbmRpdMOgLCBwb2kgbGEgcHJlc3Npb25lIHJlbGF0aXZhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIHJlY2lwaWVudGkgZGkgZGl2ZXJzYSBsYXJnaGV6emEgaGFubm8gcHVudGkgYWxsYSBzdGVzc2EgcHJvZm9uZGl0w6AgZHVlIG1ldHJpLiBVbmEgc2Vjb25kYSBjb3BwaWEgY29uZnJvbnRhIGR1ZSBlIHRyZSBtZXRyaS4gTGEgcHJlc3Npb25lIHJlbGF0aXZhIGNyZXNjZSBkYSB2ZW50aSBhIHRyZW50YSBjaGlsb3Bhc2NhbC4gTGUgc2NhbGUgZ2VvbWV0cmljaGUgZSBxdWVsbGUgZGkgcHJlc3Npb25lIHNvbm8gZGljaGlhcmF0ZSBzZXBhcmF0YW1lbnRlLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODEwIiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIzMiIgeT0iNDYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBMYSBsYXJnaGV6emEgbm9uIGNhbWJpYSDOlHA8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0Ij5TdGVzc28gbGlxdWlkbywgc3Rlc3NhIHByZXNzaW9uZSBwX3MuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjAiPs+BID0gMSBrZy9MOyBnID0gMTAgbS9zwrI7IHF1aWV0ZS48L3RleHQ+CjxyZWN0IHg9IjkxIiB5PSIxOTAiIHdpZHRoPSIxOTgiIGhlaWdodD0iMjUwIiBmaWxsPSIjYjVkY2YxIi8+PHJlY3QgeD0iNDIxIiB5PSIxOTAiIHdpZHRoPSI3OCIgaGVpZ2h0PSIyNTAiIGZpbGw9IiNiNWRjZjEiLz4KPHBhdGggZD0iTTkwIDE1MFY0NDBIMjkwVjE1ME00MjAgMTUwVjQ0MEg1MDBWMTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNNzAgMTkwSDUyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGQ3YTk5IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNSIvPjxwYXRoIGQ9Ik03MCAzOTBINTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiMDViMzUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA1Ii8+CjxjaXJjbGUgY3g9IjE5MCIgY3k9IjM5MCIgcj0iNiIgZmlsbD0iI2IwNWIzNSIvPjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjM5MCIgcj0iNiIgZmlsbD0iI2IwNWIzNSIvPgo8dGV4dCB4PSIzMiIgeT0iNDc4Ij5TdXBlcmZpY2llOiDOlHAgPSAwLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTEyIj5FbnRyYW1iaSBpIHB1bnRpOiBoID0gMiBtLCDOlHAgPSAyMCBrUGEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NDYiIGZvbnQtc2l6ZT0iMTgiPjIwMCBweCBzb3R0byBsYSBzdXBlcmZpY2llOyBzY2FsYSAxMDAgcHgvbS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA1ODRINjA4IiBzdHJva2U9IiM2YTdkOGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iNjM0IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gQ29uZnJvbnRhIGxlIHByb2ZvbmRpdMOgIHZlcnRpY2FsaTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNjcyIj5TdGVzc28gbGlxdWlkbywgZGVuc2l0w6AgdW5pZm9ybWUuPC90ZXh0Pgo8cmVjdCB4PSIxMDEiIHk9IjczMCIgd2lkdGg9IjEzOCIgaGVpZ2h0PSIzNTAiIGZpbGw9IiNiNWRjZjEiLz48cmVjdCB4PSIzNzEiIHk9IjczMCIgd2lkdGg9IjEzOCIgaGVpZ2h0PSIzNTAiIGZpbGw9IiNiNWRjZjEiLz4KPHBhdGggZD0iTTEwMCA3MTBWMTA4MEgyNDBWNzEwTTM3MCA3MTBWMTA4MEg1MTBWNzEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNOTAgNzMwSDI1ME0zNjAgNzMwSDUyMCIgc3Ryb2tlPSIjNGQ3YTk5IiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iOTMwIiByPSI3IiBmaWxsPSIjYjA1YjM1Ii8+PGNpcmNsZSBjeD0iNDQwIiBjeT0iMTAzMCIgcj0iNyIgZmlsbD0iI2IwNWIzNSIvPgo8cGF0aCBkPSJNMTcwIDczMFY5MzBNNDQwIDczMFYxMDMwIiBzdHJva2U9IiNiMDViMzUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+Cjx0ZXh0IHg9IjExMCIgeT0iMTEzMCI+QTogaCA9IDIgbTwvdGV4dD48dGV4dCB4PSIzODAiIHk9IjExMzAiPkI6IGggPSAzIG08L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNzYiPlRyYXR0aSB2ZXJ0aWNhbGk6IDIwMCBweCBlIDMwMCBweC48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEyMTAiIGZvbnQtc2l6ZT0iMTgiPlN0ZXNzYSBzY2FsYSBkaSBwcm9mb25kaXTDoDogMTAwIHB4L20uPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTI0OEg2MDgiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMjk4IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+My4gQ2FsY29sYSBpbCBwZXNvIHBlciB1bml0w6AgZGkgYXJlYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTMzNiI+zpRwID0gz4FnaCA9ICgxMCBrUGEvbSkgaC48L3RleHQ+Cjx0ZXh0IHg9IjQ0IiB5PSIxNDA0Ij5BPC90ZXh0PjxyZWN0IHg9IjkwIiB5PSIxMzc1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjODRjN2ViIi8+PHRleHQgeD0iMjc4IiB5PSIxNDA0Ij4yMCBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjQ0IiB5PSIxNDg0Ij5CPC90ZXh0PjxyZWN0IHg9IjkwIiB5PSIxNDU1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjODRjN2ViIi8+PHRleHQgeD0iMzU4IiB5PSIxNDg0Ij4zMCBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTQ0Ij5CYXJyZTogMTYwIHB4IGUgMjQwIHB4LCBzY2FsYSA4IHB4L2tQYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1OTAiPklsIHJhcHBvcnRvIGRlbGxlIHByZXNzaW9uaSByZWxhdGl2ZSDDqCAzLzIuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNjQwIj5MYSBwcmVzc2lvbmUgYXNzb2x1dGEgw6ggcF9zICsgzpRwLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTY3NCI+QWxsYSBzdXBlcmZpY2llIG5vbiDDqCBuZWNlc3NhcmlhbWVudGUgemVyby48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE3MzAiIGZvbnQtc2l6ZT0iMTgiPlNjYWxlIGRpIHByb2ZvbmRpdMOgIGUgcHJlc3Npb25lIGluZGlwZW5kZW50aS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE3NjQiIGZvbnQtc2l6ZT0iMTgiPkkgcmVjaXBpZW50aSBzb25vIHNjaGVtYXRpY2k7IGNvbnRhIGxhIHF1b3RhLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}
