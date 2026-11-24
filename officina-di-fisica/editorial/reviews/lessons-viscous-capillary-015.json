@@ -1,0 +1,1885 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-viscous-capillary-015",
+  "records": [
+    {
+      "id": "C2-L007",
+      "sourceSha256": "f0382da70dabd853ad1d8d6a1f8d006063f7b2f4d12327f390305169a70e3670",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "steady zero-pressure-gradient Couette curvature zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "1/m/s",
+          "dimension": {
+            "[length]": "-1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Couette no-slip lower boundary",
+          "independentExact": "U0",
+          "expectedValue": "U0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Couette no-slip upper boundary",
+          "independentExact": "U1",
+          "expectedValue": "U1",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Couette transverse velocity gradient",
+          "independentExact": "(-U0 + U1)/d",
+          "expectedValue": "(-U0 + U1)/d",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "dynamic viscosity unit",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "Pa*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe0.30m/s across2mm gives150persecond",
+          "independentExact": "150",
+          "expectedValue": "150",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probeeta0.4Pas times150 gives60Pa",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe60Pa over0.02m2 needs1.2N",
+          "independentExact": "6/5",
+          "expectedValue": "6/5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "steady pipe profile has zero wall speed",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "steady pipe area mean half axis speed",
+          "independentExact": "R**2*dp/(8*L*eta)",
+          "expectedValue": "R**2*dp/(8*L*eta)",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Reynolds number dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "inertia to viscosity scale ratio",
+          "independentExact": "L*U1*rho/eta",
+          "expectedValue": "L*U1*rho/eta",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "unsteady counterexample solves axial Navier-Stokes",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Pa/m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "original_domain_counterexample_not_a_student_exercise"
+        },
+        {
+          "claim": "unsteady counterexample satisfies no-slip",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "original_domain_counterexample_not_a_student_exercise"
+        },
+        {
+          "claim": "unsteady counterexample smooth axis gradient",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "original_domain_counterexample_not_a_student_exercise"
+        },
+        {
+          "claim": "unsteady counterexample independent of axial coordinate",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "original_domain_counterexample_not_a_student_exercise"
+        },
+        {
+          "claim": "unsteady counterexample mean from area integral",
+          "independentExact": "(-R**6*b/3 + R**4*(-a0*rho - 16*b*eta*t)/(2*rho) + R**2*(R**4*b*rho + R**2*a0*rho + 16*R**2*b*eta*t)/rho)/R**2",
+          "expectedValue": "2*R**4*b/3 + R**2*(a0 + 16*b*eta*t/rho)/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "original_domain_counterexample_not_a_student_exercise"
+        },
+        {
+          "claim": "new Couette worked gradient4mm/s over2mm",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_edition_worked_example_arithmetic"
+        },
+        {
+          "claim": "new Couette worked stress2Pas times2persecond",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_edition_worked_example_arithmetic"
+        },
+        {
+          "claim": "new example4mm/s converts exactly to1over250m/s",
+          "independentExact": "1/250",
+          "expectedValue": "1/250",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_edition_worked_example_arithmetic"
+        },
+        {
+          "claim": "new profile center limit",
+          "independentExact": "vmax",
+          "expectedValue": "vmax",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new profile stationary wall limit",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new profile at half radius",
+          "independentExact": "3*vmax/4",
+          "expectedValue": "3*vmax/4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new printed power integral",
+          "independentExact": "R**2/4",
+          "expectedValue": "R**2/4",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new area weighted mean",
+          "independentExact": "vmax/2",
+          "expectedValue": "vmax/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "diameter line mean would differ from area mean",
+          "independentExact": "vmax/6",
+          "expectedValue": "vmax/6",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_comparison_not_assigned_extra_student_calculation"
+        },
+        {
+          "claim": "new Reynolds numerator shares viscosity base units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "kg/m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "steady zero-pressure-gradient Couette curvature zero": {
+          "[length]": "-1",
+          "[time]": "-1"
+        },
+        "Couette no-slip lower boundary": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "Couette no-slip upper boundary": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "Couette transverse velocity gradient": {
+          "[time]": "-1"
+        },
+        "dynamic viscosity unit": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-1"
+        },
+        "probe0.30m/s across2mm gives150persecond": {
+          "[time]": "-1"
+        },
+        "probeeta0.4Pas times150 gives60Pa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "probe60Pa over0.02m2 needs1.2N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "steady pipe profile has zero wall speed": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "steady pipe area mean half axis speed": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "Reynolds number dimensions": {},
+        "inertia to viscosity scale ratio": {},
+        "unsteady counterexample solves axial Navier-Stokes": {
+          "[mass]": "1",
+          "[length]": "-2",
+          "[time]": "-2"
+        },
+        "unsteady counterexample satisfies no-slip": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "unsteady counterexample smooth axis gradient": {
+          "[time]": "-1"
+        },
+        "unsteady counterexample independent of axial coordinate": {
+          "[time]": "-1"
+        },
+        "unsteady counterexample mean from area integral": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new Couette worked gradient4mm/s over2mm": {
+          "[time]": "-1"
+        },
+        "new Couette worked stress2Pas times2persecond": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "new example4mm/s converts exactly to1over250m/s": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new profile center limit": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new profile stationary wall limit": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new profile at half radius": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new printed power integral": {
+          "[length]": "2"
+        },
+        "new area weighted mean": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "diameter line mean would differ from area mean": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new Reynolds numerator shares viscosity base units": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "NEW DRAFT: worked example 4mm/s over 2mm gives 2s^-1; 2Pa*s times 2s^-1 gives 4Pa. In SI, 0.004/0.002=2 exactly. Steady pipe profile endpoints vmax/0 and half-radius value 3vmax/4 checked. Area weighting 2pi*r*dr gives integral R²/4 and mean vmax/2; reviewer comparison over a diameter instead gives 2vmax/3, so area weighting matters. The exact polynomial unsteady counterexample remains a boundary probe explaining why startup is excluded, not an exercise assigned in the new lesson. Reynolds numerator kg/(m*s) matches eta, so Re is dimensionless. No calculator or student-performance evidence claimed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT: Couette is steady and developed, with no pressure gradient and no slip. Tube explicitly straight, circular, horizontal, steady, laminar and fully developed; incompressible Newtonian fluid with constant positive eta/rho, stationary walls and no slip. Entrance/end effects excluded; R>0, 0<=r<=R and axis along the flow with vmax>0. Startup may be laminar but unsteady and does not automatically share the parabola or half-maximum mean. Small Re does not imply time independence. All these conditions are actually present in the final edition.",
+      "pedagogicalReview": "NEW DRAFT: all 28 blocks reread. Explicit stationarity repairs the original domain failure. The worked Couette example separates shear stress from normal pressure despite common Pa units. The area integral explains why outer annuli have more weight and why this differs from a diameter line average. Checks center, wall, half-radius and the laminar/steady distinction with a startup warning. Reynolds remains an optional scaling comparison without a universal threshold. Formulas are explicit standalone equations, with no dangling chains or hidden numerical trigonometry step.",
+      "assetChecksums": {
+        "C2-profilo.svg": "73907de291ed86769e15e3d90e407b6ee78198524df50a8d456a8101df798b4c"
+      },
+      "figureReview": "Historical C2-profilo.svg in final package, editorial asset and Git5d1d are byte-identical, including the Base64 payload. Parabolic Bezier and arrow tips reread/rendered. Caption explicitly steady, identifies local velocity tips rather than a particle trajectory and the diameter of one section. No assigned velocity scale. Figure is uploaded as a hash-bound asset; the historical edition is retained.",
+      "verificationMode": "EXACT_ORACLE",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "DRAFT",
+      "publishedEditionIssue": {
+        "priority": "P2",
+        "kind": "missing_stationarity_condition_for_pipe_profile",
+        "reason": "Tube paragraph and parabolic-profile/half-maximum formula omit stationarity, although laminar and stationary are explicitly distinguished. Fully developed unsteady Newtonian no-slip flow need not be parabolic; the independent polynomial Navier-Stokes solution has mean minus half maximum b*R^4/6."
+      },
+      "candidateSha256": "cf3e1ac2f5e8ae643f346fbc429d0cc09b0a9c86535e6648a018684b4252a921",
+      "reviewedSignature": "9c1c72d008f9c87d70e4bdcd7646ee24398e6bc6089bdab210d5c83ce7e0f05e",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C2-L007",
+        "sourceSha256": "f0382da70dabd853ad1d8d6a1f8d006063f7b2f4d12327f390305169a70e3670",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C2.json",
+        "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+        "ok": false,
+        "errors": [
+          "Independent lesson claim counterexample or mathematics failed",
+          "Tube paragraph and parabolic-profile/half-maximum formula omit stationarity, although laminar and stationary are explicitly distinguished. Fully developed unsteady Newtonian no-slip flow need not be parabolic; the independent polynomial Navier-Stokes solution has mean minus half maximum b*R^4/6."
+        ],
+        "checks": [
+          {
+            "claim": "steady zero-pressure-gradient Couette curvature zero",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "1/m/s",
+            "dimension": {
+              "[length]": "-1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "Couette no-slip lower boundary",
+            "independentExact": "U0",
+            "expectedValue": "U0",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "Couette no-slip upper boundary",
+            "independentExact": "U1",
+            "expectedValue": "U1",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "Couette transverse velocity gradient",
+            "independentExact": "(-U0 + U1)/d",
+            "expectedValue": "(-U0 + U1)/d",
+            "unit": "1/s",
+            "dimension": {
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "dynamic viscosity unit",
+            "independentExact": "1",
+            "expectedValue": "1",
+            "unit": "Pa*s",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "-1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "probe0.30m/s across2mm gives150persecond",
+            "independentExact": "150",
+            "expectedValue": "150",
+            "unit": "1/s",
+            "dimension": {
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "probeeta0.4Pas times150 gives60Pa",
+            "independentExact": "60",
+            "expectedValue": "60",
+            "unit": "Pa",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "-1",
+              "[time]": "-2"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "probe60Pa over0.02m2 needs1.2N",
+            "independentExact": "6/5",
+            "expectedValue": "6/5",
+            "unit": "N",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "1",
+              "[time]": "-2"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "steady pipe profile has zero wall speed",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "steady pipe area mean half axis speed",
+            "independentExact": "R**2*dp/(8*L*eta)",
+            "expectedValue": "R**2*dp/(8*L*eta)",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "Reynolds number dimensions",
+            "independentExact": "1",
+            "expectedValue": "1",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "inertia to viscosity scale ratio",
+            "independentExact": "L*U1*rho/eta",
+            "expectedValue": "L*U1*rho/eta",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "unsteady counterexample solves axial Navier-Stokes",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "Pa/m",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "-2",
+              "[time]": "-2"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          },
+          {
+            "claim": "unsteady counterexample satisfies no-slip",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          },
+          {
+            "claim": "unsteady counterexample smooth axis gradient",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "1/s",
+            "dimension": {
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          },
+          {
+            "claim": "unsteady counterexample independent of axial coordinate",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "1/s",
+            "dimension": {
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          },
+          {
+            "claim": "unsteady counterexample mean from area integral",
+            "independentExact": "(-R**6*b/3 + R**4*(-a0*rho - 16*b*eta*t)/(2*rho) + R**2*(R**4*b*rho + R**2*a0*rho + 16*R**2*b*eta*t)/rho)/R**2",
+            "expectedValue": "2*R**4*b/3 + R**2*(a0 + 16*b*eta*t/rho)/2",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          },
+          {
+            "claim": "original half-maximum claim without stationarity",
+            "independentExact": "R**4*b/6",
+            "expectedValue": "0",
+            "unit": "m/s",
+            "dimension": {
+              "[length]": "1",
+              "[time]": "-1"
+            },
+            "relation": "exact",
+            "residual": "R**4*b/6",
+            "ok": false,
+            "scope": "original_domain_counterexample_not_a_student_exercise"
+          }
+        ],
+        "dimension": {
+          "steady zero-pressure-gradient Couette curvature zero": {
+            "[length]": "-1",
+            "[time]": "-1"
+          },
+          "Couette no-slip lower boundary": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "Couette no-slip upper boundary": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "Couette transverse velocity gradient": {
+            "[time]": "-1"
+          },
+          "dynamic viscosity unit": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-1"
+          },
+          "probe0.30m/s across2mm gives150persecond": {
+            "[time]": "-1"
+          },
+          "probeeta0.4Pas times150 gives60Pa": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "probe60Pa over0.02m2 needs1.2N": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "steady pipe profile has zero wall speed": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "steady pipe area mean half axis speed": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "Reynolds number dimensions": {},
+          "inertia to viscosity scale ratio": {},
+          "unsteady counterexample solves axial Navier-Stokes": {
+            "[mass]": "1",
+            "[length]": "-2",
+            "[time]": "-2"
+          },
+          "unsteady counterexample satisfies no-slip": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "unsteady counterexample smooth axis gradient": {
+            "[time]": "-1"
+          },
+          "unsteady counterexample independent of axial coordinate": {
+            "[time]": "-1"
+          },
+          "unsteady counterexample mean from area integral": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "original half-maximum claim without stationarity": {
+            "[length]": "1",
+            "[time]": "-1"
+          }
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Source has no assigned numerical exercise. Couette no-slip endpoints yield linear profile and gradient(U1-U0)/d under its explicitly steady zero-pressure-gradient assumptions. Reviewer probe0.30m/s over2mm gives150s^-1;eta0.4Pas gives60Pa andarea0.02m² needs6/5N. Steady pipe area integration gives half-axis mean and Reynolds units cancel. ORIGINAL FAIL is domain,not difficult arithmetic: the tube statement omits stationarity. Exact counterexample v=a(t)(R²-r²)+b(R⁴-r⁴),a=a0+16eta*b*t/rho,drivinggradientG=4eta*a+16eta*b*R² satisfies the unsteady fully developed axial momentum equation,no-slip andsmoothaxis. Mean minushalfmaximum=bR⁴/6,nonzero for b>0. For toySIcoefficientsa0=b=R=eta=rho=1 at t0,maximum2m/s,mean7/6m/s,Re7/3;low-Re laminar motion remains nonparabolic.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Newtonian constant dynamicviscosity,signedshear convention handled through sourceabsolutevalues. Couette assumptions explicitly steady developed,no pressuregradient,no-slip. A stationary circular pressure-driven flow gives the displayedparabola,but the originaltube paragraph omits stationarity despite distinguishing laminarfromsteady. Fullydeveloped means no axialprofilechange;it neednot exclude timedependence. Counterexample usespositivea0,b,R,eta,rho,t>=0 withsmoothpositiveaxisymmetricvelocity,no radial/axialdependence,andcanbechosenlowRe. Reynolds isdimensionless scaling,not a universaltransitionthreshold.",
+        "pedagogicalReview": "Correct shear-gradient explanation,Couette assumptions,units,laminarversustemporalsteadiness distinction andReynolds caveat. Originaltubeparabola andhalfmaximum needtheadditionalexplicitsteadycondition. Cannot silently importthat condition fromthe precedingdifferentgeometry orfromnextlesson tocertifythebroadclaim. Failure doesnotimpugnthecorrectsteadyparaboladiagram.",
+        "assetChecksums": {
+          "/figures/C2-profilo.svg": "73907de291ed86769e15e3d90e407b6ee78198524df50a8d456a8101df798b4c"
+        },
+        "figureReview": "XML/render read:axisy110,wallsy48/172,radius62px. QuadraticBezier M15148 Q523110151172 equalsx151+186[1-((y-110)/62)^2] exactly. Arrowsatselectedlevels meetcurvewithin1pxrounding;axismaximumandnoslipcorrect. Shapevalidforsteadycase;originaldomainfailureistextualstationarityomission,not wronggeometry.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE",
+        "publishedEditionIssue": {
+          "priority": "P2",
+          "kind": "missing_stationarity_condition_for_pipe_profile",
+          "reason": "Tube paragraph and parabolic-profile/half-maximum formula omit stationarity, although laminar and stationary are explicitly distinguished. Fully developed unsteady Newtonian no-slip flow need not be parabolic; the independent polynomial Navier-Stokes solution has mean minus half maximum b*R^4/6."
+        }
+      },
+      "reviewedEdition": "NEW_DRAFT"
+    },
+    {
+      "id": "C2-L008",
+      "sourceSha256": "a4e4ff8f537596cd3a413f09c4d730888b0e91e49c44699e2c9f58149f526ca1",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "steady radial shear balances pressure gradient",
+          "independentExact": "-dp*r/(2*L)",
+          "expectedValue": "-dp*r/(2*L)",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "independently integrated Hagen-Poiseuille flow",
+          "independentExact": "pi*R**4*dp/(8*L*eta)",
+          "expectedValue": "pi*R**4*dp/(8*L*eta)",
+          "unit": "m**3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "hydraulic resistance from flow coefficient",
+          "independentExact": "8*L*eta/(pi*R**4)",
+          "expectedValue": "8*L*eta/(pi*R**4)",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radius squared scaling of mean velocity",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radius squared scaling of cross-sectional area",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halving radius at fixed pressure gives one-sixteenth flow",
+          "independentExact": "1/16",
+          "expectedValue": "1/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halving radius multiplies resistance by16",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fixed flow requires16fold pressure after halving radius",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "double viscosity halves flow",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "double length halves flow",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Poiseuille coefficient units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m**3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "hydraulic resistance units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radius1mm converts to1over1000m",
+          "independentExact": "1/1000",
+          "expectedValue": "1/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy1mm,eta0.001,L0.1,dp8 flow exact",
+          "independentExact": "pi/100000000",
+          "expectedValue": "pi/100000000",
+          "unit": "m**3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy exact flow in mL persecond",
+          "independentExact": "pi/100",
+          "expectedValue": "pi/100",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "pressure power equals integrated viscous dissipation",
+          "independentExact": "pi*R**4*dp**2/(8*L*eta)",
+          "expectedValue": "pi*R**4*dp**2/(8*L*eta)",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual figure radius ratio33over66",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_labelled_radius_ratio"
+        }
+      ],
+      "dimension": {
+        "steady radial shear balances pressure gradient": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "independently integrated Hagen-Poiseuille flow": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "hydraulic resistance from flow coefficient": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "radius squared scaling of mean velocity": {},
+        "radius squared scaling of cross-sectional area": {},
+        "halving radius at fixed pressure gives one-sixteenth flow": {},
+        "halving radius multiplies resistance by16": {},
+        "fixed flow requires16fold pressure after halving radius": {},
+        "double viscosity halves flow": {},
+        "double length halves flow": {},
+        "Poiseuille coefficient units": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "hydraulic resistance units": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "radius1mm converts to1over1000m": {
+          "[length]": "1"
+        },
+        "toy1mm,eta0.001,L0.1,dp8 flow exact": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "toy exact flow in mL persecond": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "pressure power equals integrated viscous dissipation": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual figure radius ratio33over66": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numeric calculator task. Integrate radial stress balance eta*dv/dr=-Delta_p*r/(2L) from no-slip wall to getv=Delta_p(R²-r²)/(4etaL);integrate2pi*r*v forQ=piR⁴Delta_p/(8etaL). Mean scalesR² andareaR². Source actualmanual relation:(1/2)^4=1/16 at fixedpressure;fixedQ insteadneeds16timespressure. Reviewer toy:r1mm=1/1000m,eta1/1000Pas,L1/10m,drop8Pa giveQ=pi/10^8m³/s=pi/100mL/s exactly. Pi neednot be evaluated. Independently integrated viscous dissipation equalsDelta_p*Q,consistent with continuous pressure work.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "All sourceconditions explicitly present:straight rigid circular uniform-radiuspipe,incompressibleNewtonianfluid,laminarsteadyfullydeveloped,no-slip,horizontal. Positiveeta,L,r;Delta_p signsetinflowdirection. Resistanceatzeroflow is understood aslinearcoefficient,not evaluating0/0. Radius/diameter distinction and controlledpressureversuscontrolledflow matter. Realphysiologicalpulsatility,deformability andreology are explicitly outside this scalarlinear model.",
+      "pedagogicalReview": "Complete conditions precede formula,thenexplicitSIunits andtwooriginsofradiusfourthpower. ControlledDelta_p versuscontrolledQ ismadeexplicit;actualhalf-radiusconclusion1/16 ismanual. Realphysiology caveat preventstreatingtoy law aspatientcalibration.",
+      "assetChecksums": {
+        "/figures/C2-raggio.svg": "edfcf1d6ba50e668f509b138b751154ce5bf1be7c81ad58561316ae072a02178"
+      },
+      "figureReview": "XML/render read:circleradii66and33px exactratio1/2;separatecomparisonpipes,notserialstenosis. Captionexplicitlyfixespressure,viscosity,length. Redarrowslabelradii,notflowsorforces;circlegeometryratherthanarrowheadinkverifiestheratio.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-L009",
+      "sourceSha256": "363e23db48dc4b256af71866af2c2db5e6cc72514b6204dd01b726e4ebf65fa4",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "series flow from middle-node elimination",
+          "independentExact": "(pa - pb)/(R1 + R2)",
+          "expectedValue": "(pa - pb)/(R1 + R2)",
+          "unit": "m**3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "intermediate pressure cancels in series drop",
+          "independentExact": "pa - pb",
+          "expectedValue": "pa - pb",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallel equivalent from summed branch flows",
+          "independentExact": "R1*R2/(R1 + R2)",
+          "expectedValue": "R1*R2/(R1 + R2)",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallel smaller than R1 with positive difference",
+          "independentExact": "-R1*R2/(R1 + R2) + R1",
+          "expectedValue": "R1**2/(R1 + R2)",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallel smaller than R2 with positive difference",
+          "independentExact": "-R1*R2/(R1 + R2) + R2",
+          "expectedValue": "R2**2/(R1 + R2)",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "series exceeds R1 by positive R2",
+          "independentExact": "R2",
+          "expectedValue": "R2",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "closing branch2 returns equivalent R1",
+          "independentExact": "R1",
+          "expectedValue": "R1",
+          "unit": "Pa*s/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "closed branch2 flow tends zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m**3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy seriesR2plus4 gives Q3 for drop18",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy intermediate pressure16",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy parallelR2and4 equals4over3",
+          "independentExact": "4/3",
+          "expectedValue": "4/3",
+          "unit": "Pa*s/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy parallel totalQ27over2",
+          "independentExact": "27/2",
+          "expectedValue": "27/2",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "parallel power is sum of branch powers",
+          "independentExact": "(pa - pb)*((pa - pb)/R2 + (pa - pb)/R1)",
+          "expectedValue": "(pa - pb)**2/R2 + (pa - pb)**2/R1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "pressure flow product power units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "series flow from middle-node elimination": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "intermediate pressure cancels in series drop": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "parallel equivalent from summed branch flows": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "parallel smaller than R1 with positive difference": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "parallel smaller than R2 with positive difference": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "series exceeds R1 by positive R2": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "closing branch2 returns equivalent R1": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "closed branch2 flow tends zero": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "toy seriesR2plus4 gives Q3 for drop18": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "toy intermediate pressure16": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "toy parallelR2and4 equals4over3": {
+          "[mass]": "1",
+          "[length]": "-4",
+          "[time]": "-1"
+        },
+        "toy parallel totalQ27over2": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "parallel power is sum of branch powers": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "pressure flow product power units": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No numerical exercise assigned. Eliminate pressureatmiddle node to deriveRseries=R1+R2;sumparallelflowsDelta_p/Ri andinvert to getR1R2/(R1+R2). Positive finite resistances imply parallel beloweachbranch andseries aboveeachcontribution;R2toinfinity returnsR1 andbranch2flow0. Reviewer toy:R1=2,R2=4Pa*s/mL,nodes22and4Pa give seriesQ3mL/s andmiddle16Pa;parallelReq4/3Pa*s/mL andtotalQ27/2mL/s. Node power equals sum of branchpowers. These are exact illustrative numbers,not measured biological parameters.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Stationaryincompressibleflow,positivefinitelinearresistances andidealnodesofcommonpressure,withnoextraunassignedjunctionstorageorloss. Series hascommonflow,parallelcommonpressuredifference. Limitinfiniteresistance closesbranch. Fixednodepressures requiredforflowcomparison;elastic regulation/pulsation are not reduced tofixedmeasuredparameters. PrerequisitehorizontalPoiseuillemodel supplies the pressure-resistance interpretation.",
+      "pedagogicalReview": "Topology/nodeidentification precedesalgebra. Cancelsmiddlepressure inseries andsumsbranchflows inparallel;closingabranch provideslimitcheck. Distinguishesfixednodepressures fromphysiological regulation. No answerkey orfixture substitutesfor a solvednetwork.",
+      "assetChecksums": {
+        "/figures/C2-reti.svg": "2dbdd5ee675dab5d935061d55a2aa6c63b3a5f616a1ee48da17684ea1af3a377"
+      },
+      "figureReview": "XML/render read:upperpath crossesR1thenR2;lowerR1/R2branchesjoinidenticalleft/rightnodes. Labelsandcaptionmatchseries/parallelalgebra. No spatiallengthinterpretedasresistanceorpressure.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-L010",
+      "sourceSha256": "668f4bf72f97a6f77e3dc0a8e696d784012da1745358c42d99efdf9975e336d0",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C2.json",
+      "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "surface energy and line force units agree",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "single straight moving edge force from energy",
+          "independentExact": "ell*gamma",
+          "expectedValue": "ell*gamma",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "soap film two interfaces double edge force",
+          "independentExact": "2*ell*gamma",
+          "expectedValue": "2*ell*gamma",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "capillary height from vertical force balance",
+          "independentExact": "2*gamma*cos(theta)/(density*g*radius)",
+          "expectedValue": "2*gamma*cos(theta)/(density*g*radius)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wettingtheta0 height positive coefficient",
+          "independentExact": "2*gamma/(density*g*radius)",
+          "expectedValue": "2*gamma/(density*g*radius)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "theta90deg gives zero capillary height",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "theta120deg gives negative capillary height",
+          "independentExact": "-gamma/(density*g*radius)",
+          "expectedValue": "-gamma/(density*g*radius)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halving capillary radius doubles signed height",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "capillary coefficient units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "spherical drop pressure from energy-volume derivative",
+          "independentExact": "2*gamma/R",
+          "expectedValue": "2*gamma/R",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "thin soap film pressure from two interface energies",
+          "independentExact": "4*gamma/R",
+          "expectedValue": "4*gamma/R",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "finite two-radius soap film tends to thin-film pressure",
+          "independentExact": "4*gamma/R",
+          "expectedValue": "4*gamma/R",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "plane-interface curvature limit",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "smaller drop radius doubles pressure",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sphere saturates geometric isoperimetric bound",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m**6",
+          "dimension": {
+            "[length]": "6"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two equal-volume spheres increase total surface",
+          "independentExact": "2**(1/3)",
+          "expectedValue": "2**(1/3)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "surface tension50mNpermetre converts exactly",
+          "independentExact": "1/20",
+          "expectedValue": "1/20",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy surface work over1cm2",
+          "independentExact": "1/200000",
+          "expectedValue": "1/200000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy capillary1mm,g10,density1000,theta0 gives1cm",
+          "independentExact": "1/100",
+          "expectedValue": "1/100",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy capillarytheta60 halves rise",
+          "independentExact": "1/200",
+          "expectedValue": "1/200",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy spherical drop1mm has100Pa excess",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy soap bubble1mm has200Pa excess",
+          "independentExact": "200",
+          "expectedValue": "200",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "surface energy and line force units agree": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "single straight moving edge force from energy": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "soap film two interfaces double edge force": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "capillary height from vertical force balance": {
+          "[length]": "1"
+        },
+        "wettingtheta0 height positive coefficient": {
+          "[length]": "1"
+        },
+        "theta90deg gives zero capillary height": {
+          "[length]": "1"
+        },
+        "theta120deg gives negative capillary height": {
+          "[length]": "1"
+        },
+        "halving capillary radius doubles signed height": {},
+        "capillary coefficient units": {
+          "[length]": "1"
+        },
+        "spherical drop pressure from energy-volume derivative": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "thin soap film pressure from two interface energies": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "finite two-radius soap film tends to thin-film pressure": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "plane-interface curvature limit": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "smaller drop radius doubles pressure": {},
+        "sphere saturates geometric isoperimetric bound": {
+          "[length]": "6"
+        },
+        "two equal-volume spheres increase total surface": {},
+        "surface tension50mNpermetre converts exactly": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "toy surface work over1cm2": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy capillary1mm,g10,density1000,theta0 gives1cm": {
+          "[length]": "1"
+        },
+        "toy capillarytheta60 halves rise": {
+          "[length]": "1"
+        },
+        "toy spherical drop1mm has100Pa excess": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "toy soap bubble1mm has200Pa excess": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source quantitative relations are all checked despite its stated qualitative syllabus aim;no assigned decimalcalculation. Moving straight edge createsareaell*dx soenergyderivative givesgamma*ell,or2gamma*ell forsoapfilm. Force balance givesh=2gamma*cos(theta)/(rho*g*r),positivebelow90deg,zeroat90,negativeabove90. Differentiate4piR²gamma with respect to4piR³/3 toderive2gamma/R foroneinterface;twointerfacesthinfilm gives4gamma/R. Reviewer toys:50mN/m=1/20N/m;newarea1cm² needs1/200000J. Capillaryr1mm,rho1000,g10,theta0 gives1cm;theta60 gives1/2cm. DropR1mm has100Pa excess,andthinsoapbubble200Pa. Exactfractions,pi cancellation andstandardcosines suffice;no calculator or studentcalibration claimed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Constantgamma underassignedthermodynamicconditions;DeltaA countsphysicalinterfaces. F=gamma*ell islocal/co-directedtractionalong a straight effectiveedge,not scalar summation of arbitrarily turningclosedborderforces. Smallfreedrops approximate spheres;gravity/supportdeformation limitedasstated. Circularthincapillary,equilibriummeniscus,contactanglethroughliquid,equalatmospheres andnegligiblegasdensity;meniscusvolumecorrection neglectedexplicitly. Laplace2gamma/R isoneinterface sphere;4gamma/R forsoapbubble isthinfilmapproximation,twoalmostequalradii,as source says.",
+      "pedagogicalReview": "Connectsenergyandforcemeasurements,countssoapinterfaces,definescontactangleandrisemeasurement,checkspositive/negativeheightandcurvaturepressure. Quantitativeextensions actually derivedratherthan waivedbecausequalitativesyllabus. Explicitthinfilmandmeniscus approximations retaincorrectlimits;nounassigneddecimaltrig step.",
+      "assetChecksums": {
+        "/figures/C2-capillare.svg": "3bd5058865211ddca1631b5195f13e3e0f788681e80720f125762914dc710de2"
+      },
+      "figureReview": "XML/render read:connectedreservoirandverticalcapillary,externallevely129,concavewettingmeniscusedgesy53andcentery61,referencelinehnear59. Positiveheightshown;captionexplicitlyneglectssmallmeniscuscorrections. Sameatmospherelegendcorrect. No numericr,h,thetaorgamma scaleassigned;meniscuscurve isqualitativelywetting,notananglemeasurementexercise.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "e76c5e02d74adc992124e59241b679b6f253624f3647c641c029d953103fb9e3",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C2.json",
+  "sourceFileSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 1,
+  "failedPublishedEditionIds": [
+    "C2-L007"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
