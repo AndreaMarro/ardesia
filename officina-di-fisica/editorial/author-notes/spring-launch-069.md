@@ -24,3 +24,5 @@ Il sistema scelto comprende molla ideale senza massa e blocco, con supporto fiss
 |16|m=(2 kg/m)ℓ fra prove, non massa variabile nel tempo. V²=(k/c)ℓ, quindi ℓ=1 m,m=2 kg.|
 
 SVG: geometria 100 px/m con compressione 1 m, rapidità 80 px per m/s, grafico con scale proprie 200 px/m e 80 px/N. Base 1 m e altezza 2 N danno area 1 J. Etichette e rendering completo letti; marker SVG esplicito. Preview canonica su tutti i 16 ID alle larghezze 1440,768,320: 48 casi senza failure; è verifica tecnica, non review scientifica. Import in SQLite temporaneo 16 record, ripetizione 0 nuovi/16 invariati; 991 pubblicati e live heads immutati. Nessuna modifica CSS o guardie per nascondere overflow.
+
+Correzione su finding del revisore distinto: etichetta «1 J» del grafico spostata da x=130 a x=190, stessa baseline1110. La diagonale prima attraversava il testo; ora il testo è completamente all’interno del triangolo. Nessun cambiamento a scale, coordinate fisiche, formule o chiavi. Riletto rendering completo e ripetuto browser canonico48/48 sulla nuova edizione; package/asset e binding01/03 rigenerati. Nuova firma scientifica demandata al revisore separato.
