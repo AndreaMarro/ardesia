@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1180" viewBox="0 0 640 1180" role="img" aria-labelledby="title desc">
+<title id="title">Tempo fino al primo arresto</title><desc id="desc">Tre grafici della componente di velocità u rispetto al tempo, con zero temporale all’inizio della frenata. Stesse scale: centosessanta pixel per secondo e ottanta pixel per metro al secondo. La velocità parte da più due metri al secondo con accelerazione meno due metri al secondo quadrato. Si annulla per la prima volta a un secondo; a mezzo secondo è ancora più un metro al secondo. Le rette terminano al primo arresto.</desc>
+<rect width="640" height="1180" fill="#fffdf7"/>
+<g fill="#173d50" font-family="sans-serif" font-size="23">
+<text x="28" y="42" font-weight="bold">1 · Assegna il segno alla componente</text><text x="28" y="82">aₓ = −b = −2 m/s² · v = +2 m/s</text>
+<path d="M100 116V300H320" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 140L260 300" stroke="#173d50" stroke-width="4" fill="none"/>
+<circle cx="100" cy="140" r="6"/><text x="110" y="126">u (m/s)</text><text x="51" y="147">+2</text><text x="76" y="307">0</text><text x="90" y="340">0</text><text x="250" y="340">1</text><text x="335" y="308">t (s)</text>
+<text x="365" y="175">Modulo b &gt; 0</text><text x="365" y="213">Componente aₓ &lt; 0</text>
+<text x="28" y="408" font-weight="bold">2 · Cerca la prima velocità nulla</text>
+<path d="M100 476V660H320" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 500L260 660" stroke="#173d50" stroke-width="4" fill="none"/>
+<circle cx="260" cy="660" r="7"/><text x="110" y="486">u (m/s)</text><text x="51" y="507">+2</text><text x="76" y="667">0</text><text x="90" y="700">0</text><text x="250" y="700">1</text><text x="335" y="668">t (s)</text>
+<text x="365" y="535">u(T) = 0</text><text x="365" y="577">T = v / b</text><text x="365" y="619">T = 1 s</text>
+<text x="28" y="768" font-weight="bold">3 · Controlla prima dell’arresto</text>
+<path d="M100 836V1020H320" stroke="#879b9a" stroke-width="2" fill="none"/><path d="M100 860L260 1020" stroke="#173d50" stroke-width="4" fill="none"/>
+<path d="M100 940H180V1020" stroke="#879b9a" stroke-width="2" stroke-dasharray="6 5" fill="none"/><circle cx="180" cy="940" r="6"/>
+<text x="110" y="846">u (m/s)</text><text x="51" y="867">+2</text><text x="51" y="947">+1</text><text x="76" y="1027">0</text><text x="90" y="1060">0</text><text x="154" y="1060">1/2</text><text x="250" y="1060">1</text><text x="335" y="1028">t (s)</text>
+<text x="365" y="903">u(1/2 s) = +1 m/s</text><text x="365" y="946">u &gt; 0 prima di T</text>
+<text x="28" y="1128">Scale comuni: 160 px/s; 80 px per m/s.</text>
+</g></svg>
