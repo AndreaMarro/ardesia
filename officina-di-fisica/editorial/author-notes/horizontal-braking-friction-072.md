@@ -24,3 +24,5 @@ Piano orizzontale fisso, laboratorio inerziale, massa classica costante, g=10 m/
 |16|v=(10 m/s)μ fra prove. D=[c²/(2g)]μ=(5 m)μ; μ1/5,v2 m/s unici. μ resta costante durante ogni prova.|
 
 SVG letto XML e rendering completo: forze in pannello separato con scala5 px/N, N/P20 N100 px e f4 N20 px verso sinistra. Distanza240 px/m, un metro fra posizioni omologhe. Grafico v_x(t):240 px/s,80 px per m/s; retta da(0,2) a(1,0), area triangolare1 m, poi velocità0 senza ramo negativo. Istante0 e primo arresto a1 s espliciti. Preview canonica16×3 larghezze1440,768,320:48 casi senza failure. Import tecnico temporaneo16 poi0 nuovi/16 invariati;991 pubblicati invariati, nessun live head. Nessun registro o CSS modificato.
+
+Fix testuale su review distinta: ID02 ora separa il controllo dimensionale di v/g dal tempo fisico T=v/(μg). Nessuna formula o chiave cambia; feedback/error.message e binding02 rigenerati. Preview fresca48/48 e import temporaneo16→0/16 sulla nuova edizione; nessuna firma scientifica emessa dall’autore.

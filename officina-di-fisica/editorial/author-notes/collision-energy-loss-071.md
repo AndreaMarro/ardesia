@@ -24,3 +24,5 @@ Due masse uguali m per ciascun corpo, una inizialmente +u e l’altra ferma nel 
 |16|m=(1 kg·s/m)u tra prove: E=cu³/4,u³8 m³/s³→u2 m/s,m2 kg. Cubica positiva,non coppia±2.|
 
 Figura letta XML e rendering finale. Frecce velocità a60 px per m/s: u2→120 px,V1→60 px. Barre energia a40 px/J: iniziale4 J160 px; finale K2 J80 px e incremento interno2 J80 px. L’etichetta finale esplicita ΔU interna, non energia interna assoluta; geometria dei corpi schematica. Preview canonica16×3 larghezze1440,768,320:48 casi senza failure. Import tecnico temporaneo16 poi0 nuovi/16 invariati,991 pubblicati immutati e nessun live head. Nessuna modifica di CSS, guardie, registro o checkpoint.
+
+Fix testuale su review distinta: ID13 esplicita il fattore due dovuto alla massa e il restante fattore quattro dovuto al quadrato della rapidità, eliminando l’espressione ambigua «metà del fattore energetico». Nessuna formula o chiave cambia; primo blocco e binding13 rigenerati. Preview fresca48/48 e import temporaneo16→0/16 sulla nuova edizione; firma scientifica riservata al revisore distinto.

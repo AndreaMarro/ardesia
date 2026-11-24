@@ -9,7 +9,7 @@ TASKS=[
 ('Quadrato di velocità diviso accelerazione',P+'Quale unità SI esprime D?',['m','m/s','s','N','J'],
  'Il coefficiente μ è adimensionale e g è un’accelerazione. Il rapporto v²/g ha quindi dimensione di lunghezza; il fattore due e μ non la modificano. Il nome distanza richiede un risultato positivo ma non un’unità diversa dal metro.',
  r"[\mu]=1\qquad [D]=\frac{\mathrm{m^2/s^2}}{\mathrm{m/s^2}}\qquad [D]=\mathrm m",
- 'm/s è velocità, s è tempo, N forza, J energia. v/g da solo avrebbe unità di tempo e darebbe un tempo di arresto, non una distanza; nel numeratore serve v².','Confronta le unità di v² e g.'),
+ 'm/s è velocità, s è tempo, N forza, J energia. v/g ha unità di tempo; il tempo di arresto è v/(μg), non una distanza. Per D nel numeratore serve v².','Confronta le unità di v² e g.'),
 ('Il lavoro negativo ferma il blocco',P+'Quale espressione dà la distanza di arresto?',['D=v²/(2μg)','D=v²/(μg)','D=v²/(4μg)','D=−v²/(2μg)','D=v/(μg)'],
  'La cinetica passa da mv²/2 a zero, quindi la sua variazione è negativa. Anche il lavoro dell’attrito è negativo: uguagliando i due termini si ottiene una distanza positiva. La semplificazione di m è specifica della legge d’attrito μmg su questo piano.',
  r"-\frac12mv^2=-\mu mgD\qquad \frac12v^2=\mu gD\qquad D=\frac{v^2}{2\mu g}",
