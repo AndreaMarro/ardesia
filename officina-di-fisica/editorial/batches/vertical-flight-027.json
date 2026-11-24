@@ -1,0 +1,1232 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-vertical-flight-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2461,
+      "title": "Il primo ritorno dopo il lancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 1,
+      "prompt": "Un corpo parte verticalmente verso l’alto da y=0 a t=0, con v₀=2 m/s. Il campo assegnato ha modulo costante g=2 m/s² e l’aria è trascurata. Con asse positivo verso l’alto, qual è il primo istante T>0 in cui il corpo torna a y=0, in secondi?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente dell’accelerazione è −g. La posizione rispetto al lancio è y(t)=v₀t−gt²/2. Imporre y=0 dà due zeri: il lancio t=0 e il ritorno cercato. Per T>0 possiamo dividere per T e isolare il tempo. L’apice, dove la componente della velocità si annulla, avviene a metà di questo intervallo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bb568c15f1e05bdb413b87cc468986f1f84a31e4715d679e0335f3a41c1cc5da",
+          "text": "Tre letture dello stesso volo: poni t=0 e y=0 al lancio; il grafico y(t), con 120 px/s e 120 px/m, torna a zero a 2 s e tocca y=1 m a 1 s; il grafico della componente vᵧ(t), con 120 px/s e 50 px/(m/s), passa da +2 a −2 m/s. Le due aree triangolari opposte valgono +1 m e −1 m: lo spostamento totale è zero, mentre la distanza totale è 2 m."
+        },
+        {
+          "type": "formula",
+          "text": "y(t)=v_0t-\\frac12gt^2"
+        },
+        {
+          "type": "formula",
+          "text": " 0=T\\left(v_0-\\frac{gT}{2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2v_0}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2(2\\,\\mathrm{m/s})}{2\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(2\\,\\mathrm{m/s})}{2\\,\\mathrm{m/s^2}}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il tempo all’apice è 1 s, non il tempo totale. A T=2 s la componente è −2 m/s: il corpo attraversa la quota iniziale in discesa. Scegliere lo zero iniziale non descriverebbe un ritorno; estendere il tempo a 4 s darebbe invece y=−8 m. Il campo dichiarato è un dato esatto del modello."
+        }
+      ],
+      "hints": [
+        "Fattorizza l’equazione della posizione e separa lo zero iniziale da quello futuro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il tempo all’apice è 1 s, non il tempo totale. A T=2 s la componente è −2 m/s: il corpo attraversa la quota iniziale in discesa. Scegliere lo zero iniziale non descriverebbe un ritorno; estendere il tempo a 4 s darebbe invece y=−8 m. Il campo dichiarato è un dato esatto del modello.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2462,
+      "title": "L’unità del tempo di ritorno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 1,
+      "prompt": "Per un lancio verticale verso l’alto, senza aria e in campo uniforme g>0, il primo ritorno alla quota di partenza avviene dopo T=2v₀/g, con v₀>0. Qual è l’unità SI di T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "m/s",
+          "s²",
+          "1/s"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente due non ha unità. Una velocità divisa per un’accelerazione lascia un tempo: il metro si semplifica e resta un fattore di secondo. Non stiamo dividendo due velocità, quindi il rapporto non è un numero puro."
+        },
+        {
+          "type": "formula",
+          "text": "[v_0]=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " [g]=L/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [2v_0/g]=T"
+        },
+        {
+          "type": "text",
+          "text": "La risposta è s. m misurerebbe una quota, m/s una componente di velocità. s² è la dimensione del rapporto fra lunghezza e accelerazione prima di una radice in un altro problema; 1/s sarebbe una frequenza. Qui nessuna radice è necessaria."
+        }
+      ],
+      "hints": [
+        "Semplifica le unità del numeratore e del denominatore prima di pensare al valore numerico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "La risposta è s. m misurerebbe una quota, m/s una componente di velocità. s² è la dimensione del rapporto fra lunghezza e accelerazione prima di una radice in un altro problema; 1/s sarebbe una frequenza. Qui nessuna radice è necessaria.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2463,
+      "title": "Quale zero indica il ritorno?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 1,
+      "prompt": "Un lancio verticale senza aria parte verso l’alto con rapidità v₀>0. Il modulo g>0 del campo resta costante e l’arrivo avviene alla stessa quota del lancio. T indica la durata fino al primo ritorno futuro. Quale relazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T=v₀/g",
+          "T=2v₀/g",
+          "T=g/(2v₀)",
+          "T=−2v₀/g",
+          "T=v₀²/(2g)"
+        ],
+        "value": "T=2v₀/g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliendo y positivo verso l’alto e origine al lancio, la condizione di ritorno è v₀T−gT²/2=0. Il fattore T corrisponde al lancio già noto. L’altro fattore dà una durata doppia del tempo di salita: in questo modello la discesa fino alla stessa quota dura quanto la salita."
+        },
+        {
+          "type": "formula",
+          "text": "T>0"
+        },
+        {
+          "type": "formula",
+          "text": " v_0-\\frac{gT}{2}=0"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2v_0}{g}"
+        },
+        {
+          "type": "text",
+          "text": "v₀/g si ferma all’apice. g/(2v₀) ha unità di frequenza e −2v₀/g è negativo, escluso per il ritorno futuro. v₀²/(2g) dà il guadagno massimo di quota, non una durata. La simmetria richiede proprio la quota di arrivo indicata e l’assenza di aria."
+        }
+      ],
+      "hints": [
+        "Il tempo all’apice copre soltanto metà del volo fino alla quota iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "v₀/g si ferma all’apice. g/(2v₀) ha unità di frequenza e −2v₀/g è negativo, escluso per il ritorno futuro. v₀²/(2g) dà il guadagno massimo di quota, non una durata. La simmetria richiede proprio la quota di arrivo indicata e l’assenza di aria.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2464,
+      "title": "Raddoppiare il lancio nello stesso campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 1,
+      "prompt": "Si confrontano due lanci verticali senza aria nello stesso campo uniforme g=2 m/s². Entrambi terminano al primo ritorno alla propria quota iniziale. La rapidità di lancio passa da 2 a 4 m/s. Come cambia la durata totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 2 s",
+          "Raddoppia da 2 a 4 s",
+          "Quadruplica da 2 a 8 s",
+          "Si dimezza",
+          "Diventa negativa"
+        ],
+        "value": "Raddoppia da 2 a 4 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata di salita è v₀/g e quella totale è il doppio. A campo fissato T è proporzionale a v₀, senza il quadrato che compare nella quota massima. Possiamo confrontare i valori esatti per evitare di confondere questi due effetti."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{2\\times2}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2}{2}\\,\\mathrm s=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{2\\times4}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times4}{2}\\,\\mathrm s=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "La quota massima quadruplica, ma il tempo raddoppia. Un campo più intenso potrebbe accorciare il volo; qui g non cambia. Il tempo totale è positivo in entrambe le prove e comprende salita e discesa, non soltanto il tratto con componente positiva."
+        }
+      ],
+      "hints": [
+        "A g fisso conta la prima potenza di v₀ nella durata, non il suo quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La quota massima quadruplica, ma il tempo raddoppia. Un campo più intenso potrebbe accorciare il volo; qui g non cambia. Il tempo totale è positivo in entrambe le prove e comprende salita e discesa, non soltanto il tratto con componente positiva.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2465,
+      "title": "Ricostruire la rapidità iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Un corpo viene lanciato verso l’alto e torna alla quota di partenza dopo T=2 s. L’aria è trascurabile e il campo ha modulo uniforme g=2 m/s². Quanto vale la rapidità iniziale v₀, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Usiamo il ritorno alla stessa quota per scrivere T=2v₀/g. Moltiplicare per g e dividere per due ricostruisce la rapidità. Il fattore un mezzo evita di attribuire alla sola salita l’intero tempo misurato."
+        },
+        {
+          "type": "formula",
+          "text": "gT=2v_0"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=\\frac{gT}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=\\frac{(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)}2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{m/s^2})(2\\,\\mathrm s)}2=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il tempo all’apice è T/2=1 s e g(T/2)=2 m/s, seconda lettura della stessa inversa. Il valore 4 m/s userebbe gT e darebbe un ritorno dopo 4 s; 1 m/s darebbe 1 s. Il modulo iniziale è positivo e la componente iniziale sull’asse verso l’alto ha lo stesso valore."
+        }
+      ],
+      "hints": [
+        "La perdita di componente durante la sola salita è gT/2.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il tempo all’apice è T/2=1 s e g(T/2)=2 m/s, seconda lettura della stessa inversa. Il valore 4 m/s userebbe gT e darebbe un ritorno dopo 4 s; 1 m/s darebbe 1 s. Il modulo iniziale è positivo e la componente iniziale sull’asse verso l’alto ha lo stesso valore.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2466,
+      "title": "Un campo dedotto dal ritorno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Un lancio verticale verso l’alto ha v₀=2 m/s. In assenza di aria, il primo ritorno alla quota iniziale avviene a T=2 s. Il campo è uniforme durante tutto il volo. Qual è il suo modulo g, in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ritorno fornisce T=2v₀/g. Poiché la durata è non nulla, possiamo isolare g=2v₀/T. Il modulo così ricostruito è positivo; la componente dell’accelerazione con asse verso l’alto sarà invece negativa."
+        },
+        {
+          "type": "formula",
+          "text": "gT=2v_0"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2v_0}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{2(2\\,\\mathrm{m/s})}{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(2\\,\\mathrm{m/s})}{2\\,\\mathrm s}=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Con g=2 la componente passa da +2 a −2 m/s in due secondi. Il rapporto v₀/T=1 m/s² conterebbe solo una variazione di 2 m/s, mentre durante il volo completo la variazione è −4 m/s. All’apice la velocità è nulla ma il campo non si spegne."
+        }
+      ],
+      "hints": [
+        "Nel volo completo la componente cambia da +v₀ a −v₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con g=2 la componente passa da +2 a −2 m/s in due secondi. Il rapporto v₀/T=1 m/s² conterebbe solo una variazione di 2 m/s, mentre durante il volo completo la variazione è −4 m/s. All’apice la velocità è nulla ma il campo non si spegne.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2467,
+      "title": "Un campo doppio accorcia il volo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Due lanci verticali senza aria partono con la stessa rapidità v₀=2 m/s e tornano alla quota di partenza. Il primo campo uniforme ha g_A=2 m/s², il secondo g_B=4 m/s². Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità iniziale è fissata, mentre il campo raddoppia. In T=2v₀/g il campo divide: il rapporto delle durate è il reciproco del rapporto dei campi. Le durate si possono anche ricavare separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{2\\times2}{4}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2}{4}\\,\\mathrm s=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_B}{T_A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due invertirebbe l’ordine del rapporto oppure tratterebbe g come un fattore al numeratore. Uno ignorerebbe il campo e quattro introdurrebbe un quadrato inesistente. La durata B è più breve ma non negativa: il segno della componente discendente non è il segno del tempo."
+        }
+      ],
+      "hints": [
+        "Confronta prima i tempi fisici, poi forma B diviso A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due invertirebbe l’ordine del rapporto oppure tratterebbe g come un fattore al numeratore. Uno ignorerebbe il campo e quattro introdurrebbe un quadrato inesistente. La durata B è più breve ma non negativa: il segno della componente discendente non è il segno del tempo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2468,
+      "title": "Lo scarto di una durata proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Per un lancio verso l’alto senza aria si hanno v₀=2 m/s e g=2 m/s² costante. Il ritorno cercato è alla stessa quota del lancio. Una soluzione propone 4 s come durata totale. Calcola lo scarto con segno «proposta meno durata corretta», in secondi.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo all’apice è v₀/g=1 s, quindi il ritorno alla quota iniziale richiede 2 s. Solo dopo aver trovato il riferimento corretto sottraiamo nel verso richiesto: quattro meno due. La proposta sovrastima il tempo, perciò lo scarto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{2v_0}{g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2v_0}{g}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=T_{\\rm prop}-T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=4\\,\\mathrm s-2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm s-2\\,\\mathrm s=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Scarto e durata corretta valgono entrambi due secondi solo per questi dati: sono oggetti diversi. −2 s userebbe la sottrazione inversa. Quattro può nascere dal fermarsi al numeratore 2v₀ senza dividere per g; a t=4 s il corpo sarebbe già sotto la quota di lancio nel modello prolungato."
+        }
+      ],
+      "hints": [
+        "Rispetta l’ordine proposta meno riferimento dopo aver incluso il campo nel calcolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Scarto e durata corretta valgono entrambi due secondi solo per questi dati: sono oggetti diversi. −2 s userebbe la sottrazione inversa. Quattro può nascere dal fermarsi al numeratore 2v₀ senza dividere per g; a t=4 s il corpo sarebbe già sotto la quota di lancio nel modello prolungato.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2469,
+      "title": "L’inversa con tutte le grandezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Un corpo lanciato verticalmente verso l’alto ritorna alla stessa quota in T>0. Si trascurano aria e variazioni del campo, il cui modulo è g>0. Quale relazione ricava la rapidità iniziale dalla durata totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₀=gT",
+          "v₀=gT/2",
+          "v₀=2T/g",
+          "v₀=T/(2g)",
+          "v₀=−gT/2"
+        ],
+        "value": "v₀=gT/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla condizione di ritorno T=2v₀/g moltiplichiamo entrambi i membri per g. Il fattore due moltiplica v₀ e va eliminato dividendo. gT ha dimensione di velocità, quindi la formula risultante mantiene l’unità corretta."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{2v_0}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " gT=2v_0"
+        },
+        {
+          "type": "formula",
+          "text": " v_0=\\frac{gT}{2}"
+        },
+        {
+          "type": "text",
+          "text": "gT sovrastima di un fattore due perché usa il tempo totale come tempo di salita. Le due formule con g al denominatore non hanno dimensione di velocità. Il segno negativo contraddice il modulo iniziale richiesto e il lancio verso l’alto: non è il segno della componente al ritorno."
+        }
+      ],
+      "hints": [
+        "Isola v₀ con la stessa operazione su entrambi i membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "gT sovrastima di un fattore due perché usa il tempo totale come tempo di salita. Le due formule con g al denominatore non hanno dimensione di velocità. Il segno negativo contraddice il modulo iniziale richiesto e il lancio verso l’alto: non è il segno della componente al ritorno.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2470,
+      "title": "Scalare lancio e campo insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Si confrontano lanci verticali senza aria, ognuno con g costante e ritorno alla quota iniziale. Nella prova B v₀_B=κ₁v₀_A e g_B=κ₂g_A, con κ₁,κ₂>0. Qual è T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁κ₂",
+          "κ₂/κ₁",
+          "κ₁²/κ₂",
+          "1/κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo la durata di ogni prova prima di fare il rapporto. Il fattore comune due e i dati di A si semplificano. Rimane il fattore della rapidità al numeratore e quello del campo al denominatore; nessuno dei due entra al quadrato nel tempo di volo."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{2v_{0A}}{g_A}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{2\\kappa_1v_{0A}}{\\kappa_2g_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_B}{T_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ invertirebbe l’effetto del campo; κ₂/κ₁ capovolge l’intero rapporto. κ₁²/κ₂ appartiene al rapporto delle quote massime e 1/κ₂ dimentica il cambiamento del lancio. Se i due fattori sono uguali il tempo resta identico, anche se il guadagno di quota può cambiare."
+        }
+      ],
+      "hints": [
+        "Confronta due espressioni complete prima di cancellare i dati comuni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ invertirebbe l’effetto del campo; κ₂/κ₁ capovolge l’intero rapporto. κ₁²/κ₂ appartiene al rapporto delle quote massime e 1/κ₂ dimentica il cambiamento del lancio. Se i due fattori sono uguali il tempo resta identico, anche se il guadagno di quota può cambiare.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2471,
+      "title": "Lancio triplo, campo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "In due lanci verticali senza aria, con ritorno alla quota di partenza, i dati sono A: v₀=2 m/s,g=2 m/s²; B: v₀=6 m/s,g=4 m/s². Ogni campo è uniforme. Quanto vale il rapporto delle durate T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "3/2",
+          "2/3",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lancio viene moltiplicato per tre e il campo per due. Le loro variazioni agiscono in versi opposti sul tempo e lasciano un fattore tre mezzi. Calcolare i due tempi rende esplicito quale durata va sopra nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac{2\\times2}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times2}{2}\\,\\mathrm s=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{2\\times6}{4}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\times6}{4}\\,\\mathrm s=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre tiene conto soltanto del lancio, due soltanto di un fattore senza il suo verso fisico; sei moltiplica i fattori anziché dividerli. Due terzi è il rapporto A/B. Il risultato richiesto è adimensionale, benché ogni durata abbia unità di secondi."
+        }
+      ],
+      "hints": [
+        "La prova B dura tre secondi; confrontala con i due secondi di A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre tiene conto soltanto del lancio, due soltanto di un fattore senza il suo verso fisico; sei moltiplica i fattori anziché dividerli. Due terzi è il rapporto A/B. Il risultato richiesto è adimensionale, benché ogni durata abbia unità di secondi.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2472,
+      "title": "Media di due tempi completi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 2,
+      "prompt": "Due lanci verticali senza aria ritornano alla quota iniziale. A ha v₀=2 m/s,g=2 m/s²; B ha v₀=6 m/s,g=4 m/s², con campi uniformi nelle rispettive prove. Qual è la media aritmetica delle due durate totali, assegnando uguale peso alle prove?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 s",
+          "3 s",
+          "5 s",
+          "5/2 s",
+          "8/3 s"
+        ],
+        "value": "5/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate sono due e tre secondi. Uguale peso statistico significa sommare le due letture e dividere per due: non è la durata del volo ottenuto mediando i parametri. Poiché g divide nella legge, tale sostituzione non commuta in generale con la media."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=\\frac{T_A+T_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=\\frac52\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Cinque secondi è la somma; due e tre scelgono una sola prova. Mediando invece gli ingressi si avrebbero v₀=4 m/s e g=3 m/s², con durata 8/3 s: è un altro esperimento. Qui non si sta chiedendo neppure una velocità media lungo un singolo volo."
+        }
+      ],
+      "hints": [
+        "Attribuisci lo stesso peso ai tempi già calcolati, non ai dati della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque secondi è la somma; due e tre scelgono una sola prova. Mediando invece gli ingressi si avrebbero v₀=4 m/s e g=3 m/s², con durata 8/3 s: è un altro esperimento. Qui non si sta chiedendo neppure una velocità media lungo un singolo volo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2473,
+      "title": "Compensare un lancio più rapido",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 3,
+      "prompt": "Un primo lancio verticale senza aria ha v₀_A=2 m/s,g_A=2 m/s². Per un secondo lancio con ritorno alla stessa quota si sceglie v₀_B=6 m/s e si vuole T_B=(3/2)T_A. Ogni campo è uniforme durante il volo. Quale rapporto g_B/g_A occorre?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo volo dura due secondi, quindi il secondo deve durarne tre. Isoliamo il nuovo campo da g_B=2v₀_B/T_B. La rapidità tripla viene compensata da un campo doppio, lasciando un tempo soltanto una volta e mezzo più lungo."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac32T_A"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32T_A=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=\\frac{2(6\\,\\mathrm{m/s})}{3\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(6\\,\\mathrm{m/s})}{3\\,\\mathrm s}=4\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g_B/g_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un campo triplo manterrebbe T invariato; un campo uguale al primo darebbe un tempo triplo. Il rapporto chiesto è due, mentre il nuovo modulo vale quattro m/s²: non bisogna rispondere con il dato assoluto al posto del fattore. Il campo cambia fra prove e non durante una prova."
+        }
+      ],
+      "hints": [
+        "Trova il tempo obiettivo prima di ricostruire il campo che lo produce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un campo triplo manterrebbe T invariato; un campo uguale al primo darebbe un tempo triplo. Il rapporto chiesto è due, mentre il nuovo modulo vale quattro m/s²: non bisogna rispondere con il dato assoluto al posto del fattore. Il campo cambia fra prove e non durante una prova.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2474,
+      "title": "Un cronometro con guadagno sconosciuto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 3,
+      "prompt": "I voli verticali senza aria terminano alla quota del lancio e avvengono in campi uniformi. Un display restituisce il numero S=cT, con c>0 costante e nessun offset. Nel riferimento v₀=2 m/s,g=2 m/s² mostra S=6. Per una prova con g=4 m/s² mostra S=9. Quanto vale la rapidità iniziale della nuova prova, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento fisico dura due secondi; sei tacche corrispondono quindi a un guadagno di tre al secondo. La lettura nove significa tre secondi, da usare nell’inversa v₀=gT/2. La lettura strumentale non va scambiata con una durata già in secondi."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac6{2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac6{2\\,\\mathrm s}=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac9c"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac9c=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " v_{0B}=\\frac{g_BT_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{g_BT_B}{2}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo ricostruisce T_B=2·6/4 s=3 s e S=cT_B=9. Usare direttamente nove secondi darebbe 18 m/s. Fare il rapporto delle letture è lecito qui perché l’offset è dichiarato nullo; con un termine additivo occorrerebbe prima eliminarlo."
+        }
+      ],
+      "hints": [
+        "Decodifica le tacche con il riferimento, poi applica l’inversa cinematica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo ricostruisce T_B=2·6/4 s=3 s e S=cT_B=9. Usare direttamente nove secondi darebbe 18 m/s. Fare il rapporto delle letture è lecito qui perché l’offset è dichiarato nullo; con un termine additivo occorrerebbe prima eliminarlo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2475,
+      "title": "Due riferimenti eliminano l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 3,
+      "prompt": "Un display di durata obbedisce a S=cT+d, con c>0 e d costanti. Tutti i lanci sono verticali senza aria, in campi uniformi, e ritornano alla quota iniziale. A: v₀=2 m/s,g=2 m/s²,S=5. B: v₀=6 m/s,g=4 m/s²,S=7. In C si hanno g=2 m/s²,S=9. Quale rapidità iniziale ha C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "3 m/s",
+          "4 m/s",
+          "6 m/s",
+          "9 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti durano due e tre secondi. La differenza di due tacche per un secondo determina c; dal primo riferimento resta un offset di una tacca. Togliamo quell’offset dalla lettura di C, poi dividiamo per il guadagno. Solo ora ricostruiamo la rapidità iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{7-5}{3\\,\\mathrm s-2\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{7-5}{3\\,\\mathrm s-2\\,\\mathrm s}=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=5-c(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": "5-c(2\\,\\mathrm s)=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=\\frac{9-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9-1}{c}=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " v_{0C}=\\frac{g_CT_C}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{g_CT_C}{2}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m/s riproduce T_C=4 s e S=2·4+1=9. Due ripete A; tre darebbe S=7, sei darebbe S=13 e nove darebbe S=19, perché in C g=2 m/s². Il rapporto grezzo 9/5 non è il rapporto dei tempi: l’offset impedisce quella scorciatoia."
+        }
+      ],
+      "hints": [
+        "Sottrai le due equazioni di taratura per trovare prima il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m/s riproduce T_C=4 s e S=2·4+1=9. Due ripete A; tre darebbe S=7, sei darebbe S=13 e nove darebbe S=19, perché in C g=2 m/s². Il rapporto grezzo 9/5 non è il rapporto dei tempi: l’offset impedisce quella scorciatoia.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-vertical-flight-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lancio verticale e proiettili",
+      "order": 2476,
+      "title": "Un tempo noto che non fissa il campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "vertical-flight",
+      "difficulty": 3,
+      "prompt": "Si preparano lanci verticali senza aria scegliendo v₀=(1 s)g, con g>0 costante durante ciascun volo. Il ritorno avviene alla quota iniziale e si misura T=2 s. Quante coppie positive (v₀,g) sono compatibili con questi dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una sola",
+          "Esattamente due",
+          "Infinite",
+          "Solo la coppia (0,0)"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente del vincolo è un tempo, non un numero privo di unità. Sostituendolo nella legge di ritorno, g si cancella: la misura due secondi è già imposta dal vincolo. Non offre una seconda informazione indipendente per fissare la scala del campo e del lancio."
+        },
+        {
+          "type": "formula",
+          "text": "v_0=(1\\,\\mathrm s)g"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2(1\\,\\mathrm s)g}{g}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2(1\\,\\mathrm s)g}{g}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " g>0"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio g=2 m/s²,v₀=2 m/s e g=4 m/s²,v₀=4 m/s sono entrambe ammesse, e ogni altro g positivo genera un’altra coppia. Non sono soltanto due esempi possibili. Lo zero è escluso dal dominio e renderebbe anche inapplicabile la divisione per g. Il vincolo lega dati iniziali, non un campo che varia nel tempo."
+        }
+      ],
+      "hints": [
+        "Controlla se la misura aggiunge informazione dopo la sostituzione del vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per esempio g=2 m/s²,v₀=2 m/s e g=4 m/s²,v₀=4 m/s sono entrambe ammesse, e ogni altro g positivo genera un’altra coppia. Non sono soltanto due esempi possibili. Lo zero è escluso dal dominio e renderebbe anche inapplicabile la divisione per g. Il vincolo lega dati iniziali, non un campo che varia nel tempo.",
+        "target": "C1-L004"
+      },
+      "coverage": [
+        "Ritorno alla stessa quota",
+        "Zeri e ramo futuro",
+        "Tempo di volo e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bb568c15f1e05bdb413b87cc468986f1f84a31e4715d679e0335f3a41c1cc5da",
+      "name": "vertical-flight-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMTAwMCIgdmlld0JveD0iMCAwIDYwMCAxMDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiA8dGl0bGUgaWQ9InRpdGxlIj5EYWwgbGFuY2lvIGFsIHByaW1vIHJpdG9ybm86IHF1b3RhIGUgY29tcG9uZW50ZSB2ZXJ0aWNhbGU8L3RpdGxlPgogPGRlc2MgaWQ9ImRlc2MiPkNhbXBvIGcgZGkgZHVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8sIGxhbmNpbyBhIGR1ZSBtZXRyaSBhbCBzZWNvbmRvLiBPcmlnaW5lIGFsIGxhbmNpby4gUXVvdGEgbWFzc2ltYSB1biBtZXRybyBhIHVuIHNlY29uZG8sIHJpdG9ybm8gYSBkdWUgc2Vjb25kaS4gTGEgY29tcG9uZW50ZSB2ZXJ0aWNhbGUgdmEgZGEgcGnDuSBkdWUgYSBtZW5vIGR1ZSBtZXRyaSBhbCBzZWNvbmRvOyBhcmVlIHBvc2l0aXZhIGUgbmVnYXRpdmEgZGkgdW4gbWV0cm8gc2kgY29tcGVuc2Fuby48L2Rlc2M+CiA8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgcmVmWD0iNiIgcmVmWT0iMy41IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzQxNTUiLz48L21hcmtlcj48L2RlZnM+CiA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9IiNmZmYiLz4KIDxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3IiBmaWxsPSIjMTcyMDMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogIDx0ZXh0IHg9IjI4IiB5PSIzNSIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRmlzc2Egb3JpZ2luZSBlIHZlcnNvPC90ZXh0PgogIDxwYXRoIGQ9Ik0xMTAgMjIyVjcwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICA8dGV4dCB4PSI3NiIgeT0iNjYiPit5PC90ZXh0PgogIDxwYXRoIGQ9Ik0xNDAgMjEwSDQ4ME0xNDAgOTBINDgwIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjIxMCIgcj0iNiIgZmlsbD0iIzI0NWNhNCIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjkwIiByPSI2IiBmaWxsPSIjMjQ1Y2E0Ii8+CiAgPHBhdGggZD0iTTE5MCAyMDBWMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICA8cGF0aCBkPSJNMjIwIDEwMFYyMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzNDE1NSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgogIDx0ZXh0IHg9IjI1MCIgeT0iODMiPmFwaWNlOiB0ID0gMSBzLCB5ID0gMSBtPC90ZXh0PgogIDx0ZXh0IHg9IjE1MCIgeT0iMjQyIj55ID0gMCDCtyBsYW5jaW8gdCA9IDAgwrcgcml0b3JubyB0ID0gMiBzPC90ZXh0PgogIDx0ZXh0IHg9IjI1MCIgeT0iMTQyIj524oKAID0gKzIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjI1MCIgeT0iMTc0Ij5h4bWnID0g4oiSMiBtL3PCsiBzZW1wcmU8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjMwMCIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQ2VyY2EgbG8gemVybyBmdXR1cm8gZGVsbGEgcXVvdGE8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjMzMiI+U2NhbGU6IDEyMCBweC9zOyAxMjAgcHgvbSDCtyB5ID0gMnQg4oiSIHTCsiAoU0kpPC90ZXh0PgogIDxwYXRoIGQ9Ik0xMDAgNTQwVjM2NU04NSA1MjBINDE1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICA8dGV4dCB4PSI0OCIgeT0iMzczIj55IChtKTwvdGV4dD48dGV4dCB4PSI0MjYiIHk9IjUyNiI+dCAocyk8L3RleHQ+CiAgPHBhdGggZD0iTTEwMCA0MDBIMzQwTTIyMCA0MDBWNTIwTTM0MCA0MDBWNTIwIiBzdHJva2U9IiM5NGEzYjgiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNSIvPgogIDxwYXRoIGQ9Ik0xMDAgNTIwUTIyMCAyODAgMzQwIDUyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjQ1Y2E0IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8ZyBmaWxsPSIjMjQ1Y2E0Ij48Y2lyY2xlIGN4PSIxMDAiIGN5PSI1MjAiIHI9IjUiLz48Y2lyY2xlIGN4PSIyMjAiIGN5PSI0MDAiIHI9IjUiLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSI1MjAiIHI9IjUiLz48L2c+CiAgPHRleHQgeD0iNjkiIHk9IjQwNiI+MTwvdGV4dD48dGV4dCB4PSI2OSIgeT0iNTI2Ij4wPC90ZXh0PgogIDx0ZXh0IHg9Ijk1IiB5PSI1NjUiPjA8L3RleHQ+PHRleHQgeD0iMjE1IiB5PSI1NjUiPjE8L3RleHQ+PHRleHQgeD0iMzM1IiB5PSI1NjUiPjI8L3RleHQ+CiAgPHRleHQgeD0iMzY1IiB5PSI0NzAiPlQgPSAyIHM8L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjYyNSIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTGVnZ2kgbGUgYXJlZSBjb24gaWwgc2Vnbm88L3RleHQ+CiAgPHRleHQgeD0iMjgiIHk9IjY1NyI+U2NhbGU6IDEyMCBweC9zOyA1MCBweC8obS9zKSDCtyB24bWnID0gMiDiiJIgMnQgKFNJKTwvdGV4dD4KICA8cGF0aCBkPSJNMTAwIDgyMFY3MjBMMjIwIDgyMFoiIGZpbGw9IiNkYmVhZmUiLz48cGF0aCBkPSJNMjIwIDgyMEgzNDBWOTIwWiIgZmlsbD0iI2ZjZTdkZiIvPgogIDxwYXRoIGQ9Ik0xMDAgOTQwVjY5Mk04NSA4MjBINDE1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICA8cGF0aCBkPSJNMTAwIDcyMEwzNDAgOTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNDVjYTQiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxwYXRoIGQ9Ik05NSA3MjBIMTA1TTk1IDkyMEgxMDVNMjIwIDgxNVY4MjVNMzQwIDgxNVY4MjUiIHN0cm9rZT0iIzMzNDE1NSIvPgogIDx0ZXh0IHg9IjI0IiB5PSI2OTUiPnbhtacgKG0vcyk8L3RleHQ+PHRleHQgeD0iNDI2IiB5PSI4MjYiPnQgKHMpPC90ZXh0PgogIDx0ZXh0IHg9IjQ5IiB5PSI3MjYiPisyPC90ZXh0Pjx0ZXh0IHg9IjY0IiB5PSI4MjYiPjA8L3RleHQ+PHRleHQgeD0iNDkiIHk9IjkyNiI+4oiSMjwvdGV4dD4KICA8dGV4dCB4PSI5NCIgeT0iODUzIj4wPC90ZXh0Pjx0ZXh0IHg9IjIxNSIgeT0iODUzIj4xPC90ZXh0Pjx0ZXh0IHg9IjMzNSIgeT0iODUzIj4yPC90ZXh0PgogIDx0ZXh0IHg9IjExNSIgeT0iODAwIj4rMSBtPC90ZXh0Pjx0ZXh0IHg9IjI3NyIgeT0iODUwIj7iiJIxIG08L3RleHQ+CiAgPHRleHQgeD0iMTAwIiB5PSI5NzUiPs6UeSA9IDA7IGRpc3RhbnphIHBlcmNvcnNhID0gMSBtICsgMSBtID0gMiBtPC90ZXh0PgogPC9nPgo8L3N2Zz4K"
+    }
+  ]
+}
