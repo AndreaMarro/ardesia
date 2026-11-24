@@ -1,0 +1,1102 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-pressure-area-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7421,
+      "title": "Dodici newton ripartiti su tre metri quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 1,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Con F=12 N e A=3 m², quanto vale p in Pa?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza totale si ripartisce sull’area. Essendo la distribuzione uniforme, la pressione media F/A coincide con quella locale su ogni porzione. Dividiamo dodici newton per tre metri quadrati: quattro newton su ogni metro quadrato, cioè quattro pascal."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9560d40de96fe276bbf113d2f139026097571e164665cfc1310c02eb3412e0b9",
+          "text": "Faccia in pianta divisa in tre celle da1m²,area totale3m²: geometria100px/m. Proiezioni normali separate di tre forze da4N,frecce40px a10px/N,total12N. Pressione uniforme4Pa. Ultima faccia area6m²,sei celle nella stessa scala,stessa forza12N e2N per cella:pressione2Pa. Barre di pressione160 e80px alla scala40px/Pa;le frecce non giacciono nel piano della faccia."
+        },
+        {
+          "type": "formula",
+          "text": "p=F/A"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{12\\,\\mathrm N}{3\\,\\mathrm{m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Non moltiplichiamo forza e area: il prodotto non ha unità di pressione. Non aggiungiamo l’atmosfera, perché il dato richiesto è la sovrapressione. La pressione è scalare; è la forza che ha verso normale alla faccia del pistone."
+        }
+      ],
+      "hints": [
+        "Rapporta la forza normale totale all’area che la riceve.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non moltiplichiamo forza e area: il prodotto non ha unità di pressione. Non aggiungiamo l’atmosfera, perché il dato richiesto è la sovrapressione. La pressione è scalare; è la forza che ha verso normale alla faccia del pistone.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7422,
+      "title": "L’unità del carico per area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 1,
+      "prompt": "La sovrapressione uniforme di una faccia piana soddisfa p=F/A, con F forza normale in N e A area in m². Quale unità SI proposta esprime p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "Pa",
+          "N/m",
+          "kg",
+          "m²"
+        ],
+        "value": "Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un pascal è un newton diviso per un metro quadrato. Il rapporto ha dimensione M/(LT²), diversa da quella di forza. Una forza distribuita e una pressione non possono essere confuse soltanto perché riguardano la stessa parete."
+        },
+        {
+          "type": "formula",
+          "text": "[p]=[F]/[A]"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa}=1\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "N indica la sola forza; N/m manca di un metro al denominatore e può esprimere una rigidezza; kg è massa e m² area. In queste cinque alternative soltanto Pa ha dimensioni di pressione. Il valore medio avrebbe la stessa unità anche con una distribuzione non uniforme."
+        }
+      ],
+      "hints": [
+        "Dividi N per m² e confronta con la definizione di pascal.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N indica la sola forza; N/m manca di un metro al denominatore e può esprimere una rigidezza; kg è massa e m² area. In queste cinque alternative soltanto Pa ha dimensioni di pressione. Il valore medio avrebbe la stessa unità anche con una distribuzione non uniforme.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7423,
+      "title": "La stessa forza su un’area doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 1,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Due configurazioni hanno la stessa F; la seconda area è A_B=2A_A. Quale descrizione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La sovrapressione si dimezza",
+          "La sovrapressione raddoppia",
+          "La forza totale raddoppia",
+          "La sovrapressione resta uguale",
+          "La sovrapressione diventa zero"
+        ],
+        "value": "La sovrapressione si dimezza"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel rapporto F/A il numeratore non cambia e il denominatore raddoppia. Ciascun metro quadrato riceve metà forza rispetto a prima, quindi la sovrapressione diventa p_B=p_A/2. La forza totale rimane quella assegnata in entrambe le prove."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9560d40de96fe276bbf113d2f139026097571e164665cfc1310c02eb3412e0b9",
+          "text": "Raddoppiare da3a6m² con forza12N invariata porta pda4a2Pa. Le facce in pianta hanno tre e sei celle da1m² alla stessa scala100px/m. Le proiezioni delle forze sono separate dal piano della superficie. Le barre finali mantengono scala40px/Pa e mostrano il dimezzamento."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=F/A_A"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=F/(2A_A)"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=p_A/2"
+        },
+        {
+          "type": "text",
+          "text": "Aumentare l’area non crea forza: il carico viene distribuito più ampiamente. La pressione non diventa zero per un’area finita e una forza positiva. Se la distribuzione non fosse uniforme, F/A descriverebbe soltanto la media; qui l’uniformità rende valido anche il confronto locale."
+        }
+      ],
+      "hints": [
+        "Mantieni la forza totale e cambia soltanto il divisore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Aumentare l’area non crea forza: il carico viene distribuito più ampiamente. La pressione non diventa zero per un’area finita e una forza positiva. Se la distribuzione non fosse uniforme, F/A descriverebbe soltanto la media; qui l’uniformità rende valido anche il confronto locale.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7424,
+      "title": "Aumentare il carico senza cambiare la faccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 1,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. A ha F=12 N e B F=20 N; in entrambe A=3 m². Come cambia p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 20/3 Pa",
+          "Da 4 a 8 Pa",
+          "Resta 4 Pa",
+          "Da 4 a 12/5 Pa",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 20/3 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo ogni forza per la stessa area. La prima dà quattro pascal; la seconda venti terzi di pascal, frazione esatta che non richiede una calcolatrice. Il rapporto fra le pressioni è 20/12=5/3, perché a parità di area p segue F."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{20}{3}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=5/3"
+        },
+        {
+          "type": "text",
+          "text": "Otto pascal richiederebbero una forza doppia, ventiquattro N, non venti. Dodici quinti invertirebbe il cambiamento del carico. L’area assegnata è una superficie, non un lato da elevare di nuovo al quadrato."
+        }
+      ],
+      "hints": [
+        "Dividi venti per tre e conserva la frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto pascal richiederebbero una forza doppia, ventiquattro N, non venti. Dodici quinti invertirebbe il cambiamento del carico. L’area assegnata è una superficie, non un lato da elevare di nuovo al quadrato.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7425,
+      "title": "Ricostruire la forza normale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Si misura p=4 Pa e si conosce A=3 m². Quanto vale F in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione è forza per unità di area: per ritrovare il totale moltiplichiamo per l’area. Quattro pascal per tre metri quadrati danno dodici newton. Il prodotto somma il carico di tutte le porzioni della faccia."
+        },
+        {
+          "type": "formula",
+          "text": "F=pA"
+        },
+        {
+          "type": "formula",
+          "text": " F=(4\\,\\mathrm{Pa})(3\\,\\mathrm{m^2})"
+        },
+        {
+          "type": "formula",
+          "text": " F=12\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per tre non ricostruisce la forza e ha unità diverse. Il dato p è già la sovrapressione dovuta alla forza aggiuntiva; non serve sottrarre di nuovo l’ambiente. La sostituzione 12/3=4 Pa chiude il controllo."
+        }
+      ],
+      "hints": [
+        "Moltiplica il carico per unità di area per l’area totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere ancora per tre non ricostruisce la forza e ha unità diverse. Il dato p è già la sovrapressione dovuta alla forza aggiuntiva; non serve sottrarre di nuovo l’ambiente. La sostituzione 12/3=4 Pa chiude il controllo.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7426,
+      "title": "Ricostruire l’area del pistone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Si misurano p=4 Pa e F=12 N. Quanto vale A in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da pA=F dividiamo per la pressione positiva. Il rapporto N/Pa equivale a m²: dodici diviso quattro dà tre metri quadrati. Non prendiamo una radice, perché l’incognita è già l’area, non la lunghezza di un lato."
+        },
+        {
+          "type": "formula",
+          "text": "pA=F"
+        },
+        {
+          "type": "formula",
+          "text": " A=F/p"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{12\\,\\mathrm N}{4\\,\\mathrm{Pa}}"
+        },
+        {
+          "type": "formula",
+          "text": " A=3\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Tre metri sarebbe un’unità sbagliata. Conoscere A non basta per identificare la forma della faccia: rettangoli diversi possono avere la stessa area. L’inversa richiede p>0, condizione dichiarata e soddisfatta."
+        }
+      ],
+      "hints": [
+        "Dividi la forza per la pressione e controlla che resti un’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre metri sarebbe un’unità sbagliata. Conoscere A non basta per identificare la forma della faccia: rettangoli diversi possono avere la stessa area. L’inversa richiede p>0, condizione dichiarata e soddisfatta.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7427,
+      "title": "Allargare da tre a quattro metri quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. F=12 N in entrambe le prove; A_A=3 m² e A_B=4 m². Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "1/4",
+          "3",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni sono 12/3=4 Pa e 12/4=3 Pa. Il rapporto finale su iniziale è tre quarti. Equivale al rapporto inverso fra le aree, perché la stessa forza si distribuisce più ampiamente in B."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=3\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=3/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi segue l’area nel verso sbagliato; un quarto usa soltanto il nuovo denominatore; tre è il valore della pressione B, non un rapporto puro. Uno ignora l’allargamento. Le pressioni confrontate hanno lo stesso riferimento ambiente."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le pressioni prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi segue l’area nel verso sbagliato; un quarto usa soltanto il nuovo denominatore; tre è il valore della pressione B, non un rapporto puro. Uno ignora l’allargamento. Le pressioni confrontate hanno lo stesso riferimento ambiente.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7428,
+      "title": "Lo scarto di una proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Con F=12 N,A=3 m² si propone p_proposto=8 Pa. Quanto vale proposto meno corretto, in Pa?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è quattro pascal. La proposta otto supera il valore di quattro: l’errore nell’ordine assegnato è positivo. Un carico uniforme di otto pascal su tre metri quadrati corrisponderebbe invece a ventiquattro newton."
+        },
+        {
+          "type": "formula",
+          "text": "p=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "−4 inverte la sottrazione; otto ripete la proposta; zero la accetta e due dimezza ancora lo scarto. Lo scarto conserva l’unità di pressione, non quella di forza. Il controllo pA=F individua direttamente il carico errato implicito nella proposta."
+        }
+      ],
+      "hints": [
+        "Trova F/A e poi rispetta l’ordine dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 inverte la sottrazione; otto ripete la proposta; zero la accetta e due dimezza ancora lo scarto. Lo scarto conserva l’unità di pressione, non quella di forza. Il controllo pA=F individua direttamente il carico errato implicito nella proposta.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7429,
+      "title": "L’inversa della definizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Quale formula isola F dalla relazione p=F/A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=pA",
+          "F=p/A",
+          "F=A/p",
+          "F=2 pA",
+          "F=pA/2"
+        ],
+        "value": "F=pA"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo entrambi i membri per l’area positiva. La relazione pA=F dà una forza normale. La pressione uniforme è un fattore che, moltiplicato per una superficie, ricostruisce il carico totale."
+        },
+        {
+          "type": "formula",
+          "text": "pA=F"
+        },
+        {
+          "type": "formula",
+          "text": " F=pA"
+        },
+        {
+          "type": "text",
+          "text": "p/A ha unità N/m⁴; A/p non ha unità di forza. Il doppio e la metà non derivano dall’algebra e falliscono il controllo F/A=p. Non si usa la pressione assoluta al posto della differenza tra le facce quando F è il carico aggiuntivo netto."
+        }
+      ],
+      "hints": [
+        "Rimuovi il denominatore A con una moltiplicazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "p/A ha unità N/m⁴; A/p non ha unità di forza. Il doppio e la metà non derivano dall’algebra e falliscono il controllo F/A=p. Non si usa la pressione assoluta al posto della differenza tra le facce quando F è il carico aggiuntivo netto.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7430,
+      "title": "Scalare forza e superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. B usa F_B=κ₁F e A_B=κ₂A, con κ₁,κ₂>0; F,A indicano A. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza entra al numeratore e la superficie al denominatore. Nel rapporto tra le pressioni si cancellano F e A, lasciando κ₁/κ₂. I due fattori sono rapporti puri e descrivono configurazioni quasistatiche distinte."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=F/A"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{\\kappa_1F}{\\kappa_2A}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto attribuisce all’area un effetto diretto; il reciproco scambia le prove; il quadrato conterebbe due volte F. La somma darebbe due per prove identiche. Con fattori uguali la pressione rimane uguale, perché crescono allo stesso modo forza e area."
+        }
+      ],
+      "hints": [
+        "Confronta i due quozienti completi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto attribuisce all’area un effetto diretto; il reciproco scambia le prove; il quadrato conterebbe due volte F. La somma darebbe due per prove identiche. Con fattori uguali la pressione rimane uguale, perché crescono allo stesso modo forza e area.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7431,
+      "title": "Due variazioni con effetti opposti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. A ha F=12 N,A=3 m²; B ha F=20 N,A=4 m². Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "5/3",
+          "3/4",
+          "5"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza maggiore tende ad aumentare la pressione, l’area maggiore ad attenuare l’aumento. I valori sono quattro e cinque pascal. Il loro rapporto è cinque quarti, esatto e senza unità."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=\\frac{12\\,\\mathrm N}{3\\,\\mathrm{m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_A=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{20\\,\\mathrm N}{4\\,\\mathrm{m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=5/4"
+        },
+        {
+          "type": "text",
+          "text": "Cinque terzi considera soltanto F, tre quarti soltanto A; quattro quinti inverte il confronto. Cinque è il numero della pressione B, che deve ancora essere diviso per i quattro iniziali. Non si confrontano direttamente i numeri della forza con quelli dell’area."
+        }
+      ],
+      "hints": [
+        "Trova le due pressioni e poi cancella i pascal nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque terzi considera soltanto F, tre quarti soltanto A; quattro quinti inverte il confronto. Cinque è il numero della pressione B, che deve ancora essere diviso per i quattro iniziali. Non si confrontano direttamente i numeri della forza con quelli dell’area.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7432,
+      "title": "Media di pressioni uniformi di prove diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 2,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. A usa F=12 N,A=3 m² e B usa F=20 N,A=4 m². Qual è la media aritmetica delle due p con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 Pa",
+          "9 Pa",
+          "9/4 Pa",
+          "32/7 Pa",
+          "1 Pa"
+        ],
+        "value": "9/2 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due pressioni sono quattro e cinque pascal. La semisomma è nove mezzi di pascal, compresa fra le due. Qui ogni prova ha uguale peso statistico, non un peso proporzionale alla sua area."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p=\\frac{4+5}{2}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p=\\frac92\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Nove è la somma, 9/4 divide ancora e uno è la differenza. Gli ingressi medi F=16 N,A=7/2 m² darebbero 32/7 Pa, non 9/2 Pa: i prodotti incrociati 64 e63 distinguono le frazioni, con differenza 1/14 Pa. Il rapporto dei dati medi non sostituisce la media delle uscite."
+        }
+      ],
+      "hints": [
+        "Media i due risultati già calcolati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è la somma, 9/4 divide ancora e uno è la differenza. Gli ingressi medi F=16 N,A=7/2 m² darebbero 32/7 Pa, non 9/2 Pa: i prodotti incrociati 64 e63 distinguono le frazioni, con differenza 1/14 Pa. Il rapporto dei dati medi non sostituisce la media delle uscite.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7433,
+      "title": "Progettare l’area per la pressione desiderata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 3,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. A ha F_A=12 N,A_A=3 m². Si sceglie F_B=20 N e si vuole p_B=(5/4)p_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "5/4",
+          "4",
+          "5/3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione iniziale è quattro pascal e l’obiettivo cinque. L’area nuova deve essere F_B/p_B=20/5=4 m². Rapportandola ai tre metri quadrati iniziali otteniamo quattro terzi."
+        },
+        {
+          "type": "formula",
+          "text": "p_B=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=F_B/p_B"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=4/3"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti è il rapporto delle pressioni, non delle aree; quattro è il numero dell’area B, non il rapporto. Tre quarti inverte la domanda. Il controllo 20 N/4 m²=5 Pa riproduce l’obiettivo con una superficie positiva."
+        }
+      ],
+      "hints": [
+        "Ricostruisci A_B prima di confrontarla con A_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque quarti è il rapporto delle pressioni, non delle aree; quattro è il numero dell’area B, non il rapporto. Tre quarti inverte la domanda. Il controllo 20 N/4 m²=5 Pa riproduce l’obiettivo con una superficie positiva.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7434,
+      "title": "Dal display alla forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 3,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Un display continuo adimensionale legge S=qp, con q>0 costante e offset nullo. Il riferimento F=12 N,A=3 m² dà S=12. Una prova con A=4 m² dà S=15. Quanto vale F in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha p=4 Pa, dunque q=3 Pa⁻¹. La lettura quindici corrisponde a cinque pascal. La forza della prova è pA=5 Pa·4 m²=20 N; la lettura va decodificata prima di moltiplicare per l’area."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p=15/q"
+        },
+        {
+          "type": "formula",
+          "text": " p=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " F=pA"
+        },
+        {
+          "type": "formula",
+          "text": " F=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Usare15come pascal darebbe sessanta newton e manterrebbe un fattore tre spurio. Il display non misura direttamente F: il guadagno ha unità inverse di pressione e la geometria entra solo nel successivo prodotto pA."
+        }
+      ],
+      "hints": [
+        "Tarare q precede l’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare15come pascal darebbe sessanta newton e manterrebbe un fattore tre spurio. Il display non misura direttamente F: il guadagno ha unità inverse di pressione e la geometria entra solo nel successivo prodotto pA.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7435,
+      "title": "Una taratura affine con una lettura frazionaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 3,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Un display continuo adimensionale legge S=qp+b, con q>0,b costanti. A: F=12 N,A=3 m²,S=9. B: F=20 N,A=4 m²,S=11. C: A=3 m²,S=43/3. Quanto vale F_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 N",
+          "16 N",
+          "20 N",
+          "24 N",
+          "30 N"
+        ],
+        "value": "20 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti sono p_A=4 Pa e p_B=5 Pa. Due unità di lettura per un pascal danno q=2 Pa⁻¹ e b=1. C ha p_C=[(43/3)−1]/2=20/3 Pa. Moltiplicando per tre metri quadrati si ottengono venti newton, senza arrotondare la frazione."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=\\frac{20}{3}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=p_CA_C"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Con A_C=3 m², le alternative12,16,24,30 N darebbero S=9,35/3,17,21, diverse da43/3. La lettura continua può essere frazionaria. Confrontare direttamente le letture non elimina l’offset; va tolto prima di dividere per q."
+        }
+      ],
+      "hints": [
+        "Trova p_C esatto e lascia cancellare il tre nel prodotto con l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con A_C=3 m², le alternative12,16,24,30 N darebbero S=9,35/3,17,21, diverse da43/3. La lettura continua può essere frazionaria. Confrontare direttamente le letture non elimina l’offset; va tolto prima di dividere per q.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-area-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione e distribuzione delle forze",
+      "order": 7436,
+      "title": "Una legge di carico a pressione fissa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-area",
+      "difficulty": 3,
+      "prompt": "Un pistone piano ideale di area A>0 è soggetto a una forza normale aggiuntiva di modulo F>0, uniformemente distribuita. Si confrontano equilibri quasistatici, trascurando attrito e peso del pistone. Le azioni preesistenti sono equilibrate: p>0 indica la sovrapressione prodotta dalla sola F rispetto alla stessa pressione ambiente p₀ sull’altra faccia, non la pressione assoluta. Fra configurazioni si impone F=cA, con c=4 Pa costante. Si misura anche p=4 Pa. Quante coppie positive (F,A) rispettano tutti i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo il vincolo nella definizione troviamo p=cA/A=c per ogni area positiva. La misura ripete esattamente il carico per area già imposto: è coerente ma non seleziona una scala geometrica unica. Ogni A>0 con F=cA è una soluzione."
+        },
+        {
+          "type": "formula",
+          "text": "F=cA"
+        },
+        {
+          "type": "formula",
+          "text": " p=cA/A"
+        },
+        {
+          "type": "formula",
+          "text": " p=c"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio A=1 m²,F=4 N e A=3 m²,F=12 N sono due coppie diverse, ma l’intervallo continuo delle aree ne produce infinite. A=0 è esclusa dalla definizione e non va introdotta come soluzione. Il coefficiente c ha unità Pa, non è il numero puro quattro."
+        }
+      ],
+      "hints": [
+        "Verifica se la misura aggiunge un’informazione indipendente al vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per esempio A=1 m²,F=4 N e A=3 m²,F=12 N sono due coppie diverse, ma l’intervallo continuo delle aree ne produce infinite. A=0 è esclusa dalla definizione e non va introdotta come soluzione. Il coefficiente c ha unità Pa, non è il numero puro quattro.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Pressione uniforme e media",
+        "Forza normale, area e pressione relativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9560d40de96fe276bbf113d2f139026097571e164665cfc1310c02eb3412e0b9",
+      "name": "pressure-area-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkZvcnphIG5vcm1hbGUgcmlwYXJ0aXRhIHN1IHVu4oCZYXJlYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1vIHBpc3RvbmUgaW4gcGlhbnRhIGRpdmlzbyBpbiB0cmUgY2VsbGUgcXVhZHJhdGUgZGEgdW4gbWV0cm8gcXVhZHJhdG8sY2VudG8gcGl4ZWwgZGkgbGF0byBhbGxhIHNjYWxhIGNlbnRvIHBpeGVsIHBlciBtZXRyby4gQXJlYSB0b3RhbGUgdHJlIG1ldHJpIHF1YWRyYXRpLiBQcm9pZXppb25pIHNlcGFyYXRlIGRlbGxlIGZvcnplIG5vcm1hbGkscXVhdHRybyBuZXd0b24gcGVyIGNlbGxhLGZyZWNjZSBxdWFyYW50YSBwaXhlbCBhbGxhIHNjYWxhIGRpZWNpIHBpeGVsIHBlciBuZXd0b24uIENhcmljbyB0b3RhbGUgZG9kaWNpIG5ld3RvbiBlIHNvdnJhcHJlc3Npb25lIHF1YXR0cm8gcGFzY2FsLiBBcmVhIGRvcHBpYSBzZWkgbWV0cmkgcXVhZHJhdGkgY29uIHNlaSBjZWxsZSBuZWxsYSBzdGVzc2Egc2NhbGEgZSBzdGVzc28gY2FyaWNvIGRvZGljaSBuZXd0b24sZHVlIG5ld3RvbiBwZXIgY2VsbGEgZSBwcmVzc2lvbmUgZHVlIHBhc2NhbC4gQmFycmUgZGkgcHJlc3Npb25lIGx1bmdoZSBjZW50b3Nlc3NhbnRhIGUgb3R0YW50YSBwaXhlbCBhbGxhIHNjYWxhIHF1YXJhbnRhIHBpeGVsIHBlciBwYXNjYWwuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTUwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmaWxsPSIjMTYzMjNmIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgQXJlYSBkZWxsYSBmYWNjaWEsIHZpc3RhIGluIHBpYW50YTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPlRyZSBjZWxsZSBkYSAxIG3Csi4gR2VvbWV0cmlhOiAxMDAgcHgvbS48L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxNzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDVlM2RjIiBzdHJva2U9IiMxNjMyM2YiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0yNTAgMTcwVjI3ME0zNTAgMTcwVjI3MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxODAiIHk9IjIzMCI+MSBtwrI8L3RleHQ+PHRleHQgeD0iMjgwIiB5PSIyMzAiPjEgbcKyPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMjMwIj4xIG3CsjwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjMyNSI+QSA9IDMgbcKyPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzODAiPkYgPSAxMiBOIMOoIHBlcnBlbmRpY29sYXJlIGFsbGEgZmFjY2lhLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDI1Ij5wID0gRi9BID0gNCBQYSwgc292cmFwcmVzc2lvbmUgcmlzcGV0dG8gYWxs4oCZYW1iaWVudGUuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNTA1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IFRyZSBjb250cmlidXRpIG5vcm1hbGkgdWd1YWxpPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1NTAiPlByb2llemlvbmkgc2VwYXJhdGUgZGFsIHBpYW5vIGRlbGxhIGZhY2NpYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU5NSI+Rm9yemU6IDEwIHB4L04uIENhcmljbyB1bmlmb3JtZS48L3RleHQ+PHBhdGggZD0iTTE2MCA2NTBWNjkwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMzAwIDY1MFY2OTAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00NDAgNjUwVjY5MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iMTMwIiB5PSI3NDAiPjQgTjwvdGV4dD48dGV4dCB4PSIyNzAiIHk9Ijc0MCI+NCBOPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iNzQwIj40IE48L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc5NSI+T2duaSBtZXRybyBxdWFkcmF0byByaWNldmUgNCBOOyB0b3RhbGUgMTIgTi48L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg0MCI+TGEgcHJlc3Npb25lIMOoIHNjYWxhcmU7IGxlIGZvcnplIGhhbm5vIHZlcnNvIG5vcm1hbGUuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iOTIwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IFN0ZXNzYSBmb3J6YSwgYXJlYSBkb3BwaWE8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijk2NSI+U2VpIGNlbGxlIGRhIDEgbcKyLCBzdGVzc2Egc2NhbGEgMTAwIHB4L20uPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTAyMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNkNWUzZGMiIHN0cm9rZT0iIzE2MzIzZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTI1MCAxMDIwVjEyMjBNMzUwIDEwMjBWMTIyME0xNTAgMTEyMEg0NTAiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTgwIiB5PSIxMDgwIj4xIG3CsjwvdGV4dD48dGV4dCB4PSIyODAiIHk9IjEwODAiPjEgbcKyPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTA4MCI+MSBtwrI8L3RleHQ+PHRleHQgeD0iMTgwIiB5PSIxMTgwIj4xIG3CsjwvdGV4dD48dGV4dCB4PSIyODAiIHk9IjExODAiPjEgbcKyPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTE4MCI+MSBtwrI8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyNzAiPkEgPSA2IG3CsiwgRiA9IDEyIE47IG9nbmkgY2VsbGEgcmljZXZlIDIgTi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMjAiPlByZXNzaW9uaTogYmFycmUgYSA0MCBweC9QYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzODAiPlByaW1hOiA0IFBhPC90ZXh0PjxyZWN0IHg9IjI0MCIgeT0iMTM1MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NjQ3YiIvPjx0ZXh0IHg9IjI4IiB5PSIxNDUwIj5Eb3BvOiAyIFBhPC90ZXh0PjxyZWN0IHg9IjI0MCIgeT0iMTQyMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ2NDdiIi8+PHRleHQgeD0iMjgiIHk9IjE1MTAiIGZvbnQtc2l6ZT0iMTgiPkxlIGZyZWNjZSBpbiBhbHRvIHNvbm8gcHJvaWV6aW9uaSBkZWxsZSBub3JtYWxpLCBub24gdmV0dG9yaSB0YW5nZW56aWFsaS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
