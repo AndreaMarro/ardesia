@@ -1,0 +1,1177 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-circular-orbit-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6721,
+      "title": "La gravità fornisce l’accelerazione centripeta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 1,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Con μ=4 m³/s² e r=1 m, quanto vale V in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza gravitazionale ha modulo mμ/r² e punta al centro. Il moto circolare uniforme richiede una risultante centripeta mV²/r, non una seconda forza da aggiungere alla gravità. Uguagliamo i due moduli e semplifichiamo m e un fattore r: V²=μ/r=4 m²/s². La rapidità è la radice positiva, due metri al secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00dd43a5cf85f9e6cc09ca33947158e48f1369187cdd5fa3f60f6d6bceff4fce",
+          "text": "Modello centrale puntiforme. Primo pannello μ4 m³/s²,r1 m: raggio100px a100px/m, rapidità tangente2m/s con freccia100px a50px per m/s, accelerazione centripeta4m/s² con freccia80px a20px per m/s². Secondo pannello deriva la cancellazione della massa di prova. Confronto finale a μ4: orbite r1 e4m, raggi40 e160px a40px/m, con V2 e1m/s. Nelle proiezioni separate delle rapidità, frecce100 e50px alla stessa scala50px per m/s. Le scale geometriche del confronto e del primo esempio sono diverse e dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "mV^2/r=m\\mu/r^2"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\mu/r"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero di V², non quello di V. Non compare il fattore due della rapidità di fuga: qui l’orbita è circolare. Il valore −2 potrebbe indicare una componente secondo una convenzione, ma non la rapidità positiva richiesta; il verso di percorrenza non è fissato dalla sua intensità."
+        }
+      ],
+      "hints": [
+        "Confronta gravità e risultante centripeta e poi prendi la radice positiva.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il numero di V², non quello di V. Non compare il fattore due della rapidità di fuga: qui l’orbita è circolare. Il valore −2 potrebbe indicare una componente secondo una convenzione, ma non la rapidità positiva richiesta; il verso di percorrenza non è fissato dalla sua intensità.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6722,
+      "title": "L’unità viene dalla radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 1,
+      "prompt": "Nel modello orbitale circolare V=√(μ/r), con μ in m³/s² e r in m. Quale unità proposta esprime la rapidità V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "m²/s²",
+          "N",
+          "1"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividere μ per una lunghezza lascia m²/s². La radice quadrata agisce sia sul numero sia sull’unità: rimane m/s. μ non è una massa in chilogrammi, ma il prodotto della costante gravitazionale per la massa centrale."
+        },
+        {
+          "type": "formula",
+          "text": "[\\mu/r]=L^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "m è una distanza, m²/s² l’unità prima della radice e N una forza. Il risultato non è puro. Non occorre conoscere separatamente G e M quando il loro prodotto μ è già assegnato."
+        }
+      ],
+      "hints": [
+        "Semplifica μ/r prima di prendere la radice dell’unità.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m è una distanza, m²/s² l’unità prima della radice e N una forza. Il risultato non è puro. Non occorre conoscere separatamente G e M quando il loro prodotto μ è già assegnato.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6723,
+      "title": "La relazione della rapidità circolare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 1,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Quale formula dà V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=√(μ/r)",
+          "V=μ/r",
+          "V=√(2μ/r)",
+          "V=√(μr)",
+          "V=√(r/μ)"
+        ],
+        "value": "V=√(μ/r)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel bilancio radiale la gravità è già la risultante: mV²/r=mμ/r². Dopo la semplificazione V²=μ/r e la scelta V>0 danno V=√(μ/r). La massa orbitante si cancella nell’approssimazione di prova, non perché la forza gravitazionale sia indipendente da essa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00dd43a5cf85f9e6cc09ca33947158e48f1369187cdd5fa3f60f6d6bceff4fce",
+          "text": "Modello centrale puntiforme. Primo pannello μ4 m³/s²,r1 m: raggio100px a100px/m, rapidità tangente2m/s con freccia100px a50px per m/s, accelerazione centripeta4m/s² con freccia80px a20px per m/s². Secondo pannello deriva la cancellazione della massa di prova. Confronto finale a μ4: orbite r1 e4m, raggi40 e160px a40px/m, con V2 e1m/s. Nelle proiezioni separate delle rapidità, frecce100 e50px alla stessa scala50px per m/s. Le scale geometriche del confronto e del primo esempio sono diverse e dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "mV^2/r=m\\mu/r^2"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\mu/r"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\sqrt{\\mu/r}"
+        },
+        {
+          "type": "text",
+          "text": "μ/r salta la radice; √(2μ/r) è la rapidità di fuga nel modello, non quella circolare. √(μr) e √(r/μ) hanno anche unità errate. In un’orbita non circolare la rapidità dipenderebbe pure dall’energia e dalla posizione lungo il percorso: la circolarità è essenziale."
+        }
+      ],
+      "hints": [
+        "La gravità deve produrre proprio V²/r.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "μ/r salta la radice; √(2μ/r) è la rapidità di fuga nel modello, non quella circolare. √(μr) e √(r/μ) hanno anche unità errate. In un’orbita non circolare la rapidità dipenderebbe pure dall’energia e dalla posizione lungo il percorso: la circolarità è essenziale.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6724,
+      "title": "Quattro volte μ, due volte V",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 1,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Tra prove r=1 m resta fisso e μ passa da 4 a 16 m³/s². Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 m/s",
+          "Da 2 a 8 m/s",
+          "Resta 2 m/s",
+          "Da 2 a 1 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto μ/r quadruplica e quindi V² quadruplica. La radice quadrata di quattro è due: la rapidità passa da due a quattro metri al secondo. Si confrontano due orbite circolari già stabilite, non una variazione istantanea della massa centrale con lo stesso moto iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "V_A^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto renderebbe V direttamente proporzionale a μ anziché alla sua radice; uno ne invertirebbe l’effetto. Zero è incompatibile con μ>0 e r finito. Ogni prova mantiene l’ipotesi di campo centrale puntiforme o orbita sferica esterna."
+        }
+      ],
+      "hints": [
+        "Confronta i quadrati e poi le loro radici.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto renderebbe V direttamente proporzionale a μ anziché alla sua radice; uno ne invertirebbe l’effetto. Zero è incompatibile con μ>0 e r finito. Ogni prova mantiene l’ipotesi di campo centrale puntiforme o orbita sferica esterna.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6725,
+      "title": "Ricostruire il parametro gravitazionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Si misura V=2 m/s e si conosce r=1 m. Quanto vale μ in m³/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m³/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima eleviamo al quadrato la rapidità e poi moltiplichiamo per il raggio: μ=V²r. Due al quadrato dà quattro m²/s²; per un metro si ottengono quattro m³/s². Il risultato è il parametro gravitazionale, non la massa centrale in kg."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\mu/r"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=V^2r"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=(4\\,\\mathrm{m^2/s^2})(1\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=4\\,\\mathrm{m^3/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Usare Vr dimentica il quadrato e ha unità diverse; dividere per r non isola μ. Per ricavare M servirebbe anche G, non assegnata perché non è richiesta. Reinserendo μ/r si ritrova V²=4 e quindi V=2."
+        }
+      ],
+      "hints": [
+        "Elimina prima la radice e poi il denominatore.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare Vr dimentica il quadrato e ha unità diverse; dividere per r non isola μ. Per ricavare M servirebbe anche G, non assegnata perché non è richiesta. Reinserendo μ/r si ritrova V²=4 e quindi V=2.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6726,
+      "title": "Ricostruire il raggio orbitale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Si misura V=2 m/s e si conosce μ=4 m³/s². Quanto vale r in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da V²=μ/r moltiplichiamo per r e dividiamo per V²>0. Il raggio è μ/V²: quattro m³/s² divisi per quattro m²/s² danno un metro. Non è una quota rispetto alla superficie, ma la distanza dal centro."
+        },
+        {
+          "type": "formula",
+          "text": "rV^2=\\mu"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\mu/V^2"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{4\\,\\mathrm{m^3/s^2}}{4\\,\\mathrm{m^2/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " r=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due dividerebbe soltanto per V e avrebbe unità errate. Un raggio materiale non è assegnato nel modello puntiforme; se fosse un pianeta sferico esteso, bisognerebbe controllare che il raggio ricostruito sia esterno prima di applicare la stessa legge."
+        }
+      ],
+      "hints": [
+        "Il denominatore è il quadrato della rapidità.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due dividerebbe soltanto per V e avrebbe unità errate. Un raggio materiale non è assegnato nel modello puntiforme; se fosse un pianeta sferico esteso, bisognerebbe controllare che il raggio ricostruito sia esterno prima di applicare la stessa legge.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6727,
+      "title": "Raggio quadruplo nello stesso campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. A usa μ=4 m³/s²,r_A=1 m; B usa lo stesso μ e r_B=4 m. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima rapidità è due metri al secondo. Nel raggio quattro metri il rapporto μ/r vale uno m²/s² e V_B vale un metro al secondo. Il rapporto è un mezzo: il raggio entra al denominatore dentro una radice."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=1\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto dimentica la radice; due e quattro fanno aumentare la rapidità col raggio; uno ignora il cambiamento. Non si dice che un satellite possa passare spontaneamente fra queste orbite senza scambio energetico: si confrontano configurazioni circolari distinte."
+        }
+      ],
+      "hints": [
+        "Calcola le due rapidità o usa l’inversa della radice di quattro.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Un quarto dimentica la radice; due e quattro fanno aumentare la rapidità col raggio; uno ignora il cambiamento. Non si dice che un satellite possa passare spontaneamente fra queste orbite senza scambio energetico: si confrontano configurazioni circolari distinte.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6728,
+      "title": "Lo scarto di una rapidità doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Con μ=4 m³/s²,r=1 m si propone V_proposto=4 m/s. Quanto vale proposto meno corretto, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto μ/r è quattro m²/s², quindi la rapidità corretta è due metri al secondo. La proposta quattro ha saltato la radice e la supera di due metri al secondo. Lo scarto nell’ordine richiesto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\sqrt{4}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−2 inverte la sottrazione, quattro ripete la proposta e uno dimezza ancora la differenza. Se V fosse davvero quattro a r=1 m, servirebbe μ=16 m³/s² per una circonferenza: la proposta non è compatibile con il campo assegnato."
+        }
+      ],
+      "hints": [
+        "Controlla V²=μ/r prima di sottrarre.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−2 inverte la sottrazione, quattro ripete la proposta e uno dimezza ancora la differenza. Se V fosse davvero quattro a r=1 m, servirebbe μ=16 m³/s² per una circonferenza: la proposta non è compatibile con il campo assegnato.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6729,
+      "title": "L’inversa mantiene il quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Quale formula isola μ da V=√(μ/r)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "μ=V²r",
+          "μ=Vr",
+          "μ=V²/r",
+          "μ=r/V²",
+          "μ=2 V²r"
+        ],
+        "value": "μ=V²r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "V è positivo e la radice è definita per μ,r positivi. Eleviamo al quadrato e moltiplichiamo per r: μ=V²r. Le unità si combinano in m³/s², quelle del parametro centrale."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\mu/r"
+        },
+        {
+          "type": "formula",
+          "text": " rV^2=\\mu"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=V^2r"
+        },
+        {
+          "type": "text",
+          "text": "Vr dimentica il quadrato; V²/r ha unità di accelerazione; r/V² dà un rapporto inverso. Il due aggiuntivo appartiene a un altro problema energetico e non all’equilibrio radiale circolare. La sostituzione nella legge positiva restituisce V."
+        }
+      ],
+      "hints": [
+        "Togli la radice prima di isolare μ.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Vr dimentica il quadrato; V²/r ha unità di accelerazione; r/V² dà un rapporto inverso. Il due aggiuntivo appartiene a un altro problema energetico e non all’equilibrio radiale circolare. La sostituzione nella legge positiva restituisce V.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6730,
+      "title": "Due fattori dentro una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. B ha μ_B=κ₁μ_A e r_B=κ₂r_A, con fattori positivi ed entrambe le orbite nel dominio. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁/κ₂)",
+          "κ₁/κ₂",
+          "√(κ₁κ₂)",
+          "√(κ₂/κ₁)",
+          "κ₁/√κ₂"
+        ],
+        "value": "√(κ₁/κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto μ/r riceve κ₁ al numeratore e κ₂ al denominatore. Per la rapidità occorre ancora la radice: V_B/V_A=√(κ₁/κ₂). I fattori non sono leggi variabili nel tempo durante un’orbita, ma confronti tra sistemi circolari."
+        },
+        {
+          "type": "formula",
+          "text": "V_B^2/V_A^2=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\sqrt{\\kappa_1/\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ salta la radice, il prodotto inverte l’effetto del raggio e il reciproco scambia le prove. κ₁/√κ₂ lascia μ fuori dalla radice. Con fattori uguali la rapidità rimane uguale, mentre raggio e accelerazione possono cambiare."
+        }
+      ],
+      "hints": [
+        "Confronta prima V² nelle due prove.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁/κ₂ salta la radice, il prodotto inverte l’effetto del raggio e il reciproco scambia le prove. κ₁/√κ₂ lascia μ fuori dalla radice. Con fattori uguali la rapidità rimane uguale, mentre raggio e accelerazione possono cambiare.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6731,
+      "title": "Una rapidità esatta con radice non intera",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. A ha μ_A=4 m³/s²,r_A=1 m; B ha μ_B=1 m³/s²,r_B=2 m. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√2/4",
+          "√2/2",
+          "1/4",
+          "2√2",
+          "1/2"
+        ],
+        "value": "√2/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha V_A=2 m/s. Per B, V_B=√(1/2) m/s=√2/2 m/s; questa identità si ottiene moltiplicando numeratore e denominatore di 1/√2 per √2. Dividere ancora per due dà √2/4, esatto senza stimare la radice."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{\\sqrt2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac{\\sqrt2}{4}"
+        },
+        {
+          "type": "text",
+          "text": "√2/2 ripete V_B come numero senza dividere per V_A; un quarto tratta μ direttamente e non sotto radice; 2√2 inverte il confronto e un mezzo conserva soltanto una delle variazioni. Il simbolo √2 è la risposta esatta, non una richiesta di decimalizzazione."
+        }
+      ],
+      "hints": [
+        "Lascia √2 esatto e distingui V_B dal rapporto.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "√2/2 ripete V_B come numero senza dividere per V_A; un quarto tratta μ direttamente e non sotto radice; 2√2 inverte il confronto e un mezzo conserva soltanto una delle variazioni. Il simbolo √2 è la risposta esatta, non una richiesta di decimalizzazione.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6732,
+      "title": "Media di rapidità orbitali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 2,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. A ha μ=4 m³/s²,r=1 m; B ha μ=1 m³/s²,r=2 m. Qual è la media aritmetica di V_A,V_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(4+√2)/4 m/s",
+          "(4+√2)/2 m/s",
+          "(4+√2)/8 m/s",
+          "√(5/3) m/s",
+          "√2/4 m/s"
+        ],
+        "value": "(4+√2)/4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità sono 2 e √2/2 m/s. Diamo loro denominatore due, sommiamo (4+√2)/2 m/s e dividiamo per due. La media è (4+√2)/4 m/s. Non serve una valutazione numerica della radice."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{\\sqrt2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{4+\\sqrt2}{4}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il denominatore due dà la somma, otto divide ancora. Gli ingressi medi μ=5/2 m³/s²,r=3/2 m darebbero √(5/3) m/s, una terza orbita, non la media delle uscite. √2/4 è il rapporto fra le due rapidità, non la loro media con unità m/s."
+        }
+      ],
+      "hints": [
+        "Somma 2 e √2/2 come espressioni esatte e poi dimezza.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il denominatore due dà la somma, otto divide ancora. Gli ingressi medi μ=5/2 m³/s²,r=3/2 m darebbero √(5/3) m/s, una terza orbita, non la media delle uscite. √2/4 è il rapporto fra le due rapidità, non la loro media con unità m/s.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6733,
+      "title": "Scegliere il raggio con un obiettivo simbolico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 3,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. A ha μ_A=4 m³/s²,r_A=1 m. In B si impone μ_B=1 m³/s² e si vuole V_B=(√2/4)V_A. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità iniziale due dà un bersaglio V_B=√2/2 m/s. Il suo quadrato è 1/2 m²/s². Dall’inversa r_B=μ_B/V_B² otteniamo due metri; il rapporto al raggio iniziale un metro è due."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=\\frac{\\sqrt2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=\\frac12\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\mu_B/V_B^2"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Non si divide per √2/2 senza elevarlo al quadrato. La semplificazione (√2)²=2 rende il procedimento manuale esatto. Tenere r a un metro con μ=1 darebbe V=1 m/s, diverso dall’obiettivo."
+        }
+      ],
+      "hints": [
+        "Quadra il bersaglio simbolico prima dell’inversa.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non si divide per √2/2 senza elevarlo al quadrato. La semplificazione (√2)²=2 rende il procedimento manuale esatto. Tenere r a un metro con μ=1 darebbe V=1 m/s, diverso dall’obiettivo.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6734,
+      "title": "Tarare una lettura con √2",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 3,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Un display continuo adimensionale segue S=qV, q>0 costante e offset nullo. Il riferimento μ=4 m³/s²,r=1 m dà S=6. Una prova con r=2 m dà S=3√2/2. Quanto vale μ in m³/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m³/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha V=2 m/s e quindi q=3 s/m. Dividendo la nuova lettura per tre troviamo V=√2/2 m/s. Il quadrato è un mezzo m²/s²; moltiplicato per r=2 m restituisce μ=1 m³/s²."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{\\sqrt2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\frac12\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=V^2r"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=1\\,\\mathrm{m^3/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura come rapidità SI introdurrebbe il quadrato del guadagno tre e darebbe μ=9 m³/s². La radice resta simbolica e scompare esattamente nel quadrato. Il display è continuo e può mostrare un’espressione non intera nel modello ideale."
+        }
+      ],
+      "hints": [
+        "Elimina q prima di elevare al quadrato.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura come rapidità SI introdurrebbe il quadrato del guadagno tre e darebbe μ=9 m³/s². La radice resta simbolica e scompare esattamente nel quadrato. Il display è continuo e può mostrare un’espressione non intera nel modello ideale.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6735,
+      "title": "Separare un offset con radici esatte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 3,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Un display continuo adimensionale segue S=qV+b, q>0,b costanti. A: μ=4 m³/s²,r=1 m,S=5. B: μ=1 m³/s²,r=2 m,S=1+√2. C: r=1 m,S=9. Quanto vale μ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m³/s²",
+          "8 m³/s²",
+          "16 m³/s²",
+          "32 m³/s²",
+          "64 m³/s²"
+        ],
+        "value": "16 m³/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno rapidità 2 e √2/2 m/s. Nella differenza, ΔS=√2−4 e ΔV=(√2−4)/2 m/s: si cancella lo stesso fattore non nullo e q=2 s/m. Da A segue b=1. La lettura nove dà V_C=4 m/s e μ_C=4²·1=16 m³/s²."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=\\sqrt2-4"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=\\frac{\\sqrt2-4}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_C=16\\,\\mathrm{m^3/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore comune è non nullo perché √2 non è quattro: confrontando i quadrati si hanno 2 e16. Le alternative μ=4,8,32,64 a r=1 darebbero letture 5,1+4√2,1+8√2,17, diverse da nove. Nessuna approssimazione decimale è necessaria."
+        }
+      ],
+      "hints": [
+        "Fattorizza la differenza delle rapidità prima di fare il rapporto di taratura.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il fattore comune è non nullo perché √2 non è quattro: confrontando i quadrati si hanno 2 e16. Le alternative μ=4,8,32,64 a r=1 darebbero letture 5,1+4√2,1+8√2,17, diverse da nove. Nessuna approssimazione decimale è necessaria.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-circular-orbit-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Orbite circolari ideali",
+      "order": 6736,
+      "title": "Una misura coerente ma ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "circular-orbit",
+      "difficulty": 3,
+      "prompt": "Nel modello newtoniano una massa di prova m>0 percorre un’orbita circolare di raggio r>0 intorno a un corpo centrale puntiforme con parametro μ=GM>0. Il moto del corpo centrale è trascurato nell’approssimazione di massa di prova: si usa un riferimento inerziale con il centro fisso nel modello. Agisce soltanto l’attrazione gravitazionale. V>0 è la rapidità orbitale costante, mentre il vettore velocità cambia direzione ed è tangente. Per un corpo centrale sferico esteso si richiederebbe inoltre un’orbita esterna in ogni prova. Tra orbite si impone μ=cr, con c=4 m²/s² fisso. Si misura V=2 m/s. Quante coppie positive (μ,r) soddisfano tutti i dati nel modello centrale puntiforme?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo nella legge: V²=cr/r=c, perché r>0. Ogni raggio positivo con μ=cr dà quindi V=2 m/s. La misura è coerente ma non fornisce una seconda informazione indipendente per identificare una sola coppia."
+        },
+        {
+          "type": "formula",
+          "text": "\\mu=cr"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=cr/r"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=c"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Per esempio r=1 m,μ=4 m³/s² e r=2 m,μ=8 m³/s² sono coppie diverse con la stessa rapidità. L’intero intervallo r>0 ne offre infinite. r=0 resta escluso dalla legge gravitazionale; non occorre annullare μ. Per un corpo esteso servirebbe anche il dominio esterno, non adottato qui come vincolo ulteriore."
+        }
+      ],
+      "hints": [
+        "Controlla se il vincolo fa scomparire davvero il raggio dall’uscita.",
+        "La gravità è la risultante centripeta; V è una rapidità positiva, r una distanza dal centro."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Per esempio r=1 m,μ=4 m³/s² e r=2 m,μ=8 m³/s² sono coppie diverse con la stessa rapidità. L’intero intervallo r>0 ne offre infinite. r=0 resta escluso dalla legge gravitazionale; non occorre annullare μ. Per un corpo esteso servirebbe anche il dominio esterno, non adottato qui come vincolo ulteriore.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Orbita circolare newtoniana di una massa di prova",
+        "Rapidità tangente e risultante centripeta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "00dd43a5cf85f9e6cc09ca33947158e48f1369187cdd5fa3f60f6d6bceff4fce",
+      "name": "circular-orbit-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTY1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkxhIGdyYXZpdMOgIGNvbWUgcmlzdWx0YW50ZSBjZW50cmlwZXRhIG5lbGzigJlvcmJpdGEgY2lyY29sYXJlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJpbW8gZXNlbXBpbyBtdSBxdWF0dHJvIG1ldHJpIGN1YmkgYWwgc2Vjb25kbyBxdWFkcmF0byBlIHJhZ2dpbyB1biBtZXRybyxjZW50byBwaXhlbCBhbGxhIHNjYWxhIGNlbnRvIHBpeGVsIHBlciBtZXRyby4gVmVsb2NpdMOgIHRhbmdlbnRlIGR1ZSBtZXRyaSBhbCBzZWNvbmRvLGZyZWNjaWEgY2VudG8gcGl4ZWwgYWxsYSBzY2FsYSBjaW5xdWFudGEgcGl4ZWwgcGVyIG1ldHJvIGFsIHNlY29uZG8uIEFjY2VsZXJhemlvbmUgdmVyc28gaWwgY2VudHJvIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kbyBxdWFkcmF0byxmcmVjY2lhIG90dGFudGEgcGl4ZWwgYWxsYSBzY2FsYSB2ZW50aSBwaXhlbCBwZXIgbWV0cm8gYWwgc2Vjb25kbyBxdWFkcmF0by4gQmlsYW5jaW8gcmFkaWFsZSBjb24gY2FuY2VsbGF6aW9uZSBkZWxsYSBtYXNzYSBkaSBwcm92YS4gQ29uZnJvbnRvIGZpbmFsZSBuZWxsbyBzdGVzc28gY2FtcG8gbXUgcXVhdHRybzpyYWdnaSB1bm8gZSBxdWF0dHJvIG1ldHJpLHF1YXJhbnRhIGUgY2VudG9zZXNzYW50YSBwaXhlbCBhbGxhIHNjYWxhIGNvbXVuZSBxdWFyYW50YSBwaXhlbCBwZXIgbWV0cm87cmFwaWRpdMOgIGR1ZSBlIHVuIG1ldHJvIGFsIHNlY29uZG8scHJvaWV6aW9uaSBzZXBhcmF0ZSBjb24gZnJlY2NlIGNlbnRvIGUgY2lucXVhbnRhIHBpeGVsIGFsbGEgc2NhbGEgY29tdW5lIGNpbnF1YW50YSBwaXhlbCBwZXIgbWV0cm8gYWwgc2Vjb25kby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2NTAiIHJ4PSIyNCIgZmlsbD0iI2ZhZjhmMiIvPjxnIGZpbGw9IiMxNjMyM2YiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBUYW5nZW50ZSBlIGNlbnRybyBoYW5ubyBydW9saSBkaXZlcnNpPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+zrwgPSA0IG3Csy9zwrI7IHIgPSAxIG0uIEdlb21ldHJpYTogMTAwIHB4L20uPC90ZXh0PjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iNiIgZmlsbD0iIzE2MzIzZiIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iNSIgZmlsbD0iIzE2MzIzZiIvPjxwYXRoIGQ9Ik0zMDAgMzAwVjQwMCIgc3Ryb2tlPSIjYjdjN2JmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPjxwYXRoIGQ9Ik00MDAgMzAwVjIwMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTQwMCAzMDBIMzIwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIyNzAiIHk9IjI4MCI+TzwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjM2NSI+cjwvdGV4dD48dGV4dCB4PSI0NDAiIHk9IjIyMCI+ViA9IDIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjE0MCIgeT0iNDUwIiBmaWxsPSIjYjQ0YjJjIj5hX2MgPSA0IG0vc8KyLCB2ZXJzbyBPPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1MDAiPlZlbG9jaXTDoDogNTAgcHgvKG0vcykuIEFjY2VsZXJhemlvbmU6IDIwIHB4LyhtL3PCsikuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1NDUiPklsIG1vZHVsbyBWIMOoIGNvc3RhbnRlOyBpbCB2ZXR0b3JlIGNhbWJpYSBkaXJlemlvbmUuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNjI1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IExhIGdyYXZpdMOgIMOoIGxhIHJpc3VsdGFudGUgY2VudHJpcGV0YTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjg1Ij5tIFbCsi9yID0gbSDOvC9ywrI8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc0MCI+U2VtcGxpZmljYSBsYSBzdGVzc2EgbWFzc2EgZGkgcHJvdmEgbSAmZ3Q7IDAuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3OTUiPlbCsiA9IM68L3IgPSA0IG3Csi9zwrI8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg1MCI+ViA9IDIgbS9zLCByYWRpY2UgcG9zaXRpdmEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MDUiPk5vbiBhZ2dpdW5nZXJlIHVuYSBzZWNvbmRhIGZvcnphIMKrY2VudHJpcGV0YcK7LjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijk4NSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBTdGVzc28gzrwsIHJhZ2dpbyBxdWF0dHJvIHZvbHRlIG1hZ2dpb3JlPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDMwIj5Db25mcm9udG86IGdlb21ldHJpYSBjb211bmUgNDAgcHgvbSwgZGl2ZXJzYSBkYSBzb3ByYS48L3RleHQ+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTI1MCIgcj0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMTI1MCIgcj0iMTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEyNTAiIHI9IjUiIGZpbGw9IiMxNjMyM2YiLz48Y2lyY2xlIGN4PSI0MjAiIGN5PSIxMjUwIiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PHBhdGggZD0iTTE0MCAxMjUwSDE4ME00MjAgMTI1MEg1ODAiIHN0cm9rZT0iI2I3YzdiZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMTI1MCIgcj0iNCIgZmlsbD0iIzE0NjQ3YiIvPjxjaXJjbGUgY3g9IjU4MCIgY3k9IjEyNTAiIHI9IjQiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSI3OCIgeT0iMTM0MCI+cl9BID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjM1NSIgeT0iMTQ1MCI+cl9CID0gNCBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNTAwIj5SYXBpZGl0w6AsIHByb2llemlvbmkgc2VwYXJhdGU6IDUwIHB4LyhtL3MpLjwvdGV4dD48cGF0aCBkPSJNMTAwIDE1NjBIMjAwTTM5MCAxNTYwSDQ0MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iODUiIHk9IjE2MTAiPlZfQSA9IDIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iMTYxMCI+Vl9CID0gMSBtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE2NDAiIGZvbnQtc2l6ZT0iMTgiPlZlcnNpIGRlbGxlIHByb2llemlvbmkgY29udmVuemlvbmFsaTsgdmVsb2NpdMOgIHJlYWxpIHRhbmdlbnRpIGFsbGUgb3JiaXRlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
