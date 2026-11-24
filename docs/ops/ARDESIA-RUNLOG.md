@@ -1341,3 +1341,58 @@ Priorità con accettazione:
 5. Sottoporre le due code alle approvazioni umane quando disponibili; tenere
    separati firma scientifica, prove d'uso e pubblicazione. Non fermare l'authoring
    in attesa di quel gate.
+
+## 24 novembre 2026 · Prime96 U2, laboratori e nuove edizioni degli esempi
+
+PR355 MERGED su ba6aec22008f2ac83de4959a6165bac5a8ee0a14. Le run post-merge
+45466165934 e45466165896 sono SUCCESS. La continuazione produce256schede in
+bozza e29attività riesaminate, con due nuove edizioni per C1-E003/E008. Restano
+4350revisioni complete e356attività; Pro100 non identificato e199prove recuperate
+parziali. Non si rivendica il completamento dell'intero mandato.
+
+Verificati96 U2 con autori e revisori distinti per ID; i finding su alternative
+equivalenti, spiegazione di un distrattore in cm/s² e conversione troppo larga
+sono corretti dagli autori e riletti prima delle firme. Cinque LAB originali sono
+riesaminati anche contro il modello runtime:21configurazioni e131controlli. Otto
+esempi sono letti e risolti individualmente:6originali validi e2con difetti.
+Root scrive due candidate v2/base1, reviewer distinto le verifica senza modifiche.
+Originali e nuove figure sono conservati separatamente. Le due edizioni ancora
+pubblicate restano FAIL nel manifest: il PASS del draft non approva l'originale.
+
+Stesso registro e checkpoint, revisionPackage opzionale per attività corrette,
+stesso importatore/savepoint e stesso helper delle anteprime. Verificate source,
+candidate, firme, versioni, live e tutti i payload storici. I991pubblicati restano
+identici nei database temporanei. Le code umane mantengonoNOT_RUN e DRAFT; zero
+nuove pubblicazioni e nessun database reale aperto.
+
+774anteprime/16pacchetti terminate exit0 su quattro processi isolati e limitati.
+Prima esecuzione completa nelle asserzioni ma ferma nel cleanup: registrata come
+non riuscita e interrotta su due processi di prova identificati. Corretto il
+rilascio stdout/unref del server, senza forzare exit0 o terminare browser utente.
+Corretto accesso al terzo record nei lotti da due. Aggiunti controlli di completezza
+dei blocchi formula e figura; controprove RED/GREEN sulla falsa lista formulas=[]
+e sui giudizi contraddittori NONE+failedPublishedEdition. Il reviewer tecnico ha
+riletto le guardie e rieseguito14test mirati con successo. Suite corpus54PASS.
+
+La riproduzione fresca coincide con il checkpointc0ef6e38483d96d9421d448e7effd2c9eb43ab78291696916f74475d29417e19.
+Il fingerprint distingue contratti offline e runtime; la CI esaustiva usa quattro
+worker e un limite temporale adeguato al corpus completo. Non sono omessi casi o
+indeboliti i required check. CI della nuova SHA e ZIP HEAD vanno verificati dopo
+il commit. Il registro goal dell'app riporta un vecchio stato blocked: il connector
+rifiuta la riattivazione per mancanza di trusted source-turn context, il tool
+nativo rifiuta un secondo goal incompleto e l'accesso UI a Codex è vietato.
+Non è stata simulata una riattivazione o dichiarata conclusione. Il lavoro su
+mandato esplicito prosegue e l'handoff conserva tale limite operativo.
+
+Priorità verificabili:
+
+1. Consolidare questo incremento e verificare CI/merge/post-merge sulla SHA reale,
+   senza promuovere le bozze. Prova: checkpoint e ZIP riproducibili, gate intatti.
+2. Riprendere u2-equal-time-average-01 e i64candidati017–020 già recensiti daA:
+   import, browser, nuove firme solo dopo eventuali modifiche e checkpoint per ID.
+3. Proseguire lo shard U2 successivo e gli esempi C1-E009 in poi, mantenendo autori
+   e verificatori separati e pubblicando solo dopo approvazione reale.
+4. Riesaminare le356attività ancora aperte; per ogni difetto preparare nuova edizione,
+   senza cancellare o correggere in-place una versione usata in tentativi storici.
+5. Sottoporre le code umane quando disponibili; tenere espliciti i FAIL del pubblicato
+   e la mancanza di prove d'uso con studenti, senza fermare il lavoro tecnico-editoriale.

@@ -8,7 +8,7 @@ from .batches import load_registry,validate_batch,load_activity_registry,validat
 
 
 def apply_activity_evidence(repo,app,activities):
-    """Extend the same checkpoint with unchanged-edition reviews; no publication."""
+    """Extend the same checkpoint with activity reviews and protected draft editions."""
     sources={};files={};by_id={r['id']:r for r in activities}
     specs=load_activity_registry(app/'editorial/batches/registry.json')
     for spec in specs:
@@ -25,12 +25,24 @@ def apply_activity_evidence(repo,app,activities):
     for batch in batches:
         for result in batch['records']:
             entry=by_id[result['id']]
-            entry.update(state='REVIEWED_EXISTING_EDITION',calculatorFreeReview='PASS_AI',
+            draft=result['publicationAction']=='DRAFT'
+            if draft:
+                binding=batch['bindings'][result['id']]
+                if binding['sourceRef']!=entry['provenance']['commit']:
+                    raise ValueError('Activity draft provenance differs from source ledger')
+            entry.update(state='REVISED_ACTIVITY_DRAFT' if draft else 'REVIEWED_EXISTING_EDITION',calculatorFreeReview='PASS_AI',
               humanApproval='NOT_RUN',calculationScope=result['calculationScope'],
-              evidence=[{'kind':'independent_unchanged_activity_review','batchId':batch['spec']['id'],
+              publishedEditionCalculatorFreeReview='FAIL' if result.get('failedPublishedEdition') else 'PASS_AI',
+              evidence=[{'kind':'independent_activity_revision_review' if draft else 'independent_unchanged_activity_review','batchId':batch['spec']['id'],
                          'path':batch['path'],'sha256':batch['sha256'],'sourceSha256':result['sourceSha256']}])
+            if draft:
+                entry['evidence'][0].update(candidateSha256=result['candidateSha256'],reviewedSignature=result['reviewedSignature'],
+                    candidateVersion=result['candidateVersion'],baseVersion=result['baseVersion'],revision=batch['revision'])
     return {'reviewedActivityCount':sum(len(b['records']) for b in batches),
             'completedActivityBatchIds':[b['spec']['id'] for b in batches],
+            'revisedActivityDraftCount':sum(r['state']=='REVISED_ACTIVITY_DRAFT' for r in activities),
+            'privateActivityPreviewCases':sum(b['revision']['browserCases'] for b in batches if b['revision']),
+            'publishedActivityEditionIssues':[r['id'] for r in sorted(activities,key=lambda row:row['id']) if r.get('publishedEditionCalculatorFreeReview')=='FAIL'],
             'pendingActivityIds':[r['id'] for r in sorted(activities,key=lambda row:row['id']) if r['calculatorFreeReview']=='NOT_RUN']}
 
 

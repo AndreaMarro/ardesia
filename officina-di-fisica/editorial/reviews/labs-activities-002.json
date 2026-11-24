@@ -1,0 +1,1839 @@
+{
+  "batch": "labs-activities-002",
+  "humanApproval": "NOT_RUN",
+  "originalEditionRetained": true,
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "checks": [
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "force balances",
+          "ok": true,
+          "proof": "N−mg=0 ⇒ N=mg; F−f=ma ⇒ a=(F−f)/m. The prescribed kinetic coefficient is 3/4 of the static one, not a universal law."
+        },
+        {
+          "mode": "FRACTION_EXACT",
+          "name": "rest and slip decision",
+          "ok": true,
+          "proof": "N=19.62 N; threshold=7.848 N. At 4 N static friction is 4 N and a=0; at 10 N kinetic friction=5.886 N and a=2.057 m/s²."
+        },
+        {
+          "mode": "FRACTION_EXACT",
+          "name": "doubling mass at fixed 10 N",
+          "ok": true,
+          "proof": "New setting restarts from rest: m=4 kg gives threshold=15.696 N, so F=10 N is balanced statically. This is not the history of a still-sliding old state."
+        },
+        {
+          "dimension": {
+            "[length]": "1",
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "normal",
+          "ok": true,
+          "unit": "N"
+        },
+        {
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "acceleration",
+          "ok": true,
+          "unit": "m/s**2"
+        },
+        {
+          "actual": 19.62,
+          "independentExact": "981/50",
+          "input": {
+            "F": 4,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · n",
+          "ok": true
+        },
+        {
+          "actual": 7.848000000000001,
+          "independentExact": "981/125",
+          "input": {
+            "F": 4,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · limit",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "independentExact": "False",
+          "input": {
+            "F": 4,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · moving",
+          "ok": true
+        },
+        {
+          "actual": 4,
+          "independentExact": "4",
+          "input": {
+            "F": 4,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · friction",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "F": 4,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · a",
+          "ok": true
+        },
+        {
+          "actual": 19.62,
+          "independentExact": "981/50",
+          "input": {
+            "F": 10,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · n",
+          "ok": true
+        },
+        {
+          "actual": 7.848000000000001,
+          "independentExact": "981/125",
+          "input": {
+            "F": 10,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · limit",
+          "ok": true
+        },
+        {
+          "actual": true,
+          "independentExact": "True",
+          "input": {
+            "F": 10,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · moving",
+          "ok": true
+        },
+        {
+          "actual": 5.886000000000001,
+          "independentExact": "2943/500",
+          "input": {
+            "F": 10,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · friction",
+          "ok": true
+        },
+        {
+          "actual": 2.0569999999999995,
+          "independentExact": "2057/1000",
+          "input": {
+            "F": 10,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · a",
+          "ok": true
+        },
+        {
+          "actual": 39.24,
+          "independentExact": "981/25",
+          "input": {
+            "F": 10,
+            "m": 4,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · n",
+          "ok": true
+        },
+        {
+          "actual": 15.696000000000002,
+          "independentExact": "1962/125",
+          "input": {
+            "F": 10,
+            "m": 4,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · limit",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "independentExact": "False",
+          "input": {
+            "F": 10,
+            "m": 4,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · moving",
+          "ok": true
+        },
+        {
+          "actual": 10,
+          "independentExact": "10",
+          "input": {
+            "F": 10,
+            "m": 4,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · friction",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "F": 10,
+            "m": 4,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · a",
+          "ok": true
+        },
+        {
+          "actual": false,
+          "independentExact": "False",
+          "input": {
+            "F": 7.848,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · moving",
+          "ok": true
+        },
+        {
+          "actual": 7.848,
+          "independentExact": "981/125",
+          "input": {
+            "F": 7.848,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · friction",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "F": 7.848,
+            "m": 2,
+            "mu": 0.4
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · a",
+          "ok": true
+        }
+      ],
+      "dimension": [
+        {
+          "dimension": {
+            "[length]": "1",
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "normal",
+          "ok": true,
+          "unit": "N"
+        },
+        {
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "acceleration",
+          "ok": true,
+          "unit": "m/s**2"
+        }
+      ],
+      "distractors": {
+        "mode": "NO_FIXED_OPTIONS_FREE_RESPONSE",
+        "rejectedClaims": [
+          "Attrito statico sempre uguale a μsN: a 4 N è invece 4 N.",
+          "μk=0,75μs come legge universale: è un parametro dichiarato di questo banco.",
+          "Raddoppiare massa di un blocco già in moto: ogni configurazione invece riparte da fermo."
+        ],
+        "review": "No multiple-choice distractors in these lab records; the following misconceptions were independently rejected."
+      },
+      "errors": [],
+      "humanApproval": "NOT_RUN",
+      "id": "LAB-C1",
+      "independentExactOracles": {
+        "accelerationAt10N_m_s2": "2057/1000",
+        "accelerationAt4N_m_s2": "0",
+        "doubleMassAccelerationAt10N_m_s2": "0",
+        "doubleMassStaticLimit_N": "1962/125",
+        "frictionAt4N_N": "4",
+        "kineticFrictionAt10N_N": "2943/500",
+        "normal_N": "981/50",
+        "staticLimit_N": "981/125"
+      },
+      "limits": "Only this LAB record and its read classic runtime. No certification of linked 3D benches, lesson experiments, accessibility or student use.",
+      "manualArithmetic": "Previsione: 2·9,81=19,62 N; 0,40=2/5 e 19,62·2/5=7,848 N. Quindi 4<7,848<10. Per controllare il modello: 3/4 di 7,848=5,886 N; (10−5,886)/2=2,057 m/s². Raddoppiando la massa la soglia raddoppia a 15,696 N e 10 N non bastano a partire. Tutti i decimali sono finiti ed esatti nel modello assegnato.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Previsione, variazione di una sola grandezza e confronto delle frecce separano attrito statico adattivo e dinamico. Il riavvio da fermo evita di interpretare il raddoppio di massa come la storia di un blocco già in scorrimento.",
+      "physicalAssumptions": "Piano orizzontale, forza applicata orizzontale, g=9,81 m/s², contatto asciutto; ogni nuova configurazione riparte da fermo. Attrito statico adattivo fino alla soglia inclusa e coefficiente dinamico del solo banco μk=0,75μs.",
+      "publicationAction": "NONE",
+      "qualitativeReview": "AI_PHYSICAL_REASONING_EXPLICIT_PER_RECORD",
+      "reviewedRuntimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "runtimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "sourceFileSha256": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "sourcePath": "officina-di-fisica/content/labs.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "89694d78cf909953dbc2c2dfe2ca4517ffffc6713f3080761367b14981fbf103",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION"
+    },
+    {
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "checks": [
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "annular integration and wall condition",
+          "ok": true,
+          "proof": "Integrating v(s)·2πs ds from 0 to r gives Q; no-slip v(r)=0 and axis velocity=2 times mean velocity follow separately."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "radius and pressure factors",
+          "ok": true,
+          "proof": "Four factors 1/2 give 1/16; pressure difference enters once. The ratios presume nonzero initial pressure difference; controls start at 200 Pa, not zero."
+        },
+        {
+          "mode": "FRACTION_EXACT",
+          "name": "actual rounded-reading manual division",
+          "ok": true,
+          "proof": "Current formatter uses four significant digits, not four decimal places. 0.004909/0.07854=4909/78540; 4909·16=78544 versus 78540, so observed ratio exceeds 1/16 by exactly 1/314160. No decimal division is required."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "rounding bins contain exact model values",
+          "ok": true,
+          "proof": "Default Q=π/40 and half-radius Q=π/640 lie in the displayed significant-digit rounding bins. Dividing rounded readings is an estimate of the model ratio, not the exact ratio 1/16."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "laminar control envelope",
+          "ok": true,
+          "proof": "Re=ρ Δp r³/(4η²L); maximum positive r and Δp and minimum η give 4000/9, below the conventional laminar-flow bound 2000. This checks the declared parameter envelope, not real apparatus entrance effects."
+        },
+        {
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "flow",
+          "ok": true,
+          "unit": "m**3/s"
+        },
+        {
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "profile",
+          "ok": true,
+          "unit": "m/s"
+        },
+        {
+          "dimension": {},
+          "mode": "PINT_DIMENSION",
+          "name": "Reynolds",
+          "ok": true,
+          "unit": "dimensionless"
+        },
+        {
+          "actual": 0.07853981633974484,
+          "independentExact": "pi/40",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · q",
+          "ok": true
+        },
+        {
+          "actual": 0.02500000000000001,
+          "independentExact": "1/40",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · mean",
+          "ok": true
+        },
+        {
+          "actual": 12.500000000000004,
+          "independentExact": "25/2",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · re",
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "independentExact": "1",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · relative",
+          "ok": true
+        },
+        {
+          "actual": 0.004908738521234053,
+          "independentExact": "pi/640",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 0.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · q",
+          "ok": true
+        },
+        {
+          "actual": 0.006250000000000002,
+          "independentExact": "1/160",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 0.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · mean",
+          "ok": true
+        },
+        {
+          "actual": 1.5625000000000004,
+          "independentExact": "25/16",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 0.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · re",
+          "ok": true
+        },
+        {
+          "actual": 0.0625,
+          "independentExact": "1/16",
+          "input": {
+            "dp": 200,
+            "eta": 4,
+            "r": 0.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · relative",
+          "ok": true
+        },
+        {
+          "actual": 0.15707963267948968,
+          "independentExact": "pi/20",
+          "input": {
+            "dp": 400,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · q",
+          "ok": true
+        },
+        {
+          "actual": 0.05000000000000002,
+          "independentExact": "1/20",
+          "input": {
+            "dp": 400,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · mean",
+          "ok": true
+        },
+        {
+          "actual": 25.000000000000007,
+          "independentExact": "25",
+          "input": {
+            "dp": 400,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · re",
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "independentExact": "1",
+          "input": {
+            "dp": 400,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · relative",
+          "ok": true
+        },
+        {
+          "actual": 4.188790204786392,
+          "independentExact": "4*pi/3",
+          "input": {
+            "dp": 500,
+            "eta": 3,
+            "r": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · q",
+          "ok": true
+        },
+        {
+          "actual": 0.3333333333333335,
+          "independentExact": "1/3",
+          "input": {
+            "dp": 500,
+            "eta": 3,
+            "r": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · mean",
+          "ok": true
+        },
+        {
+          "actual": 444.4444444444446,
+          "independentExact": "4000/9",
+          "input": {
+            "dp": 500,
+            "eta": 3,
+            "r": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · re",
+          "ok": true
+        },
+        {
+          "actual": 16,
+          "independentExact": "16",
+          "input": {
+            "dp": 500,
+            "eta": 3,
+            "r": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · relative",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "dp": 0,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 5 · q",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "dp": 0,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 5 · mean",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "dp": 0,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 5 · re",
+          "ok": true
+        },
+        {
+          "actual": null,
+          "independentExact": "None",
+          "input": {
+            "dp": 0,
+            "eta": 4,
+            "r": 1
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 5 · relative",
+          "ok": true
+        },
+        {
+          "actual": [
+            "0,07854",
+            "0,004909"
+          ],
+          "mode": "FROZEN_UI_FORMAT_SPECIFICATION",
+          "name": "actual significant-digit display",
+          "ok": true,
+          "proof": "labs.js calls num(Q,4); ui.js specifies maximumSignificantDigits, not decimal places."
+        }
+      ],
+      "dimension": [
+        {
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "flow",
+          "ok": true,
+          "unit": "m**3/s"
+        },
+        {
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "profile",
+          "ok": true,
+          "unit": "m/s"
+        },
+        {
+          "dimension": {},
+          "mode": "PINT_DIMENSION",
+          "name": "Reynolds",
+          "ok": true,
+          "unit": "dimensionless"
+        }
+      ],
+      "distractors": {
+        "mode": "NO_FIXED_OPTIONS_FREE_RESPONSE",
+        "rejectedClaims": [
+          "Raggio dimezzato ⇒ Q/2 oppure Q/4: il modello dà Q/16.",
+          "Profilo normalizzato come velocità assoluta: la figura non fornisce tale scala.",
+          "Quoziente di letture arrotondate identico a 1/16: falso, lo scarto esatto qui è 1/314160."
+        ],
+        "review": "No multiple-choice distractors in these lab records; the following misconceptions were independently rejected."
+      },
+      "errors": [],
+      "humanApproval": "NOT_RUN",
+      "id": "LAB-C2",
+      "independentExactOracles": {
+        "Reynolds": "dp*r**3*rho/(4*L*eta**2)",
+        "defaultFlow_mL_s": "pi/40",
+        "differenceFromOneSixteenth": "1/314160",
+        "displayedDefaultFlow_mL_s": "0,07854",
+        "displayedHalfRadiusFlow_mL_s": "0,004909",
+        "doublePressureRatio": "2",
+        "flow_m3_s": "pi*dp*r**4/(8*L*eta)",
+        "halfRadiusFlow_mL_s": "pi/640",
+        "halfRadiusRatio": "1/16",
+        "maximumReynoldsInControlEnvelope": "4000/9",
+        "meanVelocity_m_s": "dp*r**2/(8*L*eta)",
+        "quotientOfDisplayedReadings": "4909/78540",
+        "roundingBins_mL_s": {
+          "default": "[15707/200000,15709/200000)",
+          "halfRadius": "[9817/2000000,9819/2000000)"
+        }
+      },
+      "limits": "Only this LAB record and its read classic runtime. No certification of linked 3D benches, lesson experiments, accessibility or student use.",
+      "manualArithmetic": "Previsione esatta: (1/2)^4=1/(2·2·2·2)=1/16; raddoppiare Δp dà 2Q. Procedura sulle letture reali a quattro cifre significative: 0,004909/0,07854=(4909/10^6)/(7854/10^5)=4909/78540. Per confrontarlo con 1/16: 4909·16=78544, contro 78540. Lo scarto è 4/(16·78540)=1/314160. Il quoziente dei numeri visualizzati non è dichiarato uguale al rapporto esatto dei valori fisici. Nessuna decimalizzazione o valutazione manuale di π è richiesta.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Il compito distingue potenza quarta del raggio e prima potenza di Δp. La sezione trasversale ampliata e il profilo normalizzato sono dichiarati, perciò lunghezza della freccia grafica non è una lettura assoluta di velocità. Le letture arrotondate danno una verifica sperimentale approssimata del rapporto esatto.",
+      "physicalAssumptions": "Fluido newtoniano incomprimibile, regime stazionario laminare pienamente sviluppato, tubo cilindrico rigido L=25 cm, viscosità uniforme, no-slip alla parete; ρ=1000 kg/m³ per Reynolds. La differenza di pressione iniziale è positiva; a Δp=0 entrambi i flussi sono zero e il loro rapporto non è definito.",
+      "publicationAction": "NONE",
+      "qualitativeReview": "AI_PHYSICAL_REASONING_EXPLICIT_PER_RECORD",
+      "reviewedRuntimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "runtimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "sourceFileSha256": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "sourcePath": "officina-di-fisica/content/labs.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "a05e3d9cd390b3550381523621c4847de9cb9b6c7cbcd9858a9d8f521c3ce722",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION"
+    },
+    {
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "checks": [
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "first law and reversible adiabat",
+          "ok": true,
+          "proof": "For fixed n, T constant gives pV=100 J. For reversible Q=0, dU=−p dV and U=3pV/2 give dp/p=−(5/3)dV/V; integrate to pV^(5/3)=constant. Independent p dV integrals supply work."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "differential path identities",
+          "ok": true,
+          "proof": "The adiabatic path satisfies dU/dV=−p identically, not just at the final point; the isotherm satisfies d(pV)/dV=0 for every positive V."
+        },
+        {
+          "mode": "SYMPY_IDENTITY_AND_AI_PHYSICAL_REASONING",
+          "name": "which pressure curve drops farther",
+          "ok": true,
+          "proof": "For 1<V≤2 the ratio p_ad/p_iso=V^(−2/3) is strictly below 1. The adiabatic curve lies lower; its positive expansion work is smaller because its integrand is lower everywhere after V=1. This qualitative ordering does not require evaluating ln2 or a cube root."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "temperature and heat interpretation",
+          "ok": true,
+          "proof": "Adiabatic expansion gives T/300=V^(−2/3)<1 and Q=0; W>0 removes internal energy. Isothermal ΔU=0 gives Q=W>0. On an isochore dV=0 gives W=0 even when pressure changes."
+        },
+        {
+          "dimension": {
+            "[length]": "2",
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "pressure-volume",
+          "ok": true,
+          "unit": "J"
+        },
+        {
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "temperature",
+          "ok": true,
+          "unit": "K"
+        },
+        {
+          "actual": 2,
+          "independentExact": "2",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · V",
+          "ok": true
+        },
+        {
+          "actual": 50,
+          "independentExact": "50",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · p",
+          "ok": true
+        },
+        {
+          "actual": 300,
+          "independentExact": "300",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · T",
+          "ok": true
+        },
+        {
+          "actual": 69.31471805599453,
+          "independentExact": "100*log(2)",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · W",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · U",
+          "ok": true
+        },
+        {
+          "actual": 69.31471805599453,
+          "independentExact": "100*log(2)",
+          "input": {
+            "mode": "Isoterma",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · Q",
+          "ok": true
+        },
+        {
+          "actual": 2,
+          "independentExact": "2",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · V",
+          "ok": true
+        },
+        {
+          "actual": 31.498026247371826,
+          "independentExact": "25*2**(1/3)",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · p",
+          "ok": true
+        },
+        {
+          "actual": 188.98815748423095,
+          "independentExact": "150*2**(1/3)",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · T",
+          "ok": true
+        },
+        {
+          "actual": 55.505921257884516,
+          "independentExact": "150 - 75*2**(1/3)",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · W",
+          "ok": true
+        },
+        {
+          "actual": -55.50592125788452,
+          "independentExact": "-150 + 75*2**(1/3)",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · U",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "mode": "Adiabatica",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · Q",
+          "ok": true
+        },
+        {
+          "actual": 1,
+          "independentExact": "1",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · V",
+          "ok": true
+        },
+        {
+          "actual": 150,
+          "independentExact": "150",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · p",
+          "ok": true
+        },
+        {
+          "actual": 450,
+          "independentExact": "450",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · T",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · W",
+          "ok": true
+        },
+        {
+          "actual": 75,
+          "independentExact": "75",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · U",
+          "ok": true
+        },
+        {
+          "actual": 75,
+          "independentExact": "75",
+          "input": {
+            "mode": "Isocora",
+            "ratio": 1.5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · Q",
+          "ok": true
+        },
+        {
+          "actual": 2,
+          "independentExact": "2",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · V",
+          "ok": true
+        },
+        {
+          "actual": 100,
+          "independentExact": "100",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · p",
+          "ok": true
+        },
+        {
+          "actual": 600,
+          "independentExact": "600",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · T",
+          "ok": true
+        },
+        {
+          "actual": 100,
+          "independentExact": "100",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · W",
+          "ok": true
+        },
+        {
+          "actual": 150,
+          "independentExact": "150",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · U",
+          "ok": true
+        },
+        {
+          "actual": 250,
+          "independentExact": "250",
+          "input": {
+            "mode": "Isobara",
+            "ratio": 2
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · Q",
+          "ok": true
+        }
+      ],
+      "dimension": [
+        {
+          "dimension": {
+            "[length]": "2",
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "pressure-volume",
+          "ok": true,
+          "unit": "J"
+        },
+        {
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "temperature",
+          "ok": true,
+          "unit": "K"
+        }
+      ],
+      "distractors": {
+        "mode": "NO_FIXED_OPTIONS_FREE_RESPONSE",
+        "rejectedClaims": [
+          "Isoterma e adiabatica con stessa curva: γ=5/3 rende più ripida l’adiabatica.",
+          "Q=0 ⇒ W=0: in adiabatica W>0 e ΔU<0.",
+          "Isocora con lavoro pΔV non nullo: ΔV=0, quindi W=0."
+        ],
+        "review": "No multiple-choice distractors in these lab records; the following misconceptions were independently rejected."
+      },
+      "errors": [],
+      "humanApproval": "NOT_RUN",
+      "id": "LAB-C3",
+      "independentExactOracles": {
+        "adiabaticDeltaU_J": "-150 + 75*2**(1/3)",
+        "adiabaticFinalPressure_kPa": "25*2**(1/3)",
+        "adiabaticFinalTemperature_K": "150*2**(1/3)",
+        "adiabaticHeat_J": "0",
+        "adiabaticWork_J": "150 - 75*2**(1/3)",
+        "isochoricAtPressureRatio3over2": {
+          "Q_J": "75",
+          "T_K": "450",
+          "V_L": "1",
+          "W_J": "0",
+          "deltaU_J": "75",
+          "p_kPa": "150"
+        },
+        "isothermalFinalPressure_kPa": "50",
+        "isothermalHeat_J": "100*log(2)",
+        "isothermalTemperature_K": "300",
+        "isothermalWork_J": "100*log(2)"
+      },
+      "limits": "Only this LAB record and its read classic runtime. No certification of linked 3D benches, lesson experiments, accessibility or student use.",
+      "manualArithmetic": "Nessun calcolo numerico autonomo richiesto: lo studente confronta curve e letture. La prova qualitativa usa p_ad/p_iso=(V/Vi)^(−2/3)<1 per V>Vi; lavoro minore perché l’area sotto la curva è minore, temperatura adiabaticamente minore perché Q=0 e W>0. I valori con ln2 e radici sono output dello strumento; non sono richiesti come decimali calcolati dallo studente.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Il confronto fra due cammini con lo stesso stato iniziale separa p, T, area di lavoro e calore. L’isocora con traccia verticale rende visibile lavoro nullo anche con pressione variabile; nessuna moltiplicazione di due letture finali sostituisce l’integrale del cammino.",
+      "physicalAssumptions": "Gas ideale monoatomico, stato iniziale 1 L/100 kPa/300 K; trasformazioni quasistatiche, pistone senza attrito; adiabatica reversibile con γ=5/3; lavoro del gas positivo in espansione. pV in kPa·L è in joule; temperature assolute.",
+      "publicationAction": "NONE",
+      "qualitativeReview": "AI_PHYSICAL_REASONING_EXPLICIT_PER_RECORD",
+      "reviewedRuntimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "runtimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "sourceFileSha256": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "sourcePath": "officina-di-fisica/content/labs.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "960bb624aa6034becaf3bd08f6e1516b94656025d602b409b6dcb5ae65eba61a",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION"
+    },
+    {
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "checks": [
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "series voltage ranking from Kirchhoff",
+          "ok": true,
+          "proof": "One current crosses both resistors; solve 100I+200I=6 ⇒ I=1/50 A, V1=2 V and V2=4 V. The 200 Ω resistor has the larger drop. Ranking follows R2>R1 without numerical calculation by the student."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "parallel nodes and currents",
+          "ok": true,
+          "proof": "Both elements connect the same two ideal nodes: V1=V2=6 V. Separate Ohm equations give 3/50 A and 3/100 A, summed at the node. The smaller resistance now has larger current, not larger voltage."
+        },
+        {
+          "mode": "AI_PHYSICAL_REASONING",
+          "name": "zero source and one-control changes",
+          "ok": true,
+          "proof": "For U=0 all drops and currents vanish. With fixed positive resistances each current and drop is proportional to U. Changing one resistor preserves series current equality or parallel voltage equality, not the numerical values."
+        },
+        {
+          "dimension": {
+            "[current]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "current",
+          "ok": true,
+          "unit": "A"
+        },
+        {
+          "dimension": {
+            "[length]": "2",
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "power",
+          "ok": true,
+          "unit": "W"
+        },
+        {
+          "actual": 300,
+          "independentExact": "300",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · R",
+          "ok": true
+        },
+        {
+          "actual": 0.02,
+          "independentExact": "1/50",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · I",
+          "ok": true
+        },
+        {
+          "actual": 0.02,
+          "independentExact": "1/50",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · I1",
+          "ok": true
+        },
+        {
+          "actual": 0.02,
+          "independentExact": "1/50",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · I2",
+          "ok": true
+        },
+        {
+          "actual": 2,
+          "independentExact": "2",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · V1",
+          "ok": true
+        },
+        {
+          "actual": 4,
+          "independentExact": "4",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · V2",
+          "ok": true
+        },
+        {
+          "actual": 0.12,
+          "independentExact": "3/25",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · P",
+          "ok": true
+        },
+        {
+          "actual": 66.66666666666667,
+          "independentExact": "200/3",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · R",
+          "ok": true
+        },
+        {
+          "actual": 0.09,
+          "independentExact": "9/100",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · I",
+          "ok": true
+        },
+        {
+          "actual": 0.06,
+          "independentExact": "3/50",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · I1",
+          "ok": true
+        },
+        {
+          "actual": 0.03,
+          "independentExact": "3/100",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · I2",
+          "ok": true
+        },
+        {
+          "actual": 6,
+          "independentExact": "6",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · V1",
+          "ok": true
+        },
+        {
+          "actual": 6,
+          "independentExact": "6",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · V2",
+          "ok": true
+        },
+        {
+          "actual": 0.54,
+          "independentExact": "27/50",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 6,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · P",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · I",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · I1",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · I2",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · V1",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · V2",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Serie"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · P",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · I",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · I1",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · I2",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · V1",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · V2",
+          "ok": true
+        },
+        {
+          "actual": 0,
+          "independentExact": "0",
+          "input": {
+            "R1": 100,
+            "R2": 200,
+            "U": 0,
+            "mode": "Parallelo"
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · P",
+          "ok": true
+        }
+      ],
+      "dimension": [
+        {
+          "dimension": {
+            "[current]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "current",
+          "ok": true,
+          "unit": "A"
+        },
+        {
+          "dimension": {
+            "[length]": "2",
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "power",
+          "ok": true,
+          "unit": "W"
+        }
+      ],
+      "distractors": {
+        "mode": "NO_FIXED_OPTIONS_FREE_RESPONSE",
+        "rejectedClaims": [
+          "Il resistore maggiore ha più corrente in serie: la corrente è comune.",
+          "Il resistore maggiore ha più tensione in parallelo: la tensione è comune.",
+          "La potenza totale è una caduta di tensione: P=VI ha unità W."
+        ],
+        "review": "No multiple-choice distractors in these lab records; the following misconceptions were independently rejected."
+      },
+      "errors": [],
+      "humanApproval": "NOT_RUN",
+      "id": "LAB-C4",
+      "independentExactOracles": {
+        "parallel": {
+          "I1_A": "3/50",
+          "I2_A": "3/100",
+          "I_A": "9/100",
+          "P_W": "27/50",
+          "R_ohm": "200/3",
+          "V1_V": "6",
+          "V2_V": "6"
+        },
+        "series": {
+          "I_A": "1/50",
+          "P_W": "3/25",
+          "R_ohm": "300",
+          "V1_V": "2",
+          "V2_V": "4"
+        }
+      },
+      "limits": "Only this LAB record and its read classic runtime. No certification of linked 3D benches, lesson experiments, accessibility or student use.",
+      "manualArithmetic": "Nessun calcolo numerico autonomo richiesto: si chiede quale caduta sia maggiore e che cosa cambi in parallelo, poi di confrontare le letture. La prova è proporzionale: in serie corrente comune e V2/V1=R2/R1=2; in parallelo tensione comune. Come controllo del revisore, 6/(100+200)=1/50 A dà 2 e 4 V; in parallelo 6/100=3/50 A e 6/200=3/100 A, somma 9/100 A.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Seguire i rami e identificare i nodi distingue serie e parallelo prima dei rapporti numerici. Azzerare il generatore dà un caso limite controllabile. Le letture di corrente e tensione hanno ruoli diversi nei due collegamenti.",
+      "physicalAssumptions": "Generatore DC ideale, resistori ohmici positivi, fili e strumenti ideali; stessa corrente in serie e stessi due nodi in parallelo. Il controllo U=0 è ammesso e annulla correnti e cadute.",
+      "publicationAction": "NONE",
+      "qualitativeReview": "AI_PHYSICAL_REASONING_EXPLICIT_PER_RECORD",
+      "reviewedRuntimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "runtimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "sourceFileSha256": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "sourcePath": "officina-di-fisica/content/labs.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "178d74f9b654b5fdd502f9b26628d7db4edfb9f789b5cfb47d743e033b4b6bd3",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION"
+    },
+    {
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "checks": [
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "lens inverse and screen displacement",
+          "ok": true,
+          "proof": "q=fp/(p−f); dq/dp=−f²/(p−f)²<0 on p>f. Moving p down from 2f toward f sends q up from 2f toward positive infinity; move the screen farther right, with no finite screen position at p=f."
+        },
+        {
+          "mode": "SYMPY_IDENTITY_AND_AI_PHYSICAL_REASONING",
+          "name": "virtual branch and ray geometry",
+          "ok": true,
+          "proof": "For 0<p<f, denominator p−f<0 gives q<0 and m=−q/p>0: back-projected rays meet left, upright virtual image. Actual outgoing rays do not meet on a screen."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "two-ray intersection",
+          "ok": true,
+          "proof": "Taking object height 1, the parallel-then-refracted ray has height 1−x/f and the undeviated central ray has height −x/p. They intersect at x=q from the lens equation; at p=f their slopes coincide."
+        },
+        {
+          "mode": "SYMPY_EXACT",
+          "name": "focus as a singular case",
+          "ok": true,
+          "proof": "The two emerging ray slopes are both −1/f when p=f. The runtime correctly reports q=Infinity and no finite magnification, rather than dividing by zero."
+        },
+        {
+          "dimension": {
+            "[length]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "image distance",
+          "ok": true,
+          "unit": "cm"
+        },
+        {
+          "dimension": {},
+          "mode": "PINT_DIMENSION",
+          "name": "magnification",
+          "ok": true,
+          "unit": "dimensionless"
+        },
+        {
+          "actual": 20,
+          "independentExact": "20",
+          "input": {
+            "f": 10,
+            "p": 20
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · q",
+          "ok": true
+        },
+        {
+          "actual": -1,
+          "independentExact": "-1",
+          "input": {
+            "f": 10,
+            "p": 20
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · m",
+          "ok": true
+        },
+        {
+          "actual": "reale, capovolta",
+          "independentExact": "reale, capovolta",
+          "input": {
+            "f": 10,
+            "p": 20
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 1 · type",
+          "ok": true
+        },
+        {
+          "actual": 30,
+          "independentExact": "30",
+          "input": {
+            "f": 10,
+            "p": 15
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · q",
+          "ok": true
+        },
+        {
+          "actual": -2,
+          "independentExact": "-2",
+          "input": {
+            "f": 10,
+            "p": 15
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · m",
+          "ok": true
+        },
+        {
+          "actual": "reale, capovolta",
+          "independentExact": "reale, capovolta",
+          "input": {
+            "f": 10,
+            "p": 15
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 2 · type",
+          "ok": true
+        },
+        {
+          "actual": "Infinity",
+          "independentExact": "Infinity",
+          "input": {
+            "f": 10,
+            "p": 10
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · q",
+          "ok": true
+        },
+        {
+          "actual": null,
+          "independentExact": "None",
+          "input": {
+            "f": 10,
+            "p": 10
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · m",
+          "ok": true
+        },
+        {
+          "actual": "all’infinito",
+          "independentExact": "all’infinito",
+          "input": {
+            "f": 10,
+            "p": 10
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 3 · type",
+          "ok": true
+        },
+        {
+          "actual": -10,
+          "independentExact": "-10",
+          "input": {
+            "f": 10,
+            "p": 5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · q",
+          "ok": true
+        },
+        {
+          "actual": 2,
+          "independentExact": "2",
+          "input": {
+            "f": 10,
+            "p": 5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · m",
+          "ok": true
+        },
+        {
+          "actual": "virtuale, diritta",
+          "independentExact": "virtuale, diritta",
+          "input": {
+            "f": 10,
+            "p": 5
+          },
+          "mode": "INDEPENDENT_ORACLE_VS_CANONICAL_RUNTIME",
+          "name": "runtime case 4 · type",
+          "ok": true
+        }
+      ],
+      "dimension": [
+        {
+          "dimension": {
+            "[length]": "1"
+          },
+          "mode": "PINT_DIMENSION",
+          "name": "image distance",
+          "ok": true,
+          "unit": "cm"
+        },
+        {
+          "dimension": {},
+          "mode": "PINT_DIMENSION",
+          "name": "magnification",
+          "ok": true,
+          "unit": "dimensionless"
+        }
+      ],
+      "distractors": {
+        "mode": "NO_FIXED_OPTIONS_FREE_RESPONSE",
+        "rejectedClaims": [
+          "Oggetto più vicino ⇒ immagine reale più vicina: sul ramo p>f avviene il contrario.",
+          "A p=f basta uno schermo in una posizione finita: raggi paralleli.",
+          "Immagine virtuale proiettabile sullo schermo: si incontrano soltanto i prolungamenti."
+        ],
+        "review": "No multiple-choice distractors in these lab records; the following misconceptions were independently rejected."
+      },
+      "errors": [],
+      "humanApproval": "NOT_RUN",
+      "id": "LAB-C5",
+      "independentExactOracles": {
+        "dq_dp": "-f**2/(-f + p)**2",
+        "imageDistance": "f*p/(-f + p)",
+        "limitAsObjectApproachesFocusFromRight": "oo",
+        "magnification": "-f/(-f + p)",
+        "pEquals2f": {
+          "magnification": "−1",
+          "q": "2f",
+          "type": "real inverted"
+        },
+        "pEqualsF": {
+          "magnification": "not finite",
+          "q": "infinity",
+          "type": "emergent rays parallel"
+        },
+        "pEqualsFover2": {
+          "magnification": "2",
+          "q": "−f",
+          "type": "virtual upright"
+        }
+      },
+      "limits": "Only this LAB record and its read classic runtime. No certification of linked 3D benches, lesson experiments, accessibility or student use.",
+      "manualArithmetic": "Nessun calcolo numerico autonomo richiesto: si chiede dove spostare lo schermo e di seguire i raggi. Per p>f, q=fp/(p−f) aumenta se p diminuisce verso f, da 2f verso infinito; a p=f non esiste uno schermo finito; per p<f il punto è virtuale a sinistra. La derivata e gli esempi numerici sono prove del revisore, non consegne aggiunte allo studente.",
+      "ok": true,
+      "originalEditionRetained": true,
+      "pedagogicalReview": "Tre casi p=2f,p=f,p<f distinguono immagine reale, limite senza schermo finito e immagine virtuale. I prolungamenti tratteggiati non sono raggi fisici che viaggiano a ritroso; la curva sul banco resta una costruzione parassiale.",
+      "physicalAssumptions": "Lente sottile convergente in aria, oggetto reale a sinistra, approssimazione parassiale; f,p>0, q positivo a destra. p=f è un limite singolare, non un’immagine a distanza finita. La figura dichiara scale grafiche adattate.",
+      "publicationAction": "NONE",
+      "qualitativeReview": "AI_PHYSICAL_REASONING_EXPLICIT_PER_RECORD",
+      "reviewedRuntimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "runtimeSha256": {
+        "static/js/labs.js": "529893993dde3e2e67737835c85f9707fbcc0f6a3a7af690a7bde55152e76b63",
+        "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+        "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27"
+      },
+      "sourceFileSha256": "b8f94d6ee2b4794bea54b51f53e339da53ee635d4074d546a6afb15e732e61ab",
+      "sourcePath": "officina-di-fisica/content/labs.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "047b1f4c6d8e3798b58a6dcafcec0a47ca2d387dc28b551af944dae43d3b9fde",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION"
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "verifierSha256": "f36d49641c77f4716c0c449f66ed4807e3ccd858153575e5edcb41d010c09ef4"
+}

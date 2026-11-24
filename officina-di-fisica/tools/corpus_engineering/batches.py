@@ -1,6 +1,7 @@
 """Versioned batch registry; each bounded family retains its own independent oracle."""
 import importlib
 import json
+import re
 from pathlib import Path
 
 from jsonschema import Draft202012Validator,ValidationError
@@ -8,6 +9,7 @@ from jsonschema import Draft202012Validator,ValidationError
 from .pipeline import canonical,digest,sha
 from .integration import exercise
 from .runtime_fingerprint import runtime_fingerprint
+from .review_contract import exact_choice_identity
 
 APP=Path(__file__).resolve().parents[2]
 
@@ -57,6 +59,25 @@ def load_activity_registry(file=None):
     return json.loads(file.read_text()).get("activityBatches",[])
 
 
+def validate_browser_preview(batch,package_file,package,record_ids,app=APP):
+    file=app/'editorial/reviews'/(batch+'-browser.json');browser=json.loads(file.read_text())
+    assert_browser_identity(browser,package_file,sha((app/'tests/corpus/browser-drafts.mjs').read_bytes()),runtime_fingerprint(app))
+    cases=browser['records'];expected={(key,width) for key in record_ids for width in (1440,768,320)}
+    if len(cases)!=len(expected) or {(r['id'],r['width']) for r in cases}!=expected:
+        raise ValueError('Incomplete browser cases: '+batch)
+    blocks={row['id']:[*row.get('blocks',[]),*row.get('promptBlocks',[])] for row in package['records']}
+    for case in cases:
+        authored=blocks[case['id']]
+        if (len(case['formulas'])<sum(b['type']=='formula' for b in authored)
+            or case.get('figureCount',0)<sum(b['type']=='figure' for b in authored)):
+            raise ValueError('Authored formula or figure omitted from private preview: '+case['id'])
+    if set(browser['protectedAssets'])!={asset['id'] for asset in package.get('assets',[])}:
+        raise ValueError('Draft assets were not checked for guest denial')
+    if any(r['violations'] or r['overflow']>1 or any(f['scroll']>f['width']+1 or f['typeset']>f['width']+1 for f in r['formulas']) for r in cases):
+        raise ValueError('Browser acceptance failed: '+batch)
+    return file,len(cases)
+
+
 def validate_batch(spec,app=APP):
     rule=json.loads((APP/"contracts/corpus-batches-v1.schema.json").read_text())["properties"]["batches"]["items"]
     try:Draft202012Validator(rule).validate(spec)
@@ -67,6 +88,10 @@ def validate_batch(spec,app=APP):
     package=json.loads(package_file.read_text());bindings=json.loads(binding_file.read_text())
     ids=[r["id"] for r in package["records"]]
     if len(ids)!=len(spec["questionIds"]) or set(ids)!=set(spec["questionIds"]):raise ValueError("Batch differs from registered IDs")
+    for row in package['records']:
+        if row['answer']['type']=='choice':
+            quantities=[value for option in row['answer']['options'] if (value:=exact_choice_identity(option)) is not None]
+            if len(quantities)!=len(set(quantities)):raise ValueError('Equivalent exact numeric choices: '+row['id'])
     module=importlib.import_module("."+spec["verifier"],__package__)
     scientific=app/"editorial/reviews"/(batch+".json")
     report=json.loads(scientific.read_text())
@@ -81,20 +106,43 @@ def validate_batch(spec,app=APP):
     integration=app/"editorial/reviews"/(batch+"-integration.json")
     if integrated!=json.loads(integration.read_text()) or integrated["packageSha256"]!=digest(package):
         raise ValueError("Integration evidence changed: "+batch)
-    browser_file=app/"editorial/reviews"/(batch+"-browser.json")
-    browser=json.loads(browser_file.read_text())
-    assert_browser_identity(browser,package_file,sha((app/"tests/corpus/browser-drafts.mjs").read_bytes()),runtime_fingerprint(app))
-    cases=browser["records"]
-    expected={(key,width) for key in spec["questionIds"] for width in (1440,768,320)}
-    if len(cases)!=len(expected) or {(r["id"],r["width"]) for r in cases}!=expected:raise ValueError("Incomplete browser cases: "+batch)
-    if set(browser["protectedAssets"])!={a["id"] for a in package.get("assets",[])}:
-        raise ValueError("Draft assets were not checked for guest denial")
-    if any(r["violations"] or r["overflow"]>1 or any(f["scroll"]>f["width"]+1 or f["typeset"]>f["width"]+1 for f in r["formulas"]) for r in cases):
-        raise ValueError("Browser acceptance failed: "+batch)
+    browser_file,browser_count=validate_browser_preview(batch,package_file,package,spec['questionIds'],app)
     files={"package":package_file,"bindings":binding_file,"science":scientific,"integration":integration,"browser":browser_file}
-    return {"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":len(cases),
+    return {"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":browser_count,
             "paths":{key:file.relative_to(app).as_posix() for key,file in files.items()},
             "checksums":{key:sha(file.read_bytes()) for key,file in files.items()}}
+
+
+def assert_activity_identity(records,expected,sources,candidates=None,bindings=None):
+    candidates=candidates or {};bindings=bindings or {}
+    ids=[row['id'] for row in records]
+    if len(ids)!=len(expected) or set(ids)!=set(expected):raise ValueError('Activity proof has incomplete or duplicate IDs')
+    if set(candidates)!=set(bindings) or not set(candidates).issubset(expected):raise ValueError('Activity revision identity mismatch')
+    for result in records:
+        key=result['id'];action='DRAFT' if key in candidates else 'NONE'
+        if (result.get('ok') is not True or result.get('sourceSha256')!=digest(sources[key])
+            or result.get('humanApproval')!='NOT_RUN' or result.get('publicationAction')!=action
+            or result.get('originalEditionRetained') is not True
+            or result.get('calculationScope') not in ('NO_STUDENT_CALCULATION','EXACT_MANUAL_CALCULATION')
+            or not all(result.get(name) for name in ('manualArithmetic','physicalAssumptions','pedagogicalReview'))):
+            raise ValueError('Invalid individual activity evidence: '+key)
+        if action=='NONE' and result.get('failedPublishedEdition',False) is not False:
+            raise ValueError('An unchanged published edition cannot inherit a draft-only PASS: '+key)
+        if key in candidates:
+            row=candidates[key];binding=bindings[key]
+            published=result.get('publishedEditionReview')
+            if (not isinstance(published,dict) or published.get('sourceSha256')!=digest(sources[key])
+                or type(published.get('ok')) is not bool or result.get('failedPublishedEdition') is not (not published['ok'])
+                or published.get('humanApproval')!='NOT_RUN' or published.get('publicationAction')!='NONE'):
+                raise ValueError('Activity draft must retain a separate source-edition judgment: '+key)
+            if (result.get('candidateSha256')!=digest(row) or binding.get('candidateSha256')!=digest(row)
+                or binding.get('sourceId')!=key or binding.get('sourceSha256')!=digest(sources[key])
+                or row.get('kind')!=sources[key].get('kind','course')
+                or type(row.get('baseVersion')) is not int or row['baseVersion']<sources[key].get('version',1)
+                or type(row.get('version')) is not int or row['version']!=row['baseVersion']+1
+                or result.get('candidateVersion')!=row['version'] or result.get('baseVersion')!=row['baseVersion']
+                or not re.fullmatch('[a-f0-9]{64}',result.get('reviewedSignature',''))):
+                raise ValueError('Activity draft source, version or candidate binding mismatch: '+key)
 
 
 def validate_activity_batch(spec,sources,app=APP):
@@ -103,21 +151,32 @@ def validate_activity_batch(spec,sources,app=APP):
     except ValidationError as error:raise ValueError("Invalid activity batch specification") from error
     expected=set(spec['activityIds'])
     if not expected.issubset(sources):raise ValueError('Activity source identity missing')
+    selected={key:sources[key] for key in expected}
     module=importlib.import_module('.'+spec['verifier'],__package__)
     file=app/'editorial/reviews'/(spec['id']+'.json')
-    saved=json.loads(file.read_text());current=module.report(sources)
-    records=current['records'];ids=[r['id'] for r in records]
-    if len(ids)!=len(expected) or set(ids)!=expected:raise ValueError('Activity proof has incomplete or duplicate IDs')
+    revision=spec.get('revisionPackage');edition=None;candidates={};bindings={}
+    if revision:
+        package_file=app/'editorial/batches'/(revision+'.json');binding_file=app/'editorial/batches'/(revision+'-bindings.json')
+        package=json.loads(package_file.read_text());binding_rows=json.loads(binding_file.read_text())
+        candidates={r['id']:r for r in package['records']};bindings={r['id']:r for r in binding_rows}
+        if len(candidates)!=len(package['records']) or len(bindings)!=len(binding_rows) or not 1<=len(candidates)<=100:
+            raise ValueError('Activity revision batch must contain unique bounded IDs')
+        current=module.report(selected,package,binding_rows)
+    else:current=module.report(selected)
+    saved=json.loads(file.read_text());records=current['records']
+    assert_activity_identity(records,expected,selected,candidates,bindings)
     if saved!=current or saved['verifierSha256']!=sha(Path(module.__file__).read_bytes()):
         raise ValueError('Activity evidence changed: '+spec['id'])
-    for result in records:
-        if (result.get('ok') is not True or result.get('sourceSha256')!=digest(sources[result['id']])
-            or result.get('humanApproval')!='NOT_RUN' or result.get('publicationAction')!='NONE'
-            or result.get('originalEditionRetained') is not True
-            or result.get('calculationScope') not in ('NO_STUDENT_CALCULATION','EXACT_MANUAL_CALCULATION')
-            or not all(result.get(key) for key in ('manualArithmetic','physicalAssumptions','pedagogicalReview'))):
-            raise ValueError('Invalid individual activity evidence: '+result['id'])
-    return {'spec':spec,'records':records,'path':file.relative_to(app).as_posix(),'sha256':sha(file.read_bytes())}
+    if revision:
+        integration=app/'editorial/reviews'/(revision+'-integration.json');integrated=exercise(revision)
+        if integrated!=json.loads(integration.read_text()) or integrated['packageSha256']!=digest(package):
+            raise ValueError('Activity draft integration evidence changed')
+        browser,count=validate_browser_preview(revision,package_file,package,set(candidates),app)
+        files={'package':package_file,'bindings':binding_file,'integration':integration,'browser':browser}
+        edition={'paths':{k:p.relative_to(app).as_posix() for k,p in files.items()},
+                 'checksums':{k:sha(p.read_bytes()) for k,p in files.items()},'browserCases':count}
+    return {'spec':spec,'records':records,'path':file.relative_to(app).as_posix(),'sha256':sha(file.read_bytes()),
+            'revision':edition,'bindings':bindings}
 
 
 if __name__=="__main__":
