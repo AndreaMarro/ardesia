@@ -1,0 +1,109 @@
+{
+  "scope": "author_structural_checks_only_not_scientific_review",
+  "sourceRef": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+  "uniqueCandidateIds": 64,
+  "batches": [
+    {
+      "batch": "equal-time-average-017",
+      "records": 16,
+      "packageSha256": "ead2127fb4338f8d0dd93c0859e9b70fb095118b6c87a770ff9ce3e99dc54175",
+      "bindingsSha256": "beffb9ca1ccf6c8c2cd066d525c55a393d5398101e2bb48ea57701fd942c8e05",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    },
+    {
+      "batch": "roundtrip-average-018",
+      "records": 16,
+      "packageSha256": "0b42414ab6b8ceef8dc20248e0429457d29531d1df85d9d4cc5f82686aa67ea3",
+      "bindingsSha256": "184741f51512ba155fad7ca672736c1defb376ec2b5fbfcc90b1442ddf6338cd",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    },
+    {
+      "batch": "stopping-time-019",
+      "records": 16,
+      "packageSha256": "a1b7ec01ea80c47e332d29bb3e4ba90fc667aea1c9919d609dd98a7448187aad",
+      "bindingsSha256": "3b9037c9b80a0f6af0dde43dde9d83ac252cf563029fb8bbbc29d165e7d2f8bf",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    },
+    {
+      "batch": "stopping-distance-020",
+      "records": 16,
+      "packageSha256": "6268f5f1ecc45bc1213c337821a313f5d5c0f76f7c6d2631f285ad11378c6ef3",
+      "bindingsSha256": "bb33d9232024deb6de391deaa21ada2ecb9b6016187c655e308a0a47a5b9275c",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    }
+  ],
+  "integration": {
+    "afterPublishedCount": 991,
+    "afterPublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "beforePublishedCount": 991,
+    "beforePublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "database": "disposable_sqlite",
+    "imports": [
+      {
+        "batch": "equal-time-average-017",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      },
+      {
+        "batch": "roundtrip-average-018",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      },
+      {
+        "batch": "stopping-time-019",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      },
+      {
+        "batch": "stopping-distance-020",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      }
+    ]
+  },
+  "scientificReview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "literalChoiceGuard": {
+    "module": "tools.corpus_engineering.review_contract.exact_choice_identity",
+    "moduleSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+    "choiceRecords": 43,
+    "equivalentRecognizedLiterals": 0,
+    "scope": "bounded_literal_quantities_only_not_full_semantic_review"
+  }
+}
