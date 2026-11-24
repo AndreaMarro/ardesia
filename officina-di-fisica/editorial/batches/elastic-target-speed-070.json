@@ -1,0 +1,1265 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-elastic-target-speed-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7001,
+      "title": "Masse uguali si scambiano le velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 1,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Con m=2 kg e u=2 m/s, quanto vale V in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Consideriamo entrambi i corpi: la quantità di moto totale e l’energia cinetica totale si conservano, mentre le quantità individuali possono cambiare. Nel ramo in cui i corpi si separano dopo il contatto, masse uguali si scambiano le velocità. Il primo si ferma e il bersaglio parte con 2 m/s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/49ef1a6a4bbacf441aee70cfd34ecde2b0f169193b48bc9085ce7afce290167b",
+          "text": "Tre situazioni con velocità a 60 px per m/s: prima dell’urto m=M=2 kg, incidente a 2 m/s e bersaglio fermo; dopo, incidente fermo e bersaglio a 2 m/s. Il terzo pannello è una prova diversa con m=4 kg,u=2 m/s: le velocità finali 2/3 e 8/3 m/s hanno frecce rispettivamente 40 e 160 px alla stessa scala."
+        },
+        {
+          "type": "formula",
+          "text": "mu=mw+MV"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac12mu^2=\\frac12mw^2+\\frac12MV^2"
+        },
+        {
+          "type": "formula",
+          "text": " w=0"
+        },
+        {
+          "type": "formula",
+          "text": " V=u"
+        },
+        {
+          "type": "formula",
+          "text": "u=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il momento finale è 2·2=4 kg·m/s e l’energia finale 2·2²/2=4 J, uguali agli iniziali. La formula dell’urto con corpi incollati darebbe 1 m/s e perderebbe energia cinetica: descriverebbe un modello differente."
+        }
+      ],
+      "hints": [
+        "Usa entrambe le conservazioni, non la sola quantità di moto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il momento finale è 2·2=4 kg·m/s e l’energia finale 2·2²/2=4 J, uguali agli iniziali. La formula dell’urto con corpi incollati darebbe 1 m/s e perderebbe energia cinetica: descriverebbe un modello differente.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7002,
+      "title": "La dimensione della velocità trasferita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 1,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Quale unità SI esprime V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg·m/s",
+          "J",
+          "m/s",
+          "N",
+          "m"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa compare come rapporto puro nella legge del bersaglio. Il risultato ha perciò la stessa unità di u, una velocità. La componente può avere un segno in altri assi, ma il segno non cambia le dimensioni."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{2m}{m+M}u"
+        },
+        {
+          "type": "formula",
+          "text": " \\left[\\frac{2m}{m+M}\\right]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "kg·m/s è quantità di moto, J è energia, N è forza e m è lunghezza. Il coefficiente di trasferimento non è una massa: il denominatore contiene la somma di due masse."
+        }
+      ],
+      "hints": [
+        "Controlla che il rapporto fra masse sia adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg·m/s è quantità di moto, J è energia, N è forza e m è lunghezza. Il coefficiente di trasferimento non è una massa: il denominatore contiene la somma di due masse.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7003,
+      "title": "Eliminare la velocità del proiettile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 1,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Quale formula dà V dopo l’urto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=2mu/(m+M)",
+          "V=mu/(m+M)",
+          "V=4mu/(m+M)",
+          "V=2mu/M",
+          "V=−2mu/(m+M)"
+        ],
+        "value": "V=2mu/(m+M)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla quantità di moto m(u−w)=MV. Fattorizziamo la differenza di quadrati nell’energia e dividiamo per la relazione di momento, possibile nel ramo effettivo V>0: segue u+w=V. Quindi w=V−u e la sostituzione lascia 2mu=(m+M)V."
+        },
+        {
+          "type": "formula",
+          "text": "m(u-w)=MV"
+        },
+        {
+          "type": "formula",
+          "text": " m(u-w)(u+w)=MV^2"
+        },
+        {
+          "type": "formula",
+          "text": " u+w=V"
+        },
+        {
+          "type": "formula",
+          "text": " w=V-u"
+        },
+        {
+          "type": "formula",
+          "text": " 2mu=(m+M)V"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac{2mu}{m+M}"
+        },
+        {
+          "type": "text",
+          "text": "mu/(m+M) vale per corpi che restano uniti; il doppio ulteriore viola le due conservazioni. Sostituire M al denominatore trascura il momento finale dell’incidente. Il ramo V=0,w=u è la soluzione senza trasferimento e non descrive il contatto elastico effettivo dichiarato."
+        }
+      ],
+      "hints": [
+        "Fattorizza u²−w² e usa la conservazione del momento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "mu/(m+M) vale per corpi che restano uniti; il doppio ulteriore viola le due conservazioni. Sostituire M al denominatore trascura il momento finale dell’incidente. Il ramo V=0,w=u è la soluzione senza trasferimento e non descrive il contatto elastico effettivo dichiarato.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7004,
+      "title": "Un incidente più massiccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 1,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Si mantiene u=2 m/s e si passa da m_A=2 kg a m_B=4 kg. Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 8/3 m/s",
+          "Da 2 a 4 m/s",
+          "Da 2 a 1 m/s",
+          "Resta 2 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 8/3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa del bersaglio rimane 2 kg. Il fattore 2m/(m+M) passa da uno a 8/6=4/3, quindi V passa da 2 a 8/3 m/s. In questo secondo urto anche l’incidente continua verso destra con w=2/3 m/s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/49ef1a6a4bbacf441aee70cfd34ecde2b0f169193b48bc9085ce7afce290167b",
+          "text": "La prova separata del terzo pannello ha incidente 4 kg, bersaglio 2 kg e u=2 m/s. Dopo l’urto elastico w=2/3 m/s e V=8/3 m/s; il bersaglio può superare u conservando insieme quantità di moto ed energia cinetica. Geometria dei corpi schematica; tutte le velocità hanno scala 60 px per m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac{2\\cdot2}{2+2}(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\cdot2}{2+2}(2\\,\\mathrm{m/s})=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{2\\cdot4}{4+2}(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\cdot4}{4+2}(2\\,\\mathrm{m/s})=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w_B=V_B-u"
+        },
+        {
+          "type": "formula",
+          "text": "V_B-u=\\frac23\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "V non raddoppia con m perché cambia anche la somma al denominatore. Può superare u senza violare l’energia: l’energia cinetica è distribuita fra masse diverse. Per ogni massa incidente finita V resta minore di 2u."
+        }
+      ],
+      "hints": [
+        "Ricalcola anche la massa totale al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "V non raddoppia con m perché cambia anche la somma al denominatore. Può superare u senza violare l’energia: l’energia cinetica è distribuita fra masse diverse. Per ogni massa incidente finita V resta minore di 2u.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7005,
+      "title": "La massa dall’uscita del bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Si osserva V=2 m/s con u=2 m/s. Quanto vale m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la legge per m+M e raccogliamo m: m(2u−V)=MV. La massa positiva è determinata quando 0<V<2u. Qui il denominatore vale 2 m/s e il numeratore 4 kg·m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V(m+M)=2mu"
+        },
+        {
+          "type": "formula",
+          "text": " MV=m(2u-V)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{MV}{2u-V}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare u−V al denominatore darebbe zero qui: è l’inversa di un altro tipo d’urto. V=2u richiederebbe una massa incidente infinita nel limite; V>2u produrrebbe una massa negativa e non soddisfa questo modello."
+        }
+      ],
+      "hints": [
+        "Raccogli i due termini contenenti m prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare u−V al denominatore darebbe zero qui: è l’inversa di un altro tipo d’urto. V=2u richiederebbe una massa incidente infinita nel limite; V>2u produrrebbe una massa negativa e non soddisfa questo modello.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7006,
+      "title": "La velocità prima dell’urto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Il bersaglio esce con V=2 m/s e si conosce m=2 kg. Quanto vale u, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo l’ingresso u dalla legge del bersaglio: u=V(m+M)/(2m). Con masse uguali il fattore è uno. Il corpo incidente finisce fermo, quindi il bersaglio porta via tutto il momento e tutta l’energia iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "2mu=V(m+M)"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac{V(m+M)}{2m}"
+        },
+        {
+          "type": "formula",
+          "text": " u=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " w=V-u"
+        },
+        {
+          "type": "formula",
+          "text": "V-u=0"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m/s ometterebbero il due al denominatore; uno m/s lo conterebbe due volte. Zero non fornirebbe il momento positivo osservato. La sostituzione restituisce V=2 m/s."
+        }
+      ],
+      "hints": [
+        "Mantieni il fattore due nella formula inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m/s ometterebbero il due al denominatore; uno m/s lo conterebbe due volte. Zero non fornirebbe il momento positivo osservato. La sostituzione restituisce V=2 m/s.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7007,
+      "title": "Raddoppiare soltanto u",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. A ha m=2 kg e u_A=2 m/s; B ha la stessa massa e u_B=4 m/s. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto fra le masse è identico nei due urti, quindi la velocità finale del bersaglio segue linearmente quella incidente. Con masse uguali vale V=u: gli esiti sono 2 e 4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=4/2"
+        },
+        {
+          "type": "formula",
+          "text": "4/2=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto delle energie, non delle velocità; un mezzo scambia A e B; uno ignora l’aumento dell’impulso trasferito; il segno negativo contraddice il verso finale dichiarato."
+        }
+      ],
+      "hints": [
+        "Semplifica il fattore comune delle masse nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto delle energie, non delle velocità; un mezzo scambia A e B; uno ignora l’aumento dell’impulso trasferito; il segno negativo contraddice il verso finale dichiarato.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7008,
+      "title": "Una proposta troppo veloce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Con m=2 kg e u=2 m/s si propone V=4 m/s. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "−2 m/s",
+          "4 m/s",
+          "0 m/s",
+          "1 m/s"
+        ],
+        "value": "2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le masse uguali danno V=2 m/s. La proposta 4 m/s attribuirebbe al solo bersaglio 16 J, benché inizialmente l’intero sistema ne avesse 4 J. Lo scarto richiesto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "V=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm{m/s}-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−2 inverte la sottrazione, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. Il controllo energetico è indipendente dall’ordine della sottrazione e individua la proposta incompatibile."
+        }
+      ],
+      "hints": [
+        "Trova la velocità corretta e controlla l’energia del bersaglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 inverte la sottrazione, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. Il controllo energetico è indipendente dall’ordine della sottrazione e individua la proposta incompatibile.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7009,
+      "title": "Il dominio dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Dati u e V con 0<V<2u, quale formula isola la massa incidente?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=MV/(2u−V)",
+          "m=MV/(u−V)",
+          "m=MV/(2u+V)",
+          "m=MV/(V−2u)",
+          "m=2MV/(2u−V)"
+        ],
+        "value": "m=MV/(2u−V)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riorganizzare V(m+M)=2mu richiede di tenere m in entrambi i suoi termini. Dopo aver raccolto, il denominatore è 2u−V, positivo nel dominio assegnato. Il rapporto ha dimensione di massa."
+        },
+        {
+          "type": "formula",
+          "text": "Vm+MV=2mu"
+        },
+        {
+          "type": "formula",
+          "text": " MV=m(2u-V)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{MV}{2u-V}"
+        },
+        {
+          "type": "text",
+          "text": "V−2u darebbe massa negativa; il più non deriva dall’isolamento; u−V appartiene al caso di corpi incollati. Il fattore due davanti al numeratore non sopravvive all’algebra e raddoppierebbe la massa corretta."
+        }
+      ],
+      "hints": [
+        "Sposta Vm accanto a 2mu e raccogli m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "V−2u darebbe massa negativa; il più non deriva dall’isolamento; u−V appartiene al caso di corpi incollati. Il fattore due davanti al numeratore non sopravvive all’algebra e raddoppierebbe la massa corretta.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7010,
+      "title": "Scalare m senza scalare M",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. B ha m_B=κ₁m e u_B=κ₂u, con fattori positivi; m,u indicano A. Definiamo S=m+M e S_B=κ₁m+M. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ S / S_B",
+          "κ₁ κ₂",
+          "κ₂ S_B / S",
+          "S_B / (κ₁ κ₂ S)",
+          "2 κ₁ κ₂ S / S_B"
+        ],
+        "value": "κ₁ κ₂ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore 2mu prende entrambi i fattori, mentre il denominatore cambia solo nella parte incidente. Dividendo le due leggi il due comune si cancella: resta κ₁κ₂S/S_B. S e S_B sono masse, quindi il risultato è puro."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=\\frac{2mu}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{2\\kappa_1\\kappa_2mu}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\kappa_1\\kappa_2\\frac{S}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ trascura la variazione della massa totale; S_B/S inverte quell’effetto. Il due residuo conta il coefficiente solo in uno dei due stati. Con κ₁=1 il rapporto deve ridursi a κ₂, un controllo immediato."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente il vecchio e il nuovo denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ trascura la variazione della massa totale; S_B/S inverte quell’effetto. Il due residuo conta il coefficiente solo in uno dei due stati. Con κ₁=1 il rapporto deve ridursi a κ₂, un controllo immediato.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7011,
+      "title": "Due cambiamenti, una frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. A: m=2 kg,u=2 m/s. B: m=4 kg,u=4 m/s. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/3",
+          "3/8",
+          "4",
+          "2",
+          "16/3"
+        ],
+        "value": "8/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima velocità del bersaglio è 2 m/s. Nella seconda prova il numeratore è 2·4·4 e il denominatore 4+2: V_B=16/3 m/s. Dividere per i 2 m/s di A lascia 8/3."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{32}{6}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{32}{6}\\,\\mathrm{m/s}=\\frac{16}{3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac83"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplica le due scalature senza correggere il denominatore; due segue soltanto u; 16/3 è il valore numerico dell’uscita B, non il rapporto. 3/8 è il reciproco."
+        }
+      ],
+      "hints": [
+        "Conserva la frazione 16/3 prima di dividere per V_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplica le due scalature senza correggere il denominatore; due segue soltanto u; 16/3 è il valore numerico dell’uscita B, non il rapporto. 3/8 è il reciproco.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7012,
+      "title": "Media delle velocità finali del bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 2,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Due prove hanno uguale peso statistico: A con m=2 kg,u=2 m/s; B con m=4 kg,u=4 m/s. Quanto vale la media aritmetica delle due V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/3 m/s",
+          "22/3 m/s",
+          "11/6 m/s",
+          "18/5 m/s",
+          "8/3 m/s"
+        ],
+        "value": "11/3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I risultati sono 2 e 16/3 m/s. La semisomma è (6/3+16/3)/2=11/3 m/s. Non si stanno mediando le velocità durante un urto, ma due risultati finali di prove distinte."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{16}{3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{2+16/3}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{11}{3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "22/3 è la somma; 11/6 divide di nuovo per due; 8/3 è il rapporto delle uscite. Usare m=3 kg e u=3 m/s, medie degli ingressi, darebbe 18/5 m/s: differisce dalla media richiesta di 1/15 m/s."
+        }
+      ],
+      "hints": [
+        "Calcola ogni uscita prima della semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "22/3 è la somma; 11/6 divide di nuovo per due; 8/3 è il rapporto delle uscite. Usare m=3 kg e u=3 m/s, medie degli ingressi, darebbe 18/5 m/s: differisce dalla media richiesta di 1/15 m/s.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7013,
+      "title": "Scegliere la velocità incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 3,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. A ha m_A=2 kg,u_A=2 m/s. In B si impone m_B=4 kg e V_B=(8/3)V_A. Quanto vale u_B/u_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità obiettivo del bersaglio è (8/3)·2=16/3 m/s. Con incidente da 4 kg il fattore 2m/(m+M) vale 4/3, quindi u_B=(16/3)/(4/3)=4 m/s. Il confronto con 2 m/s dà due."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=\\frac{16}{3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=\\frac{V_B(m_B+M)}{2m_B}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B/u_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Tenere u a 2 m/s darebbe solo V_B=8/3 m/s, metà dell’obiettivo. Il rapporto non coincide con 8/3 perché una parte dell’aumento viene già dalla massa incidente maggiore."
+        }
+      ],
+      "hints": [
+        "Decidi prima il valore di V_B, poi inverti la legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tenere u a 2 m/s darebbe solo V_B=8/3 m/s, metà dell’obiettivo. Il rapporto non coincide con 8/3 perché una parte dell’aumento viene già dalla massa incidente maggiore.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7014,
+      "title": "Tarare la lettura del bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 3,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Un display continuo adimensionale ha S=cV,c>0, senza offset. A con m=2 kg,u=2 m/s dà S=6. B con u=4 m/s dà S=16. Quanto vale m_B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà V_A=2 m/s e dunque c=3 s/m. La seconda lettura rappresenta V_B=16/3 m/s. Questa è minore di 2u_B=8 m/s, quindi l’inversa per una massa finita positiva è ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac{16}{3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 2u_B-V_B=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{MV_B}{2u_B-V_B}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura 16 come velocità violerebbe V<2u e darebbe un’inversa non fisica. Con 4 kg, il momento iniziale 16 kg·m/s si ripartisce fra l’incidente a 4/3 m/s e il bersaglio a 16/3 m/s, verificando il valore."
+        }
+      ],
+      "hints": [
+        "Decodifica la lettura e controlla V<2u prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura 16 come velocità violerebbe V<2u e darebbe un’inversa non fisica. Con 4 kg, il momento iniziale 16 kg·m/s si ripartisce fra l’incidente a 4/3 m/s e il bersaglio a 16/3 m/s, verificando il valore.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7015,
+      "title": "Un offset prima dell’inversa razionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 3,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Un display continuo adimensionale ha S=cV+d,c>0. A: m=2 kg,u=2 m/s,S=5. B: m=4 kg,u=4 m/s,S=35/3. C: u=2 m/s,S=19/3. Trova m_C.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kg",
+          "2 kg",
+          "3 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B valgono 2 e 16/3 m/s. Sottrarre le due letture elimina d; dividere per 16/3−2=10/3 m/s dà c=2 s/m e poi d=1. La lettura C corrisponde a V_C=8/3 m/s, da cui m_C=4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{35/3-5}{16/3-2}\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{35/3-5}{16/3-2}\\,\\mathrm{s/m}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " d=5-2\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": "5-2\\cdot2=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=\\frac83\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac{MV_C}{2u_C-V_C}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "A u=2 m/s, masse 2,3,5,8 kg darebbero S=5,29/5,47/7,37/5. Nessuna è 19/3; la massa 4 kg la riproduce. È essenziale togliere d prima dell’inversa e non fare rapporti delle letture grezze."
+        }
+      ],
+      "hints": [
+        "Determina c e d con le differenze, poi trova V_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A u=2 m/s, masse 2,3,5,8 kg darebbero S=5,29/5,47/7,37/5. Nessuna è 19/3; la massa 4 kg la riproduce. È essenziale togliere d prima dell’inversa e non fare rapporti delle letture grezze.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-elastic-target-speed-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7016,
+      "title": "La massa legata alla velocità incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "elastic-target-speed",
+      "difficulty": 3,
+      "prompt": "Nel laboratorio inerziale un corpo di massa m>0 e componente iniziale +u, u>0, urta frontalmente un bersaglio di massa M=2 kg inizialmente fermo. Il moto è classico lungo l’asse x positivo nel verso incidente. L’urto effettivo è elastico: impulso e lavoro esterni durante il contatto sono trascurabili e si conserva anche l’energia cinetica totale. V>0 indica la componente finale del bersaglio, w quella del corpo incidente. Fra prove diverse vale m=c u, con c=1 kg·s/m; ciascuna massa resta costante nel proprio urto. Si misura V=2 m/s. Quanto vale u>0, in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo prima di risolvere: V=2cu²/(cu+M). Per semplificare le unità poniamo u₀=1 m/s e r=u/u₀; con i dati assegnati l’equazione diventa r²−r−2=0, cioè (r−2)(r+1)=0."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{2cu^2}{cu+M}"
+        },
+        {
+          "type": "formula",
+          "text": " u_0=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=u/u_0"
+        },
+        {
+          "type": "formula",
+          "text": " r^2-r-2=0"
+        },
+        {
+          "type": "formula",
+          "text": " (r-2)(r+1)=0"
+        },
+        {
+          "type": "formula",
+          "text": " r_+=2"
+        },
+        {
+          "type": "formula",
+          "text": " r_-=-1"
+        },
+        {
+          "type": "formula",
+          "text": " u=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo −1 darebbe u<0 e massa negativa sotto il vincolo, quindi si scarta. Con u=2 m/s,m=2 kg, il bersaglio esce proprio a 2 m/s. Il ramo negativo non è −2: la presenza della massa fissa rende il polinomio non simmetrico."
+        }
+      ],
+      "hints": [
+        "Sostituisci m=c u e fattorizza il quadratico dopo aver reso la velocità adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il ramo −1 darebbe u<0 e massa negativa sotto il vincolo, quindi si scarta. Con u=2 m/s,m=2 kg, il bersaglio esce proprio a 2 m/s. Il ramo negativo non è −2: la presenza della massa fissa rende il polinomio non simmetrico.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto elastico unidimensionale",
+        "Quantità di moto ed energia cinetica",
+        "Velocità orientate e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "49ef1a6a4bbacf441aee70cfd34ecde2b0f169193b48bc9085ce7afce290167b",
+      "name": "elastic-target-speed-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgdmlld0JveD0iMCAwIDY0MCAxMzkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+VmVsb2NpdMOgIGRpIHVuIGJlcnNhZ2xpbyBuZWxs4oCZdXJ0byBlbGFzdGljbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1hIGUgZG9wbyBwZXIgbWFzc2UgdWd1YWxpLCBwb2kgdW5hIHByb3ZhIGRpc3RpbnRhIGNvbiBpbmNpZGVudGUgcGnDuSBtYXNzaWNjaW8uIFR1dHRlIGxlIHZlbG9jaXTDoCBoYW5ubyBzY2FsYSBzZXNzYW50YSBwaXhlbCBwZXIgbWV0cm8gYWwgc2Vjb25kby4gSSBjb3JwaSBzb25vIHNjaGVtYXRpY2kuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjEwIiBtYXJrZXJIZWlnaHQ9IjEwIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzOTAiIHJ4PSIyMCIgZmlsbD0iI2ZhZjhmMSIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IFByaW1hOiBiZXJzYWdsaW8gZmVybW8gbmVsIGxhYm9yYXRvcmlvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+QXNzZSAreCB2ZXJzbyBkZXN0cmEuIG0gPSBNID0gMiBrZy48L3RleHQ+PHJlY3QgeD0iMTMwIiB5PSIyMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2NkZTRlNiIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHJlY3QgeD0iNDAwIiB5PSIyMjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2U2ZDhiYyIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHBhdGggZD0iTTE2MCAxOTBIMjgwIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjEzMCIgeT0iMzMwIj51ID0gKzIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMzMwIj5WIGluaXppYWxlID0gMDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMzg1Ij5wIGluaXppYWxlID0gNCBrZ8K3bS9zOyBLIGluaXppYWxlID0gNCBKLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQ2NSIgZm9udC1zaXplPSIyNSI+MiDCtyBEb3BvOiBzY2FtYmlvIGRlbGxlIHZlbG9jaXTDoDwvdGV4dD48cmVjdCB4PSIxMzAiIHk9IjU5NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjY2RlNGU2IiBzdHJva2U9IiMxOTNhNDkiLz48cmVjdCB4PSI0MDAiIHk9IjU5NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZTZkOGJjIiBzdHJva2U9IiMxOTNhNDkiLz48cGF0aCBkPSJNNDMwIDU2NUg1NTAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMTMwIiB5PSI3MDUiPncgPSAwPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iNzA1Ij5WID0gKzIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3NTUiPnAgZmluYWxlID0gNCBrZ8K3bS9zOyBLIGZpbmFsZSA9IDQgSi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgwMCI+VXJ0byBlbGFzdGljbzogaSBjb3JwaSBub24gcmVzdGFubyB1bml0aS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4ODUiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgQWx0cmEgcHJvdmE6IGluY2lkZW50ZSBkYSA0IGtnPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MzAiPlNlbXByZSBNID0gMiBrZywgdSA9IDIgbS9zOyByaXN1bHRhdGkgZmluYWxpOjwvdGV4dD48cmVjdCB4PSIxMzAiIHk9IjEwNjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2NkZTRlNiIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHJlY3QgeD0iNDAwIiB5PSIxMDYwIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiNlNmQ4YmMiIHN0cm9rZT0iIzE5M2E0OSIvPjxwYXRoIGQ9Ik0xNjAgMTAzMEgyMDAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTQzMCAxMDMwSDU5MCIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIxMDUiIHk9IjExNzAiPncgPSArMi8zIG0vczwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjExNzAiPlYgPSArOC8zIG0vczwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIyNSI+cCBmaW5hbGUgPSA0wrcoMi8zKSArIDLCtyg4LzMpID0gOCBrZ8K3bS9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTI3MCI+SyBmaW5hbGUgPSA4LzkgKyA2NC85ID0gOCBKLCBjb21lIGFsbOKAmWluaXppby48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMjUiPlNjYWxhIGNvbXVuZTogNjAgcHggcGVyIG0vcywgaW4gdHV0dGkgaSBwYW5uZWxsaS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzNjUiPkxhcmdoZXp6ZSBkZWkgY29ycGkgc2NoZW1hdGljaGUsIG5vbiBtYXNzZSBpbiBzY2FsYS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
