@@ -20,3 +20,5 @@ Fonte: `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`, U2-02.json; letti individualm
 16. **16** — Vincolo fra prove v=kr,k1s⁻¹: A=k²r; r=A/k²=2m,v2m/s. Una coppia positiva, nessuna dipendenza temporale di r. Alternative r1,3,4→A1,3,4; r−2 escluso.
 
 SVG: r=2 m rappresentato da100px (50px/m); v=2 m/s da60px (30px/(m/s)); A=2 m/s² da60px (30px/(m/s²)). Scale di dimensioni diverse esplicitate. In P velocità verso l’alto, in Q verso sinistra per lo stesso moto antiorario; accelerazione in Q rivolta verso O. Nessuna freccia d’accelerazione tangenziale o verso l’esterno. Anteprima locale controllata.
+
+Correzione grafica richiesta dal revisore: etichetta rossa del pannello2 spostata da x225 a x315 per evitare che la curva attraversi il testo. Geometria, direzioni, moduli e scale invariati; asset/package/binding rigenerati.
