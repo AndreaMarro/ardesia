@@ -1,0 +1,1178 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-torque-perpendicular-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6201,
+      "title": "Il braccio moltiplica la forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 1,
+      "prompt": "Nel piano un’asta rigida ha un punto di applicazione a distanza r=2 m dal fulcro O. Una forza di modulo F=2 N è perpendicolare all’asta. Quanto vale il modulo M del momento di questa forza rispetto aO, in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo del prodotto vettoriale è rF sinθ. Con forza perpendicolare, r è anche la distanza perpendicolare fra il fulcro e la retta d’azione e sin 90°=1. Il prodotto 2 m per 2 N dà 4 N·m. Il verso di rotazione richiederebbe anche indicare da quale parte punta la forza: qui si domanda soltanto il modulo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/07da3e823c3a9a7da9aaa86aaee4b1e62193779dac269ec4288e0468f7306b8b",
+          "text": "Nel primo pannello r2m è200px a100px/m eF2N è40px a20px/N,perpendicolare al braccio. Forza verso l’alto a destra diO:il momento orientato è+4N·m con antiorario positivo;il modulo è4N·m. Nel caso separato finale,F8N è160px alla stessa scala20px/N ma la retta d’azione passa perO:braccio perpendicolare zero e momento zero anche con punto di applicazione diverso daO. Le lunghezze fisiche e le forze hanno scale dimensionali distinte."
+        },
+        {
+          "type": "formula",
+          "text": "M=rF\\sin90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " M=Fr"
+        },
+        {
+          "type": "formula",
+          "text": " M=(2\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": "(2\\,\\mathrm N)(2\\,\\mathrm m)=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Un momento non è il modulo della forza: la distanza conta.4 N·m ha le stesse dimensioni di un’energia, ma descrive una tendenza alla rotazione, non un lavoro già compiuto. Per conoscere l’accelerazione angolare servirebbero il momento totale e il momento d’inerzia."
+        }
+      ],
+      "hints": [
+        "La distanza assegnata è un braccio perché la forza è perpendicolare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un momento non è il modulo della forza: la distanza conta.4 N·m ha le stesse dimensioni di un’energia, ma descrive una tendenza alla rotazione, non un lavoro già compiuto. Per conoscere l’accelerazione angolare servirebbero il momento totale e il momento d’inerzia.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6202,
+      "title": "La convenzione d’unità del momento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 1,
+      "prompt": "Una forza perpendicolare di modulo F agisce con braccio r. Il modulo del suo momento è M=Fr. Quale unità SI fra quelle proposte esprime M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "N/m",
+          "N·m",
+          "kg",
+          "m"
+        ],
+        "value": "N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo newton per metri. Il momento ha dimensioni ML²/T², uguali dimensionalmente a quelle del lavoro, ma normalmente si scrive N·m per conservare visibile il significato meccanico diverso. Non si deve affermare che abbia dimensioni differenti dall’energia."
+        },
+        {
+          "type": "formula",
+          "text": "[M]=[F][r]"
+        },
+        {
+          "type": "formula",
+          "text": " [M]=ML^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " M\\text{ in }\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "N è solo forza, N/m una rigidezza, kg massa, m lunghezza. In questa lista non c’è un’altra unità dimensionalmente equivalente aN·m. Un braccio non è un divisore della forza: entra come fattore."
+        }
+      ],
+      "hints": [
+        "Moltiplica l’unità della forza per quella del braccio, poi distingui grandezza e dimensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è solo forza, N/m una rigidezza, kg massa, m lunghezza. In questa lista non c’è un’altra unità dimensionalmente equivalente aN·m. Un braccio non è un divisore della forza: entra come fattore.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6203,
+      "title": "La retta d’azione attraversa il fulcro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 1,
+      "prompt": "Una forza di modulo 8 N è applicata a un corpo rigido. La sua retta d’azione passa per il fulcro O scelto, anche se il punto di applicazione può essere diverso daO. Quanto vale il modulo del momento di questa forza rispetto aO?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0 N·m",
+          "2 N·m",
+          "4 N·m",
+          "8 N·m",
+          "16 N·m"
+        ],
+        "value": "0 N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Conta la distanza perpendicolare b fraO e la retta d’azione. Se la retta contiene il fulcro, questa distanza è zero. Di conseguenza il momento è nullo anche quando la forza è intensa e il punto in cui è applicata non coincide conO."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/07da3e823c3a9a7da9aaa86aaee4b1e62193779dac269ec4288e0468f7306b8b",
+          "text": "Il terzo pannello isola il caso della retta d’azione che attraversaO:forza8N,braccio perpendicolare0 e momento0. Il primo pannello è un esempio differente con forza2N perpendicolare a r2m. Scala comune delle forze20px/N,scala delle distanze100px/m;nessuna area energetica è rappresentata."
+        },
+        {
+          "type": "formula",
+          "text": "M=Fb"
+        },
+        {
+          "type": "formula",
+          "text": " b=0"
+        },
+        {
+          "type": "formula",
+          "text": " M=(8\\,\\mathrm N)\\cdot0"
+        },
+        {
+          "type": "formula",
+          "text": "(8\\,\\mathrm N)\\cdot0=0\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Le altre opzioni attribuiscono un braccio non nullo che qui non esiste. Copiare il numero 8 della forza come 8 N·m aggiungerebbe una lunghezza arbitraria. Momento nullo rispetto aO non significa forza nulla né risultante totale nulla: si sta controllando un effetto rotazionale rispetto a un punto."
+        }
+      ],
+      "hints": [
+        "Misura il braccio fino alla retta d’azione, non soltanto fino al punto di applicazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le altre opzioni attribuiscono un braccio non nullo che qui non esiste. Copiare il numero 8 della forza come 8 N·m aggiungerebbe una lunghezza arbitraria. Momento nullo rispetto aO non significa forza nulla né risultante totale nulla: si sta controllando un effetto rotazionale rispetto a un punto.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6204,
+      "title": "Forza doppia allo stesso braccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 1,
+      "prompt": "Due configurazioni di un’asta rigida hanno lo stesso braccio r=2 m e una forza perpendicolare. Il suo modulo passa daF_A=2 N aF_B=4 N. Come cambia il modulo M del momento rispetto al medesimo fulcro?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 8 N·m",
+          "Resta 4 N·m",
+          "Da 4 a 16 N·m",
+          "Da 4 a 2 N·m",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 8 N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La geometria non cambia e il braccio resta due metri. Il modulo del momento è direttamente proporzionale alla forza: si passa da 4 a 8 N·m. Non occorre conoscere la rotazione effettivamente prodotta per calcolare questi momenti della forza assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=(4\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": "(4\\,\\mathrm N)(2\\,\\mathrm m)=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=2"
+        },
+        {
+          "type": "text",
+          "text": "16 N·m raddoppierebbe anche il braccio; 2 N·m invertirebbe la dipendenza daF; zero ignorerebbe il braccio positivo perpendicolare. Il modulo resta positivo indipendentemente dalla convenzione sul verso di rotazione."
+        }
+      ],
+      "hints": [
+        "Tieni fisso r e segui soltanto la forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "16 N·m raddoppierebbe anche il braccio; 2 N·m invertirebbe la dipendenza daF; zero ignorerebbe il braccio positivo perpendicolare. Il modulo resta positivo indipendentemente dalla convenzione sul verso di rotazione.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6205,
+      "title": "La forza da un momento noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Una forza perpendicolare all’asta produce un momento di modulo M=4 N·m rispetto al fulcro. Il braccio è r=2 m. Quanto vale F>0, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione dei moduli è M=Fr. Dividiamo per il braccio positivo, due metri. I metri si semplificano e restano newton: 4 N·m su 2 m dà 2 N."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\frac Mr"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm m}=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ancora perr non isolaF e aggiunge un metro invece di eliminarlo.4 è il numero del momento, non quello della forza senza conversione. Il controllo 2 N·2 m=4 N·m ricostruisce il dato."
+        }
+      ],
+      "hints": [
+        "Dividi il momento per la distanza perpendicolare non nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ancora perr non isolaF e aggiunge un metro invece di eliminarlo.4 è il numero del momento, non quello della forza senza conversione. Il controllo 2 N·2 m=4 N·m ricostruisce il dato.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6206,
+      "title": "Quale distanza dal fulcro?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Una forza di modulo F=2 N, perpendicolare a un’asta rigida, ha momento di modulo M=4 N·m rispetto al fulcro. Quanto vale la distanza r del punto di applicazione dal fulcro, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per la perpendicolarità dichiarata, la distanza r coincide con il braccio. Isoliamo r=M/F e dividiamo 4 N·m per 2 N. Il risultato 2 m è una lunghezza, non un angolo o una forza."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac MF"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm N}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "L’inversa richiedeF>0. Se la forza fosse obliqua e non si conoscesse l’angolo, il rapportoM/F darebbe il braccio perpendicolare, non necessariamente la distanza al punto di applicazione. Qui le due lunghezze coincidono per ipotesi."
+        }
+      ],
+      "hints": [
+        "Usa la geometria per sapere quale lunghezza stai ricostruendo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inversa richiedeF>0. Se la forza fosse obliqua e non si conoscesse l’angolo, il rapportoM/F darebbe il braccio perpendicolare, non necessariamente la distanza al punto di applicazione. Qui le due lunghezze coincidono per ipotesi.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6207,
+      "title": "Una forza più lontana dal fulcro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "La stessa forza di modulo 2 N agisce perpendicolarmente a un’asta. A ha braccio r_A=2 m, B ha r_B=4 m rispetto allo stesso fulcro. Quanto vale M_B/M_A per i moduli dei momenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con forza uguale, il rapporto dei momenti è quello dei bracci. I moduli passano da 4 a 8 N·m e il rapporto è due. La distanza maggiore aumenta il momento della stessa forza, senza implicare da sola un equilibrio o una rotazione determinata."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte l’ordine; quattro introdurrebbe un quadrato di r; uno ignora la geometria nuova.−2 non può essere il rapporto di due moduli positivi; un segno di momento orientato richiederebbe una convenzione ulteriore."
+        }
+      ],
+      "hints": [
+        "Semplifica la forza comune e confronta i bracci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte l’ordine; quattro introdurrebbe un quadrato di r; uno ignora la geometria nuova.−2 non può essere il rapporto di due moduli positivi; un segno di momento orientato richiederebbe una convenzione ulteriore.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6208,
+      "title": "Una proposta doppia sul momento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Una forza perpendicolare F=2 N agisce con braccio r=2 m rispetto al fulcro. Si propone M_proposto=8 N·m per il modulo del momento. Quanto vale proposto meno corretto, in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento corretto è 2·2=4 N·m. La proposta è doppia e lo scarto nell’ordine assegnato è 8−4=+4 N·m. Il segno positivo è quello dell’errore, non un’indicazione di rotazione antioraria della forza."
+        },
+        {
+          "type": "formula",
+          "text": "M=Fr"
+        },
+        {
+          "type": "formula",
+          "text": "Fr=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=8\\,\\mathrm{N\\,m}-4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "−4 invertirebbe la sottrazione; 8 ripete la proposta; 2 dimezza ancora; 5 o 3 non derivano dal prodotto esatto. Non si deve chiamare questo 4 J di lavoro: non è stato assegnato alcuno spostamento angolare."
+        }
+      ],
+      "hints": [
+        "Calcola Fr, poi rispetta l’ordine proposto meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 invertirebbe la sottrazione; 8 ripete la proposta; 2 dimezza ancora; 5 o 3 non derivano dal prodotto esatto. Non si deve chiamare questo 4 J di lavoro: non è stato assegnato alcuno spostamento angolare.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6209,
+      "title": "L’inversa del modulo di momento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Per una forza perpendicolare al segmento che unisce il fulcro al punto di applicazione vale M=Fr, con M, F, r>0. Quale formula isola F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=Mr",
+          "F=r/M",
+          "F=M/r",
+          "F=2 M/r",
+          "F=M/(2 r)"
+        ],
+        "value": "F=M/r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo entrambi i membri per r. Il risultato ha unità N·m/m=N e resta positivo. La perpendicolarità evita un ulteriore fattore seno; non compare nessun mezzo geometrico."
+        },
+        {
+          "type": "formula",
+          "text": "M=Fr"
+        },
+        {
+          "type": "formula",
+          "text": " M/r=F"
+        },
+        {
+          "type": "formula",
+          "text": " F=M/r"
+        },
+        {
+          "type": "text",
+          "text": "Mr ha un metro di troppo; r/M è un inverso di forza. Il doppio e la metà non restituisconoM quando si reinseriscono inFr. Il denominatore non nullo è parte delle ipotesi, non una formalità."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore r dividendo per il braccio positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mr ha un metro di troppo; r/M è un inverso di forza. Il doppio e la metà non restituisconoM quando si reinseriscono inFr. Il denominatore non nullo è parte delle ipotesi, non una formalità.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6210,
+      "title": "Scalare forza e braccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Fra due configurazioni di un’asta rigida si passa daF, r>0 aF_B=κ₁F e r_B=κ₂r, con fattori positivi. Le forze sono perpendicolari alle rispettive aste eM indica il modulo del momento rispetto al rispettivo fulcro. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel prodottoFr entrano entrambi i fattori di scala. Dividendo per il prodotto iniziale si cancellanoF e r. Se cambiassero anche gli angoli, servirebbe il rapporto dei seni; qui entrambi valgono uno."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=Fr"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=(\\kappa_1F)(\\kappa_2r)"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza; la somma darebbe due all’identità; κ₁κ₂² farebbe dipendere il momento dal quadrato del braccio. Non vanno importate qui formule del momento d’inerzia, che è una grandezza diversa."
+        }
+      ],
+      "hints": [
+        "Confronta i prodotti completi e ricorda che tutti gli angoli restano retti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza; la somma darebbe due all’identità; κ₁κ₂² farebbe dipendere il momento dal quadrato del braccio. Non vanno importate qui formule del momento d’inerzia, che è una grandezza diversa.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6211,
+      "title": "Due raddoppi nel momento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "A usa forza perpendicolare F_A=2 N e braccio r_A=2 m. B usa F_B=4 N e r_B=4 m. Quanto vale il rapporto M_B/M_A fra i moduli dei momenti delle forze?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo momento vale 4 N·m, il secondo 16 N·m. Il raddoppio della forza e quello del braccio producono un rapporto quattro. Il numero sedici è il momentoB e va ancora diviso per 4 per rispondere con un numero puro."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due tiene conto di un solo cambiamento; un quarto è l’inverso; otto attribuisce un quadrato al braccio in più. Le unitàN·m si cancellano fra i due moduli."
+        }
+      ],
+      "hints": [
+        "Moltiplica i due fattori due o calcola separatamente i momenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due tiene conto di un solo cambiamento; un quarto è l’inverso; otto attribuisce un quadrato al braccio in più. Le unitàN·m si cancellano fra i due moduli.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6212,
+      "title": "Media di moduli di momento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 2,
+      "prompt": "Due configurazioni hanno A: F=2 N, r=2 m eB: F=4 N, r=4 m, sempre con forza perpendicolare. Qual è la media aritmetica dei moduli M_A, M_B, con uguale peso, in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli sono 4 e 16 N·m: la loro semisomma è 10 N·m. Si fa una media di intensità in prove distinte, non una somma orientata di momenti agenti insieme su un corpo. I segni di rotazione non sono richiesti per questi moduli."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline M=\\frac{4+16}{2}\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline M=10\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "20 è la somma; 5 divide ancora per due. Gli ingressi medi 3 N e 3 m darebbero 9 N·m, non 10; 11 non è la semisomma. Questa media non determina il momento risultante di un esperimento che non è stato descritto."
+        }
+      ],
+      "hints": [
+        "Trova i due moduli con le loro coppie di dati e poi assegna uguale peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 è la somma; 5 divide ancora per due. Gli ingressi medi 3 N e 3 m darebbero 9 N·m, non 10; 11 non è la semisomma. Questa media non determina il momento risultante di un esperimento che non è stato descritto.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6213,
+      "title": "Il braccio per un obiettivo quadruplo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 3,
+      "prompt": "A ha forza perpendicolare F_A=2 N e braccio r_A=2 m. InB si sceglieF_B=4 N e si vuoleM_B=4 M_A, sempre perpendicolare. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo momento è 4 N·m e l’obiettivo 16 N·m. Dividendo per la forza nuova 4 N si ottiene r_B=4 m. Il rapporto con 2 m è due: la forza doppia ha già fornito un fattore due dell’obiettivo quattro."
+        },
+        {
+          "type": "formula",
+          "text": "M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=M_B/F_B"
+        },
+        {
+          "type": "formula",
+          "text": "M_B/F_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quadruplicare anche il braccio produrrebbe un momento otto volte maggiore; lasciarlo invariato darebbe soltanto il doppio. Quattro metri è il nuovo braccio e non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Dividi il momento obiettivo per la forza nuova, poi confronta i bracci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quadruplicare anche il braccio produrrebbe un momento otto volte maggiore; lasciarlo invariato darebbe soltanto il doppio. Quattro metri è il nuovo braccio e non il rapporto richiesto.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6214,
+      "title": "La taratura precede la divisione per r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segueS=cM, con c>0, offset nullo. Ogni forza è perpendicolare al proprio braccio. Il riferimento F=2 N, r=2 m dàS=12. Una prova con r=4 m dàS=48. Quanto valeF in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha momento 4 N·m, dunque c=3(N·m)⁻¹. La lettura 48 corrisponde a 16 N·m. Per ricostruire la forza della prova dividiamo questo momento per 4 m, ottenendo 4 N."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " c=3\\,\\mathrm{(N\\,m)^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=48/c"
+        },
+        {
+          "type": "formula",
+          "text": "48/c=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=M_B/r_B"
+        },
+        {
+          "type": "formula",
+          "text": "M_B/r_B=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "48 non è già un momento inN·m: usarlo così darebbe 12 N, includendo il guadagno spurio tre. Il controllo 4 N·4 m=16 N·m e cM=48 ricostruisce il dato del display."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno e solo dopo usa l’inversa rispetto alla forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "48 non è già un momento inN·m: usarlo così darebbe 12 N, includendo il guadagno spurio tre. Il controllo 4 N·4 m=16 N·m e cM=48 ricostruisce il dato del display.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6215,
+      "title": "Due riferimenti con un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segueS=cM+a, con c>0, a costanti. Le forze sono perpendicolari ai bracci. A: F=2 N, r=2 m, S=9. B: F=4 N, r=4 m, S=33. C: r=2 m, S=17. Quanto valeF_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N",
+          "3 N",
+          "4 N",
+          "5 N",
+          "8 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I momenti di riferimento sono 4 e 16 N·m. La differenza 24 di lettura su 12 N·m dà guadagno 2(N·m)⁻¹; l’offset è uno. C rappresenta 8 N·m e richiede una forza 4 N sul braccio 2 m."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{(N\\,m)^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a=1"
+        },
+        {
+          "type": "formula",
+          "text": " M_C=(17-1)/c"
+        },
+        {
+          "type": "formula",
+          "text": "(17-1)/c=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=M_C/r_C"
+        },
+        {
+          "type": "formula",
+          "text": "M_C/r_C=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Le forze 2, 3, 5, 8 Nsu 2 m produrrebbero letture 9, 13, 21, 33. Solo 4 Nrestituisce 17. Un rapporto di letture con offset non è il rapporto dei momenti: si deve sottrarre a prima di dividere perc."
+        }
+      ],
+      "hints": [
+        "Ricava i due momenti noti, calibra il display e infine isola F_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le forze 2, 3, 5, 8 Nsu 2 m produrrebbero letture 9, 13, 21, 33. Solo 4 Nrestituisce 17. Un rapporto di letture con offset non è il rapporto dei momenti: si deve sottrarre a prima di dividere perc.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-torque-perpendicular-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6216,
+      "title": "Una forza selezionata dal braccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torque-perpendicular",
+      "difficulty": 3,
+      "prompt": "Fra configurazioni diverse si seleziona una forza perpendicolare con F=(1 N/m)r, r>0. Il modulo del momento èM=4 N·m. Quanto vale r, in m? Il vincolo collega le configurazioni scelte e non richiede alcun lavoro o spostamento durante una prova.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente a=1 N/m converte il braccio in una forza. SostituendoF=ar nella relazioneM=Fr compareM=ar². Il rapportoM/a è 4 m² e la radice positiva dà 2 m."
+        },
+        {
+          "type": "formula",
+          "text": "a=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " F=ar"
+        },
+        {
+          "type": "formula",
+          "text": " M=ar^2"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=M/a"
+        },
+        {
+          "type": "formula",
+          "text": "M/a=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_-=-2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La soluzione fisica 2 m dàF=2 N eM=4 N·m. Il ramo negativo non è un braccio positivo e renderebbe negativo anche il modulo della forza nel vincolo. Quattro confonde r² conr; uno e tre non riproducono il momento."
+        }
+      ],
+      "hints": [
+        "Inserisci il coefficiente dimensionale e scegli la radice dei moduli positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La soluzione fisica 2 m dàF=2 N eM=4 N·m. Il ramo negativo non è un braccio positivo e renderebbe negativo anche il modulo della forza nel vincolo. Quattro confonde r² conr; uno e tre non riproducono il momento.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento e braccio perpendicolare",
+        "Modulo e verso di rotazione",
+        "Dimensioni e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "07da3e823c3a9a7da9aaa86aaee4b1e62193779dac269ec4288e0468f7306b8b",
+      "name": "torque-perpendicular-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPk1vbWVudG86YnJhY2Npbyxtb2R1bG8gZSB2ZXJzbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1vIGVzZW1waW86YnJhY2NpbyBkdWUgbWV0cmkgbHVuZ28gZHVlY2VudG8gcGl4ZWwsY2VudG8gcGl4ZWwgcGVyIG1ldHJvO2ZvcnphIHBlcnBlbmRpY29sYXJlIGR1ZSBuZXd0b24gbHVuZ2EgcXVhcmFudGEgcGl4ZWwsdmVudGkgcGl4ZWwgcGVyIG5ld3Rvbi4gUHVudG8gYSBkZXN0cmEgZGVsIGZ1bGNybyBlIGZvcnphIHZlcnNvIGzigJlhbHRvIGRhbm5vIG1vbWVudG8gYW50aW9yYXJpbyBwb3NpdGl2byBxdWF0dHJvIG5ld3RvbiBtZXRyby4gQ2FzbyBmaW5hbGUgZGlzdGludG86Zm9yemEgb3R0byBuZXd0b24gbHVuZ2EgY2VudG9zZXNzYW50YSBwaXhlbCBhbGxhIHN0ZXNzYSBzY2FsYSxjb24gcmV0dGEgZOKAmWF6aW9uZSBwYXNzYW50ZSBwZXIgaWwgZnVsY3JvLGJyYWNjaW8gcGVycGVuZGljb2xhcmUgemVybyBlIG1vbWVudG8gemVyby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEyNDAiIHJ4PSIyNCIgZmlsbD0iI2ZhZjhmMiIvPjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzIzZiI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBQZXJwZW5kaWNvbGFyZTogbGEgZGlzdGFuemEgw6ggaWwgYnJhY2NpbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkRpc3RhbnplOiAxMDAgcHgvbS4gRm9yemU6IDIwIHB4L04uPC90ZXh0PjxwYXRoIGQ9Ik0xNjAgMzAwSDM2MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxNjAiIGN5PSIzMDAiIHI9IjciIGZpbGw9IiMxNjMyM2YiLz48Y2lyY2xlIGN4PSIzNjAiIGN5PSIzMDAiIHI9IjQiIGZpbGw9IiMxNjMyM2YiLz48cGF0aCBkPSJNMzYwIDMwMFYyNjAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zNDAgMzAwVjI4MEgzNjAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSI0MDAiIHk9IjI3NiI+RiA9IDIgTjwvdGV4dD48dGV4dCB4PSIxMzUiIHk9IjM0MCI+TzwvdGV4dD48cGF0aCBkPSJNMTYwIDM2NUgzNjBNMTYwIDM1NVYzNzVNMzYwIDM1NVYzNzUiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjMwIiB5PSI0MTAiPnIgPSAyIG08L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0OTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgU2NlZ2xpIGlsIHNlZ25vIGRvcG8gbGEgZ2VvbWV0cmlhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI1NDUiPkluIHF1ZXN0byBlc2VtcGlvOiBhbnRpb3JhcmlvIHBvc2l0aXZvLjwvdGV4dD48cGF0aCBkPSJNMjEwIDY1MEE1MCA1MCAwIDAgMCAxNjAgNjAwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIyNjAiIHk9IjYzMCI+TV96ID0gKzQgTsK3bTwvdGV4dD48dGV4dCB4PSIyNjAiIHk9IjY3NSI+TW9kdWxvIE0gPSA0IE7Ct208L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc0NSI+TSA9IEYgci4gTm9uIMOoIHVuIGxhdm9ybyBnacOgIGNvbXBpdXRvLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjgzMCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDYXNvIHNlcGFyYXRvOiByZXR0YSBhdHRyYXZlcnNvIE88L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg4MCI+TGEgZm9yemEgcmVzdGEgbm9uIG51bGxhOiBGID0gOCBOLjwvdGV4dD48cGF0aCBkPSJNMTAwIDEwMDBINTcwIiBzdHJva2U9IiNiN2M3YmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNCA0Ii8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTAwMCIgcj0iNyIgZmlsbD0iIzE2MzIzZiIvPjxjaXJjbGUgY3g9IjM2MCIgY3k9IjEwMDAiIHI9IjUiIGZpbGw9IiMxNjMyM2YiLz48cGF0aCBkPSJNMzYwIDEwMDBINTIwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNDgiIHk9IjEwNDUiPk88L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIxMDc1Ij5wdW50byBkaSBhcHBsaWNhemlvbmU8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExMzAiPkJyYWNjaW8gcGVycGVuZGljb2xhcmUgYiA9IDA6IE0gPSBGIGIgPSAwLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE3NSI+TGEgcmV0dGEgZOKAmWF6aW9uZSBjb250aWVuZSBpbCBmdWxjcm8uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjE1IiBmb250LXNpemU9IjE4Ij5Gb3J6ZTogc3Rlc3NhIHNjYWxhIDIwIHB4L04gaW4gZW50cmFtYmkgZ2xpIGVzZW1waS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
