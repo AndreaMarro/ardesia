@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-oblique-work-01",
+      "sourceSha256": "7e1657c86327f8e6bd8935e8be41e2a6fd958eff63ee5c6efe1ea34df467b2bd",
+      "candidateSha256": "50d9d58e0ab7a0d8bd2254ebf6dd179a18d3c2246de6cf8ab319f50e3279dac8",
+      "reviewedSignature": "3a74b7eeb32cc1402a5d49643a81e1a708d20e19e83b0c8debb763ad3db91de7",
+      "assetChecksums": {
+        "oblique-work-progressive.svg": "c7edff368af80c950fb7477d5ffd930eb171a3eec28def4cae76e51b9616d080"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Forza( F/2,√3F/2), spostamento(s,0): prodotto scalareFs/2. ConF2N,s2m proiezione1N e lavoro2J. Coseno1/2 fornito, non valutazione numerica.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "4J omettecoseno,1J loapplicaduevolte. Lavorodellaforzaassegnata non lavorototalerichiestoperΔK.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Forza( F/2,√3F/2), spostamento(s,0): prodotto scalareFs/2. ConF2N,s2m proiezione1N e lavoro2J. Coseno1/2 fornito, non valutazione numerica.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-02",
+      "sourceSha256": "9733021214b5f4afac4e8a5fb7e81b3a94d3128632d7d60c66a77f7a2d23fc82",
+      "candidateSha256": "192e7d30d97ef6625d796a360a278b418f5cba4c04e32861333fea5fd45b11d1",
+      "reviewedSignature": "6156ff73ee6fcb815ebbf0eadefde39fafaaf878efc6b7dc4daf678b345b3314",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Coseno puro: lavoro N·m=J, dimensioneML²/T² anche se valore zero perangolo retto.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "N forza,W wattenergia/tempo,m/s velocità,1puro;coseno non cambia dimensione.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Coseno puro: lavoro N·m=J, dimensioneML²/T² anche se valore zero perangolo retto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-03",
+      "sourceSha256": "d54807740b1875d0a694ffa764b1302d52263dc3f55a3198b2f0c372e02f0243",
+      "candidateSha256": "71b07a5b92bb625582ccdfde0a279e3dbecad7f28ced7885734b80970fcc0165",
+      "reviewedSignature": "f837e64baf34c8095e7718518e34ebc5df0c7b6de2a095ff1101a0e4b1b061a8",
+      "assetChecksums": {
+        "oblique-work-progressive.svg": "c7edff368af80c950fb7477d5ffd930eb171a3eec28def4cae76e51b9616d080"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W=Fs/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "W=F·Δr=Fs cos60°=Fs/2. Solo proiezione parallela contribuisce; componentetrasversa ha spostamentonullo.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "Fs angolo0°,−Fs/2 angolo120°,Fs/4doppia proiezione,0angolo90°. Angolotraforza e spostamentodelpuntodiapplicazione.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. W=F·Δr=Fs cos60°=Fs/2. Solo proiezione parallela contribuisce; componentetrasversa ha spostamentonullo.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-04",
+      "sourceSha256": "cc8cc54fb026d7bba3b631619fcc5f91003def397267296cc776d1088cda0cb1",
+      "candidateSha256": "44297d26e22b4f225505c6a5ca406aaf3ec448e301a5f6e1b3ab9fce2295d33b",
+      "reviewedSignature": "6c52eb546a5f6072b7df7cc2525462a102839750e73f09c616d3216c77a9a3d7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 4 J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "F2→4N,s2m,cos1/2 invariati: W2→4J, rapporto2.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "8 raddoppiaanche soomettecosenoinB;1inverteeffettoF;negativoincompatibile angoloacuto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F2→4N,s2m,cos1/2 invariati: W2→4J, rapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-05",
+      "sourceSha256": "e5f97de7cef94760e762679e5f836ae377d265b50db90a5b3fa9affbd48897ff",
+      "candidateSha256": "a8e8bda50ba5e14a5f315d81bf8d328fce4cf3793e049d44adf33ef2b7a3759b",
+      "reviewedSignature": "6ace649e3be45cc3d8bb72a0f7ec0a76d96f2d7177fe50a00957b6ff2e1d595a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "F=2W/s=2·2J/(2m)=2N;W/s=1N sarebbe solaproiezione.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "1N soloproiezione;4N doppia correzione dell’inverso. Controllo2N·2m/2=2J.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=2W/s=2·2J/(2m)=2N;W/s=1N sarebbe solaproiezione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-06",
+      "sourceSha256": "5c82592f8fe1a865435925597ec78c7afc8aa45d9e2063bf01c5a194d8a91a20",
+      "candidateSha256": "3315dc6b88cc47d5e0200e835a36f0eedfebe8ba4a380a70a25b8de28672928a",
+      "reviewedSignature": "89d39a8af0555b90193aaa0e44fdeb62b4b25e7030fb063a9b03ea0050bd59b0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "s=2W/F=2·2J/(2N)=2m;W/F1m omette coseno.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "1m daW/F richiederebbe forza parallela;modulos positivo senza segnoorientato.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. s=2W/F=2·2J/(2N)=2m;W/F1m omette coseno.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-07",
+      "sourceSha256": "baa7ba95c526d60915f9983feedccfa9800dbbc7f6456a719a0c54f8ed49884b",
+      "candidateSha256": "68a302d944266b9883b6f89d8db37a6c28c3d19a8eb3edd83e6331c74e4fe5c2",
+      "reviewedSignature": "f181c3f67ce59e43ce133a879675d438e455de6674babd87db85775668f571b5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "F2N,s2→4m: W2→4J, rapporto2, medesimo coseno si cancella.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "1/2 inverso,4quadratoassente,1nessuncambiamento,−2 nonrapporto diduelavoripositivi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F2N,s2→4m: W2→4J, rapporto2, medesimo coseno si cancella.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-08",
+      "sourceSha256": "5d3e0eaef3150f378a8af2b9256c42d4a967aaab77806268380c4b95c1be3062",
+      "candidateSha256": "7385f0beac6a17df29033850bae337663a92b363237005af59716b0228e3bc39",
+      "reviewedSignature": "de5237ca77d6fdd3b9c4e035effc625a93b4eb7bbae5d5aa3c5144b24ae13ef6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "PropostaFs4J,correttoFs/2=2J;4−2=+2J.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "−2ordineinverso;4proposta;1altrametà;3sottrarrebbe numerodiforza a energia, dimensioni diverse.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. PropostaFs4J,correttoFs/2=2J;4−2=+2J.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-09",
+      "sourceSha256": "fa97ff6eb4ffb535734e885ed8a2a9e682a40f09439be2777e80dc1833489855",
+      "candidateSha256": "fd7e00aafa12041dffa47c5e2ac0c2844e222900de185c4bf7650cf002e2c2cf",
+      "reviewedSignature": "3bacbea5deb62f41993c3df394137b3fe6cf23379a5b16d7fbaa41ca9dfae82b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "F=2W/s",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "W=Fs/2→2W=Fs→F=2W/s>0; dimensioneJ/m=N.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "W/s soloFparallela;W/(2s)èquattrovoltepiùpiccolo,4W/sdoppio;s/(2W) inversoforza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. W=Fs/2→2W=Fs→F=2W/s>0; dimensioneJ/m=N.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-10",
+      "sourceSha256": "c0d4ba0ea5df70d1787ec8eb03567265f27dcd640b4985d51c0186c563a5d4f6",
+      "candidateSha256": "135e4b1e91a6eed226304adda987d416d6f3c44ca8ca261b8bb84c08dd5aac3c",
+      "reviewedSignature": "ae472a6b8bbe3c86593b13dc5ccfc469523e642e1d488f72d04ade10c0dce3fe",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "NuovoFs κ₁κ₂ volte; mezzo comune si cancella: W_B/W_A=κ₁κ₂, angolouguale necessario.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "Quozienti invertonouningresso;mezzo/doppiorestaerroneamentenelrapporto einvalidanoidentitàκ₁=κ₂=1.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. NuovoFs κ₁κ₂ volte; mezzo comune si cancella: W_B/W_A=κ₁κ₂, angolouguale necessario.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-11",
+      "sourceSha256": "56854688e2f8c9a26abe20beff45decbbdbd1681cd9120f1ccde8dacbb1dfa86",
+      "candidateSha256": "17a467e950cc605413caceb09a0d0bfa96054a3dce11d529a3de5e8804304774",
+      "reviewedSignature": "78b9a2ae3e35bb9603a323329f5984405415166c46097114412782f6f77e7c8c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "A2·2/2=2J;B4·4/2=8J;rapporto4. Valore8J nonrapportopuro.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "2unfattore solooconservailmezzo;8J singolalavoroB;1/4 rapporto inverso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A2·2/2=2J;B4·4/2=8J;rapporto4. Valore8J nonrapportopuro.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-12",
+      "sourceSha256": "74cacf3b645aa9297e9d38d9ac84a36b23179c091ec742ac143f9061f1c4f77f",
+      "candidateSha256": "a98a0f00aaf76e31f08fa44954469ae9debeafa904485697429c80e6bfbde98b",
+      "reviewedSignature": "43dc488691da413670fdae6b236f1a73e96f7e18c965b5344c81f765cffc6f1f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(2+8)/2=5J;prodottodati medi3N,3m con mezzo=9/2J, diverso da10/2J.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "10somma,5/2doppiadivisione,9/2modellodati medi,4/6 nonsemisomma esatta.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+8)/2=5J;prodottodati medi3N,3m con mezzo=9/2J, diverso da10/2J.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-13",
+      "sourceSha256": "45eba5a39dac35d9045ae1fdf0352d87df7f692137a66baa5b9260a8b665e0c9",
+      "candidateSha256": "caff99d61936334f54e933b35fcb0eaabad049783a2c432c45b27cfc00f56dcf",
+      "reviewedSignature": "b4c9706f0c2bcea8ab93c38c6b01100e8889d87c440724c74023035953b0a5a2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetW_B4·2=8J,F_B4N→s_B2·8/4=4m;su2m iniziali rapporto2.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "squadruplo eFdoppia→Wottuplo;suguale→Wdoppio;4mnuovi nonrapporto4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetW_B4·2=8J,F_B4N→s_B2·8/4=4m;su2m iniziali rapporto2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-14",
+      "sourceSha256": "1c62219587f2c897a6c85f7176e641003b34ac910fdcd7fbc78518731819ea8f",
+      "candidateSha256": "f1a35d3dd93183877ebcd3fbb11e53830a72c03f7c0bcc569f17636c1468de13",
+      "reviewedSignature": "627b13533ba16e44b6b045fbc915b92ec141c3d1a4c6b2439d38cda605cf6629",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Wref2J,Sref6→c3J⁻¹;S24→W8J;s4m→F2·8/4=4N.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "S24comeJ→F12N;W/s anchetarato dàproiezione2N nonmodulo4N.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Wref2J,Sref6→c3J⁻¹;S24→W8J;s4m→F2·8/4=4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-15",
+      "sourceSha256": "c5832b122d98d9b3f8bed7e06dc45ffffc3ddf73bf5d9242733baf13625c0a91",
+      "candidateSha256": "bba9381371e41b327a3e7a5d70e2daa5c4a81df50e877fc3c32408ce972474ab",
+      "reviewedSignature": "9d8d1f92ef3083e3166d8b6bdf1e47663628c97ae90b8a9593de2d3a4a69f90e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ΔS17−5=12,ΔW8−2=6J→c2J⁻¹;d1;S9→W4J;s2m→F4N.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori.",
+      "distractors": "F2,3,5,8N su2m dannoS5,7,11,17;solo4dà9. Offsetnoneliminabileconrapportigrezzi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS17−5=12,ΔW8−2=6J→c2J⁻¹;d1;S9→W4J;s2m→F4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-oblique-work-16",
+      "sourceSha256": "aa1045565d257b083a7e4f88656d46ef27a7d9f54b133f66ff80aa4e451dbe24",
+      "candidateSha256": "b8f5ae4a3bd884f896c3d81f31eae4a22389899bb4dc131737e4d8103c072acf",
+      "reviewedSignature": "149db93e16084a3f492dd8c90972ab0f9b6012aab8345383b4f7061dada299c4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "F=cs,c1N/m fra prove→W=cs²/2=2J→s²4m²;rami±2m,solo+2 ammesso,F2N. Nonforza variabile con posizionedurante singolaprova.",
+      "physicalAssumptions": "Forza costante, spostamento rettilineo positivo del suo punto di applicazione, angolo60° e cos60°=1/2 fornito. Lavoro della sola forza assegnata; F,s>0 e W>0 in questo angoloacuto. Riferimento inerziale ove dichiarato; nessuna deduzione automatica suΔK senza altri lavori. VincoloF=(1N/m)s collega proveseparate, conFcostante dentroogniprova; non leggediHooke lungo unpercorso.",
+      "distractors": "Ramo−2 vietato siaFches;4confondequadrato;1/3 nonricostruisconoW2J. Nessunaintegrazionediforzacrescenteammessa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F=cs,c1N/m fra prove→W=cs²/2=2J→s²4m²;rami±2m,solo+2 ammesso,F2N. Nonforza variabile con posizionedurante singolaprova.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_scalar_product_projection",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b7c82e25f4b34259d255a4efb67a8a854e9fc82653175774bea204784b632485",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "a39ae3935b9156c064ff80dfec84691f4c821b5d",
+  "packageSha256": "3adc59b4f25e11d3d626e2e4ca869ca5730f958e096626b13f6a9bffd0fa5946",
+  "bindingsSha256": "bdfeb526028b93e570b142fa13bb980b02b57ef2c14d2cd2f196e222581583ab",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-04.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

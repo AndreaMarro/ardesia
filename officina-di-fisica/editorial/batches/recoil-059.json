@@ -1,0 +1,1172 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-recoil-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5921,
+      "title": "Somma finale nulla, velocità opposte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Con m=2 kg e v=2 m/s, quanto vale U in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto totale iniziale è zero. Dopo l’emissione il corpo porta +mv e il dispositivo −MU: la loro somma deve restare nulla. Isolando il modulo del rinculo otteniamo U=mv/M. Quattro kg·m/s del corpo emesso richiedono −4 kg·m/s del residuo, quindi U=2 m/s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8773bd6c2ed32ae653c08ba8605557f024955b89ad45be20f15ccaa67331a040",
+          "text": "Esempio m=M=2kg: prima sistema4kg fermo, poi corpo emesso+2m/s e residuo−2m/s nel laboratorio. Velocità con frecce100px a50px per m/s. Quantità di moto+4 e−4kg·m/s, frecce120px a30px per kg·m/s in pannello distinto, totale0. K finale8J da energia interna nel modello senza lavoro esterno. Geometria dei corpi schematica, nessuna scala delle masse."
+        },
+        {
+          "type": "formula",
+          "text": "mv-MU=0"
+        },
+        {
+          "type": "formula",
+          "text": " MU=mv"
+        },
+        {
+          "type": "formula",
+          "text": " U=mv/M"
+        },
+        {
+          "type": "formula",
+          "text": " U=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La velocità orientata del dispositivo è −2 m/s, mentre il suo modulo U è positivo. Le energie cinetiche finali sono 4 J per il corpo e 4 J per il residuo: gli 8 J complessivi provengono dall’energia interna nel modello senza lavoro esterno, non da una quantità di moto iniziale nascosta. La sola energia cinetica non si conserva."
+        }
+      ],
+      "hints": [
+        "Imponi quantità di moto totale zero usando +v e −U.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La velocità orientata del dispositivo è −2 m/s, mentre il suo modulo U è positivo. Le energie cinetiche finali sono 4 J per il corpo e 4 J per il residuo: gli 8 J complessivi provengono dall’energia interna nel modello senza lavoro esterno, non da una quantità di moto iniziale nascosta. La sola energia cinetica non si conserva.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5922,
+      "title": "La dimensione del modulo di rinculo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 1,
+      "prompt": "In un sistema inizialmente fermo e con impulso esterno nullo, dopo l’emissione U=mv/M. m e M sono masse e v è la rapidità del corpo emesso nel laboratorio. Quale unità SI esprime U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg·m/s",
+          "m/s",
+          "N",
+          "J",
+          "kg"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto mv è divisa per la massa residua M. Si cancellano i chilogrammi e rimangono metri al secondo. Il rapporto m/M è puro e cambia il valore della velocità, non la sua dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[mv]=ML/T"
+        },
+        {
+          "type": "formula",
+          "text": " [M]=M"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=L/T"
+        },
+        {
+          "type": "text",
+          "text": "kg·m/s sarebbe la quantità di moto da equilibrare; N è forza, J energia e kg massa. Il segno negativo della componente del rinculo non ne cambia l’unità. U è una rapidità, non la quantità di moto totale che qui resta zero."
+        }
+      ],
+      "hints": [
+        "Dividi una quantità di moto per la massa del residuo.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg·m/s sarebbe la quantità di moto da equilibrare; N è forza, J energia e kg massa. Il segno negativo della componente del rinculo non ne cambia l’unità. U è una rapidità, non la quantità di moto totale che qui resta zero.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5923,
+      "title": "Il modulo non porta il meno della componente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Quale formula dà U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U=mv/M",
+          "U=−mv/M",
+          "U=mv/(M+m)",
+          "U=Mv/m",
+          "U=mv"
+        ],
+        "value": "U=mv/M"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio orientato è mv+M(−U)=0. Il termine negativo indica il verso del residuo; portandolo dall’altro lato MU=mv e dividendo per M>0 troviamo un modulo positivo. La massa al denominatore è quella residua dopo l’emissione, già data come M."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8773bd6c2ed32ae653c08ba8605557f024955b89ad45be20f15ccaa67331a040",
+          "text": "Esempio m=M=2kg: prima sistema4kg fermo, poi corpo emesso+2m/s e residuo−2m/s nel laboratorio. Velocità con frecce100px a50px per m/s. Quantità di moto+4 e−4kg·m/s, frecce120px a30px per kg·m/s in pannello distinto, totale0. K finale8J da energia interna nel modello senza lavoro esterno. Geometria dei corpi schematica, nessuna scala delle masse."
+        },
+        {
+          "type": "formula",
+          "text": "mv+M(-U)=0"
+        },
+        {
+          "type": "formula",
+          "text": " MU=mv"
+        },
+        {
+          "type": "formula",
+          "text": " U=mv/M"
+        },
+        {
+          "type": "text",
+          "text": "−mv/M sarebbe la componente del dispositivo, non il modulo U. M+m al denominatore non descrive questo dato v: la rapidità emessa è nel laboratorio, non relativa al dispositivo. Mv/m scambia le masse; mv da solo ha dimensione quantità di moto. La massa iniziale M+m non è la massa che rincula dopo."
+        }
+      ],
+      "hints": [
+        "Usa la massa residua e tieni distinto il verso dal modulo.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "−mv/M sarebbe la componente del dispositivo, non il modulo U. M+m al denominatore non descrive questo dato v: la rapidità emessa è nel laboratorio, non relativa al dispositivo. Mv/m scambia le masse; mv da solo ha dimensione quantità di moto. La massa iniziale M+m non è la massa che rincula dopo.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5924,
+      "title": "Più massa emessa con residuo uguale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 1,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Fra prove distinte M resta 2 kg,v=2 m/s e m passa da 2 a 4 kg. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 m/s",
+          "Resta 2 m/s",
+          "Da 2 a 8 m/s",
+          "Da 2 a 1 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto emessa raddoppia da quattro a otto kg·m/s. Per equilibrare il nuovo valore con la stessa massa residua due chilogrammi, il modulo del rinculo raddoppia. La massa iniziale complessiva è diversa fra prove, ma M è già la stessa massa finale assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{e,B}=8\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto confonderebbe quantità di moto e rapidità; uno inverte l’effetto di m. Non si deve ridurre M sottraendo ancora m: M è dichiarata residua. Con m>M è ammissibile U>v, come qui 4>2 m/s; non è l’urto contro un bersaglio fermo che impone un’uscita inferiore alla velocità incidente."
+        }
+      ],
+      "hints": [
+        "Mantieni M=2 kg al denominatore e cambia soltanto m.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto confonderebbe quantità di moto e rapidità; uno inverte l’effetto di m. Non si deve ridurre M sottraendo ancora m: M è dichiarata residua. Con m>M è ammissibile U>v, come qui 4>2 m/s; non è l’urto contro un bersaglio fermo che impone un’uscita inferiore alla velocità incidente.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5925,
+      "title": "Ricostruire la massa emessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Si misura U=2 m/s e si conosce v=2 m/s nel laboratorio. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da MU=mv dividiamo per v>0. Il rapporto delle rapidità è puro e moltiplica la massa residua: m=M U/v. Qui U=v, perciò le due masse finali devono essere uguali e m=2 kg."
+        },
+        {
+          "type": "formula",
+          "text": "m=MU/v"
+        },
+        {
+          "type": "formula",
+          "text": " m=(2\\,\\mathrm{kg})\\frac{2\\,\\mathrm{m/s}}{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo m v=4 kg·m/s e M(−U)=−4 kg·m/s dà totale zero. Non serve una legge di conservazione dell’energia cinetica: l’energia interna alimenta l’emissione e non è stata assegnata come vincolo numerico aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Dividi la quantità di moto del residuo per la rapidità emessa nel laboratorio.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo m v=4 kg·m/s e M(−U)=−4 kg·m/s dà totale zero. Non serve una legge di conservazione dell’energia cinetica: l’energia interna alimenta l’emissione e non è stata assegnata come vincolo numerico aggiuntivo.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5926,
+      "title": "Ricostruire la rapidità nel laboratorio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Si misura U=2 m/s e si conosce m=2 kg. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza dei moduli delle quantità di moto è mv=MU. Dividendo per m positivo otteniamo v=MU/m. Con le due masse entrambe due chilogrammi il rapporto vale uno e la rapidità emessa nel laboratorio è due metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "v=MU/m"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La rapidità relativa del corpo rispetto al dispositivo sarebbe v+U=4 m/s, perché i versi sono opposti. È una grandezza diversa da quella richiesta, riferita al laboratorio. Usare quattro come v cambierebbe la quantità di moto emessa e non restituirebbe il rinculo assegnato."
+        }
+      ],
+      "hints": [
+        "Mantieni v riferita al laboratorio, non al dispositivo che si muove.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La rapidità relativa del corpo rispetto al dispositivo sarebbe v+U=4 m/s, perché i versi sono opposti. È una grandezza diversa da quella richiesta, riferita al laboratorio. Usare quattro come v cambierebbe la quantità di moto emessa e non restituirebbe il rinculo assegnato.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5927,
+      "title": "Rapidità emessa doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Con m=M=2 kg, v passa da 2 a 4 m/s fra prove. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto m/M resta uno, quindi U segue linearmente la rapidità emessa nel laboratorio. Le due rapidità di rinculo sono due e quattro metri al secondo. Il loro rapporto è due, mentre le componenti orientate del dispositivo sono entrambe negative."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto; quattro importa il quadrato dell’energia cinetica; uno ignora la nuova v. Il rapporto −2 non confronta due moduli positivi. La direzione del rinculo resta opposta al corpo emesso."
+        }
+      ],
+      "hints": [
+        "Con le masse fisse confronta i due valori di v.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Un mezzo inverte il rapporto; quattro importa il quadrato dell’energia cinetica; uno ignora la nuova v. Il rapporto −2 non confronta due moduli positivi. La direzione del rinculo resta opposta al corpo emesso.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5928,
+      "title": "Scarto di una proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Con m=2 kg,v=2 m/s si propone U_proposto=4 m/s. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+2 m/s",
+          "−2 m/s",
+          "+4 m/s",
+          "0 m/s",
+          "+1 m/s"
+        ],
+        "value": "+2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto emessa è quattro kg·m/s, da dividere per i due chilogrammi residui: U=2 m/s. La proposta quattro supera il corretto di due metri al secondo. Lo scarto è positivo anche se la componente del rinculo lungo x è negativa."
+        },
+        {
+          "type": "formula",
+          "text": "U=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−2 cambia l’ordine della sottrazione; quattro ripete la proposta, zero la accetta e uno dimezza ancora lo scarto. Un rinculo di modulo quattro darebbe −8 kg·m/s al residuo contro +4 kg·m/s emessi: non conserverebbe la quantità di moto totale iniziale zero."
+        }
+      ],
+      "hints": [
+        "Dividi mv per M e poi confronta i due moduli.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−2 cambia l’ordine della sottrazione; quattro ripete la proposta, zero la accetta e uno dimezza ancora lo scarto. Un rinculo di modulo quattro darebbe −8 kg·m/s al residuo contro +4 kg·m/s emessi: non conserverebbe la quantità di moto totale iniziale zero.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5929,
+      "title": "L’inversa conserva una massa dimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Quale formula isola m dalla relazione U=mv/M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=MU/v",
+          "m=Uv/M",
+          "m=Mv/U",
+          "m=−MU/v",
+          "m=U/v"
+        ],
+        "value": "m=MU/v"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per M per ricostruire la quantità di moto del residuo e dividiamo per la rapidità positiva v. L’unità di velocità si cancella nel rapporto U/v, mentre M porta la dimensione di massa."
+        },
+        {
+          "type": "formula",
+          "text": "MU=mv"
+        },
+        {
+          "type": "formula",
+          "text": " MU/v=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=MU/v"
+        },
+        {
+          "type": "text",
+          "text": "Uv/M ha dimensioni diverse da massa; Mv/U scambia il rapporto dei moduli. Il meno non appartiene a un’inversa tra grandezze positive. U/v da solo sarebbe puro, perché il fattore M=2 kg non è il semplice numero due."
+        }
+      ],
+      "hints": [
+        "Mantieni M con l’unità kg e dividi per v.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uv/M ha dimensioni diverse da massa; Mv/U scambia il rapporto dei moduli. Il meno non appartiene a un’inversa tra grandezze positive. U/v da solo sarebbe puro, perché il fattore M=2 kg non è il semplice numero due.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5930,
+      "title": "Due cambiamenti con la massa residua fissa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. B usa m_B=κ₁m e v_B=κ₂v, con κ₁,κ₂>0 e m,v riferiti ad A; M resta 2 kg e entrambe le prove sono classiche. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge contiene il prodotto m v diviso per una massa residua che non cambia. Nel rapporto delle due uscite si cancellano M e i dati della prima prova; resta il prodotto dei due fattori di scala. Non viene scalata la massa iniziale M+m al posto di quella residua."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=mv/M"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=\\kappa_1\\kappa_2mv/M"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti attribuiscono a un ingresso un effetto inverso; il quadrato su κ₂ non appartiene al bilancio della quantità di moto. La somma darebbe due per prove identiche. Se anche M cambiasse, servirebbe un ulteriore fattore al denominatore, qui non richiesto."
+        }
+      ],
+      "hints": [
+        "Scala il numeratore mv e lascia M invariata.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "I quozienti attribuiscono a un ingresso un effetto inverso; il quadrato su κ₂ non appartiene al bilancio della quantità di moto. La somma darebbe due per prove identiche. Se anche M cambiasse, servirebbe un ulteriore fattore al denominatore, qui non richiesto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5931,
+      "title": "Due raddoppi nell’emissione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. A ha m=2 kg,v=2 m/s; B ha m=4 kg,v=4 m/s. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce U_A=2 m/s. In B la quantità di moto emessa è 16 kg·m/s; divisa per M=2 kg dà U_B=8 m/s. Il rapporto è quattro, prodotto dei due raddoppi di massa emessa e rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto un raddoppio; otto è il numero della rapidità B, non il rapporto. Non va imposto U_B<v_B: il residuo è più leggero della massa emessa e può avere rapidità maggiore restando nel regime classico assegnato."
+        }
+      ],
+      "hints": [
+        "Dividi 16 kg·m/s per la massa residua prima di fare il rapporto.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto un raddoppio; otto è il numero della rapidità B, non il rapporto. Non va imposto U_B<v_B: il residuo è più leggero della massa emessa e può avere rapidità maggiore restando nel regime classico assegnato.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5932,
+      "title": "Media dei moduli di rinculo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 2,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. A usa m=2 kg,v=2 m/s; B usa m=4 kg,v=4 m/s. Qual è la media aritmetica di U_A,U_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 m/s",
+          "10 m/s",
+          "5/2 m/s",
+          "9/2 m/s",
+          "6 m/s"
+        ],
+        "value": "5 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due moduli sono due e otto metri al secondo. La semisomma è cinque metri al secondo. La domanda non somma le componenti di rinculo di due dispositivi presenti insieme: media due intensità di prove distinte."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=\\frac{2+8}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci è la somma, 5/2 dimezza ancora e sei è la differenza. Gli ingressi medi m=3 kg,v=3 m/s darebbero U=9/2 m/s, diverso da cinque. La differenza è esattamente un mezzo, senza ricorrere a decimali."
+        }
+      ],
+      "hints": [
+        "Media le rapidità già ottenute dal rispettivo bilancio.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Dieci è la somma, 5/2 dimezza ancora e sei è la differenza. Gli ingressi medi m=3 kg,v=3 m/s darebbero U=9/2 m/s, diverso da cinque. La differenza è esattamente un mezzo, senza ricorrere a decimali.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5933,
+      "title": "Scegliere la rapidità dell’emissione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. A ha m_A=2 kg,v_A=2 m/s. Si sceglie m_B=4 kg e si vuole U_B=4U_A. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rinculo iniziale è due metri al secondo e l’obiettivo otto. La quantità di moto del residuo ha modulo M U_B=16 kg·m/s. Divisa per i quattro chilogrammi emessi dà v_B=4 m/s nel laboratorio; il rapporto ai due iniziali è due."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=MU_B/m_B"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare v a due darebbe U_B=4 m/s, soltanto il doppio di A. Quadruplicarla con massa emessa doppia darebbe otto volte il rinculo iniziale. Quattro m/s è una rapidità, non il rapporto quattro."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la quantità di moto opposta del corpo emesso e dividila per m_B.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare v a due darebbe U_B=4 m/s, soltanto il doppio di A. Quadruplicarla con massa emessa doppia darebbe otto volte il rinculo iniziale. Quattro m/s è una rapidità, non il rapporto quattro.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5934,
+      "title": "Taratura prima della massa emessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Un display continuo adimensionale legge S=qU, con q>0 costante e offset nullo. Il riferimento m=2 kg,v=2 m/s dà S=6. Una prova con v=4 m/s dà S=24. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha U=2 m/s e quindi q=3 s/m. La lettura 24 corrisponde a U=8 m/s. La massa emessa è m=M U/v=(2 kg)·8/4=4 kg. L’inversa usa sempre la rapidità emessa nel laboratorio."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " U=24/q"
+        },
+        {
+          "type": "formula",
+          "text": " U=8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m=MU/v"
+        },
+        {
+          "type": "formula",
+          "text": " m=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 24 come metri al secondo darebbe dodici chilogrammi, lasciando il guadagno spurio tre. Con m=4,v=4,M=2 si trova U=8 e S=24. La taratura non misura direttamente la massa."
+        }
+      ],
+      "hints": [
+        "Decodifica U e poi applica la massa residua nell’inversa.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 24 come metri al secondo darebbe dodici chilogrammi, lasciando il guadagno spurio tre. Con m=4,v=4,M=2 si trova U=8 e S=24. La taratura non misura direttamente la massa.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5935,
+      "title": "Display affine del rinculo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Un display continuo adimensionale legge S=qU+b, con q>0,b costanti. A: m=2 kg,v=2 m/s,S=5. B: m=4 kg,v=4 m/s,S=17. C: v=2 m/s,S=9. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno U=2 e 8 m/s. La differenza delle letture dodici divisa per sei metri al secondo dà q=2 s/m; poi b=1. La lettura nove dà U_C=(9−1)/2=4 m/s. Con v_C=2 m/s l’inversa ricostruisce m_C=4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=(9-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Le masse 2,3,5,8 kg con v=2 m/s darebbero letture 5,7,11,17: nessuna è nove. Il rapporto delle letture grezze non elimina b; la lettura va prima corretta e poi divisa per q."
+        }
+      ],
+      "hints": [
+        "Usa i due riferimenti per eliminare l’offset prima dell’inversa fisica.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le masse 2,3,5,8 kg con v=2 m/s darebbero letture 5,7,11,17: nessuna è nove. Il rapporto delle letture grezze non elimina b; la lettura va prima corretta e poi divisa per q.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-recoil-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5936,
+      "title": "Un vincolo fra massa emessa e rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "recoil",
+      "difficulty": 3,
+      "prompt": "Nel riferimento inerziale del laboratorio un dispositivo con il corpo da emettere è inizialmente fermo. Il sistema comprende entrambi. Dopo una singola emissione il corpo ha massa m>0 e velocità +v verso destra nel laboratorio, v>0; il dispositivo residuo ha massa fissa M=2 kg e velocità −U, con U>0 modulo del rinculo. Impulso e lavoro esterni durante l’emissione sono trascurati; le velocità sono nel regime classico e l’energia interna disponibile può alimentare l’emissione. La massa iniziale complessiva è M+m. Si selezionano prove con m=cv, dove c=1 kg·s/m è fisso. m resta costante durante ogni emissione; il vincolo collega prove distinte. Se U=2 m/s, quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo m=cv nel rinculo si ottiene U=cv²/M. Isoliamo il quadrato v²=M U/c: le unità danno m²/s² e il valore è quattro. La radice positiva è due metri al secondo; segue m=cv=2 kg."
+        },
+        {
+          "type": "formula",
+          "text": "U=cv^2/M"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=MU/c"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è la rapidità v positiva e renderebbe negativa m nel vincolo; non rappresenta il rinculo, già descritto dalla componente −U del residuo. Con v=1 m/s si avrebbe U=1/2 m/s, con tre U=9/2 m/s. La coppia v=2,m=2 riproduce U=2 e il totale delle quantità di moto zero."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo conservando M e c con le loro unità prima della radice.",
+        "Somma mv e −MU nel laboratorio; M è la massa residua già assegnata."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il ramo negativo non è la rapidità v positiva e renderebbe negativa m nel vincolo; non rappresenta il rinculo, già descritto dalla componente −U del residuo. Con v=1 m/s si avrebbe U=1/2 m/s, con tre U=9/2 m/s. La coppia v=2,m=2 riproduce U=2 e il totale delle quantità di moto zero.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Rinculo di un sistema inizialmente fermo",
+        "Massa residua e velocità nel laboratorio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8773bd6c2ed32ae653c08ba8605557f024955b89ad45be20f15ccaa67331a040",
+      "name": "recoil-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlJpbmN1bG86IHF1YW50aXTDoCBkaSBtb3RvIG9wcG9zdGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EaXNwb3NpdGl2byBpbml6aWFsbWVudGUgZmVybW8gZGkgbWFzc2EgY29tcGxlc3NpdmEgcXVhdHRybyBjaGlsb2dyYW1taS4gRG9wbyBs4oCZZW1pc3Npb25lIHJpbWFuZ29ubyBkdWUgY2hpbG9ncmFtbWkgZSBpbCBjb3JwbyBlbWVzc28gaGEgZHVlIGNoaWxvZ3JhbW1pLiBOZWwgbGFib3JhdG9yaW8gaWwgY29ycG8gdmEgYSBkZXN0cmEgYSBkdWUgbWV0cmkgYWwgc2Vjb25kbyBlIGlsIHJlc2lkdW8gYSBzaW5pc3RyYSBhIGR1ZS4gUXVhbnRpdMOgIGRpIG1vdG8gcGnDuSBlIG1lbm8gcXVhdHRybyBzaSBhbm51bGxhbm8uIEzigJllbmVyZ2lhIGNpbmV0aWNhIGZpbmFsZSB0b3RhbGUgb3R0byBqb3VsZSBwcm92aWVuZSBkYWxs4oCZZW5lcmdpYSBpbnRlcm5hIGRpc3BvbmliaWxlIG5lbCBtb2RlbGxvIHNlbnphIGxhdm9ybyBlc3Rlcm5vLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzIwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4Mzc0NiI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgdHV0dG8gaWwgc2lzdGVtYSDDqCBmZXJtbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODgiPlNpc3RlbWE6IGRpc3Bvc2l0aXZvIHJlc2lkdW8gcGnDuSBjb3JwbyBkYSBlbWV0dGVyZS48L3RleHQ+PHJlY3QgeD0iMjIwIiB5PSIxNjUiIHdpZHRoPSIxNjAiIGhlaWdodD0iODAiIGZpbGw9IiNjZmU0ZTUiIHN0cm9rZT0iIzE4Mzc0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMzE1IiB5PSIxODUiIHdpZHRoPSI0NSIgaGVpZ2h0PSI0MCIgZmlsbD0iI2U3ZDhiZiIgc3Ryb2tlPSIjMTgzNzQ2Ii8+PHRleHQgeD0iMjUwIiB5PSIxNDUiPnZfaW5pemlhbGUgPSAwPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzMDUiPk0gKyBtID0gMiArIDIgPSA0IGtnOyBwX3RvdCxpID0gMC48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSIzODUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IERvcG8gdXNhIHZlbG9jaXTDoCBuZWxsbyBzdGVzc28gbGFib3JhdG9yaW88L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQzMCI+QXNzZSAreCBhIGRlc3RyYS4gSW1wdWxzbyBlc3Rlcm5vIG51bGxvLjwvdGV4dD48cGF0aCBkPSJNMTgwIDU0NUg4MCIgc3Ryb2tlPSIjYjg0ZTMyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNNDYwIDU0NUg1NjAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iNDUiIHk9IjUwNSI+4oiSVSA9IOKIkjIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQyNSIgeT0iNTA1Ij4rdiA9ICsyIG0vczwvdGV4dD48cmVjdCB4PSIxMjAiIHk9IjU4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2NmZTRlNSIgc3Ryb2tlPSIjMTgzNzQ2Ii8+PHJlY3QgeD0iNDMwIiB5PSI1ODAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2U3ZDhiZiIgc3Ryb2tlPSIjMTgzNzQ2Ii8+PHRleHQgeD0iMTE1IiB5PSI2ODAiPk0gPSAyIGtnPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iNjgwIj5tID0gMiBrZzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzM1Ij5WZWxvY2l0w6A6IDUwIHB4IHBlciBtL3MuIHYgw6ggcmlmZXJpdGEgYWwgbGFib3JhdG9yaW8uPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iODE1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBJIGNvbnRyaWJ1dGkgb3JpZW50YXRpIHNpIGNhbmNlbGxhbm88L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg2MCI+UXVhbnRpdMOgIGRpIG1vdG86IDMwIHB4IHBlciBrZ8K3bS9zLjwvdGV4dD48cGF0aCBkPSJNMzIwIDkzNUg0NDAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iNjUiIHk9Ijk0MiI+cF9lbWVzc28gPSArNCBrZ8K3bS9zPC90ZXh0PjxwYXRoIGQ9Ik0zMjAgMTAzMEgyMDAiIHN0cm9rZT0iI2I4NGUzMiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMzUwIiB5PSIxMDM3Ij5wX3Jlc2lkdW8gPSDiiJI0IGtnwrdtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExMjAiPnBfdG90LGYgPSArNCDiiJIgNCA9IDAuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTcwIj5LIGZpbmFsZSA9IDQgKyA0ID0gOCBKOyBLIGluaXppYWxlID0gMC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyMjAiPkdsaSA4IEogcHJvdmVuZ29ubyBkYWxs4oCZZW5lcmdpYSBpbnRlcm5hIGRpc3BvbmliaWxlLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTI3NSIgZm9udC1zaXplPSIxOCI+Q29ycGkgc2NoZW1hdGljaTsgc2NhbGUgZGl2ZXJzZSBwZXIgdmVsb2NpdMOgIGUgcXVhbnRpdMOgIGRpIG1vdG8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

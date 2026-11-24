@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1080" role="img" aria-labelledby="title desc">
+<title id="title">Concordi, ortogonali e discordi: il segno conta</title>
+<desc id="desc">Tre confronti di vettori geometrici adimensionali di modulo uno alla stessa scala. A punta sempre a destra; B prima coincide con A, poi punta in alto, poi a sinistra. I prodotti scalari sono uno, zero e meno uno; le aree dei parallelogrammi sono zero, uno e zero. Le frecce dei vettori concordi coincidono, quelle ortogonali formano un quadrato.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0 0L7 3.5L0 7Z" fill="#241e35"/></marker></defs>
+<rect width="640" height="1080" fill="#faf8f0"/>
+<g fill="#241e35" font-family="Georgia,serif" font-size="23">
+<text x="30" y="43" font-size="27" font-weight="bold">1 · Paralleli concordi</text>
+<text x="30" y="85">A = (1, 0); B = (1, 0); α = 0.</text>
+<path d="M140 150h120" stroke="#241e35" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="140" cy="150" r="4"/><text x="186" y="130">A, B</text>
+<text x="30" y="205">Le due frecce coincidono.</text>
+<text x="30" y="245">Proiezione su A: +1; A · B = +1.</text>
+<text x="30" y="285">Area del parallelogramma: 0.</text>
+<path d="M30 320h580" stroke="#8b8298"/>
+<text x="30" y="365" font-size="27" font-weight="bold">2 · Ortogonali</text>
+<text x="30" y="405">A = (1, 0); B = (0, 1); α = π/2.</text>
+<rect x="140" y="445" width="120" height="120" fill="#ded7ed" stroke="#8b8298" stroke-width="1"/>
+<path d="M140 565h120" fill="none" stroke="#241e35" stroke-width="3" marker-end="url(#arrow)"/><path d="M140 565v-120" fill="none" stroke="#241e35" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M140 545h20v20" fill="none" stroke="#241e35" stroke-width="2"/>
+<text x="204" y="595">A</text><text x="105" y="510">B</text>
+<text x="30" y="640">Proiezione su A: 0; A · B = 0.</text>
+<text x="30" y="680">Area del parallelogramma: 1.</text>
+<path d="M30 713h580" stroke="#8b8298"/>
+<text x="30" y="756" font-size="27" font-weight="bold">3 · Paralleli discordi</text>
+<text x="30" y="797">A = (1, 0); B = (−1, 0); α = π.</text>
+<path d="M320 850h120" fill="none" stroke="#241e35" stroke-width="3" marker-end="url(#arrow)"/><path d="M320 850h-120" fill="none" stroke="#241e35" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="320" cy="850" r="4"/><text x="373" y="833">A</text><text x="245" y="833">B</text>
+<text x="30" y="899">Proiezione su A: −1; A · B = −1.</text>
+<text x="30" y="939">Area del parallelogramma: 0.</text>
+<text x="30" y="990" font-size="19">Moduli unitari; scala comune 120px per unità.</text>
+<text x="30" y="1022" font-size="19">Massimo e minimo con segno sono diversi.</text>
+<text x="30" y="1054" font-size="19">Il modulo della proiezione nei paralleli è sempre 1.</text>
+</g></svg>

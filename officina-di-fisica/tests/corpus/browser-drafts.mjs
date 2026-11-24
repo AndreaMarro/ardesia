@@ -69,7 +69,15 @@ try {
    const images=preview.locator('img');
    const figureCount=await images.count();
    assert.ok(figureCount>=[...(row.blocks||[]),...(row.promptBlocks||[])].filter(b=>b.type==='figure').length,'Every authored figure is rendered');
-   for(const img of await images.all()) await img.evaluate(el=>el.decode());
+   // Long lessons keep later figures lazy until the reader reaches them.
+   for(const img of await images.all()){
+    await img.scrollIntoViewIfNeeded();
+    await img.evaluate(async el=>{
+     let timer;
+     try{await Promise.race([el.decode(),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Figure decode timeout')),15000);})]);}
+     finally{clearTimeout(timer);}
+    });
+   }
    await page.addScriptTag({path:path.join(root,'node_modules/axe-core/axe.min.js')});
    const result=await preview.evaluate(async el=>({
     violations:(await axe.run(el,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}})).violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)})),

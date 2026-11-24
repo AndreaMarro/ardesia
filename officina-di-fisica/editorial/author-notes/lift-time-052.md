@@ -19,3 +19,7 @@ senza failure su1440/768/320, asset403perguest, formule e figure rese. Import16n
 bozze e0scritturealla ripetizione,991pubblicati/live/storico invariati inSQLite di
 prova. Questi sono controlli strutturali dell'autore. Revisione scientifica distinta
 in corso, nessuna approvazione propria/umana o pubblicazione.
+
+Dopo review, chiarito nell'ID06 che40J sono l'energia utile totale del tratto, per
+non confonderla con tutte le energie del dispositivo. Altri15record invariati.
+Rieseguiti48casi browser e import ripetuto sulla versione lessicale finale: PASS.

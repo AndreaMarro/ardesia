@@ -1,0 +1,1161 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-momentum-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5621,
+      "title": "La massa moltiplica il vettore velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Con m=2 kg e v=2 m/s, quanto vale p in kg·m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg·m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto vettoriale è massa per velocità. Con l’asse scelto la componente è positiva e coincide numericamente con il modulo. Due chilogrammi per due metri al secondo danno quattro kg·m/s. La massa resta un fattore: la quantità di moto non è la sola rapidità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b4644635f8887ef7662dfdfa5c0518bcac85e3b9094d3e563ee141a73ae64ed6",
+          "text": "Esempio v_x=+2 m/s: con m=2 kg si ha p_x=+4 kg·m/s, con m=4 kg si ha p_x=+8 kg·m/s. Velocità a40px per m/s; quantità di moto a30px per kg·m/s in pannello distinto (120 e240px). Ultimo pannello autonomo: m2kg,v_x−2m/s dà p_x−4kg·m/s ma modulo p4kg·m/s. Asse spaziale fissato verso destra anche quando il moto si inverte."
+        },
+        {
+          "type": "formula",
+          "text": "p_x=mv_x"
+        },
+        {
+          "type": "formula",
+          "text": " p_x=(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": " p_x=+4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Una particella più pesante alla stessa rapidità avrebbe maggiore quantità di moto. L’energia cinetica usa invece mv²/2 e ha un’altra dimensione: l’eventuale uguaglianza dei numeri in un caso non rende uguali le grandezze. La quantità di moto può cambiare se agisce un impulso esterno."
+        }
+      ],
+      "hints": [
+        "Moltiplica la massa per la velocità, conservando direzione e unità.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Una particella più pesante alla stessa rapidità avrebbe maggiore quantità di moto. L’energia cinetica usa invece mv²/2 e ha un’altra dimensione: l’eventuale uguaglianza dei numeri in un caso non rende uguali le grandezze. La quantità di moto può cambiare se agisce un impulso esterno.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5622,
+      "title": "Una sola velocità, non il suo quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 1,
+      "prompt": "Per una particella classica la quantità di moto ha modulo p=mv, con m in kg e rapidità v in m/s. Quale unità proposta è adatta a p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg·m/s",
+          "kg·m/s²",
+          "kg·m²/s²",
+          "m/s",
+          "kg"
+        ],
+        "value": "kg·m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto contiene una massa e una velocità, quindi kg·m/s. Non compare il quadrato di v. Questa unità è equivalente a N·s, perché l’impulso della risultante misura una variazione di quantità di moto, ma tra le alternative si sceglie una sola espressione dimensionalmente corretta."
+        },
+        {
+          "type": "formula",
+          "text": "[p]=ML/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{kg\\,m/s}=\\mathrm{N\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "kg·m/s² è un newton e misura forza; kg·m²/s² è un joule e misura energia. m/s è la rapidità senza il fattore massa, mentre kg è la sola massa. Non basta che un risultato sia positivo per identificare la grandezza."
+        }
+      ],
+      "hints": [
+        "Cerca massa per una sola potenza della velocità.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg·m/s² è un newton e misura forza; kg·m²/s² è un joule e misura energia. m/s è la rapidità senza il fattore massa, mentre kg è la sola massa. Non basta che un risultato sia positivo per identificare la grandezza.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5623,
+      "title": "Dal vettore al modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Quale relazione dà p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p=mv",
+          "p=mv²/2",
+          "p=m/v",
+          "p=v/m",
+          "p=−mv"
+        ],
+        "value": "p=mv"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa è uno scalare positivo e il vettore quantità di moto è parallelo e concorde alla velocità. Prendendo il modulo rimane m volte il modulo della velocità: p=mv. Il segno di una componente cambia se si cambia verso del moto o dell’asse, ma il modulo richiesto resta positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b4644635f8887ef7662dfdfa5c0518bcac85e3b9094d3e563ee141a73ae64ed6",
+          "text": "Esempio v_x=+2 m/s: con m=2 kg si ha p_x=+4 kg·m/s, con m=4 kg si ha p_x=+8 kg·m/s. Velocità a40px per m/s; quantità di moto a30px per kg·m/s in pannello distinto (120 e240px). Ultimo pannello autonomo: m2kg,v_x−2m/s dà p_x−4kg·m/s ma modulo p4kg·m/s. Asse spaziale fissato verso destra anche quando il moto si inverte."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec p=m\\vec v"
+        },
+        {
+          "type": "formula",
+          "text": " p=|\\vec p|"
+        },
+        {
+          "type": "formula",
+          "text": " p=m|\\vec v|"
+        },
+        {
+          "type": "formula",
+          "text": " p=mv"
+        },
+        {
+          "type": "text",
+          "text": "mv²/2 è energia cinetica, non quantità di moto. I due quozienti hanno dimensioni diverse da ML/T. −mv sarebbe negativo e non rappresenterebbe il modulo: potrebbe comparire una componente negativa solo con una diversa scelta di verso, non in questa definizione."
+        }
+      ],
+      "hints": [
+        "Separa il modulo dalla componente con segno.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "mv²/2 è energia cinetica, non quantità di moto. I due quozienti hanno dimensioni diverse da ML/T. −mv sarebbe negativo e non rappresenterebbe il modulo: potrebbe comparire una componente negativa solo con una diversa scelta di verso, non in questa definizione.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5624,
+      "title": "Massa doppia alla stessa rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Fra due prove v=2 m/s resta uguale e m passa da 2 a 4 kg. Come cambia p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 8 kg·m/s",
+          "Resta 4 kg·m/s",
+          "Da 4 a 16 kg·m/s",
+          "Da 4 a 2 kg·m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 8 kg·m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si confrontano particelle o configurazioni con masse diverse, ciascuna costante nella propria prova. La rapidità comune moltiplica due e quattro chilogrammi: i moduli passano da quattro a otto kg·m/s. Non si sta descrivendo una massa che aumenta durante il moto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b4644635f8887ef7662dfdfa5c0518bcac85e3b9094d3e563ee141a73ae64ed6",
+          "text": "Esempio v_x=+2 m/s: con m=2 kg si ha p_x=+4 kg·m/s, con m=4 kg si ha p_x=+8 kg·m/s. Velocità a40px per m/s; quantità di moto a30px per kg·m/s in pannello distinto (120 e240px). Ultimo pannello autonomo: m2kg,v_x−2m/s dà p_x−4kg·m/s ma modulo p4kg·m/s. Asse spaziale fissato verso destra anche quando il moto si inverte."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=(4\\,\\mathrm{kg})(2\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=8\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici raddoppierebbe anche v oppure eleverebbe m al quadrato. Due applica una dipendenza inversa; zero e invarianza ignorano il fattore massa cambiato. Il verso della quantità di moto rimane quello della velocità assegnata."
+        }
+      ],
+      "hints": [
+        "Con la stessa v, p segue linearmente la massa.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici raddoppierebbe anche v oppure eleverebbe m al quadrato. Due applica una dipendenza inversa; zero e invarianza ignorano il fattore massa cambiato. Il verso della quantità di moto rimane quello della velocità assegnata.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5625,
+      "title": "Ricostruire la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Si misura p=4 kg·m/s e si conosce v=2 m/s. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità positiva moltiplica m nella legge del modulo. Dividiamo p per v: le unità di velocità si cancellano e resta una massa. Il rapporto quattro su due dà due chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "m=p/v"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{4\\,\\mathrm{kg\\,m/s}}{2\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo 2 kg·2 m/s=4 kg·m/s riproduce la misura. La divisione non sarebbe lecita per v=0, qui esclusa; una quantità di moto nulla da sola non identificherebbe la massa di un corpo fermo. Non si usa la massa come una forza in newton."
+        }
+      ],
+      "hints": [
+        "Dividi il modulo di quantità di moto per la rapidità non nulla.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo 2 kg·2 m/s=4 kg·m/s riproduce la misura. La divisione non sarebbe lecita per v=0, qui esclusa; una quantità di moto nulla da sola non identificherebbe la massa di un corpo fermo. Non si usa la massa come una forza in newton.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5626,
+      "title": "Ricostruire la rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Si misura p=4 kg·m/s e si conosce m=2 kg. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo p=mv per la massa positiva. Il chilogrammo si cancella e rimane una rapidità: quattro su due dà due metri al secondo. La domanda non ricostruisce da sola una direzione nello spazio, ma il modulo della velocità."
+        },
+        {
+          "type": "formula",
+          "text": "v=p/m"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{4\\,\\mathrm{kg\\,m/s}}{2\\,\\mathrm{kg}}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il numero quattro sarebbe quello della quantità di moto, non della rapidità. Un mezzo invertirebbe la divisione e avrebbe unità inverse di velocità. Il verso è stato fissato separatamente dall’asse nel modello della prova."
+        }
+      ],
+      "hints": [
+        "Cancella la massa nel rapporto p/m.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il numero quattro sarebbe quello della quantità di moto, non della rapidità. Un mezzo invertirebbe la divisione e avrebbe unità inverse di velocità. Il verso è stato fissato separatamente dall’asse nel modello della prova.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5627,
+      "title": "Rapidità doppia a massa uguale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. m=2 kg in entrambe le prove; v passa da 2 a 4 m/s. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa comune si cancella nel rapporto dei prodotti. Il modulo p passa da quattro a otto kg·m/s e il rapporto è due. Non entra il quadrato della velocità che compare invece nell’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=8\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonde il rapporto delle quantità di moto con quello delle energie cinetiche alla stessa massa. Un mezzo inverte il confronto; uno ignora la nuova rapidità; −2 non confronta due moduli positivi. Il rapporto è puro."
+        }
+      ],
+      "hints": [
+        "Con m uguale confronta una sola potenza di v.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Quattro confonde il rapporto delle quantità di moto con quello delle energie cinetiche alla stessa massa. Un mezzo inverte il confronto; uno ignora la nuova rapidità; −2 non confronta due moduli positivi. Il rapporto è puro.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5628,
+      "title": "Scarto di una proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Con m=2 kg,v=2 m/s si propone p_proposto=8 kg·m/s. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+4 kg·m/s",
+          "−4 kg·m/s",
+          "+8 kg·m/s",
+          "0 kg·m/s",
+          "+2 kg·m/s"
+        ],
+        "value": "+4 kg·m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo corretto è 2·2=4 kg·m/s. La proposta otto lo supera di quattro kg·m/s. Manteniamo l’ordine della sottrazione richiesto, distinto dal segno che potrebbe avere una componente vettoriale."
+        },
+        {
+          "type": "formula",
+          "text": "p=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−4 scambia l’ordine, otto ripete la proposta, zero la accetta e due dimezza ancora lo scarto. Il risultato conserva la dimensione di quantità di moto, non di rapidità o energia."
+        }
+      ],
+      "hints": [
+        "Calcola prima mv e soltanto dopo sottrailo dalla proposta.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−4 scambia l’ordine, otto ripete la proposta, zero la accetta e due dimezza ancora lo scarto. Il risultato conserva la dimensione di quantità di moto, non di rapidità o energia.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5629,
+      "title": "L’inversa del modulo p=mv",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Quale formula isola m, con v>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=p/v",
+          "m=pv",
+          "m=v/p",
+          "m=2p/v",
+          "m=p/(2v)"
+        ],
+        "value": "m=p/v"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità moltiplica la massa. Dividiamo entrambi i membri per v>0 e otteniamo una quantità di moto su una velocità, cioè chilogrammi. Il modulo positivo p rende positiva anche la massa ricostruita."
+        },
+        {
+          "type": "formula",
+          "text": "p/v=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=p/v"
+        },
+        {
+          "type": "text",
+          "text": "pv moltiplica ancora la velocità e ha dimensioni diverse da massa. v/p è un inverso di massa. I fattori due non appartengono alla definizione di p: il mezzo della formula cinetica non va importato in questa inversa."
+        }
+      ],
+      "hints": [
+        "Dividi per l’unico fattore che accompagna m.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "pv moltiplica ancora la velocità e ha dimensioni diverse da massa. v/p è un inverso di massa. I fattori due non appartengono alla definizione di p: il mezzo della formula cinetica non va importato in questa inversa.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5630,
+      "title": "Due cambiamenti in un prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. La prova B usa m_B=κ₁m e v_B=κ₂v, con κ₁,κ₂>0; m,v indicano A. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo i dati della seconda prova compaiono un fattore κ₁ dalla massa e un fattore κ₂ dalla rapidità. Dividendo per p_A=mv si cancellano i dati iniziali e resta κ₁κ₂. Ogni prova conserva massa costante al proprio interno."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=mv"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\kappa_1\\kappa_2mv"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono uno degli effetti; la somma non è il prodotto e darebbe due per prove identiche. κ₁κ₂² sarebbe il rapporto delle energie cinetiche, non dei moduli di quantità di moto. Il confronto riguarda moduli e non una somma vettoriale dei due corpi."
+        }
+      ],
+      "hints": [
+        "Applica una volta ciascun fattore di scala.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "I quozienti invertono uno degli effetti; la somma non è il prodotto e darebbe due per prove identiche. κ₁κ₂² sarebbe il rapporto delle energie cinetiche, non dei moduli di quantità di moto. Il confronto riguarda moduli e non una somma vettoriale dei due corpi.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5631,
+      "title": "Massa e rapidità entrambe doppie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. A usa m=2 kg,v=2 m/s; B usa m=4 kg,v=4 m/s. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli sono quattro e sedici kg·m/s. Il rapporto è quattro, prodotto dei due raddoppi. Sedici è il valore di p_B e non la risposta adimensionale richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=16\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo cambiamento; otto attribuirebbe alla rapidità il quadrato dell’energia cinetica. Un quarto è il rapporto inverso. Non c’è un trasferimento di quantità di moto fra A e B: sono due prove distinte."
+        }
+      ],
+      "hints": [
+        "Confronta 16 con 4 oppure moltiplica due per due.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo cambiamento; otto attribuirebbe alla rapidità il quadrato dell’energia cinetica. Un quarto è il rapporto inverso. Non c’è un trasferimento di quantità di moto fra A e B: sono due prove distinte.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5632,
+      "title": "Media dei moduli in prove distinte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. A ha m=2 kg,v=2 m/s; B ha m=4 kg,v=4 m/s. Qual è la media aritmetica di p_A,p_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 kg·m/s",
+          "20 kg·m/s",
+          "5 kg·m/s",
+          "9 kg·m/s",
+          "12 kg·m/s"
+        ],
+        "value": "10 kg·m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli di quantità di moto sono quattro e sedici kg·m/s. La semisomma è dieci kg·m/s. Non si chiede la quantità di moto totale di due particelle presenti insieme, né una media di vettori con direzioni non dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=4\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=16\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p=\\frac{4+16}{2}\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p=10\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Venti somma e cinque divide ancora; dodici non deriva dalla semisomma. Il prodotto degli ingressi medi m=3 kg,v=3 m/s sarebbe 9 kg·m/s, diverso da dieci. Non occorrono decimali per distinguerli."
+        }
+      ],
+      "hints": [
+        "Media le due uscite, non i fattori prima di moltiplicarli.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Venti somma e cinque divide ancora; dodici non deriva dalla semisomma. Il prodotto degli ingressi medi m=3 kg,v=3 m/s sarebbe 9 kg·m/s, diverso da dieci. Non occorrono decimali per distinguerli.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5633,
+      "title": "Scegliere la nuova rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. A ha m_A=2 kg,v_A=2 m/s. Si impone m_B=4 kg e si vuole p_B=4p_A. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima quantità di moto vale quattro kg·m/s e l’obiettivo sedici. Con massa quattro chilogrammi servono quattro metri al secondo. Dividendo la nuova rapidità per i due metri al secondo iniziali troviamo due."
+        },
+        {
+          "type": "formula",
+          "text": "p_B=16\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=p_B/m_B"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare v uguale darebbe solo il doppio di p_A; quadruplicarla con massa doppia darebbe otto volte. Quattro m/s è il nuovo valore, da distinguere dal rapporto due. La rapidità resta nel regime non relativistico assunto."
+        }
+      ],
+      "hints": [
+        "La massa doppia fornisce già un fattore due dell’obiettivo quattro.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare v uguale darebbe solo il doppio di p_A; quadruplicarla con massa doppia darebbe otto volte. Quattro m/s è il nuovo valore, da distinguere dal rapporto due. La rapidità resta nel regime non relativistico assunto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5634,
+      "title": "Taratura di un display di quantità di moto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Un display continuo adimensionale legge S=qp, con q>0 costante e offset nullo. Il riferimento m=2 kg,v=2 m/s dà S=12. Una prova con v=4 m/s dà S=48. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha p=4 kg·m/s e quindi q=3 s/(kg·m). La nuova lettura 48 rappresenta p=16 kg·m/s. Dividendo per la rapidità nuova di quattro metri al secondo troviamo quattro chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/(kg\\,m)}"
+        },
+        {
+          "type": "formula",
+          "text": " p=48/q"
+        },
+        {
+          "type": "formula",
+          "text": " p=16\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m=p/v"
+        },
+        {
+          "type": "formula",
+          "text": " m=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "S non è una quantità di moto SI: usarne il numero 48 direttamente darebbe dodici chilogrammi, con il guadagno spurio tre. Il controllo 4·4=16 kg·m/s e S=3·16=48 ricostruisce entrambe le tappe."
+        }
+      ],
+      "hints": [
+        "Decodifica p prima di dividerlo per v.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "S non è una quantità di moto SI: usarne il numero 48 direttamente darebbe dodici chilogrammi, con il guadagno spurio tre. Il controllo 4·4=16 kg·m/s e S=3·16=48 ricostruisce entrambe le tappe.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5635,
+      "title": "Display affine prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Un display continuo adimensionale legge S=qp+b, con q>0,b costanti. A: m=2 kg,v=2 m/s,S=9. B: m=4 kg,v=4 m/s,S=33. C: v=2 m/s,S=17. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quantità di moto note sono quattro e sedici kg·m/s. La differenza delle letture 24 divisa per la differenza fisica 12 dà q=2 s/(kg·m). Dal primo riferimento b=1. La lettura diciassette dà p_C=8 kg·m/s e, a due metri al secondo, m_C=4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/(kg\\,m)}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=(17-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=8\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "A rapidità due, le masse 2,3,5,8 kg darebbero letture 9,13,21,33; solo quattro restituisce diciassette. La taratura affine non si elimina facendo soltanto un rapporto fra letture grezze."
+        }
+      ],
+      "hints": [
+        "Trova q dalla differenza di p, recupera b e sottrailo alla lettura.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A rapidità due, le masse 2,3,5,8 kg darebbero letture 9,13,21,33; solo quattro restituisce diciassette. La taratura affine non si elimina facendo soltanto un rapporto fra letture grezze.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-momentum-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso e quantità di moto",
+      "order": 5636,
+      "title": "Un legame fra massa e rapidità di prove diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "momentum",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una particella classica non relativistica ha massa m>0, costante nella singola prova, e rapidità v>0 nell’istante considerato. Scegliamo l’asse positivo nel verso del moto: la componente v_x=+v e la quantità di moto orientata p_x=mv_x è positiva. p=|p_x| è il modulo della quantità di moto. Non si assume che il sistema sia isolato: qui si calcola p in un istante, senza affermarne la conservazione. Si selezionano prove con m=cv, dove c=1 kg·s/m è fisso. Il vincolo non fa cambiare la massa durante la singola prova. Se p=4 kg·m/s, quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo m=cv nel modulo p=mv otteniamo p=cv². L’unità di c permette che il prodotto sia una quantità di moto. Il rapporto p/c vale quattro metri quadrati al secondo quadrato; la radice positiva è due metri al secondo e dà massa due chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "p=cv^2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=p/c"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è una rapidità e renderebbe negativa anche la massa nel vincolo. Con v=1 m/s si avrebbe p=1 kg·m/s; con tre si avrebbe nove. Il coefficiente c ha unità kg·s/m: massa e rapidità restano quantità diverse anche quando hanno lo stesso valore numerico."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo fra prove e scegli il ramo dei due moduli positivi.",
+        "La quantità di moto è massa per velocità; il modulo è positivo, la componente dipende dal verso."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il ramo negativo non è una rapidità e renderebbe negativa anche la massa nel vincolo. Con v=1 m/s si avrebbe p=1 kg·m/s; con tre si avrebbe nove. Il coefficiente c ha unità kg·s/m: massa e rapidità restano quantità diverse anche quando hanno lo stesso valore numerico.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Quantità di moto di una particella",
+        "Modulo e componente orientata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b4644635f8887ef7662dfdfa5c0518bcac85e3b9094d3e563ee141a73ae64ed6",
+      "name": "momentum-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlF1YW50aXTDoCBkaSBtb3RvOiBtYXNzYSwgdmVsb2NpdMOgIGUgc2Vnbm88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5NYXNzYSBkdWUgY2hpbG9ncmFtbWkgZSB2ZWxvY2l0w6AgcGnDuSBkdWUgbWV0cmkgYWwgc2Vjb25kbyBkYW5ubyBxdWFudGl0w6AgZGkgbW90byBwacO5IHF1YXR0cm8gY2hpbG9ncmFtbWkgbWV0cm8gYWwgc2Vjb25kby4gQ29uIGxhIHN0ZXNzYSB2ZWxvY2l0w6AgZSBtYXNzYSBxdWF0dHJvIGNoaWxvZ3JhbW1pIHNpIG90dGllbmUgcGnDuSBvdHRvLiBDb24gbWFzc2EgZHVlIGUgdmVsb2NpdMOgIG1lbm8gZHVlLCBsYSBjb21wb25lbnRlIHF1YW50aXTDoCBkaSBtb3RvIMOoIG1lbm8gcXVhdHRybyBtYSBpbCBtb2R1bG8gcmVzdGEgcXVhdHRyby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTMyMCIgcng9IjI0IiBmaWxsPSIjZmFmOGYyIi8+PGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM3NDYiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IEFzc2VnbmEgaWwgdmVyc28gYWxsYSB2ZWxvY2l0w6A8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijg4Ij5Bc3NlICt4IHZlcnNvIGRlc3RyYTsgbSA9IDIga2cuPC90ZXh0PjxjaXJjbGUgY3g9IjE4MCIgY3k9IjIwMCIgcj0iMTIiIGZpbGw9IiNjZmU0ZTUiIHN0cm9rZT0iIzE4Mzc0NiIvPjxwYXRoIGQ9Ik0xODAgMjAwSDI2MCIgc3Ryb2tlPSIjMTY3MjhhIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIyOTAiIHk9IjIwNyI+dl94ID0gKzIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIyOTAiPlZlbG9jaXTDoDogNDAgcHggcGVyIG0vcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjM0MCI+cF94ID0gbSB2X3ggPSArNCBrZ8K3bS9zPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDIwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMYSBzdGVzc2EgcmFwaWRpdMOgIG5vbiBmaXNzYSBwPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0NzAiPlF1YW50aXTDoCBkaSBtb3RvOiAzMCBweCBwZXIga2fCt20vcy48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNTgwSDIyMCIgc3Ryb2tlPSIjMTY3MjhhIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIyNTAiIHk9IjU4NyI+bSA9IDIga2c6IHBfeCA9ICs0IGtnwrdtL3M8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNzAwSDM0MCIgc3Ryb2tlPSIjMTY3MjhhIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIzNzAiIHk9IjY4NyI+bSA9IDQga2c8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSI3MzUiPnBfeCA9ICs4IGtnwrdtL3M8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI3OTUiPkVudHJhbWJlIGxlIHByb3ZlIGhhbm5vIHZfeCA9ICsyIG0vcy48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NzUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IFVuYSBjb21wb25lbnRlIHB1w7IgZXNzZXJlIG5lZ2F0aXZhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MjUiPlN0ZXNzbyBhc3NlLCBtID0gMiBrZywgb3JhIHZfeCA9IOKIkjIgbS9zLjwvdGV4dD48Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMDIwIiByPSI1Ii8+PHBhdGggZD0iTTMwMCAxMDIwSDE4MCIgc3Ryb2tlPSIjYjg0ZTMyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIzNDAiIHk9IjEwMjciIGZpbGw9IiNiODRlMzIiPnBfeCA9IOKIkjQga2fCt20vczwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjExMTAiPnAgPSB8cF94fCA9IDQga2fCt20vcyByaW1hbmUgdW4gbW9kdWxvIHBvc2l0aXZvLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE2MCI+U2NhbGEgZGkgcCBpbnZhcmlhdGE6IGZyZWNjaWEgbHVuZ2EgMTIwIHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIyMCI+cCBub24gw6ggdW5hIHJhcGlkaXTDoCBlIG5vbiDDqCB1buKAmWVuZXJnaWEgY2luZXRpY2EuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjc1IiBmb250LXNpemU9IjE4Ij5WZWxvY2l0w6AgZSBxdWFudGl0w6AgZGkgbW90byBoYW5ubyBzY2FsZSBkaSBkaW1lbnNpb25pIGRpc3RpbnRlLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
