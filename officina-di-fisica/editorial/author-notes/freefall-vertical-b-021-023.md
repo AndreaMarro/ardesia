@@ -160,3 +160,11 @@ Prossimi passi del coordinatore/reviewer:
    mantenere DRAFT e risposte storiche inalterate.
 4. Tenere approvazione umana e validazione reale con studenti esplicitamente NOT_RUN
    fino alle rispettive evidenze; nessun controllo tecnico le sostituisce.
+
+Correzione di leggibilità rilevata dal reviewer sul rendering SVG: la scritta
+y=0/arrivo di022 e lancio/t=0 di023 incrociavano la linea orizzontale di riferimento.
+Spostate soltanto le due etichette sotto la linea, rispettivamente baseline345e378;
+nessun punto, curva, scala, enunciato o risposta cambiato. Asset, pacchetti e binding01
+rigenerati; ripetuti rigenerazione e import temporanei16/0revisioni per entrambi,
+pubblicati invariati e nessun nuovo live. Il reviewer deve rileggere gli asset
+finali prima di congelare le firme interessate.

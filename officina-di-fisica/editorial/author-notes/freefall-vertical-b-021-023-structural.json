@@ -15,16 +15,16 @@
     {
       "batch": "freefall-time-022",
       "records": 16,
-      "packageSha256": "f2daa4ffb8ada02c03e6e48630c37a1d08849fa81777640d352dd7a4fe421925",
-      "bindingsSha256": "14e3107356144726fb29312918088f151f42152a80845c58983fe86b0d5ea045",
+      "packageSha256": "69a8962de9758521331194c2db9a6b20bcfc552b10a1cb0e2917519e731503e7",
+      "bindingsSha256": "89c678b3001cfe075dd21a5f94e317e27f47bedf1989ea0b2a5107da0614933b",
       "regeneration": "identical",
       "sourceCandidateProvenanceBindings": "matched"
     },
     {
       "batch": "vertical-maximum-023",
       "records": 16,
-      "packageSha256": "7c874c8fabd1bbf8b5698ec7b33c22e97c9f32315b0c7dc4b33d796efcc9d451",
-      "bindingsSha256": "d329906cfefe3a04d019555c9855c038bdc9875c96db2fac41aeec1decaeb5aa",
+      "packageSha256": "b258be1c88d94edcc7b820c41d82ecf23e3ab3ad09ec627a594b06e682ed0951",
+      "bindingsSha256": "6808e24ef390fdb2131aacf794b61846b74d9cb1671c58eb427cc7bc7a25891e",
       "regeneration": "identical",
       "sourceCandidateProvenanceBindings": "matched"
     }
@@ -85,5 +85,28 @@
     "choiceRecords": 31,
     "equivalentRecognizedLiterals": 0,
     "scope": "bounded_literal_quantities_only_not_full_semantic_review"
+  },
+  "labelCorrection": {
+    "scope": "author_structural_only",
+    "batches": [
+      "freefall-time-022",
+      "vertical-maximum-023"
+    ],
+    "change": "Datum labels moved below horizontal lines; geometry and text unchanged",
+    "regeneration": "identical",
+    "isolatedImports": [
+      {
+        "firstSaved": 16,
+        "secondSaved": 0,
+        "unchanged": 16
+      },
+      {
+        "firstSaved": 16,
+        "secondSaved": 0,
+        "unchanged": 16
+      }
+    ],
+    "published": "unchanged",
+    "newLiveHeads": 0
   }
 }
