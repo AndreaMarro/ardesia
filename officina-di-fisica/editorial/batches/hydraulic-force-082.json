@@ -1,0 +1,1174 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-hydraulic-force-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8201,
+      "title": "Stessa sovrapressione, forza diversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 1,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Con F_i=2 N e A_o=5 cm², quanto vale F_o in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quote uguali permettono di uguagliare le pressioni del liquido nei due contatti. Togliendo la comune atmosfera, la sovrapressione vale F_i/A_i. Il rapporto delle aree è cinque, quindi la forza d’uscita è cinque volte quella applicata: 10 N."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/98fd579fda64df26278afdae735735b4f014563c1cdba91b0ddbcc09afedc5e6",
+          "text": "Superfici rettangolari esemplificative1×1 cm e5×1 cm mostrate a40 px/cm: aree1 e5 cm², rapporto5. Nel secondo pannello i contatti sono alla stessa quota e i vettori di carico usano20 px/N: ingresso2 N40 px e uscita10 N200 px. È uno stato di equilibrio, non una corsa finita; pesi dei pistoni e atmosfera comune sono già separati dal carico."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac{F_i}{A_i}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_i}{A_i}=\\frac{F_o}{A_o}"
+        },
+        {
+          "type": "formula",
+          "text": " F_o=F_i\\frac{A_o}{A_i}"
+        },
+        {
+          "type": "formula",
+          "text": " F_o=(2\\,\\mathrm N)\\frac{5\\,\\mathrm{cm^2}}{1\\,\\mathrm{cm^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_o=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Due newton confonderebbero uguaglianza di pressione con uguaglianza di forza. Venti aggiungerebbe un fattore due. F_o non è la risultante sul pistone fermo: la forza del liquido dovuta al carico equilibra il carico resistente, oltre alla comune atmosfera."
+        }
+      ],
+      "hints": [
+        "Uguaglia le sovrapressioni, poi moltiplica per l’area d’uscita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due newton confonderebbero uguaglianza di pressione con uguaglianza di forza. Venti aggiungerebbe un fattore due. F_o non è la risultante sul pistone fermo: la forza del liquido dovuta al carico equilibra il carico resistente, oltre alla comune atmosfera.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8202,
+      "title": "Il rapporto delle aree non cambia l’unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 1,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Quale unità proposta esprime F_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "Pa",
+          "cm²",
+          "kg",
+          "J"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge moltiplica una forza per A_o/A_i, rapporto puro perché entrambe le aree hanno la stessa unità. Rimane un newton. Se si scegliesse di convertire, 1 cm²=1/10000 m² e il fattore di conversione si cancellerebbe nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "[A_o/A_i]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [F_o]=[F_i]"
+        },
+        {
+          "type": "formula",
+          "text": "[F_i]=\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{cm^2}=\\frac1{10000}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Pa misura la pressione trasmessa, non la forza risultante da quella pressione su un’area. cm² è area, kg massa e J lavoro. Il quadrato riguarda anche la conversione del centimetro."
+        }
+      ],
+      "hints": [
+        "Mantieni la stessa unità per entrambe le aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa misura la pressione trasmessa, non la forza risultante da quella pressione su un’area. cm² è area, kg massa e J lavoro. Il quadrato riguarda anche la conversione del centimetro.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8203,
+      "title": "Amplificazione istantanea e piccoli spostamenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 1,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. In un istante di pari quota si ha F_o=10F_i. Indichiamo con ds_i>0 e ds_o>0 gli spostamenti infinitesimi d’ingresso e d’uscita che cedono e ricevono liquido. Quale relazione rispetta la continuità?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ds_o=ds_i/10",
+          "ds_o=10ds_i",
+          "ds_o=ds_i",
+          "ds_o=100ds_i",
+          "ds_o=0"
+        ],
+        "value": "ds_o=ds_i/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel bilancio delle forze allo stesso istante il rapporto dieci è anche A_o/A_i. Il volume infinitesimo ceduto A_i ds_i deve uguagliare quello ricevuto A_o ds_o, quindi l’uscita avanza di un decimo. Il vantaggio di forza si accompagna a uno svantaggio di corsa locale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/98fd579fda64df26278afdae735735b4f014563c1cdba91b0ddbcc09afedc5e6",
+          "text": "Il terzo pannello rappresenta soltanto il rapporto fra spostamenti infinitesimi: con vantaggio di forza10, ds_o=ds_i/10 e A_i ds_i=A_o ds_o. Non si deduce uguaglianza di lavori su corse verticali finite: le quote e l’energia potenziale del liquido possono cambiare. Le aree del primo esempio hanno invece rapporto5, non10."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A_o}{A_i}=\\frac{F_o}{F_i}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_o}{F_i}=10"
+        },
+        {
+          "type": "formula",
+          "text": " A_i\\,ds_i=A_o\\,ds_o"
+        },
+        {
+          "type": "formula",
+          "text": " ds_o=\\frac{A_i}{A_o}ds_i"
+        },
+        {
+          "type": "formula",
+          "text": " ds_o=ds_i/10"
+        },
+        {
+          "type": "text",
+          "text": "Uguale corsa o corsa maggiore all’uscita violerebbero il bilancio dei volumi. Il risultato locale non autorizza a trattare la forza come costante lungo corse verticali finite: le quote possono divergere e il lavoro può anche modificare l’energia potenziale del liquido. La sola continuità non basta a uguagliare due prodotti di forze costanti."
+        }
+      ],
+      "hints": [
+        "Usa il rapporto delle aree nelle variazioni infinitesime di volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uguale corsa o corsa maggiore all’uscita violerebbero il bilancio dei volumi. Il risultato locale non autorizza a trattare la forza come costante lungo corse verticali finite: le quote possono divergere e il lavoro può anche modificare l’energia potenziale del liquido. La sola continuità non basta a uguagliare due prodotti di forze costanti.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8204,
+      "title": "Aumentare il carico d’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 1,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Fra stati di pari quota A_o=5 cm² rimane fissa e F_i passa da 2 a 3 N. Come cambia F_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 15 N",
+          "Da 10 a 20 N",
+          "Da 10 a 20/3 N",
+          "Resta 10 N",
+          "Diventa zero"
+        ],
+        "value": "Da 10 a 15 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto geometrico resta cinque. La sovrapressione cresce nello stesso rapporto 3/2 del carico d’ingresso e il carico equilibrabile all’uscita passa da 2·5=10 a 3·5=15 N. Si confrontano stati separati, non un movimento finito mantenendo tutte le quote uguali."
+        },
+        {
+          "type": "formula",
+          "text": "A_o/A_i=5"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=(3\\,\\mathrm N)5"
+        },
+        {
+          "type": "formula",
+          "text": "(3\\,\\mathrm N)5=15\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "20 N aggiunge un raddoppio non assegnato; 20/3 inverte l’effetto; invarianza ignora il nuovo incremento di pressione. Il liquido non moltiplica la pressione per cinque: moltiplica la forza grazie all’area più grande."
+        }
+      ],
+      "hints": [
+        "Tieni fisso il rapporto delle aree e scala la forza una volta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "20 N aggiunge un raddoppio non assegnato; 20/3 inverte l’effetto; invarianza ignora il nuovo incremento di pressione. Il liquido non moltiplica la pressione per cinque: moltiplica la forza grazie all’area più grande.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8205,
+      "title": "Il carico necessario all’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Si misurano F_o=10 N e A_o=5 cm². Quanto vale F_i in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da F_o=F_i A_o/A_i isoliamo F_i=F_o A_i/A_o. L’ingresso ha area un quinto dell’uscita, quindi richiede un quinto del carico per produrre la stessa sovrapressione. Dieci diviso cinque dà due newton."
+        },
+        {
+          "type": "formula",
+          "text": "F_i=F_o\\frac{A_i}{A_o}"
+        },
+        {
+          "type": "formula",
+          "text": " F_i=(10\\,\\mathrm N)\\frac15"
+        },
+        {
+          "type": "formula",
+          "text": " F_i=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta newton moltiplicherebbero per il rapporto delle aree nel verso sbagliato. F_o/A_o da solo è una pressione: il fattore A_i deve restare fisicamente presente anche quando il suo valore numerico in cm² è uno."
+        }
+      ],
+      "hints": [
+        "Dividi il carico d’uscita per il vantaggio delle aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta newton moltiplicherebbero per il rapporto delle aree nel verso sbagliato. F_o/A_o da solo è una pressione: il fattore A_i deve restare fisicamente presente anche quando il suo valore numerico in cm² è uno.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8206,
+      "title": "Ricostruire la superficie d’uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Si misurano F_o=10 N e F_i=2 N. Quanto vale A_o in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa per l’area è A_o=A_i F_o/F_i. Le forze formano un rapporto puro cinque e moltiplicano l’area d’ingresso 1 cm². Il risultato è 5 cm², maggiore di A_i come richiesto dal modello."
+        },
+        {
+          "type": "formula",
+          "text": "A_o=A_i\\frac{F_o}{F_i}"
+        },
+        {
+          "type": "formula",
+          "text": " A_o=(1\\,\\mathrm{cm^2})\\frac{10}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_o=5\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è un’area in cm², non un raggio né una lunghezza. Per pistoni circolari il rapporto delle aree sarebbe il quadrato del rapporto dei raggi: non si può identificare automaticamente il vantaggio cinque con un raggio cinque volte maggiore."
+        }
+      ],
+      "hints": [
+        "Moltiplica l’area nota per il rapporto delle forze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è un’area in cm², non un raggio né una lunghezza. Per pistoni circolari il rapporto delle aree sarebbe il quadrato del rapporto dei raggi: non si può identificare automaticamente il vantaggio cinque con un raggio cinque volte maggiore.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8207,
+      "title": "Ridurre soltanto l’area d’uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. A ha F_i=2 N,A_o,A=5 cm². B mantiene F_i e ha A_o,B=4 cm². Quanto vale F_o,B/F_o,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "2",
+          "1",
+          "−1/5"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sovrapressione all’ingresso resta la stessa. Con meno area il carico equilibrabile diminuisce da 10 a 8 N. Il rapporto richiesto è 8/10=4/5, uguale al rapporto delle aree perché l’ingresso è invariato."
+        },
+        {
+          "type": "formula",
+          "text": "F_{o,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=8\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}/F_{o,A}=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "5/4 rovescia gli stati; due introduce un fattore non dato; uno confonde pressione invariata con forza invariata. Il rapporto negativo non confronta moduli positivi."
+        }
+      ],
+      "hints": [
+        "Con la stessa pressione confronta direttamente le aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/4 rovescia gli stati; due introduce un fattore non dato; uno confonde pressione invariata con forza invariata. Il rapporto negativo non confronta moduli positivi.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8208,
+      "title": "Una forza proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Con F_i=2 N e A_o=5 cm² si propone F_o=20 N. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 N",
+          "−10 N",
+          "20 N",
+          "0 N",
+          "5 N"
+        ],
+        "value": "10 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione di pressione dà F_o=2·5=10 N. La proposta venti supera il carico corretto di dieci newton. Con 20 N su 5 cm² la pressione sarebbe doppia rispetto a quella prodotta dai 2 N su 1 cm²."
+        },
+        {
+          "type": "formula",
+          "text": "F_o=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm N-10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "−10 inverte la sottrazione; venti copia la proposta; zero la accetta e cinque dimezza lo scarto. Non si possono avere pressioni diverse alla stessa quota nello stesso liquido in equilibrio senza ulteriori effetti non assegnati."
+        }
+      ],
+      "hints": [
+        "Controlla F_i/A_i e F_o/A_o prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−10 inverte la sottrazione; venti copia la proposta; zero la accetta e cinque dimezza lo scarto. Non si possono avere pressioni diverse alla stessa quota nello stesso liquido in equilibrio senza ulteriori effetti non assegnati.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8209,
+      "title": "L’area fissa rimane nell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Quale formula isola F_i?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F_i=F_o A_i/A_o",
+          "F_i=F_o A_o/A_i",
+          "F_i=F_o/A_o",
+          "F_i=2F_o A_i/A_o",
+          "F_i=F_o A_i/(2A_o)"
+        ],
+        "value": "F_i=F_o A_i/A_o"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo F_o=F_i A_o/A_i per A_i e dividiamo per A_o>0. Il rapporto A_i/A_o è puro, quindi il risultato è una forza. Conservare A_i evita di confondere un’uguaglianza numerica in unità scelte con una legge dimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "F_oA_i=F_iA_o"
+        },
+        {
+          "type": "formula",
+          "text": " F_i=\\frac{F_oA_i}{A_o}"
+        },
+        {
+          "type": "text",
+          "text": "F_o/A_o da solo è una pressione e ha unità N/cm², non N. Il rapporto invertito sbaglia il vantaggio geometrico; il doppio e la metà non rispettano il controllo delle pressioni. La costante A_i=1 cm² non si sostituisce con un uno privo di dimensioni."
+        }
+      ],
+      "hints": [
+        "Rimuovi il denominatore A_i prima di isolare F_i.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "F_o/A_o da solo è una pressione e ha unità N/cm², non N. Il rapporto invertito sbaglia il vantaggio geometrico; il doppio e la metà non rispettano il controllo delle pressioni. La costante A_i=1 cm² non si sostituisce con un uno privo di dimensioni.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8210,
+      "title": "Due scalature della forza trasmessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. B usa F_i,B=κ₁F_i,A e A_o,B=κ₂A_o,A, con fattori positivi e A_o,B>A_i. In entrambi gli stati i contatti sono alla stessa quota. Quanto vale F_o,B/F_o,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge contiene il prodotto del carico d’ingresso per l’area d’uscita e la stessa area A_i al denominatore. Entrambi i fattori agiscono direttamente, una sola volta. Il rapporto è κ₁κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "F_{o,A}=F_{i,A}\\frac{A_{o,A}}{A_i}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=\\kappa_1\\kappa_2F_{o,A}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}/F_{o,A}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza, la somma darebbe due a stati identici e κ₂² confonde area con raggio. Se i fattori agissero sui raggi di pistoni circolari, il problema richiederebbe un’altra traduzione geometrica; qui scalano già le aree."
+        }
+      ],
+      "hints": [
+        "Scala F_i e A_o senza elevare nuovamente al quadrato un’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza, la somma darebbe due a stati identici e κ₂² confonde area con raggio. Se i fattori agissero sui raggi di pistoni circolari, il problema richiederebbe un’altra traduzione geometrica; qui scalano già le aree.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8211,
+      "title": "Carico maggiore su un’area minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. A: F_i=2 N,A_o=5 cm². B: F_i=3 N,A_o=4 cm². Quanto vale F_o,B/F_o,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5",
+          "5/6",
+          "3/2",
+          "4/5",
+          "12"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A fornisce 10 N; B fornisce 12 N. Il rapporto è 12/10=6/5, prodotto di 3/2 per 4/5. L’aumento del carico prevale sulla riduzione dell’area."
+        },
+        {
+          "type": "formula",
+          "text": "F_{o,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}/F_{o,A}=\\frac{12}{10}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{12}{10}=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "3/2 segue soltanto il carico; 4/5 soltanto l’area; 5/6 è il reciproco e 12 il numero della forza B con unità, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Calcola le due forze oppure moltiplica le due scalature esatte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 segue soltanto il carico; 4/5 soltanto l’area; 5/6 è il reciproco e 12 il numero della forza B con unità, non il rapporto.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8212,
+      "title": "Media dei carichi equilibrabili",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 2,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Due prove hanno uguale peso statistico: A con F_i=2 N,A_o=5 cm²; B con F_i=3 N,A_o=4 cm². Qual è la media aritmetica delle due F_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 N",
+          "22 N",
+          "11/2 N",
+          "45/4 N",
+          "12 N"
+        ],
+        "value": "11 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 10 e 12 N. La semisomma è 11 N. Mediare prima il carico e l’area definisce invece un’altra pressa: (5/2 N)(9/2 cm²)/(1 cm²)=45/4 N, diverso da 11."
+        },
+        {
+          "type": "formula",
+          "text": "F_{o,A}=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F_o=\\frac{10+12}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F_o=11\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "22 è la somma, 11/2 divide ancora e 12 ripete B. Il prodotto congiunto degli ingressi non commuta con la media: qui la differenza fra risposta agli ingressi medi e media degli esiti è 1/4 N."
+        }
+      ],
+      "hints": [
+        "Media le due uscite dopo aver applicato la legge a ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "22 è la somma, 11/2 divide ancora e 12 ripete B. Il prodotto congiunto degli ingressi non commuta con la media: qui la differenza fra risposta agli ingressi medi e media degli esiti è 1/4 N.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8213,
+      "title": "L’area per il carico obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 3,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. A ha F_i,A=2 N,A_o,A=5 cm². In B si impone F_i,B=3 N e si vuole F_o,B=(6/5)F_o,A. Quanto vale A_o,B/A_o,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "6/5",
+          "3/2",
+          "4"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza obiettivo è 12 N. Per avere 12 N con ingresso 3 N il rapporto A_o,B/A_i deve essere quattro, dunque A_o,B=4 cm². Rispetto ai 5 cm² iniziali il fattore è 4/5."
+        },
+        {
+          "type": "formula",
+          "text": "F_{o,B}=12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " A_{o,B}=A_i\\frac{F_{o,B}}{F_{i,B}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{o,B}=4\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{o,B}/A_{o,A}=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il valore dell’area in cm², non il rapporto richiesto. Lasciando 5 cm² si otterrebbero 15 N, oltre il bersaglio. La nuova area resta maggiore di 1 cm²."
+        }
+      ],
+      "hints": [
+        "Trova l’area B dall’inversa e poi confrontala con 5 cm².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il valore dell’area in cm², non il rapporto richiesto. Lasciando 5 cm² si otterrebbero 15 N, oltre il bersaglio. La nuova area resta maggiore di 1 cm².",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8214,
+      "title": "Tarare l’uscita prima dell’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 3,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Un display continuo adimensionale segue S=cF_o,c>0, senza offset. A con F_i=2 N,A_o=5 cm² dà S=30. B con A_o=4 cm² dà S=36. Quanto vale F_i,B in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha F_o=10 N, quindi c=3 N⁻¹. La lettura 36 equivale a 12 N. L’inversa F_i=F_o A_i/A_o dà 12/4=3 N, dopo avere rimosso il guadagno del display."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,B}=36/c"
+        },
+        {
+          "type": "formula",
+          "text": "36/c=12\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{i,B}=F_{o,B}\\frac{A_i}{A_{o,B}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{i,B}=3\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei non è una forza SI ma una lettura pura; usarla direttamente darebbe 9 N. La pressione di carico è 3 N/cm² sia all’ingresso sia all’uscita: il controllo include le aree."
+        }
+      ],
+      "hints": [
+        "Decodifica F_o prima della divisione per il vantaggio geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei non è una forza SI ma una lettura pura; usarla direttamente darebbe 9 N. La pressione di carico è 3 N/cm² sia all’ingresso sia all’uscita: il controllo include le aree.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8215,
+      "title": "Un offset prima del bilancio di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 3,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Un display continuo adimensionale segue S=cF_o+d,c>0. A: F_i=2 N,A_o=5 cm²,S=21. B: F_i=3 N,A_o=4 cm²,S=25. C: A_o=5 cm²,S=31. Quanto vale F_i,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 N",
+          "6 N",
+          "3/2 N",
+          "4 N",
+          "2 N"
+        ],
+        "value": "3 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono 10 e 12 N. La differenza delle letture 4 su 2 N dà c=2 N⁻¹ e poi d=1. C corrisponde a F_o=(31−1)/2=15 N; con rapporto d’aree cinque, il carico d’ingresso è 3 N."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_{o,C}=15\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{i,C}=F_{o,C}\\frac{A_i}{A_{o,C}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{i,C}=3\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "All’area 5 cm², ingressi 6,3/2,4,2 N darebbero S=61,16,41,21, diversi da 31. Il rapporto delle letture grezze non elimina l’offset e non sostituisce il confronto di pressioni."
+        }
+      ],
+      "hints": [
+        "Ricava c e d dalle forze note e applica l’inversa alla prova C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "All’area 5 cm², ingressi 6,3/2,4,2 N darebbero S=61,16,41,21, diversi da 31. Il rapporto delle letture grezze non elimina l’offset e non sostituisce il confronto di pressioni.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-force-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Equilibrio dei fluidi",
+      "order": 8216,
+      "title": "Un’area al quadrato fra configurazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L003"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-force",
+      "difficulty": 3,
+      "prompt": "Due pistoni ideali senza peso o attrito chiudono un circuito pieno di liquido incomprimibile, senza perdite. Si confrontano stati di equilibrio nel laboratorio inerziale, con i due contatti liquido-pistone alla stessa quota e la stessa atmosfera all’esterno. A_i=1 cm² e A_o>A_i sono le aree costanti dei pistoni. F_i>0 è il carico normale applicato all’ingresso; F_o>0 è il carico equilibrabile all’uscita, entrambi al netto dell’atmosfera. Si trascurano effetti inerziali e dissipativi. Fra stati si impone F_i=cA_o con c=2/5 N/cm²; in ogni stato le quote sono uguali. Si misura F_o=10 N. Quanto vale A_o>0 in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo entra nella legge F_o=F_i A_o/A_i e produce F_o=cA_o²/A_i. Quindi A_o²=F_o A_i/c=25 cm⁴. La radice ha unità di area, cm²: il ramo positivo è 5 cm² e ricostruisce F_i=2 N."
+        },
+        {
+          "type": "formula",
+          "text": "F_o=\\frac{cA_o^2}{A_i}"
+        },
+        {
+          "type": "formula",
+          "text": " A_o^2=\\frac{F_oA_i}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " A_o^2=25\\,\\mathrm{cm^4}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{o,+}=5\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{o,-}=-5\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "−5 non è un’area e renderebbe negativo anche il carico nel vincolo. Venticinque è il quadrato dell’area, non l’area stessa. Non si sta ricavando un raggio: nessuna circolarità è necessaria per la legge di Pascal."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e controlla che la radice di cm⁴ sia cm².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−5 non è un’area e renderebbe negativo anche il carico nel vincolo. Venticinque è il quadrato dell’area, non l’area stessa. Non si sta ricavando un raggio: nessuna circolarità è necessaria per la legge di Pascal.",
+        "target": "C2-L003"
+      },
+      "coverage": [
+        "Pascal e forze a pari quota",
+        "Rapporti di aree e incrementi di carico",
+        "Continuità locale e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "98fd579fda64df26278afdae735735b4f014563c1cdba91b0ddbcc09afedc5e6",
+      "name": "hydraulic-force-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+QXJlZSwgc292cmFwcmVzc2lvbmUgZSB2YW50YWdnaW8gZGkgZm9yemE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TdXBlcmZpY2kgcmV0dGFuZ29sYXJpIHVuYSBwZXIgdW5hIGUgY2lucXVlIHBlciB1bmEgY2VudGltZXRyaSBhbGxhIHNjYWxhIHF1YXJhbnRhIHBpeGVsIHBlciBjZW50aW1ldHJvLiBGb3J6ZSBkdWUgZSBkaWVjaSBuZXd0b24gYWxsYSBzY2FsYSB2ZW50aSBwaXhlbCBwZXIgbmV3dG9uIG5lbGxvIHN0YXRvIGNvbiBwaXN0b25pIGFsbGEgc3Rlc3NhIHF1b3RhLiBUZXJ6byBlc2VtcGlvIGRpc3RpbnRvIGNvbiByYXBwb3J0byBkaSBmb3J6ZSBkaWVjaSBlIHJhcHBvcnRvIGludmVyc28gZnJhIHNwb3N0YW1lbnRpIGluZmluaXRlc2ltaSwgc2VuemEgZGVkdXJyZSBsYXZvcm8gZmluaXRvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjAwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IExlIGFyZWUgc29ubyBzdXBlcmZpY2ksIG5vbiByYWdnaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkVzZW1waW8gZGkgZmFjY2UgcmV0dGFuZ29sYXJpOiBzY2FsYSA0MCBweC9jbS48L3RleHQ+PHJlY3QgeD0iMTMwIiB5PSIxODAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2NkZTRlNiIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHJlY3QgeD0iMzMwIiB5PSIxODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDAiIGZpbGw9IiNjZGU0ZTYiIHN0cm9rZT0iIzE5M2E0OSIvPjx0ZXh0IHg9Ijg1IiB5PSIyNzAiPjEgY20gw5cgMSBjbTwvdGV4dD48dGV4dCB4PSIzNDUiIHk9IjI3MCI+NSBjbSDDlyAxIGNtPC90ZXh0Pjx0ZXh0IHg9Ijg1IiB5PSIzMjAiPkFfaSA9IDEgY23CsjwvdGV4dD48dGV4dCB4PSIzNDUiIHk9IjMyMCI+QV9vID0gNSBjbcKyPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzODUiPlJhcHBvcnRvIGRlbGxlIGFyZWUgPSA1OyBmb3JtYSBjaXJjb2xhcmUgbm9uIHJpY2hpZXN0YS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NjUiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgU3RhdG8gZGkgZXF1aWxpYnJpbyBhbGxhIHN0ZXNzYSBxdW90YTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTEwIj5DYXJpY2hpIG5ldHRpIGRlbGzigJlhdG1vc2ZlcmE7IHBpc3Rvbmkgc2VuemEgcGVzby48L3RleHQ+PHBhdGggZD0iTTE1MCA4MjBWOTMwSDUyMFY4MjBIMzIwVjg5MEgxOTBWODIwWiIgZmlsbD0iI2JhZDllNSIvPjxyZWN0IHg9IjE1MCIgeT0iODA4IiB3aWR0aD0iNDAiIGhlaWdodD0iMTIiIGZpbGw9IiM4MTliOTgiLz48cmVjdCB4PSIzMjAiIHk9IjgwOCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMiIgZmlsbD0iIzgxOWI5OCIvPjxwYXRoIGQ9Ik0xMjAgODIwSDU0MCIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz48cGF0aCBkPSJNMTcwIDc2OFY4MDgiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTQyMCA4MDhWNjA4IiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjY1IiB5PSI3MzUiPkZfaSA9IDIgTjwvdGV4dD48dGV4dCB4PSI0NDAiIHk9IjcwMCI+Rl9vID0gMTAgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTkwIj5Gb3J6ZTogMjAgcHgvTiwgZnJlY2NlIDQwIGUgMjAwIHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAzNSI+zpRwID0gMiBOLygxIGNtwrIpID0gMjAga1BhIG5laSBkdWUgY29udGF0dGkuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDgwIj5Qcm9maWxvIGRlbCBjaXJjdWl0byBzY2hlbWF0aWNvOyBsZSBhcmVlIHNvbm8gc29wcmEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTE2MCIgZm9udC1zaXplPSIyNSI+MyDCtyBBbHRybyByYXBwb3J0bzogZm9yemEgZGllY2kgdm9sdGUgbWFnZ2lvcmU8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyMDUiPlNvbG8gbmVsbOKAmWlzdGFudGUgZGkgcGFyaSBxdW90YTogQV9vL0FfaSA9IDEwLjwvdGV4dD48cGF0aCBkPSJNMTAwIDEyOTBIMzAwIiBzdHJva2U9IiNiNDYxNDUiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik00MzAgMTI5MEg0NTAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMTAwIiB5PSIxMzQwIj5kc19pID0gMTAgzrQ8L3RleHQ+PHRleHQgeD0iNDEwIiB5PSIxMzQwIj5kc19vID0gzrQ8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzOTUiPlNjYWxhIGNvbXVuZTogMjAgcHgvzrQ7IM60IMOoIHVuYSBsdW5naGV6emEgaW5maW5pdGVzaW1hLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ0MCI+QV9pIGRzX2kgPSBBX28gZHNfbywgc2VuemEgZ3VhZGFnbm8gZGkgdm9sdW1lLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ5NSI+U3UgY29yc2UgZmluaXRlIGxlIHF1b3RlIHBvc3Nvbm8gY2FtYmlhcmUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNTQwIj5Db250aW51aXTDoCBkYSBzb2xhIG5vbiBkZXRlcm1pbmEgaSBsYXZvcmkgZmluaXRpLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
