@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-lever-equilibrium-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6301,
+      "title": "L’equilibrio confronta due momenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 1,
+      "prompt": "Una leva rigida orizzontale senza peso è ferma su una cerniera ideale fissa O, nel riferimento inerziale. Due forze verticali verso il basso agiscono su lati opposti: la motrice F a sinistra con braccio a=2 m, la resistente R=2 N a destra con braccio b=2 m. La cerniera esercita una reazione, ma nessuna coppia. Quanto vale F, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prendiamo positivi i momenti antiorari. La forza a sinistra produce+aF, quella a destra−bR; la reazione passa perO e ha momento nullo. L’equilibrio richiede aF=bR, perciò i due bracci uguali impongono qui moduli uguali. Non si può imporre F=R senza controllare prima i bracci."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6cb7a36890767467ef46454220f2ffa22dabb1832a1bd9ada41b02cbedcfe6e",
+          "text": "Leva orizzontale ideale senza peso,bracci a=b=2m con scala80px/m;F=R=2N entrambe verso il basso su lati opposti. Scala comune delle forze30px/N:due frecce60px e reazione4N verso l’alto lunga120px nel terzo pannello di proiezioni separate. Il secondo pannello orienta i momenti antiorari positivi:+4e−4N·m. La reazione del fulcro ha braccio nullo e non entra nei momenti,ma è necessaria per l’equilibrio delle forze."
+        },
+        {
+          "type": "formula",
+          "text": "\\sum M_O=aF-bR"
+        },
+        {
+          "type": "formula",
+          "text": "aF-bR=0"
+        },
+        {
+          "type": "formula",
+          "text": " aF=bR"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{Rb}{a}"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm m}=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il peso nullo dell’asta evita un terzo momento. L’equilibrio delle forze richiede anche una reazione verticale verso l’alto R_O=F+R=4 N: essa non entra nel momento rispetto aO, ma non è assente dalla fisica. Questa soluzione vale per una cerniera priva di coppia resistente."
+        }
+      ],
+      "hints": [
+        "ScegliO per i momenti, così la reazione incognita non contribuisce al bilancio rotazionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il peso nullo dell’asta evita un terzo momento. L’equilibrio delle forze richiede anche una reazione verticale verso l’alto R_O=F+R=4 N: essa non entra nel momento rispetto aO, ma non è assente dalla fisica. Questa soluzione vale per una cerniera priva di coppia resistente.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6302,
+      "title": "Dal momento alla forza equilibrante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 1,
+      "prompt": "Una leva in equilibrio soddisfa aF=Rb, con a, b bracci perpendicolari in metri e R in newton. Quale unità SI ha F=Rb/a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "N·m",
+          "kg",
+          "m",
+          "1"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto b/a è fra due lunghezze e quindi è puro. Moltiplicandolo per una forza rimane una forza. Il prodotto Rb sarebbe invece un momento, prima della divisione per il braccio motore."
+        },
+        {
+          "type": "formula",
+          "text": "[Rb]=ML^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [Rb/a]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " F\\text{ in }\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "N·m esprime il momento non ancora diviso per a; kg massa e m lunghezza.1 non può essere la forza richiesta. Il valore 2 m del braccio motore deve conservare la propria dimensione anche quando il numero due sembra un semplice coefficiente."
+        }
+      ],
+      "hints": [
+        "Cancella i metri del rapporto fra i due bracci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N·m esprime il momento non ancora diviso per a; kg massa e m lunghezza.1 non può essere la forza richiesta. Il valore 2 m del braccio motore deve conservare la propria dimensione anche quando il numero due sembra un semplice coefficiente.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6303,
+      "title": "Che cosa significa corpo rigido?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 1,
+      "prompt": "Un oggetto è modellato come corpo perfettamente rigido e può ruotare nel laboratorio. Quale proprietà rimane costante per qualunque coppia dei suoi punti materiali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La distanza fra i due punti",
+          "Le loro posizioni nel laboratorio",
+          "La direzione del segmento nel laboratorio",
+          "Le loro velocità in ogni moto",
+          "Le loro quote in ogni moto"
+        ],
+        "value": "La distanza fra i due punti"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Rigidità significa assenza di deformazione: ogni distanza interna è invariata. Una rotazione cambia in generale la direzione del segmento che unisce due punti e le loro coordinate, ma non la sua lunghezza. Non occorre che i punti restino fermi nello spazio."
+        },
+        {
+          "type": "formula",
+          "text": "d_{PQ}=|\\vec r_Q-\\vec r_P|"
+        },
+        {
+          "type": "formula",
+          "text": " d_{PQ}=\\mathrm{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Quote e velocità dipendono dal moto e non sono costanti in tutte le rotazioni. Alcuni punti sull’asse potrebbero restare fermi, ma la domanda chiede una proprietà di qualunque coppia. La distanza interna è la caratteristica che definisce il modello rigido, anche per una leva."
+        }
+      ],
+      "hints": [
+        "Distingui una proprietà interna del corpo dalle coordinate viste dal laboratorio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quote e velocità dipendono dal moto e non sono costanti in tutte le rotazioni. Alcuni punti sull’asse potrebbero restare fermi, ma la domanda chiede una proprietà di qualunque coppia. La distanza interna è la caratteristica che definisce il modello rigido, anche per una leva.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6304,
+      "title": "Raddoppia la resistenza allo stesso braccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 1,
+      "prompt": "Una leva rigida senza peso è ferma su una cerniera ideale fissa che non esercita coppia. F e R hanno momenti opposti e bracci perpendicolari a=2 m e b=2 m. Fra due prove R passa da 2 a 4 N. Come cambia la forza motrice F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 N",
+          "Resta 2 N",
+          "Da 2 a 8 N",
+          "Da 2 a 1 N",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di bracci, il momento resistente raddoppia e deve raddoppiare anche quello motore. F=Rb/a segue quindi la resistenza: passa da 2 a 4 N. La reazione della cerniera si adatta per equilibrare anche le forze, senza introdurre un momento suO."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm m}=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto newton raddoppierebbe anche b; uno invertirebbe l’effetto diR. Invarianza o zero non potrebbero compensare il nuovo momento resistente. Le due prove sono equilibri distinti, non una descrizione del moto durante una variazione istantanea del carico."
+        }
+      ],
+      "hints": [
+        "Mantieni i bracci fissi e confronta i momenti resistenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto newton raddoppierebbe anche b; uno invertirebbe l’effetto diR. Invarianza o zero non potrebbero compensare il nuovo momento resistente. Le due prove sono equilibri distinti, non una descrizione del moto durante una variazione istantanea del carico.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6305,
+      "title": "La resistenza dalla forza motrice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Una leva rigida senza peso è ferma su cerniera ideale fissa senza coppia. F=2 N ha braccio a=2 m e momento opposto aR, il cui braccio è b=2 m. Quanto vale R>0, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento motore vale 4 N·m. Il momento resistente deve avere uguale modulo e segno opposto, quindi R=Fa/b. I bracci uguali fanno cancellare il loro rapporto e restituiscono 2 N."
+        },
+        {
+          "type": "formula",
+          "text": "Fa=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{Fa}{b}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm m}=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato non è il momento 4 N·m, che va ancora diviso perb. La reazione non ha momento rispetto alla cerniera e non altera questa inversa; se agisse una coppia al fulcro, servirebbe includerla e la relazione cambierebbe."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il momento noto e dividilo per il braccio resistente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato non è il momento 4 N·m, che va ancora diviso perb. La reazione non ha momento rispetto alla cerniera e non altera questa inversa; se agisse una coppia al fulcro, servirebbe includerla e la relazione cambierebbe.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6306,
+      "title": "Quanto deve essere lungo il braccio resistente?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Una leva rigida senza peso è in equilibrio su una cerniera ideale fissa senza coppia. F=2 N agisce con braccio perpendicolare a=2 m; R=2 N produce il momento opposto. Quanto vale il braccio perpendicolare b, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal bilancio Fa=Rb isoliamo b=Fa/R. Il momento 4 N·m diviso per 2 N dà 2 m. b è la distanza perpendicolare alla retta d’azione della forza R, non una lunghezza totale della leva assegnata automaticamente."
+        },
+        {
+          "type": "formula",
+          "text": "b=\\frac{Fa}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm N)(2\\,\\mathrm m)}{2\\,\\mathrm N}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un metro invertirebbe o dimezzerebbe un rapporto non richiesto. Con forze uguali i bracci devono essere uguali per dare momenti opposti dello stesso modulo. L’inversa richiedeR>0, come dichiarato."
+        }
+      ],
+      "hints": [
+        "Dividi il momento motore per la forza resistente positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un metro invertirebbe o dimezzerebbe un rapporto non richiesto. Con forze uguali i bracci devono essere uguali per dare momenti opposti dello stesso modulo. L’inversa richiedeR>0, come dichiarato.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6307,
+      "title": "Più braccio resistente richiede più forza motrice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Due leve ideali rigide senza peso sono in equilibrio, con momenti opposti diF e R e cerniera senza coppia. Il braccio motore è a=2 m e R=2 N in entrambe. Il braccio resistente passa da b_A=2 m a b_B=4 m. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R e a restano fissi, quindi F è proporzionale ab. Il momento resistente passa da 4 a 8 N·m: per compensarlo sul braccio motore 2 m servono 2 e 4 N. Il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac{(2\\,\\mathrm N)(4\\,\\mathrm m)}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm N)(4\\,\\mathrm m)}{2\\,\\mathrm m}=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo attribuirebbe al braccio resistente l’effetto del braccio motore, che qui è fisso. Quattro introdurrebbe un quadrato; uno ignora il cambiamento; −2 non è rapporto fra moduli positivi di forze che devono mantenere gli stessi versi dei momenti."
+        }
+      ],
+      "hints": [
+        "La resistenza più lontana aumenta il momento da compensare, non il vantaggio del braccio motore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo attribuirebbe al braccio resistente l’effetto del braccio motore, che qui è fisso. Quattro introdurrebbe un quadrato; uno ignora il cambiamento; −2 non è rapporto fra moduli positivi di forze che devono mantenere gli stessi versi dei momenti.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6308,
+      "title": "Una proposta doppia sulla forza equilibrante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Una leva rigida senza peso è in equilibrio su cerniera ideale senza coppia. Il braccio motore è a=2 m; R=2 N ha braccio b=2 m e momento opposto aF. Si proponeF=4 N. Quanto vale proposto meno corretto, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento resistente è 4 N·m. Dividendo per a=2 m si trovaF=2 N. La proposta di 4 N produrrebbe un momento motore 8 N·m e non soddisferebbe l’equilibrio rotazionale. Lo scarto richiesto è 4−2=+2 N."
+        },
+        {
+          "type": "formula",
+          "text": "F=Rb/a"
+        },
+        {
+          "type": "formula",
+          "text": "Rb/a=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm N-2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm N-2\\,\\mathrm N=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "−2 N inverte l’ordine; 4 N ripete la proposta; 1 N dimezza ancora; 3 N non è la differenza. Il numero 4 del momento resistente non va copiato come 4 N: dividere per il braccio è necessario sia fisicamente sia dimensionalmente."
+        }
+      ],
+      "hints": [
+        "Non confondere il momento inN·m con la forza inN.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 N inverte l’ordine; 4 N ripete la proposta; 1 N dimezza ancora; 3 N non è la differenza. Il numero 4 del momento resistente non va copiato come 4 N: dividere per il braccio è necessario sia fisicamente sia dimensionalmente.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6309,
+      "title": "L’inversa con il braccio motore dimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Per una leva rigida senza peso in equilibrio su cerniera ideale senza coppia, F e R hanno momenti opposti e bracci positivi a=2 m, b. Quale formula isolaR daFa=Rb?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R=Fa/b",
+          "R=Fb/a",
+          "R=F/(ab)",
+          "R=2 Fa/b",
+          "R=Fa/(2 b)"
+        ],
+        "value": "R=Fa/b"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo il momento motoreFa perb>0. Il rapporto a/b è puro e converte un modulo di forza nell’altro. Conservare a come lunghezza esplicita evita di trattare il valore numerico 2 del braccio come se fosse senza unità."
+        },
+        {
+          "type": "formula",
+          "text": "Fa=Rb"
+        },
+        {
+          "type": "formula",
+          "text": " Fa/b=R"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{Fa}{b}"
+        },
+        {
+          "type": "text",
+          "text": "Fb/a scambia i bracci e risponde a un’altra leva; F/(ab) ha unità forza su lunghezza al quadrato. I fattori due extra non si ricavano dal bilancio e falliscono la sostituzione. Se a=b, l’inversa corretta ridàR=F."
+        }
+      ],
+      "hints": [
+        "Dividi il momento noto per il braccio della forza da trovare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Fb/a scambia i bracci e risponde a un’altra leva; F/(ab) ha unità forza su lunghezza al quadrato. I fattori due extra non si ricavano dal bilancio e falliscono la sostituzione. Se a=b, l’inversa corretta ridàR=F.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6310,
+      "title": "Due cambiamenti sul momento resistente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Fra due equilibri di una leva ideale senza peso si passa daR, b>0 aR_B=κ₁R e b_B=κ₂b, con fattori positivi. Il braccio motore a=2 m resta fisso; la cerniera non esercita coppia e i momenti sono opposti. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza motrice è Rb/a. Il braccio motore costante si cancella nel rapporto e i due fattori del momento resistente si moltiplicano. Non compare una dipendenza inversa dab: quella sarebbe l’effetto di cambiare a, che qui non avviene."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=Rb/a"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\kappa_1\\kappa_2Rb/a"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti attribuiscono a uno degli ingressi un effetto inverso; la somma non supera il controllo di identità; il quadrato di κ₂ introdurrebbe una legge quadratica del braccio non presente nei momenti di forza."
+        }
+      ],
+      "hints": [
+        "Confronta i momenti resistenti e cancella lo stesso braccio motore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti attribuiscono a uno degli ingressi un effetto inverso; la somma non supera il controllo di identità; il quadrato di κ₂ introdurrebbe una legge quadratica del braccio non presente nei momenti di forza.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6311,
+      "title": "Resistenza doppia e braccio doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "In due equilibri di una leva ideale senza peso il braccio motore è a=2 m, la cerniera non esercita coppia e i momenti diF eR sono opposti. A: R=2 N, b=2 m. B: R=4 N, b=4 m. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo momento resistente è 4 N·m, il secondo 16 N·m. Sullo stesso braccio motore le forze sono 2 e 8 N. Il rapporto è quattro, prodotto del raddoppio del carico e di quello del braccio resistente."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=8\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera uno solo dei cambiamenti; otto è la forzaB in newton e non il rapporto puro. Sedici è il momentoB, non una forza. L’inverso 1/4 scambierebbe le due prove."
+        }
+      ],
+      "hints": [
+        "Valuta Rb in ciascuna prova prima di dividere per a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera uno solo dei cambiamenti; otto è la forzaB in newton e non il rapporto puro. Sedici è il momentoB, non una forza. L’inverso 1/4 scambierebbe le due prove.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6312,
+      "title": "Media di due forze equilibranti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 2,
+      "prompt": "Due equilibri di leve ideali senza peso hanno lo stesso braccio motore a=2 m e cerniera senza coppia. I momenti sono opposti. A: R=2 N, b=2 m. B: R=4 N, b=4 m. Qual è la media aritmetica delle forze motrici con uguale peso, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze sono 2 e 8 N. La loro semisomma è 5 N, compresa fra i due valori. Ogni forza va calcolata con la propria coppiaR, b prima di fare la media: il prodotto di ingressi medi descriverebbe una terza leva."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=8\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F=\\frac{2+8}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+8}{2}\\,\\mathrm N=5\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "10 N è la somma; 5/2 N divide due volte. Gli ingressi mediR=3 N, b=3 m darebbero 9/2 N, diverso da 5 N; 4 o 6 non sono la semisomma. Questa è una media statistica di equilibri, non una risultante di forze agenti insieme."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le forze e poi assegna loro lo stesso peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10 N è la somma; 5/2 N divide due volte. Gli ingressi mediR=3 N, b=3 m darebbero 9/2 N, diverso da 5 N; 4 o 6 non sono la semisomma. Questa è una media statistica di equilibri, non una risultante di forze agenti insieme.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6313,
+      "title": "Progettare il braccio per una forza quadrupla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 3,
+      "prompt": "La leva ideale senza peso ha braccio motore a=2 m e cerniera senza coppia. A: R_A=2 N, b_A=2 m. InB si imponeR_B=4 N e si vuoleF_B=4 F_A, in equilibrio con momenti opposti. Quanto vale b_B/b_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "F_A è 2 N, quindi l’obiettivoF_B è 8 N. Il suo momento motore vale 16 N·m. Con resistenza 4 N serve un braccio 4 m: il rapporto con 2 m è due. La resistenza doppia fornisce già un fattore due nell’obiettivo."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=8\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " b_B=F_Ba/R_B"
+        },
+        {
+          "type": "formula",
+          "text": " b_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " b_B/b_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare b a 2 m darebbe soltantoF_B=4 N; quadruplicare b darebbe 16 N, otto volteF_A. Quattro metri è il valore del nuovo braccio e non il rapporto. L’ipotesi di versi opposti va mantenuta oltre al confronto dei moduli."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il braccio dal momento motore obiettivo e dalla resistenza nuova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare b a 2 m darebbe soltantoF_B=4 N; quadruplicare b darebbe 16 N, otto volteF_A. Quattro metri è il valore del nuovo braccio e non il rapporto. L’ipotesi di versi opposti va mantenuta oltre al confronto dei moduli.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6314,
+      "title": "Uno strumento sulla forza motrice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segueS=cF, c>0, senza offset. Una leva ideale senza peso ha braccio motore a=2 m e cerniera senza coppia; F eR producono momenti opposti in equilibrio. Il riferimentoR=2 N, b=2 m dàS=6. Una prova con b=4 m dàS=24. Quanto valeR, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento haF=2 N e fornisce c=3 N⁻¹. La lettura 24 rappresentaF=8 N. Per risalire alla resistenza usiamoR=Fa/b: il momento 16 N·m diviso 4 m dà 4 N."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " c=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=24/c"
+        },
+        {
+          "type": "formula",
+          "text": "24/c=8\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=F_Ba/b_B"
+        },
+        {
+          "type": "formula",
+          "text": "F_Ba/b_B=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "La lettura 24 non è già una forza innewton; usarla così darebbeR=12 N. Il controllo 4 N·4 m=8 N·2 m eS=3·8=24 ricostruisce equilibrio e strumento. Un guadagno strumentale non modifica i bracci meccanici."
+        }
+      ],
+      "hints": [
+        "Decodifica F, poi confronta i due momenti per ricostruire R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura 24 non è già una forza innewton; usarla così darebbeR=12 N. Il controllo 4 N·4 m=8 N·2 m eS=3·8=24 ricostruisce equilibrio e strumento. Un guadagno strumentale non modifica i bracci meccanici.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6315,
+      "title": "Offset prima dell’equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segueS=cF+d, c>0, d costanti. Una leva ideale senza peso ha braccio motore a=2 m, cerniera senza coppia e momenti opposti diF, R in equilibrio. A: R=2 N, b=2 m, S=5. B: R=4 N, b=4 m, S=17. C: b=2 m, S=9. Quanto valeR_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N",
+          "3 N",
+          "4 N",
+          "5 N",
+          "8 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze di riferimento sono 2 e 8 N. La differenza di lettura 12 su 6 N dà c=2 N⁻¹ e l’offset è 1. C rappresentaF=4 N; con i bracci uguali 2 m, anche la resistenzaC deve valere 4 N."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=(9-1)/c"
+        },
+        {
+          "type": "formula",
+          "text": "(9-1)/c=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=F_Ca/b_C"
+        },
+        {
+          "type": "formula",
+          "text": "F_Ca/b_C=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Le alternativeR=2, 3, 5, 8 N conb_C=2 m darebbero letture 5, 7, 11, 17. Solo 4 Nrestituisce 9. Non si devono confrontare le letture grezze come se fossero forze prima di togliere l’offset e il guadagno."
+        }
+      ],
+      "hints": [
+        "Calibra su due forze motrici note, poi usa l’inversa del momento resistente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le alternativeR=2, 3, 5, 8 N conb_C=2 m darebbero letture 5, 7, 11, 17. Solo 4 Nrestituisce 9. Non si devono confrontare le letture grezze come se fossero forze prima di togliere l’offset e il guadagno.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa e leve",
+      "order": 6316,
+      "title": "Un carico scelto proporzionale al braccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lever-equilibrium",
+      "difficulty": 3,
+      "prompt": "Fra equilibri diversi di una leva ideale senza peso si selezionaR=(1 N/m)b, b>0. Il braccio motore resta a=2 m; la cerniera non esercita coppia e i momenti diF, R sono opposti. Si misuraF=2 N. Quanto valeb, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Introduciamo il coefficiente c=1 N/m, cosìR=cb è dimensionalmente una forza. Nel bilancioFa=Rb compareFa=cb². Il rapportoFa/c vale 4 m²; la radice positiva è 2 m e il carico corrispondente 2 N."
+        },
+        {
+          "type": "formula",
+          "text": "c=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " R=cb"
+        },
+        {
+          "type": "formula",
+          "text": " Fa=cb^2"
+        },
+        {
+          "type": "formula",
+          "text": " b^2=Fa/c"
+        },
+        {
+          "type": "formula",
+          "text": "Fa/c=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " b_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " b_-=-2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è un braccio positivo e renderebbe negativo anche il moduloR nel vincolo.4 confonde b²con b; uno e tre non danno il momento 4 N·m richiesto. Il vincolo seleziona prove, non impone una forza che varia lungo uno spostamento della stessa leva."
+        }
+      ],
+      "hints": [
+        "Sostituisci R nel bilancio dei momenti con le unità esplicite e poi scegli la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il ramo negativo non è un braccio positivo e renderebbe negativo anche il moduloR nel vincolo.4 confonde b²con b; uno e tre non danno il momento 4 N·m richiesto. Il vincolo seleziona prove, non impone una forza che varia lungo uno spostamento della stessa leva.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Equilibrio di momenti e forze",
+        "Bracci perpendicolari",
+        "Rigidità e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b6cb7a36890767467ef46454220f2ffa22dabb1832a1bd9ada41b02cbedcfe6e",
+      "name": "lever-equilibrium-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkxldmE6YmlsYW5jaW8gZGVpIG1vbWVudGkgZSBkZWxsZSBmb3J6ZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkxldmEgb3JpenpvbnRhbGUgaWRlYWxlIHNlbnphIHBlc28gY29uIGJyYWNjaSBlbnRyYW1iaSBkdWUgbWV0cmksY2VudG9zZXNzYW50YSBwaXhlbCBhbGxhIHNjYWxhIG90dGFudGEgcGl4ZWwgcGVyIG1ldHJvLiBGb3J6ZSB2ZXJ0aWNhbGkgdmVyc28gaWwgYmFzc28gZGkgZHVlIG5ld3RvbiBhIHNpbmlzdHJhIGUgYSBkZXN0cmEsY29uIG1vbWVudGkgb3Bwb3N0aS4gTGUgZnJlY2NlIGRlbGxlIGZvcnplIGhhbm5vIHNjYWxhIHRyZW50YSBwaXhlbCBwZXIgbmV3dG9uLHNlc3NhbnRhIHBpeGVsIGNpYXNjdW5hLiBJbCB0ZXJ6byBwYW5uZWxsbyBtb3N0cmEgcHJvaWV6aW9uaSBzZXBhcmF0ZSBkZWxsZSBkdWUgZm9yemUgdmVyc28gaWwgYmFzc28gZSBkZWxsYSByZWF6aW9uZSBkZWwgZnVsY3JvIHF1YXR0cm8gbmV3dG9uIHZlcnNvIGzigJlhbHRvLGx1bmdhIGNlbnRvdmVudGkgcGl4ZWwgYWxsYSBtZWRlc2ltYSBzY2FsYS4gTGEgcmVhemlvbmUgbm9uIGhhIG1vbWVudG8gcmlzcGV0dG8gYWwgZnVsY3JvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTMxMCIgcng9IjI0IiBmaWxsPSIjZmFmOGYyIi8+PGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMjNmIj4KPHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IE1pc3VyYSBpIGJyYWNjaSBwZXJwZW5kaWNvbGFyaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkFzdGEgb3JpenpvbnRhbGUgc2VuemEgcGVzbzsgZm9yemUgdmVydGljYWxpLjwvdGV4dD48cGF0aCBkPSJNMTYwIDIyMEg0ODAiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHBhdGggZD0iTTMyMCAyMjBMMzAwIDI1MEgzNDBaIiBmaWxsPSIjZDVlM2RjIiBzdHJva2U9IiMxNjMyM2YiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNjAgMjIwVjI4MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTQ4MCAyMjBWMjgwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI4NSIgeT0iMjA1Ij5GID0gMiBOPC90ZXh0Pjx0ZXh0IHg9IjQ4NSIgeT0iMjA1Ij5SID0gMiBOPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iMjkwIj5PPC90ZXh0PjxwYXRoIGQ9Ik0xNjAgMzUwSDQ4ME0xNjAgMzQwVjM2ME0zMjAgMzQwVjM2ME00ODAgMzQwVjM2MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMDUiIHk9IjM5NSI+YSA9IDIgbTwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjM5NSI+YiA9IDIgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNDQ1Ij5CcmFjY2k6IDgwIHB4L20uIEZvcnplOiAzMCBweC9OLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjUyNSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBJIGR1ZSBtb21lbnRpIGhhbm5vIHNlZ25pIG9wcG9zdGk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU4MCI+Q29udmVuemlvbmU6IGFudGlvcmFyaW8gcG9zaXRpdm8uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2MzUiPk1vbWVudG8gZGkgRjogK2FGID0gKzQgTsK3bTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjg1Ij5Nb21lbnRvIGRpIFI6IOKIkmJSID0g4oiSNCBOwrdtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3MzUiPlNvbW1hIGRlaSBtb21lbnRpIGluIE86IGFGIOKIkiBiUiA9IDAuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3ODUiPkxhIHJlYXppb25lIGluIE8gaGEgYnJhY2NpbyBudWxsby48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NjUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgQW5jaGUgbGUgZm9yemUgZGV2b25vIGVxdWlsaWJyYXJzaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTEwIj5Qcm9pZXppb25pIHZlcnRpY2FsaSBzZXBhcmF0ZTogMzAgcHgvTi48L3RleHQ+PHBhdGggZD0iTTE2MCAxMDMwVjEwOTAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zMjAgMTAzMFYxMDkwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDgwIDEwMzBWOTEwIiBzdHJva2U9IiM3NDY0OTMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxMjUiIHk9IjExNDAiPkYgPSAyIE48L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIxMTQwIj5SID0gMiBOPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iMTA3MCI+Ul9PID0gNCBOPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjAwIj5WZXJzbyBs4oCZYWx0byBwb3NpdGl2bzogUl9PIOKIkiBGIOKIkiBSID0gMC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyNTAiPkxhIGNlcm5pZXJhIGZvcm5pc2NlIHVuYSBmb3J6YSwgbmVzc3VuYSBjb3BwaWEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjkwIiBmb250LXNpemU9IjE4Ij5FcXVpbGlicmlvIGRpIGZvcnplIGUgbW9tZW50aSBzb25vIGNvbmRpemlvbmkgZGlzdGludGUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
