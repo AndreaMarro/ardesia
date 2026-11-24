@@ -58,7 +58,62 @@ prevalgono sulle regole di marketing della skill. Playwright e axe-core del prog
 restano i verificatori dell'interfaccia; la loro esecuzione non certifica da sola
 WCAG 2.2 AA, UDL 3.0 o l'uso reale con persone con DSA/ADHD.
 
-## Checkpoint corrente — 640 quesiti e 85 altre attività
+## Checkpoint corrente — 800 quesiti e 89 altre attività
+
+Generazione `bdd6171e789ceb7c06961ed7f9501545e818e011723291e5664de613c4c627ed`, manifest `9b90da6f221144ab1875116d230f6c19bca22e6609267b2925fe954265feb9bb`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati. Sono completate
+800 revisioni individuali DRAFT e 89 revisioni di attività; restano 3.806 quesiti e
+296 attività. U1 e gli shard U2-01..U2-04 sono revisionati in bozza. Il prossimo ID
+da consolidare è `u2-impulse-01`, lotto 055 in U2-05.
+
+Le dieci nuove famiglie 044–053 hanno verifica distinta dall'autore per ogni ID,
+con controprove che sostituiscono chiavi e binding in memoria per isolare il
+controllo matematico. Corretti prima del freeze due distrattori equivalenti W/J/s,
+una precisazione sul lavoro utile e la competenza primaria dell'energia elastica.
+I 146 test editoriali passano. Tutte le 2.421 anteprime sono state riprodotte sotto
+il protocollo finale: 2.400 casi dei quesiti e 21 delle sette nuove edizioni di
+attività, a 1440, 768 e 320 pixel. Fresh e incrementale producono lo stesso puntatore.
+
+La revisione delle prime quattro lezioni conserva due originali validi e due FAIL
+editoriali di severità distinta: C1-L002 confonde il massimo della proiezione con
+segno con il suo modulo; C1-L003 descrive come positivi anche gli estremi nulli di
+un grafico. Le nuove v2 distinguono concordi/discordi, prodotti e proiezioni, e i
+due diversi moti dei grafici x–t/v–t, con calcoli manuali e limiti espliciti. Le
+figure storiche sono copiate byte per byte da Git nel pacchetto con tutti gli hash;
+i file pubblicati rimangono intatti. Una falsa catena prodotta dallo splitter è
+stata corretta prima del freeze usando formule autonome. Una scansione dei 640
+quesiti precedenti non ha trovato gli stessi pattern; non è una prova semantica
+generale su tutte le formule.
+
+Il browser ora raggiunge ogni figura lazy prima di decodificarla, con deadline di
+15 secondi. Il blocco a 320 pixel era nel collaudo delle lezioni lunghe; i run non
+terminati sono stati abortiti e non dichiarati PASS. Il cambiamento del test hash
+ha richiesto il nuovo rendering di tutti i lotti: non sono state rietichettate le
+prove precedenti. Nessun CSS o renderer è stato modificato.
+
+Il collaudo di convivenza usa lo stesso importatore canonico, in lotti di massimo
+100, nello stesso SQLite temporaneo: 807 edizioni candidate, seconda importazione
+senza scritture, tutti i 991 pubblicati e la storia invariati. Per ogni nuovo quesito
+esercita grading e grafo e distingue ripetizione, aiuto, autonomia e trasferimento
+differito con fixture sintetiche. Non crea tentativi studenti, apprendimento reale,
+firme umane o pubblicazioni. Una lettura incoerente del registro è stata riprodotta
+indipendentemente e corretta con uno snapshot unico; tre test e il replay del
+controesempio confermano la correzione. La CI ripete il collaudo e confronta il report.
+
+Sette originali pubblicati conservano un problema tracciato: C1-E003, C1-E008,
+C1-L002, C1-L003, C2-E005, C3-E003, C3-E020. Le sette nuove edizioni sono DRAFT,
+verificate separatamente; nessuna approvazione umana o pubblicazione aggiunta.
+Il backlog completo contiene 3.806 ID, la vecchia coda solo indipendentSolution
+3.607: i 199 controlli recuperati rimangono parziali. Pro100 non identificato.
+
+PR #358 (640/85) è MERGED su `b919e130c77dd5ab19ca7712e8f37e5c708bc39e`, con
+24 check SUCCESS e uno SKIPPED sulla head `73db9b1f0a18add3ee06eb103f98c2ffda6a242e`.
+CI post-merge realmente SUCCESS: corpus45496024392 e Officina45496023935, 14 job
+complessivi. Anche #357 ha concluso entrambi i workflow post-merge con successo.
+Il nuovo incremento 800/89 è su `feat/cric-u2-energy`: PR, CI e merge propri ancora
+da completare. I candidati U2-05 fuori registro non aumentano il conteggio800.
+
+## Snapshot precedente — 640 quesiti e 85 altre attività
 
 Generazione `66e0af717843b2f3188e8340e143ee6c10f5c44addb56b53a78c6af8490ac433`; manifest `6473c92448fc78a8e1d2bdcffca404234143d7a34da723b226106d03d25da5e8`.
 Il registro contabilizza tutti i 4.606 quesiti e le 385 altre attività. Sono completate
