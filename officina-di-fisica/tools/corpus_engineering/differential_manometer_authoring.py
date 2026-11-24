@@ -37,7 +37,7 @@ TASKS=[
 ('L’inversa della pressione di partenza',P+'Quale formula isola p₁?',['p₁=p₂+ρgΔh','p₁=p₂−ρgΔh','p₁=ρgΔh−p₂','p₁=2(p₂+ρgΔh)','p₁=(p₂+ρgΔh)/2'],
  'Nella legge p₂=p₁−ρgΔh aggiungiamo ρgΔh a entrambi i membri. Recuperiamo p₁=p₂+ρgΔh: la pressione maggiore si ricostruisce sommando il salto alla minore. Le due addende sono pressioni.',
  r"p_2+\rho g\Delta h=p_1\qquad p_1=p_2+\rho g\Delta h",
- 'Sottrarre ancora lascia il segno sbagliato; cambiare l’ordine produce qui una pressione negativa. Doppio e metà non risolvono l’equazione e falliscono la sostituzione. Non si può aggiungere Δh da sola, perché una lunghezza non è una pressione.','Porta il termine idrostatico dall’altro lato con il segno opposto.'),
+ 'Sottrarre ancora lascia il segno sbagliato; cambiare l’ordine non ricostruisce p₁. Doppio e metà non risolvono l’equazione e falliscono la sostituzione. Non si può aggiungere Δh da sola, perché una lunghezza non è una pressione.','Porta il termine idrostatico dall’altro lato con il segno opposto.'),
 ('Scalare pressione e dislivello',P+'B usa p₁,B=κ₁p₁,A e Δh_B=κ₂Δh_A, con fattori positivi e p₁,B>ρgΔh_B. Poniamo P_A=p₁,A−ρgΔh_A e P_B=κ₁p₁,A−ρgκ₂Δh_A. Quanto vale p₂,B/p₂,A?',['P_B / P_A','κ₁ / κ₂','κ₁ κ₂','P_A / P_B','2 P_B / P_A'],
  'La pressione d’uscita è una differenza di due contributi. Va mantenuta intera in ciascuna prova: P_A e P_B sono proprio le due pressioni assolute cercate, positive per dominio. Il loro rapporto non si riduce in generale al rapporto dei fattori.',
  r"p_{2,A}=P_A\qquad p_{2,B}=P_B\qquad p_{2,B}/p_{2,A}=P_B/P_A",
