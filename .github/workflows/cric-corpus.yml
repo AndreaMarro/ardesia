@@ -43,6 +43,8 @@ jobs:
         run: |
           var/corpus-venv/bin/python -m unittest discover -s tests/corpus -v
           var/corpus-venv/bin/python -m tools.corpus_engineering.batches
+          var/corpus-venv/bin/python -m tools.corpus_engineering.integration --registry --output var/corpus-coexistence.json
+          cmp editorial/reviews/registry-coexistence.json var/corpus-coexistence.json
       - name: Riproduzione del checkpoint di tutti i 4606 ID
         run: |
           var/corpus-venv/bin/python -c "from pathlib import Path; from tools.corpus_engineering.pipeline import load_checkpoint; load_checkpoint(Path('editorial/corpus'))"
@@ -61,5 +63,6 @@ jobs:
           name: cric-corpus-${{ github.sha }}
           path: |
             officina-di-fisica/var/corpus-browser/
+            officina-di-fisica/var/corpus-coexistence.json
           if-no-files-found: warn
           retention-days: 14
