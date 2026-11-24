@@ -43,3 +43,10 @@ Tre marcatori delimitano due intervalli, non tre cicli. La seconda tappa conta
 gli intervalli e la terza distingue1Hz da1s. Nessuna ampiezza quantitativa è
 dedotta dal disegno, che illustra un caso regolare senza imporlo alla definizione
 di frequenza media di tutti gli altri problemi.
+
+Rilievo dimensionale del revisore separato sul12: la descrizione del rapporto
+aggregato scriveva un2senzaunità sommato a4s. Ora il denominatore è esplicitamente
+2s+4s; il valore8/(6s) e il confronto4/3Hz contro5/4Hz non cambiano. Aggiornati
+testo finale, messaggio di errore derivato, package/binding e nota strutturale.
+Chiave, numeri e asset invariati; nessuna firma indipendente viene rinnovata
+dall’autore e il revisore rileggerà la nuova versione.
