@@ -1,0 +1,1202 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-oblique-work-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4901,
+      "title": "La componente che trasferisce energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 1,
+      "prompt": "Una forza costante di modulo F=2 N forma un angolo di60° con lo spostamento rettilineo di modulo s=2 m del suo punto di applicazione. Il riferimento è inerziale e cos60°=1/2. Quanto lavoro W compie questa forza, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro di una forza costante è il prodotto scalare con lo spostamento. La componente parallela concorde è F cos60°, cioè metà del modulo. La componente perpendicolare non contribuisce a questo lavoro, perché lo spostamento in quella direzione è nullo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c7edff368af80c950fb7477d5ffd930eb171a3eec28def4cae76e51b9616d080",
+          "text": "Forza costante2N a60°, cos60°=1/2: il modulo F è160px e la componente parallela1N è80px alla stessa scala80px/N. Lo spostamento2m è160px in pannello distinto a80px/m. L’area F_parallel–s è il rettangolo1N×2m=2J: scale80px/N verticali e80px/m orizzontali. Il coseno è dato, nessuna trigonometria numerica da eseguire."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\parallel}=F\\cos60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\parallel}=1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W=F_{\\parallel}s"
+        },
+        {
+          "type": "formula",
+          "text": " W=(1\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": "(1\\,\\mathrm N)(2\\,\\mathrm m)=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Il lavoro è positivo, essendo acuto l’angolo tra i due vettori.4J userebbe tutto F come se fosse parallela;1J applicherebbe due volte il coseno. Si calcola il lavoro della forza assegnata: senza conoscere gli altri lavori non si deduce la variazione complessiva di energia cinetica."
+        }
+      ],
+      "hints": [
+        "Proietta la forza lungo lo spostamento prima di moltiplicare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il lavoro è positivo, essendo acuto l’angolo tra i due vettori.4J userebbe tutto F come se fosse parallela;1J applicherebbe due volte il coseno. Si calcola il lavoro della forza assegnata: senza conoscere gli altri lavori non si deduce la variazione complessiva di energia cinetica.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4902,
+      "title": "Il coseno non cambia l’unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 1,
+      "prompt": "Per una forza costante W=Fs cosθ, con F in N e s in m. Quale unità SI esprime il lavoro W? Il coseno è un rapporto puro.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "W",
+          "J",
+          "m/s",
+          "1"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La proiezione angolare cambia il numero e può cambiarne il segno, ma non introduce una nuova dimensione fisica. Il prodotto forza per lunghezza è un lavoro: newton per metro come fattori, non newton diviso metro."
+        },
+        {
+          "type": "formula",
+          "text": "[\\cos\\theta]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [W]=ML^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm N\\,\\mathrm m=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "N è solo una forza; W è un watt, energia per tempo; m/s è una velocità. Anche quando il lavoro vale zero per una direzione perpendicolare, la sua grandezza resta un’energia e non un numero puro."
+        }
+      ],
+      "hints": [
+        "Conserva l’unità di F e quella di s: il coseno è adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è solo una forza; W è un watt, energia per tempo; m/s è una velocità. Anche quando il lavoro vale zero per una direzione perpendicolare, la sua grandezza resta un’energia e non un numero puro.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4903,
+      "title": "Sessanta gradi sono metà proiezione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 1,
+      "prompt": "Una forza costante F>0 agisce su un punto che si sposta in linea retta di s>0. L’angolo fra forza e spostamento è60° e cos60°=1/2. Quale espressione dà il lavoro della forza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W=Fs",
+          "W=Fs/2",
+          "W=−Fs/2",
+          "W=Fs/4",
+          "W=0"
+        ],
+        "value": "W=Fs/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione è il prodotto scalare. La direzione è obliqua ma ha una componente concorde: sostituire il coseno assegnato dà Fs/2. Non c’è bisogno di calcolare seni o radici per trovare il lavoro richiesto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c7edff368af80c950fb7477d5ffd930eb171a3eec28def4cae76e51b9616d080",
+          "text": "La proiezione conserva metà del modulo: forza obliqua2N e componente concorde1N hanno scala comune80px/N. Il pannello dello spostamento usa invece80px/m; l’area del grafico F_parallel–s vale2J."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\vec F\\cdot\\Delta\\vec r"
+        },
+        {
+          "type": "formula",
+          "text": " W=Fs\\cos60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\frac{Fs}{2}"
+        },
+        {
+          "type": "text",
+          "text": "Fs elimina l’angolo; il meno descriverebbe una componente discorde, come a120°.Fs/4 dimezza due volte;zero varrebbe a90°, non a60°.L’angolo va preso tra forza e spostamento del suo punto di applicazione."
+        }
+      ],
+      "hints": [
+        "Usa una sola volta il valore del coseno fornito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Fs elimina l’angolo; il meno descriverebbe una componente discorde, come a120°.Fs/4 dimezza due volte;zero varrebbe a90°, non a60°.L’angolo va preso tra forza e spostamento del suo punto di applicazione.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4904,
+      "title": "Più forza alla stessa inclinazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 1,
+      "prompt": "Si confrontano forze costanti F_A=2 N e F_B=4 N su spostamenti rettilinei entrambi s=2 m. In entrambe le prove l’angolo è60° e cos60°=1/2. Come cambia il lavoro della forza?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 2 J",
+          "Da 2 a 4 J",
+          "Da 2 a 8 J",
+          "Da 2 a 1 J",
+          "Diventa negativo"
+        ],
+        "value": "Da 2 a 4 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A s e angolo fissi il fattore geometrico non cambia. La forza raddoppia e il lavoro raddoppia: il confronto è tra due prodotti scalari con la stessa direzione relativa, non tra forze che ruotano."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=2\\cdot2/2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "2\\cdot2/2\\,\\mathrm J=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=4\\cdot2/2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "4\\cdot2/2\\,\\mathrm J=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto joule raddoppierebbe anche s oppure ometterebbe il coseno nella seconda prova. Un joule invertirebbe la dipendenza da F; il segno resta positivo perché l’angolo rimane acuto."
+        }
+      ],
+      "hints": [
+        "Nel confronto mantieni uguali sia lo spostamento sia il coseno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto joule raddoppierebbe anche s oppure ometterebbe il coseno nella seconda prova. Un joule invertirebbe la dipendenza da F; il segno resta positivo perché l’angolo rimane acuto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4905,
+      "title": "Ricostruire il modulo della forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Una forza costante compie W=2 J durante uno spostamento rettilineo s=2 m, formando con esso60°. Si conosce cos60°=1/2. Quanto vale il modulo positivo F, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da W=Fs/2 moltiplichiamo per due e dividiamo per la lunghezza non nulla. W/s darebbe soltanto la componente parallela, non il modulo della forza obliqua; serve ancora dividere per il coseno."
+        },
+        {
+          "type": "formula",
+          "text": "2W=Fs"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{2W}{s}"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{2\\cdot2\\,\\mathrm J}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\cdot2\\,\\mathrm J}{2\\,\\mathrm m}=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "La componente parallela è1N, mentre il modulo è2N.4N conterebbe due volte il fattore inverso; il controllo2N·2m/2 restituisce2J. Energia divisa per lunghezza ha unità di forza."
+        }
+      ],
+      "hints": [
+        "Distingui F da F cos60° quando inverti il lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La componente parallela è1N, mentre il modulo è2N.4N conterebbe due volte il fattore inverso; il controllo2N·2m/2 restituisce2J. Energia divisa per lunghezza ha unità di forza.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4906,
+      "title": "La distanza dal lavoro obliquo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Una forza costante di modulo F=2 N compie lavoro W=2 J su uno spostamento rettilineo di modulo s>0. L’angolo è60°, con cos60°=1/2. Quanto vale s, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente utile al lavoro è1N. Dividere2J per1N dà2m. Nell’algebra, da W=Fs/2 isoliamo s=2W/F: il fattore due serve a eliminare il mezzo iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "s=\\frac{2W}{F}"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\frac{2\\cdot2\\,\\mathrm J}{2\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\cdot2\\,\\mathrm J}{2\\,\\mathrm N}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare W/F darebbe1m, come se la forza fosse interamente parallela. La lunghezza è un modulo positivo; il segno positivo del lavoro è già assicurato dal coseno acuto assegnato."
+        }
+      ],
+      "hints": [
+        "Dividi per la componente parallela, non per l’intero modulo senza correggerlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare W/F darebbe1m, come se la forza fosse interamente parallela. La lunghezza è un modulo positivo; il segno positivo del lavoro è già assicurato dal coseno acuto assegnato.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4907,
+      "title": "Due metri o quattro, stesso angolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Una forza costante F=2 N forma sempre60° con lo spostamento rettilineo. Le due prove hanno s_A=2 m e s_B=4 m; cos60°=1/2. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore F cos60° è comune e si semplifica. Il rapporto dei lavori è quello delle lunghezze, due. Il punto di applicazione compie uno spostamento doppio sotto la stessa componente parallela."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac42"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac42=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte l’ordine;quattro renderebbe il lavoro quadratico in s;uno ignora il cambiamento.−2 non è compatibile con due lavori positivi allo stesso angolo acuto."
+        }
+      ],
+      "hints": [
+        "Semplifica forza e coseno comuni nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte l’ordine;quattro renderebbe il lavoro quadratico in s;uno ignora il cambiamento.−2 non è compatibile con due lavori positivi allo stesso angolo acuto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4908,
+      "title": "Il lavoro che dimentica l’angolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "F=2 N è costante; il suo punto di applicazione si sposta rettilineamente di s=2 m formando60° con la forza, con cos60°=1/2. Una proposta dà W=4 J. Quanto vale proposto meno corretto, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro joule è il prodotto dei soli moduli Fs e dimentica la proiezione. Il lavoro corretto ne è la metà,2J. Formiamo poi lo scarto con l’ordine esplicito:4J meno2J."
+        },
+        {
+          "type": "formula",
+          "text": "W=Fs/2"
+        },
+        {
+          "type": "formula",
+          "text": "Fs/2=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm J-2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm J-2\\,\\mathrm J=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−2J invertirebbe la sottrazione;4J copia la proposta;1J divide ancora per due;3J sottrae la componente numerica1N a un’energia, confondendo grandezze. La risposta è lo scarto, non il modulo della forza."
+        }
+      ],
+      "hints": [
+        "Individua il coseno omesso, poi confronta i due lavori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2J invertirebbe la sottrazione;4J copia la proposta;1J divide ancora per due;3J sottrae la componente numerica1N a un’energia, confondendo grandezze. La risposta è lo scarto, non il modulo della forza.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4909,
+      "title": "L’inversa contiene il due",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Una forza costante F>0 compie W>0 nello spostamento rettilineo s>0 a60°, con cos60°=1/2. Quale formula isola il modulo F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=W/s",
+          "F=2W/s",
+          "F=W/(2s)",
+          "F=4W/s",
+          "F=s/(2W)"
+        ],
+        "value": "F=2W/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il mezzo moltiplica Fs nella legge diretta. Per annullarlo moltiplichiamo il lavoro per due; poi dividiamo per s. Il risultato mantiene unità joule su metro, cioè newton."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\frac{Fs}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " 2W=Fs"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{2W}{s}"
+        },
+        {
+          "type": "text",
+          "text": "W/s è solo la componente parallela;W/(2s) dimezza invece di raddoppiare;4W/s corregge due volte il coseno. s/(2W) ha dimensione inversa di forza e non risolve l’equazione."
+        }
+      ],
+      "hints": [
+        "Moltiplica per due prima di dividere per lo spostamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "W/s è solo la componente parallela;W/(2s) dimezza invece di raddoppiare;4W/s corregge due volte il coseno. s/(2W) ha dimensione inversa di forza e non risolve l’equazione.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4910,
+      "title": "Due scale con l’angolo bloccato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Fra due prove di forza costante si hanno F_B=κ₁F_A e s_B=κ₂s_A. Le grandezze e i fattori sono positivi; l’angolo fra forza e spostamento resta60° in entrambe, con cos60°=1/2. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂",
+          "κ₁ κ₂ / 2",
+          "2 κ₁ κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il mezzo compare in entrambi i lavori e si cancella nel rapporto. Restano i due fattori che moltiplicano rispettivamente forza e spostamento. Se l’angolo variasse, servirebbe anche il rapporto dei coseni: qui è fissato."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=F_As_A/2"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=\\kappa_1\\kappa_2W_A"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo o un due residui non superano il controllo κ₁=κ₂=1, per il quale il rapporto deve essere uno. I quozienti attribuiscono una dipendenza inversa a un ingresso che nella legge moltiplica."
+        }
+      ],
+      "hints": [
+        "Cancella il fattore angolare solo perché è identico nelle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo o un due residui non superano il controllo κ₁=κ₂=1, per il quale il rapporto deve essere uno. I quozienti attribuiscono una dipendenza inversa a un ingresso che nella legge moltiplica.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4911,
+      "title": "Forza doppia e cammino doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "A usa F_A=2 N,s_A=2 m; B usa F_B=4 N,s_B=4 m. Le forze sono costanti e in entrambe le prove l’angolo forza-spostamento è60°, con cos60°=1/2. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoroA è2J e il lavoroB è8J. I due raddoppi producono un fattore quattro; il mezzo geometrico riduce entrambi i lavori e non riduce ulteriormente il loro rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac82"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac82=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo uno dei cambiamenti oppure conserva erroneamente un mezzo nel rapporto. Otto è il lavoroB in joule, non il rapporto adimensionale;un quarto inverte A e B."
+        }
+      ],
+      "hints": [
+        "Trova ciascun prodotto con il suo coseno e poi fai la divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo uno dei cambiamenti oppure conserva erroneamente un mezzo nel rapporto. Otto è il lavoroB in joule, non il rapporto adimensionale;un quarto inverte A e B.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4912,
+      "title": "La semisomma di due lavori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 2,
+      "prompt": "Due forze costanti formano60° con i rispettivi spostamenti rettilinei, cos60°=1/2. A: F=2 N,s=2 m. B: F=4 N,s=4 m. Qual è la media aritmetica dei due lavori, con uguale peso alle prove, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima ogni lavoro,2J e8J, poi la semisomma. La media descrive due misure distinte; non è il lavoro di una terza forza con gli ingressi medi."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=\\frac{2+8}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2+8}{2}\\,\\mathrm J=5\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "10J è la somma;5/2J divide due volte. Gli ingressi medi3N e3m darebbero9/2J, diverso da5J. I valori4 e6J non sono la semisomma;nessun arrotondamento è richiesto."
+        }
+      ],
+      "hints": [
+        "Assegna uguale peso ai lavori già calcolati, non agli ingressi prima del prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10J è la somma;5/2J divide due volte. Gli ingressi medi3N e3m darebbero9/2J, diverso da5J. I valori4 e6J non sono la semisomma;nessun arrotondamento è richiesto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4913,
+      "title": "Il doppio della forza copre metà del fattore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 3,
+      "prompt": "A ha forza costante F_A=2 N e spostamento s_A=2 m. B usa F_B=4 N e deve avere lavoro W_B=4W_A. In entrambe le prove l’angolo è60°, cos60°=1/2. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo lavoro è2J e l’obiettivo è8J. Con forza4N la componente parallela è2N, perciò servono4m. Il rapporto fra4m e2m è due: l’altro fattore due è già fornito dalla forza."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=\\frac{2W_B}{F_B}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2W_B}{F_B}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quadruplicare anche lo spostamento darebbe otto volte il lavoroA. Lasciarlo invariato darebbe soltanto il doppio.4m è il valore di s_B e non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore obiettivo per quello già introdotto nella forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quadruplicare anche lo spostamento darebbe otto volte il lavoroA. Lasciarlo invariato darebbe soltanto il doppio.4m è il valore di s_B e non il rapporto richiesto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4914,
+      "title": "Decodificare prima di proiettare al contrario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cW, con c>0 e senza offset. Per una forza costante a60° si ha cos60°=1/2. Il riferimento F=2 N,s=2 m dà S=6; la provaB con s=4 m dà S=24. Quanto vale F_B, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro di riferimento è2J, quindi c=3J⁻¹. La lettura24 rappresenta8J. Invertiamo ora W=Fs/2 alla lunghezza4m: il modulo è4N, mentre la componente parallela sarebbe2N."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " c=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=24/c"
+        },
+        {
+          "type": "formula",
+          "text": "24/c=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=2W_B/s_B"
+        },
+        {
+          "type": "formula",
+          "text": "2W_B/s_B=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "24non va usato come joule: darebbe12N. Anche togliendo il guadagno, W_B/s_B dà soltanto la proiezione. Il controllo4N·4m/2=8J e cW_B=24 ricostruisce entrambi i dati."
+        }
+      ],
+      "hints": [
+        "Trova il lavoro vero dal display e poi applica l’inversa con il fattore due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "24non va usato come joule: darebbe12N. Anche togliendo il guadagno, W_B/s_B dà soltanto la proiezione. Il controllo4N·4m/2=8J e cW_B=24 ricostruisce entrambi i dati.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4915,
+      "title": "Letture con offset e forza obliqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cW+d, con c>0,d costanti. L’angolo è60° in tutte le prove e cos60°=1/2; ogni forza è costante. A: F=2 N,s=2 m,S=5. B: F=4 N,s=4 m,S=17. C: s=2 m,S=9. Quanto vale F_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N",
+          "3 N",
+          "4 N",
+          "5 N",
+          "8 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno lavori2 e8J. La differenza di lettura12, divisa per6J, dà c=2J⁻¹. L’offset è uno; la letturaC corrisponde quindi a4J. La forza obliqua su2m deve avere modulo4N per compiere questo lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{17-5}{8-2}\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{17-5}{8-2}\\,\\mathrm{J^{-1}}=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=5-2\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": "5-2\\cdot2=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=(9-1)/c"
+        },
+        {
+          "type": "formula",
+          "text": "(9-1)/c=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=2W_C/s_C"
+        },
+        {
+          "type": "formula",
+          "text": "2W_C/s_C=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "A s_C=2m, le alternative2,3,5,8N darebbero letture5,7,11,17. Solo4N restituisce9. Il rapporto delle letture grezze non elimina d: la differenza serve proprio a separarlo dal guadagno."
+        }
+      ],
+      "hints": [
+        "Usa i due lavori di riferimento, togli l’offset e infine risali a F.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A s_C=2m, le alternative2,3,5,8N darebbero letture5,7,11,17. Solo4N restituisce9. Il rapporto delle letture grezze non elimina d: la differenza serve proprio a separarlo dal guadagno.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-oblique-work-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4916,
+      "title": "Un vincolo dimensionale fra forza e spostamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oblique-work",
+      "difficulty": 3,
+      "prompt": "Fra prove distinte di una forza costante a60° si seleziona F=(1 N/m)s, con s>0 e cos60°=1/2. Il modulo della forza è costante durante ciascuna prova; il vincolo collega prove diverse. Se W=2 J, quanto vale s, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente1N/m non è una forza elastica durante il tragitto: qui sceglie il valore costante di F in funzione dello spostamento totale della prova. Sostituendolo nel prodotto scalare si ottiene W=cs²/2 e quindi s²=4m². La lunghezza positiva è2m."
+        },
+        {
+          "type": "formula",
+          "text": "c=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " F=cs"
+        },
+        {
+          "type": "formula",
+          "text": " W=cs^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " s^2=2W/c"
+        },
+        {
+          "type": "formula",
+          "text": "2W/c=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " s_-=-2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con s=2m si seleziona F=2N e il lavoro è2J. Il ramo negativo violerebbe sia il modulo s>0 sia F>0 nel vincolo. Quattro confonde il quadrato con la lunghezza;uno e tre non soddisfano la misura. Non si deve integrare una forza crescente durante una prova che dichiara F costante."
+        }
+      ],
+      "hints": [
+        "Inserisci il vincolo nella legge del lavoro costante e scegli il ramo del modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Con s=2m si seleziona F=2N e il lavoro è2J. Il ramo negativo violerebbe sia il modulo s>0 sia F>0 nel vincolo. Quattro confonde il quadrato con la lunghezza;uno e tre non soddisfano la misura. Non si deve integrare una forza crescente durante una prova che dichiara F costante.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Lavoro come prodotto scalare",
+        "Proiezione e segno del lavoro",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c7edff368af80c950fb7477d5ffd930eb171a3eec28def4cae76e51b9616d080",
+      "name": "oblique-work-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlByb2lldHRhcmUgbGEgZm9yemEgcGVyIGNhbGNvbGFyZSBpbCBsYXZvcm88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Gb3J6YSBkdWUgbmV3dG9uIGluY2xpbmF0YSBzZXNzYW50YSBncmFkaSBzdSB1bm8gc3Bvc3RhbWVudG8gdmVyc28gZGVzdHJhLiBJbCBjb3Nlbm8gdW4gbWV6em8gw6ggZm9ybml0by4gRnJlY2NpYSBmb3J6YSBjZW50b3Nlc3NhbnRhIHBpeGVsIGEgb3R0YW50YSBwaXhlbCBwZXIgbmV3dG9uLCBwcm9pZXppb25lIHBhcmFsbGVsYSB1biBuZXd0b24gbHVuZ2Egb3R0YW50YSBwaXhlbCBhbGxhIG1lZGVzaW1hIHNjYWxhLiBTcG9zdGFtZW50byBkdWUgbWV0cmkgbHVuZ28gY2VudG9zZXNzYW50YSBwaXhlbCBhIG90dGFudGEgcGl4ZWwgcGVyIG1ldHJvIGluIHVuIGFsdHJvIHBhbm5lbGxvLiBHcmFmaWNvIGZvcnphIHBhcmFsbGVsYSBzcG9zdGFtZW50bzogYWx0ZXp6YSB1biBuZXd0b24gZSBiYXNlIGR1ZSBtZXRyaSwgYXJlYSBkdWUgam91bGUuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjMwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMyM2YiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgUHJvaWV0dGEgc3VsbGEgZGlyZXppb25lIGRlbGxvIHNwb3N0YW1lbnRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+RGF0bzogY29zNjDCsCA9IDEvMi48L3RleHQ+PHBhdGggZD0iTTE4MCAyOTBIMzQwIiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMTgwIDI5MCkiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0xODAgMjkwSDI2MCIgc3Ryb2tlPSIjYjQ0YjJjIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTE4MCAzMjBINDkwIiBzdHJva2U9IiM5YWFkYTYiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIyODAiIHk9IjE3NSIgZmlsbD0iIzE0NjQ3YiI+RiA9IDIgTjwvdGV4dD48dGV4dCB4PSIyODAiIHk9IjI4MCIgZmlsbD0iI2I0NGIyYyI+RuKIpSA9IDEgTjwvdGV4dD48dGV4dCB4PSIyMTIiIHk9IjI1NSI+NjDCsDwvdGV4dD48dGV4dCB4PSIyNzAiIHk9IjM1NSI+ZGlyZXppb25lIGRlbGxvIHNwb3N0YW1lbnRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0MDUiPkZvcnplOiA4MCBweC9OIHBlciBGIGUgcGVyIGxhIHN1YSBwcm9pZXppb25lLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjQ4NSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBMZWdnaSBsYSBsdW5naGV6emEgbmVsbGEgc3VhIHNjYWxhPC90ZXh0PjxjaXJjbGUgY3g9IjE4MCIgY3k9IjU5MCIgcj0iNiIgZmlsbD0iIzE0NjQ3YiIvPjxwYXRoIGQ9Ik0xODAgNTkwSDM0MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iMTgwIiB5PSI2MzUiPnMgPSAyIG0gwrcgc3Bvc3RhbWVudG8gcmV0dGlsaW5lbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjk1Ij5MdW5naGV6emU6IDgwIHB4L20uIE5vbiDDqCB1bmEgc2NhbGEgZGkgZm9yemEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzg1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IE1vbHRpcGxpY2EgbGEgY29tcG9uZW50ZSBwZXIgbGEgZGlzdGFuemE8L3RleHQ+PHBhdGggZD0iTTEwMCAxMDgwVjg4ME0xMDAgMTA4MEg0MTAiIHN0cm9rZT0iIzE2MzIzZiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2I3ZDhjZiIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNiIgeT0iOTk1Ij4xIE48L3RleHQ+PHRleHQgeD0iNzUiIHk9IjExMTUiPjA8L3RleHQ+PHRleHQgeD0iMjQ1IiB5PSIxMTE1Ij4yIG08L3RleHQ+PHRleHQgeD0iMTE1IiB5PSIxMDQ4Ij5XID0gMiBKPC90ZXh0Pjx0ZXh0IHg9IjEwNSIgeT0iOTE1Ij5G4oilPC90ZXh0Pjx0ZXh0IHg9IjQyNSIgeT0iMTA4NiI+czwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE2MCI+QXJlYSA9IDEgTiDCtyAyIG0gPSAyIEouPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjAwIiBmb250LXNpemU9IjE4Ij5Bc3NlIHZlcnRpY2FsZTogODAgcHgvTi4gQXNzZSBvcml6em9udGFsZTogODAgcHgvbS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
