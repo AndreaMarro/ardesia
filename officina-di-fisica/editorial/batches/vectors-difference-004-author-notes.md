@@ -7,6 +7,8 @@ I binding conservano digest del record sorgente, del candidato e delle figure.
 Queste note propongono i calcoli al reviewer: non sono una review indipendente,
 non certificano PASS scientifici e non costituiscono approvazione umana.
 Tutte le schede restano DRAFT; review indipendente e umana NOT_RUN.
+Rilettura autore: esplicitato D nei prompt 04,07,10,11,13,14,15 per renderli
+autonomi dal contesto del lotto; ricalcolati i soli binding dei candidati modificati.
 
 | ID finale | Compito e nota di calcolo per la review |
 |---|---|
