@@ -1,0 +1,1222 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-gravitational-energy-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4801,
+      "title": "La quota cambia l’energia, non lo zero scelto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 1,
+      "prompt": "Un corpo di massa m=2 kg sale di h=2 m in un campo gravitazionale uniforme g=10 m/s², in un riferimento inerziale. Indichiamo con U la variazione di energia potenziale gravitazionale fra arrivo e partenza. Quanto vale U, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo la coordinata verticale positiva verso l’alto. Il peso è rivolto verso il basso, quindi compie lavoro negativo durante la salita. Per un campo conservativo la variazione di energia potenziale è l’opposto del lavoro del peso: con campo uniforme diventa mgh. Occorre il dislivello fra i due estremi, non la loro quota assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dfc19f172026a13ab36c38352a55ad296fa16a6b16378fc199467547daa2d21e",
+          "text": "Tre tappe nel campo uniforme g=10m/s²: il corpo2kg sale di2m, U aumenta di40J e il lavoro del peso è−40J. Quote alla stessa scala50px/m; freccia peso20N a3px/N. Barre energetiche4px/J con asse separato. Nel circuito finale ogni tratto verticale è2m: il lavoro gravitazionale−40J in salita e+40J in discesa dà zero, mentre i tratti orizzontali danno zero."
+        },
+        {
+          "type": "formula",
+          "text": "W_g=-mgh"
+        },
+        {
+          "type": "formula",
+          "text": " U=-W_g"
+        },
+        {
+          "type": "formula",
+          "text": "-W_g=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " U=(20\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": "(20\\,\\mathrm N)(2\\,\\mathrm m)=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "L’aumento è40J; il lavoro del peso sullo stesso tragitto è−40J. Non si è assegnata la velocità né imposto un sollevamento quasi statico: il lavoro di un eventuale agente esterno coinciderebbe con U soltanto se anche la variazione di energia cinetica fosse nulla e non vi fossero altri contributi."
+        }
+      ],
+      "hints": [
+        "Calcola il lavoro del peso con il suo verso e poi cambiane il segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’aumento è40J; il lavoro del peso sullo stesso tragitto è−40J. Non si è assegnata la velocità né imposto un sollevamento quasi statico: il lavoro di un eventuale agente esterno coinciderebbe con U soltanto se anche la variazione di energia cinetica fosse nulla e non vi fossero altri contributi.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4802,
+      "title": "Un peso per un dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 1,
+      "prompt": "Nel campo gravitazionale uniforme un corpo sale di h>0 e la sua energia potenziale aumenta di U=mgh. La massa è in kg, g in m/s² e h in m. Quale unità SI esprime U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "J",
+          "W",
+          "kg",
+          "m"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Massa per accelerazione fornisce una forza; moltiplicare per il dislivello aggiunge una lunghezza. Si ottiene la dimensione di un lavoro e quindi di un’energia. La costante g conserva la propria unità anche quando il suo valore numerico è dieci."
+        },
+        {
+          "type": "formula",
+          "text": "[mg]=ML/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [mgh]=ML^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{N}\\,\\mathrm m=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "N esprime il peso prima di moltiplicare per h. W è energia per tempo, non energia; kg e m sono singoli ingressi. Non basta moltiplicare i numeri e poi scegliere un’unità: le unità devono accompagnare gli stessi fattori."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima il newton e poi moltiplicalo per un metro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N esprime il peso prima di moltiplicare per h. W è energia per tempo, non energia; kg e m sono singoli ingressi. Non basta moltiplicare i numeri e poi scegliere un’unità: le unità devono accompagnare gli stessi fattori.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4803,
+      "title": "Salire e tornare alla stessa quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 1,
+      "prompt": "Un corpo percorre un tragitto chiuso in un campo gravitazionale uniforme e torna al punto iniziale. Quanto vale il lavoro complessivo della sola forza peso? Si considerano massa e campo costanti; eventuali altre forze non sono comprese nel lavoro richiesto.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sempre positivo",
+          "Sempre negativo",
+          "Zero",
+          "mg per tutta la lunghezza",
+          "Dipende dalla durata"
+        ],
+        "value": "Zero"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è conservativo: il suo lavoro dipende soltanto dalla differenza di quota. Su un percorso chiuso gli estremi coincidono. Le salite danno contributi negativi e le discese contributi positivi che si compensano; gli spostamenti orizzontali non contribuiscono."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dfc19f172026a13ab36c38352a55ad296fa16a6b16378fc199467547daa2d21e",
+          "text": "Il circuito torna alla quota iniziale: i contributi verticali del peso si cancellano; quelli orizzontali sono nulli. Quote a50px/m, energia a4px/J e forza a3px/N sono scale distinte e dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta y=y_f-y_i"
+        },
+        {
+          "type": "formula",
+          "text": "y_f-y_i=0"
+        },
+        {
+          "type": "formula",
+          "text": " W_g=-mg\\Delta y"
+        },
+        {
+          "type": "formula",
+          "text": " W_g=0"
+        },
+        {
+          "type": "text",
+          "text": "La lunghezza percorsa può essere positiva anche quando il lavoro del peso è nullo. La durata non modifica questo risultato. Zero riguarda la sola gravità: per esempio un attrito sullo stesso circuito potrebbe compiere lavoro negativo, senza rendere non conservativo il peso."
+        }
+      ],
+      "hints": [
+        "Confronta le quote degli estremi, non sommare i moduli dei tratti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La lunghezza percorsa può essere positiva anche quando il lavoro del peso è nullo. La durata non modifica questo risultato. Zero riguarda la sola gravità: per esempio un attrito sullo stesso circuito potrebbe compiere lavoro negativo, senza rendere non conservativo il peso.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4804,
+      "title": "Due masse salgono dello stesso dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 1,
+      "prompt": "In un campo uniforme g=10 m/s² si confrontano due sollevamenti di h=2 m: A usa m_A=2 kg e B usa m_B=4 kg. U indica per ciascuna prova l’aumento di energia potenziale. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta 40 J",
+          "Da 40 a 80 J",
+          "Da 40 a 160 J",
+          "Da 40 a 20 J",
+          "Diventa zero"
+        ],
+        "value": "Da 40 a 80 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo e il dislivello sono uguali; raddoppia soltanto la massa e quindi il peso. L’aumento di energia potenziale è direttamente proporzionale a questo fattore, non al suo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\cdot10\\cdot2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "2\\cdot10\\cdot2\\,\\mathrm J=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=4\\cdot10\\cdot2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "4\\cdot10\\cdot2\\,\\mathrm J=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=2"
+        },
+        {
+          "type": "text",
+          "text": "160J raddoppierebbe anche h, che è fisso.20J applicherebbe una proporzionalità inversa. Né l’assenza di dati sulla durata né una scelta diversa dello zero impediscono il confronto fra variazioni di energia."
+        }
+      ],
+      "hints": [
+        "Tieni fissi g e h e segui soltanto la massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "160J raddoppierebbe anche h, che è fisso.20J applicherebbe una proporzionalità inversa. Né l’assenza di dati sulla durata né una scelta diversa dello zero impediscono il confronto fra variazioni di energia.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4805,
+      "title": "Risalire alla massa con l’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Un corpo sale di h=2 m in un campo uniforme g=10 m/s². L’aumento misurato di energia potenziale è U=40 J. Quanto vale la massa positiva m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione U=mgh contiene la massa una volta sola. Dividiamo per gh, positivo e noto. Le unità joule divise per metri quadrati al secondo quadrato lasciano chilogrammi; non bisogna confondere il risultato con il peso in newton."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{U}{gh}"
+        },
+        {
+          "type": "formula",
+          "text": " gh=20\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{40}{20}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{20}\\,\\mathrm{kg}=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La sostituzione2·10·2 ricostruisce40J. Il peso corrispondente è20N, una grandezza diversa. Moltiplicare ancora per gh non isola m e produce anche dimensioni incompatibili con una massa."
+        }
+      ],
+      "hints": [
+        "Dividi U per il prodotto del campo e del dislivello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sostituzione2·10·2 ricostruisce40J. Il peso corrispondente è20N, una grandezza diversa. Moltiplicare ancora per gh non isola m e produce anche dimensioni incompatibili con una massa.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4806,
+      "title": "Quanto deve salire il corpo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Un corpo di massa m=2 kg aumenta la propria energia potenziale di U=40 J in un campo uniforme g=10 m/s². Quanto vale il dislivello positivo h fra arrivo e partenza, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso costante vale venti newton. Ogni metro di salita aggiunge venti joule, perciò quaranta joule richiedono due metri. Isoliamo h dividendo l’energia per il peso: energia/forza ha dimensione di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "mg=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{U}{mg}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{40\\,\\mathrm J}{20\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40\\,\\mathrm J}{20\\,\\mathrm N}=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due metri è una differenza di quota, non la quota finale assoluta: per quella servirebbe anche la quota iniziale. Il risultato non dipende dal percorso intermedio, purché il campo resti uniforme."
+        }
+      ],
+      "hints": [
+        "Un joule per newton lascia un metro: usa l’energia per ricostruire il dislivello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due metri è una differenza di quota, non la quota finale assoluta: per quella servirebbe anche la quota iniziale. Il risultato non dipende dal percorso intermedio, purché il campo resti uniforme.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4807,
+      "title": "Raddoppia la salita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Due corpi di uguale massa m=2 kg salgono nel campo uniforme g=10 m/s². Nella prova A il dislivello è h_A=2 m, nella B h_B=4 m. Quanto vale U_B/U_A, rapporto degli aumenti di energia potenziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "4",
+          "2",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è lo stesso, quindi il rapporto delle energie coincide con quello dei dislivelli. Non entra il quadrato di h: il campo è uniforme e l’energia potenziale varia linearmente con la coordinata verticale."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac{80}{40}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{80}{40}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto; quattro introduce un quadrato assente; uno ignora il cambiamento. Un rapporto negativo non può confrontare questi due aumenti positivi, anche se il lavoro del peso su ciascuna salita è negativo."
+        }
+      ],
+      "hints": [
+        "Semplifica il medesimo peso al numeratore e al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto; quattro introduce un quadrato assente; uno ignora il cambiamento. Un rapporto negativo non può confrontare questi due aumenti positivi, anche se il lavoro del peso su ciascuna salita è negativo.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4808,
+      "title": "Una proposta doppia per U",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Una massa2 kg sale di2 m in un campo uniforme g=10 m/s². U è l’aumento di energia potenziale. Si propone U_proposto=80 J. Quanto vale proposto meno corretto, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è20N e il suo prodotto per2m dà un aumento40J. Solo dopo questo calcolo formiamo lo scarto con l’ordine richiesto: ottanta meno quaranta. Il segno dello scarto non è il segno del lavoro gravitazionale."
+        },
+        {
+          "type": "formula",
+          "text": "U=2\\cdot10\\cdot2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "2\\cdot10\\cdot2\\,\\mathrm J=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=80\\,\\mathrm J-40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "80\\,\\mathrm J-40\\,\\mathrm J=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−40J invertirebbe la sottrazione;80J ripeterebbe la proposta;20J dimezzerebbe ancora lo scarto. Si potrebbe ottenere80J raddoppiando senza motivo m o h: nessuno dei due cambiamenti è nei dati."
+        }
+      ],
+      "hints": [
+        "Trova U e poi rispetta l’ordine proposto meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−40J invertirebbe la sottrazione;80J ripeterebbe la proposta;20J dimezzerebbe ancora lo scarto. Si potrebbe ottenere80J raddoppiando senza motivo m o h: nessuno dei due cambiamenti è nei dati.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4809,
+      "title": "Isolare m senza perdere g",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Un corpo di massa positiva sale di h>0 in un campo uniforme g>0. Si conosce l’aumento U>0 di energia potenziale. Quale relazione isola m nella legge U=mgh?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=Ugh",
+          "m=gh/U",
+          "m=U/(gh)",
+          "m=U/(2gh)",
+          "m=2U/(gh)"
+        ],
+        "value": "m=U/(gh)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo entrambi i membri per il prodotto non nullo gh. Il risultato deve avere dimensione di massa ed essere positivo. Tenere g simbolico evita di trattare il numero dieci come se fosse privo di dimensioni."
+        },
+        {
+          "type": "formula",
+          "text": "U=mgh"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac U{gh}=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac U{gh}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto Ugh non annulla i fattori; gh/U è un inverso di massa. Un fattore due in più o in meno fallisce la sostituzione nella relazione originaria: qui non compare il mezzo dell’energia cinetica."
+        }
+      ],
+      "hints": [
+        "Dividi per entrambi i fattori che moltiplicano m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto Ugh non annulla i fattori; gh/U è un inverso di massa. Un fattore due in più o in meno fallisce la sostituzione nella relazione originaria: qui non compare il mezzo dell’energia cinetica.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4810,
+      "title": "Scalare massa e dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Due prove nel medesimo campo uniforme hanno m_B=κ₁m_A e h_B=κ₂h_A, con masse, dislivelli e fattori tutti positivi. U_A,U_B sono i rispettivi aumenti di energia potenziale. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione è un prodotto bilineare in massa e dislivello. I due fattori di scala entrano entrambi al numeratore; il medesimo campo g si semplifica nel rapporto. Non occorre assumere che le due salite durino lo stesso tempo."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=m_Agh_A"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=\\kappa_1\\kappa_2U_A"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertirebbero la dipendenza da un ingresso; la somma darebbe due anche per due prove identiche. Il quadrato di κ₂ corrisponderebbe a una dipendenza quadratica dalla quota, assente nel campo uniforme."
+        }
+      ],
+      "hints": [
+        "Scrivi il prodotto della seconda prova prima di fare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertirebbero la dipendenza da un ingresso; la somma darebbe due anche per due prove identiche. Il quadrato di κ₂ corrisponderebbe a una dipendenza quadratica dalla quota, assente nel campo uniforme.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4811,
+      "title": "Due raddoppi nell’aumento di energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "A: m_A=2 kg,h_A=2 m. B: m_B=4 kg,h_B=4 m. Entrambe le salite avvengono nel medesimo campo uniforme g=10 m/s². Quanto vale U_B/U_A per gli aumenti di energia potenziale?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa e il dislivello sono entrambi doppi. Moltiplicare questi due fattori produce quattro: calcoliamo anche le energie per distinguere il rapporto puro dalla grandezza in joule."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac{160}{40}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{160}{40}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto un cambiamento.160J è l’energiaB e non il rapporto; il rapporto è adimensionale. Se si invertissero A e B si otterrebbe1/4."
+        }
+      ],
+      "hints": [
+        "Combina i due fattori due oppure calcola entrambe le energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto un cambiamento.160J è l’energiaB e non il rapporto; il rapporto è adimensionale. Se si invertissero A e B si otterrebbe1/4.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4812,
+      "title": "La media di due aumenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 2,
+      "prompt": "Nel campo uniforme g=10 m/s² la provaA usa m=2 kg,h=2 m e la provaB m=4 kg,h=4 m. Qual è la media aritmetica degli aumenti U_A,U_B, con uguale peso alle due prove, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due salite danno quaranta e centosessanta joule. La loro semisomma è cento joule e deve stare fra le due letture. La domanda assegna uguale peso alle misure di energia, non chiede di costruire una salita con massa e dislivello medi."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=\\frac{40+160}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40+160}{2}\\,\\mathrm J=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "200J è la somma,50J divide una volta di troppo. Gli ingressi medi3kg e3m darebbero90J: il prodotto delle medie non coincide qui con la media dei prodotti.99 e101J non derivano dalla semisomma esatta e non richiedono alcun arrotondamento."
+        }
+      ],
+      "hints": [
+        "Calcola ciascuna energia con la sua coppia di dati e poi dividine la somma per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "200J è la somma,50J divide una volta di troppo. Gli ingressi medi3kg e3m darebbero90J: il prodotto delle medie non coincide qui con la media dei prodotti.99 e101J non derivano dalla semisomma esatta e non richiedono alcun arrotondamento.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4813,
+      "title": "Quanta quota resta da aumentare?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 3,
+      "prompt": "La provaA sale di h_A=2 m con m_A=2 kg. Nella provaB si sceglie m_B=4 kg e si vuole U_B=4U_A. Il campo uniforme è lo stesso, g=10 m/s². Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede40J e l’obiettivoB è160J. La massaB ha peso40N, quindi servono4m di salita. Rispetto ai2m iniziali il rapporto è due: raddoppiare la massa fornisce già un fattore due dell’obiettivo quattro."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=4\\cdot40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "4\\cdot40\\,\\mathrm J=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=\\frac{160\\,\\mathrm J}{40\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{160\\,\\mathrm J}{40\\,\\mathrm N}=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quadruplicare anche h produrrebbe otto volte l’aumento iniziale; lasciare h invariato produrrebbe soltanto il doppio.4m è il nuovo dislivello e va ancora diviso per h_A per rispondere con un rapporto."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore desiderato sull’energia per quello già imposto alla massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quadruplicare anche h produrrebbe otto volte l’aumento iniziale; lasciare h invariato produrrebbe soltanto il doppio.4m è il nuovo dislivello e va ancora diviso per h_A per rispondere con un rapporto.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4814,
+      "title": "Una lettura non è già un’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale segue S=cU con c>0 e offset nullo. U è l’aumento di energia potenziale in un campo uniforme g=10 m/s². Il riferimento m=2 kg,h=2 m dà S=120. Una prova con h=4 m dà S=480. Quanto vale la massa di quest’ultima prova, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale40J, dunque ogni joule produce tre unità di lettura.480 corrisponde a160J. Per risalire alla massa dividiamo questa energia per gh della nuova prova: la taratura e l’inversa fisica sono due passaggi distinti."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{120}{40\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{120}{40\\,\\mathrm J}=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=\\frac{480}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{480}{c}=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{160}{10\\cdot4}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{160}{10\\cdot4}\\,\\mathrm{kg}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Se si usasse480come joule si otterrebbe12kg, tre volte troppo. Con4kg la legge fisica restituisce160J e il display480; entrambi i dati sono ricostruiti. La positività del guadagno mantiene l’ordine delle letture."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno del display prima di dividere per gh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se si usasse480come joule si otterrebbe12kg, tre volte troppo. Con4kg la legge fisica restituisce160J e il display480; entrambi i dati sono ricostruiti. La positività del guadagno mantiene l’ordine delle letture.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4815,
+      "title": "Due riferimenti tolgono l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 3,
+      "prompt": "Un display continuo adimensionale obbedisce a S=cU+d, con c>0,d costanti. Il campo uniforme vale g=10 m/s². A: m=2 kg,h=2 m,S=81. B: m=4 kg,h=4 m,S=321. C: h=2 m,S=161. Quanto vale la massaC?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti corrispondono a40 e160J. Sottraendo le due leggi del display si elimina d:240unità di lettura per120J danno un guadagno2J⁻¹. Il riferimentoA lascia un offset1. La provaC contiene quindi80J, da convertire in massa con il suo dislivello."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{321-81}{160-40}\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{321-81}{160-40}\\,\\mathrm{J^{-1}}=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=81-2\\cdot40"
+        },
+        {
+          "type": "formula",
+          "text": "81-2\\cdot40=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=\\frac{161-1}{c}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{161-1}{c}=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac{80}{10\\cdot2}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{80}{10\\cdot2}\\,\\mathrm{kg}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Le masse2,3,5,8kg, tutte a h_C=2m, darebbero rispettivamente letture81,121,201,321: nessuna dà161. Un rapporto di letture grezze non elimina un offset additivo; occorre sottrarlo prima di dividere per c."
+        }
+      ],
+      "hints": [
+        "Trova c dalla differenza, recupera d e poi decodifica la terza prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le masse2,3,5,8kg, tutte a h_C=2m, darebbero rispettivamente letture81,121,201,321: nessuna dà161. Un rapporto di letture grezze non elimina un offset additivo; occorre sottrarlo prima di dividere per c.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravitational-energy-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Lavoro, energia e potenza",
+      "order": 4816,
+      "title": "Una relazione fra massa e dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L007",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravitational-energy",
+      "difficulty": 3,
+      "prompt": "Si scelgono prove di salita in campo uniforme g=10 m/s² con m=(1 kg/m)h e h>0. La massa resta costante durante ogni singola salita; il vincolo collega prove differenti. Se l’aumento di energia potenziale è U=40 J, quanto vale h, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente un chilogrammo al metro rende coerente il legame fra grandezze diverse. Sostituendo m nella legge U=mgh si ottiene un’equazione in h². Il quadrato vale quattro metri quadrati, riconoscibile senza calcolatrice; scegliamo il ramo positivo perché si chiede un aumento di quota."
+        },
+        {
+          "type": "formula",
+          "text": "a=1\\,\\mathrm{kg/m}"
+        },
+        {
+          "type": "formula",
+          "text": " m=ah"
+        },
+        {
+          "type": "formula",
+          "text": " U=agh^2"
+        },
+        {
+          "type": "formula",
+          "text": " h^2=\\frac U{ag}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac U{ag}=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " h_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_-=-2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "h=2m dà m=2kg e U=40J. Il ramo−2m violerebbe sia h>0 sia la massa positiva nel vincolo assegnato; non rappresenta una discesa dello stesso corpo. Quattro metri confonde h² con h, mentre1 e3m non restituiscono40J."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con la sua unità e scegli la radice ammessa da entrambi i domini.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "h=2m dà m=2kg e U=40J. Il ramo−2m violerebbe sia h>0 sia la massa positiva nel vincolo assegnato; non rappresenta una discesa dello stesso corpo. Quattro metri confonde h² con h, mentre1 e3m non restituiscono40J.",
+        "target": "C1-L007"
+      },
+      "coverage": [
+        "Differenze di energia potenziale",
+        "Lavoro conservativo del peso",
+        "Inversione e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "dfc19f172026a13ab36c38352a55ad296fa16a6b16378fc199467547daa2d21e",
+      "name": "gravitational-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTE4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlNhbGl0YSwgZW5lcmdpYSBlIGNpcmN1aXRvIGNoaXVzbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPk1hc3NhIGR1ZSBjaGlsb2dyYW1taSBpbiBjYW1wbyB1bmlmb3JtZSBkaWVjaSBtZXRyaSBhbCBzZWNvbmRvIHF1YWRyYXRvLiBEaXNsaXZlbGxvIGR1ZSBtZXRyaSwgY2VudG8gcGl4ZWwgYWxsYSBzY2FsYSBjaW5xdWFudGEgcGl4ZWwgcGVyIG1ldHJvLiBQZXNvIHZlbnRpIG5ld3RvbiBsdW5nbyBzZXNzYW50YSBwaXhlbCBhbGxhIHNjYWxhIHRyZSBwaXhlbCBwZXIgbmV3dG9uLiBFbmVyZ2lhIHBvdGVuemlhbGUgcGnDuSBxdWFyYW50YSBqb3VsZSBlIGxhdm9ybyBkZWwgcGVzbyBtZW5vIHF1YXJhbnRhIGpvdWxlIHNvbm8gYmFycmUgZGkgY2VudG9zZXNzYW50YSBwaXhlbCwgcXVhdHRybyBwaXhlbCBwZXIgam91bGUsIGluIHVuIHBhbm5lbGxvIHNlcGFyYXRvLiBJbCBjaXJjdWl0byBoYSBzYWxpdGEgZSBkaXNjZXNhIGRpIGR1ZSBtZXRyaTogbGF2b3JpIG1lbm8gcXVhcmFudGEgZSBwacO5IHF1YXJhbnRhIGpvdWxlLCB0b3RhbGUgemVyby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExODAiIHJ4PSIyNCIgZmlsbD0iI2ZhZjhmMiIvPjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzIzZiI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBDb250YSBpbCBkaXNsaXZlbGxvIGZyYSBnbGkgZXN0cmVtaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODgiPm0gPSAyIGtnIMK3IGcgPSAxMCBtL3PCsjwvdGV4dD48cGF0aCBkPSJNMTAwIDIwMEg0MzBNMTAwIDMwMEg0MzAiIHN0cm9rZT0iIzlhYWRhNiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTAwIiB5PSIxODAiPmFycml2bzogeSA9IDIgbTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjMzNCI+cGFydGVuemE6IHkgPSAwPC90ZXh0PjxjaXJjbGUgY3g9IjE4MCIgY3k9IjIwMCIgcj0iOSIgZmlsbD0iIzE0NjQ3YiIvPjxwYXRoIGQ9Ik0xODAgMjAwVjI2MCIgc3Ryb2tlPSIjYjQ0YjJjIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iMjA1IiB5PSIyNTAiIGZpbGw9IiNiNDRiMmMiPnBlc28gPSAyMCBOPC90ZXh0PjxwYXRoIGQ9Ik00NzAgMzAwVjIwMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDkwIiB5PSIyNTUiPmggPSAyIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjM3NSI+UXVvdGU6IDUwIHB4L20uIFBlc286IDMgcHgvTiwgc2NhbGEgZGlzdGludGEuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNDUwIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IERpc3Rpbmd1aSBpIGR1ZSBzZWduaSBlbmVyZ2V0aWNpPC90ZXh0PjxwYXRoIGQ9Ik0zMjAgNDkwVjY5MCIgc3Ryb2tlPSIjMTYzMjNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMTAiIHk9IjQ3OCI+MDwvdGV4dD48cmVjdCB4PSIzMjAiIHk9IjUxMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2I3ZDhjZiIvPjxyZWN0IHg9IjE2MCIgeT0iNjEwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTZjMWI1Ii8+PHRleHQgeD0iMzQ1IiB5PSI1MzgiPlUgPSArNDAgSjwvdGV4dD48dGV4dCB4PSIxNjMiIHk9IjYzOCI+V19nID0g4oiSNDAgSjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzIwIj5CYXJyZTogNCBweC9KLiBVID0g4oiSV19nLCBzdGVzc2EgdmFyaWF6aW9uZS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4MDAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgVG9ybmEgYWxsYSBxdW90YSBpbml6aWFsZTwvdGV4dD48cGF0aCBkPSJNMTQwIDEwNDBWOTQwIiBzdHJva2U9IiNiNDRiMmMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTQwIDk0MEg0MjAiIHN0cm9rZT0iIzdkOGY4OCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00MjAgOTQwVjEwNDAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00MjAgMTA0MEgxNDAiIHN0cm9rZT0iIzdkOGY4OCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjU4IiB5PSI5OTUiPuKIkjQwIEo8L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSI5OTUiPis0MCBKPC90ZXh0Pjx0ZXh0IHg9IjI0MCIgeT0iOTIwIj5XX2cgPSAwPC90ZXh0Pjx0ZXh0IHg9IjI0MCIgeT0iMTA3NSI+V19nID0gMDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTEyMCI+V19nIHRvdGFsZSA9IOKIkjQwIEogKyA0MCBKID0gMC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNTgiIGZvbnQtc2l6ZT0iMTgiPlF1b3RlOiA1MCBweC9tLiBMZSBmcmVjY2UgZGVsIGNpcmN1aXRvIGluZGljYW5vIGlsIHBlcmNvcnNvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
