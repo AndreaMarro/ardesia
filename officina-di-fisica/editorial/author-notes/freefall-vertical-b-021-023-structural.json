@@ -1,0 +1,89 @@
+{
+  "scope": "author_structural_checks_only_not_scientific_review",
+  "sourceRef": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+  "sourcePath": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-02.json",
+  "uniqueCandidateIds": 48,
+  "batches": [
+    {
+      "batch": "freefall-speed-021",
+      "records": 16,
+      "packageSha256": "5b11344f5586a0f7499d9101e450225c84bdb68629325afa3007a74fe0d04a6b",
+      "bindingsSha256": "9812e4297318e2760aaae277f44e441170365af4dd6061a0fb48932ef55c1f47",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    },
+    {
+      "batch": "freefall-time-022",
+      "records": 16,
+      "packageSha256": "f2daa4ffb8ada02c03e6e48630c37a1d08849fa81777640d352dd7a4fe421925",
+      "bindingsSha256": "14e3107356144726fb29312918088f151f42152a80845c58983fe86b0d5ea045",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    },
+    {
+      "batch": "vertical-maximum-023",
+      "records": 16,
+      "packageSha256": "7c874c8fabd1bbf8b5698ec7b33c22e97c9f32315b0c7dc4b33d796efcc9d451",
+      "bindingsSha256": "d329906cfefe3a04d019555c9855c038bdc9875c96db2fac41aeec1decaeb5aa",
+      "regeneration": "identical",
+      "sourceCandidateProvenanceBindings": "matched"
+    }
+  ],
+  "integration": {
+    "afterPublishedCount": 991,
+    "afterPublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "beforePublishedCount": 991,
+    "beforePublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
+    "database": "disposable_sqlite",
+    "imports": [
+      {
+        "batch": "freefall-speed-021",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      },
+      {
+        "batch": "freefall-time-022",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      },
+      {
+        "batch": "vertical-maximum-023",
+        "first": {
+          "publication": "DRAFT",
+          "saved": 16,
+          "unchanged": 0
+        },
+        "second": {
+          "publication": "DRAFT",
+          "saved": 0,
+          "unchanged": 16
+        }
+      }
+    ]
+  },
+  "scientificReview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "literalChoiceGuard": {
+    "module": "tools.corpus_engineering.review_contract.exact_choice_identity",
+    "moduleSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+    "choiceRecords": 31,
+    "equivalentRecognizedLiterals": 0,
+    "scope": "bounded_literal_quantities_only_not_full_semantic_review"
+  }
+}
