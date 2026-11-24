@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-spring-energy-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4721,
+      "title": "L’energia è l’area sotto una forza crescente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 1,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Con k=2 N/m e ℓ=2 m, quanto vale U in joule?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza elastica cresce in modulo da zero al valore finale kℓ=4 N. Per deformare lentamente la molla dal riferimento naturale, il lavoro esterno immagazzinato è l’area sotto la retta forza–deformazione: un triangolo di base due metri e altezza quattro newton. La metà del prodotto base per altezza è quattro joule."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6106c07f182f7380d3408091a34f3755e4319c2ea7579553bc0a848aff474c21",
+          "text": "Esempio k=2 N/m: forza finale 4 N a ℓ=2 m; area triangolare 4 J. Primo grafico: 120 px/m e 60 px/N, triangolo di base240px e altezza240px. Secondo grafico: 80 px/m e 10 px/J, parabola esatta U=kℓ²/2 con punti(2m,4J) e(4m,16J). Gli assi e le scale sono distinti, non lunghezze fisiche della molla; zero di U alla configurazione naturale."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\mathrm{finale}}=k\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\mathrm{finale}}=4\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac12\\ell F_{\\mathrm{finale}}"
+        },
+        {
+          "type": "formula",
+          "text": " U=4\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare la forza finale per tutta la deformazione darebbe 8 J, come se la forza fosse stata costante fin dall’inizio. L’area triangolare incorpora invece la crescita lineare. Il lavoro della forza elastica durante l’allungamento è −4 J; l’energia immagazzinata è +4 J rispetto allo zero scelto."
+        }
+      ],
+      "hints": [
+        "Trova la forza finale e prendi metà del rettangolo F_finale·ℓ.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare la forza finale per tutta la deformazione darebbe 8 J, come se la forza fosse stata costante fin dall’inizio. L’area triangolare incorpora invece la crescita lineare. Il lavoro della forza elastica durante l’allungamento è −4 J; l’energia immagazzinata è +4 J rispetto allo zero scelto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4722,
+      "title": "Il quadrato della lunghezza cambia la dimensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 1,
+      "prompt": "Una molla ideale lineare ha energia elastica U=kℓ²/2, con k in N/m e ℓ deformazione in metri. Quale unità SI esprime U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "N/m",
+          "J",
+          "m",
+          "1"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza è al quadrato: moltiplicando N/m per m² rimane N·m, cioè joule. Il coefficiente un mezzo è puro e non cambia la dimensione. La formula della forza kℓ avrebbe invece un solo metro e darebbe newton."
+        },
+        {
+          "type": "formula",
+          "text": "[k\\ell^2]=\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=ML^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm J=1\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "N è una forza, N/m una rigidezza e m una lunghezza; 1 è puro. Nessuna di queste unità sostituisce J per un’energia. Il quadrato si applica anche all’unità della deformazione, non soltanto al suo numero."
+        }
+      ],
+      "hints": [
+        "Semplifica (N/m)·m² prima di scegliere l’unità.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è una forza, N/m una rigidezza e m una lunghezza; 1 è puro. Nessuna di queste unità sostituisce J per un’energia. Il quadrato si applica anche all’unità della deformazione, non soltanto al suo numero.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4723,
+      "title": "Dal triangolo alla legge dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 1,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Quale relazione dà U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U=kℓ²/2",
+          "U=kℓ²",
+          "U=kℓ",
+          "U=−kℓ²/2",
+          "U=k/(2ℓ²)"
+        ],
+        "value": "U=kℓ²/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel grafico del modulo del richiamo contro il modulo della deformazione la retta parte da zero e ha pendenza k. L’energia rispetto alla configurazione naturale è l’area triangolare fino a ℓ. Base ℓ per altezza kℓ, diviso due, dà kℓ²/2. La stessa energia si ottiene per deformazioni orientate opposte di uguale modulo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6106c07f182f7380d3408091a34f3755e4319c2ea7579553bc0a848aff474c21",
+          "text": "Esempio k=2 N/m: forza finale 4 N a ℓ=2 m; area triangolare 4 J. Primo grafico: 120 px/m e 60 px/N, triangolo di base240px e altezza240px. Secondo grafico: 80 px/m e 10 px/J, parabola esatta U=kℓ²/2 con punti(2m,4J) e(4m,16J). Gli assi e le scale sono distinti, non lunghezze fisiche della molla; zero di U alla configurazione naturale."
+        },
+        {
+          "type": "formula",
+          "text": "F_{\\mathrm{finale}}=k\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac12\\ell(k\\ell)"
+        },
+        {
+          "type": "formula",
+          "text": " U=k\\ell^2/2"
+        },
+        {
+          "type": "text",
+          "text": "kℓ² senza mezzo è l’area del rettangolo, doppia di quella necessaria. kℓ è la forza e ha unità errata. Il segno negativo appartiene al lavoro di richiamo quando ci si allontana da x=0, non all’energia positiva rispetto al minimo. Il quoziente per ℓ² ha dimensione diversa da energia."
+        }
+      ],
+      "hints": [
+        "Usa la forza crescente, non il suo solo valore finale per tutta la corsa.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "kℓ² senza mezzo è l’area del rettangolo, doppia di quella necessaria. kℓ è la forza e ha unità errata. Il segno negativo appartiene al lavoro di richiamo quando ci si allontana da x=0, non all’energia positiva rispetto al minimo. Il quoziente per ℓ² ha dimensione diversa da energia.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4724,
+      "title": "Due molle diverse alla stessa deformazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 1,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Con ℓ=2 m uguale nelle due prove, k passa da 2 a 4 N/m. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 8 J",
+          "Resta 4 J",
+          "Da 4 a 16 J",
+          "Da 4 a 2 J",
+          "Diventa negativa"
+        ],
+        "value": "Da 4 a 8 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato della deformazione resta quattro metri quadrati. L’energia è lineare in k, quindi il raddoppio della rigidezza raddoppia U. Si confrontano molle con costanti diverse fra prove; ciascuna conserva la propria costante durante la deformazione."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=\\frac12(2)(2^2)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=\\frac12(4)(2^2)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Sedici introdurrebbe un quadrato del cambiamento di k che la legge non contiene. Due J inverte l’effetto della rigidezza e il valore negativo è incompatibile con k>0 e lo zero al minimo naturale. L’invarianza ignorerebbe il lavoro maggiore necessario alla molla più rigida."
+        }
+      ],
+      "hints": [
+        "Raddoppia k una volta sola; ℓ non cambia.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici introdurrebbe un quadrato del cambiamento di k che la legge non contiene. Due J inverte l’effetto della rigidezza e il valore negativo è incompatibile con k>0 e lo zero al minimo naturale. L’invarianza ignorerebbe il lavoro maggiore necessario alla molla più rigida.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4725,
+      "title": "Ricavare k dall’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Si misurano U=4 J e ℓ=2 m. Quanto vale k in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per due e dividiamo per il quadrato positivo della deformazione. Due volte quattro joule fanno otto; due metri al quadrato fanno quattro metri quadrati. Il rapporto otto su quattro dà due J/m², equivalenti a due N/m."
+        },
+        {
+          "type": "formula",
+          "text": "2U=k\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " k=2U/\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " 2U=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo (1/2)(2 N/m)(2 m)²=4 J restituisce l’energia. Omettere il fattore due nell’inversa darebbe k=1 N/m e soltanto 2 J. Dividere per ℓ invece che per ℓ² produrrebbe una forza, non la rigidezza."
+        }
+      ],
+      "hints": [
+        "Raddoppia l’energia prima di dividerla per il quadrato della deformazione.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo (1/2)(2 N/m)(2 m)²=4 J restituisce l’energia. Omettere il fattore due nell’inversa darebbe k=1 N/m e soltanto 2 J. Dividere per ℓ invece che per ℓ² produrrebbe una forza, non la rigidezza.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4726,
+      "title": "Una radice quadrata con unità di lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Si misurano U=4 J e k=2 N/m. Quanto vale ℓ in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge isoliamo ℓ²=2U/k. Il rapporto otto joule su due newton al metro vale quattro metri quadrati. La radice positiva è due metri, perché ℓ è un modulo. Le coordinate orientate x=+2 m e x=−2 m hanno entrambe quel modulo e la stessa energia."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell^2=2U/k"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\sqrt{2U/k}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m scambierebbe il numero del quadrato con quello della lunghezza e darebbe energia 16 J. Il ramo negativo −2 m non è un modulo; per una compressione si mantiene ℓ=2 m pur usando x<0. Non si contano due valori distinti di ℓ per quei due versi."
+        }
+      ],
+      "hints": [
+        "Prendi la radice anche dell’unità m² e scegli il modulo positivo.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m scambierebbe il numero del quadrato con quello della lunghezza e darebbe energia 16 J. Il ramo negativo −2 m non è un modulo; per una compressione si mantiene ℓ=2 m pur usando x<0. Non si contano due valori distinti di ℓ per quei due versi.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4727,
+      "title": "Raddoppiare la deformazione quadruplica l’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. La stessa molla ha k=2 N/m; ℓ passa da 2 a 4 m. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza finale raddoppia, ma nel grafico raddoppia anche la base del triangolo. L’area quadruplica. Calcolando i due valori troviamo U_A=4 J e U_B=16 J; il rapporto è quattro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6106c07f182f7380d3408091a34f3755e4319c2ea7579553bc0a848aff474c21",
+          "text": "Esempio k=2 N/m: forza finale 4 N a ℓ=2 m; area triangolare 4 J. Primo grafico: 120 px/m e 60 px/N, triangolo di base240px e altezza240px. Secondo grafico: 80 px/m e 10 px/J, parabola esatta U=kℓ²/2 con punti(2m,4J) e(4m,16J). Gli assi e le scale sono distinti, non lunghezze fisiche della molla; zero di U alla configurazione naturale."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=(4/2)^2"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto delle forze finali, non delle energie. Un quarto e un mezzo invertono confronti; otto aggiunge un fattore due che richiederebbe anche k doppia. La potenza due riguarda la deformazione, non ogni ingresso della legge."
+        }
+      ],
+      "hints": [
+        "Con k fisso usa il quadrato del rapporto delle deformazioni.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Due è il rapporto delle forze finali, non delle energie. Un quarto e un mezzo invertono confronti; otto aggiunge un fattore due che richiederebbe anche k doppia. La potenza due riguarda la deformazione, non ogni ingresso della legge.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4728,
+      "title": "Scarto da un’area rettangolare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Con k=2 N/m,ℓ=2 m si propone U_proposto=8 J. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+4 J",
+          "−4 J",
+          "+8 J",
+          "0 J",
+          "+2 J"
+        ],
+        "value": "+4 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia corretta è (1/2)·2·2²=4 J. La proposta otto coincide con il prodotto forza finale per deformazione, che è l’area del rettangolo e dimentica il mezzo. Sottraiamo quattro da otto e otteniamo una sovrastima di quattro joule."
+        },
+        {
+          "type": "formula",
+          "text": "U=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=+4\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−4 inverte l’ordine, otto ripete la proposta, zero la accetta e due dimezza ancora lo scarto. Il segno del lavoro della forza elastica non cambia l’ordine della sottrazione fra energie assegnata nella domanda."
+        }
+      ],
+      "hints": [
+        "Controlla se è stato dimenticato il fattore 1/2 dell’area.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−4 inverte l’ordine, otto ripete la proposta, zero la accetta e due dimezza ancora lo scarto. Il segno del lavoro della forza elastica non cambia l’ordine della sottrazione fra energie assegnata nella domanda.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4729,
+      "title": "L’inversa conserva il quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Quale formula isola k dalla relazione U=kℓ²/2?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "k=2U/ℓ²",
+          "k=U/(2ℓ²)",
+          "k=2U/ℓ",
+          "k=ℓ²/(2U)",
+          "k=−2U/ℓ²"
+        ],
+        "value": "k=2U/ℓ²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando per due eliminiamo il mezzo e dividendo per ℓ²>0 isoliamo k. Le unità sono energia su lunghezza al quadrato, equivalenti a rigidezza. La positività dei due dati dà k positivo."
+        },
+        {
+          "type": "formula",
+          "text": "2U=k\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " 2U/\\ell^2=k"
+        },
+        {
+          "type": "formula",
+          "text": " k=2U/\\ell^2"
+        },
+        {
+          "type": "text",
+          "text": "U/(2ℓ²) è quattro volte più piccolo della formula corretta, perché divide per due anziché moltiplicare. Il divisore ℓ semplice dà una forza; il reciproco ha dimensione di cedevolezza. Il meno renderebbe k negativo per due moduli positivi, fuori dal regime assunto."
+        }
+      ],
+      "hints": [
+        "Il mezzo si elimina moltiplicando entrambi i membri per due.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "U/(2ℓ²) è quattro volte più piccolo della formula corretta, perché divide per due anziché moltiplicare. Il divisore ℓ semplice dà una forza; il reciproco ha dimensione di cedevolezza. Il meno renderebbe k negativo per due moduli positivi, fuori dal regime assunto.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4730,
+      "title": "Scalare rigidezza e deformazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Fra due prove k_B=κ₁k e ℓ_B=κ₂ℓ, con κ₁,κ₂>0 e k,ℓ riferiti ad A. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂²"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo i dati nuovi mantenendo il quadrato sull’intero allungamento κ₂ℓ. Il mezzo, k e ℓ² si cancellano nel rapporto con U_A. Rimane κ₁κ₂²: un fattore dalla rigidezza e due dalla deformazione."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=k\\ell^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=\\kappa_1k(\\kappa_2\\ell)^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ è il rapporto delle forze finali, non delle energie. κ₁²κ₂ mette il quadrato sull’ingresso sbagliato; il quoziente inverte l’effetto di ℓ. La somma darebbe due quando κ₁=κ₂=1, mentre l’energia dovrebbe restare identica."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato anche il fattore che moltiplica ℓ.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "κ₁κ₂ è il rapporto delle forze finali, non delle energie. κ₁²κ₂ mette il quadrato sull’ingresso sbagliato; il quoziente inverte l’effetto di ℓ. La somma darebbe due quando κ₁=κ₂=1, mentre l’energia dovrebbe restare identica.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4731,
+      "title": "Entrambi gli ingressi raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. A ha k=2 N/m,ℓ=2 m; B ha k=4 N/m,ℓ=4 m. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rigidezza doppia fornisce un fattore due, la deformazione doppia un fattore quattro. Il loro prodotto è otto. Le energie sono quattro e trentadue joule: il numero trentadue va ancora diviso per quattro per ottenere il rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=32\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=2\\times2^2"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=8"
+        },
+        {
+          "type": "text",
+          "text": "Quattro seguirebbe il rapporto delle forze oppure solo il quadrato della deformazione; due considererebbe soltanto k. Trentadue J è l’energia della seconda prova, non la risposta pura. Non occorrono decimali per eseguire 32/4."
+        }
+      ],
+      "hints": [
+        "Moltiplica due per il quadrato di due.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro seguirebbe il rapporto delle forze oppure solo il quadrato della deformazione; due considererebbe soltanto k. Trentadue J è l’energia della seconda prova, non la risposta pura. Non occorrono decimali per eseguire 32/4.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4732,
+      "title": "Media delle energie, non degli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 2,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. A usa k=2 N/m,ℓ=2 m e B usa k=4 N/m,ℓ=4 m. Qual è la media aritmetica di U_A,U_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "18 J",
+          "36 J",
+          "9 J",
+          "27/2 J",
+          "28 J"
+        ],
+        "value": "18 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono quattro e trentadue joule. La somma trentasei divisa per due dà diciotto joule. Se si mediassero prima gli ingressi, k=3 N/m e ℓ=3 m darebbero (1/2)·3·9=27/2 J: l’energia non è lineare congiuntamente in quei dati."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=32\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=\\frac{4+32}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=18\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei è la somma, nove dimezza ancora e ventotto è la differenza. 27/2 J è il risultato sugli ingressi medi, diverso da 18 J=36/2 J. La media richiesta deve essere compresa fra quattro e trentadue."
+        }
+      ],
+      "hints": [
+        "Usa nella semisomma le due energie complete.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Trentasei è la somma, nove dimezza ancora e ventotto è la differenza. 27/2 J è il risultato sugli ingressi medi, diverso da 18 J=36/2 J. La media richiesta deve essere compresa fra quattro e trentadue.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4733,
+      "title": "Un obiettivo energetico fissa una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 3,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. A ha k_A=2 N/m,ℓ_A=2 m. Si sceglie k_B=4 N/m e si vuole U_B=8U_A. Quanto vale ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima energia è quattro joule, quindi l’obiettivo è trentadue. L’inversa dà ℓ_B²=2U_B/k_B=64/4=16 m²; la radice positiva è quattro metri. Rapportando ai due iniziali otteniamo due. L’energia desiderata non richiede una deformazione otto volte maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=32\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B^2=2U_B/k_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B^2=16\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto quattro confonderebbe il fattore residuo sull’energia con la sua radice: con k doppia e ℓ quadrupla si avrebbe un fattore trentadue su U. Il ramo negativo non è un modulo e non aggiunge una seconda soluzione per ℓ_B."
+        }
+      ],
+      "hints": [
+        "Dopo aver tolto il fattore due di k, prendi la radice del fattore quattro rimasto.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto quattro confonderebbe il fattore residuo sull’energia con la sua radice: con k doppia e ℓ quadrupla si avrebbe un fattore trentadue su U. Il ramo negativo non è un modulo e non aggiunge una seconda soluzione per ℓ_B.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4734,
+      "title": "Tarare l’energia prima della rigidezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 3,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Un display continuo adimensionale legge S=qU, con q>0 costante e offset nullo. Il riferimento k=2 N/m,ℓ=2 m dà S=12. Una prova con ℓ=4 m dà S=96. Quanto vale k in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha U=4 J: q=3 J⁻¹. La nuova lettura novantasei significa U=32 J. Nell’inversa k=2U/ℓ² il numeratore vale 64 J e il denominatore 16 m²: il quoziente dà quattro N/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " U=96/q"
+        },
+        {
+          "type": "formula",
+          "text": " U=32\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " k=2U/\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " k=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il controllo (1/2)·4·4²=32 J e S=3·32=96 ricostruisce lettura ed energia. Scambiare S con joule darebbe k=12 N/m, con un guadagno spurio tre. La conversione strumentale precede l’inversa fisica."
+        }
+      ],
+      "hints": [
+        "Decodifica U e ricorda il quadrato della deformazione nuova.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il controllo (1/2)·4·4²=32 J e S=3·32=96 ricostruisce lettura ed energia. Scambiare S con joule darebbe k=12 N/m, con un guadagno spurio tre. La conversione strumentale precede l’inversa fisica.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4735,
+      "title": "Taratura affine dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 3,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Un display continuo adimensionale legge S=qU+b, con q>0,b costanti. A: k=2 N/m,ℓ=2 m,S=9. B: k=4 N/m,ℓ=4 m,S=65. C: ℓ=2 m,S=17. Quanto vale k_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N/m",
+          "3 N/m",
+          "4 N/m",
+          "5 N/m",
+          "8 N/m"
+        ],
+        "value": "4 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno energie quattro e trentadue joule. La differenza 65−9=56 su 32−4=28 J dà q=2 J⁻¹. Dal primo riferimento b=1. La lettura diciassette dà U_C=(17−1)/2=8 J. Ora k_C=2·8/2²=4 N/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=(17-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " k_C=2U_C/\\ell_C^2"
+        },
+        {
+          "type": "formula",
+          "text": " k_C=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Per la deformazione di C le alternative k=2,3,5,8 N/m danno energie 4,6,10,16 J e letture 9,13,21,33. Solo quattro restituisce diciassette. Le letture grezze non possono essere rapportate come energie senza togliere l’offset."
+        }
+      ],
+      "hints": [
+        "Ricava q dalle differenze e b da uno dei riferimenti.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Per la deformazione di C le alternative k=2,3,5,8 N/m danno energie 4,6,10,16 J e letture 9,13,21,33. Solo quattro restituisce diciassette. Le letture grezze non possono essere rapportate come energie senza togliere l’offset.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-energy-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Dinamica delle forze",
+      "order": 4736,
+      "title": "Un vincolo che introduce il cubo della deformazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L005",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-energy",
+      "difficulty": 3,
+      "prompt": "Una molla ideale lineare ha costante k>0, costante dentro ciascuna prova. ℓ=|x|>0 è il modulo della deformazione rispetto alla lunghezza naturale, con x coordinata orientata. Tutte le configurazioni considerate rientrano nel regime elastico lineare dichiarato. U è l’energia potenziale elastica immagazzinata e si pone U=0 alla lunghezza naturale. Si considera la sola energia della molla, senza includere eventuali energie gravitazionali o cinetiche di altri corpi. Fra prove diverse si seleziona k=cℓ, con c=1 N/m² fisso. Il vincolo non cambia la rigidezza durante la singola deformazione. Si misura U=4 J. Quanto vale ℓ in metri?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo k=cℓ nell’energia otteniamo U=cℓ³/2. Il rapporto 2U/c vale otto metri cubi. La radice cubica esatta è due metri, perché 2·2·2=8; ricostruiamo k=cℓ=2 N/m. Non si usa la radice quadrata dell’inversa a k indipendente, perché qui anche k è legata a ℓ."
+        },
+        {
+          "type": "formula",
+          "text": "U=c\\ell^3/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^3=2U/c"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^3=8\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " k=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "La funzione cubica è strettamente crescente per ℓ>0, quindi questa soluzione positiva è unica. Un modulo negativo non è ammesso e, nel vincolo, produrrebbe anche k negativo. Il controllo (1/2)(2 N/m)(2 m)²=4 J verifica entrambe le condizioni dimensionali e numeriche."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di scegliere quale radice prendere.",
+        "U è un’energia rispetto allo zero naturale: conserva il mezzo e il quadrato della deformazione."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La funzione cubica è strettamente crescente per ℓ>0, quindi questa soluzione positiva è unica. Un modulo negativo non è ammesso e, nel vincolo, produrrebbe anche k negativo. Il controllo (1/2)(2 N/m)(2 m)²=4 J verifica entrambe le condizioni dimensionali e numeriche.",
+        "target": "C1-L005"
+      },
+      "coverage": [
+        "Energia potenziale elastica",
+        "Lavoro e area forza-deformazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6106c07f182f7380d3408091a34f3755e4319c2ea7579553bc0a848aff474c21",
+      "name": "spring-energy-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTM3MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5FbmVyZ2lhIGVsYXN0aWNhOiBhcmVhIHRyaWFuZ29sYXJlIGUgcXVhZHJhdG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Db24gayBkdWUgbmV3dG9uIGFsIG1ldHJvIGUgZGVmb3JtYXppb25lIGR1ZSBtZXRyaSBsYSBmb3J6YSBmaW5hbGUgw6ggcXVhdHRybyBuZXd0b24uIEzigJlhcmVhIHRyaWFuZ29sYXJlIHNvdHRvIGlsIGdyYWZpY28gZm9yemEgZGVmb3JtYXppb25lIMOoIHF1YXR0cm8gam91bGUuIEEgcmlnaWRlenphIGZpc3NhIHJhZGRvcHBpYXJlIGxhIGRlZm9ybWF6aW9uZSBwb3J0YSBkYSBxdWF0dHJvIGEgc2VkaWNpIGpvdWxlOiBpbCBncmFmaWNvIGRlbGzigJllbmVyZ2lhIMOoIHF1YWRyYXRpY28uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzNzAiIHJ4PSIyNCIgZmlsbD0iI2ZhZjhmMiIvPgo8ZyBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4Mzc0NiI+Cjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgTGEgZm9yemEgY3Jlc2NlIGR1cmFudGUgbGEgZGVmb3JtYXppb25lPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iODgiPmsgPSAyIE4vbS4gR3JhZmljbyBkZWkgbW9kdWxpIG5lbCByZWdpbWUgbGluZWFyZS48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNDcwVjE3ME03NSA0NDBINDY1IiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTAwIDQ0MEgzNDBWMjAwWiIgZmlsbD0iI2NmZTRlNSIvPgo8cGF0aCBkPSJNMTAwIDQ0MEwzNDAgMjAwIiBzdHJva2U9IiMxNjcyOGEiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTAwIDIwMEgzNDBNMTAwIDMyMEgyMjBWNDQwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjIwMCIgcj0iNSIgZmlsbD0iIzE2NzI4YSIvPjxjaXJjbGUgY3g9IjIyMCIgY3k9IjMyMCIgcj0iNCIgZmlsbD0iIzE2NzI4YSIvPgo8dGV4dCB4PSIzMiIgeT0iMTY1Ij5GIChOKTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjQ0NyI+4oSTIChtKTwvdGV4dD4KPHRleHQgeD0iNjUiIHk9IjIwNyI+NDwvdGV4dD48dGV4dCB4PSI2NSIgeT0iMzI3Ij4yPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSI0NDciPjA8L3RleHQ+Cjx0ZXh0IHg9Ijk0IiB5PSI0ODUiPjA8L3RleHQ+PHRleHQgeD0iMjE0IiB5PSI0ODUiPjE8L3RleHQ+PHRleHQgeD0iMzM0IiB5PSI0ODUiPjI8L3RleHQ+Cjx0ZXh0IHg9IjM4NSIgeT0iMjE1Ij5GX2ZpbmFsZSA9IDQgTjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjU0NSI+4oSTOiAxMjAgcHgvbTsgRjogNjAgcHgvTi4gQmFzZSAyIG0sIGFsdGV6emEgNCBOLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYxNSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUHJlbmRpIG1ldMOgIGRlbCByZXR0YW5nb2xvPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNjcwIj5SZXR0YW5nb2xvOiAyIG0gwrcgNCBOID0gOCBKPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzIwIj5UcmlhbmdvbG86IFUgPSAoMS8yKSDCtyAyIG0gwrcgNCBOID0gNCBKPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNzc1Ij5MYSBmb3J6YSBmaW5hbGUgbm9uIGFnaXNjZSBjb3N0YW50ZSBzdSB0dXR0YSBsYSBjb3JzYS48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IEzigJllbmVyZ2lhIGRpcGVuZGUgZGEg4oSTwrI8L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI5MDAiPlN0ZXNzYSBrLiDihJM6IDgwIHB4L207IFU6IDEwIHB4L0ouPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDEyMDBWOTkwTTc1IDExODBINDY1IiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTAwIDExODBRMjYwIDExODAgNDIwIDEwMjAiIHN0cm9rZT0iIzE2NzI4YSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xMDAgMTE0MEgyNjBWMTE4ME0xMDAgMTAyMEg0MjBWMTE4MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyNjAiIGN5PSIxMTQwIiByPSI1IiBmaWxsPSIjMTY3MjhhIi8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMTAyMCIgcj0iNSIgZmlsbD0iIzE2NzI4YSIvPgo8dGV4dCB4PSIyOCIgeT0iOTgwIj5VIChKKTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjExODciPuKEkyAobSk8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSIxMDI3Ij4xNjwvdGV4dD48dGV4dCB4PSI2NSIgeT0iMTE0NyI+NDwvdGV4dD48dGV4dCB4PSI2NSIgeT0iMTE4NyI+MDwvdGV4dD4KPHRleHQgeD0iOTQiIHk9IjEyMzAiPjA8L3RleHQ+PHRleHQgeD0iMjU0IiB5PSIxMjMwIj4yPC90ZXh0Pjx0ZXh0IHg9IjQxNCIgeT0iMTIzMCI+NDwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEyOTAiPuKEkyByYWRkb3BwaWE6IFUgcGFzc2EgZGEgNCBhIDE2IEosIHJhcHBvcnRvIDQuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iMTM0MCIgZm9udC1zaXplPSIxOCI+WmVybyBkaSBVIGFsbGEgY29uZmlndXJhemlvbmUgbmF0dXJhbGU7IHNjYWxlIGRlaSBncmFmaWNpIGRpdmVyc2UuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
