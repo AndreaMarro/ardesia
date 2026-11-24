@@ -1,0 +1,471 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-incline-friction-01",
+      "sourceSha256": "3324abc9b24a9b3d42290e2a326739fab154e3adc0fdbedfcd7277b90fcaf205",
+      "candidateSha256": "b402e445b827c644036fd83a095daadf42a4d9e340bcf495289109109486b70a",
+      "reviewedSignature": "fea3e512a73a60bc82a9491cb6e34ec97ecb7589065a812dfb6e99c2123cf171",
+      "assetChecksums": {
+        "incline-friction-progressive.svg": "b09d5bd791e3944d59b3a70e083372968d6a2464146c9c5ce06d0bb3d55c45eb"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Assi: normale esterna, tangente positiva in discesa. N=4mg/5; f=μN verso monte; mA=3mg/5−μ4mg/5. Con g10,μ1/2: A=10(3−2)/5=2 m/s².",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "6 ignorerebbe attrito;4 è solo contributo d’attrito per massa;10 sommerebbe attrito in versoerrato. Scorrimento discendente non decide da solo segno diA.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Assi: normale esterna, tangente positiva in discesa. N=4mg/5; f=μN verso monte; mA=3mg/5−μ4mg/5. Con g10,μ1/2: A=10(3−2)/5=2 m/s².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-02",
+      "sourceSha256": "5029edb3147d91778ad764378aeb9b9a668e511a13191be67f62a9d4fd2a3c7a",
+      "candidateSha256": "caad43623fe68b9ad7f12581aad48d14e809c5a92747f7aea2a57bd0107af599",
+      "reviewedSignature": "cd6451be0796fb66bc95ca575b9c6700b9c2f25823f572975ea8b6c8bf7f5b4c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m/s²",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Rapporti3/5,4/5 eμ puri: fattore(3−4μ)/5 puro, quindi A conserva dimensione L/T² di g.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "N forza prima di dividere permassa;kg massa,m/s velocità,1 solo fattoregeometrico. Nessuna trigonometria inversa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Rapporti3/5,4/5 eμ puri: fattore(3−4μ)/5 puro, quindi A conserva dimensione L/T² di g.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-03",
+      "sourceSha256": "b27ccf7749028a9cb1e3f01c316144c49fa9325c61638bac01acbad3464fed1f",
+      "candidateSha256": "53c8290b7c47fc170c0947aa9310fd9f393dd652521d606790022c3050bddc09",
+      "reviewedSignature": "90b6d0c8a67929d2689ae8bf5b774efd3e57649fdea639b8b51922ccf66bf326",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A=g(3−4μ)/5",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Newton perpendicolare→N=mgcosθ; tangenziale→mA=mgsinθ−μN; cancellando m>0: A=g(3−4μ)/5. Ogni proiezione applicata una volta.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "Segno+ assegnaattrito avalle;scambio3/4 scambia componenti;5μ usaNmg;μg omette anchecosθ e peso parallelo. Contributoreale d’attritopermassa4μg/5.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Newton perpendicolare→N=mgcosθ; tangenziale→mA=mgsinθ−μN; cancellando m>0: A=g(3−4μ)/5. Ogni proiezione applicata una volta.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-04",
+      "sourceSha256": "5d9015349aba19e8a864221c3adaf70e94bdfb2b4ca08c439887e74d5f78344e",
+      "candidateSha256": "52b4623120eb18892728258b25f4e826f19733e08d456831626a7d48ae0fd006",
+      "reviewedSignature": "095688a8deef21723ffa25f56464bd58469ffca49ad5f804b87b4775f7e2fa62",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Raddoppia da 2 a 4 m/s²",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "μ1/2→3−4μ=1, geometria fissa. g10→20 dà A2→4 m/s²; aumentano insieme componente del peso e attrito.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "Invarianza ignora g;8 aggiunge quadrato. Attrito fissato mentre gcambia sarebbeincoerente perchéN crescecong.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. μ1/2→3−4μ=1, geometria fissa. g10→20 dà A2→4 m/s²; aumentano insieme componente del peso e attrito.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-05",
+      "sourceSha256": "9f387a9db04cac5679cc531d78fb538e12f7d56829e7113628c6485f0ba2bfb4",
+      "candidateSha256": "f9e61e69c30ead7e2c21bc896ab59d0f9d4b5deade8ba5a86a555217711d48fb",
+      "reviewedSignature": "d7bc0359c22c4cd1e3a891d8910bda0f391112c72434b4d0b399da4d5c0d8ff7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "5A=g(3−4μ); fattorepositivo1 aμ1/2→g5A=10 m/s². Al limiteμ3/4,A0, non invertibile conA2.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "g=A omette fattore1/5;valorenegativo noncompatibile;μ3/4 dàA0 e denominatorezero, fuori datopositivo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. 5A=g(3−4μ); fattorepositivo1 aμ1/2→g5A=10 m/s². Al limiteμ3/4,A0, non invertibile conA2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-06",
+      "sourceSha256": "0ca8b1e9ed25c49afe589ad1c428c1f66c2b47745e332e1f18d782231f31a28a",
+      "candidateSha256": "b6bef14f890045754d4e1ac9de44edc3c6b5d9a854781c2d532aa19801e1edeb",
+      "reviewedSignature": "76385fc2bb7e146016e0843353046c7a074238c40d0c8616d2992d4063a1afe8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "5A/g=5·2/10=1;4μ=3−1=2→μ1/2. 0<A<3g/5 corrisponde a coefficiente positivo e A>0.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "μ1/4→A4;3/4→A0;1,2 fuori dominio discendenteaccelerato. Nessun bisogno di calcolareunangolo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. 5A/g=5·2/10=1;4μ=3−1=2→μ1/2. 0<A<3g/5 corrisponde a coefficiente positivo e A>0.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-07",
+      "sourceSha256": "92598b97c4447e550a564e5835c57456b3d9e9fb1b78ef9935c75b5e390d0074",
+      "candidateSha256": "17f1a46a6b436f4d220c99c56f392b3a8b14afe7a9777cc5fe0772aeb8baf39b",
+      "reviewedSignature": "3358ce1d44bbf2e3ed1415596fb54d2f0e1e8574d6e09cc006dceddd37cc0a84",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "μ1/2→fattore1,μ1/4→fattore2; g10→A2 e4; rapporto2, non rapportoμ1/2.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "1/2 seguirebbeμ come moltiplicatore di tuttaA invece che deltermine sottratto. Frizioneversomonteperentrambimoti.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. μ1/2→fattore1,μ1/4→fattore2; g10→A2 e4; rapporto2, non rapportoμ1/2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-08",
+      "sourceSha256": "6f3d50553838039fe552d2a3fd268df584a9940d07cf7c25f557a3713d36d7d0",
+      "candidateSha256": "836b9c79b6183aa1cec52b15638510019ec508b62ba7d87face51ffb2460d3e5",
+      "reviewedSignature": "9554a838cb7236e6eac6cd86612343a22477441ca186820ea9b37ef8736aa8b1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Contributo gravitazionale6 m/s² e attrito per massa4 m/s² verso monte→A2. Proposta4 meno2=+2 m/s².",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "−2 ordineinverso;6 ometteattrito;4 ripetecontributofrenante;somma6+4 darebbe10errorediverso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Contributo gravitazionale6 m/s² e attrito per massa4 m/s² verso monte→A2. Proposta4 meno2=+2 m/s².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-09",
+      "sourceSha256": "bed37a19905b63ebd9726cb117b1be0d2f27250feda39476fd0615200d72412f",
+      "candidateSha256": "6c248ecd0bfe2b8436caaa573de7bc7f0906f9cccc8e49059f5cad441e024f6e",
+      "reviewedSignature": "93edf75f561263b41284b53c7e685cd955b82807b717af2512f9fe3f2056287b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "g=5A/(3−4μ)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A=g(3−4μ)/5→g=5A/(3−4μ); denominatorepositivo perμ<3/4, dimensioneaccelerazione.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "Leggedirettaripetuta noninversa;+4μ cambiafisica;menofrontale dàgnegativo;1/A dimensioneinversa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A=g(3−4μ)/5→g=5A/(3−4μ); denominatorepositivo perμ<3/4, dimensioneaccelerazione.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-10",
+      "sourceSha256": "970bbe86d8b77eb4c541056c4afd5055a242bcfbbf995da174792db6ad1aa186",
+      "candidateSha256": "0ec30092d83c86d15a536024c8709238737b8264c948498256c3229ce1d4351a",
+      "reviewedSignature": "5b190683a79bf45515cc719f8004225d602e223ccdc63dc2664effee13eb32ce",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (3 − 4 κ₂ μ) / (3 − 4 μ)",
+      "dimension": {},
+      "manualArithmetic": "A_A=g(3−4μ)/5, A_B=κ₁g(3−4κ₂μ)/5. Rapportoκ₁(3−4κ₂μ)/(3−4μ), con entrambiμ eκ₂μ in(0,3/4).",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva. Seconda prova richiede anche0<κ₂μ<3/4;g eμ costanti dentroogniprova.",
+      "distractors": "κ₁/κ₂ e prodottoκ₁κ₂ ignorano differenza; parentesiinverse sbaglianoeffettoattrito;ultimaopzione scambiaκ₁ eκ₂. Sesecondoμsupera3/4 uscitamodelloA>0.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A_A=g(3−4μ)/5, A_B=κ₁g(3−4κ₂μ)/5. Rapportoκ₁(3−4κ₂μ)/(3−4μ), con entrambiμ eκ₂μ in(0,3/4).",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-11",
+      "sourceSha256": "6ef82808cb9b87df5fecd26b5f448771787827bc8af106eb19c6c133b04307a9",
+      "candidateSha256": "19182ec77afa96eec71e49bd0005b9df6aa37bb6bdef45a163f6ecc804fab209",
+      "reviewedSignature": "90d753c34759d91dd594a157107eab68d5ba2937028d565b254e6537c8a0634b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "A_A=10·1/5=2; A_B=20·2/5=8 m/s²; rapporto4, prodotto dei duefattori2,2.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "2 solo g,1/2 soloμtrattatocomefattore,1 moltiplicalidueingressi senza sottrazione. A_B8m/s² nonrapportodimensionale4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A_A=10·1/5=2; A_B=20·2/5=8 m/s²; rapporto4, prodotto dei duefattori2,2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-12",
+      "sourceSha256": "c37772ff32cf8aa2c8ac1f9628d89397ceaa6f186024274cffb87e641e6bae35",
+      "candidateSha256": "3431f04052c2812e3be50a8b48310b61ea8b3c36e30a1473babb8c6cd0ca82c9",
+      "reviewedSignature": "d2b14685e0c5d082be57880bb2415d7084a056aef57c3f2e6e5b698bcdf89fc5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(2+8)/2=5 m/s²; ingressi medi g15,μ3/8→15(3−3/2)/5=9/2 m/s². 5=10/2 distingue esattamente.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "10 somma;9/2 risultato suingressimedi diverso;leaccelerazionisono2e8,semisomma5.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+8)/2=5 m/s²; ingressi medi g15,μ3/8→15(3−3/2)/5=9/2 m/s². 5=10/2 distingue esattamente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-13",
+      "sourceSha256": "d3d08672e4b776e9b0a9780c15e74aa38f27df20120481e258e0ab3ff8f01f17",
+      "candidateSha256": "68a7857913157fb8893038f0c425761187285032106e6cd17e91218fc6309af3",
+      "reviewedSignature": "2f15daec18f326e594e6af2c5eb3459189b36c5743b198670e033f1fda709d52",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "TargetA_B4·2=8; g_B20→5A_B/g_B2, μ_B=(3−2)/4=1/4; rapporto colμ_A1/2 pari1/2.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "1/4 èμ_Bnonrapporto;2 o4 come rapporti dannoμ_B1 o2 fuori dominio;1 lascerebbeμ invariato e soloA_B4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetA_B4·2=8; g_B20→5A_B/g_B2, μ_B=(3−2)/4=1/4; rapporto colμ_A1/2 pari1/2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-14",
+      "sourceSha256": "2ea836b297dea360caba337dd93f626a8e3babfac183b564da42e451fb48208f",
+      "candidateSha256": "b2d08b274e5dd33ce2744275cda4e0e1637c0b44d5cf804b7180b425ac142112",
+      "reviewedSignature": "340a1d5e99f79f62b46f53f5c10f49f72488995dacd48b211e68710033db4b49",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A_ref2,S_ref6→c3s²/m; S24→A8;μ1/4→g=5·8/2=20 m/s².",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "S24letto comeA darebbeg60,perdendotaratura;controlloinavanti20·2/5=8,S3·8=24.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A_ref2,S_ref6→c3s²/m; S24→A8;μ1/4→g=5·8/2=20 m/s².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-15",
+      "sourceSha256": "8d9290fcc75967cd5bfbee0f22e744ecc439373f22f3b03f59df6ae991adc5de",
+      "candidateSha256": "8e50b83dbd7744610531a2678876b8a0a77c60c62122b15ea1f73a1de287952c",
+      "reviewedSignature": "a008f28c6271e508a959fc7d3bf60277de3e8a1119c073ca5e0b0457064c08a2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "ΔS17−5=12,ΔA8−2=6m/s²→c2s²/m;d1;S9→A4;μ1/2→g5·4=20m/s².",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva.",
+      "distractors": "g10,15,25,40 dannoS5,7,11,17;solo20dà9. Saltareoffsetdarebbeg45/2, non20.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS17−5=12,ΔA8−2=6m/s²→c2s²/m;d1;S9→A4;μ1/2→g5·4=20m/s².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-incline-friction-16",
+      "sourceSha256": "f006774a75f3daec32bcf3b4ea01fe9707d1c1348979471434d85978f48be211",
+      "candidateSha256": "6291486634dbfd0e6fa0e14a105b8cf9522aa514fec4a4a99a4693e329c225c4",
+      "reviewedSignature": "31c9999376955184ca36068e2418f08f975d0031f3f0cf24c0e98995ad40aa20",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Due",
+      "dimension": {},
+      "manualArithmetic": "g=(20m/s²)μ→A=(4m/s²)μ(3−4μ). ConA2 e unitàcomune divisa:8μ²−6μ+1=0=(4μ−1)(2μ−1). μ1/4,g5 eμ1/2,g10 entrambe ammesse e dannoA2.",
+      "physicalAssumptions": "Riferimento inerziale; piano rettilineo fisso, contatto mantenuto, sole forze peso normale e attrito dinamico. Scorrimento già discendente: attrito verso monte. m>0 costante, g>0 uniforme e rapporti sinθ3/5,cosθ4/5 dati; nessun angolo da valutare. Per il dominio assegnato0<μ<3/4, A>0; normale4mg/5 positiva. Vincolo g=(20m/s²)μ collega prove diverse, non variazioni del campo lungo la discesa. Due coppie fisiche distinte.",
+      "distractors": "Unaperderebbeunramovalido;nessunacontraddice duesostituzioni;tre impossibileperquadraticanonnulla;infinite richiederebbeidentitànonpresente.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. g=(20m/s²)μ→A=(4m/s²)μ(3−4μ). ConA2 e unitàcomune divisa:8μ²−6μ+1=0=(4μ−1)(2μ−1). μ1/4,g5 eμ1/2,g10 entrambe ammesse e dannoA2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Newton_contact_projection_or_elastic_model",
+        "SymPy_inverse_scaling_affine_and_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "618adc5f5e632949106c09c36ce60bcdd2e824979a3bf3407ac3083f97c52a74",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "f7970eac4b67325c87ee9ed8f02f5d640bccda89",
+  "packageSha256": "a9f072a80dd463d9a25d43fcbb731c9400492ae2644563e8577892fed01eb2a1",
+  "bindingsSha256": "c6ad92522b0efa03394f5bf999b8e679af178cc6341cf6a8d838622b6e341427",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-03.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}
