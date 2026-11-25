@@ -1,0 +1,1204 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-force-uniform-electric-field-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19501,
+      "title": "Dal campo alla forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 1,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Con q=2 μC ed E=3 kN/C, quanto vale F in mN?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mN",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione vettoriale è F⃗=qE⃗. Poiché q è positiva, la forza ha il verso del campo e il suo modulo è qE. Il prodotto dei prefissi è 10⁻⁶·10³=10⁻³: microcoulomb per kilonewton al coulomb danno millinewton. Due per tre vale sei, quindi F=6 mN."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/030209c4df5bea291102f14b0dd6202569240887c886f41bfbe189661e03676e",
+          "text": "Il primo pannello è uno schema di un campo esterno uniforme verso destra e della forza concorde sulla carica positiva: q=2 μC, E=3 kN/C danno F=6 mN. Frecce di campo e forza sono schematiche, non confrontate con una stessa scala. Le barre centrali confrontano prove distinte A=6 mN, B=4 mN e media 5 mN. L’ultimo pannello è il diverso caso di induzione del quesito 03, non una carica di prova in campo prescritto uniforme."
+        },
+        {
+          "type": "formula",
+          "text": "F=qE"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\cdot10^{-6}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " E=3\\cdot10^3\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " F=6\\cdot10^{-3}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Sei newton perderebbero il fattore 10⁻³. Due copia q e tre copia E. Il valore 12 mN raddoppierebbe un fattore già incluso; il campo prescritto non va moltiplicato nuovamente per una carica sorgente."
+        }
+      ],
+      "hints": [
+        "Moltiplica anche i prefissi delle due unità prima di esprimere il risultato in mN.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei newton perderebbero il fattore 10⁻³. Due copia q e tre copia E. Il valore 12 mN raddoppierebbe un fattore già incluso; il campo prescritto non va moltiplicato nuovamente per una carica sorgente.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19502,
+      "title": "Una forza anche in millinewton",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 1,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Quale unità è adatta a F fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mN",
+          "μC",
+          "kN/C",
+          "mN/C",
+          "J"
+        ],
+        "value": "mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza ha dimensione di newton. Un millinewton è 10⁻³ N e cambia solo la scala numerica. In qE, i coulomb si cancellano: rimangono newton, non newton per coulomb."
+        },
+        {
+          "type": "formula",
+          "text": "[F]=\\mathrm C\\cdot\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mN}=10^{-3}\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "μC misura carica; kN/C e mN/C sono unità di campo elettrico. J è energia. Il prefisso milli non trasforma la forza in una grandezza diversa."
+        }
+      ],
+      "hints": [
+        "Cancella il coulomb nel prodotto qE.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "μC misura carica; kN/C e mN/C sono unità di campo elettrico. J è energia. Il prefisso milli non trasforma la forza in una grandezza diversa.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19503,
+      "title": "Una sfera neutra si ridistribuisce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L04",
+      "prerequisites": [
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 1,
+      "prompt": "Un corpo positivo viene avvicinato senza contatto a una sfera metallica inizialmente neutra e isolata da terra. Si attende l’equilibrio elettrostatico. Quale descrizione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La sfera resta neutra nel complesso; gli elettroni si ridistribuiscono e il campo nel metallo è nullo",
+          "La sfera acquista necessariamente una carica netta negativa dal corpo vicino",
+          "Tutti gli elettroni lasciano la sfera e la rendono positiva",
+          "Il campo totale resta non nullo nel materiale metallico in equilibrio",
+          "La carica totale della sfera raddoppia senza uno scambio di cariche"
+        ],
+        "value": "La sfera resta neutra nel complesso; gli elettroni si ridistribuiscono e il campo nel metallo è nullo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli elettroni mobili si spostano verso il lato vicino al corpo positivo. Sul lato lontano rimane un difetto di elettroni. Senza contatto o terra non cambia la carica totale della sfera: nasce una separazione superficiale. Il campo prodotto da questa ridistribuzione cancella nel metallo quello del corpo esterno, una volta raggiunto l’equilibrio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/030209c4df5bea291102f14b0dd6202569240887c886f41bfbe189661e03676e",
+          "text": "Solo l’ultimo pannello rappresenta questa domanda: il corpo positivo è separato dalla sfera, che non tocca la terra. I segni superficiali indicano una ridistribuzione schematica, non valori quantificati delle cariche o il numero di elettroni. La sfera mantiene carica netta nulla e nel suo materiale metallico il campo totale è nullo all’equilibrio. I pannelli precedenti riguardano invece le prove F=qE."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm sfera}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec E_{\\rm totale}=\\vec0\\quad\\text{nel metallo}"
+        },
+        {
+          "type": "text",
+          "text": "La carica negativa vicina non implica una carica netta negativa della sfera. Non entrano elettroni dal corpo separato e non si crea carica. Un campo interno non nullo continuerebbe a muovere le cariche libere. Il campo esterno alla sfera, invece, non deve essere nullo. Questo caso di induzione è distinto dalla carica di prova nel campo uniforme degli altri quesiti."
+        }
+      ],
+      "hints": [
+        "Distingui carica totale conservata e distribuzione locale degli elettroni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La carica negativa vicina non implica una carica netta negativa della sfera. Non entrano elettroni dal corpo separato e non si crea carica. Un campo interno non nullo continuerebbe a muovere le cariche libere. Il campo esterno alla sfera, invece, non deve essere nullo. Questo caso di induzione è distinto dalla carica di prova nel campo uniforme degli altri quesiti.",
+        "target": "C4-L04"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19504,
+      "title": "Dimezzare la carica di prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 1,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. A ha q=2 μC, B ha q=1 μC; entrambe hanno E=3 kN/C. Come cambia F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 3 mN",
+          "Da 6 a 12 mN",
+          "Resta 6 mN",
+          "Da 6 a 1 mN",
+          "Da 6 a 9 mN"
+        ],
+        "value": "Da 6 a 3 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo assegnato resta uguale e la forza è direttamente proporzionale a q. La carica B è metà di quella A, quindi F passa da 2·3=6 mN a 1·3=3 mN. Non si sta cambiando una sorgente che modifica anche E."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=3\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "12 mN rende inversa la dipendenza dalla carica. Sei ignora il cambiamento; uno copia il nuovo q. Nove somma numeri di grandezze diverse invece del prodotto qE."
+        }
+      ],
+      "hints": [
+        "Confronta le due cariche mantenendo il campo davvero fisso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "12 mN rende inversa la dipendenza dalla carica. Sei ignora il cambiamento; uno copia il nuovo q. Nove somma numeri di grandezze diverse invece del prodotto qE.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19505,
+      "title": "Ricavare la carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Si misura F=6 mN e si conosce E=3 kN/C. Quanto vale q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo il modulo della forza per il campo si ottiene q=F/E. In SI 6·10⁻³ N diviso 3·10³ N/C vale 2·10⁻⁶ C, cioè 2 μC. Il denominatore positivo rende l’inversa univoca."
+        },
+        {
+          "type": "formula",
+          "text": "q=F/E"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac{6\\cdot10^{-3}}{3\\cdot10^3}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\cdot10^{-6}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplicherebbe F ed E, senza ottenere unità di carica. Sei copia la forza; un mezzo invertirebbe il quoziente numerico richiesto. La conversione non trasforma 2 μC in 2 C."
+        }
+      ],
+      "hints": [
+        "Isola la carica e controlla il fattore 10⁻⁶ del quoziente in SI.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplicherebbe F ed E, senza ottenere unità di carica. Sei copia la forza; un mezzo invertirebbe il quoziente numerico richiesto. La conversione non trasforma 2 μC in 2 C.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19506,
+      "title": "Ricavare il campo esterno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Si misura F=6 mN su q=2 μC. Quanto vale E in kN/C?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kN/C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto F/q definisce il campo che agisce sulla prova. In SI 6·10⁻³ N diviso 2·10⁻⁶ C dà 3·10³ N/C, quindi 3 kN/C. Il fatto che q sia positiva fissa anche il verso: E⃗ è concorde con F⃗."
+        },
+        {
+          "type": "formula",
+          "text": "E=F/q"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{6\\cdot10^{-3}}{2\\cdot10^{-6}}\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E=3\\cdot10^3\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E=3\\,\\mathrm{kN/C}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica per la carica; tre N/C perderebbero il prefisso kilo. Due copia q e sei copia F. Se la prova fosse negativa, la relazione vettoriale resterebbe valida ma la forza avrebbe verso opposto al campo."
+        }
+      ],
+      "hints": [
+        "Dividi i valori in SI prima di tornare a kN/C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica per la carica; tre N/C perderebbero il prefisso kilo. Due copia q e sei copia F. Se la prova fosse negativa, la relazione vettoriale resterebbe valida ma la forza avrebbe verso opposto al campo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19507,
+      "title": "Un campo più debole",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. A usa q=2 μC ed E=3 kN/C. B mantiene q e usa E=1 kN/C. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1",
+          "1/9",
+          "−1/3"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze sono 6 mN in A e 2 mN in B. Nel rapporto q si cancella e resta 1/3, il rapporto dei campi. Le due forze conservano lo stesso verso, perché la carica è positiva e il campo non è stato invertito."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=1/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte B/A; uno ignora il cambiamento. Un nono introdurrebbe un quadrato assente in F=qE. Il segno negativo non descrive il rapporto di questi moduli positivi."
+        }
+      ],
+      "hints": [
+        "Cancella solo la carica comune e confronta i due campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte B/A; uno ignora il cambiamento. Un nono introdurrebbe un quadrato assente in F=qE. Il segno negativo non descrive il rapporto di questi moduli positivi.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19508,
+      "title": "Uno scarto in millinewton",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Con q=2 μC ed E=3 kN/C si propone F=12 mN. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 mN",
+          "−6 mN",
+          "12 mN",
+          "0 mN",
+          "2"
+        ],
+        "value": "6 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza corretta è 6 mN. La proposta la supera di 12−6=+6 mN. Due è invece il rapporto fra proposta e valore corretto e non ha la dimensione della differenza chiesta."
+        },
+        {
+          "type": "formula",
+          "text": "F=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=F_{\\rm proposto}-F"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "−6 mN cambia l’ordine; 12 mN copia la proposta e zero la accetta. Il rapporto puro due non può sostituire una differenza di forze."
+        }
+      ],
+      "hints": [
+        "Ricalcola F prima della sottrazione con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 mN cambia l’ordine; 12 mN copia la proposta e zero la accetta. Il rapporto puro due non può sostituire una differenza di forze.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19509,
+      "title": "L’inversa con le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Sono noti F ed E. Quale formula ricava q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "q = F/E",
+          "q = F E",
+          "q = E/F",
+          "q = F/E²",
+          "q = F²/E"
+        ],
+        "value": "q = F/E"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal prodotto F=qE si divide per E>0. Il rapporto ha unità N/(N/C)=C. Per i valori numerici in mN e kN/C, il numero F/E si esprime in μC: il fattore 10⁻³/10³ è 10⁻⁶."
+        },
+        {
+          "type": "formula",
+          "text": "F=qE"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac FE"
+        },
+        {
+          "type": "formula",
+          "text": " [q]=\\frac{\\mathrm N}{\\mathrm{N/C}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm N}{\\mathrm{N/C}}=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto non è una carica. E/F ha C⁻¹; F/E² introduce un fattore inverso di campo in più, mentre F²/E ha unità N·C. Nessuna di queste forme è l’inversa del prodotto iniziale."
+        }
+      ],
+      "hints": [
+        "Dividi per il fattore che moltiplica q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto non è una carica. E/F ha C⁻¹; F/E² introduce un fattore inverso di campo in più, mentre F²/E ha unità N·C. Nessuna di queste forme è l’inversa del prodotto iniziale.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19510,
+      "title": "Due fattori indipendenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. B usa q_B=κ₁q_A ed E_B=κ₂E_A, con κ₁,κ₂>0 e campo sempre prescritto. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁² κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo entrambi i nuovi dati nel prodotto si ottiene F_B=κ₁κ₂q_AE_A. Dividere per F_A cancella il prodotto di riferimento e lascia κ₁κ₂. Il fatto che entrambi i dati siano elettrici non crea una dipendenza quadratica aggiuntiva da q."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=(\\kappa_1q_A)(\\kappa_2E_A)"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\kappa_1\\kappa_2F_A"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. La somma darebbe due per prove identiche; il quadrato aggiunto alla carica non compare nella definizione della forza in un campo assegnato."
+        }
+      ],
+      "hints": [
+        "Sostituisci i due fattori nello stesso prodotto prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. La somma darebbe due per prove identiche; il quadrato aggiunto alla carica non compare nella definizione della forza in un campo assegnato.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19511,
+      "title": "La carica cala e il campo cresce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. A ha q=2 μC, E=3 kN/C; B ha q=1 μC, E=4 kN/C. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 mN, mentre B dà 4 mN. Il rapporto è 4/6=2/3. La carica dimezzata da sola darebbe metà forza, ma il campo è cresciuto di 4/3: il prodotto dei fattori è (1/2)(4/3)=2/3."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=6\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=4\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=2/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il reciproco. Un mezzo considera solo q e quattro terzi solo E. Uno presume una compensazione esatta che questi dati non realizzano."
+        }
+      ],
+      "hints": [
+        "Calcola i due prodotti o moltiplica i due fattori di variazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il reciproco. Un mezzo considera solo q e quattro terzi solo E. Uno presume una compensazione esatta che questi dati non realizzano.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19512,
+      "title": "Media delle due forze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 2,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. A usa q=2 μC, E=3 kN/C; B usa q=1 μC, E=4 kN/C. Qual è la media aritmetica di F con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 mN",
+          "21/4 mN",
+          "10 mN",
+          "1 mN",
+          "6 mN"
+        ],
+        "value": "5 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze sono 6 e 4 mN. Somma dieci, metà cinque millinewton. Le medie dei dati sarebbero q=3/2 μC ed E=7/2 kN/C, il cui prodotto è 21/4 mN: un’altra prova, diversa dalla media richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/030209c4df5bea291102f14b0dd6202569240887c886f41bfbe189661e03676e",
+          "text": "Le barre centrali hanno origine e scala comuni: 6 mN, 4 mN e media 5 mN. Le prove sono separate; non si sommano forze contemporanee sullo stesso corpo. Il prodotto dei dati medi sarebbe 21/4 mN e non è la media rappresentata. Il pannello di induzione è un caso concettuale distinto."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F=\\frac{6+4}{2}\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F=5\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F(\\overline q,\\overline E)=\\frac{21}{4}\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "21/4 mN usa i dati medi. Dieci non dimezza, uno è metà della differenza e sei copia A. La media statistica non è una risultante che sommi forze su un medesimo corpo."
+        }
+      ],
+      "hints": [
+        "Media le forze già ricostruite nelle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/4 mN usa i dati medi. Dieci non dimezza, uno è metà della differenza e sei copia A. La media statistica non è una risultante che sommi forze su un medesimo corpo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19513,
+      "title": "Il bersaglio determina il campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 3,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. A ha q=2 μC ed E_A=3 kN/C. B ha q=1 μC e deve avere F_B=(2/3)F_A. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "2",
+          "4"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (2/3)·6=4 mN. Con q_B=1 μC serve E_B=4 kN/C. Il rapporto con i 3 kN/C iniziali è 4/3. Il fattore richiesto alla forza non si trasferisce da solo al campo perché è cambiata anche la carica."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=4\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=F_B/q_B"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=4\\,\\mathrm{kN/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=4/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti inverte il rapporto. Due terzi ignora il dimezzamento di q; due darebbe 6 mN e quattro copia il valore numerico del campo invece del suo rapporto."
+        }
+      ],
+      "hints": [
+        "Ricava prima la forza bersaglio e poi il campo necessario con la nuova carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti inverte il rapporto. Due terzi ignora il dimezzamento di q; due darebbe 6 mN e quattro copia il valore numerico del campo invece del suo rapporto.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19514,
+      "title": "Un display prima della carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 3,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Il display continuo adimensionale D=aF ha a>0 e nessun offset. A con q=2 μC, E=3 kN/C dà D=18. B dà D=12 ed E=4 kN/C. Quanto vale q_B in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha F=6 mN, quindi a=3 mN⁻¹. Il display B indica 12/(3 mN⁻¹)=4 mN. Dividendo per il campo 4 kN/C si ottiene q_B=1 μC. Il guadagno del display non è il campo e non sostituisce la conversione di unità."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{mN^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=4\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=F_B/E_B"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=1\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "Tre μC userebbe D=12 direttamente come mN. Due μC predirebbero F=8 mN e D=24, non dodici. Quattro copia il numero della forza decodificata senza dividere per il campo."
+        }
+      ],
+      "hints": [
+        "Decodifica il display in mN prima di invertire F=qE.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre μC userebbe D=12 direttamente come mN. Due μC predirebbero F=8 mN e D=24, non dodici. Quattro copia il numero della forza decodificata senza dividere per il campo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19515,
+      "title": "Guadagno e offset separati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 3,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. D=aF+b è continuo e adimensionale, a>0. A: q=2 μC, E=3 kN/C, D=13. B: q=1 μC, E=4 kN/C, D=9. C: E=5 kN/C, D=41. Quanto vale q_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 μC",
+          "41/10 μC",
+          "2 μC",
+          "5 μC",
+          "20 μC"
+        ],
+        "value": "4 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno F_A=6 mN e F_B=4 mN. La differenza dà a=(13−9)/(6−4)=2 mN⁻¹; poi b=1. C ha F_C=(41−1)/2=20 mN. Con E_C=5 kN/C, la carica è 4 μC."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{mN^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=20\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " q_C=4\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "41/10 μC omette b, usa 41/2 mN e ricostruisce D=42. Due μC darebbero D=21, cinque D=51; venti copia il numero della forza. L’offset è strumentale, non una carica aggiuntiva del corpo."
+        }
+      ],
+      "hints": [
+        "Trova i due parametri del display prima della terza carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "41/10 μC omette b, usa 41/2 mN e ricostruisce D=42. Due μC darebbero D=21, cinque D=51; venti copia il numero della forza. L’offset è strumentale, non una carica aggiuntiva del corpo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-uniform-electric-field-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campo assegnato e forza sulla prova",
+      "order": 19516,
+      "title": "Un vincolo fra preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-uniform-electric-field",
+      "difficulty": 3,
+      "prompt": "Una piccola carica di prova positiva q, in μC, è posta in un campo elettrico esterno uniforme di modulo E>0, in kN/C. Il campo è assegnato e non viene alterato apprezzabilmente dalla carica di prova. Scegliamo il verso positivo lungo il campo. Si cerca il modulo F della sola forza elettrica in mN, non la risultante di eventuali altre forze. q ed E restano costanti entro la prova. Fra prove si impone q=βE, con β=(2/3) μC/(kN/C). Si misura F=6 mN. Quanto vale E>0 in kN/C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 kN/C",
+          "−3 kN/C",
+          "9 kN/C",
+          "2 kN/C",
+          "6 kN/C"
+        ],
+        "value": "3 kN/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=E/(1 kN/C) e y=q/(1 μC), numeri puri. Il vincolo è y=(2/3)x e la forza numerica soddisfa 6=yx=(2/3)x². Quindi x²=9: soltanto x=3 rispetta campo positivo e carica positiva. Il risultato è E=3 kN/C, q=2 μC; il vincolo lega prove diverse, non un campo che dipende dalla prova durante una misura."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac E{1\\,\\mathrm{kN/C}}"
+        },
+        {
+          "type": "formula",
+          "text": " y=\\frac q{1\\,\\mathrm{\\mu C}}"
+        },
+        {
+          "type": "formula",
+          "text": " 6=\\frac23x^2"
+        },
+        {
+          "type": "formula",
+          "text": " x^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " x=3"
+        },
+        {
+          "type": "formula",
+          "text": " E=3\\,\\mathrm{kN/C}"
+        },
+        {
+          "type": "text",
+          "text": "−3 darebbe anche q negativo nel vincolo ed è fuori dal dominio. Nove copia il quadrato; E=2 kN/C darebbe F=8/3 mN e sei darebbe 24 mN. Il coefficiente β porta le unità necessarie e non si inserisce come puro 2/3 in una formula SI."
+        }
+      ],
+      "hints": [
+        "Imponi il vincolo prima di scegliere il ramo positivo della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 darebbe anche q negativo nel vincolo ed è fuori dal dominio. Nove copia il quadrato; E=2 kN/C darebbe F=8/3 mN e sei darebbe 24 mN. Il coefficiente β porta le unità necessarie e non si inserisce come puro 2/3 in una formula SI.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Forza vettoriale e modulo qE",
+        "Prefissi coerenti e inverse",
+        "Rapporti, medie, tarature e vincoli",
+        "Induzione nel conduttore come caso distinto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "030209c4df5bea291102f14b0dd6202569240887c886f41bfbe189661e03676e",
+      "name": "force-uniform-electric-field-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Gb3J6YSBkaSBwcm92YSBlIGluZHV6aW9uZSBzb25vIGNhc2kgZGlzdGludGk8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW5hIGNhcmljYSBwb3NpdGl2YSBkaSBkdWUgbWljcm9jb3Vsb21iIGluIHVuIGNhbXBvIGFzc2VnbmF0byBkaSB0cmUga2lsb25ld3RvbiBhbCBjb3Vsb21iIHN1YmlzY2Ugc2VpIG1pbGxpbmV3dG9uIG5lbCB2ZXJzbyBkZWwgY2FtcG8uIExlIGJhcnJlIGNvbmZyb250YW5vIHNlaSBlIHF1YXR0cm8gbWlsbGluZXd0b24gZSBsYSBtZWRpYSBjaW5xdWUuIFVuIHBhbm5lbGxvIHNlcGFyYXRvIG1vc3RyYSBpbmR1emlvbmUgc3UgdW5hIHNmZXJhIG5ldXRyYSBpc29sYXRhLCBjb24gY2FtcG8gbnVsbG8gbmVsIG1ldGFsbG8gYWxs4oCZZXF1aWxpYnJpby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImZpZWxkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0iZm9yY2UiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiNiNDUzMjgiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ0MCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBJbCBjYW1wbyBhc3NlZ25hIHVuYSBmb3J6YTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgzIiBmb250LXNpemU9IjE4Ij5xID0gMiDOvEMgOyBFID0gMyBrTi9DIDsgRiA9IHFFID0gNiBtTi48L3RleHQ+CjxwYXRoIGQ9Ik02NSAxMzVINTcwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNmaWVsZCkiLz4KPHBhdGggZD0iTTY1IDMyMEg1NzAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2ZpZWxkKSIvPgo8Y2lyY2xlIGN4PSIyNjAiIGN5PSIyMjUiIHI9IjI2IiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNTAiIHk9IjIzMyIgZm9udC1zaXplPSIyOCI+KzwvdGV4dD4KPHBhdGggZD0iTTI4NiAyMjVINDY2IiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNmb3JjZSkiLz4KPHRleHQgeD0iMzQ1IiB5PSIyMDAiPkYgPSA2IG1OPC90ZXh0Pjx0ZXh0IHg9IjIyNSIgeT0iMjg0Ij5xICZndDsgMDwvdGV4dD4KPHRleHQgeD0iMzc1IiB5PSIzNjUiIGZpbGw9IiMxNjVhODciPlZlcnNvIGRpIEU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MDUiIGZvbnQtc2l6ZT0iMTgiPkZyZWNjZSBzY2hlbWF0aWNoZTsgZm9yemEgZSBjYW1wbyBoYW5ubyB1bml0w6AgZGl2ZXJzZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MzciIGZvbnQtc2l6ZT0iMTgiPkxhIGZvcnphIHN1bGxhIHByb3ZhIHBvc2l0aXZhIMOoIGNvbmNvcmRlIGNvbiBFLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQ3MEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNTE0IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBNZWRpYSBkaSBkdWUgcHJvdmUgc2VwYXJhdGU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NTMiIGZvbnQtc2l6ZT0iMTgiPkE6IHEgPSAyIM68QywgRSA9IDMga04vQyA7IEI6IHEgPSAxIM68QywgRSA9IDQga04vQy48L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNTgwVjgzNyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI2MDciIHdpZHRoPSIyNDAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSI2ODUiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSI3NjMiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzgiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9IjYzNSI+QTwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjYzNSI+NiBtTjwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjcxMyI+QjwvdGV4dD48dGV4dCB4PSIzMTAiIHk9IjcxMyI+NCBtTjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijc5MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSI3OTEiPjUgbU48L3RleHQ+Cjx0ZXh0IHg9IjEwNCIgeT0iODMxIj4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODgwIiBmb250LXNpemU9IjE4Ij5Nb2R1bGkgaW4gbU4sIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTEyIiBmb250LXNpemU9IjE4Ij5JbCBwcm9kb3R0byBkZWkgZGF0aSBtZWRpIGRhcmViYmUgMjEvNCBtTi48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NDVINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijk4OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgVW4gYWx0cm8gY2FzbzogaW5kdXppb25lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAyOCIgZm9udC1zaXplPSIxOCI+U2ZlcmEgbWV0YWxsaWNhIG5ldXRyYSwgaXNvbGF0YSwgc2VuemEgY29udGF0dG8uPC90ZXh0Pgo8Y2lyY2xlIGN4PSI5NSIgY3k9IjExNTAiIHI9IjM3IiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI4MSIgeT0iMTE2MSIgZm9udC1zaXplPSIzNiIgZmlsbD0iI2I0NTMyOCI+KzwvdGV4dD4KPHRleHQgeD0iMzkiIHk9IjEyMjAiPkNvcnBvIHZpY2lubzwvdGV4dD4KPGNpcmNsZSBjeD0iNDMwIiBjeT0iMTE1MCIgcj0iOTMiIGZpbGw9IiNlMGU3ZWUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxnIGZvbnQtc2l6ZT0iMjgiPjx0ZXh0IHg9IjM2NSIgeT0iMTExMSIgZmlsbD0iIzE2NWE4NyI+4oiSPC90ZXh0Pjx0ZXh0IHg9IjM1MyIgeT0iMTE1OSIgZmlsbD0iIzE2NWE4NyI+4oiSPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMTIwNiIgZmlsbD0iIzE2NWE4NyI+4oiSPC90ZXh0Pjx0ZXh0IHg9IjQ3NyIgeT0iMTExMSIgZmlsbD0iI2I0NTMyOCI+KzwvdGV4dD48dGV4dCB4PSI0OTAiIHk9IjExNTkiIGZpbGw9IiNiNDUzMjgiPis8L3RleHQ+PHRleHQgeD0iNDc3IiB5PSIxMjA2IiBmaWxsPSIjYjQ1MzI4Ij4rPC90ZXh0PjwvZz4KPHRleHQgeD0iMzg1IiB5PSIxMTU3IiBmb250LXNpemU9IjE4Ij5FX2ludCA9IDA8L3RleHQ+Cjx0ZXh0IHg9IjM0NSIgeT0iMTI4MCI+UV9zZmVyYSA9IDA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzI1IiBmb250LXNpemU9IjE4Ij5TZWduaSBzY2hlbWF0aWNpOiBsYSBjYXJpY2EgdG90YWxlIHJlc3RhIG51bGxhLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzNTciIGZvbnQtc2l6ZT0iMTgiPkNhbXBvIHRvdGFsZSBudWxsbyBuZWwgbWF0ZXJpYWxlIG1ldGFsbGljbyBpbiBlcXVpbGlicmlvLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzODkiIGZvbnQtc2l6ZT0iMTgiPlF1aSBpbCBjYW1wbyBzaSByaWRpc3RyaWJ1aXNjZTogbm9uIMOoIGlsIGNhc28gZGVsbGEgcHJvdmEuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
