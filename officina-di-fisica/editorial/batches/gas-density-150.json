@@ -1,0 +1,1115 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-gas-density-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15001,
+      "title": "La massa distribuita nel volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 1,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Con p=80 kPa e T=320 K, quanto vale ρ in g/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto M/R vale numericamente quattro con le unità indicate. Quattro per ottanta diviso trecentoventi dà uno g/L. Le moli si cancellano fra massa molare e quantità di sostanza per volume. Lo stesso risultato è uno kg/m³, perché un grammo e un litro portano entrambi il fattore un millesimo rispetto a kg e m³."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97e2177e27654658ea0f539d2310f7db6928563b6554cf091cc5716ab578c1e4",
+          "text": "Il primo pannello segue le unità dal gas ideale alla densità di massa: M=32 g/mol e R=8 kPa·L/(mol·K) prescritto. Il secondo confronta 1 e 4 g/L in barre da zero a 80 px/(g/L), per gli stati 80 kPa/320 K e 160 kPa/160 K. L’ultimo pannello riguarda soltanto il caso 08: energia traslazionale media per molecola normalizzata all’iniziale, con barre 100 e 300 px a 100 px per unità pura; non sono densità."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac{pM}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{4\\cdot80}{320}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto dimentica M/R=4. Quattro segue soltanto il coefficiente, ottanta copia la pressione. Mille g/L inserirebbe un fattore mille non necessario: i prefissi sono già coerenti con kPa·L=J."
+        }
+      ],
+      "hints": [
+        "Usa M e R nelle unità g/mol e kPa·L/(mol·K).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto dimentica M/R=4. Quattro segue soltanto il coefficiente, ottanta copia la pressione. Mille g/L inserirebbe un fattore mille non necessario: i prefissi sono già coerenti con kPa·L=J.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15002,
+      "title": "L’unità della densità di massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 1,
+      "prompt": "La grandezza richiesta è densità di massa ρ=m/V. Quale unità fra le seguenti è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g/L",
+          "g·L",
+          "g",
+          "mol/L",
+          "K"
+        ],
+        "value": "g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità è massa divisa per volume. g/L è quindi adatta e corrisponde dimensionalmente a kg/m³. La densità molare n/V è invece una quantità di sostanza per volume: mol/L non è una densità di massa finché non viene moltiplicata per M."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho]=M L^{-3}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{g/L}=1\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "g·L moltiplica anziché dividere per il volume; g è soltanto massa. mol/L conta moli, K temperatura. La stessa parola densità deve sempre essere accompagnata dalla grandezza che viene distribuita."
+        }
+      ],
+      "hints": [
+        "Chiediti che cosa c’è al numeratore: massa oppure moli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "g·L moltiplica anziché dividere per il volume; g è soltanto massa. mol/L conta moli, K temperatura. La stessa parola densità deve sempre essere accompagnata dalla grandezza che viene distribuita.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15003,
+      "title": "Dalle moli alla densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 1,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Quale relazione fisica dà ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ = p M / (R T)",
+          "ρ = p R / (M T)",
+          "ρ = R T / (p M)",
+          "ρ = p M T / R",
+          "ρ = p / (R T M)"
+        ],
+        "value": "ρ = p M / (R T)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equazione di stato fornisce n/V=p/(RT). Moltiplicando per M si converte il numero di moli per volume nella massa per volume: ρ=(n/V)M=pM/(RT). La temperatura è al denominatore e la massa molare al numeratore."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac nV=\\frac p{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " m=nM"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac mV"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{pM}{RT}"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare M e R perde la conversione moli→massa. RT/(pM) è il reciproco della densità. T al numeratore inverte la dipendenza termica, mentre dividere ancora per M produce la conversione opposta a quella necessaria."
+        }
+      ],
+      "hints": [
+        "Ricava prima n/V, poi moltiplica per la massa di una mole.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Scambiare M e R perde la conversione moli→massa. RT/(pM) è il reciproco della densità. T al numeratore inverte la dipendenza termica, mentre dividere ancora per M produce la conversione opposta a quella necessaria.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15004,
+      "title": "Pressione doppia, stessa temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 1,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. p passa da 80 a 160 kPa, mentre T resta 320 K. Come cambia ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2 g/L",
+          "Da 1 a 4 g/L",
+          "Da 1 a 1/2 g/L",
+          "Resta 1 g/L",
+          "Da 1 a 160 g/L"
+        ],
+        "value": "Da 1 a 2 g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A temperatura e composizione fissate la densità è direttamente proporzionale alla pressione. Il quoziente p/T raddoppia e la densità passa da uno a due g/L. Il confronto può descrivere stati dello stesso campione a volume diverso, senza cambiare M."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=1\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\frac{4\\cdot160}{320}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quadra il fattore di pressione, un mezzo ne inverte l’effetto. Centosessanta copia p e uno ignora la variazione. La legge non richiede che la massa totale del recipiente raddoppi."
+        }
+      ],
+      "hints": [
+        "Il fattore due di p entra una sola volta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro quadra il fattore di pressione, un mezzo ne inverte l’effetto. Centosessanta copia p e uno ignora la variazione. La legge non richiede che la massa totale del recipiente raddoppi.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15005,
+      "title": "La pressione dalla densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Si misura ρ=1 g/L e T=320 K. Quanto vale p in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo p=ρRT/M. Con M/R numericamente quattro nelle unità date, p ha valore numerico ρT/4. Uno per trecentoventi diviso quattro dà ottanta kPa. La moltiplicazione inversa 4·80/320 restituisce la densità misurata."
+        },
+        {
+          "type": "formula",
+          "text": "p=\\frac{\\rho RT}{M}"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{1\\cdot320}{4}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Milleduecentottanta moltiplica per quattro invece di dividere. Trecentoventi perde M/R; un ottantesimo inverte il quoziente. La pressione è assoluta, perché tale è p nell’equazione di stato."
+        }
+      ],
+      "hints": [
+        "Rimuovi il coefficiente M/R con la divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Milleduecentottanta moltiplica per quattro invece di dividere. Trecentoventi perde M/R; un ottantesimo inverte il quoziente. La pressione è assoluta, perché tale è p nell’equazione di stato.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15006,
+      "title": "La temperatura assoluta dalla densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Si conoscono ρ=1 g/L e p=80 kPa. Quanto vale T in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 320,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge generale T=pM/(Rρ). Nelle unità assegnate il numero è 4·80/1=320. Si ottengono kelvin, non gradi Celsius: la conversione a una lettura Celsius sarebbe un’operazione successiva e non richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{pM}{R\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " T=320\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta omette il fattore quattro e uno copia la densità. Trecentoventi °C non rappresenta questa T. Nel dominio positivo l’inversa è lecita perché ρ non è zero."
+        }
+      ],
+      "hints": [
+        "Togli ρ dal denominatore isolando T come prodotto positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta omette il fattore quattro e uno copia la densità. Trecentoventi °C non rappresenta questa T. Nel dominio positivo l’inversa è lecita perché ρ non è zero.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15007,
+      "title": "Raffreddare alla stessa pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. A usa p=80 kPa,T=320 K. B mantiene p e porta T a 160 K. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura assoluta si dimezza. A pressione fissata il numero di moli per volume e la densità raddoppiano: A vale uno g/L, B due g/L. È una dipendenza inversa da T, non una proporzione con le letture Celsius."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=1\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue T direttamente, quattro aggiunge un quadrato e uno ignora il raffreddamento. Un quarto combina entrambe le inversioni errate. Non serve cambiare massa molare per ottenere la nuova densità."
+        }
+      ],
+      "hints": [
+        "Il coefficiente M/R e p sono uguali: confronta gli inversi di T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue T direttamente, quattro aggiunge un quadrato e uno ignora il raffreddamento. Un quarto combina entrambe le inversioni errate. Non serve cambiare massa molare per ottenere la nuova densità.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15008,
+      "title": "Una legge microscopica fornita, altro quesito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Per una molecola di gas ideale classico in equilibrio viene fornita la legge dell’energia cinetica traslazionale media ⟨K_trasl⟩=(3/2)k_B T, con k_B costante positiva e T in kelvin. T passa da 300 a 900 K. Quanto vale il rapporto fra energia traslazionale media finale e iniziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "9",
+          "√3",
+          "1/3",
+          "1"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa costante (3/2)k_B moltiplica entrambe le temperature e si cancella nel rapporto. Rimane 900/300=3. Si sta confrontando l’energia cinetica media traslazionale per molecola, non la densità, il calore scambiato o l’intera energia interna di una molecola con eventuali moti interni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97e2177e27654658ea0f539d2310f7db6928563b6554cf091cc5716ab578c1e4",
+          "text": "Solo il pannello finale descrive la legge microscopica fornita: energia traslazionale media proporzionale alla temperatura assoluta, che passa da 300 a 900 K. Il rapporto puro passa da 1 a 3, alla scala 100 px per unità. Non si interpreta questa energia per molecola come densità o come calore totale."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\langle K_{\\rm trasl}\\rangle_f}{\\langle K_{\\rm trasl}\\rangle_i}=\\frac{T_f}{T_i}"
+        },
+        {
+          "type": "formula",
+          "text": " T_f/T_i=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove quadra un rapporto già lineare; √3 riguarderebbe una scala di velocità quadratica media, non l’energia. Un terzo inverte le prove e uno ignora la crescita termica. La legge necessaria è fornita, senza richiedere una nuova formula da memorizzare."
+        }
+      ],
+      "hints": [
+        "Cancella il coefficiente comune e usa soltanto temperature assolute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quadra un rapporto già lineare; √3 riguarderebbe una scala di velocità quadratica media, non l’energia. Un terzo inverte le prove e uno ignora la crescita termica. La legge necessaria è fornita, senza richiedere una nuova formula da memorizzare.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15009,
+      "title": "L’inversa generale per p",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Quale formula isola p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p = ρ R T / M",
+          "p = ρ M / (R T)",
+          "p = M / (ρ R T)",
+          "p = R T / (ρ M)",
+          "p = ρ R / (M T)"
+        ],
+        "value": "p = ρ R T / M"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo ρ=pM/(RT) per RT e dividiamo per M. Si ricava p=ρRT/M. Con ρ in g/L, R in kPa·L/(mol·K), T in K e M in g/mol, si cancellano grammi, litri, kelvin e moli, lasciando kPa."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho RT=pM"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{\\rho RT}{M}"
+        },
+        {
+          "type": "formula",
+          "text": " [p]=\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "ρM/(RT) riapplica il fattore della legge diretta anziché invertirlo. I reciproci rendono inversa la dipendenza dalla densità; T al denominatore contraddice l’inversa. Le dimensioni eliminano questi candidati prima ancora dei numeri."
+        }
+      ],
+      "hints": [
+        "Fai l’algebra con M e R visibili prima di inserire i valori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ρM/(RT) riapplica il fattore della legge diretta anziché invertirlo. I reciproci rendono inversa la dipendenza dalla densità; T al denominatore contraddice l’inversa. Le dimensioni eliminano questi candidati prima ancora dei numeri.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15010,
+      "title": "Due fattori nello stato del gas",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. B usa p_B=κ₁p_A e T_B=κ₂T_A, con κ₁,κ₂>0. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "M e R si cancellano perché si confronta lo stesso gas nello stesso modello. La pressione porta κ₁ direttamente, la temperatura assoluta porta κ₂ al denominatore. Il rapporto è κ₁/κ₂, puro."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_B=\\frac{\\kappa_1p_A M}{R\\kappa_2T_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto rende T diretta, quoziente inverso scambia stati, quadrato aggiunge un esponente e somma dà due per stati identici. Un cambiamento di specie altererebbe M e non è compreso in queste ipotesi."
+        }
+      ],
+      "hints": [
+        "Mantieni esplicita la composizione comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto rende T diretta, quoziente inverso scambia stati, quadrato aggiunge un esponente e somma dà due per stati identici. Un cambiamento di specie altererebbe M e non è compreso in queste ipotesi.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15011,
+      "title": "Compressione e raffreddamento nei dati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. A: p=80 kPa,T=320 K. B: p=160 kPa,T=160 K. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione raddoppia e la temperatura si dimezza: i due effetti aumentano entrambi la densità. A vale uno g/L, B vale quattro g/L, quindi il rapporto è quattro. È il prodotto del due della pressione e del due dovuto all’inverso della temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=1\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=4\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un effetto soltanto; un mezzo segue solo T e un quarto inverte il rapporto completo. Uno farebbe cancellare due dipendenze che qui agiscono nello stesso verso."
+        }
+      ],
+      "hints": [
+        "Ricalcola il quoziente p/T in ogni stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un effetto soltanto; un mezzo segue solo T e un quarto inverte il rapporto completo. Uno farebbe cancellare due dipendenze che qui agiscono nello stesso verso.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15012,
+      "title": "Media di due densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 2,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. A: p=80 kPa,T=320 K. B: p=160 kPa,T=160 K. Qual è la media aritmetica delle due ρ con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 g/L",
+          "5 g/L",
+          "3/2 g/L",
+          "2 g/L",
+          "4 g/L"
+        ],
+        "value": "5/2 g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità uno e quattro g/L hanno semisomma cinque mezzi g/L. Usare prima p medio 120 kPa e T media 240 K darebbe invece due g/L. La risposta del quoziente agli ingressi medi è più bassa di mezzo g/L rispetto alla media delle due densità."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\rho=\\frac{1+4}{2}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\rho=\\frac52\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è la somma, tre mezzi la semidifferenza e quattro la sola B. Due è la densità dello stato con ingressi medi, non la media richiesta. Non si suppone un esperimento di mescolamento dei due campioni."
+        }
+      ],
+      "hints": [
+        "Calcola le densità prima della media statistica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è la somma, tre mezzi la semidifferenza e quattro la sola B. Due è la densità dello stato con ingressi medi, non la media richiesta. Non si suppone un esperimento di mescolamento dei due campioni.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15013,
+      "title": "Temperatura richiesta da un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 3,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. A ha p=80 kPa,T=320 K. B impone p_B=160 kPa e ρ_B=4ρ_A. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "4",
+          "1/4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità target è quattro g/L. Con pressione centosessanta kPa, T_B ha valore 4·160/4=160 K. Il rapporto con 320 K è un mezzo. Il fattore due di pressione deve essere accompagnato da un ulteriore fattore due nell’inverso della temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_B=4\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=160\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto, quattro copia il target e un quarto ignora la pressione raddoppiata. Uno darebbe solo un raddoppio della densità. I due valori della temperatura sono assoluti."
+        }
+      ],
+      "hints": [
+        "Isola T_B usando anche la nuova pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto, quattro copia il target e un quarto ignora la pressione raddoppiata. Uno darebbe solo un raddoppio della densità. I due valori della temperatura sono assoluti.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15014,
+      "title": "Un display della densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 3,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. S=qρ è un display continuo adimensionale, q>0. A: p=80 kPa,T=320 K,S=3. B: T=160 K,S=12. Quanto vale p_B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 160,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha densità uno g/L, perciò q=3 L/g. La lettura dodici dà quattro g/L. Applicando l’inversa p=ρRT/M si trova il numero 4·160/4=160 kPa. La lettura numerica del display non è una densità senza la taratura."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=4\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{\\rho_BRT_B}{M}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=160\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Quattrocentottanta usa S=12 come densità al posto di quattro. Quattro è soltanto il numero di ρ_B e ottanta ripete la pressione iniziale. Il guadagno ha unità di volume su massa."
+        }
+      ],
+      "hints": [
+        "Prima inverti il display, poi l’equazione di stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattrocentottanta usa S=12 come densità al posto di quattro. Quattro è soltanto il numero di ρ_B e ottanta ripete la pressione iniziale. Il guadagno ha unità di volume su massa.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15015,
+      "title": "Guadagno, offset e pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 3,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. S=qρ+b è continuo e adimensionale, con q>0 e q,b costanti. A: p=80 kPa,T=320 K,S=3. B: p=160 kPa,T=160 K,S=9. C: T=320 K,S=5. Quanto vale p_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "160 kPa",
+          "80 kPa",
+          "320 kPa",
+          "200 kPa",
+          "400 kPa"
+        ],
+        "value": "160 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno densità uno e quattro g/L. La differenza sei delle letture divisa per tre g/L dà q=2 L/g; b=1. C ha densità (5−1)/2=2 g/L. Con T=320 K, l’inversa dà p_C=2·320/4=160 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/g}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_C=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=160\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta ignora la densità maggiore; trecentoventi copia la temperatura numerica. Duecento dimentica b e usa ρ=5/2; quattrocento usa S=5 come densità. Solo centosessanta ricostruisce S=2·2+1=5."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di dividere per il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta ignora la densità maggiore; trecentoventi copia la temperatura numerica. Duecento dimentica b e usa ρ=5/2; quattrocento usa S=5 come densità. Solo centosessanta ricostruisce S=2·2+1=5.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-gas-density-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Densità di massa del gas ideale",
+      "order": 15016,
+      "title": "Il vincolo lascia libera la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gas-density",
+      "difficulty": 3,
+      "prompt": "Un gas ideale in equilibrio ha massa molare M=32 g/mol. È prescritta per questi esercizi l’approssimazione R=8 J/(mol·K), uguale a 8 kPa·L/(mol·K), non il valore universale esatto. p>0 è pressione assoluta in kPa, T>0 temperatura assoluta in K. La densità di massa è ρ=m/V, richiesta in g/L. Combinando m=nM con pV=nRT si ottiene ρ=pM/(RT); con le unità dichiarate il numero di ρ in g/L è quattro volte il numero di p in kPa diviso quello di T in K. M e composizione restano uguali nei confronti. Fra stati si impone p=kT con k=1/4 kPa/K. Si misura ρ=1 g/L. Quante coppie positive (p,T) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie: qualsiasi T>0 con p=kT",
+          "Una sola coppia",
+          "Nessuna coppia",
+          "Esattamente due coppie",
+          "Soltanto p=T=0"
+        ],
+        "value": "Infinite coppie: qualsiasi T>0 con p=kT"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo p=kT si ottiene ρ=kM/R: T si cancella. Nelle unità dichiarate il numero è quattro per un quarto, uno g/L. La misura ripete quindi il vincolo di stato. Per esempio 80 kPa con 320 K e 100 kPa con 400 K sono due fra le infinite coppie del modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac{kTM}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{kM}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=1\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Una sola coppia confonde una relazione ridondante con una misura di scala. Due esempi non esauriscono le soluzioni; la coppia nulla viola i denominatori positivi. Il coefficiente k porta unità kPa/K e non è una costante pura."
+        }
+      ],
+      "hints": [
+        "Controlla se T resta nell’equazione dopo la sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sola coppia confonde una relazione ridondante con una misura di scala. Due esempi non esauriscono le soluzioni; la coppia nulla viola i denominatori positivi. Il coefficiente k porta unità kPa/K e non è una costante pura.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Massa molare, quantità e volume",
+        "Legge microscopica fornita distinta",
+        "Inverse, media, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "97e2177e27654658ea0f539d2310f7db6928563b6554cf091cc5716ab578c1e4",
+      "name": "gas-density-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgdmlld0JveD0iMCAwIDY0MCAxNTUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RGFsbGUgbW9saSBhbGxhIG1hc3NhIHBlciB2b2x1bWU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5MYSBsZWdnZSBkZWwgZ2FzIGZvcm5pc2NlIG1vbGkgcGVyIHZvbHVtZSwgbGEgbWFzc2EgbW9sYXJlIGNvbnZlcnRlIGluIG1hc3NhIHBlciB2b2x1bWUuIEJhcnJlIGRpIGRlbnNpdMOgIHVubyBlIHF1YXR0cm8gZ3JhbW1pIHBlciBsaXRybyBlIGNhc28gc2VwYXJhdG8gZGkgZW5lcmdpYSBtZWRpYSBtb2xlY29sYXJlIHRyaXBsaWNhdGEuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgcng9IjI0IiBmaWxsPSIjZjVmYWZmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMwNDciPjx0ZXh0IHg9IjM1IiB5PSI1MCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgbGUgbW9saSwgcG9pIGxhIG1hc3NhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUiPnBWID0gblJUIOKGkiBuL1YgPSBwLyhSVCk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE2NSI+bSA9IG5NIOKGkiDPgSA9IHBNLyhSVCk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjIyNSI+TSA9IDMyIGcvbW9sPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIyODAiPlIgPSA4IGtQYcK3TC8obW9swrdLKSwgcHJlc2NyaXR0bzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMzQwIj5wID0gODAga1BhIMK3IFQgPSAzMjAgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDAwIj7PgSA9IDQgw5cgODAvMzIwIGcvTCA9IDEgZy9MPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI0NjAiPjEgZy9MID0gMSBrZy9twrMgwrcgbmVzc3VuIGZhdHRvcmUgMTAwMDwvdGV4dD48cGF0aCBkPSJNMzUgNTA1SDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjU2MCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUHJlc3Npb25lIGUgdGVtcGVyYXR1cmEgZGl2ZXJzZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjE1Ij5CYXJyZSBkYSB6ZXJvOiA4MCBweC8oZy9MKTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjc1Ij5BOiA4MCBrUGEsIDMyMCBLIOKGkiAxIGcvTDwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjcwNSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMzUiIHk9IjgxNSI+QjogMTYwIGtQYSwgMTYwIEsg4oaSIDQgZy9MPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iODQ1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMzUiIHk9Ijk1NSI+UHJlc3Npb25lIMOXMiBlIHRlbXBlcmF0dXJhIMOXMS8yPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDAwIj5EZW5zaXTDoCDDlzQgwrcgY29tcG9zaXppb25lIGludmFyaWF0YTwvdGV4dD48cGF0aCBkPSJNMzUgMTA0NUg2MDUiIHN0cm9rZT0iI2I1Y2JkOSIvPjx0ZXh0IHg9IjM1IiB5PSIxMTAwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBDYXNvIDA4OiBlbmVyZ2lhIHBlciBtb2xlY29sYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTE1MCI+TGVnZ2UgZm9ybml0YTog4p+oS190cmFzbOKfqSA9ICgzLzIpIGtfQiBUPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMjA1Ij5SYXBwb3J0byBwdXJvOiAxMDAgcHggcGVyIHVuaXTDoDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTI2MCI+MzAwIEsg4oaSIGVuZXJnaWEgbm9ybWFsaXp6YXRhIDE8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSIxMjkwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMzUiIHk9IjEzOTAiPjkwMCBLIOKGkiBlbmVyZ2lhIG5vcm1hbGl6emF0YSAzPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTQyMCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2JjNTMxNSIvPjx0ZXh0IHg9IjM1IiB5PSIxNTEwIj5RdWVzdGUgdWx0aW1lIGJhcnJlIG5vbiBzb25vIGRlbnNpdMOgLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
