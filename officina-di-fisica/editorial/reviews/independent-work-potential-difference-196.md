@@ -22,7 +22,7 @@ Esito indipendente: 6. Modalità EXACT_ORACLE; ambito EXACT_MANUAL_CALCULATION.
 
 ### AR-u6-work-potential-difference-02
 
-Il lavoro è energia, dimensione M L² t⁻²: J o μJ sono compatibili. Volt è energia per carica, coulomb è carica; nessuna opzione è stata aperta.
+Il lavoro è energia, dimensione M L² t⁻²: J o μJ sono compatibili. Volt è energia per carica, coulomb è carica. Nella primaria prompt-only le alternative non erano ancora state aperte. Nella successiva revisione sono state lette tutte e cinque le alternative finali e confrontate dimensionalmente: solo μJ è energia.
 
 Ipotesi: Campo elettrostatico non alterato apprezzabilmente dal corpo, caduta δ=V_A−V_B>0 e q>0 nei quesiti comuni. W è il lavoro del solo campo, non automaticamente ΔK se vi sono altri lavori. Caso 08 autonomo: elettrone q=−e da fermo e sola forza elettrostatica, con estremi−2 e+3 kV. Nessuna formula cinetica non relativistica necessaria per la sua energia. Eventuali display sono continui e la taratura non cambia la legge fisica.
 
@@ -176,8 +176,14 @@ XML e PNG nativo integrale letti. Schemi di estremi con frecce di passaggio dich
 
 Il rendering è asset-only. UI del prodotto e layout a 320 px NOT_RUN in questa review; nessun marker UI generato o copiato. L’approvazione umana rimane NOT_RUN, publication DRAFT e publicationAction NONE. Nessun candidato, registro, ledger, runtime o Git ROOT modificato.
 
-Verifier SHA256 35c615e912a0bcea2b6c56659b868e020222eebc71dbd1758932a02d9bd7c86f. Decoder SHA256 b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc. Package canonico SHA256 8bc362d4e7a672b7e45ee916402d5f10aed3c7347570324f784da274fc2494ed. Binding canonico SHA256 2d08c715c5f29796914534b39244ed2f0ace11e8157d92603d8b6dd4e3a6f490. Report SHA256 2cfc62f196cf389361756a8fcaf8a5782622b0c1fe2011c84e1d169365dc7f25.
+Verifier SHA256 9e1c633b5355108c0906fbbc2be5b4cf1fd4280b5f0fcfc98760b0839507626e. Decoder SHA256 b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc. Package canonico SHA256 8bc362d4e7a672b7e45ee916402d5f10aed3c7347570324f784da274fc2494ed. Binding canonico SHA256 2d08c715c5f29796914534b39244ed2f0ace11e8157d92603d8b6dd4e3a6f490. Report SHA256 d3bc7714b10a379c3c57688f1325d001977faf542106a24ef11fa266d22232cd.
 
 ## Controlli automatici effettivamente conclusi
 
 Il test comune dei primi 32 ID è terminato con exit 0: 12 test in 1,822 s, 50 mutazioni dei pacchetti respinte e due guasti costitutivi rilevati. In 32 casi una chiave errata è stata provata con binding, token e pin di edizione aggiornati soltanto in memoria: il rifiuto deriva dagli oracoli matematici e non soltanto dagli hash. Sono state provate 200 configurazioni Hypothesis, identità canoniche dei report fresh e salvati, precisione lessicale dei decimali e rifiuto della deriva SHA del decoder. Nessuna suite completa o UI del prodotto eseguita localmente. Log autentico electric-195-196-independent-tests-20261125.txt.
+
+## Follow-up sui domini numerici
+
+Il commit c4b1391546398b8aa71b7bd4d5d16eee7b193bcb conserva la prima edizione positiva; una copia dei suoi due verificatori, report, note, test e handoff è archiviata in electric-195-196-domain-followup-before-20261125 con manifest. Il rilievo ROOT riguarda valori di frontiera non presenti nei quesiti congelati: infinito e valori non reali potevano superare il controllo del solo segno. Ora entrambe le funzioni numeriche richiedono quantità finite e reali prima delle condizioni di segno. Nessun candidato, asset, firma dei record o decoder è cambiato. La prova della lettura delle cinque alternative del record02 distingue esplicitamente la primaria iniziale dalla successiva lettura candidata.
+
+Il nuovo run reale è terminato con exit 0: 13 test in 1,736 s, incluse 32 combinazioni di I, +∞, −∞ e NaN nei due argomenti delle quattro funzioni. Restano ammessi il lavoro negativo, il prodotto di due segni negativi per l’elettrone e il lavoro nullo della carica nulla. Ripetute le 50 mutazioni di pacchetto, i due guasti costitutivi, 200 configurazioni Hypothesis e le identità fresh/saved sui 32 record. Log autentico electric-195-196-domain-followup-tests-20261125.txt. UI prodotto e automazione umana NOT_RUN; nessun nuovo ID conteggiato.

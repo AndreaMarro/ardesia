@@ -203,6 +203,17 @@ class CrossReviewElectric195196(unittest.TestCase):
                 with self.assertRaises(AssertionError):m.oracle()
             m.oracle.cache_clear();self.assertEqual(len(m.oracle()),16)
 
+    def test_numeric_helpers_reject_nonreal_and_nonfinite_values(self):
+        for name,functions in [('force_uniform_electric_field',['force','inverse_charge']),('work_potential_difference',['work','inverse_charge'])]:
+            for function in functions:
+                for invalid in [sp.I,sp.oo,-sp.oo,sp.nan]:
+                    for args in [(invalid,3),(6,invalid)]:
+                        with self.subTest(name=name,function=function,args=args):
+                            with self.assertRaises(ValueError):getattr(module(name),function)(*args)
+        self.assertEqual(module('work_potential_difference').work(-1,-5),5)
+        self.assertEqual(module('work_potential_difference').work(2,-3),-6)
+        self.assertEqual(module('work_potential_difference').work(0,3),0)
+
     def test_lexical_decimal_precision_and_no_arbitrary_ast_execution(self):
         from tools.corpus_engineering import electric_exact_literals as codec
         self.assertEqual(codec.exact_literal('0.100000000000000005'),sp.Rational(20000000000000001,200000000000000000))

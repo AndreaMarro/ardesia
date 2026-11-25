@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Finite/real domain follow-up for independent B195–196 review, same32records",
+  "previousReviewCommit": "c4b1391546398b8aa71b7bd4d5d16eee7b193bcb",
+  "previousHistoricalHandoffSha256": "550bdd75719eba022a72e3c7bcf4e9490481d96185b2e3d035e90b335db5d7b2",
+  "result": "32/32 unchanged physical results; numeric helpers now reject nonfinite/nonreal inputs",
+  "observedTests": {
+    "exitCode": 0,
+    "count": 13,
+    "elapsedSeconds": "1.736",
+    "invalidArgumentCombinationsRejected": 32,
+    "packageMutationsRejected": 50,
+    "constitutiveFaultsRejected": 2,
+    "hypothesisConfigurations": 200
+  },
+  "unchangedDecoderSha256": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+  "files": {
+    "editorial/reviews/electric-195-196-domain-followup-tests-20261125.txt": "68241faad5ec567f1b667067978cdc5d0a4e4d888caf83165583a33d8cbc80b9",
+    "tests/corpus/test_cross_review_electric_195_196.py": "e73a68d310eeefa10291918161c7319d07f945ed723841cbcaccca0d2a0e0abd",
+    "tools/corpus_engineering/force_uniform_electric_field_verifier.py": "026a57017486bfe518b4d70f39fa4e560320064200bbf59bd0832f81b469ec5b",
+    "editorial/reviews/force-uniform-electric-field-195.json": "a1b2eb85b0cd489703daf64cd67c0d6def5fc0b4cb26afb32594941cb557b1cd",
+    "editorial/reviews/force-uniform-electric-field-195-mutations.json": "9f0ce38411bf7a356f5b21025321fbac4a9bcee62388838c213cb45e8ef447df",
+    "editorial/reviews/independent-force-uniform-electric-field-195.md": "b6b56a33e9bf5fd2b83a1f1ac2dbcd6649296abc9dbb58e41e69a8ee574c9466",
+    "tools/corpus_engineering/work_potential_difference_verifier.py": "9e1c633b5355108c0906fbbc2be5b4cf1fd4280b5f0fcfc98760b0839507626e",
+    "editorial/reviews/work-potential-difference-196.json": "d3bc7714b10a379c3c57688f1325d001977faf542106a24ef11fa266d22232cd",
+    "editorial/reviews/work-potential-difference-196-mutations.json": "e55b9c14883b91ee727acd99c74a778d18b1e60575c40d4e0b4f1123ac486660",
+    "editorial/reviews/independent-work-potential-difference-196.md": "a5a89140f7c615f5554b340fd5d62a9b384f19e9db97b6e3b9984e6a5c84998a",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/electric-195-196-independent-handoff-20261125.json": "550bdd75719eba022a72e3c7bcf4e9490481d96185b2e3d035e90b335db5d7b2",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/force-uniform-electric-field-195.json": "0bb8a20ddf7b1f59921401ff3b118edb3725b57edfacc0bb964692aaea1eb95a",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/force_uniform_electric_field_verifier.py": "f8d64ab6ae08d7f0fc57900d956e09278a535129175d6f552444a9ea0096d9e8",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/independent-force-uniform-electric-field-195.md": "b372a37cb6342470254bd27b7db7471b190a8c60d51b6d633685f576efaf638c",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/independent-work-potential-difference-196.md": "888a626cd38355ce8791d760e0108f42b1350ab4fd4bc50d18d9465bac85f19e",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/manifest.json": "0510ba55291c2dab811c50a9e6c325660b405e8900540aa6f18bbf9b49047512",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/test_cross_review_electric_195_196.py": "3f7fd4657d3f69adeaabbb543afa9dfdf4ccab45d69e2391d73f8cf24cd0e7ce",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/work-potential-difference-196.json": "2cfc62f196cf389361756a8fcaf8a5782622b0c1fe2011c84e1d169365dc7f25",
+    "editorial/reviews/electric-195-196-domain-followup-before-20261125/work_potential_difference_verifier.py": "35c615e912a0bcea2b6c56659b868e020222eebc71dbd1758932a02d9bd7c86f"
+  },
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
