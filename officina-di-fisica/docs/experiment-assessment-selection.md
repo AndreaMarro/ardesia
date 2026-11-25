@@ -15,3 +15,5 @@ La modifica passa dall’importatore esistente, che crea una bozza in una nuova 
 Le letture numeriche non usano più punti come separatori delle migliaia: una lettura copiata resta compatibile con il campo risposta esistente. Precisione, separatore decimale e tolleranze non cambiano. Le sole proiezioni geometriche a quadratura esatta restituiscono zero esatto; le piccole componenti non nulle non vengono azzerate con una soglia globale.
 
 La validazione `uniqueItems` usa l’[uguaglianza del modello JSON Schema 2020-12](https://json-schema.org/draft/2020-12/json-schema-core#section-4.2.2): `1` e `1.0` coincidono; un booleano e un numero sono distinti. Il controllo comprende anche oggetti e array annidati, entro il limite di profondità esistente.
+
+Nei due apparati che confrontano forze dello stesso corpo, peso e normale/tensione usano inoltre un fattore di scala fisico comune prima della proiezione 3D o 2D. Le nuove etichette esplicitano il peso di20 N. Le letture fisiche del modello non vengono modificate.
