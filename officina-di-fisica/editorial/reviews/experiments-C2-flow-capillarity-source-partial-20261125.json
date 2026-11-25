@@ -1,0 +1,952 @@
+{
+  "phase": "SOURCE_TEXT_MATH_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "promptPrimarySha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42",
+  "priorKnowledgeDisclosure": "Whole shared consumer C2.js was incidentally read during047; its laws were therefore previously visible. No remaining source reference ordinate/formula/interpretation/substitution/answer field is exposed here. This projection is prompt-only, not claimed as fully blind independent reading.",
+  "reviewer": "AI independent of historical author; no human approval",
+  "recordCount": 21,
+  "exactFractionOrNamedTrigReferenceChecks": 42,
+  "independentRationalFormulaControlGridEvaluations": 233,
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "sourceVersion": 1,
+      "sourceSha256": "a8641f475c5461bd70081f0e1f75f7e6399ce44c1a4a1fa689c2c8f7e58445c3",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "20+(1-v²)/2kPa; riferimenti1→20,3→16. Acqua modellata con1000kg/m³, valore convenzionale non ripetuto numericamente in questo record; la stessa densità è esplicita in00602. Non si assume che la densità reale sia universalmente esatta.",
+      "primaryDerivation": "Bernoulli: p2=p1+(rho/2)(v1²-v2²); with rho1000kg/m³ gives p2[kPa]=41/2-v2²/2",
+      "assumptionsAndManualProcedure": "Steady incompressible inviscid same streamline, horizontal, no pump/loss; density1000kg/m³ must be assigned in full context. Square velocity, subtract1, halve and subtract from20.",
+      "adversarialInterpretation": "Conditional on assigned water density; kPa conversion is Pa/1000, not multiply1000.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "20",
+          "sourceY": "20",
+          "ok": true
+        },
+        {
+          "x": "3",
+          "derivedY": "16",
+          "sourceY": "16",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 13,
+      "independentFormulaGridEvaluations": 13,
+      "outputRangeIndependentLaw": [
+        "25/2",
+        "20"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "rho1000 explicite;2m/s→2kPa,4→8. À vitesse doublée pression dynamique quadruplée. La différence stagnation/statique n’est pas pression totale absolue.",
+      "primaryDerivation": "Pitot stagnation-minus-static pressure=rho*v²/2; with rho1000 gives q[kPa]=v²/2",
+      "assumptionsAndManualProcedure": "Ideal stagnation along streamline, incompressible liquid, correct alignment and equal datum; rho needs full context. Square then divide2.",
+      "adversarialInterpretation": "Stagnation pressure exceeds static; this is not absolute static pressure.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "2",
+          "sourceY": "2",
+          "ok": true
+        },
+        {
+          "x": "4",
+          "derivedY": "8",
+          "sourceY": "8",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 21,
+      "independentFormulaGridEvaluations": 21,
+      "outputRangeIndependentLaw": [
+        "0",
+        "25/2"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "sourceVersion": 1,
+      "sourceSha256": "9c5c80d7f2f0d324fc23bcaab1e9c658a43e6b279b1e9c747811ef98233201cc",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Conservation du débit:2/(1/2)=4 et2/2=1m/s. Conduit rigide incompressible explicite, réel pulsatile/dissipatif distingué.",
+      "primaryDerivation": "Q=A0*2m/s=A_local*v => v=2/area_ratio",
+      "assumptionsAndManualProcedure": "Steady incompressible flow and positive area ratio. Divide2 by dimensionless area ratio.",
+      "adversarialInterpretation": "Area ratio is not radius ratio; mechanical physiology in real pulsatile/compliant vessels not implied.",
+      "referenceChecks": [
+        {
+          "x": "1/2",
+          "derivedY": "4",
+          "sourceY": "4",
+          "ok": true
+        },
+        {
+          "x": "2",
+          "derivedY": "1",
+          "sourceY": "1",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 7,
+      "independentFormulaGridEvaluations": 7,
+      "outputRangeIndependentLaw": [
+        "1",
+        "4"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b03e54d1553407d7135907a2bd3c436b01d0ebf4e4f805feab3ab6e7140bd437",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "15−0=15 et15−6=9kPa. Aire, altitude et vitesses identiques explicitement; la perte prescrite ne devient pas une accélération.",
+      "primaryDerivation": "p_out=15kPa-loss_per_volume",
+      "assumptionsAndManualProcedure": "Steady horizontal constant-area incompressible flow; no pump/turbine, identical velocity terms. Subtract loss in kPa.",
+      "adversarialInterpretation": "Loss positive reduces pressure; J/m³=Pa.",
+      "referenceChecks": [
+        {
+          "x": "0",
+          "derivedY": "15",
+          "sourceY": "15",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "derivedY": "9",
+          "sourceY": "9",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 17,
+      "independentFormulaGridEvaluations": 17,
+      "outputRangeIndependentLaw": [
+        "7",
+        "15"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-01",
+      "sourceVersion": 1,
+      "sourceSha256": "43d8002c952171c642ddc397022fbffcaab52eff5561847636c907afd88c1c54",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Re à D.01m et eta.001Pa*s: coefficient10rho=10000 pour eau modèle1000kg/m³ (densité conventionnelle, non répétée numériquement).0.1→1000,0.4→4000. Seuil2300 qualifié environ/incertitude et non loi exacte de turbulence.",
+      "primaryDerivation": "Re=rho*v*D/eta; D=1/100m eta=1/1000Pa*s => Re=10*rho*v; rho1000 gives10000v",
+      "assumptionsAndManualProcedure": "Newtonian liquid and diameter-based Reynolds definition. Density absent in prompt-only projection:1000kg/m³ conditional. Convert1cm to.01m; dimensions cancel.",
+      "adversarialInterpretation": "Re is a regime indicator; transition threshold is not an exact universal classifier or guaranteed parabola.",
+      "referenceChecks": [
+        {
+          "x": "1/10",
+          "derivedY": "1000",
+          "sourceY": "1000",
+          "ok": true
+        },
+        {
+          "x": "2/5",
+          "derivedY": "4000",
+          "sourceY": "4000",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 13,
+      "independentFormulaGridEvaluations": 13,
+      "outputRangeIndependentLaw": [
+        "0",
+        "6000"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "sourceVersion": 1,
+      "sourceSha256": "8048f775f330690d327f059138ae21efcebca800a42e31dbc4e448dfe4f4c638",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Le modèle parabolique est explicite dans la formule complète:8*(1−1/4)=6cm/s, indépendant de t. La stationnarité seule n’imposerait pas ce nombre; transport des traceurs distinct de variation temporelle de la sonde.",
+      "primaryDerivation": "Stationary only says partial_t(v)=0; if parabolic profile with vmax8, v(R/2)=8(1-1/4)=6cm/s",
+      "assumptionsAndManualProcedure": "Need supplied parabolic fully-developed circular profile for6; stationary alone does not determine6. Once profile given,8*3/4 by manual multiplication.",
+      "adversarialInterpretation": "A stationary plug profile with axis8 has velocity8 at half-radius: distinguish steady from spatially uniform.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "6",
+          "sourceY": "6",
+          "ok": true
+        },
+        {
+          "x": "3",
+          "derivedY": "6",
+          "sourceY": "6",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 17,
+      "independentFormulaGridEvaluations": 17,
+      "outputRangeIndependentLaw": [
+        "6",
+        "6"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "sourceVersion": 1,
+      "sourceSha256": "da3e9f332d1ea839522145e74419e3c8fb77073f950bb8c698915556357797de",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Newtonien et gradient4s^-1 explicités;0.5→2Pa,1.5→6Pa. Pa*s fois s^-1=Pa=N/m².",
+      "primaryDerivation": "Newtonian shear magnitude tau=eta*gradient=4eta",
+      "assumptionsAndManualProcedure": "Assigned Newtonian constitutive relation and gradient4s^-1. Multiply viscosity by4; Pa*s times s^-1 is Pa.",
+      "adversarialInterpretation": "Reported positive magnitude differs from vector sign of force on each opposite plate.",
+      "referenceChecks": [
+        {
+          "x": "1/2",
+          "derivedY": "2",
+          "sourceY": "2",
+          "ok": true
+        },
+        {
+          "x": "3/2",
+          "derivedY": "6",
+          "sourceY": "6",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 20,
+      "independentFormulaGridEvaluations": 20,
+      "outputRangeIndependentLaw": [
+        "2/5",
+        "8"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "sourceVersion": 1,
+      "sourceSha256": "f2a470e8114936cd1d6938f01d0b0b187c4da9d70d4f1aee1ec57ec667b8d9ea",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Profil linéaire déclaré.40mm/s divisé2mm→20s^-1 et4mm→10s^-1. Les mm se simplifient; pas de multiplication par1000 supplémentaire.",
+      "primaryDerivation": "Linear Couette gradient=delta_u/h=40mm/s divided by h[mm]",
+      "assumptionsAndManualProcedure": "Parallel plates with linear velocity profile; positive gap1..8mm. Common mm factors cancel.",
+      "adversarialInterpretation": "Endpoint difference/gap is mean gradient; without a linear profile not every local gradient is this value.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "20",
+          "sourceY": "20",
+          "ok": true
+        },
+        {
+          "x": "4",
+          "derivedY": "10",
+          "sourceY": "10",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "5",
+        "40"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "sourceVersion": 1,
+      "sourceSha256": "220dca3fc2752aaa2f1bd57b5d3fd72847ef153406794cb44e8190f2d7b179ac",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "v=12(1−x²);0→12 et1/2→9cm/s. Domaine0..1, adérence et régime développé explicités; à la paroi0. Valeurs de vitesse non négatives.",
+      "primaryDerivation": "Parabolic v(r)=vmax(1-(r/R)²)=12(1-x²)cm/s",
+      "assumptionsAndManualProcedure": "Topic explicitly parabolic; positive axial speed, no slip circular fully-developed Newtonian flow. Square ratio, subtract from1, multiply12.",
+      "adversarialInterpretation": "Zero at wall; negative speed outside r/R>1 would be outside control domain.",
+      "referenceChecks": [
+        {
+          "x": "0",
+          "derivedY": "12",
+          "sourceY": "12",
+          "ok": true
+        },
+        {
+          "x": "1/2",
+          "derivedY": "9",
+          "sourceY": "9",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 21,
+      "independentFormulaGridEvaluations": 21,
+      "outputRangeIndependentLaw": [
+        "0",
+        "12"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "sourceVersion": 1,
+      "sourceSha256": "06d3d66e54a7105e373de949a4826416dd6dd7d4516c61be6dec6ffd2f45ed3f",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Rapport de Poiseuille:1→1,2→16. Rayon doublé donne aire et vitesse moyenne quadruplées dans le modèle décrit; pression/eta/L fixes et régime laminaire rigide. Ne pas extrapoler à une transition de régime.",
+      "primaryDerivation": "Hagen-Poiseuille Q=pi*delta_p*r⁴/(8etaL) => Q/Q0=(r/r0)⁴",
+      "assumptionsAndManualProcedure": "Same delta_p, viscosity, length, rigid circular tube, Newtonian steady fully-developed laminar regime. Square ratio twice.",
+      "adversarialInterpretation": "A diameter/radius confusion has same ratio only if changed consistently; laminar regime must remain applicable after radius change.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "1",
+          "sourceY": "1",
+          "ok": true
+        },
+        {
+          "x": "2",
+          "derivedY": "16",
+          "sourceY": "16",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 7,
+      "independentFormulaGridEvaluations": 7,
+      "outputRangeIndependentLaw": [
+        "1/16",
+        "16"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "sourceVersion": 1,
+      "sourceSha256": "632f7aaa84c87be8af43ed32d77600d597e36c259853fab0b168526098754273",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Les quatre choix constituent des modifications séparées, pas un cumul:16,1/2,1/2,2. Références1→16,4→2. Répétition de1/2 correcte pour deux causes distinctes.",
+      "primaryDerivation": "Poiseuille factors: doubled radius16; doubled length1/2; doubled viscosity1/2; doubled pressure2",
+      "assumptionsAndManualProcedure": "Only the selected parameter changes; same rigid circular laminar assumptions. Integer choice index maps to displayed category, not physical multiplier x.",
+      "adversarialInterpretation": "Index2 and3 give same output legitimately; assessment asks numeric factor for chosen modification, not uniquely identify cause.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "16",
+          "sourceY": "16",
+          "ok": true
+        },
+        {
+          "x": "4",
+          "derivedY": "2",
+          "sourceY": "2",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 4,
+      "independentFormulaGridEvaluations": 4,
+      "outputRangeIndependentLaw": [
+        "1/2",
+        "16"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "sourceVersion": 1,
+      "sourceSha256": "01d6c2b8a9c87b8133e7054c2f88ba5928fb947ed2403e0f570c85d1dd861c09",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "R3kPa*s/mL:2→6kPa et5→15kPa. Débit nul implique chute nulle dans ce modèle linéaire, sans confusion avec la pression absolue.",
+      "primaryDerivation": "delta_p=R_h*Q=(3kPa*s/mL)*Q",
+      "assumptionsAndManualProcedure": "Linear capillary resistance fixed3kPa*s/mL. Multiply flow by3; s and mL cancel.",
+      "adversarialInterpretation": "This is pressure difference, not absolute pressure or power; zero flow needs zero modeled drop.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "6",
+          "sourceY": "6",
+          "ok": true
+        },
+        {
+          "x": "5",
+          "derivedY": "15",
+          "sourceY": "15",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 17,
+      "independentFormulaGridEvaluations": 17,
+      "outputRangeIndependentLaw": [
+        "0",
+        "24"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b4535a6be84e66bf373dbd1830d121f97a971ac21152e96839401fd447809842",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Rayons4/5 et6/5 donnent256/625=.4096 et1296/625=2.0736; deux carrés successifs suffisent à la main. Sensibilité du modèle rigide, pas résultat physiologique individualisé.",
+      "primaryDerivation": "Relative radius=1+percent/100; Q/Q0=(1+percent/100)⁴",
+      "assumptionsAndManualProcedure": "Rigid Poiseuille model, unchanged pressure difference/length/viscosity. Convert percent, then square twice.",
+      "adversarialInterpretation": "+20% radius gives1296/625, not+80%; -20% gives256/625. This ideal sensitivity is not a patient-specific prediction.",
+      "referenceChecks": [
+        {
+          "x": "-20",
+          "derivedY": "256/625",
+          "sourceY": "256/625",
+          "ok": true
+        },
+        {
+          "x": "20",
+          "derivedY": "1296/625",
+          "sourceY": "1296/625",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 9,
+      "independentFormulaGridEvaluations": 9,
+      "outputRangeIndependentLaw": [
+        "256/625",
+        "1296/625"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-01",
+      "sourceVersion": 1,
+      "sourceSha256": "d27bbd66f3ae41df70dbd93d632ed058afa7ea75d31a8f09377fcd6e06356f9c",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Résistances parallèles2 etR:Req=2R/(2+R).2→1 et6→3/2, chaque équivalent inférieur à chaque branche. Série distincte2+R.",
+      "primaryDerivation": "Parallel equal pressure:1/Req=1/2+1/R2 => Req=2R2/(2+R2)",
+      "assumptionsAndManualProcedure": "Two linear positive hydraulic resistances in parallel with common endpoints. Multiply2R2 and divide by sum.",
+      "adversarialInterpretation": "Equivalent below each branch; same formula is not a series sum.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "1",
+          "sourceY": "1",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "derivedY": "3/2",
+          "sourceY": "3/2",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "2/3",
+        "8/5"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "sourceVersion": 1,
+      "sourceSha256": "a3797a919d164840d33a25031e9dcaa3bb2b02bbffe9daff5eccae0556f7972e",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Pompe12kPa constante, branche inférieureR3→4mL/s; branche supérieure2→6 et6→2. Son débit dépend de sa résistance et du même delta_p fixé.",
+      "primaryDerivation": "Q_upper=delta_p/R_upper=12/R_upper",
+      "assumptionsAndManualProcedure": "Shared prescribed12kPa node pressure difference; positive linear branch resistance. Divide12 by resistance.",
+      "adversarialInterpretation": "Other branch changes do not change this branch flow if node pressure difference remains externally fixed.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "6",
+          "sourceY": "6",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "derivedY": "2",
+          "sourceY": "2",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "3/2",
+        "12"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "sourceVersion": 1,
+      "sourceSha256": "1dd1702b1816f4c3638a58043d25914d9710539beccd34166e198ea47cf8b49a",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "SérieQ=10/(2+R2); pnœud=Q*R2:2→5 et6→15/2kPa. En augmentantR2, Q baisse mais pnœud augmente, sans contradiction.",
+      "primaryDerivation": "Series Q=(10-0)/(2+Rdown), node p=Q*Rdown=10Rdown/(2+Rdown)",
+      "assumptionsAndManualProcedure": "Steady positive linear resistances; downstream outlet0kPa, inlet10kPa. Divide total drop by sum then multiply downstreamR.",
+      "adversarialInterpretation": "Node pressure is measured relative to downstream0; upstream drop uses other resistor.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "5",
+          "sourceY": "5",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "derivedY": "15/2",
+          "sourceY": "15/2",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "10/3",
+        "8"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-01",
+      "sourceVersion": 1,
+      "sourceSha256": "5a5c1b69ba3e8cae507782979d941352624f264e1d3738e3fba92f1564fde4b1",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "F=2*(1/20N/m)*(x/100m)=x/1000N=xmN.1cm→1mN,4cm→4mN. Deux interfaces s’additionnent dans le même sens.",
+      "primaryDerivation": "Two film surfaces F=2gammaL; gamma1/20N/m, L=x/100m => F=x mN",
+      "assumptionsAndManualProcedure": "Soap film has two interfaces and uniform tension, straight mobile boundary; ignore additional support weight in modeled balance. Convertcm tom, NtomN.",
+      "adversarialInterpretation": "Single surface would give half. Count interfaces, not two sides of boundary arbitrarily.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "1",
+          "sourceY": "1",
+          "ok": true
+        },
+        {
+          "x": "4",
+          "derivedY": "4",
+          "sourceY": "4",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 10,
+      "independentFormulaGridEvaluations": 10,
+      "outputRangeIndependentLaw": [
+        "1/2",
+        "5"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3448a2a8c4d6a9469e59b8042145f004f869bcbf11591c2fdc50a67c2db39a8f",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "A/V=3/r après annulation de4pi et puissances.1mm→3mm^-1,3mm→1mm^-1. Rapport total inchangé pour des gouttes égales, volumes et surfaces changent selon des puissances distinctes.",
+      "primaryDerivation": "Sphere A/V=(4pi*r²)/(4pi*r³/3)=3/r",
+      "assumptionsAndManualProcedure": "Spherical droplets of common positive radius; total area/totalvolume for equal spheres same3/r. Pi cancels, no calculator required.",
+      "adversarialInterpretation": "Doubling radius halves area/volume; planar/merged drops do not satisfy this formula.",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "derivedY": "3",
+          "sourceY": "3",
+          "ok": true
+        },
+        {
+          "x": "3",
+          "derivedY": "1",
+          "sourceY": "1",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "3/4",
+        "6"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "sourceVersion": 1,
+      "sourceSha256": "0202092c21750466a79f5442db69e255d26063b2b7cd1d28cf4b4fd590a1e65c",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Paramètres complets donnent2*.05/(1000*10*.001)=.01m=10mm.0°→10mm et120°→−5mm exacts;90°→0 et180°→−10. Angle mesuré dans le liquide et dépression pour obtus. Aucun calcul de cos5° ne peut être imposé sans vérifier plus tard la sélection réelle.",
+      "primaryDerivation": "Jurin h=2gamma*cos(theta)/(rho*g*r); assigned maximum10mm gives h=10cos(theta)mm",
+      "assumptionsAndManualProcedure": "Static capillary model, contact angle through liquid, fixed radius/liquid/gravity. Use exact known cosine for assigned angles.",
+      "adversarialInterpretation": "90° gives0, obtuse gives depression. Actual selected angle must be checked later for manual feasibility; no approximate cosine demanded here.",
+      "referenceChecks": [
+        {
+          "x": "0",
+          "derivedY": "10",
+          "sourceY": "10",
+          "ok": true
+        },
+        {
+          "x": "120",
+          "derivedY": "-5",
+          "sourceY": "-5",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 37,
+      "independentFormulaGridEvaluations": 0,
+      "outputRangeIndependentLaw": [
+        "-10",
+        "10"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "sourceVersion": 1,
+      "sourceSha256": "5e83d0f1151cff064534575f479b28d8e1a0139e827586f029a316e0fdf9c182",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Goutte sphérique une interface:delta_p=2gamma/r.1mm^-1=1000m^-1; facteur100Pa par mm^-1.0→0 limite plane,1→100Pa. Deux courbures principales, pas deux interfaces.",
+      "primaryDerivation": "Single spherical interface delta_p=2gamma/r=2gamma*k; k[mm^-1]*1000 gives m^-1 => delta_p=100k Pa",
+      "assumptionsAndManualProcedure": "Spherical liquid drop one interface; gamma.05N/m, positive curvature1/r. At0 curvature interpret planar limit.",
+      "adversarialInterpretation": "The defined k is1/r, while mean-sum curvature is2/r; do not remove physical factor2.",
+      "referenceChecks": [
+        {
+          "x": "0",
+          "derivedY": "0",
+          "sourceY": "0",
+          "ok": true
+        },
+        {
+          "x": "1",
+          "derivedY": "100",
+          "sourceY": "100",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 9,
+      "independentFormulaGridEvaluations": 9,
+      "outputRangeIndependentLaw": [
+        "0",
+        "200"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "sourceVersion": 1,
+      "sourceSha256": "a5564f12b6ced7c4c43d7297762370ead5a970574d3c07a84f7c9943d83da467",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Bulle de savon mince deux interfaces:4gamma/r=.2/(r_mm/1000)=200/r_mmPa.2mm→100Pa,5→40Pa. Facteur2 par rapport à une goutte de même rayon, sous approximation de film mince.",
+      "primaryDerivation": "Soap bubble two spherical interfaces delta_p=4gamma/r; gamma.05 gives delta_p=200/r_mm Pa",
+      "assumptionsAndManualProcedure": "Thin soap film with nearly equal inner/outer radii; gamma constant, negligible thickness. Convertmm tom then divide200 by r_mm.",
+      "adversarialInterpretation": "Single droplet would give100/r_mm. Positive radius excludes division byzero.",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "derivedY": "100",
+          "sourceY": "100",
+          "ok": true
+        },
+        {
+          "x": "5",
+          "derivedY": "40",
+          "sourceY": "40",
+          "ok": true
+        }
+      ],
+      "controlGridCount": 8,
+      "independentFormulaGridEvaluations": 8,
+      "outputRangeIndependentLaw": [
+        "25",
+        "200"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "overallComplete": false,
+  "limits": [
+    "Only source mathematics and domains read: not a complete scientific acceptance.",
+    "No renderer/installed engine/control behavior/clock/assessment selection/grader/UI tested.",
+    "All records have empty source blocks; actual apparatus and diagrams live in consumer and remain unreviewed here.",
+    "For00601/00701 conventional model water density1000kg/m³ remains an explicitly documented contextual assumption, not newly inferred from correct keys.",
+    "Capillary cosine evaluated only at exact named reference angles; no floating trigonometry, all37points not numerically computed.",
+    "All other grids evaluate independently derived rational formulas, not installed engine output.",
+    "No browser, DB, Node, SymPy or Pint execution or original/candidate/registry/ledger/runtime edits."
+  ]
+}

@@ -1,0 +1,925 @@
+{
+  "phase": "SOURCE_PROMPT_PROJECTION_ONLY_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "sourceTotalCount": 41,
+  "original047Count": 10,
+  "remainingCount": 31,
+  "checkpointManifestSha256": "03ee63364c2656a598f2f07181b35104e31203b674b9e846a80bdf71401f7e49",
+  "checkpointPendingC2Count": 41,
+  "allRemainingIdsPending": true,
+  "priorKnowledgeDisclosure": "Whole shared consumer C2.js was incidentally read during047; its laws were therefore previously visible. No remaining source reference ordinate/formula/interpretation/substitution/answer field is exposed here. This projection is prompt-only, not claimed as fully blind independent reading.",
+  "proposedConceptGroups": [
+    {
+      "scope": "hydraulics and buoyancy",
+      "ids": [
+        "SIM-C2-L003-02",
+        "SIM-C2-L003-03",
+        "SIM-C2-L004-01",
+        "SIM-C2-L004-02",
+        "SIM-C2-L004-03"
+      ]
+    },
+    {
+      "scope": "flow and continuity",
+      "ids": [
+        "SIM-C2-L005-01",
+        "SIM-C2-L005-02",
+        "SIM-C2-L005-03",
+        "SIM-C2-L005-04",
+        "SIM-C2-L005-05"
+      ]
+    },
+    {
+      "scope": "Bernoulli and validity",
+      "ids": [
+        "SIM-C2-L006-01",
+        "SIM-C2-L006-02",
+        "SIM-C2-L006-03",
+        "SIM-C2-L006-04"
+      ]
+    },
+    {
+      "scope": "viscosity and Poiseuille",
+      "ids": [
+        "SIM-C2-L007-01",
+        "SIM-C2-L007-02",
+        "SIM-C2-L007-03",
+        "SIM-C2-L007-04",
+        "SIM-C2-L007-05",
+        "SIM-C2-L008-01",
+        "SIM-C2-L008-02",
+        "SIM-C2-L008-03",
+        "SIM-C2-L008-04"
+      ]
+    },
+    {
+      "scope": "hydraulic networks",
+      "ids": [
+        "SIM-C2-L009-01",
+        "SIM-C2-L009-02",
+        "SIM-C2-L009-03"
+      ]
+    },
+    {
+      "scope": "surface tension and capillarity",
+      "ids": [
+        "SIM-C2-L010-01",
+        "SIM-C2-L010-02",
+        "SIM-C2-L010-03",
+        "SIM-C2-L010-04",
+        "SIM-C2-L010-05"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "course": "C2",
+      "skill": "C2-L003",
+      "title": "Pressa idraulica",
+      "topic": "Pressa idraulica",
+      "anchor": "Se il liquido incomprimibile riempie il circuito",
+      "summary": "Quanto guadagni in forza e quanto perdi in corsa in una pressa ideale?",
+      "apparatus": "pressa",
+      "control": {
+        "label": "Corsa del pistone piccolo",
+        "unit": "cm",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Sollevamento del pistone grande",
+        "unit": "cm"
+      },
+      "transferPrompt": "Spingi per {x} il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "course": "C2",
+      "skill": "C2-L003",
+      "title": "Trasmissione dell’incremento di pressione in un liquido confinato",
+      "topic": "Trasmissione dell’incremento di pressione in un liquido confinato",
+      "anchor": "Qui le forze indicano gli incrementi normali",
+      "summary": "A due metri di profondità l’incremento di pressione si attenua?",
+      "apparatus": "vasca",
+      "control": {
+        "label": "Incremento di pressione in superficie",
+        "unit": "kPa",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Pressione relativa alla sonda profonda",
+        "unit": "kPa"
+      },
+      "transferPrompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi {x} in superficie. Quale pressione relativa leggi alla sonda profonda?",
+      "referenceInputsOnly": [
+        0.0,
+        8.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "course": "C2",
+      "skill": "C2-L004",
+      "title": "Principio di Archimede",
+      "topic": "Principio di Archimede",
+      "anchor": "Immergi un corpo senza appoggiarlo sul fondo.",
+      "summary": "Come colleghi la spinta alla quantità d’acqua spostata?",
+      "apparatus": "galleggia",
+      "control": {
+        "label": "Volume immerso",
+        "unit": "L",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Spinta di Archimede",
+        "unit": "N"
+      },
+      "transferPrompt": "Un oggetto sposta {x} d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?",
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "course": "C2",
+      "skill": "C2-L004",
+      "title": "Spinta idrostatica",
+      "topic": "Spinta idrostatica",
+      "anchor": "La densità ρ_f è quella del fluido",
+      "summary": "Cambia la spinta se il corpo resta tutto immerso ma cambia il liquido?",
+      "apparatus": "galleggia",
+      "control": {
+        "label": "Densità del liquido",
+        "unit": "kg/m³",
+        "min": 600.0,
+        "max": 1200.0,
+        "step": 50.0
+      },
+      "measure": {
+        "label": "Spinta su 2 litri immersi",
+        "unit": "N"
+      },
+      "transferPrompt": "Immergi completamente un oggetto da 2 L in un liquido di densità {x}. Quale spinta misura il dinamometro per differenza?",
+      "referenceInputsOnly": [
+        800.0,
+        1000.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "course": "C2",
+      "skill": "C2-L004",
+      "title": "Condizioni di galleggiamento e immersione",
+      "topic": "Condizioni di galleggiamento e immersione",
+      "anchor": "Questa relazione vale per un corpo libero",
+      "summary": "Quale percentuale del volume del blocco resta immersa nell’acqua?",
+      "apparatus": "galleggia",
+      "control": {
+        "label": "Densità del blocco",
+        "unit": "kg/m³",
+        "min": 200.0,
+        "max": 1000.0,
+        "step": 50.0
+      },
+      "measure": {
+        "label": "Frazione immersa in equilibrio",
+        "unit": "%"
+      },
+      "transferPrompt": "Un blocco omogeneo di densità {x} è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?",
+      "referenceInputsOnly": [
+        250.0,
+        800.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L005-01",
+      "course": "C2",
+      "skill": "C2-L005",
+      "title": "Flusso e portata volumetrica",
+      "topic": "Flusso e portata volumetrica",
+      "anchor": "Segna un piano immaginario di traverso a",
+      "summary": "Quanto liquido varca la sezione colorata in un secondo?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Velocità media",
+        "unit": "cm/s",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Portata volumetrica",
+        "unit": "mL/s"
+      },
+      "transferPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media {x}. Quanti millilitri entrano nel recipiente ogni secondo?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "course": "C2",
+      "skill": "C2-L005",
+      "title": "Conservazione della massa",
+      "topic": "Conservazione della massa",
+      "anchor": "In regime stazionario nessuna regione accumula massa",
+      "summary": "Quale massa ritrovi all’uscita in ogni secondo di regime stazionario?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Portata in ingresso",
+        "unit": "L/s",
+        "min": 0.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Portata massica in uscita",
+        "unit": "kg/s"
+      },
+      "transferPrompt": "All’ingresso di un tubo arrivano {x} di un liquido da 0,8 kg/L. In regime stazionario, quanti chilogrammi al secondo escono?",
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "course": "C2",
+      "skill": "C2-L005",
+      "title": "Equazione di continuità",
+      "topic": "Equazione di continuità",
+      "anchor": "In un condotto più stretto la velocità",
+      "summary": "Perché il liquido accelera in un restringimento?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Area della seconda sezione",
+        "unit": "cm²",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Velocità nella seconda sezione",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "Passano 24 cm³ d’acqua al secondo. In un punto di area {x}, quale velocità media serve perché non si accumuli acqua?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "course": "C2",
+      "skill": "C2-L005",
+      "title": "Velocità media di sezione",
+      "topic": "Velocità media di sezione",
+      "anchor": "Segna un piano immaginario di traverso a",
+      "summary": "La freccia centrale rappresenta la velocità media su tutto il tubo?",
+      "apparatus": "profilo",
+      "control": {
+        "label": "Velocità sull’asse",
+        "unit": "cm/s",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Velocità media",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "Nel centro di un capillare a flusso laminare la sonda misura {x}. Quale velocità media devi usare per calcolare la portata?",
+      "referenceInputsOnly": [
+        4.0,
+        10.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "course": "C2",
+      "skill": "C2-L005",
+      "title": "Biforcazioni",
+      "topic": "Biforcazioni",
+      "anchor": "In regime stazionario nessuna regione accumula massa",
+      "summary": "Quanto resta per il secondo ramo quando il primo porta via più liquido?",
+      "apparatus": "rete",
+      "control": {
+        "label": "Portata nel ramo superiore",
+        "unit": "mL/s",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Portata nel ramo inferiore",
+        "unit": "mL/s"
+      },
+      "transferPrompt": "Un raccordo riceve 12 mL/s e manda {x} nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?",
+      "referenceInputsOnly": [
+        2.0,
+        8.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L006-01",
+      "course": "C2",
+      "skill": "C2-L006",
+      "title": "Teorema di Bernoulli",
+      "topic": "Teorema di Bernoulli",
+      "anchor": "Quando un liquido accelera in un restringimento,",
+      "summary": "Dove si ritrova l’energia quando la corrente accelera?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Velocità nella gola",
+        "unit": "m/s",
+        "min": 1.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Pressione statica nella gola",
+        "unit": "kPa"
+      },
+      "transferPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a {x}, quale pressione statica vi leggi?",
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "course": "C2",
+      "skill": "C2-L006",
+      "title": "Pressione statica e dinamica",
+      "topic": "Pressione statica e dinamica",
+      "anchor": "Ogni termine si misura in pascal: pressione",
+      "summary": "Quale differenza leggerebbero una presa frontale e una laterale?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Velocità dell’acqua",
+        "unit": "m/s",
+        "min": 0.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Pressione dinamica",
+        "unit": "kPa"
+      },
+      "transferPrompt": "Su un tubo di Pitot in acqua che scorre a {x}, di quanti kPa la pressione di ristagno supera quella statica?",
+      "referenceInputsOnly": [
+        2.0,
+        4.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "course": "C2",
+      "skill": "C2-L006",
+      "title": "Stenosi e aneurisma in modello ideale",
+      "topic": "Stenosi e aneurisma in modello ideale",
+      "anchor": "Per una stenosi idealizzata, la continuità prevede",
+      "summary": "In quale tratto il flusso accelera e in quale rallenta?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Area locale rispetto a quella iniziale",
+        "unit": "1",
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Velocità locale",
+        "unit": "m/s"
+      },
+      "transferPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa {x} volte quella iniziale, quale velocità trovi?",
+      "referenceInputsOnly": [
+        0.5,
+        2.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "course": "C2",
+      "skill": "C2-L006",
+      "title": "Condizioni di validità",
+      "topic": "Condizioni di validità",
+      "anchor": "Ogni termine si misura in pascal: pressione",
+      "summary": "Quando la somma ideale di Bernoulli sovrastima la pressione a valle?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Perdita di energia per volume",
+        "unit": "kPa",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Pressione statica in uscita",
+        "unit": "kPa"
+      },
+      "transferPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde {x} di energia per volume. Quale pressione statica rimane in uscita?",
+      "referenceInputsOnly": [
+        0.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L007-01",
+      "course": "C2",
+      "skill": "C2-L007",
+      "title": "Flussi laminari e turbolenti",
+      "topic": "Flussi laminari e turbolenti",
+      "anchor": "Un confronto di scala utile, come approfondimento,",
+      "summary": "Si può ancora disegnare una parabola per qualunque velocità?",
+      "apparatus": "profilo",
+      "control": {
+        "label": "Velocità media",
+        "unit": "m/s",
+        "min": 0.0,
+        "max": 0.6,
+        "step": 0.05
+      },
+      "measure": {
+        "label": "Numero di Reynolds",
+        "unit": "1"
+      },
+      "transferPrompt": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+      "referenceInputsOnly": [
+        0.1,
+        0.4
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "course": "C2",
+      "skill": "C2-L007",
+      "title": "Regime stazionario",
+      "topic": "Regime stazionario",
+      "anchor": "In un tubo diritto e circolare un",
+      "summary": "Le particelle possono cambiare posizione anche se la velocità locale resta costante?",
+      "apparatus": "profilo",
+      "control": {
+        "label": "Istante di osservazione",
+        "unit": "s",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Velocità a metà raggio",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo {x}, quale velocità locale dovrebbe ancora segnalare?",
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "course": "C2",
+      "skill": "C2-L007",
+      "title": "Viscosità dinamica",
+      "topic": "Viscosità dinamica",
+      "anchor": "Fai scorrere lentamente una lastra sopra uno",
+      "summary": "Con la stessa differenza di velocità quale liquido richiede più forza tangenziale?",
+      "apparatus": "strati",
+      "control": {
+        "label": "Viscosità dinamica",
+        "unit": "Pa·s",
+        "min": 0.1,
+        "max": 2.0,
+        "step": 0.1
+      },
+      "measure": {
+        "label": "Sforzo di taglio",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità {x}. Quale sforzo tangenziale si esercita?",
+      "referenceInputsOnly": [
+        0.5,
+        1.5
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "course": "C2",
+      "skill": "C2-L007",
+      "title": "Gradiente di velocità",
+      "topic": "Gradiente di velocità",
+      "anchor": "Il gradiente dice quanto cambia la velocità",
+      "summary": "In quale intercapedine due strati vicini differiscono di più in velocità?",
+      "apparatus": "strati",
+      "control": {
+        "label": "Distanza fra le lastre",
+        "unit": "mm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Gradiente di velocità",
+        "unit": "s⁻¹"
+      },
+      "transferPrompt": "Due piastre distano {x} e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?",
+      "referenceInputsOnly": [
+        2.0,
+        4.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "course": "C2",
+      "skill": "C2-L007",
+      "title": "Profilo parabolico laminare",
+      "topic": "Profilo parabolico laminare",
+      "anchor": "In un tubo diritto e circolare un",
+      "summary": "Che cosa legge una sonda che si sposta dall’asse alla parete?",
+      "apparatus": "profilo",
+      "control": {
+        "label": "Raggio della sonda diviso R",
+        "unit": "1",
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05
+      },
+      "measure": {
+        "label": "Velocità locale",
+        "unit": "cm/s"
+      },
+      "transferPrompt": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale {x}, quale velocità locale ti aspetti?",
+      "referenceInputsOnly": [
+        0.0,
+        0.5
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "course": "C2",
+      "skill": "C2-L008",
+      "title": "Legge di Hagen–Poiseuille",
+      "topic": "Legge di Hagen–Poiseuille",
+      "anchor": "In un tubo reale lungo e orizzontale,",
+      "summary": "Raddoppiare il raggio quadruplica o moltiplica per sedici la portata?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Raggio rispetto a r₀",
+        "unit": "1",
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Portata relativa a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Nel medesimo capillare porti il raggio a {x} volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?",
+      "referenceInputsOnly": [
+        1.0,
+        2.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "course": "C2",
+      "skill": "C2-L008",
+      "title": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "topic": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "anchor": "r e L sono in metri, η",
+      "summary": "Quale delle quattro modifiche produce il maggior cambiamento di portata?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Modifica rispetto al riferimento",
+        "unit": "1",
+        "min": 1.0,
+        "max": 4.0,
+        "step": 1.0,
+        "choices": [
+          "Raggio doppio",
+          "Lunghezza doppia",
+          "Viscosità doppia",
+          "Pressione doppia"
+        ]
+      },
+      "measure": {
+        "label": "Portata rispetto a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Il tecnico sceglie la modifica «{x}» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?",
+      "referenceInputsOnly": [
+        1.0,
+        4.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "course": "C2",
+      "skill": "C2-L008",
+      "title": "Resistenza idraulica",
+      "topic": "Resistenza idraulica",
+      "anchor": "In un tubo reale lungo e orizzontale,",
+      "summary": "Quanta pressione deve fornire la pompa attraverso un condotto resistivo?",
+      "apparatus": "rete",
+      "control": {
+        "label": "Portata richiesta",
+        "unit": "mL/s",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Differenza di pressione",
+        "unit": "kPa"
+      },
+      "transferPrompt": "Per ottenere una portata di {x} in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?",
+      "referenceInputsOnly": [
+        2.0,
+        5.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "course": "C2",
+      "skill": "C2-L008",
+      "title": "Limiti dei modelli fisiologici",
+      "topic": "Limiti dei modelli fisiologici",
+      "anchor": "La portata finale è un sedicesimo di",
+      "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+      "apparatus": "condotto",
+      "control": {
+        "label": "Variazione del raggio rispetto al riferimento",
+        "unit": "%",
+        "min": -20.0,
+        "max": 20.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Portata del modello rigido rispetto a Q₀",
+        "unit": "1"
+      },
+      "transferPrompt": "Il modello rigido prevede una variazione del raggio del {x}. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+      "referenceInputsOnly": [
+        -20.0,
+        20.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L009-01",
+      "course": "C2",
+      "skill": "C2-L009",
+      "title": "Resistenze idrauliche in serie e in parallelo",
+      "topic": "Resistenze idrauliche in serie e in parallelo",
+      "anchor": "In serie la portata è comune. Le",
+      "summary": "Perché il parallelo offre meno resistenza del ramo più facile?",
+      "apparatus": "rete",
+      "control": {
+        "label": "Seconda resistenza",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Resistenza equivalente in parallelo",
+        "unit": "kPa·s/mL"
+      },
+      "transferPrompt": "Affianchi un ramo da 2 kPa·s/mL a un secondo da {x}. Quale resistenza equivalente presenta la coppia ai suoi capi?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "course": "C2",
+      "skill": "C2-L009",
+      "title": "Portata nei rami",
+      "topic": "Portata nei rami",
+      "anchor": "Un nuovo ramo parallelo offre un altro",
+      "summary": "Quale ramo riceve più flusso a parità di pressione tra i nodi?",
+      "apparatus": "rete",
+      "control": {
+        "label": "Resistenza del ramo superiore",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Portata nel ramo superiore",
+        "unit": "mL/s"
+      },
+      "transferPrompt": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di {x}, quanta portata passa proprio in quel ramo?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "course": "C2",
+      "skill": "C2-L009",
+      "title": "Resistenze e pressioni nei sistemi biologici",
+      "topic": "Resistenze e pressioni nei sistemi biologici",
+      "anchor": "In serie la portata è comune. Le",
+      "summary": "A quale pressione si porta il nodo fra due resistenze in serie?",
+      "apparatus": "rete",
+      "control": {
+        "label": "Resistenza a valle",
+        "unit": "kPa·s/mL",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Pressione nel nodo centrale",
+        "unit": "kPa"
+      },
+      "transferPrompt": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da {x}. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?",
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L010-01",
+      "course": "C2",
+      "skill": "C2-L010",
+      "title": "Tensione superficiale",
+      "topic": "Tensione superficiale",
+      "anchor": "Un film di sapone teso su un",
+      "summary": "Perché la pellicola di sapone tira con il doppio della forza di una sola superficie?",
+      "apparatus": "film",
+      "control": {
+        "label": "Lunghezza del bordo mobile",
+        "unit": "cm",
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Forza sul bordo",
+        "unit": "mN"
+      },
+      "transferPrompt": "Una pellicola di sapone con due superfici trascina un bordo lungo {x}. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?",
+      "referenceInputsOnly": [
+        1.0,
+        4.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "course": "C2",
+      "skill": "C2-L010",
+      "title": "Piccole quantità di liquido",
+      "topic": "Piccole quantità di liquido",
+      "anchor": "Piccole gocce libere tendono alla forma sferica.",
+      "summary": "Perché gli effetti di superficie diventano importanti nelle piccole gocce?",
+      "apparatus": "goccia",
+      "control": {
+        "label": "Raggio della goccia",
+        "unit": "mm",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "measure": {
+        "label": "Rapporto superficie/volume",
+        "unit": "mm⁻¹"
+      },
+      "transferPrompt": "Suddividendo un liquido ottieni gocce sferiche di raggio {x}. Quanta area espongono per unità di volume, in mm⁻¹?",
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "course": "C2",
+      "skill": "C2-L010",
+      "title": "Bagnabilità e capillarità",
+      "topic": "Bagnabilità e capillarità",
+      "anchor": "All’orlo di un capillare la componente verticale",
+      "summary": "Quando il liquido sale e quando scende rispetto al serbatoio?",
+      "apparatus": "capillare",
+      "control": {
+        "label": "Angolo di contatto",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Salita con segno",
+        "unit": "mm"
+      },
+      "transferPrompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa {x}, quale dislivello con segno devi cercare?",
+      "referenceInputsOnly": [
+        0.0,
+        120.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "course": "C2",
+      "skill": "C2-L010",
+      "title": "Interfacce piane e curve",
+      "topic": "Interfacce piane e curve",
+      "anchor": "Piccole gocce libere tendono alla forma sferica.",
+      "summary": "Quale salto di pressione rimane quando l’interfaccia diventa piana?",
+      "apparatus": "goccia",
+      "control": {
+        "label": "Curvatura 1/r",
+        "unit": "mm⁻¹",
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "measure": {
+        "label": "Eccesso di pressione",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale {x}. Di quanti pascal la pressione interna supera quella esterna?",
+      "referenceInputsOnly": [
+        0.0,
+        1.0
+      ],
+      "blocksCountNotRead": 0
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "course": "C2",
+      "skill": "C2-L010",
+      "title": "Legge di Laplace e pressione di curvatura",
+      "topic": "Legge di Laplace e pressione di curvatura",
+      "anchor": "Con θ inferiore a 90° il coseno",
+      "summary": "Perché una bolla di sapone piccola richiede più pressione di una grande?",
+      "apparatus": "goccia",
+      "control": {
+        "label": "Raggio della bolla di sapone",
+        "unit": "mm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "measure": {
+        "label": "Pressione interna in eccesso",
+        "unit": "Pa"
+      },
+      "transferPrompt": "Una bolla di sapone ha due interfacce e raggio {x}. Con γ = 0,05 N/m, quale sovrapressione interna serve?",
+      "referenceInputsOnly": [
+        2.0,
+        5.0
+      ],
+      "blocksCountNotRead": 0
+    }
+  ],
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}
