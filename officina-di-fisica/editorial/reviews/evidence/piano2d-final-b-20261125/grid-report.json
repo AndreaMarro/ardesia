@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Independent force and SVG geometry reading; no candidate or production edits",
+  "sourceSha256": {
+    "static/js/banchi/tavola.js": "9082781b0fbf88f421742cf8f10f3f098f51e9aac131118a5691e1b6e11cc4a8",
+    "static/js/banchi/modelli/piano.js": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+    "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+    "static/banchi.css": "e7f77ff24d451bd5f77d2512d2ef2de089173e805a96e453dd7bf7dc2c5deed7",
+    "content/banchi.json": "c0494a9091cca33b7631b68df1cb7b472c63d0e5481e7dbd391ae1b46e326bdf"
+  },
+  "inputsStable": true,
+  "grid": {
+    "m": {
+      "min": 0.5,
+      "max": 5,
+      "step": 0.5
+    },
+    "angle": {
+      "min": 0,
+      "max": 55,
+      "step": 1
+    },
+    "F": {
+      "min": -25,
+      "max": 25,
+      "step": 1
+    },
+    "cases": 28560,
+    "arrowsRead": 85170
+  },
+  "numericForceRatios": "EXACT_ORACLE_NUMERICAL_ROUNDING_ONLY",
+  "arrowheadDirectionAndMaximumFraction": "PASS",
+  "modelAndVectorAlgebra": "PASS",
+  "visibleGeometry": "PASS",
+  "clippedEndpoints": [],
+  "maximumRampAngleMismatchDegrees": 1.2722218725854067e-14,
+  "rampMismatchSamples": [],
+  "limitations": [
+    "Float trigonometric coordinates checked at2e-10 relative tolerance; algebra derived independently in primary.md.",
+    "The test DOM stub only avoids UI entry initialization; real solve and drawing functions are imported, never root test assertions.",
+    "This review does not assess friction parameter ordering or approve the withdrawn friction scenario.",
+    "Browser-rendered text bounds and screenshots are separate evidence; no full canonical UI acceptance or human approval is claimed."
+  ],
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}

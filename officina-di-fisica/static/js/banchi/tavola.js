@@ -70,19 +70,26 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
   let d = '';
   const reveal = stage >= 0;
   if (model === 'piano') {
-    const dx = 140 * Math.cos(s.theta),
-      dy = 140 * Math.sin(s.theta),
-      x = 85 + dx,
-      y = 159 - dy;
-    d = path(`M75 160 L${85 + 2 * dx} ${159 - 2 * dy} V164 H75`) + dot(x, y, green, 10);
+    const x = 295,
+      y = 100,
+      dx = 75 * Math.cos(s.theta),
+      dy = 75 * Math.sin(s.theta),
+      left = [x - dx, y + dy],
+      right = [x + dx, y - dy],
+      base = left[1] + 10;
+    // The rail and vectors share one tangent/normal basis; the left column is reserved for labels.
+    d = path(`M${left[0]} ${left[1]} L${right[0]} ${right[1]} V${base} H${left[0]} Z`) + dot(x, y, green, 10);
     if (reveal) {
       // A common normalized force scale preserves N/P and both weight components.
       const forceScale = 42 / s.weight;
       d +=
         arrow(x, y, x, y + forceScale * s.weight, red) +
         arrow(x, y, x - forceScale * s.normal * Math.sin(s.theta), y - forceScale * s.normal * Math.cos(s.theta), green) +
-        label(22, 27, 'Peso ↓ · normale ⟂ al piano') +
-        label(22, 187, 'Lunghezze riferite al peso (scala comune)');
+        label(12, 27, 'Peso ↓') +
+        label(12, 49, 'Normale ⟂ al piano') +
+        label(12, 87, 'Lunghezze riferite') +
+        label(12, 107, 'al peso') +
+        label(12, 127, '(scala comune)');
       if (stage >= 1)
         d += arrow(
           x,
