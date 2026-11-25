@@ -1,0 +1,11 @@
+# Nuove edizioni DRAFT C6-E003 e C6-E004 — autore ROOT
+
+Le due edizioni originali v1 sono conservate, con i finding033 del revisore distinto. Nuove v2/base1, stessi ID, competenze, famiglie e prerequisiti. Nessuna modifica ai contenuti storici o ai database degli utenti.
+
+C6-E003: i dati assegnati restano8Ω,1/2A,120s,50g,75% e4200J/(kg·K); ora sono espliciti costanza nel modello, calore sensibile e frazione comprensiva delle perdite. Lo svolgimento motiva Joule e bilancio, distingue energia dissipata240J e assorbita180J, converte50g=1/20kg, ricava210J/K, isolaΔT=6/7K senza presentare0,86come uguaglianza esatta. Controllo ricostruito180J, inversa120s e distrattori con unità/efficienza spiegati. Figura nuova: barre240/180/60px alla scala1px/J, non temperature assolute.
+
+C6-E004: sorgente puntiforme isotropa, distanze1/2m e trasmissione3/5 conservate. Il prompt assegna prima della domanda risposta S=kI lineare con stesso k positivo, fondo assente, apertura trascurabile e area/orientazione normali al raggio invariate lungo la direzione radiale. La trasmissione riguarda potenza, non ampiezza. Lo svolgimento deduce la legge1/r² dall’area sferica, cancella4π, moltiplica1/4per3/5 e giustifica il rapporto di segnali3/20=15%. Inversa r2/r1=√4=2; spiegati gli errori lineare/somma/filtro ignorato. Figura nuova320/80/48px alla stessa scala dei segnali relativi, non flussi di energia fra sensori.
+
+L’autore ha letto XML e rese480px di entrambe le figure; tutte le informazioni hanno una didascalia accessibile. Due assembly byte-identici. La prima prova mobile ha rilevato un passaggio di capacità termica largo270px su260: report/package falliti conservati in invalidated/117-before-formula-stages, non conteggiatiPASS. Separati prodotto, quoziente e risultato in tappe matematiche; replay finale6/6PASS con uscita0 alle tre larghezze, formule/figure e axe; nessuna modifica CSS o assert allentata. Import canonico temporaneo2→0/2,991 pubblicati/live/storia invariati. Questi sono controlli tecnici autore, non revisione scientifica indipendente né approvazione umana. Human NOT_RUN, publication DRAFT.
+
+PackageSHA256 `fa587e3deb0c069091d4ce1c593ae93d7483f53e28af95633b3c6e805f19bee8`; bindingSHA256 `c563f47882533f099d5e6344b30cecae75344377516a97eb9d11c19ab85b586a`.
