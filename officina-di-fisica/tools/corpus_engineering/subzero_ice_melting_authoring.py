@@ -39,7 +39,7 @@ TASKS=[
 ('Isolare la massa dal calore di entrambi i tratti',P+'Quale formula isola m?',['m = Q / (c_i θ + L_f)','m = Q / L_f','m = Q / (c_i θ)','m = (c_i θ + L_f) / Q','m = Q (c_i θ + L_f)'],
  'La massa moltiplica l’intera somma specifica, positiva. Dividendo per c_iθ+L_f eliminiamo quel fattore e conserviamo unità di massa: J diviso J/g dà g. L’inversa tratta con la stessa massa sia il solido scaldato sia la sostanza fusa.',
  r'Q=m(c_i\theta+L_f)\qquad m=\frac Q{c_i\theta+L_f}\qquad [m]=\mathrm g',
- 'Dividere per uno solo dei contributi omette l’altro. Il reciproco ha unità g⁻¹ e il prodotto ha J²/g: non sono masse.','L’intero calore specifico del percorso compare al denominatore.'),
+ 'Dividere per uno solo dei contributi omette l’altro. Il reciproco ha unità g⁻¹ e il prodotto ha J²/g: non sono masse.','L’energia richiesta per unità di massa in entrambi i tratti compare al denominatore.'),
 ('Due fattori senza scalare il calore latente',P+'Fra prove m_B=κ₁m_A e θ_B=κ₂θ_A; κ₁,κ₂>0 e anche 0<κ₂θ_A<273,15 K. Qual è Q_B/Q_A?',['κ₁ (c_i κ₂ θ_A + L_f) / (c_i θ_A + L_f)','κ₁ κ₂','κ₁ / κ₂','(c_i θ_A + L_f) / [κ₁ (c_i κ₂ θ_A + L_f)]','κ₁ + κ₂'],
  'La massa nuova moltiplica tutta l’energia specifica, ma κ₂ moltiplica soltanto θ nel tratto sensibile. Formiamo Q_B e dividiamo per Q_A: la massa A si cancella. Non si riscalano c_i e L_f, assegnati uguali nelle due prove. Il dominio aggiunto mantiene fisicamente ammissibile la temperatura iniziale di B.',
  r'Q_B=\kappa_1m_A(c_i\kappa_2\theta_A+L_f)\qquad Q_A=m_A(c_i\theta_A+L_f)\qquad \frac{Q_B}{Q_A}=\frac{\kappa_1(c_i\kappa_2\theta_A+L_f)}{c_i\theta_A+L_f}',
