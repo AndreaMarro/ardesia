@@ -1,0 +1,1103 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-mixing-mass-balance-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9721,
+      "title": "Sommare il tracciante e il volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 1,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Con Q₁=1 L/s e Q₂=1 L/s, quanto vale c in g/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un secondo il primo ingresso porta un litro e un grammo di tracciante; il secondo un litro e tre grammi. All’uscita passano due litri contenenti quattro grammi, quindi la concentrazione è due g/L. La somma riguarda prima masse e volumi, non le due concentrazioni nude."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4d49559c5ee5a8deab8028ad78608d844c629e81dc490ae32d7c2bbd8e2e5071",
+          "text": "In un secondo, due volumi da 1 L portano 1 g e 3 g di tracciante. Le due celle d’uscita contengono insieme 4 g in 2 L, dunque 2 g/L. Ogni cella è un simbolo per 1 L e ogni punto per 1 g; non rappresentano molecole o una geometria del recipiente."
+        },
+        {
+          "type": "formula",
+          "text": "\\dot m_t=c_1Q_1+c_2Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot m_t=4\\,\\mathrm{g/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_o=Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{\\dot m_t}{Q_o}"
+        },
+        {
+          "type": "formula",
+          "text": " c=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro g/L sarebbe la somma delle concentrazioni senza il volume totale. Uno e tre descrivono i singoli ingressi; zero eliminerebbe il tracciante senza reazione o fuga. La media semplice funziona qui solo perché i due flussi volumetrici sono uguali."
+        }
+      ],
+      "hints": [
+        "Conta quanti grammi e quanti litri attraversano il miscelatore in un secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro g/L sarebbe la somma delle concentrazioni senza il volume totale. Uno e tre descrivono i singoli ingressi; zero eliminerebbe il tracciante senza reazione o fuga. La media semplice funziona qui solo perché i due flussi volumetrici sono uguali.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9722,
+      "title": "Concentrazione, non portata massica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 1,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Quale unità esprime c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g/L",
+          "g/s",
+          "L/s",
+          "g",
+          "L/g"
+        ],
+        "value": "g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si misura la massa di tracciante contenuta in un’unità di volume di soluzione. Il rapporto fra flusso massico del tracciante e portata volumetrica cancella il tempo, lasciando massa su volume."
+        },
+        {
+          "type": "formula",
+          "text": "[c]=M/L^3"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\mathrm{g/s}}{\\mathrm{L/s}}=\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "g/s è il tasso di trasporto del tracciante, L/s la portata di soluzione e g la sola massa. L/g è il reciproco della concentrazione. Densità totale uguale non significa concentrazioni di tracciante uguali."
+        }
+      ],
+      "hints": [
+        "Cancella il tempo dal rapporto tra grammi al secondo e litri al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "g/s è il tasso di trasporto del tracciante, L/s la portata di soluzione e g la sola massa. L/g è il reciproco della concentrazione. Densità totale uguale non significa concentrazioni di tracciante uguali.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9723,
+      "title": "La media pesata dai flussi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 1,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Quale formula fornisce c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "c = (c₁ Q₁ + c₂ Q₂) / (Q₁ + Q₂)",
+          "c = c₁ + c₂",
+          "c = (c₁ + c₂) / 2",
+          "c = (c₁ Q₁ + c₂ Q₂) / Q₁",
+          "c = c₂ Q₂ / (Q₁ + Q₂)"
+        ],
+        "value": "c = (c₁ Q₁ + c₂ Q₂) / (Q₁ + Q₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione del tracciante impone cQ_o=c₁Q₁+c₂Q₂. L’additività dei volumi assegna Q_o=Q₁+Q₂. Dividendo le due relazioni si ottiene una media pesata, con pesi positivi proporzionali alle portate."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4d49559c5ee5a8deab8028ad78608d844c629e81dc490ae32d7c2bbd8e2e5071",
+          "text": "Il secondo confronto aumenta solo Q₂ a 3 L/s: entrano 1+9=10 g/s in 1+3=4 L/s, dando 5/2 g/L. Barre massiche di 20 e 180 px alla scala 20 px/(g/s); barre volumetriche di 40 e 120 px alla scala 40 px/(L/s). Le due scale hanno unità differenti, esplicitamente separate."
+        },
+        {
+          "type": "formula",
+          "text": "c(Q_1+Q_2)=c_1Q_1+c_2Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{c_1Q_1+c_2Q_2}{Q_1+Q_2}"
+        },
+        {
+          "type": "text",
+          "text": "La somma non normalizza il volume; la semisomma vale soltanto quando Q₁=Q₂. Dividere per il solo Q₁ omette parte del volume e omettere c₁Q₁ perde tracciante. Volumi additivi sono un’ipotesi specifica, non una conseguenza universale della massa conservata."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente il bilancio del tracciante e quello del volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma non normalizza il volume; la semisomma vale soltanto quando Q₁=Q₂. Dividere per il solo Q₁ omette parte del volume e omettere c₁Q₁ perde tracciante. Volumi additivi sono un’ipotesi specifica, non una conseguenza universale della massa conservata.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9724,
+      "title": "Più soluzione diluita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 1,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha Q₁=1 L/s e B Q₁=3 L/s; Q₂ resta 1 L/s. Come cambia c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3/2 g/L",
+          "Da 2 a 3 g/L",
+          "Resta 2 g/L",
+          "Da 2 a 6 g/L",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 3/2 g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il flusso iniziale contiene quattro g/s in due L/s. Nel nuovo stato il primo ingresso porta tre g/s e il secondo sempre tre g/s: sei g/s distribuiti in quattro L/s danno tre mezzi g/L. Aggiungere la soluzione meno concentrata abbassa la concentrazione, pur aumentando il tracciante trasportato al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "\\dot m_{t,B}=6\\,\\mathrm{g/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{o,B}=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " c_A=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=\\frac32\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Tre g/L sarebbe la sola soluzione più concentrata; sei confonde g/s con g/L e oltrepassa c₂. Due usa la media semplice senza i nuovi pesi. Zero richiederebbe assenza di tracciante, mentre entrambi i flussi ne contengono."
+        }
+      ],
+      "hints": [
+        "Confronta il nuovo flusso di grammi con il nuovo flusso di litri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre g/L sarebbe la sola soluzione più concentrata; sei confonde g/s con g/L e oltrepassa c₂. Due usa la media semplice senza i nuovi pesi. Zero richiederebbe assenza di tracciante, mentre entrambi i flussi ne contengono.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9725,
+      "title": "La portata della soluzione diluita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Si misura c=2 g/L e si conosce Q₂=1 L/s. Quanto vale Q₁ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tracciante uscente è c(Q₁+Q₂). Portiamo i termini con Q₁ dallo stesso lato: (c−c₁)Q₁=(c₂−c)Q₂. Con c a metà fra uno e tre g/L i due coefficienti sono uguali e le portate devono coincidere: un L/s."
+        },
+        {
+          "type": "formula",
+          "text": "(c-c_1)Q_1=(c_2-c)Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=Q_2\\frac{c_2-c}{c-c_1}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=1\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due copia la concentrazione come se fosse una portata. Tre non compenserebbe in modo uguale i contributi: darebbe c=3/2 g/L. Il rapporto fra differenze di concentrazione è puro; per un flusso positivo serve c₁<c<c₂."
+        }
+      ],
+      "hints": [
+        "Raccogli Q₁ dopo aver moltiplicato per la portata totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due copia la concentrazione come se fosse una portata. Tre non compenserebbe in modo uguale i contributi: darebbe c=3/2 g/L. Il rapporto fra differenze di concentrazione è puro; per un flusso positivo serve c₁<c<c₂.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9726,
+      "title": "La portata della soluzione concentrata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Si misura c=2 g/L e si conosce Q₁=1 L/s. Quanto vale Q₂ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa equazione raccolta può essere risolta per Q₂ dividendo per c₂−c. Le differenze c−c₁ e c₂−c sono entrambe un g/L, quindi Q₂=Q₁=1 L/s. Il denominatore positivo esclude il caso di uscita identica al solo ingresso concentrato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=Q_1\\frac{c-c_1}{c_2-c}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=1\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare il rapporto non è una formula inversa valida in generale, anche se al punto medio i due rapporti coincidono. Per esempio con c=5/2 g/L e Q₁=1 L/s il corretto è Q₂=3 L/s, mentre il reciproco darebbe un terzo. Il punto medio non basta a verificare una legge."
+        }
+      ],
+      "hints": [
+        "Dividi il bilancio raccolto per il contrasto fra c₂ e c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Scambiare il rapporto non è una formula inversa valida in generale, anche se al punto medio i due rapporti coincidono. Per esempio con c=5/2 g/L e Q₁=1 L/s il corretto è Q₂=3 L/s, mentre il reciproco darebbe un terzo. Il punto medio non basta a verificare una legge.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9727,
+      "title": "Aumentare il flusso più concentrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha Q₁=1 L/s, Q₂=1 L/s; B mantiene Q₁ e porta Q₂ a 3 L/s. Quanto vale c_B/c_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "3",
+          "5/2",
+          "1/4"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B porta un più nove, cioè dieci g/s di tracciante, in quattro L/s: c_B=5/2 g/L. Il rapporto con i due g/L iniziali è cinque quarti. Triplicare una sola portata non triplica la concentrazione, perché cambia anche il volume totale."
+        },
+        {
+          "type": "formula",
+          "text": "c_A=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=\\frac52\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B/c_A=5/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti inverte gli stati, tre segue il solo flusso Q₂ e cinque mezzi è la concentrazione B come numero. Un quarto è l’incremento relativo, non il rapporto. Il nuovo valore resta strettamente fra uno e tre g/L."
+        }
+      ],
+      "hints": [
+        "Ricava la nuova concentrazione prima di confrontarla con quella iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti inverte gli stati, tre segue il solo flusso Q₂ e cinque mezzi è la concentrazione B come numero. Un quarto è l’incremento relativo, non il rapporto. Il nuovo valore resta strettamente fra uno e tre g/L.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9728,
+      "title": "Una proposta oltre il più concentrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Per Q₁=Q₂=1 L/s si propone c=4 g/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 g/L",
+          "−2 g/L",
+          "4 g/L",
+          "0 g/L",
+          "1 g/L"
+        ],
+        "value": "2 g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La concentrazione corretta è due g/L, quindi lo scarto è quattro meno due: più due g/L. La proposta supera anche c₂=3 g/L e non può essere una media pesata di entrambi gli ingressi con pesi positivi."
+        },
+        {
+          "type": "formula",
+          "text": "c=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Meno due inverte l’ordine, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. Il limite fra le concentrazioni è un controllo indipendente dal calcolo dettagliato: senza reazioni o sottrazione di solvente non si crea una concentrazione maggiore di entrambe."
+        }
+      ],
+      "hints": [
+        "Usa il bilancio e controlla anche l’intervallo fra c₁ e c₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due inverte l’ordine, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. Il limite fra le concentrazioni è un controllo indipendente dal calcolo dettagliato: senza reazioni o sottrazione di solvente non si crea una concentrazione maggiore di entrambe.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9729,
+      "title": "Isolare Q₁ con differenze dimensionate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Quale formula isola Q₁ per c₁<c<c₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₁ = Q₂ (c₂ − c) / (c − c₁)",
+          "Q₁ = Q₂ (c − c₁) / (c₂ − c)",
+          "Q₁ = Q₂ c₂ / c",
+          "Q₁ = Q₂ (c₂ − c₁) / c",
+          "Q₁ = 2 Q₂ (c₂ − c) / (c − c₁)"
+        ],
+        "value": "Q₁ = Q₂ (c₂ − c) / (c − c₁)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per Q₁+Q₂, separiamo i contributi delle due portate e raccogliamo Q₁. Il rapporto fra c₂−c e c−c₁ confronta due differenze nella stessa unità g/L e conserva l’unità di portata di Q₂."
+        },
+        {
+          "type": "formula",
+          "text": "cQ_1+cQ_2=c_1Q_1+c_2Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " (c-c_1)Q_1=(c_2-c)Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=Q_2\\frac{c_2-c}{c-c_1}"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco scambia il ruolo diluente e concentrante. c₂/c omette c₁, mentre (c₂−c₁)/c non deriva dal raccoglimento. Raddoppiare la soluzione non è un’operazione applicata a entrambi i membri. Agli estremi una delle portate si annullerebbe o il rapporto richiesto divergerebbe: qui i flussi sono entrambi positivi."
+        }
+      ],
+      "hints": [
+        "Raccogli Q₁ mantenendo le concentrazioni con le loro unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco scambia il ruolo diluente e concentrante. c₂/c omette c₁, mentre (c₂−c₁)/c non deriva dal raccoglimento. Raddoppiare la soluzione non è un’operazione applicata a entrambi i membri. Agli estremi una delle portate si annullerebbe o il rapporto richiesto divergerebbe: qui i flussi sono entrambi positivi.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9730,
+      "title": "Rapporto fra due medie pesate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha portate Q₁,Q₂; B ha κ₁Q₁,κ₂Q₂. Definiamo U=Q₁+Q₂ e J=c₁Q₁+c₂Q₂, portata totale e flusso di tracciante in A. In B definiamo U_B=κ₁Q₁+κ₂Q₂ e J_B=κ₁c₁Q₁+κ₂c₂Q₂. Quanto vale c_B/c_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J_B U / (U_B J)",
+          "κ₁ / κ₂",
+          "J_B / J",
+          "U_B / U",
+          "U_B J / (J_B U)"
+        ],
+        "value": "J_B U / (U_B J)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le concentrazioni sono J/U e J_B/U_B. Dividendo i due rapporti si ottiene J_B U/(U_B J). Il flusso di tracciante ha unità g/s e il flusso totale L/s: tutti i fattori si cancellano nel rapporto finale, che è puro."
+        },
+        {
+          "type": "formula",
+          "text": "c_A=J/U"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=J_B/U_B"
+        },
+        {
+          "type": "formula",
+          "text": " c_B/c_A=\\frac{J_BU}{U_BJ}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto κ₁/κ₂ non esprime una media con due contributi. J_B/J segue solo il tracciante e U_B/U solo il volume. L’ultima opzione è il reciproco. Se κ₁=κ₂, massa e volume scalano insieme e il risultato corretto è uno."
+        }
+      ],
+      "hints": [
+        "Dividi due concentrazioni, ciascuna ottenuta dal proprio flusso totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto κ₁/κ₂ non esprime una media con due contributi. J_B/J segue solo il tracciante e U_B/U solo il volume. L’ultima opzione è il reciproco. Se κ₁=κ₂, massa e volume scalano insieme e il risultato corretto è uno.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9731,
+      "title": "Cambiano entrambe le portate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha Q₁=Q₂=1 L/s; B ha Q₁=2 L/s e Q₂=3 L/s. Quanto vale c_B/c_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/10",
+          "10/11",
+          "11/5",
+          "3/2",
+          "1"
+        ],
+        "value": "11/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha concentrazione due g/L. B porta undici g/s di tracciante in cinque L/s, quindi c_B=11/5 g/L. Dividendo per due si ottiene undici decimi. Entrambe le portate crescono, ma quella più concentrata acquista peso relativo."
+        },
+        {
+          "type": "formula",
+          "text": "c_B=\\frac{2+9}{2+3}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=\\frac{11}5\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B/c_A=11/10"
+        },
+        {
+          "type": "text",
+          "text": "Dieci undicesimi è il reciproco; undici quinti è la concentrazione B, non il rapporto. Tre mezzi è il rapporto Q₂/Q₁ di B e uno richiederebbe identica proporzione fra i due ingressi nei due stati."
+        }
+      ],
+      "hints": [
+        "Somma i flussi di tracciante e i flussi volumetrici di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci undicesimi è il reciproco; undici quinti è la concentrazione B, non il rapporto. Tre mezzi è il rapporto Q₂/Q₁ di B e uno richiederebbe identica proporzione fra i due ingressi nei due stati.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9732,
+      "title": "Media statistica e flussi riuniti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 2,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha Q₁=Q₂=1 L/s; B ha Q₁=2 L/s e Q₂=3 L/s. Qual è la media aritmetica delle due concentrazioni con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "21/10 g/L",
+          "21/5 g/L",
+          "21/20 g/L",
+          "15/7 g/L",
+          "1/5 g/L"
+        ],
+        "value": "21/10 g/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture sono due e undici quinti g/L. La loro semisomma vale ventuno decimi g/L. Ciascuna lettura pesa metà, indipendentemente dal fatto che B abbia una portata totale maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline c=\\frac{2+11/5}{2}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline c=\\frac{21}{10}\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Ventuno quinti è la somma e ventuno ventesimi dimezza ancora. Gli ingressi medi 3/2 e 2 L/s darebbero 15/7 g/L, maggiore di 3/70 g/L: quel risultato corrisponde a pesi volumetrici diversi, non alla media statistica richiesta. Un quinto è la differenza fra le letture."
+        }
+      ],
+      "hints": [
+        "Media le due concentrazioni già ricavate, non i flussi d’ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventuno quinti è la somma e ventuno ventesimi dimezza ancora. Gli ingressi medi 3/2 e 2 L/s darebbero 15/7 g/L, maggiore di 3/70 g/L: quel risultato corrisponde a pesi volumetrici diversi, non alla media statistica richiesta. Un quinto è la differenza fra le letture.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9733,
+      "title": "Un flusso concentrato per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 3,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. A ha Q₁=Q₂=1 L/s. B deve avere Q₁,B=2 L/s e c_B=(11/10)c_A. Quanto vale Q₂,B/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "11/10",
+          "2",
+          "3/2"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è undici quinti g/L. I contrasti rispetto agli ingressi valgono sei quinti e quattro quinti g/L; quindi Q₂,B=Q₁,B·(6/5)/(4/5)=3 L/s. Rispetto al flusso iniziale di un L/s, il fattore è tre."
+        },
+        {
+          "type": "formula",
+          "text": "c_B=\\frac{11}5\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=Q_{1,B}\\frac{c_B-c_1}{c_2-c_B}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}/Q_{2,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il rapporto, undici decimi copia il bersaglio della concentrazione e due manterrebbe portate uguali, dando ancora due g/L. Tre mezzi è il rapporto fra Q₂,B e Q₁,B, non fra Q₂ dei due stati."
+        }
+      ],
+      "hints": [
+        "Usa l’inversa per la soluzione concentrata e poi confronta Q₂,B con Q₂,A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il rapporto, undici decimi copia il bersaglio della concentrazione e due manterrebbe portate uguali, dando ancora due g/L. Tre mezzi è il rapporto fra Q₂,B e Q₁,B, non fra Q₂ dei due stati.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9734,
+      "title": "Una lettura frazionaria senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 3,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Un display continuo adimensionale segue S=qc, q>0. A con Q₁=Q₂=1 L/s dà S=6. B dà S=33/5 e ha Q₂,B=3 L/s. Quanto vale Q₁,B in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha c=2 g/L e quindi q=3 L/g. La nuova lettura divisa per tre dà c_B=11/5 g/L. L’inversa Q₁=Q₂(c₂−c)/(c−c₁) diventa tre per quattro sesti, cioè due L/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/g}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=\\frac{11}5\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=3\\frac46\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=2\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura 33/5 non è una concentrazione: usarla in g/L supererebbe entrambi gli ingressi e renderebbe negativa l’inversa nel dominio assegnato. La frazione nel display è ammessa perché l’uscita è continua, non un conteggio di tacche."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di applicare il bilancio di miscelazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura 33/5 non è una concentrazione: usarla in g/L supererebbe entrambi gli ingressi e renderebbe negativa l’inversa nel dominio assegnato. La frazione nel display è ammessa perché l’uscita è continua, non un conteggio di tacche.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9735,
+      "title": "Taratura affine della concentrazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 3,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Il display continuo adimensionale segue S=qc+b, q>0. A: Q₁=Q₂=1 L/s, S=5. B: Q₁=2 L/s, Q₂=3 L/s, S=27/5. C: Q₂=1 L/s, S=4. Quanto vale Q₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 L/s",
+          "2 L/s",
+          "4 L/s",
+          "6 L/s",
+          "3/2 L/s"
+        ],
+        "value": "3 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le concentrazioni dei riferimenti sono due e undici quinti g/L. Differenze due quinti nella lettura e un quinto g/L danno q=2 L/g; segue b=1. C ha concentrazione tre mezzi g/L. Con Q₂=1 L/s l’inversa dà Q₁=3 L/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/g}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " c_C=\\frac32\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Con Q₂=1 L/s, Q₁ pari a 2,4,6,3/2 L/s darebbe rispettivamente letture 13/3,19/5,25/7,23/5, diverse da quattro. Sottrarre b riguarda il display; non significa sottrarre tracciante fisico dal miscelatore."
+        }
+      ],
+      "hints": [
+        "Trova q dalle differenze, poi b e infine la concentrazione C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con Q₂=1 L/s, Q₁ pari a 2,4,6,3/2 L/s darebbe rispettivamente letture 13/3,19/5,25/7,23/5, diverse da quattro. Sottrarre b riguarda il display; non significa sottrarre tracciante fisico dal miscelatore.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-mixing-mass-balance-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Conservare un tracciante nella miscela",
+      "order": 9736,
+      "title": "La concentrazione non fissa la scala dei flussi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "mixing-mass-balance",
+      "difficulty": 3,
+      "prompt": "Due soluzioni liquide di uguale densità, con volumi additivi per ipotesi, entrano in un miscelatore ideale stazionario senza accumulo, fughe o reazioni. Il tracciante è conservato e l’uscita è completamente miscelata e uniforme. Il primo ingresso ha concentrazione c₁=1 g/L e portata Q₁>0; il secondo c₂=3 g/L e portata Q₂>0. c è la concentrazione in massa per volume all’uscita, con c₁<c<c₂. Le portate possono cambiare fra prove, mentre c₁ e c₂ restano fisse. Si impone Q₁=Q₂ e si misura c=2 g/L. Quante coppie di portate positive soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo entrambe nulle"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ponendo entrambe le portate uguali a un qualsiasi q₀>0, il flusso di tracciante è quattro g/L per q₀ e quello di soluzione è 2q₀. Il rapporto è sempre due g/L. La misura conferma la proporzione ma non determina la scala assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=Q_2"
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=q_0"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{c_1q_0+c_2q_0}{2q_0}"
+        },
+        {
+          "type": "formula",
+          "text": " c=2\\,\\mathrm{g/L}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie (1,1) e (3,3) L/s sono due esempi di un’intera famiglia, non le sole due soluzioni. Una lettura della portata totale fisserebbe q₀. Zero è escluso dal dominio e renderebbe la concentrazione come rapporto di flussi indeterminata."
+        }
+      ],
+      "hints": [
+        "Sostituisci una portata comune positiva e verifica se rimane nell’equazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie (1,1) e (3,3) L/s sono due esempi di un’intera famiglia, non le sole due soluzioni. Una lettura della portata totale fisserebbe q₀. Zero è escluso dal dominio e renderebbe la concentrazione come rapporto di flussi indeterminata.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Bilanci di massa e volumi additivi assegnati",
+        "Concentrazioni, inverse e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "4d49559c5ee5a8deab8028ad78608d844c629e81dc490ae32d7c2bbd8e2e5071",
+      "name": "mixing-mass-balance-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY0MCIgdmlld0JveD0iMCAwIDY0MCAxNjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNvbnNlcnZhcmUgaWwgdHJhY2NpYW50ZSBlIHNvbW1hcmUgaSB2b2x1bWkgYXNzZWduYXRpIGFkZGl0aXZpPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+TmVsIHByaW1vIHNlY29uZG8gdW4gbGl0cm8gYSB1biBncmFtbW8gYWwgbGl0cm8gZSB1biBsaXRybyBhIHRyZSBncmFtbWkgYWwgbGl0cm8gcHJvZHVjb25vIGR1ZSBsaXRyaSBhIGR1ZSBncmFtbWkgYWwgbGl0cm8uIFVuIHNlY29uZG8gY29uZnJvbnRvIGF1bWVudGEgaWwgZmx1c3NvIHBpw7kgY29uY2VudHJhdG86IGRpZWNpIGdyYW1taSBhbCBzZWNvbmRvIGluIHF1YXR0cm8gbGl0cmkgYWwgc2Vjb25kbyBkYW5ubyBjaW5xdWUgbWV6emkgZ3JhbW1pIGFsIGxpdHJvLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjQwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MmMzYiI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIENvbnRhcmUgY2nDsiBjaGUgZW50cmEgaW4gMSBzPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPkNlbGxhID0gMSBMOyBwdW50byA9IDEgZyBkaSB0cmFjY2lhbnRlPC90ZXh0Pgo8cmVjdCB4PSI5NSIgeT0iMTQwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2UwZWVmNyIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSIxNDUiIGN5PSIxOTAiIHI9IjkiIGZpbGw9IiMxNzJjM2IiLz4KPHJlY3QgeD0iMzc1IiB5PSIxNDAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjhlNWQ5IiBzdHJva2U9IiNhMzM0MzAiIHN0cm9rZS13aWR0aD0iMyIvPjxnIGZpbGw9IiMxNzJjM2IiPjxjaXJjbGUgY3g9IjM5NSIgY3k9IjE5MCIgcj0iOSIvPjxjaXJjbGUgY3g9IjQyNSIgY3k9IjE5MCIgcj0iOSIvPjxjaXJjbGUgY3g9IjQ1NSIgY3k9IjE5MCIgcj0iOSIvPjwvZz4KPHRleHQgeD0iOTAiIHk9IjI4NSI+MSBMIGUgMSBnPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iMjg1Ij4xIEwgZSAzIGc8L3RleHQ+Cjx0ZXh0IHg9IjkwIiB5PSIzMzAiPmPigoEgPSAxIGcvTDwvdGV4dD48dGV4dCB4PSIzNzAiIHk9IjMzMCI+Y+KCgiA9IDMgZy9MPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMzg1Ij5Wb2x1bWkgYWRkaXRpdmkgZSBuZXNzdW5hIHJlYXppb25lPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI0MjAiIHkyPSI0MjAiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iNDcwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gRGlzdHJpYnVpcmUgaWwgdG90YWxlIG5lbGxhIG1pc2NlbGE8L3RleHQ+CjxyZWN0IHg9IjE1NSIgeT0iNTE1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2U1ZjFlNiIgc3Ryb2tlPSIjMjQ3MTQzIiBzdHJva2Utd2lkdGg9IjMiLz48cmVjdCB4PSIyNTUiIHk9IjUxNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlNWYxZTYiIHN0cm9rZT0iIzI0NzE0MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxnIGZpbGw9IiMxNzJjM2IiPjxjaXJjbGUgY3g9IjE4NSIgY3k9IjU2NSIgcj0iOSIvPjxjaXJjbGUgY3g9IjIyNSIgY3k9IjU2NSIgcj0iOSIvPjxjaXJjbGUgY3g9IjI4NSIgY3k9IjU2NSIgcj0iOSIvPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjU2NSIgcj0iOSIvPjwvZz4KPHRleHQgeD0iOTUiIHk9IjY3MCI+NCBnIGluIDIgTDogYyA9IDQvMiA9IDIgZy9MPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzE1Ij5NaXNjZWxhIHVuaWZvcm1lOiAyIGcgcGVyIG9nbmkgbGl0cm88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NjAiPkNlbGxlIGUgcHVudGkgc29ubyBjb250ZWdnaSBzaW1ib2xpY2kuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODAwIj5Ob24gZGVzY3Jpdm9ubyBtb2xlY29sZSBvIGRpbWVuc2lvbmkgcmVhbGkuPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI4MzUiIHkyPSI4MzUiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iODg1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gQXVtZW50YXJlIGlsIGZsdXNzbyBjb25jZW50cmF0bzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkyNSI+UeKCgSA9IDEgTC9zOyBR4oKCID0gMyBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NzUiPkZsdXNzaSBkaSB0cmFjY2lhbnRlLCBzY2FsYSAyMCBweCAvIChnL3MpPC90ZXh0Pgo8cmVjdCB4PSI5MCIgeT0iMTAwNSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjMTU1ZmEwIi8+PHJlY3QgeD0iMTEwIiB5PSIxMDA1IiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjYTMzNDMwIi8+Cjx0ZXh0IHg9IjM1MCIgeT0iMTAyOCI+MSArIDkgPSAxMCBnL3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDkwIj5Qb3J0YXRlIGRpIHNvbHV6aW9uZSwgc2NhbGEgNDAgcHggLyAoTC9zKTwvdGV4dD4KPHJlY3QgeD0iOTAiIHk9IjExMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzE1NWZhMCIvPjxyZWN0IHg9IjEzMCIgeT0iMTEyMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2EzMzQzMCIvPgo8dGV4dCB4PSIzNTAiIHk9IjExNDMiPjEgKyAzID0gNCBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjEwIj5MZSBzY2FsZSBkZWxsZSBkdWUgYmFycmUgc29ubyBkaXZlcnNlLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEyNTUiPkNvbmNlbnRyYXppb25lOiAxMC80ID0gNS8yIGcvTDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzMjAiPk5vbiBzaSBzb21tYW5vIDEgZy9MIGUgMyBnL0w6PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM2MCI+cHJpbWEgc2kgY29uc2VydmFubyBpIGdyYW1taSB0cmFzcG9ydGF0aSw8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDAwIj5wb2kgc2kgZGl2aWRlIHBlciBpbCB2b2x1bWUgdG90YWxlLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0NzUiPmMgcmVzdGEgZnJhIDEgZSAzIGcvTCBwZXIgcG9ydGF0ZSBwb3NpdGl2ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNTQwIj5JIGR1ZSBmbHVzc2kgcGVzYW5vIGluIHByb3Bvcnppb25lPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTU4MCI+YWkgcmlzcGV0dGl2aSB2b2x1bWkgYWwgc2Vjb25kby48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
