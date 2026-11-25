@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "SIM-C1-L005-05",
+  "status": "PREVIOUS_NATIVE_VISUAL_ACCEPTANCE_WITHDRAWN_NEW_CURRENT_REVIEW_REQUIRED",
+  "registeredCheckpointActivityCount": 230,
+  "effectiveCurrentAcceptedActivityCount": 229,
+  "effectiveRemainingActivityCount": 156,
+  "questionDraftCountUnchanged": 2320,
+  "previousReportPreserved": "editorial/reviews/experiments-forces-revision-140.json",
+  "candidateSha256": "1675a67f4d06a81448a5161627fdffc5f744dbae668e989a025fc635bb92dbf1",
+  "diagnosticRuntimeSha256": "c177aba9dfdbfd8296addd3583ce487e8f43ed1b52cef784636a2d1cd40f0744",
+  "rootRuntimeSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "actualUIScreenshotsScope": "COREc177_ONLY_SOURCEv1_AND_DRAFT140_0_75_320_1280_NATIVE_FALLBACK",
+  "rootApplicability": "Checked equivalence of the piano method, target legend and absent target comparison override; all other runtime file hashes identical. No CORE screenshot is represented as a ROOT5405 screenshot.",
+  "sharedPianoFunctionSha256": "428d3375ba5dc23e626d8fe6dee149ad5ce67bbb8842905919abe8b22743f474",
+  "runtimeFilesDifferent": [
+    "static/js/banchi/voci/apparati/meccanica.js",
+    "static/js/banchi/voci/confronti.js",
+    "static/js/banchi/voci/legende.js"
+  ],
+  "sharedPianoLegend": "  piano: 'Peso rosso verticale · reazione verde perpendicolare al piano',",
+  "diagnosticManifestPath": "editorial/reviews/normal-visibility-a-20261125/manifest.json",
+  "diagnosticManifestSha256": "33c21222478335a063a50b41d81e57342e837117705ef89a379e71db4b8558e7",
+  "diagnosticWorktree": "/private/tmp/cric-experiment-contract-fix/officina-di-fisica",
+  "diagnosticGitConsolidation": "e3b797324871ca5cc2d4d759577c434839b3dcdb",
+  "findings": [
+    {
+      "case": "normal75-native",
+      "observation": "Full nonzero normal vector enclosed by opaque sphere; independent actual mesh inradius and screenshots agree."
+    },
+    {
+      "case": "weight0-native-oblique",
+      "observation": "Entire weight cone occluded by opaque tabletop in the default view."
+    }
+  ],
+  "scalarPhysics": "PASS_PRESERVED",
+  "manualAssignedArithmetic": "PASS_PRESERVED",
+  "nativePedagogicalIntegration": "FAIL_REOPENED",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "diagnosticFilesCopiedByteIdenticallyToRoot": 49
+}
