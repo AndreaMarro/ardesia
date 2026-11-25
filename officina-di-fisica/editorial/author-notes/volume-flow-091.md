@@ -136,3 +136,5 @@ Passaggi: `Q=cv^2\qquad v^2=Q/c\qquad v^2=9\,\mathrm{cm^2/s^2}\qquad v_+=3\,\mat
 
 Errori e controllo: La radice negativa violerebbe il verso di flusso assegnato e darebbe A<0 nel vincolo. La soluzione fisica v3 cm/s implica A2 cm² e riproduce Q6 cm³/s. Non si tratta di una dipendenza temporale A(t): il vincolo collega prove diverse.
 
+
+Precisazione prima della firma indipendente: nel prompt03 l’area è definita esplicitamente A=πR². Solo quel prompt cambia; tutti blocchi, formule, chiavi e SVG invariati. Nuove48anteprime exit0 e import idempotente sulla definizione autonoma.
