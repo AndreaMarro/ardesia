@@ -1,50 +1,108 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T11:53:45.500916Z",
-  "snapshotHead": "79e2e014fa56d4ff5674c9175eb9056fd6e25d45",
+  "observedAt": "2026-11-25T13:40:49.288519+00:00",
+  "snapshotHead": "83cafbb9e42ebf6d32f505573602add041c00bf8",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 2832,
-    "scientificallyUnreviewed": 1774,
-    "compiledDraftsLocally": 2320,
-    "registeredDrafts": 2640,
-    "scientificallyReviewedNotRegistered": 192,
-    "scientificallyReviewedBeyondLocalCheckpoint": 512
+    "scientificallyReviewed": 2992,
+    "scientificallyUnreviewed": 1614,
+    "registeredDrafts": 2992,
+    "compiledDraftsLocally": 2992,
+    "compiledCandidateFullyLocallyValidated": false,
+    "next160AuthorAndPeerReviewedButRootAcceptance": "PENDING",
+    "canonicalHistoricalRevisedDrafts": 1728
   },
   "activities": {
     "accounted": 385,
     "scientificallyReviewedInFeature": 246,
     "remaining": 139,
-    "compiledHistorical": 230,
-    "C2PartialReviewsAddCredit": 0
+    "remainingByCourse": {
+      "C2": 41,
+      "C3": 36,
+      "C4": 29,
+      "C5": 27,
+      "C6": 6
+    },
+    "C2C3PartialReviewsAddCredit": 0
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
   "newPublications": 0,
   "Pro100Recovery": "NOT_IDENTIFIED",
-  "remotePreparation": {
+  "recovered199TechnicalChecksAreNotFullReviews": true,
+  "lastFullyValidatedRemotePreparation": {
     "runId": 45606283140,
     "headSha": "29f6af6d8b9f12dfad701b4ea76d49af96bebb8a",
+    "counts": [
+      4606,
+      385,
+      2640,
+      246
+    ],
     "uiCases": 7971,
     "uiBatches": 177,
     "ui": "PASS",
     "etlFreshAndIncremental": "PASS",
     "coexistence": "PASS",
-    "fullSuite": "IN_PROGRESS",
-    "release": "NOT_RUN_YET",
-    "checkpointDownloadedAndAdopted": false
+    "fullSuite": {
+      "tests": 741,
+      "result": "PASS",
+      "seconds": 506.483
+    },
+    "release": "PASS",
+    "checkpointDownloadedAndAdopted": true,
+    "artifactSha256": "ee98df48cc25a3762c81b8344517b8108a1ad7fb4eeba6889f7d7c06bd2d0004"
   },
-  "pendingTechnicalFix": "five legacy decimal decoders; Third isolated proposal, then explicit report regeneration",
-  "nextCheckpointId": "AR-u5-cyclic-work-01",
-  "nextRegistrationId": "AR-u5-plane-conduction-01",
-  "nextScientificId": "AR-u6-coulomb-force-01",
-  "historicalLocalDeliverablesRead": "ATTEMPTED_BUT_OPERATION_TIMED_OUT; preserved by rename, no recovered-content claim",
+  "lastFailedRemotePreparation": {
+    "runId": 45611122114,
+    "headSha": "7f5c956f92f7a1aeb284a680667caef5b1c3198f",
+    "failedId": "AR-u5-entropy-hot-cold-12",
+    "failure": "320px math overflow and scrollable-region-focusable",
+    "validTerminalPackages": 188,
+    "validCases": 8499,
+    "downstreamChecks": "SKIPPED",
+    "fixRereadAndActualLocalUI": "PASS"
+  },
+  "currentLocalPreparation": {
+    "ui": {
+      "result": "PASS",
+      "packages": 199,
+      "cases": 9027,
+      "reused": 188,
+      "newlyRendered": 11,
+      "actualLogSha256": "b800226487c12591caf204e25fa9b27855f34809b7e848ff3f962a569a0bbfbf"
+    },
+    "etlFreshAndIncremental": "PASS",
+    "identicalFiles": 56,
+    "checkpoint": {
+      "generation": "generations/5bf6580b19cfb977b6b9ec9e55af2b44735a8216ae6a7eea9d52f62e140db047",
+      "manifestSha256": "fc03c8a711985064a8f37ed59b345635a679dad9c5e1fd9110100732916266ae",
+      "questionCount": 4606,
+      "schemaVersion": "1.0.0"
+    },
+    "registrySha256": "e8925f07cf45318ce425379286656404406c943af3477cc0b2fb5c5b3377f119",
+    "coexistence": "PASS",
+    "fullSuite": "IN_PROGRESS",
+    "release": "PENDING",
+    "isGitHubCI": false,
+    "uploads": false
+  },
+  "nextScientificAcceptanceId": "AR-u6-zero-field-distance-ratio-01",
+  "nextNewAuthoringId": "AR-u6-identical-parallel-resistors-01",
+  "assignments": "U6-02 authoring/review complete locally pending Root; U6-03 210-219 ownership assigned and source-only primaries in progress; Third C4 partial review then C5",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
-    "newMaterials": "DRAFT"
+    "newMaterials": "DRAFT",
+    "repositoryVisibility": "PUBLIC_OBSERVED",
+    "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
+    "externalWrites": "HOLD_PENDING_USER_SCOPE_CLARIFICATION",
+    "requiredClarification": "Whether no DRAFT exposure applies only in the application or also to publicly readable GitHub files",
+    "priorPublicPushesExist": true,
+    "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
+    "automaticApprovalReviewRejected": false
   },
-  "resumeAuthority": "Git repository manifests/reports and actual workflow results; output snapshot is not a checkpoint authority"
+  "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger"
 }
