@@ -70,3 +70,25 @@ test('zero-duration mean power is distinguished from its zero limit and instanta
   assert.equal(name,label);assert.equal(u,'W');near(mean,3*t);near(experiments['SIM-C1-L007-02'].measure(t),6*t);
  }
 });
+
+test('the complete lever force glyph stays above the opaque table at every reachable input',()=>{
+ for(const [id,min,max,step] of [['SIM-C1-L010-03',0,40,2],['SIM-C1-L010-04',10,40,2],['SIM-C1-L010-05',2,6,0.5]]){
+  for(let x=min;x<=max;x+=step){
+   const {items}=drawing(id,x,'leva');
+   for(const arrow of items.filter(e=>e.kind==='arrow')){
+    assert.ok(Math.min(arrow.a[1],arrow.b[1])>0.05,'No shaft or head extends into the opaque base');
+    assert.ok(Math.max(arrow.a[1],arrow.b[1])<3.45,'Force scale fits the intended apparatus height');
+   }
+  }
+ }
+});
+
+test('the fulcrum callout is outside the lower-left swept rod region',()=>{
+ for(let angle=0;angle<=90;angle+=5){
+  const {items}=drawing('SIM-C1-L010-02',angle,'leva');
+  const pivot=items.find(e=>e.kind==='ball'&&e.c===c.viola);
+  const label=items.find(e=>e.kind==='label'&&e.text==='Fulcro');
+  assert.ok(label.p[0]>pivot.p[0]+0.5,'Callout is to the right of the lower rod sweep');
+  assert.ok(label.p[1]<pivot.p[1]-0.3,'Callout is below the force glyph region');
+ }
+});

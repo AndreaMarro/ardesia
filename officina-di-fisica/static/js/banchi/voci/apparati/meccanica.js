@@ -343,15 +343,15 @@ export const meccanica = {
     ]) {
       const p = at(u);
       b.ball(p, 0.11, c.verde);
-      if (F)
-        exposedForce(
-          b,
-          p,
-          [0, (s.braccio && u === l ? 1 : -1) * F, 0],
-          s.braccio && u === l ? c.verde : c.rosso,
-          0.18,
-        );
+      if (F) {
+        const dy = (s.braccio && u === l ? 1 : -1) * F;
+        // Put both signs above the point marker: a downward force ends just
+        // above it, so the unchanged full vector cannot penetrate the table.
+        const tail = [p[0], p[1] + 0.18 + Math.max(0, -dy), p[2]];
+        b.arrow(tail, [tail[0], tail[1] + dy, tail[2]], s.braccio && u === l ? c.verde : c.rosso);
+      }
     }
-    b.label([pivot[0], 0.57, 0.45], s.braccio ? 'Gomito' : 'Fulcro');
+    b.line([pivot, [pivot[0] + 0.55, 0.67, 0.35]], c.viola, true);
+    b.label([pivot[0] + 0.8, 0.57, 0.45], s.braccio ? 'Gomito' : 'Fulcro');
   },
 };
