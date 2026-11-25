@@ -1,0 +1,570 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-series-parallel-resistor-network-01",
+      "sourceSha256": "8cc97952bd0d4e4997a2ff620912e8da1e864ef6c665f04eff8a801959d33a25",
+      "candidateSha256": "948e62f70308cc983981c3fe2b74c1963dbdd16d211cddaf664575ad563c893d",
+      "reviewedSignature": "96416ad20861ad9fcea5a95cab7e4703aa28758bf1d6370172071e8301920747",
+      "assetChecksums": {
+        "series-parallel-resistor-network-progressive.svg": "00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Ridurre prima il parallelo r||R=rR/(r+R), poi aggiungere il primo r in serie: S=r+rR/(r+R)=r(r+2 R)/(r+R). Per r=R=2 Ω: parallelo 1 Ω e totale 3 Ω. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "6 Ω mette tutti gli elementi in serie; 2/3 Ω li mette tutti in parallelo; 1 Ω omette il resistore esterno; 2 Ω omette il blocco in parallelo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Ridurre prima il parallelo r||R=rR/(r+R), poi aggiungere il primo r in serie: S=r+rR/(r+R)=r(r+2 R)/(r+R). Per r=R=2 Ω: parallelo 1 Ω e totale 3 Ω. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "XML e rendering nativo indipendente completo letti. Il resistore r esterno precede il nodo (300,240); i rami r e R condividono quel nodo e (550,240). Nel secondo pannello i segmenti 80+40 e 120+80 rappresentano 2+1 e 3+2 Ω con scala 40 coordinate/Ω. Nel terzo le barre 180,300,240 rappresentano 3,5,4 Ω con scala 60 coordinate/Ω. La didascalia distingue esplicitamente le scale fra pannelli; la scala è comune soltanto entro ciascun pannello. Gli zeri a x=125 sono liberi dagli assi.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-02",
+      "sourceSha256": "1137d0a57c604863ba0f2266f0718ea5a081c7aa85c5eae7a9f92f449ae886d0",
+      "candidateSha256": "bec4587e50da6ee88d5cf2cc0281b561991437a6478ff12ee8bfcb4ab3f8a62e",
+      "reviewedSignature": "21dc8a283d17d13ce45ac3b0a8d924d02dce41ba0034571777618ee8f15db1ef",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ω",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Il totale S è resistenza, quindi Ω; somma e quoziente sono dimensionalmente coerenti perché rR/(r+R) ha Ω. Nella primaria prompt-only le alternative non erano aperte; nella successiva revisione tutte e cinque sono state lette e confrontate: solo Ω è resistenza. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "S misura conduttanza, A corrente, V tensione e Ω² un prodotto privo del necessario denominatore. T è qui una resistenza, non una temperatura.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il totale S è resistenza, quindi Ω; somma e quoziente sono dimensionalmente coerenti perché rR/(r+R) ha Ω. Nella primaria prompt-only le alternative non erano aperte; nella successiva revisione tutte e cinque sono state lette e confrontate: solo Ω è resistenza. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-03",
+      "sourceSha256": "f442e1a8c05beb6adeffd11cc7cc1c97a0645aaf6afcb0b79297092039f40562",
+      "candidateSha256": "9c8758646ff6eac838dfeea2a4837574033b768e7a39aab83ba10bd4fab0dd8b",
+      "reviewedSignature": "3e319c805c3b0943a94ef43f3df238c99bdd5978655072e49d982f9c1f335d8b",
+      "assetChecksums": {
+        "series-parallel-resistor-network-progressive.svg": "00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "T = r + r R / (r + R)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "La topologia contiene un primo r in serie con due rami r e R fra la stessa coppia di nodi. Legge corretta S=r+rR/(r+R), non una serie di tre né un parallelo di tre. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "2r+R tratta i tre elementi come serie; 1/(2/r+1/R) li pone tutti in parallelo; rR/(2r+R) altera il blocco; r+R elimina un ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La topologia contiene un primo r in serie con due rami r e R fra la stessa coppia di nodi. Legge corretta S=r+rR/(r+R), non una serie di tre né un parallelo di tre. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "XML e rendering nativo indipendente completo letti. Il resistore r esterno precede il nodo (300,240); i rami r e R condividono quel nodo e (550,240). Nel secondo pannello i segmenti 80+40 e 120+80 rappresentano 2+1 e 3+2 Ω con scala 40 coordinate/Ω. Nel terzo le barre 180,300,240 rappresentano 3,5,4 Ω con scala 60 coordinate/Ω. La didascalia distingue esplicitamente le scale fra pannelli; la scala è comune soltanto entro ciascun pannello. Gli zeri a x=125 sono liberi dagli assi.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-04",
+      "sourceSha256": "d486967cbf5146cd2279a28558b8471af336e357ab6208b4a919911551254ef2",
+      "candidateSha256": "57dcdde8d288aaa867c4764125bc30711bd32611e50122c0d13fc877bfd62eae",
+      "reviewedSignature": "dd749d314703c5c808fe00cbd72176568100618fa62b2f4ed536507f860bc8ad",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3 a 5/3 Ω",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Entrambi i resistori denominati r cambiano insieme da 2 a 1 Ω; R resta 2 Ω. Totale iniziale 3 Ω; finale 1+2/3=5/3 Ω. Non si cambia soltanto il resistore in serie. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "2 Ω modifica soltanto il resistore esterno; 3/2 Ω scala anche R, rimasta invariata; 3 Ω ignora la modifica; 4 Ω aumenta mentre entrambe le occorrenze di r diminuiscono.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Entrambi i resistori denominati r cambiano insieme da 2 a 1 Ω; R resta 2 Ω. Totale iniziale 3 Ω; finale 1+2/3=5/3 Ω. Non si cambia soltanto il resistore in serie. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-05",
+      "sourceSha256": "e804edb323fc7e7b59ef9ead640424c92b9595033b5f2edb7cd38ed6cf1073d8",
+      "candidateSha256": "9669e052b4d4cabd5197a2a444cea552e89a67c9e28814a1693d5fc38fbe5339",
+      "reviewedSignature": "a6c8213eab880f05f16c33392447402c65668328782a8703df14d1a841ab1bfb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Con S=3 Ω, R=2 Ω, moltiplico S(r+R)=r²+2 rR: r²+(2 R−S)r−SR=0 ⇒r²+r−6=(r−2)(r+3)=0. Radici 2 e−3 Ω: solo r=2 Ω è positiva e dà la rete richiesta. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "−3 Ω è la radice negativa esclusa dalla passività; r=1 Ω dà T=5/3 Ω; r=3 Ω dà 21/5 Ω. Il totale non è una serie semplice r+R.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con S=3 Ω, R=2 Ω, moltiplico S(r+R)=r²+2 rR: r²+(2 R−S)r−SR=0 ⇒r²+r−6=(r−2)(r+3)=0. Radici 2 e−3 Ω: solo r=2 Ω è positiva e dà la rete richiesta. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-06",
+      "sourceSha256": "0beac09ea91fe6e1134af73f44f6b0cf53389a3dcf346caf89df17a739e2c579",
+      "candidateSha256": "d3874b71b52ca71c22e553cfee18102c9c60cdb54c16a3f18d6b3d599cd1d7f2",
+      "reviewedSignature": "110853621595d72d41f50f6b5ff14b63e04642aee724fba9556509ad1a74abf4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Ponendo P=S−r, il parallelo soddisfa P=rR/(r+R). Si ricava R=r(S−r)/(2 r−S). ConS 3, r 2 Ω ottengo 2·1/1=2 Ω. In generale, per r, R finiti positivi occorre r<S<2 r. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "R=1 Ω dà T=8/3 Ω e R=3 Ω dà 16/5 Ω. I confini T=r e T=2r sono esclusi per un ramo R finito e positivo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Ponendo P=S−r, il parallelo soddisfa P=rR/(r+R). Si ricava R=r(S−r)/(2 r−S). ConS 3, r 2 Ω ottengo 2·1/1=2 Ω. In generale, per r, R finiti positivi occorre r<S<2 r. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-07",
+      "sourceSha256": "f3cbcce31803d24c0752c34ddeed7b759fd46656a99897388e9a60718e8e27d9",
+      "candidateSha256": "b8302c394b66be2cf8efa038394decbb9bc6edbae81d78610176ad65c22fbae8",
+      "reviewedSignature": "5536c7be9d68a9ce5197d261e59434f3f6338112b164a4e42981089587d30401",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8/9",
+      "dimension": {},
+      "manualArithmetic": "A=3 Ω. B con r 2, R 1 Ω:2+2/3=8/3 Ω. Rapporto(8/3)/3=8/9. Entrambi i resistori r restano 2 Ω. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "9/8 è il reciproco; 1/2 segue soltanto R; 2/3 copia il valore numerico del parallelo finale in Ω; 1 ignora la variazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=3 Ω. B con r 2, R 1 Ω:2+2/3=8/3 Ω. Rapporto(8/3)/3=8/9. Entrambi i resistori r restano 2 Ω. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-08",
+      "sourceSha256": "3bd475921ee07e16d7e8bc06cefd5f3eb8b1d192f517444232a3ddcc3c55723c",
+      "candidateSha256": "09c4f17551b03b7667ad2f27efb59c9ce978f420c163151427123c214e602fca",
+      "reviewedSignature": "69fb5bf7dceff79a4408ba7107e084e890cf18001131bb432e3a9384c1d03259",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Corretto 3 Ω, proposta 6 Ω: scarto+3 Ω. Sei sarebbe la serie di tutti e tre, una topologia diversa. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "−3 Ω inverte lo scarto; 6 Ω copia la proposta; zero la accetta; 2 è un rapporto adimensionale e non lo scarto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto 3 Ω, proposta 6 Ω: scarto+3 Ω. Sei sarebbe la serie di tutti e tre, una topologia diversa. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-09",
+      "sourceSha256": "b094f1f26aee3fde46a17fe416776c4cc26a71fa12ba7eca23838036eadbf489",
+      "candidateSha256": "3fc09086bc4b12dc40e6755de174d5a5e8738bd48e8a06171277e751b3f5dce0",
+      "reviewedSignature": "0feb9db842ccae47798dc585def098959e538707437b545bd9040300e1dd8c80",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "r = (T − 2R + √(T² + 4R²)) / 2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "S(r+R)=r²+2 rR ⇒r²+(2 R−S)r−SR=0. Discriminante(2 R−S)²+4 SR=S²+4 R². Radice positiva r=[S−2 R+√(S²+4 R²)]/2; l’altra è negativa perché il prodotto delle radici è−SR<0. Per S, R>0 esiste una sola r>0; le unità sotto radice sono Ω². Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "Il segno meno davanti alla radice seleziona una resistenza negativa; T−R impone una falsa serie; TR/(T+R) impone un parallelo inesistente; +2R cambia il coefficiente della quadratica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. S(r+R)=r²+2 rR ⇒r²+(2 R−S)r−SR=0. Discriminante(2 R−S)²+4 SR=S²+4 R². Radice positiva r=[S−2 R+√(S²+4 R²)]/2; l’altra è negativa perché il prodotto delle radici è−SR<0. Per S, R>0 esiste una sola r>0; le unità sotto radice sono Ω². Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-10",
+      "sourceSha256": "e48ca988230b5b6cca2c8dce65132692d0ffea72f61ce4780ff05ad870a1bffa",
+      "candidateSha256": "ebdebc171e06068647e56ab8df7c52877316c0f403b64c90f1794df1ba0c0333",
+      "reviewedSignature": "605d5d0711d0ab06a17cbf546d1cfe6733dfdbe218661a9d1435eedc0cde6420",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (κ₁ r + 2κ₂ R) (r + R) / [(κ₁ r + κ₂ R) (r + 2R)]",
+      "dimension": {},
+      "manualArithmetic": "Con r_B=κ₁r, R_B=κ₂R, S_B=κ₁r+(κ₁κ₂rR)/(κ₁r+κ₂R). Rapporto S_B/S_A ottenuto dividendo per r+rR/(r+R), equivalente a κ₁(κ₁r+2κ₂R)(r+R)/[(κ₁r+κ₂R)(r+2 R)]. Nessun denominatore nullo con dati positivi. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "Prodotto e quoziente dei soli fattori omettono i pesi e le due occorrenze di r; il rapporto delle somme descrive un’altra rete; 1/κ₁ inverte anche una scalatura uniforme.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con r_B=κ₁r, R_B=κ₂R, S_B=κ₁r+(κ₁κ₂rR)/(κ₁r+κ₂R). Rapporto S_B/S_A ottenuto dividendo per r+rR/(r+R), equivalente a κ₁(κ₁r+2κ₂R)(r+R)/[(κ₁r+κ₂R)(r+2 R)]. Nessun denominatore nullo con dati positivi. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-11",
+      "sourceSha256": "097725a5cd6151cd8e400d3a382a869cce3d973f79aa8118ad29ae11975ab122",
+      "candidateSha256": "ab4718ea3754c186fe10ac96b4c19a22bead435636f656709b9830179d310f6c",
+      "reviewedSignature": "0198b3c2823d1a3f899f60aa4745ec0768569ad7ad3c471067216d01a3f06baf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/3",
+      "dimension": {},
+      "manualArithmetic": "A:3 Ω. B r 3, R 6 Ω:3+18/9=5 Ω. Rapporto 5/3. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "3/5 è il reciproco; 3/2 segue soltanto r; 3 segue soltanto R; 2 confronta i blocchi in parallelo e omette il tratto esterno.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:3 Ω. B r 3, R 6 Ω:3+18/9=5 Ω. Rapporto 5/3. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-12",
+      "sourceSha256": "cf77d20cb5a171f8843af9ed895c93dc54f961be9b89d937e14368372e6f2b83",
+      "candidateSha256": "3c65dba8307022d5742d4938e1954b8f30f9839b9c47f3713b2ffafb8169f385",
+      "reviewedSignature": "1d307e825514325a879fefbea73e1665eefd8a792add868fe984084350f40401",
+      "assetChecksums": {
+        "series-parallel-resistor-network-progressive.svg": "00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Media delle uscite(3+5)/2=4 Ω. Ai dati medi r=5/2, R=4 Ω, S=5/2+20/13=105/26 Ω;105/26−4=1/26 Ω. Non si usa il modello sulle medie al posto della media richiesta. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "105/26 Ω applica il modello ai dati medi; 8 Ω omette la divisione per due; 1 Ω è metà della differenza; 3 Ω ripete la prima prova. La differenza fra i due tipi di media è 1/26 Ω.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite(3+5)/2=4 Ω. Ai dati medi r=5/2, R=4 Ω, S=5/2+20/13=105/26 Ω;105/26−4=1/26 Ω. Non si usa il modello sulle medie al posto della media richiesta. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "XML e rendering nativo indipendente completo letti. Il resistore r esterno precede il nodo (300,240); i rami r e R condividono quel nodo e (550,240). Nel secondo pannello i segmenti 80+40 e 120+80 rappresentano 2+1 e 3+2 Ω con scala 40 coordinate/Ω. Nel terzo le barre 180,300,240 rappresentano 3,5,4 Ω con scala 60 coordinate/Ω. La didascalia distingue esplicitamente le scale fra pannelli; la scala è comune soltanto entro ciascun pannello. Gli zeri a x=125 sono liberi dagli assi.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-13",
+      "sourceSha256": "5f2c1cd98c2cb07e83f4b53d37983f4e9acf699fb22d29838c79d94262bf446a",
+      "candidateSha256": "eae5c3adb6b1d32d9b79314a115a71875409e2926360e3327734d63b90666b9b",
+      "reviewedSignature": "b1d18455a2d2bdce304d5cc46088ae478c733c354942813ecec7e7fd0b1ec16a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio(5/3)·3=5 Ω, con r_B 3 Ω. Il parallelo deve valere 2 Ω:2=3 R/(3+R)⇒R=6 Ω. Rapporto con R_A 2 Ω:3. Si ha 3<S 5<6, quindi dominio inverso rispettato. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "1/3 è il reciproco; 5/3 copia il rapporto dei totali; 6 copia il valore numerico finale di R in Ω; 3/2 segue soltanto r. Il bersaglio rispetta r<T<2r.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio(5/3)·3=5 Ω, con r_B 3 Ω. Il parallelo deve valere 2 Ω:2=3 R/(3+R)⇒R=6 Ω. Rapporto con R_A 2 Ω:3. Si ha 3<S 5<6, quindi dominio inverso rispettato. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-14",
+      "sourceSha256": "8daa1e01e769fea42fd0cdfbf2168fb5296db9f0a483cf64be4da3a39af383ba",
+      "candidateSha256": "680da62c4d3f24e1ecaadecf492435b9f0539c959e95627cdd437cecb8caf10d",
+      "reviewedSignature": "8e60f53cb15ab7acf817bc6ddc3560e57c5ae7d200dc495602b9800cb9ed71a1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "S_A 3 Ω con lettura 9 dà a=3 Ω⁻¹. Lettura 15 indica S 5 Ω, R 6 Ω. Equazione r²+7 r−30=(r−3)(r+10)=0; solo r=3 Ω positiva. È il valore di entrambi i resistori uguali. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "−10 Ω è la radice negativa; 5 Ω copia il totale; r=2 Ω con R=6 Ω dà T=7/2 Ω e lettura 21/2, non 15.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. S_A 3 Ω con lettura 9 dà a=3 Ω⁻¹. Lettura 15 indica S 5 Ω, R 6 Ω. Equazione r²+7 r−30=(r−3)(r+10)=0; solo r=3 Ω positiva. È il valore di entrambi i resistori uguali. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-15",
+      "sourceSha256": "013f8ae92efc6463542f13f763738ae7d1ec1049e84fb68ec6bb3f4d9643bf96",
+      "candidateSha256": "28e155ef6c9850b1869832ca68776afd2113c7321b0eb4b11bcb8b99229d13a8",
+      "reviewedSignature": "efc78ee5cf857f930cd1632e0ec0f839d44ba173655f446178ef202a2473918c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "R_A 3 eR_B 5 Ω con letture 7,11 danno a=2 Ω⁻¹, b=1. Lettura 13 indica S 6 Ω, R 4 Ω. Equazione r²+2 r−24=(r−4)(r+6)=0, quindi r=4 Ω; radice−6 non fisica. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "6 Ω dà T=42/5 Ω; 2 Ω dà 10/3 Ω; 3 Ω dà 33/7 Ω; −6 Ω è l’altra radice, esclusa dalla passività.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R_A 3 eR_B 5 Ω con letture 7,11 danno a=2 Ω⁻¹, b=1. Lettura 13 indica S 6 Ω, R 4 Ω. Equazione r²+2 r−24=(r−4)(r+6)=0, quindi r=4 Ω; radice−6 non fisica. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-16",
+      "sourceSha256": "35f6e3bb6b139edb112943baf5dc57a1d98d8e296b874249ae164cf5a038d7df",
+      "candidateSha256": "567396101ea3e8bfb23b18db6c7e32cfcbfe3fb09226bfa1dc40c10913eaee9c",
+      "reviewedSignature": "98987bd98d480f1313995a74e83a70dc66f237233555314d1c0d9db02f5baf2c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Vincolo r=R=x>0. Il parallelo è x/2 e il totale 3 x/2. Misura 3 Ω impone x=2 Ω: seconda resistenza R 2 Ω e i due r anch’essi 2 Ω. Unica soluzione positiva. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "physicalAssumptions": "Resistori ohmici passivi positivi finiti e temperatura fissata; un elemento r esterno in serie con blocco r||R. Cambiare r modifica entrambe le occorrenze, non la topologia. T è resistenza totale candidata, corrispondente alla S/Rtot della primaria; R è soltanto il parametro del ramo. Inversa per R richiede r<T<2 r, inversa per r ha unica radice positiva per T, R>0.",
+      "distractors": "1 Ω copia il solo parallelo della prova corretta; 3 Ω copia il totale; −2 Ω non è passivo. La misura di T fissa la scala dopo il vincolo r=R.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo r=R=x>0. Il parallelo è x/2 e il totale 3 x/2. Misura 3 Ω impone x=2 Ω: seconda resistenza R 2 Ω e i due r anch’essi 2 Ω. Unica soluzione positiva. Nella candidata la stessa resistenza totale della primaria è indicata con T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "1db2e215b1b5c8faccf81f6f7890038e00f260a79dfcbd67854c83cd5e87e144",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "8c30df9ded9344adddd257b241fbd103d3532fe1",
+  "packageSha256": "13109bdd5206ed33036194dbb4f5f05382e780581958924c009528be0528f626",
+  "bindingsSha256": "a64b8a65f671b4969ed2d66fc3e165c8cae227b6ee6a37748bf75cf3b67d1c75",
+  "sourceFirstPrimarySha256": "e8b27ab57d7cae8ac419227900fbb28282555d33ba3c3265e0e55199e19378bd",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-02.json",
+    "reference": "Tutti gli 80 originali U6-02 B205–209 sono stati letti e derivati da prompt e dati prima di candidati, alternative o chiavi. La primaria e8b27ab5 resta immutata. Successivamente ogni campo di ciascun record finale, tutte le alternative e i cinque SVG XML/native completi sono stati letti separatamente. Le correzioni B sono state rilette prima del congelamento; nessun modulo autore importato. Catalogo reale C4-L05/L06 riletto. UI del prodotto e approvazione umana NOT_RUN. Nessun push o upload durante il vincolo operativo ROOT."
+  }
+}

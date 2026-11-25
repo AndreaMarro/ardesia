@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1400" role="img" aria-labelledby="title desc">
+<title id="title">Due elementi in serie e un bypass distinto</title><desc id="desc">Il primo circuito ha2 e3 ohm in serie, totale5. Nel caso autonomo del secondo pannello un filo ideale cortocircuita soltanto il resistore da4 ohm, lasciando2 ohm fra i morsetti. Due totali5 e8 ohm hanno media13/2.</desc>
+<rect width="640" height="1400" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Un solo percorso della corrente</text>
+<text x="32" y="82" font-size="18">Il nodo intermedio non ha derivazioni.</text>
+<g fill="none" stroke="#14243a" stroke-width="3"><path d="M100 180H170M270 180H370M470 180H540"/><rect x="170" y="155" width="100" height="50"/><rect x="370" y="155" width="100" height="50"/></g>
+<circle cx="100" cy="180" r="5" fill="#165a87"/><circle cx="540" cy="180" r="5" fill="#165a87"/>
+<text x="80" y="225">A</text><text x="530" y="225">B</text><text x="193" y="140">2 Ω</text><text x="393" y="140">3 Ω</text>
+<text x="32" y="292">Stessa I ; V = I·2 Ω + I·3 Ω.</text>
+<text x="32" y="338">R_eq = 2 Ω + 3 Ω = 5 Ω.</text>
+<path d="M32 380H608" stroke="#9babbc"/>
+<text x="32" y="425" font-size="25" font-weight="bold">2 · Un filo modifica il collegamento</text>
+<text x="32" y="470" font-size="18">Caso distinto: solo il 4 Ω viene bypassato.</text>
+<g fill="none" stroke="#14243a" stroke-width="3"><path d="M100 620H170M270 620H370M470 620H540"/><rect x="170" y="595" width="100" height="50"/><rect x="370" y="595" width="100" height="50"/></g>
+<path d="M340 620V530H500V620" fill="none" stroke="#28664d" stroke-width="4"/>
+<circle cx="340" cy="620" r="5" fill="#28664d"/><circle cx="500" cy="620" r="5" fill="#28664d"/>
+<circle cx="100" cy="620" r="5" fill="#165a87"/><circle cx="540" cy="620" r="5" fill="#165a87"/>
+<text x="182" y="585">2 Ω</text><text x="390" y="680">4 Ω</text><text x="352" y="510">Filo ideale</text>
+<text x="32" y="738">V sul 4 Ω = 0 ; resta il 2 Ω.</text>
+<text x="32" y="782" font-size="18">I morsetti esterni non sono uniti direttamente.</text>
+<path d="M32 824H608" stroke="#9babbc"/>
+<text x="32" y="869" font-size="25" font-weight="bold">3 · Media delle resistenze totali</text>
+<text x="32" y="910" font-size="18">A: (2 + 3) Ω ; B: (3 + 5) Ω ; prove distinte.</text>
+<path d="M150 945V1225" stroke="#14243a" stroke-width="2"/>
+<rect x="150" y="970" width="200" height="34" fill="#165a87"/>
+<rect x="150" y="1060" width="320" height="34" fill="#b45328"/>
+<rect x="150" y="1150" width="260" height="34" fill="#28664d"/>
+<text x="50" y="995">A</text><text x="370" y="995">5 Ω</text><text x="50" y="1085">B</text><text x="490" y="1085">8 Ω</text>
+<text x="32" y="1175">Media</text><text x="430" y="1175">13/2 Ω</text><text x="125" y="1219">0</text>
+<text x="32" y="1280" font-size="18">Origine e scala delle barre sono comuni.</text>
+<text x="32" y="1320" font-size="18">Medie degli addendi: 5/2 Ω + 4 Ω = 13/2 Ω.</text>
+</g></svg>

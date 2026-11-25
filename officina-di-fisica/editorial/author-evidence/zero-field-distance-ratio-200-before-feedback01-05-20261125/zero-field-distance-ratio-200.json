@@ -1,0 +1,1156 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-zero-field-distance-ratio-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20001,
+      "title": "Uguali campi, distanze diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 1,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Con Q₁=1 nC e Q₂=4 nC, quanto vale r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/4",
+          "2",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Tra due sorgenti positive il campo della prima va verso la seconda e quello della seconda verso la prima. Per cancellarsi devono avere uguale modulo. Cancelliamo k: Q₁/Q₂=d₁²/d₂²=r². Quindi r²=1/4 e la radice positiva è 1/2. Il punto è più vicino alla carica minore, perché a distanza minore il suo campo cresce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561",
+          "text": "Le cariche sono ferme e distano 3 m nello schema. In A, Q₁=1 nC e Q₂=4 nC: P dista 1 m dalla prima e 2 m dalla seconda. I due contributi di campo in P hanno uguale modulo e versi opposti. Le lunghezze del disegno spaziale e delle frecce di campo sono scale diverse. Dopo lo scambio delle cariche P si trova a 2 m dalla prima e 1 m dalla seconda. Le barre finali mostrano r_A=1/2, r_B=2 e media 5/4."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q_1}{d_1^2}=\\frac{Q_2}{d_2^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il rapporto dei quadrati, non delle distanze. Due e quattro scambiano l’ordine d₁/d₂; uno collocherebbe il punto al centro, dove la carica quattro volte maggiore produrrebbe un campo quattro volte maggiore."
+        }
+      ],
+      "hints": [
+        "Uguaglia i moduli dei campi, poi estrai la radice del rapporto delle cariche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il rapporto dei quadrati, non delle distanze. Due e quattro scambiano l’ordine d₁/d₂; uno collocherebbe il punto al centro, dove la carica quattro volte maggiore produrrebbe un campo quattro volte maggiore.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20002,
+      "title": "Un rapporto senza unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 1,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Quale unità è dimensionalmente adatta a r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "m",
+          "m²",
+          "N/C",
+          "C"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le distanze sono lunghezze e vanno espresse nella stessa unità prima del rapporto. Dividendo una lunghezza per una lunghezza la dimensione si cancella. Il simbolo 1 indica una grandezza adimensionale; non significa che il suo valore debba essere uno."
+        },
+        {
+          "type": "formula",
+          "text": "[r]=\\frac{[d_1]}{[d_2]}"
+        },
+        {
+          "type": "formula",
+          "text": " [r]=\\frac{\\mathrm m}{\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " [r]=1"
+        },
+        {
+          "type": "text",
+          "text": "Metri e metri quadrati esprimono lunghezza e area. N/C è un campo, C una carica. Le cariche servono a determinare il valore di r, ma non ne diventano l’unità."
+        }
+      ],
+      "hints": [
+        "Chiediti quali dimensioni rimangono dopo aver diviso le due distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Metri e metri quadrati esprimono lunghezza e area. N/C è un campo, C una carica. Le cariche servono a determinare il valore di r, ma non ne diventano l’unità.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20003,
+      "title": "La radice viene dai due quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 1,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Quale relazione dà r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = √(Q₁/Q₂)",
+          "r = Q₁/Q₂",
+          "r = √(Q₂/Q₁)",
+          "r = Q₂/Q₁",
+          "r = Q₁ Q₂"
+        ],
+        "value": "r = √(Q₁/Q₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo l’uguaglianza dei campi per d₁²d₂²: Q₁d₂²=Q₂d₁². Dividendo per Q₂d₂², positivo, troviamo r²=Q₁/Q₂. Si sceglie la radice positiva perché d₁ e d₂ sono distanze. La separazione L determina le singole distanze, ma si cancella dal loro rapporto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561",
+          "text": "I campi opposti si cancellano in P quando Q₁/d₁²=Q₂/d₂². Le distanze sono positive e riferite alla stessa separazione. I vettori elettrici non sono segmenti che misurano le distanze. Lo scambio dei valori delle cariche sposta il punto nullo in posizione speculare, mentre il rapporto d₁/d₂ passa da 1/2 a 2."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1d_2^2=Q_2d_1^2"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=\\frac{Q_1}{Q_2}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\sqrt{\\frac{Q_1}{Q_2}}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto senza radice confonde r con r². Invertire le cariche dà d₂/d₁. Il prodotto Q₁Q₂ è dimensionato e non può esprimere un rapporto di distanze."
+        }
+      ],
+      "hints": [
+        "Prima ricava r²; la scelta del ramo fisico viene dopo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il rapporto senza radice confonde r con r². Invertire le cariche dà d₂/d₁. Il prodotto Q₁Q₂ è dimensionato e non può esprimere un rapporto di distanze.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20004,
+      "title": "Nove volte la prima carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 1,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Q₂ resta 4 nC. Q₁ passa da 1 a 9 nC. Come cambia r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a 3/2",
+          "Da 1/2 a 9/2",
+          "Da 1/2 a 1/6",
+          "Resta 1/2",
+          "Da 1/2 a 3/4"
+        ],
+        "value": "Da 1/2 a 3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto delle cariche cambia da 1/4 a 9/4. Le radici positive sono 1/2 e 3/2: il rapporto delle distanze triplica. P si sposta verso Q₂, ora la carica minore. Non si moltiplica la distanza per nove solo perché Q₁ cresce di nove."
+        },
+        {
+          "type": "formula",
+          "text": "r_A^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " r_B^2=\\frac94"
+        },
+        {
+          "type": "formula",
+          "text": " r_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "9/2 tratta r come proporzionale direttamente a Q₁. 1/6 inverte l’effetto del cambiamento. Conservare 1/2 ignora la nuova sorgente; 3/4 non è la radice di 9/4."
+        }
+      ],
+      "hints": [
+        "Il fattore nove agisce su r²: quale fattore positivo agisce su r?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "9/2 tratta r come proporzionale direttamente a Q₁. 1/6 inverte l’effetto del cambiamento. Conservare 1/2 ignora la nuova sorgente; 3/4 non è la radice di 9/4.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20005,
+      "title": "La prima carica dal rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Si misura r=1/2 e si conosce Q₂=4 nC. Quanto vale Q₁ in nC?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione r²=Q₁/Q₂ si ricava Q₁=Q₂r². Il quadrato di 1/2 è 1/4; moltiplicato per 4 nC restituisce 1 nC. Reinserendo il dato, il rapporto dei campi può annullarsi alle distanze nel rapporto uno a due."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=Q_2r^2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=4\\cdot\\frac14\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=1\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "Due nC usa r invece di r². Sedici nC divide per r² e scambia il ruolo delle sorgenti. Un quarto copia il numero r² dimenticando la seconda carica; zero esce dal dominio positivo."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il rapporto prima di moltiplicare per Q₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due nC usa r invece di r². Sedici nC divide per r² e scambia il ruolo delle sorgenti. Un quarto copia il numero r² dimenticando la seconda carica; zero esce dal dominio positivo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20006,
+      "title": "La seconda carica al denominatore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Si misura r=1/2 e si conosce Q₁=1 nC. Quanto vale Q₂ in nC?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo r²=Q₁/Q₂ per Q₂ e dividiamo per r²>0. Segue Q₂=Q₁/r². Dividere un nC per un quarto equivale a moltiplicarlo per quattro. La carica più lontana deve essere maggiore per dare lo stesso campo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2r^2=Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=\\frac{Q_1}{r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=4\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto nC moltiplica invece di dividere per r². Due nC usa una sola potenza del rapporto. Un nC porrebbe cariche uguali e richiederebbe r=1; una carica negativa non appartiene a questo modello."
+        }
+      ],
+      "hints": [
+        "Isola la quantità che sta nel denominatore senza invertire il rapporto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto nC moltiplica invece di dividere per r². Due nC usa una sola potenza del rapporto. Un nC porrebbe cariche uguali e richiederebbe r=1; una carica negativa non appartiene a questo modello.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20007,
+      "title": "Cariche uguali e punto medio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. A ha Q₁=1 nC, Q₂=4 nC. B mantiene Q₁ e usa Q₂=1 nC. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A il rapporto è 1/2. In B le cariche sono uguali e il punto di campo nullo è il punto medio: r_B=1. Dividendo uno per un mezzo si ottiene due. Il rapporto B/A confronta due rapporti, ed è ancora adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{r_B}{r_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte B/A. Quattro è il rapporto dei quadrati; un quarto inverte anche quello. Uno presuppone che il punto non cambi quando cambia una delle sorgenti."
+        }
+      ],
+      "hints": [
+        "Trova prima il rapporto delle distanze in ciascuna configurazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte B/A. Quattro è il rapporto dei quadrati; un quarto inverte anche quello. Uno presuppone che il punto non cambi quando cambia una delle sorgenti.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20008,
+      "title": "Scarto del rapporto proposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Con Q₁=1 nC e Q₂=4 nC si propone r=1. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1",
+          "0",
+          "2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 1/2. La proposta lo supera di 1−1/2=1/2. Anche lo scarto è puro, perché si sottraggono due rapporti omogenei. Il rapporto proposta/corretto sarebbe invece due."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " e=1-\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "−1/2 cambia l’ordine della sottrazione. Uno copia la proposta, zero la accetta; due esegue una divisione invece della differenza richiesta."
+        }
+      ],
+      "hints": [
+        "Ricalcola r e conserva l’ordine proposta meno corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1/2 cambia l’ordine della sottrazione. Uno copia la proposta, zero la accetta; due esegue una divisione invece della differenza richiesta.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20009,
+      "title": "Invertire per Q₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Sono noti r e Q₂. Quale formula ricava Q₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₁ = Q₂ r²",
+          "Q₁ = Q₂ r",
+          "Q₁ = Q₂ / r²",
+          "Q₁ = r² / Q₂",
+          "Q₁ = √(Q₂ r)"
+        ],
+        "value": "Q₁ = Q₂ r²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Elevando al quadrato la relazione positiva si ottiene r²=Q₁/Q₂. Moltiplicare per Q₂ lascia Q₁ da sola. Il fattore r² non ha unità, quindi Q₂r² conserva la dimensione di carica. La ricostruzione vale per ogni r>0 e Q₂>0."
+        },
+        {
+          "type": "formula",
+          "text": "r^2=\\frac{Q_1}{Q_2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=Q_2r^2"
+        },
+        {
+          "type": "formula",
+          "text": " [Q_1]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Usare r perde un fattore del rapporto. Dividere per r² darebbe la carica corrispondente al rapporto reciproco. r²/Q₂ ha unità C⁻¹ e √(Q₂r) ha dimensione C alla potenza un mezzo, non carica."
+        }
+      ],
+      "hints": [
+        "Togli prima la radice della relazione diretta, poi isola la carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare r perde un fattore del rapporto. Dividere per r² darebbe la carica corrispondente al rapporto reciproco. r²/Q₂ ha unità C⁻¹ e √(Q₂r) ha dimensione C alla potenza un mezzo, non carica.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20010,
+      "title": "Due variazioni sotto la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. B ha Q₁,B=κ₁Q₁,A e Q₂,B=κ₂Q₂,A, con fattori positivi. Quale espressione dà r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁/κ₂)",
+          "κ₁/κ₂",
+          "√(κ₂/κ₁)",
+          "κ₁ κ₂",
+          "κ₁/√κ₂"
+        ],
+        "value": "√(κ₁/κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel rapporto dei quadrati, la prima carica porta κ₁ al numeratore e la seconda κ₂ al denominatore. Prendendo le radici positive rimane √(κ₁/κ₂). Se entrambe le cariche crescono dello stesso fattore, la posizione relativa del punto nullo resta identica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{r_B^2}{r_A^2}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{r_B}{r_A}=\\sqrt{\\frac{\\kappa_1}{\\kappa_2}}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ manca della radice; √(κ₂/κ₁) inverte il confronto. Il prodotto rende diretta anche la dipendenza da Q₂, mentre κ₁/√κ₂ prende la radice soltanto di un fattore."
+        }
+      ],
+      "hints": [
+        "Scala prima il rapporto delle cariche, poi il rapporto delle distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ manca della radice; √(κ₂/κ₁) inverte il confronto. Il prodotto rende diretta anche la dipendenza da Q₂, mentre κ₁/√κ₂ prende la radice soltanto di un fattore.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20011,
+      "title": "Scambiare le due intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. A usa Q₁=1 nC, Q₂=4 nC. B usa Q₁=4 nC, Q₂=1 nC. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha r_A=1/2. In B il rapporto delle cariche è quattro e r_B=2. Quindi r_B/r_A=2/(1/2)=4. A separazione fissata i punti nulli sono speculari rispetto al centro, ma il rapporto d₁/d₂ non cambia soltanto di segno: resta positivo."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{r_B}{r_A}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due copia r_B, un quarto inverte B/A e sedici confronta r_B² con r_A². Un segno negativo confonderebbe le distanze con componenti orientate."
+        }
+      ],
+      "hints": [
+        "Scrivi i due rapporti positivi prima della divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due copia r_B, un quarto inverte B/A e sedici confronta r_B² con r_A². Un segno negativo confonderebbe le distanze con componenti orientate.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20012,
+      "title": "Media di due posizioni relative",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 2,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. A usa Q₁=1 nC, Q₂=4 nC; B usa Q₁=4 nC, Q₂=1 nC. Qual è la media aritmetica dei due r con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "1",
+          "5/2",
+          "3/4",
+          "2"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rapporti sono 1/2 e 2. La somma è 5/2 e la metà vale 5/4. Alle cariche medie Q₁=Q₂=5/2 nC il modello darebbe r=1: si tratta di un’altra configurazione, non della media richiesta. Non si stanno unendo fisicamente le sorgenti delle due prove."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561",
+          "text": "Le barre dei rapporti hanno origine e scala comuni: 1/2, 2 e media 5/4. Non sono barre delle singole distanze e non si sommano campi di due configurazioni diverse. Alle cariche medie uguali il rapporto sarebbe 1, distinto dalla media dei rapporti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline r=\\frac{1/2+2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline r=\\frac54"
+        },
+        {
+          "type": "formula",
+          "text": " r_{\\rm dati\\ medi}=1"
+        },
+        {
+          "type": "text",
+          "text": "Uno usa le cariche medie. 5/2 non divide la somma per due; 3/4 è metà della differenza e due copia B. La media di r non determina da sola una nuova coppia unica di cariche."
+        }
+      ],
+      "hints": [
+        "Risolvi prima ciascun campo nullo e media soltanto i rapporti ottenuti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno usa le cariche medie. 5/2 non divide la somma per due; 3/4 è metà della differenza e due copia B. La media di r non determina da sola una nuova coppia unica di cariche.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20013,
+      "title": "Il bersaglio impone Q₂",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 3,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. A ha Q₁=1 nC e Q₂=4 nC. B usa Q₁=4 nC e deve avere r_B=4r_A. Quanto vale Q₂,B/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è r_B=4·1/2=2. L’inversa per la seconda carica dà Q₂,B=Q₁,B/r_B²=4/4=1 nC. Rispetto ai 4 nC iniziali il rapporto è 1/4. Il quadrato del bersaglio entra prima della divisione finale."
+        },
+        {
+          "type": "formula",
+          "text": "r_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=1\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{2,B}}{Q_{2,A}}=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il reciproco; un mezzo perde il quadrato nel passaggio inverso. Due copia il rapporto r_B, uno ignora il cambiamento di posizione richiesto."
+        }
+      ],
+      "hints": [
+        "Trova il nuovo r, poi Q₂,B e soltanto alla fine il rapporto fra cariche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il reciproco; un mezzo perde il quadrato nel passaggio inverso. Due copia il rapporto r_B, uno ignora il cambiamento di posizione richiesto.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20014,
+      "title": "Tarare il rapporto prima della carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 3,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Il display continuo adimensionale è D=ar, a>0, senza offset. A con Q₁=1 nC, Q₂=4 nC dà D=3/2. B ha Q₂=1 nC e D=6. Quanto vale Q₁,B in nC?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha r_A=1/2, quindi a=(3/2)/(1/2)=3. In B r_B=6/3=2. L’inversa Q₁=Q₂r² dà Q₁,B=1·4=4 nC. Il display non misura direttamente una carica."
+        },
+        {
+          "type": "formula",
+          "text": "a=3"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=Q_{2,B}r_B^2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=4\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei nC userebbe D=6 al posto di r=2. Due nC dimentica il quadrato; uno nC sarebbe il dato Q₂,B, non la carica da ricostruire."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di elevare il rapporto al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei nC userebbe D=6 al posto di r=2. Due nC dimentica il quadrato; uno nC sarebbe il dato Q₂,B, non la carica da ricostruire.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20015,
+      "title": "Un offset e un rapporto frazionario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 3,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. D=ar+b è continuo e adimensionale, a>0. A: Q₁=1 nC, Q₂=4 nC, D=2. B: Q₁=4 nC, Q₂=1 nC, D=5. C: Q₂=9 nC, D=7/3. Quanto vale Q₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 nC",
+          "49/4 nC",
+          "6 nC",
+          "9 nC",
+          "1 nC"
+        ],
+        "value": "4 nC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno r_A=1/2 e r_B=2. Il guadagno è (5−2)/(2−1/2)=3/(3/2)=2 e l’offset è b=2−2·1/2=1. Per C si ottiene r_C=(7/3−1)/2=2/3. Quindi Q₁,C=9·(2/3)²=4 nC, tutto con frazioni esatte."
+        },
+        {
+          "type": "formula",
+          "text": "a=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}=9\\cdot\\frac49\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}=4\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "49/4 nC omette b: usa r=7/6 e predice D=10/3, non 7/3. Sei nC usa r invece di r²; nove nC copia Q₂ e darebbe D=3; un nC darebbe r=1/3 e D=5/3."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di dividere per a; poi conserva entrambe le potenze nel quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "49/4 nC omette b: usa r=7/6 e predice D=10/3, non 7/3. Sei nC usa r invece di r²; nove nC copia Q₂ e darebbe D=3; un nC darebbe r=1/3 e D=5/3.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-zero-field-distance-ratio-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Punto di campo elettrico nullo",
+      "order": 20016,
+      "title": "Il rapporto non determina la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "zero-field-distance-ratio",
+      "difficulty": 3,
+      "prompt": "Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Fra preparazioni si impone Q₁=Q₂/4. Si misura inoltre r=1/2. Quante coppie positive (Q₁,Q₂) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: 1 nC e 4 nC",
+          "Nessuna coppia",
+          "Solo 2 nC e 8 nC",
+          "Tutte le Q₁, con Q₂ fisso a 4 nC"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire il vincolo nella legge dà r=√(1/4)=1/2 per qualunque scala positiva delle cariche. La misura ripete una conseguenza del rapporto imposto: non fornisce una seconda informazione indipendente. Per esempio (1 nC,4 nC) e (3/2 nC,6 nC) soddisfano gli stessi dati."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=\\frac{Q_2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Le singole coppie elencate sono esempi, non l’insieme completo. Con Q₂ fissata non sarebbe libera anche Q₁, perché il rapporto va conservato. Tutte le cariche restano positive; non si invoca una carica nulla per cancellare il campo."
+        }
+      ],
+      "hints": [
+        "Controlla se la nuova misura aggiunge un vincolo indipendente o ripete il primo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le singole coppie elencate sono esempi, non l’insieme completo. Con Q₂ fissata non sarebbe libera anche Q₁, perché il rapporto va conservato. Tutte le cariche restano positive; non si invoca una carica nulla per cancellare il campo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione vettoriale fra cariche positive",
+        "Distanze positive e radici del rapporto",
+        "Inverse, medie, display e scala delle cariche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561",
+      "name": "zero-field-distance-ratio-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5DYW1waSBvcHBvc3RpIGUgcmFwcG9ydG8gZGVsbGUgZGlzdGFuemU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgY2FyaWNoZSBwb3NpdGl2ZSBzZXBhcmF0ZSBkYSB0cmUgbWV0cmk6IGNvbiBjYXJpY2hlIHVubyBlIHF1YXR0cm8gbmFub2NvdWxvbWIgaWwgcHVudG8gZGkgY2FtcG8gbnVsbG8gw6ggYSB1bm8gZSBkdWUgbWV0cmkgZGFsbGUgc29yZ2VudGkuIFNjYW1iaWFuZG8gbGUgY2FyaWNoZSBsZSBkaXN0YW56ZSBzaSBzY2FtYmlhbm8uIExlIGJhcnJlIGZpbmFsaSBjb25mcm9udGFubyBpIHJhcHBvcnRpIHVuIG1lenpvLCBkdWUgZSBtZWRpYSBjaW5xdWUgcXVhcnRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iZTEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0iZTIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0NTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTQyNDNhIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBDYW5jZWxsYXJlIGkgY2FtcGkgaW4gUDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgzIiBmb250LXNpemU9IjE4Ij5BOiBR4oKBID0gMSBuQyA7IFHigoIgPSA0IG5DIDsgc2VwYXJhemlvbmUgMyBtLjwvdGV4dD4KPHBhdGggZD0iTTE0MCAyMjBINTAwIiBzdHJva2U9IiM4MjkyYTIiIHN0cm9rZS13aWR0aD0iMiIvPgo8Y2lyY2xlIGN4PSIxNDAiIGN5PSIyMjAiIHI9IjIzIiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIyMjAiIHI9IjIzIiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiLz48dGV4dCB4PSIxMzIiIHk9IjIyOCI+KzwvdGV4dD48dGV4dCB4PSI0OTIiIHk9IjIyOCI+KzwvdGV4dD4KPHBhdGggZD0iTTI2MCAyMjBIMzUwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNlMSkiLz48cGF0aCBkPSJNMjYwIDIyMEgxNzAiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI2UyKSIvPgo8Y2lyY2xlIGN4PSIyNjAiIGN5PSIyMjAiIHI9IjUiIGZpbGw9IiMxNDI0M2EiLz48dGV4dCB4PSIyNTIiIHk9IjE4MyI+UDwvdGV4dD4KPHRleHQgeD0iMjkwIiB5PSIxODUiIGZpbGw9IiMxNjVhODciPkXigoEgPSA5IE4vQzwvdGV4dD48dGV4dCB4PSIxNjUiIHk9IjI2NSIgZmlsbD0iI2I0NTMyOCI+ReKCgiA9IDkgTi9DPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDI5M1YzMDlNMjYwIDI5M1YzMDlNNTAwIDI5M1YzMDlNMTQwIDMwMUg1MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE2NCIgeT0iMzQzIj5k4oKBID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMzQzIj5k4oKCID0gMiBtPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzg5IiBmb250LXNpemU9IjE4Ij5EaXN0YW56ZSBzdWxsYSByZXR0YSA7IGZyZWNjZSBkaSBjYW1wbyBzdSBzY2FsYSBkaXZlcnNhLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQyNCIgZm9udC1zaXplPSIxOCI+SW4gUCBpIGR1ZSB2ZXR0b3JpIHNpIHNvbW1hbm8gYSB6ZXJvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQ1Nkg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNTAxIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBTY2FtYmlhcmUgbGUgc29yZ2VudGk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NDIiIGZvbnQtc2l6ZT0iMTgiPkI6IFHigoEgPSA0IG5DIDsgUeKCgiA9IDEgbkMgOyBzdGVzc2Egc2VwYXJhemlvbmUuPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDY1NUg1MDAiIHN0cm9rZT0iIzgyOTJhMiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjY1NSIgcj0iMjMiIGZpbGw9IiNmY2U2ZGMiIHN0cm9rZT0iI2I0NTMyOCIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjY1NSIgcj0iMjMiIGZpbGw9IiNmY2U2ZGMiIHN0cm9rZT0iI2I0NTMyOCIvPjx0ZXh0IHg9IjEzMiIgeT0iNjYzIj4rPC90ZXh0Pjx0ZXh0IHg9IjQ5MiIgeT0iNjYzIj4rPC90ZXh0Pgo8cGF0aCBkPSJNMzgwIDY1NUg0NzAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI2UxKSIvPjxwYXRoIGQ9Ik0zODAgNjU1SDI5MCIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjZTIpIi8+CjxjaXJjbGUgY3g9IjM4MCIgY3k9IjY1NSIgcj0iNSIgZmlsbD0iIzE0MjQzYSIvPjx0ZXh0IHg9IjM3MiIgeT0iNjEzIj5QPC90ZXh0Pgo8dGV4dCB4PSIxOTUiIHk9IjYwNyIgZmlsbD0iI2I0NTMyOCI+ReKCgiA9IDkgTi9DPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iNzA0IiBmaWxsPSIjMTY1YTg3Ij5F4oKBID0gOSBOL0M8L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgNzM5Vjc1NU0zODAgNzM5Vjc1NU01MDAgNzM5Vjc1NU0xNDAgNzQ3SDUwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjEyIiB5PSI3OTAiPmTigoEgPSAyIG08L3RleHQ+PHRleHQgeD0iMzk3IiB5PSI3OTAiPmTigoIgPSAxIG08L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MzkiIGZvbnQtc2l6ZT0iMTgiPnJfQSA9IDEvMiA7IHJfQiA9IDIgOyByX0IgLyByX0EgPSA0LjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg3NCIgZm9udC1zaXplPSIxOCI+SWwgcHVudG8gbnVsbG8gw6ggcGnDuSB2aWNpbm8gYWxsYSBjYXJpY2EgbWlub3JlLjwvdGV4dD4KPHBhdGggZD0iTTMyIDkwOEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iOTUzIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkZWkgcmFwcG9ydGk8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgOTgzVjEyNTAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iMTAxMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSIxMDkwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSIxMTcwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjU1IiB5PSIxMDM4Ij5BPC90ZXh0Pjx0ZXh0IHg9IjIzMCIgeT0iMTAzOCI+MS8yPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIxMTE4Ij5CPC90ZXh0Pjx0ZXh0IHg9IjQ3MCIgeT0iMTExOCI+MjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTE5OCI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIxMTk4Ij41LzQ8L3RleHQ+PHRleHQgeD0iMTA0IiB5PSIxMjQ0Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI5NCIgZm9udC1zaXplPSIxOCI+ciDDqCBwdXJvOiBsZSBiYXJyZSBjb25kaXZpZG9ubyBvcmlnaW5lIGUgc2NhbGEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMzMCIgZm9udC1zaXplPSIxOCI+QWxsZSBjYXJpY2hlIG1lZGllIHVndWFsaSBzaSBhdnJlYmJlIGludmVjZSByID0gMS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzY2IiBmb250LXNpemU9IjE4Ij5MYSBtZWRpYSBub24gw6ggdW5hIHNvbW1hIGRpIGNhbXBpIGZyYSBwcm92ZSBkaXZlcnNlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE0MDIiIGZvbnQtc2l6ZT0iMTgiPk9nbmkgY29uZmlndXJhemlvbmUgbWFudGllbmUgbGUgc29yZ2VudGkgZmVybWUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

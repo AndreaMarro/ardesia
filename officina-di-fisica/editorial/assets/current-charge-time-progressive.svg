@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1500" role="img" aria-labelledby="title desc">
+<title id="title">Carica trasferita, corrente media e campo del filo</title><desc id="desc">Sei millicoulomb in due millisecondi danno tre ampere. Un grafico di carica cumulativa non uniforme ha pendenze locali due e quattro ampere e secante media tre. Caso separato: un lungo filo con corrente uscente genera linee magnetiche circolari antiorarie.</desc>
+<defs><marker id="current" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#165a87"/></marker><marker id="magnetic" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#28664d"/></marker></defs>
+<rect width="640" height="1500" rx="12" fill="#f8fafc"/><g font-family="Arial,sans-serif" font-size="20" fill="#14243a">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Una sezione, un intervallo</text><text x="32" y="85" font-size="18">Trasferimento netto Q = 6 mC durante Δt = 2 ms.</text>
+<rect x="100" y="150" width="440" height="70" rx="15" fill="#e2e8f0" stroke="#8292a2"/><path d="M340 130V242" stroke="#b45328" stroke-width="4" stroke-dasharray="6 5"/><text x="356" y="141" fill="#b45328">sezione</text>
+<path d="M170 280H465" stroke="#165a87" stroke-width="5" marker-end="url(#current)"/><text x="180" y="324" fill="#165a87">Verso positivo del trasferimento</text>
+<text x="70" y="370">1 mC / 1 ms = 1 C/s = 1 A</text><text x="70" y="410">I_media = 6/2 A = 3 A</text>
+<path d="M32 445H608" stroke="#9babbc"/>
+<text x="32" y="490" font-size="25" font-weight="bold">2 · Media senza uniformità</text><text x="32" y="532" font-size="18">Esempio: carica cumulativa Q(t), in mC.</text>
+<path d="M130 850V572M130 850H565" fill="none" stroke="#14243a" stroke-width="2"/>
+<path d="M130 850L530 610" fill="none" stroke="#b45328" stroke-width="3" stroke-dasharray="7 5"/>
+<path d="M130 850L330 770L530 610" fill="none" stroke="#165a87" stroke-width="4"/>
+<circle cx="330" cy="770" r="5" fill="#165a87"/><circle cx="530" cy="610" r="5" fill="#165a87"/>
+<path d="M130 770H330V850M130 610H530V850" fill="none" stroke="#8292a2" stroke-dasharray="4 5"/>
+<text x="91" y="617">6</text><text x="91" y="777">2</text><text x="91" y="857">0</text><text x="118" y="885">0</text><text x="321" y="885">1</text><text x="521" y="885">2</text><text x="500" y="925">t in ms</text>
+<text x="32" y="965" font-size="18">Prima pendenza 2 A ; seconda pendenza 4 A.</text><text x="32" y="1000" font-size="18">Secante sull’intero intervallo: 3 A.</text>
+<path d="M32 1034H608" stroke="#9babbc"/>
+<text x="32" y="1079" font-size="25" font-weight="bold">3 · Caso magnetico separato</text>
+<circle cx="320" cy="1250" r="100" fill="none" stroke="#8292a2" stroke-width="2"/><circle cx="320" cy="1250" r="18" fill="#e2e8f0" stroke="#14243a" stroke-width="2"/><circle cx="320" cy="1250" r="5" fill="#14243a"/>
+<path d="M420 1250A100 100 0 0 0 320 1150" fill="none" stroke="#28664d" stroke-width="4" marker-end="url(#magnetic)"/><path d="M320 1150A100 100 0 0 0 220 1250" fill="none" stroke="#28664d" stroke-width="4" marker-end="url(#magnetic)"/><path d="M220 1250A100 100 0 0 0 320 1350" fill="none" stroke="#28664d" stroke-width="4" marker-end="url(#magnetic)"/><path d="M320 1350A100 100 0 0 0 420 1250" fill="none" stroke="#28664d" stroke-width="4" marker-end="url(#magnetic)"/>
+<text x="450" y="1245" fill="#28664d">B tangente</text><text x="32" y="1405" font-size="18">Punto centrale: corrente convenzionale uscente.</text><text x="32" y="1441" font-size="18">Mano destra: B antiorario, non radiale.</text>
+</g></svg>

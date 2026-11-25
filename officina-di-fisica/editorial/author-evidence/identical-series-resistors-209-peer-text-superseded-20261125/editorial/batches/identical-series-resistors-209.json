@@ -1,0 +1,1200 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-identical-series-resistors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20901,
+      "title": "Tre elementi, la stessa corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 1,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Con r=2 Ω e N=3, quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa corrente I attraversa ognuno dei tre resistori. Ogni caduta è Ir e la tensione totale è3Ir: R=3r=6 Ω. Il conteggio N è puro; moltiplicarlo per una resistenza conserva gli ohm."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d3442a6bb456aa9664c0db955f49acdb1e39be693cab6bb1812afcd7db30b21f",
+          "text": "Il primo circuito contiene esattamente tre resistori identici da2 Ω: nessuna derivazione, resistenza totale6 Ω. Il secondo contiene quattro elementi identici da3 Ω: totale12 Ω. I simboli circuitali hanno dimensioni schematiche, non proporzionali alla resistenza. Le barre finali confrontano6 e12 Ω, media9 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "V=NIr"
+        },
+        {
+          "type": "formula",
+          "text": " R=Nr"
+        },
+        {
+          "type": "formula",
+          "text": " R=3\\cdot2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R=6\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "2/3 Ω metterebbe i tre elementi in parallelo; cinque Ω sommerebbe impropriamente il numero puro3 ai2 Ω. Due Ω tiene un solo elemento e dodici Ω raddoppia ancora il totale."
+        }
+      ],
+      "hints": [
+        "Somma la medesima caduta di tensione N volte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 Ω metterebbe i tre elementi in parallelo; cinque Ω sommerebbe impropriamente il numero puro3 ai2 Ω. Due Ω tiene un solo elemento e dodici Ω raddoppia ancora il totale.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20902,
+      "title": "L’unità di una somma ripetuta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 1,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Quale unità misura R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "A",
+          "V",
+          "S",
+          "1"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza totale è la somma di N resistenze in ohm. Il numero N non porta un’unità, quindi R=Nr resta in ohm. Si può contare un elemento, ma non si attribuisce al conteggio l’unità ampere o volt."
+        },
+        {
+          "type": "formula",
+          "text": "[N]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=[N][r]"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "A corrente,V tensione e S conduttanza sono altre grandezze. Uno è l’unità del conteggioN, non della resistenza della catena."
+        }
+      ],
+      "hints": [
+        "Distingui il numero di addendi dall’unità di ogni addendo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "A corrente,V tensione e S conduttanza sono altre grandezze. Uno è l’unità del conteggioN, non della resistenza della catena.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20903,
+      "title": "La legge della catena senza derivazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 1,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Quale relazione fornisce R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = N r",
+          "R = r / N",
+          "R = N / r",
+          "R = r + N",
+          "R = N² r"
+        ],
+        "value": "R = N r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le cadute di tensione di N elementi identici, attraversati dalla stessa corrente, si sommano: V=NIr. Confrontando con V=IR si ottiene R=Nr. Non si richiede che N sia grande, ma che sia un conteggio intero positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d3442a6bb456aa9664c0db955f49acdb1e39be693cab6bb1812afcd7db30b21f",
+          "text": "I circuiti hanno tre e quattro simboli resistivi reali, non una linea continua con un conteggio frazionario. La stessa corrente attraversa tutti gli elementi della singola catena. Fra le due prove cambiano sia r sia il conteggioN."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\sum_{j"
+        },
+        {
+          "type": "formula",
+          "text": "\\sum_{j=1}^{N}Ir"
+        },
+        {
+          "type": "formula",
+          "text": " V=NIr"
+        },
+        {
+          "type": "formula",
+          "text": " R=Nr"
+        },
+        {
+          "type": "text",
+          "text": "r/N è il parallelo di N elementi uguali. N/r è una conduttanza; r+N somma grandezze non omogenee. N²r aggiunge un secondo fattoreN che non nasce dalla somma delle cadute."
+        }
+      ],
+      "hints": [
+        "Usa il fatto che ogni elemento porta la stessa corrente, non la stessa tensione dell’intera catena.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "r/N è il parallelo di N elementi uguali. N/r è una conduttanza; r+N somma grandezze non omogenee. N²r aggiunge un secondo fattoreN che non nasce dalla somma delle cadute.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20904,
+      "title": "Cambia il valore di ciascun elemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 1,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. A ha r=2 Ω,B ha r=5 Ω; entrambe contengono N=3 elementi. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 15 Ω",
+          "Da 6 a 5 Ω",
+          "Da 6 a 10 Ω",
+          "Resta 6 Ω",
+          "Da 6 a 75/2 Ω"
+        ],
+        "value": "Da 6 a 15 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di addendi resta tre. A vale3·2=6 Ω; B vale3·5=15 Ω. Il fattore5/2 di r moltiplica l’intera catena perché cambia ciascuno degli elementi identici."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=3\\cdot5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=15\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Cinque Ω è un solo elemento di B. Dieci Ω ne conterebbe due anziché tre. Sei ignora il cambio;75/2 Ω moltiplica6 Ω per(5/2)², introducendo un quadrato non presente."
+        }
+      ],
+      "hints": [
+        "Mantieni lo stesso numero intero di elementi e aggiorna il valore di ognuno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque Ω è un solo elemento di B. Dieci Ω ne conterebbe due anziché tre. Sei ignora il cambio;75/2 Ω moltiplica6 Ω per(5/2)², introducendo un quadrato non presente.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20905,
+      "title": "Il valore di un elemento dalla catena",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Si misura R=6 Ω e si contano N=3 elementi. Quanto vale r in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli elementi sono identici, quindi la resistenza totale è ripartita in tre addendi uguali. r=R/N=6/3=2 Ω. La divisione perN è lecita perché il conteggio non è zero."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac RN"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac63\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto Ω moltiplica perN invece di dividere; sei Ω attribuisce a ogni elemento il valore dell’intera catena. Un mezzo Ω è il reciproco del valore numerico ma non soddisfa la misura."
+        }
+      ],
+      "hints": [
+        "Dividi il totale per il conteggio noto, senza passare a un parallelo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto Ω moltiplica perN invece di dividere; sei Ω attribuisce a ogni elemento il valore dell’intera catena. Un mezzo Ω è il reciproco del valore numerico ma non soddisfa la misura.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20906,
+      "title": "Un’inversa deve restituire un intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Si misura R=6 Ω e ogni elemento vale r=2 Ω. Quanti elementi contiene la catena?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’equazione R=Nr si trova N=R/r=6/2=3. Il risultato è un intero positivo, come deve essere un numero di resistori. In generale, se R/r non fosse un intero positivo, non esisterebbe una catena esatta con quel valore assegnato di r."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac Rr"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{6\\,\\Omega}{2\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " N=3"
+        },
+        {
+          "type": "formula",
+          "text": " N\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Tre ohm darebbe un’unità al conteggio puro. Dodici moltiplica i valori; un terzo inverte il rapporto e non è un conteggio. Zero elementi non appartiene al dominio."
+        }
+      ],
+      "hints": [
+        "Calcola R/r e poi controlla la condizione di intero positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre ohm darebbe un’unità al conteggio puro. Dodici moltiplica i valori; un terzo inverte il rapporto e non è un conteggio. Zero elementi non appartiene al dominio.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20907,
+      "title": "Una catena ridotta a un solo elemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. A ha r=2 Ω,N_A=3. B conserva r e ha N_B=1. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1",
+          "1/9",
+          "2"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale6 Ω. B contiene un solo resistore da2 Ω e quindi vale2 Ω. Il rapporto è un terzo. N=1 è ammesso: non occorrono almeno due elementi per applicare la somma."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre è il reciproco; uno ignora la rimozione.1/9 usa N al quadrato; due copia il numero degli ohm finali senza dividerlo per il riferimento."
+        }
+      ],
+      "hints": [
+        "Conta gli elementi di ciascuna configurazione prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è il reciproco; uno ignora la rimozione.1/9 usa N al quadrato; due copia il numero degli ohm finali senza dividerlo per il riferimento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20908,
+      "title": "Una proposta con un fattore due in più",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Con r=2 Ω,N=3 si propone R=12 Ω. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 Ω",
+          "−6 Ω",
+          "12 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "6 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale corretto è6 Ω. La proposta lo supera di12−6=6 Ω. Non si sta chiedendo di raddoppiare il numero dei resistori, ma di confrontare la proposta con la catena assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "R=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due è il rapporto puro proposta/corretta, non lo scarto."
+        }
+      ],
+      "hints": [
+        "Determina prima il totale dei tre elementi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due è il rapporto puro proposta/corretta, non lo scarto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20909,
+      "title": "Isolare il valore comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Quale formula ricava r da R e N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = R / N",
+          "r = R N",
+          "r = N / R",
+          "r = R − N",
+          "r = R / N²"
+        ],
+        "value": "r = R / N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si divide R=Nr per il conteggioN>0. r=R/N ha unità ohm, perché il denominatore è puro. Il risultato è il valore di ciascun elemento, non la resistenza di una nuova rete parallela."
+        },
+        {
+          "type": "formula",
+          "text": "R=Nr"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac RN"
+        },
+        {
+          "type": "formula",
+          "text": " N\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare perN non isola r; N/R ha unitàΩ⁻¹. SottrarreN daR mescola un conteggio con una resistenza. N² divide una seconda volta senza una ragione circuitale."
+        }
+      ],
+      "hints": [
+        "Annulla il solo fattoreN della somma ripetuta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare perN non isola r; N/R ha unitàΩ⁻¹. SottrarreN daR mescola un conteggio con una resistenza. N² divide una seconda volta senza una ragione circuitale.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20910,
+      "title": "Fattori ammissibili per un conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. B usa r_B=κ₁r_A e N_B=κ₂N_A. I fattori sono positivi; N_A e κ₂N_A devono essere entrambi interi positivi. Quale legge dà R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo i due fattori si trova R_B=(κ₂N_A)(κ₁r_A), quindi R_B/R_A=κ₁κ₂. κ₂ non deve essere per forza intero: deve esserlo il prodottoκ₂N_A. Per esempio passare da3 a4 elementi usaκ₂=4/3 ed è fisicamente ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=\\kappa_2N_A\\kappa_1r_A"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_2N_A\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente rende inverso uno dei fattori; la somma non dàuno per prove identiche. Il quadrato diκ₂ fa crescere R come il quadrato del numero degli elementi, mentre la serie è lineare inN."
+        }
+      ],
+      "hints": [
+        "Mantieni il dominio intero del nuovo conteggio oltre ai fattori algebrici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quoziente rende inverso uno dei fattori; la somma non dàuno per prove identiche. Il quadrato diκ₂ fa crescere R come il quadrato del numero degli elementi, mentre la serie è lineare inN.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20911,
+      "title": "Quattro elementi di valore diverso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. A ha r=2 Ω,N=3. B ha r=3 Ω,N=4. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "4/3",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale6 Ω e B vale12 Ω. Il rapporto è due, prodotto del fattore3/2 inr e4/3 nel conteggio. Quattro è un conteggio, non il rapporto delle due resistenze totali."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco;3/2 segue solo r e4/3 segue solo N. Quattro copierebbe N_B senza includere il valore di ogni resistore e il riferimento."
+        }
+      ],
+      "hints": [
+        "Ricostruisci entrambi i prodottiNr.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco;3/2 segue solo r e4/3 segue solo N. Quattro copierebbe N_B senza includere il valore di ogni resistore e il riferimento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20912,
+      "title": "La media di due catene reali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 2,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. A usa r=2 Ω,N=3; B usa r=3 Ω,N=4. Qual è la media aritmetica delle letture di R con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 Ω",
+          "35/4 Ω",
+          "18 Ω",
+          "3 Ω",
+          "6 Ω"
+        ],
+        "value": "9 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le catene ammesse hanno resistenze6 e12 Ω: la media delle letture è9 Ω. I dati medi sarebbero r=5/2 Ω,N=7/2: questo N non è intero e non descrive una catena del modello. Il prodotto formale35/4 Ω non è quindi una nuova prova fisica ammissibile e, comunque, differisce da9 Ω."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d3442a6bb456aa9664c0db955f49acdb1e39be693cab6bb1812afcd7db30b21f",
+          "text": "Le barre finali hanno origine e scala comuni:6 e12 Ω, media9 Ω. La media statistica dei conteggi3 e4 sarebbe7/2, ma non definisce una catena ammessa: non viene disegnato un mezzo resistore. Si mediano soltanto le due letture fisiche."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{6+12}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=9\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " N_{\\rm medio}=\\frac72\\notin\\mathbb N"
+        },
+        {
+          "type": "text",
+          "text": "35/4 Ω moltiplica i dati medi senza rispettare il conteggio intero. Diciotto non dimezza; tre è metà della differenza e sei ripete A. La media di due misure non obbliga a costruire mezzo resistore."
+        }
+      ],
+      "hints": [
+        "Media le uscite delle due catene, lasciando interi i conteggi di ciascuna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "35/4 Ω moltiplica i dati medi senza rispettare il conteggio intero. Diciotto non dimezza; tre è metà della differenza e sei ripete A. La media di due misure non obbliga a costruire mezzo resistore.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20913,
+      "title": "Il bersaglio richiede quattro elementi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 3,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. A ha r=2 Ω,N_A=3. B ha r_B=3 Ω e deve avere R_B=2R_A. Quanto vale N_B/N_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "4",
+          "3/2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è12 Ω. Con elementi da3 Ω occorrono N_B=12/3=4 resistori, un intero positivo. Il rapporto con i tre elementi iniziali è4/3; il rapporto di due conteggi interi non è necessariamente un intero."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=4"
+        },
+        {
+          "type": "formula",
+          "text": " N_B/N_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 è il reciproco; due copia il fattore del totale; quattro copia il nuovo conteggio senza dividerlo per tre.3/2 segue invece il fattore di r."
+        }
+      ],
+      "hints": [
+        "Ricava il nuovo conteggio dal totale e controllane l’integralità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 è il reciproco; due copia il fattore del totale; quattro copia il nuovo conteggio senza dividerlo per tre.3/2 segue invece il fattore di r.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20914,
+      "title": "La taratura precede il valore del singolo elemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 3,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. D=aR è continuo e adimensionale,a>0. A con r=2 Ω,N=3 dà D=18. B ha N=4,D=36. Quanto vale r_B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale6 Ω, quindi a=3 Ω⁻¹. La lettura36 corrisponde a12 Ω. Dividendo per i quattro elementi si ottiene r_B=3 Ω. Il display è continuo, mentre il numero degli elementi rimane un conteggio intero distinto dalla lettura."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac{12}{4}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Nove Ω tratta36 come resistenza senza togliere il guadagno. Dodici Ω copia il totale; quattro Ω copia il conteggio e predirebbe D=48."
+        }
+      ],
+      "hints": [
+        "DecodificaR prima di dividerla perN.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove Ω tratta36 come resistenza senza togliere il guadagno. Dodici Ω copia il totale; quattro Ω copia il conteggio e predirebbe D=48.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20915,
+      "title": "Anche il display della catena ha uno zero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 3,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. D=aR+b è continuo e adimensionale. A: r=2 Ω,N=3,D=13. B: r=3 Ω,N=4,D=25. C: N=2,D=17. Quanto vale r_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 Ω",
+          "17/4 Ω",
+          "2 Ω",
+          "8 Ω",
+          "1 Ω"
+        ],
+        "value": "4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno6 e12 Ω. a=(25−13)/(12−6)=2 Ω⁻¹ e b=1. C ha R_C=(17−1)/2=8 Ω e contiene due elementi identici, quindi r_C=4 Ω. L’offset non è una resistenza da aggiungere in serie."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=8\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "17/4 Ω omette b e predice D=18. Due Ω darebbero D=9; otto Ω copia il totale e darebbe D=33. Un Ω darebbe D=5."
+        }
+      ],
+      "hints": [
+        "Togli b, dividi per a e poi per il conteggio noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17/4 Ω omette b e predice D=18. Due Ω darebbero D=9; otto Ω copia il totale e darebbe D=33. Un Ω darebbe D=5.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-series-resistors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Catene con numero intero di resistori",
+      "order": 20916,
+      "title": "Un vincolo non rende continuo il numero degli elementi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-series-resistors",
+      "difficulty": 3,
+      "prompt": "Una catena contiene N resistori identici di resistenza r>0 ciascuno, tutti ohmici a temperatura fissata e collegati in serie senza derivazioni. I fili sono ideali e si considera il regime stazionario. N è un numero intero positivo di elementi, non una variabile continua. R indica la resistenza equivalente della catena fra i morsetti esterni. Fra catene si impone r=βN, con β=2/3 Ω. Si misura R=6 Ω. Quanto vale N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "9",
+          "−3",
+          "2",
+          "Infinite soluzioni positive"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nel totale si ottiene R=βN². Con6 Ω eβ=2/3 Ω si trova N²=9. Fra le radici algebriche si accetta solo N=3, che è un intero positivo; segue r=2 Ω. In generale anche una radice positiva non intera sarebbe esclusa dal conteggio."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\beta N^2"
+        },
+        {
+          "type": "formula",
+          "text": " N^2=\\frac{6\\,\\Omega}{(2/3)\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " N^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " N=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove copia N²,−3 viola il conteggio e due darebbe R=8/3 Ω. Non sono infinite soluzioni perché la misura fissa N² e il dominio intero positivo seleziona un solo conteggio."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo, prendi la radice e verifica che sia intera e positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Nove copia N²,−3 viola il conteggio e due darebbe R=8/3 Ω. Non sono infinite soluzioni perché la misura fissa N² e il dominio intero positivo seleziona un solo conteggio.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessa corrente e somma diN elementi",
+        "Conteggio intero positivo nelle inverse e scalature",
+        "Medie delle letture e dominio discreto",
+        "Taratura e vincolo dimensionato fra catene"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d3442a6bb456aa9664c0db955f49acdb1e39be693cab6bb1812afcd7db30b21f",
+      "name": "identical-series-resistors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTM5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5UcmUgZSBxdWF0dHJvIHJlc2lzdG9yaSBzb25vIGNvbnRlZ2dpIGludGVyaTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVuYSBjYXRlbmEgZGEgdHJlIHJlc2lzdG9yaSBpZGVudGljaSBkaTIgb2htIGhhIHJlc2lzdGVuemE2IG9obS4gVW7igJlhbHRyYSBkYSBxdWF0dHJvIHJlc2lzdG9yaSBkaTMgb2htIHZhbGUxMiBvaG0uIEkgc2ltYm9saSBzb25vIHNjaGVtYXRpY2k7IGxlIGJhcnJlIHF1YW50aXRhdGl2ZSBmaW5hbGkgaGFubm8gdmFsb3JpNiwxMiBlIG1lZGlhOSBvaG0uIE5vbiBzaSBjb3N0cnVpc2NlIHVuYSBjYXRlbmEgY29uIHNldHRlIG1lenppIGVsZW1lbnRpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzkwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFRyZSBhZGRlbmRpIGlkZW50aWNpPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPk5fQSA9IDMgOyBvZ25pIGVsZW1lbnRvIHZhbGUgcl9BID0gMiDOqS48L3RleHQ+CjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIzIj48cGF0aCBkPSJNNzAgMTgwSDEzME0yMTAgMTgwSDI4ME0zNjAgMTgwSDQzME01MTAgMTgwSDU3MCIvPjxyZWN0IHg9IjEzMCIgeT0iMTYwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSIyODAiIHk9IjE2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iNDMwIiB5PSIxNjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIvPjwvZz4KPHRleHQgeD0iMTUwIiB5PSIxNDAiPjIgzqk8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSIxNDAiPjIgzqk8L3RleHQ+PHRleHQgeD0iNDUwIiB5PSIxNDAiPjIgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIyNjAiPlJfQSA9IDIgzqkgKyAyIM6pICsgMiDOqSA9IDYgzqkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzA1IiBmb250LXNpemU9IjE4Ij5OZXNzdW5hIGRlcml2YXppb25lIDsgY29ycmVudGUgY29tdW5lIGFpIHRyZSBlbGVtZW50aS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAzNTJINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjM5NyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUXVhdHRybyBhZGRlbmRpLCB0dXR0aSBudW92aTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQzOCIgZm9udC1zaXplPSIxOCI+Tl9CID0gNCA7IG9nbmkgZWxlbWVudG8gdmFsZSByX0IgPSAzIM6pLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik02MCA1NTVIMTAwTTE3MCA1NTVIMjEwTTI4MCA1NTVIMzIwTTM5MCA1NTVINDMwTTUwMCA1NTVINTcwIi8+PHJlY3QgeD0iMTAwIiB5PSI1MzUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjIxMCIgeT0iNTM1IiB3aWR0aD0iNzAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSIzMjAiIHk9IjUzNSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iNDMwIiB5PSI1MzUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI0MCIvPjwvZz4KPHRleHQgeD0iMTE1IiB5PSI1MTUiPjMgzqk8L3RleHQ+PHRleHQgeD0iMjI1IiB5PSI1MTUiPjMgzqk8L3RleHQ+PHRleHQgeD0iMzM1IiB5PSI1MTUiPjMgzqk8L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSI1MTUiPjMgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2MzUiPlJfQiA9IDQgwrcgKDMgzqkpID0gMTIgzqkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjgyIiBmb250LXNpemU9IjE4Ij5TaW1ib2xpIHNjaGVtYXRpY2kgOyBpbCBjb250ZWdnaW8gw6ggZXNhdHRhbWVudGUgcXVhdHRyby48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA3MzBINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijc3NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTWVkaWEgZGVsbGUgbGV0dHVyZTwvdGV4dD4KPHBhdGggZD0iTTE1MCA4MzBWMTExMCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTUwIiB5PSI4NTUiIHdpZHRoPSIxODAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNTAiIHk9Ijk0NSIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPjxyZWN0IHg9IjE1MCIgeT0iMTAzNSIgd2lkdGg9IjI3MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iODgwIj5BPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iODgwIj42IM6pPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI5NzAiPkI8L3RleHQ+PHRleHQgeD0iNTMwIiB5PSI5NzAiPjEyIM6pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA2MCI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDQwIiB5PSIxMDYwIj45IM6pPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iMTEwNCI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNzAiIGZvbnQtc2l6ZT0iMTgiPkJhcnJlIGNvbiBvcmlnaW5lIGUgc2NhbGEgY29tdW5pIGluIG9obS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjIwIiBmb250LXNpemU9IjE4Ij5VbmEgbWVkaWEgZGkgbGV0dHVyZSBub24gw6ggdW5hIG51b3ZhIGNhdGVuYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjcwIiBmb250LXNpemU9IjE4Ij5OIG1lZGlvID0gNy8yIG5vbiDDqCB1biBjb250ZWdnaW8gYW1tZXNzby48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzIwIiBmb250LXNpemU9IjE4Ij5OZWxsZSBkdWUgcHJvdmUgTiByZXN0YSBpbnRlcm8gcG9zaXRpdm8uPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

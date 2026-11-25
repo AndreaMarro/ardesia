@@ -1,0 +1,1151 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-wire-resistance-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20401,
+      "title": "L’area va convertita al quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Con L=100 m e A=2 mm², quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un millimetro vale 10⁻³ m, quindi un millimetro quadrato vale 10⁻⁶ m². L’area è 2·10⁻⁶ m². Il numeratore ρL è 2·10⁻⁶ Ω·m²: il rapporto con l’area restituisce 1 Ω. Nei numeri normalizzati è 100/(50·2)=1."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b",
+          "text": "Il filo e la sua sezione sono due viste schematiche su scale indipendenti: le dimensioni trasversali del disegno non sono confrontabili con la lunghezza 100 m. L’area fisica 2 mm² diventa 2·10⁻⁶ m². Il grafico centrale tiene area 2 mm² e resistività costanti; le barre finali cambiano sia lunghezza sia area fra A e B."
+        },
+        {
+          "type": "formula",
+          "text": "A=2\\cdot10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho L=2\\cdot10^{-6}\\,\\mathrm{\\Omega\\,m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Usare 2 come area in m² darebbe 10⁻⁶ Ω. Convertire mm² con il solo fattore 10⁻³ darebbe 10⁻³ Ω. Due Ω ignora il divisore due dell’area; cento copia il numero della lunghezza."
+        }
+      ],
+      "hints": [
+        "Converti l’unità di area con il quadrato del fattore lineare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 2 come area in m² darebbe 10⁻⁶ Ω. Convertire mm² con il solo fattore 10⁻³ darebbe 10⁻³ Ω. Due Ω ignora il divisore due dell’area; cento copia il numero della lunghezza.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20402,
+      "title": "Resistenza e resistività hanno unità diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Quale unità esprime R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "Ω·m",
+          "m",
+          "A",
+          "V"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistività ha unità Ω·m. Moltiplicarla per L e dividere per l’area produce Ω·m·m/m²=Ω. La geometria serve a trasformare una proprietà del materiale nella resistenza di questo particolare filo."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=\\frac{\\mathrm{\\Omega\\,m}\\cdot\\mathrm m}{\\mathrm{m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Ω·m è l’unità di ρ, non di R. Metri misurano lunghezze, ampere corrente e volt differenza di potenziale. Il simbolo A dell’area non è qui l’unità ampere."
+        }
+      ],
+      "hints": [
+        "Distingui il simbolo A della sezione dall’unità A della corrente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Ω·m è l’unità di ρ, non di R. Metri misurano lunghezze, ampere corrente e volt differenza di potenziale. Il simbolo A dell’area non è qui l’unità ampere.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20403,
+      "title": "La legge con unità coerenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Usando grandezze fisiche in unità SI, quale formula dà R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = ρ L / A",
+          "R = ρ A / L",
+          "R = L / (ρ A)",
+          "R = ρ L A",
+          "R = ρ L² / A"
+        ],
+        "value": "R = ρ L / A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una lunghezza maggiore aumenta il percorso resistivo; una sezione maggiore offre più conduzione in parallelo nel filo uniforme. La legge è R=ρL/A. Il coefficiente numerico 1/50 vale solo quando L è espresso in m e A in mm², non sostituisce una resistività con unità arbitrarie."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b",
+          "text": "La stessa resistività appartiene al materiale a temperatura fissata. Il disegno non impone volume costante e non misura l’area dal raggio apparente del cerchio. Il grafico R(L) ha sezione fissa 2 mm² e dipendenza lineare, mentre la prova B delle barre ha sezione 1 mm²."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\rho\\frac LA"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{\\ell}{50a}"
+        },
+        {
+          "type": "text",
+          "text": "ρA/L avrebbe unità Ω·m². Il reciproco della resistività altera dimensioni e dipendenza dal materiale. Moltiplicare per A rende diretta una dipendenza inversa; il quadrato di L non appartiene alla legge del filo uniforme."
+        }
+      ],
+      "hints": [
+        "Controlla insieme dipendenza dalla geometria e cancellazione delle unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "ρA/L avrebbe unità Ω·m². Il reciproco della resistività altera dimensioni e dipendenza dal materiale. Moltiplicare per A rende diretta una dipendenza inversa; il quadrato di L non appartiene alla legge del filo uniforme.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20404,
+      "title": "La lunghezza diventa un centesimo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. L passa da 100 a 1 m, mentre A resta 2 mm². Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 1/100 Ω",
+          "Da 1 a 100 Ω",
+          "Resta 1 Ω",
+          "Da 1 a 1/50 Ω",
+          "Da 1 a 1/2 Ω"
+        ],
+        "value": "Da 1 a 1/100 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Area, materiale e temperatura non cambiano. La lunghezza finale è un centesimo di quella iniziale, quindi la resistenza diventa un centesimo: R_B=1/(50·2)=1/100 Ω. Non occorre convertire il risultato in decimali."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac1{100}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=\\frac1{100}\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Cento Ω inverte la dipendenza da L. Uno ignora il cambio; 1/50 dimentica l’area numerica due e un mezzo non rappresenta una riduzione di cento volte."
+        }
+      ],
+      "hints": [
+        "A sezione fissa il rapporto delle resistenze è il rapporto delle lunghezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cento Ω inverte la dipendenza da L. Uno ignora il cambio; 1/50 dimentica l’area numerica due e un mezzo non rappresenta una riduzione di cento volte.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20405,
+      "title": "La lunghezza dalla resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Si misura R=1 Ω e si conosce A=2 mm². Quanto vale L in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da R=ρL/A si ricava L=RA/ρ. In SI A=2·10⁻⁶ m² e ρ=2·10⁻⁸ Ω·m: il rapporto è 10² m. In alternativa, ℓ=50ra=50·1·2=100. La divisione per ρ è lecita perché il materiale ha resistività positiva."
+        },
+        {
+          "type": "formula",
+          "text": "L=\\frac{RA}{\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=50ra"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=100"
+        },
+        {
+          "type": "formula",
+          "text": " L=100\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta m perde il valore due della sezione. Duecento m introdurrebbe un ulteriore fattore due e darebbe R=2 Ω. Moltiplicare R per ρ non isola la lunghezza e cambia le dimensioni."
+        }
+      ],
+      "hints": [
+        "Moltiplica R per l’area coerente prima di dividere per ρ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta m perde il valore due della sezione. Duecento m introdurrebbe un ulteriore fattore due e darebbe R=2 Ω. Moltiplicare R per ρ non isola la lunghezza e cambia le dimensioni.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20406,
+      "title": "Ricostruire l’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Si misura R=1 Ω con L=100 m. Quanto vale A in mm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per A e dividiamo per R: A=ρL/R. Il risultato SI è 2·10⁻⁶ m². Poiché 1 mm² vale 10⁻⁶ m², l’area cercata è 2 mm². Qui l’area sta al denominatore della legge diretta ma al numeratore dopo l’inversione."
+        },
+        {
+          "type": "formula",
+          "text": "RA=\\rho L"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{\\rho L}R"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\cdot10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo mm² inverte il rapporto numerico e darebbe R=4 Ω. Due m² perdono il fattore 10⁶ della conversione di area. Quattro mm² darebbero 1/2 Ω, non la misura."
+        }
+      ],
+      "hints": [
+        "Trova prima l’area in SI, poi converti metri quadrati in millimetri quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo mm² inverte il rapporto numerico e darebbe R=4 Ω. Due m² perdono il fattore 10⁶ della conversione di area. Quattro mm² darebbero 1/2 Ω, non la misura.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20407,
+      "title": "Metà sezione, doppia resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. A usa L=100 m e area 2 mm². B mantiene L e ha area 1 mm². Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza e la resistività sono uguali. Dimezzare l’area raddoppia R: A dà 1 Ω, B dà 100/(50·1)=2 Ω. Il rapporto è due; si confrontano fili o configurazioni preparate, senza imporre la conservazione del loro volume."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rende diretta la dipendenza dall’area. Uno ignora il cambiamento, quattro introduce un quadrato non presente e il segno negativo contraddice due resistenze passive positive."
+        }
+      ],
+      "hints": [
+        "Mantieni il numeratore e confronta le aree nell’ordine inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rende diretta la dipendenza dall’area. Uno ignora il cambiamento, quattro introduce un quadrato non presente e il segno negativo contraddice due resistenze passive positive.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20408,
+      "title": "Scarto di una resistenza proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Con L=100 m e A=2 mm² si propone R=2 Ω. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "−1 Ω",
+          "2 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 1 Ω. La proposta lo supera di 2−1=1 Ω. Il numero puro due è invece il rapporto fra proposta e corretto: non esprime la differenza di due resistenze."
+        },
+        {
+          "type": "formula",
+          "text": "R=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte l’ordine; due ohm copia la proposta e zero la accetta. Due senza unità è un’altra quantità. Un confronto dimensionale deve mantenere Ω nella differenza."
+        }
+      ],
+      "hints": [
+        "Usa la conversione di area corretta prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 inverte l’ordine; due ohm copia la proposta e zero la accetta. Due senza unità è un’altra quantità. Un confronto dimensionale deve mantenere Ω nella differenza.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20409,
+      "title": "Isolare L nella legge fisica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Sono noti R, A e ρ. Quale relazione fisica ricava L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L = R A / ρ",
+          "L = R ρ / A",
+          "L = ρ A / R",
+          "L = R / (ρ A)",
+          "L = R A ρ"
+        ],
+        "value": "L = R A / ρ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da R=ρL/A moltiplichiamo per A e dividiamo per ρ>0. Il risultato è L=RA/ρ, con unità Ω·m²/(Ω·m)=m. Per usare il valore dell’area in mm² si converte prima in SI, oppure si usa ℓ=50ra con i numeri normalizzati definiti."
+        },
+        {
+          "type": "formula",
+          "text": "RA=\\rho L"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{RA}{\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " [L]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Rρ/A ha unità Ω²/m; ρA/R ha m³ e R/(ρA) ha m⁻³. RAρ non è una lunghezza. La formula corretta si riconosce anche senza affidarsi solo alle unità: deve ricomporre R=ρL/A."
+        }
+      ],
+      "hints": [
+        "Fai le operazioni inverse su entrambi i membri e mantieni coerente l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Rρ/A ha unità Ω²/m; ρA/R ha m³ e R/(ρA) ha m⁻³. RAρ non è una lunghezza. La formula corretta si riconosce anche senza affidarsi solo alle unità: deve ricomporre R=ρL/A.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20410,
+      "title": "Lunghezza e sezione insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. B ha L_B=κ₁L_A e A_B=κ₂A_A, con fattori positivi e stessa ρ. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂²",
+          "κ₁²/κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova lunghezza porta κ₁ al numeratore, la nuova area κ₂ al denominatore. La stessa resistività si cancella e resta κ₁/κ₂. Il quadrato necessario nella conversione mm²→m² non implica un quadrato del fattore con cui cambia l’area già assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=\\rho\\frac{\\kappa_1L_A}{\\kappa_2A_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta l’area. Il reciproco scambia B/A. κ₂² confonde un fattore d’area con un fattore di lunghezza della sezione; κ₁² introduce una dipendenza quadratica dalla lunghezza del filo."
+        }
+      ],
+      "hints": [
+        "Scala le grandezze L e A così come sono definite, senza aggiungere un vincolo di volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta l’area. Il reciproco scambia B/A. κ₂² confonde un fattore d’area con un fattore di lunghezza della sezione; κ₁² introduce una dipendenza quadratica dalla lunghezza del filo.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20411,
+      "title": "Più lungo e più sottile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. A usa L=100 m, A=2 mm². B usa L=200 m, A=1 mm². Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha R=1 Ω. B ha R=200/(50·1)=4 Ω. La lunghezza doppia fornisce un fattore due e la sezione dimezzata un altro fattore due: il prodotto dà quattro. La resistività resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo cambiamento. Un quarto inverte B/A; uno presuppone una compensazione che invece non avviene, perché entrambi i cambiamenti aumentano R."
+        }
+      ],
+      "hints": [
+        "Valuta l’effetto di ciascun dato nella sua posizione originale della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo cambiamento. Un quarto inverte B/A; uno presuppone una compensazione che invece non avviene, perché entrambi i cambiamenti aumentano R.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20412,
+      "title": "La media dei fili preparati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. A usa L=100 m, A=2 mm²; B usa L=200 m, A=1 mm². Qual è la media aritmetica delle due R con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 Ω",
+          "2 Ω",
+          "5 Ω",
+          "3/2 Ω",
+          "4 Ω"
+        ],
+        "value": "5/2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due resistenze sono 1 e 4 Ω. La loro media è 5/2 Ω. Ai dati medi L=150 m e A=3/2 mm², invece, si avrebbe R=150/(50·3/2)=2 Ω. La media delle uscite supera quel valore di 1/2 Ω. Non si sta costruendo un circuito con i due fili."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b",
+          "text": "Le barre finali hanno resistenze 1 Ω, 4 Ω e media 5/2 Ω con origine e scala comuni. B usa 200 m e 1 mm² e non appartiene alla retta centrale a sezione 2 mm². La resistenza dei dati medi sarebbe 2 Ω, non la media rappresentata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{1+4}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=\\frac52\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm dati\\ medi}=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due Ω usa i dati medi. Cinque non dimezza, 3/2 è metà della differenza e quattro copia B. Una somma o un parallelo di fili sarebbero problemi di topologia diversi da questa media statistica."
+        }
+      ],
+      "hints": [
+        "Calcola le resistenze dei due fili prima di fare la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due Ω usa i dati medi. Cinque non dimezza, 3/2 è metà della differenza e quattro copia B. Una somma o un parallelo di fili sarebbero problemi di topologia diversi da questa media statistica.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20413,
+      "title": "L’area necessaria al bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. A ha L=100 m, A_A=2 mm². B usa L=200 m e deve dare R_B=4R_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è R_B=4 Ω. Nella relazione numerica 4=200/(50a_B) si trova a_B=1, quindi A_B=1 mm². Il rapporto con 2 mm² iniziali è 1/2. La lunghezza doppia fornisce un fattore due; il restante fattore due deriva dall’area dimezzata."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=\\frac{200}{50\\cdot4}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=1\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_B}{A_A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. Un quarto usa solo l’aumento di resistenza e dimentica L raddoppiata. Quattro copia il bersaglio e uno darebbe R_B=2 Ω, non 4 Ω."
+        }
+      ],
+      "hints": [
+        "Ricava l’area B con la nuova lunghezza prima del rapporto delle aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. Un quarto usa solo l’aumento di resistenza e dimentica L raddoppiata. Quattro copia il bersaglio e uno darebbe R_B=2 Ω, non 4 Ω.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20414,
+      "title": "Un display prima della lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. D=a_cal R è continuo e adimensionale, a_cal>0 e senza offset. A con L=100 m, A=2 mm² dà D=3. C dà D=12 e ha area 1 mm². Quanto vale L_C in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha R_A=1 Ω e guadagno a_cal=3 Ω⁻¹. C ha R_C=12/3=4 Ω. Con area numerica uno, ℓ_C=50·4·1=200, cioè L_C=200 m. La taratura si rimuove prima dell’inversa geometrica."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_C=200"
+        },
+        {
+          "type": "formula",
+          "text": " L_C=200\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Seicento m usa D come ohm. Quattro m copia R_C e cinquanta copia il coefficiente di conversione. Non si cambia la resistività del materiale per adattare il display."
+        }
+      ],
+      "hints": [
+        "Decodifica la resistenza e poi usa L=RA/ρ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Seicento m usa D come ohm. Quattro m copia R_C e cinquanta copia il coefficiente di conversione. Non si cambia la resistività del materiale per adattare il display.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20415,
+      "title": "Un piccolo valore sopra l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. D=a_cal R+b è continuo e adimensionale, a_cal>0. A: L=100 m, A=2 mm², D=3. B: L=200 m, A=1 mm², D=9. C: area 1 mm², D=26/25. Quanto vale L_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m",
+          "26 m",
+          "2 m",
+          "1/50 m",
+          "50 m"
+        ],
+        "value": "1 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le resistenze di riferimento sono 1 e 4 Ω. Il guadagno è (9−3)/(4−1)=2 Ω⁻¹ e b=1. C supera l’offset di 26/25−1=1/25; dividendo per due si trova R_C=1/50 Ω. L’area è 1 mm², quindi ℓ_C=50·(1/50)·1=1 e L_C=1 m. Nessun decimale è necessario."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=\\frac1{50}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " L_C=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Ventisei m omette b e usa R_C=13/25 Ω. Due m sottrae b ma non divide per il guadagno. 1/50 m copia il numero della resistenza; cinquanta m ignora il piccolo eccesso del display sopra l’offset."
+        }
+      ],
+      "hints": [
+        "Calcola prima 26/25−1 come frazione esatta, poi rimuovi il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisei m omette b e usa R_C=13/25 Ω. Due m sottrae b ma non divide per il guadagno. 1/50 m copia il numero della resistenza; cinquanta m ignora il piccolo eccesso del display sopra l’offset.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-resistance-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Resistenza e geometria del filo",
+      "order": 20416,
+      "title": "Geometrie diverse, stessa resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-resistance",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. Fra preparazioni si impone L=γA, con γ=50 m/mm². Si misura inoltre R=1 Ω. Quante coppie positive (L,A) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: 100 m e 2 mm²",
+          "Nessuna coppia",
+          "Solo 50 m e 1 mm²",
+          "Qualunque L, con A fisso a 2 mm²"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo significa ℓ=50a. Inserendolo nella legge normalizzata si ottiene r=50a/(50a)=1 per ogni a>0. In SI γ=5·10⁷ m⁻¹ e ργ=1 Ω. La misura non aggiunge una condizione indipendente: 50 m con 1 mm² e 100 m con 2 mm² sono due esempi della stessa famiglia."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=50a"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{50a}{50a}"
+        },
+        {
+          "type": "formula",
+          "text": " r=1"
+        },
+        {
+          "type": "formula",
+          "text": " R=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie singole non esauriscono l’insieme. L e A non sono libere indipendentemente, ma devono rispettare il rapporto assegnato. Non si tratta di allungare a volume fisso lo stesso filo: qui il vincolo lega lunghezza e area tra preparazioni con la stessa resistività."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto geometrico e controlla se resta una scala libera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie singole non esauriscono l’insieme. L e A non sono libere indipendentemente, ma devono rispettare il rapporto assegnato. Non si tratta di allungare a volume fisso lo stesso filo: qui il vincolo lega lunghezza e area tra preparazioni con la stessa resistività.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività a temperatura fissata",
+        "Conversione quadratica della sezione",
+        "Inverse, rapporti, medie, display e vincolo geometrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b",
+      "name": "wire-resistance-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5SZXNpc3Rpdml0w6AsIGx1bmdoZXp6YSBlIGFyZWEgZGVsIGZpbG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5WaXN0ZSBzY2hlbWF0aWNoZSBpbmRpcGVuZGVudGkgZGkgZmlsbyBsdW5nbyBjZW50byBtZXRyaSBlIGFyZWEgZHVlIG1pbGxpbWV0cmkgcXVhZHJhdGkuIENvbnZlcnNpb25lIGRlbGzigJlhcmVhIGUgcmVzaXN0ZW56YSB1biBvaG0uIEdyYWZpY28gYSBzZXppb25lIGZpc3NhIGUgY29uZnJvbnRvIGZpbmFsZSB1bm8sIHF1YXR0cm8gZSBtZWRpYSBjaW5xdWUgbWV6emkgb2htLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDYwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgTWF0ZXJpYWxlIGUgZ2VvbWV0cmlhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+RHVlIHZpc3RlIHNjaGVtYXRpY2hlLCBzdSBzY2FsZSBpbmRpcGVuZGVudGkuPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjE4MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0NSIgcng9IjYiIGZpbGw9IiNlMmU4ZjAiIHN0cm9rZT0iIzgyOTJhMiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNTIwIiBjeT0iMjAyIiByPSIzMyIgZmlsbD0iI2UyZThmMCIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTEwMCAyNTJWMjY4TTQwMCAyNTJWMjY4TTEwMCAyNjBINDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE3NSIgeT0iMzA1Ij5MID0gMTAwIG08L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSIzMDUiPkEgPSAyIG1twrI8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNTQiPs+BID0gMiDDlyAxMOKBu+KBuCDOqcK3bTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzk3Ij4yIG1twrIgPSAyIMOXIDEw4oG74oG2IG3CsiA7IFIgPSAxIM6pPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDM1SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0ODAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFIoTCkgY29uIHNlemlvbmUgZmlzc2E8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjUyMSIgZm9udC1zaXplPSIxOCI+QXJlYSAyIG1twrIgOyBMIGluIG0sIFIgaW4gzqkuPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDg1MFY1NzBNMTMwIDg1MEg1NjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTEzMCA4NTBMNTMwIDYxMCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTMwIiBjeT0iODUwIiByPSI0IiBmaWxsPSIjZjhmYWZjIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjMzMCIgY3k9IjczMCIgcj0iNSIgZmlsbD0iIzE2NWE4NyIvPjxjaXJjbGUgY3g9IjUzMCIgY3k9IjYxMCIgcj0iNSIgZmlsbD0iIzE2NWE4NyIvPgo8cGF0aCBkPSJNMTMwIDczMEgzMzBWODUwTTEzMCA2MTBINTMwVjg1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHRleHQgeD0iOTIiIHk9IjYxNyI+MjwvdGV4dD48dGV4dCB4PSI5MiIgeT0iNzM3Ij4xPC90ZXh0Pjx0ZXh0IHg9IjkyIiB5PSI4NTciPjA8L3RleHQ+PHRleHQgeD0iMTE4IiB5PSI4ODciPjA8L3RleHQ+PHRleHQgeD0iMzA5IiB5PSI4ODciPjEwMDwvdGV4dD48dGV4dCB4PSI1MDkiIHk9Ijg4NyI+MjAwPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iOTI2Ij5MIGluIG08L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NjBINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjEwMDUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IE1lZGlhIGRpIGR1ZSByZXNpc3RlbnplPC90ZXh0PjxwYXRoIGQ9Ik0xMzAgMTAzNVYxMzAwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjEwNjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTE0MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTIyMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTA4OCI+QTwvdGV4dD48dGV4dCB4PSIyMzAiIHk9IjEwODgiPjEgzqk8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjExNjgiPkI8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMTY4Ij40IM6pPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjQ4Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjEyNDgiPjUvMiDOqTwvdGV4dD48dGV4dCB4PSIxMDQiIHk9IjEyOTQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzQyIiBmb250LXNpemU9IjE4Ij5BOiAxMDAgbSwgMiBtbcKyIDsgQjogMjAwIG0sIDEgbW3Csi48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzNzgiIGZvbnQtc2l6ZT0iMTgiPkIgbm9uIGFwcGFydGllbmUgYWxsYSByZXR0YSBhIHNlemlvbmUgZmlzc2EgMiBtbcKyLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQxNCIgZm9udC1zaXplPSIxOCI+QmFycmUgaW4gzqksIHN0ZXNzYSBvcmlnaW5lIGUgc2NhbGEgY29tdW5lLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

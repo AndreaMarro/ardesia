@@ -1,0 +1,560 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-01",
+      "sourceSha256": "616449b98d1a726aea8fca0a82674eb837802fa4d52d1f21f80823e93c661a0d",
+      "candidateSha256": "bfb4e5108f4bd1206487dd74b1e164b3aa36e091fa93db443735ab6efdedba4f",
+      "reviewedSignature": "a823782e9d2bbf353f444c66525592b7b2ee4b900ef01001cbfcfc10d7478422",
+      "assetChecksums": {
+        "wire-stretched-fixed-volume-progressive.svg": "f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Volume A₀L₀=AL e L=sL₀ impongono A=A₀/s. Con resistività ρ invariata, R=ρL/A=R₀s². R₀=1 Ω, s=2 danno 4 Ω. Il modello assume deformazione uniforme e temperatura/materiale tali da mantenere ρ costante.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "2 Ω omette la diminuzione della sezione; 1/2 Ω inverte la variazione di lunghezza; 8 Ω aggiunge un altro fattore due. La resistività rimane invariata.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Volume A₀L₀=AL e L=sL₀ impongono A=A₀/s. Con resistività ρ invariata, R=ρL/A=R₀s². R₀=1 Ω, s=2 danno 4 Ω. Il modello assume deformazione uniforme e temperatura/materiale tali da mantenere ρ costante.",
+      "scientificAssetReview": "XML finale e rendering nativo indipendente completo letti. I rettangoli L×A hanno lati 120×80 e 240×40 e area comune 9600 nelle coordinate del disegno: A è una sezione, non un diametro. Nella curva x=220+240u e y=840−80u−80u², le variabili fisiche sono s=(x−100)/120 e R=(860−y)/20=s². I punti s=1,2,3 restituiscono R=1,4,9 Ω. Le barre 4,18,11 Ω sono larghe 80,360,220 con origine 150 e scala comune 20 coordinate/Ω. Le origini numeriche sono separate dagli assi. Queste coordinate documentano la verifica, non compaiono come pixel fisici nel percorso studente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-02",
+      "sourceSha256": "713aecdad09fbb1e72e6faddf5e55e22ae970cd65d714e54af7060adca1e8b14",
+      "candidateSha256": "9ae12fb6a9e15737e0d9c8c2d23cc079812ced414dcf6f99a5bf49bf0b90473b",
+      "reviewedSignature": "0f4303df276bcb4fbc47984d20d11a942ff4512c7a5c1cf5ecd0cefb2dc75bcd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ω",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "R è resistenza elettrica, quindi la dimensione è V/A e l’unità Ω. Un prefisso non ne cambia dimensione. Nella primaria prompt-only le alternative non erano aperte; nella successiva revisione tutte e cinque sono state lette e confrontate: solo Ω è resistenza.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "Ω·m misura resistività, S conduttanza, A corrente e V tensione. Solo Ω corrisponde a V/A.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R è resistenza elettrica, quindi la dimensione è V/A e l’unità Ω. Un prefisso non ne cambia dimensione. Nella primaria prompt-only le alternative non erano aperte; nella successiva revisione tutte e cinque sono state lette e confrontate: solo Ω è resistenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-03",
+      "sourceSha256": "b55b5b86fdcf85303d23071b132cf06ebfece56f144fe05e2f6d189500979957",
+      "candidateSha256": "bc40751721c1169cc69b510ade19420fc09b822bbeb3e92044854356d3150f6e",
+      "reviewedSignature": "135ef2d93337754b4c6ece6ce318daf2f8e79eb5d42c5cdd17eb818c1ac33c56",
+      "assetChecksums": {
+        "wire-stretched-fixed-volume-progressive.svg": "f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La resistività ρ",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "3",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Per stesso materiale e temperatura, nel modello ohmico la resistività ρ deve coincidere, non la resistenza R=ρL/A né necessariamente la conduttanza. Cambiare geometria può cambiare L/A; la resistività è proprietà del materiale alle condizioni fissate.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "A parità di resistività, L/A può cambiare: geometrie con L/A pari a 1 e 2 hanno resistenze diverse; anche conduttanze e correnti a tensione non nulla possono differire.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Per stesso materiale e temperatura, nel modello ohmico la resistività ρ deve coincidere, non la resistenza R=ρL/A né necessariamente la conduttanza. Cambiare geometria può cambiare L/A; la resistività è proprietà del materiale alle condizioni fissate.",
+      "scientificAssetReview": "XML finale e rendering nativo indipendente completo letti. I rettangoli L×A hanno lati 120×80 e 240×40 e area comune 9600 nelle coordinate del disegno: A è una sezione, non un diametro. Nella curva x=220+240u e y=840−80u−80u², le variabili fisiche sono s=(x−100)/120 e R=(860−y)/20=s². I punti s=1,2,3 restituiscono R=1,4,9 Ω. Le barre 4,18,11 Ω sono larghe 80,360,220 con origine 150 e scala comune 20 coordinate/Ω. Le origini numeriche sono separate dagli assi. Queste coordinate documentano la verifica, non compaiono come pixel fisici nel percorso studente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-04",
+      "sourceSha256": "5069587842b654ad66421b3d4d08b443998ab66d6e5b97c17aa0f536d7f6083a",
+      "candidateSha256": "06cdf9ee915ed5b7d48b281d731c5987a1e81c650cd47d0a99d60cf741680b89",
+      "reviewedSignature": "675a11ac9934f64836d4de108b5fadbe2871be2339e6426806f0e799fd2ca1a6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 a 12 Ω",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "A s=2 fisso, R=4 R₀. R₀ da 1 a 3 Ω porta R da 4 a 12 Ω: dipendenza lineare da R₀, non triplicazione di s.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "4/3 Ω inverte il fattore della resistenza iniziale; 36 Ω lo eleva anche al quadrato; 4 Ω ignora il cambiamento; 6 Ω omette il contributo della sezione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A s=2 fisso, R=4 R₀. R₀ da 1 a 3 Ω porta R da 4 a 12 Ω: dipendenza lineare da R₀, non triplicazione di s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-05",
+      "sourceSha256": "e0e5b077366eabc783d998e7d2e24004d907c1f953a94d8c906e6fc4116038b5",
+      "candidateSha256": "85a46e4fe7f0fa919bd41e9357266085cbcac2ab18f4a8cf8ae6bc6810e7e0fb",
+      "reviewedSignature": "01873fa25db310266bedf41b3cacb03ffc3ac073f0aedf3bbc7be709a3272204",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "R₀=R/s². Misura 4 Ω e s=2 danno 4/4=1 Ω. s è adimensionale e non nullo; R₀ resta positivo.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "2 Ω divide soltanto per s; 16 Ω moltiplica per s²; 4 Ω non rimuove il fattore geometrico. La sola resistenza non determina la resistività senza geometria.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R₀=R/s². Misura 4 Ω e s=2 danno 4/4=1 Ω. s è adimensionale e non nullo; R₀ resta positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-06",
+      "sourceSha256": "d160a469374c3e86b2ddb871d0849b647337268d55d8a98ed41f0f0b5c84fd9a",
+      "candidateSha256": "d163671a2cb96b334ca138f8893330871c0178c6342ba05892f337c810fcef92",
+      "reviewedSignature": "095471886756607219c5b22367c693fafe605af92ebb94bc2d09bf94da2617b2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "s²=R/R₀=4; radici±2, ma s=L/L₀≥1 impone s=2. Per un’inversa generale occorre R≥R₀>0; se R<R₀ non descrive allungamento nel dominio dichiarato.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "4 è s²; −2 viola il rapporto positivo; 1/2 descriverebbe accorciamento, escluso da s≥1. Il rapporto di lunghezze è adimensionale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. s²=R/R₀=4; radici±2, ma s=L/L₀≥1 impone s=2. Per un’inversa generale occorre R≥R₀>0; se R<R₀ non descrive allungamento nel dominio dichiarato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-07",
+      "sourceSha256": "27b3e1e14b9fb22a8e3108c32a21446513c54e3d7ac7dbaf68d17e7de708f4ba",
+      "candidateSha256": "d66da5f4b3bf836a30457e88053043cf8e07ae68a2254d06d50670d0ef9db729",
+      "reviewedSignature": "ae6fcb766a001bc403bb539d8492ee5dd61b571b878226eed56b19ff6089c99a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/4",
+      "dimension": {},
+      "manualArithmetic": "A dà 1·2²=4 Ω. B con s=1 dà 1 Ω; rapporto B/A=1/4. s=1 è il confine ammesso di nessun allungamento.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "1/2 considera solo la lunghezza; 4 inverte il rapporto; 1 ignora la variazione; −1/4 non è rapporto di resistenze positive.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A dà 1·2²=4 Ω. B con s=1 dà 1 Ω; rapporto B/A=1/4. s=1 è il confine ammesso di nessun allungamento.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-08",
+      "sourceSha256": "767e5ce76bc970eacc6eff8ca7c9a13002f313583941730f98cc6dd5379a9261",
+      "candidateSha256": "f902d3d2d683fd63dc168766e5aefb66897f2882eb9db04ccdedec0aca8bec91",
+      "reviewedSignature": "8feb0282b5ffd499e47505970201c83027a4eaa4071a4dd7ee7bbaa2913e3220",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Il corretto è 4 Ω. Scarto con segno proposta−corretto=8−4=+4 Ω; il rapporto 2 sarebbe puro e risponderebbe a un’altra domanda.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "−4 Ω inverte lo scarto; 8 Ω ripete la proposta; zero la accetta; 2 è un rapporto adimensionale, non una differenza in Ω.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il corretto è 4 Ω. Scarto con segno proposta−corretto=8−4=+4 Ω; il rapporto 2 sarebbe puro e risponderebbe a un’altra domanda.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-09",
+      "sourceSha256": "ee4b9508eebe8663ff6f55084a04d1ae01c847251bffdcca1b3622507ba62d39",
+      "candidateSha256": "2b341b4c6eeb461d91be6c6db73b2dae6f68b856db12cd1f589a8c53fea8e04e",
+      "reviewedSignature": "f78851629eabc2e0e73dac437a0a6c034f121c4aecf0b2e0e4e8b2e98d1f5cf4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "R₀ = R / s²",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Da R=R₀s² si divide per s²>0: R₀=R/s². La dimensione rimane Ω. Non si usa R/s o s²/R.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "R/s rimuove un solo fattore geometrico; s²/R ha unità Ω⁻¹; Rs² non isola R₀; il fattore due ulteriore è arbitrario.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da R=R₀s² si divide per s²>0: R₀=R/s². La dimensione rimane Ω. Non si usa R/s o s²/R.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-10",
+      "sourceSha256": "58e9061d97d2356f7da6bf77694739eb0928505baebaa42219087aa5cc92b3c7",
+      "candidateSha256": "bdff193e1157a02bca0f35202d7aa83adc5911a28b0ae9c22fb5d4b9b4a5f60d",
+      "reviewedSignature": "e0f8571909a16dd942344ff59581ef1b57b9d9647b21b35b92e7013a2d42450a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂²",
+      "dimension": {},
+      "manualArithmetic": "Sostituendo R₀, B=κ₁R₀, A e s_B=κ₂s_A si ottiene R_B/R_A=κ₁κ₂². I fattori positivi devono anche conservare s_A, s_B≥1; non ogni fattore piccolo è lecito a s_A fissato.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "κ₁κ₂ omette un fattore geometrico; κ₁/κ₂² inverte la scalatura; κ₁²κ₂² quadra anche R₀; κ₂²/κ₁ rende inversa R₀.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Sostituendo R₀, B=κ₁R₀, A e s_B=κ₂s_A si ottiene R_B/R_A=κ₁κ₂². I fattori positivi devono anche conservare s_A, s_B≥1; non ogni fattore piccolo è lecito a s_A fissato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-11",
+      "sourceSha256": "0081688fc91ffb91e7114e8e4e1a985e28223289e6cf766c5ced8be3a51c8078",
+      "candidateSha256": "595cb2ef403143239f9174cbf3cefa1f99dda0359460ced7ce8e2ac09286499b",
+      "reviewedSignature": "2d476ba291eb3234c2ca2fbb2cec65c3c0d8e33f9c6413d0b977f3859b7eb8ab",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/2",
+      "dimension": {},
+      "manualArithmetic": "A:1·2²=4 Ω. B:2·3²=18 Ω. Rapporto 18/4=9/2, comprendendo sia la variazione di R₀ sia il quadrato di s.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "2 segue solo R₀; 9/4 segue solo s²; 3 usa s linearmente; 2/9 è il reciproco del rapporto corretto 9/2.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:1·2²=4 Ω. B:2·3²=18 Ω. Rapporto 18/4=9/2, comprendendo sia la variazione di R₀ sia il quadrato di s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-12",
+      "sourceSha256": "7a2d7be06c0dfc7d1a5d2dfe9129c38eab259f1ecd1048f4f1c0655f1e196a2c",
+      "candidateSha256": "8fa09b6f1ee46c99216c0d94be1087d253c309528aa19f3f5dd43cc1f6332154",
+      "reviewedSignature": "ed8e8e9c5a7e277e5fc4acb3d94a4bdd480e2d598810117e2ab0503a28269254",
+      "assetChecksums": {
+        "wire-stretched-fixed-volume-progressive.svg": "f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "11",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Media delle uscite (4+18)/2=11 Ω. Ai dati medi R₀=3/2 Ω, s=5/2 il modello darebbe(3/2)(25/4)=75/8 Ω;11−75/8=13/8 Ω. Si devono mediare le resistenze già calcolate.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "75/8 Ω applica il modello ai dati medi; 22 Ω omette la divisione per due; 7 Ω è metà della differenza; 4 Ω ripete la prima prova.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite (4+18)/2=11 Ω. Ai dati medi R₀=3/2 Ω, s=5/2 il modello darebbe(3/2)(25/4)=75/8 Ω;11−75/8=13/8 Ω. Si devono mediare le resistenze già calcolate.",
+      "scientificAssetReview": "XML finale e rendering nativo indipendente completo letti. I rettangoli L×A hanno lati 120×80 e 240×40 e area comune 9600 nelle coordinate del disegno: A è una sezione, non un diametro. Nella curva x=220+240u e y=840−80u−80u², le variabili fisiche sono s=(x−100)/120 e R=(860−y)/20=s². I punti s=1,2,3 restituiscono R=1,4,9 Ω. Le barre 4,18,11 Ω sono larghe 80,360,220 con origine 150 e scala comune 20 coordinate/Ω. Le origini numeriche sono separate dagli assi. Queste coordinate documentano la verifica, non compaiono come pixel fisici nel percorso studente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-13",
+      "sourceSha256": "52dbc5e71bae7ac154884e32c482c6a94b0aba6ca8806cc5c8d482c4b6819bbf",
+      "candidateSha256": "0cc5678afe1f5a79137bf7ad4daf57500783155c09d8a4881937be12a0ca1e3f",
+      "reviewedSignature": "bf1733ec4b22acfbf7262f30169ff35934e3e94b630de031e2ecdfbc63c02215",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio è(9/2)·4=18 Ω. Con R₀, B=2 Ω segue s_B²=9, quindi s_B=3. Rapporto s_B/s_A=3/2, con entrambi i fattori almeno 1.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "2/3 inverte il rapporto; 9/4 confronta i quadrati; 9/2 copia il fattore di R; 3 è il solo valore finale di s, senza divisione per quello iniziale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bersaglio è(9/2)·4=18 Ω. Con R₀, B=2 Ω segue s_B²=9, quindi s_B=3. Rapporto s_B/s_A=3/2, con entrambi i fattori almeno 1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-14",
+      "sourceSha256": "9cacdf9b61609d0a8b2db68b55f0836c3d94611f065984823ab83a8ced21d532",
+      "candidateSha256": "9447f557243d9daf0cead517e2c34ac77addd950e8b168d118ac286f417325fd",
+      "reviewedSignature": "6b5c7503ad3c049e782e43d9ec8ba45782854201b2a56f8db87652f15acb7b2e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Riferimento 4 Ω con S 12: guadagno a=3 Ω⁻¹ se il display è adimensionale. Lettura 54 dà R=18 Ω. s=3 implica R₀=18/9=2 Ω; la taratura si rimuove prima dell’inversa.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "6 Ω usa la lettura come resistenza senza taratura; 18 Ω è la resistenza finale; R₀=1 Ω ricostruisce una lettura 27, non 54.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento 4 Ω con S 12: guadagno a=3 Ω⁻¹ se il display è adimensionale. Lettura 54 dà R=18 Ω. s=3 implica R₀=18/9=2 Ω; la taratura si rimuove prima dell’inversa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-15",
+      "sourceSha256": "16deb17fa47abbb58664e4fb002f2287b8b741f00e7cd56478a8008463a7461b",
+      "candidateSha256": "a913b2d9c6b9fe81f2bd4f515603d9229eb1e7a052edd34a5bcc36bf66be28d3",
+      "reviewedSignature": "875c0722f112164d5aa898dcd6f313730ad76d1841e747daa8ae79a01fc0469e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Riferimenti R_A 4, R_B 18 Ω, letture 9,37: a=(37−9)/(18−4)=2 Ω⁻¹, b=1. Lettura 25 dà R_C=(25−1)/2=12 Ω; con s_C 2 segue R₀, C=12/4=3 Ω.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "25/8 Ω non sottrae l’offset e ricostruisce 26; 1 Ω ricostruisce 9; 6 Ω ricostruisce 49; 12 Ω ricostruisce 97. Solo 3 Ω restituisce 25.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti R_A 4, R_B 18 Ω, letture 9,37: a=(37−9)/(18−4)=2 Ω⁻¹, b=1. Lettura 25 dà R_C=(25−1)/2=12 Ω; con s_C 2 segue R₀, C=12/4=3 Ω.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-16",
+      "sourceSha256": "d6b435216936a98d240f5dd7889917443efe23e062868a88e1021d9555d5f71d",
+      "candidateSha256": "6013f8a918be9a4517f2bc337bd2ea91a88767b4c17f7d8af598d49f86594896",
+      "reviewedSignature": "1732b13a00f700fab67d961defc600edf7ea4a9db41c4c83d28ff4d62ddec6ba",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo nelle unità dichiarate è R₀=(1/2 Ω)s. Sostituendo in R=R₀s²:4 Ω=(1/2 Ω)s³, quindi s³=8 e s=2≥1. È unico sul ramo s≥1, con R₀=1 Ω. Non è una legge temporale di variazione della resistività.",
+      "physicalAssumptions": "Filo uniforme prima e dopo una preparazione ideale, volume LA conservato e resistività invariata alla stessa temperatura; R 0>0, s>=1 finiti. R è resistenza e rho è proprietà del materiale. Confronti fra preparazioni, non variazione temporale della resistività. Nel 03 autonomo due fili dello stesso materiale/temperatura/stato, senza vincolo di uguale geometria.",
+      "distractors": "8 copia s³; 4 non risolve la cubica; −2 viola s≥1 e renderebbe R₀ negativo nel vincolo. La monotonia di s³ esclude infinite soluzioni.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo nelle unità dichiarate è R₀=(1/2 Ω)s. Sostituendo in R=R₀s²:4 Ω=(1/2 Ω)s³, quindi s³=8 e s=2≥1. È unico sul ramo s≥1, con R₀=1 Ω. Non è una legge temporale di variazione della resistività.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "50737f19b2babdfafa276cc6aa1424cd913c826e2e664ec177af6238e3244d44",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "e9405f9104380baffa38f7c6725765a239317a89",
+  "packageSha256": "2b21bf8ed8649e3c04e77daf6418ded387347746e5a105fe4058876b44674f5b",
+  "bindingsSha256": "abf1a5a3ff88ceae454d05547899211ce8eae4fee69a54ad5ccdc4742757f5c9",
+  "sourceFirstPrimarySha256": "e8b27ab57d7cae8ac419227900fbb28282555d33ba3c3265e0e55199e19378bd",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-02.json",
+    "reference": "Tutti gli 80 originali U6-02 B205–209 sono stati letti e derivati da prompt e dati prima di candidati, alternative o chiavi. La primaria e8b27ab5 resta immutata. Successivamente ogni campo di ciascun record finale, tutte le alternative e i cinque SVG XML/native completi sono stati letti separatamente. Le correzioni B sono state rilette prima del congelamento; nessun modulo autore importato. Catalogo reale C4-L05/L06 riletto. UI del prodotto e approvazione umana NOT_RUN. Nessun push o upload durante il vincolo operativo ROOT."
+  }
+}
