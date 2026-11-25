@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T13:40:49.288519+00:00",
-  "snapshotHead": "83cafbb9e42ebf6d32f505573602add041c00bf8",
+  "observedAt": "2026-11-25T13:51:44.058216+00:00",
+  "snapshotHead": "a0136844c7e8a9d34624a1d0b01b18d88d1bb14d",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
@@ -10,7 +10,7 @@
     "scientificallyUnreviewed": 1614,
     "registeredDrafts": 2992,
     "compiledDraftsLocally": 2992,
-    "compiledCandidateFullyLocallyValidated": false,
+    "compiledCandidateFullyLocallyValidated": true,
     "next160AuthorAndPeerReviewedButRootAcceptance": "PENDING",
     "canonicalHistoricalRevisedDrafts": 1728
   },
@@ -84,10 +84,15 @@
     },
     "registrySha256": "e8925f07cf45318ce425379286656404406c943af3477cc0b2fb5c5b3377f119",
     "coexistence": "PASS",
-    "fullSuite": "IN_PROGRESS",
-    "release": "PENDING",
+    "fullSuite": {
+      "result": "PASS",
+      "tests": 800,
+      "seconds": 491.766
+    },
+    "release": "PASS",
     "isGitHubCI": false,
-    "uploads": false
+    "uploads": false,
+    "validationReceiptSha256": "23a0acdbc503569282a0ced8f6ee033bcd1a93c4fc7361665aa0c38a42fbbc66"
   },
   "nextScientificAcceptanceId": "AR-u6-zero-field-distance-ratio-01",
   "nextNewAuthoringId": "AR-u6-identical-parallel-resistors-01",
