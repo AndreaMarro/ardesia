@@ -1746,3 +1746,17 @@ Priorità di prosecuzione:
 2. Chiudere la rilettura B dei fix 148/150/152 e integrare U5-01 tramite il registro esistente, marker autentici e nuovo checkpoint; primo ID `AR-u5-temperature-difference-01`. Proseguire U5-02 con ownership 158–167.
 3. Completare la review distinta 048/049 sul CORE dopo la correzione responsive, preservando i negativi. Prima di cambiare runtime, creare fixture storiche autentiche 5405 e rieseguire i dipendenti.
 4. Riprendere 047 dopo la lettura integrale, senza contare la primaria parametrica come revisione completa. Continuare fino a 4.606/385; le 100 revisioni Pro restano NOT_IDENTIFIED, human NOT_RUN, nuove pubblicazioni zero, 93 esami protetti.
+
+
+## Cric — checkpoint 2320/230, 25 novembre 2026
+
+Registrati tutti i 160 quesiti U5-01 dopo review incrociata completa: 255 controprove e 480 configurazioni Hypothesis; quattro testi corretti e riletti. Recuperati 384 casi soltanto da otto marker terminali autentici con input identici; i due pacchetti mancanti sono stati rieseguiti. Macro di 157 pacchetti e 7.011 casi con uscita zero, riuso finale 157/0. Coesistenza di 2.337 bozze, zero scritture ripetute, 991 pubblicati e 181 entry point invariati. Fresh e incrementale coincidono: generazione `67fe90ae`, manifest `03ee6336`. Restano 2.286 quesiti e 155 attività. Fonte main riconfermata su `5cfbdcb0`.
+
+Le suite mirate nuove hanno 12+13 test ROOT PASS; la precedente completa da 554 test rimane legata alla fotografia 2160. Registrare la nuova completa 2320 prima della CI finale. Il CORE c177 ha ora review indipendente su tutti i sedici consumer: 196 casi browser e nove test. Non è ancora integrato nel ROOT né nel canone. Negativi storici e due candidati respinti conservati, nessun ritag. Tutti i candidati U5-02 sono salvati sui rami autore e la review incrociata prosegue.
+
+Prossimi passi:
+
+1. Congelare la PR #364 sulla 2320 con release e CI della SHA effettiva; merge senza bypass e 14 job post-merge reali.
+2. Preparare fixture 5405 e rivalidazione del CORE c177, preservando il ROOT congelato.
+3. Integrare dopo review i lotti 158–167, primo `AR-u5-cyclic-work-01`.
+4. Riprendere 047 completa e continuare tutto il corpus, mantenendo human NOT_RUN e nuove pubblicazioni zero.
