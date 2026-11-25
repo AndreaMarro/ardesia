@@ -180,7 +180,7 @@ Fonte canonica SHA256 eefeaca14b744687ed272d329c337f1c3c58e8e5e4c1246f9d9074882a
 
 Un filo omogeneo e uniforme ha resistività fissata ρ=2×10⁻⁸ Ω·m, lunghezza L>0 in m e area trasversale A>0 in mm². La temperatura è mantenuta costante. R=ρL/A si applica con A convertita in m²: 1 mm²=10⁻⁶ m². Per scrivere i soli numeri definiamo ℓ=L/(1 m), a=A/(1 mm²) e r=R/(1 Ω); allora r=ℓ/(50a). Fra prove L e A sono parametri assegnati: non si assume volume conservato salvo un vincolo esplicito. A ha L=100 m, A_A=2 mm². B usa L=200 m e deve dare R_B=4R_A. Quanto vale A_B/A_A?
 
-Procedimento d’autore: Il bersaglio è R_B=4 Ω. Nella relazione numerica 4=200/(50a_B) si trova a_B=1, quindi A_B=1 mm². Il rapporto con 2 mm² iniziali è 1/2. L’allungamento doppio contribuisce già a metà dell’aumento richiesto.
+Procedimento d’autore: Il bersaglio è R_B=4 Ω. Nella relazione numerica 4=200/(50a_B) si trova a_B=1, quindi A_B=1 mm². Il rapporto con 2 mm² iniziali è 1/2. La lunghezza doppia fornisce un fattore due; il restante fattore due deriva dall’area dimezzata.
 
 Passaggi: R_B=4\,\Omega;  a_B=\frac{200}{50\cdot4};  A_B=1\,\mathrm{mm^2};  \frac{A_B}{A_A}=\frac12.
 
@@ -188,7 +188,7 @@ Distrattori: Due inverte il rapporto. Un quarto usa solo l’aumento di resisten
 
 Hint: Ricava l’area B con la nuova lunghezza prima del rapporto delle aree.
 
-Fonte canonica SHA256 101aa600349d1909b686a5239301b53c27a30d8378466853c2ef5660c59f2aa6. Candidato SHA256 c3204c4fbec755aea20e0cc83225f7f3ed3627ab4d9e85c10c6387d82521a5b3. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 101aa600349d1909b686a5239301b53c27a30d8378466853c2ef5660c59f2aa6. Candidato SHA256 d370a9c7b7cb827a5e957a3ce0c428dd16c4c5998917090ccf586f8b03769e16. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-wire-resistance-14 — Un display prima della lunghezza
 
@@ -234,7 +234,7 @@ Fonte canonica SHA256 9d6c3e378d3a1b45d9d6074c12aae11690a3c8b571ee086264653e71ce
 
 ## Provenienza tecnica
 
-Asset SHA256 0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b. Package file SHA256 fc5ac8b2d91b134f1abf52dded424611d4a739fd6e0e6747558539af78600908. Binding file SHA256 53fb3cb8f362247c80587fc913cb571c7febea44c33c723df9042075f4544886. Prova strutturale SHA256 0842812552d83ed91a75803ee80a856dca341e01b1a0cc71ac388cf320c9b08b. Asset-only manifest SHA256 0231749a767a97610e7755dd9af3cd28c156b6faf725f894f29206080cbabbf0.
+Asset SHA256 0bea3e3b4af0ac2f3c1c2c0bd310cf352de915ec82be9fe176009aaf789ca33b. Package file SHA256 9605fd98da27213c68eb8b8b8415c38ed3f2861d160e208616adf8009e16115b. Binding file SHA256 12556a9d1678b74576f33a992b50ed0328950383b8e300af57eac50c759194cd. Prova strutturale SHA256 5aaf85f7ac6578086db34996d28dbb95596075bcb549123497e66b44f6d192ad. Asset-only manifest SHA256 0231749a767a97610e7755dd9af3cd28c156b6faf725f894f29206080cbabbf0.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
@@ -243,3 +243,7 @@ Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella s
 Le viste del filo e della sezione sono schematiche su scale indipendenti, dichiarato anche nel disegno e nella didascalia: non si ricava l’area dalla dimensione apparente del cerchio e non si confronta il diametro disegnato con100 m. Il grafico centrale usa area2 mm², lunghezza100 e200 m alle ascisse330 e530, resistenza1 e2 Ω alle ordinate730 e610. Le scale sono2 coordinate/m e120 coordinate/Ω. Il punto di origine è vuoto per indicare il limite L→0; le prove del modello hanno L>0.
 
 Le barre finali1,4,5/2 Ω sono larghe80,320,200, con origine130 e scala comune80 coordinate/Ω. La prova B cambia sezione a1 mm² ed è esplicitamente separata dalla retta centrale a2 mm². Lo zero a104 è lontano dall’asse. Coordinate e proporzioni sono documentazione tecnica, non metriche visibili allo studente. Il render nativo completo è stato realmente letto; nessuna UI prodotto o propria approvazione scientifica.
+
+## Chiarimento dopo revisione distinta del 13
+
+B ha rilevato un’ambiguità fra aumento additivo e fattore moltiplicativo. La frase ora esplicita che la lunghezza doppia fornisce un fattore due e l’area dimezzata il restante fattore due: il prodotto dà la resistenza quadrupla. Solo il primo blocco testuale13 e il binding13 sono cambiati; altre 15 schede, tutte risposte/formule/SVG restano identiche. Il confronto è stato realmente eseguito. Archivio dei sei file precedenti, incluso handoff, con manifest in wire-resistance-204-before-wording13-20261125. Nuova doppia assembly/import16→0/16,991 invariati; nessun nuovo render per SVG identico e nessun push. La rereview scientifica spetta a B.

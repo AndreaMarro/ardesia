@@ -64,7 +64,7 @@ TASKS=[
  'Due Ω usa i dati medi. Cinque non dimezza, 3/2 è metà della differenza e quattro copia B. Una somma o un parallelo di fili sarebbero problemi di topologia diversi da questa media statistica.',
  'Calcola le resistenze dei due fili prima di fare la media.'),
 ('L’area necessaria al bersaglio',SCENE+'A ha L=100 m, A_A=2 mm². B usa L=200 m e deve dare R_B=4R_A. Quanto vale A_B/A_A?',['1/2','2','1/4','4','1'],
- 'Il bersaglio è R_B=4 Ω. Nella relazione numerica 4=200/(50a_B) si trova a_B=1, quindi A_B=1 mm². Il rapporto con 2 mm² iniziali è 1/2. L’allungamento doppio contribuisce già a metà dell’aumento richiesto.',
+ 'Il bersaglio è R_B=4 Ω. Nella relazione numerica 4=200/(50a_B) si trova a_B=1, quindi A_B=1 mm². Il rapporto con 2 mm² iniziali è 1/2. La lunghezza doppia fornisce un fattore due; il restante fattore due deriva dall’area dimezzata.',
  r'R_B=4\,\Omega\qquad a_B=\frac{200}{50\cdot4}\qquad A_B=1\,\mathrm{mm^2}\qquad \frac{A_B}{A_A}=\frac12',
  'Due inverte il rapporto. Un quarto usa solo l’aumento di resistenza e dimentica L raddoppiata. Quattro copia il bersaglio e uno darebbe R_B=2 Ω, non 4 Ω.',
  'Ricava l’area B con la nuova lunghezza prima del rapporto delle aree.'),
