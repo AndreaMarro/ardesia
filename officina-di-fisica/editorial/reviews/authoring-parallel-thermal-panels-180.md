@@ -237,3 +237,9 @@ Fonte canonica SHA256 129599e5b91fbbf36de880dae11e41620544dfb2d5bc262973be01aa5d
 Asset SHA256 304c86a85353fa99ffad1b7bbcaf611235f433f20ea660c825d2f6d6ecdde9ba. Package file SHA256 453a134c052d3ace00548e31c36e64e012d4bc0f94553bb80feecc2d7a2e60db. Binding file SHA256 49e774c985e1516ec17705b2419082b6c7a83c3411ab5bfbaef18ebfdebec223. Prova strutturale SHA256 e92e208739614c5dfa2ded72b0357ad77cd5724a75a4764666bb9d6eca2be7a6. Asset-only manifest SHA256 e1498efee469c133f275a78f39dc503986f468029acde63e49e25cda9615d653.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
+
+## Supplemento di resa nativa
+
+Dopo la riapertura delle operazioni limitate è stato eseguito realmente Quick Look sotto mutex condiviso e guardia di spazio libero di 2 GiB. Exit 0 osservato; PNG integrale letto: collegamenti schematici, barre proporzionate e testi separati dagli assi. Il precedente manifest NOT_RUN è conservato byte per byte in initial-not-run-manifest.json. Package, binding e prova strutturale restano immutati. La prova è asset-only; UI prodotto e revisione scientifica indipendente restano NOT_RUN.
+
+Manifest corrente SHA256 58a1b2c929dc1a7da5fa2dce2169fdd938a993224210b1f997f2f7fbf960a8e1.
