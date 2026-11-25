@@ -68,7 +68,8 @@ jobs:
                   raise ValueError('Requested canonical preview protocol changed: ' + path)
           values = {'CRIC_PREVIEW_RUN_ID': str(request['previewRunId']), 'CRIC_PREVIEW_HEAD_SHA': request['previewHeadSha'],
                     'CRIC_SOURCE_REF': request['sourceRef'], 'CRIC_ORIGINAL_REF': request['cricRef'],
-                    'CRIC_EXPECTED_RUNTIME_SHA': request['runtimeSha256']}
+                    'CRIC_EXPECTED_RUNTIME_SHA': request['runtimeSha256'], 'CRIC_PRODUCER_WORKFLOW': request['producerWorkflow'],
+                    'CRIC_PRODUCER_ARTIFACT_PREFIX': 'cric-preintegration-evidence' if request['producerWorkflow'].endswith('/cric-preintegration-evidence.yml') else 'cric-preview-evidence'}
           with open(os.environ['GITHUB_ENV'], 'a') as output:
               for key, value in values.items():
                   output.write(key + '=' + value + '\n')
@@ -88,12 +89,22 @@ jobs:
           import json, os
           from pathlib import Path
           producer = json.loads(Path('var/preview-producer.json').read_text())
-          if producer['head_sha'] != os.environ['CRIC_PREVIEW_HEAD_SHA'] or producer['path'] != '.github/workflows/cric-preview-evidence.yml':
+          if producer['head_sha'] != os.environ['CRIC_PREVIEW_HEAD_SHA'] or producer['path'] != os.environ['CRIC_PRODUCER_WORKFLOW']:
               raise ValueError('Unexpected preview artifact producer')
           if producer['status'] != 'completed':
               raise ValueError('Preview producer has not reached a real terminal state')
           PYCODE
-          gh run download "$CRIC_PREVIEW_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "cric-preview-evidence-$CRIC_PREVIEW_HEAD_SHA" --dir "$ASTRA_RESULTS"
+          gh run download "$CRIC_PREVIEW_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "$CRIC_PRODUCER_ARTIFACT_PREFIX-$CRIC_PREVIEW_HEAD_SHA" --dir var/recovered-producer
+          python3 - <<'PYCODE'
+          import os, shutil
+          from pathlib import Path
+          source = Path('var/recovered-producer')
+          if os.environ['CRIC_PRODUCER_WORKFLOW'].endswith('/cric-preintegration-evidence.yml'):
+              source = source / 'corpus-preview-evidence'
+          if not source.is_dir():
+              raise ValueError('Actual producer preview directory missing')
+          shutil.copytree(source, Path(os.environ['ASTRA_RESULTS']))
+          PYCODE
       - name: Resume only genuine matching cases, then persist complete evidence
         run: |
           node tests/corpus/browser-batches.mjs
@@ -110,6 +121,8 @@ jobs:
           specs = {row['id']: row for row in load_registry()}
           archive = Path('var/preintegration/prior-scientific-reports')
           archive.mkdir(parents=True, exist_ok=True)
+          current_reports = Path('var/preintegration/current-scientific-reports')
+          current_reports.mkdir(parents=True, exist_ok=True)
           receipts = []
           for batch in request['scientificRefreshBatches']:
               spec = specs[batch]
@@ -124,6 +137,7 @@ jobs:
               shutil.copyfile(science, archive / science.name)
               old_sha = sha(science.read_bytes())
               science.write_text(canonical(current) + '\n')
+              shutil.copyfile(science, current_reports / science.name)
               integration = exercise(batch)
               count = len(spec['questionIds'])
               if (integration['firstImport']['saved'], integration['repeatedImport']['saved'], integration['repeatedImport']['unchanged']) != (count, 0, count):
@@ -132,6 +146,7 @@ jobs:
               if integration_file.exists():
                   shutil.copyfile(integration_file, archive / integration_file.name)
               integration_file.write_text(canonical(integration) + '\n')
+              shutil.copyfile(integration_file, current_reports / integration_file.name)
               receipts.append({'batch': batch, 'records': count, 'priorReportSha256': old_sha,
                                'actualReportSha256': sha(science.read_bytes()), 'verifierSha256': current['verifierSha256'],
                                'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'})

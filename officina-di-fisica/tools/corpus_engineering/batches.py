@@ -15,6 +15,27 @@ from .acceptance_withdrawals import load_ledger,acceptance_audit,assert_unchange
 APP=Path(__file__).resolve().parents[2]
 
 
+def report_differences(saved, fresh, limit=12):
+    """Bound diagnostic output without changing strict evidence acceptance."""
+    differences=[]
+    missing=object()
+    def summary(value):
+        if value is missing:return '<missing>'
+        if isinstance(value,(dict,list)):
+            return {'type':type(value).__name__,'length':len(value)}
+        return repr(value)[:240]
+    def walk(left,right,path):
+        if len(differences)>=limit or left==right:return
+        if isinstance(left,dict) and isinstance(right,dict):
+            for key in sorted(set(left)|set(right)):
+                walk(left.get(key,missing),right.get(key,missing),path+'.'+str(key))
+        elif isinstance(left,list) and isinstance(right,list) and len(left)==len(right):
+            for index,(a,b) in enumerate(zip(left,right)):walk(a,b,path+'['+str(index)+']')
+        else:differences.append({'path':path,'saved':summary(left),'fresh':summary(right)})
+    walk(saved,fresh,'$')
+    return differences
+
+
 def assert_record_identity(records,expected_ids,package,bindings):
     ids=[r.get("id") for r in records]
     binding_ids=[b["id"] for b in bindings]
@@ -174,7 +195,7 @@ def validate_activity_batch(spec,sources,app=APP):
     saved=json.loads(file.read_text());records=current['records']
     assert_activity_identity(records,expected,selected,candidates,bindings)
     if saved!=current or saved['verifierSha256']!=sha(Path(module.__file__).read_bytes()):
-        raise ValueError('Activity evidence changed: '+spec['id'])
+        raise ValueError('Activity evidence changed: '+spec['id']+'; differences='+canonical(report_differences(saved,current)))
     if revision:
         integration=app/'editorial/reviews'/(revision+'-integration.json');integrated=exercise(revision)
         if integrated!=json.loads(integration.read_text()) or integrated['packageSha256']!=digest(package):

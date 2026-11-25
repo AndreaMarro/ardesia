@@ -15,7 +15,8 @@
     "expectedQuestionDrafts",
     "expectedReviewedActivities",
     "scientificRefreshBatches",
-    "protocolFiles"
+    "protocolFiles",
+    "producerWorkflow"
   ],
   "properties": {
     "schemaVersion": {
@@ -89,6 +90,12 @@
           "$ref": "#/$defs/sha"
         }
       }
+    },
+    "producerWorkflow": {
+      "enum": [
+        ".github/workflows/cric-preview-evidence.yml",
+        ".github/workflows/cric-preintegration-evidence.yml"
+      ]
     }
   },
   "$defs": {
