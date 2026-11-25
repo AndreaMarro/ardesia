@@ -1,0 +1,457 @@
+{
+  "bindingsSha256": "b05f9588badb87189cbbaed1268df1512caf61a8088d20aac19ad91259d4f67c",
+  "closedFindings": [],
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "findings": [],
+  "humanApproval": "NOT_RUN",
+  "lessonMappingReview": "Real catalog lessons reread: C2-L001 density and normal pressure forces, C2-L009 series and parallel flow networks, C2-L010 surface force, interfacial work and Laplace, and C1-L005 the inertial-frame vector resultant for a material body. Candidate course, skill, prerequisites and C6 reuse were checked.",
+  "limitations": [
+    "Only the explicitly assigned ideal models are verified. Positive network parameters alone do not establish a real-fluid linear steady regime; spherical droplets ignore gravity and shape changes; surface-work statements assume the stated reversible constant-tension conditions.",
+    "Literal signatures bind exactly the prose read; arbitrary future prose is not semantically parsed.",
+    "Exact choice grammar is bounded to rational or decimal literals and one pi or integer-radical monomial, plus the exact reviewed unit suffix. Arbitrary expressions and functions are rejected.",
+    "Wrong keys, units, sources, equivalent choices and figure scales are rejected after rebinding and test-only token or edition-hash replacement. The plausible false prose case with a correct key is rejected by frozen reading, not claimed as a general language proof checker.",
+    "Conceptual judgments remain AI_CONCEPTUAL separately from EXACT_ORACLE. Human approval is NOT_RUN and all material remains DRAFT."
+  ],
+  "mutationAudit": {
+    "allRejected": true,
+    "caseCount": 25,
+    "cases": [
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-01",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-02",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-03",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-04",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-05",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-06",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-07",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-08",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-09",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-10",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-11",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-12",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-13",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-14",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-15",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-network-stages-16",
+        "rejectedBy": [
+          "Independent surface and network conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_unit_rebound_and_retokenized",
+        "id": "AR-u3-network-stages-01",
+        "rejectedBy": [
+          "Independent numeric physical unit mismatch"
+        ]
+      },
+      {
+        "case": "false_source_hash_rebound_and_retokenized",
+        "id": "AR-u3-network-stages-01",
+        "rejectedBy": [
+          "Independent pinned Git source binding mismatch"
+        ]
+      },
+      {
+        "case": "false_source_shard_provenance_rehashed_and_retokenized",
+        "id": "AR-u3-network-stages-01",
+        "rejectedBy": [
+          "Independent pinned source provenance mismatch"
+        ]
+      },
+      {
+        "case": "equivalent_literal_distractor_rebound_and_retokenized",
+        "id": "AR-u3-network-stages-07",
+        "rejectedBy": [
+          "Equivalent exact numeric choices require editorial review",
+          "Equivalent exact numeric choices require editorial review"
+        ]
+      },
+      {
+        "case": "correct_key_but_false_physical_proof_rebound",
+        "id": "AR-u3-network-stages-01",
+        "rejectedBy": [
+          "Independent reviewed signature mismatch",
+          "Independent reviewed package edition mismatch",
+          "Independent reviewed binding edition mismatch"
+        ]
+      },
+      {
+        "case": "empty_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "partial_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "duplicate_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "wrong_SVG_physical_scale_or_continuity_all_hashes_bindings_and_tokens_replaced",
+        "rejectedBy": "Independently reviewed physical scale or graph curve changed"
+      }
+    ],
+    "frozenSignaturesRestored": true,
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT",
+    "scope": "independent_oracle_integrity_and_manual_review_boundary_mutation_tests"
+  },
+  "packageSha256": "4a6347ae796bcb46e169fd9555a7295ba50ef0db49c234f7d5b52258c134f893",
+  "primaryBeforeKeys": "Conserve branch flows at common stage pressure and add stage pressure drops at common total rate. Both stage and branch counts remain positive integers, including inverse and display-derived values.",
+  "propertyAudit": {
+    "coverage": "Integer stage and branch flow-pressure conservation; material-column Newton and subsystem additivity; two-face film force and virtual work; total-area surface work and no double counting; hemisphere balance and inverse curvature. Separate tests cover strict physical and integer inverse domains, nonlinear means, dimensioned roots, continuous versus integer redundancy and fresh plus saved canonical reading identity.",
+    "examplesPerProperty": 40,
+    "framework": "Hypothesis 6.148.7",
+    "generatedConfigurationCount": 200,
+    "propertyCount": 5,
+    "savedIdentityCounterexampleCount": 25,
+    "seedPolicy": "derandomize=True",
+    "strictDomainCounterexampleCount": 21,
+    "testRun": {
+      "durationSeconds": "3.792",
+      "exitCode": 0,
+      "result": "PASS",
+      "testCount": 11
+    },
+    "tests": "tests/corpus/test_u3_surface_foundations_independent.py"
+  },
+  "publication": "DRAFT",
+  "records": [
+    {
+      "assetReview": "First schematic network has two stages, four branches each. Total 4 L/s is 80 px and each branch 1 L/s is 20 px at common 20 px/(L/s). Absolute nodes 104,102,100 kPa give two 2 kPa drops. Second network retains two stages and total rate but two branches: each 2 L/s is 40 px, nodes 108,104,100 give stage drops 4 kPa. Last comparison is a separately labeled B with three stages and two branches: bars at 60 px/(kPa·s/L) sum 30+30 = 60 and 60+60+60 = 180. All separate arrow markers and full native image read; network geometry is explicitly schematic.",
+      "candidateSha256": "0fa69619284b2aa355e95dca4c0489658240bf373e039f0fa4415a0d5be6a9a8",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "All channels in series would give 16; all in parallel would give 1/4; 2 is a single-channel resistance. Neither alternative respects the network nodes.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-01",
+      "manualArithmetic": "Four equal parallel channels give one stage resistance 2/4 = 1/2 kPa·s/L. Two stages add to 1 kPa·s/L; eight physical channels are not eight series resistances.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "3722970a676af50971932fbf4efe91a470a77fec94b7e29dfc3bcbf8f916ae9e",
+      "sourceSha256": "80b399b3af83693b6f1fee29c85f24db301778bf85c628ec44245a22d6e29813",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "8a39c84606b88961f684f8a78d0023d21e375488b3b15bf7c48daa3797edd2a3",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Pressure, rate and pure counts are not resistance; L/(kPa·s) is conductance.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-02",
+      "manualArithmetic": "Pressure divided by volume rate has unit kPa·s/L. Both counts are dimensionless positive integers.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "0a8f47d72b41a43fe2357c8c84621bdcd89754ee8939d61d3cb07acd5446b4cd",
+      "sourceSha256": "b3a1039c270deb0e923e054e60019fc1cf904940f83642334891a6bfe433e36c",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "First schematic network has two stages, four branches each. Total 4 L/s is 80 px and each branch 1 L/s is 20 px at common 20 px/(L/s). Absolute nodes 104,102,100 kPa give two 2 kPa drops. Second network retains two stages and total rate but two branches: each 2 L/s is 40 px, nodes 108,104,100 give stage drops 4 kPa. Last comparison is a separately labeled B with three stages and two branches: bars at 60 px/(kPa·s/L) sum 30+30 = 60 and 60+60+60 = 180. All separate arrow markers and full native image read; network geometry is explicitly schematic.",
+      "candidateSha256": "8e6af283395a30d71dfebe966b59bac83167db853b192b3474e864dfd1b183e9",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "The product counts parallel channels as series. Exchanging counts reverses both effects, inverse product treats stages as parallel, and the sum of counts has no such topology.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-03",
+      "manualArithmetic": "At common stage pressure, branch rates add: Q = N_p Δp/R₀. At common total rate, N_s stage drops add. Eliminate Δp to obtain R_eq = R₀ N_s/N_p.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "4073b7d9acc93857881ad2f3cf68d1b720e51b5e9ac9e01abc422acfc7920765",
+      "sourceSha256": "950579a92e8b9d77b8c2de1492ecaf0d24693d2a8a95c6a96b569020da2e264e",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "15ca07622903a794bd1183cf2fd5d84f6b416c5b0670dec81b11671287e61e62",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "2/3 reverses the stage factor; 3 copies a count; unchanged or zero ignores an added positive series stage.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-04",
+      "manualArithmetic": "Three stages each of resistance 1/2 give 3/2 kPa·s/L, compared with 1 for two stages.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "0c8097d6ddb1e6e09c975b0b48feeeee75396de8fc876fd05bcc21617085c92d",
+      "sourceSha256": "1103beeca211846de5a3e91dd11caea2276e42a6c0cd0dcf428d9310bfc30ea0",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "2eb9dfe93246a6f9648d3c0874514d8443768a384fa5b7a24c0a7ee2941efcf1",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "4 copies the branch count and 1/2 inverts the calculation. Fractional stage values cannot be rescued by rounding exact data.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-05",
+      "manualArithmetic": "N_s = R_eq N_p/R₀ = 1·4/2 = 2, and 2 is an admissible integer.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "2f5b35a85ee99fb0238e21593f8603dfb632e2990a9c321d9f7b14b3dc75354c",
+      "sourceSha256": "04f0b0affafa6fc875ec1d405fa7f6875b0ffa19f15f7724b0e13caa2cd97040",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "b9088a0e2a017f7ee12cbb12c1f0e0b71137967fd006695940b6fe2f74751607",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "2 copies the stage count, 1/4 inverts the branch count and 8 counts total channels rather than channels per stage.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-06",
+      "manualArithmetic": "N_p = N_s R₀/R_eq = 2·2/1 = 4, an integer number per stage rather than eight total channels.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "2c12b3d82c9a1a325bee61c8b5319f69be22109f7e21c611e9ac1a272b72be5f",
+      "sourceSha256": "c9123c00a654e34e9107b1543d4c42370072307933aafd931a9e114db63bd041",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "ce59ba4d6314433c78f198533390dd3f72c49d4feec11dfff734ef5a81d05512",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "1/2 reverses the branch effect, 4 doubles the factor twice, 1 ignores it and 2/3 is not the assigned count ratio.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-07",
+      "manualArithmetic": "Two parallel channels per stage give stage resistance 1, hence total 2 and ratio 2 to A.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "75639a39b0b9804449199b361a511207644b2e85cb84af4842feba56076b2eb4",
+      "sourceSha256": "f4653da2e1af87d71f1f9a78f8e3ab07513f91b4c38e00948bfc1a593526c618",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "9b0321a605f2e60ff7ac66542a9ba7927a7a69c7c838e611f9d9f5a839609317",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "−1 reverses subtraction, 2 copies proposal, 0 accepts it and 1/2 halves the error.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-08",
+      "manualArithmetic": "Proposal 2 minus correct 1 is +1 kPa·s/L.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "e0199a5a136d72fa8c3d343743e5df28624d308d02e1102aacc6d62db8b05566",
+      "sourceSha256": "06b4d778397385b12604df4371efe233fe6b5675bbdb7a20785bb7bb1c9c567f",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "7a219b051d286e1bbd18af4aa3b715f771abd1c461565685a9a80a876b86b7f4",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "R₀ N_p/R_eq reverses the physical resistance ratio; R_eq R₀/N_p has resistance squared, division by N_p repeats the inverse effect, and R_eq + N_p adds incompatible dimensions.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-09",
+      "manualArithmetic": "Isolate N_s = R_eq N_p/R₀. Resistance units cancel and the result must still be integral; positivity alone is insufficient.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "e71dd67f7e57663739496f2761ba213ad083a4e909862b045b460f8a44550407",
+      "sourceSha256": "20bc591d694fb11816f60adc31a21edd17d245a19b93276d05617ba1847a2513",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "e218166d4a08287a00a25d40e939c2a86df60e2d184feae37cefe1f4189e80d3",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "The product makes extra parallel channels impede flow; reciprocal swaps trials. Squared count factors have no basis in the linear network reduction.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-10",
+      "manualArithmetic": "The ratio is κ₁/κ₂. Each new count, rather than necessarily each factor, must be a positive integer.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "25fdf17fe3f3814f1f6516503299cf7bd658752b6b938a44442a3c18ba328228",
+      "sourceSha256": "560a716aa4a869eca92f445eb498e703e28884a8ee76633c0ae3e6a8fc08f5f4",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "424c8dddaec94c8a1b2e3f6ed2a3b0e95a2c384866cb3f84fdeedd786c60b88e",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "3/2 follows stages only, 2 follows channels only and 1/3 reverses trials. Six is a total channel count in B, not a resistance ratio.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-11",
+      "manualArithmetic": "B has three stages of resistance 1 each, total 3. The ratio to A total 1 is 3.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "e729dbfdc0f93f7f815e8c502c14c9974c9fd61a15773cb50179dbd96a9a136f",
+      "sourceSha256": "2b1f63c92a600b9a39f9c615f1703498e82120a1e41e45b36c2fff7676d4c5ed",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "c4fc2fbcb2ddfbd67cf69c0297bc0f1344b0d2404d79baeb8e2fd498e3d3ed7c",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "4 sums outputs; 1 halves the mean again or copies A; 3 copies B. 5/3 comes from a formal continuation to a noninteger stage count, not a physical average network.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-12",
+      "manualArithmetic": "Output mean is (1 + 3)/2 = 2 kPa·s/L. The input mean N_s = 5/2 is outside the count domain; a formal 5/3 is not the requested mean or a realizable average-count network.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "98441c3f86007e399971f62d080ad145456f762e46ac72a302ddc715074ab226",
+      "sourceSha256": "60cba62f98d93aa8b02d2e670c6a16174a1165cca7818211308c44451f21fe69",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "8f2148dc84cb12008ccc56e99bff5dc0f981bad8a2afbd03836ada3e01dfde66",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "2 is both the final branch count and the reciprocal of the asked ratio; 3/2 follows stages only; 3 copies target, and 1/3 ignores changed stages.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-13",
+      "manualArithmetic": "Target 3 with N_s = 3 requires N_p = 3·2/3 = 2. Relative to 4 the factor is 1/2, with integral final count.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "a7f5a291ac0b287ab4e8e991749365dbc773e75bef4fa9d253228339d0fb8a12",
+      "sourceSha256": "cc2ca9b9c776461259200adc3839b3295404865e487d86e2dd6dff0734896287",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "7ff12602b6171dc6a54d00c8ceeeadcd61320fb8c47d4d464f8eae5808274401",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Treating reading 9 as resistance gives nine stages and reconstructs a display three times too large.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-14",
+      "manualArithmetic": "Gain is 3 L/(kPa·s). Reading 9 gives total resistance 3; two channels per stage give one per stage and N_s = 3.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "9658dfaccbcd1fbc68b7085ec58e37c4d0b3164d5ba3b1ddd5e3a1edd17ad4a6",
+      "sourceSha256": "c98bbabfec6e89c01044d4525a81694897e5423ec328baaa7bdbd8c308cc0a29",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "87060a2752de9099c52d6def35aa9612de9d86b0ea9b094f005febca684840ba",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "With N_p = 4, candidate counts 1,2,4,6 produce readings 2,3,5,7. Only 3 produces 4.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-15",
+      "manualArithmetic": "Gain (7−3)/(3−1) = 2 L/(kPa·s), offset 1. Reading 4 gives resistance 3/2; divide by stage 1/2 to obtain N_s = 3.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "dc42e587ffb20802f05bca1786c3ae80d8cb6b8c2948ce42637bda637e503b67",
+      "sourceSha256": "37a92e6f7faed5ad34a36a7ea14e7d88c311970fe0576cc738a49c4ccc5cf005",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "d07344533fe9e68a73e6a00bc1954b928e82c244f8ea374047b79b7076a65317",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "One or two finite examples do not exhaust k ≥ 1. No solutions is contradicted by (1,2); the zero pair violates domain and makes the rational law undefined.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-network-stages-16",
+      "manualArithmetic": "All integer pairs (N_s,N_p) = (k,2k), k ≥ 1, give resistance 1. There are countably infinitely many; zero counts are excluded.",
+      "physicalAssumptions": "Horizontal incompressible steady network, linear positive identical channel resistances, ideal nodes without accumulation or extra losses, no bypass between nonconsecutive stages. Positive total rate is common to stages and branches share each stage pressure. N_s and N_p are positive integer counts, fixed within a trial. Display readings are continuous dimensionless signals, not physical channel counts.",
+      "publication": "DRAFT",
+      "reviewedSignature": "39701b5617f801aebe27a92c32edaff61ac25fe00a5f6c88b5109fb804f94dd3",
+      "sourceSha256": "648e80ff72291e478ae5f20f1388e7029fcc53b2c8fe0722ab74990448ca1cee",
+      "verificationMode": "AI_CONCEPTUAL"
+    }
+  ],
+  "reviewSequence": "All 80 original U3-05 prompts 120–124 were read individually from pinned Git before candidate keys, alternatives or solutions. Primary balances and per-ID exact results were saved first. Then every final candidate prompt, option, full solution and formula, hint, feedback, metadata and provenance was read. Five SVG files were read completely in XML and full native images. Exact root package and binding bytes were compared with the final read author commits before literal signatures were frozen.",
+  "reviewedCandidateCommit": "e676ba36fa9817733ac6a4bc0b4fb1dd23f3c57b",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "scope": "Independent AI scientific and pedagogical reading of exact drafts, not human approval or publication.",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-05.json",
+    "reference": "Solve common-rate series pressure addition and equal-pressure branch flow conservation before considering candidate choices. Keep both counts in positive integers, including inverses, calibration and redundancy.",
+    "title": "Positive integer stages and parallel channels"
+  },
+  "sourceFileReadSha256": "df12f4657bef73dcb5c0d24f2e099d6534abce442b7615c511b74a670f392e1f",
+  "sourceOnlyArithmeticRecordSha256": "26ad417d4fe08bf5f0c7806bbff37e4fb31d4dd2718c26f64c5d7de81e332347",
+  "svgReview": {
+    "canonicalBrowser": "NOT_RUN_BY_THIS_REVIEWER",
+    "geometry": "First schematic network has two stages, four branches each. Total 4 L/s is 80 px and each branch 1 L/s is 20 px at common 20 px/(L/s). Absolute nodes 104,102,100 kPa give two 2 kPa drops. Second network retains two stages and total rate but two branches: each 2 L/s is 40 px, nodes 108,104,100 give stage drops 4 kPa. Last comparison is a separately labeled B with three stages and two branches: bars at 60 px/(kPa·s/L) sum 30+30 = 60 and 60+60+60 = 180. All separate arrow markers and full native image read; network geometry is explicitly schematic.",
+    "nativePreview": "All five complete native images were read separately. Native conversion omits marker tips, so the marker definitions and separate arrow paths were additionally checked in XML.",
+    "xml": "Every graphical element, marker definition and effective arrow marker, bar, circle, graph point, curve and label was read against its declared quantity and scale."
+  },
+  "verifierSha256": "43bba8b6ac95497fb9b5cb4194dc7ff7ee336b3bd4f039eeb01235d5d0bfcf1a"
+}
