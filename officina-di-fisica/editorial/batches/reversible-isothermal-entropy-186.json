@@ -1,0 +1,1203 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18601,
+      "title": "Entropia che entra nel sistema",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 1,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Con Q_rev=600 J e T=300 K, quanto vale ΔS in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per una trasformazione reversibile dS=δQ_rev/T. Poiché T è costante si può portare fuori dall’integrale: ΔS=Q_rev/T. Seicento joule divisi per trecento kelvin danno 2 J/K, positivi perché il sistema assorbe calore. Non si sta calcolando l’entropia totale, che nel limite reversibile include anche la perdita della sorgente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f890b8a20bf7c0eb9ffd91ae647232309979edf72ab5a3c740c6980876889751",
+          "text": "Il primo schema mostra il limite reversibile fra sistema e sorgente entrambi a 300 K: 600 J passano al sistema, che aumenta la propria entropia di 2 J/K; la sorgente diminuisce di 2 J/K. Le frecce del calore sono schematiche. Il pannello centrale confronta le due variazioni con segno e origine zero comune, la cui somma è nulla. L’ultimo confronta invece due prove del solo sistema: ΔS_A=2 J/K e ΔS_B=1 J/K, con media 3/2 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=\\int\\frac{\\delta Q_{\\rm rev}}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\frac{Q_{\\rm rev}}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\frac{600\\,\\mathrm J}{300\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Zero descriverebbe qui la somma delle variazioni di sistema e sorgente, non quella del sistema assorbente. −2 J/K cambierebbe il verso del calore. 180000 avrebbe unità J·K se si moltiplicassero Q_rev e T; 600 J è energia, non entropia."
+        }
+      ],
+      "hints": [
+        "Usa la temperatura assoluta costante come divisore del calore reversibile ricevuto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero descriverebbe qui la somma delle variazioni di sistema e sorgente, non quella del sistema assorbente. −2 J/K cambierebbe il verso del calore. 180000 avrebbe unità J·K se si moltiplicassero Q_rev e T; 600 J è energia, non entropia.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18602,
+      "title": "L’unità non definisce da sola la grandezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 1,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Quale unità è adatta a ΔS fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J/K",
+          "J",
+          "K",
+          "W",
+          "K/J"
+        ],
+        "value": "J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto fra energia trasferita e temperatura assoluta ha unità joule per kelvin. Anche una capacità termica usa J/K, ma non è per questo la stessa grandezza: una capacità lega energia e aumento di temperatura in un processo, mentre qui ΔS è una variazione di una funzione di stato."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta S]=\\frac{[Q_{\\rm rev}]}{[T]}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta S]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, K temperatura, W potenza e K/J l’inverso di J/K. Non si deve convertire il denominatore in un aumento termico: la trasformazione è isoterma, ma T non è zero."
+        }
+      ],
+      "hints": [
+        "Segui le unità nel quoziente, distinguendo T da ΔT.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, K temperatura, W potenza e K/J l’inverso di J/K. Non si deve convertire il denominatore in un aumento termico: la trasformazione è isoterma, ma T non è zero.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18603,
+      "title": "Reversibile non vuol dire entropia individuale invariata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 1,
+      "prompt": "Un sistema assorbe calore Q_rev>0 reversibilmente a temperatura assoluta costante T>0 da una sorgente alla stessa temperatura. Non c’è produzione di entropia. La reversibilità impone che l’entropia del sistema non cambi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "No: il sistema aumenta di Q_rev/T e la sorgente diminuisce dello stesso valore",
+          "Sì: l’entropia di ogni parte resta costante",
+          "Sì: nessuna entropia può essere trasferita con il calore",
+          "No: sistema e sorgente aumentano entrambi di Q_rev/T",
+          "No: il sistema diminuisce perché assorbe energia"
+        ],
+        "value": "No: il sistema aumenta di Q_rev/T e la sorgente diminuisce dello stesso valore"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’assenza di produzione non elimina il trasferimento di entropia. Il sistema riceve Q_rev e aumenta di Q_rev/T. La sorgente cede lo stesso calore e perde Q_rev/T: la somma è zero. Le variazioni individuali sono opposte e non nulle. Il calore qui attraversa il confine del sistema, che non è isolato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f890b8a20bf7c0eb9ffd91ae647232309979edf72ab5a3c740c6980876889751",
+          "text": "Il totale nullo del pannello centrale appartiene al sistema più la sorgente nel limite reversibile, non alla variazione del sistema da solo. Le barre con segno rappresentano variazioni di entropia in J/K, non calori o temperature. La terza media riguarda prove diverse e non un trasferimento irreversibile fra due sorgenti a temperature differenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm sist}=Q_{\\rm rev}/T>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm sorg}=-Q_{\\rm rev}/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm totale}=0"
+        },
+        {
+          "type": "text",
+          "text": "Attribuire variazione nulla a ogni parte confonde assenza di produzione con assenza di scambio. Due aumenti uguali darebbero una produzione positiva, estranea al limite reversibile. La diminuzione appartiene alla sorgente che cede, non al sistema assorbente."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente sistema e sorgente prima di considerare il totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Attribuire variazione nulla a ogni parte confonde assenza di produzione con assenza di scambio. Due aumenti uguali darebbero una produzione positiva, estranea al limite reversibile. La diminuzione appartiene alla sorgente che cede, non al sistema assorbente.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18604,
+      "title": "Più calore alla stessa temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 1,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Q_rev passa da 600 a 1200 J, mentre T=300 K. Come cambia ΔS?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 J/K",
+          "Da 2 a 1 J/K",
+          "Resta 2 J/K",
+          "Da 2 a 8 J/K",
+          "Da 2 a 0 J/K"
+        ],
+        "value": "Da 2 a 4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura assoluta è la stessa in entrambe le prove. Raddoppiare il calore reversibile assorbito raddoppia quindi ΔS: da 600/300=2 a 1200/300=4 J/K. Isoterma significa T costante, non variazione di entropia nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=\\frac{1200\\,\\mathrm J}{300\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Un J/K rende inversa la dipendenza dal calore, otto usa un quadrato e due ignora il nuovo Q_rev. Zero scambia l’entropia del sistema con la somma del sistema e della sorgente."
+        }
+      ],
+      "hints": [
+        "Con T invariata, conta il nuovo calore che attraversa il confine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un J/K rende inversa la dipendenza dal calore, otto usa un quadrato e due ignora il nuovo Q_rev. Zero scambia l’entropia del sistema con la somma del sistema e della sorgente.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18605,
+      "title": "Il calore dalla variazione di entropia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Si misura ΔS=2 J/K e si conosce T=300 K. Quanto vale Q_rev in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 600,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo ΔS=Q_rev/T per T positiva. Due joule per kelvin moltiplicati per trecento kelvin danno seicento joule. Il segno è positivo come l’assorbimento imposto dal modello."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm rev}=T\\Delta S"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm rev}=(300\\,\\mathrm K)(2\\,\\mathrm{J/K})"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm rev}=600\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "150 nasce da T/ΔS e ha unità K²/J, non J. 2 J copia il numero dell’entropia e 300 J quello della temperatura. Una temperatura Celsius al posto dei 300 K non è il denominatore della legge termodinamica."
+        }
+      ],
+      "hints": [
+        "Per invertire una divisione per T, moltiplica per la stessa temperatura assoluta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "150 nasce da T/ΔS e ha unità K²/J, non J. 2 J copia il numero dell’entropia e 300 J quello della temperatura. Una temperatura Celsius al posto dei 300 K non è il denominatore della legge termodinamica.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18606,
+      "title": "La temperatura assoluta dal calore e dall’entropia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. ΔS=2 J/K e Q_rev=600 J. Quanto vale T in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo T=Q_rev/ΔS. Il rapporto 600 J/(2 J/K) dà 300 K. Non si usa la variazione di temperatura, che è nulla durante questa isoterma. Il risultato è il punto assoluto corrispondente a 26,85 °C, non una lettura di 300 °C."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{Q_{\\rm rev}}{\\Delta S}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{600\\,\\mathrm J}{2\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " T=300\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Zero confonde T con ΔT. 1200 deriva dal prodotto Q_revΔS e non ha unità K. Il reciproco ΔS/Q_rev ha K⁻¹. La positività di ΔS rende lecita l’inversa nel ramo di assorbimento."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia per l’entropia, non per un aumento termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero confonde T con ΔT. 1200 deriva dal prodotto Q_revΔS e non ha unità K. Il reciproco ΔS/Q_rev ha K⁻¹. La positività di ΔS rende lecita l’inversa nel ramo di assorbimento.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18607,
+      "title": "Stesso calore a temperatura assoluta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. A e B assorbono 600 J. A ha T=300 K, B ha T=600 K. Quanto vale ΔS_B/ΔS_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A aumenta di 600/300=2 J/K, mentre B aumenta di 600/600=1 J/K. Il rapporto è un mezzo. Il medesimo calore reversibile trasferisce meno entropia quando viene scambiato a temperatura assoluta maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B/\\Delta S_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto. Uno ignora T diversa; un quarto e quattro applicano un quadrato non presente in Q_rev/T. Non si confrontano letture Celsius."
+        }
+      ],
+      "hints": [
+        "Calcola il quoziente Q_rev/T in entrambe le prove prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto. Uno ignora T diversa; un quarto e quattro applicano un quadrato non presente in Q_rev/T. Non si confrontano letture Celsius.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18608,
+      "title": "Una sovrastima dell’entropia del sistema",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Con Q_rev=600 J e T=300 K si propone ΔS=4 J/K. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 J/K",
+          "−2 J/K",
+          "4 J/K",
+          "0 J/K",
+          "2"
+        ],
+        "value": "2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 2 J/K. Quattro meno due dà +2 J/K: la proposta è una sovrastima. Il rapporto proposta/corretta è anch’esso numericamente due, ma è adimensionale e risponde a una domanda diversa."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\Delta S_{\\rm proposta}-\\Delta S"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "−2 J/K inverte la sottrazione, 4 J/K copia la proposta e zero la accetta. Il numero puro due non è equivalente a uno scarto di entropia con unità J/K."
+        }
+      ],
+      "hints": [
+        "Il numero può coincidere, ma differenza e rapporto hanno unità diverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 J/K inverte la sottrazione, 4 J/K copia la proposta e zero la accetta. Il numero puro due non è equivalente a uno scarto di entropia con unità J/K.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18609,
+      "title": "Isolare il calore nella legge reversibile isoterma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Sono noti ΔS>0 e T>0. Quale relazione ricava Q_rev?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_rev = T ΔS",
+          "Q_rev = ΔS / T",
+          "Q_rev = T / ΔS",
+          "Q_rev = 1 / (T ΔS)",
+          "Q_rev = T + ΔS"
+        ],
+        "value": "Q_rev = T ΔS"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge ΔS=Q_rev/T moltiplichiamo entrambi i membri per T. Il prodotto TΔS ha unità K·J/K=J e conserva il segno positivo. Si applica a questo scambio reversibile isotermo, non come sostituzione generale di una temperatura variabile con un valore arbitrario."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=Q_{\\rm rev}/T"
+        },
+        {
+          "type": "formula",
+          "text": " T\\Delta S=Q_{\\rm rev}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q_{\\rm rev}]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "ΔS/T ha J/K², T/ΔS ha K²/J e il reciproco del prodotto ha J⁻¹. Sommare T e ΔS unisce grandezze con unità diverse."
+        }
+      ],
+      "hints": [
+        "Controlla quale operazione cancella il denominatore T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ΔS/T ha J/K², T/ΔS ha K²/J e il reciproco del prodotto ha J⁻¹. Sommare T e ΔS unisce grandezze con unità diverse.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18610,
+      "title": "Due fattori, uno al numeratore e uno al denominatore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. B usa Q_rev,B=κ₁Q_rev,A e T_B=κ₂T_A, con fattori positivi. Quanto vale ΔS_B/ΔS_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁²/κ₂",
+          "κ₁−κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella nuova variazione di entropia il calore porta κ₁ al numeratore e la temperatura assoluta porta κ₂ al denominatore. Formando il rapporto con A si cancella Q_rev,A/T_A e resta κ₁/κ₂. Un fattore comune su energia e temperatura mantiene invariata ΔS."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_B=\\frac{\\kappa_1Q_{{\\rm rev},A}}{\\kappa_2T_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=\\frac{\\kappa_1}{\\kappa_2}\\Delta S_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B/\\Delta S_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza da T; il reciproco scambia gli ingressi. Il quadrato conta due volte il fattore sul calore. La differenza darebbe zero con fattori uguali, mentre le variazioni positive sarebbero uguali e il rapporto uno."
+        }
+      ],
+      "hints": [
+        "Sostituisci entrambi gli ingressi nella loro posizione prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza da T; il reciproco scambia gli ingressi. Il quadrato conta due volte il fattore sul calore. La differenza darebbe zero con fattori uguali, mentre le variazioni positive sarebbero uguali e il rapporto uno.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18611,
+      "title": "Due prove ideali a temperature molto diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. A ha Q_rev=600 J e T=300 K. B ha Q_rev=1 J e T=1 K, temperatura ideale assegnata, senza descrivere come sia stata raggiunta. Quanto vale ΔS_B/ΔS_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "300",
+          "1/600",
+          "2",
+          "600"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A aumenta di 2 J/K. Nella prova ideale B il rapporto è 1 J/(1 K)=1 J/K. Dividendo B per A otteniamo un mezzo. Non basta seguire il forte cambiamento del calore, perché cambia anche il denominatore. La prova B assegna una temperatura positiva: non pretende di raggiungere lo zero assoluto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B/\\Delta S_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "1/600 segue soltanto Q_rev; 300 segue soltanto il reciproco del fattore termico. Due è il reciproco del risultato e 600 inverte il rapporto dei soli calori."
+        }
+      ],
+      "hints": [
+        "Usa entrambi i valori assegnati per ciascuna prova, sempre in kelvin.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/600 segue soltanto Q_rev; 300 segue soltanto il reciproco del fattore termico. Due è il reciproco del risultato e 600 inverte il rapporto dei soli calori.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18612,
+      "title": "Media statistica delle variazioni di entropia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 2,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. A usa Q_rev=600 J, T=300 K; B usa Q_rev=1 J, T=1 K ideale assegnato. Qual è la media aritmetica delle due ΔS, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 J/K",
+          "601/301 J/K",
+          "3 J/K",
+          "1/2 J/K",
+          "2 J/K"
+        ],
+        "value": "3/2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le variazioni sono 2 e 1 J/K: la metà di tre è 3/2 J/K. Se si mediano prima gli ingressi, Q_rev medio è 601/2 J e T medio 301/2 K; il loro rapporto è 601/301 J/K, diverso. La media richiesta non è l’entropia totale di un trasferimento fra i due sistemi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta S}=\\frac{2+1}{2}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta S}=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\overline Q_{\\rm rev}}{\\overline T}=\\frac{601/2}{301/2}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\overline Q_{\\rm rev}}{\\overline T}=601/301\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "601/301 J/K usa gli ingressi medi. Tre è la somma non dimezzata; un mezzo è metà della differenza e due ignora B. Il quoziente non conserva in generale le medie."
+        }
+      ],
+      "hints": [
+        "Calcola prima ogni quoziente fisico e poi media le due uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "601/301 J/K usa gli ingressi medi. Tre è la somma non dimezzata; un mezzo è metà della differenza e due ignora B. Il quoziente non conserva in generale le medie.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18613,
+      "title": "Una temperatura per l’entropia bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 3,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. A ha Q_rev=600 J e T_A=300 K. B assorbe Q_rev=1 J e deve avere ΔS_B=(1/2)ΔS_A. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/300",
+          "300",
+          "1/600",
+          "1/2",
+          "2"
+        ],
+        "value": "1/300"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio B è 1 J/K. Da T_B=Q_rev,B/ΔS_B si ottiene 1 J/(1 J/K)=1 K. Il rapporto con 300 K iniziali è 1/300. Il dimezzamento dell’entropia non implica dimezzare T, perché il calore è cambiato da 600 a un joule."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac{1\\,\\mathrm J}{1\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=1\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=1/300"
+        },
+        {
+          "type": "text",
+          "text": "300 è il reciproco. 1/600 copia il fattore dei calori; un mezzo copia il bersaglio sull’entropia e due inverte quel solo fattore."
+        }
+      ],
+      "hints": [
+        "Ricava la temperatura B dalla variazione bersaglio prima di fare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "300 è il reciproco. 1/600 copia il fattore dei calori; un mezzo copia il bersaglio sull’entropia e due inverte quel solo fattore.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18614,
+      "title": "Un display proporzionale all’entropia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 3,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. D=qΔS è un display continuo adimensionale, q>0. A con Q_rev=600 J e T=300 K dà D=6. B ha T=1 K ideale assegnato e dà D=3. Quanto vale Q_rev,B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ΔS=2 J/K, quindi q=3 K/J. La lettura B corrisponde a 1 J/K. Moltiplicando per T_B=1 K si ricava Q_rev,B=1 J. Il guadagno ha unità inversa dell’entropia, non inversa dell’energia."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{6}{2\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{{\\rm rev},B}=T_B\\Delta S_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{{\\rm rev},B}=1\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Tre joule usa il display come se fosse già J/K e ignora q. Trecento joule usa la temperatura del riferimento A invece di quella di B. Due copia la variazione di entropia A e non ricostruisce la lettura nuova."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno del display prima di moltiplicare per la temperatura della prova B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre joule usa il display come se fosse già J/K e ignora q. Trecento joule usa la temperatura del riferimento A invece di quella di B. Due copia la variazione di entropia A e non ricostruisce la lettura nuova.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18615,
+      "title": "Due riferimenti separano guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 3,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. D=qΔS+b è continuo e adimensionale, q>0. A: Q_rev=600 J, T=300 K, D=5. B: Q_rev=1 J, T=1 K, D=3. C: T=300 K, D=9. Quanto vale Q_rev,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1200 J",
+          "1350 J",
+          "600 J",
+          "900 J",
+          "4 J"
+        ],
+        "value": "1200 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno ΔS_A=2 e ΔS_B=1 J/K. La differenza delle letture dà q=(5−3)/(2−1)=2 K/J; poi b=1. C ha ΔS_C=(9−1)/q=4 J/K. A 300 K corrispondono Q_rev,C=300·4=1200 J."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{{\\rm rev},C}=(300\\,\\mathrm K)(4\\,\\mathrm{J/K})"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{{\\rm rev},C}=1200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "1350 J omette b e usa 9/2 J/K. 600 J torna al riferimento A; 900 J moltiplica T per tre senza ricostruire ΔS=4 J/K. Quattro copia il numero dell’entropia in un’energia."
+        }
+      ],
+      "hints": [
+        "Rimuovi l’offset prima del guadagno, poi usa la temperatura di C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1350 J omette b e usa 9/2 J/K. 600 J torna al riferimento A; 900 J moltiplica T per tre senza ricostruire ΔS=4 J/K. Quattro copia il numero dell’entropia in un’energia.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-isothermal-entropy-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia trasferita nel limite reversibile isotermo",
+      "order": 18616,
+      "title": "Un vincolo fra calore e temperatura è ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-isothermal-entropy",
+      "difficulty": 3,
+      "prompt": "Un sistema assorbe calore Q_rev>0 durante una trasformazione reversibile isoterma alla temperatura assoluta T>0, costante entro ciascuna prova. Si considera il limite ideale di scambio con una sorgente alla stessa temperatura, senza produzione di entropia. Si cerca ΔS del sistema, non quella del solo ambiente né la variazione totale di sistema e sorgente. Il sistema non è isolato: riceve calore, e non si impongono volume costante o assenza di lavoro. Q_rev è espresso in J, T in K e ΔS in J/K. Fra preparazioni si impone Q_rev=βT con β=2 J/K. Si misura ΔS=2 J/K. Quante coppie positive (Q_rev,T) soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni T>0 con Q_rev=βT",
+          "Una sola: Q_rev=600 J e T=300 K",
+          "Nessuna coppia",
+          "Due coppie",
+          "Solo T=0"
+        ],
+        "value": "Infinite: ogni T>0 con Q_rev=βT"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nella legge, ΔS=βT/T=β=2 J/K per ogni T>0. La misura ripete ciò che il vincolo impone e non determina la scala della temperatura e del calore. Qualunque temperatura positiva assegnata genera un calore positivo compatibile, mantenendo T costante entro la propria prova."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm rev}=\\beta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\frac{\\beta T}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "600 J e 300 K sono solo un esempio. Nessuna è smentita da tale esempio e due non segue da una radice: la temperatura si cancella. T=0 è esclusa e renderebbe il quoziente termodinamico non definito."
+        }
+      ],
+      "hints": [
+        "Verifica se il dato d’uscita contiene informazione nuova dopo aver sostituito il vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "600 J e 300 K sono solo un esempio. Nessuna è smentita da tale esempio e due non segue da una radice: la temperatura si cancella. T=0 è esclusa e renderebbe il quoziente termodinamico non definito.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Entropia del sistema distinta dal totale e dalla produzione",
+        "Temperatura assoluta e integrale reversibile isotermo",
+        "Inverse, confronti, taratura e vincoli ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f890b8a20bf7c0eb9ffd91ae647232309979edf72ab5a3c740c6980876889751",
+      "name": "reversible-isothermal-entropy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5FbnRyb3BpYSB0cmFzZmVyaXRhLCBzZW56YSBwcm9kdXppb25lIG5lbCBsaW1pdGUgcmV2ZXJzaWJpbGU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+U2lzdGVtYSBlIHNvcmdlbnRlIHNvbm8gZW50cmFtYmkgYSB0cmVjZW50byBrZWx2aW4gbmVsIGxpbWl0ZSByZXZlcnNpYmlsZS4gU2VpY2VudG8gam91bGUgcGFzc2FubyBkYWxsYSBzb3JnZW50ZSBhbCBzaXN0ZW1hOiBs4oCZZW50cm9waWEgZGVsbGEgc29yZ2VudGUgZGltaW51aXNjZSBkaSBkdWUgam91bGUgcGVyIGtlbHZpbiBlIHF1ZWxsYSBkZWwgc2lzdGVtYSBhdW1lbnRhIGRlbGxvIHN0ZXNzbyB2YWxvcmUuIExhIHNvbW1hIMOoIHplcm8uIFVuIGRpdmVyc28gY29uZnJvbnRvIHN0YXRpc3RpY28gcmlndWFyZGEgZHVlIHZhcmlhemlvbmkgZGVsIHNvbG8gc2lzdGVtYSBkaSBkdWUgZSB1biBqb3VsZSBwZXIga2VsdmluLCBtZWRpYSB0cmUgbWV6emkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJoZWF0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgSWwgc2lzdGVtYSByaWNldmUgY2Fsb3JlIGVkIGVudHJvcGlhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPlNjYW1iaW8gaXNvdGVybW8gbmVsIGxpbWl0ZSByZXZlcnNpYmlsZSwgVCA9IDMwMCBLLjwvdGV4dD4KPHJlY3QgeD0iNDUiIHk9IjEzMCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjM4NSIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjE1MCIgcng9IjEwIiBmaWxsPSIjZTBlZmU3IiBzdHJva2U9IiMyODY2NGQiLz4KPHRleHQgeD0iOTEiIHk9IjE3NCI+U29yZ2VudGU8L3RleHQ+PHRleHQgeD0iODciIHk9IjIxNyI+VCA9IDMwMCBLPC90ZXh0Pjx0ZXh0IHg9IjgxIiB5PSIyNTciPkNlZGUgNjAwIEo8L3RleHQ+Cjx0ZXh0IHg9IjQzMiIgeT0iMTc0Ij5TaXN0ZW1hPC90ZXh0Pjx0ZXh0IHg9IjQyNiIgeT0iMjE3Ij5UID0gMzAwIEs8L3RleHQ+PHRleHQgeD0iNDE0IiB5PSIyNTciPlJpY2V2ZSA2MDAgSjwvdGV4dD4KPHBhdGggZD0iTTI3MiAyMTBIMzY3IiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNoZWF0KSIvPgo8dGV4dCB4PSIyNzkiIHk9IjE4MCIgZm9udC1zaXplPSIxOCI+NjAwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzMjMiIGZvbnQtc2l6ZT0iMTgiPlNjaGVtYSBkZWwgdHJhc2ZlcmltZW50bywgc2VuemEgc2NhbGEgbWV0cmljYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNTUiIGZvbnQtc2l6ZT0iMTgiPkxhIHRlbXBlcmF0dXJhIHJlc3RhIGNvc3RhbnRlOyDOlFMgZGVsIHNpc3RlbWEgbm8uPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMzg3SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0MzIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IER1ZSB2YXJpYXppb25pIG9wcG9zdGUsIHRvdGFsZSBudWxsbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ3MSIgZm9udC1zaXplPSIxOCI+VmFyaWF6aW9uaSBkaSBlbnRyb3BpYSBpbiBKL0ssIHJpc3BldHRvIGFsbG8gemVyby48L3RleHQ+CjxwYXRoIGQ9Ik05MCA3NDVINTUwTTMyMCA1MTVWNzY1IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cmVjdCB4PSIxMjAiIHk9IjU0NyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIzMjAiIHk9IjY0MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSIzMiIgeT0iNTc2Ij5Tb3JnZW50ZTwvdGV4dD48dGV4dCB4PSIxNjIiIHk9IjU3NSIgZmlsbD0id2hpdGUiPuKIkjIgSi9LPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjY5Ij5TaXN0ZW1hPC90ZXh0Pjx0ZXh0IHg9IjM3NyIgeT0iNjY4IiBmaWxsPSJ3aGl0ZSI+KzIgSi9LPC90ZXh0Pgo8dGV4dCB4PSIxMTMiIHk9Ijc4MiI+4oiSMjwvdGV4dD48dGV4dCB4PSIzMTQiIHk9Ijc5NSI+MDwvdGV4dD48dGV4dCB4PSI1MDUiIHk9Ijc4MiI+KzI8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MjkiIGZvbnQtc2l6ZT0iMTgiPs6UU190b3RhbGUgPSDiiJIyIEovSyArIDIgSi9LID0gMC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4NjFINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjkwNiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHByb3ZlIGRlbCBzb2xvIHNpc3RlbWE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NDUiIGZvbnQtc2l6ZT0iMTgiPkE6IDYwMCBKIGEgMzAwIEs7IEI6IDEgSiBhIDEgSyBpZGVhbGUgYXNzZWduYXRvLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA5NzFWMTIwNyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI5OTEiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDU4IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTEyNSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTAxNyI+QTwvdGV4dD48dGV4dCB4PSIzODkiIHk9IjEwMTciPjIgSi9LPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTA4NCI+QjwvdGV4dD48dGV4dCB4PSIyNjkiIHk9IjEwODQiPjEgSi9LPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTE1MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzI5IiB5PSIxMTUxIj4zLzIgSi9LPC90ZXh0Pgo8dGV4dCB4PSIxMDUiIHk9IjEyMDEiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjQ5IiBmb250LXNpemU9IjE4Ij5NZWRpYSBkZWxsZSB1c2NpdGU6ICgyICsgMSkvMiA9IDMvMiBKL0suPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI4MSIgZm9udC1zaXplPSIxOCI+TGEgbWVkaWEgbm9uIMOoIGxhIHZhcmlhemlvbmUgdG90YWxlIGRlbCBwYW5uZWxsbyAyLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
