@@ -1,0 +1,3 @@
+# Evidence publication authorization
+
+The integrator relayed the user’s explicit correction: «no, mantieni pubblico» and «no, metti pure tutto». Public GitHub push of the frozen review content/evidence is again authorised. Earlier frozen manifests retain their creation-time local-only/privacy-pending/no-push flags byte-for-byte; these describe the historical creation phase and are not rewritten. This later authorization does not approve or publish an application DRAFT, supply human review, alter source history, change repository visibility or modify any registry/ledger. Only reviewer-owned manifest paths are to be staged; Root and unrelated dirty C1/legacy/runtime files remain outside this commit.
