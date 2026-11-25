@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1900" viewBox="0 0 640 1900" role="img" aria-labelledby="title desc">
+<title id="title">Il battente scende e la portata rallenta</title><desc id="desc">Serbatoio di area un metro quadrato e foro un centesimo di metro quadrato, rapporto cento. Battente iniziale cinque metri, gravità dieci e tempo ideale cento secondi. A cinquanta secondi il battente è cinque quarti di metro. La portata diminuisce linearmente e il suo integrale triangolare vale cinque metri cubi. Il grafico del battente è una parabola che si ferma a zero a cento secondi.</desc>
+<defs><marker id="v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1900" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Due istanti dello stesso modello</text>
+<text x="35" y="88">A = 1 m²; a = 1/100 m²; r = 100</text>
+<text x="35" y="128">g = 10 m/s²; H iniziale = 5 m</text>
+<rect x="70" y="200" width="160" height="200" fill="#dfedf6"/><rect x="365" y="350" width="160" height="50" fill="#dfedf6"/>
+<g stroke="#748892" stroke-width="3" fill="none"><path d="M70 165V400H140M160 400H230V165"/><path d="M365 165V400H435M455 400H525V165"/></g>
+<text x="75" y="175">Inizio: 0 s</text><text x="370" y="175">Dopo 50 s</text>
+<text x="90" y="280">5 m</text><text x="375" y="325">5/4 m</text>
+<path d="M150 400V500" fill="none" stroke="#155fa0" stroke-width="4" marker-end="url(#v)"/><path d="M445 400V450" fill="none" stroke="#155fa0" stroke-width="4" marker-end="url(#v)"/>
+<text x="70" y="545">v = 10 m/s</text><text x="365" y="495">v = 5 m/s</text>
+<text x="35" y="590">Quote: 40 px/m; velocità: 10 px/(m/s)</text>
+<text x="35" y="630">Larghezze e simboli dei fori schematici</text>
+<line x1="35" x2="605" y1="665" y2="665" stroke="#b9c4c9"/>
+<text x="35" y="715" font-size="27" font-weight="bold">2. Contare tutto il volume uscito</text>
+<text x="35" y="758">Portata Q(τ), tempo trascorso τ</text>
+<path d="M110 1060V860L410 1060Z" fill="#f0ddba" stroke="#a33430" stroke-width="3"/>
+<g stroke="#172c3b" stroke-width="2" fill="none"><path d="M110 1060H475"/><path d="M110 1060V820"/><path d="M260 1055V1065"/><path d="M410 1055V1065"/></g>
+<text x="35" y="800">Q (m³/s)</text><text x="40" y="868">1/10</text><text x="88" y="1100">0</text><text x="245" y="1100">50</text><text x="392" y="1100">100</text><text x="490" y="1068">τ (s)</text>
+<text x="35" y="1150">τ: 3 px/s; Q: 2000 px/(m³/s)</text>
+<text x="35" y="1190">Area: (1/2) · 100 s · (1/10 m³/s) = 5 m³</text>
+<text x="35" y="1230">Il volume iniziale è A H = 5 m³.</text>
+<text x="35" y="1270">A Q iniziale costante basterebbero 50 s;</text>
+<text x="35" y="1310">il modello a portata variabile richiede 100 s.</text>
+<line x1="35" x2="605" y1="1345" y2="1345" stroke="#b9c4c9"/>
+<text x="35" y="1395" font-size="27" font-weight="bold">3. Il battente non cala linearmente</text>
+<text x="35" y="1435">h(τ) = 5 m · [1 − τ/(100 s)]²</text>
+<g fill="none" stroke="#172c3b" stroke-width="2"><path d="M110 1770V1480"/><path d="M110 1770H460"/><path d="M260 1765V1775"/><path d="M410 1765V1775"/><path d="M105 1520H115"/></g>
+<path d="M110 1520Q260 1770 410 1770" fill="none" stroke="#155fa0" stroke-width="4"/>
+<g fill="#155fa0"><circle cx="110" cy="1520" r="5"/><circle cx="260" cy="1707.5" r="5"/><circle cx="410" cy="1770" r="5"/></g>
+<text x="35" y="1480">h (m)</text><text x="305" y="1480">0 ≤ τ ≤ 100 s</text><text x="75" y="1528">5</text><text x="290" y="1695">5/4 m</text><text x="87" y="1810">0</text><text x="245" y="1810">50</text><text x="392" y="1810">100</text><text x="475" y="1778">τ (s)</text>
+<text x="35" y="1858">τ: 3 px/s; h: 50 px/m. Fine a h = 0.</text>
+</g></svg>
