@@ -1,0 +1,211 @@
+name: Cric preintegration evidence (manual)
+
+on:
+  push:
+    branches: ['feat/cric-*']
+    paths:
+      - '.github/workflows/cric-preintegration-evidence.yml'
+      - '.github/cric-preintegration-request.json'
+      - '.github/schemas/cric-preintegration-request-v1.schema.json'
+      - 'officina-di-fisica/tools/corpus_engineering/persist_previews.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+# Queue behind the existing preview producer; never cancel its actual run.
+concurrency:
+  group: cric-preview-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+# Preparatory artifacts only. Existing mandatory PR/post-merge CI is untouched.
+jobs:
+  preintegration_evidence:
+    name: Reproducible corpus preparation only
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      ASTRA_CHROME: /usr/bin/google-chrome
+      ASTRA_RESULTS: var/corpus-preview-evidence
+      ASTRA_BROWSER_WORKERS: '4'
+      PYTHONDONTWRITEBYTECODE: '1'
+    defaults:
+      run:
+        working-directory: officina-di-fisica
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            officina-di-fisica
+            .github
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - name: Install existing editorial dependencies
+        run: |
+          python3 -m venv var/corpus-venv
+          var/corpus-venv/bin/pip install -r tools/corpus_engineering/requirements.txt
+          npm ci --no-audit --no-fund
+          printf '%s\n' "$PWD/var/corpus-venv/bin" >> "$GITHUB_PATH"
+      - name: Validate request, exact runtime and source pins
+        run: |
+          var/corpus-venv/bin/python - <<'PYCODE'
+          import hashlib, json, os
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
+          request = json.loads(Path('../.github/cric-preintegration-request.json').read_text())
+          schema = json.loads(Path('../.github/schemas/cric-preintegration-request-v1.schema.json').read_text())
+          Draft202012Validator(schema).validate(request)
+          if runtime_fingerprint(Path('.'))['sha256'] != request['runtimeSha256']:
+              raise ValueError('Reviewed runtime changed')
+          if hashlib.sha256(Path('editorial/batches/registry.json').read_bytes()).hexdigest() != request['registrySha256']:
+              raise ValueError('Reviewed registry changed')
+          for path, pin in request['protocolFiles'].items():
+              if hashlib.sha256(Path(path).read_bytes()).hexdigest() != pin:
+                  raise ValueError('Requested canonical preview protocol changed: ' + path)
+          values = {'CRIC_PREVIEW_RUN_ID': str(request['previewRunId']), 'CRIC_PREVIEW_HEAD_SHA': request['previewHeadSha'],
+                    'CRIC_SOURCE_REF': request['sourceRef'], 'CRIC_ORIGINAL_REF': request['cricRef'],
+                    'CRIC_EXPECTED_RUNTIME_SHA': request['runtimeSha256']}
+          with open(os.environ['GITHUB_ENV'], 'a') as output:
+              for key, value in values.items():
+                  output.write(key + '=' + value + '\n')
+          PYCODE
+      - name: Fetch immutable source and historical fixture commits
+        run: |
+          git fetch --depth=1 --filter=blob:none origin "$CRIC_SOURCE_REF"
+          git fetch --depth=1 --filter=blob:none origin "$CRIC_ORIGINAL_REF"
+          git fetch --depth=1 --filter=blob:none origin 493df796527bdb31b71f223343384656258e8e3a
+          git fetch --depth=1 --filter=blob:none origin da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b
+      - name: Recover actual producer artifacts, preserving their origin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$CRIC_PREVIEW_RUN_ID" --jq '{id,head_sha,path,status,conclusion}' > var/preview-producer.json
+          python3 - <<'PYCODE'
+          import json, os
+          from pathlib import Path
+          producer = json.loads(Path('var/preview-producer.json').read_text())
+          if producer['head_sha'] != os.environ['CRIC_PREVIEW_HEAD_SHA'] or producer['path'] != '.github/workflows/cric-preview-evidence.yml':
+              raise ValueError('Unexpected preview artifact producer')
+          if producer['status'] != 'completed':
+              raise ValueError('Preview producer has not reached a real terminal state')
+          PYCODE
+          gh run download "$CRIC_PREVIEW_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "cric-preview-evidence-$CRIC_PREVIEW_HEAD_SHA" --dir "$ASTRA_RESULTS"
+      - name: Resume only genuine matching cases, then persist complete evidence
+        run: |
+          node tests/corpus/browser-batches.mjs
+          node tools/corpus_engineering/persist_previews.mjs "$ASTRA_RESULTS" "$CRIC_EXPECTED_RUNTIME_SHA"
+      - name: Reexecute only separately reread independent scientific verifiers
+        run: |
+          python3 - <<'PYCODE'
+          import importlib, json, shutil
+          from pathlib import Path
+          from tools.corpus_engineering.batches import assert_record_identity, load_registry
+          from tools.corpus_engineering.integration import exercise
+          from tools.corpus_engineering.pipeline import canonical, sha
+          request = json.loads(Path('../.github/cric-preintegration-request.json').read_text())
+          specs = {row['id']: row for row in load_registry()}
+          archive = Path('var/preintegration/prior-scientific-reports')
+          archive.mkdir(parents=True, exist_ok=True)
+          receipts = []
+          for batch in request['scientificRefreshBatches']:
+              spec = specs[batch]
+              package = json.loads(Path('editorial/batches', batch + '.json').read_text())
+              bindings = json.loads(Path('editorial/batches', batch + '-bindings.json').read_text())
+              module = importlib.import_module('tools.corpus_engineering.' + spec['verifier'])
+              current = module.report(package, bindings)
+              assert_record_identity(current['records'], set(spec['questionIds']), package, bindings)
+              if not all(row['ok'] is True for row in current['records']):
+                  raise ValueError('Independent frozen reading or actual physics rejected: ' + batch)
+              science = Path('editorial/reviews', batch + '.json')
+              shutil.copyfile(science, archive / science.name)
+              old_sha = sha(science.read_bytes())
+              science.write_text(canonical(current) + '\n')
+              integration = exercise(batch)
+              count = len(spec['questionIds'])
+              if (integration['firstImport']['saved'], integration['repeatedImport']['saved'], integration['repeatedImport']['unchanged']) != (count, 0, count):
+                  raise ValueError('Canonical idempotent import failed: ' + batch)
+              integration_file = Path('editorial/reviews', batch + '-integration.json')
+              if integration_file.exists():
+                  shutil.copyfile(integration_file, archive / integration_file.name)
+              integration_file.write_text(canonical(integration) + '\n')
+              receipts.append({'batch': batch, 'records': count, 'priorReportSha256': old_sha,
+                               'actualReportSha256': sha(science.read_bytes()), 'verifierSha256': current['verifierSha256'],
+                               'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'})
+          Path('var/preintegration/scientific-refresh.json').write_text(canonical(receipts) + '\n')
+          PYCODE
+      - name: Compile fresh and resume incrementally using the existing ETL
+        run: |
+          python3 -m tools.corpus_engineering --source-ref "$CRIC_SOURCE_REF" --cric-ref "$CRIC_ORIGINAL_REF" --destination var/preintegration/corpus > var/preintegration-fresh.log
+          python3 - <<'PYCODE'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('var/preintegration/corpus')
+          checksums = {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          Path('var/preintegration-before.json').write_text(json.dumps(checksums, sort_keys=True))
+          PYCODE
+          python3 -m tools.corpus_engineering --source-ref "$CRIC_SOURCE_REF" --cric-ref "$CRIC_ORIGINAL_REF" --destination var/preintegration/corpus > var/preintegration-incremental.log
+          python3 - <<'PYCODE'
+          import hashlib, json
+          from pathlib import Path
+          from tools.corpus_engineering.pipeline import load_checkpoint
+          request = json.loads(Path('../.github/cric-preintegration-request.json').read_text())
+          root = Path('var/preintegration/corpus')
+          checksums = {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+          if checksums != json.loads(Path('var/preintegration-before.json').read_text()):
+              raise ValueError('Fresh and incremental artifacts differ')
+          questions, activities, metadata = load_checkpoint(root)
+          counts = (len(questions), len(activities), sum(r['state'] == 'REVISED_DRAFT' for r in questions),
+                    sum(r['state'] in ('REVIEWED_EXISTING_EDITION', 'REVISED_ACTIVITY_DRAFT') for r in activities))
+          expected = tuple(request[k] for k in ('expectedQuestionCount', 'expectedActivityCount', 'expectedQuestionDrafts', 'expectedReviewedActivities'))
+          if counts != expected:
+              raise ValueError('Actual corpus counts differ: ' + str(counts))
+          print('Actual accounted/source/draft/activity counts:', counts)
+          PYCODE
+          cp -R var/preintegration/corpus/. editorial/corpus/
+      - name: Exercise the canonical coexistence and retain its actual report
+        run: |
+          python3 -m tools.corpus_engineering.integration --registry --output var/preintegration/registry-coexistence.json
+          cp var/preintegration/registry-coexistence.json editorial/reviews/registry-coexistence.json
+      - name: Run the full tracked corpus test suite on these actual artifacts
+        run: |
+          set -o pipefail
+          python3 -m unittest discover -s tests/corpus -v 2>&1 | tee var/preintegration-full-tests.log
+          python3 -m tools.corpus_engineering.batches > var/preintegration-batches.log
+      - name: Build and verify the unchanged release boundary
+        run: |
+          python3 tools/package_release.py var/preintegration/officina-release.zip --verify
+          python3 -m tools.corpus_engineering.release_check var/preintegration/officina-release.zip
+      - name: Assemble reproducible technical delivery without publication
+        run: |
+          mkdir -p var/preintegration/delivery/editorial/reviews
+          cp -R var/preintegration/corpus var/preintegration/delivery/editorial/
+          cp editorial/reviews/registry-coexistence.json var/preintegration/delivery/editorial/reviews/
+          cp editorial/reviews/*-browser.json var/preintegration/delivery/editorial/reviews/
+          python3 - <<'PYCODE'
+          import json, shutil
+          from pathlib import Path
+          request = json.loads(Path('../.github/cric-preintegration-request.json').read_text())
+          target = Path('var/preintegration/delivery/editorial/reviews')
+          for batch in request['scientificRefreshBatches']:
+              for suffix in ('.json', '-integration.json'):
+                  source = Path('editorial/reviews', batch + suffix)
+                  shutil.copyfile(source, target / source.name)
+          PYCODE
+          cp -R "editorial/reviews/runtime${CRIC_EXPECTED_RUNTIME_SHA:0:12}-terminal-evidence" var/preintegration/delivery/editorial/reviews/
+          cp var/preview-producer.json var/preintegration/
+      - name: Retain actual outputs even on failure; no automatic integration
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cric-preintegration-evidence-${{ github.sha }}
+          path: |
+            officina-di-fisica/var/preintegration/
+            officina-di-fisica/var/preintegration-*.log
+            officina-di-fisica/var/corpus-preview-evidence/
+            officina-di-fisica/var/preview-producer.json
+          if-no-files-found: warn
+          retention-days: 14
