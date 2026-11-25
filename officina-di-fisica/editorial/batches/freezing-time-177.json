@@ -1,0 +1,1226 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-freezing-time-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17701,
+      "title": "Raffreddare e poi solidificare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 1,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Con m=1 g e P=10 W, quanto vale il tempo totale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 38,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo tratto sottrae c_lm·20 K=80 J per portare l’acqua a zero. Il secondo ne sottrae altri mL_f=300 J mentre la temperatura resta a zero e cambia la fase. In tutto il campione cede 380 J. Ogni secondo il dispositivo ne sottrae dieci: servono 38 s, composti da 8 s di raffreddamento e 30 s di congelamento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ecabdaac6f8fe58b80234b8af4e96496a02e17d2914b7b599852b2075321563c",
+          "text": "Nel primo pannello un grammo a potenza netta 10 W raggiunge 0 °C dopo 8 s e completa la solidificazione a 38 s. La scala comune dell’asse dei tempi è 8 px/s e quella verticale è 8 px/K per gli intervalli. Il secondo pannello somma 80 J sensibili e 300 J latenti alla scala 1 px/J; il terzo somma le durate 8 s e 30 s alla scala 8 px/s. Il tratto orizzontale a 0 °C indica una trasformazione di fase, non calore nullo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=c_lm(20\\,\\mathrm K)+mL_f"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=80\\,\\mathrm J+300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " t=Q_c/P"
+        },
+        {
+          "type": "formula",
+          "text": " t=38\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "8 s conta soltanto il raffreddamento; 30 s soltanto la solidificazione. Sommare 20 °C a 300 J/g senza il calore specifico mescolerebbe grandezze diverse. La sosta a temperatura costante non implica che il dispositivo smetta di estrarre calore."
+        }
+      ],
+      "hints": [
+        "Somma prima le due energie sottratte e dividi per la potenza netta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8 s conta soltanto il raffreddamento; 30 s soltanto la solidificazione. Sommare 20 °C a 300 J/g senza il calore specifico mescolerebbe grandezze diverse. La sosta a temperatura costante non implica che il dispositivo smetta di estrarre calore.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17702,
+      "title": "Una durata da joule e watt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 1,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Quale unità è adatta al tempo totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "J",
+          "W",
+          "J/g",
+          "K"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza netta è energia sottratta per unità di tempo. Dividendo i joule ceduti per watt, cioè joule al secondo, si ottengono secondi. La massa e la variazione termica concorrono all’energia, ma non sono l’unità della durata richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "[t]=[Q_c]/[P]"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{J/W}=\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm W=1\\,\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, W potenza, J/g il calore latente specifico e K un intervallo termico. Una temperatura costante nella seconda fase può accompagnarsi a una durata positiva."
+        }
+      ],
+      "hints": [
+        "Sostituisci watt con joule al secondo prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, W potenza, J/g il calore latente specifico e K un intervallo termico. Una temperatura costante nella seconda fase può accompagnarsi a una durata positiva.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17703,
+      "title": "Il tempo contiene due contributi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 1,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Quale formula dà t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "t = m [c_l (20 K) + L_f] / P",
+          "t = m c_l (20 K) / P",
+          "t = m L_f / P",
+          "t = P / {m [c_l (20 K) + L_f]}",
+          "t = m [c_l (20 K) − L_f] / P"
+        ],
+        "value": "t = m [c_l (20 K) + L_f] / P"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raffreddamento e solidificazione cedono entrambi energia: i loro moduli si sommano. Poiché la stessa potenza netta resta costante nei due tratti, il tempo totale è la somma dei due tempi oppure il calore totale diviso P. Il bilancio non include il successivo raffreddamento del ghiaccio, perché il processo finisce a zero."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ecabdaac6f8fe58b80234b8af4e96496a02e17d2914b7b599852b2075321563c",
+          "text": "Il diagramma temperatura-tempo descrive il modello senza sottoraffreddamento: prima il liquido si raffredda, poi il miscuglio cambia composizione a 0 °C fino alla completa solidificazione. Le barre energetiche e temporali hanno origini e scale dichiarate; il tempo si ferma appena tutto il ghiaccio è a 0 °C."
+        },
+        {
+          "type": "formula",
+          "text": "t=t_{\\rm raff}+t_{\\rm cong}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{c_lm(20\\,\\mathrm K)}{P}+\\frac{mL_f}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{m[c_l(20\\,\\mathrm K)+L_f]}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " t>0"
+        },
+        {
+          "type": "text",
+          "text": "Le due formule con un solo termine tralasciano una fase. Il reciproco ha unità s⁻¹; il segno meno tratterebbe la solidificazione come un assorbimento anziché una cessione di calore da parte del campione."
+        }
+      ],
+      "hints": [
+        "Segui l’energia ceduta lungo entrambe le fasi del processo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le due formule con un solo termine tralasciano una fase. Il reciproco ha unità s⁻¹; il segno meno tratterebbe la solidificazione come un assorbimento anziché una cessione di calore da parte del campione.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17704,
+      "title": "Raddoppiare il campione a potenza invariata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 1,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. La massa passa da 1 a 2 g, con P=10 W. Che cosa accade al tempo totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Passa da 38 a 76 s",
+          "Passa da 38 a 19 s",
+          "Resta 38 s",
+          "Passa da 38 a 152 s",
+          "Passa da 38 a 40 s"
+        ],
+        "value": "Passa da 38 a 76 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grammo deve cedere gli stessi 380 J. Due grammi ne cedono 760, e la potenza resta dieci joule al secondo: occorrono 76 s. Entrambi i tratti raddoppiano, da 8 a 16 s e da 30 a 60 s."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,B}=2Q_{c,A}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=760\\,\\mathrm J/(10\\,\\mathrm W)"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=76\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "19 s usa una dipendenza inversa dalla massa. 152 s attribuisce un quadrato alla massa; 40 s raddoppia il numero della temperatura iniziale, che è una lettura e non una durata."
+        }
+      ],
+      "hints": [
+        "La potenza non cresce quando raddoppia l’energia da sottrarre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "19 s usa una dipendenza inversa dalla massa. 152 s attribuisce un quadrato alla massa; 40 s raddoppia il numero della temperatura iniziale, che è una lettura e non una durata.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17705,
+      "title": "La massa dal tempo osservato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Si osserva t=38 s con P=10 W. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Durante 38 s il dispositivo sottrae 380 J. Il percorso assegnato richiede 380 J per ogni grammo: il rapporto dà un grammo. L’inversa usa tutta l’energia, non soltanto la fusione o soltanto il raffreddamento."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=Pt"
+        },
+        {
+          "type": "formula",
+          "text": "Pt=380\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{Pt}{c_l(20\\,\\mathrm K)+L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{380\\,\\mathrm J}{380\\,\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "380/300 g attribuirebbe tutto il calore al solo cambiamento di fase. 19/4 g conterebbe soltanto il raffreddamento. Copiare 38 in grammi dimentica il fattore di potenza e il costo specifico."
+        }
+      ],
+      "hints": [
+        "Ricava il calore totale da potenza per durata e poi dividilo per il costo di un grammo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "380/300 g attribuirebbe tutto il calore al solo cambiamento di fase. 19/4 g conterebbe soltanto il raffreddamento. Copiare 38 in grammi dimentica il fattore di potenza e il costo specifico.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17706,
+      "title": "La potenza netta dalla durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Con m=1 g si osserva t=38 s. Quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campione cede 80+300=380 J. Per sottrarli uniformemente in 38 s servono 380/38=10 J/s. Questa è la potenza termica netta estratta dal campione: il dato non determina la potenza elettrica assorbita dal dispositivo."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{m[c_l(20\\,\\mathrm K)+L_f]}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=380\\,\\mathrm J/(38\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " P=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "300/38 W omette il raffreddamento; 80/38 W omette la solidificazione. Il rapporto t/Q_c ha unità W⁻¹ e risolve il reciproco della grandezza richiesta."
+        }
+      ],
+      "hints": [
+        "Energia sottratta divisa per durata; non introdurre un rendimento non assegnato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "300/38 W omette il raffreddamento; 80/38 W omette la solidificazione. Il rapporto t/Q_c ha unità W⁻¹ e risolve il reciproco della grandezza richiesta.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17707,
+      "title": "Più potenza per la stessa energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. A e B hanno m=1 g. A usa P=10 W, B usa P=20 W. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi i campioni cedono 380 J. A impiega 38 s, B soltanto 19 s perché ogni secondo viene sottratta energia doppia. Il rapporto è quindi un mezzo; la potenza maggiore accorcia ciascuna delle due fasi."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=38\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=380\\,\\mathrm J/(20\\,\\mathrm W)"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=19\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte la dipendenza dalla potenza. Uno ignora il cambiamento; un quarto e quattro applicano un quadrato che non appartiene al bilancio energetico."
+        }
+      ],
+      "hints": [
+        "La quantità di calore totale non cambia: cambia la rapidità di sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte la dipendenza dalla potenza. Uno ignora il cambiamento; un quarto e quattro applicano un quadrato che non appartiene al bilancio energetico.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17708,
+      "title": "Lo scarto conserva il verso richiesto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Per m=1 g e P=10 W si propone t=76 s. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "38 s",
+          "−38 s",
+          "76 s",
+          "0 s",
+          "2 s"
+        ],
+        "value": "38 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata corretta è 38 s; la proposta la supera di 38 s. A 10 W, 76 s estrarrebbero 760 J, più dei 380 previsti per fermarsi al ghiaccio a zero. Il modello non autorizza a prolungare il calcolo attribuendo il calore in più allo stesso stato finale."
+        },
+        {
+          "type": "formula",
+          "text": "t=38\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=t_{\\rm proposto}-t"
+        },
+        {
+          "type": "formula",
+          "text": " e=(76-38)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=38\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "−38 s scambia l’ordine della differenza. 76 s copia la proposta, zero la accetta e due è un rapporto puro al quale è stata aggiunta indebitamente l’unità di tempo."
+        }
+      ],
+      "hints": [
+        "Prima ricostruisci il punto di arresto, poi sottrai nel verso indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−38 s scambia l’ordine della differenza. 76 s copia la proposta, zero la accetta e due è un rapporto puro al quale è stata aggiunta indebitamente l’unità di tempo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17709,
+      "title": "Isolare la massa nella legge energetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Sono noti t>0 e P>0. Quale formula ricava m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = Pt / [c_l (20 K) + L_f]",
+          "m = t / {P [c_l (20 K) + L_f]}",
+          "m = P [c_l (20 K) + L_f] / t",
+          "m = Pt / L_f",
+          "m = Pt / [c_l (20 K) − L_f]"
+        ],
+        "value": "m = Pt / [c_l (20 K) + L_f]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo t=Q_c/P per P e dividiamo per l’energia richiesta da ogni grammo. Il denominatore è positivo e vale 380 J/g. Pt è in joule; il rapporto ha dunque unità di massa e resta positivo per ogni dato ammesso."
+        },
+        {
+          "type": "formula",
+          "text": "Pt=m[c_l(20\\,\\mathrm K)+L_f]"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{Pt}{c_l(20\\,\\mathrm K)+L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm{J/(J/g)}"
+        },
+        {
+          "type": "formula",
+          "text": "\\mathrm{J/(J/g)}=\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per P anziché moltiplicare non dà un’energia al numeratore. P volte il costo specifico diviso t ha dimensione diversa da una massa. Usare solo L_f omette gli 80 J/g sensibili, mentre sottrarlo darebbe qui una massa negativa."
+        }
+      ],
+      "hints": [
+        "Isola il coefficiente che moltiplica m e controlla l’unità del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere per P anziché moltiplicare non dà un’energia al numeratore. P volte il costo specifico diviso t ha dimensione diversa da una massa. Usare solo L_f omette gli 80 J/g sensibili, mentre sottrarlo darebbe qui una massa negativa.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17710,
+      "title": "Scalare massa e potenza fra due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. B ha m_B=κ₁m_A e P_B=κ₂P_A, con κ₁,κ₂>0. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "κ₁κ₂",
+          "κ₁²/κ₂",
+          "κ₁−κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il costo energetico specifico resta lo stesso. Il tempo B contiene quindi un fattore κ₁ al numeratore e κ₂ al denominatore rispetto ad A. Se i due fattori coincidono, più energia da sottrarre è compensata da più potenza e la durata resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "\\varepsilon=c_l(20\\,\\mathrm K)+L_f"
+        },
+        {
+          "type": "formula",
+          "text": " t_A=m_A\\varepsilon/P_A"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\kappa_1m_A\\varepsilon/(\\kappa_2P_A)"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco scambia i ruoli delle due variazioni. Il prodotto fa crescere il tempo con la potenza; il quadrato sovrastima la massa. La differenza darebbe zero con un fattore comune, pur trattandosi di due durate positive uguali."
+        }
+      ],
+      "hints": [
+        "Scrivi il rapporto completo prima di cancellare l’energia specifica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco scambia i ruoli delle due variazioni. Il prodotto fa crescere il tempo con la potenza; il quadrato sovrastima la massa. La differenza darebbe zero con un fattore comune, pur trattandosi di due durate positive uguali.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17711,
+      "title": "Più massa e meno potenza contemporaneamente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. A: m=1 g, P=10 W. B: m=2 g, P=1 W. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dura 38 s. B deve cedere 760 J ma ne perde soltanto uno al secondo, quindi dura 760 s. Il rapporto 760/38=20 combina un fattore due dovuto alla massa e un fattore dieci dovuto alla potenza ridotta."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=38\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=760\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=760/38"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=20"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto la massa, dieci soltanto la potenza. Un quinto moltiplica due per un decimo senza invertire la dipendenza dalla potenza; un ventesimo capovolge il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Ogni cambiamento deve comparire una volta nel rapporto delle durate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto la massa, dieci soltanto la potenza. Un quinto moltiplica due per un decimo senza invertire la dipendenza dalla potenza; un ventesimo capovolge il rapporto richiesto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17712,
+      "title": "Media delle durate, non dei parametri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 2,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. A usa m=1 g e P=10 W; B usa m=2 g e P=1 W. Qual è la media aritmetica delle durate con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "399 s",
+          "1140/11 s",
+          "798 s",
+          "361 s",
+          "399/2 s"
+        ],
+        "value": "399 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate sono 38 e 760 s. La loro somma è 798 s e la metà è 399 s. Usando invece massa media 3/2 g e potenza media 11/2 W si otterrebbero 1140/11 s: il quoziente non conserva in generale la media degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline t=(38+760)\\,\\mathrm s/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline t=399\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm ingressi\\ medi}=\\frac{380(3/2)}{11/2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm ingressi\\ medi}=1140/11\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "1140/11 s applica il modello ai parametri medi. 798 s non dimezza la somma; 361 s è metà della differenza. 399/2 s dimezza la media una seconda volta."
+        }
+      ],
+      "hints": [
+        "Risolvi ciascuna prova completa e solo dopo fai la media delle due letture.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1140/11 s applica il modello ai parametri medi. 798 s non dimezza la somma; 361 s è metà della differenza. 399/2 s dimezza la media una seconda volta.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17713,
+      "title": "Scegliere la potenza per una durata bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 3,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. A ha m=1 g e P_A=10 W. In B si usa m=2 g e si vuole t_B=20t_A. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/10",
+          "10",
+          "1/20",
+          "20",
+          "2"
+        ],
+        "value": "1/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 20·38=760 s. I due grammi devono cedere 760 J: è necessaria P_B=1 W. Il confronto con 10 W iniziali dà un decimo. La potenza rimane positiva e costante in B, come richiesto dal modello."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=760\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=760\\,\\mathrm J/(760\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=1\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=1/10"
+        },
+        {
+          "type": "text",
+          "text": "1/20 dimentica che anche la massa raddoppia. Dieci inverte il confronto e venti segue direttamente il fattore sul tempo, pur essendo la potenza al denominatore. Due segue soltanto la massa."
+        }
+      ],
+      "hints": [
+        "Ricava prima il nuovo tempo e poi la potenza che sottrae l’intera energia in quel tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/20 dimentica che anche la massa raddoppia. Dieci inverte il confronto e venti segue direttamente il fattore sul tempo, pur essendo la potenza al denominatore. Due segue soltanto la massa.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17714,
+      "title": "Tarare un display di durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 3,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. S=qt è continuo e adimensionale, q>0. Il riferimento m=1 g, P=10 W dà S=114. Una nuova prova dà S=2280 e usa P=1 W. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dura 38 s, quindi q=114/(38 s)=3 s⁻¹. La nuova lettura corrisponde a 760 s. A un watt vengono sottratti 760 J, pari al costo di due grammi. La lettura grezza del display non è una durata finché non è stata applicata la taratura."
+        },
+        {
+          "type": "formula",
+          "text": "q=114/(38\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " t=2280/q"
+        },
+        {
+          "type": "formula",
+          "text": " t=760\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m=760/380\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Usare 2280 direttamente come secondi darebbe 6 g, tre volte la massa corretta. Il numero 20 è il rapporto fra le letture e fra le durate, ma non fra le masse perché la potenza cambia."
+        }
+      ],
+      "hints": [
+        "Trasforma la lettura in secondi prima di usare il bilancio energetico inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 2280 direttamente come secondi darebbe 6 g, tre volte la massa corretta. Il numero 20 è il rapporto fra le letture e fra le durate, ma non fra le masse perché la potenza cambia.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17715,
+      "title": "Due riferimenti rivelano un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 3,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. S=qt+b è continuo e adimensionale. A: m=1 g, P=10 W, S=77. B: m=2 g, P=1 W, S=1521. C: P=10 W, S=153. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 g",
+          "1 g",
+          "153/76 g",
+          "4 g",
+          "76 g"
+        ],
+        "value": "2 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B durano 38 e 760 s. La differenza delle letture è 1444 e quella dei tempi 722 s: q=2 s⁻¹. Dal riferimento A segue b=77−2·38=1. C dura (153−1)/2=76 s e cede 760 J; a 380 J/g corrispondono due grammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{1521-77}{(760-38)\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=(153-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=76\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "1 g tornerebbe alla lettura A, S=77. 153/76 g omette b: usando 153/2 s e 10 W si divide 765 J per 380 J/g. 4 g darebbero 152 s e S=305; 76 g copia il numero della durata in una massa."
+        }
+      ],
+      "hints": [
+        "Elimina l’offset con una differenza, poi sottrailo anche nella prova incognita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1 g tornerebbe alla lettura A, S=77. 153/76 g omette b: usando 153/2 s e 10 W si divide 765 J per 380 J/g. 4 g darebbero 152 s e S=305; 76 g copia il numero della durata in una massa.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-freezing-time-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di raffreddamento e solidificazione",
+      "order": 17716,
+      "title": "Un vincolo fra prove lascia libera la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "freezing-time",
+      "difficulty": 3,
+      "prompt": "Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. Fra preparazioni si impone m=dP con d=(1/10) g/W. Si misura t=38 s. Quante coppie positive (m,P) soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni P>0 con m=dP",
+          "Una sola: m=1 g e P=10 W",
+          "Nessuna coppia",
+          "Solo m=38 g",
+          "Solo P=0"
+        ],
+        "value": "Infinite: ogni P>0 con m=dP"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo nel tempo totale. La potenza si cancella e resta t=d·380 J/g=38 J/W=38 s. Il dato temporale conferma il vincolo ma non stabilisce la scala di massa e potenza: qualunque P>0 genera una massa positiva adatta. Il vincolo confronta preparazioni diverse; entro ciascuna la potenza è costante e la massa non viene modificata."
+        },
+        {
+          "type": "formula",
+          "text": "t=\\frac{dP\\varepsilon}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " t=d\\varepsilon"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac1{10}\\,\\mathrm{g/W}\\cdot380\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " t=38\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "1 g e 10 W sono solo un esempio. 38 g copia una durata in una massa. P=0 è esclusa dal dominio e non raffredderebbe né solidificherebbe una massa positiva. Non si può ottenere una seconda equazione indipendente ripetendo lo stesso vincolo attraverso t."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo dimensionato e cerca quali grandezze si cancellano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1 g e 10 W sono solo un esempio. 38 g copia una durata in una massa. P=0 è esclusa dal dominio e non raffredderebbe né solidificherebbe una massa positiva. Non si può ottenere una seconda equazione indipendente ripetendo lo stesso vincolo attraverso t.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore sensibile e latente in successione",
+        "Potenza termica netta e durata del processo",
+        "Inverse, medie e vincoli dimensionati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ecabdaac6f8fe58b80234b8af4e96496a02e17d2914b7b599852b2075321563c",
+      "name": "freezing-time-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5UZW1wbyBwZXIgcmFmZnJlZGRhcmUgZSBjb25nZWxhcmUgY29tcGxldGFtZW50ZTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5QZXIgdW4gZ3JhbW1vIGluaXppYWxtZW50ZSBhIHZlbnRpIGdyYWRpIENlbHNpdXMgZSBkaWVjaSB3YXR0IHRlcm1pY2kgbmV0dGksIGlsIHJhZmZyZWRkYW1lbnRvIGR1cmEgb3R0byBzZWNvbmRpLiBTZWd1b25vIHRyZW50YSBzZWNvbmRpIGEgemVybyBncmFkaSBkdXJhbnRlIGxhIHNvbGlkaWZpY2F6aW9uZS4gTGUgYmFycmUgc2VwYXJhbm8gb3R0YW50YSBlIHRyZWNlbnRvIGpvdWxlIGUgbGUgY29ycmlzcG9uZGVudGkgZHVyYXRlLCBjb24gc2NhbGUgY29tdW5pIGRpY2hpYXJhdGUuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEyMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgVGVtcGVyYXR1cmEgZSB0ZW1wbyBub24gY29pbmNpZG9ubzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgzIiBmb250LXNpemU9IjE4Ij5tID0gMSBnIDsgUCB0ZXJtaWNhIG5ldHRhID0gMTAgVzwvdGV4dD4KPHRleHQgeD0iMzgiIHk9IjEyMyI+VCAvIMKwQzwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0xMDAgMzUwVjE0MCIvPjxwYXRoIGQ9Ik0xMDAgMzUwSDUzNSIvPjwvZz4KPHBhdGggZD0iTTEwMCAxNjBMMTY0IDMyMEg0MDQiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xNjQgMzIwVjM1ME00MDQgMzIwVjM1ME0xMDAgMTYwSDE2NCIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiLz4KPGcgZmlsbD0iIzE2NWE4NyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTYwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTY0IiBjeT0iMzIwIiByPSI1Ii8+PGNpcmNsZSBjeD0iNDA0IiBjeT0iMzIwIiByPSI1Ii8+PC9nPgo8dGV4dCB4PSI1OSIgeT0iMTY3Ij4yMDwvdGV4dD48dGV4dCB4PSI2NSIgeT0iMzI3Ij4wPC90ZXh0Pjx0ZXh0IHg9Ijg5IiB5PSIzODMiPjA8L3RleHQ+PHRleHQgeD0iMTU3IiB5PSIzODMiPjg8L3RleHQ+PHRleHQgeD0iMzkyIiB5PSIzODMiPjM4PC90ZXh0Pjx0ZXh0IHg9IjU0OCIgeT0iMzU2Ij50IC8gczwvdGV4dD4KPHRleHQgeD0iMTg3IiB5PSIyMjkiPkxpcXVpZG8gaW4gcmFmZnJlZGRhbWVudG88L3RleHQ+PHRleHQgeD0iMjA3IiB5PSIyOTMiPlNvbGlkaWZpY2F6aW9uZSBhIDAgwrBDPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDMxIiBmb250LXNpemU9IjE4Ij5Bc3NpOiA4IHB4L3M7IDggcHgvSyBwZXIgZ2xpIGludGVydmFsbGkgdmVydGljYWxpLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ2MyIgZm9udC1zaXplPSIxOCI+QSAzOCBzIHR1dHRvIGlsIGNhbXBpb25lIMOoIGdoaWFjY2lvIGEgMCDCsEMuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDk0SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1MzgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IER1ZSBlbmVyZ2llIGNlZHV0ZSBkYWxsbyBzdGVzc28gY29ycG88L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNTYzVjc4OSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI1ODUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9IjY1MiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8cmVjdCB4PSIxMzAiIHk9IjcxOSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMjEwIiB5PSI3MTkiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iMzMiIHk9IjYxMCI+U2Vuc2liaWxlPC90ZXh0Pjx0ZXh0IHg9IjIyOCIgeT0iNjEwIj44MCBKPC90ZXh0Pjx0ZXh0IHg9IjMzIiB5PSI2NzciPkxhdGVudGU8L3RleHQ+PHRleHQgeD0iNDQ4IiB5PSI2NzciPjMwMCBKPC90ZXh0Pjx0ZXh0IHg9IjMzIiB5PSI3NDQiPlRvdGFsZTwvdGV4dD48dGV4dCB4PSI1MjYiIHk9Ijc0NCI+MzgwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MjQiIGZvbnQtc2l6ZT0iMTgiPkJhcnJlOiAxIHB4L0ouIFNvbm8gbW9kdWxpIHBvc2l0aXZpIGRpIGNhbG9yZSBjZWR1dG8uPC90ZXh0Pgo8cGF0aCBkPSJNMzIgODU1SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI4OTkiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IExhIHBvdGVuemEgw6ggY29zdGFudGUgaW4gZW50cmFtYmk8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgOTIzVjExNDQiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iOTQ1IiB3aWR0aD0iNjQiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDEyIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+CjxyZWN0IHg9IjEzMCIgeT0iMTA3OSIgd2lkdGg9IjY0IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTk0IiB5PSIxMDc5IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjMzIiB5PSI5NzAiPkxpcXVpZG88L3RleHQ+PHRleHQgeD0iMjEyIiB5PSI5NzAiPjggczwvdGV4dD48dGV4dCB4PSIzMyIgeT0iMTAzNyI+RmFzZTwvdGV4dD48dGV4dCB4PSIzODgiIHk9IjEwMzciPjMwIHM8L3RleHQ+PHRleHQgeD0iMzMiIHk9IjExMDQiPlRvdGFsZTwvdGV4dD48dGV4dCB4PSI0NTIiIHk9IjExMDQiPjM4IHM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTgwIiBmb250LXNpemU9IjE4Ij5CYXJyZTogOCBweC9zLiBPZ25pIGR1cmF0YSDDqCBlbmVyZ2lhIGRpdmlzYSBwZXIgUC48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
