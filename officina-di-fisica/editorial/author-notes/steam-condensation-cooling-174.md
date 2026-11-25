@@ -1,5 +1,7 @@
 # steam-condensation-cooling-174 — note dell’autore
 
+Stato aggiornato: le didascalie e i testi visibili dello SVG ora indicano soltanto grandezze fisiche; tutte le coordinate geometriche sono invariate. Le indicazioni px delle note storiche sono coordinate intrinseche dello SVG, non pixel CSS dopo il ridimensionamento. I byte precedenti e le prove browser storiche sono archiviati con manifest e checksum in editorial/author-evidence/u5-phase-processes-173-177-pixel-labels-superseded-20261125. UI correnti NOT_RUN: nessun nuovo rendering di accettazione è stato eseguito per questa correzione; il profilo b963 resta sospeso.
+
 Fonte Git 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, questions/U5-03.json, file SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Letti individualmente tutti gli 80 prompt e le ipotesi 173–177 prima di scrivere i candidati. Catalogo reale C3-L01, C3-L03 e C3-L04 riletto; C1-L007 per la potenza del lotto 177. Solo assemble_family della pipeline esistente, course C3 e unit u5.
 
 DRAFT. Revisione scientifica indipendente NOT_RUN. Approvazione umana NOT_RUN. Pubblicazione non richiesta. I calcoli seguenti sono note dell’autore per la review distinta, non una certificazione.
@@ -139,3 +141,5 @@ Sostituendo la massa scelta nella legge, l’incognita compare anche nel contrib
 Passaggi: `Q_c=d\Delta T(L_v+c_l\Delta T)\qquad x=\Delta T/(1\,\mathrm K)\qquad x^2+600x-15625=0\qquad (x-25)(x+625)=0\qquad x=25\qquad \Delta T=25\,\mathrm K`
 
 Distrattori e controllo: 625 K cambia soltanto il segno della radice esclusa senza soddisfare la quadratica. 50 K darebbe m=2 g e Q_c=5200 J; 2500 K copia un numero di energia come intervallo e non soddisfa né il bilancio né il campo liquido garantito.
+
+Geometria conservata (solo nota autore, coordinate intrinseche dello SVG, non pixel CSS): Q axis .15 intrinsic units/J; vertical 4 intrinsic units/K; component bars .15 intrinsic units/J; comparison bars .08 intrinsic units/J.

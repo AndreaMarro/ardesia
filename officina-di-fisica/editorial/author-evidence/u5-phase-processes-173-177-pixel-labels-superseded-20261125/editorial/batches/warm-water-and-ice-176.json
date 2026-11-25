@@ -1,0 +1,1178 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-warm-water-and-ice-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17601,
+      "title": "Il ghiaccio fonde e l’acqua nuova si scalda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 1,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Con m_a=4 g e m_i=1 g, quanto vale T_f in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’acqua iniziale cede calore scendendo da 50 °C alla finale. Il ghiaccio riceve prima 300 J per fondere e poi si scalda come acqua fino alla stessa finale. Il bilancio è 4m_a(50−t_f)=300m_i+4m_it_f nei valori numerici delle unità dichiarate. Con le masse date, 800−16t_f=300+4t_f: 500=20t_f e la lettura è 25 °C. Il massimo calore cedibile fino a zero, 800 J, supera i 300 J di fusione e conferma il ramo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d816e5d40a73b2d3d8f9c6bd65d2f771c77b70f52351a52b3d12acfb6b5a635e",
+          "text": "Tre pannelli: le masse iniziali 4 g a 50 °C e 1 g di ghiaccio a 0 °C conducono a 5 g di acqua a 25 °C. La freccia del primo pannello indica schematicamente il trasferimento interno dal caldo al ghiaccio. Il secondo confronta il calore effettivamente ceduto dal caldo, 400 J, con 300 J di fusione e 100 J per scaldare l’acqua appena fusa, alla scala 0,8 px/J. Nell’ultimo gli incrementi finali 25 K, 100/7 K e media 275/14 K usano 7 px/K e un’origine comune."
+        },
+        {
+          "type": "formula",
+          "text": "c_lm_a(50\\,\\mathrm K-\\Theta)=m_iL_f+c_lm_i\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=\\frac{800-300}{20}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "50 °C ignorerebbe l’energia ricevuta dal ghiaccio. 0 °C ignorerebbe il residuo positivo dopo la fusione. Una media aritmetica delle sole temperature non considera né le diverse masse né il calore latente."
+        }
+      ],
+      "hints": [
+        "Prima controlla che il caldo possa fondere tutto il ghiaccio, poi scrivi il bilancio completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "50 °C ignorerebbe l’energia ricevuta dal ghiaccio. 0 °C ignorerebbe il residuo positivo dopo la fusione. Una media aritmetica delle sole temperature non considera né le diverse masse né il calore latente.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17602,
+      "title": "Il punto finale ha un’unità termometrica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 1,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Quale unità misura la lettura finale T_f richiesta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "°C",
+          "J",
+          "g",
+          "J/g",
+          "W"
+        ],
+        "value": "°C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il problema chiede una lettura di temperatura in gradi Celsius. Il bilancio usa differenze in kelvin, e il passaggio dal punto di fusione a quello finale conserva la stessa ampiezza numerica in gradi Celsius. Non si deve però usare 25 come se fosse una temperatura assoluta in kelvin."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta=T_f-T_m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,\\rm assoluta}=298{,}15\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia trasferita, g massa, J/g il calore latente specifico e W una potenza. L’uguaglianza numerica fra incremento da zero e lettura Celsius dipende dal riferimento scelto."
+        }
+      ],
+      "hints": [
+        "Distingui il punto termometrico dalle quantità del bilancio energetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia trasferita, g massa, J/g il calore latente specifico e W una potenza. L’uguaglianza numerica fra incremento da zero e lettura Celsius dipende dal riferimento scelto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17603,
+      "title": "Il bilancio comprende anche l’acqua appena fusa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 1,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Quale formula fornisce Θ e quindi T_f=T_m+Θ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Θ = [c_l m_a (50 K) − m_i L_f] / [c_l (m_a + m_i)]",
+          "Θ = [c_l m_a (50 K)] / [c_l (m_a + m_i)]",
+          "Θ = [c_l m_a (50 K) − m_i L_f] / (c_l m_a)",
+          "Θ = [c_l m_a (50 K) + m_i L_f] / [c_l (m_a + m_i)]",
+          "Θ = [c_l m_i (50 K) − m_a L_f] / [c_l (m_a + m_i)]"
+        ],
+        "value": "Θ = [c_l m_a (50 K) − m_i L_f] / [c_l (m_a + m_i)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calore ceduto dal caldo va alla fusione e al riscaldamento della massa che era ghiaccio. Spostiamo i termini proporzionali a Θ nello stesso membro: la capacità finale comprende m_a+m_i, perché alla fine entrambe le masse sono acqua. L’energia residua sopra il riferimento di fusione divide la capacità di tutta l’acqua finale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d816e5d40a73b2d3d8f9c6bd65d2f771c77b70f52351a52b3d12acfb6b5a635e",
+          "text": "Il controllo di fusione completa confronta 800 J cedibili dal caldo se arrivasse a 0 °C con i 300 J latenti necessari. Non sono i 400 J effettivamente ceduti quando l’equilibrio si ferma a 25 °C. Il bilancio quantitativo del secondo pannello usa soltanto questi 400 J effettivi e distingue fusione da riscaldamento successivo."
+        },
+        {
+          "type": "formula",
+          "text": "c_lm_a(50\\,\\mathrm K)-m_iL_f=c_l(m_a+m_i)\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=\\frac{c_lm_a(50\\,\\mathrm K)-m_iL_f}{c_l(m_a+m_i)}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<\\Theta<50\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Omettere L_f non fonde il ghiaccio nel bilancio. Omettere m_i dal denominatore non scalda l’acqua appena fusa. Il segno più renderebbe la fusione una sorgente di energia; l’ultima formula scambia le due masse e le loro condizioni iniziali."
+        }
+      ],
+      "hints": [
+        "Raccogli Θ da entrambi i corpi, non soltanto dall’acqua iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Omettere L_f non fonde il ghiaccio nel bilancio. Omettere m_i dal denominatore non scalda l’acqua appena fusa. Il segno più renderebbe la fusione una sorgente di energia; l’ultima formula scambia le due masse e le loro condizioni iniziali.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17604,
+      "title": "Aggiungere più acqua inizialmente calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 1,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. m_i=1 g in entrambe le prove. m_a passa da 4 a 8 g. Come cambia la lettura finale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 25 a 325/9 °C",
+          "Da 25 a 50 °C",
+          "Da 25 a 25/2 °C",
+          "Resta 25 °C",
+          "Da 25 a 100 °C"
+        ],
+        "value": "Da 25 a 325/9 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con 8 g di acqua iniziale, il numeratore residuo è 1600−300=1300 J e la capacità finale è 4·9=36 J/K. L’incremento è 1300/36=325/9 K, quindi la lettura è 325/9 °C. È maggiore di 25 °C ma ancora minore di 50 °C: più acqua calda sposta l’equilibrio verso la sua temperatura iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_A=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{1600-300}{36}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{325}{9}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,B}=\\frac{325}{9}\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "50 °C raddoppia la lettura e non lascia raffreddare il caldo pur fondendo il ghiaccio. 25/2 °C va nel verso opposto all’aumento di massa calda. 100 °C supera ogni temperatura iniziale e non può derivare da questo contatto isolato."
+        }
+      ],
+      "hints": [
+        "Cambiano sia l’energia iniziale disponibile sia la massa liquida finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "50 °C raddoppia la lettura e non lascia raffreddare il caldo pur fondendo il ghiaccio. 25/2 °C va nel verso opposto all’aumento di massa calda. 100 °C supera ogni temperatura iniziale e non può derivare da questo contatto isolato.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17605,
+      "title": "La massa calda da una finale nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. T_f=25 °C e m_i=1 g. Quanto vale m_a in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grammo che era ghiaccio riceve 300 J per fondere e altri 100 J per arrivare a 25 °C. Un grammo di acqua inizialmente a 50 °C, raffreddandosi di 25 K, ne cede 100. Per fornire i 400 J servono quindi quattro grammi di acqua iniziale. Il risultato rispetta 2m_a>3m_i."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m_a=\\frac{m_i(L_f+c_l\\Theta)}{c_l(50\\,\\mathrm K-\\Theta)}"
+        },
+        {
+          "type": "formula",
+          "text": " m_a=400/100\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_a=4\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "3 g conterebbero soltanto la fusione, senza scaldare l’acqua nuova. 1 g confonde le due masse: sarebbe fuori dal ramo di fusione completa per i dati assegnati. Il denominatore deve restare positivo."
+        }
+      ],
+      "hints": [
+        "Confronta quanto riceve il ghiaccio con quanto cede ogni grammo caldo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3 g conterebbero soltanto la fusione, senza scaldare l’acqua nuova. 1 g confonde le due masse: sarebbe fuori dal ramo di fusione completa per i dati assegnati. Il denominatore deve restare positivo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17606,
+      "title": "La massa di ghiaccio che può arrivare alla finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. T_f=25 °C e m_a=4 g. Quanto vale m_i in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I quattro grammi inizialmente caldi cedono 4·4·25=400 J. Ogni grammo di ghiaccio richiede 300+4·25=400 J/g per fondere e arrivare alla finale. Dividendo la cessione disponibile per questo costo specifico otteniamo un grammo."
+        },
+        {
+          "type": "formula",
+          "text": "m_i=\\frac{c_lm_a(50\\,\\mathrm K-\\Theta)}{L_f+c_l\\Theta}"
+        },
+        {
+          "type": "formula",
+          "text": " m_i=\\frac{400\\,\\mathrm J}{400\\,\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " m_i=1\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "4/3 g usa soltanto il costo latente e dimentica il riscaldamento successivo. 4 g copia la massa calda e violerebbe il ramo garantito. L’inversa richiede 0<Θ<50 K per mantenere positivo il calore ceduto dal caldo."
+        }
+      ],
+      "hints": [
+        "Dividi il calore ceduto dal caldo per il costo completo di un grammo di ghiaccio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 g usa soltanto il costo latente e dimentica il riscaldamento successivo. 4 g copia la massa calda e violerebbe il ramo garantito. L’inversa richiede 0<Θ<50 K per mantenere positivo il calore ceduto dal caldo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17607,
+      "title": "Più ghiaccio con la stessa acqua iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. m_a=4 g. A ha m_i=1 g, B ha m_i=2 g. Quanto vale il rapporto fra le letture Celsius T_f,B/T_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 25 °C. Per B restano 800−600=200 J sopra il riferimento di fusione, da distribuire su 6 g di acqua finale: capacità 24 J/K. L’incremento è 200/24=25/3 K. La lettura B divisa per 25 °C dà 1/3. La condizione 800>600 J mantiene la fusione completa anche in B."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_A=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{800-600}{24}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{25}{3}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,B}/T_{f,A}=1/3"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue soltanto il raddoppio del ghiaccio. Due dà il verso opposto e tre inverte il rapporto. Il valore uno non tiene conto né della maggiore fusione né della maggiore capacità finale."
+        }
+      ],
+      "hints": [
+        "Ricava la nuova energia residua e la nuova massa totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue soltanto il raddoppio del ghiaccio. Due dà il verso opposto e tre inverte il rapporto. Il valore uno non tiene conto né della maggiore fusione né della maggiore capacità finale.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17608,
+      "title": "La proposta coincide con il punto caldo iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Con m_a=4 g e m_i=1 g si propone T_f=50 °C. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 K",
+          "−25 K",
+          "50 K",
+          "0 K",
+          "2 K"
+        ],
+        "value": "25 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La finale corretta è 25 °C. La proposta di 50 °C è più alta di 25 K e renderebbe nullo il raffreddamento della porzione calda, che invece deve fornire energia al ghiaccio. Lo scarto richiesto è una differenza termica positiva."
+        },
+        {
+          "type": "formula",
+          "text": "T_f=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " e=T_{f,\\rm proposto}-T_f"
+        },
+        {
+          "type": "formula",
+          "text": " e=25\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "−25 K cambia l’ordine della sottrazione. 50 K copia il numero della proposta, zero la accetta e due è un rapporto fra numeri Celsius, non uno scarto."
+        }
+      ],
+      "hints": [
+        "Verifica il trasferimento al ghiaccio e rispetta l’ordine dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−25 K cambia l’ordine della sottrazione. 50 K copia il numero della proposta, zero la accetta e due è un rapporto fra numeri Celsius, non uno scarto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17609,
+      "title": "Isolare la massa inizialmente calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Sono noti m_i e Θ, con 0<Θ<50 K. Quale formula ricava m_a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m_a = m_i (L_f + c_l Θ) / [c_l (50 K − Θ)]",
+          "m_a = m_i L_f / [c_l (50 K − Θ)]",
+          "m_a = m_i (L_f + c_l Θ) / (c_l Θ)",
+          "m_a = m_i c_l (50 K − Θ) / (L_f + c_l Θ)",
+          "m_a = m_i (L_f − c_l Θ) / [c_l (50 K − Θ)]"
+        ],
+        "value": "m_a = m_i (L_f + c_l Θ) / [c_l (50 K − Θ)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa calda moltiplica c_l(50 K−Θ), energia ceduta da ogni grammo caldo. Dividiamo il fabbisogno della massa inizialmente ghiacciata per questo fattore. Il rapporto di due energie specifiche è puro e moltiplica m_i, lasciando un risultato in g. Il denominatore positivo esclude una finale uguale o superiore al caldo iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "c_lm_a(50\\,\\mathrm K-\\Theta)=m_i(L_f+c_l\\Theta)"
+        },
+        {
+          "type": "formula",
+          "text": " m_a=\\frac{m_i(L_f+c_l\\Theta)}{c_l(50\\,\\mathrm K-\\Theta)}"
+        },
+        {
+          "type": "text",
+          "text": "Il numeratore con solo L_f omette il riscaldamento dell’acqua fusa. Usare c_lΘ al denominatore scambia incremento del ghiaccio e raffreddamento del caldo. Il reciproco inverte il rapporto fra energia ricevuta ed energia ceduta per grammo e non soddisfa il bilancio; il segno meno sottrae un fabbisogno."
+        }
+      ],
+      "hints": [
+        "Isola il fattore che moltiplica m_a nel bilancio iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il numeratore con solo L_f omette il riscaldamento dell’acqua fusa. Usare c_lΘ al denominatore scambia incremento del ghiaccio e raffreddamento del caldo. Il reciproco inverte il rapporto fra energia ricevuta ed energia ceduta per grammo e non soddisfa il bilancio; il segno meno sottrae un fabbisogno.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17610,
+      "title": "Due masse scalate prima del rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. B ha m_a,B=κ₁m_a,A e m_i,B=κ₂m_i,A, κ₁,κ₂>0. Sia A sia B soddisfano la condizione di fusione completa. Quale espressione dà il rapporto delle letture Celsius B/A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "[(200 κ₁ m_a − 300 κ₂ m_i)(m_a + m_i)] / [(κ₁ m_a + κ₂ m_i)(200 m_a − 300 m_i)]",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(200 κ₁ m_a − 300 κ₂ m_i) / (200 m_a − 300 m_i)",
+          "κ₁ − κ₂"
+        ],
+        "value": "[(200 κ₁ m_a − 300 κ₂ m_i)(m_a + m_i)] / [(κ₁ m_a + κ₂ m_i)(200 m_a − 300 m_i)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Usiamo i valori numerici delle masse in g nella relazione t_f=(200m_a−300m_i)/[4(m_a+m_i)], dove 200 e 300 sono energie specifiche in J/g. Nel rapporto delle due prove si cancella 4, ma restano sia il confronto delle energie residue sia quello delle masse totali. Se entrambe le masse crescono dello stesso fattore, l’intera temperatura finale rimane uguale."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_A=\\frac{c_lm_a(50\\,\\mathrm K)-m_iL_f}{c_l(m_a+m_i)}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{c_l\\kappa_1m_a(50\\,\\mathrm K)-\\kappa_2m_iL_f}{c_l(\\kappa_1m_a+\\kappa_2m_i)}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_{f,B}}{T_{f,A}}=\\frac{\\Theta_B}{\\Theta_A}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo rapporto delle energie residue omette la diversa capacità finale. Il quoziente dei fattori trascura la fusione; il prodotto e la differenza falliscono con un fattore comune, quando il rapporto corretto deve essere uno. I due numeratori devono restare positivi nel dominio dichiarato."
+        }
+      ],
+      "hints": [
+        "Mantieni nel rapporto sia il residuo energetico sia la massa totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo rapporto delle energie residue omette la diversa capacità finale. Il quoziente dei fattori trascura la fusione; il prodotto e la differenza falliscono con un fattore comune, quando il rapporto corretto deve essere uno. I due numeratori devono restare positivi nel dominio dichiarato.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17611,
+      "title": "Due cambiamenti nello stesso equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. A: m_a=4 g, m_i=1 g. B: m_a=5 g, m_i=2 g. Quanto vale il rapporto fra le letture finali Celsius B/A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/7",
+          "7/4",
+          "5/4",
+          "2",
+          "1/2"
+        ],
+        "value": "4/7"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha Θ=25 K. B parte con 1000 J cedibili fino alla fusione, ne spende 600 per fondere e distribuisce i 400 residui su una capacità totale di 28 J/K. L’incremento è 100/7 K. Dividendo per 25 K otteniamo 4/7. Non basta seguire una sola delle due masse."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_A=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=400/28\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=100/7\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,B}/T_{f,A}=4/7"
+        },
+        {
+          "type": "text",
+          "text": "7/4 inverte il confronto. 5/4 segue soltanto la massa d’acqua calda e due soltanto il ghiaccio; un mezzo non ricostruisce i due bilanci completi."
+        }
+      ],
+      "hints": [
+        "Calcola energia residua e capacità complessiva per ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7/4 inverte il confronto. 5/4 segue soltanto la massa d’acqua calda e due soltanto il ghiaccio; un mezzo non ricostruisce i due bilanci completi.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17612,
+      "title": "Media statistica delle due finali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 2,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. A usa m_a=4 g, m_i=1 g; B usa m_a=5 g, m_i=2 g. Qual è la media aritmetica delle letture Celsius finali con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "275/14 °C",
+          "75/4 °C",
+          "275/7 °C",
+          "75/14 °C",
+          "25 °C"
+        ],
+        "value": "275/14 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture sono 25 e 100/7 °C. Scriviamo 25=175/7, sommiamo ottenendo 275/7 e dividiamo per due: 275/14 °C. Le masse medie 9/2 g e 3/2 g darebbero invece 75/4 °C. La differenza esatta fra queste due operazioni è 25/28 K."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline T_f=\\frac{25+100/7}{2}\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T_f=275/14\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,\\rm masse\\ medie}=75/4\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "75/4 °C usa le masse medie; 275/7 °C non dimezza la somma. 75/14 °C fa metà della differenza e 25 °C ignora B. La media delle letture non è un nuovo esperimento di mescolamento."
+        }
+      ],
+      "hints": [
+        "Porta le due letture allo stesso denominatore prima della metà.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "75/4 °C usa le masse medie; 275/7 °C non dimezza la somma. 75/14 °C fa metà della differenza e 25 °C ignora B. La media delle letture non è un nuovo esperimento di mescolamento.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17613,
+      "title": "Il ghiaccio necessario per la finale bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 3,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. A ha m_a=4 g, m_i,A=1 g. B ha m_a=5 g e deve avere lettura Celsius pari a 4/7 di quella di A. Quanto vale m_i,B/m_i,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 100/7 °C, cioè Θ_B=100/7 K. I cinque grammi caldi cedono c_lm_a(50 K−Θ_B)=5000/7 J. Ogni grammo inizialmente ghiacciato richiede L_f+c_lΘ_B=2500/7 J/g. Il quoziente dà m_i,B=2 g e il rapporto con un grammo iniziale è due. I 1000 J disponibili fino a zero superano i 600 J di fusione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_B=100/7\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m_{i,B}=\\frac{5000/7\\,\\mathrm J}{2500/7\\,\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{i,B}=2\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{i,B}/m_{i,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "4/7 è il fattore sulle letture, non sul ghiaccio. 5/4 segue soltanto il caldo e un mezzo capovolge il rapporto delle masse ricostruite."
+        }
+      ],
+      "hints": [
+        "Usa la finale bersaglio nell’inversa per il ghiaccio e verifica il ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/7 è il fattore sulle letture, non sul ghiaccio. 5/4 segue soltanto il caldo e un mezzo capovolge il rapporto delle masse ricostruite.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17614,
+      "title": "Un display dell’incremento termico finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 3,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. S=qΘ è continuo e adimensionale, q>0. A con m_a=4 g, m_i=1 g dà S=75. B dà S=300/7 e ha m_i=2 g. Quanto vale m_a,B in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha Θ_A=25 K, quindi q=3 K⁻¹. La lettura B corrisponde a Θ_B=100/7 K. Due grammi di ghiaccio richiedono 5000/7 J per fondere e scaldarsi; un grammo caldo ne cede 1000/7 J fino alla stessa finale. Il rapporto dà cinque grammi di acqua iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=100/7\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m_{a,B}=\\frac{m_{i,B}(L_f+c_l\\Theta_B)}{c_l(50\\,\\mathrm K-\\Theta_B)}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{a,B}=5\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura grezza 300/7 come kelvin confonderebbe il display con Θ e porterebbe a una massa diversa. La massa di ghiaccio non si somma alla lettura; bisogna prima ricostruire il bilancio alla finale fisica."
+        }
+      ],
+      "hints": [
+        "Taratura dell’incremento prima dell’inversa della massa calda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura grezza 300/7 come kelvin confonderebbe il display con Θ e porterebbe a una massa diversa. La massa di ghiaccio non si somma alla lettura; bisogna prima ricostruire il bilancio alla finale fisica.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17615,
+      "title": "Offset e guadagno prima della massa calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 3,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. S=qΘ+b è continuo e adimensionale. A: m_a=4 g, m_i=1 g, S=51. B: m_a=5 g, m_i=2 g, S=207/7. C: m_i=1 g, S=659/9. Quanto vale m_a,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 g",
+          "4 g",
+          "5 g",
+          "325/9 g",
+          "9 g"
+        ],
+        "value": "8 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno Θ_A=25 K e Θ_B=100/7 K. La differenza delle letture 150/7 su quella degli incrementi 75/7 K dà q=2 K⁻¹; poi b=1. Per C, (659/9−1)/2=325/9 K. Il fabbisogno del grammo di ghiaccio è 4000/9 J e ogni grammo caldo ne cede 500/9 J: servono otto grammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{51-207/7}{(25-100/7)\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_C=325/9\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m_{a,C}=\\frac{4000/9}{500/9}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{a,C}=8\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "4 g tornerebbero alla lettura A, S=51. 5 g con un solo grammo di ghiaccio darebbero Θ=175/6 K e S=178/3. 325/9 copia il numero dell’incremento in un’altra grandezza. 9 g darebbero Θ=75/2 K e S=76, diverso da 659/9."
+        }
+      ],
+      "hints": [
+        "Usa differenze esatte per tarare e poi inverti il bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4 g tornerebbero alla lettura A, S=51. 5 g con un solo grammo di ghiaccio darebbero Θ=175/6 K e S=178/3. 325/9 copia il numero dell’incremento in un’altra grandezza. 9 g darebbero Θ=75/2 K e S=76, diverso da 659/9.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio dopo fusione completa del ghiaccio",
+      "order": 17616,
+      "title": "Un rapporto di masse non fissa la quantità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "warm-water-and-ice",
+      "difficulty": 3,
+      "prompt": "Nel modello calorimetrico, in un recipiente termicamente isolato di capacità trascurabile si uniscono m_a>0 g di acqua a 50 °C e m_i>0 g di ghiaccio a T_m=0 °C. A pressione atmosferica si assegnano c_l=4 J/(g·K) e L_f=300 J/g, costanti ideali; non si perde massa e non vi sono altri apporti energetici. Si garantisce c_l m_a(50 K)>m_iL_f, cioè 2m_a>3m_i: tutto il ghiaccio fonde e la finale sta fra 0 e 50 °C. Θ=T_f−T_m è l’incremento finale in K; il suo numero coincide qui con la lettura T_f in °C. I rapporti delle letture Celsius richiesti sono rapporti di questi incrementi, non di temperature assolute. Fra preparazioni si impone m_a=4m_i. Si misura T_f=25 °C. Quante coppie di masse positive soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni m_i>0 con m_a=4m_i",
+          "Una sola: m_a=4 g e m_i=1 g",
+          "Nessuna coppia",
+          "Solo m_i=25 g",
+          "Solo m_i=0"
+        ],
+        "value": "Infinite: ogni m_i>0 con m_a=4m_i"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, il numeratore è (800−300)m_i e la capacità finale 4·5m_i. La massa si cancella e rimane Θ=25 K per ogni m_i>0. Il dato termometrico ripete il rapporto assegnato e non determina la scala delle masse. Anche la condizione di fusione completa è rispettata a qualunque scala positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta=\\frac{(800-300)m_i}{4(4m_i+m_i)}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " 2m_a>3m_i"
+        },
+        {
+          "type": "text",
+          "text": "La coppia 4 g,1 g è un esempio e non una soluzione unica. 25 g copia il numero della temperatura; zero rende entrambe le masse nulle e la formula indefinita. Non occorre assegnare masse intere: il modello è continuo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto prima di cercare una massa assoluta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coppia 4 g,1 g è un esempio e non una soluzione unica. 25 g copia il numero della temperatura; zero rende entrambe le masse nulle e la formula indefinita. Non occorre assegnare masse intere: il modello è continuo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Bilancio calorimetrico con fase e riscaldamento",
+        "Condizione di fusione completa e letture Celsius",
+        "Inverse, medie e taratura degli incrementi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d816e5d40a73b2d3d8f9c6bd65d2f771c77b70f52351a52b3d12acfb6b5a635e",
+      "name": "warm-water-and-ice-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTI2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EYWxsYSBmdXNpb25lIGFsIG51b3ZvIGVxdWlsaWJyaW88L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+UXVhdHRybyBncmFtbWkgZGkgYWNxdWEgYSBjaW5xdWFudGEgZ3JhZGkgQ2Vsc2l1cyBlIHVuIGdyYW1tbyBkaSBnaGlhY2NpbyBhIHplcm8gYXJyaXZhbm8gYSBjaW5xdWUgZ3JhbW1pIGRpIGFjcXVhIGEgdmVudGljaW5xdWUgZ3JhZGkuIElsIGNhbGRvIGNlZGUgZWZmZXR0aXZhbWVudGUgcXVhdHRyb2NlbnRvIGpvdWxlOiB0cmVjZW50byBmb25kb25vIGlsIGdoaWFjY2lvIGUgY2VudG8gc2NhbGRhbm8gbOKAmWFjcXVhIGFwcGVuYSBmdXNhLiBMZSBiYXJyZSBmaW5hbGkgY29uZnJvbnRhbm8gaW5jcmVtZW50aSBzb3ByYSBpbCBwdW50byBkaSBmdXNpb25lIGNvbiB1bmEgc2NhbGEgY29tdW5lLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iaGVhdCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iI2I0NTMyOCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMjYwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IER1ZSBjb3JwaSwgdW5hIHRlbXBlcmF0dXJhIGZpbmFsZTwvdGV4dD4KPHJlY3QgeD0iNDIiIHk9Ijg1IiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjEyNCIgcng9IjEwIiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiLz4KPHRleHQgeD0iNjQiIHk9IjEyMSI+QWNxdWEgaW5pemlhbGU8L3RleHQ+PHRleHQgeD0iNjQiIHk9IjE1NiI+NCBnIGEgNTAgwrBDPC90ZXh0Pjx0ZXh0IHg9IjY0IiB5PSIxOTEiIGZvbnQtc2l6ZT0iMTgiPkNlZGUgY2Fsb3JlPC90ZXh0Pgo8cmVjdCB4PSIzNzAiIHk9Ijg1IiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjEyNCIgcng9IjEwIiBmaWxsPSIjZTRmM2ZhIiBzdHJva2U9IiMxNjVhODciLz4KPHRleHQgeD0iMzkwIiB5PSIxMjEiPkdoaWFjY2lvIGluaXppYWxlPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iMTU2Ij4xIGcgYSAwIMKwQzwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjE5MSIgZm9udC1zaXplPSIxOCI+UmljZXZlIGNhbG9yZTwvdGV4dD4KPHBhdGggZD0iTTI4MiAxNDdIMzU2IiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNoZWF0KSIvPgo8dGV4dCB4PSIzMiIgeT0iMjUyIiBmb250LXNpemU9IjE4Ij5GcmVjY2lhIHNjaGVtYXRpY2E6IHRyYXNmZXJpbWVudG8gaW50ZXJuby48L3RleHQ+CjxyZWN0IHg9IjEzMCIgeT0iMjgzIiB3aWR0aD0iMzgwIiBoZWlnaHQ9Ijg0IiByeD0iMTAiIGZpbGw9IiNlMGVmZTciIHN0cm9rZT0iIzI4NjY0ZCIvPgo8dGV4dCB4PSIxNjciIHk9IjMxNyI+QWxsYSBmaW5lOiA1IGcgZGkgYWNxdWE8L3RleHQ+PHRleHQgeD0iMjYxIiB5PSIzNDkiPjI1IMKwQzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQxMCIgZm9udC1zaXplPSIxOCI+Q29udHJvbGxvIGRlbCByYW1vOiA4MDAgSiBkaXNwb25pYmlsaSBmaW5vIGEgMCDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0NDEiIGZvbnQtc2l6ZT0iMTgiPnN1cGVyYW5vIGkgMzAwIEogbmVjZXNzYXJpIGFsbGEgZnVzaW9uZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0NzRINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUxOSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgSWwgY2Fsb3JlIHNjYW1iaWF0byDDqCA0MDAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjU1OCIgZm9udC1zaXplPSIxOCI+SWwgY2FsZG8gc2kgZmVybWEgYSAyNSDCsEM6IG5vbiBjZWRlIHR1dHRpIGdsaSA4MDAgSi48L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNTg3VjgwNyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI2MDgiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz4KPHRleHQgeD0iMzMiIHk9IjYzMyI+Q2VkdXRvPC90ZXh0Pjx0ZXh0IHg9IjQ2OCIgeT0iNjMzIj40MDAgSjwvdGV4dD4KPHJlY3QgeD0iMTMwIiB5PSI2ODEiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz48cmVjdCB4PSIzNzAiIHk9IjY4MSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjMzIiB5PSI3MDYiPlJpY2V2dXRvPC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iNzA1IiBmaWxsPSJ3aGl0ZSI+MzAwIEo8L3RleHQ+PHRleHQgeD0iMzgwIiB5PSI3MDUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjE4Ij4xMDAgSjwvdGV4dD4KPHRleHQgeD0iMTQ2IiB5PSI3NTciIGZvbnQtc2l6ZT0iMTgiPkZ1c2lvbmUgKyByaXNjYWxkYW1lbnRvIGRlbGzigJlhY3F1YSBmdXNhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODQ1IiBmb250LXNpemU9IjE4Ij5CYXJyZTogMCw4IHB4L0o7IG9yaWdpbmUgY29tdW5lIHBlciBpIGR1ZSB0b3RhbGkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgODc2SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI5MjAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IENvbmZyb250YXJlIGdsaSBpbmNyZW1lbnRpIGZpbmFsaTwvdGV4dD4KPHBhdGggZD0iTTEzMCA5NDZWMTE2MCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI5NjQiIHdpZHRoPSIxNzUiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDMwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTA5NiIgd2lkdGg9IjEzNy41IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI5OTAiPkE8L3RleHQ+PHRleHQgeD0iMzI0IiB5PSI5OTAiPjI1IEs8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjEwNTYiPkI8L3RleHQ+PHRleHQgeD0iMjQ5IiB5PSIxMDU2Ij4xMDAvNyBLPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTIyIj5NZWRpYTwvdGV4dD48dGV4dCB4PSIyODciIHk9IjExMjIiPjI3NS8xNCBLPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTIwMCIgZm9udC1zaXplPSIxOCI+U2NhbGE6IDcgcHgvSy4gTGUgbGV0dHVyZSBDZWxzaXVzIGhhbm5vIGdsaSBzdGVzc2k8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjMwIiBmb250LXNpemU9IjE4Ij5udW1lcmksIHJpZmVyaXRpIHF1aSBhbCBwdW50byBkaSBmdXNpb25lIDAgwrBDLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

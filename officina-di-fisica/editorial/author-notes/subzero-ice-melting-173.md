@@ -1,5 +1,7 @@
 # subzero-ice-melting-173 — note dell’autore
 
+Stato aggiornato: le didascalie e i testi visibili dello SVG ora indicano soltanto grandezze fisiche; tutte le coordinate geometriche sono invariate. Le indicazioni px delle note storiche sono coordinate intrinseche dello SVG, non pixel CSS dopo il ridimensionamento. I byte precedenti e le prove browser storiche sono archiviati con manifest e checksum in editorial/author-evidence/u5-phase-processes-173-177-pixel-labels-superseded-20261125. UI correnti NOT_RUN: nessun nuovo rendering di accettazione è stato eseguito per questa correzione; il profilo b963 resta sospeso.
+
 Fonte Git 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, questions/U5-03.json; SHA256 file 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Letti individualmente tutti gli 80 prompt e le ipotesi assegnate 173–177 prima della scrittura. Catalogo reale C3-L01, L03 e L04 riletto; potenza in C1-L007 dove pertinente. Si usa il solo assemble_family esistente, course C3 e unit u5.
 
 DRAFT. Revisione scientifica indipendente NOT_RUN. Approvazione umana NOT_RUN. Queste note sono calcoli dell’autore, non firme o giudizi indipendenti.
@@ -137,3 +139,5 @@ Sostituiamo la massa scelta per la prova nella somma dei due tratti. L’equazio
 Passaggi: `Q=d\theta(c_i\theta+L_f)\qquad x=\theta/(1\,\mathrm K)\qquad x^2+150x-1600=0\qquad (x-10)(x+160)=0\qquad x=10\qquad \theta=10\,\mathrm K`
 
 Errori e controllo: 160 K cambia soltanto il segno della radice esclusa e non soddisfa l’equazione. 20 K darebbe Q=680 J sotto il vincolo. 320 K supera inoltre l’intervallo fisico iniziale consentito e scambia il numero dell’energia con quello dell’intervallo.
+
+Geometria conservata (solo nota autore, coordinate intrinseche dello SVG, non pixel CSS): Q axis 1 intrinsic unit/J; vertical 10 intrinsic units/K; component bars 1.2 intrinsic units/J; comparison bars .6 intrinsic units/J.
