@@ -1,0 +1,1122 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-soap-film-force-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12221,
+      "title": "Un bordo tirato da due interfacce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 1,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Con γ=50 mN/m e ℓ=2 cm, quanto vale F in mN?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mN",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Convertiamo il lato: due centimetri sono due centesimi di metro. Una sola interfaccia esercita γℓ=50·(2/100)=1 mN. Le due interfacce dello stesso film tirano entrambe verso l’interno e i loro contributi si sommano: la forza del film è due mN."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/208a9459efc49f39f77f15176ea3de5caf767ad82e24d21609adcd7ae97a12f3",
+          "text": "Un film con due interfacce, non due film. Il lato mobile è lungo 2 cm, disegnato come 200 px alla scala verticale 100 px/cm; larghezza del telaio schematica. γ=50 mN/m dà forza del film 2 mN verso la contrazione e forza esterna opposta 2 mN se il lato è mantenuto fermo. Frecce da 100 px a 50 px/mN: le due forze sono sulla stessa barra e la risultante è nulla, mentre F del film non è nulla."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=\\frac2{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm faccia}=\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm faccia}=1\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F=2\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " F=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Un mN dimentica una faccia; quattro conta due volte un raddoppio già incluso. Cento non converte i centimetri in metri. Se il lato è mantenuto fermo, la risultante di tutte le forze sul lato è zero, ma la forza del solo film resta due mN."
+        }
+      ],
+      "hints": [
+        "Calcola la forza di una interfaccia con ℓ in metri, poi conta le due facce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mN dimentica una faccia; quattro conta due volte un raddoppio già incluso. Cento non converte i centimetri in metri. Se il lato è mantenuto fermo, la risultante di tutte le forze sul lato è zero, ma la forza del solo film resta due mN.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12222,
+      "title": "Dalla tensione superficiale a una forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 1,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Quale unità proposta esprime F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mN",
+          "mN/m",
+          "cm",
+          "J/m²",
+          "mN·m"
+        ],
+        "value": "mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione superficiale è forza per lunghezza. Moltiplicarla per la lunghezza del bordo restituisce una forza; il numero due delle interfacce è puro. Si può esprimere il risultato in mN o N, ma non nelle unità di γ."
+        },
+        {
+          "type": "formula",
+          "text": "[\\gamma]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\ell]=\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " [2\\gamma\\ell]=\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mN}=10^{-3}\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "mN/m e J/m² sono unità equivalenti di tensione superficiale, non della forza richiesta. cm è lunghezza e mN·m è energia. Il prefisso milli cambia la scala numerica, non la dimensione."
+        }
+      ],
+      "hints": [
+        "Moltiplica forza per lunghezza inversa e lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mN/m e J/m² sono unità equivalenti di tensione superficiale, non della forza richiesta. cm è lunghezza e mN·m è energia. Il prefisso milli cambia la scala numerica, non la dimensione.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12223,
+      "title": "La legge fisica prima delle conversioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 1,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Quale relazione esprime F quando γ e ℓ sono in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F = 2 γ ℓ",
+          "F = γ ℓ",
+          "F = 4 γ ℓ",
+          "F = 2 γ / ℓ",
+          "F = 2 ℓ / γ"
+        ],
+        "value": "F = 2 γ ℓ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per ciascuna interfaccia il modulo è γℓ. Il bordo ha contatto con due superfici dello stesso film e le due forze hanno il medesimo verso, quindi F=2γℓ. Se si usano i valori numerici γ in mN/m e ℓ in cm, occorre anche convertire ℓ: F in mN è il loro prodotto diviso cinquanta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/208a9459efc49f39f77f15176ea3de5caf767ad82e24d21609adcd7ae97a12f3",
+          "text": "Il secondo pannello separa solo per conteggio i contributi delle due interfacce: 1 mN ciascuna, frecce 50 px verso lo stesso lato, somma 2 mN con freccia 100 px alla stessa scala 50 px/mN. Il confronto finale usa barre di lunghezza a 40 px/cm e frecce di forza a 50 px/mN: ℓ=2 e 5 cm, γ=50 e 25 mN/m danno F=2 e 5/2 mN. Le due scale dimensionali non sono confrontabili fra loro."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\gamma\\ell+\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " F=2\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=(\\ell_{\\rm cm}/100)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F}{1\\,\\mathrm{mN}}=\\frac{\\gamma_{\\rm num}\\ell_{\\rm cm}}{50}"
+        },
+        {
+          "type": "text",
+          "text": "γ_num indica il valore numerico di γ in mN/m e ℓ_cm quello di ℓ in cm. Una sola γℓ omette un’interfaccia, quattro γℓ ne conterebbe quattro. Dividere per ℓ inverte la dipendenza; dividere per γ non restituisce una forza."
+        }
+      ],
+      "hints": [
+        "Conta le interfacce effettive e tieni distinta la legge dalla formula numerica con i prefissi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "γ_num indica il valore numerico di γ in mN/m e ℓ_cm quello di ℓ in cm. Una sola γℓ omette un’interfaccia, quattro γℓ ne conterebbe quattro. Dividere per ℓ inverte la dipendenza; dividere per γ non restituisce una forza.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12224,
+      "title": "Tensione superficiale dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 1,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. γ passa da 50 a 25 mN/m e ℓ resta 2 cm. Come cambia F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 1 mN",
+          "Da 2 a 4 mN",
+          "Resta 2 mN",
+          "Da 2 a 1/2 mN",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 1 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza di contatto e il numero di interfacce restano uguali. Ciascuna faccia dimezza la forza e anche il totale si dimezza: due mN diventano uno. La nuova tensione resta positiva, quindi il film continua a tirare il lato."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac{\\gamma_B}{\\gamma_A}F_A"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=1\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro rende inversa la dipendenza da γ; un mezzo quadra il fattore di dimezzamento. Due ignora il cambiamento e zero richiederebbe γ nulla o nessun contatto, esclusi dai dati."
+        }
+      ],
+      "hints": [
+        "La legge contiene γ alla prima potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro rende inversa la dipendenza da γ; un mezzo quadra il fattore di dimezzamento. Due ignora il cambiamento e zero richiederebbe γ nulla o nessun contatto, esclusi dai dati.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12225,
+      "title": "Ricavare γ dalla forza del film",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Si misura F=2 mN e si conosce ℓ=2 cm. Quanto vale γ in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la forza totale per due lunghezze di contatto. Con ℓ=2/100 m, il denominatore 2ℓ vale quattro centesimi di metro. Due mN diviso quattro centesimi dà cinquanta mN/m. Non si divide per il solo lato, perché la misura include già le due facce."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=\\frac{F}{2\\ell}"
+        },
+        {
+          "type": "formula",
+          "text": " 2\\ell=\\frac4{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\frac{2}{4/100}\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=50\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Cento mN/m tratterebbe l’intera forza come contributo di una sola interfaccia. Il valore un mezzo nasce dall’uso dei centimetri come se fossero metri. La tensione inferita deve essere positiva e restituisce F=2 mN nella legge diretta."
+        }
+      ],
+      "hints": [
+        "Converti ℓ e dividi per 2ℓ, non soltanto per ℓ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento mN/m tratterebbe l’intera forza come contributo di una sola interfaccia. Il valore un mezzo nasce dall’uso dei centimetri come se fossero metri. La tensione inferita deve essere positiva e restituisce F=2 mN nella legge diretta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12226,
+      "title": "Ricavare il lato dal contatto totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Si misura F=2 mN e si conosce γ=50 mN/m. Quanto vale ℓ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge isoliamo ℓ=F/(2γ). Due mN diviso cento mN/m dà due centesimi di metro, cioè due centimetri. I due fattori milli si cancellano, ma la lunghezza risultante è inizialmente in metri."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=\\frac{F}{2\\gamma}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\frac{2}{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro centimetri ometterebbe il fattore due delle interfacce. Due centesimi è corretto in metri, non come numero di centimetri; la conversione finale fa parte della risposta. Un’area non è richiesta."
+        }
+      ],
+      "hints": [
+        "Dividi la forza per due volte γ e poi converti i metri in centimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro centimetri ometterebbe il fattore due delle interfacce. Due centesimi è corretto in metri, non come numero di centimetri; la conversione finale fa parte della risposta. Un’area non è richiesta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12227,
+      "title": "Un lato due volte più lungo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. A ha γ=50 mN/m,ℓ=2 cm. B mantiene γ e ha ℓ=4 cm. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza del bordo raddoppia: ciascuna faccia tira su un contatto doppio e F passa da due a quattro mN. Il rapporto è due. Non si sta raddoppiando un raggio o un’area: la legge contiene la sola lunghezza del bordo."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=4\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\ell_B/\\ell_A"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco, quattro quadra il raddoppio e otto introduce un fattore aggiuntivo non assegnato. Uno ignora la nuova lunghezza. Le interfacce rimangono due in entrambe le prove e si cancellano nel rapporto."
+        }
+      ],
+      "hints": [
+        "Confronta le lunghezze senza contare una seconda volta le interfacce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco, quattro quadra il raddoppio e otto introduce un fattore aggiuntivo non assegnato. Uno ignora la nuova lunghezza. Le interfacce rimangono due in entrambe le prove e si cancellano nel rapporto.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12228,
+      "title": "Lo scarto di un fattore due aggiunto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Con γ=50 mN/m e ℓ=2 cm si propone F=4 mN. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mN",
+          "−2 mN",
+          "4 mN",
+          "0 mN",
+          "1 mN"
+        ],
+        "value": "2 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge conta già le due facce e dà due mN. La proposta quattro aggiunge un secondo raddoppio. Lo scarto con segno è quattro meno due, più due mN, indipendentemente dal verso fisico della forza sul lato."
+        },
+        {
+          "type": "formula",
+          "text": "F=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Meno due scambia l’ordine, quattro copia la proposta e zero la accetta. Un mN è il contributo di una sola interfaccia, non la differenza richiesta. Due superfici non significano due film distinti da contare ancora."
+        }
+      ],
+      "hints": [
+        "Distingui forza di una faccia, forza del film e scarto della proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due scambia l’ordine, quattro copia la proposta e zero la accetta. Un mN è il contributo di una sola interfaccia, non la differenza richiesta. Due superfici non significano due film distinti da contare ancora.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12229,
+      "title": "L’inversa non conta nuove superfici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Quale formula isola γ con grandezze in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "γ = F / (2 ℓ)",
+          "γ = F / ℓ",
+          "γ = 2 F / ℓ",
+          "γ = 2 ℓ / F",
+          "γ = F ℓ / 2"
+        ],
+        "value": "γ = F / (2 ℓ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In F=2γℓ il coefficiente di γ è 2ℓ. Dividiamo per quel prodotto positivo, mantenendo forza e lunghezza in unità coerenti. Se ℓ è noto in cm e F in mN, la stessa inversa diventa γ_num=50F_num/ℓ_cm in mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "F=2\\gamma\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\frac{F}{2\\ell}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\gamma]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "γ_num e F_num sono i valori numerici nelle unità mN/m e mN; ℓ_cm è il numero di centimetri. F/ℓ omette due, 2F/ℓ sovrastima di quattro volte rispetto all’inversa corretta. Il reciproco è tensione inversa; Fℓ/2 ha unità di energia."
+        }
+      ],
+      "hints": [
+        "Dividi per l’intero coefficiente 2ℓ della tensione superficiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "γ_num e F_num sono i valori numerici nelle unità mN/m e mN; ℓ_cm è il numero di centimetri. F/ℓ omette due, 2F/ℓ sovrastima di quattro volte rispetto all’inversa corretta. Il reciproco è tensione inversa; Fℓ/2 ha unità di energia.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12230,
+      "title": "Due fattori, stessa geometria delle interfacce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Fra A e B, γ_B=κ₁γ_A e ℓ_B=κ₂ℓ_A, con fattori positivi. Le interfacce restano due. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grandezza entra alla prima potenza. Il rapporto fra prove cancella il fattore due delle interfacce e lascia il prodotto κ₁κ₂. Il coefficiente di conversione dei centimetri è uguale per entrambe e si cancella anch’esso."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=2\\kappa_1\\gamma_A\\kappa_2\\ell_A"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inverso uno dei due effetti; il quadrato di κ₂ trasformerebbe il bordo in un’area. La somma darebbe due per prove identiche, mentre il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Scala γ e il bordo, poi cancella i fattori comuni fra i due film in prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inverso uno dei due effetti; il quadrato di κ₂ trasformerebbe il bordo in un’area. La somma darebbe due per prove identiche, mentre il rapporto deve essere uno.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12231,
+      "title": "γ minore, lato più lungo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. A ha γ=50 mN/m,ℓ=2 cm; B ha γ=25 mN/m,ℓ=5 cm. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "1/2",
+          "5/2",
+          "5/8"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione si dimezza e la lunghezza cresce di cinque mezzi: il loro prodotto è cinque quarti. Direttamente F_B=2·25·(5/100)=5/2 mN, da dividere per i due mN di A. L’aumento del bordo prevale sul calo di γ."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=2\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac52\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac{5/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac54"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti inverte gli stati; un mezzo considera solo γ e cinque mezzi solo il bordo. Cinque ottavi dimezza ancora un risultato che ha già incluso la variazione di γ. Le forze restano moduli positivi."
+        }
+      ],
+      "hints": [
+        "Moltiplica un mezzo per cinque mezzi, non sommare i cambiamenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti inverte gli stati; un mezzo considera solo γ e cinque mezzi solo il bordo. Cinque ottavi dimezza ancora un risultato che ha già incluso la variazione di γ. Le forze restano moduli positivi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12232,
+      "title": "Media delle forze di due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 2,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. A ha γ=50 mN/m,ℓ=2 cm e B ha γ=25 mN/m,ℓ=5 cm. Qual è la media aritmetica delle F, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4 mN",
+          "9/2 mN",
+          "9/8 mN",
+          "21/8 mN",
+          "1/2 mN"
+        ],
+        "value": "9/4 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze sono due e cinque mezzi mN. La somma è nove mezzi e la semisomma nove quarti mN. Questa media delle due uscite non si ottiene in generale usando prima tensione e lunghezza medie."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F=\\frac{2+5/2}{2}\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F=\\frac94\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Nove mezzi è la somma, nove ottavi dimezza ancora e un mezzo è la differenza. Gli ingressi medi γ=75/2 mN/m e ℓ=7/2 cm darebbero 21/8 mN, maggiore di nove quarti di 3/8 mN. Il prodotto dei due ingressi non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Trova ciascuna forza con il suo γ e il suo bordo prima di mediare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove mezzi è la somma, nove ottavi dimezza ancora e un mezzo è la differenza. Gli ingressi medi γ=75/2 mN/m e ℓ=7/2 cm darebbero 21/8 mN, maggiore di nove quarti di 3/8 mN. Il prodotto dei due ingressi non commuta con la media.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12233,
+      "title": "Il bordo necessario per il fattore bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 3,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. A ha γ=50 mN/m,ℓ=2 cm. B impone γ=25 mN/m e deve avere F_B=(5/4)F_A. Quanto vale ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2",
+          "2/5",
+          "5/4",
+          "1/2",
+          "5"
+        ],
+        "value": "5/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione dimezzata fornisce un fattore un mezzo. Per raggiungere cinque quarti occorre un rapporto di lunghezze (5/4)/(1/2)=5/2. Il nuovo lato è cinque centimetri e produce cinque mezzi mN, come richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac54=\\frac12\\frac{\\ell_B}{\\ell_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=\\frac52"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due quinti è il reciproco, cinque quarti ignora la variazione di γ e un mezzo la copia al posto della lunghezza. Cinque è il numero di centimetri finale, non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore della forza per quello già fornito dalla tensione superficiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due quinti è il reciproco, cinque quarti ignora la variazione di γ e un mezzo la copia al posto della lunghezza. Cinque è il numero di centimetri finale, non il rapporto richiesto.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12234,
+      "title": "Il display misura la forza, non γ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 3,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Un display continuo adimensionale segue S=qF, q>0, senza offset. A con γ=50 mN/m,ℓ=2 cm dà S=6. B con ℓ=5 cm dà S=15/2. Quanto vale γ_B in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza di riferimento è due mN, quindi q=3 mN⁻¹. La nuova lettura quindici mezzi, divisa per tre, significa forza cinque mezzi mN. Con lato cinque centesimi di metro, γ_B=(5/2)/(2·5/100)=25 mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mN^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac52\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " 2\\ell_B=\\frac1{10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_B=25\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Usare direttamente 15/2 come mN darebbe γ=75 mN/m, tre volte il valore corretto. Anche dopo aver tolto la taratura occorre conservare le due interfacce nell’inversa."
+        }
+      ],
+      "hints": [
+        "Decodifica F e soltanto dopo dividi per 2ℓ_B in metri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare direttamente 15/2 come mN darebbe γ=75 mN/m, tre volte il valore corretto. Anche dopo aver tolto la taratura occorre conservare le due interfacce nell’inversa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12235,
+      "title": "Tarare due forze e inferire γ_C",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 3,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Il display continuo adimensionale segue S=qF+b, con q>0. A: γ=50 mN/m,ℓ=2 cm,S=5. B: γ=25 mN/m,ℓ=5 cm,S=6. C: ℓ=2 cm,S=3. Quanto vale γ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 mN/m",
+          "50 mN/m",
+          "75 mN/m",
+          "100 mN/m",
+          "125 mN/m"
+        ],
+        "value": "25 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze A e B sono due e cinque mezzi mN. La differenza una delle letture divisa per un mezzo mN dà q=2 mN⁻¹; poi b=1. La lettura C tre rappresenta un mN. Su due facce di lato due centimetri occorre γ_C=1/(4/100)=25 mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{mN^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=1\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_C=25\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "A ℓ=2 cm, tensioni 50,75,100,125 mN/m produrrebbero letture 5,7,9,11, tutte diverse da tre. Il solo rapporto delle letture non elimina un offset non nullo. La taratura del display e il numero di interfacce sono due passaggi distinti."
+        }
+      ],
+      "hints": [
+        "Ricava guadagno e offset usando le forze, non usando direttamente γ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A ℓ=2 cm, tensioni 50,75,100,125 mN/m produrrebbero letture 5,7,9,11, tutte diverse da tre. Il solo rapporto delle letture non elimina un offset non nullo. La taratura del display e il numero di interfacce sono due passaggi distinti.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-soap-film-force-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di un film con due interfacce",
+      "order": 12236,
+      "title": "Un vincolo fra prove lega γ al bordo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "soap-film-force",
+      "difficulty": 3,
+      "prompt": "Un solo film liquido piano sottile è teso su un telaio con un lato rettilineo mobile lungo ℓ>0, assegnato in cm. Il film ha due interfacce aria–liquido, entrambe con tensione superficiale uniforme γ>0 in mN/m; ciascuna tira perpendicolarmente al bordo e tangenzialmente al piano del film, verso la sua contrazione. I contributi hanno lo stesso verso. Si trascurano peso e attrito del lato mobile ed effetti ai suoi estremi. F è il modulo della forza del film sul lato, in mN; una forza esterna opposta può mantenerlo in equilibrio, senza annullare la forza del film. γ resta costante entro una prova e può cambiare fra prove in condizioni diverse. Fra prove si impone γ=cℓ, con c=25 mN/(m·cm). Si misura F=2 mN. Quanto vale ℓ>0 in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c ha unità di tensione superficiale per lunghezza. Per usare metri vale c=2500 mN/m²; sostituendo γ=cℓ, la legge diventa F=2cℓ². Il rapporto 2 mN/(5000 mN/m²) è 1/2500 m²; la radice positiva è 1/50 m, cioè due centimetri. Il vincolo restituisce γ=50 mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "c=2500\\,\\mathrm{mN/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " F=2c\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^2=\\frac1{2500}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\frac1{50}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il quadrato numerico della lunghezza in centimetri, non ℓ. La radice negativa viola ℓ>0 e darebbe anche γ<0 nel vincolo. γ cambia fra prove, non lungo lo stesso film o durante una misura che assume tensione uniforme costante."
+        }
+      ],
+      "hints": [
+        "Sostituisci γ=cℓ, converti anche il coefficiente e prendi la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro è il quadrato numerico della lunghezza in centimetri, non ℓ. La radice negativa viola ℓ>0 e darebbe anche γ<0 nel vincolo. γ cambia fra prove, non lungo lo stesso film o durante una misura che assume tensione uniforme costante.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Forza tangente per unità di bordo",
+        "Due interfacce, prefissi, inverse e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "208a9459efc49f39f77f15176ea3de5caf767ad82e24d21609adcd7ae97a12f3",
+      "name": "soap-film-force-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTkwMCIgdmlld0JveD0iMCAwIDY0MCAxOTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+VW4gZmlsbSBsaXF1aWRvLCBkdWUgaW50ZXJmYWNjZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPklsIGxhdG8gbW9iaWxlIGx1bmdvIGR1ZSBjZW50aW1ldHJpIMOoIHRpcmF0byBkYSBkdWUgaW50ZXJmYWNjZSBkZWxsbyBzdGVzc28gZmlsbS4gT2duaSBmYWNjaWEgY29udHJpYnVpc2NlIHVuIG1pbGxpbmV3dG9uOyBsYSBmb3J6YSB0b3RhbGUgZGVsIGZpbG0gw6ggZHVlIG1pbGxpbmV3dG9uLiBMYSBmb3J6YSBlc3Rlcm5hIHB1w7IgZXF1aWxpYnJhcmUgaWwgZmlsbS4gSW5maW5lIGNvbmZyb250byB0cmEgZHVlIHRlbnNpb25pIGUgbHVuZ2hlenplIGRpZmZlcmVudGkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJiIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI2IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNiAzTDAgNloiIGZpbGw9IiMxNjY0YTciLz48L21hcmtlcj48bWFya2VyIGlkPSJyIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI2IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNiAzTDAgNloiIGZpbGw9IiNhODM4MzIiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTkwMCIgZmlsbD0iI2ZmZmRmNiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTkyZjNkIiBmb250LXNpemU9IjIyIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gVW4gZmlsbSBzdWwgdGVsYWlvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTUiPkR1ZSBpbnRlcmZhY2NlIGFyaWHigJNsaXF1aWRvLCBzdGVzc2EgzrM8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDAiPs6zID0gNTAgbU4vbTsgbGF0byBtb2JpbGUg4oSTID0gMiBjbTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSIyMzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZGNlZWY4Ii8+CjxwYXRoIGQ9Ik00NzAgMjMwSDE3MFY0MzBINDcwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5MjYxMWMiIHN0cm9rZS13aWR0aD0iNyIvPgo8cGF0aCBkPSJNNDcwIDIzMFY0MzAiIHN0cm9rZT0iIzE5MmYzZCIgc3Ryb2tlLXdpZHRoPSI4Ii8+CjxwYXRoIGQ9Ik00NzAgMzMwSDM3MCIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYikiLz4KPHBhdGggZD0iTTQ3MCAzMzBINTcwIiBzdHJva2U9IiNhODM4MzIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgo8cGF0aCBkPSJNMTI1IDIzMEgxNDVNMTM1IDIzMFY0MzBNMTI1IDQzMEgxNDUiIHN0cm9rZT0iIzE5MmYzZCIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIzNSIgeT0iMzQwIj4yIGNtPC90ZXh0Pgo8dGV4dCB4PSIyMzAiIHk9IjQ4MCIgZmlsbD0iIzE2NjRhNyI+RmlsbTogMiBtTiB2ZXJzbyBzaW5pc3RyYTwvdGV4dD4KPHRleHQgeD0iMjMwIiB5PSI1MjAiIGZpbGw9IiNhODM4MzIiPkVzdGVybm86IDIgbU4gdmVyc28gZGVzdHJhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTY1Ij5Gb3J6ZTogNTAgcHgvbU4sIGR1ZSBmcmVjY2UgZGEgMTAwIHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjEwIj5MYXRvOiAxMDAgcHgvY207IGxhcmdoZXp6YSBzY2hlbWF0aWNhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjUwIj5TdWwgbGF0byBtYW50ZW51dG8gZmVybW86IHJpc3VsdGFudGUgemVybzwvdGV4dD4KPHBhdGggZD0iTTM1IDY5MEg2MDUiIHN0cm9rZT0iI2M5ZDFkNCIvPgo8dGV4dCB4PSIzNSIgeT0iNzQwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gQ29udGFyZSBsZSBkdWUgc3VwZXJmaWNpIGRlbGxvIHN0ZXNzbyBmaWxtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzg1Ij5Db250cmlidXRpIHNlcGFyYXRpIHNvbG8gcGVyIGlsIGNvbnRlZ2dpbzwvdGV4dD4KPHBhdGggZD0iTTI1MCA4NTBIMjAwIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNiKSIvPgo8dGV4dCB4PSIyODUiIHk9Ijg1OCI+UHJpbWE6IM6z4oSTID0gMSBtTjwvdGV4dD4KPHBhdGggZD0iTTI1MCA5MzVIMjAwIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNiKSIvPgo8dGV4dCB4PSIyODUiIHk9Ijk0MyI+U2Vjb25kYTogzrPihJMgPSAxIG1OPC90ZXh0Pgo8cGF0aCBkPSJNMjUwIDEwMjBIMTUwIiBzdHJva2U9IiNhODM4MzIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgo8dGV4dCB4PSIyODUiIHk9IjEwMjgiPlNvbW1hOiBGID0gMs6z4oSTID0gMiBtTjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEwOTAiPlN0ZXNzYSBzY2FsYTogNTAgcHgvbU48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTM1Ij5MZSBkdWUgZm9yemUgZGVsIGZpbG0gaGFubm8gbG8gc3Rlc3NvIHZlcnNvLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExODAiPk5vbiBzb25vIGR1ZSBmaWxtIG7DqSBmb3J6ZSBjaGUgc2kgYW5udWxsYW5vLjwvdGV4dD4KPHBhdGggZD0iTTM1IDEyMjBINjA1IiBzdHJva2U9IiNjOWQxZDQiLz4KPHRleHQgeD0iMzUiIHk9IjEyNzAiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBDYW1iaWFubyDOsyBlIGxhIGx1bmdoZXp6YSBkZWwgYm9yZG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzE1Ij5MdW5naGV6emU6IDQwIHB4L2NtOyBmb3J6ZTogNTAgcHgvbU48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzYwIj5BOiDOsyA9IDUwIG1OL20sIOKEkyA9IDIgY20sIEYgPSAyIG1OPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjEzOTUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzE2NjRhNyIvPgo8dGV4dCB4PSIzNSIgeT0iMTQ1MCI+4oSTOiA4MCBweDwvdGV4dD4KPHBhdGggZD0iTTQ1MCAxNDQ1SDM1MCIgc3Ryb2tlPSIjYTgzODMyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjcikiLz4KPHRleHQgeD0iNDc1IiB5PSIxNDUzIj4xMDAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNTMwIj5COiDOsyA9IDI1IG1OL20sIOKEkyA9IDUgY20sIEYgPSA1LzIgbU48L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTU2NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzE2NjRhNyIvPgo8dGV4dCB4PSIzNSIgeT0iMTYyMCI+4oSTOiAyMDAgcHg8L3RleHQ+CjxwYXRoIGQ9Ik00NTAgMTYxNUgzMjUiIHN0cm9rZT0iI2E4MzgzMiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI3IpIi8+Cjx0ZXh0IHg9IjQ3NSIgeT0iMTYyMyI+MTI1IHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTY5MCI+UmFwcG9ydG8gRl9CL0ZfQSA9ICgxLzIpIMOXICg1LzIpID0gNS80PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTc0MCI+Qmx1OiBsdW5naGV6emU7IHJvc3NvOiBmb3J6ZSBkZWwgZmlsbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3OTAiPkxlIHNjYWxlIGRlbGxlIGR1ZSBncmFuZGV6emUgc29ubyBkaXZlcnNlLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE4NDAiPk9nbmkgcHJvdmEgbWFudGllbmUgZHVlIGludGVyZmFjY2UuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
