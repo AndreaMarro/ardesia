@@ -1,0 +1,1237 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-work-potential-difference-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19601,
+      "title": "Il campo lavora durante una caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 1,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Con q=2 μC e δ=3 V, quanto vale W in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il potenziale finale è minore di quello iniziale. L’energia potenziale elettrica cambia di ΔU_e=q(V_B−V_A)=−qδ, quindi il campo compie W=−ΔU_e=qδ. Microcoulomb per volt danno microjoule: il prodotto 2·3 vale 6 μJ, positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/104231279bd5473737c2c53cb2b5c76af3da9dd4c9a9a5558cd1101a4cfb70f6",
+          "text": "Il primo schema sceglie lo zero in B: V_A=3 V, V_B=0 V, caduta 3 V. La carica positiva di 2 μC perde 6 μJ di energia potenziale elettrica e il campo compie +6 μJ di lavoro, senza dedurre da ciò solo una variazione di energia cinetica. Le barre centrali confrontano lavori di prove separate A=6 μJ e B=5 μJ, media 11/2 μJ. L’ultimo pannello è il caso distinto dell’elettrone del quesito 08."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_e=q(V_B-V_A)"
+        },
+        {
+          "type": "formula",
+          "text": " W=-\\Delta U_e"
+        },
+        {
+          "type": "formula",
+          "text": " W=q\\delta"
+        },
+        {
+          "type": "formula",
+          "text": " W=6\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "−6 μJ sarebbe la variazione di energia potenziale, non il lavoro del campo. Due o tre copiano un solo dato. Sei joule perderebbero il prefisso micro; 12 μJ raddoppierebbe ancora un fattore già compreso."
+        }
+      ],
+      "hints": [
+        "Controlla prima il segno di V_B−V_A e poi quello del lavoro del campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 μJ sarebbe la variazione di energia potenziale, non il lavoro del campo. Due o tre copiano un solo dato. Sei joule perderebbero il prefisso micro; 12 μJ raddoppierebbe ancora un fattore già compreso.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19602,
+      "title": "Lavoro ed energia hanno la stessa unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 1,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Quale unità esprime W fra le seguenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "μJ",
+          "μC",
+          "V",
+          "N/C",
+          "W"
+        ],
+        "value": "μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un lavoro è un trasferimento di energia e ha unità joule. Nel prodotto qδ si ha C·V=C·J/C=J; una carica in μC e una caduta in V danno μJ. La lettera W indica qui il lavoro, mentre il simbolo di unità W significa watt: contesto e unità vanno distinti."
+        },
+        {
+          "type": "formula",
+          "text": "[W]=\\mathrm C\\cdot\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " [W]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{\\mu J}=10^{-6}\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "μC è carica, V potenziale e N/C campo. Il watt è potenza, energia per tempo; manca una durata per trasformare questo lavoro in una potenza media."
+        }
+      ],
+      "hints": [
+        "Semplifica le unità del prodotto carica per caduta di potenziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "μC è carica, V potenziale e N/C campo. Il watt è potenza, energia per tempo; manca una durata per trasformare questo lavoro in una potenza media.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19603,
+      "title": "Il segno viene dagli estremi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 1,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Quale relazione fornisce W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W = q δ",
+          "W = −q δ",
+          "W = q/δ",
+          "W = δ/q",
+          "W = q δ²"
+        ],
+        "value": "W = q δ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un campo elettrostatico è conservativo: il suo lavoro dipende dagli estremi, non dal percorso. Per q>0 che scende di potenziale, l’energia potenziale diminuisce e W=q(V_A−V_B)=qδ>0. Questo è il contributo elettrico: diventa anche ΔK soltanto se gli altri lavori sono nulli."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/104231279bd5473737c2c53cb2b5c76af3da9dd4c9a9a5558cd1101a4cfb70f6",
+          "text": "Con q positivo, una caduta di potenziale significa diminuzione di energia potenziale e lavoro elettrico positivo. Cambiare lo zero comune dei potenziali non cambia la caduta. La freccia fra gli estremi è schematica e non impone un campo uniforme. L’elettrone nell’ultimo pannello ha invece carica negativa e sale di potenziale."
+        },
+        {
+          "type": "formula",
+          "text": "W=q(V_A-V_B)"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta=V_A-V_B"
+        },
+        {
+          "type": "formula",
+          "text": " W=q\\delta"
+        },
+        {
+          "type": "formula",
+          "text": " W>0"
+        },
+        {
+          "type": "text",
+          "text": "Il meno darebbe ΔU_e al posto del lavoro. I quozienti non sono lavori: q/δ ha C/V e δ/q ha V/C. Il quadrato della caduta introduce un volt in più. Un cambiamento comune dello zero dei due potenziali non cambia δ o W."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente la variazione di energia potenziale e il suo opposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il meno darebbe ΔU_e al posto del lavoro. I quozienti non sono lavori: q/δ ha C/V e δ/q ha V/C. Il quadrato della caduta introduce un volt in più. Un cambiamento comune dello zero dei due potenziali non cambia δ o W.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19604,
+      "title": "Meno carica, meno lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 1,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. A usa q=2 μC, B usa q=1 μC; entrambe hanno δ=3 V. Come cambia W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 3 μJ",
+          "Da 6 a 12 μJ",
+          "Resta 6 μJ",
+          "Da 6 a 1 μJ",
+          "Da 6 a −3 μJ"
+        ],
+        "value": "Da 6 a 3 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La caduta resta la stessa, quindi W è lineare nella carica trasportata. A dà 2·3=6 μJ e B dà 1·3=3 μJ. Il lavoro rimane positivo: dimezzare una carica positiva non ne cambia il segno."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=3\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Dodici rende inversa la dipendenza dalla carica. Sei ignora il cambiamento; uno copia q_B e −3 confonde il lavoro con la diminuzione di energia potenziale."
+        }
+      ],
+      "hints": [
+        "Mantieni la caduta uguale e confronta le due cariche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici rende inversa la dipendenza dalla carica. Sei ignora il cambiamento; uno copia q_B e −3 confonde il lavoro con la diminuzione di energia potenziale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19605,
+      "title": "La carica dal lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Si misura W=6 μJ e si conosce δ=3 V. Quanto vale q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo q=W/δ. In SI 6·10⁻⁶ J diviso 3 J/C dà 2·10⁻⁶ C, cioè 2 μC. Un lavoro positivo su una caduta positiva è coerente con il ramo q>0."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac W\\delta"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac{6\\cdot10^{-6}}3\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplica lavoro e potenziale anziché dividere. Sei copia W e un mezzo usa il quoziente inverso, che non ha dimensione di carica. Non si aggiunge un segno meno all’inversa dopo aver già definito la caduta positiva."
+        }
+      ],
+      "hints": [
+        "Dividi il lavoro del campo per la caduta, non per la differenza V_B−V_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplica lavoro e potenziale anziché dividere. Sei copia W e un mezzo usa il quoziente inverso, che non ha dimensione di carica. Non si aggiunge un segno meno all’inversa dopo aver già definito la caduta positiva.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19606,
+      "title": "La caduta dal lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Si misura W=6 μJ su q=2 μC. Quanto vale δ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal prodotto W=qδ si ha δ=W/q. Il prefisso micro compare sia nei joule sia nei coulomb e si cancella: 6/2=3 J/C=3 V. Il risultato è una differenza fra due potenziali, non il valore assoluto di uno dei punti."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta=W/q"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta=\\frac{6\\,\\mathrm{\\mu J}}{2\\,\\mathrm{\\mu C}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica i dati. Tre microvolt introdurrebbero un prefisso che invece si è cancellato; −3 V sarebbe V_B−V_A. Sei copia il numero del lavoro senza dividerlo per la carica."
+        }
+      ],
+      "hints": [
+        "Cancella i due prefissi micro e identifica J/C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica i dati. Tre microvolt introdurrebbero un prefisso che invece si è cancellato; −3 V sarebbe V_B−V_A. Sei copia il numero del lavoro senza dividerlo per la carica.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19607,
+      "title": "Un dislivello elettrico minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. A ha q=2 μC e δ=3 V. B mantiene q e usa δ=1 V. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1",
+          "1/9",
+          "−1/3"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 μJ, B dà 2 μJ. Nel rapporto la carica comune si cancella: resta δ_B/δ_A=1/3. Le due cadute sono positive, quindi entrambi i lavori sono positivi."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=2\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=1/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il rapporto, uno ignora il cambiamento e un nono introduce un quadrato assente. Il segno negativo richiederebbe un diverso segno della carica o della caduta, non questi dati."
+        }
+      ],
+      "hints": [
+        "Confronta le cadute dopo aver riconosciuto la carica comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il rapporto, uno ignora il cambiamento e un nono introduce un quadrato assente. Il segno negativo richiederebbe un diverso segno della carica o della caduta, non questi dati.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19608,
+      "title": "Un elettrone sale di potenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Un elettrone di carica q=−e, con e>0, parte da fermo dal punto A a −2 kV e arriva al punto B a +3 kV sotto la sola forza elettrostatica. Sapendo che 1 eV=e·1 V, quanto vale la sua energia cinetica finale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 keV",
+          "−5 keV",
+          "1 keV",
+          "3 keV",
+          "2 keV"
+        ],
+        "value": "5 keV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui la carica è negativa e il potenziale aumenta. V_A−V_B=−5 kV; il prodotto con q=−e è positivo. Il campo compie 5 keV di lavoro. Non ci sono altri lavori e l’elettrone parte da fermo, quindi questo lavoro è tutta l’energia cinetica finale. Non occorre calcolare una velocità o usare la formula cinetica non relativistica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/104231279bd5473737c2c53cb2b5c76af3da9dd4c9a9a5558cd1101a4cfb70f6",
+          "text": "L’ultimo pannello usa esattamente i due potenziali con segno, −2 kV e +3 kV, e la carica −e. Il campo compie lavoro positivo 5 keV. Soltanto in questo caso sono assegnati partenza da fermo e assenza di altri lavori, perciò K_f=5 keV. L’energia cinetica è uno scalare non negativo e il keV è un’unità di energia."
+        },
+        {
+          "type": "formula",
+          "text": "V_A-V_B=-5\\,\\mathrm{kV}"
+        },
+        {
+          "type": "formula",
+          "text": " W=(-e)(-5\\,\\mathrm{kV})"
+        },
+        {
+          "type": "formula",
+          "text": " W=5\\,\\mathrm{keV}"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=5\\,\\mathrm{keV}"
+        },
+        {
+          "type": "text",
+          "text": "−5 keV perde uno dei due segni e non può essere un’energia cinetica finale. Un keV nasce dalla sottrazione dei moduli 3−2 invece della differenza +3−(−2). Tre e due copiano un solo estremo. L’elettronvolt è energia, non potenziale."
+        }
+      ],
+      "hints": [
+        "Usa il segno della carica e la differenza fra i due potenziali con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 keV perde uno dei due segni e non può essere un’energia cinetica finale. Un keV nasce dalla sottrazione dei moduli 3−2 invece della differenza +3−(−2). Tre e due copiano un solo estremo. L’elettronvolt è energia, non potenziale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19609,
+      "title": "Isolare q dal bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Sono noti W e δ. Quale formula ricava q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "q = W/δ",
+          "q = W δ",
+          "q = δ/W",
+          "q = W/δ²",
+          "q = W²/δ"
+        ],
+        "value": "q = W/δ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiché δ>0, il prodotto W=qδ può essere diviso per δ senza ambiguità: q=W/δ. L’unità J/V è C. Le stesse operazioni sui valori in μJ e V restituiscono il numero di μC."
+        },
+        {
+          "type": "formula",
+          "text": "W=q\\delta"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac W\\delta"
+        },
+        {
+          "type": "formula",
+          "text": " [q]=\\mathrm{J/V}"
+        },
+        {
+          "type": "formula",
+          "text": " [q]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per δ aggiunge un volt. Il quoziente inverso ha C⁻¹; dividere per δ² aggiunge un volt inverso rispetto alla forma corretta. W²/δ ha unità J·C e non è una carica."
+        }
+      ],
+      "hints": [
+        "Dividi per il fattore positivo che moltiplica la carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per δ aggiunge un volt. Il quoziente inverso ha C⁻¹; dividere per δ² aggiunge un volt inverso rispetto alla forma corretta. W²/δ ha unità J·C e non è una carica.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19610,
+      "title": "Due fattori nel lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. B usa q_B=κ₁q_A e δ_B=κ₂δ_A, con κ₁,κ₂>0. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scrivendo il lavoro B con entrambi i dati nuovi si ha W_B=(κ₁q_A)(κ₂δ_A). Dividendo per il lavoro A rimane il prodotto dei fattori. Se entrambi valgono uno, si ritrova una prova identica e rapporto uno."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=\\kappa_1\\kappa_2q_A\\delta_A"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=q_A\\delta_A"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. La somma darebbe due per prove identiche, mentre il quadrato della caduta non compare nella legge del lavoro."
+        }
+      ],
+      "hints": [
+        "Sostituisci le due variazioni nel medesimo prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. La somma darebbe due per prove identiche, mentre il quadrato della caduta non compare nella legge del lavoro.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19611,
+      "title": "Il nuovo lavoro resta positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. A usa q=2 μC, δ=3 V. B usa q=1 μC, δ=5 V. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/6",
+          "6/5",
+          "1/2",
+          "5/3",
+          "1"
+        ],
+        "value": "5/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 μJ e B dà 5 μJ. Il quoziente B/A è 5/6. La caduta maggiore non basta a compensare completamente la carica dimezzata: si deve considerare il prodotto, non uno solo dei due cambiamenti."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=5\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=5/6"
+        },
+        {
+          "type": "text",
+          "text": "Sei quinti è il reciproco. Un mezzo considera solo q, cinque terzi solo δ; uno presume una compensazione esatta che i dati non danno."
+        }
+      ],
+      "hints": [
+        "Ricava separatamente il lavoro di ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei quinti è il reciproco. Un mezzo considera solo q, cinque terzi solo δ; uno presume una compensazione esatta che i dati non danno.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19612,
+      "title": "Media di due trasferimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 2,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. A usa q=2 μC, δ=3 V; B usa q=1 μC, δ=5 V. Qual è la media aritmetica di W con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/2 μJ",
+          "6 μJ",
+          "11 μJ",
+          "1/2 μJ",
+          "5 μJ"
+        ],
+        "value": "11/2 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture sono 6 e 5 μJ. La loro media è 11/2 μJ. Ai dati medi q=3/2 μC e δ=4 V si avrebbe invece 6 μJ: è un altro prodotto e non questa media delle uscite. Non si stanno sommando lavori successivi in un unico percorso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/104231279bd5473737c2c53cb2b5c76af3da9dd4c9a9a5558cd1101a4cfb70f6",
+          "text": "Le barre centrali hanno origine e scala comuni in μJ: A=6, B=5, media=11/2. Sono lavori di prove separate; il prodotto delle medie degli ingressi darebbe 6 μJ, non questa media. Gli schemi superiore e inferiore distinguono i segni della carica e le rispettive differenze di potenziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline W=\\frac{6+5}{2}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=11/2\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " W(\\overline q,\\overline\\delta)=6\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "Sei usa i dati medi oppure copia A. Undici non dimezza la somma; un mezzo è metà della differenza e cinque copia B. La media può essere frazionaria anche con dati interi nelle unità scelte."
+        }
+      ],
+      "hints": [
+        "Media i lavori già calcolati, senza sostituire le medie dei dati nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei usa i dati medi oppure copia A. Undici non dimezza la somma; un mezzo è metà della differenza e cinque copia B. La media può essere frazionaria anche con dati interi nelle unità scelte.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19613,
+      "title": "La caduta per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 3,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. A usa q=2 μC, δ_A=3 V. B ha q=1 μC e deve dare W_B=(5/6)W_A. Quanto vale δ_B/δ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "5/6",
+          "2",
+          "5"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 5 μJ. Con un microcoulomb occorre una caduta di 5 V; il rapporto con i 3 V di A è 5/3. Il rapporto dei lavori non è quello delle cadute quando la carica cambia."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=5\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta_B=W_B/q_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta_B=5\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta_B/\\delta_A=5/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti inverte il confronto. Cinque sesti segue il solo bersaglio dimenticando q; due darebbe 6 μJ e cinque copia la nuova caduta invece del rapporto."
+        }
+      ],
+      "hints": [
+        "Prima trova il lavoro bersaglio, poi invertilo con la nuova carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti inverte il confronto. Cinque sesti segue il solo bersaglio dimenticando q; due darebbe 6 μJ e cinque copia la nuova caduta invece del rapporto.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19614,
+      "title": "Tarare prima di trasportare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 3,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Il display continuo adimensionale D=aW ha a>0 e nessun offset. A con q=2 μC, δ=3 V dà D=18. B dà D=15 e ha δ=5 V. Quanto vale q_B in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha lavoro 6 μJ e quindi a=3 μJ⁻¹. La lettura quindici corrisponde a 5 μJ. Dividendo per 5 V si trova q_B=1 μC. Il display legge lavoro: la carica va ricostruita dopo la taratura."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{\\mu J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=5\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=W_B/\\delta_B"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=1\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "Tre μC userebbe D=15 come μJ senza decodifica. Due μC darebbero lavoro 10 μJ e D=30; cinque copia il lavoro senza dividerlo per la caduta."
+        }
+      ],
+      "hints": [
+        "Converti la lettura del display in μJ prima di usare q=W/δ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre μC userebbe D=15 come μJ senza decodifica. Due μC darebbero lavoro 10 μJ e D=30; cinque copia il lavoro senza dividerlo per la caduta.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19615,
+      "title": "Togliere l’offset del display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 3,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. D=aW+b è continuo e adimensionale, con a>0. A: q=2 μC, δ=3 V, D=13. B: q=1 μC, δ=5 V, D=11. C: δ=2 V, D=17. Quanto vale q_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 μC",
+          "17/4 μC",
+          "2 μC",
+          "8 μC",
+          "1 μC"
+        ],
+        "value": "4 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture fisiche dei riferimenti sono 6 e 5 μJ. Il guadagno è a=(13−11)/(6−5)=2 μJ⁻¹ e l’offset b=1. C corrisponde a (17−1)/2=8 μJ. Dividendo per 2 V si trova q_C=4 μC."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{\\mu J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=8\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " q_C=4\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "17/4 μC omette b, usa 17/2 μJ e ricostruisce D=18. Due μC predirebbero D=9; otto copierebbe il lavoro e darebbe D=33; un microcoulomb darebbe D=5."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset anche nella prova C, poi dividi il lavoro per la caduta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17/4 μC omette b, usa 17/2 μJ e ricostruisce D=18. Due μC predirebbero D=9; otto copierebbe il lavoro e darebbe D=33; un microcoulomb darebbe D=5.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-work-potential-difference-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Lavoro elettrico e caduta di potenziale",
+      "order": 19616,
+      "title": "Il vincolo precede la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L006",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "work-potential-difference",
+      "difficulty": 3,
+      "prompt": "Una carica positiva q, in μC, si sposta dal punto A al punto B in un campo elettrostatico. Indichiamo con δ=V_A−V_B>0 la caduta di potenziale in volt, opposta alla differenza finale meno iniziale. Si chiede il lavoro W del solo campo in μJ. Il campo non è alterato apprezzabilmente dal corpo. Non si impone che altre forze abbiano lavoro nullo, salvo quando viene detto esplicitamente. Fra preparazioni si impone q=βδ, con β=(2/3) μC/V. Si misura W=6 μJ. Quanto vale δ>0 in V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 V",
+          "−3 V",
+          "9 V",
+          "2 V",
+          "6 V"
+        ],
+        "value": "3 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=δ/(1 V) e y=q/(1 μC). Il vincolo y=(2/3)x trasforma la legge numerica in 6=(2/3)x². Si ottiene x²=9 e si sceglie x=3, perché la caduta e la carica sono positive. Quindi δ=3 V e q=2 μC. Si confrontano preparazioni, non un cambiamento di carica durante lo stesso spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac\\delta{1\\,\\mathrm V}"
+        },
+        {
+          "type": "formula",
+          "text": " y=\\frac q{1\\,\\mathrm{\\mu C}}"
+        },
+        {
+          "type": "formula",
+          "text": " 6=\\frac23x^2"
+        },
+        {
+          "type": "formula",
+          "text": " x^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " x=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−3 darebbe anche q negativo nel vincolo ed è fuori dalle ipotesi. Nove copia il quadrato; una caduta di 2 V darebbe 8/3 μJ e sei volt darebbero 24 μJ. Il coefficiente β ha unità di carica per volt."
+        }
+      ],
+      "hints": [
+        "Inserisci il legame dimensionato prima di risolvere per la caduta positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 darebbe anche q negativo nel vincolo ed è fuori dalle ipotesi. Nove copia il quadrato; una caduta di 2 V darebbe 8/3 μJ e sei volt darebbero 24 μJ. Il coefficiente β ha unità di carica per volt.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Segni di lavoro ed energia potenziale",
+        "Caduta distinta da differenza finale meno iniziale",
+        "Carica negativa ed energia in elettronvolt",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "104231279bd5473737c2c53cb2b5c76af3da9dd4c9a9a5558cd1101a4cfb70f6",
+      "name": "work-potential-difference-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5JbCBsYXZvcm8gY2FtYmlhIHNlZ25vIGluc2llbWUgYWxsYSBjYXJpY2E8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW5hIGNhcmljYSBwb3NpdGl2YSBzY2VuZGUgZGEgdHJlIGEgemVybyB2b2x0OiBwZXJkZSBzZWkgbWljcm9qb3VsZSBkaSBlbmVyZ2lhIHBvdGVuemlhbGUgZSBpbCBjYW1wbyBjb21waWUgc2VpIG1pY3Jvam91bGUgZGkgbGF2b3JvLiBMZSBiYXJyZSBjb25mcm9udGFubyBsYXZvcmkgc2VpIGUgY2lucXVlIGUgbGEgbWVkaWEgdW5kaWNpIG1lenppLiBVbiBjYXNvIHNlcGFyYXRvIG1vc3RyYSB1biBlbGV0dHJvbmUgY2hlIGRhIG1lbm8gZHVlIHNhbGUgYSBwacO5IHRyZSBraWxvdm9sdCBlIGFjcXVpc3RhIGNpbnF1ZSBraWxvZWxldHRyb252b2x0IGRpIGVuZXJnaWEgY2luZXRpY2EuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJwYXRoIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMjg2NjRkIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0NDAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgQ2FyaWNhIHBvc2l0aXZhLCBjYWR1dGEgcG9zaXRpdmE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+VW4gcmlmZXJpbWVudG8gcG9zc2liaWxlOiBWX0EgPSAzIFYsIFZfQiA9IDAgVi48L3RleHQ+CjxyZWN0IHg9IjU1IiB5PSIxMjUiIHdpZHRoPSIyMDUiIGhlaWdodD0iMTYwIiByeD0iOSIgZmlsbD0iI2ZjZTZkYyIgc3Ryb2tlPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjM4MCIgeT0iMTI1IiB3aWR0aD0iMjA1IiBoZWlnaHQ9IjE2MCIgcng9IjkiIGZpbGw9IiNlNGYzZmEiIHN0cm9rZT0iIzE2NWE4NyIvPgo8dGV4dCB4PSI4MCIgeT0iMTY0Ij5BOiBWID0gMyBWPC90ZXh0Pjx0ZXh0IHg9Ijc4IiB5PSIyMDUiPnEgPSArMiDOvEM8L3RleHQ+PHRleHQgeD0iNzgiIHk9IjI1MCI+VV9lID0gNiDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjQwNSIgeT0iMTY0Ij5COiBWID0gMCBWPC90ZXh0Pjx0ZXh0IHg9IjQwMiIgeT0iMjA1Ij5xID0gKzIgzrxDPC90ZXh0Pjx0ZXh0IHg9IjQwNyIgeT0iMjUwIj5VX2UgPSAwPC90ZXh0Pgo8cGF0aCBkPSJNMjgwIDIxMEgzNjAiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3BhdGgpIi8+Cjx0ZXh0IHg9IjMyIiB5PSIzMzAiIGZvbnQtc2l6ZT0iMTgiPs60ID0gVl9BIOKIkiBWX0IgPSAzIFYgOyDOlFVfZSA9IOKIkjYgzrxKLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM2MiIgZm9udC1zaXplPSIxOCI+V19jYW1wbyA9IOKIks6UVV9lID0gKzYgzrxKLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM5NCIgZm9udC1zaXplPSIxOCI+RnJlY2NpYSBzY2hlbWF0aWNhIGRlbCBwYXNzYWdnaW8sIHNlbnphIHNjYWxhIHNwYXppYWxlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQyNiIgZm9udC1zaXplPSIxOCI+SWwgc29sbyBsYXZvcm8gZWxldHRyaWNvIG5vbiBkZXRlcm1pbmEgc2VtcHJlIM6USy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0NTlINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUwMyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgTWVkaWEgZGVpIGxhdm9yaSBkaSBkdWUgcHJvdmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NDIiIGZvbnQtc2l6ZT0iMTgiPkE6IHEgPSAyIM68QywgzrQgPSAzIFYgOyBCOiBxID0gMSDOvEMsIM60ID0gNSBWLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA1NzBWODMwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjU5NSIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9IjY3NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9Ijc1NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iNjIyIj5BPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iNjIyIj42IM68SjwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjcwMiI+QjwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjcwMiI+NSDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3ODIiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iNzgyIj4xMS8yIM68SjwvdGV4dD4KPHRleHQgeD0iMTA0IiB5PSI4MjQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NzMiIGZvbnQtc2l6ZT0iMTgiPkxhdm9yaSBpbiDOvEosIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTA1IiBmb250LXNpemU9IjE4Ij5Ob24gc29ubyBjb250cmlidXRpIGRhIHNvbW1hcmUgbmVsbG8gc3Rlc3NvIHBlcmNvcnNvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDkzN0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iOTgxIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBVbiBhbHRybyBjYXNvOiBs4oCZZWxldHRyb25lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAyMCIgZm9udC1zaXplPSIxOCI+UGFydGUgZGEgZmVybW87IGFnaXNjZSBzb2x0YW50byBsYSBmb3J6YSBlbGV0dHJvc3RhdGljYS48L3RleHQ+CjxyZWN0IHg9IjU1IiB5PSIxMDU3IiB3aWR0aD0iMjA1IiBoZWlnaHQ9IjEzNSIgcng9IjkiIGZpbGw9IiNlNGYzZmEiIHN0cm9rZT0iIzE2NWE4NyIvPgo8cmVjdCB4PSIzODAiIHk9IjEwNTciIHdpZHRoPSIyMDUiIGhlaWdodD0iMTM1IiByeD0iOSIgZmlsbD0iI2U4ZjNlZCIgc3Ryb2tlPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9Ijc2IiB5PSIxMTAwIj5BOiDiiJIyIGtWPC90ZXh0Pjx0ZXh0IHg9IjgyIiB5PSIxMTQ4Ij5LX2kgPSAwPC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjExMDAiPkI6ICszIGtWPC90ZXh0Pjx0ZXh0IHg9IjM5NyIgeT0iMTE0OCI+S19mID0gNSBrZVY8L3RleHQ+CjxwYXRoIGQ9Ik0yODAgMTEyNUgzNjAiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3BhdGgpIi8+Cjx0ZXh0IHg9IjI4NiIgeT0iMTA4MCI+cSA9IOKIkmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjM4IiBmb250LXNpemU9IjE4Ij5WX0Eg4oiSIFZfQiA9IOKIkjUga1YgOyBxID0g4oiSZSwgY29uIGUgJmd0OyAwLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNzAiIGZvbnQtc2l6ZT0iMTgiPlcgPSAo4oiSZSko4oiSNSBrVikgPSArNSBrZVYuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMwMiIgZm9udC1zaXplPSIxOCI+UXVpIM6USyA9IFcsIHF1aW5kaSBs4oCZZW5lcmdpYSBmaW5hbGUgw6ggcG9zaXRpdmEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMzNCIgZm9udC1zaXplPSIxOCI+SWwga2VWIG1pc3VyYSBlbmVyZ2lhOiAxIGVWID0gZSDCtyAxIFYuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTM2NiIgZm9udC1zaXplPSIxOCI+TOKAmWVsZXR0cm9uZSBzYWxlIGRpIHBvdGVuemlhbGUgZSBwZXJkZSBlbmVyZ2lhIHBvdGVuemlhbGUuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTM5OCIgZm9udC1zaXplPSIxOCI+Tm9uIHNlcnZlIHJpY2F2YXJlIGxhIHN1YSB2ZWxvY2l0w6AuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
