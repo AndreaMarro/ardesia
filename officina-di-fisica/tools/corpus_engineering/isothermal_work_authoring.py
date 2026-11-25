@@ -36,7 +36,7 @@ TASKS=[
 ('Due raddoppi successivi',SCENE+'W₂ resta 10 J. A ha r=2, B ha r=4. Quanto vale W_B/W_A?',['2','4','1/2','1','1/4'],
  'Quattro è due al quadrato, quindi ln4=2ln2. Il primo lavoro è dieci joule e il secondo venti joule. Due raddoppi successivi allo stesso n,T hanno uguale lavoro e si sommano: il rapporto è due, non quattro.',
  r'\ln4=2\ln2\qquad W_A=10\,\mathrm J\qquad W_B=20\,\mathrm J\qquad W_B/W_A=2',
- 'Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto applica due inversioni. Non serve approssimare ln2.',
+ 'Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto usa 1/r_B=1/4 al posto del rapporto dei lavori W_B/W_A. Non serve approssimare ln2.',
  'Scrivi quattro come potenza di due.'),
 ('Una proposta che confonde r con il fattore di lavoro',SCENE+'Con W₂=10 J, r=2 si propone W=20 J. Quanto vale proposta meno valore corretto?',['10 J','−10 J','20 J','0 J','30 J'],
  'Un raddoppio produce dieci joule, mentre la proposta ne attribuisce venti. La differenza ordinata è venti meno dieci, dieci joule. La quantità r non moltiplica direttamente W₂: entra nel logaritmo.',

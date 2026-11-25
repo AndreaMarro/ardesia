@@ -58,9 +58,9 @@ Source SHA256 1f3368f3467525d210a2c0e8e6176c8864f0e33b2e5819603cc6562fb62f2c54; 
 
 Quattro è due al quadrato, quindi ln4=2ln2. Il primo lavoro è dieci joule e il secondo venti joule. Due raddoppi successivi allo stesso n,T hanno uguale lavoro e si sommano: il rapporto è due, non quattro.
 
-Controllo didattico d’autore: Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto applica due inversioni. Non serve approssimare ln2.
+Controllo didattico d’autore: Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto usa 1/r_B=1/4 al posto del rapporto dei lavori W_B/W_A. Non serve approssimare ln2.
 
-Source SHA256 331c496a57ba70004e80364dbda8561bc753206378a0e1dbf306d97027951d1e; candidato SHA256 7258cc7cdef1c4e5bc094a111d37ddb2989ff827af751000e3f91f6ef831d5d9. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 331c496a57ba70004e80364dbda8561bc753206378a0e1dbf306d97027951d1e; candidato SHA256 029dfe2766f9c01cfc52959e6977cefd341b26166106477b1591e737b15edef6. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u5-isothermal-work-08 — Una proposta che confonde r con il fattore di lavoro
 
@@ -141,3 +141,7 @@ W è positivo se compiuto dal gas. Il modello comprende r>0: espansione, volume 
 Le risposte numeriche usano ln4=2ln2 e la cancellazione di ln2, senza valutarlo in decimali. Nel 12 il valore simbolico sugli ingressi medi non viene approssimato: la presunta uguaglianza a 25 J condurrebbe a 3³=2⁵, confutata da 27≠32. Si distinguono media statistica dei lavori e un’unica trasformazione fisica. Nel 16 l’espansione calda compie A, la compressione alla temperatura dimezzata −A/2 e le isocore lavoro nullo. Il lavoro netto 12 J fissa A a 24 J; ΔU=0 sulla sola isoterma calda permette Q_h=A. Il calore del riscaldamento isocoro è espressamente escluso dalla domanda, senza presumerlo nullo.
 
 La figura mostra curve campionate dall’equazione analitica esatta, non un calcolo numerico richiesto allo studente. Primo grafico: 100 px per V/V₀ e 220 px per p/p₀, con p₀V₀=nRT; i due intervalli 1→2 e 2→4 hanno uguale lavoro fisico W₂. La barra successiva usa 20 px/J e due tratti da 200 px. Il ciclo inferiore è distinto, con nuovo riferimento p₀V₀=nRT_h e 320 px per p/p₀: stati 1=(1,1),2=(4,1/4),3=(4,1/8),4=(1,1/2). Le quattro frecce rispettano espansione calda, raffreddamento isocoro, compressione fredda e riscaldamento isocoro. I numeri degli stati evitano confusione con il simbolo A del lavoro caldo.
+
+## Correzione dopo review distinta
+
+Il revisore B ha rilevato che due inversioni non descrivono il distrattore 1/4 del 07. La spiegazione ora identifica l’uso errato del reciproco del rapporto dei volumi r_B invece del rapporto dei lavori. Corretto soltanto feedback/error 07 e binding 07: chiavi, formule, SVG e altre 15 schede sono byte-identiche. Due assembly finali identiche; import canonico SQLite temporaneo, 16→0 nuovi/16 invariati, 991 pubblicati/storici conservati. Il runner canonico browser-batches e il suo helper immutati sono stati eseguiti nella snapshot privata A del runtime ROOT 54054f con registro privato dei soli due lotti 150/152 e ID esatti. Entrambi hanno nuovi 48 casi, vero exit 0 e completion atomiche autentiche; nessun report storico ritaggato. Raw report, completion e report strutturale di questa famiglia sono persistiti in editorial/author-evidence/isothermal-work-152-feedback-fix-*.json e validati con il medesimo helper e gli hash del ROOT corrente. Nessuna autofirma scientifica: il revisore B rilegge e congela separatamente i nuovi byte.
