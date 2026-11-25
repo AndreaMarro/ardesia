@@ -1,0 +1,19 @@
+# Note d’autore — transport-time-108
+
+Letti individualmente i 16 originali U3-04 alla fonte 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605. Riletta C2-L005 sulla portata e sul volume che attraversa una sezione; prerequisito C2-L001 per le grandezze. Primaria C2-L005, prerequisiti C2-L001/L005, riuso C6. Assembler unico course C2, unit u3, source_path U3-04.
+
+Liquido incomprimibile, condotto già pieno, portata Q positiva misurata all’ingresso del destinatario e costante per tutto il trasferimento del volume netto V positivo. Nessuna fuga o evaporazione; sorgente e capacità del destinatario sufficienti. Avviamento e arresto esclusi; si conta dal regime stabilito. Il volume richiesto è quello effettivamente consegnato. Q può cambiare fra prove indipendenti, non nel tempo entro una prova. Non si sostituisce una portata iniziale a una portata variabile come nel precedente modello di svuotamento.
+
+01: t = V/Q = 12 L/(3 L/s) = 4 s, ricostruzione Qt = 12 L. 02: volume su volume per tempo restituisce tempo. 03: V = Qt per Q costante, inversa t = V/Q; nessun fattore mezzo per un avviamento non incluso. 04: V da 12 a 20 L con Q = 3 L/s porta t da 4 a 20/3 s, rapporto 5/3. Risultato frazionario esatto, nessun arrotondamento.
+
+05: V = Qt = 3·4 = 12 L; non una massa senza densità. 06: Q = V/t = 12/4 = 3 L/s. Lo stesso rapporto sarebbe una portata media se il flusso variasse, ma qui la costanza è assegnata. 07: V = 12 L, Q da 3 a 4 L/s, durate 4 e 3 s; rapporto 3/4, riduzione relativa 1/4. 08: proposta 8 meno corretto 4 = +4 s; la proposta consegnerebbe 24 L.
+
+09: moltiplicando t = V/Q per Q si isola V = Qt. 10: rapporto dei tempi κ₁/κ₂ per volume e portata scalati; fattori uguali danno tempo invariato. 11: stati (12 L,3 L/s) e (20 L,4 L/s), tempi 4 e 5 s, rapporto 5/4. 12: media statistica 9/2 s. Ingressi medi V = 16 L, Q = 7/2 L/s darebbero 32/7 s, maggiore di 1/14 s: non è la media dei rapporti.
+
+13: target (5/4)·4 = 5 s con V_B = 20 L richiede Q_B = 4 L/s, rapporto 4/3. 14: q = 12/(4 s) = 3 s⁻¹; S_B = 15 dà t_B = 5 s, Q_B = 4 dà V_B = 20 L. 15: riferimenti 4 e 5 s con S = 9 e 11 danno q = 2 s⁻¹, b = 1. Lettura C = 43/3 dà t_C = (43/3−1)/2 = 20/3 s; con Q_C = 3 L/s, V_C = 20 L. Alternative V = 21,19,40,10 L danno letture 15,41/3,83/3,23/3. Display continuo, frazione conservata esatta.
+
+16: vincolo V = cQ, c = 4 s, fra prove. t = cQ/Q = c = 4 s per ogni Q positivo. Infinite coppie: (12 L,3 L/s) e (20 L,5 L/s) sono due esempi. Il dato temporale è ridondante rispetto al vincolo; serve conoscere V oppure Q per fissare la scala. Zero escluso e rapporto 0/0 indeterminato.
+
+SVG collegato a 01/03: dodici celle simboliche da 1 L in quattro gruppi da tre, ognuno relativo a 1 s. Il flusso resta continuo, non a pacchetti discreti. Barre di portata 90 e 120 px a 30 px/(L/s) per 3 e 4 L/s. Grafico del volume cumulato: origine (100,1280), tempo a 60 px/s e volume a 15 px/L. Retta Q = 3 fino a (340,1100), cioè 4 s e 12 L; retta Q = 4 fino a (280,1100), cioè 3 s e 12 L. Entrambe terminate al volume richiesto, senza rappresentare una consegna ulteriore. Quote, forze e velocità non sono inferite dalle barre di portata. XML e rendering completo letti, nessuna sovrapposizione osservata.
+
+Due assembly finali e binding confrontati identici, metadati C2 controllati. Import canonico ROOT con SQLite temporaneo: 16 DRAFT, poi 0 nuove e 16 invariate; 991 pubblicati e storico conservati, SHA256 pubblicati 99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Pacchetto SHA256 38e49da3bed691ed765f82d1b998117e00b1068898dccca33ecaf62c629af2c2. Anteprima tecnica finale del worktree autore: 48 casi a 1440/768/320 px senza failure. Il protocollo finale dell’integratore resta una prova separata. Nessuna firma scientifica propria: independentReview NOT_RUN, human NOT_RUN, publication NONE.
