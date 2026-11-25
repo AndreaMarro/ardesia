@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1130" role="img" aria-labelledby="title desc">
+<title id="title">Il frigorifero: flussi, bilancio e confronto</title>
+<desc id="desc">Tre pannelli. Un ciclo fra 200 e 400 kelvin preleva 20 joule dalla sorgente fredda, riceve 20 joule di lavoro e scarica 40 joule alla calda. Barre energetiche in scala e confronto di due coefficienti con la loro media.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#165a87"/></marker></defs>
+<rect width="640" height="1130" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Spostare calore richiede lavoro</text>
+<rect x="55" y="100" width="150" height="70" fill="#dceef6" stroke="#14243a" stroke-width="2"/><text x="69" y="129">Fredda</text><text x="69" y="155">T꜀ = 200 K</text>
+<rect x="270" y="100" width="110" height="70" rx="8" fill="#e3e9ef" stroke="#14243a" stroke-width="2"/><text x="285" y="142">Ciclo</text>
+<rect x="445" y="100" width="150" height="70" fill="#f9e4cc" stroke="#14243a" stroke-width="2"/><text x="460" y="129">Calda</text><text x="460" y="155">Tₕ = 400 K</text>
+<g stroke="#165a87" stroke-width="4" fill="none"><path d="M210 135H262" marker-end="url(#arrow)"/><path d="M386 135H437" marker-end="url(#arrow)"/><path d="M325 260V180" marker-end="url(#arrow)"/></g>
+<text x="72" y="206">Q꜀ = 20 J</text><text x="454" y="206">Qₕ = 40 J</text><text x="352" y="245">Wᵢₙ = 20 J</text>
+<text x="32" y="299">Qₕ = Q꜀ + Wᵢₙ ; C = Q꜀ / Wᵢₙ = 1</text>
+<text x="32" y="331" font-size="17">Frecce schematiche; Q e W sono trasferimenti.</text>
+<path d="M32 359H608" stroke="#9babbc"/>
+<text x="32" y="403" font-size="25" font-weight="bold">2 · Il bilancio in joule</text>
+<path d="M160 433V650" stroke="#14243a" stroke-width="2"/>
+<g fill="#165a87"><rect x="160" y="450" width="100" height="32"/><rect x="160" y="515" width="100" height="32"/></g><rect x="160" y="580" width="200" height="32" fill="#ab5b22"/>
+<text x="55" y="474">Q꜀</text><text x="276" y="474">20 J</text><text x="55" y="539">Wᵢₙ</text><text x="276" y="539">20 J</text><text x="55" y="604">Qₕ</text><text x="376" y="604">40 J</text>
+<text x="32" y="676" font-size="18">Origine comune a x = 160; scala 5 px/J.</text>
+<text x="32" y="708" font-size="18">La macchina torna allo stato iniziale: ΔU = 0.</text>
+<path d="M32 738H608" stroke="#9babbc"/>
+<text x="32" y="782" font-size="25" font-weight="bold">3 · Coefficienti e media delle uscite</text>
+<path d="M155 805V1020" stroke="#14243a" stroke-width="2"/>
+<g fill="#165a87"><rect x="155" y="825" width="200" height="32"/><rect x="155" y="890" width="300" height="32"/></g><rect x="155" y="955" width="250" height="32" fill="#28664d"/>
+<text x="55" y="849">A</text><text x="372" y="849">1</text><text x="55" y="914">B</text><text x="472" y="914">3/2</text><text x="32" y="979">Media</text><text x="422" y="979">5/4</text>
+<text x="32" y="1046" font-size="18">A: 400/200 K; B: 500/300 K (calda/fredda).</text>
+<text x="32" y="1080" font-size="18">Scala: 200 px per unità di C; C non ha unità.</text>
+</g></svg>
