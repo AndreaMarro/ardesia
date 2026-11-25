@@ -4,9 +4,9 @@ Fonte Git 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, questions/U5-01.json; SHA256
 
 DRAFT. Revisione scientifica indipendente NOT_RUN. Approvazione umana NOT_RUN. Queste sono note di calcolo dell’autore per la futura revisione distinta: non contengono firme scientifiche o approvazioni.
 
-Sono mantenuti i parametri numerici dei quesiti sorgente. I trasferimenti Q e W sono distinti dalle funzioni di stato. Le convenzioni di segno e le unità sono esplicite nei prompt; i confronti riguardano prove separate. C_V totale in J/K non va confuso con capacità molare o specifica. Il vincolo fra parametri della prova16 non rende la capacità una funzione della temperatura istantanea durante il processo.
+Sono mantenuti i parametri numerici dei quesiti sorgente. I trasferimenti Q e W sono distinti dalle funzioni di stato. Le convenzioni di segno e le unità sono esplicite nei prompt; i confronti riguardano prove separate. Capacità totale, capacità molare e calore specifico sono distinti quando presenti. Il vincolo fra parametri della prova16 riguarda preparazioni diverse e non introduce una legge variabile lungo il processo.
 
-SVG letto integralmente in XML e rendering nativo; scale e posizioni delle etichette controllate dall’autore. Formula steps separati usando law_steps. Due assembly confrontati, legami source/candidate/provenance riletti e import canonico in SQLite temporaneo, senza pubblicazione. Le anteprime usano il browser-drafts canonico immutato in uno snapshot privato del runtime integratore, con il solo package d’autore copiato. Tali controlli sono tecnici e non costituiscono revisione scientifica indipendente.
+SVG letto integralmente in XML e rendering nativo; scale e posizioni delle etichette controllate dall’autore. Formula steps separati usando law_steps. Due assembly confrontati, legami source/candidate/provenance riletti e import canonico in SQLite temporaneo, senza pubblicazione. Le anteprime usano browser-batches, helper di resume e browser-drafts canonici immutati in uno snapshot privato del runtime integratore, con package d’autore e un piccolo registro privato che dichiara esattamente i loro ID. Report e completion sono copiati byte per byte solo dopo il vero exit0; il marker non viene costruito da report precedenti. Tali controlli sono tecnici e non costituiscono revisione scientifica indipendente.
 
 ## 01 — Riscaldare senza spostare il confine
 
@@ -30,7 +30,7 @@ Chiuso significa che non passa materia, non che non passa energia. La rigidità 
 
 Passaggi: `\Delta V=0\qquad W=0\qquad \Delta U=Q>0\qquad p=\frac{nRT}{V}`
 
-Errori e controllo: Pressione costante è un vincolo diverso. Q=0 descriverebbe un isolamento termico, non una semplice chiusura alla materia. Maggiore agitazione non sostituisce lo spostamento del confine nella definizione del lavoro.
+Errori e controllo: Pressione costante è un vincolo diverso. Un isolamento termico imporrebbe Q=0; la semplice chiusura alla materia non lo impone. Nel modello assegnato, Q=0 contraddirebbe il riscaldamento senza lavoro. Maggiore agitazione non sostituisce lo spostamento del confine nella definizione del lavoro.
 
 ## 04 — Due campioni con capacità diversa
 
