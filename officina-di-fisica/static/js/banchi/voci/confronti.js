@@ -1,11 +1,14 @@
 const rad = (x) => (Math.PI * x) / 180;
+// Geometric zeros at exact quadrant angles, without suppressing small nonzero quantities.
+const sin = (x) => x % 180 === 0 ? 0 : Math.sin(rad(x));
+const cos = (x) => (x - 90) % 180 === 0 ? 0 : Math.cos(rad(x));
 // A second instrument is useful when the lesson asks to distinguish or balance two quantities.
 export const confronti = {
   'SIM-C1-L001-02': (x) => ['Area di una faccia', x * x, 'cm²'],
   'SIM-C1-L001-05': (x) => ['Densità di ogni campione', 2, 'g/cm³'],
   'SIM-C1-L001-06': (x) => ['Modulo della velocità', 4, 'm/s'],
-  'SIM-C1-L002-01': (x) => ['Proiezione orizzontale', 10 * Math.cos(rad(x)), 'cm'],
-  'SIM-C1-L002-04': (x) => ['Componente normale di a × b', 6 * Math.sin(rad(x)), 'm²'],
+  'SIM-C1-L002-01': (x) => ['Proiezione orizzontale', 10 * cos(x), 'cm'],
+  'SIM-C1-L002-04': (x) => ['Componente normale di a × b', 6 * sin(x), 'm²'],
   'SIM-C1-L003-02': (x) => ['Posizione orizzontale', 3 * x, 'm'],
   'SIM-C1-L003-03': (x) => ['Velocità istantanea a 1 s', 2, 'm/s'],
   'SIM-C1-L003-04': (x) => ['Accelerazione istantanea a 1 s', 2, 'm/s²'],

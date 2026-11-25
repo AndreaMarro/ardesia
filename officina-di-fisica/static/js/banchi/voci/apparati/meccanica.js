@@ -192,7 +192,10 @@ export const meccanica = {
         ],
         c.inchiostro,
       );
-      b.arrow([0.25, y, 0], [0.25, y + 0.95 * s.tensione, 0], c.verde);
+      // tensione is T / 30 N; use the same 0.42 scene units per 20 N as weight.
+      b.arrow([0.25, y, 0], [0.25, y + 0.42 * (30 / 20) * s.tensione, 0], c.verde);
+      b.label([0.5, y + 0.7, 0], 'Tensione', c.verde);
+      b.label([-0.4, y - 0.6, 0.25], 'Peso (20 N)', c.rosso);
     }
     b.arrow([0, y, 0.25], [0, y - 0.42, 0.25], c.rosso);
     b.label([0.5, y + 0.33, 0], 'Massa');
@@ -246,8 +249,10 @@ export const meccanica = {
     for (const u of [0, 0.55, 1.1, 1.65, 2.2, 2.5]) b.rod(at(u, 0, -0.49), at(u, 0, 0.49), 0.04, c.metallo);
     const p = at(1.3, 0.22, 0);
     b.ball(p, 0.22, c.ocra);
-    b.arrow(p, [p[0], p[1] - 0.75, p[2]], c.rosso);
-    b.arrow(p, at(1.3, 0.22 + s.normale, 0), c.verde);
+    // peso and normale are normalized to the same 20 N reference.
+    b.arrow(p, [p[0], p[1] - 0.75 * s.peso, p[2]], c.rosso);
+    b.arrow(p, at(1.3, 0.22 + 0.75 * s.normale, 0), c.verde);
+    b.label([p[0] - 0.35, p[1] - 1.0, p[2]], 'Peso (20 N)', c.rosso);
     b.label(at(1.7, 0.7, 0), 'Normale', c.verde);
   },
   molla(b, s) {

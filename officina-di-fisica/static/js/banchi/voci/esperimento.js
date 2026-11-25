@@ -4,6 +4,7 @@ import { confronti } from './confronti.js';
 import { orologioVoce } from './orologi.js';
 import { disegna3D, scenaMobile, tavolo } from './geometria.js';
 import { resolveEngine } from './engines.js';
+import { assessmentPoints } from './assessment-selection.js';
 const valore = (a, u) => n(a) + (u && u !== '1' ? ' ' + u : '');
 const stabile = (x) => (Math.abs(x) < 1e-11 ? 0 : x);
 export async function esperienza(record) {
@@ -83,7 +84,8 @@ export async function esperienza(record) {
     (_, i) => a.min + i * a.step,
   ).filter((x) => Math.abs(x - x0) > 1e-7 && Math.abs(x - x1) > 1e-7);
   const transfer = extra[Math.floor(extra.length / 2)] ?? x0;
-  const assessment = [x1, transfer].map((x, i) => ({
+  const selectedPoints = assessmentPoints(record, [x1, transfer]);
+  const assessment = selectedPoints.map((x, i) => ({
     prompt:
       i === 1
         ? record.transferPrompt.replace('{x}', fmt(x))
@@ -173,7 +175,7 @@ export async function esperienza(record) {
           'Prevedi la lettura con «' +
             a.label +
             '» a ' +
-            fmt(transfer) +
+            fmt(selectedPoints[1]) +
             '. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.',
           record.formula,
         ],
