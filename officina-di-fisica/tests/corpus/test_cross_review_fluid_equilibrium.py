@@ -102,6 +102,21 @@ def audit(module,package,bindings):
 
 
 class CrossReviewFluidEquilibriumTests(unittest.TestCase):
+    def test_all_eighty_reports_satisfy_canonical_record_identity(self):
+        from tools.corpus_engineering.batches import assert_record_identity
+        count=0
+        for name,batch in FAMILIES:
+            with self.subTest(batch=batch):
+                module=importlib.import_module('tools.corpus_engineering.'+name+'_verifier')
+                package,bindings=reviewed_inputs(module,batch)
+                fresh=module.report(package,bindings)
+                saved=json.loads((APP/'editorial/reviews'/f'{batch}.json').read_text())
+                count+=len(fresh['records'])
+                assert_record_identity(fresh['records'],module.EXPECTED_IDS,package,bindings)
+                assert_record_identity(saved['records'],module.EXPECTED_IDS,package,bindings)
+                self.assertEqual(saved,fresh)
+        self.assertEqual(80,count)
+
     def test_independent_oracles_and_edition_integrity(self):
         for name,batch in FAMILIES:
             with self.subTest(batch=batch):

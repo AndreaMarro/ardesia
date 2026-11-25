@@ -175,3 +175,9 @@ Esito esatto: `20`. Sorgente `adfd2b08a22b590cd797a4b1eb35a9e2d554d4eaad6eda6a41
 ## Controprove e limiti
 
 24 controprove riproducibili:16 chiavi errate con binding e tutte le guardie di edizione rinnovate in memoria,respinte dagli oracoli matematici o dalla prova concettuale separata; falsa fonte anch’essa retokenizzata; unità numerica errata; prova fisica falsa con chiave corretta respinta dalla lettura congelata; pacchetti vuoto/parziale/duplicato; byteSVG allegato e locale cambiati. Si distingue il rifiuto matematico dal solo congelamento. Test comune include35esempi Hypothesis per ciascuna di4proprietà fisiche (140 configurazioni) su stabilità/scala delle colonne,segno del manometro,integrale triangolare e Pascal/volume locale. Non certifica persone reali o approvazione umana.
+
+## Correzione del contratto di report
+
+Il campo verificationMode usava un valore descrittivo non ammesso dal contratto canonico. Il nuovo test assert_record_identity su tutti gli 80 risultati reali ha prodotto RED con cinque errori, uno per famiglia. Corretto esclusivamente l’enum dei record concettuali in AI_CONCEPTUAL, mantenendo invariati tutti i procedimenti, le prove fisiche e dimensionali, i risultati, le firme congelate e i byte dei candidati. Nessun risultato concettuale è stato promosso a EXACT_ORACLE. Rigenerato il report con il nuovo SHA del verificatore; il test confronta sia report fresh sia report salvato con package e binding reali.
+
+Esito post-correzione: test comune GREEN, 6/6 in 2,481 s, comprese identità canoniche di tutti gli 80 report, 120 controprove e quattro proprietà Hypothesis. Nessuna modifica ai contratti o ai candidati.
