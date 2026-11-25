@@ -7,7 +7,7 @@ TASKS=[
  r'\frac{2\gamma_p}{R_p}=\frac{2\gamma_g}{R_g}\qquad \gamma_p=\gamma_g\frac{R_p}{R_g}\qquad \gamma_p=20\,\mathrm{mN/m}',
  'Mantenere 40 mN/m in entrambe darebbe nella cavità piccola una sovrapressione doppia. Ottanta inverte il rapporto geometrico. Il risultato riguarda la tensione richiesta a due raggi assegnati, senza dimostrare come cambi la tensione durante una perturbazione.','Confronta γ/R, perché la pressione esterna è comune.'),
 ('L’unità della tensione di interfaccia','La tensione superficiale γ di una sola interfaccia si definisce come forza tangente per unità di lunghezza di un bordo. Quale unità è adatta?',['mN/m','Pa','mN','m','J'],
- 'La definizione divide una forza per una lunghezza. Il prefisso milli riduce il newton di mille, lasciando inalterata la dimensione forza su lunghezza. Anche energia per area ha la stessa dimensione, perché un joule è un newton per metro.',
+ 'La definizione divide una forza per una lunghezza. Il prefisso milli riduce il newton di mille, lasciando inalterata la dimensione forza su lunghezza. Anche energia per area ha la stessa dimensione, perché un joule è il prodotto di un newton per un metro.',
  r'[\gamma]=\mathrm{N/m}\qquad \mathrm{J/m^2}=\mathrm{N/m}\qquad 1\,\mathrm{mN/m}=10^{-3}\,\mathrm{N/m}',
  'Pa è forza per area e misura pressione; mN è una forza, m una lunghezza e J un’energia. Il fattore di curvatura 1/R trasforma la tensione in pressione nella legge di Laplace.','Dividi l’unità di forza per quella di lunghezza.'),
 ('Contare l’interfaccia prima di uguagliare le pressioni',P+'Quale espressione dà la tensione necessaria nella cavità piccola?',['γ_p = γ_g u','γ_p = γ_g / u','γ_p = 2 γ_g u','γ_p = γ_g u²','γ_p = γ_g'],
