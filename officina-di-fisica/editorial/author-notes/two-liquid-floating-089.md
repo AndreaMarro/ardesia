@@ -135,4 +135,3 @@ Il vincolo non rende la misura ridondante perché ρ_t resta un valore fisso non
 Passaggi: `\frac14=\frac{\rho_b/2-\rho_t}{\rho_b-\rho_t}\qquad \rho_b-\rho_t=2\rho_b-4\rho_t\qquad \rho_b=3\rho_t\qquad \rho_b=\frac32\,\mathrm{kg/L}`
 
 Errori e controllo: Non si può cancellare ρ_b fra differenze con un termine costante. Il dominio del vincolo richiede ρ_b>1 kg/L; 3/2 lo soddisfa e ricostruisce f=1/4. Non compare una seconda radice né una coppia nulla ammissibile.
-

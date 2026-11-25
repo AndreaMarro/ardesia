@@ -135,4 +135,3 @@ Sostituendo W_a=2W_i, la differenza è W_i e la densità vale sempre 2ρ_w=2 kg/
 Passaggi: `\rho_c=\rho_w\frac{2W_i}{2W_i-W_i}\qquad \rho_c=2\rho_w\qquad \rho_c=2\,\mathrm{kg/L}`
 
 Errori e controllo: Una sola coppia richiederebbe una misura indipendente di peso o volume. Zero è escluso perché la differenza finirebbe al denominatore; due esempi non limitano a due la famiglia continua con W_i>0.
-
