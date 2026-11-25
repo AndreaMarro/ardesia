@@ -1,0 +1,1163 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-cyclic-work-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15801,
+      "title": "Un ciclo può fornire lavoro pur tornando allo stato iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 1,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Q_h=100 J e Q_c=40 J. Quanto vale W in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Al termine del ciclo U torna al valore iniziale, quindi ΔU_ciclo=0. Il calore entrante con segno è cento meno quaranta joule: l’uscita termica non si somma all’entrata. Nel primo principio resta 0=Q_netto−W, perciò il lavoro netto è sessanta joule. Tornare allo stesso stato non annulla ciascuno dei trasferimenti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c306839d3caad80d7127b04bfb07772fd30e809431a2bca752efecb189d05aa1",
+          "text": "Il primo pannello è uno schema dei trasferimenti durante un ciclo motore, con frecce schematiche senza scala metrica: Q_h entra, Q_c e W escono, mentre ΔU_ciclo=0. Nel secondo le barre energetiche da zero usano tutte 4 px/J: 100 J ricevuti si dividono in 40 J ceduti e 60 J di lavoro. Il terzo riguarda due prove distinte: 60 J e 140 J di lavoro hanno media 100 J alla scala 3 px/J. Non sono durate né potenze."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_{\\rm ciclo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm netto}=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W=60\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoquaranta J somma i due moduli senza rispettare i versi. Cento J dimentica il calore ceduto e quaranta J copia soltanto quel contributo. Zero confonde il ritorno di U al valore iniziale con lavoro netto nullo."
+        }
+      ],
+      "hints": [
+        "Prima poni ΔU del ciclo uguale a zero, poi assegna i segni ai calori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoquaranta J somma i due moduli senza rispettare i versi. Cento J dimentica il calore ceduto e quaranta J copia soltanto quel contributo. Zero confonde il ritorno di U al valore iniziale con lavoro netto nullo.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15802,
+      "title": "L’unità del lavoro netto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 1,
+      "prompt": "W è il lavoro meccanico netto compiuto in un ciclo. Quale unità è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "W",
+          "J/K",
+          "K",
+          "Pa"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro è un trasferimento di energia e si misura in joule. Il primo principio sottrae il lavoro dal calore netto, quindi entrambi devono avere la stessa dimensione. Il simbolo W della grandezza non significa che l’unità sia watt."
+        },
+        {
+          "type": "formula",
+          "text": "[W]=[Q_h]"
+        },
+        {
+          "type": "formula",
+          "text": "[Q_h]=[Q_c]"
+        },
+        {
+          "type": "formula",
+          "text": " [W]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "W come unità è watt, ossia J/s e richiede una durata. J/K è capacità termica, K temperatura e Pa pressione. Ripetere cicli non introduce da solo una divisione per il tempo."
+        }
+      ],
+      "hints": [
+        "Distingui energia per ciclo da energia trasferita ogni secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W come unità è watt, ossia J/s e richiede una durata. J/K è capacità termica, K temperatura e Pa pressione. Ripetere cicli non introduce da solo una divisione per il tempo.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15803,
+      "title": "La formula con due moduli di calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 1,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Quale formula generale dà W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W = Q_h − Q_c",
+          "W = Q_h + Q_c",
+          "W = Q_c − Q_h",
+          "W = Q_h Q_c",
+          "W = Q_h / Q_c"
+        ],
+        "value": "W = Q_h − Q_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo principio usa calore entrante positivo. La macchina riceve Q_h ma perde Q_c come calore verso l’ambiente freddo: Q_netto=Q_h−Q_c. Dato ΔU_ciclo=0, il lavoro netto del gas coincide con quel calore netto. Nel dominio dichiarato è positivo e minore di Q_h."
+        },
+        {
+          "type": "formula",
+          "text": "0=Q_h-Q_c-W"
+        },
+        {
+          "type": "formula",
+          "text": " W=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " 0<W<Q_h"
+        },
+        {
+          "type": "text",
+          "text": "La somma tratta un’uscita come ingresso. La differenza inversa dà lavoro del gas negativo, contrario al ciclo motore qui assegnato. Il prodotto ha J² e il quoziente è puro: nessuno dei due è un lavoro in J."
+        }
+      ],
+      "hints": [
+        "Q_c è un modulo positivo, ma il suo contributo al calore entrante ha segno meno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma tratta un’uscita come ingresso. La differenza inversa dà lavoro del gas negativo, contrario al ciclo motore qui assegnato. Il prodotto ha J² e il quoziente è puro: nessuno dei due è un lavoro in J.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15804,
+      "title": "Aumentare l’energia ricevuta senza cambiare lo scarico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 1,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. A ha Q_h=100 J e Q_c=40 J. B ha Q_h=200 J e lo stesso Q_c=40 J. Come cambia W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 60 a 160 J",
+          "Da 60 a 120 J",
+          "Resta 60 J",
+          "Da 60 a 240 J",
+          "Da 60 a −160 J"
+        ],
+        "value": "Da 60 a 160 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo ciclo fornisce sessanta joule. Nel secondo duecento meno quaranta sono centosessanta. I cento joule aggiuntivi ricevuti diventano cento joule aggiuntivi di lavoro quando il calore ceduto resta fisso. Il lavoro non raddoppia semplicemente, perché Q_c non è raddoppiato."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=(200-40)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoventi raddoppia direttamente l’uscita A. Duecentoquaranta somma lo scarico al nuovo ingresso, sessanta ignora il cambiamento e meno centosessanta usa la convenzione opposta senza dichiararla."
+        }
+      ],
+      "hints": [
+        "Ricalcola la differenza in ciascun ciclo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Centoventi raddoppia direttamente l’uscita A. Duecentoquaranta somma lo scarico al nuovo ingresso, sessanta ignora il cambiamento e meno centosessanta usa la convenzione opposta senza dichiararla.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15805,
+      "title": "Quanto deve fornire la sorgente calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Il lavoro netto è W=60 J e vengono ceduti Q_c=40 J. Quanto vale Q_h in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia ricevuta deve fornire sia il lavoro utile sia il calore scaricato. Aggiungendo sessanta e quaranta joule si ottengono cento joule. La somma supera Q_c di sessanta joule e rispetta il ramo motore."
+        },
+        {
+          "type": "formula",
+          "text": "W=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=W+Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti J sottrae ancora il calore ceduto e darebbe lavoro −20 J, incompatibile con W=60 J. Sessanta J copia il lavoro e quaranta lo scarico. Un prodotto di energie non risponde all’inversa additiva."
+        }
+      ],
+      "hints": [
+        "Ricostruisci l’ingresso sommando le due uscite energetiche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti J sottrae ancora il calore ceduto e darebbe lavoro −20 J, incompatibile con W=60 J. Sessanta J copia il lavoro e quaranta lo scarico. Un prodotto di energie non risponde all’inversa additiva.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15806,
+      "title": "Lo scarico termico dal lavoro netto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Si hanno Q_h=100 J e W=60 J. Quanto vale Q_c in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dei cento joule ricevuti, sessanta sono trasferiti come lavoro. I quaranta rimanenti vengono ceduti alla sorgente fredda. L’inversa Q_c=Q_h−W richiede 0<W<Q_h, soddisfatto dai dati; Q_c è il modulo positivo, non il calore con segno ricevuto dal fluido."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=Q_h-W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=(100-60)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno quaranta J indicherebbe il contributo con segno al calore del fluido, non il modulo richiesto. Centosessanta somma invece di togliere il lavoro; sessanta copia W. La macchina cede quaranta joule, non ne assorbe altri quaranta dal freddo."
+        }
+      ],
+      "hints": [
+        "Dopo aver separato il lavoro, la parte restante è il calore ceduto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quaranta J indicherebbe il contributo con segno al calore del fluido, non il modulo richiesto. Centosessanta somma invece di togliere il lavoro; sessanta copia W. La macchina cede quaranta joule, non ne assorbe altri quaranta dal freddo.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15807,
+      "title": "Più scarico, meno lavoro utile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. A usa Q_h=100 J, Q_c=40 J. B mantiene Q_h e cede Q_c=60 J. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1",
+          "2",
+          "−2/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A fornisce sessanta joule e B quaranta. Il rapporto quaranta su sessanta si riduce a due terzi. Con la stessa energia ricevuta, una quota maggiore ceduta al freddo lascia meno lavoro utile; entrambi restano cicli motori."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte i lavori ed è anche il rapporto degli scarichi, una grandezza diversa. Uno ignora il maggiore Q_c e due non segue dalla differenza. Il segno negativo è escluso perché entrambi i lavori sono positivi."
+        }
+      ],
+      "hints": [
+        "Calcola prima i due lavori, senza confrontare soltanto Q_c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi inverte i lavori ed è anche il rapporto degli scarichi, una grandezza diversa. Uno ignora il maggiore Q_c e due non segue dalla differenza. Il segno negativo è escluso perché entrambi i lavori sono positivi.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15808,
+      "title": "Una proposta maggiore del lavoro realmente disponibile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Con Q_h=100 J e Q_c=40 J si propone W=120 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 J",
+          "−60 J",
+          "120 J",
+          "0 J",
+          "30 J"
+        ],
+        "value": "60 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio del ciclo dà sessanta joule, non centoventi. La proposta lo supera di sessanta joule. Essa supera perfino il calore ricevuto, mentre una macchina senza altre entrate e con Q_c positivo deve avere W<Q_h. Centoventi non è Q_h+Q_c, che in questi dati sarebbe centoquaranta: si confuta il valore senza attribuirgli quell’errore diverso."
+        },
+        {
+          "type": "formula",
+          "text": "W=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(120-60)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=60\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno sessanta cambia l’ordine dello scarto, centoventi copia la proposta e zero la accetta. Trenta divide ancora per due una differenza già calcolata."
+        }
+      ],
+      "hints": [
+        "Controlla il bilancio e poi l’ordine proposta meno corretta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno sessanta cambia l’ordine dello scarto, centoventi copia la proposta e zero la accetta. Trenta divide ancora per due una differenza già calcolata.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15809,
+      "title": "L’inversa generale per l’energia ricevuta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. W>0 e Q_c>0 sono noti. Quale formula ricava Q_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_h = W + Q_c",
+          "Q_h = W − Q_c",
+          "Q_h = Q_c − W",
+          "Q_h = W Q_c",
+          "Q_h = W / Q_c"
+        ],
+        "value": "Q_h = W + Q_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Aggiungendo Q_c a entrambi i membri di W=Q_h−Q_c si ottiene Q_h=W+Q_c. Entrambi gli addendi sono energie. W positivo garantisce che l’ingresso ricostruito superi il calore ceduto, come richiede il dominio."
+        },
+        {
+          "type": "formula",
+          "text": "W+Q_c=Q_h"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=W+Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h>Q_c"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre ancora Q_c non elimina il suo contributo negativo nella legge iniziale. La differenza opposta inverte i ruoli; prodotto e quoziente hanno rispettivamente J² e dimensione pura, non J."
+        }
+      ],
+      "hints": [
+        "Il bilancio deve restituire W quando sostituisci l’ingresso trovato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre ancora Q_c non elimina il suo contributo negativo nella legge iniziale. La differenza opposta inverte i ruoli; prodotto e quoziente hanno rispettivamente J² e dimensione pura, non J.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15810,
+      "title": "Due fattori prima di formare la differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. B usa Q_h,B=κ₁Q_h e Q_c,B=κ₂Q_c, con κ₁,κ₂>0 e κ₁Q_h>κ₂Q_c; i simboli senza pedice sono di A. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ Q_h − κ₂ Q_c) / (Q_h − Q_c)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(κ₁ Q_h + κ₂ Q_c) / (Q_h + Q_c)",
+          "κ₁ − κ₂"
+        ],
+        "value": "(κ₁ Q_h − κ₂ Q_c) / (Q_h − Q_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Applichiamo ciascun fattore al proprio scambio, poi facciamo la differenza. Il rapporto è (κ₁Q_h−κ₂Q_c)/(Q_h−Q_c). Il denominatore è positivo perché A è motore; la disuguaglianza aggiunta rende positivo anche il lavoro B. Se i due fattori sono lo stesso κ, il lavoro cresce per κ."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=\\kappa_1Q_h-\\kappa_2Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{W_B}{W_A}=\\frac{\\kappa_1Q_h-\\kappa_2Q_c}{Q_h-Q_c}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto dei fattori varrebbe per un prodotto di ingressi e qui darebbe κ² per un fattore comune. Il quoziente ignora i pesi energetici. Il rapporto delle somme conta il calore ceduto col segno sbagliato; κ₁−κ₂ darebbe zero per due cicli identici anziché uno."
+        }
+      ],
+      "hints": [
+        "Mantieni entrambi gli scambi nella differenza prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto dei fattori varrebbe per un prodotto di ingressi e qui darebbe κ² per un fattore comune. Il quoziente ignora i pesi energetici. Il rapporto delle somme conta il calore ceduto col segno sbagliato; κ₁−κ₂ darebbe zero per due cicli identici anziché uno.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15811,
+      "title": "Due bilanci energetici, non due singoli fattori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. A usa Q_h=100 J, Q_c=40 J. B usa Q_h=200 J, Q_c=60 J. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/3",
+          "3/7",
+          "2",
+          "3/2",
+          "140"
+        ],
+        "value": "7/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo ciclo fornisce sessanta joule. Il secondo fornisce duecento meno sessanta, centoquaranta joule. Centoquaranta su sessanta si semplifica dividendo numeratore e denominatore per venti: sette terzi."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac{140}{60}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac73"
+        },
+        {
+          "type": "text",
+          "text": "Tre settimi è il reciproco; due segue soltanto Q_h e tre mezzi soltanto Q_c. Centoquaranta è il numero di joule del lavoro B e non un rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Trova l’energia utile di ciascun ciclo prima del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre settimi è il reciproco; due segue soltanto Q_h e tre mezzi soltanto Q_c. Centoquaranta è il numero di joule del lavoro B e non un rapporto adimensionale.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15812,
+      "title": "Media statistica di lavori per ciclo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 2,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. A ha Q_h=100 J, Q_c=40 J. B ha Q_h=200 J, Q_c=60 J. Qual è la media aritmetica dei due W con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 J",
+          "200 J",
+          "50 J",
+          "80 J",
+          "150 J"
+        ],
+        "value": "100 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I lavori sono sessanta e centoquaranta joule. La metà della loro somma è cento joule. La stessa risposta nasce dagli ingressi medi: Q_h medio centocinquanta meno Q_c medio cinquanta dà cento, perché il bilancio è lineare. Si sta facendo una media statistica per ciclo, non calcolando una potenza senza durate."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c306839d3caad80d7127b04bfb07772fd30e809431a2bca752efecb189d05aa1",
+          "text": "Solo il pannello finale rappresenta le due prove della media: lavori 60 J e 140 J, barre 180 px e 420 px a 3 px/J; la barra della media è 300 px per 100 J. Il primo schema spiega i segni dei trasferimenti, non misura il lavoro da una traiettoria. Si fa una media statistica con pesi uguali."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline W=\\frac{60+140}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Duecento è la somma, cinquanta dimezza ancora la media e ottanta è la differenza dei lavori. Centocinquanta è solo il calore medio ricevuto, senza togliere quello ceduto. Qui non si inventa una differenza fra media delle uscite e modello sugli ingressi medi."
+        }
+      ],
+      "hints": [
+        "Media le due energie e controlla la linearità della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento è la somma, cinquanta dimezza ancora la media e ottanta è la differenza dei lavori. Centocinquanta è solo il calore medio ricevuto, senza togliere quello ceduto. Qui non si inventa una differenza fra media delle uscite e modello sugli ingressi medi.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15813,
+      "title": "Il calore ceduto richiesto dal bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 3,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. A ha Q_h=100 J, Q_c,A=40 J. B riceve Q_h,B=200 J e deve fornire W_B=(7/3)W_A. Quanto vale Q_c,B/Q_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "7/3",
+          "2",
+          "60"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è sette terzi di sessanta, centoquaranta joule di lavoro. La macchina B ne riceve duecento, quindi ne deve cedere sessanta al freddo. Sessanta diviso quaranta è tre mezzi. Lo scarico ricostruito è positivo e inferiore all’ingresso B."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=Q_{h,B}-W_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}/Q_{c,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi capovolge il rapporto richiesto; sette terzi copia il fattore sul lavoro. Due imporrebbe Q_c,B=80 J e lascerebbe solo 120 J di lavoro. Sessanta è un calore in joule e non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Sottrai il lavoro bersaglio dal nuovo calore entrante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi capovolge il rapporto richiesto; sette terzi copia il fattore sul lavoro. Due imporrebbe Q_c,B=80 J e lascerebbe solo 120 J di lavoro. Sessanta è un calore in joule e non il rapporto richiesto.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15814,
+      "title": "Un display del lavoro e l’ingresso termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 3,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. S=qW è un display continuo adimensionale con q>0 costante. A: Q_h=100 J, Q_c=40 J, S=180. B: Q_c=60 J, S=420. Quanto vale Q_h,B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento compie sessanta joule: q=180/(60 J)=3 J⁻¹. La lettura quattrocentoventi rappresenta centoquaranta joule di lavoro. Il calore ricevuto deve fornire questi e i sessanta ceduti alla sorgente fredda, quindi duecento joule."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,B}=W_B+Q_{c,B}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,B}=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoquaranta copia il lavoro e omette lo scarico. Usare il display grezzo 420 come joule darebbe Q_h=480 J: il guadagno strumentale non è uno. La lettura continua non conta pacchetti interi di energia."
+        }
+      ],
+      "hints": [
+        "Decodifica il lavoro prima di sommare il calore ceduto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoquaranta copia il lavoro e omette lo scarico. Usare il display grezzo 420 come joule darebbe Q_h=480 J: il guadagno strumentale non è uno. La lettura continua non conta pacchetti interi di energia.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15815,
+      "title": "Due riferimenti per distinguere lavoro e calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 3,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Il display continuo è S=qW+b, con q>0 e q,b costanti. A: Q_h=100 J, Q_c=40 J, S=121. B: Q_h=200 J, Q_c=60 J, S=281. C: Q_c=40 J, S=321. Quanto vale Q_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 J",
+          "160 J",
+          "100 J",
+          "400 J",
+          "401/2 J"
+        ],
+        "value": "200 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B forniscono sessanta e centoquaranta joule. La differenza centosessanta delle letture divisa per ottanta joule dà q=2 J⁻¹; b=1. C fornisce (321−1)/2=160 J di lavoro. Il suo ingresso è 160+40=200 J, perché va contato anche il calore ceduto."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,C}=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centosessanta è il lavoro prima di aggiungere Q_c. Cento J darebbero S=121 e quattrocento J S=721. 401/2 J omette l’offset e ricostruisce S=322 invece di 321. Duecento J restituiscono esattamente S=2(200−40)+1=321."
+        }
+      ],
+      "hints": [
+        "Togli l’offset, dividi per q e separa le due uscite energetiche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centosessanta è il lavoro prima di aggiungere Q_c. Cento J darebbero S=121 e quattrocento J S=721. 401/2 J omette l’offset e ricostruisce S=322 invece di 321. Duecento J restituiscono esattamente S=2(200−40)+1=321.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-cyclic-work-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro netto e bilancio di un ciclo",
+      "order": 15816,
+      "title": "Un vincolo fra i moduli dei calori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "cyclic-work",
+      "difficulty": 3,
+      "prompt": "Il fluido operante è un sistema chiuso che compie un ciclo e torna allo stesso stato; anche energia cinetica e potenziale macroscopica tornano ai valori iniziali. Nel ciclo assorbe Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda: Q_h e Q_c sono moduli in J, con Q_h>Q_c. Non vi sono altri scambi energetici. W è il lavoro netto compiuto dal fluido, positivo uscente. Le temperature delle sorgenti non sono assegnate: si considerano realizzazioni compatibili con il secondo principio e non si impone che le sorgenti restino uguali fra prove diverse. Fra prove si impone Q_h=(5/2)Q_c. Se W=60 J, quanto vale Q_c>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 J",
+          "−40 J",
+          "60 J",
+          "100 J",
+          "24 J"
+        ],
+        "value": "40 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nel bilancio resta W=(5/2)Q_c−Q_c=(3/2)Q_c. Moltiplichiamo sessanta per due terzi e otteniamo quaranta joule ceduti. L’ingresso è cento joule, maggiore dello scarico e con lavoro positivo. Il vincolo collega i due trasferimenti totali del ciclo, non una legge istantanea di flusso termico."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\frac52Q_c-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\frac32Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=\\frac23W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno quaranta viola il modulo positivo. Sessanta copia W e cento copia Q_h. Ventiquattro divide per cinque mezzi ignorando il calore ceduto che va sottratto: dopo il bilancio il coefficiente è tre mezzi."
+        }
+      ],
+      "hints": [
+        "Combina i coefficienti di Q_c prima di applicare l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno quaranta viola il modulo positivo. Sessanta copia W e cento copia Q_h. Ventiquattro divide per cinque mezzi ignorando il calore ceduto che va sottratto: dopo il bilancio il coefficiente è tre mezzi.",
+        "target": "C3-L08"
+      },
+      "coverage": [
+        "Ritorno allo stato iniziale e primo principio",
+        "Calori con segno e lavoro utile",
+        "Inverse, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c306839d3caad80d7127b04bfb07772fd30e809431a2bca752efecb189d05aa1",
+      "name": "cyclic-work-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM4MCIgdmlld0JveD0iMCAwIDY0MCAxMzgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+TGF2b3JvIGRpIHVuIGNpY2xvIGRhaSB0cmFzZmVyaW1lbnRpIGVuZXJnZXRpY2k8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IHNjaGVtYSBkaSB1bmEgbWFjY2hpbmEgY2ljbGljYSBjb24gY2VudG8gam91bGUgZW50cmFudGksIHF1YXJhbnRhIGNlZHV0aSBlIHNlc3NhbnRhIHV0aWxpOyByaXBhcnRpemlvbmUgZGVsbGUgZW5lcmdpZSBhbGxhIHN0ZXNzYSBzY2FsYTsgY29uZnJvbnRvIGZyYSBkdWUgbGF2b3JpIHNlc3NhbnRhIGUgY2VudG9xdWFyYW50YSBqb3VsZSBjb24gbWVkaWEgY2VudG8uIExlIGZyZWNjZSBkaSB0cmFzZmVyaW1lbnRvIHNvbm8gc2NoZW1hdGljaGUuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiMxOTYwODIiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzgwIiByeD0iMjAiIGZpbGw9IiNmNWZhZmYiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzA0NyI+PHRleHQgeD0iMzUiIHk9IjUwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBJbCBmbHVpZG8gdG9ybmEgYWxsbyBzdGVzc28gc3RhdG88L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjEwNSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI3MCIgcng9IjgiIGZpbGw9IiNmNGRkY2UiLz48dGV4dCB4PSI3OCIgeT0iMTQ3Ij5Tb3JnZW50ZSBjYWxkYTwvdGV4dD48cmVjdCB4PSIyNzAiIHk9IjE3MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxMzAiIHJ4PSI4IiBmaWxsPSIjZTBlZGYzIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjMyOSIgeT0iMjEwIj5DaWNsbzwvdGV4dD48dGV4dCB4PSIyOTIiIHk9IjI2MiI+zpRVX2NpY2xvID0gMDwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMzQwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjcwIiByeD0iOCIgZmlsbD0iI2Q5ZWJlNCIvPjx0ZXh0IHg9IjcwIiB5PSIzODIiPlNvcmdlbnRlIGZyZWRkYTwvdGV4dD48cGF0aCBkPSJNMjIwIDE0MEgyNDVWMjA1SDI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTk2MDgyIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTI2MCAyNjVIMjQ1VjM3NUgyMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik00NjAgMjM1SDU5MCIgc3Ryb2tlPSIjMTk2MDgyIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDIiIHk9IjIzMCI+UV9oID0gMTAwIEo8L3RleHQ+PHRleHQgeD0iNDIiIHk9IjMwNSI+UV9jID0gNDAgSjwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjIxMCI+VyA9IDYwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQ2MCIgZm9udC1zaXplPSIxOCI+RnJlY2NlIHNjaGVtYXRpY2hlLCBzZW56YSBzY2FsYSBtZXRyaWNhLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDk1IiBmb250LXNpemU9IjE4Ij7OlFUgdG9ybmEgYSB6ZXJvIHN1bCBjaWNsbywgbm9uIHN1IG9nbmkgc2luZ29sbyB0cmF0dG8uPC90ZXh0PjxwYXRoIGQ9Ik0zNSA1MzBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iNTg1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBTZXBhcmFyZSBsZSBkdWUgdXNjaXRlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzUiPlNjYWxhIGNvbXVuZTogNCBweC9KLCBiYXJyZSBkYSB6ZXJvPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iNjcwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMTYzMDQ3Ii8+PHRleHQgeD0iMjMwIiB5PSI3MDAiIGZpbGw9IndoaXRlIj5RX2ggPSAxMDAgSjwvdGV4dD48cmVjdCB4PSIxMDAiIHk9Ijc1MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzM5NzQ1YiIvPjxyZWN0IHg9IjI2MCIgeT0iNzUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMTE0IiB5PSI3ODMiIGZpbGw9IndoaXRlIj5RX2MgPSA0MCBKPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iNzgzIiBmaWxsPSJ3aGl0ZSI+VyA9IDYwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg2MCI+MTAwIEogPSA0MCBKICsgNjAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTA1Ij5JbCBsYXZvcm8gw6ggUV9oIOKIkiBRX2MsIG5vbiBsYSBsb3JvIHNvbW1hLjwvdGV4dD48cGF0aCBkPSJNMzUgOTQ1SDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjEwMDAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IE1lZGlhIGRpIGR1ZSBwcm92ZSBkaXN0aW50ZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA1MCIgZm9udC1zaXplPSIxOCI+QTogKDEwMCDiiJIgNDApIEogwrcgQjogKDIwMCDiiJIgNjApIEo8L3RleHQ+PHRleHQgeD0iNDUiIHk9IjExMTAiPkE8L3RleHQ+PHJlY3QgeD0iMTEwIiB5PSIxMDg1IiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMzEwIiB5PSIxMTEwIj42MCBKPC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSIxMTgwIj5CPC90ZXh0PjxyZWN0IHg9IjExMCIgeT0iMTE1NSIgd2lkdGg9IjQyMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE5NjA4MiIvPjx0ZXh0IHg9IjU0NSIgeT0iMTE4MCI+MTQwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyNTAiPk1lZGlhPC90ZXh0PjxyZWN0IHg9IjExMCIgeT0iMTIyNSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzM5NzQ1YiIvPjx0ZXh0IHg9IjQzMCIgeT0iMTI1MCI+MTAwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEzMTAiIGZvbnQtc2l6ZT0iMTgiPlNjYWxhIGRpIHF1ZXN0byBwYW5uZWxsbzogMyBweC9KLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTM1MCIgZm9udC1zaXplPSIxOCI+KDYwICsgMTQwKSBKIC8gMiA9IDEwMCBKLCBub24gdW5hIHBvdGVuemEuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
