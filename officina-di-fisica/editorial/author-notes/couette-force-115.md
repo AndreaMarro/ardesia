@@ -22,7 +22,7 @@ Errori e controllo: La forza applicata è +20 N lungo x e il liquido esercita �
 
 Passaggi: `\left[\frac{v}{d}\right]=T^{-1}\qquad [\eta v/d]=\mathrm{Pa}\qquad [F]=\mathrm{Pa}\,\mathrm{m^2}\qquad [F]=\mathrm N`
 
-Errori e controllo: Pa è lo sforzo per area, Pa·s la viscosità, m/s una velocità e N/m una forza per lunghezza. Non si deve omettere l’area per passare da sforzo a forza.
+Errori e controllo: Pa è l’unità dello sforzo tangenziale, Pa·s la viscosità, m/s una velocità e N/m una forza per lunghezza. Non si deve omettere l’area per passare da sforzo a forza.
 
 ## 03 — Una forza tangenziale mantenuta nel tempo
 
@@ -135,3 +135,5 @@ Il vincolo trasforma la forza in una legge quadratica di v: F=c(A/d)v². Qui il 
 Passaggi: `F=c\frac Ad v^2\qquad c\frac Ad=5\,\mathrm{N\,s^2/m^2}\qquad v^2=4\,\mathrm{m^2/s^2}\qquad v=2\,\mathrm{m/s}\qquad \eta=1\,\mathrm{Pa\,s}`
 
 Errori e controllo: Quattro è il numero del quadrato della velocità. Il ramo negativo contraddice v>0 e darebbe anche viscosità negativa nel vincolo assegnato. c ha unità viscosità/velocità; il collegamento è fra prove, non una viscosità che varia nel tempo durante la singola misura stazionaria.
+
+Correzione puntuale dopo rilievo del revisore distinto: soltanto feedback ed error.message del record 2, con binding rigenerato; chiavi, formule, SVG e le altre 15 schede rimangono identici.
