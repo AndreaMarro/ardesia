@@ -20,7 +20,7 @@ Distrattori: Un quarto è il rapporto dei quadrati, non delle distanze. Due inve
 
 Hint: Uguaglia i moduli dei campi, poi estrai la radice del rapporto delle cariche.
 
-Fonte canonica SHA256 4263e8b1ad9ca5171828fce76788e781b305828ef8a2a0c865fae5fad56984aa. Candidato SHA256 bba7fed57ac96cee79fcb6e5fd498153614cfad1b9d680b7bd1750e8ecab47ac. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 4263e8b1ad9ca5171828fce76788e781b305828ef8a2a0c865fae5fad56984aa. Candidato SHA256 100553b554df33a5bd01434148f1f13a61aea9b8881e91a9f194d6a90411b51e. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-zero-field-distance-ratio-02 — Un rapporto senza unità
 
@@ -48,7 +48,7 @@ Distrattori: Il rapporto senza radice confonde r con r². Invertire le cariche d
 
 Hint: Prima ricava r²; la scelta del ramo fisico viene dopo.
 
-Fonte canonica SHA256 6ff1f539295b4157e78ad321fbd64061d0a30baee23b212e25036e7ab4a48c59. Candidato SHA256 e769e5b5ca77ed2e09d26baa3509e2b1db1d2d6b692a573b25f79f07ab857f7b. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 6ff1f539295b4157e78ad321fbd64061d0a30baee23b212e25036e7ab4a48c59. Candidato SHA256 df8ec708498c9e99d829f23f729f59f95daf9f1d80541da3baf312f06a80eaef. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-zero-field-distance-ratio-04 — Nove volte la prima carica
 
@@ -174,7 +174,7 @@ Distrattori: Uno usa le cariche medie. 5/2 non divide la somma per due; 3/4 è m
 
 Hint: Risolvi prima ciascun campo nullo e media soltanto i rapporti ottenuti.
 
-Fonte canonica SHA256 3805aa5f03e56fd8e0f973a2e67e0010d4fcb8374a09c4d52c6140f622e0ce57. Candidato SHA256 5dba6c0a7b10d2f31bdf7bf19513e9f6204024e99b7bcee19d5b369d28f19cfd. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 3805aa5f03e56fd8e0f973a2e67e0010d4fcb8374a09c4d52c6140f622e0ce57. Candidato SHA256 10599b277ae962418251c65e98770ab0a3f7dfa215a20da17703e8734fd1fe8f. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-zero-field-distance-ratio-13 — Il bersaglio impone Q₂
 
@@ -234,18 +234,14 @@ Fonte canonica SHA256 ca332c4b4c560ecf43dea273172d132dc517cae83e2a94683c8b852c51
 
 ## Provenienza tecnica
 
-Asset SHA256 8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561. Package file SHA256 182235d1d0f7d8dc9e91f51f1116df19972cdb9232e6aa4e197b6d91feadee7d. Binding file SHA256 3d85d309ffaeaf8c52ebdd71c35042da34f059ad56e8aadae03509ad5e7e5b35. Prova strutturale SHA256 3bf9737e56a961df7e621c48b2d8caae88f6d888535b540e3bc406ed022a6962. Asset-only manifest SHA256 bd776fe400271c6f7075efd24e3fa4686177a2b10c6a058c32910c6186a8cd92.
+Asset SHA256 108df19035cc8f0ea125f342ba33e33522422eb1d72b4a7547fb280803a899ee. Package file SHA256 017f0c65086ec3a79e4b729a91bd5949e05da635ddc16e891f722cb56f888ccd. Binding file SHA256 60e52717531e5da781549cef740612e90ae70e7236f4785c8049f95dea8828cc. Prova strutturale SHA256 3c1f25bd5a6c02ab358c75c5a37e3d2651d9e0fc80494d80e987005c2edda6df. Asset-only manifest SHA256 f3bbe136cb4b5b807340bd5bf2501c504c9985b78840fdd04ba8dab55c7eabcc.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
-## Geometria e limiti del controllo d’autore
+## Rilievi del revisore distinto e geometria finale
 
-Nell’SVG le sorgenti sono a x=140 e500, separazione360 coordinate per3 m. Il punto nullo A è a x=260 e B a x=380: distanze1/2 m e2/1 m nella stessa scala geometrica. Le frecce dei campi hanno tutte lunghezza90 coordinate per modulo9 N/C, con punte a distanza positiva dai cerchi che simboleggiano le sorgenti. Questa scala dei vettori è distinta dalla scala spaziale: la didascalia lo dichiara. I segni delle cariche e i simboli di campo non sono misure della dimensione fisica delle cariche puntiformi. Le barre dei rapporti1/2,2,5/4 hanno larghezze80,320,200, origine130 e scala comune160 coordinate per unità di rapporto; lo zero a104 non attraversa l’asse. Le coordinate sono soltanto documentazione tecnica di proporzione e non compaiono nel percorso studente.
+B ha rilevato due attribuzioni testuali prima del congelamento: il reciproco di r=1/2 è 2, mentre 4 è il reciproco di r²; nel punto nullo si annulla la somma vettoriale dei campi, non il rapporto dei loro moduli. I due testi 01/05 sono corretti in 88c61f2, con assert dei soli rispettivi blocchi/binding mutati. Le vecchie cinque edizioni sono conservate con manifest in zero-field-distance-ratio-200-before-feedback01-05-20261125.
 
-Il rapporto può superare1 senza uscire dal segmento: se r>0 e L>0, d₁=Lr/(1+r) e d₂=L/(1+r) restano positive e sommano L. I due campi fuori dal segmento hanno lo stesso verso e non si cancellano per sorgenti positive. L’edizione evita di trasformare una condizione elettrostatica in una legge di Ohm. Nessun proprio verdetto scientifico: revisore distinto B e human NOT_RUN.
+La prima figura attribuiva anche 9 N/C ai campi senza assegnare il valore approssimato di k che avrebbe prodotto quel numero. Il rapporto cercato cancella k: l’edizione finale toglie i quattro valori e mantiene soltanto E₁/E₂ con moduli uguali e vettori opposti, senza introdurre una costante non necessaria. Confronto XML effettivo: stessi elementi, attributi, coordinate e stili; soltanto cinque testi visibili cambiano. I soli link di figura01/03/12 e i relativi binding sono rigenerati, altre 13 schede e tutte risposte/formule restano identiche. Vecchi SVG, PNG nativo, log, manifest asset, package/binding e nota sono archiviati in zero-field-distance-ratio-200-before-field-labels-20261125.
 
-## Correzioni dopo revisione distinta
-
-B ha rilevato due frasi imprecise: il reciproco di r=1/2 è 2, mentre 4 è il reciproco di r²; al punto nullo si annulla la somma vettoriale dei campi e non il loro rapporto. I due testi sono ora espliciti. Assert sui payload: solo blocks/error01 e blocks05, con i rispettivi binding, sono cambiati; gli altri 14 record e tutte risposte, formule e SVG sono identici. Nessun congelamento scientifico dell’autore.
-
-La precedente edizione dei cinque file modificati è archiviata con manifest in zero-field-distance-ratio-200-before-feedback01-05-20261125. Il nuovo codice ha concluso due assembly byte-identiche e import canonico 16→0/16 con 991 pubblicati invariati. Nessun nuovo render dell’SVG perché i byte sono identici a quelli già prodotti e letti; nessuna UI prodotto. Il commit finale resta solo locale per il vincolo dell’integratore sui nuovi upload. La firma scientifica successiva è riservata a B sui byte riletti.
+Un vero nuovo render nativo completo è terminato con exit 0 ed è stato letto. Le punte dei campi sono fuori dai cerchi: coordinate 90 per ogni vettore, confronto qualitativo di moduli uguali e non una scala numerica di N/C. Le sorgenti a 140 e 500 sono separate da 360 coordinate per 3 m; P_A è a 260, P_B a 380. Le barre1/2,2,5/4 sono larghe80,320,200 da origine130, con scala comune160 coordinate per unità di rapporto. Queste coordinate sono documentazione tecnica e non metriche visibili allo studente. Il nuovo asset ha concluso doppia assembly/import16→0/16 con 991 pubblicati invariati. Tutto solo locale dopo il vincolo sugli upload; nessuna UI prodotto o approvazione scientifica propria. La firma indipendente resta riservata a B dopo la rilettura.
