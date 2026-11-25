@@ -1,0 +1,78 @@
+"""Author-only sequential cooling and complete freezing at prescribed net thermal power."""
+from .vector_geometry_authoring import assemble_family,write_family
+P=('Un campione di m>0 g di acqua passa da 20 °C a ghiaccio completamente solido a 0 °C, a pressione atmosferica e senza sottoraffreddamento. '
+   'Si assegnano c_l=4 J/(g·K) e L_f=300 J/g, coefficienti ideali costanti. La capacità del recipiente è trascurata e non vi sono altri scambi energetici né perdite di massa. '
+   'Il dispositivo sottrae potenza termica netta P>0 W, costante durante raffreddamento e congelamento; non è la sua potenza elettrica. '
+   'Q_c>0 è il modulo del calore ceduto dal campione: il calore ricevuto dal campione è −Q_c. Si arresta il processo appena tutto il ghiaccio è a 0 °C. ')
+TASKS=[
+('Raffreddare e poi solidificare',P+'Con m=1 g e P=10 W, quanto vale il tempo totale t in s?',38,
+ 'Il primo tratto sottrae c_lm·20 K=80 J per portare l’acqua a zero. Il secondo ne sottrae altri mL_f=300 J mentre la temperatura resta a zero e cambia la fase. In tutto il campione cede 380 J. Ogni secondo il dispositivo ne sottrae dieci: servono 38 s, composti da 8 s di raffreddamento e 30 s di congelamento.',
+ r'Q_c=c_lm(20\,\mathrm K)+mL_f\qquad Q_c=80\,\mathrm J+300\,\mathrm J\qquad t=Q_c/P\qquad t=38\,\mathrm s',
+ '8 s conta soltanto il raffreddamento; 30 s soltanto la solidificazione. Sommare 20 °C a 300 J/g senza il calore specifico mescolerebbe grandezze diverse. La sosta a temperatura costante non implica che il dispositivo smetta di estrarre calore.','Somma prima le due energie sottratte e dividi per la potenza netta.'),
+('Una durata da joule e watt',P+'Quale unità è adatta al tempo totale?',['s','J','W','J/g','K'],
+ 'La potenza netta è energia sottratta per unità di tempo. Dividendo i joule ceduti per watt, cioè joule al secondo, si ottengono secondi. La massa e la variazione termica concorrono all’energia, ma non sono l’unità della durata richiesta.',
+ r'[t]=[Q_c]/[P]\qquad \mathrm{J/W}=\mathrm s\qquad 1\,\mathrm W=1\,\mathrm{J/s}',
+ 'J misura energia, W potenza, J/g il calore latente specifico e K un intervallo termico. Una temperatura costante nella seconda fase può accompagnarsi a una durata positiva.','Sostituisci watt con joule al secondo prima di semplificare.'),
+('Il tempo contiene due contributi',P+'Quale formula dà t?',['t = m [c_l (20 K) + L_f] / P','t = m c_l (20 K) / P','t = m L_f / P','t = P / {m [c_l (20 K) + L_f]}','t = m [c_l (20 K) − L_f] / P'],
+ 'Raffreddamento e solidificazione cedono entrambi energia: i loro moduli si sommano. Poiché la stessa potenza netta resta costante nei due tratti, il tempo totale è la somma dei due tempi oppure il calore totale diviso P. Il bilancio non include il successivo raffreddamento del ghiaccio, perché il processo finisce a zero.',
+ r't=t_{\rm raff}+t_{\rm cong}\qquad t=\frac{c_lm(20\,\mathrm K)}{P}+\frac{mL_f}{P}\qquad t=\frac{m[c_l(20\,\mathrm K)+L_f]}{P}\qquad t>0',
+ 'Le due formule con un solo termine tralasciano una fase. Il reciproco ha unità s⁻¹; il segno meno tratterebbe la solidificazione come un assorbimento anziché una cessione di calore da parte del campione.','Segui l’energia ceduta lungo entrambe le fasi del processo.'),
+('Raddoppiare il campione a potenza invariata',P+'La massa passa da 1 a 2 g, con P=10 W. Che cosa accade al tempo totale?',['Passa da 38 a 76 s','Passa da 38 a 19 s','Resta 38 s','Passa da 38 a 152 s','Passa da 38 a 40 s'],
+ 'Ogni grammo deve cedere gli stessi 380 J. Due grammi ne cedono 760, e la potenza resta dieci joule al secondo: occorrono 76 s. Entrambi i tratti raddoppiano, da 8 a 16 s e da 30 a 60 s.',
+ r'Q_{c,B}=2Q_{c,A}\qquad t_B=760\,\mathrm J/(10\,\mathrm W)\qquad t_B=76\,\mathrm s\qquad t_B/t_A=2',
+ '19 s usa una dipendenza inversa dalla massa. 152 s attribuisce un quadrato alla massa; 40 s raddoppia il numero della temperatura iniziale, che è una lettura e non una durata.','La potenza non cresce quando raddoppia l’energia da sottrarre.'),
+('La massa dal tempo osservato',P+'Si osserva t=38 s con P=10 W. Quanto vale m in g?',1,
+ 'Durante 38 s il dispositivo sottrae 380 J. Il percorso assegnato richiede 380 J per ogni grammo: il rapporto dà un grammo. L’inversa usa tutta l’energia, non soltanto la fusione o soltanto il raffreddamento.',
+ r'Q_c=Pt=380\,\mathrm J\qquad m=\frac{Pt}{c_l(20\,\mathrm K)+L_f}\qquad m=\frac{380\,\mathrm J}{380\,\mathrm{J/g}}\qquad m=1\,\mathrm g',
+ '380/300 g attribuirebbe tutto il calore al solo cambiamento di fase. 19/4 g conterebbe soltanto il raffreddamento. Copiare 38 in grammi dimentica il fattore di potenza e il costo specifico.','Ricava il calore totale da potenza per durata e poi dividilo per il costo di un grammo.'),
+('La potenza netta dalla durata',P+'Con m=1 g si osserva t=38 s. Quanto vale P in W?',10,
+ 'Il campione cede 80+300=380 J. Per sottrarli uniformemente in 38 s servono 380/38=10 J/s. Questa è la potenza termica netta estratta dal campione: il dato non determina la potenza elettrica assorbita dal dispositivo.',
+ r'P=\frac{m[c_l(20\,\mathrm K)+L_f]}{t}\qquad P=380\,\mathrm J/(38\,\mathrm s)\qquad P=10\,\mathrm W',
+ '300/38 W omette il raffreddamento; 80/38 W omette la solidificazione. Il rapporto t/Q_c ha unità W⁻¹ e risolve il reciproco della grandezza richiesta.','Energia sottratta divisa per durata; non introdurre un rendimento non assegnato.'),
+('Più potenza per la stessa energia',P+'A e B hanno m=1 g. A usa P=10 W, B usa P=20 W. Quanto vale t_B/t_A?',['1/2','2','1','1/4','4'],
+ 'Entrambi i campioni cedono 380 J. A impiega 38 s, B soltanto 19 s perché ogni secondo viene sottratta energia doppia. Il rapporto è quindi un mezzo; la potenza maggiore accorcia ciascuna delle due fasi.',
+ r't_A=38\,\mathrm s\qquad t_B=380\,\mathrm J/(20\,\mathrm W)\qquad t_B=19\,\mathrm s\qquad t_B/t_A=1/2',
+ 'Due inverte la dipendenza dalla potenza. Uno ignora il cambiamento; un quarto e quattro applicano un quadrato che non appartiene al bilancio energetico.','La quantità di calore totale non cambia: cambia la rapidità di sottrazione.'),
+('Lo scarto conserva il verso richiesto',P+'Per m=1 g e P=10 W si propone t=76 s. Quanto vale proposta meno valore corretto?',['38 s','−38 s','76 s','0 s','2 s'],
+ 'La durata corretta è 38 s; la proposta la supera di 38 s. A 10 W, 76 s estrarrebbero 760 J, più dei 380 previsti per fermarsi al ghiaccio a zero. Il modello non autorizza a prolungare il calcolo attribuendo il calore in più allo stesso stato finale.',
+ r't=38\,\mathrm s\qquad e=t_{\rm proposto}-t\qquad e=(76-38)\,\mathrm s\qquad e=38\,\mathrm s',
+ '−38 s scambia l’ordine della differenza. 76 s copia la proposta, zero la accetta e due è un rapporto puro al quale è stata aggiunta indebitamente l’unità di tempo.','Prima ricostruisci il punto di arresto, poi sottrai nel verso indicato.'),
+('Isolare la massa nella legge energetica',P+'Sono noti t>0 e P>0. Quale formula ricava m?',['m = Pt / [c_l (20 K) + L_f]','m = t / {P [c_l (20 K) + L_f]}','m = P [c_l (20 K) + L_f] / t','m = Pt / L_f','m = Pt / [c_l (20 K) − L_f]'],
+ 'Moltiplichiamo t=Q_c/P per P e dividiamo per l’energia richiesta da ogni grammo. Il denominatore è positivo e vale 380 J/g. Pt è in joule; il rapporto ha dunque unità di massa e resta positivo per ogni dato ammesso.',
+ r'Pt=m[c_l(20\,\mathrm K)+L_f]\qquad m=\frac{Pt}{c_l(20\,\mathrm K)+L_f}\qquad [m]=\mathrm{J/(J/g)}=\mathrm g',
+ 'Dividere per P anziché moltiplicare non dà un’energia al numeratore. P volte il costo specifico diviso t ha dimensione diversa da una massa. Usare solo L_f omette gli 80 J/g sensibili, mentre sottrarlo darebbe qui una massa negativa.','Isola il coefficiente che moltiplica m e controlla l’unità del quoziente.'),
+('Scalare massa e potenza fra due prove',P+'B ha m_B=κ₁m_A e P_B=κ₂P_A, con κ₁,κ₂>0. Quanto vale t_B/t_A?',['κ₁/κ₂','κ₂/κ₁','κ₁κ₂','κ₁²/κ₂','κ₁−κ₂'],
+ 'Il costo energetico specifico resta lo stesso. Il tempo B contiene quindi un fattore κ₁ al numeratore e κ₂ al denominatore rispetto ad A. Se i due fattori coincidono, più energia da sottrarre è compensata da più potenza e la durata resta uguale.',
+ r'\varepsilon=c_l(20\,\mathrm K)+L_f\qquad t_A=m_A\varepsilon/P_A\qquad t_B=\kappa_1m_A\varepsilon/(\kappa_2P_A)\qquad t_B/t_A=\kappa_1/\kappa_2',
+ 'Il reciproco scambia i ruoli delle due variazioni. Il prodotto fa crescere il tempo con la potenza; il quadrato sovrastima la massa. La differenza darebbe zero con un fattore comune, pur trattandosi di due durate positive uguali.','Scrivi il rapporto completo prima di cancellare l’energia specifica.'),
+('Più massa e meno potenza contemporaneamente',P+'A: m=1 g, P=10 W. B: m=2 g, P=1 W. Quanto vale t_B/t_A?',20,
+ 'A dura 38 s. B deve cedere 760 J ma ne perde soltanto uno al secondo, quindi dura 760 s. Il rapporto 760/38=20 combina un fattore due dovuto alla massa e un fattore dieci dovuto alla potenza ridotta.',
+ r't_A=38\,\mathrm s\qquad t_B=760\,\mathrm s\qquad t_B/t_A=760/38\qquad t_B/t_A=20',
+ 'Due considera soltanto la massa, dieci soltanto la potenza. Un quinto moltiplica due per un decimo senza invertire la dipendenza dalla potenza; un ventesimo capovolge il rapporto richiesto.','Ogni cambiamento deve comparire una volta nel rapporto delle durate.'),
+('Media delle durate, non dei parametri',P+'A usa m=1 g e P=10 W; B usa m=2 g e P=1 W. Qual è la media aritmetica delle durate con uguale peso statistico?',['399 s','1140/11 s','798 s','361 s','399/2 s'],
+ 'Le durate sono 38 e 760 s. La loro somma è 798 s e la metà è 399 s. Usando invece massa media 3/2 g e potenza media 11/2 W si otterrebbero 1140/11 s: il quoziente non conserva in generale la media degli ingressi.',
+ r'\overline t=(38+760)\,\mathrm s/2\qquad \overline t=399\,\mathrm s\qquad t_{\rm ingressi\ medi}=\frac{380(3/2)}{11/2}\,\mathrm s\qquad t_{\rm ingressi\ medi}=1140/11\,\mathrm s',
+ '1140/11 s applica il modello ai parametri medi. 798 s non dimezza la somma; 361 s è metà della differenza. 399/2 s dimezza la media una seconda volta.','Risolvi ciascuna prova completa e solo dopo fai la media delle due letture.'),
+('Scegliere la potenza per una durata bersaglio',P+'A ha m=1 g e P_A=10 W. In B si usa m=2 g e si vuole t_B=20t_A. Quanto vale P_B/P_A?',['1/10','10','1/20','20','2'],
+ 'Il bersaglio è 20·38=760 s. I due grammi devono cedere 760 J: è necessaria P_B=1 W. Il confronto con 10 W iniziali dà un decimo. La potenza rimane positiva e costante in B, come richiesto dal modello.',
+ r't_B=760\,\mathrm s\qquad P_B=760\,\mathrm J/(760\,\mathrm s)\qquad P_B=1\,\mathrm W\qquad P_B/P_A=1/10',
+ '1/20 dimentica che anche la massa raddoppia. Dieci inverte il confronto e venti segue direttamente il fattore sul tempo, pur essendo la potenza al denominatore. Due segue soltanto la massa.','Ricava prima il nuovo tempo e poi la potenza che sottrae l’intera energia in quel tempo.'),
+('Tarare un display di durata',P+'S=qt è continuo e adimensionale, q>0. Il riferimento m=1 g, P=10 W dà S=114. Una nuova prova dà S=2280 e usa P=1 W. Quanto vale m in g?',2,
+ 'Il riferimento dura 38 s, quindi q=114/(38 s)=3 s⁻¹. La nuova lettura corrisponde a 760 s. A un watt vengono sottratti 760 J, pari al costo di due grammi. La lettura grezza del display non è una durata finché non è stata applicata la taratura.',
+ r'q=114/(38\,\mathrm s)\qquad q=3\,\mathrm{s^{-1}}\qquad t=2280/q\qquad t=760\,\mathrm s\qquad m=760/380\,\mathrm g\qquad m=2\,\mathrm g',
+ 'Usare 2280 direttamente come secondi darebbe 6 g, tre volte la massa corretta. Il numero 20 è il rapporto fra le letture e fra le durate, ma non fra le masse perché la potenza cambia.','Trasforma la lettura in secondi prima di usare il bilancio energetico inverso.'),
+('Due riferimenti rivelano un offset',P+'S=qt+b è continuo e adimensionale. A: m=1 g, P=10 W, S=77. B: m=2 g, P=1 W, S=1521. C: P=10 W, S=153. Quanto vale m_C?',['2 g','1 g','153/76 g','4 g','76 g'],
+ 'A e B durano 38 e 760 s. La differenza delle letture è 1444 e quella dei tempi 722 s: q=2 s⁻¹. Dal riferimento A segue b=77−2·38=1. C dura (153−1)/2=76 s e cede 760 J; a 380 J/g corrispondono due grammi.',
+ r'q=\frac{1521-77}{(760-38)\,\mathrm s}\qquad q=2\,\mathrm{s^{-1}}\qquad b=1\qquad t_C=(153-1)/q\qquad t_C=76\,\mathrm s\qquad m_C=2\,\mathrm g',
+ '1 g tornerebbe alla lettura A, S=77. 153/76 g omette b: usando 153/2 s e 10 W si divide 765 J per 380 J/g. 4 g darebbero 152 s e S=305; 76 g copia il numero della durata in una massa.','Elimina l’offset con una differenza, poi sottrailo anche nella prova incognita.'),
+('Un vincolo fra prove lascia libera la scala',P+'Fra preparazioni si impone m=dP con d=(1/10) g/W. Si misura t=38 s. Quante coppie positive (m,P) soddisfano i dati?',['Infinite: ogni P>0 con m=dP','Una sola: m=1 g e P=10 W','Nessuna coppia','Solo m=38 g','Solo P=0'],
+ 'Sostituiamo il vincolo nel tempo totale. La potenza si cancella e resta t=d·380 J/g=38 J/W=38 s. Il dato temporale conferma il vincolo ma non stabilisce la scala di massa e potenza: qualunque P>0 genera una massa positiva adatta. Il vincolo confronta preparazioni diverse; entro ciascuna la potenza è costante e la massa non viene modificata.',
+ r't=\frac{dP\varepsilon}{P}\qquad t=d\varepsilon\qquad t=\frac1{10}\,\mathrm{g/W}\cdot380\,\mathrm{J/g}\qquad t=38\,\mathrm s',
+ '1 g e 10 W sono solo un esempio. 38 g copia una durata in una massa. P=0 è esclusa dal dominio e non raffredderebbe né solidificherebbe una massa positiva. Non si può ottenere una seconda equazione indipendente ripetendo lo stesso vincolo attraverso t.','Sostituisci il vincolo dimensionato e cerca quali grandezze si cancellano.'),
+]
+CHOICES={n:0 for n in [2,3,4,7,8,9,10,12,13,15,16]}
+UNITS={1:'s',5:'g',6:'W',11:'1',14:'g'}
+FIGURES={1:'Nel primo pannello un grammo a potenza netta 10 W raggiunge 0 °C dopo 8 s e completa la solidificazione a 38 s. Gli assi indicano il tempo in s e la lettura termica in °C. Il secondo pannello somma 80 J sensibili e 300 J latenti come moduli energetici in J; il terzo somma le durate 8 s e 30 s come durate in s. Il tratto orizzontale a 0 °C indica una trasformazione di fase, non calore nullo.',3:'Il diagramma temperatura-tempo descrive il modello senza sottoraffreddamento: prima il liquido si raffredda, poi il miscuglio cambia composizione a 0 °C fino alla completa solidificazione. Le barre energetiche e temporali hanno origini comuni nei rispettivi pannelli; il tempo si ferma appena tutto il ghiaccio è a 0 °C.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'freezing-time',TASKS,CHOICES,UNITS,'freezing-time-progressive.svg',FIGURES,17700,unit='u5',course='C3',source_path='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json',skill='C3-L04',prerequisites=['C1-L001','C1-L007','C3-L01','C3-L03','C3-L04'],section='Tempo di raffreddamento e solidificazione',coverage=['Calore sensibile e latente in successione','Potenza termica netta e durata del processo','Inverse, medie e vincoli dimensionati'])
+if __name__=='__main__':write_family(assemble,'freezing-time-177')

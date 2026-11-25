@@ -45,7 +45,7 @@ TASKS=[
  'Il costo energetico specifico resta lo stesso. Il tempo B contiene quindi un fattore κ₁ al numeratore e κ₂ al denominatore rispetto ad A. Se i due fattori coincidono, più energia da sottrarre è compensata da più potenza e la durata resta uguale.',
  r'\varepsilon=c_l(20\,\mathrm K)+L_f\qquad t_A=m_A\varepsilon/P_A\qquad t_B=\kappa_1m_A\varepsilon/(\kappa_2P_A)\qquad t_B/t_A=\kappa_1/\kappa_2',
  'Il reciproco scambia i ruoli delle due variazioni. Il prodotto fa crescere il tempo con la potenza; il quadrato sovrastima la massa. La differenza darebbe zero con un fattore comune, pur trattandosi di due durate positive uguali.','Scrivi il rapporto completo prima di cancellare l’energia specifica.'),
-('Più massa e meno potenza contemporaneamente',P+'A: m=1 g, P=10 W. B: m=2 g, P=1 W. Quanto vale t_B/t_A?',20,
+('Più massa e meno potenza',P+'A: m=1 g, P=10 W. B: m=2 g, P=1 W. Quanto vale t_B/t_A?',20,
  'A dura 38 s. B deve cedere 760 J ma ne perde soltanto uno al secondo, quindi dura 760 s. Il rapporto 760/38=20 combina un fattore due dovuto alla massa e un fattore dieci dovuto alla potenza ridotta.',
  r't_A=38\,\mathrm s\qquad t_B=760\,\mathrm s\qquad t_B/t_A=760/38\qquad t_B/t_A=20',
  'Due considera soltanto la massa, dieci soltanto la potenza. Un quinto moltiplica due per un decimo senza invertire la dipendenza dalla potenza; un ventesimo capovolge il rapporto richiesto.','Ogni cambiamento deve comparire una volta nel rapporto delle durate.'),
