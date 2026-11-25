@@ -1,0 +1,1143 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-oscillator-period-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13201,
+      "title": "Una scala temporale diversa dal periodo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 1,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Con m=1 kg e k=4 N/m, quanto vale τ in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto m/k è un quarto di secondo quadrato, perché N/m=kg/s². La radice positiva dà mezzo secondo. Questo è τ: il periodo completo contiene ancora il fattore 2π e vale π secondi, non mezzo secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bf8735bb5c7c86311d3f2062c6414b935f61866b75a030d17005a305f0d62ad1",
+          "text": "La molla orizzontale è un modello lineare; la geometria e la freccia del richiamo sono schematiche, senza scala in N. Il grafico mostra x=A cosθ con θ=t/τ, ampiezza A=1 cm alla scala verticale 50 px/cm. Un ciclo completo richiede θ=2π, non θ=1: a τ=1/2 s corrisponde T=π s. La scala orizzontale è 200/π px per radiante di fase."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac mk=\\frac14\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\sqrt{\\frac mk}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\pi\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\pi\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il numero di τ², non una durata; due secondi inverte m/k prima della radice. Inserire π nel risultato darebbe il periodo T quando si chiede τ. La radice negativa non è una durata fisica."
+        }
+      ],
+      "hints": [
+        "Semplifica prima m/k con le unità, poi prendi la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il numero di τ², non una durata; due secondi inverte m/k prima della radice. Inserire π nel risultato darebbe il periodo T quando si chiede τ. La radice negativa non è una durata fisica.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13202,
+      "title": "Che unità ha T diviso per 2π?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 1,
+      "prompt": "T è il periodo completo di un oscillatore e τ=T/(2π). Quale unità è dimensionalmente adatta a τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "Hz",
+          "s²",
+          "N/m",
+          "kg"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Due e π sono numeri puri. Dividere un tempo per 2π mantiene la dimensione di tempo. Anche √(m/k) dà secondi: il rapporto fra massa e costante elastica ha dimensione di tempo al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "[k]=\\mathrm{kg/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [m/k]=\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\tau]=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Hertz è tempo inverso, s² è la dimensione prima della radice, N/m è k e kg è m. τ non è adimensionale soltanto perché il suo nome è «ridotto»."
+        }
+      ],
+      "hints": [
+        "Il fattore 2π cambia il valore, non la dimensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hertz è tempo inverso, s² è la dimensione prima della radice, N/m è k e kg è m. τ non è adimensionale soltanto perché il suo nome è «ridotto».",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13203,
+      "title": "Dalla forza di richiamo a τ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 1,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Quale espressione fornisce τ in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "τ = √(m/k)",
+          "τ = 2π √(m/k)",
+          "τ = √(k/m)",
+          "τ = m/k",
+          "τ = 1/[2π √(m/k)]"
+        ],
+        "value": "τ = √(m/k)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo principio lungo x dà ma_x=−kx, quindi a_x=−(k/m)x. Confrontandolo con la legge armonica a_x=−ω²x otteniamo ω²=k/m. Siccome T=2π/ω, dividere T per 2π lascia τ=1/ω=√(m/k)."
+        },
+        {
+          "type": "formula",
+          "text": "a_x=-\\frac km x"
+        },
+        {
+          "type": "formula",
+          "text": " \\omega^2=\\frac km"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac1\\omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\sqrt{\\frac mk}"
+        },
+        {
+          "type": "text",
+          "text": "2π√(m/k) è T completo; √(k/m) è ω, non τ. m/k ha unità s²; l’ultima formula dà la frequenza f=1/T in hertz. Sono grandezze diverse, anche se nascono dallo stesso oscillatore."
+        }
+      ],
+      "hints": [
+        "Confronta il coefficiente del richiamo con ω².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2π√(m/k) è T completo; √(k/m) è ω, non τ. m/k ha unità s²; l’ultima formula dà la frequenza f=1/T in hertz. Sono grandezze diverse, anche se nascono dallo stesso oscillatore.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13204,
+      "title": "Una massa doppia sulla stessa molla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 1,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. m passa da 1 a 2 kg mentre k resta 4 N/m. Come cambia τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a √2/2 s",
+          "Da 1/2 a 1 s",
+          "Da 1/2 a 1/4 s",
+          "Resta 1/2 s",
+          "Da 1/2 a 2 s"
+        ],
+        "value": "Da 1/2 a √2/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raddoppiare m raddoppia τ², non τ. Il periodo ridotto passa da un mezzo a √(2/4)=√2/2 secondi. Si lascia il radicale esatto: non occorre stimare √2 in decimali. Anche T cresce del fattore √2."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\tau_B}{\\tau_A}=\\sqrt2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=\\sqrt{\\frac24}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=\\frac{\\sqrt2}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Uno segue m linearmente, un quarto inverte l’effetto; due non rispetta il rapporto sotto radice. Mezzo ignora la massa nuova. Il modello lineare non richiede cambiare l’ampiezza per produrre questo fattore."
+        }
+      ],
+      "hints": [
+        "Applica il fattore di massa a τ² prima di confrontare τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno segue m linearmente, un quarto inverte l’effetto; due non rispetta il rapporto sotto radice. Mezzo ignora la massa nuova. Il modello lineare non richiede cambiare l’ampiezza per produrre questo fattore.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13205,
+      "title": "La massa da un periodo ridotto noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Si misura τ=1/2 s e si conosce k=4 N/m. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eleviamo τ al quadrato e moltiplichiamo per k: m=kτ². Quattro kg/s² per un quarto s² dà un kg. Se fosse stato fornito T completo avremmo prima dovuto dividerlo per 2π; qui τ è già la grandezza ridotta."
+        },
+        {
+          "type": "formula",
+          "text": "m=k\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau^2=\\frac14\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare k per il solo τ non dà massa; omettere il quadrato restituisce kg/s. Non bisogna introdurre un altro fattore 2π dopo aver ricevuto τ."
+        }
+      ],
+      "hints": [
+        "Isola m dalla relazione τ²=m/k.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare k per il solo τ non dà massa; omettere il quadrato restituisce kg/s. Non bisogna introdurre un altro fattore 2π dopo aver ricevuto τ.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13206,
+      "title": "La rigidezza da massa e τ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Si misura τ=1/2 s con m=1 kg. Quanto vale k in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione τ²=m/k si ricava k=m/τ². Dividere un kg per un quarto di secondo quadrato dà quattro kg/s², equivalenti a quattro N/m. Sostituendo i dati si ritrova τ=1/2 s."
+        },
+        {
+          "type": "formula",
+          "text": "k=\\frac m{\\tau^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k=4\\,\\mathrm{kg/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto moltiplicherebbe per τ² anziché dividere. Due dividerebbe soltanto per τ e avrebbe unità kg/s. Il k cercato è positivo per avere un richiamo stabile intorno all’equilibrio."
+        }
+      ],
+      "hints": [
+        "Il tempo deve essere elevato al quadrato al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto moltiplicherebbe per τ² anziché dividere. Due dividerebbe soltanto per τ e avrebbe unità kg/s. Il k cercato è positivo per avere un richiamo stabile intorno all’equilibrio.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13207,
+      "title": "Una molla quattro volte meno rigida",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. A ha m=1 kg,k=4 N/m. B mantiene m e usa k=1 N/m. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha τ=1/2 s e B √(1/1)=1 s. Il rapporto è due: ridurre k a un quarto moltiplica m/k per quattro e la sua radice per due. Una molla più debole lascia un’oscillazione più lenta."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro omette la radice, un mezzo inverte gli stati, un quarto segue direttamente k. Uno ignora il nuovo richiamo. Il rapporto fra T completi sarebbe lo stesso perché 2π si cancella."
+        }
+      ],
+      "hints": [
+        "Confronta prima le rigidezze, ricordando l’inversa e la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro omette la radice, un mezzo inverte gli stati, un quarto segue direttamente k. Uno ignora il nuovo richiamo. Il rapporto fra T completi sarebbe lo stesso perché 2π si cancella.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13208,
+      "title": "Uno scarto fra durate ridotte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Con m=1 kg,k=4 N/m si propone τ=1 s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2 s",
+          "−1/2 s",
+          "1 s",
+          "0 s",
+          "3/2 s"
+        ],
+        "value": "1/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è mezzo secondo. Un secondo meno mezzo secondo dà più mezzo secondo. Lo scarto confronta due valori di τ; non si sottrae il periodo completo π secondi a una proposta per τ."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\left(1-\\frac12\\right)\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Meno mezzo scambia l’ordine; uno conserva la proposta, tre mezzi somma e zero la accetta. Confondere T e τ cambierebbe invece la grandezza confrontata."
+        }
+      ],
+      "hints": [
+        "Controlla che entrambe le durate nello scarto siano τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno mezzo scambia l’ordine; uno conserva la proposta, tre mezzi somma e zero la accetta. Confondere T e τ cambierebbe invece la grandezza confrontata.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13209,
+      "title": "Isolare m senza reintrodurre 2π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Si conoscono τ e k. Quale relazione isola m in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = k τ²",
+          "m = k τ",
+          "m = k / τ²",
+          "m = τ² / k",
+          "m = 4π² k τ²"
+        ],
+        "value": "m = k τ²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiché τ=T/(2π), la relazione ridotta è già τ²=m/k. Moltiplicare per k restituisce m=kτ². Il fattore 4π² apparirebbe in una formula scritta in funzione di T, non come moltiplicatore aggiuntivo di τ²."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau^2=\\frac mk"
+        },
+        {
+          "type": "formula",
+          "text": " m=k\\tau^2"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm{kg/s^2}\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "text",
+          "text": "kτ ha unità kg/s; k/τ² kg/s⁴ e τ²/k s⁴/kg. 4π²kτ² conserva la dimensione ma sbaglia il coefficiente: l’unità giusta da sola non certifica l’algebra."
+        }
+      ],
+      "hints": [
+        "La definizione di τ ha già eliminato 2π dalla legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "kτ ha unità kg/s; k/τ² kg/s⁴ e τ²/k s⁴/kg. 4π²kτ² conserva la dimensione ma sbaglia il coefficiente: l’unità giusta da sola non certifica l’algebra.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13210,
+      "title": "Due fattori sotto una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. B ha m_B=κ₁m_A e k_B=κ₂k_A, con fattori positivi. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁/κ₂)",
+          "κ₁/κ₂",
+          "√(κ₂/κ₁)",
+          "√(κ₁κ₂)",
+          "κ₁κ₂"
+        ],
+        "value": "√(κ₁/κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella radice, τ_B=√[(κ₁/κ₂)(m_A/k_A)]. Tutti i fattori sono positivi, quindi la radice del rapporto dei fattori si separa e τ_A si cancella. Rimane √(κ₁/κ₂)."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=\\sqrt{\\frac{\\kappa_1m_A}{\\kappa_2k_A}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\tau_B}{\\tau_A}=\\sqrt{\\frac{\\kappa_1}{\\kappa_2}}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ omette la radice; il rapporto capovolto inverte massa e rigidezza. I prodotti rendono diretta la dipendenza da k, mentre una molla più rigida riduce τ a m fissata."
+        }
+      ],
+      "hints": [
+        "Conserva sia la radice sia il denominatore k.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ omette la radice; il rapporto capovolto inverte massa e rigidezza. I prodotti rendono diretta la dipendenza da k, mentre una molla più rigida riduce τ a m fissata.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13211,
+      "title": "Massa maggiore e molla più debole",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. A ha m=1 kg,k=4 N/m. B ha m=4 kg,k=1 N/m. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "8",
+          "1/4",
+          "16"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B ha τ=√(4/1)=2 s, mentre A ha 1/2 s. Il rapporto due diviso mezzo è quattro. Il fattore quattro della massa e il quarto della rigidezza moltiplicano m/k per sedici, la cui radice è quattro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bf8735bb5c7c86311d3f2062c6414b935f61866b75a030d17005a305f0d62ad1",
+          "text": "Le barre finali confrontano periodi ridotti, non periodi completi: τ_A=1/2 s e τ_B=2 s, alla stessa scala 120 px/s. T_A=π s e T_B=4π s mantengono lo stesso rapporto quattro. La prima prova ha m=1 kg,k=4 N/m; la seconda m=4 kg,k=1 N/m."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_A=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue soltanto la massa o soltanto la riduzione della rigidezza; otto non è la radice di sedici. Un quarto inverte il confronto. Sedici è il rapporto fra i quadrati e omette la radice; due secondi sarebbe invece la durata B, non un rapporto puro."
+        }
+      ],
+      "hints": [
+        "Calcola i due valori di τ oppure la radice del fattore sedici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue soltanto la massa o soltanto la riduzione della rigidezza; otto non è la radice di sedici. Un quarto inverte il confronto. Sedici è il rapporto fra i quadrati e omette la radice; due secondi sarebbe invece la durata B, non un rapporto puro.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13212,
+      "title": "La media di due scale temporali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 2,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. A ha m=1 kg,k=4 N/m e B m=4 kg,k=1 N/m. Qual è la media aritmetica delle due τ, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4 s",
+          "5/2 s",
+          "3/4 s",
+          "1 s",
+          "2 s"
+        ],
+        "value": "5/4 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate ridotte sono un mezzo e due secondi. Sommandole otteniamo cinque mezzi secondi; dividendo per due, cinque quarti secondi. Si mediano durate ridotte, non quadrati o periodi completi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\tau=\\frac{1/2+2}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\tau=\\frac54\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Cinque mezzi è la somma, tre quarti la semidifferenza e due la sola B. Gli ingressi medi m=5/2 kg,k=5/2 N/m darebbero τ=1 s, un quarto di secondo in meno della media richiesta."
+        }
+      ],
+      "hints": [
+        "Trova le due radici prima di fare la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque mezzi è la somma, tre quarti la semidifferenza e due la sola B. Gli ingressi medi m=5/2 kg,k=5/2 N/m darebbero τ=1 s, un quarto di secondo in meno della media richiesta.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13213,
+      "title": "La rigidezza per un’oscillazione più lenta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 3,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. A ha m=1 kg,k=4 N/m. B impone m=4 kg e τ_B=4τ_A. Quanto vale k_B/k_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "1",
+          "1/16"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è τ_B=2 s. Da k_B=m_B/τ_B² segue k_B=4/4=1 N/m. Rispetto ai quattro N/m iniziali il rapporto è un quarto. Al quadrato, il target richiede (τ_B/τ_A)²=16, non quattro."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " k_B=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " k_B/k_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Quattro inverte la variazione. Un mezzo omette parte del quadrato, uno conta soltanto la massa, un sedicesimo ignorerebbe la massa quadrupla. La rigidezza rimane positiva e il moto stabile nel modello."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il rapporto dei tempi prima di isolare k.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro inverte la variazione. Un mezzo omette parte del quadrato, uno conta soltanto la massa, un sedicesimo ignorerebbe la massa quadrupla. La rigidezza rimane positiva e il moto stabile nel modello.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13214,
+      "title": "Un display tarato su τ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 3,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Un display continuo adimensionale segue S=qτ con q>0 e nessun offset. A con m=1 kg,k=4 N/m legge S=3/2. B legge S=6 e ha k=1 N/m. Quanto vale m_B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha τ_A=1/2 s. Il guadagno è (3/2)/(1/2 s)=3 s⁻¹. La lettura sei rappresenta τ_B=2 s, non un periodo completo di due secondi. La massa è k_Bτ_B²=4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=k_B\\tau_B^2"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è la lettura grezza e due è il numero di secondi di τ_B, non una massa. Confondere τ con T introdurrebbe 4π² nell’inversa. La taratura va applicata prima di elevare al quadrato."
+        }
+      ],
+      "hints": [
+        "Decodifica la durata ridotta, poi usa m=kτ².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è la lettura grezza e due è il numero di secondi di τ_B, non una massa. Confondere τ con T introdurrebbe 4π² nell’inversa. La taratura va applicata prima di elevare al quadrato.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13215,
+      "title": "Offset di una misura ridotta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 3,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Un display continuo adimensionale segue S=qτ+b con q>0 e q,b costanti. A: m=1 kg,k=4 N/m,S=2. B: m=4 kg,k=1 N/m,S=5. C: k=1 N/m,S=7. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 kg",
+          "3 kg",
+          "7 kg",
+          "4 kg",
+          "36 kg"
+        ],
+        "value": "9 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno τ=1/2 e 2 s. Il guadagno è (5−2)/(2−1/2) s⁻¹=2 s⁻¹, poi b=1. La lettura sette dà τ_C=(7−1)/2=3 s. La massa cercata è un kg/s² per nove secondi quadrati, cioè nove kg."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_C=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=k_C\\tau_C^2"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=9\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei eleva al quadrato sei prima di dividere per il guadagno, trattando q come se comparisse una sola volta anziché al quadrato nell’inversa."
+        }
+      ],
+      "hints": [
+        "Sottrai b e dividi per q prima di fare il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei eleva al quadrato sei prima di dividere per il guadagno, trattando q come se comparisse una sola volta anziché al quadrato nell’inversa.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-period-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Massa e molla: τ distinto dal periodo T",
+      "order": 13216,
+      "title": "Stesso τ, molte masse e rigidezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-period",
+      "difficulty": 3,
+      "prompt": "Una massa costante m>0 oscilla orizzontalmente collegata a una molla ideale di costante k>0 e massa trascurabile. Il piano è senza attrito, peso e normale si compensano; la sola forza orizzontale è F_x=−kx, con x misurato dall’equilibrio. Il moto resta nel campo elastico lineare, senza smorzamento o forzante. T>0 è il periodo completo; si chiede invece τ=T/(2π)>0, chiamato qui periodo ridotto. Quindi τ=√(m/k) e T=2πτ. Le prove confrontano sistemi con parametri costanti durante ogni oscillazione. Fra prove si impone m=bk con b=1/4 s². Si misura inoltre τ=1/2 s. Quante coppie positive (m,k) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite coppie"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto m/k vale b=1/4 s² in ogni prova. La misura τ=√b=1/2 s ripete il vincolo e non determina la scala di m o k. Per esempio 1 kg con 4 N/m e 4 kg con 16 N/m danno lo stesso τ, pur essendo sistemi diversi."
+        },
+        {
+          "type": "formula",
+          "text": "m=bk"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\sqrt{\\frac{bk}{k}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\sqrt b"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non esauriscono la famiglia positiva continua. La coppia nulla è esclusa e darebbe un rapporto indefinito. Serve un dato indipendente di m o k per selezionare una coppia; b è dimensionato e non una costante adimensionale."
+        }
+      ],
+      "hints": [
+        "Controlla se il dato τ aggiunge informazione al rapporto m/k già imposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non esauriscono la famiglia positiva continua. La coppia nulla è esclusa e darebbe un rapporto indefinito. Serve un dato indipendente di m o k per selezionare una coppia; b è dimensionato e non una costante adimensionale.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Legge armonica e richiamo elastico",
+        "Periodo completo e periodo ridotto",
+        "Inverse quadratiche, tarature e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bf8735bb5c7c86311d3f2062c6414b935f61866b75a030d17005a305f0d62ad1",
+      "name": "oscillator-period-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPklsIHBlcmlvZG8gcmlkb3R0byBub24gw6ggdW4gY2ljbG8gY29tcGxldG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5NYXNzYSBzdSBtb2xsYSBvcml6em9udGFsZSwgZ3JhZmljbyBkZWwgbW90byBhcm1vbmljbyBpbiBmdW56aW9uZSBkZWxsYSBmYXNlIHQgc3UgdGF1IGUgY29uZnJvbnRvIGZyYSB0YXUgbWV6em8gc2Vjb25kbyBlIGR1ZSBzZWNvbmRpLiBJbCBwZXJpb2RvIGNvbXBsZXRvIMOoIGR1ZSBwaSBncmVjbyB2b2x0ZSB0YXUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNDVkODEiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgcng9IjIwIiBmaWxsPSIjZjdmYmZmIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmQ0MCIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBJbCByaWNoaWFtbyBsaW5lYXJlIGRldGVybWluYSDPiTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj5tID0gMSBrZyDCtyBrID0gNCBOL20gwrcgeCAmZ3Q7IDA8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTgwVjM1ME0xMDAgMjgwSDEzMEwxNDUgMjU1TDE3MCAzMDVMMTk1IDI1NUwyMjAgMzA1TDI0NSAyNTVMMjcwIDMwNUwyOTUgMjU1TDMyMCAzMDVMMzQwIDI4MEgzNjUiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+CjxyZWN0IHg9IjM2NSIgeT0iMjQwIiB3aWR0aD0iODUiIGhlaWdodD0iODAiIGZpbGw9IiNhN2Q4ZWMiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik04MCAzMjVINTUwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNNDA1IDIxNUgzMDUiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHRleHQgeD0iMzIwIiB5PSIxODUiPkbigpMgPSDiiJJreDwvdGV4dD48dGV4dCB4PSIzOTQiIHk9IjI5MCI+bTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM5MCI+U2NoaXp6byBkZWwgc2lzdGVtYSBlIGRlbCB2ZXJzbyBkaSByaWNoaWFtby48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0MzUiPkdlb21ldHJpYSBlIGZvcnphIHNlbnphIHNjYWxhIG1ldHJpY2EvTi48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0ODAiPs+JID0gMiBz4oG7wrkgwrcgz4QgPSAxLzIgcyDCtyBUID0gz4AgczwvdGV4dD4KPHBhdGggZD0iTTM1IDUxNUg2MDUiIHN0cm9rZT0iI2IzY2JkOSIvPgo8dGV4dCB4PSIzNSIgeT0iNTYwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IFVuIGNpY2xvIGFjY3VtdWxhIHVuYSBmYXNlIDLPgDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjYwMCI+eCA9IEEgY29zzrggwrcgzrggPSB0L8+EIMK3IEEgPSAxIGNtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjQwIj5GYXNlIG9yaXp6b250YWxlOiAyMDAvz4AgcHggcGVyIHJhZGlhbnRlPC90ZXh0Pgo8cGF0aCBkPSJNODAgODAwSDU1NSIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8cGF0aCBkPSJNMTAwIDg5MFY3MTAiIHN0cm9rZT0iIzE0MmQ0MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHRleHQgeD0iNTY1IiB5PSI4MDciPs64PC90ZXh0Pjx0ZXh0IHg9IjczIiB5PSI3MDUiPng8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAuMDAwIDc1MC4wMDAgTDEwMS42NjcgNzUwLjAxNyBMMTAzLjMzMyA3NTAuMDY5IEwxMDUuMDAwIDc1MC4xNTQgTDEwNi42NjcgNzUwLjI3NCBMMTA4LjMzMyA3NTAuNDI4IEwxMTAuMDAwIDc1MC42MTYgTDExMS42NjcgNzUwLjgzNyBMMTEzLjMzMyA3NTEuMDkzIEwxMTUuMDAwIDc1MS4zODIgTDExNi42NjcgNzUxLjcwNCBMMTE4LjMzMyA3NTIuMDU5IEwxMjAuMDAwIDc1Mi40NDcgTDEyMS42NjcgNzUyLjg2OCBMMTIzLjMzMyA3NTMuMzIxIEwxMjUuMDAwIDc1My44MDYgTDEyNi42NjcgNzU0LjMyMyBMMTI4LjMzMyA3NTQuODcxIEwxMzAuMDAwIDc1NS40NTAgTDEzMS42NjcgNzU2LjA1OSBMMTMzLjMzMyA3NTYuNjk5IEwxMzUuMDAwIDc1Ny4zNjggTDEzNi42NjcgNzU4LjA2NiBMMTM4LjMzMyA3NTguNzk0IEwxNDAuMDAwIDc1OS41NDkgTDE0MS42NjcgNzYwLjMzMiBMMTQzLjMzMyA3NjEuMTQzIEwxNDUuMDAwIDc2MS45ODAgTDE0Ni42NjcgNzYyLjg0MyBMMTQ4LjMzMyA3NjMuNzMxIEwxNTAuMDAwIDc2NC42NDUgTDE1MS42NjcgNzY1LjU4MiBMMTUzLjMzMyA3NjYuNTQzIEwxNTUuMDAwIDc2Ny41MjggTDE1Ni42NjcgNzY4LjUzNCBMMTU4LjMzMyA3NjkuNTYyIEwxNjAuMDAwIDc3MC42MTEgTDE2MS42NjcgNzcxLjY4MCBMMTYzLjMzMyA3NzIuNzY4IEwxNjUuMDAwIDc3My44NzUgTDE2Ni42NjcgNzc1LjAwMCBMMTY4LjMzMyA3NzYuMTQyIEwxNzAuMDAwIDc3Ny4zMDAgTDE3MS42NjcgNzc4LjQ3NCBMMTczLjMzMyA3NzkuNjYzIEwxNzUuMDAwIDc4MC44NjYgTDE3Ni42NjcgNzgyLjA4MiBMMTc4LjMzMyA3ODMuMzEwIEwxODAuMDAwIDc4NC41NDkgTDE4MS42NjcgNzg1Ljc5OSBMMTgzLjMzMyA3ODcuMDU5IEwxODUuMDAwIDc4OC4zMjggTDE4Ni42NjcgNzg5LjYwNCBMMTg4LjMzMyA3OTAuODg4IEwxOTAuMDAwIDc5Mi4xNzggTDE5MS42NjcgNzkzLjQ3NCBMMTkzLjMzMyA3OTQuNzc0IEwxOTUuMDAwIDc5Ni4wNzcgTDE5Ni42NjcgNzk3LjM4MyBMMTk4LjMzMyA3OTguNjkxIEwyMDAuMDAwIDgwMC4wMDAgTDIwMS42NjcgODAxLjMwOSBMMjAzLjMzMyA4MDIuNjE3IEwyMDUuMDAwIDgwMy45MjMgTDIwNi42NjcgODA1LjIyNiBMMjA4LjMzMyA4MDYuNTI2IEwyMTAuMDAwIDgwNy44MjIgTDIxMS42NjcgODA5LjExMiBMMjEzLjMzMyA4MTAuMzk2IEwyMTUuMDAwIDgxMS42NzIgTDIxNi42NjcgODEyLjk0MSBMMjE4LjMzMyA4MTQuMjAxIEwyMjAuMDAwIDgxNS40NTEgTDIyMS42NjcgODE2LjY5MCBMMjIzLjMzMyA4MTcuOTE4IEwyMjUuMDAwIDgxOS4xMzQgTDIyNi42NjcgODIwLjMzNyBMMjI4LjMzMyA4MjEuNTI2IEwyMzAuMDAwIDgyMi43MDAgTDIzMS42NjcgODIzLjg1OCBMMjMzLjMzMyA4MjUuMDAwIEwyMzUuMDAwIDgyNi4xMjUgTDIzNi42NjcgODI3LjIzMiBMMjM4LjMzMyA4MjguMzIwIEwyNDAuMDAwIDgyOS4zODkgTDI0MS42NjcgODMwLjQzOCBMMjQzLjMzMyA4MzEuNDY2IEwyNDUuMDAwIDgzMi40NzIgTDI0Ni42NjcgODMzLjQ1NyBMMjQ4LjMzMyA4MzQuNDE4IEwyNTAuMDAwIDgzNS4zNTUgTDI1MS42NjcgODM2LjI2OSBMMjUzLjMzMyA4MzcuMTU3IEwyNTUuMDAwIDgzOC4wMjAgTDI1Ni42NjcgODM4Ljg1NyBMMjU4LjMzMyA4MzkuNjY4IEwyNjAuMDAwIDg0MC40NTEgTDI2MS42NjcgODQxLjIwNiBMMjYzLjMzMyA4NDEuOTM0IEwyNjUuMDAwIDg0Mi42MzIgTDI2Ni42NjcgODQzLjMwMSBMMjY4LjMzMyA4NDMuOTQxIEwyNzAuMDAwIDg0NC41NTAgTDI3MS42NjcgODQ1LjEyOSBMMjczLjMzMyA4NDUuNjc3IEwyNzUuMDAwIDg0Ni4xOTQgTDI3Ni42NjcgODQ2LjY3OSBMMjc4LjMzMyA4NDcuMTMyIEwyODAuMDAwIDg0Ny41NTMgTDI4MS42NjcgODQ3Ljk0MSBMMjgzLjMzMyA4NDguMjk2IEwyODUuMDAwIDg0OC42MTggTDI4Ni42NjcgODQ4LjkwNyBMMjg4LjMzMyA4NDkuMTYzIEwyOTAuMDAwIDg0OS4zODQgTDI5MS42NjcgODQ5LjU3MiBMMjkzLjMzMyA4NDkuNzI2IEwyOTUuMDAwIDg0OS44NDYgTDI5Ni42NjcgODQ5LjkzMSBMMjk4LjMzMyA4NDkuOTgzIEwzMDAuMDAwIDg1MC4wMDAgTDMwMS42NjcgODQ5Ljk4MyBMMzAzLjMzMyA4NDkuOTMxIEwzMDUuMDAwIDg0OS44NDYgTDMwNi42NjcgODQ5LjcyNiBMMzA4LjMzMyA4NDkuNTcyIEwzMTAuMDAwIDg0OS4zODQgTDMxMS42NjcgODQ5LjE2MyBMMzEzLjMzMyA4NDguOTA3IEwzMTUuMDAwIDg0OC42MTggTDMxNi42NjcgODQ4LjI5NiBMMzE4LjMzMyA4NDcuOTQxIEwzMjAuMDAwIDg0Ny41NTMgTDMyMS42NjcgODQ3LjEzMiBMMzIzLjMzMyA4NDYuNjc5IEwzMjUuMDAwIDg0Ni4xOTQgTDMyNi42NjcgODQ1LjY3NyBMMzI4LjMzMyA4NDUuMTI5IEwzMzAuMDAwIDg0NC41NTAgTDMzMS42NjcgODQzLjk0MSBMMzMzLjMzMyA4NDMuMzAxIEwzMzUuMDAwIDg0Mi42MzIgTDMzNi42NjcgODQxLjkzNCBMMzM4LjMzMyA4NDEuMjA2IEwzNDAuMDAwIDg0MC40NTEgTDM0MS42NjcgODM5LjY2OCBMMzQzLjMzMyA4MzguODU3IEwzNDUuMDAwIDgzOC4wMjAgTDM0Ni42NjcgODM3LjE1NyBMMzQ4LjMzMyA4MzYuMjY5IEwzNTAuMDAwIDgzNS4zNTUgTDM1MS42NjcgODM0LjQxOCBMMzUzLjMzMyA4MzMuNDU3IEwzNTUuMDAwIDgzMi40NzIgTDM1Ni42NjcgODMxLjQ2NiBMMzU4LjMzMyA4MzAuNDM4IEwzNjAuMDAwIDgyOS4zODkgTDM2MS42NjcgODI4LjMyMCBMMzYzLjMzMyA4MjcuMjMyIEwzNjUuMDAwIDgyNi4xMjUgTDM2Ni42NjcgODI1LjAwMCBMMzY4LjMzMyA4MjMuODU4IEwzNzAuMDAwIDgyMi43MDAgTDM3MS42NjcgODIxLjUyNiBMMzczLjMzMyA4MjAuMzM3IEwzNzUuMDAwIDgxOS4xMzQgTDM3Ni42NjcgODE3LjkxOCBMMzc4LjMzMyA4MTYuNjkwIEwzODAuMDAwIDgxNS40NTEgTDM4MS42NjcgODE0LjIwMSBMMzgzLjMzMyA4MTIuOTQxIEwzODUuMDAwIDgxMS42NzIgTDM4Ni42NjcgODEwLjM5NiBMMzg4LjMzMyA4MDkuMTEyIEwzOTAuMDAwIDgwNy44MjIgTDM5MS42NjcgODA2LjUyNiBMMzkzLjMzMyA4MDUuMjI2IEwzOTUuMDAwIDgwMy45MjMgTDM5Ni42NjcgODAyLjYxNyBMMzk4LjMzMyA4MDEuMzA5IEw0MDAuMDAwIDgwMC4wMDAgTDQwMS42NjcgNzk4LjY5MSBMNDAzLjMzMyA3OTcuMzgzIEw0MDUuMDAwIDc5Ni4wNzcgTDQwNi42NjcgNzk0Ljc3NCBMNDA4LjMzMyA3OTMuNDc0IEw0MTAuMDAwIDc5Mi4xNzggTDQxMS42NjcgNzkwLjg4OCBMNDEzLjMzMyA3ODkuNjA0IEw0MTUuMDAwIDc4OC4zMjggTDQxNi42NjcgNzg3LjA1OSBMNDE4LjMzMyA3ODUuNzk5IEw0MjAuMDAwIDc4NC41NDkgTDQyMS42NjcgNzgzLjMxMCBMNDIzLjMzMyA3ODIuMDgyIEw0MjUuMDAwIDc4MC44NjYgTDQyNi42NjcgNzc5LjY2MyBMNDI4LjMzMyA3NzguNDc0IEw0MzAuMDAwIDc3Ny4zMDAgTDQzMS42NjcgNzc2LjE0MiBMNDMzLjMzMyA3NzUuMDAwIEw0MzUuMDAwIDc3My44NzUgTDQzNi42NjcgNzcyLjc2OCBMNDM4LjMzMyA3NzEuNjgwIEw0NDAuMDAwIDc3MC42MTEgTDQ0MS42NjcgNzY5LjU2MiBMNDQzLjMzMyA3NjguNTM0IEw0NDUuMDAwIDc2Ny41MjggTDQ0Ni42NjcgNzY2LjU0MyBMNDQ4LjMzMyA3NjUuNTgyIEw0NTAuMDAwIDc2NC42NDUgTDQ1MS42NjcgNzYzLjczMSBMNDUzLjMzMyA3NjIuODQzIEw0NTUuMDAwIDc2MS45ODAgTDQ1Ni42NjcgNzYxLjE0MyBMNDU4LjMzMyA3NjAuMzMyIEw0NjAuMDAwIDc1OS41NDkgTDQ2MS42NjcgNzU4Ljc5NCBMNDYzLjMzMyA3NTguMDY2IEw0NjUuMDAwIDc1Ny4zNjggTDQ2Ni42NjcgNzU2LjY5OSBMNDY4LjMzMyA3NTYuMDU5IEw0NzAuMDAwIDc1NS40NTAgTDQ3MS42NjcgNzU0Ljg3MSBMNDczLjMzMyA3NTQuMzIzIEw0NzUuMDAwIDc1My44MDYgTDQ3Ni42NjcgNzUzLjMyMSBMNDc4LjMzMyA3NTIuODY4IEw0ODAuMDAwIDc1Mi40NDcgTDQ4MS42NjcgNzUyLjA1OSBMNDgzLjMzMyA3NTEuNzA0IEw0ODUuMDAwIDc1MS4zODIgTDQ4Ni42NjcgNzUxLjA5MyBMNDg4LjMzMyA3NTAuODM3IEw0OTAuMDAwIDc1MC42MTYgTDQ5MS42NjcgNzUwLjQyOCBMNDkzLjMzMyA3NTAuMjc0IEw0OTUuMDAwIDc1MC4xNTQgTDQ5Ni42NjcgNzUwLjA2OSBMNDk4LjMzMyA3NTAuMDE3IEw1MDAuMDAwIDc1MC4wMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xMDAgNzUwVjkxME01MDAgNzUwVjkxMCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KPHBhdGggZD0iTTEwMCA5MjVINTAwTTEwMCA5MTVWOTM1TTUwMCA5MTVWOTM1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI4OCIgeT0iOTcwIj4wPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iODg1Ij7PgDwvdGV4dD48dGV4dCB4PSI0ODUiIHk9Ijk3MCI+Ms+APC90ZXh0Pgo8dGV4dCB4PSIyMDAiIHk9IjEwMjAiPlVuIGNpY2xvOiDOlHQgPSBUID0gMs+Az4Q8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDYwIj5WZXJ0aWNhbGU6IDUwIHB4L2NtIMK3IM+EIG5vbiDDqCBpbCBjaWNsbyBpbnRlcm8uPC90ZXh0Pgo8cGF0aCBkPSJNMzUgMTA5MEg2MDUiIHN0cm9rZT0iI2IzY2JkOSIvPgo8dGV4dCB4PSIzNSIgeT0iMTEzNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDb25mcm9udG8gZGVpIHBlcmlvZGkgcmlkb3R0aTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExNzUiPkJhcnJlIGRhIHplcm86IDEyMCBweC9zLCBzb2xvIM+EPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTIyMCI+QSDCtyBtID0gMSBrZyDCtyBrID0gNCBOL208L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTI1MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ1ZDgxIi8+PHRleHQgeD0iMTgwIiB5PSIxMjc3Ij7PhCA9IDEvMiBzPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM0MCI+QiDCtyBtID0gNCBrZyDCtyBrID0gMSBOL208L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTM3MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjM2MCIgeT0iMTM5NyI+z4QgPSAyIHM8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTIzNVYxMzAwTTEwMCAxMzU1VjE0MjAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDcwIj7PhOG0ri/PhOG0rCA9IDQgwrcgVOG0rCA9IM+AIHMgwrcgVOG0riA9IDTPgCBzPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
