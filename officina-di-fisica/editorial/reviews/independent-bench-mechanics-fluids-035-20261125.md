@@ -1,3 +1,9 @@
+## Rinnovo reale del25novembre2026 sul runtime b963
+
+Eseguite nuovamente dieci viste WebGL/fallback e378configurazioni, nove testPASS1,793s. Tutte le14sorgenti specifiche sono byte-identiche ai pin letti; ispezionate le dieci catture complete. La prova distinta B da28560configurazioni/168layout resta legata ai soli sorgenti dichiarati e non è presentata come un nuovo replayb963. Report e catture5405 sono conservati nel relativo snapshot. Ricevuta `bench-mechanics-fluids-035-b963-replay-20261125.json`. HumanNOT_RUN, publicationNONE.
+
+---
+
 # Independent AI review — bench-mechanics-fluids-035
 
 All five original records, model and scene sources, caller, progressive pilot notebook and planar drawings were read. Ten actual published-consumer paths (five WebGL and five fallback) were exercised in disposable SQLite/demo sessions; sixteen distinct assigned exercises, including six pilot tasks, were independently solved and both incorrect/correct submissions checked. Ten captured figures were fully viewed. Final runtime-bound captures have identical bytes to the inspected views. No learner database or published edition changed.

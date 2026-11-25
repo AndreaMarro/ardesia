@@ -18,7 +18,7 @@ export const confronti = {
   'SIM-C1-L004-03': (x) => ['Tempo di volo', 2, 's'],
   'SIM-C1-L005-04': (x) => ['Somma delle due forze', 0, 'N'],
   'SIM-C1-L006-01': (x) => ['Stato del blocco', x <= 6 ? 'Quiete' : 'Scivolamento', ''],
-  'SIM-C1-L007-02': (x) => ['Potenza media dall’avvio', 3 * x, 'W'],
+  'SIM-C1-L007-02': (x) => ['Potenza media dall’avvio', x === 0 ? 'Non definita (intervallo nullo)' : 3 * x, x === 0 ? '' : 'W'],
   'SIM-C1-L008-01': (x) => ['Lavoro del peso', 0, 'J'],
   'SIM-C1-L008-02': (x) => ['Contributo elastico', 0.5 * x * x, 'mJ'],
   'SIM-C1-L008-03': (x) => ['Energia potenziale', 10 * x, 'J'],

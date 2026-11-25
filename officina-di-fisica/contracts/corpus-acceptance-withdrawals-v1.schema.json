@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AndreaMarro/ardesia/officina-di-fisica/corpus-acceptance-withdrawals-v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "withdrawals"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "withdrawals": {"type": "array", "maxItems": 10000, "items": {"$ref": "#/$defs/withdrawal"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"},
+    "batch": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$"},
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "when": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "file": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": {"path": {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"}, "sha256": {"$ref": "#/$defs/sha"}}
+    },
+    "closure": {
+      "type": "object", "additionalProperties": false,
+      "required": ["batchId", "recordId", "closedAt", "reason", "runtimeSha256", "scientificReport"],
+      "properties": {
+        "batchId": {"$ref": "#/$defs/batch"}, "recordId": {"$ref": "#/$defs/id"},
+        "closedAt": {"$ref": "#/$defs/when"}, "reason": {"type": "string", "minLength": 1},
+        "runtimeSha256": {"$ref": "#/$defs/sha"}, "scientificReport": {"$ref": "#/$defs/file"},
+        "reviewer": {"type": "string", "minLength": 1}
+      }
+    },
+    "withdrawal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["withdrawalId", "batchId", "recordId", "withdrawnAt", "reason", "evidence", "humanApproval", "publicationAction"],
+      "properties": {
+        "withdrawalId": {"$ref": "#/$defs/id"}, "batchId": {"$ref": "#/$defs/batch"}, "recordId": {"$ref": "#/$defs/id"},
+        "withdrawnAt": {"$ref": "#/$defs/when"}, "reason": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "#/$defs/file"}, "closure": {"$ref": "#/$defs/closure"},
+        "reviewer": {"type": "string", "minLength": 1},
+        "humanApproval": {"const": "NOT_RUN"}, "publicationAction": {"const": "NONE"}
+      }
+    }
+  }
+}

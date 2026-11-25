@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_existing_f897_exit_drift_is_not_swallowed_on_body_error (tests.corpus.test_historical_runtime_5405.Historical5405.test_existing_f897_exit_drift_is_not_swallowed_on_body_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_historical_runtime_5405.py", line 88, in test_existing_f897_exit_drift_is_not_swallowed_on_body_error
+    self.assertIsInstance(error,ValueError,'Post-yield guard must run in finally');self.assertIn('changed',str(error).lower());self.assertEqual(legacy.APP,original)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError('body sentinel') is not an instance of <class 'ValueError'> : Post-yield guard must run in finally
+
+----------------------------------------------------------------------
+Ran 1 test in 0.665s
+
+FAILED (failures=1)

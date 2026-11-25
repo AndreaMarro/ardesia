@@ -1,4 +1,12 @@
 import { colore as c, punti, rad } from '../geometria.js';
+// Translate a force along its own line of action, retaining the complete signed
+// vector at the existing scale while clearing an opaque point marker.
+function exposedForce(b, point, delta, color, clearance) {
+  const length = Math.hypot(...delta);
+  if (length === 0) return;
+  const start = point.map((value, index) => value + clearance * delta[index] / length);
+  b.arrow(start, start.map((value, index) => value + delta[index]), color);
+}
 const rail = (b, marks) => {
   for (const z of [-0.27, 0.27]) b.rod([-2.65, 0.22, z], [2.65, 0.22, z], 0.045, c.metallo);
   if (marks) {
@@ -250,10 +258,14 @@ export const meccanica = {
     const p = at(1.3, 0.22, 0);
     b.ball(p, 0.22, c.ocra);
     // peso and normale are normalized to the same 20 N reference.
-    b.arrow(p, [p[0], p[1] - 0.75 * s.peso, p[2]], c.rosso);
-    b.arrow(p, at(1.3, 0.22 + 0.75 * s.normale, 0), c.verde);
-    b.label([p[0] - 0.35, p[1] - 1.0, p[2]], 'Peso (20 N)', c.rosso);
-    b.label(at(1.7, 0.7, 0), 'Normale', c.verde);
+    const normalLength = 0.75 * s.normale;
+    const normalTop = (0.25 + normalLength) * dir[0];
+    // Separate the two full vectors along their own lines of action. The
+    // weight ends above the normal, clearing both the table and its opposite
+    // arrow at zero angle; the normal starts outside the opaque sphere.
+    const weightEnd = p[1] + normalTop + 0.18;
+    b.arrow([p[0], weightEnd + 0.75 * s.peso, p[2]], [p[0], weightEnd, p[2]], c.rosso);
+    exposedForce(b, p, [-normalLength * dir[1], normalLength * dir[0], 0], c.verde, 0.25);
   },
   molla(b, s) {
     const vert = s.verticale,
@@ -270,7 +282,7 @@ export const meccanica = {
     );
     const p = at(1);
     b.ball(p, 0.25, c.ocra);
-    if (s.forza !== undefined) b.arrow(p, [p[0] + 0.8 * s.forza, p[1], p[2]], c.verde);
+    if (s.forza !== undefined) exposedForce(b, p, [0.8 * s.forza, 0, 0], c.verde, 0.3);
     b.label([p[0], p[1] + 0.41, 0], 'Estremo mobile');
   },
   gravita(b, s) {
@@ -319,7 +331,11 @@ export const meccanica = {
     const a = rad(s.angolo ?? 0),
       pivot = [-0.4, 1.25, 0],
       at = (d) => [pivot[0] + d * Math.cos(a), pivot[1] + d * Math.sin(a), 0];
-    b.rod([pivot[0], 0.08, 0], pivot, 0.13, c.metallo);
+    // The post sits behind the swept plane of the rod. Its short rear axle
+    // reaches the same pivot without enclosing the lower endpoint at 90°.
+    const rear = [pivot[0], pivot[1], -0.45];
+    b.rod([pivot[0], 0.08, rear[2]], rear, 0.13, c.metallo);
+    b.rod(rear, pivot, 0.07, c.metallo);
     b.ball(pivot, 0.16, c.viola);
     const l = s.braccio ? s.sx : -s.sx,
       r = s.dx,
@@ -331,13 +347,15 @@ export const meccanica = {
     ]) {
       const p = at(u);
       b.ball(p, 0.11, c.verde);
-      if (F)
-        b.arrow(
-          p,
-          [p[0], p[1] + (s.braccio && u === l ? 1 : -1) * F, p[2]],
-          s.braccio && u === l ? c.verde : c.rosso,
-        );
+      if (F) {
+        const dy = (s.braccio && u === l ? 1 : -1) * F;
+        // Put both signs above the point marker: a downward force ends just
+        // above it, so the unchanged full vector cannot penetrate the table.
+        const tail = [p[0], p[1] + 0.18 + Math.max(0, -dy), p[2]];
+        b.arrow(tail, [tail[0], tail[1] + dy, tail[2]], s.braccio && u === l ? c.verde : c.rosso);
+      }
     }
-    b.label([pivot[0], 0.57, 0.45], s.braccio ? 'Gomito' : 'Fulcro');
+    // Identify the pivot in the existing HTML legend. A minimum-size 3D text
+    // sprite can cover the lower rod endpoint on a narrow viewport.
   },
 };

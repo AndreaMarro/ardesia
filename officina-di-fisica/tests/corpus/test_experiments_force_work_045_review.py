@@ -11,12 +11,14 @@ import sympy as sp
 from tools.corpus_engineering import experiments_force_work_045_verifier as review
 from tools.corpus_engineering.pipeline import digest,sha
 from tools.corpus_engineering.batches import assert_activity_identity
+from tests.corpus.historical_runtime import reviewed_runtime
 
 
 class ForceWork045Review(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.raw=subprocess.check_output(['git','show',review.SOURCE_REF+':'+review.SOURCE_PATH],cwd=review.APP)
+        cls.enterClassContext(reviewed_runtime(review))
         cls.sources={r['id']:r for r in json.loads(cls.raw) if r['id'] in review.SPECS}
         cls.actual=review.runtime_values(cls.sources);cls.summary=review.compare_runtime(cls.actual)
 
