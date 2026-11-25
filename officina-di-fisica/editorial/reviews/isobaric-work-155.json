@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-isobaric-work-01",
+      "sourceSha256": "311738df754de3a638d3e3dc98e83b36aea2e077fa5c74bc1b17ad91ef8daa6d",
+      "candidateSha256": "6afaab80b5b236863fae0d602d5efcb67eab4cacf3261903dc318b289d7372fe",
+      "reviewedSignature": "862a992701df6429e7e0ed8e882b64967e73f0a55ef207a5d2ab4ffbedf47b83",
+      "assetChecksums": {
+        "isobaric-work-progressive.svg": "ae4879c7e836f775a366f65fced6cb68e6adbadff19ac81646d37ba700e5176f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "W=∫p_ext dV=pΔV per pressione resistente totale costante. Con 2 kPa e 3 L: W=6 J; il fattore 10³ di kPa cancella 10⁻³ del litro.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "12 J aggiunge un fattore due e 6000 J converte soltanto kPa senza convertire L. La pressione deve essere quella resistente totale, non una pressione relativa usata senza correzione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. W=∫p_ext dV=pΔV per pressione resistente totale costante. Con 2 kPa e 3 L: W=6 J; il fattore 10³ di kPa cancella 10⁻³ del litro.",
+      "scientificAssetReview": "XML e rendering nativo completo letti. Due grafici con origine a zero e stessa scala 35 px/L e 60 px/kPa: segmento da (135,180) a (240,180) a p=2 kPa per V=1→4 L, ritorno opposto da (240,580) a (135,580) con origine y=700. Rettangoli 105×120 px corrispondono a 6 J in modulo; frecce separate rendono lavori +6 e −6 J, somma 0 solo su quel cammino ripercorso. Barre distinte A=6, B=20, media=13 J larghe 90 px, 300 px e 195 px a 15 px/J; non sono i due tratti del ciclo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-02",
+      "sourceSha256": "9b2356a1f766c57e0477765d762adf8297285a3cdc3265afa5f3ba0a7856dd91",
+      "candidateSha256": "0ec73db92f5b3cb5c29bf99a83791af37297a7da3b210442ba4997fa0dc300ac",
+      "reviewedSignature": "801f9769b1cde8d259838f6503d782ce145c01272125d1a9b22e44193ba3f780",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Lavoro è energia trasferita: J. Pa·m³ e kPa·L sono dimensionalmente energie, non pressioni o potenze.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Pressione, volume, temperatura e potenza non sono energia; una potenza richiederebbe dividere il lavoro per una durata.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Lavoro è energia trasferita: J. Pa·m³ e kPa·L sono dimensionalmente energie, non pressioni o potenze.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-03",
+      "sourceSha256": "e2c576e7f17979089914ec4dbccbbf24f9ec928cfded6a543132d543d927e8fe",
+      "candidateSha256": "dca31cbae5ea89f1780b06b92147101a27bc2ec2e105e9101624dbd74c92205d",
+      "reviewedSignature": "f89779e63ed0e948ba2878d2fba0596a6bdbca97f43ce37d94e00e5c414b968a",
+      "assetChecksums": {
+        "isobaric-work-progressive.svg": "ae4879c7e836f775a366f65fced6cb68e6adbadff19ac81646d37ba700e5176f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Andata +6 J, ritorno −6 J: la somma è zero",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Andata A→B: p(V_B−V_A)>0. Ritorno sulla stessa isobara: p(V_A−V_B)=−W_AB<0. Stesso modulo e lavoro netto zero, con versi del volume opposti.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Non sono entrambi positivi e non sono entrambi nulli: il volume cambia. Il lavoro cambia segno quando si inverte lo spostamento a uguale pressione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Andata A→B: p(V_B−V_A)>0. Ritorno sulla stessa isobara: p(V_A−V_B)=−W_AB<0. Stesso modulo e lavoro netto zero, con versi del volume opposti.",
+      "scientificAssetReview": "XML e rendering nativo completo letti. Due grafici con origine a zero e stessa scala 35 px/L e 60 px/kPa: segmento da (135,180) a (240,180) a p=2 kPa per V=1→4 L, ritorno opposto da (240,580) a (135,580) con origine y=700. Rettangoli 105×120 px corrispondono a 6 J in modulo; frecce separate rendono lavori +6 e −6 J, somma 0 solo su quel cammino ripercorso. Barre distinte A=6, B=20, media=13 J larghe 90 px, 300 px e 195 px a 15 px/J; non sono i due tratti del ciclo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-04",
+      "sourceSha256": "4b01af8bce0d66aa9dcaeb5544a746ded55fc2cf6d63d6fb316803b43021405a",
+      "candidateSha256": "04272dd2c1fa99a5ee235e210ecd4f6f3e4b94829a75785114f6934459b362fa",
+      "reviewedSignature": "b5d1ec8828aa32fe499b84ef674e41cb666472a0cb8506b1b7ed771617dc250b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 6 a 12 J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Pressione da 2 a 4 kPa, incremento 3 L invariato: lavoro da 6 a 12 J. Il raddoppio riguarda la pressione costante fra prove, non una pressione crescente entro la prova.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Lasciare 6 J ignora p; dimezzare la risposta inverte dipendenza; quadrarla aggiunge un fattore inesistente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Pressione da 2 a 4 kPa, incremento 3 L invariato: lavoro da 6 a 12 J. Il raddoppio riguarda la pressione costante fra prove, non una pressione crescente entro la prova.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-05",
+      "sourceSha256": "bed57cbab872b8608766b99e803500e0c37be90572b68d032acef1191b935eb7",
+      "candidateSha256": "1dc175a12fa876cf9ac183b29fa6043910bbf9e6236a0cfdd602352bdc7e2104",
+      "reviewedSignature": "122fecac81e3d9df35eb37f496a706c364d26245a28a9ab9038e31aee5291407",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "p=W/ΔV=6 J/(3 L)=2 kPa, divisione lecita per ΔV>0. Non moltiplicare per il volume ancora.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "WΔV ha J·L, il reciproco ha L/J. Nessuno ha dimensione kPa; la sostituzione deve ricostruire 6 J.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. p=W/ΔV=6 J/(3 L)=2 kPa, divisione lecita per ΔV>0. Non moltiplicare per il volume ancora.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-06",
+      "sourceSha256": "82647a58426b880ee7cd5b092a00ac5c95e56be99254c9b8cfe26d036b4f9d35",
+      "candidateSha256": "f513e4a03a6d3d8330f0cc18e87a3ff8f35adb37cef69b1bded28af2b744e710",
+      "reviewedSignature": "8d0d203be7a5875245abb768f13286f6774df3bc369e2ca127eef5b8db77f9c1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "ΔV=W/p=6 J/(2 kPa)=3 L. È incremento di volume, non il volume finale senza un valore iniziale.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Moltiplicare per p non isola un volume; copiare 6 J non risponde a un incremento in L. V_f necessita anche V_i.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ΔV=W/p=6 J/(2 kPa)=3 L. È incremento di volume, non il volume finale senza un valore iniziale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-07",
+      "sourceSha256": "01025639b8ea97e55feae38c03ad126c248c015e331a990c91f5a2fb891c3271",
+      "candidateSha256": "8619dc4419f98070a82892f11c7039e22aebfffb0a8d617b5fd66ec245a7feb1",
+      "reviewedSignature": "c8b7dce723215b478bce895c4caef53ad2d1c1df2ef711ed21d5d6d76dfd8bcc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/3",
+      "dimension": {},
+      "manualArithmetic": "W_A=2×3=6 J e W_B=2×5=10 J. Rapporto 10/6=5/3, stessa pressione.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "3/5 inverte le prove; rapporto pressioni è 1 e non rappresenta da solo la variazione del volume.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. W_A=2×3=6 J e W_B=2×5=10 J. Rapporto 10/6=5/3, stessa pressione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-08",
+      "sourceSha256": "70fdd98f211e1de8b067c691d4ec9e997c776532ca061029927c4a05dd196fe2",
+      "candidateSha256": "5f52a8f868331655e8acb2cb6da597b1f6a49b21e43fd66f160abe0d0b4b8659",
+      "reviewedSignature": "5c317c73ba8e46d7c185e2856ecae4d0e3856b642ed941b6bbc2ed94a89e1fe2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Proposta 12 J meno lavoro corretto 6 J=+6 J, errore con ordine esplicito.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "−6 sottrae al contrario, 12 copia la proposta, 0 la accetta e 3 dimezza ancora lo scarto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 12 J meno lavoro corretto 6 J=+6 J, errore con ordine esplicito.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-09",
+      "sourceSha256": "8749dc4e6d73ef7a4e50629392c33a6f5a12122666f0f6f727256814941e8e1d",
+      "candidateSha256": "7d096085e70fe5f1bab060513c744625f68ae35cdbd34f4afe0d05b60f482ec6",
+      "reviewedSignature": "0f8640bb183622d0eaa9eee04029b229aa3e571ce812ae9cbfa7fa875d2632dc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "p = W / ΔV",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Isolamento p=W/ΔV, unità J/L=kPa. La positività di ΔV esclude il denominatore nullo.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Prodotto WΔV non è pressione; ΔV/W è reciproco della pressione. Fattori due producono lavori diversi dai dati anche con dimensioni corrette.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolamento p=W/ΔV, unità J/L=kPa. La positività di ΔV esclude il denominatore nullo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-10",
+      "sourceSha256": "ae683e28bb5df45109621c995fe27e4e1f18caebde5e00e082dc996347669cb3",
+      "candidateSha256": "4c134ee3835f0ae92c72a61ccb88f5274c534ddfd89229c8a8405f2843716571",
+      "reviewedSignature": "746ac624574aaa3cc6d7226bdd4ae4e407a91e51ba0bc78e55ee8e47ae440c5d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "Legge bilineare: W_B/W_A=(κ₁p κ₂ΔV)/(pΔV)=κ₁κ₂, con denominatore positivo.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Quozienti invertono un effetto diretto; somma dà 2 per stati identici; un quadrato su κ₂ non deriva da W=pΔV.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Legge bilineare: W_B/W_A=(κ₁p κ₂ΔV)/(pΔV)=κ₁κ₂, con denominatore positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-11",
+      "sourceSha256": "dacedc905519d2f680680efc23a7ea82b6266aca6c2d76dedab83bb48851e159",
+      "candidateSha256": "e2196d4e69cb2f48cc6fcd09ad8802a11f1a7acccee56337cad49d117647484a",
+      "reviewedSignature": "1e0570c08728d929125ce73c63e2e21da52a427aaff0345a63c78666e06516d0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10/3",
+      "dimension": {},
+      "manualArithmetic": "W_A=6 J, W_B=4×5=20 J. Rapporto 20/6=10/3, non soltanto rapporto delle pressioni o dei volumi.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "3/10 inverte rapporto completo; 2 segue solo p,5/3 solo ΔV,20 è energia numerica B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. W_A=6 J, W_B=4×5=20 J. Rapporto 20/6=10/3, non soltanto rapporto delle pressioni o dei volumi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-12",
+      "sourceSha256": "14bc1d8a1f726c5612b888d82bd7b8f0775c0047b4b7d63d7085664239520d84",
+      "candidateSha256": "b5bef98c4cb701aff70893e42a31e4a1814555dff5166209ba859f7b9f0f7df2",
+      "reviewedSignature": "f23b644333239cc60cd53098b102501006b8501eaa7e7fcc0f0ae7e5b81e4eac",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media (6+20)/2=13 J. Agli ingressi medi p=3 kPa e ΔV=4 L il modello dà 12 J: differenza 1 J.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "26 somma, 13/2 dimezza ancora la media, 14 è la differenza delle due energie. 12 è il modello agli ingressi medi, non la media richiesta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (6+20)/2=13 J. Agli ingressi medi p=3 kPa e ΔV=4 L il modello dà 12 J: differenza 1 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-13",
+      "sourceSha256": "1abc830b7c11962f718b3d7b08641da1e55d2d6b8d0be68c1ce6fb8a9c7182b9",
+      "candidateSha256": "9b78271eaad6dfe07fbd6e158d902009a9adbf0591c655fab02c1f17b87cc579",
+      "reviewedSignature": "d704ce64dfede26756cd863b60a88a4416436c342765bbc9b9b969152117f339",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/3",
+      "dimension": {},
+      "manualArithmetic": "Target (10/3)×6=20 J con p_B=4 kPa richiede ΔV_B=5 L. Rapporto 5/3 rispetto ai 3 L iniziali.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "3/5 reciproco del target del volume; 10/3 è target di lavoro ma dimentica p raddoppiata. Serve distinguere ΔV_B dal suo rapporto con ΔV_A.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target (10/3)×6=20 J con p_B=4 kPa richiede ΔV_B=5 L. Rapporto 5/3 rispetto ai 3 L iniziali.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-14",
+      "sourceSha256": "bd054f4099d0df79151e29332beb95aac9a78a452ff5458845678c6429b73d54",
+      "candidateSha256": "35f2001eb72baf69ec4cf3b7fa9bbed13a00cf681fec6e70ff471b4a25c4e74c",
+      "reviewedSignature": "bfb2be91f2eef2158c8ccf6cb91d9270067793725db8e6bb2757aaba2398d0e7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Riferimento W_A=6 J: q=18/(6 J)=3 J⁻¹. S_B=60 dà W_B=20 J; p_B=20 J/(5 L)=4 kPa.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Usare 60 come joule produce 12 kPa, triplo del valore corretto; usare guadagno sull’incremento anziché sul lavoro cambia la relazione strumentale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento W_A=6 J: q=18/(6 J)=3 J⁻¹. S_B=60 dà W_B=20 J; p_B=20 J/(5 L)=4 kPa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-15",
+      "sourceSha256": "236eb59823571c371b2d490829d1999a9dd0dacaae59b001c25cd414bc89b323",
+      "candidateSha256": "9f8365a7313cfbed73683f2931502a9c4c128d125e15c97a0b0d4deaa0fd27c2",
+      "reviewedSignature": "e95ce046bcf2abc464510d72e63e4e3398cdaa56fa8daabcb16074e442762c47",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Riferimenti 6 e 20 J: q=(41−13)/(20−6) J⁻¹=2 J⁻¹, b=1. W_C=(25−1)/2=12 J. p_C=12 J/(3 L)=4 kPa, ricostruisce S=25.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Ignorare offset usa W_C=25/2 J, p_C=25/6 kPa e ricostruisce S=26. La pressione corretta ricostruisce entrambi i riferimenti e C.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti 6 e 20 J: q=(41−13)/(20−6) J⁻¹=2 J⁻¹, b=1. W_C=(25−1)/2=12 J. p_C=12 J/(3 L)=4 kPa, ricostruisce S=25.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-isobaric-work-16",
+      "sourceSha256": "168d4a1e58582808f1605d330d9f389387ebc10ddd665683e8c3b852868c58ba",
+      "candidateSha256": "bdc6056660e21848a4b7bd9a8d2c557700358e069a9deea6b31bc20342d30c13",
+      "reviewedSignature": "09f4007bd97128d7d18b5ea1ca9cd55c47187633e7e39cdd87c794b14349203f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Fra prove p=cΔV con c=(2/3) kPa/L. W=c(ΔV)²=6 J implica (ΔV)²=9 L². Le radici ±3 L soddisfano l’algebra; espansione e p positivi selezionano +3 L e p=2 kPa.",
+      "physicalAssumptions": "Pistone lento senza attrito; pressione resistente esterna totale positiva e costante in ciascuna prova, uguale alla pressione interna al limite quasi statico. Solo lavoro di frontiera, W positivo compiuto dal gas. Il ramo numerico è espansione ΔV>0; il caso 03 distingue esplicitamente il percorso inverso. kPa·L=J.",
+      "distractors": "Radice negativa rende negativi ΔV e p, fuori dominio; 9 è il quadrato e non l’incremento. Il vincolo è fra prove, non p(V) lungo la singola isobara.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Fra prove p=cΔV con c=(2/3) kPa/L. W=c(ΔV)²=6 J implica (ΔV)²=9 L². Le radici ±3 L soddisfano l’algebra; espansione e p positivi selezionano +3 L e p=2 kPa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "62a0bb12a3364245b58695d30a0a4b2c818bfb17a690517cacc99a6a17e0ca55",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "a060f76e833d2159eb98dda731c08b0d89a6880d",
+  "packageSha256": "175df717fa22aad8ff3cd7167b268a62a26b4d9d29a2e9a5b10ecf5596b43837",
+  "bindingsSha256": "b0a2de3fcdacdece9d0cdece9ec1a23cf1f8749867224ac4b5d90e93b60d9c70",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-01.json",
+    "reference": "Tutti gli 80 prompt originali U5-01 B153–157 letti integralmente prima delle candidate. Derivazioni primarie per ID persistite a SHA256 d83997999a82d8d5af694a69f3bad9ca41ecb7e3a7557d9dc24938312dde3641; nessuna chiave o risultato anticipato dall’autore. Tutti i 16 record finali di questo lotto letti integralmente, comprese alternative, formule, hint, feedback, metadata e didascalie; SVG XML e rendering nativo completo. Fonte e lezioni reali C3-L01/L02/L03/L06/L07 rilette; primario C3-L06 pertinente a lavoro di frontiera e convenzione del primo principio. Il caso 03 preserva il percorso inverso sulla stessa isobara con valori numerici espliciti; non si inferisce lavoro nullo per tutti i cicli. Package/binding/asset ROOT byte-identici al pin autore finale. Nessun import di authoring e nessun finding residuo."
+  }
+}

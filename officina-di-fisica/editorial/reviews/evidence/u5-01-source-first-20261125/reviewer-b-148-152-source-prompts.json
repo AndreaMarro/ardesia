@@ -1,0 +1,780 @@
+[
+  {
+    "id": "u5-temperature-difference-01",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nSono assegnati T_c = 40 °C e T_f = 20 °C. Quanto vale differenza di temperatura (ΔT) in K?\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è K.",
+    "reasoningTask": "direct_evaluation",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-02",
+    "prompt": "Nell’argomento «Intervallo termico fra due temperature Celsius» si considera differenza di temperatura. Quale delle unità proposte è dimensionalmente adatta a esprimere questa grandezza? Un eventuale prefisso cambia la scala numerica dell’unità, non la sua dimensione fisica.\n\nIpotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte.",
+    "reasoningTask": "dimensional_analysis",
+    "assumptions": [
+      "Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-03",
+    "prompt": "Si confrontano la scala Celsius e la scala assoluta kelvin.\n\nUn corpo passa da 20 °C a 40 °C. Quale affermazione è corretta?\n\nIpotesi e convenzioni: La conversione è T[K]=t[°C]+273,15.",
+    "reasoningTask": "conceptual_application",
+    "assumptions": [
+      "La conversione è T[K]=t[°C]+273,15."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-04",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nSi passa da T_c = 40 °C a T_c = 60 °C, mantenendo T_f = 20 °C e le altre condizioni fisse. Che cosa accade a differenza di temperatura?\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "controlled_comparison",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-05",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nLa misura di differenza di temperatura è 20 K; si conosce T_f = 20 °C. Determina temperatura del corpo più caldo nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è °C.",
+    "reasoningTask": "inverse_first_input",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-06",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nLa misura di differenza di temperatura è 20 K; si conosce T_c = 40 °C. Determina temperatura del corpo più freddo nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è °C.",
+    "reasoningTask": "inverse_second_input",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-07",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nNello stato A: T_c = 40 °C, T_f = 20 °C. Nello stato B rimane T_c = 40 °C, mentre T_f = 10 °C. Calcola il rapporto ΔT_B/ΔT_A.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "single_change_ratio",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-08",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nCon T_c = 40 °C e T_f = 20 °C, una soluzione propone ΔT_proposto = 40 K. Calcola lo scarto con segno «valore proposto meno valore corretto».\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "diagnose_numeric_error",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-09",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nSi misura ΔT e si conoscono le altre quantità della relazione ΔT[K] = T_c[°C]−T_f[°C]. Quale formula isola T_c nel ramo fisico dichiarato? Tutte le grandezze indicate come positive vanno mantenute tali.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "symbolic_inverse_first",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-10",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nDa uno stato A con grandezze T_c e T_f si passa a uno stato B in cui T_c_B = κ₁·T_c e T_f_B = κ₂·T_f. I fattori κ₁ e κ₂ sono positivi e i due stati rispettano entrambi il dominio del modello. Quale espressione dà il rapporto ΔT_B/ΔT_A? Nelle risposte, i simboli senza pedice indicano lo stato A.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "symbolic_joint_scaling",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-11",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nNello stato iniziale A si hanno T_c = 40 °C e T_f = 20 °C. Nello stato B si hanno T_c = 60 °C e T_f = 10 °C. Qual è il rapporto ΔT_B/ΔT_A? Qui cambiano entrambe le grandezze: ogni altro parametro resta fissato.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "joint_change_ratio",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-12",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nSi registrano due letture con uguale peso statistico. La prima usa T_c = 40 °C, T_f = 20 °C; la seconda usa T_c = 60 °C, T_f = 10 °C. Qual è la media aritmetica delle due letture di differenza di temperatura? Calcola prima ogni lettura: non è richiesta la risposta del modello alle medie degli ingressi.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "mean_of_outputs",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-13",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nLa condizione iniziale è T_c = 40 °C, T_f = 20 °C. Si impone poi T_c = 60 °C e si vuole che la grandezza d’uscita diventi 5/2 volte quella iniziale. Quale rapporto T_f_B/T_f_A è necessario?\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "compensated_change",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-14",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nUno strumento misura ΔT con legge S_strum = a_cal·ΔT, dove a_cal è un fattore di taratura positivo sconosciuto e non c’è offset. Nel riferimento T_c = 40 °C, T_f = 20 °C, legge S_strum=60. In una nuova prova legge S_strum=150 e si conosce T_f = 10 °C. Determina temperatura del corpo più caldo nella nuova prova. Le letture S_strum sono espresse nella stessa unità strumentale.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è °C.",
+    "reasoningTask": "reference_calibration",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-15",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nLo strumento obbedisce a S_strum = a_cal·ΔT + b_cal, con a_cal e b_cal ignoti ma costanti. Riferimento A: T_c = 40 °C, T_f = 20 °C, S_strum=41. Riferimento B: T_c = 60 °C, T_f = 10 °C, S_strum=101. Prova C: T_f = 20 °C, S_strum=81. Trova temperatura del corpo più caldo nella prova C. Le letture S_strum sono nella medesima unità strumentale; l’offset non è stato sottratto.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "affine_calibration",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-temperature-difference-16",
+    "prompt": "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.\n\nI valori numerici nelle unità dichiarate devono soddisfare T_c = 2·T_f. Il coefficiente del vincolo ha l’unità necessaria a collegare le due grandezze. L’uscita misurata è ΔT=20 K. Determina temperatura del corpo più freddo nel dominio fisico positivo.\n\nIpotesi e convenzioni: Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T_c > T_f e T_f > 0.",
+    "reasoningTask": "constrained_identifiability",
+    "assumptions": [
+      "Due corpi hanno temperature T_c e T_f in gradi Celsius, con T_c>T_f. Si richiede la differenza di temperatura T_c−T_f espressa in kelvin, senza calcolare rapporti fra temperature.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T_c > T_f e T_f > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-01",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nSono assegnati T = 300 K e V = 3 L. Quanto vale pressione assoluta (p) in kPa?\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "direct_evaluation",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-02",
+    "prompt": "Nell’argomento «Pressione di un campione ideale a quantità fissata» si considera pressione assoluta. Quale delle unità proposte è dimensionalmente adatta a esprimere questa grandezza? Un eventuale prefisso cambia la scala numerica dell’unità, non la sua dimensione fisica.\n\nIpotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte.",
+    "reasoningTask": "dimensional_analysis",
+    "assumptions": [
+      "Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-03",
+    "prompt": "Il gas è un sistema chiuso e gli stati iniziale e finale sono stati di equilibrio.\n\nConoscere soltanto gli stati iniziale e finale di un gas ideale tramite p,V,T permette di stabilire sempre quanto calore è stato scambiato?\n\nIpotesi e convenzioni: Si usa lavoro positivo se compiuto dal gas; non cambiano energia cinetica o potenziale macroscopica.",
+    "reasoningTask": "conceptual_application",
+    "assumptions": [
+      "Si usa lavoro positivo se compiuto dal gas; non cambiano energia cinetica o potenziale macroscopica."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-04",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nSi passa da T = 300 K a T = 600 K, mantenendo V = 3 L e le altre condizioni fisse. Che cosa accade a pressione assoluta?\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "controlled_comparison",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-05",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nLa misura di pressione assoluta è 100 kPa; si conosce V = 3 L. Determina temperatura assoluta nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è K.",
+    "reasoningTask": "inverse_first_input",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-06",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nLa misura di pressione assoluta è 100 kPa; si conosce T = 300 K. Determina volume del gas nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è L.",
+    "reasoningTask": "inverse_second_input",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-07",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nNello stato A: T = 300 K, V = 3 L. Nello stato B rimane T = 300 K, mentre V = 6 L. Calcola il rapporto p_B/p_A.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "single_change_ratio",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-08",
+    "prompt": "Si confrontano il modello del gas ideale e un gas reale in una sola fase. Il confronto qualitativo estende una classe osservata nella prova 2025; non si richiede una nuova equazione di stato dei gas reali.\n\nNel modello ideale le particelle sono trattate come puntiformi e si trascurano le interazioni reciproche salvo gli urti. Perché un gas reale può discostarsi da pV=nRT quando la densità diventa grande?\n\nIpotesi e convenzioni: Non si attraversa una transizione di fase; le ipotesi del modello ideale sono esplicitate nel testo.",
+    "reasoningTask": "provided_real_ideal_assumptions",
+    "assumptions": [
+      "Non si attraversa una transizione di fase; le ipotesi del modello ideale sono esplicitate nel testo."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-09",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nSi misura p e si conoscono le altre quantità della relazione pV=nRT; con nR=1 J/K, p[kPa]=T[K]/V[L]. Quale formula isola T nel ramo fisico dichiarato? Tutte le grandezze indicate come positive vanno mantenute tali.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "symbolic_inverse_first",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-10",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nDa uno stato A con grandezze T e V si passa a uno stato B in cui T_B = κ₁·T e V_B = κ₂·V. I fattori κ₁ e κ₂ sono positivi e i due stati rispettano entrambi il dominio del modello. Quale espressione dà il rapporto p_B/p_A? Nelle risposte, i simboli senza pedice indicano lo stato A.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "symbolic_joint_scaling",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-11",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nNello stato iniziale A si hanno T = 300 K e V = 3 L. Nello stato B si hanno T = 1 K e V = 1 L. Qual è il rapporto p_B/p_A? Qui cambiano entrambe le grandezze: ogni altro parametro resta fissato.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "joint_change_ratio",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-12",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nSi registrano due letture con uguale peso statistico. La prima usa T = 300 K, V = 3 L; la seconda usa T = 1 K, V = 1 L. Qual è la media aritmetica delle due letture di pressione assoluta? Calcola prima ogni lettura: non è richiesta la risposta del modello alle medie degli ingressi.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "mean_of_outputs",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-13",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nLa condizione iniziale è T = 300 K, V = 3 L. Si impone poi T = 1 K e si vuole che la grandezza d’uscita diventi 1/100 volte quella iniziale. Quale rapporto V_B/V_A è necessario?\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "compensated_change",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-14",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nUno strumento misura p con legge S_strum = a_cal·p, dove a_cal è un fattore di taratura positivo sconosciuto e non c’è offset. Nel riferimento T = 300 K, V = 3 L, legge S_strum=300. In una nuova prova legge S_strum=3 e si conosce V = 1 L. Determina temperatura assoluta nella nuova prova. Le letture S_strum sono espresse nella stessa unità strumentale.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è K.",
+    "reasoningTask": "reference_calibration",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-15",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nLo strumento obbedisce a S_strum = a_cal·p + b_cal, con a_cal e b_cal ignoti ma costanti. Riferimento A: T = 300 K, V = 3 L, S_strum=201. Riferimento B: T = 1 K, V = 1 L, S_strum=3. Prova C: V = 3 L, S_strum=401. Trova temperatura assoluta nella prova C. Le letture S_strum sono nella medesima unità strumentale; l’offset non è stato sottratto.\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "affine_calibration",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-ideal-gas-pressure-16",
+    "prompt": "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.\n\nI valori numerici nelle unità dichiarate devono soddisfare T = 100·V. Il coefficiente del vincolo ha l’unità necessaria a collegare le due grandezze. Si misura inoltre p=100 kPa. Quante coppie di valori positivi sono determinate da questi dati, nel dominio dichiarato?\n\nIpotesi e convenzioni: Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: T > 0 e V > 0.",
+    "reasoningTask": "constrained_identifiability",
+    "assumptions": [
+      "Un campione chiuso di gas ideale ha prodotto nR=1 J/K, costante. La temperatura assoluta è T K e il volume V L. Si cerca la pressione assoluta p in kPa. La quantità nR è un dato del campione, non una nuova costante universale.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: T > 0 e V > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-01",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nSono assegnati p = 80 kPa e T = 320 K. Quanto vale densità del gas (ρ) in g/L?\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è g/L.",
+    "reasoningTask": "direct_evaluation",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-02",
+    "prompt": "Nell’argomento «Densità di un gas dal suo stato» si considera densità del gas. Quale delle unità proposte è dimensionalmente adatta a esprimere questa grandezza? Un eventuale prefisso cambia la scala numerica dell’unità, non la sua dimensione fisica.\n\nIpotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte.",
+    "reasoningTask": "dimensional_analysis",
+    "assumptions": [
+      "Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte."
+    ]
+  },
+  {
+    "id": "u5-gas-density-03",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nUsando i simboli definiti nel testo, quale espressione fornisce correttamente ρ nelle unità indicate? I coefficienti fissi sono già compresi nelle espressioni.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "model_identification",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-04",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nSi passa da p = 80 kPa a p = 160 kPa, mantenendo T = 320 K e le altre condizioni fisse. Che cosa accade a densità del gas?\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "controlled_comparison",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-05",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nLa misura di densità del gas è 1 g/L; si conosce T = 320 K. Determina pressione assoluta nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "inverse_first_input",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-06",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nLa misura di densità del gas è 1 g/L; si conosce p = 80 kPa. Determina temperatura assoluta nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è K.",
+    "reasoningTask": "inverse_second_input",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-07",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nNello stato A: p = 80 kPa, T = 320 K. Nello stato B rimane p = 80 kPa, mentre T = 160 K. Calcola il rapporto ρ_B/ρ_A.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "single_change_ratio",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-08",
+    "prompt": "Questo approfondimento riprende una classe di abilità osservata nella prova 2025. La legge microscopica necessaria è fornita nella domanda; non è richiesta come formula aggiuntiva da memorizzare per il nucleo del syllabus 2026.\n\nLa temperatura passa da 300 K a 900 K. Si fornisce ⟨K_trasl⟩=(3/2)k_B T per una molecola del gas ideale classico. Quale rapporto ⟨K_trasl⟩_finale/⟨K_trasl⟩_iniziale si ottiene?\n\nIpotesi e convenzioni: Gas ideale classico in equilibrio; si considera la sola energia cinetica traslazionale media per molecola; usare kelvin.",
+    "reasoningTask": "provided_kinetic_temperature_ratio",
+    "assumptions": [
+      "Gas ideale classico in equilibrio; si considera la sola energia cinetica traslazionale media per molecola; usare kelvin."
+    ]
+  },
+  {
+    "id": "u5-gas-density-09",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nSi misura ρ e si conoscono le altre quantità della relazione ρ=m/V=nM/V=pM/(RT)=4p/T g/L. Quale formula isola p nel ramo fisico dichiarato? Tutte le grandezze indicate come positive vanno mantenute tali.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "symbolic_inverse_first",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-10",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nDa uno stato A con grandezze p e T si passa a uno stato B in cui p_B = κ₁·p e T_B = κ₂·T. I fattori κ₁ e κ₂ sono positivi e i due stati rispettano entrambi il dominio del modello. Quale espressione dà il rapporto ρ_B/ρ_A? Nelle risposte, i simboli senza pedice indicano lo stato A.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "symbolic_joint_scaling",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-11",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nNello stato iniziale A si hanno p = 80 kPa e T = 320 K. Nello stato B si hanno p = 160 kPa e T = 160 K. Qual è il rapporto ρ_B/ρ_A? Qui cambiano entrambe le grandezze: ogni altro parametro resta fissato.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "joint_change_ratio",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-12",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nSi registrano due letture con uguale peso statistico. La prima usa p = 80 kPa, T = 320 K; la seconda usa p = 160 kPa, T = 160 K. Qual è la media aritmetica delle due letture di densità del gas? Calcola prima ogni lettura: non è richiesta la risposta del modello alle medie degli ingressi.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "mean_of_outputs",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-13",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nLa condizione iniziale è p = 80 kPa, T = 320 K. Si impone poi p = 160 kPa e si vuole che la grandezza d’uscita diventi 4 volte quella iniziale. Quale rapporto T_B/T_A è necessario?\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "compensated_change",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-14",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nUno strumento misura ρ con legge S_strum = a_cal·ρ, dove a_cal è un fattore di taratura positivo sconosciuto e non c’è offset. Nel riferimento p = 80 kPa, T = 320 K, legge S_strum=3. In una nuova prova legge S_strum=12 e si conosce T = 160 K. Determina pressione assoluta nella nuova prova. Le letture S_strum sono espresse nella stessa unità strumentale.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "reference_calibration",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-15",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nLo strumento obbedisce a S_strum = a_cal·ρ + b_cal, con a_cal e b_cal ignoti ma costanti. Riferimento A: p = 80 kPa, T = 320 K, S_strum=3. Riferimento B: p = 160 kPa, T = 160 K, S_strum=9. Prova C: T = 320 K, S_strum=5. Trova pressione assoluta nella prova C. Le letture S_strum sono nella medesima unità strumentale; l’offset non è stato sottratto.\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "affine_calibration",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-gas-density-16",
+    "prompt": "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.\n\nI valori numerici nelle unità dichiarate devono soddisfare p = 1/4·T. Il coefficiente del vincolo ha l’unità necessaria a collegare le due grandezze. Si misura inoltre ρ=1 g/L. Quante coppie di valori positivi sono determinate da questi dati, nel dominio dichiarato?\n\nIpotesi e convenzioni: Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p > 0 e T > 0.",
+    "reasoningTask": "constrained_identifiability",
+    "assumptions": [
+      "Un gas ideale ha massa molare M=32 g/mol. Usare R=8 J/(mol K), approssimazione prescritta per il calcolo mentale. La pressione assoluta p è in kPa e la temperatura T in K. Si richiede la densità in g/L.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p > 0 e T > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-01",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nSono assegnati p_1 = 100 kPa e p_2 = 200 kPa. Quanto vale pressione comune finale (p_f) in kPa?\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "direct_evaluation",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-02",
+    "prompt": "Nell’argomento «Equilibrio tra due recipienti a uguale temperatura» si considera pressione comune finale. Quale delle unità proposte è dimensionalmente adatta a esprimere questa grandezza? Un eventuale prefisso cambia la scala numerica dell’unità, non la sua dimensione fisica.\n\nIpotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte.",
+    "reasoningTask": "dimensional_analysis",
+    "assumptions": [
+      "Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-03",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nUsando i simboli definiti nel testo, quale espressione fornisce correttamente p_f nelle unità indicate? I coefficienti fissi sono già compresi nelle espressioni.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "model_identification",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-04",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nSi passa da p_1 = 100 kPa a p_1 = 200 kPa, mantenendo p_2 = 200 kPa e le altre condizioni fisse. Che cosa accade a pressione comune finale?\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "controlled_comparison",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-05",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nLa misura di pressione comune finale è 150 kPa; si conosce p_2 = 200 kPa. Determina pressione iniziale nel primo recipiente nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "inverse_first_input",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-06",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura iniziale, ma a pressioni iniziali diverse. Si apre il collegamento e si mantiene uniforme la temperatura, fino all’equilibrio.\n\nDopo il collegamento e il raggiungimento dell’equilibrio, quale frazione del numero totale di molecole si trova in ciascuno dei due recipienti?\n\nIpotesi e convenzioni: Volume del collegamento trascurabile; nessuna perdita di gas; equilibrio finale con pressione e temperatura comuni.",
+    "reasoningTask": "particle_partition_equal_volumes",
+    "assumptions": [
+      "Volume del collegamento trascurabile; nessuna perdita di gas; equilibrio finale con pressione e temperatura comuni."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-07",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nNello stato A: p_1 = 100 kPa, p_2 = 200 kPa. Nello stato B rimane p_1 = 100 kPa, mentre p_2 = 300 kPa. Calcola il rapporto p_f_B/p_f_A.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "single_change_ratio",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-08",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nCon p_1 = 100 kPa e p_2 = 200 kPa, una soluzione propone p_f_proposto = 300 kPa. Calcola lo scarto con segno «valore proposto meno valore corretto».\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "diagnose_numeric_error",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-09",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nSi misura p_f e si conoscono le altre quantità della relazione n_totRT=p_1V+p_2V=p_f(2V); p_f=(p_1+p_2)/2. Quale formula isola p_1 nel ramo fisico dichiarato? Tutte le grandezze indicate come positive vanno mantenute tali.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "symbolic_inverse_first",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-10",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nDa uno stato A con grandezze p_1 e p_2 si passa a uno stato B in cui p_1_B = κ₁·p_1 e p_2_B = κ₂·p_2. I fattori κ₁ e κ₂ sono positivi e i due stati rispettano entrambi il dominio del modello. Quale espressione dà il rapporto p_f_B/p_f_A? Nelle risposte, i simboli senza pedice indicano lo stato A.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "symbolic_joint_scaling",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-11",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nNello stato iniziale A si hanno p_1 = 100 kPa e p_2 = 200 kPa. Nello stato B si hanno p_1 = 200 kPa e p_2 = 300 kPa. Qual è il rapporto p_f_B/p_f_A? Qui cambiano entrambe le grandezze: ogni altro parametro resta fissato.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "joint_change_ratio",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-12",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nSi registrano due letture con uguale peso statistico. La prima usa p_1 = 100 kPa, p_2 = 200 kPa; la seconda usa p_1 = 200 kPa, p_2 = 300 kPa. Qual è la media aritmetica delle due letture di pressione comune finale? Calcola prima ogni lettura: non è richiesta la risposta del modello alle medie degli ingressi.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "mean_of_outputs",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-13",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nLa condizione iniziale è p_1 = 100 kPa, p_2 = 200 kPa. Si impone poi p_1 = 200 kPa e si vuole che la grandezza d’uscita diventi 5/3 volte quella iniziale. Quale rapporto p_2_B/p_2_A è necessario?\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "compensated_change",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-14",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nUno strumento misura p_f con legge S_strum = a_cal·p_f, dove a_cal è un fattore di taratura positivo sconosciuto e non c’è offset. Nel riferimento p_1 = 100 kPa, p_2 = 200 kPa, legge S_strum=450. In una nuova prova legge S_strum=750 e si conosce p_2 = 300 kPa. Determina pressione iniziale nel primo recipiente nella nuova prova. Le letture S_strum sono espresse nella stessa unità strumentale.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è kPa.",
+    "reasoningTask": "reference_calibration",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-15",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nLo strumento obbedisce a S_strum = a_cal·p_f + b_cal, con a_cal e b_cal ignoti ma costanti. Riferimento A: p_1 = 100 kPa, p_2 = 200 kPa, S_strum=301. Riferimento B: p_1 = 200 kPa, p_2 = 300 kPa, S_strum=501. Prova C: p_2 = 200 kPa, S_strum=401. Trova pressione iniziale nel primo recipiente nella prova C. Le letture S_strum sono nella medesima unità strumentale; l’offset non è stato sottratto.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "affine_calibration",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-chambers-16",
+    "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.\n\nI valori numerici nelle unità dichiarate devono soddisfare p_1 = 1/2·p_2. Il coefficiente del vincolo ha l’unità necessaria a collegare le due grandezze. L’uscita misurata è p_f=150 kPa. Determina pressione iniziale nel secondo recipiente nel dominio fisico positivo.\n\nIpotesi e convenzioni: Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: p_1 > 0 e p_2 > 0.",
+    "reasoningTask": "constrained_identifiability",
+    "assumptions": [
+      "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale alla stessa temperatura, con pressioni assolute p_1 e p_2 in kPa. Si apre il collegamento e si mantiene la temperatura iniziale. Volume del collegamento trascurabile.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: p_1 > 0 e p_2 > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-01",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nSono assegnati W_2 = 10 J e r = 2. Quanto vale lavoro compiuto dal gas (W) in J?\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è J.",
+    "reasoningTask": "direct_evaluation",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-02",
+    "prompt": "Nell’argomento «Lavoro in espansione reversibile misurato per raddoppi» si considera lavoro compiuto dal gas. Quale delle unità proposte è dimensionalmente adatta a esprimere questa grandezza? Un eventuale prefisso cambia la scala numerica dell’unità, non la sua dimensione fisica.\n\nIpotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte.",
+    "reasoningTask": "dimensional_analysis",
+    "assumptions": [
+      "Si chiede un’unità dimensionalmente compatibile con la grandezza indicata, fra le cinque alternative proposte."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-03",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nUsando i simboli definiti nel testo, quale espressione fornisce correttamente W nelle unità indicate? I coefficienti fissi sono già compresi nelle espressioni.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "model_identification",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-04",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nSi passa da W_2 = 10 J a W_2 = 20 J, mantenendo r = 2 e le altre condizioni fisse. Che cosa accade a lavoro compiuto dal gas?\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "controlled_comparison",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-05",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nLa misura di lavoro compiuto dal gas è 10 J; si conosce r = 2. Determina lavoro del gas in un raddoppio di volume nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è J.",
+    "reasoningTask": "inverse_first_input",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-06",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nLa misura di lavoro compiuto dal gas è 10 J; si conosce W_2 = 10 J. Determina rapporto finale/iniziale dei volumi nelle unità indicate. Si considera il ramo fisico positivo coerente con le ipotesi.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "inverse_second_input",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-07",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nNello stato A: W_2 = 10 J, r = 2. Nello stato B rimane W_2 = 10 J, mentre r = 4. Calcola il rapporto W_B/W_A.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "single_change_ratio",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-08",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nCon W_2 = 10 J e r = 2, una soluzione propone W_proposto = 20 J. Calcola lo scarto con segno «valore proposto meno valore corretto».\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "diagnose_numeric_error",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-09",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nSi misura W e si conoscono le altre quantità della relazione W = nRT ln r = W_2 ln(r)/ln2. Quale formula isola W_2 nel ramo fisico dichiarato? Tutte le grandezze indicate come positive vanno mantenute tali.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "symbolic_inverse_first",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-10",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nDa uno stato A con grandezze W_2 e r si passa a uno stato B in cui W_2_B = κ₁·W_2 e r_B = κ₂·r. I fattori κ₁ e κ₂ sono positivi e i due stati rispettano entrambi il dominio del modello. Quale espressione dà il rapporto W_B/W_A? Nelle risposte, i simboli senza pedice indicano lo stato A.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "symbolic_joint_scaling",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-11",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nNello stato iniziale A si hanno W_2 = 10 J e r = 2. Nello stato B si hanno W_2 = 20 J e r = 4. Qual è il rapporto W_B/W_A? Qui cambiano entrambe le grandezze: ogni altro parametro resta fissato.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "joint_change_ratio",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-12",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nSi registrano due letture con uguale peso statistico. La prima usa W_2 = 10 J, r = 2; la seconda usa W_2 = 20 J, r = 4. Qual è la media aritmetica delle due letture di lavoro compiuto dal gas? Calcola prima ogni lettura: non è richiesta la risposta del modello alle medie degli ingressi.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "mean_of_outputs",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-13",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nLa condizione iniziale è W_2 = 10 J, r = 2. Si impone poi W_2 = 20 J e si vuole che la grandezza d’uscita diventi 4 volte quella iniziale. Quale rapporto r_B/r_A è necessario?\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è 1.",
+    "reasoningTask": "compensated_change",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-14",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nUno strumento misura W con legge S_strum = a_cal·W, dove a_cal è un fattore di taratura positivo sconosciuto e non c’è offset. Nel riferimento W_2 = 10 J, r = 2, legge S_strum=30. In una nuova prova legge S_strum=120 e si conosce r = 4. Determina lavoro del gas in un raddoppio di volume nella nuova prova. Le letture S_strum sono espresse nella stessa unità strumentale.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.\nInserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta è J.",
+    "reasoningTask": "reference_calibration",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-15",
+    "prompt": "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.\n\nLo strumento obbedisce a S_strum = a_cal·W + b_cal, con a_cal e b_cal ignoti ma costanti. Riferimento A: W_2 = 10 J, r = 2, S_strum=21. Riferimento B: W_2 = 20 J, r = 4, S_strum=81. Prova C: r = 2, S_strum=41. Trova lavoro del gas in un raddoppio di volume nella prova C. Le letture S_strum sono nella medesima unità strumentale; l’offset non è stato sottratto.\n\nIpotesi e convenzioni: Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas. I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione. I valori numerici rispettano: W_2 > 0 e r > 0.",
+    "reasoningTask": "affine_calibration",
+    "assumptions": [
+      "Un gas ideale compie una trasformazione isoterma reversibile. Per questo campione e questa temperatura, il lavoro necessario a raddoppiare il volume è W_2 J. Il rapporto finale/iniziale dei volumi è r>0. Si fornisce W=nRT ln r e W_2=nRT ln2; W è positivo se compiuto dal gas.",
+      "I valori numerici della formula sono riferiti esclusivamente alle unità dichiarate; non si mescolano unità senza conversione.",
+      "I valori numerici rispettano: W_2 > 0 e r > 0."
+    ]
+  },
+  {
+    "id": "u5-isothermal-work-16",
+    "prompt": "Un campione chiuso di gas ideale percorre un ciclo composto da due isoterme e due isocore. Si fornisce la legge del lavoro isoterma reversibile W=nRT ln(V_f/V_i).\n\nIl gas si espande reversibilmente da V a 4V alla temperatura T_h, poi si raffredda a volume costante fino a T_h/2. Viene compresso reversibilmente da 4V a V a T_h/2 e infine torna alla temperatura T_h a volume costante. Il lavoro netto compiuto dal gas nel ciclo è 12 J. Quanto calore assorbe durante la sola isoterma calda?\n\nIpotesi e convenzioni: Lavoro positivo se compiuto dal gas; solo lavoro di frontiera; le isocore non compiono lavoro; i calori delle isocore non sono inclusi nella quantità richiesta.",
+    "reasoningTask": "composed_isotherms_cycle_work",
+    "assumptions": [
+      "Lavoro positivo se compiuto dal gas; solo lavoro di frontiera; le isocore non compiono lavoro; i calori delle isocore non sono inclusi nella quantità richiesta."
+    ]
+  }
+]
