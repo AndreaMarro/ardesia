@@ -1,0 +1,26 @@
+{
+  "scope": "RED_original_verifiers_accept_nonfinite_or_binary_float",
+  "baselineCommit": "399c2b8525d327d8f21fe7ae274e615a8e8f6d24",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_u6_circuits_200_204_independent.py",
+    "-k",
+    "test_public_math_helpers_reject_nonfinite_nonreal_binary_float",
+    "-v"
+  ],
+  "terminalExitCode": 1,
+  "terminalSignal": null,
+  "logSha256": "abafe5b81272d452ee9805780cdf1b8344bc320137fcae35a12a35df8a65c97a",
+  "scientificApproval": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "rawTextSha256": "f3baf9faed43f5e2834c5c74c928ead153bd7f7086277fe0157019e9b1e37a6b",
+  "logFile": "red-unittest.raw.json",
+  "logStorage": "verbatim UTF-8 in JSON; original trailing space retained inside string"
+}

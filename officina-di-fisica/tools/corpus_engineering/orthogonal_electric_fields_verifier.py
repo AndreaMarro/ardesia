@@ -50,25 +50,58 @@ DECIMAL_REGRESSION_NUMBER=8
 @lru_cache(maxsize=1)
 def source_records():
     return {r["id"]:r for r in json.loads(git_bytes(Path(__file__).resolve().parents[3],SOURCE_REF,SOURCE_PATH))}
+def _finite_exact(value):
+    """Accept explicit finite real exact numbers, never binary floats or symbols."""
+    if type(value) is int:
+        exact=sp.Integer(value)
+    elif isinstance(value,Fraction):
+        exact=sp.Rational(value.numerator,value.denominator)
+    elif isinstance(value,sp.Expr):
+        exact=value
+    else:
+        raise ValueError('Finite real exact numeric input required; binary floats are forbidden')
+    if (exact.is_number is not True or exact.free_symbols or exact.atoms(sp.Float)
+        or exact.is_real is not True or exact.is_finite is not True):
+        raise ValueError('Finite real exact numeric input required; binary floats are forbidden')
+    return exact
+
+def _rational_exact(value):
+    exact=_finite_exact(value)
+    if exact.is_Rational is not True:
+        raise ValueError('Exact rational input required by this SI arithmetic helper')
+    return Fraction(int(exact.p),int(exact.q))
+
 def equivalent_literal(wanted):
-    wanted=sp.Rational(wanted)
+    wanted=sp.Rational(_rational_exact(wanted))
     return f"{2*wanted.p}/{2*wanted.q}"
 def calibrate(first,second,reference_reading,new_reading,reading_a,reading_b,third_reading,unit):
-    q,z=sp.symbols("q z",real=True)
-    first,second=sp.Rational(first),sp.Rational(second)
-    gain=sp.cancel(sp.Rational(reference_reading)/first)
+    first,second,reference_reading,new_reading,reading_a,reading_b,third_reading=map(
+        _rational_exact,(first,second,reference_reading,new_reading,reading_a,reading_b,third_reading))
+    if first<=0 or second<=0 or first==second:
+        raise ValueError('Two distinct positive finite physical calibration references required')
+    if not isinstance(unit,str) or not unit:
+        raise ValueError('Explicit physical unit required for calibration')
+    gain=sp.Rational(reference_reading)/first
+    affine_gain=sp.Rational(reading_b-reading_a)/(second-first)
+    if gain<=0 or affine_gain<=0:
+        raise ValueError('Positive finite proportional and affine calibration gains required')
+    offset=sp.cancel(reading_a-affine_gain*first)
     decoded=sp.cancel(sp.Rational(new_reading)/gain)
-    fit=sp.solve([sp.Eq(q*first+z,reading_a),sp.Eq(q*second+z,reading_b)],(q,z))
-    assert first!=second and gain>0 and fit[q]>0
-    physical=(SI.Quantity(Fraction(reference_reading),"")/SI.Quantity(Fraction(first),unit)).to("1/("+unit+")")
-    assert sp.simplify(sp.Rational(physical.magnitude)-gain)==0
-    return gain,fit[z],decoded,sp.cancel((third_reading-fit[z])/fit[q])
+    third=sp.cancel((third_reading-offset)/affine_gain)
+    if decoded<=0 or third<=0:
+        raise ValueError('Decoded physical calibration values must be strictly positive')
+    physical=(SI.Quantity(reference_reading,'')/SI.Quantity(first,unit)).to('1/('+unit+')')
+    if sp.simplify(sp.Rational(physical.magnitude)-gain)!=0:
+        raise ValueError('Independent calibration dimensions inconsistent')
+    return gain,offset,decoded,third
 def parse_option(number,option):
+    if type(number) is not int or not 1<=number<=16 or not isinstance(option,str):raise ValueError('Reviewed option number and exact string required')
     suffix=OPTION_SUFFIX.get(number,"")
     if suffix and not option.endswith(suffix):raise ValueError("Required literal physical unit absent")
     return parse_literal(option.removesuffix(suffix) if suffix else option)
 
 def alternative_identity(option):
+    if not isinstance(option,str):raise ValueError('Exact option string required')
     for suffix in (' N/C',' nC',' mC',' ms',' mm²',' Ω',' V',' A',' m','°',''):
         if suffix and not option.endswith(suffix):continue
         try:return suffix,parse_literal(option.removesuffix(suffix) if suffix else option)
@@ -76,21 +109,25 @@ def alternative_identity(option):
     return None
 
 def result(first,second):
-    first,second=map(Fraction,(first,second))
+    first,second=tuple(_finite_exact(x) for x in (first,second))
+    first,second=map(_rational_exact,(first,second))
     if min(first,second)<=0:raise ValueError('Two positive perpendicular field components required')
     squares=(SI.Quantity(first,'newton/coulomb')**2+SI.Quantity(second,'newton/coulomb')**2).to('(newton/coulomb)**2')
     return sp.sqrt(sp.Rational(squares.magnitude))
 def inverse_component(total,known):
-    total,known=map(sp.sympify,(total,known))
+    total,known=tuple(_finite_exact(x) for x in (total,known))
+    total,known=map(_finite_exact,(total,known))
     if total.is_positive is not True or known.is_positive is not True or not total>known:
         raise ValueError('Total strictly larger than the known positive component required')
     return sp.sqrt(sp.simplify(total**2-known**2))
 def scaled(first,second,a,b):
-    a,b=map(Fraction,(a,b))
+    first,second,a,b=tuple(_finite_exact(x) for x in (first,second,a,b))
+    a,b=map(_rational_exact,(a,b))
     if min(a,b)<=0:raise ValueError('Positive preparation factors required')
     return sp.simplify(result(a*first,b*second)/result(first,second))
 def constrained(total):
-    total=Fraction(total)
+    total=_finite_exact(total)
+    total=_rational_exact(total)
     if total<=0:raise ValueError('Positive total field required')
     return 4*total/5
 @lru_cache(maxsize=1)

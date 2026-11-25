@@ -146,4 +146,27 @@ class CircuitsIndependent(unittest.TestCase):
     if isinstance(node,ast.Import):imports.extend(x.name for x in node.names)
     if isinstance(node,ast.ImportFrom):imports.append(node.module or '')
    self.assertFalse(any('authoring' in x for x in imports))
+ def test_public_math_helpers_reject_nonfinite_nonreal_binary_float(self):
+  z,v,c,o,w=(r[0] for r in self.rows)
+  cases=[(z.result,(1,4)),(z.inverse_first,(Fraction(1,2),4)),(z.inverse_second,(Fraction(1,2),1)),(z.scaled,(1,4,2,3)),(z.positions,(1,4,3)),(z.constrained_value,(4,)),(v.result,(3,4)),(v.inverse_component,(5,4)),(v.scaled,(3,4,2,3)),(v.constrained,(5,)),(c.result,(6,2)),(c.inverse_charge,(3,2)),(c.inverse_duration,(3,6)),(c.scaled,(6,2,2,3)),(c.magnetic_tangent,(1,1,1)),(o.result,(12,3)),(o.inverse_voltage,(4,3)),(o.inverse_resistance,(4,12)),(o.scaled,(12,3,2,3)),(o.constrained_value,(3,)),(w.result,(100,2)),(w.inverse_length,(1,2)),(w.inverse_area,(1,100)),(w.scaled,(100,2,2,3)),(w.constrained_value,(2,))]
+  for m,_,_ in self.rows:
+   cases.extend([(m.equivalent_literal,(Fraction(1,2),)),(m.calibrate,(1,2,3,6,3,5,7,'dimensionless'))])
+  forbidden=[sp.oo,-sp.oo,sp.zoo,sp.I,sp.nan,0.1,sp.Float('0.1'),sp.Add(sp.sqrt(2),sp.Float('0.1'),evaluate=False),1+sp.I,float('inf'),float('nan'),sp.Symbol('unknown',positive=True),True]
+  for fn,args in cases:
+   count=len(args)-1 if fn.__name__=='calibrate' else len(args)
+   for position in range(count):
+    for bad in forbidden:
+     mutated=list(args);mutated[position]=bad
+     with self.subTest(module=fn.__module__,function=fn.__name__,position=position,input=repr(bad)):
+      with self.assertRaises(ValueError):fn(*mutated)
+  # An exact algebraic branch remains usable; no rational approximation or float is needed.
+  self.assertEqual(z.inverse_first(sp.sqrt(2),1),2)
+  self.assertEqual(v.inverse_component(sp.sqrt(17),4),1)
+ def test_calibration_explicit_domain_guards_not_assertions(self):
+  for m,_,_ in self.rows:
+   for args in [(0,2,3,6,3,5,7),(1,1,3,6,3,5,7),(1,2,0,6,3,5,7),(1,2,3,6,5,3,7),(1,2,3,0,3,5,7),(1,2,3,6,3,5,0)]:
+    with self.subTest(module=m.FAMILY,args=args):
+     with self.assertRaises(ValueError):m.calibrate(*args,'dimensionless')
+   tree=ast.parse(Path(m.__file__).read_text());fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='calibrate')
+   self.assertFalse(any(isinstance(n,ast.Assert) for n in ast.walk(fn)))
 if __name__=='__main__':unittest.main()
