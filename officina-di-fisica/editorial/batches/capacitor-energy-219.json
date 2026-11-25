@@ -1,0 +1,1158 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-capacitor-energy-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21901,
+      "title": "L’energia cresce mentre si carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Con C=2 μF, V=2 V, quanto vale U in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A capacità costante, quando si aggiunge carica la tensione cresce da zero al valore finale. Il lavoro immagazzinato è l’area sotto V(Q): un triangolo, perciò U=QV/2=CV²/2. Con 2 μF e 2 V si ottiene 2·4/2=4 μJ. Non si moltiplica tutta la carica per la tensione finale senza il fattore metà."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/51b45c0be6692db4b01464eeedd87016c9e408532973692269525eef48ba2f50",
+          "text": "L’area nel grafico V(Q) è triangolare e vale l’energia immagazzinata, con capacità fissa. Il pannello dei dipoli è un caso concettuale distinto. Le barre finali mostrano energie di preparazioni con entrambe le variabili diverse."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\frac12CV^2"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac12(2\\,\\mu\\mathrm F)(2\\,\\mathrm V)^2"
+        },
+        {
+          "type": "formula",
+          "text": " U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Otto μJ omette il fattore 1/2. Due μJ perde il quadrato della tensione in questa sostituzione. Zero confonde carica netta nulla delle due piastre con energia del campo; un’energia negativa contraddice C>0 e V²>0."
+        }
+      ],
+      "hints": [
+        "Pensa all’area triangolare sotto la tensione crescente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto μJ omette il fattore 1/2. Due μJ perde il quadrato della tensione in questa sostituzione. Zero confonde carica netta nulla delle due piastre con energia del campo; un’energia negativa contraddice C>0 e V²>0.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21902,
+      "title": "L’unità dell’energia di campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 1,
+      "prompt": "Quale unità è dimensionalmente corretta per l’energia U immagazzinata in un condensatore?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "W",
+          "C",
+          "F",
+          "V"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia ha unità joule. Nella formula CV²/2, F·V²=(C/V)V²=C·V=J. Con capacità in μF e tensione in V il risultato numerico è in μJ, senza ulteriori fattori di mille."
+        },
+        {
+          "type": "formula",
+          "text": "[U]=\\mathrm F\\cdot\\mathrm V^2"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm C\\cdot\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "W misura potenza, C carica, F capacità e V tensione. Il fattore 1/2 è puro e non cambia la dimensione; un prefisso cambia solo la scala."
+        }
+      ],
+      "hints": [
+        "Riduci il farad a coulomb per volt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura potenza, C carica, F capacità e V tensione. Il fattore 1/2 è puro e non cambia la dimensione; un prefisso cambia solo la scala.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21903,
+      "title": "Polarizzare un dielettrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L04",
+      "prerequisites": [
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 1,
+      "prompt": "Un dielettrico inizialmente neutro viene posto in un campo elettrico. Quale descrizione della polarizzazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Le cariche legate si spostano relativamente e possono orientarsi dipoli permanenti",
+          "Si creano nuove cariche nette nel materiale",
+          "Gli elettroni liberi scorrono necessariamente come in un metallo",
+          "Il campo nel dielettrico deve sempre annullarsi",
+          "Tutte le molecole acquistano la stessa carica positiva"
+        ],
+        "value": "Le cariche legate si spostano relativamente e possono orientarsi dipoli permanenti"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La polarizzazione è una redistribuzione locale di cariche legate: possono deformarsi le distribuzioni elettroniche rispetto ai nuclei e, se presenti, orientarsi dipoli permanenti. Non occorre trasferire carica libera attraverso tutto il materiale e non si crea carica netta. La carica netta Q_netto del campione rimane zero. Il campo interno non deve in generale essere nullo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/51b45c0be6692db4b01464eeedd87016c9e408532973692269525eef48ba2f50",
+          "text": "Nel pannello del dielettrico i dipoli allineati sono illustrativi: il campo può deformare distribuzioni legate e orientare dipoli permanenti, se presenti. Non si rappresentano elettroni che attraversano liberamente il campione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm netto}=0"
+        },
+        {
+          "type": "text",
+          "text": "La creazione di carica netta viola la conservazione nel campione isolato neutro. Un moto di cariche libere come in metallo non è la definizione di polarizzazione. Campo nullo è una proprietà del materiale conduttore in equilibrio, non universale per dielettrici. Molecole tutte positive caricherebbero il campione."
+        }
+      ],
+      "hints": [
+        "Distingui cariche legate e conduzione: una separazione locale non è carica netta creata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La creazione di carica netta viola la conservazione nel campione isolato neutro. Un moto di cariche libere come in metallo non è la definizione di polarizzazione. Campo nullo è una proprietà del materiale conduttore in equilibrio, non universale per dielettrici. Molecole tutte positive caricherebbero il campione.",
+        "target": "C4-L04"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21904,
+      "title": "Capacità dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. A usa C=2 μF, V=2 V. B usa C=1 μF alla stessa tensione imposta. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 μJ a 2 μJ",
+          "Da 4 μJ a 8 μJ",
+          "Resta 4 μJ",
+          "Da 4 μJ a 1 μJ",
+          "Da 4 μJ a 1/2 μJ"
+        ],
+        "value": "Da 4 μJ a 2 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa tensione, l’energia immagazzinata è lineare in C. Dimezzando la capacità, U_B=(1/2)·1·2² μJ=2 μJ. Non si conserva automaticamente l’energia del condensatore fra preparazioni col generatore che mantiene V; il bilancio completo includerebbe generatore ed eventuale lavoro meccanico."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=2\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Otto μJ inverte l’effetto di C. Quattro μJ impone conservazione dell’energia del solo condensatore senza giustificazione. Un μJ introduce un quadrato sulla capacità; mezzo μJ dimezza troppe volte."
+        }
+      ],
+      "hints": [
+        "Individua prima se il confronto mantiene V oppure Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto μJ inverte l’effetto di C. Quattro μJ impone conservazione dell’energia del solo condensatore senza giustificazione. Un μJ introduce un quadrato sulla capacità; mezzo μJ dimezza troppe volte.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21905,
+      "title": "L’inversa rispetto alla capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Si misura U=4 μJ e si conosce V=2 V. Quanto vale C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico per due e divido per V²: C=2 U/V². Con 4 μJ e 4 V² si ottiene 8/4=2 μF. Il divisore è positivo; reinserendo la capacità si recuperano 4 μJ."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac{2U}{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " C=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Un μF omette il due dell’inversa e darebbe 2 μJ. Quattro μF omette il quadrato nel denominatore e darebbe 8 μJ. Il reciproco 1/2 non è la capacità richiesta; un valore in μJ resta un’energia."
+        }
+      ],
+      "hints": [
+        "Il fattore 1/2 passa al numeratore quando isoli C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un μF omette il due dell’inversa e darebbe 2 μJ. Quattro μF omette il quadrato nel denominatore e darebbe 8 μJ. Il reciproco 1/2 non è la capacità richiesta; un valore in μJ resta un’energia.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21906,
+      "title": "La tensione richiede il ramo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Si misura U=4 μJ e si conosce C=2 μF. Quanto vale V?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge segue V²=2 U/C. Qui il rapporto è 4 V², dunque il modulo della tensione è 2 V. Il problema ha assegnato V>0, quindi si sceglie il ramo positivo. L’energia da sola non distinguerebbe i segni di una tensione orientata."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\frac{2U}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=4\\,\\mathrm V^2"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V copia V² senza prendere la radice.√2 V omette il fattore due e darebbe 2 μJ. −2 V ha la stessa energia ma viola il dominio positivo qui richiesto."
+        }
+      ],
+      "hints": [
+        "Isola V² e applica la condizione di segno dichiarata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V copia V² senza prendere la radice.√2 V omette il fattore due e darebbe 2 μJ. −2 V ha la stessa energia ma viola il dominio positivo qui richiesto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21907,
+      "title": "Tensione doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. A usa C=2 μF, V=2 V. B mantiene C=2 μF e porta V a 4 V. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione raddoppia, quindi il quadrato cresce di quattro. Le energie sono 4 e 16 μJ e il rapporto è quattro. Il raddoppio della carica a C costante non rende lineare l’energia nella tensione finale."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=16\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la carica anziché l’energia.1/4 e 1/2 invertono il confronto, con o senza il quadrato. Uno ignora la variazione di tensione."
+        }
+      ],
+      "hints": [
+        "Tieni la capacità fissa e applica il quadrato al solo fattore V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la carica anziché l’energia.1/4 e 1/2 invertono il confronto, con o senza il quadrato. Uno ignora la variazione di tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21908,
+      "title": "Lo scarto energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Con C=2 μF, V=2 V si propone U=8 μJ. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 μJ",
+          "−4 μJ",
+          "2",
+          "8 μJ",
+          "0 μJ"
+        ],
+        "value": "4 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il risultato corretto è 4 μJ. La proposta è maggiore di 8−4=4 μJ. Il rapporto due è puro e risponde a un’altra domanda. La proposta otto corrisponde al prodotto CV² senza il fattore 1/2."
+        },
+        {
+          "type": "formula",
+          "text": "U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta U=(8-4)\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−4 μJ scambia l’ordine, due confronta per divisione e otto μJ copia la proposta. Zero accetta un valore che non coincide con l’area triangolare del processo lineare ideale."
+        }
+      ],
+      "hints": [
+        "Mantieni l’unità di energia nella differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 μJ scambia l’ordine, due confronta per divisione e otto μJ copia la proposta. Zero accetta un valore che non coincide con l’area triangolare del processo lineare ideale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21909,
+      "title": "La formula inversa con le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. U, V sono noti. Quale relazione isola C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C = 2 U / V²",
+          "C = U / (2 V²)",
+          "C = 2 U / V",
+          "C = V² / (2 U)",
+          "C = 2 U V²"
+        ],
+        "value": "C = 2 U / V²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da 2 U=CV² si ricava C=2 U/V². J/V²=C/V=F: l’inversa conserva l’unità della capacità. Il valore V non è nullo e viene elevato al quadrato prima della divisione."
+        },
+        {
+          "type": "formula",
+          "text": "2U=CV^2"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{2U}{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [C]=\\mathrm{J/V^2}"
+        },
+        {
+          "type": "text",
+          "text": "U/(2 V²) differisce di un fattore quattro dalla capacità corretta.2 U/V ha dimensione di carica; V²/(2 U) è capacità inversa. Il prodotto con V² non isola il fattore che moltiplicava C."
+        }
+      ],
+      "hints": [
+        "Controlla il fattore due e la dimensione J/V².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "U/(2 V²) differisce di un fattore quattro dalla capacità corretta.2 U/V ha dimensione di carica; V²/(2 U) è capacità inversa. Il prodotto con V² non isola il fattore che moltiplicava C.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21910,
+      "title": "Due scalature diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Fra A e B: C_B=κ₁C_A, V_B=κ₂V_A, con fattori positivi. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁ / κ₂²",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità entra una volta e la tensione due volte: U_B/U_A=κ₁κ₂². I prefissi e il fattore 1/2 sono uguali nelle due prove e si cancellano. Un fattore comuneκ su entrambi gli ingressi dàκ³, nonκ²."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{U_B}{U_A}=\\frac{\\kappa_1C_A(\\kappa_2V_A)^2}{C_AV_A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ segue la carica e omette un fattore della tensione.κ₁²κ₂ scambia gli esponenti; i quozienti rendono inverso un ingresso che aumenta l’energia."
+        }
+      ],
+      "hints": [
+        "Scrivi prima il quadrato della tensione nuova con le parentesi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ segue la carica e omette un fattore della tensione.κ₁²κ₂ scambia gli esponenti; i quozienti rendono inverso un ingresso che aumenta l’energia.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21911,
+      "title": "Cambiano capacità e tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. A usa C=2 μF, V=2 V. B usa C=4 μF, V=3 V. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2",
+          "2/9",
+          "3",
+          "9/4",
+          "2"
+        ],
+        "value": "9/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha 4 μJ. B ha(1/2)4·9=18 μJ, perciò U_B/U_A=18/4=9/2. La capacità doppia moltiplica il fattore 9/4 della tensione al quadrato; i due effetti sono concordi."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=18\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac92"
+        },
+        {
+          "type": "text",
+          "text": "2/9 inverte il confronto. Tre usa la dipendenza lineare CV; 9/4 considera soltanto V e due soltanto C. Il fattore 1/2 non si applica una seconda volta dopo il rapporto."
+        }
+      ],
+      "hints": [
+        "Calcola le energie o moltiplica i due fattori corretti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/9 inverte il confronto. Tre usa la dipendenza lineare CV; 9/4 considera soltanto V e due soltanto C. Il fattore 1/2 non si applica una seconda volta dopo il rapporto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21912,
+      "title": "Media delle energie di campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. A usa C=2 μF, V=2 V; B usa C=4 μF, V=3 V. Qual è la media aritmetica delle due energie, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 μJ",
+          "75/8 μJ",
+          "22 μJ",
+          "7 μJ",
+          "18 μJ"
+        ],
+        "value": "11 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 4 e 18 μJ: la loro media è 22/2=11 μJ. Ai dati medi C 3 μF, V 5/2 V, la legge darebbe(1/2)3·25/4=75/8 μJ, diverso da 88/8 μJ. La media delle uscite non è il lavoro di una preparazione ai valori medi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/51b45c0be6692db4b01464eeedd87016c9e408532973692269525eef48ba2f50",
+          "text": "Le barre 4 μJ, 18 μJ e 11 μJ hanno origine e scala comuni. Non rappresentano potenze né energia del generatore durante un transitorio dissipativo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline U=\\frac{4+18}{2}\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=11\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_{\\rm dati\\ medi}=\\frac{75}{8}\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "75/8 μJ usa gli ingressi medi. Ventidue μJ somma, sette μJ è semidifferenza e diciotto μJ ripete soltanto B. Non si media la sola tensione prima di quadrarla."
+        }
+      ],
+      "hints": [
+        "Calcola ogni energia con la propria capacità e tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "75/8 μJ usa gli ingressi medi. Ventidue μJ somma, sette μJ è semidifferenza e diciotto μJ ripete soltanto B. Non si media la sola tensione prima di quadrarla.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21913,
+      "title": "La tensione per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. A usa C=2 μF, V=2 V. B ha C=4 μF e deve ottenere U_B=(9/2)U_A. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "9/4",
+          "9/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 18 μJ. Con C_B 4 μF si trova V_B²=2·18/4 V²=9 V², quindi V_B 3 V. Diviso V_A 2 V dà 3/2. La capacità doppia fornisce già un fattore due; il restante 9/4 viene dal quadrato della tensione."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=18\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto.9/4 è il quadrato del rapporto cercato, 9/2 il bersaglio delle energie. Tre copia la tensione nuova in volt senza dividerla per quella iniziale."
+        }
+      ],
+      "hints": [
+        "Isola prima V_B², poi confronta tensioni positive.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto.9/4 è il quadrato del rapporto cercato, 9/2 il bersaglio delle energie. Tre copia la tensione nuova in volt senza dividerla per quella iniziale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21914,
+      "title": "Guadagno prima della capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. D=a_cal U è continuo e adimensionale, a_cal>0. A con C=2 μF, V=2 V dà D=12. B legge D=54 e ha V=3 V. Quanto vale C_B in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A ha U_A 4 μJ e dà a_cal=3 μJ⁻¹. D 54 decodifica U_B 18 μJ. L’inversa C_B=2 U_B/V_B² dà 36/9 μF=4 μF. Il guadagno è dello strumento energetico e non una capacità."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=18\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Dodici μF usa D 54 come 54 μJ, predicendo una lettura tre volte maggiore. Due μF omette il fattore due dell’inversa e darebbe U 9 μJ. Diciotto μF copia il numero dell’energia senza isolare C."
+        }
+      ],
+      "hints": [
+        "Decodifica U e controlla il quadrato della tensione nuova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici μF usa D 54 come 54 μJ, predicendo una lettura tre volte maggiore. Due μF omette il fattore due dell’inversa e darebbe U 9 μJ. Diciotto μF copia il numero dell’energia senza isolare C.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21915,
+      "title": "Sottrarre l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. D=a_cal U+b_cal è continuo. A: C=2 μF, V=2 V, D=9. B: C=4 μF, V=3 V, D=37. C: V=1 V, D=2. Quanto vale C_C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno energie 4 e 18 μJ. a_cal=(37−9)/(18−4)=2 μJ⁻¹ e b_cal=1. La lettura D 2 indica U_C=(2−1)/2 μJ=1/2 μJ. Alla tensione 1 V, C_C=2·(1/2)/1 μF=1 μF, che reinserita dà proprio D 2."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=\\frac12\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_C=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Due μF omette l’offset e darebbe D 3. Mezzo μF copia il numero dell’energia come capacità e darebbe D 3/2. Quattro μF usa D come energia e darebbe D 5."
+        }
+      ],
+      "hints": [
+        "Una lettura appena sopra l’offset corrisponde a una piccola energia positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due μF omette l’offset e darebbe D 3. Mezzo μF copia il numero dell’energia come capacità e darebbe D 3/2. Quattro μF usa D come energia e darebbe D 5.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-energy-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia del campo e capacità lineare",
+      "order": 21916,
+      "title": "Il vincolo rende cubica l’equazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 si trova in uno stato finale elettrostatico con differenza di potenziale positiva V>0. U indica l’energia immagazzinata nel campo, non tutta l’energia eventualmente fornita dal generatore durante un transitorio con perdite. Si confrontano preparazioni con C in μF, V in V e U in μJ. Fra preparazioni si impone C=(1 μF/V)V. Si misura U=4 μJ. Quanto vale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 V",
+          "4 V",
+          "8 V",
+          "−2 V",
+          "Infinite tensioni positive"
+        ],
+        "value": "2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ponendo v=V/(1 V), il vincolo dà C/(1 μF)=v. Allora U/(1 μJ)=v³/2. La misura quattro richiede v³8, la cui unica radice reale è due, compatibile col dominio positivo. Si ottengono V 2 V e C 2 μF; la misura fissa la scala."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{V}{1\\,\\mathrm V}"
+        },
+        {
+          "type": "formula",
+          "text": " v^3=8"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V copia U; otto V copia v³ senza estrarre la radice cubica. −2 V non soddisfa v³8 e viola anche V>0; non è un secondo ramo della radice cubica. La misura non è ridondante."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di scegliere quale radice serve.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro V copia U; otto V copia v³ senza estrarre la radice cubica. −2 V non soddisfa v³8 e viola anche V>0; non è un secondo ramo della radice cubica. La misura non è ridondante.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Area sotto V(Q) ed energia immagazzinata",
+        "Polarizzazione come caso autonomo",
+        "Inverse positive, medie e vincoli cubici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "51b45c0be6692db4b01464eeedd87016c9e408532973692269525eef48ba2f50",
+      "name": "capacitor-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UG9sYXJpenphemlvbmUgZWQgZW5lcmdpYSBpbW1hZ2F6emluYXRhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RGlwb2xpIGxlZ2F0aSBpbGx1c3RyYXRpdmkgbmVsIGRpZWxldHRyaWNvLCBvcmllbnRhdGkgY29uIGlsIGNhbXBvLiBOZWwgZ3JhZmljbyBkaSBjYXJpY2EgZGVsIGNvbmRlbnNhdG9yZSBsaW5lYXJlIGxhIHRlbnNpb25lIHBhc3NhIGRhIHplcm8gYSBkdWUgdm9sdCBlIGxhIGNhcmljYSBkYSB6ZXJvIGEgcXVhdHRybyBtaWNyb2NvdWxvbWI6IGFyZWEgdHJpYW5nb2xhcmUgcXVhdHRybyBtaWNyb2pvdWxlLiBCYXJyZSBkZWxsZSBlbmVyZ2llIHF1YXR0cm8sIGRpY2lvdHRvIGUgdW5kaWNpIG1pY3Jvam91bGUuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTg1ZDgzIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgcng9IjE2IiBmaWxsPSIjZjdmOWZjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgQ2FyaWNoZSBsZWdhdGUgbmVsIGRpZWxldHRyaWNvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5FIGVzdGVybm8gdmVyc28gZGVzdHJhIDsgZGlwb2xpIHNjaGVtYXRpY2kuPC90ZXh0Pgo8cGF0aCBkPSJNMTcwIDEyNUg0NzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4NWQ4MyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIxMzAiIHk9IjE3NSIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxNzAiIGZpbGw9IiNlMWVhZjEiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iMjI1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSIyMjAiIGN5PSIyMjUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjE2NCIgeT0iMjMyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSIyMTQiIHk9IjIzMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik0xODQgMjI1SDIwNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iMjk1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSIyMjAiIGN5PSIyOTUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjE2NCIgeT0iMzAyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSIyMTQiIHk9IjMwMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik0xODQgMjk1SDIwNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMjg1IiBjeT0iMjI1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSIzMzUiIGN5PSIyMjUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjI3OSIgeT0iMjMyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSIzMjkiIHk9IjIzMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik0yOTkgMjI1SDMyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMjg1IiBjeT0iMjk1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSIzMzUiIGN5PSIyOTUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjI3OSIgeT0iMzAyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSIzMjkiIHk9IjMwMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik0yOTkgMjk1SDMyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjI1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSI0NTAiIGN5PSIyMjUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjM5NCIgeT0iMjMyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSI0NDQiIHk9IjIzMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik00MTQgMjI1SDQzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjk1IiByPSIxMyIgZmlsbD0iIzE4NWQ4MyIvPgo8Y2lyY2xlIGN4PSI0NTAiIGN5PSIyOTUiIHI9IjEzIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjM5NCIgeT0iMzAyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2ZmZmZmZiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSI0NDQiIHk9IjMwMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiNmZmZmZmYiPis8L3RleHQ+CjxwYXRoIGQ9Ik00MTQgMjk1SDQzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODE5N2FhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjM5MiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlNwb3N0YW1lbnRpIGxvY2FsaSBvIG9yaWVudGF6aW9uZSBkaSBkaXBvbGkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDMyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Tm9uIHNpIGNyZWEgY2FyaWNhIG5ldHRhIG5lbCBjYW1waW9uZSBuZXV0cm8uPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDc4SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUyNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgSWwgbGF2b3JvIHNvdHRvIFYoUSk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NjgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DID0gMiDOvEYgOyBzdGF0byBmaW5hbGUgUSA9IDQgzrxDLCBWID0gMiBWLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjYxNyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlYgLyBWPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDYzMFY4NjBINTUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMTUwIDg2MEw0NzAgNjYwTDQ3MCA4NjBaIiBmaWxsPSIjZDFlM2VlIi8+CjxwYXRoIGQ9Ik0xNTAgODYwTDQ3MCA2NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4NWQ4MyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik00NzAgODYwVjY2MEgxNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYmFjYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjY2MCIgcj0iNSIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIxMTgiIHk9IjY2OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjI8L3RleHQ+Cjx0ZXh0IHg9IjExOCIgeT0iODkwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MDwvdGV4dD4KPHRleHQgeD0iNDY0IiB5PSI4OTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij40PC90ZXh0Pgo8dGV4dCB4PSI1MjciIHk9IjkwMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlEgLyDOvEM8L3RleHQ+Cjx0ZXh0IHg9IjMyNSIgeT0iODE1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+VSA9IDQgzrxKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTQ5IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TOKAmWFyZWEgdHJpYW5nb2xhcmUgdmFsZSBRVi8yLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk4OSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPsOIIGVuZXJnaWEgaW1tYWdhenppbmF0YSwgbm9uIHBvdGVuemEuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTAzMEg2MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDc3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBFbmVyZ2llIGRpIHByZXBhcmF6aW9uaSBkaXN0aW50ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExMTgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BOiAyIM68RiwgMiBWIDsgQjogNCDOvEYsIDMgVi48L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTE1MFYxMzkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjExNjUiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE5NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjI0OCIgeT0iMTE5NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjQgzrxKPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEyNDUiIHdpZHRoPSIzNjAiIGhlaWdodD0iNDIiIGZpbGw9IiNiODUzMjIiLz4KPHRleHQgeD0iMzIiIHk9IjEyNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSI1MjgiIHk9IjEyNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xOCDOvEo8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMTMyNSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzM1NjU0ZSIvPgo8dGV4dCB4PSIzMiIgeT0iMTM1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPk1lZGlhPC90ZXh0Pgo8dGV4dCB4PSIzODgiIHk9IjEzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xMSDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjExOCIgeT0iMTQxNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDYwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+T3JpZ2luZSBlIHNjYWxhIGNvbXVuaSBlbnRybyBpbCBwYW5uZWxsby48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}
