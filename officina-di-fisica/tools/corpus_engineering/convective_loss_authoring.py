@@ -16,7 +16,7 @@ TASKS=[
 ('Una legge che usa una differenza',SCENE+'Quale relazione restituisce P?',['P = h A ΔT','P = h A T_s','P = h A / ΔT','P = ΔT / (h A)','P = h ΔT / A'],
  'La legge assegnata lega il modulo uscente alla differenza superficie-aria: P=hAΔT. Un aumento di 1 K del salto ha lo stesso significato di 1 °C di differenza. Usare il punto termometrico T_s anziché la differenza renderebbe la legge dipendente dallo zero della scala.',
  r'\Delta T=T_s-T_a\qquad P=hA\Delta T\qquad \Delta T>0',
- 'Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) è il reciproco di una potenza. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore.',
+ 'Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) ha unità K²/W invece di W. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore.',
  'Il punto di riferimento fisico è l’aria, non lo zero Celsius.'),
 ('Cambiare le condizioni di scambio',SCENE+'A ha h=5 W/(m²·K), B ha h=10 W/(m²·K); entrambe hanno T_s=30 °C. Come cambia P?',['Da 50 a 100 W','Da 50 a 25 W','Resta 50 W','Da 50 a 200 W','Da 50 a 300 W'],
  'Il salto resta 10 K e l’area resta un metro quadrato. Un coefficiente doppio dà una potenza doppia: 50 W in A e 100 W in B. Si confrontano due condizioni mantenute, senza dedurre il moto temporale di una superficie che si raffredda.',

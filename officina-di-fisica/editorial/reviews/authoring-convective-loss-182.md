@@ -44,11 +44,11 @@ Procedimento d’autore: La legge assegnata lega il modulo uscente alla differen
 
 Passaggi: \Delta T=T_s-T_a;  P=hA\Delta T;  \Delta T>0.
 
-Distrattori: Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) è il reciproco di una potenza. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore.
+Distrattori: Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) ha unità K²/W invece di W. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore.
 
 Hint: Il punto di riferimento fisico è l’aria, non lo zero Celsius.
 
-Fonte canonica SHA256 37240c0d2cd23a52b48054ca9f0a7eb7af24af9e3aaa1c9215a771ca00ad651a. Candidato SHA256 36ed177562c98e9b7ec468567dede1e38e4815cf8fbbbe9aec43efeb45e831a7. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 37240c0d2cd23a52b48054ca9f0a7eb7af24af9e3aaa1c9215a771ca00ad651a. Candidato SHA256 baa957e3f91d567bb0d39c2b3f15da09e0d3776a78a9895d33a6992214c8e2e6. Revisione indipendente e human NOT_RUN.
 
 ## AR-u5-convective-loss-04 — Cambiare le condizioni di scambio
 
@@ -234,6 +234,10 @@ Fonte canonica SHA256 0b5cd2fcf08fd5dda2a5a0fb7576a9a173156c03f6b9c9b0b0328979ab
 
 ## Provenienza tecnica
 
-Asset SHA256 9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295. Package file SHA256 bba3655e5e315dd9e1b4a8f23f4d7fad60b4ac348ea43751dd74a214171b5e69. Binding file SHA256 000c720cfd0fcc47392c5ade0c220f69959a4332a25432f7d156cd1629327e63. Prova strutturale SHA256 b9b6973c2f98f20b3d4a03d07eb5398a1c627e69646393aba74e17641c81dfbc. Asset-only manifest SHA256 5549496bedff15edfd5e86d5f1794ca00fe79920043dc81bab20de7aebad4bd2.
+Asset SHA256 9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295. Package file SHA256 caf389bae33754bc9be90576a20a5bccecaf962dece3171ea84c61f2d93af2a4. Binding file SHA256 0557410258304ce200669908c4447fb78b4e67649fb347778b0d0258db51b388. Prova strutturale SHA256 d3ab94c5244f38ffaaf85377e5fccc798d3a75bac4075b0f5cbe2e0e24e2ab8f. Asset-only manifest SHA256 5549496bedff15edfd5e86d5f1794ca00fe79920043dc81bab20de7aebad4bd2.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
+
+## Correzione dal revisore distinto
+
+Nel solo feedback/error03, ΔT/(hA) è ora descritto con unità K²/W invece di W. La versione precedente è conservata in author-evidence/convective-loss-182-before-dimension-feedback03; risposte, formule, SVG e altri quindici record sono identici. Doppia assembly e import idempotente rieseguiti realmente sotto mutex e guardia di spazio. Nessun nuovo replay UI né firma scientifica propria. Il rendering asset-only precedente resta pertinente allo stesso SVG immutato.
