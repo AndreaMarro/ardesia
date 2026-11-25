@@ -1,0 +1,86 @@
+{
+  "scope": "independent_review_A148_152_not_own_B153_157",
+  "files": [
+    {
+      "path": "tools/corpus_engineering/temperature_difference_verifier.py",
+      "sha256": "8f8f144ec20e85a0a5b73c710e41e45f57a20498ad18e22cd4f58b9eddce71bb"
+    },
+    {
+      "path": "editorial/reviews/temperature-difference-148.json",
+      "sha256": "a102db2bc8f325080ad95ab990a503c1147440be6c7c42063ac337bd0c819e10"
+    },
+    {
+      "path": "editorial/reviews/temperature-difference-148-independent-note.json",
+      "sha256": "1652828ff87d3190b35d59d4fb64277874ba210db88911ca3f7c5593f95d5d98"
+    },
+    {
+      "path": "tools/corpus_engineering/ideal_gas_pressure_verifier.py",
+      "sha256": "66bfc95c207df7572e178c98b73af3b8539c4f7bff0142366ee523dd6a7876a7"
+    },
+    {
+      "path": "editorial/reviews/ideal-gas-pressure-149.json",
+      "sha256": "fa825784162fed9e64caf8a107367daddd1a9b86dd59d208d5ff8dec4ff08859"
+    },
+    {
+      "path": "editorial/reviews/ideal-gas-pressure-149-independent-note.json",
+      "sha256": "50a8a8ef618a1f84b83b979d7487e6a168eb517a92ef531b979f08541c742e84"
+    },
+    {
+      "path": "tools/corpus_engineering/gas_density_verifier.py",
+      "sha256": "54e2025936bf9ea95659e3c7b62da288f381de52db95549ac241736d8cb53003"
+    },
+    {
+      "path": "editorial/reviews/gas-density-150.json",
+      "sha256": "965b0389f23717ff7ca76cf271749b53915575cab19b04c65fd9abd14fd0baf0"
+    },
+    {
+      "path": "editorial/reviews/gas-density-150-independent-note.json",
+      "sha256": "cb5908d1a59b501a69042116debf2f22eeccdc4bc3b6bed779a955d409ce72be"
+    },
+    {
+      "path": "tools/corpus_engineering/isothermal_chambers_verifier.py",
+      "sha256": "f260b28483c77638d56aa9550b1337b5ba15fcda6a7fa3657bd08e6dc3ac1ea1"
+    },
+    {
+      "path": "editorial/reviews/isothermal-chambers-151.json",
+      "sha256": "3844ac641a5f6058213256184a337d95625477c9409338afcd95f82bda2d1234"
+    },
+    {
+      "path": "editorial/reviews/isothermal-chambers-151-independent-note.json",
+      "sha256": "59de85b9c3f6432c93e888698d6d9eff8ff4e5f8593f556ea46ded70b74c5049"
+    },
+    {
+      "path": "tools/corpus_engineering/isothermal_work_verifier.py",
+      "sha256": "e607f2d0662f1f9261498589b97dae74406c9b074413f3b8a19d857c921cf4cd"
+    },
+    {
+      "path": "editorial/reviews/isothermal-work-152.json",
+      "sha256": "35595b403eb4145fc6f9d47a521ef1b51773afbc2f225e5bd8c8f4bceb813be0"
+    },
+    {
+      "path": "editorial/reviews/isothermal-work-152-independent-note.json",
+      "sha256": "73c83fbb9e46a04e044f8cc0ddd208a69e4d85b28f431c0209f7297c91eeec84"
+    },
+    {
+      "path": "tests/corpus/test_u5_gas_basics_independent.py",
+      "sha256": "37ef0c1d1ea6f09effae3cf2aa9639c02fd0745f7ca78b623508c8b03b2950bf"
+    },
+    {
+      "path": "editorial/reviews/u5-gas-basics-148-152-primary-source-only.md",
+      "sha256": "1a8bb11b9c09dc191e31fc3f835425f2b885393a693926bff8cfd93d35d6dc2d"
+    }
+  ],
+  "candidateRefs": {
+    "temperature-difference-148": "ea13406a87b5c1eea4fe723f532b27fabab740f7",
+    "ideal-gas-pressure-149": "000451a3aaf92639cb5df1c8c624f61bf4b280a9",
+    "gas-density-150": "e32c3ae9940ec58e01eef921ad4b0dbfd3557b44",
+    "isothermal-chambers-151": "861f7853837488683a773929f5a95ebd567b531c",
+    "isothermal-work-152": "dd2fe722f7d93025dd0e292980a303b00291d403"
+  },
+  "records": 80,
+  "adversarialCases": 130,
+  "hypothesisConfigurations": 240,
+  "testMethods": 13,
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}
