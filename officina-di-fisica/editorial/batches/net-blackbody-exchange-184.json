@@ -1,0 +1,1247 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-net-blackbody-exchange-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18401,
+      "title": "La potenza netta è una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 1,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Con θ_s=3 e θ_a=1, quanto vale P_net in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 480,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie a 300 K emette K_r·3⁴=6·81=486 W. Dal grande ambiente a 100 K assorbe K_r·1⁴=6 W. Il saldo uscente è 486−6=480 W. L’assorbimento non scompare solo perché la superficie è più calda: si sottrae il suo contributo, positivo ma minore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/67c78bf5ccc12832ab35f7ffacb17965fdba70a680246b2edd395fddb18cec3e",
+          "text": "La prima rappresentazione è schematica: la superficie a 300 K emette 486 W e assorbe 6 W dall’ambiente nero a 100 K. Le frecce indicano i due versi senza una scala di potenza. Il secondo pannello usa barre con origine comune per emissione, assorbimento e differenza 480 W. Nell’ultimo, A e B cedono al netto 480 e 1440 W e la media è 960 W; non sono i medesimi dati del solo pannello iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm em}=6\\cdot81\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ass}=6\\cdot1\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net}=P_{\\rm em}-P_{\\rm ass}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net}=480\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "486 W è la sola emissione. 492 W somma i due moduli pur chiedendo il saldo. −480 W cambierebbe il verso positivo scelto e zero richiederebbe temperature uguali nel presente modello."
+        }
+      ],
+      "hints": [
+        "Calcola le due quarte potenze prima di sottrarre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "486 W è la sola emissione. 492 W somma i due moduli pur chiedendo il saldo. −480 W cambierebbe il verso positivo scelto e zero richiederebbe temperature uguali nel presente modello.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18402,
+      "title": "Il saldo resta una potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 1,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Quale unità esprime P_net fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "K",
+          "W/m²",
+          "J/K"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Emissione e assorbimento sono potenze totali riferite alla stessa superficie: sottraendole restano watt. La moltiplicazione per l’area è già inclusa. Il risultato non è una quantità di calore finché non si assegna anche un intervallo di tempo."
+        },
+        {
+          "type": "formula",
+          "text": "[P_{\\rm net}]=[P_{\\rm em}]"
+        },
+        {
+          "type": "formula",
+          "text": "[P_{\\rm em}]=[P_{\\rm ass}]"
+        },
+        {
+          "type": "formula",
+          "text": " [P_{\\rm net}]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm W=\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "J indica energia, K temperatura, W/m² densità superficiale di potenza e J/K capacità o unità di entropia. Il fatto che A valga numericamente uno non elimina la sua dimensione nella derivazione."
+        }
+      ],
+      "hints": [
+        "Somma o differenza di potenze hanno ancora la dimensione di potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J indica energia, K temperatura, W/m² densità superficiale di potenza e J/K capacità o unità di entropia. Il fatto che A valga numericamente uno non elimina la sua dimensione nella derivazione.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18403,
+      "title": "Equilibrio radiativo non significa assenza di radiazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 1,
+      "prompt": "Una superficie nera ideale di area positiva è interamente circondata da un grande ambiente nero. Superficie e ambiente sono alla stessa temperatura assoluta T>0. Emissività e assorbività valgono uno. Quale descrizione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Emissione e assorbimento sono uguali e positivi; il saldo è zero",
+          "La superficie non emette più radiazione",
+          "L’ambiente smette di irradiare",
+          "La superficie emette ma non assorbe",
+          "Il saldo uscente è positivo perché T>0"
+        ],
+        "value": "Emissione e assorbimento sono uguali e positivi; il saldo è zero"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie emette σ*AT⁴ e assorbe lo stesso valore perché l’ambiente è alla medesima temperatura. Ogni potenza è positiva per T>0 e area positiva. Si annulla soltanto la loro differenza. Questo caso di equilibrio è distinto dal ramo T_s>T_a dei confronti con saldo uscente positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/67c78bf5ccc12832ab35f7ffacb17965fdba70a680246b2edd395fddb18cec3e",
+          "text": "L’equilibrio radiativo del caso concettuale non coincide con la prova raffigurata a 300 e 100 K. Alla stessa temperatura assoluta positiva emissione e assorbimento restano uguali e positivi e il saldo si annulla. Le barre della figura distinguono esplicitamente le due potenze positive dal loro saldo e non rappresentano temperature."
+        },
+        {
+          "type": "formula",
+          "text": "T_s=T_a"
+        },
+        {
+          "type": "formula",
+          "text": "T_a=T>0"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm em}=\\sigma_*AT^4>0"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ass}=\\sigma_*AT^4"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net}=0"
+        },
+        {
+          "type": "text",
+          "text": "Fermare emissione o assorbimento confonde un saldo nullo con due processi nulli. Emettere senza assorbire violerebbe l’interazione con l’ambiente nero. La positività della temperatura rende positiva l’emissione, non necessariamente il saldo."
+        }
+      ],
+      "hints": [
+        "Distingui i due flussi simultanei dalla loro differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Fermare emissione o assorbimento confonde un saldo nullo con due processi nulli. Emettere senza assorbire violerebbe l’interazione con l’ambiente nero. La positività della temperatura rende positiva l’emissione, non necessariamente il saldo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18404,
+      "title": "Aumentare la temperatura della sola superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 1,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. θ_s passa da 3 a 4, mentre θ_a=1. Come cambia P_net?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 480 a 1530 W",
+          "Da 480 a 1536 W",
+          "Da 480 a 640 W",
+          "Resta 480 W",
+          "Da 480 a −1530 W"
+        ],
+        "value": "Da 480 a 1530 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A 400 K la superficie emette 6·4⁴=6·256=1536 W. L’ambiente resta a 100 K e fornisce ancora 6 W assorbiti. Il nuovo saldo è 1536−6=1530 W. Non si può applicare al saldo il solo fattore di quarta potenza della temperatura della superficie, perché il termine ambientale resta fisso."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{s,B}^4=256"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},B}=1536\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}=1530\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "1536 W omette l’assorbimento. 640 W moltiplica linearmente 480 per 4/3; il saldo invariato ignora il riscaldamento e quello negativo contraddice T_s>T_a."
+        }
+      ],
+      "hints": [
+        "Mantieni il termine dell’ambiente mentre ricalcoli l’emissione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1536 W omette l’assorbimento. 640 W moltiplica linearmente 480 per 4/3; il saldo invariato ignora il riscaldamento e quello negativo contraddice T_s>T_a.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18405,
+      "title": "La temperatura della superficie dal saldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. P_net=480 W e θ_a=1. Quanto vale θ_s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Normalizziamo il saldo: p=480/6=80. Poiché p=θ_s⁴−θ_a⁴, si deve aggiungere il termine ambientale: θ_s⁴=80+1=81. La radice quarta positiva è tre e restituisce T_s=300 K, maggiore di T_a=100 K."
+        },
+        {
+          "type": "formula",
+          "text": "p=480/6"
+        },
+        {
+          "type": "formula",
+          "text": "480/6=80"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s^4=p+\\theta_a^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s^4=81"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=3"
+        },
+        {
+          "type": "text",
+          "text": "81 copia la quarta potenza e nove ne prende solo la radice quadrata. Sottrarre il termine ambientale anziché aggiungerlo non ricostruisce l’emissione richiesta dal saldo; il ramo negativo non è una temperatura assoluta ammessa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima l’emissione, poi estrai la radice quarta positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81 copia la quarta potenza e nove ne prende solo la radice quadrata. Sottrarre il termine ambientale anziché aggiungerlo non ricostruisce l’emissione richiesta dal saldo; il ramo negativo non è una temperatura assoluta ammessa.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18406,
+      "title": "La temperatura dell’ambiente dal saldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. P_net=480 W e θ_s=3. Quanto vale θ_a?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie ha θ_s⁴=81. Il saldo normalizzato vale 80, quindi l’assorbimento normalizzato deve essere 81−80=1. Da θ_a⁴=1 segue θ_a=1 nel ramo positivo. L’inversa richiede in generale 0<P_net<K_rθ_s⁴: un ambiente a temperatura positiva assorbe una potenza positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_a^4=\\theta_s^4-p"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_a^4=81-80"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_a^4=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_a=1"
+        },
+        {
+          "type": "formula",
+          "text": " 0<P_{\\rm net}<K_r\\theta_s^4"
+        },
+        {
+          "type": "text",
+          "text": "Zero attribuirebbe all’ambiente temperatura assoluta nulla, esclusa dal dominio, e darebbe saldo 486 W. Tre renderebbe uguali le temperature e saldo zero. Un radicando negativo indicherebbe dati incompatibili, non un ramo fisico alternativo."
+        }
+      ],
+      "hints": [
+        "Sottrai il saldo dall’emissione e controlla che resti assorbimento positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero attribuirebbe all’ambiente temperatura assoluta nulla, esclusa dal dominio, e darebbe saldo 486 W. Tre renderebbe uguali le temperature e saldo zero. Un radicando negativo indicherebbe dati incompatibili, non un ramo fisico alternativo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18407,
+      "title": "Un ambiente più caldo riduce la cessione netta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. A ha θ_s=3, θ_a=1. B mantiene θ_s=3 e porta θ_a a 2. Quanto vale P_net,B/P_net,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/16",
+          "16/13",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "13/16"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie emette ancora 486 W. B assorbe 6·2⁴=96 W e cede al netto 390 W. A cedeva 480 W: 390/480 si riduce a 13/16. Aumentare la temperatura dell’ambiente riduce il saldo uscente, pur lasciando invariata l’emissione della superficie."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm net},A}=480\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}=6(81-16)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}=390\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}/P_{{\\rm net},A}=13/16"
+        },
+        {
+          "type": "text",
+          "text": "16/13 inverte il confronto. Due segue direttamente la temperatura dell’ambiente e un mezzo ne usa il reciproco, ignorando la differenza fra quarte potenze. Uno confonde emissione invariata con saldo invariato."
+        }
+      ],
+      "hints": [
+        "Separa il contributo emesso, che resta fisso, da quello assorbito, che aumenta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16/13 inverte il confronto. Due segue direttamente la temperatura dell’ambiente e un mezzo ne usa il reciproco, ignorando la differenza fra quarte potenze. Uno confonde emissione invariata con saldo invariato.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18408,
+      "title": "Lo scarto di una proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Con θ_s=3 e θ_a=1 si propone P_net=960 W. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "480 W",
+          "−480 W",
+          "960 W",
+          "0 W",
+          "2"
+        ],
+        "value": "480 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il saldo corretto è 480 W. La proposta di 960 W è maggiore di altri 480 W, quindi lo scarto ordinato è positivo. Il rapporto due è un’altra grandezza: non misura una differenza di potenza."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm net}=480\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=P_{\\rm proposto}-P_{\\rm net}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(960-480)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=480\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−480 W scambia l’ordine, 960 W copia il valore proposto e zero lo accetta. Il numero puro due non ha la dimensione dello scarto richiesto."
+        }
+      ],
+      "hints": [
+        "Fai la differenza solo dopo aver ricostruito emissione meno assorbimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−480 W scambia l’ordine, 960 W copia il valore proposto e zero lo accetta. Il numero puro due non ha la dimensione dello scarto richiesto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18409,
+      "title": "L’inversa simbolica include il termine ambientale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Sono noti p>0 e θ_a>0. Quale formula dà θ_s nel ramo fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "θ_s = (p + θ_a⁴)^(1/4)",
+          "θ_s = (p − θ_a⁴)^(1/4)",
+          "θ_s = (p + θ_a⁴)^(1/2)",
+          "θ_s = p^(1/4) + θ_a",
+          "θ_s = −(p + θ_a⁴)^(1/4)"
+        ],
+        "value": "θ_s = (p + θ_a⁴)^(1/4)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge p=θ_s⁴−θ_a⁴ richiede di spostare il termine sottratto dall’altro lato prima di estrarre la radice. La somma p+θ_a⁴ è positiva e maggiore di θ_a⁴, dunque la radice quarta positiva è automaticamente maggiore di θ_a. Questo controlla sia la realtà sia il verso del saldo."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_s^4=p+\\theta_a^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=\\sqrt[4]{p+\\theta_a^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s>\\theta_a>0"
+        },
+        {
+          "type": "text",
+          "text": "Il meno sottrae ancora l’assorbimento anziché ricostruirlo. La radice quadrata produce θ_s²; la radice di una somma non è la somma delle radici. Il segno negativo viola la temperatura assoluta positiva."
+        }
+      ],
+      "hints": [
+        "Isola tutta la quarta potenza prima di applicare la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno sottrae ancora l’assorbimento anziché ricostruirlo. La radice quadrata produce θ_s²; la radice di una somma non è la somma delle radici. Il segno negativo viola la temperatura assoluta positiva.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18410,
+      "title": "Due temperature riscalate con ordine fisico conservato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Poniamo u=θ_s,A⁴ e v=θ_a,A⁴. B ha θ_s,B=κ₁θ_s,A e θ_a,B=κ₂θ_a,A, con fattori positivi e κ₁θ_s,A>κ₂θ_a,A. Quanto vale P_net,B/P_net,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁⁴ u − κ₂⁴ v)/(u − v)",
+          "κ₁⁴ − κ₂⁴",
+          "(κ₁⁴ u + κ₂⁴ v)/(u + v)",
+          "κ₁/κ₂",
+          "κ₁ κ₂"
+        ],
+        "value": "(κ₁⁴ u − κ₂⁴ v)/(u − v)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due temperature assolute portano separatamente i rispettivi fattori elevati alla quarta. Il saldo B è K_r(κ₁⁴u−κ₂⁴v); quello A è K_r(u−v). K_r si cancella, ma i pesi u e v rimangono. L’ordine imposto in entrambe le prove mantiene positivi numeratore e denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=u-v"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\kappa_1^4u-\\kappa_2^4v"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{{\\rm net},B}}{P_{{\\rm net},A}}=\\frac{\\kappa_1^4u-\\kappa_2^4v}{u-v}"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre i soli fattori perde le temperature iniziali e darebbe zero con fattori uguali. Il più descrive una somma di moduli, non il saldo; quoziente e prodotto semplici non rappresentano la quarta potenza con due pesi. Con un fattore comune κ il rapporto è κ⁴."
+        }
+      ],
+      "hints": [
+        "Sostituisci i due fattori nelle rispettive quarte potenze prima di fare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre i soli fattori perde le temperature iniziali e darebbe zero con fattori uguali. Il più descrive una somma di moduli, non il saldo; quoziente e prodotto semplici non rappresentano la quarta potenza con due pesi. Con un fattore comune κ il rapporto è κ⁴.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18411,
+      "title": "Entrambe le temperature cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. A: θ_s=3, θ_a=1. B: θ_s=4, θ_a=2. Quanto vale P_net,B/P_net,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "4",
+          "16",
+          "1/3",
+          "81/16"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha differenza delle quarte potenze 81−1=80. B ha 256−16=240. Moltiplicando per 6 W si ottengono 480 e 1440 W; il rapporto è 240/80=3. La crescita dell’assorbimento ambientale è inclusa, non ignorata."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=81-1"
+        },
+        {
+          "type": "formula",
+          "text": "81-1=80"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=256-16"
+        },
+        {
+          "type": "formula",
+          "text": "256-16=240"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}=1440\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}/P_{{\\rm net},A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il rapporto. Sedici segue il solo raddoppio dell’ambiente elevato alla quarta. 81/16 è un rapporto di quarte potenze privo della sottrazione dei rispettivi ambienti; quattro non ricostruisce le due differenze."
+        }
+      ],
+      "hints": [
+        "Valuta entrambe le differenze fisiche, non il rapporto delle sole temperature.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il rapporto. Sedici segue il solo raddoppio dell’ambiente elevato alla quarta. 81/16 è un rapporto di quarte potenze privo della sottrazione dei rispettivi ambienti; quattro non ricostruisce le due differenze.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18412,
+      "title": "Media del saldo di due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 2,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. A usa θ_s=3, θ_a=1; B usa θ_s=4, θ_a=2. Qual è la media aritmetica delle due P_net con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "960 W",
+          "870 W",
+          "1920 W",
+          "480 W",
+          "1440 W"
+        ],
+        "value": "960 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze nette sono 480 e 1440 W. Sommandole si ottengono 1920 W e la metà è 960 W. Alle temperature normalizzate medie 7/2 e 3/2, il modello darebbe invece 6[(7/2)⁴−(3/2)⁴] W=870 W. Media delle uscite e modello applicato alle medie non coincidono."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P_{\\rm net}=\\frac{480+1440}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P_{\\rm net}=960\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ingressi\\ medi}=\\frac{2401-81}{16}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ingressi\\ medi}=870\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "870 W usa gli ingressi medi. 1920 W è la somma non dimezzata; 480 e 1440 W ripetono una sola delle due prove. Le temperature restano assegnate per ciascuna prova: non si sta mescolando fisicamente due corpi."
+        }
+      ],
+      "hints": [
+        "Calcola il saldo di ogni prova prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "870 W usa gli ingressi medi. 1920 W è la somma non dimezzata; 480 e 1440 W ripetono una sola delle due prove. Le temperature restano assegnate per ciascuna prova: non si sta mescolando fisicamente due corpi.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18413,
+      "title": "Il bersaglio fissa l’ambiente della seconda prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 3,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. A ha θ_s=3, θ_a,A=1. B usa θ_s=4 e deve cedere al netto tre volte A. Quanto vale θ_a,B/θ_a,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3",
+          "16",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 1440 W e p_B=240. La superficie B ha θ_s,B⁴=256, quindi θ_a,B⁴=256−240=16. La radice quarta positiva è due; il rapporto con θ_a,A=1 è due. La nuova superficie resta più calda dell’ambiente, perché 4>2."
+        },
+        {
+          "type": "formula",
+          "text": "p_B=1440/6"
+        },
+        {
+          "type": "formula",
+          "text": "1440/6=240"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{a,B}^4=256-240"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{a,B}=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{a,B}/\\theta_{a,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco. Tre copia il fattore del saldo, sedici copia la quarta potenza e quattro la temperatura normalizzata della superficie, che darebbe equilibrio radiativo e saldo nullo."
+        }
+      ],
+      "hints": [
+        "Sottrai il saldo bersaglio dall’emissione B prima della radice quarta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco. Tre copia il fattore del saldo, sedici copia la quarta potenza e quattro la temperatura normalizzata della superficie, che darebbe equilibrio radiativo e saldo nullo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18414,
+      "title": "Un display del saldo prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 3,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. S=qP_net è continuo e adimensionale, q>0. Il riferimento θ_s=3, θ_a=1 dà S=1440. B ha θ_a=2 e dà S=4320. Quanto vale θ_s,B?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento cede 480 W, quindi q=3 W⁻¹. La nuova lettura significa 1440 W e p_B=240. Con θ_a=2 il termine ambientale vale 16: θ_s⁴=240+16=256 e la radice quarta positiva è quattro."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},B}=1440\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,B}^4=240+16"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,B}^4=256"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,B}=4"
+        },
+        {
+          "type": "text",
+          "text": "Sedici estrae solo la radice quadrata di 256. Due copia l’ambiente e annullerebbe il saldo. Il numero 4320 è il display, non una temperatura né una potenza finché non viene diviso per q."
+        }
+      ],
+      "hints": [
+        "Decodifica i watt, ricostruisci la quarta potenza emessa e scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici estrae solo la radice quadrata di 256. Due copia l’ambiente e annullerebbe il saldo. Il numero 4320 è il display, non una temperatura né una potenza finché non viene diviso per q.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18415,
+      "title": "L’offset del display precede la sottrazione ambientale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 3,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. S=qP_net+b è continuo e adimensionale, q>0. A: θ_s=3, θ_a=1, S=961. B: θ_s=4, θ_a=2, S=2881. C: θ_a=1, S=3061. Quanto vale θ_s,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "3",
+          "16",
+          "256",
+          "2"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B cedono 480 e 1440 W. Il guadagno è (2881−961)/(1440−480)=2 W⁻¹ e b=1. C cede (3061−1)/2=1530 W, quindi p_C=255. Aggiungendo θ_a⁴=1 otteniamo θ_s⁴=256: la temperatura normalizzata è quattro."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm net},C}=1530\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,C}^4=255+1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,C}=4"
+        },
+        {
+          "type": "text",
+          "text": "Tre tornerebbe ai dati A e al display 961. Sedici è la radice quadrata di 256; 256 copia θ_s⁴. Due con ambiente uno darebbe saldo 90 W e S=181, non 3061."
+        }
+      ],
+      "hints": [
+        "Rimuovi prima l’offset strumentale; l’ambiente è un termine fisico distinto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre tornerebbe ai dati A e al display 961. Sedici è la radice quadrata di 256; 256 copia θ_s⁴. Due con ambiente uno darebbe saldo 90 W e S=181, non 3061.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-net-blackbody-exchange-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Emissione, assorbimento e scambio netto",
+      "order": 18416,
+      "title": "Il rapporto termico lascia una quarta potenza positiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "net-blackbody-exchange",
+      "difficulty": 3,
+      "prompt": "Una piccola superficie nera di area A=1 m² è interamente affacciata su un grande ambiente nero isotermo. Le temperature assegnate restano costanti entro ciascuna prova. Nel modello si usa σ*=6×10⁻⁸ W/(m²·K⁴), coefficiente approssimato prescritto. Poniamo θ_s=T_s/(100 K), θ_a=T_a/(100 K) e K_r=6 W. Nel ramo di cessione radiativa considerato θ_s>θ_a>0 e P_net=K_r(θ_s⁴−θ_a⁴)>0: emissione e assorbimento avvengono simultaneamente. Non si descrivono eventuali altri scambi del corpo. Definiamo p=P_net/K_r, adimensionale. I risultati sono esatti nel modello con il coefficiente assegnato. Fra prove si impone θ_s=3θ_a. Si misura P_net=480 W. Quanto vale θ_a>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "−1",
+          "3",
+          "80",
+          "Infinite temperature positive"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo: θ_s⁴−θ_a⁴=(81−1)θ_a⁴=80θ_a⁴. Il saldo è quindi 480 W·θ_a⁴. Il dato 480 W richiede θ_a⁴=1; l’unico ramo con temperatura assoluta positiva è θ_a=1. Ne segue θ_s=3 e l’ordine caldo-freddo è rispettato."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm net}=6(81-1)\\theta_a^4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net}=480\\theta_a^4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_a^4=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_a=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=3"
+        },
+        {
+          "type": "text",
+          "text": "−1 è una radice algebrica ma viola T_a>0. Tre copia il valore finale della superficie; ottanta copia il coefficiente della differenza. Il dato di potenza non è ridondante: determina la scala termica positiva rimasta dopo il rapporto."
+        }
+      ],
+      "hints": [
+        "Imponi prima il rapporto tra le due temperature e poi usa il saldo per fissare la scala.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−1 è una radice algebrica ma viola T_a>0. Tre copia il valore finale della superficie; ottanta copia il coefficiente della differenza. Il dato di potenza non è ridondante: determina la scala termica positiva rimasta dopo il rapporto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Ambiente nero e temperature assolute",
+        "Differenza delle quarte potenze e inverse fisiche",
+        "Equilibrio radiativo, medie e display del saldo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "67c78bf5ccc12832ab35f7ffacb17965fdba70a680246b2edd395fddb18cec3e",
+      "name": "net-blackbody-exchange-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5MYSBwb3RlbnphIG5ldHRhIHNvdHRyYWUgZHVlIGZsdXNzaSBzaW11bHRhbmVpPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlVuYSBzdXBlcmZpY2llIG5lcmEgZGkgdW4gbWV0cm8gcXVhZHJhdG8gYSB0cmVjZW50byBrZWx2aW4sIGNpcmNvbmRhdGEgZGEgdW4gYW1iaWVudGUgbmVybyBhIGNlbnRvIGtlbHZpbiwgZW1ldHRlIHF1YXR0cm9jZW50b3R0YW50YXNlaSB3YXR0IGUgbmUgYXNzb3JiZSBzZWkuIElsIHNhbGRvIMOoIHF1YXR0cm9jZW50b3R0YW50YSB3YXR0LiBCYXJyZSBzdWNjZXNzaXZlIGNvbmZyb250YW5vIGVtaXNzaW9uZSwgYXNzb3JiaW1lbnRvIGUgc2FsZG8gZGFsbGEgbWVkZXNpbWEgb3JpZ2luZS4gVW4gYWx0cm8gY29uZnJvbnRvIGZyYSBkdWUgcHJvdmUgaGEgcG90ZW56ZSBuZXR0ZSBxdWF0dHJvY2VudG90dGFudGEgZSBtaWxsZXF1YXR0cm9jZW50b3F1YXJhbnRhIHdhdHQsIGNvbiBtZWRpYSBub3ZlY2VudG9zZXNzYW50YS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9InJhZGlhdGlvbiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iI2I0NTMyOCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzMwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IEVtZXR0ZSBlIGFzc29yYmUgbmVsbG8gc3Rlc3NvIHRlbXBvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPkFtYmllbnRlIG5lcm8gYSAxMDAgSywgc3VwZXJmaWNpZSBkaSBhcmVhIDEgbcKyLjwvdGV4dD4KPHJlY3QgeD0iNTAiIHk9IjExMCIgd2lkdGg9IjU0MCIgaGVpZ2h0PSIyMjAiIHJ4PSIxMCIgZmlsbD0iI2U1ZWRmMyIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iODAiIHk9IjE1NSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxMzAiIHJ4PSI4IiBmaWxsPSIjMTQyNDNhIi8+Cjx0ZXh0IHg9Ijk5IiB5PSIyMDIiIGZpbGw9IndoaXRlIj5TdXBlcmZpY2llPC90ZXh0Pjx0ZXh0IHg9Ijk5IiB5PSIyNDUiIGZpbGw9IndoaXRlIj5UX3MgPSAzMDAgSzwvdGV4dD4KPHBhdGggZD0iTTI2MCAxNzZINDcwIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNyYWRpYXRpb24pIi8+CjxwYXRoIGQ9Ik00NzAgMjU0SDI2MCIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjcmFkaWF0aW9uKSIvPgo8dGV4dCB4PSIzMDIiIHk9IjE0OCI+RW1ldHRlIDQ4NiBXPC90ZXh0Pjx0ZXh0IHg9IjMwMiIgeT0iMjk2Ij5Bc3NvcmJlIDYgVzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM3NCIgZm9udC1zaXplPSIxOCI+RnJlY2NlIHNjaGVtYXRpY2hlOiBub24gY29uZnJvbnRhcm5lIGxlIGx1bmdoZXp6ZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0MDdINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjQ1MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgSWwgc2FsZG8gw6ggZW1pc3Npb25lIG1lbm8gYXNzb3JiaW1lbnRvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDkxIiBmb250LXNpemU9IjE4Ij5Qb3RlbnplIGluIFcsIHR1dHRlIGRhbGxhIHN0ZXNzYSBvcmlnaW5lLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA1MjBWNzc0IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjU0NCIgd2lkdGg9IjM0MC4yIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjEzMCIgeT0iNjE3IiB3aWR0aD0iNC4yIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iNjkwIiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1NzAiPkVtZXNzYTwvdGV4dD48dGV4dCB4PSI0ODkiIHk9IjU3MCI+NDg2IFc8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2NDMiPkFzc29yYml0YTwvdGV4dD48dGV4dCB4PSIxNTQiIHk9IjY0MyI+NiBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzE2Ij5OZXR0YTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjcxNiI+NDgwIFc8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iNzY4Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODE2IiBmb250LXNpemU9IjE4Ij40ODYgVyDiiJIgNiBXID0gNDgwIFcgY2VkdXRpIGFsIG5ldHRvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDg0OUg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iODk0IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkaSBkdWUgc2FsZGkgZ2nDoCBjYWxjb2xhdGk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MzMiIGZvbnQtc2l6ZT0iMTgiPkE6IM64X3MgPSAzLCDOuF9hID0gMTsgQjogzrhfcyA9IDQsIM64X2EgPSAyLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA5NjBWMTIxMSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI5ODIiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDU1IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTEyOCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTAwOCI+QTwvdGV4dD48dGV4dCB4PSIyNjkiIHk9IjEwMDgiPjQ4MCBXPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTA4MSI+QjwvdGV4dD48dGV4dCB4PSI1MDkiIHk9IjEwODEiPjE0NDAgVzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNTQiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM4OSIgeT0iMTE1NCI+OTYwIFc8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iMTIwNSI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNTIiIGZvbnQtc2l6ZT0iMTgiPk1lZGlhIGRlbGxlIHVzY2l0ZTogKDQ4MCArIDE0NDApLzIgPSA5NjAgVy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjg0IiBmb250LXNpemU9IjE4Ij5JbCBzYWxkbyBudWxsbywgYSB0ZW1wZXJhdHVyZSB1Z3VhbGksIG5vbiBhbm51bGxhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMxNCIgZm9udC1zaXplPSIxOCI+bGUgZHVlIHBvdGVuemUgdWd1YWxpIGVtZXNzYSBlIGFzc29yYml0YS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
