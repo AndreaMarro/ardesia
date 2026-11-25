@@ -1,0 +1,1168 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-capacitor-charge-sharing-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22301,
+      "title": "La carica iniziale si distribuisce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Con V₀=6 V e C=2 μF, quanto vale V_f in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sul futuro nodo positivo la carica iniziale è C₀V₀=12 μC, perché il secondo condensatore è scarico. Alla fine i due hanno la stessa tensione e la capacità totale è C₀+C=4 μF. Conservare quella carica dà V_f=12 μC/(4 μF)=3 V. L’altro nodo porta la carica opposta, non una carica aggiuntiva da sommare al numeratore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a61bb0f46b9b9d94297e4baa23111d7afe5f38c95c25191ad80902ba00246dee",
+          "text": "Prima del collegamento il futuro nodo A ha 12 μC sul primo condensatore e zero sul secondo. Dopo il transitorio le armature connesse ad A portano 6 μC ciascuna e condividono 3 V. Le cariche dell’altro nodo sono opposte; la loro somma non si aggiunge al numeratore."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=C_0V_0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=(C_0+C)V_f"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Sei V mantiene la tensione come se il generatore fosse ancora collegato. Dodici copia il numero della carica in μC, non una tensione; 3/2 dimezza ancora e zero confonde la carica netta delle due armature con quella conservata su ciascun nodo."
+        }
+      ],
+      "hints": [
+        "Conserva la carica del nodo e usa la capacità totale finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei V mantiene la tensione come se il generatore fosse ancora collegato. Dodici copia il numero della carica in μC, non una tensione; 3/2 dimezza ancora e zero confonde la carica netta delle due armature con quella conservata su ciascun nodo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22302,
+      "title": "L’unità del potenziale comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Quale unità esprime V_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "C",
+          "F",
+          "J",
+          "1"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione è carica divisa per capacità: C/F=V. Nel rapporto C₀/(C₀+C), numeratore e denominatore sono capacità e si cancellano; il prodotto con V₀ conserva i volt."
+        },
+        {
+          "type": "formula",
+          "text": "V_f=\\frac{Q_A}{C_0+C}"
+        },
+        {
+          "type": "formula",
+          "text": " [V_f]=\\mathrm{C/F}"
+        },
+        {
+          "type": "formula",
+          "text": " [V_f]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "C è carica, F capacità e J energia. Il numero 1 può descrivere il rapporto delle capacità, ma non la tensione ottenuta moltiplicandolo per V₀."
+        }
+      ],
+      "hints": [
+        "Distingui il rapporto puro dal prodotto con una tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "C è carica, F capacità e J energia. Il numero 1 può descrivere il rapporto delle capacità, ma non la tensione ottenuta moltiplicandolo per V₀.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22303,
+      "title": "La legge della condivisione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Quale relazione dà V_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V_f = C₀ V₀ / (C₀ + C)",
+          "V_f = V₀",
+          "V_f = V₀ (C₀ + C) / C₀",
+          "V_f = C V₀ / (C₀ + C)",
+          "V_f = (C₀ + C) V₀"
+        ],
+        "value": "V_f = C₀ V₀ / (C₀ + C)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima del collegamento soltanto C₀ è carico, quindi la carica del futuro nodo A è C₀V₀. Dopo, Q_A=C₀V_f+CV_f. Uguagliando i due stati e dividendo per C₀+C si ottiene V_f=C₀V₀/(C₀+C). Per C>0 risulta strettamente 0<V_f<V₀."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a61bb0f46b9b9d94297e4baa23111d7afe5f38c95c25191ad80902ba00246dee",
+          "text": "Il diagramma centrale è lo stato finale della condivisione con C₀=C=2 μF e V₀=6 V. Entrambe le capacità condividono A e B, ma soltanto C₀ era inizialmente carico. Si conserva la carica su ciascun nodo, non l’energia del solo campo."
+        },
+        {
+          "type": "formula",
+          "text": "C_0V_0=(C_0+C)V_f"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=\\frac{C_0V_0}{C_0+C}"
+        },
+        {
+          "type": "text",
+          "text": "V₀ invariata richiederebbe il generatore o C=0, escluso. Invertire la frazione dà una tensione maggiore dell’iniziale; usare C al numeratore assegna carica iniziale al condensatore sbagliato. Il prodotto (C₀+C)V₀ è carica, non tensione."
+        }
+      ],
+      "hints": [
+        "Scrivi la carica del nodo prima e dopo il transitorio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "V₀ invariata richiederebbe il generatore o C=0, escluso. Invertire la frazione dà una tensione maggiore dell’iniziale; usare C al numeratore assegna carica iniziale al condensatore sbagliato. Il prodotto (C₀+C)V₀ è carica, non tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22304,
+      "title": "Una diversa preparazione iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. V₀ passa da 6 a 8 V, mentre C resta 2 μF. Come cambia V_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 4 V",
+          "Da 3 a 8 V",
+          "Resta 3 V",
+          "Da 3 a 3/2 V",
+          "Da 3 a 6 V"
+        ],
+        "value": "Da 3 a 4 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto C₀/(C₀+C) resta 1/2. Perciò la tensione finale passa da 6/2=3 V a 8/2=4 V. Le cariche iniziali sono 12 e 16 μC: ciascuna preparazione conserva la propria, non necessariamente la stessa fra preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,A}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=\\frac{8}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Otto V copia V₀,B; tre ignora il cambiamento. 3/2 V applica un ulteriore dimezzamento e sei V copia l’ingresso della prima preparazione. Nessuno conserva la carica iniziale di B con capacità finale 4 μF."
+        }
+      ],
+      "hints": [
+        "Mantieni fissa la frazione delle capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto V copia V₀,B; tre ignora il cambiamento. 3/2 V applica un ulteriore dimezzamento e sei V copia l’ingresso della prima preparazione. Nessuno conserva la carica iniziale di B con capacità finale 4 μF.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22305,
+      "title": "Ricostruire la tensione di carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Si misura V_f=3 V e si conosce C=2 μF. Quanto vale V₀ in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando per la capacità totale: V_f(C₀+C)=C₀V₀. L’inversa è V₀=V_f(C₀+C)/C₀. Qui il rapporto vale due e la tensione iniziale è 6 V. Il controllo 0<3<6 conferma il dominio della condivisione con secondo condensatore positivo."
+        },
+        {
+          "type": "formula",
+          "text": "V_0=V_f\\frac{C_0+C}{C_0}"
+        },
+        {
+          "type": "formula",
+          "text": " V_0=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Tre V copia la finale senza compensare la condivisione; 3/2 V inverte la frazione e predirebbe soltanto 3/4 V alla fine. Dodici copia il numero della carica e darebbe V_f=6 V."
+        }
+      ],
+      "hints": [
+        "Inverti la frazione delle capacità, non la tensione da sola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre V copia la finale senza compensare la condivisione; 3/2 V inverte la frazione e predirebbe soltanto 3/4 V alla fine. Dodici copia il numero della carica e darebbe V_f=6 V.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22306,
+      "title": "Ricostruire il condensatore scarico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Si misura V_f=3 V e si conosce V₀=6 V. Quanto vale C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da V_f(C₀+C)=C₀V₀ si sottrae C₀V_f: V_fC=C₀(V₀−V_f). Quindi C=C₀(V₀/V_f−1). Con i dati: 2 μF·(2−1)=2 μF. La positività richiede 0<V_f<V₀; al confine V_f=V₀ si avrebbe C=0."
+        },
+        {
+          "type": "formula",
+          "text": "V_fC=C_0(V_0-V_f)"
+        },
+        {
+          "type": "formula",
+          "text": " C=C_0\\left(\\frac{V_0}{V_f}-1\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " C=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μF omette il termine meno uno e predirebbe V_f=2 V. Un μF darebbe V_f=4 V. Una capacità negativa non appartiene al modello e non può essere scelta per evitare il controllo del dominio."
+        }
+      ],
+      "hints": [
+        "Porta il contributo di C₀ dallo stesso lato della tensione iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro μF omette il termine meno uno e predirebbe V_f=2 V. Un μF darebbe V_f=4 V. Una capacità negativa non appartiene al modello e non può essere scelta per evitare il controllo del dominio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22307,
+      "title": "Meno capacità da caricare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. A ha V₀=6 V,C=2 μF. B mantiene V₀ e usa C=1 μF. Quanto vale V_f,B/V_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha V_f,A=12/4=3 V. B ha V_f,B=12/3=4 V. Il rapporto è 4/3: la stessa carica iniziale viene distribuita su una capacità finale minore. Non si raddoppia l’uscita dimezzando solo C, perché C₀ resta nel denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,A}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{f,B}}{V_{f,A}}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto, due segue soltanto il reciproco di C, mezzo ne segue il fattore diretto e uno non cambia la tensione. Il nuovo V_f resta comunque minore dei 6 V iniziali."
+        }
+      ],
+      "hints": [
+        "La capacità totale è C₀+C, non il solo C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto, due segue soltanto il reciproco di C, mezzo ne segue il fattore diretto e uno non cambia la tensione. Il nuovo V_f resta comunque minore dei 6 V iniziali.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22308,
+      "title": "Scarto della proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Con V₀=6 V e C=2 μF si propone V_f=6 V. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 V",
+          "−3 V",
+          "6 V",
+          "0 V",
+          "2"
+        ],
+        "value": "3 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione finale corretta è 3 V. La proposta la supera di 6−3=3 V. Essa tratterebbe il sistema come se fosse ancora mantenuto a 6 V dal generatore, che invece è stato scollegato."
+        },
+        {
+          "type": "formula",
+          "text": "V_f=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−3 V scambia l’ordine, sei copia la proposta e zero la accetta. Due è il rapporto fra proposta e corretto, adimensionale, non lo scarto richiesto."
+        }
+      ],
+      "hints": [
+        "Calcola prima il valore finale dalla conservazione della carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 V scambia l’ordine, sei copia la proposta e zero la accetta. Due è il rapporto fra proposta e corretto, adimensionale, non lo scarto richiesto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22309,
+      "title": "L’inversa generale per V₀",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. V_f e C sono noti. Quale relazione isola V₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V₀ = V_f (C₀ + C) / C₀",
+          "V₀ = V_f C₀ / (C₀ + C)",
+          "V₀ = V_f C / C₀",
+          "V₀ = (C₀ + C) / V_f",
+          "V₀ = V_f / (C₀ + C)"
+        ],
+        "value": "V₀ = V_f (C₀ + C) / C₀"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica finale del nodo è (C₀+C)V_f e deve coincidere con C₀V₀. Dividendo per il C₀ positivo assegnato si ottiene V₀=V_f(C₀+C)/C₀. Il fattore delle capacità è puro e maggiore di uno, quindi ricostruisce una tensione iniziale maggiore della finale."
+        },
+        {
+          "type": "formula",
+          "text": "C_0V_0=(C_0+C)V_f"
+        },
+        {
+          "type": "formula",
+          "text": " V_0=V_f\\frac{C_0+C}{C_0}"
+        },
+        {
+          "type": "text",
+          "text": "La frazione inversa riduce ancora la tensione; C/C₀ omette l’addendo C₀ della somma. Gli ultimi quozienti hanno F/V o V/F e non tensione. La conservazione riguarda il nodo e non l’energia del solo campo."
+        }
+      ],
+      "hints": [
+        "Isola l’ingresso dalla stessa equazione di carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La frazione inversa riduce ancora la tensione; C/C₀ omette l’addendo C₀ della somma. Gli ultimi quozienti hanno F/V o V/F e non tensione. La conservazione riguarda il nodo e non l’energia del solo campo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22310,
+      "title": "Rapporto tra preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. B usa V₀,B=κ₁V₀ e C_B=κ₂C, con fattori positivi. Definiamo S=C₀+C e S_B=C₀+κ₂C. Quanto vale V_f,B/V_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ S / S_B",
+          "κ₂ S / S_B",
+          "κ₁ κ₂",
+          "S_B / (κ₁ S)",
+          "κ₁ / κ₂"
+        ],
+        "value": "κ₁ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica iniziale prende il fattore κ₁ perché C₀ resta fissato. Il denominatore finale diventa S_B, mentre quello iniziale era S. Il rapporto è κ₁S/S_B. Solo C viene scalato nella capacità nuova, non anche C₀."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,A}=\\frac{C_0V_0}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=\\frac{\\kappa_1C_0V_0}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{f,B}}{V_{f,A}}=\\frac{\\kappa_1S}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "κ₂ al numeratore scala l’ingresso sbagliato. Il prodotto perde il denominatore; S_B/(κ₁S) inverte il confronto. κ₁/κ₂ sarebbe corretto solo se tutto il denominatore fosse scalato da κ₂, mentre C₀ resta invariato."
+        }
+      ],
+      "hints": [
+        "Separa la variazione della carica iniziale da quella della capacità finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₂ al numeratore scala l’ingresso sbagliato. Il prodotto perde il denominatore; S_B/(κ₁S) inverte il confronto. κ₁/κ₂ sarebbe corretto solo se tutto il denominatore fosse scalato da κ₂, mentre C₀ resta invariato.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22311,
+      "title": "Cambiano entrambi gli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. A ha V₀=6 V,C=2 μF. B ha V₀=12 V,C=4 μF. Quanto vale V_f,B/V_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 3 V. B parte con 24 μC sul nodo e ha capacità finale 6 μF, quindi termina a 4 V. Il rapporto è 4/3. Raddoppiare V₀ e C non lascia il rapporto invariato, perché C₀ non raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,A}=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_{f,B}}{V_{f,A}}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il rapporto; due segue soltanto V₀ e mezzo soltanto C in modo inverso. Uno presume una compensazione esatta e ignora il termine C₀ fisso nel denominatore."
+        }
+      ],
+      "hints": [
+        "Valuta il totale finale della prova B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il rapporto; due segue soltanto V₀ e mezzo soltanto C in modo inverso. Uno presume una compensazione esatta e ignora il termine C₀ fisso nel denominatore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22312,
+      "title": "Media delle tensioni finali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. A usa V₀=6 V,C=2 μF; B usa V₀=12 V,C=4 μF. Qual è la media aritmetica delle due V_f con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 V",
+          "18/5 V",
+          "7 V",
+          "1/2 V",
+          "4 V"
+        ],
+        "value": "7/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 3 e 4 V: la loro media è 7/2 V. Ai dati medi V₀=9 V e C=3 μF, il modello darebbe 2·9/5 V=18/5 V. Con denominatore comune dieci sono 35/10 e 36/10 V, diversi di 1/10 V. Non si deve mediare prima il denominatore della legge."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a61bb0f46b9b9d94297e4baa23111d7afe5f38c95c25191ad80902ba00246dee",
+          "text": "Le barre inferiori riguardano A: V₀=6 V,C=2 μF e B: V₀=12 V,C=4 μF. Le tensioni finali 3 V,4 V e media 7/2 V hanno origine e scala comuni. Il pannello dei moduli di carica usa una grandezza e una scala diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{V_f}=\\frac72\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,\\rm dati\\ medi}=\\frac{18}{5}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{18}{5}-\\frac72=\\frac1{10}"
+        },
+        {
+          "type": "text",
+          "text": "18/5 V usa gli ingressi medi. Sette V somma, mezzo è metà della differenza e quattro ripete solo B. La media è statistica di stati finali, non il valore durante un transitorio."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente le due uscite prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/5 V usa gli ingressi medi. Sette V somma, mezzo è metà della differenza e quattro ripete solo B. La media è statistica di stati finali, non il valore durante un transitorio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22313,
+      "title": "La capacità per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. A ha V₀=6 V,C=2 μF. B parte da V₀=12 V e deve ottenere V_f,B=(4/3)V_f,A. Quanto vale C_B/C_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4/3",
+          "3/4",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è V_f,B=4 V. L’inversa geometrica della condivisione dà C_B=C₀(V₀,B/V_f,B−1)=2·(3−1) μF=4 μF. Il rapporto con C_A=2 μF è due e il controllo 0<4<12 conferma il dominio."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto. 4/3 copia il rapporto delle tensioni finali; 3/4 il suo reciproco. Quattro copia il valore numerico di C_B in μF senza dividerlo per il C_A da 2 μF."
+        }
+      ],
+      "hints": [
+        "Trova prima la tensione finale bersaglio e poi C_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto. 4/3 copia il rapporto delle tensioni finali; 3/4 il suo reciproco. Quattro copia il valore numerico di C_B in μF senza dividerlo per il C_A da 2 μF.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22314,
+      "title": "Un display senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. D=a_cal V_f è continuo e adimensionale, a_cal>0. A con V₀=6 V,C=2 μF dà D=9. B legge D=12 e ha C=4 μF. Quanto vale V₀,B in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha V_f,A=3 V, quindi a_cal=3 V⁻¹. Lettura 12 indica V_f,B=4 V. Il rapporto (C₀+C)/C₀ vale 6/2=3, dunque V₀,B=4·3=12 V. La lettura coincide numericamente con il risultato solo per questi dati: non è una regola di unità."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{0,B}=12\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V copia l’uscita finale e darebbe un’altra lettura. Trentasei V usa D=12 come tensione finale e ricostruirebbe D=36. Otto V darebbe V_f=8/3 V e D=8."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima di ricostruire la tensione iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V copia l’uscita finale e darebbe un’altra lettura. Trentasei V usa D=12 come tensione finale e ricostruirebbe D=36. Otto V darebbe V_f=8/3 V e D=8.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22315,
+      "title": "Offset nella misura finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. D=a_cal V_f+b è continuo. A: V₀=6 V,C=2 μF,D=7. B: V₀=12 V,C=4 μF,D=9. C: capacità scarica 3 μF,D=13. Quanto vale V₀,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 V",
+          "65/4 V",
+          "6 V",
+          "30 V",
+          "13 V"
+        ],
+        "value": "15 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti terminano a 3 e 4 V. Guadagno a_cal=(9−7)/(4−3)=2 V⁻¹ e offset b=1. La lettura 13 dà V_f,C=6 V. Con capacità totale 5 μF, l’inversa porta V₀,C=6·5/2 V=15 V. Si conserva V_f,C<V₀,C."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,C}=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{0,C}=15\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "65/4 V omette l’offset e usa V_f=13/2 V: ricostruisce D=14, non 13. Sei V copia l’uscita finale; trenta V omette il guadagno dopo la sottrazione; tredici V copia la lettura strumentale. Tutti possono essere confutati reinserendoli nella legge."
+        }
+      ],
+      "hints": [
+        "Decodifica V_f e moltiplicala per la frazione inversa delle capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "65/4 V omette l’offset e usa V_f=13/2 V: ricostruisce D=14, non 13. Sei V copia l’uscita finale; trenta V omette il guadagno dopo la sottrazione; tredici V copia la lettura strumentale. Tutti possono essere confutati reinserendoli nella legge.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-sharing-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Condividere carica fra capacità isolate",
+      "order": 22316,
+      "title": "Il vincolo non è ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge-sharing",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare C₀=2 μF è carico alla tensione V₀>0. Dopo averlo scollegato dal generatore, lo si unisce in parallelo con polarità concordi a un condensatore lineare C>0 inizialmente scarico. Il sistema non scambia carica con l’esterno; una piccola resistenza positiva dei collegamenti permette al transitorio di esaurirsi. Si cerca la tensione comune finale V_f>0, non un valore durante il transitorio. Le capacità restano finite e costanti. La carica conservata è la somma algebrica sulle armature che formeranno ciascun nodo; l’energia del solo campo non è in generale conservata. Fra preparazioni vale V₀=(3 V/μF)C. Si misura V_f=3 V. Quanto vale C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 μF",
+          "1 μF",
+          "3 μF",
+          "−2 μF",
+          "Infinite capacità positive"
+        ],
+        "value": "2 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo c=C/(1 μF), numero positivo: il vincolo dà V₀=3c V. La legge diventa V_f/(1 V)=6c/(2+c). Uguagliando a tre e moltiplicando per 2+c>0 si ottiene 6c=6+3c, quindi c=2. La misura fissa C=2 μF e V₀=6 V; non si cancella tutta la dipendenza da C."
+        },
+        {
+          "type": "formula",
+          "text": "3(2+c)=6c"
+        },
+        {
+          "type": "formula",
+          "text": " 3c=6"
+        },
+        {
+          "type": "formula",
+          "text": " C=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Un μF darebbe V_f=2 V e tre μF darebbe 18/5 V. −2 μF viola la positività e annulla il denominatore della forma normalizzata. Infinite soluzioni confonde questo vincolo con uno che renderebbe l’uscita costante."
+        }
+      ],
+      "hints": [
+        "Conserva l’addendo fisso C₀ nel denominatore dopo la sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un μF darebbe V_f=2 V e tre μF darebbe 18/5 V. −2 μF viola la positività e annulla il denominatore della forma normalizzata. Infinite soluzioni confonde questo vincolo con uno che renderebbe l’uscita costante.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica algebrica conservata sul nodo",
+        "Stato finale e transitorio dissipativo distinti",
+        "Inverse positive e rapporti tra preparazioni",
+        "Medie, display e vincolo non ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a61bb0f46b9b9d94297e4baa23111d7afe5f38c95c25191ad80902ba00246dee",
+      "name": "capacitor-charge-sharing-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FyaWNhIGluaXppYWxlIGUgdGVuc2lvbmUgY29uZGl2aXNhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJpbWEgZGVsIGNvbGxlZ2FtZW50byBpbCBmdXR1cm8gbm9kbyBwb3NpdGl2byBoYSBkb2RpY2kgbWljcm9jb3Vsb21iIHN1bCBwcmltbyBjb25kZW5zYXRvcmUgZSB6ZXJvIHN1bCBzZWNvbmRvLiBBbGxhIGZpbmUgbGUgY2FwYWNpdMOgIHVndWFsaSBjb25kaXZpZG9ubyB0cmUgdm9sdCBlIHBvcnRhbm8gc2VpIG1pY3JvY291bG9tYiBjaWFzY3VuYSBzdSBxdWVsIG5vZG8uIFVsdGltZSBiYXJyZTogdGVuc2lvbmkgZmluYWxpIHRyZSwgcXVhdHRybyBlIHNldHRlIG1lenppIHZvbHQuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgcng9IjE2IiBmaWxsPSIjZjdmOWZjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgUHJpbWE6IHNvbHRhbnRvIEPigoAgw6ggY2FyaWNvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5D4oKAID0gMiDOvEYsIDYgViA7IEMgPSAyIM68Riwgc2NhcmljbzwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMzBWMzI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjE1NSIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Q+KCgDwvdGV4dD4KPHRleHQgeD0iNTIwIiB5PSIxODUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xMiDOvEM8L3RleHQ+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjI3MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8dGV4dCB4PSIzMiIgeT0iMjc4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QzwvdGV4dD4KPHRleHQgeD0iMTcyIiB5PSIyNzgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wIM68QzwvdGV4dD4KPHRleHQgeD0iMTE4IiB5PSIzNTQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDAyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Q2FyaWNhIGRlbCBmdXR1cm8gbm9kbyBBOiAxMiDOvEMuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDU0SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUwMyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgRG9wbzogdGVuc2lvbmUgY29tdW5lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTQ3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+R2VuZXJhdG9yaSBzY29sbGVnYXRpIDsgdHJhbnNpdG9yaW8gY29uY2x1c28uPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDY1MFY3ODBNNTMwIDY1MFY3ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMTAgNjUwSDI5ME0zMTAgNjUwSDUzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTI5MCA2MjVWNjc1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzEwIDYyNVY2NzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjY1MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1MzAiIGN5PSI2NTAiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHBhdGggZD0iTTExMCA3ODBIMjkwTTMxMCA3ODBINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjkwIDc1NVY4MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0zMTAgNzU1VjgwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTEwIiBjeT0iNzgwIiByPSI0IiBmaWxsPSIjMTgyYzQ2Ii8+CjxjaXJjbGUgY3g9IjUzMCIgY3k9Ijc4MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8dGV4dCB4PSI2NyIgeT0iNjQwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QTwvdGV4dD4KPHRleHQgeD0iNTQ4IiB5PSI2NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSIyMTUiIHk9IjYwMyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkPigoAgPSAyIM68RiA7IFHigoAsZiA9IDYgzrxDPC90ZXh0Pgo8dGV4dCB4PSIyMTUiIHk9IjczNyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkMgPSAyIM68RiA7IFFfZiA9IDYgzrxDPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODYzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+UV9BID0gNiDOvEMgKyA2IM68QyA9IDEyIM68QzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkwNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlZfZiA9IDEyIM68QyAvICg0IM68RikgPSAzIFY8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5M4oCZZW5lcmdpYSBkZWwgc29sbyBjYW1wbyBwdcOyIGRpbWludWlyZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5OTdINjA4IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGNmZGIiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iMTA0NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgVGVuc2lvbmkgZmluYWxpIGRpIGFsdHJlIHByb3ZlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA5MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE6IDYgViwgMiDOvEYgOyBCOiAxMiBWLCA0IM68RjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTMwVjE0NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTE2MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE5MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjQwOCIgeT0iMTE5MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjMgVjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxMjYwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMjkwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QjwvdGV4dD4KPHRleHQgeD0iNDg4IiB5PSIxMjkwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+NCBWPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEzNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iNDIiIGZpbGw9IiMzNTY1NGUiLz4KPHRleHQgeD0iMzIiIHk9IjEzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5NZWRpYTwvdGV4dD4KPHRleHQgeD0iNDQ4IiB5PSIxMzkwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Ny8yIFY8L3RleHQ+Cjx0ZXh0IHg9IjExOCIgeT0iMTQ3MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+T3JpZ2luZSBlIHNjYWxhIGNvbXVuaSBlbnRybyBpbCBwYW5uZWxsby48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}
