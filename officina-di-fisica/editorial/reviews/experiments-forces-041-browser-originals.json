@@ -1,0 +1,832 @@
+{
+  "appRoot": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "purpose": "DIAGNOSTIC_ORIGINAL_DEFECTS_NOT_SCIENTIFIC_APPROVAL",
+  "expectedSourceIssueIds": [
+    "SIM-C1-L005-05"
+  ],
+  "expectedConsumerIssueIds": [
+    "SIM-C1-L005-05",
+    "SIM-C1-L005-06"
+  ],
+  "cases": [
+    {
+      "id": "SIM-C1-L005-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSulla guida orizzontale ideale la risultante è nulla. Nel riferimento inerziale del laboratorio resta la velocità iniziale. Il carrello continua ad attraversare tacche equidistanti.\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo dopo la spinta» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 4 s.\n\nTempo dopo la spinta = 1 s · Posizione = 1,5 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1,5 × 1 = 1,5 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo dopo la spinta» a 2,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-3d.png",
+      "screenshotSha256": "3dd1f2ebba1585e2175834b130dcb57e61ec400c4811421d1ca05995b3561ebd"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Tempo dopo la spinta\n0 s\nPosizione\n0 m\nVariazione dal riferimento\n-1,5 m",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-x0-3d.png",
+      "screenshotSha256": "76e12178eca2edfcdd38ac377c059bc224ebae0c495c54398a4203df37659f7d"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "boundary",
+      "input": 5,
+      "noWebGL": false,
+      "readings": "Tempo dopo la spinta\n5 s\nPosizione\n7,5 m\nVariazione dal riferimento\n6 m",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-x5-3d.png",
+      "screenshotSha256": "f4ddb4ae34b6c8f3388ddb0241bf04b569ab586ba6db274b6e605018f4f21048"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo dopo la spinta\n0\n0\n3,75\n2,5\n7,5\n5\nPosizione (m)\nTempo dopo la spinta (s)\nPosizione",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-graphs-3d.png",
+      "screenshotSha256": "b2b5de044b0f8625f26e6fb187d3b36464d99eb57b1ba196df6c3c8a0fe5c41a"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nApplica le due forze allo stesso blocco. Quando le frecce si compensano, un blocco inizialmente fermo resta fermo. In verticale peso e reazione si equilibrano.\n\nΣFₓ = F − 6 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza verso destra» e confronta la scena con il punto segnato sul grafico. Parti da 6 N, poi prova 9 N.\n\nForza verso destra = 6 N · Risultante orizzontale = 0 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΣFₓ = F − 6 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 − 6 = 0 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza verso destra» a 4 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΣFₓ = F − 6 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-3d.png",
+      "screenshotSha256": "77014b12f8871c87a90391f5d19b17c58000c95749e3db189b7907763d0a31ec"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Forza verso destra\n0 N\nRisultante orizzontale\n-6 N\nVariazione dal riferimento\n-6 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x0-3d.png",
+      "screenshotSha256": "36e46a2543c13e5a2db5bb70b7fb03c7cbbba15457526441c55fc8faa5536af7"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": false,
+      "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x6-3d.png",
+      "screenshotSha256": "77014b12f8871c87a90391f5d19b17c58000c95749e3db189b7907763d0a31ec"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 10,
+      "noWebGL": false,
+      "readings": "Forza verso destra\n10 N\nRisultante orizzontale\n4 N\nVariazione dal riferimento\n4 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x10-3d.png",
+      "screenshotSha256": "19328c43ad0dcbecf8cbaf0065fd4aa0a280f80fa1cdbf618c924f28e029abe3"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza verso destra\n-6\n0\n-1\n5\n4\n10\nRisultante orizzontale (N)\nForza verso destra (N)\nRisultante orizzontale",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-graphs-3d.png",
+      "screenshotSha256": "69a79e7904676d97cc9fcf7bfeb2eaeff1f02a972d95ba7b33ab63b7e42cd957"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSulla guida senza attrito la spinta orizzontale è la risultante. Dividila per la massa inerziale. Il segno indica il verso; forza e accelerazione hanno unità diverse.\n\na = ΣF / (2 kg)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza risultante» e confronta la scena con il punto segnato sul grafico. Parti da -4 N, poi prova 6 N.\n\nForza risultante = -4 N · Accelerazione = -2 m/s²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na = ΣF / (2 kg). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n(-4) / 2 = -2 m/s²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza risultante» a 0 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na = ΣF / (2 kg)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-3d.png",
+      "screenshotSha256": "1f5f687a66643e453159df5dc2b404b75aa7be52422b347c225b889b7dbd5bc7"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": -8,
+      "noWebGL": false,
+      "readings": "Forza risultante\n-8 N\nAccelerazione\n-4 m/s²\nVariazione dal riferimento\n-2 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x-8-3d.png",
+      "screenshotSha256": "428025b539d76207844e79a0711b73c245ff0a312e005a12dacf55f9d58e7b5c"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Forza risultante\n0 N\nAccelerazione\n0 m/s²\nVariazione dal riferimento\n2 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x0-3d.png",
+      "screenshotSha256": "6f6fdc360d911104305517b48cc17c311197a7136020cce599b484f8df4616b3"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": 8,
+      "noWebGL": false,
+      "readings": "Forza risultante\n8 N\nAccelerazione\n4 m/s²\nVariazione dal riferimento\n6 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x8-3d.png",
+      "screenshotSha256": "ad6de860852be6a3727373645e4dcc087392ed0ddbc77bebb7ca2afbcbb30d82"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza risultante\n-4\n-8\n0\n0\n4\n8\nAccelerazione (m/s²)\nForza risultante (N)\nAccelerazione",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-graphs-3d.png",
+      "screenshotSha256": "f833b2c5a9e28670ed573ef43fc61b5b7ddc12777fe82fb3c58f5b0e8130242a"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOsserva i due punti di applicazione. B subisce la forza verso destra; A subisce quella verso sinistra. Solo allargando il sistema a entrambi le due forze diventano interne.\n\nF di B su A = −F di A su B\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza di A su B» e confronta la scena con il punto segnato sul grafico. Parti da 3 N, poi prova 8 N.\n\nForza di A su B = 3 N · Forza di B su A lungo x = -3 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF di B su A = −F di A su B. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−3 = -3 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza di A su B» a 6 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF di B su A = −F di A su B\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-3d.png",
+      "screenshotSha256": "2fbce32d50746882cdfbc3fc63be0626987e6fbadeaff9a032ae30dae4992c5f"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Forza di A su B\n0 N\nForza di B su A lungo x\n0 N\nSomma delle due forze\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-x0-3d.png",
+      "screenshotSha256": "7bdc7cf36f86317d4ec4e1993d375873609ca5a9905417a14e236ba7a24b0089"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "boundary",
+      "input": 12,
+      "noWebGL": false,
+      "readings": "Forza di A su B\n12 N\nForza di B su A lungo x\n-12 N\nSomma delle due forze\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-x12-3d.png",
+      "screenshotSha256": "86bd07d5568d54a5c599fc1bc75a0e2e08fc0d65900585760729f75bcb7e4825"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza di a su b\n-12\n0\n-6\n6\n0\n12\nForza di B su A lungo x (N)\nForza di A su B (N)\nForza di B su A lungo x",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-graphs-3d.png",
+      "screenshotSha256": "4d5cbf6a00d0c22fd51899a234726428f223080d4716b86c6ecc2a7d4294041c"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Un pacco pesa 20 N su un ripiano inclinato di 40 °. Quanto segna il sensore perpendicolare al ripiano?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. N = mg cos θ, con mg = 20 N. 20 × cos(40°) ≈ 15,32 N."
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nInclina lentamente il piano. Il peso resta verticale; la normale ruota con la superficie e bilancia solo la componente perpendicolare. Il blocco è trattenuto lungo la guida.\n\nN = mg cos θ, con mg = 20 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Inclinazione» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 60 °.\n\nInclinazione = 0 ° · Reazione normale = 20 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nN = mg cos θ, con mg = 20 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 × cos(0°) = 20 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Inclinazione» a 40 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nN = mg cos θ, con mg = 20 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-3d.png",
+      "screenshotSha256": "f6c4ce356bb2d144be94ada16f89b944297d99913b63a90f7b4126d64bed04a5"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x0-3d.png",
+      "screenshotSha256": "f6c4ce356bb2d144be94ada16f89b944297d99913b63a90f7b4126d64bed04a5"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 60,
+      "noWebGL": false,
+      "readings": "Inclinazione\n60 °\nReazione normale\n10 N\nVariazione dal riferimento\n-10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x60-3d.png",
+      "screenshotSha256": "03389bf4e4d43608fc58bcd4d3821443e5eec8b01bba0c4e1901ae0483633986"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 75,
+      "noWebGL": false,
+      "readings": "Inclinazione\n75 °\nReazione normale\n5,176 N\nVariazione dal riferimento\n-14,82 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x75-3d.png",
+      "screenshotSha256": "d00453647019ca67be455c6b056f86da6e4438c79c70695432ee05c50847039a"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di inclinazione\n0\n0\n10\n37,5\n20\n75\nReazione normale (N)\nInclinazione (°)\nReazione normale",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-graphs-3d.png",
+      "screenshotSha256": "a50724638efb58cf2f8cee200c0d776256147741e3f12ba211f7cfd9455a675e"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl filo ideale tira verso l’alto e il peso è diretto verso il basso. A velocità costante il filo sostiene 20 N; un’accelerazione positiva richiede una tensione maggiore.\n\nT − mg = ma; T = 2(10+a)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Accelerazione verso l’alto» e confronta la scena con il punto segnato sul grafico. Parti da 0 m/s², poi prova 3 m/s².\n\nAccelerazione verso l’alto = 0 m/s² · Tensione del filo = 20 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nT − mg = ma; T = 2(10+a). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × (10 + 0) = 20 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Accelerazione verso l’alto» a -1 m/s². Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nT − mg = ma; T = 2(10+a)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-3d.png",
+      "screenshotSha256": "22476ce70bbe68b26a1440b6e750c590fb04b0258a758f598c89b82dd93dcd2e"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": -5,
+      "noWebGL": false,
+      "readings": "Accelerazione verso l’alto\n-5 m/s²\nTensione del filo\n10 N\nVariazione dal riferimento\n-10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x-5-3d.png",
+      "screenshotSha256": "5d50efe7db0dcd160c256b15d75140137dba884ebebdd0941acc0b427f635a1b"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": -3,
+      "noWebGL": false,
+      "readings": "Accelerazione verso l’alto\n-3 m/s²\nTensione del filo\n14 N\nVariazione dal riferimento\n-6 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x-3-3d.png",
+      "screenshotSha256": "7d5dedeaeb26e99ac86aabef686ee374cf4f55ab6d1ae51c4269d8a21599c3ff"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x0-3d.png",
+      "screenshotSha256": "666a8bd7bf5ca1b33e259a2cb32415b4647db271679e039fb7084ed596fe91c4"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": 5,
+      "noWebGL": false,
+      "readings": "Accelerazione verso l’alto\n5 m/s²\nTensione del filo\n30 N\nVariazione dal riferimento\n10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x5-3d.png",
+      "screenshotSha256": "203146b1adf44d8617ef5b111b3477d78777a3cafb507252d6235a924c361d83"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di accelerazione verso l’alto\n0\n-5\n15\n0\n30\n5\nTensione del filo (N)\nAccelerazione verso l’alto (m/s²)\nTensione del filo",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-graphs-3d.png",
+      "screenshotSha256": "2609a7fe7176ccc6565d5df15720ae271cf9187b4865e323e37abe6e3044d3c2"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSulla guida orizzontale ideale la risultante è nulla. Nel riferimento inerziale del laboratorio resta la velocità iniziale. Il carrello continua ad attraversare tacche equidistanti.\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo dopo la spinta» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 4 s.\n\nTempo dopo la spinta = 1 s · Posizione = 1,5 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1,5 × 1 = 1,5 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo dopo la spinta» a 2,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΣF = 0 ⇒ v = 1,5 m/s; x = vt\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo dopo la spinta\n1 s\nPosizione\n1,5 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-2d.png",
+      "screenshotSha256": "20ca295a7e78a5387538f0c59cd49a82f900d486fdb53645526ab9c6b34902d4"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Tempo dopo la spinta\n0 s\nPosizione\n0 m\nVariazione dal riferimento\n-1,5 m",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-x0-2d.png",
+      "screenshotSha256": "6d2b4debe134fdb2d843fe4e7da4ee8c7f3f96359eac1f02499bcd05900980a7"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "boundary",
+      "input": 5,
+      "noWebGL": true,
+      "readings": "Tempo dopo la spinta\n5 s\nPosizione\n7,5 m\nVariazione dal riferimento\n6 m",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-x5-2d.png",
+      "screenshotSha256": "d53455bb3a1caf77ce4d6e16f9d15c37ab11651961f1c2bd1d4515eb3b4b5263"
+    },
+    {
+      "id": "SIM-C1-L005-01",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo dopo la spinta\n0\n0\n3,75\n2,5\n7,5\n5\nPosizione (m)\nTempo dopo la spinta (s)\nPosizione",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-01-graphs-2d.png",
+      "screenshotSha256": "b2b5de044b0f8625f26e6fb187d3b36464d99eb57b1ba196df6c3c8a0fe5c41a"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nApplica le due forze allo stesso blocco. Quando le frecce si compensano, un blocco inizialmente fermo resta fermo. In verticale peso e reazione si equilibrano.\n\nΣFₓ = F − 6 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza verso destra» e confronta la scena con il punto segnato sul grafico. Parti da 6 N, poi prova 9 N.\n\nForza verso destra = 6 N · Risultante orizzontale = 0 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΣFₓ = F − 6 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 − 6 = 0 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza verso destra» a 4 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΣFₓ = F − 6 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-2d.png",
+      "screenshotSha256": "4dd732a4b02b6dbd0a1826a5c4ca8f9f2a948d75191d882c36ba0222818b969e"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Forza verso destra\n0 N\nRisultante orizzontale\n-6 N\nVariazione dal riferimento\n-6 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x0-2d.png",
+      "screenshotSha256": "c8d4beb144ab6186ebd386d9d24b1c57cdaad4515c18ddeffe86a0c89ce65f99"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": true,
+      "readings": "Forza verso destra\n6 N\nRisultante orizzontale\n0 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x6-2d.png",
+      "screenshotSha256": "4dd732a4b02b6dbd0a1826a5c4ca8f9f2a948d75191d882c36ba0222818b969e"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "boundary",
+      "input": 10,
+      "noWebGL": true,
+      "readings": "Forza verso destra\n10 N\nRisultante orizzontale\n4 N\nVariazione dal riferimento\n4 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-x10-2d.png",
+      "screenshotSha256": "a9ea5876b641366796dc5f8df154ab698e4177e7d43a22b14c2377c99e6978ce"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza verso destra\n-6\n0\n-1\n5\n4\n10\nRisultante orizzontale (N)\nForza verso destra (N)\nRisultante orizzontale",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-02-graphs-2d.png",
+      "screenshotSha256": "69a79e7904676d97cc9fcf7bfeb2eaeff1f02a972d95ba7b33ab63b7e42cd957"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSulla guida senza attrito la spinta orizzontale è la risultante. Dividila per la massa inerziale. Il segno indica il verso; forza e accelerazione hanno unità diverse.\n\na = ΣF / (2 kg)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza risultante» e confronta la scena con il punto segnato sul grafico. Parti da -4 N, poi prova 6 N.\n\nForza risultante = -4 N · Accelerazione = -2 m/s²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na = ΣF / (2 kg). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n(-4) / 2 = -2 m/s²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza risultante» a 0 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na = ΣF / (2 kg)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza risultante\n-4 N\nAccelerazione\n-2 m/s²\nVariazione dal riferimento\n0 m/s²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-2d.png",
+      "screenshotSha256": "c4a8a0dcb3a0e81f7dbda579ac0dd1821b91542a34afa9b6424a6175bef9cef1"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": -8,
+      "noWebGL": true,
+      "readings": "Forza risultante\n-8 N\nAccelerazione\n-4 m/s²\nVariazione dal riferimento\n-2 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x-8-2d.png",
+      "screenshotSha256": "053e9a798026b20c11ccd3c30f272835911e2010ce4aebcfaeedf5d5451116d6"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Forza risultante\n0 N\nAccelerazione\n0 m/s²\nVariazione dal riferimento\n2 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x0-2d.png",
+      "screenshotSha256": "37349e0142d9a235e2cc35e640daa5a21194858600ba5eb0bc5fc3cdeca1f841"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "boundary",
+      "input": 8,
+      "noWebGL": true,
+      "readings": "Forza risultante\n8 N\nAccelerazione\n4 m/s²\nVariazione dal riferimento\n6 m/s²",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-x8-2d.png",
+      "screenshotSha256": "e38ea50ee0267d21f3d7af9bac38bcd5c8645635d70bbd53032213e43f703faf"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza risultante\n-4\n-8\n0\n0\n4\n8\nAccelerazione (m/s²)\nForza risultante (N)\nAccelerazione",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-03-graphs-2d.png",
+      "screenshotSha256": "f833b2c5a9e28670ed573ef43fc61b5b7ddc12777fe82fb3c58f5b0e8130242a"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOsserva i due punti di applicazione. B subisce la forza verso destra; A subisce quella verso sinistra. Solo allargando il sistema a entrambi le due forze diventano interne.\n\nF di B su A = −F di A su B\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Forza di A su B» e confronta la scena con il punto segnato sul grafico. Parti da 3 N, poi prova 8 N.\n\nForza di A su B = 3 N · Forza di B su A lungo x = -3 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF di B su A = −F di A su B. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−3 = -3 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Forza di A su B» a 6 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF di B su A = −F di A su B\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Forza di A su B\n3 N\nForza di B su A lungo x\n-3 N\nSomma delle due forze\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-2d.png",
+      "screenshotSha256": "f82a8270ee471214854624166a3b64c5f8173dc26cdbd46d989cf86995c85fc5"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Forza di A su B\n0 N\nForza di B su A lungo x\n0 N\nSomma delle due forze\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-x0-2d.png",
+      "screenshotSha256": "18b9009b8afb3a68f914945f49dc3c1e47c49974bf5479f729423b6aa2d9ebf9"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "boundary",
+      "input": 12,
+      "noWebGL": true,
+      "readings": "Forza di A su B\n12 N\nForza di B su A lungo x\n-12 N\nSomma delle due forze\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-x12-2d.png",
+      "screenshotSha256": "b63081c0ffbff8bbed864718d12dfb1e5ac8058a5f5322da2569c95898fa218f"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di forza di a su b\n-12\n0\n-6\n6\n0\n12\nForza di B su A lungo x (N)\nForza di A su B (N)\nForza di B su A lungo x",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-04-graphs-2d.png",
+      "screenshotSha256": "4d5cbf6a00d0c22fd51899a234726428f223080d4716b86c6ecc2a7d4294041c"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Un pacco pesa 20 N su un ripiano inclinato di 40 °. Quanto segna il sensore perpendicolare al ripiano?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. N = mg cos θ, con mg = 20 N. 20 × cos(40°) ≈ 15,32 N."
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nInclina lentamente il piano. Il peso resta verticale; la normale ruota con la superficie e bilancia solo la componente perpendicolare. Il blocco è trattenuto lungo la guida.\n\nN = mg cos θ, con mg = 20 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Inclinazione» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 60 °.\n\nInclinazione = 0 ° · Reazione normale = 20 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nN = mg cos θ, con mg = 20 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 × cos(0°) = 20 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Inclinazione» a 40 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nN = mg cos θ, con mg = 20 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-2d.png",
+      "screenshotSha256": "f1871912d55cee0976adac9d81b864f5f6f1e38ee37345f1f82c2f065ca7b05d"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Inclinazione\n0 °\nReazione normale\n20 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x0-2d.png",
+      "screenshotSha256": "83ef272212e7400b14ea9644825238f7b0af11895b224c60884930ab1409e3a6"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 60,
+      "noWebGL": true,
+      "readings": "Inclinazione\n60 °\nReazione normale\n10 N\nVariazione dal riferimento\n-10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x60-2d.png",
+      "screenshotSha256": "14170d007329af484091c52b6c835d04caf0f7c2320ed0472de422e0d08a9dec"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "boundary",
+      "input": 75,
+      "noWebGL": true,
+      "readings": "Inclinazione\n75 °\nReazione normale\n5,176 N\nVariazione dal riferimento\n-14,82 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-x75-2d.png",
+      "screenshotSha256": "6dc701eebaecf8108c36901ce0711de59c2bb0520cd2cdc38b11bdb6f217f100"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di inclinazione\n0\n0\n10\n37,5\n20\n75\nReazione normale (N)\nInclinazione (°)\nReazione normale",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-05-graphs-2d.png",
+      "screenshotSha256": "a50724638efb58cf2f8cee200c0d776256147741e3f12ba211f7cfd9455a675e"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl filo ideale tira verso l’alto e il peso è diretto verso il basso. A velocità costante il filo sostiene 20 N; un’accelerazione positiva richiede una tensione maggiore.\n\nT − mg = ma; T = 2(10+a)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Accelerazione verso l’alto» e confronta la scena con il punto segnato sul grafico. Parti da 0 m/s², poi prova 3 m/s².\n\nAccelerazione verso l’alto = 0 m/s² · Tensione del filo = 20 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nT − mg = ma; T = 2(10+a). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × (10 + 0) = 20 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Accelerazione verso l’alto» a -1 m/s². Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nT − mg = ma; T = 2(10+a)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-2d.png",
+      "screenshotSha256": "5c4b1534ce4a90c0cd53deea2600aa6581f06406ec5529397533150942835d82"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": -5,
+      "noWebGL": true,
+      "readings": "Accelerazione verso l’alto\n-5 m/s²\nTensione del filo\n10 N\nVariazione dal riferimento\n-10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x-5-2d.png",
+      "screenshotSha256": "59b6de4d46145869e9958eb55de48eb5a19821fd8d09312bf4966167c451b15a"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": -3,
+      "noWebGL": true,
+      "readings": "Accelerazione verso l’alto\n-3 m/s²\nTensione del filo\n14 N\nVariazione dal riferimento\n-6 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x-3-2d.png",
+      "screenshotSha256": "a0e601c11557c0855d728b9217c26d0b21c5f70800bb35195eaa46825951eeae"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Accelerazione verso l’alto\n0 m/s²\nTensione del filo\n20 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x0-2d.png",
+      "screenshotSha256": "07944cdfdb6ea3beb3ac6e06b935b964c099ed168a161d5a354f394cb1f8a27e"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "boundary",
+      "input": 5,
+      "noWebGL": true,
+      "readings": "Accelerazione verso l’alto\n5 m/s²\nTensione del filo\n30 N\nVariazione dal riferimento\n10 N",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-x5-2d.png",
+      "screenshotSha256": "b05e8cb5e40e938261881f6be01b2ad7d28f9be46bde018374ee310eb37e3197"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di accelerazione verso l’alto\n0\n-5\n15\n0\n30\n5\nTensione del filo (N)\nAccelerazione verso l’alto (m/s²)\nTensione del filo",
+      "screenshot": "/tmp/cric-review-experiments041-proof-SACX9W/SIM-C1-L005-06-graphs-2d.png",
+      "screenshotSha256": "2609a7fe7176ccc6565d5df15720ae271cf9187b4865e323e37abe6e3044d3c2"
+    }
+  ],
+  "errors": [],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "base": "http://127.0.0.1:52999/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+    "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+    "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+    "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+    "content/esperienze-C1.json": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3"
+  },
+  "protocolSha256": "9311582a0e4ced9aeba3674eccc68248025916de303e461e38bccde7e76ec05b",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37",
+  "screenshotsRetainedInRepository": false,
+  "scientificApproval": false,
+  "diagnosticDisposition": "Technical control cases reproduce the retained40degree manuality and same-unit force-comparison diagram issues. Correct scalar Newton physics is separate from those failures; no human or publication approval."
+}
