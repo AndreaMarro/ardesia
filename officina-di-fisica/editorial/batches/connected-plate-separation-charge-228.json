@@ -1,0 +1,1155 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-connected-plate-separation-charge-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22801,
+      "title": "Il generatore mantiene V, non Q",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Con Q₀=12 μC e s=2, quanto vale Q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità passa da C₀ a C₀/s. Poiché il generatore mantiene V_g, Q=CV_g=(C₀V_g)/s=Q₀/s. La distanza doppia dimezza il modulo della carica: Q=6 μC. Il circuito collegato permette il ritorno di carica al generatore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285",
+          "text": "Il generatore mantiene la tensione nei due stati. La distanza raddoppia mentre il modulo di carica libera su una sola armatura si dimezza. Geometria laterale schematica, senza scala per le dimensioni delle piastre."
+        },
+        {
+          "type": "formula",
+          "text": "C=C_0/s"
+        },
+        {
+          "type": "formula",
+          "text": " Q=CV_g"
+        },
+        {
+          "type": "formula",
+          "text": " Q=Q_0/s"
+        },
+        {
+          "type": "formula",
+          "text": " Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro μC moltiplica per s. Dodici μC imporrebbe isolamento delle armature, assente qui. Tre μC dividerebbe due volte per s invece di una."
+        }
+      ],
+      "hints": [
+        "Individua il controllo esterno prima di conservare una grandezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventiquattro μC moltiplica per s. Dodici μC imporrebbe isolamento delle armature, assente qui. Tre μC dividerebbe due volte per s invece di una.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22802,
+      "title": "Un modulo di carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 1,
+      "prompt": "Si cerca Q, il modulo della carica libera su una sola armatura. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C",
+          "F",
+          "V",
+          "J",
+          "A"
+        ],
+        "value": "C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q ha unità coulomb. Il fattore geometrico s=d/d₀ è puro, quindi Q₀/s conserva l’unità della carica iniziale. Un microcoulomb è un milionesimo di coulomb."
+        },
+        {
+          "type": "formula",
+          "text": "[s]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=[Q_0]"
+        },
+        {
+          "type": "formula",
+          "text": "[Q_0]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "F è capacità, V differenza di potenziale, J energia e A corrente. La carica non è una corrente senza specificare anche un intervallo temporale."
+        }
+      ],
+      "hints": [
+        "Una divisione per s non aggiunge unità di lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "F è capacità, V differenza di potenziale, J energia e A corrente. La carica non è una corrente senza specificare anche un intervallo temporale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22803,
+      "title": "La legge con generatore collegato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Quale espressione fornisce Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = Q₀ / s",
+          "Q = s Q₀",
+          "Q = Q₀",
+          "Q = Q₀ / s²",
+          "Q = s² Q₀"
+        ],
+        "value": "Q = Q₀ / s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La geometria impone C/C₀=1/s. A tensione mantenuta Q/Q₀=C/C₀, quindi Q=Q₀/s. La stessa separazione con generatore scollegato avrebbe invece Q invariata: la geometria da sola non decide il vincolo elettrico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285",
+          "text": "Il circuito collegato permette scambio di carica con il generatore. Il rapporto fra le distanze non impone carica conservata sulle singole armature."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q}{Q_0}=\\frac{C}{C_0}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C}{C_0}=\\frac1s"
+        },
+        {
+          "type": "formula",
+          "text": " Q=Q_0/s"
+        },
+        {
+          "type": "text",
+          "text": "sQ₀ invertirebbe la dipendenza dalla distanza. Q=Q₀ imporrebbe un altro circuito; i quadrati non derivano dalla legge C=εA/d a tensione fissa."
+        }
+      ],
+      "hints": [
+        "Chiediti se le cariche possono attraversare i fili del generatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "sQ₀ invertirebbe la dipendenza dalla distanza. Q=Q₀ imporrebbe un altro circuito; i quadrati non derivano dalla legge C=εA/d a tensione fissa.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22804,
+      "title": "Preparazione con carica iniziale minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. A usa Q₀=12 μC, s=2. B usa Q₀=1 μC allo stesso s. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 μC a 1/2 μC",
+          "Da 6 μC a 2 μC",
+          "Resta 6 μC",
+          "Da 6 μC a 1 μC",
+          "Da 6 μC a 12 μC"
+        ],
+        "value": "Da 6 μC a 1/2 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni prova la tensione del proprio generatore resta costante durante l’allontanamento. A dà 12/2=6 μC; B dà 1/2 μC. Si confrontano preparazioni iniziali distinte, senza imporre la stessa capacità o tensione iniziale fra le prove oltre ai dati dichiarati."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac12\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac1{12}"
+        },
+        {
+          "type": "text",
+          "text": "Due μC moltiplicherebbe il nuovo Q₀ per s. Un μC ignorerebbe l’allontanamento; sei μC copierebbe l’uscita A. Dodici μC non segue il nuovo stato iniziale."
+        }
+      ],
+      "hints": [
+        "Dividi ciascuna carica iniziale per il medesimo s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due μC moltiplicherebbe il nuovo Q₀ per s. Un μC ignorerebbe l’allontanamento; sei μC copierebbe l’uscita A. Dodici μC non segue il nuovo stato iniziale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22805,
+      "title": "Ricostruire la carica prima dell’allontanamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Si misura Q=6 μC e si conosce s=2. Quanto vale Q₀ in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico Q=Q₀/s per s. La carica iniziale era Q₀=sQ=12 μC. Con s≥1 deve essere almeno pari al modulo finale, perché la capacità diminuisce durante l’allontanamento a tensione mantenuta."
+        },
+        {
+          "type": "formula",
+          "text": "Q_0=sQ"
+        },
+        {
+          "type": "formula",
+          "text": " Q_0=12\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Tre μC ripete la divisione per s anziché invertirla. Sei μC trascura la variazione geometrica; ventiquattro μC darebbe Q=12 μC, non sei."
+        }
+      ],
+      "hints": [
+        "Controlla Q₀≥Q e reinserisci il risultato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre μC ripete la divisione per s anziché invertirla. Sei μC trascura la variazione geometrica; ventiquattro μC darebbe Q=12 μC, non sei.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22806,
+      "title": "Dalle cariche al fattore di distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Q₀=12 μC e Q=6 μC sono noti. Quanto vale s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa s=Q₀/Q confronta due moduli di carica. Il rapporto vale due e non ha unità. Un valore minore di uno descriverebbe avvicinamento, fuori dal dominio dell’allontanamento dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "s=\\frac{Q_0}{Q}"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "formula",
+          "text": " d=2d_0"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo scambia finale e iniziale. Sei copia un numero con unità di carica; settantadue moltiplica due cariche invece di formare un rapporto."
+        }
+      ],
+      "hints": [
+        "La distanza relativa è ricavata da un rapporto puro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo scambia finale e iniziale. Sei copia un numero con unità di carica; settantadue moltiplica due cariche invece di formare un rapporto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22807,
+      "title": "Confrontare s uguale a due e a uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. A ha Q₀=12 μC, s=2. B ha lo stesso Q₀ e s=1. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 6 μC. B non cambia la distanza e rimane a 12 μC. Quindi Q_B/Q_A=2. Non aver variato la geometria non significa avere carica finale nulla."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=12\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto. Uno ignora i diversi s; quattro usa un quadrato non previsto. Zero confonde variazione nulla di Q con modulo Q nullo."
+        }
+      ],
+      "hints": [
+        "Mantieni distinto lo stato finale dalla variazione durante il processo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto. Uno ignora i diversi s; quattro usa un quadrato non previsto. Zero confonde variazione nulla di Q con modulo Q nullo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22808,
+      "title": "Lo scarto della proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Con Q₀=12 μC e s=2, si propone Q=12 μC. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 μC",
+          "−6 μC",
+          "2",
+          "12 μC",
+          "0 μC"
+        ],
+        "value": "6 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica corretta è 6 μC. Lo scarto richiesto è 12−6=+6 μC. La carica netta del condensatore completo resta nulla, ma non è la quantità proposta o richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=(12-6)\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "−6 μC inverte l’ordine; dodici copia la proposta. Due puro è un rapporto e zero sostituisce alla carica su un’armatura quella netta delle due armature."
+        }
+      ],
+      "hints": [
+        "Conserva l’unità μC nella sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 μC inverte l’ordine; dodici copia la proposta. Due puro è un rapporto e zero sostituisce alla carica su un’armatura quella netta delle due armature.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22809,
+      "title": "Un’inversa con fattore geometrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Quale formula isola Q₀ da Q e s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₀ = s Q",
+          "Q₀ = Q / s",
+          "Q₀ = s / Q",
+          "Q₀ = s² Q",
+          "Q₀ = Q − s"
+        ],
+        "value": "Q₀ = s Q"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella legge Q=Q₀/s la carica iniziale è divisa per il fattore positivo s. Moltiplicando entrambi i membri per s si ricava Q₀=sQ. Il risultato ha unità di carica, perché s è adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac{Q_0}{s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_0=sQ"
+        },
+        {
+          "type": "formula",
+          "text": " Q_0\\ge Q>0"
+        },
+        {
+          "type": "text",
+          "text": "Q/s applica ancora la trasformazione diretta. s/Q è una carica inversa, s²Q inserisce una potenza aggiuntiva e Q−s sottrae quantità di dimensioni differenti."
+        }
+      ],
+      "hints": [
+        "Isola prima la variabile, poi controlla il dominio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Q/s applica ancora la trasformazione diretta. s/Q è una carica inversa, s²Q inserisce una potenza aggiuntiva e Q−s sottrae quantità di dimensioni differenti.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22810,
+      "title": "Due fattori fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Q₀,B=κ₁Q₀,A e s_B=κ₂s_A. I fattori sono positivi; entrambi gli s sono almeno uno e il modello geometrico resta valido. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco nella legge di ciascuna prova: Q_B=κ₁Q₀,A/(κ₂s_A). Il rapporto delle uscite è κ₁/κ₂. La maggiore separazione relativa riduce la carica finale a parità della preparazione iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\frac{\\kappa_1Q_{0,A}}{\\kappa_2s_A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto l’effetto di s. L’inverso scambia i ruoli dei due ingressi; il quadrato non compare nella legge. La somma fallisce già per due fattori unitari."
+        }
+      ],
+      "hints": [
+        "Controlla anche che s_B non scenda sotto uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto l’effetto di s. L’inverso scambia i ruoli dei due ingressi; il quadrato non compare nella legge. La somma fallisce già per due fattori unitari.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22811,
+      "title": "Cambiano entrambi gli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. A usa Q₀=12 μC, s=2. B usa Q₀=9 μC, s=3. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/4",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono Q_A=6 μC e Q_B=3 μC. Il rapporto B/A vale 1/2. Il fattore 3/4 della carica iniziale va diviso per il fattore 3/2 della separazione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=3\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto, 3/4 considera soltanto Q₀ e 3/2 copia il fattore della separazione. Uno non descrive la combinazione dei due cambiamenti."
+        }
+      ],
+      "hints": [
+        "Confronta i moduli finali, non quelli iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto, 3/4 considera soltanto Q₀ e 3/2 copia il fattore della separazione. Uno non descrive la combinazione dei due cambiamenti.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22812,
+      "title": "Due uscite positive da mediare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. A usa Q₀=12 μC, s=2. B usa Q₀=9 μC, s=3. Qual è la media aritmetica dei due moduli finali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 μC",
+          "21/5 μC",
+          "9 μC",
+          "3/2 μC",
+          "0 μC"
+        ],
+        "value": "9/2 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media di 6 e 3 μC è 9/2 μC. Gli ingressi medi Q₀=21/2 μC e s=5/2 darebbero invece 21/5 μC, non la media richiesta. La differenza fra queste due operazioni è 3/10 μC."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285",
+          "text": "Le barre di 6 μC, 3 μC e 9/2 μC hanno origine e scala comuni. Gli stati geometrici del primo pannello descrivono una trasformazione a V fissata; le barre confrontano preparazioni distinte."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{6+3}{2}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac92\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm dati\\ medi}=\\frac{21}{5}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "21/5 μC applica il modello alle medie degli ingressi. Nove somma le uscite; 3/2 è la semidifferenza. Zero fa la somma algebrica delle armature, non la media dei moduli."
+        }
+      ],
+      "hints": [
+        "Calcola ciascuna uscita prima di dimezzarne la somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/5 μC applica il modello alle medie degli ingressi. Nove somma le uscite; 3/2 è la semidifferenza. Zero fa la somma algebrica delle armature, non la media dei moduli.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22813,
+      "title": "Separazione relativa per una carica bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. A ha Q₀=12 μC, s_A=2. B ha Q₀=9 μC e deve ottenere Q_B=Q_A/2. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "1/2",
+          "3/4",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è Q_B=3 μC. La legge inversa impone s_B=Q₀,B/Q_B=9/3=3. Il rapporto cercato rispetto a s_A=2 è 3/2; non coincide con il fattore della carica finale."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=3\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto, un mezzo copia il bersaglio della carica e 3/4 segue solo la preparazione iniziale. Due darebbe s_B=4 e Q_B=9/4 μC."
+        }
+      ],
+      "hints": [
+        "Isola s_B usando la carica bersaglio in μC.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto, un mezzo copia il bersaglio della carica e 3/4 segue solo la preparazione iniziale. Due darebbe s_B=4 e Q_B=9/4 μC.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22814,
+      "title": "Leggere Q e ritrovare Q₀",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. D=a_cal Q è continuo e adimensionale. A con Q₀=12 μC, s=2 dà D=18. B legge D=9 e ha s=3. Quanto vale Q₀,B in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica finale del riferimento è 6 μC e il guadagno vale 3 μC⁻¹. D_B=9 indica Q_B=3 μC. Moltiplicando per s_B=3 ricavo Q₀,B=9 μC."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=3\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{0,B}=9\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette μC tratterebbe D=9 come una carica. Un μC dividerebbe Q_B per s invece di ricostruire Q₀. Tre μC copia la carica dopo l’allontanamento."
+        }
+      ],
+      "hints": [
+        "Decodifica la lettura prima dell’inversa geometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisette μC tratterebbe D=9 come una carica. Un μC dividerebbe Q_B per s invece di ricostruire Q₀. Tre μC copia la carica dopo l’allontanamento.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22815,
+      "title": "Rimuovere l’offset prima del vincolo fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. D=a_cal Q+b_cal è continuo. A: Q₀=12 μC, s=2, D=13. B: Q₀=9 μC, s=3, D=7. C: s=4, D=5. Quanto vale Q₀,C in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le cariche finali di riferimento sono 6 e 3 μC. La pendenza è 2 μC⁻¹ e l’offset uno. La lettura cinque decodifica Q_C=(5−1)/2=2 μC; la carica prima dell’allontanamento era Q₀,C=4·2=8 μC."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=2\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{0,C}=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Dieci μC omette l’offset e predice D=6. Sedici μC sottrae b ma non divide per a. Due μC si ferma al valore finale senza risalire a Q₀."
+        }
+      ],
+      "hints": [
+        "L’offset non è una carica residua sulle piastre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci μC omette l’offset e predice D=6. Sedici μC sottrae b ma non divide per a. Due μC si ferma al valore finale senza risalire a Q₀.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a tensione fissata",
+      "order": 22816,
+      "title": "Un’intera famiglia di preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "connected-plate-separation-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare rimane collegato a un generatore ideale che mantiene una tensione positiva V_g costante durante ciascun allontanamento delle piastre. La distanza passa da d₀ a d=sd₀, con s≥1; area e permittività sono invariate. Entrambi gli stati rientrano nel modello di piastre grandi, con effetti di bordo trascurabili. Q₀>0 e Q indicano i moduli delle cariche libere su una sola armatura prima e dopo, non la carica netta delle due piastre. Fra preparazioni Q₀=(6 μC)s. Si misura Q=6 μC. Quante coppie ammissibili (Q₀,s) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue nel regime geometrico dichiarato",
+          "Una sola coppia",
+          "Due coppie positive",
+          "Nessuna coppia",
+          "Solo coppie con s intero"
+        ],
+        "value": "Infinite coppie continue nel regime geometrico dichiarato"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo sostituito nella legge dà Q=(6 μC)s/s=6 μC. La misura ripete il vincolo, perciò non determina s. Restano infinite coppie continue con s≥1 che rispettino anche il regime di piastre grandi; per esempio s=1 e s=2 richiedono Q₀=6 e 12 μC."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac{(6\\,\\mu\\mathrm C)s}{s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " s\\ge1"
+        },
+        {
+          "type": "text",
+          "text": "Non esiste una radice da scegliere perché la variabile si cancella. s è un rapporto di distanze, non un conteggio intero. Scegliere due senza un ulteriore dato sarebbe arbitrario."
+        }
+      ],
+      "hints": [
+        "Verifica l’indipendenza delle due informazioni prima di contare le soluzioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non esiste una radice da scegliere perché la variabile si cancella. s è un rapporto di distanze, non un conteggio intero. Scegliere due senza un ulteriore dato sarebbe arbitrario.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Capacità geometrica e tensione imposta",
+        "Carica libera e generatore collegato",
+        "Inverse, medie, taratura e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285",
+      "name": "connected-plate-separation-charge-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+VGVuc2lvbmUgbWFudGVudXRhIGR1cmFudGUgbGEgc2VwYXJhemlvbmU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IGR1ZSBzdGF0aSBkZWwgY29uZGVuc2F0b3JlIGNvbiBnZW5lcmF0b3JlIGNvbGxlZ2F0bzsgY2FyaWNoZSBmaW5hbGkgZGkgZHVlIHByb3ZlIGUgbWVkaWE7IHB1bnRpIGRlbGxhIGNhcmljYSBpbiBmdW56aW9uZSBkZWwgZmF0dG9yZSBkaSBzZXBhcmF6aW9uZS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzUyNjY3YSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0ODAiIGZpbGw9IiNmN2ZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5UZW5zaW9uZSBtYW50ZW51dGEgZHVyYW50ZSBsYSBzZXBhcmF6aW9uZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBFc2VtcGlvOiBWX2cgPSAyIFYgbmVpIGR1ZSBzdGF0aTwvdGV4dD48dGV4dCB4PSI0MiIgeT0iMTMyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlHigoAgPSAxMiDOvEM8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIxMzIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+USA9IDYgzrxDPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTQ1IiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjE2MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTQ1IiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjM3MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTQ1IiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjQ4MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTQ1IiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjx0ZXh0IHg9Ijc1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+KzwvdGV4dD48dGV4dCB4PSIxODUiIHk9IjIxMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7iiJI8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+KzwvdGV4dD48dGV4dCB4PSI1MDUiIHk9IjIxMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7iiJI8L3RleHQ+PGxpbmUgeDE9IjEwMCIgeTE9IjI0MCIgeDI9IjUwIiB5Mj0iMjQwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1MCIgeTE9IjI0MCIgeDI9IjUwIiB5Mj0iNDA1IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1MCIgeTE9IjQwNSIgeDI9IjEyMy4wIiB5Mj0iNDA1IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNzAiIHkxPSIyNDAiIHgyPSIyMjAiIHkyPSIyNDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIyMCIgeTE9IjI0MCIgeDI9IjIyMCIgeTI9IjQwNSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjIwIiB5MT0iNDA1IiB4Mj0iMTQ3LjAiIHkyPSI0MDUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEyMy4wIiB5MT0iMzkwIiB4Mj0iMTIzLjAiIHkyPSI0MjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE0Ny4wIiB5MT0iMzk3IiB4Mj0iMTQ3LjAiIHkyPSI0MTMiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTIzLjAiIHk9IjQ1MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KzwvdGV4dD48dGV4dCB4PSIxNDcuMCIgeT0iNDUyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7iiJI8L3RleHQ+PGxpbmUgeDE9IjM3MCIgeTE9IjI0MCIgeDI9IjMyMCIgeTI9IjI0MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzIwIiB5MT0iMjQwIiB4Mj0iMzIwIiB5Mj0iNDA1IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMjAiIHkxPSI0MDUiIHgyPSI0MTguMCIgeTI9IjQwNSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNDkwIiB5MT0iMjQwIiB4Mj0iNTQwIiB5Mj0iMjQwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1NDAiIHkxPSIyNDAiIHgyPSI1NDAiIHkyPSI0MDUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjU0MCIgeTE9IjQwNSIgeDI9IjQ0Mi4wIiB5Mj0iNDA1IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0MTguMCIgeTE9IjM5MCIgeDI9IjQxOC4wIiB5Mj0iNDIwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0NDIuMCIgeTE9IjM5NyIgeDI9IjQ0Mi4wIiB5Mj0iNDEzIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQxOC4wIiB5PSI0NTIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPis8L3RleHQ+PHRleHQgeD0iNDQyLjAiIHk9IjQ1MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4oiSPC90ZXh0PjxsaW5lIHgxPSIxMTAiIHkxPSIzNDAiIHgyPSIxNjAiIHkyPSIzNDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIzODAiIHkxPSIzNDAiIHgyPSI0ODAiIHkyPSIzNDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjEzNSIgeT0iMzc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5k4oKAPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iMzc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yZOKCgDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDkwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlNlemlvbmkgc2NoZW1hdGljaGU6IGFyZWEgZSBwZXJtaXR0aXZpdMOgIGludmFyaWF0ZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU1MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IE1vZHVsaSBmaW5hbGkgZSBtZWRpYSBkZWxsZSBkdWUgcHJvdmU8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjU3MCIgeDI9IjE0NSIgeTI9IjgyNSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMjUiIHk9IjYxNyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjYwMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNyIgZmlsbD0iIzMxNmI5YiIgcng9IjMiLz48dGV4dCB4PSIzOTUiIHk9IjYyMSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij42IM68QzwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjcwMiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+QjwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjY4NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIyNyIgZmlsbD0iI2E3NmQyMCIgcng9IjMiLz48dGV4dCB4PSIyNzUiIHk9IjcwNiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIM68QzwvdGV4dD48dGV4dCB4PSIxMjUiIHk9Ijc4NyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3NzAiIHdpZHRoPSIxODAuMCIgaGVpZ2h0PSIyNyIgZmlsbD0iIzQ4ODI2NSIgcng9IjMiLz48dGV4dCB4PSIzMzUuMCIgeT0iNzkxIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQuNSDOvEM8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg4NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBR4oKAID0gMTIgzrxDLCBzID0gMiDCtyBCOiBR4oKAID0gOSDOvEMsIHMgPSAzPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBTb2xvIFHigoAgPSAxMiDOvEM6IHRyZSBwdW50aSBlc2F0dGk8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjEzMjAiIHgyPSI1MjAiIHkyPSIxMzIwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTMyNSIgeDI9IjE1MCIgeTI9IjEwMzAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEwODAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyNTAiIHk9IjEzNTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMDg2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0iZW5kIj4xMjwvdGV4dD48Y2lyY2xlIGN4PSIzNTAiIGN5PSIxMjAwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMzUwIiB5PSIxMzUwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTIwNiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+NjwvdGV4dD48Y2lyY2xlIGN4PSI0NTAiIGN5PSIxMjQwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDUwIiB5PSIxMzUwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTI0NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+NDwvdGV4dD48dGV4dCB4PSIxMzIiIHk9IjEzNDQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMzMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnM8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjEwMTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+USAozrxDKTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQxMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QdW50aSBkaXN0aW50aSwgc2VuemEgaW50ZXJwb2xhemlvbmUgbGluZWFyZS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
