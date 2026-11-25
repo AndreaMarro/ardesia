@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1700" viewBox="0 0 640 1700" role="img" aria-labelledby="title desc">
+<title id="title">Il richiamo punta verso l’equilibrio</title><desc id="desc">Tre istanti di un oscillatore con ampiezza un metro e pulsazione due radianti al secondo. Accelerazione negativa all’estremo destro, nulla al centro e positiva all’estremo sinistro. Grafico lineare a contro x e confronto dei massimi quattro e diciotto.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1700" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · Accelerazioni rivolte al centro</text>
+<text x="35" y="90">A = 1 m · ω = 2 rad/s · x: 100 px/m</text>
+<text x="195" y="150">−1 m</text><text x="310" y="150">0</text><text x="400" y="150">+1 m</text>
+<path d="M180 220H460M180 330H460M180 440H460" stroke="#6e8b9c" stroke-width="2"/>
+<path d="M220 175V470M320 175V470M420 175V470" stroke="#b3cbd9" stroke-dasharray="5 5"/>
+<circle cx="420" cy="220" r="12" fill="#c65919"/>
+<path d="M420 220H320" stroke="#145d81" stroke-width="4" marker-end="url(#arr)"/><text x="35" y="227">aₓ = −4 m/s²</text>
+<circle cx="320" cy="330" r="12" fill="#c65919"/><text x="480" y="337">aₓ = 0</text>
+<circle cx="220" cy="440" r="12" fill="#c65919"/>
+<path d="M220 440H320" stroke="#145d81" stroke-width="4" marker-end="url(#arr)"/><text x="390" y="490">aₓ = +4 m/s²</text>
+<text x="35" y="520">Frecce di a: 25 px/(m/s²) · istanti distinti</text>
+<text x="35" y="560">Agli estremi v = 0, ma |aₓ| è massimo.</text>
+<path d="M35 600H605" stroke="#b3cbd9"/>
+<text x="35" y="645" font-size="25" font-weight="700">2 · aₓ = −4x per ω = 2 rad/s</text>
+<text x="35" y="685">Grafico aₓ(x), non traiettoria del punto</text>
+<text x="35" y="725">x: 100 px/m · aₓ: 25 px/(m/s²)</text>
+<path d="M180 900H490" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M320 1040V750" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<text x="500" y="907">x</text><text x="305" y="745">aₓ</text>
+<path d="M220 800L420 1000" stroke="#c65919" stroke-width="4" fill="none"/>
+<path d="M220 900V800H320M420 900V1000H320" stroke="#6e8b9c" stroke-dasharray="6 5" fill="none"/>
+<text x="195" y="1075">−1</text><text x="310" y="1075">0</text><text x="405" y="1075">+1 m</text>
+<text x="340" y="800">+4 m/s²</text><text x="165" y="1005">−4 m/s²</text>
+<text x="35" y="1140">a_max = max |aₓ| = 4 m/s²</text>
+<text x="35" y="1180">Il modulo è positivo; il segno segue il richiamo.</text>
+<path d="M35 1210H605" stroke="#b3cbd9"/>
+<text x="35" y="1255" font-size="25" font-weight="700">3 · Anche ω² contribuisce al massimo</text>
+<text x="35" y="1295">Barre da zero: 20 px/(m/s²), altra scala</text>
+<text x="35" y="1340">A · A = 1 m · ω = 2 rad/s</text>
+<rect x="100" y="1370" width="80" height="35" fill="#145d81"/><text x="200" y="1397">4 m/s²</text>
+<text x="35" y="1470">B · A = 2 m · ω = 3 rad/s</text>
+<rect x="100" y="1500" width="360" height="35" fill="#c65919"/><text x="480" y="1527">18 m/s²</text>
+<path d="M100 1355V1420M100 1485V1550" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<text x="35" y="1610">Rapporto B/A = 18/4 = 9/2</text>
+<text x="35" y="1655">Confrontare moduli massimi, non segni istantanei.</text>
+</g></svg>
