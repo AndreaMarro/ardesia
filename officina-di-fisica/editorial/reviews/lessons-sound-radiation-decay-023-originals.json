@@ -1,0 +1,922 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-sound-radiation-decay-023",
+  "records": [
+    {
+      "id": "C5-L05",
+      "sourceSha256": "56b3e565fcbec34b37288328ba4d66ab30f532e639dfd995d6a25b82122ee49e",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "echo roundtrip time gives one way distance",
+          "independentExact": "c*dt/2",
+          "expectedValue": "c*dt/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy echo300mpersec in2seconds gives300m",
+          "independentExact": "300",
+          "expectedValue": "300",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "stationary interface samef gives newlambda byspeedsratio",
+          "independentExact": "1/n",
+          "expectedValue": "1/n",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "intensity reference10minus12 has SI intensityunits",
+          "independentExact": "1/1000000000000",
+          "expectedValue": "1/1000000000000",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source tenfold intensity raises10dB",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "toy hundredfold raises20dB not100",
+          "independentExact": "10*log(100)/log(10)",
+          "expectedValue": "20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "equal intensities givezero leveldifference",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Doppler approaching source compresses forwardwavelength",
+          "independentExact": "(c - vs)/f",
+          "expectedValue": "c/f - vs/f",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Doppler stationaryreceiver approachesratio",
+          "independentExact": "c/(c - vs)",
+          "expectedValue": "c/(c - vs)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Doppler receding source giveslowerfrequency",
+          "independentExact": "c/(c + vs)",
+          "expectedValue": "c/(c + vs)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source graphic speedratio13over23 is subsonic",
+          "independentExact": "13/23",
+          "expectedValue": "13/23",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "source graphic forward10px versusbackward36px",
+          "independentExact": "5/18",
+          "expectedValue": "5/18",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "echo roundtrip time gives one way distance": {
+          "[length]": "1"
+        },
+        "toy echo300mpersec in2seconds gives300m": {
+          "[length]": "1"
+        },
+        "stationary interface samef gives newlambda byspeedsratio": {},
+        "intensity reference10minus12 has SI intensityunits": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "source tenfold intensity raises10dB": {},
+        "toy hundredfold raises20dB not100": {},
+        "equal intensities givezero leveldifference": {},
+        "Doppler approaching source compresses forwardwavelength": {
+          "[length]": "1"
+        },
+        "Doppler stationaryreceiver approachesratio": {},
+        "Doppler receding source giveslowerfrequency": {},
+        "source graphic speedratio13over23 is subsonic": {},
+        "source graphic forward10px versusbackward36px": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source actual tenfold intensity gives10*log10(10)=10dB, requiring no general numerical logarithm. Echo d=c*dt/2 follows summing equal outward/return times for fixed reflector and coincident fixed emitter/receiver in a stationary uniform medium; toy300m/s and2s gives300m. Stationary-interface frequency is continuous, wavelength follows speed. Doppler is derived from successive emission positions: lambda_forward=(c-vs)/f and lambda_back=(c+vs)/f. The diagram has source advance13px per cycle against sound travel23px, hence subsonic13/23 and spacings10px/36px. These are geometric ratios, not assigned absolute speeds/frequency. Receiver radial motion and source radial motion are conceptually distinct; no numerical Doppler exercise or arbitrary decimal logarithm is assigned.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Echo formula assumes stationary uniform propagation and fixed reflector/coincident stationary source/receiver; no unaccounted wind or moving-boundary correction. Decibel intensity ratio is positive/dimensionless with sameunits, reference1e-12W/m² inair. Intensitylevel isnot perceived loudness or pressurelevel. Doppler diagram explicitlysubsonic, classical medium andradial directions; transverse motion needs the stated usual radial approximation, not relativistic transverseDoppler.",
+      "pedagogicalReview": "Separatesmediumspeed, fixed-interfacefrequency, echodoublepath andlogarithmicratio.10dB relation is exactly manual. Qualitative Doppler usesemissiongeometry andreceiver frontcount ratherthan relativevelocitywithoutmediumreference. Perception isnot equatedwithphysicalintensity.",
+      "assetChecksums": {
+        "/figures/C5-doppler.svg": "618c6baecf5fe6b62d60f5e4c1ea7ad9bf1a475edeb1701e443a9758432c4697"
+      },
+      "figureReview": "FullXML/render:fourwavefrontcircles centered330/343/356/369 atsamey126, radii92/69/46/23, current source382 andreceiver467ahead. Successivecenters advance13whilewavesadvance23, givingforwardspacing10/back36;subsonicsourceanddirectionlabel agree. Noabsolute physicalunit scale assigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L06",
+      "sourceSha256": "a16943b28a605d4c06e64bca15dbf22bff9b822192bc7eec6a18c1fac7cd112a",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "upward E and outgoing B carry energy right",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "vacuum wavelength frequency gives speedunits",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "vacuum EoverB has speedunits",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "vacuum amplitude squared average intensity",
+          "independentExact": "E0**2/2",
+          "expectedValue": "E0**2/2",
+          "unit": "V^2/m^2",
+          "dimension": {
+            "[mass]": "2",
+            "[length]": "2",
+            "[time]": "-6",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "doubling E amplitude quadruples intensity",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "frequency doubles vacuum wavelength halves",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "stationary medium wavelength is vacuumlambdaovern",
+          "independentExact": "c/(f*n)",
+          "expectedValue": "c/(f*n)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy n3over2 reduces600nm to400nm",
+          "independentExact": "400",
+          "expectedValue": "400",
+          "unit": "nm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy mediumfrequency still equals vacuumfrequency",
+          "independentExact": "5000000*c/3",
+          "expectedValue": "5000000*c/3",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "printed approximate c is not exact SI c",
+          "independentExact": "207542",
+          "expectedValue": "207542",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "upward E and outgoing B carry energy right": {},
+        "vacuum wavelength frequency gives speedunits": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "vacuum EoverB has speedunits": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "vacuum amplitude squared average intensity": {
+          "[mass]": "2",
+          "[length]": "2",
+          "[time]": "-6",
+          "[current]": "-2"
+        },
+        "doubling E amplitude quadruples intensity": {},
+        "frequency doubles vacuum wavelength halves": {},
+        "stationary medium wavelength is vacuumlambdaovern": {
+          "[length]": "1"
+        },
+        "toy n3over2 reduces600nm to400nm": {
+          "[length]": "1"
+        },
+        "toy mediumfrequency still equals vacuumfrequency": {
+          "[time]": "-1"
+        },
+        "printed approximate c is not exact SI c": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Right-handed E upward and B outgoing yield E cross B rightward. Vacuum E=cB and c=lambda0*f have matching SI dimensions; averaging cos² over a cycle gives1/2, so intensity scales E0². The source c approximately3.00e8m/s is a working rounded value, not exact SI299792458m/s; the difference207542m/s is explicitly checked rather than hidden. Stationary transparent interface keeps frequency and lambda=lambda0/n. Constructed n3/2,lambda0=600nm yields400nm manually; these are not source data. Spectrum ordering is ordinal with overlap/convention qualifications, not a metric axis or disjoint frequency partition.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Plane travelling electromagnetic wave in vacuum for orthogonal in-phase E/B and E0=cB0. Nonzero monochromatic vacuum phase frequency/wavelength; transparent stationary interface, real phaseindex atthatfrequency, not groupvelocity substitution. Ordinary ordinal bandclassification allowsradio/microwave inclusion andX/gammaoverlap, explicitly intext. Rounded workingc isapproximate.",
+      "pedagogicalReview": "Fieldorientationisonepoint/instant; E/B directionandtransportdirection aredistinct. Ordinal spectrumexplicitlynotdrawntoscale andproduction/conventionaloverlap ismentioned. Wavelengthmediumischeckedbeforeusingc.",
+      "assetChecksums": {
+        "/figures/C5-campi.svg": "76eecac175a09dc3230ea84a31ba22df7f6e9376f053542355c0a67aaa6db120",
+        "/figures/C5-spettro.svg": "bfff537db5e0ad8070bd0e10742483e7d3ae4daa72e4ab52da1aba442a95012d"
+      },
+      "figureReview": "FullXML/renderboth: E up, Boutgoingdot, propagationright givespositive ExB; labels sayonepoint/instant. Ordinal spectrum arrows frequencyincreasing/wavelengthdecreasing, regionsradio,microwaves,IR,visible,UV,X,gamma, uniformspacingnotmetric. Textqualifiesoverlap andmicrowaveconvention.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L07",
+      "sourceSha256": "993eb56b10a1ac8d3eec606291fc00cd5c11dc5e035f853efeb225710612aae9",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "photon hertz timesaction givesjoule",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "vacuum photon wavelength law followslambda0f",
+          "independentExact": "c*h/lambda0",
+          "expectedValue": "c*h/lambda0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "photon power is photonrate timesenergy",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "higher photoncount doesnot increase perphotonenergy",
+          "independentExact": "f*h",
+          "expectedValue": "f*h",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "rounded working Planck6point626 representation",
+          "independentExact": "3313/5000000000000000000000000000000000000",
+          "expectedValue": "3313/5000000000000000000000000000000000000",
+          "unit": "J*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "working h differs from exact SI h notclaimedidentity",
+          "independentExact": "1403/200000000000000000000000000000000000000000",
+          "expectedValue": "1403/200000000000000000000000000000000000000000",
+          "unit": "J*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "Beer fraction solvesconstant fractionalremoval law",
+          "independentExact": "-I0*mu*exp(-mu*x)",
+          "expectedValue": "-I0*mu*exp(-mu*x)",
+          "unit": "W/m^3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "half layer exact ln2overmu",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two half layers transmitquarter",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "three half layers transmiteighth",
+          "independentExact": "1/8",
+          "expectedValue": "1/8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "source25percent transmitted leaves75percent absorbed onlynootherloss",
+          "independentExact": "3/4",
+          "expectedValue": "3/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "inversecm timescm yields dimensionlessexponent",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "inversecm mustconvert beforemultiplyingmeters",
+          "independentExact": "600",
+          "expectedValue": "600",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "equal layers remove smaller absolute amounts",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "photon hertz timesaction givesjoule": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "vacuum photon wavelength law followslambda0f": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "photon power is photonrate timesenergy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "higher photoncount doesnot increase perphotonenergy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "rounded working Planck6point626 representation": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-1"
+        },
+        "working h differs from exact SI h notclaimedidentity": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-1"
+        },
+        "Beer fraction solvesconstant fractionalremoval law": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-3"
+        },
+        "half layer exact ln2overmu": {},
+        "two half layers transmitquarter": {},
+        "three half layers transmiteighth": {},
+        "source25percent transmitted leaves75percent absorbed onlynootherloss": {},
+        "inversecm timescm yields dimensionlessexponent": {},
+        "inversecm mustconvert beforemultiplyingmeters": {},
+        "equal layers remove smaller absolute amounts": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Planck working h is explicitly approximate6.626e-34J*s, distinct from exact SI6.62607015e-34J*s. Per-photon hf and total photonrate*hf distinguish photon energy from total beam power; monochromaticity is required to infer a single photoncount from total energy. Constant fractional removal integrates dI/dx=-muI to I0exp(-mu*x). Exact half-thickness ln2/mu is symbolic; at two/three half layers the transmitted fractions are1/4 and1/8. Actual0.25 means25percent transmitted and75percent absorbed only under the text no-other-loss qualifier. Forcm^-1 the thickness must usecm or be converted:2cm^-1*3cm=6 versus2cm^-1*3m=600. No unprovided logarithm or exponential decimal evaluation is demanded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Single-photon threshold statements, not exclusionofall nonlinear multiphoton processes. Monochromaticbeam andassigned material/process ionizationthreshold. Homogeneous constantmu,nonnegative thickness andmu>0 for finitehalfthickness; detectorselectsdirectbeam, scatteringout maycontributeattenuation. Absorptionfraction equalsmissingtransmission only absentotherlosses. happroximation explicit,lambda0 isvacuum wavelength.",
+      "pedagogicalReview": "Separatesper-photon andtotalenergy; ionization thresholddepends onmaterial/process. Half-layerdiagram teachesfractional,notconstantabsolute,removal. Direct-beam attenuation andpureabsorption arequalified; dimensionsofmu mustmatchthickness.",
+      "assetChecksums": {
+        "/figures/C5-attenuazione.svg": "be137de5807896ee23ffe8b0ee181c48a4faea98ab6831eb294bfd734f2cc233"
+      },
+      "figureReview": "FullXML/render: thicknesspoints0,d,2d,3d atx80/193/306/419 are113pxapart. Zerointensityy191,unityy43 gives148pxunit;pointsy43/117/154/172.5 areexact1,1/2,1/4,1/8. Curve agreeswithin0.01pxrounding. Noassignednumericmuord.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L08",
+      "sourceSha256": "9176ee6ab49e6213cf094c437c87e14ed1b52fdad7ed34751f85b4069d05dc09",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "decay equation independent derivative",
+          "independentExact": "-N0*lambda_d*exp(-lambda_d*t)",
+          "expectedValue": "-N0*lambda_d*exp(-lambda_d*t)",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "activity is negative population derivative",
+          "independentExact": "N0*lambda_d*exp(-lambda_d*t)",
+          "expectedValue": "N0*lambda_d*exp(-lambda_d*t)",
+          "unit": "Bq",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "half time exact logarithm",
+          "independentExact": "N0/2",
+          "expectedValue": "N0/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "half time exponent form equivalent",
+          "independentExact": "N0*exp(-t*log(2)/T)",
+          "expectedValue": "N0/2**(t/T)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "activity halves atsamehalf time",
+          "independentExact": "N0*lambda_d/2",
+          "expectedValue": "N0*lambda_d/2",
+          "unit": "Bq",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sourcefigure expected32 to16 to8",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "one halflife finite decayprobability isonehalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "lambda times interval is only infinitesimal probability",
+          "independentExact": "lambda_d",
+          "expectedValue": "lambda_d",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "onepersecond hazard over2s doesnotmeanprobability2",
+          "independentExact": "1 - exp(-2)",
+          "expectedValue": "1 - exp(-2)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "population uncertainty variance for32 andsurvivalhalf",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy detector efficiencyquarter activity80 plusbackground3 gives23countspersec",
+          "independentExact": "23",
+          "expectedValue": "23",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy backgroundsubtraction efficiencyrecovers80Bq",
+          "independentExact": "80",
+          "expectedValue": "80",
+          "unit": "Bq",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "alpha massnumber balances example238",
+          "independentExact": "238",
+          "expectedValue": "238",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "alpha protonnumber balances example92",
+          "independentExact": "92",
+          "expectedValue": "92",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "beta minus electriccharge balance neutron",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "beta plus electriccharge balance proton",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "beta minus leptonnumber electronantineutrino",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "beta plus leptonnumber positronneutrino",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "decay equation independent derivative": {
+          "[time]": "-1"
+        },
+        "activity is negative population derivative": {
+          "[time]": "-1"
+        },
+        "half time exact logarithm": {},
+        "half time exponent form equivalent": {},
+        "activity halves atsamehalf time": {
+          "[time]": "-1"
+        },
+        "sourcefigure expected32 to16 to8": {},
+        "one halflife finite decayprobability isonehalf": {},
+        "lambda times interval is only infinitesimal probability": {
+          "[time]": "-1"
+        },
+        "onepersecond hazard over2s doesnotmeanprobability2": {},
+        "population uncertainty variance for32 andsurvivalhalf": {},
+        "toy detector efficiencyquarter activity80 plusbackground3 gives23countspersec": {
+          "[time]": "-1"
+        },
+        "toy backgroundsubtraction efficiencyrecovers80Bq": {
+          "[time]": "-1"
+        },
+        "alpha massnumber balances example238": {},
+        "alpha protonnumber balances example92": {},
+        "beta minus electriccharge balance neutron": {},
+        "beta plus electriccharge balance proton": {},
+        "beta minus leptonnumber electronantineutrino": {},
+        "beta plus leptonnumber positronneutrino": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Independent survival law solves dN/dt=-lambda_d*N, with activity-lambda derivative positive. At ln2/lambda_d the expected population and activity halve; alternate2^(-t/T_half) is algebraically equivalent. Actual figure has32/16/8 dots explicitly labelled expected counts, not guaranteed realizations. Finite decay probability is1-exp(-lambda_d*dt), with lambda_d the infinitesimal rate; replacing it by lambda_d*dt for longintervals is excluded. Reviewer binomial variance at32 nuclei andhalf survival is8. Toy80Bq,quarter efficiency and3/s background gives23/s measured; subtracting3 and dividingbyonequarter recovers80Bq. Alpha daughter losesA4,Z2; beta-minus neutron toproton+electron+antineutrino conserves charge andleptonnumber, beta-plus reverses withpositron+neutrino; gamma changesexcitationenergy without A/Z change. Numeric nuclear examples are reviewer checks, not source assignments.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Large identical independent nuclei withconstant decayhazard, isolated singleparent specieswithoutnewproduction forsimpleexponential/activityhalving; population equations giveexpectations. Unpredictable individualdecay isnot deterministictimehalving. Decaychannels mustbeenergeticallyallowed inthenucleus; beta-plus description doesnotclaimfree protondecay. Measured counts needbackground/efficiency andemissionbranchingconditions, notautomaticallyBq; activityisnotdose.",
+      "pedagogicalReview": "Expectedpopulationsfigureavoidsclaimingpredictableindividualdecay. Distinguisheslambda_dfromwavelength, activityfromcounts, parentexponentialfromnewproduction, and beta/gamma/alpha nuclearaccounting. Manualhalving doesnotrequiredecimalexponential evaluation.",
+      "assetChecksums": {
+        "/figures/C5-emivita.svg": "a7100392247d5f3be71ecc60e462678a7fc2c1b8a84035c708e88b30866e394b"
+      },
+      "figureReview": "FullXML/render:threeboxes at0,T_half,2T_half contain32,16,8 dots andlabelN0,N0/2,N0/4. Caption/titleexplicitlyexpectedcounts; dotsarenotclaimed exactrealizations ofsmallstochastic samples.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "59cb220aa5784c0ba4fe8275e0f66099936c5d62f7cd2be279cb629a495b4475",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

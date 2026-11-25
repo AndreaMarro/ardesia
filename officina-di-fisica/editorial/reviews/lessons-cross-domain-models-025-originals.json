@@ -1,0 +1,887 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-cross-domain-models-025",
+  "records": [
+    {
+      "id": "C6-L01",
+      "sourceSha256": "e8f61f3b0613375b73b01a0ab51df59a2b49eb73372e9001164aac778091d9d8",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "uniform directpath speed timesduration",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "same echo duration giveshalf directdistance",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "sum outward andreturn times solves echodistance",
+          "independentExact": "t*v/2",
+          "expectedValue": "t*v/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two opposite sensors directpath has nohalf factor",
+          "independentExact": "t*v",
+          "expectedValue": "t*v",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sensor response delay mustberemoved beforeechodistance",
+          "independentExact": "v*(t - tau)/2",
+          "expectedValue": "v*(t - tau)/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "toy3s observed with1s delay at4mpersec gives4m",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "time minute conversion isnotidentity",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "variable speed path needsintegral unlessvmeansaverage",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "uniform directpath speed timesduration": {
+          "[length]": "1"
+        },
+        "same echo duration giveshalf directdistance": {
+          "[length]": "1"
+        },
+        "sum outward andreturn times solves echodistance": {
+          "[length]": "1"
+        },
+        "two opposite sensors directpath has nohalf factor": {
+          "[length]": "1"
+        },
+        "sensor response delay mustberemoved beforeechodistance": {
+          "[length]": "1"
+        },
+        "toy3s observed with1s delay at4mpersec gives4m": {
+          "[length]": "1"
+        },
+        "time minute conversion isnotidentity": {
+          "[time]": "1"
+        },
+        "variable speed path needsintegral unlessvmeansaverage": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source asks model selection from the physical event, not a numerical exercise. Sum echo travel times d/v+d/v to obtain d=v*duration/2; direct opposite-sensor path gives d=v*duration. Reviewer4m/s,3s yields12m direct and6m echo. If observation includes1s sensor delay, the echo distance is4m instead; the source explicitly distinguishes sensor response. One minute is60s. A variable instantaneous speed needs an integral or a specified average, not an unqualified product. These are constructed reviewer cases, not evidence of student diagnosis or mastery.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Identified system/event and matching units; uniform speed for the stated product, fixed reflector/coincident stationary sender/receiver for simple echo. Response delay not automatically propagation. No inference of student difficulty from one wrong answer, as source explicitly warns.",
+      "pedagogicalReview": "Connects measurement unit, physical system and event before equation choice; repeated varied cases are suggested ratherthan diagnosing from one failure. Reviewer fixtures do not certify student calibration.",
+      "assetChecksums": {},
+      "figureReview": "No figure in the complete original; learner is asked to construct a system-boundary sketch, not to read unprovided numeric scales.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-L02",
+      "sourceSha256": "f8dfb64dd6850447e8505d07e31a803764515d6c6275f1e36437b647e42866ff",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "volume overduration has flowunits",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "charge overduration has currentunits",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "energy overduration has powerunits",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "area times mean normalspeed is volumeflow",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "uniform normal beam intensity timesarea ispower",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "balance mass divided density recovers volume",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "same density steady massbalance gives equal volumeflow",
+          "independentExact": "S*v",
+          "expectedValue": "S*v",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy incoming3 outgoing2 requires tankaccumulation1",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "toy incoming3A outgoing2A leaves chargingcurrent1A",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "chargingboundary storescharge linearly",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "no accumulation implies signed currents sumzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constantmassflow withchanged densityneednotconstantvolumeflow",
+          "independentExact": "2/3",
+          "expectedValue": "2/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "volume overduration has flowunits": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "charge overduration has currentunits": {
+          "[current]": "1"
+        },
+        "energy overduration has powerunits": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "area times mean normalspeed is volumeflow": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "uniform normal beam intensity timesarea ispower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "balance mass divided density recovers volume": {
+          "[length]": "3"
+        },
+        "same density steady massbalance gives equal volumeflow": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "toy incoming3 outgoing2 requires tankaccumulation1": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "toy incoming3A outgoing2A leaves chargingcurrent1A": {
+          "[current]": "1"
+        },
+        "chargingboundary storescharge linearly": {
+          "[current]": "1"
+        },
+        "no accumulation implies signed currents sumzero": {
+          "[current]": "1"
+        },
+        "constantmassflow withchanged densityneednotconstantvolumeflow": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Volume, charge and energy per second yield m³/s,A,W respectively despite sharing a time denominator. Integrating a normal velocity profile over the section gives Qv=S*vbar, where vbar is the area mean normal velocity; uniform normal intensity gives receivedP=I*S. Mass collection converts tovolume only through density. Reviewer6units/3s gives2 in each appropriate dimension; area2m²*3m/s gives6m³/s, while2m²*3W/m² gives6W. Conservation is incoming-minus-outgoing equals accumulation. Tank3in/2out stores1m³/s; a chosen charge-storing boundary3Ain/2Aout stores1C/s. Include capacitor branch current to retain Kirchhoff balance rather than declaring KCL invalid. Different densities can preserve massflow without equal volumeflow, outside the incompressible premise.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Incompressible liquid and cross-sectional area-mean normal velocity for Qv=S*vbar. Uniform normal beam and small receiving area forP=I*S. Volume/mass distinctions requiredensity. Steady boundary with no relevant accumulation for equal incoming/outgoing sums; include all branches or storage terms in a transient. Source is a sufficient steady model, not a claim KCL stops applying to a complete circuit with capacitors.",
+      "pedagogicalReview": "Shared area/time structure is contrasted with distinct transported quantities anddimensions. Chosen arrows support signed balance and explicit storage checks; doesnotidentifycharge/currentwithenergy/power.",
+      "assetChecksums": {},
+      "figureReview": "No figure in the complete original; drawing signed transport arrows is a suggested reasoning procedure. No missing external numerical simulation is invoked.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-L03",
+      "sourceSha256": "551e9a398078936449cc75a1ab6ddf94e8089bda48ba287a6522dba440c6881e",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "electrical voltage current duration has energyunits",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "thermal masscapacitytemperature has energyunits",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "useful thermal increase solves energybalance",
+          "independentExact": "V*eta*i*t/(c*m)",
+          "expectedValue": "V*eta*i*t/(c*m)",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy quarterof24J heats2JperK systemby3K",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "usinginverseefficiency wronglycreates96J",
+          "independentExact": "96",
+          "expectedValue": "96",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "discardedenergy isinputminususeful",
+          "independentExact": "-V*eta*i*t + V*i*t",
+          "expectedValue": "V*i*t*(1 - eta)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "lifting usefulmass requires potentialenergy",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "Celsiustemperature increment equalskelvinincrement",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "minute duration cancreatefactor60 error",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "linear increasingenergy hasconstantpower",
+          "independentExact": "P",
+          "expectedValue": "P",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "constantenergy haszeronetpower",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "flatenergy permitsnonzeroequal inputandoutput",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "time varyingelectricalpower needsintegral",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "electrical voltage current duration has energyunits": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "thermal masscapacitytemperature has energyunits": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "useful thermal increase solves energybalance": {
+          "[temperature]": "1"
+        },
+        "toy quarterof24J heats2JperK systemby3K": {
+          "[temperature]": "1"
+        },
+        "usinginverseefficiency wronglycreates96J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "discardedenergy isinputminususeful": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "lifting usefulmass requires potentialenergy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "Celsiustemperature increment equalskelvinincrement": {
+          "[temperature]": "1"
+        },
+        "minute duration cancreatefactor60 error": {},
+        "linear increasingenergy hasconstantpower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "constantenergy haszeronetpower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "flatenergy permitsnonzeroequal inputandoutput": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "time varyingelectricalpower needsintegral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source actual relations are symbolic. Constant electricalP=V*i overduration gives Ein=V*i*duration, and useful fractioneta gives DeltaT=eta*Ein/(mass*c) when phase/capacity changes and other storage are absent. Reviewer6V*2A*2s gives24J; quarter useful gives6J, heating capacity2J/K by3K. Dividing byquarter instead gives96J and exposes an invalid energy gain. Celsius increments andkelvin increments agree; minutes need60 conversion. Liftingmgh is energy and inputminususeful islost/storedoutsideusefulsystem. E(t)=Einitial+P*t has slopeP; a plateau haszero netP, compatible with nonzeroequal5Win/5Wout. The qualitativeSVG has no calibrated numbers and supports these signs, not a numerical heating rate. Variablepower requiresintegration, not the constant shortcut.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Positive input electricalpower by chosen energy-arrow convention, constant productV*i overinterval. Usefulfraction0<=eta<=1 without additional unmodelled energy sources. Constant mass/specificheat, no phasechange or materialtemperature dependence inmcDeltaT model. System boundary specifies container/loss/storage; thermal isolation isnot a denial of electrical work input. Energyplateau meansnet balancezero, not absenceoftransfer.",
+      "pedagogicalReview": "Boundary and energy arrows precede equations, efficiency is usefulfraction, timeunits/energyupperbound are sanitychecks. Slope isnet power andsource caption explicitlypermitszero netbalance, avoiding the claim a plateau mustbe isolated.",
+      "assetChecksums": {
+        "/figures/C6-pendenza.svg": "adbf3c8b52ee4e4104d7ac77f4502f118fd40d0c8b928fbf1fe819ee5a807aff"
+      },
+      "figureReview": "CompleteXML/render ofC6-pendenza.svg: energyvertical,timehorizontal. Risingline(105,160)to(260,78), thenhorizontalto(427,78);positive physicalslope thenzero. Labels heating/constantenergy agree. No numericaxisunit calibration; captionnetbalance andfooterpowerinwatts aredimensionallyconsistent.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-L04",
+      "sourceSha256": "be2f16bc4fb3748414f30a8e93dd7d36b2a82937a0bff96213453140addb3820",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "halving radius atfixed Poiseuilleparameters givessixteenth",
+          "independentExact": "1/16",
+          "expectedValue": "1/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "halving isotropic distance atfixedpower givesquadruple",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "Poiseuille units cubicmetrepersecond",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "equal layers multiplytransmissions",
+          "independentExact": "exp(-mu*x)*exp(-mu*y)",
+          "expectedValue": "exp(-mu*(x + y))",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "successive timeintervals multiplysurvivalfractions",
+          "independentExact": "exp(-lambda_d*t)*exp(-lambda_d*tau)",
+          "expectedValue": "exp(-lambda_d*(t + tau))",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "attenuation startsatinitialintensity",
+          "independentExact": "I0",
+          "expectedValue": "I0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "population startsatinitialnumber",
+          "independentExact": "N0",
+          "expectedValue": "N0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source80to60 firstdifference",
+          "independentExact": "-20",
+          "expectedValue": "-20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "source60to40 seconddifference",
+          "independentExact": "-20",
+          "expectedValue": "-20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "source80to40 firstratio",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "source40to20 secondratio",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "equal differences alone cannotidentifymechanism",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "same three linearreadings allowdifferentnextvalue",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "equal ratios alone cannotidentifymechanism",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "same three ratioreadings allowdifferentnextvalue",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "halving radius atfixed Poiseuilleparameters givessixteenth": {},
+        "halving isotropic distance atfixedpower givesquadruple": {},
+        "Poiseuille units cubicmetrepersecond": {
+          "[length]": "3",
+          "[time]": "-1"
+        },
+        "equal layers multiplytransmissions": {},
+        "successive timeintervals multiplysurvivalfractions": {},
+        "attenuation startsatinitialintensity": {},
+        "population startsatinitialnumber": {},
+        "source80to60 firstdifference": {},
+        "source60to40 seconddifference": {},
+        "source80to40 firstratio": {},
+        "source40to20 secondratio": {},
+        "equal differences alone cannotidentifymechanism": {},
+        "same three linearreadings allowdifferentnextvalue": {},
+        "equal ratios alone cannotidentifymechanism": {},
+        "same three ratioreadings allowdifferentnextvalue": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual qualitative halving comparisons: Q proportional r⁴ gives1/16; I proportional1/d² gives4 when distancehalves, with other parameters fixed. Source80,60,40 differencesare-20,-20;80,40,20 ratiosare1/2,1/2. Equal-layer transmissions and equal-time survivals multiply, with dimensionless mu*x orlambda_d*t and initialfractionone. The text says three points suggest models and must be checked against mechanism; exact counterexamples confirm nonuniqueness: addingn(n-1)(n-2) to80-20n matches firstthree points but differsby6 atn3; quadratic80-50n+10n² matches80,40,20 but gives20 ratherthan10next. No arbitrary exponential/log decimal evaluation is assigned.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Named Poiseuille model: rigid circular tube, steady fullydeveloped laminar Newtonian incompressible flow, constantviscosity/no-slip and fixed pressure drop/length. Isotropic point-source lossless propagation at fixedpower forinverse-square. Constant attenuationcoefficient anddecayhazard for exponentials, nonnegative interval. Three measurements alone do not identify a unique physical model or license unlimited extrapolation.",
+      "pedagogicalReview": "Identifies held variables before scaling and distinguishes constantdifferences from constantratios. Explicitly requires physicalmechanism and initialcondition, so finite-data nonuniqueness is not concealed.",
+      "assetChecksums": {},
+      "figureReview": "No figure in the complete original; three-reading arithmetic and multiplicative patterns are explicit textdata, not inferred from a drawing.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "20e09e5f58aa250a503766864e198fcd002f7c9cde43cd08ba9a6f42c1ff625e",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C6.json",
+  "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
