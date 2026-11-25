@@ -1,5 +1,7 @@
 # ice-final-temperature-175 — note dell’autore
 
+Stato aggiornato: le didascalie e i testi visibili dello SVG ora indicano soltanto grandezze fisiche; tutte le coordinate geometriche sono invariate. Le indicazioni px delle note storiche sono coordinate intrinseche dello SVG, non pixel CSS dopo il ridimensionamento. I byte precedenti e le prove browser storiche sono archiviati con manifest e checksum in editorial/author-evidence/u5-phase-processes-173-177-pixel-labels-superseded-20261125. UI correnti NOT_RUN: nessun nuovo rendering di accettazione è stato eseguito per questa correzione; il profilo b963 resta sospeso.
+
 Fonte Git 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, questions/U5-03.json, file SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Letti individualmente tutti gli 80 prompt e le ipotesi 173–177 prima di scrivere i candidati. Catalogo reale C3-L01, C3-L03 e C3-L04 riletto; C1-L007 per la potenza del lotto 177. Solo assemble_family della pipeline esistente, course C3 e unit u5.
 
 DRAFT. Revisione scientifica indipendente NOT_RUN. Approvazione umana NOT_RUN. Pubblicazione non richiesta. I calcoli seguenti sono note dell’autore per la review distinta, non una certificazione.
@@ -137,3 +139,5 @@ Sostituendo il vincolo, la massa si cancella: Θ=(d−L_f)/c_l=(320−300)/4=5 K
 Passaggi: `\Theta=\frac{dm-mL_f}{mc_l}\qquad \Theta=\frac{d-L_f}{c_l}\qquad \Theta=5\,\mathrm K\qquad T_f=5\,{}^\circ\mathrm C`
 
 Distrattori e controllo: Il riferimento numerico è un esempio, non l’unica scala possibile. 5 g copia il numero della lettura in una massa. Zero viola m>0 e rende indefinita la formula prima della cancellazione. Il ramo fisico è rispettato da ogni massa positiva col vincolo dato.
+
+Geometria conservata (solo nota autore, coordinate intrinseche dello SVG, non pixel CSS): Q axis .4 intrinsic units/J; vertical 20 intrinsic units/K; component bars .4 intrinsic units/J; comparison bars 4 intrinsic units/K.
