@@ -1,0 +1,1137 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-poiseuille-flow-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10921,
+      "title": "Una piccola caduta di pressione, una portata con π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 1,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Con r=1 cm e η=1 mPa·s, quanto vale Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "π/10 cm³/s",
+          "π/5 cm³/s",
+          "π/20 cm³/s",
+          "π cm³/s",
+          "10π cm³/s"
+        ],
+        "value": "π/10 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di Hagen–Poiseuille dà Q=πr⁴Δp/(8ηL). Convertiamo r in 10⁻² m e η in 10⁻³ Pa·s: la quarta potenza del raggio è 10⁻⁸ m⁴. I fattori numerici restituiscono π·10⁻⁷ m³/s, cioè π/10 cm³/s. π rimane esatto, senza un valore decimale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/63fad07f56db4635a1b7ad911d89abffc131f386ad8ea6ef7058e514fea69ccc",
+          "text": "Sezioni circolari di raggi 1 e 2 cm, disegnate con raggi 30 e 60 px alla stessa scala 30 px/cm. Le aree sono π e 4π cm². A η=1 mPa·s, L=1 m e Δp=0,08 Pa, la portata cresce invece di un fattore 16: conta anche la velocità media maggiore. La figura non cambia il salto o la lunghezza del confronto."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L}"
+        },
+        {
+          "type": "formula",
+          "text": " r^4=10^{-8}\\,\\mathrm{m^4}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\pi10^{-7}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac\\pi{10}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "π/5 raddoppia la portata corretta e π/20 la dimezza. π e 10π perdono fattori di conversione. Non si inseriscono direttamente centimetri e mPa·s in una formula valutata come se ogni unità fosse SI."
+        }
+      ],
+      "hints": [
+        "Converti r prima della quarta potenza e η prima del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "π/5 raddoppia la portata corretta e π/20 la dimezza. π e 10π perdono fattori di conversione. Non si inseriscono direttamente centimetri e mPa·s in una formula valutata come se ogni unità fosse SI.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10922,
+      "title": "Portata volumetrica, non viscosità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 1,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Quale unità proposta esprime Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm³/s",
+          "cm/s",
+          "mPa·s",
+          "cm²",
+          "kg/s"
+        ],
+        "value": "cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione divisa per la viscosità ha unità di tempo inverso. Il rapporto r⁴/L lascia una lunghezza al cubo: il prodotto è dunque un volume per tempo, espresso qui in cm³/s."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta p/\\eta]=T^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " [r^4/L]=L^3"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=L^3/T"
+        },
+        {
+          "type": "text",
+          "text": "cm/s è velocità, mPa·s viscosità dinamica e cm² area. kg/s sarebbe una portata massica, ricavabile solo conoscendo anche la densità. La costante π e il numero otto sono puri."
+        }
+      ],
+      "hints": [
+        "Controlla separatamente il fattore geometrico e quello pressione su viscosità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm/s è velocità, mPa·s viscosità dinamica e cm² area. kg/s sarebbe una portata massica, ricavabile solo conoscendo anche la densità. La costante π e il numero otto sono puri.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10923,
+      "title": "Scegliere il dominio di Poiseuille",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 1,
+      "prompt": "Si propone la legge Q=πr⁴Δp/(8ηL) per un tratto di condotto di lunghezza L e raggio interno r. Quale insieme di ipotesi permette di applicarla direttamente, senza un nuovo coefficiente sperimentale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Fluido newtoniano incomprimibile, moto laminare stazionario sviluppato, tubo rigido circolare e aderenza alle pareti",
+          "Moto turbolento in qualunque condotto",
+          "Viscosità nulla e portata arbitraria",
+          "Raggio che cambia continuamente lungo il tubo",
+          "Pressioni uguali agli estremi per qualunque portata non nulla"
+        ],
+        "value": "Fluido newtoniano incomprimibile, moto laminare stazionario sviluppato, tubo rigido circolare e aderenza alle pareti"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forma parabolica del profilo e il rapporto lineare fra portata e caduta di pressione si ottengono per un fluido newtoniano con viscosità uniforme, in moto laminare stazionario sviluppato nel tubo circolare rigido, con velocità nulla alla parete. Geometria, regime e condizione al contorno sono parte del modello, non dettagli da ignorare dopo aver riconosciuto la formula."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/63fad07f56db4635a1b7ad911d89abffc131f386ad8ea6ef7058e514fea69ccc",
+          "text": "La conversione SI dà Q₀=π/10 cm³/s al riferimento r=1 cm,η=1 mPa·s. Nel confronto con r=2 cm,η=2 mPa·s, Q_B=8Q₀=4π/5 cm³/s. Le barre del rapporto Q/Q₀ hanno lunghezze 20 e 160 px, alla scala 20 px per unità del rapporto, e non rappresentano raggi. π è mantenuto esatto."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac{\\pi r^4\\Delta p}{8\\eta L}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\rm parete}=0"
+        },
+        {
+          "type": "text",
+          "text": "Turbolenza richiede una legge di perdita diversa. η nulla rende singolare la formula viscosa; un raggio non uniforme non è il tratto cilindrico dichiarato. Con resistenza positiva, Δp=0 non mantiene una portata viscosa arbitraria. Una formula algebrica non certifica da sola il regime fisico."
+        }
+      ],
+      "hints": [
+        "Controlla fluido, regime, geometria e condizione alla parete.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Turbolenza richiede una legge di perdita diversa. η nulla rende singolare la formula viscosa; un raggio non uniforme non è il tratto cilindrico dichiarato. Con resistenza positiva, Δp=0 non mantiene una portata viscosa arbitraria. Una formula algebrica non certifica da sola il regime fisico.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10924,
+      "title": "Il raggio raddoppia, la quarta potenza conta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 1,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. A usa r=1 cm, B r=2 cm; η resta 1 mPa·s. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da π/10 a 8π/5 cm³/s",
+          "Da π/10 a π/5 cm³/s",
+          "Da π/10 a 2π/5 cm³/s",
+          "Resta π/10 cm³/s",
+          "Da π/10 a π/160 cm³/s"
+        ],
+        "value": "Da π/10 a 8π/5 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio raddoppia e r⁴ si moltiplica per sedici. La portata π/10 diventa sedici π/10, cioè otto π/5 cm³/s. Anche la velocità media aumenta al crescere del raggio a salto fissato: non basta contare la sola area quattro volte maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B/Q_A=(r_B/r_A)^4"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2^4"
+        },
+        {
+          "type": "formula",
+          "text": " 2^4=16"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac{8\\pi}5\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "π/5 segue il solo raggio e 2π/5 la sola area. Il valore invariato ignora la nuova geometria; π/160 inverte l’effetto della quarta potenza. Il confronto presuppone che entrambe le prove restino laminari e sviluppate."
+        }
+      ],
+      "hints": [
+        "Calcola 2⁴, mantenendo fissi salto, lunghezza e viscosità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "π/5 segue il solo raggio e 2π/5 la sola area. Il valore invariato ignora la nuova geometria; π/160 inverte l’effetto della quarta potenza. Il confronto presuppone che entrambe le prove restino laminari e sviluppate.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10925,
+      "title": "Il raggio dalla portata esatta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Si misura Q=π/10 cm³/s e si conosce η=1 mPa·s. Quanto vale r in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo prima r⁴ nella legge. Convertendo Q in π·10⁻⁷ m³/s, π si cancella dal quoziente e si ottiene r⁴=10⁻⁸ m⁴. La radice quarta positiva è 10⁻² m, un cm. Le due estrazioni di radice quadrata sono esatte."
+        },
+        {
+          "type": "formula",
+          "text": "r^4=\\frac{8\\eta LQ}{\\pi\\Delta p}"
+        },
+        {
+          "type": "formula",
+          "text": " r^4=10^{-8}\\,\\mathrm{m^4}"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Il numero 10⁻⁸ appartiene alla quarta potenza e non al raggio. La radice negativa non è un raggio fisico; il ramo positivo è unico per r>0. L’area del tubo non è l’incognita e non va sostituita a r."
+        }
+      ],
+      "hints": [
+        "Cancella π dopo aver convertito Q e ricava r⁴.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il numero 10⁻⁸ appartiene alla quarta potenza e non al raggio. La radice negativa non è un raggio fisico; il ramo positivo è unico per r>0. L’area del tubo non è l’incognita e non va sostituita a r.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10926,
+      "title": "La viscosità dal flusso osservato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Si misura Q=π/10 cm³/s con r=1 cm. Quanto vale η in mPa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mPa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per η e dividiamo per la portata positiva. Con r⁴=10⁻⁸ m⁴ e Q=π·10⁻⁷ m³/s, il numeratore numerico è 8·10⁻¹⁰ e il denominatore 8·10⁻⁷: il rapporto vale 10⁻³ Pa·s, cioè un mPa·s."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac{\\pi r^4\\Delta p}{8LQ}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=10^{-3}\\,\\mathrm{Pa\\cdot s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1\\,\\mathrm{mPa\\cdot s}"
+        },
+        {
+          "type": "text",
+          "text": "La viscosità è inversa alla portata quando geometria e salto restano fissi. Non si cerca una densità e non si misura η in pascal senza secondi. Il prefisso milli della viscosità va mantenuto nella conversione finale."
+        }
+      ],
+      "hints": [
+        "Isola η al denominatore con un prodotto e una divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La viscosità è inversa alla portata quando geometria e salto restano fissi. Non si cerca una densità e non si misura η in pascal senza secondi. Il prefisso milli della viscosità va mantenuto nella conversione finale.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10927,
+      "title": "Viscosità doppia allo stesso raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. A ha r=1 cm,η_A=1 mPa·s. B mantiene r e usa η_B=2 mPa·s. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La viscosità compare al denominatore. Raddoppiandola, la portata si dimezza da π/10 a π/20 cm³/s; il rapporto è un mezzo. La resistenza viscosa maggiore richiede più salto per mantenere lo stesso flusso, ma qui il salto resta assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=\\frac\\pi{10}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac\\pi{20}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due rende diretta una dipendenza inversa, un quarto userebbe η², uno ignora il cambiamento e il segno negativo contraddice le portate positive sotto Δp positivo. Non si modifica il raggio in questo confronto."
+        }
+      ],
+      "hints": [
+        "Mantieni il numeratore e confronta le due viscosità inverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due rende diretta una dipendenza inversa, un quarto userebbe η², uno ignora il cambiamento e il segno negativo contraddice le portate positive sotto Δp positivo. Non si modifica il raggio in questo confronto.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10928,
+      "title": "Cambiare raggio e lunghezza a portata imposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Due tubi diritti, rigidi e circolari portano lo stesso fluido newtoniano incomprimibile, con moto laminare stazionario sviluppato e aderenza alle pareti. La portata Q>0 e la viscosità η restano uguali. In B il raggio raddoppia e la lunghezza quadruplica rispetto ad A. Quale rapporto Δp_B/Δp_A>0 mantiene Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "16",
+          "1/16",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Usiamo Poiseuille come inversa per il salto: Δp=8ηLQ/(πr⁴). La lunghezza moltiplica il salto per quattro, ma il raggio doppio divide per sedici. Il risultato è quattro sedicesimi, un quarto. Entrambi i tratti sono assunti nel regime di validità della stessa legge."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac{8\\eta LQ}{\\pi r^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=\\frac4{2^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=1/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro segue solo L, sedici inverte l’effetto del raggio e un sedicesimo dimentica la lunghezza. Uno compenserebbe erroneamente i due cambiamenti: una lunghezza quadrupla non compensa la quarta potenza di un raggio doppio. Qui Q è imposto, mentre nei confronti del prefisso è imposto Δp."
+        }
+      ],
+      "hints": [
+        "Isola il salto prima di applicare i fattori delle due geometrie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro segue solo L, sedici inverte l’effetto del raggio e un sedicesimo dimentica la lunghezza. Uno compenserebbe erroneamente i due cambiamenti: una lunghezza quadrupla non compensa la quarta potenza di un raggio doppio. Qui Q è imposto, mentre nei confronti del prefisso è imposto Δp.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10929,
+      "title": "L’inversa simbolica del raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Quale formula isola r nel ramo positivo, usando unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = ⁴√[8ηLQ / (πΔp)]",
+          "r = √[8ηLQ / (πΔp)]",
+          "r = 8ηLQ / (πΔp)",
+          "r = ⁴√[πΔp / (8ηLQ)]",
+          "r = 2 ⁴√[8ηLQ / (πΔp)]"
+        ],
+        "value": "r = ⁴√[8ηLQ / (πΔp)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dopo aver isolato r⁴, il membro noto ha dimensione di lunghezza alla quarta. Occorre la radice quarta positiva, non una radice quadrata. Tutti i fattori dati sono positivi, quindi il ramo fisico esiste ed è unico."
+        },
+        {
+          "type": "formula",
+          "text": "r^4=\\frac{8\\eta LQ}{\\pi\\Delta p}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\sqrt[4]{\\frac{8\\eta LQ}{\\pi\\Delta p}}"
+        },
+        {
+          "type": "text",
+          "text": "La radice quadrata darebbe un’area, l’espressione senza radice una lunghezza alla quarta e il reciproco una lunghezza inversa. Il doppio esterno altererebbe la portata di un fattore sedici. La radice quarta va applicata al rapporto intero con tutte le unità convertite."
+        }
+      ],
+      "hints": [
+        "Ricava prima r⁴ e verifica le dimensioni prima della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La radice quadrata darebbe un’area, l’espressione senza radice una lunghezza alla quarta e il reciproco una lunghezza inversa. Il doppio esterno altererebbe la portata di un fattore sedici. La radice quarta va applicata al rapporto intero con tutte le unità convertite.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10930,
+      "title": "Scalare raggio e viscosità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. B ha r_B=κ₁r_A e η_B=κ₂η_A, con fattori positivi e regime valido in entrambe le prove. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁⁴ / κ₂",
+          "κ₁ / κ₂",
+          "κ₁² / κ₂",
+          "κ₁⁴ κ₂",
+          "κ₂ / κ₁⁴"
+        ],
+        "value": "κ₁⁴ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quarta potenza del raggio produce κ₁⁴; la viscosità al denominatore divide per κ₂. Δp, L e π si cancellano nel rapporto, lasciando κ₁⁴/κ₂. Il fattore riguarda un raggio, non un’area già elevata al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\frac{\\pi(\\kappa_1r_A)^4\\Delta p}{8\\kappa_2\\eta_A L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac{\\kappa_1^4}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il primo e il secondo grado perdono parte della dipendenza dal raggio; il prodotto con κ₂ rende diretta la viscosità. Il reciproco inverte gli stati. Si devono ancora mantenere condizioni laminari e aderenza alle pareti per applicare la scalatura."
+        }
+      ],
+      "hints": [
+        "Eleva il fattore del raggio alla quarta e dividi per quello viscoso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il primo e il secondo grado perdono parte della dipendenza dal raggio; il prodotto con κ₂ rende diretta la viscosità. Il reciproco inverte gli stati. Si devono ancora mantenere condizioni laminari e aderenza alle pareti per applicare la scalatura.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10931,
+      "title": "Raggio e viscosità entrambi doppi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. A ha r=1 cm,η=1 mPa·s; B ha r=2 cm,η=2 mPa·s. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio doppio offre un fattore sedici e la viscosità doppia ne lascia metà: otto. La portata B è 4π/5 cm³/s, mentre A vale π/10; π si cancella nel loro rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\frac{4\\pi}5\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=\\frac\\pi{10}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=16/2"
+        },
+        {
+          "type": "formula",
+          "text": " 16/2=8"
+        },
+        {
+          "type": "text",
+          "text": "Sedici omette il cambio di viscosità, due segue soltanto η come fattore diretto e un ottavo è il reciproco. La grande crescita di Q non è una pressione maggiore: il salto è lo stesso nelle due prove."
+        }
+      ],
+      "hints": [
+        "Combina sedici per r⁴ con un mezzo per η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici omette il cambio di viscosità, due segue soltanto η come fattore diretto e un ottavo è il reciproco. La grande crescita di Q non è una pressione maggiore: il salto è lo stesso nelle due prove.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10932,
+      "title": "Media di portate che contengono π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 2,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. A ha r=1 cm,η=1 mPa·s; B ha r=2 cm,η=2 mPa·s. Qual è la media aritmetica delle due Q con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9π/20 cm³/s",
+          "9π/10 cm³/s",
+          "9π/40 cm³/s",
+          "27π/80 cm³/s",
+          "7π/10 cm³/s"
+        ],
+        "value": "9π/20 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le portate sono π/10 e 4π/5, cioè π/10 e 8π/10. La somma è 9π/10 e la semisomma 9π/20 cm³/s. La costante π resta un fattore esatto comune."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A+Q_B=\\frac{9\\pi}{10}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{Q_A+Q_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{9\\pi}{20}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "9π/10 è la somma, 9π/40 divide ancora e 7π/10 è la differenza. Gli ingressi medi r=3/2 cm e η=3/2 mPa·s darebbero 27π/80 cm³/s, inferiore alla media corretta di 9π/80. Il termine r⁴/η non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Porta le due portate allo stesso denominatore, poi dimezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9π/10 è la somma, 9π/40 divide ancora e 7π/10 è la differenza. Gli ingressi medi r=3/2 cm e η=3/2 mPa·s darebbero 27π/80 cm³/s, inferiore alla media corretta di 9π/80. Il termine r⁴/η non commuta con la media.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10933,
+      "title": "La viscosità per una portata bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 3,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. A ha r_A=1 cm,η_A=1 mPa·s. B deve avere r_B=2 cm e Q_B=8Q_A. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio doppio moltiplicherebbe Q per sedici a viscosità uguale. Per limitare l’aumento a otto occorre una viscosità doppia: sedici diviso due dà otto. Il rapporto richiesto è due."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q_B}{Q_A}=16\\frac{\\eta_A}{\\eta_B}"
+        },
+        {
+          "type": "formula",
+          "text": " 8=16\\frac{\\eta_A}{\\eta_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo aumenterebbe Q di un fattore trentadue, mentre otto per η darebbe soltanto il doppio flusso. Sedici è il fattore geometrico, non il cambio di viscosità necessario. La nuova viscosità positiva è coerente con lo stesso modello newtoniano."
+        }
+      ],
+      "hints": [
+        "Confronta il fattore sedici offerto dal raggio con l’otto desiderato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo aumenterebbe Q di un fattore trentadue, mentre otto per η darebbe soltanto il doppio flusso. Sedici è il fattore geometrico, non il cambio di viscosità necessario. La nuova viscosità positiva è coerente con lo stesso modello newtoniano.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10934,
+      "title": "Tarare il flusso senza approssimare π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 3,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Un display continuo adimensionale segue S=qQ,q>0,senza offset. A con r=1 cm,η=1 mPa·s dà S=3π/10. B con η=2 mPa·s dà S=12π/5. Quanto vale r_B in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha portata π/10 cm³/s e il rapporto fra lettura e portata dà q=3 s/cm³, cancellando π. La lettura B corrisponde a Q_B=4π/5 cm³/s, otto volte A. Con viscosità doppia, r_B⁴/r_A⁴ deve valere sedici: r_B=2 cm."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac{4\\pi}5\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B^4/r_A^4=16"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura con π è continua e non un conteggio intero. Il guadagno va eliminato prima dell’inversa; non si deve valutare π per cancellarlo. Quattro confonderebbe la radice quadrata del fattore con la radice quarta richiesta."
+        }
+      ],
+      "hints": [
+        "Cancella π nella taratura e usa poi il rapporto fra le leggi fisiche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura con π è continua e non un conteggio intero. Il guadagno va eliminato prima dell’inversa; non si deve valutare π per cancellarlo. Quattro confonderebbe la radice quadrata del fattore con la radice quarta richiesta.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10935,
+      "title": "Due riferimenti e un offset con π",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 3,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Il display continuo adimensionale segue S=qQ+b,q>0. A:r=1 cm,η=1 mPa·s,S=1+π/5. B:r=2 cm,η=2 mPa·s,S=1+8π/5. C:η=1 mPa·s,S=1+16π/5. Quanto vale r_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 cm",
+          "1 cm",
+          "3 cm",
+          "4 cm",
+          "−2 cm"
+        ],
+        "value": "2 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza delle letture è 7π/5; quella delle portate di riferimento 7π/10 cm³/s. Il rapporto dà q=2 s/cm³ e b=1. C ha Q_C=8π/5 cm³/s, sedici volte il flusso a r=1 cm con uguale viscosità; la radice quarta positiva dà r_C=2 cm."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=\\frac{8\\pi}5\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " r_C^4=16\\,\\mathrm{cm^4}"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "A η=1 mPa·s, raggi 1,3,4 cm darebbero letture 1+π/5, 1+81π/5, 1+256π/5. Il raggio −2 è escluso dal dominio anche se la quarta potenza coincide. Si sottrae l’offset prima della divisione per q; π si conserva esatto."
+        }
+      ],
+      "hints": [
+        "Raccogli π nelle differenze, poi isola il raggio con η_C nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A η=1 mPa·s, raggi 1,3,4 cm darebbero letture 1+π/5, 1+81π/5, 1+256π/5. Il raggio −2 è escluso dal dominio anche se la quarta potenza coincide. Si sottrae l’offset prima della divisione per q; π si conserva esatto.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-poiseuille-flow-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portata viscosa nel tubo circolare",
+      "order": 10936,
+      "title": "Il raggio legato alla viscosità fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "poiseuille-flow",
+      "difficulty": 3,
+      "prompt": "Un tratto di tubo diritto orizzontale, rigido e circolare ha raggio interno uniforme r>0 e lunghezza L=1 m. Un liquido newtoniano incomprimibile, di viscosità dinamica η>0 costante, scorre in regime laminare stazionario pienamente sviluppato, con aderenza alle pareti. Fra gli estremi del tratto si mantiene Δp=p_ingresso−p_uscita=0,08 Pa; non ci sono macchine nel tratto e il liquido resta monofase. Si trascurano gli effetti di ingresso e raccordo. r è espresso in cm, η in mPa·s e Q in cm³/s, ma le sostituzioni nella legge fisica devono usare unità coerenti. Si confrontano solo prove che mantengono queste ipotesi. Fra apparati si impone r=cη, con c=1 cm/(mPa·s). Si misura Q=π/10 cm³/s. Quanto vale η in mPa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mPa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=η/(1 mPa·s)>0. Il vincolo rende r=(1 cm)x. La legge, nelle unità coerentemente convertite, dà Q=(π/10 cm³/s)x⁴/x=(π/10 cm³/s)x³. Confrontando con la misura si ottiene x³=1 e quindi x=1: η=1 mPa·s e r=1 cm."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac\\eta{1\\,\\mathrm{mPa\\cdot s}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{r}{1\\,\\mathrm{cm}}=x"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac\\pi{10}x^3\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " x^3=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1\\,\\mathrm{mPa\\cdot s}"
+        },
+        {
+          "type": "text",
+          "text": "Zero rende singolare il denominatore e viola η>0. Il vincolo non identifica un raggio con una viscosità senza unità: c converte le dimensioni. La dipendenza è cubica dopo la sostituzione, non quartica, perché η compare anche al denominatore. Nel dominio positivo la soluzione è unica."
+        }
+      ],
+      "hints": [
+        "Normalizza η, sostituisci anche il raggio e semplifica una potenza di x.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero rende singolare il denominatore e viola η>0. Il vincolo non identifica un raggio con una viscosità senza unità: c converte le dimensioni. La dipendenza è cubica dopo la sostituzione, non quartica, perché η compare anche al denominatore. Nel dominio positivo la soluzione è unica.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Dominio di Poiseuille e conversioni esatte",
+        "Quarta potenza, inverse e pressione imposta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "63fad07f56db4635a1b7ad911d89abffc131f386ad8ea6ef7058e514fea69ccc",
+      "name": "poiseuille-flow-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlJhZ2dpbyBhbGxhIHF1YXJ0YSBlIHZpc2Nvc2l0w6AgYWwgZGVub21pbmF0b3JlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIHNlemlvbmkgY2lyY29sYXJpIGRpIHJhZ2dpIHVubyBlIGR1ZSBjZW50aW1ldHJpIGhhbm5vIGFyZWUgcGkgZSBxdWF0dHJvIHBpIGNlbnRpbWV0cmkgcXVhZHJhdGkuIEEgc2FsdG8gZSB2aXNjb3NpdMOgIGZpc3NpIGxhIHBvcnRhdGEgY3Jlc2NlIHNlZGljaSB2b2x0ZS4gTGEgY29udmVyc2lvbmUgZGVsIHJpZmVyaW1lbnRvIGluIFNJIGTDoCBwaSBkZWNpbWkgZGkgY2VudGltZXRybyBjdWJvIGFsIHNlY29uZG8uIFJhZGRvcHBpYW5kbyBhbmNoZSBsYSB2aXNjb3NpdMOgIGlsIGZhdHRvcmUgZGkgcG9ydGF0YSBkaXZlbnRhIG90dG8uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTcyYzNiIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gUmFkZG9wcGlhcmUgdW4gcmFnZ2lvIGludGVybm88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+U2V6aW9uaSB0cmFzdmVyc2U6IHNjYWxhIDMwIHB4L2NtPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxNjAiIGN5PSIyMTUiIHI9IjMwIiBmaWxsPSIjZGNlY2Y2IiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjQ0NSIgY3k9IjIxNSIgcj0iNjAiIGZpbGw9IiNmMWRkYjUiIHN0cm9rZT0iIzhiNjAyMiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxnIHN0cm9rZT0iIzE3MmMzYiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMTYwIDIxNUgxOTAiLz48cGF0aCBkPSJNNDQ1IDIxNUg1MDUiLz48L2c+Cjx0ZXh0IHg9IjEwNSIgeT0iMzE1Ij5yID0gMSBjbTwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjMxNSI+ciA9IDIgY208L3RleHQ+Cjx0ZXh0IHg9Ijk1IiB5PSIzNjAiPkFyZWEgPSDPgCBjbcKyPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iMzYwIj5BcmVhID0gNM+AIGNtwrI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0MTUiPkEgzrcsIEwgZSDOlHAgZmlzc2k6IFEgY3Jlc2NlIGRpIDLigbQgPSAxNi48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NTUiPkxhIHZlbG9jaXTDoCBtZWRpYSBjcmVzY2UgYW5jaOKAmWVzc2E6PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI0OTUiPmFyZWEgw5c0IGUgdmVsb2NpdMOgIG1lZGlhIMOXNCDihpIgUSDDlzE2LjwvdGV4dD4KPGxpbmUgeDE9IjM1IiB4Mj0iNjA1IiB5MT0iNTMwIiB5Mj0iNTMwIiBzdHJva2U9IiNiOWM0YzkiLz4KPHRleHQgeD0iMzUiIHk9IjU4MCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIENvbnZlcnRpcmUgcHJpbWEgZGVsIHByb2RvdHRvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjI1Ij5MID0gMSBtOyDOlHAgPSAwLDA4IFBhOyDOtyA9IDEgbVBhwrdzPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjc1Ij5yID0gMSBjbSA9IDEw4oG7wrIgbSDihpIgcuKBtCA9IDEw4oG74oG4IG3igbQ8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3MjUiPs63ID0gMTDigbvCsyBQYcK3czsgUSA9IM+AcuKBtM6UcCAvICg4zrdMKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijc3NSI+UeKCgCA9IM+AIMK3IDEw4oG74oG3IG3Csy9zPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4MjUiPjEgY23CsyA9IDEw4oG74oG2IG3CsyDihpIgUeKCgCA9IM+ALzEwIGNtwrMvczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4NSI+z4AgcmVzdGEgZXNhdHRvLCBzZW56YSBhcHByb3NzaW1hemlvbmkuPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI5MjUiIHkyPSI5MjUiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iOTc1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gQW5jaGUgbGEgdmlzY29zaXTDoCByYWRkb3BwaWE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDIwIj5BOiByID0gMSBjbSwgzrcgPSAxIG1QYcK3czwvdGV4dD4KPHJlY3QgeD0iMTIwIiB5PSIxMDYwIiB3aWR0aD0iMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNTVmYTAiLz48dGV4dCB4PSIzMjAiIHk9IjEwODQiPlFfQSAvIFHigoAgPSAxPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE0NSI+QjogciA9IDIgY20sIM63ID0gMiBtUGHCt3M8L3RleHQ+CjxyZWN0IHg9IjEyMCIgeT0iMTE4NSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2EzMzQzMCIvPjx0ZXh0IHg9IjMyMCIgeT0iMTIwOSI+UV9CIC8gUeKCgCA9IDg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjcwIj5CYXJyZTogMjAgcHggcGVyIHVuaXTDoCBkZWwgcmFwcG9ydG8gUS9R4oKAPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTMyMCI+THVuZ2hlenplIDIwIGUgMTYwIHB4OiBmYXR0b3JlIDE2LzIgPSA4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM3MCI+UV9CID0gOFHigoAgPSA0z4AvNSBjbcKzL3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDQwIj5GbHVpZG8gbmV3dG9uaWFubywgdHVibyByaWdpZG8gY2lyY29sYXJlLDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0ODAiPmxhbWluYXJlIHN0YXppb25hcmlvIHN2aWx1cHBhdG8sIG5vLXNsaXAuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTUzMCI+TGUgYmFycmUgZGkgcG9ydGF0YSBub24gc29ubyByYWdnaS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

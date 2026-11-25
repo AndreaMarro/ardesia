@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1600" viewBox="0 0 640 1600" role="img" aria-labelledby="title desc">
+<title id="title">Raggio alla quarta e viscosità al denominatore</title><desc id="desc">Due sezioni circolari di raggi uno e due centimetri hanno aree pi e quattro pi centimetri quadrati. A salto e viscosità fissi la portata cresce sedici volte. La conversione del riferimento in SI dà pi decimi di centimetro cubo al secondo. Raddoppiando anche la viscosità il fattore di portata diventa otto.</desc>
+<rect width="640" height="1600" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Raddoppiare un raggio interno</text>
+<text x="35" y="90">Sezioni trasverse: scala 30 px/cm</text>
+<circle cx="160" cy="215" r="30" fill="#dcecf6" stroke="#155fa0" stroke-width="3"/><circle cx="445" cy="215" r="60" fill="#f1ddb5" stroke="#8b6022" stroke-width="3"/>
+<g stroke="#172c3b" stroke-width="2"><path d="M160 215H190"/><path d="M445 215H505"/></g>
+<text x="105" y="315">r = 1 cm</text><text x="390" y="315">r = 2 cm</text>
+<text x="95" y="360">Area = π cm²</text><text x="370" y="360">Area = 4π cm²</text>
+<text x="35" y="415">A η, L e Δp fissi: Q cresce di 2⁴ = 16.</text>
+<text x="35" y="455">La velocità media cresce anch’essa:</text><text x="35" y="495">area ×4 e velocità media ×4 → Q ×16.</text>
+<line x1="35" x2="605" y1="530" y2="530" stroke="#b9c4c9"/>
+<text x="35" y="580" font-size="27" font-weight="bold">2. Convertire prima del prodotto</text>
+<text x="35" y="625">L = 1 m; Δp = 0,08 Pa; η = 1 mPa·s</text>
+<text x="35" y="675">r = 1 cm = 10⁻² m → r⁴ = 10⁻⁸ m⁴</text>
+<text x="35" y="725">η = 10⁻³ Pa·s; Q = πr⁴Δp / (8ηL)</text>
+<text x="35" y="775">Q₀ = π · 10⁻⁷ m³/s</text><text x="35" y="825">1 cm³ = 10⁻⁶ m³ → Q₀ = π/10 cm³/s</text>
+<text x="35" y="885">π resta esatto, senza approssimazioni.</text>
+<line x1="35" x2="605" y1="925" y2="925" stroke="#b9c4c9"/>
+<text x="35" y="975" font-size="27" font-weight="bold">3. Anche la viscosità raddoppia</text>
+<text x="35" y="1020">A: r = 1 cm, η = 1 mPa·s</text>
+<rect x="120" y="1060" width="20" height="30" fill="#155fa0"/><text x="320" y="1084">Q_A / Q₀ = 1</text>
+<text x="35" y="1145">B: r = 2 cm, η = 2 mPa·s</text>
+<rect x="120" y="1185" width="160" height="30" fill="#a33430"/><text x="320" y="1209">Q_B / Q₀ = 8</text>
+<text x="35" y="1270">Barre: 20 px per unità del rapporto Q/Q₀</text>
+<text x="35" y="1320">Lunghezze 20 e 160 px: fattore 16/2 = 8</text>
+<text x="35" y="1370">Q_B = 8Q₀ = 4π/5 cm³/s</text>
+<text x="35" y="1440">Fluido newtoniano, tubo rigido circolare,</text>
+<text x="35" y="1480">laminare stazionario sviluppato, no-slip.</text>
+<text x="35" y="1530">Le barre di portata non sono raggi.</text>
+</g></svg>
