@@ -1,0 +1,1119 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-laplace-droplet-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12421,
+      "title": "La sovrapressione di una sola interfaccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 1,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Con γ=20 mN/m e r=2 mm, quanto vale Δp in Pa?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Convertiamo γ in due centesimi di N/m e r in due millesimi di metro. Nel quoziente 2γ/r si cancellano il due del dato di r e i prefissi milli di tensione e raggio: il risultato è venti Pa. È un salto interno meno esterno, non l’intera pressione interna assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5b6ac967593dcf93fad7012d749b732fcee9ce45c462e2da3f4d4ea2f8896ed8",
+          "text": "Goccia sferica a singola interfaccia, con gravità deformante trascurata. r=2 mm è disegnato come 80 px alla scala 40 px/mm; il segmento radiale non è una forza. γ=20 mN/m dà Δp=20 Pa. Pressioni assolute di esempio p_ext=100000 Pa e p_in=100020 Pa, entrambe uniformi: la differenza è distinta dai valori assoluti."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=20\\cdot10^{-3}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\cdot10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\frac{2\\gamma}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta Pa conterebbe un’altra interfaccia come in una bolla di sapone sottile. Dieci perderebbe il fattore due della legge sferica. Venti Pa aggiunti, per esempio, a 100000 Pa esterni danno pressione interna 100020 Pa: il salto non coincide con quei due valori assoluti."
+        }
+      ],
+      "hints": [
+        "Converti entrambi i prefissi milli e conserva il fattore due della legge fornita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta Pa conterebbe un’altra interfaccia come in una bolla di sapone sottile. Dieci perderebbe il fattore due della legge sferica. Venti Pa aggiunti, per esempio, a 100000 Pa esterni danno pressione interna 100020 Pa: il salto non coincide con quei due valori assoluti.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12422,
+      "title": "L’unità della differenza fra pressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 1,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Quale unità proposta esprime Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pa",
+          "mN/m",
+          "mm",
+          "N",
+          "Pa·m"
+        ],
+        "value": "Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione ha dimensione forza per lunghezza; dividendola per un raggio si ottiene forza per area, cioè pressione. I prefissi di γ in mN/m e di r in mm si compensano esattamente nel quoziente."
+        },
+        {
+          "type": "formula",
+          "text": "[\\gamma/r]=\\mathrm{N/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta p]=\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{1\\,\\mathrm{mN/m}}{1\\,\\mathrm{mm}}=1\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "mN/m misura γ, mm il raggio e N una forza. Pa·m ha una lunghezza di troppo. La differenza fra due pressioni mantiene l’unità di pressione, anche se può essere molto minore di ciascuna pressione assoluta."
+        }
+      ],
+      "hints": [
+        "Dividi forza per lunghezza ancora per una lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mN/m misura γ, mm il raggio e N una forza. Pa·m ha una lunghezza di troppo. La differenza fra due pressioni mantiene l’unità di pressione, anche se può essere molto minore di ciascuna pressione assoluta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12423,
+      "title": "Quale goccia richiede più sovrapressione?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 1,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Due gocce A e B hanno la stessa γ>0 e r_B<r_A. Quale confronto fra sovrapressioni è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Δp_B > Δp_A",
+          "Δp_B < Δp_A",
+          "Δp_B = Δp_A",
+          "Δp_B = 0",
+          "Il segno delle due sovrapressioni è opposto"
+        ],
+        "value": "Δp_B > Δp_A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa tensione, un raggio minore è al denominatore e richiede un salto maggiore. Il rapporto Δp_B/Δp_A=r_A/r_B supera uno. Il fattore due nella legge della goccia non conta due facce: si può ricavare equilibrando il salto su un’emisfera con la forza dell’unico bordo circolare di tensione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5b6ac967593dcf93fad7012d749b732fcee9ce45c462e2da3f4d4ea2f8896ed8",
+          "text": "Il confronto centrale mantiene γ=20 mN/m: raggi 2 e 4 mm, cerchi di raggi 80 e 160 px a 40 px/mm, danno sovrapressioni 20 e 10 Pa. Il confronto finale cambia invece anche γ: A con γ=20,r=2 ha Δp=20 Pa; B con γ=30,r=4 ha Δp=15 Pa. Barre scalari di 100 e 75 px a 5 px/Pa, non frecce di forza né pressioni assolute."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p\\,\\pi r^2=\\gamma\\,2\\pi r"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\frac{2\\gamma}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=\\frac{r_A}{r_B}>1"
+        },
+        {
+          "type": "text",
+          "text": "Il confronto inverso tratterebbe r come moltiplicatore. Uguaglianza richiederebbe raggi uguali a γ comune; zero richiederebbe tensione nulla o curvatura nulla. Entrambe le sovrapressioni restano positive: non si scambia interno meno esterno con la sua opposta."
+        }
+      ],
+      "hints": [
+        "A γ uguale, confronta i reciproci dei due raggi positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il confronto inverso tratterebbe r come moltiplicatore. Uguaglianza richiederebbe raggi uguali a γ comune; zero richiederebbe tensione nulla o curvatura nulla. Entrambe le sovrapressioni restano positive: non si scambia interno meno esterno con la sua opposta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12424,
+      "title": "Tensione maggiore, stesso raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 1,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. γ passa da 20 a 30 mN/m, mentre r resta 2 mm. Come cambia Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 30 Pa",
+          "Da 20 a 40/3 Pa",
+          "Resta 20 Pa",
+          "Da 20 a 45 Pa",
+          "Diventa zero"
+        ],
+        "value": "Da 20 a 30 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio e la geometria sferica restano uguali. La tensione cresce di tre mezzi e la sovrapressione cresce dello stesso fattore: venti per tre mezzi dà trenta Pa. Si tratta di due condizioni di equilibrio con tensioni differenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=\\frac{30}{20}\\Delta p_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=30\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta terzi applica il fattore inverso; quarantacinque quadra il rapporto di tensioni. Venti ignora γ nuova e zero contraddice r e γ positivi. Non è stata aumentata l’area della goccia: il raggio è uguale."
+        }
+      ],
+      "hints": [
+        "A r fisso, la legge è lineare in γ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quaranta terzi applica il fattore inverso; quarantacinque quadra il rapporto di tensioni. Venti ignora γ nuova e zero contraddice r e γ positivi. Non è stata aumentata l’area della goccia: il raggio è uguale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12425,
+      "title": "Tensione dalla sovrapressione e dal raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Si misura Δp=20 Pa e si conosce r=2 mm. Quanto vale γ in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo il salto per il raggio e dividiamo per due. Venti Pa per due millimetri, diviso due, vale venti Pa·mm. Un Pa·mm equivale esattamente a un mN/m: la tensione è venti mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=\\frac{\\Delta p\\,r}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=20\\,\\mathrm{Pa\\,mm}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa\\,mm}=1\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta ometterebbe il divisore due; dieci lo applicherebbe una volta di troppo. Dividere Δp per r avrebbe dimensione pressione per lunghezza, non tensione superficiale."
+        }
+      ],
+      "hints": [
+        "Isola γ e controlla l’equivalenza Pa·mm=mN/m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta ometterebbe il divisore due; dieci lo applicherebbe una volta di troppo. Dividere Δp per r avrebbe dimensione pressione per lunghezza, non tensione superficiale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12426,
+      "title": "Il raggio che chiude il bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Si misura Δp=20 Pa e si conosce γ=20 mN/m. Quanto vale r in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo r=2γ/Δp. Quaranta mN/m diviso venti Pa restituisce due millimetri. Infatti (mN/m)/Pa è un millesimo di metro. Il risultato è un raggio positivo; il diametro sarebbe quattro mm, una grandezza diversa."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac{2\\gamma}{\\Delta p}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{1\\,\\mathrm{mN/m}}{1\\,\\mathrm{Pa}}=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Uno perderebbe il fattore due; quattro sarebbe il diametro. L’inversa non richiede una radice: r compare al denominatore alla prima potenza. La pressione da usare è il salto, non quella interna assoluta."
+        }
+      ],
+      "hints": [
+        "Moltiplica γ per due e dividi per la differenza di pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno perderebbe il fattore due; quattro sarebbe il diametro. L’inversa non richiede una radice: r compare al denominatore alla prima potenza. La pressione da usare è il salto, non quella interna assoluta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12427,
+      "title": "Un raggio maggiore a tensione invariata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. A ha γ=20 mN/m,r=2 mm. B mantiene γ e ha r=3 mm. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "4/9",
+          "1",
+          "3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore 2γ resta quaranta nelle unità dichiarate. A dà venti Pa e B quaranta terzi Pa. Il rapporto è due terzi, uguale al raggio A diviso quello B: una goccia più grande ha qui minore sovrapressione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=\\frac{40}{3}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue il raggio nel verso sbagliato; quattro noni quadra un rapporto che la legge contiene alla prima potenza. Uno ignora la geometria nuova e tre copia il numero di mm del raggio B."
+        }
+      ],
+      "hints": [
+        "Nel rapporto delle pressioni il rapporto dei raggi si inverte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue il raggio nel verso sbagliato; quattro noni quadra un rapporto che la legge contiene alla prima potenza. Uno ignora la geometria nuova e tre copia il numero di mm del raggio B.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12428,
+      "title": "Una proposta che usa la bolla al posto della goccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Con γ=20 mN/m e r=2 mm si propone Δp=40 Pa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 Pa",
+          "−20 Pa",
+          "40 Pa",
+          "0 Pa",
+          "10 Pa"
+        ],
+        "value": "20 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una sola interfaccia dà venti Pa. La proposta quaranta corrisponde a raddoppiare quella sovrapressione, come farebbe la formula approssimata 4γ/r per una bolla di sapone molto sottile con due interfacce. La goccia assegnata ne ha una: lo scarto è più venti Pa."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno venti inverte lo scarto, quaranta copia la proposta, zero la accetta e dieci lo dimezza. Il numero due della legge della goccia non autorizza a introdurre una seconda superficie fisica."
+        }
+      ],
+      "hints": [
+        "Usa la legge fornita per una interfaccia prima di sottrarre il corretto dal proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venti inverte lo scarto, quaranta copia la proposta, zero la accetta e dieci lo dimezza. Il numero due della legge della goccia non autorizza a introdurre una seconda superficie fisica.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12429,
+      "title": "La formula inversa per γ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Quale relazione isola γ con grandezze in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "γ = Δp r / 2",
+          "γ = 2 Δp r",
+          "γ = Δp / (2 r)",
+          "γ = 2 r / Δp",
+          "γ = Δp r"
+        ],
+        "value": "γ = Δp r / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da Δp=2γ/r moltiplichiamo per r>0 e dividiamo per due. La pressione per lunghezza ha dimensioni N/m, quindi l’inversa restituisce la tensione superficiale. Il raggio si trova al numeratore dopo l’isolamento."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p\\,r=2\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\frac{\\Delta p\\,r}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\gamma]=\\mathrm{Pa\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\gamma]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "2Δpr sovrastima di quattro volte; Δp/(2r) perde due potenze di lunghezza rispetto alla tensione corretta. Il reciproco 2r/Δp ha unità inverse e Δpr omette il divisore due. Non serve una radice quadrata."
+        }
+      ],
+      "hints": [
+        "Elimina prima il denominatore r e poi il coefficiente due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2Δpr sovrastima di quattro volte; Δp/(2r) perde due potenze di lunghezza rispetto alla tensione corretta. Il reciproco 2r/Δp ha unità inverse e Δpr omette il divisore due. Non serve una radice quadrata.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12430,
+      "title": "Scalare tensione e raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Fra A e B, γ_B=κ₁γ_A e r_B=κ₂r_A, con fattori positivi. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁² / κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione porta il fattore diretto κ₁ e il raggio al denominatore porta il reciproco di κ₂. Il fattore geometrico due si cancella, perciò il rapporto è κ₁/κ₂. Le configurazioni rimangono sferiche a singola interfaccia."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_B=\\frac{2\\kappa_1\\gamma_A}{\\kappa_2r_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto inverte l’effetto del raggio; il rapporto κ₂/κ₁ inverte gli stati. I quadrati introducono potenze che non compaiono nella legge fornita. Con fattori uguali la sovrapressione resta uguale."
+        }
+      ],
+      "hints": [
+        "Conserva γ al numeratore e r al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto inverte l’effetto del raggio; il rapporto κ₂/κ₁ inverte gli stati. I quadrati introducono potenze che non compaiono nella legge fornita. Con fattori uguali la sovrapressione resta uguale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12431,
+      "title": "Tensione e raggio entrambi maggiori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. A ha γ=20 mN/m,r=2 mm. B ha γ=30 mN/m,r=4 mm. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "3/2",
+          "1/2",
+          "15"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B ha sovrapressione due per trenta diviso quattro, quindici Pa. Rispetto ai venti di A, il rapporto è tre quarti. La tensione cresce di tre mezzi, ma il raggio doppio divide per due e il salto diminuisce."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac{15}{20}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi è il reciproco; tre mezzi considera solo γ e un mezzo solo r. Quindici è il valore numerico di Δp_B, non il rapporto chiesto. La pressione esterna uniforme non entra in questo confronto fra salti."
+        }
+      ],
+      "hints": [
+        "Combina il fattore tre mezzi con il divisore due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi è il reciproco; tre mezzi considera solo γ e un mezzo solo r. Quindici è il valore numerico di Δp_B, non il rapporto chiesto. La pressione esterna uniforme non entra in questo confronto fra salti.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12432,
+      "title": "Media delle sovrapressioni di due gocce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 2,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. A ha γ=20 mN/m,r=2 mm e B ha γ=30 mN/m,r=4 mm. Qual è la media aritmetica delle due Δp, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "35/2 Pa",
+          "35 Pa",
+          "35/4 Pa",
+          "50/3 Pa",
+          "5 Pa"
+        ],
+        "value": "35/2 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due sovrapressioni venti e quindici Pa hanno somma trentacinque Pa e semisomma trentacinque mezzi Pa. Si mediano due risultati di gocce diverse, non si costruisce prima una goccia con tensione e raggio medi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta p}=\\frac{20+15}{2}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta p}=\\frac{35}{2}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Trentacinque è la somma, trentacinque quarti dimezza ancora e cinque è la differenza. Ingressi medi γ=25 mN/m,r=3 mm darebbero cinquanta terzi Pa, minore della media richiesta di cinque sesti Pa. Il quoziente non commuta in generale con la media."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i salti prima di fare la media delle uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentacinque è la somma, trentacinque quarti dimezza ancora e cinque è la differenza. Ingressi medi γ=25 mN/m,r=3 mm darebbero cinquanta terzi Pa, minore della media richiesta di cinque sesti Pa. Il quoziente non commuta in generale con la media.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12433,
+      "title": "Il raggio per una sovrapressione bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 3,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. A ha γ=20 mN/m,r=2 mm. B impone γ=30 mN/m e deve avere Δp_B=(3/4)Δp_A. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "3/4",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è quindici Pa. Con tensione trenta mN/m, r_B=2·30/15=4 mm. Il rapporto con i due mm iniziali è due; equivale a dividere il fattore di tensione tre mezzi per il fattore di sovrapressione tre quarti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_B=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac{3/2}{3/4}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco, tre mezzi segue solo γ e tre quarti copia il bersaglio di pressione. Quattro è il valore numerico del raggio B, non il rapporto puro. Nessun ramo negativo è ammesso per un raggio."
+        }
+      ],
+      "hints": [
+        "Isola il rapporto dei raggi oppure ricava prima r_B dal target in Pa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco, tre mezzi segue solo γ e tre quarti copia il bersaglio di pressione. Quattro è il valore numerico del raggio B, non il rapporto puro. Nessun ramo negativo è ammesso per un raggio.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12434,
+      "title": "Calibrare il salto per risalire a γ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 3,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Un display continuo adimensionale segue S=qΔp, q>0, senza offset. A con γ=20 mN/m,r=2 mm dà S=60. B con r=4 mm dà S=45. Quanto vale γ_B in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha salto venti Pa e fissa q=3 Pa⁻¹. La nuova lettura quarantacinque rappresenta quindici Pa. L’inversa γ=Δpr/2 restituisce quindici per quattro diviso due, trenta mN/m, usando Pa·mm=mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_B=\\frac{\\Delta p_Br_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_B=30\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura quarantacinque come Pa darebbe γ=90 mN/m, triplo. Il display misura una sovrapressione: non si sottrae ancora l’atmosfera una volta che Δp è stata decodificata."
+        }
+      ],
+      "hints": [
+        "Decodifica Δp prima dell’inversa fisica della tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura quarantacinque come Pa darebbe γ=90 mN/m, triplo. Il display misura una sovrapressione: non si sottrae ancora l’atmosfera una volta che Δp è stata decodificata.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12435,
+      "title": "Guadagno e offset di un salto capillare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 3,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Il display continuo adimensionale segue S=qΔp+b, con q>0. A: γ=20 mN/m,r=2 mm,S=41. B: γ=30 mN/m,r=4 mm,S=31. C: r=2 mm,S=61. Quanto vale γ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 mN/m",
+          "20 mN/m",
+          "15 mN/m",
+          "60 mN/m",
+          "40 mN/m"
+        ],
+        "value": "30 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno salti venti e quindici Pa. Differenze dieci delle letture e cinque Pa danno q=2 Pa⁻¹; segue b=1. La lettura sessantuno rappresenta trenta Pa. A raggio due mm l’inversa γ=Δpr/2 dà trenta mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_C=30\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_C=30\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "A r=2 mm, tensioni 20,15,60,40 mN/m generano letture 41,31,121,81, tutte diverse da sessantuno. Solo trenta ricostruisce S=61. Un rapporto fra letture grezze non elimina l’offset."
+        }
+      ],
+      "hints": [
+        "Calibra su due sovrapressioni note e poi applica γ=Δpr/2.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A r=2 mm, tensioni 20,15,60,40 mN/m generano letture 41,31,121,81, tutte diverse da sessantuno. Solo trenta ricostruisce S=61. Un rapporto fra letture grezze non elimina l’offset.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-laplace-droplet-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Salto di pressione su una goccia sferica",
+      "order": 12436,
+      "title": "Un vincolo che non identifica la goccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "laplace-droplet",
+      "difficulty": 3,
+      "prompt": "Una goccia liquida sferica in equilibrio ha una sola interfaccia con il gas esterno e raggio r>0 assegnato in mm. Si trascurano gravità e altre cause di deformazione; la tensione superficiale γ>0 è uniforme, assegnata in mN/m, e ciascuna pressione interna o esterna è uniforme. La legge fornita è Δp=p_in−p_ext=2γ/r, con Δp>0 in Pa. Si usa il raggio, non il diametro; non è una bolla di sapone con due interfacce. Le prove confrontano gocce o condizioni differenti, non una variazione temporale di γ lungo una stessa interfaccia. Fra prove si impone γ=cr, con c=10 mN/(m·mm). Si misura inoltre Δp=20 Pa. Quante coppie positive (γ,r) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Convertire il coefficiente dà c=10 Pa. Sostituendo γ=cr nella legge, il raggio positivo si cancella e Δp=2c=20 Pa per qualunque r ammesso. La misura ripete il vincolo invece di fissare r. Per esempio r=1 mm con γ=10 mN/m e r=2 mm con γ=20 mN/m soddisfano entrambe le condizioni."
+        },
+        {
+          "type": "formula",
+          "text": "c=10\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=cr"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\frac{2cr}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=2c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non esauriscono una famiglia continua: ogni r>0 determina γ=cr>0 nel modello. La coppia nulla è esclusa e renderebbe indefinita la legge. Occorre un’altra misura indipendente, per esempio il raggio, per identificare una sola coppia. Il vincolo collega gocce distinte, non un cambiamento lungo la stessa interfaccia."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e controlla se rimane un’equazione che determini r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non esauriscono una famiglia continua: ogni r>0 determina γ=cr>0 nel modello. La coppia nulla è esclusa e renderebbe indefinita la legge. Occorre un’altra misura indipendente, per esempio il raggio, per identificare una sola coppia. Il vincolo collega gocce distinte, non un cambiamento lungo la stessa interfaccia.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Una interfaccia e legge di Laplace",
+        "Sovrapressione, inverse, prefissi e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5b6ac967593dcf93fad7012d749b732fcee9ce45c462e2da3f4d4ea2f8896ed8",
+      "name": "laplace-droplet-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTg1MCIgdmlld0JveD0iMCAwIDY0MCAxODUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+U292cmFwcmVzc2lvbmUgZGkgdW5hIGdvY2NpYSBhIHVuYSBpbnRlcmZhY2NpYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVuYSBnb2NjaWEgZGkgcmFnZ2lvIGR1ZSBtaWxsaW1ldHJpIGUgdGVuc2lvbmUgdmVudGkgbWlsbGluZXd0b24gYWwgbWV0cm8gaGEgc292cmFwcmVzc2lvbmUgdmVudGkgcGFzY2FsLiBMYSBwcmVzc2lvbmUgYXNzb2x1dGEgaW50ZXJuYSDDqCBsYSBwcmVzc2lvbmUgZXN0ZXJuYSBwacO5IHF1ZXN0byBzYWx0by4gQ29uIHRlbnNpb25lIGZpc3NhdGEgaWwgcmFnZ2lvIGRvcHBpbyBkaW1lenphIGlsIHNhbHRvLiBM4oCZdWx0aW1vIHBhbm5lbGxvIGNvbmZyb250YSBkdWUgcHJvdmUgaW4gY3VpIGNhbWJpYSBhbmNoZSBsYSB0ZW5zaW9uZS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTg1MCIgZmlsbD0iI2ZmZmRmNiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTkyZjNkIiBmb250LXNpemU9IjIyIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gVW5hIHNvbGEgaW50ZXJmYWNjaWEgc2ZlcmljYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk1Ij7OsyA9IDIwIG1OL207IHIgPSAyIG1tOyDOlHAgPSAyMCBQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0MCI+U2NhbGEgZ2VvbWV0cmljYTogNDAgcHgvbW08L3RleHQ+CjxjaXJjbGUgY3g9IjIyMCIgY3k9IjMwMCIgcj0iODAiIGZpbGw9IiNkY2VlZjgiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjIyMCIgY3k9IjMwMCIgcj0iNCIgZmlsbD0iIzE5MmYzZCIvPgo8cGF0aCBkPSJNMjIwIDMwMEgzMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE5MmYzZCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjIyOCIgeT0iMjg1Ij4yIG1tPC90ZXh0Pgo8dGV4dCB4PSIzNTAiIHk9IjI3MCI+UmFnZ2lvIDgwIHB4PC90ZXh0Pgo8dGV4dCB4PSIzNTAiIHk9IjMyNSI+VW5hIGludGVyZmFjY2lhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDM1Ij5QcmVzc2lvbmUgZXN0ZXJuYSBhc3NvbHV0YTogMTAwMDAwIFBhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDgwIj5QcmVzc2lvbmUgaW50ZXJuYSBhc3NvbHV0YTogMTAwMDIwIFBhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTI1Ij7OlHAgPSBwX2luIOKIkiBwX2V4dCA9IDIwIFBhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTcwIj5JbCByYWdnaW8gZGlzZWduYXRvIG5vbiDDqCB1bmEgZm9yemEuPC90ZXh0Pgo8cGF0aCBkPSJNMzUgNjEwSDYwNSIgc3Ryb2tlPSIjYzlkMWQ0Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI2NjAiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBRdWkgzrMgcmVzdGEgdWd1YWxlOiAyMCBtTi9tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzA1Ij5HcmF2aXTDoCBkZWZvcm1hbnRlIHRyYXNjdXJhdGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NzAiPnJfQSA9IDIgbW08L3RleHQ+PHRleHQgeD0iMzU1IiB5PSI3NzAiPnJfQiA9IDQgbW08L3RleHQ+CjxjaXJjbGUgY3g9IjE0MCIgY3k9Ijk3NSIgcj0iODAiIGZpbGw9IiNkY2VlZjgiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjQ1MCIgY3k9Ijk3NSIgcj0iMTYwIiBmaWxsPSIjZGNlZWY4IiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSIxNDAiIGN5PSI5NzUiIHI9IjQiIGZpbGw9IiMxOTJmM2QiLz48Y2lyY2xlIGN4PSI0NTAiIGN5PSI5NzUiIHI9IjQiIGZpbGw9IiMxOTJmM2QiLz4KPHBhdGggZD0iTTE0MCA5NzVIMjIwTTQ1MCA5NzVINjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTJmM2QiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzNSIgeT0iMTE4MCI+zpRwX0EgPSAyMCBQYTwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjExODAiPs6UcF9CID0gMTAgUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjM1Ij5SYWdnaSA4MCBlIDE2MCBweCwgc3Rlc3NhIHNjYWxhIDQwIHB4L21tPC90ZXh0Pgo8cGF0aCBkPSJNMzUgMTI4MEg2MDUiIHN0cm9rZT0iI2M5ZDFkNCIvPgo8dGV4dCB4PSIzNSIgeT0iMTMzMCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIE9yYSBjYW1iaWFubyBzaWEgzrMgc2lhIHI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzc1Ij5BOiDOsyA9IDIwIG1OL20sIHIgPSAyIG1tIOKGkiDOlHAgPSAyMCBQYTwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxNDEwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY2NGE3Ii8+Cjx0ZXh0IHg9IjI1MCIgeT0iMTQzNSI+MTAwIHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTUxNSI+QjogzrMgPSAzMCBtTi9tLCByID0gNCBtbSDihpIgzpRwID0gMTUgUGE8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTU1MCIgd2lkdGg9Ijc1IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY2NGE3Ii8+Cjx0ZXh0IHg9IjI1MCIgeT0iMTU3NSI+NzUgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjU1Ij5CYXJyZSBkaSBzb3ZyYXByZXNzaW9uZTogNSBweC9QYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3MDUiPlJhcHBvcnRvIM6UcF9CL86UcF9BID0gKDMvMikvMiA9IDMvNDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3NTUiPkxhIHByZXNzaW9uZSDDqCBzY2FsYXJlOiBsZSBiYXJyZSBub24gc29ubyBmb3J6ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxODA1Ij5Ob24gc2kgcmFwcHJlc2VudGFubyBsZSBwcmVzc2lvbmkgYXNzb2x1dGUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
