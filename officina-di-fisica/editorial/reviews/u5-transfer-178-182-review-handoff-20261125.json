@@ -1,0 +1,102 @@
+{
+  "scope": "independent_scientific_AI_review_not_human_or_product_UI_approval",
+  "records": 80,
+  "batches": [
+    {
+      "batch": "plane-conduction-178",
+      "candidateCommit": "83f82bcae179315b955e3df20af94c3a7000f128",
+      "records": 16,
+      "packageMutationCases": 26,
+      "packageSha256": "cc40b592023d0ec74990fcb51d27b761529599a80ae491032d078fb3748ff273",
+      "bindingsSha256": "13d407b16a10eb12341198632b8d091b23909de4dc18be55180bd68eb4f31afc"
+    },
+    {
+      "batch": "composite-wall-series-179",
+      "candidateCommit": "eebdbfb3f4d1ddc5f1ff9b748b976d59dee307ca",
+      "records": 16,
+      "packageMutationCases": 26,
+      "packageSha256": "643a1f15f8fd53bc009755e604c56a4ae743755a05901257db703dd0cc318322",
+      "bindingsSha256": "a9f2d028363272dcf3e9b68b37a8d478d53b56e13c6bf4b296ecb3c15e5f586b"
+    },
+    {
+      "batch": "parallel-thermal-panels-180",
+      "candidateCommit": "cceb5d0b6a3ad3e917031691acb1a1a3e96da523",
+      "records": 16,
+      "packageMutationCases": 26,
+      "packageSha256": "f6a368be9d5f85128ca0ac2579175b2072a59cfa7bebcbad021da4db9d12540d",
+      "bindingsSha256": "98d66bd44fa70f702bb5a72186c7a4df9533034cc7acb71dfe69dfef7b118d30"
+    },
+    {
+      "batch": "interface-temperature-181",
+      "candidateCommit": "9df91921f903cdd4f9d313944277a6f75ca0133a",
+      "records": 16,
+      "packageMutationCases": 26,
+      "packageSha256": "1433714eb3056141af0ef442aad02815b65f6cbbf918dd7fa5b17cbf4726fa73",
+      "bindingsSha256": "14c82204e2c217f31c05c60fb3c6e6910d762239f09b901d2e7b398ca61e9631"
+    },
+    {
+      "batch": "convective-loss-182",
+      "candidateCommit": "a2699006ba266cc06c0ef42ad08edab752f7f2f0",
+      "records": 16,
+      "packageMutationCases": 26,
+      "packageSha256": "982ded36f909408529ea475b4cce118d8c6029998eb9c7d272d8d01eb40ca0e8",
+      "bindingsSha256": "416fe5ed618f00f3f5d719cd6cedc4134ca5fbaedda8e673a62aedd8b056ae97"
+    }
+  ],
+  "primarySha256": "c94597eaf8e1bf35eace5928002151d2b6bc85dfe886e3a4322180ecf4ccbe5c",
+  "findings": [
+    {
+      "id": "AR-u5-convective-loss-03",
+      "old": "ΔT/(hA) called reciprocal power",
+      "correct": "K²/W instead of W",
+      "authorFix": "a2699006ba266cc06c0ef42ad08edab752f7f2f0",
+      "finalFullRecordAndDeltaReread": true,
+      "other15AndKeysFormulaAssetsUnchanged": true
+    }
+  ],
+  "targetedTestTerminalObservation": {
+    "command": "/private/tmp/cric-recovery-venv/bin/python -B -m unittest tests.corpus.test_u5_transfer_178_182_independent",
+    "exitCode": 0,
+    "tests": 15,
+    "elapsedSeconds": 2.398,
+    "packageMutationCases": 130,
+    "constitutiveFaultCases": 5,
+    "hypothesisConfigurations": 240,
+    "identity": "canonical fresh and saved for all80",
+    "sourceHashes": "actual pinned Git checked for all80"
+  },
+  "resourceGuard": "shared flock /private/tmp/cric-bounded-local-work.lock, ≥2 GiB free before each child; no concurrent own operation",
+  "assetRendering": "five complete independent asset-only PNGs read; not product UI",
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "files": {
+    "tools/corpus_engineering/plane_conduction_verifier.py": "dbe9150409e2adfb0827ddbe3568dadb40fd7a776785c0c5df431b157e8548bd",
+    "editorial/reviews/plane-conduction-178.json": "571c4b2d2c3eebe35f3c8fc3227a87881a369656c68678d53fa9e1ff016b14d1",
+    "editorial/reviews/plane-conduction-178-mutations.json": "6eae18910da021e7bbf0cc8693cf8b4e99b1541db41182c57c1fd6389f28649b",
+    "editorial/reviews/plane-conduction-178-independent-notes.md": "b28d5abe2d78405ac21a2d03a7e68882239b955caf2355c042b3f4cd1d767989",
+    "tools/corpus_engineering/composite_wall_series_verifier.py": "28ee02932e03f1e69c404def0bc2dccaf8d66e20f795cfa804318d65ec3a5ffb",
+    "editorial/reviews/composite-wall-series-179.json": "169243eee16969e861a9e51894c7042d5a1d8395021d007a006c923ccf9f2d04",
+    "editorial/reviews/composite-wall-series-179-mutations.json": "f34e260749aab716719ba8a1eedea4b317b40e08dbc4f4ffca35d25b41e8dd7d",
+    "editorial/reviews/composite-wall-series-179-independent-notes.md": "2e2792358eee71fb43a1c662e4d8b4191884979531cbb37096d3cd69aeaf1713",
+    "tools/corpus_engineering/parallel_thermal_panels_verifier.py": "905032d66252021a131a8ac353e444472c90f17f4def286a33f239bb7748c571",
+    "editorial/reviews/parallel-thermal-panels-180.json": "800810fd27185aa7f718083bc394f00385e0c3b3ab374f80c76c42112b02440c",
+    "editorial/reviews/parallel-thermal-panels-180-mutations.json": "73f8e5048cefdfcbeb55f342046ab649e4a55e6b88350e194ef11a1964ae26a6",
+    "editorial/reviews/parallel-thermal-panels-180-independent-notes.md": "cc9f25a079f599f4c9e1b923f6be02a092a1b65933eb4ef68044148476fbe1cb",
+    "tools/corpus_engineering/interface_temperature_verifier.py": "8eae0ac80c8ae29e0e704419f0698f2ca57afc4a3f7a76756204744572cb58d3",
+    "editorial/reviews/interface-temperature-181.json": "2fb2b6eb6a914db93f392c2ad00fa665d8d6df20f5e32528d69fbe776b516271",
+    "editorial/reviews/interface-temperature-181-mutations.json": "af67d2ca5cd08b5ada89efa37db1d36f7d6c6b6448aed103707eb86d8977ecec",
+    "editorial/reviews/interface-temperature-181-independent-notes.md": "e91e18218eadb9affe0154528643332e0a46d8b89f6aeb29f5019811695757fc",
+    "tools/corpus_engineering/convective_loss_verifier.py": "c152e54a04b9c82e627a43a560f0669be237f524479f951e1a345193a4ae475d",
+    "editorial/reviews/convective-loss-182.json": "8f24574b508866b587fd25a86ca2431c52c7d93040586a002ebe542751544605",
+    "editorial/reviews/convective-loss-182-mutations.json": "76d5cbdf5435bfb600ba3afcf01b3721171257138c1fea3154f4e09349794b22",
+    "editorial/reviews/convective-loss-182-independent-notes.md": "38134b6d84a2c5b10db238508a89d6ddf0c2ea05224594321bbcecfd72bc08e7",
+    "tests/corpus/test_u5_transfer_178_182_independent.py": "b950b47697c35d2f756b154183fc974b31296d7b05966ecd890319507164a27d",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/composite-wall-series-full.png": "135ad987bb36804dd9f0c0686cdea6f9668bb50b54343765af5913aee746d25b",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/convective-loss-full.png": "3b48330dc313f46210839c43ace16278be2399cfd3aef1b4ffcb5fcc255976f0",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/interface-temperature-full.png": "9cf2ea2cf5029ed2c77cb134b8a2ec697b6dbd774966a9a9cc8c7ad976cfcb03",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/manifest.json": "16829148cc783c0d6e8b7f53651c06b6971d3082e201f116cdd98acd0df19ecd",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/parallel-thermal-panels-full.png": "97f03f979ea4ad15a60ce0b543cdf18bcdc58d14ddec6b8144717e89edcd0016",
+    "editorial/reviews/u5-transfer-178-182-svg-independent-evidence/plane-conduction-full.png": "b56b2f1e3ab798a247ae99606964f29643c4be160b055b9819810ee6451f22ca"
+  }
+}

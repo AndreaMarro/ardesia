@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1330" role="img" aria-labelledby="title desc">
+<title id="title">La potenza netta sottrae due flussi simultanei</title>
+<desc id="desc">Una superficie nera di un metro quadrato a trecento kelvin, circondata da un ambiente nero a cento kelvin, emette quattrocentottantasei watt e ne assorbe sei. Il saldo è quattrocentottanta watt. Barre successive confrontano emissione, assorbimento e saldo dalla medesima origine. Un altro confronto fra due prove ha potenze nette quattrocentottanta e millequattrocentoquaranta watt, con media novecentosessanta.</desc>
+<defs><marker id="radiation" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b45328"/></marker></defs>
+<rect width="640" height="1330" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Emette e assorbe nello stesso tempo</text>
+<text x="32" y="83" font-size="18">Ambiente nero a 100 K, superficie di area 1 m².</text>
+<rect x="50" y="110" width="540" height="220" rx="10" fill="#e5edf3" stroke="#8292a2" stroke-width="2"/>
+<rect x="80" y="155" width="160" height="130" rx="8" fill="#14243a"/>
+<text x="99" y="202" fill="white">Superficie</text><text x="99" y="245" fill="white">T_s = 300 K</text>
+<path d="M260 176H470" stroke="#b45328" stroke-width="4" marker-end="url(#radiation)"/>
+<path d="M470 254H260" stroke="#b45328" stroke-width="4" marker-end="url(#radiation)"/>
+<text x="302" y="148">Emette 486 W</text><text x="302" y="296">Assorbe 6 W</text>
+<text x="32" y="374" font-size="18">Frecce schematiche: non confrontarne le lunghezze.</text>
+<path d="M32 407H608" stroke="#9babbc"/>
+<text x="32" y="452" font-size="25" font-weight="bold">2 · Il saldo è emissione meno assorbimento</text>
+<text x="32" y="491" font-size="18">Potenze in W, tutte dalla stessa origine.</text>
+<path d="M130 520V774" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="544" width="340.2" height="34" fill="#b45328"/>
+<rect x="130" y="617" width="4.2" height="34" fill="#165a87"/>
+<rect x="130" y="690" width="336" height="34" fill="#28664d"/>
+<text x="32" y="570">Emessa</text><text x="489" y="570">486 W</text>
+<text x="32" y="643">Assorbita</text><text x="154" y="643">6 W</text>
+<text x="32" y="716">Netta</text><text x="485" y="716">480 W</text>
+<text x="105" y="768">0</text>
+<text x="32" y="816" font-size="18">486 W − 6 W = 480 W ceduti al netto.</text>
+<path d="M32 849H608" stroke="#9babbc"/>
+<text x="32" y="894" font-size="25" font-weight="bold">3 · Media di due saldi già calcolati</text>
+<text x="32" y="933" font-size="18">A: θ_s = 3, θ_a = 1; B: θ_s = 4, θ_a = 2.</text>
+<path d="M130 960V1211" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="982" width="120" height="34" fill="#165a87"/>
+<rect x="130" y="1055" width="360" height="34" fill="#b45328"/>
+<rect x="130" y="1128" width="240" height="34" fill="#28664d"/>
+<text x="50" y="1008">A</text><text x="269" y="1008">480 W</text>
+<text x="50" y="1081">B</text><text x="509" y="1081">1440 W</text>
+<text x="32" y="1154">Media</text><text x="389" y="1154">960 W</text>
+<text x="105" y="1205">0</text>
+<text x="32" y="1252" font-size="18">Media delle uscite: (480 + 1440)/2 = 960 W.</text>
+<text x="32" y="1284" font-size="18">Il saldo nullo, a temperature uguali, non annulla</text>
+<text x="32" y="1314" font-size="18">le due potenze uguali emessa e assorbita.</text>
+</g></svg>
