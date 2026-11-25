@@ -1,3 +1,18 @@
+## Checkpoint corrente — 1.408 quesiti e 169 attività, 25 novembre 2026
+
+Generazione `e2b6b54d3a4f665b5827076a5376e75c6f684e6a0800f24357c6d4eea1008f47`, manifest `afa4c8e8fb1ace0ef48722f55f10f598b86d104e2b1090f95a7979abcac629ef`.
+Tutti i 4.606 quesiti e le 385 attività sono contabilizzati. Revisioni complete: 1.408 quesiti DRAFT e 169 attività; restano 3.198 quesiti e 216 attività. U1, U2 e U3-01/U3-02 revisionati in bozza. Prossimo ID: `u3-identical-branches-01`, batch `identical-branches-095`.
+
+Le dieci famiglie 084–093 hanno autori e verificatori distinti, risoluzioni individuali, oracoli, controprove e procedimenti manuali. Quattro didascalie hanno fallito il reflow mobile: report e schermate NONPASS conservati, correzioni rilette separatamente, 192 casi rifatti con uscita 0. Gli altri sei pacchetti hanno 288 casi con uscita 0. Complessivamente 4.251 anteprime valide sul runtime effettivo: 4.224 quesiti e 27 delle nove nuove edizioni di attività. Le scansioni axe non certificano da sole WCAG/UDL o esperienza reale DSA/ADHD.
+
+Dodici lezioni 023–026 e 28 esempi 027–030 aggiungono 40 attività. C5-E008v2 esplicita la tensione invariata nel confronto di potenze sulla corda; il finding originale resta negativo. Nove problemi originali e nove bozze corrette sono registrati separatamente. Fresh e incrementale producono lo stesso checkpoint. Coesistenza di 1.417 edizioni nello stesso SQLite temporaneo, secondo import senza scritture, 991 pubblicati, live head e storia invariati. Adattività verificata su fixture private sintetiche. I controlli mirati passano; suite completa e CI del prossimo consolidamento ancora da eseguire.
+
+Il canone remoto contiene 1.248 quesiti e 129 attività: PR #361 MERGED su `8a2d7c5abf64753c69cdd8066a9dcc8302e03448`, head finale `d77132ba4a7966ee37a9ac23ef1a40ca28d9168c`. CI post-merge 14/14 SUCCESS, run 45522773668 e 45522773758, riportati in `editorial/reviews/ci-postmerge-1248-20261125.json`. Anche PR #360 ha 14/14 post-merge SUCCESS. Nessun bypass. Release 1248 SHA256 `0eb025ac3697804558ee11eb81dd8756aa7c14a5a5562c10faeb9d01f672fc5a`, nessuna sorgente o figura DRAFT distribuita.
+
+Questo checkpoint 1408/169 è sul ramo `feat/cric-u3-buoyancy`, ancora da integrare. I 160 quesiti 095–104 hanno review scientifica e 480 anteprime con uscita 0, ma non sono ancora registrati. Le attività 105/106/117 avanzano separatamente. Ownership U3-04 nei lotti 107–116: assegna lavoro, non completa ID.
+
+Dei 199 ID con controlli tecnici recuperati, 43 hanno ora una revisione completa; 156 restano parziali. Backlog completo: 3.198; sola risoluzione indipendente: 3.042. Le 100 revisioni Pro restano NOT_IDENTIFIED. Human NOT_RUN, pubblicazioni aggiunte zero, 93 domande d’esame protette. Proseguire con 1568 e tutto il corpus senza attendere firme umane per l’authoring. Il mandato rimane aperto. Le sezioni successive sono snapshot storici.
+
 ## Checkpoint corrente — 1.248 quesiti e 129 altre attività, 25 novembre 2026
 
 Generazione `08f8b3c9bafed7a706577825ffb37b99b3410438ac7fe03e1d2bb64a68276a24`, manifest `c074bca3b71bca45a5944eef208519246f55f43568d52352f92f1d2ea1bfd3bc`.
