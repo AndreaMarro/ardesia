@@ -15,3 +15,5 @@ La correzione dei vettori interviene nell’apparato condiviso 3D/fallback. Nel 
 Due preview tecniche118/119 furono eseguite prima del fix delle frecce: quelle prove hanno un fingerprint superato e non devono contribuire al checkpoint. Le nuove prove devono essere realmente rieseguite sul runtime finale. Il primo import di118/119 salva1 e il secondo0/unchanged1, con991 pubblicati, live head e storia invariati. Queste sono evidenze tecniche di importazione, non approvazioni scientifiche.
 
 I trasferimenti storici a95° e40° restano nelle vecchie edizioni e nei finding negativi. Nessuna risposta storica, tolleranza o parser numerico è riscritta. Le attività assegnate usano soltanto angoli notevoli; gli altri input restano esplorazioni osservabili e non conti manuali obbligatori.
+
+Durante la lettura visiva dell’anteprima119 l’autore ha rilevato una scala errata del primo SVG:3 m erano88 px e2 m erano72 px. Corretto a90 px e60 px in tutti i pannelli, riletti gli endpoint XML e rigenerati asset, pacchetto, binding, import e tre anteprime. Nessun PASS scientifico era stato attribuito. Il report119 precedente è superato e non contribuisce ai conteggi.
