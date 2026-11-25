@@ -1,0 +1,39 @@
+F.F....F
+======================================================================
+FAIL: test_exact_antiparallel_comparison_is_zero_without_zeroing_small_physics (tests.test_experiment_assessment_selection.ExperimentAssessmentSelection.test_exact_antiparallel_comparison_is_zero_without_zeroing_small_physics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/test_experiment_assessment_selection.py", line 68, in test_exact_antiparallel_comparison_is_zero_without_zeroing_small_physics
+    self.assertEqual(values[:3],[0,6,0]);self.assertGreater(values[3],0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [0, 6, 7.347880794884119e-16] != [0, 6, 0]
+
+First differing element 2:
+7.347880794884119e-16
+0
+
+- [0, 6, 7.347880794884119e-16]
++ [0, 6, 0]
+
+======================================================================
+FAIL: test_fourth_teaching_step_uses_the_same_transfer_as_the_generated_problem (tests.test_experiment_assessment_selection.ExperimentAssessmentSelection.test_fourth_teaching_step_uses_the_same_transfer_as_the_generated_problem)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/test_experiment_assessment_selection.py", line 51, in test_fourth_teaching_step_uses_the_same_transfer_as_the_generated_problem
+    self.assertIn('180',' '.join(selected['steps'][3]))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '180' not found in 'Ripeti con un altro dato Prevedi la lettura con «Direzione della velocità» a 95 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato. vₓ = 4 cos θ, con modulo v = 4 m/s'
+
+======================================================================
+FAIL: test_shipped_schema_rejects_duplicates_and_matches_json_value_equality (tests.test_experiment_assessment_selection.ExperimentAssessmentSelection.test_shipped_schema_rejects_duplicates_and_matches_json_value_equality)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/test_experiment_assessment_selection.py", line 57, in test_shipped_schema_rejects_duplicates_and_matches_json_value_equality
+    with self.assertRaises(store.Problem):validate({'schemaVersion':'1.0.0','points':[90,90]},rule)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: Problem not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.449s
+
+FAILED (failures=3)
