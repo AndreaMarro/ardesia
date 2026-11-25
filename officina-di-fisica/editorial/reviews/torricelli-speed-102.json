@@ -1,0 +1,493 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u3-torricelli-speed-01",
+      "sourceSha256": "c02e46b9b5583e16a6e508da417e7dc02784dc31e18cb2250a9ec488422b7cd5",
+      "candidateSha256": "c831f253083e5128f694c5ac6b211bf49963db0ca228eac214ff4c1a5cdeeb69",
+      "reviewedSignature": "b439ce6188e3e8df02cd7962a35042b6872191765fbd0d5c2c01777a5d50a460",
+      "assetChecksums": {
+        "torricelli-speed-progressive.svg": "7c1cd324ef0215bf8bbda7ecdb4cf55b262a1660b575c499383f481d4c1d8138"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Con pressioni uguali, superficie quasi ferma e battente H, Bernoulli dà gH=v²/2. 2·10·5=100 m²/s², radice positiva 10 m/s.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "100 è v² nelle unità del quadrato; 20 raddoppia dopo la radice. La velocità 10 non è costante durante uno svuotamento con H variabile.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con pressioni uguali, superficie quasi ferma e battente H, Bernoulli dà gH=v²/2. 2·10·5=100 m²/s², radice positiva 10 m/s.",
+      "scientificAssetReview": "XML e rendering completo letti. Superficie y=180 e foro y=380: 200 px a 40 px/m per H=5 m. Freccia 100 px a 10 px/(m/s) per v=10 m/s. Barre separate gH e v²/2 entrambe lunghe 200 px a 4 px/(m²/s²), energia per massa 50. Nel confronto a g=10 m/s², battenti 5 e 20 m danno frecce separate di 100 e 200 px per 10 e 20 m/s. Scale di quota, velocità ed energia specifica distinte; niente extrapolazione temporale a H fisso.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-02",
+      "sourceSha256": "68ec4a8ba772ec0073d0601a37ece1bcdce65dd1062c0f016deab4cdcffa6112",
+      "candidateSha256": "cd5b616ed9aba01352187a28c7088af1561d2306a63561370a1d3aca775ee0b7",
+      "reviewedSignature": "9e3a82ec7be0857731e4e173e28e0b10ac52e8148a6747dd77d5e5cf6e5d78a6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "gH ha dimensione L²/T² e la radice restituisce L/T. La scelta m/s non richiede una decimalizzazione o un calcolo numerico autonomo.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "m²/s² è v², m lunghezza, s tempo e Pa pressione; non si conserva l’unità di g dopo prodotto e radice.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. gH ha dimensione L²/T² e la radice restituisce L/T. La scelta m/s non richiede una decimalizzazione o un calcolo numerico autonomo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-03",
+      "sourceSha256": "6ad59f1ee08227111b8702512df97e3a83a0c414e04198a398dcad3ba0dd17a7",
+      "candidateSha256": "f1708c075c968fe3e1aecc0d7315d0a6736d4736043ce195aabde82afb9a747e",
+      "reviewedSignature": "4b87ec9b9af02ccdf23cd2556c623f98282177d357a0a52fe431dd99c864840a",
+      "assetChecksums": {
+        "torricelli-speed-progressive.svg": "7c1cd324ef0215bf8bbda7ecdb4cf55b262a1660b575c499383f481d4c1d8138"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "v = √(2gH)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Dalla stessa energia per massa gH=v²/2 si ricava v=√(2gH). Il ramo positivo è il modulo di uscita; velocità superficiale e perdite sono trascurate esplicitamente.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "2gH è v², √(gH) perde 2, √(2g/H) ha unità s⁻¹; il meno non è un modulo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dalla stessa energia per massa gH=v²/2 si ricava v=√(2gH). Il ramo positivo è il modulo di uscita; velocità superficiale e perdite sono trascurate esplicitamente.",
+      "scientificAssetReview": "XML e rendering completo letti. Superficie y=180 e foro y=380: 200 px a 40 px/m per H=5 m. Freccia 100 px a 10 px/(m/s) per v=10 m/s. Barre separate gH e v²/2 entrambe lunghe 200 px a 4 px/(m²/s²), energia per massa 50. Nel confronto a g=10 m/s², battenti 5 e 20 m danno frecce separate di 100 e 200 px per 10 e 20 m/s. Scale di quota, velocità ed energia specifica distinte; niente extrapolazione temporale a H fisso.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-04",
+      "sourceSha256": "ace6081165889f6a0db8e9f1bb36797e7534c52b05141024e03e7e442960c708",
+      "candidateSha256": "87ebc3d2579a73aa6f016b5aa278d4e7d30fcfc0fb7ab6d24c8deb4c6ed004ce",
+      "reviewedSignature": "01e631d10ffd5925323bd6dfe1b1835098c9c3ef45b10ba40bc2ef1022b66e04",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da10 a2√5 m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Con g ridotta da 10 a 2 m/s² e H=5 m, v² passa da 100 a 20. Scomporre 20=4·5 dà v_B=2√5 m/s, esatto e minore di 10.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "2 applica linearmente il fattore 1/5; 50 lo inverte; 10 ignora g nuova e 20 cresce quando g diminuisce.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con g ridotta da 10 a 2 m/s² e H=5 m, v² passa da 100 a 20. Scomporre 20=4·5 dà v_B=2√5 m/s, esatto e minore di 10.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-05",
+      "sourceSha256": "f8759a670fb1aa3e3e92ad3b625b3806cfead1c77f3b80a01ebbaa0d03822bfe",
+      "candidateSha256": "5af08eab2b7708dff37fc756995e0aa581a7aba7d95d014fe2f286ba317d02d2",
+      "reviewedSignature": "a9dda57bbec4442c232afdab0ef87f24f9c8ba8ec5a7a3d56068dd6197030748",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "g=v²/(2H)=100/(2·5)=10 m/s². L’inversa è lineare in g, non produce due gravità.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "v/(2H) è s⁻¹; dimenticare il 2 darebbe 20 m/s², non 10.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. g=v²/(2H)=100/(2·5)=10 m/s². L’inversa è lineare in g, non produce due gravità.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-06",
+      "sourceSha256": "2bbbc30b9822ac88218ae4e654b464333dc686c2f36f5afb21daefed8899adea",
+      "candidateSha256": "d2bfd3bc10331d3c89c29b97259f8a9b9011c4c13e6fa3c096972651055f0b8d",
+      "reviewedSignature": "ae7c79dd2845b8d32a4e93ef43a994b97bdc6dbc685f9c9c50dabe5d9a5064e5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "H=v²/(2g)=100/(2·10)=5 m. È un battente verticale, non una quota del foro sul suolo.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "10 m omette il 2. Altezza del suolo non assegnata e non necessaria per la velocità di efflusso.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. H=v²/(2g)=100/(2·10)=5 m. È un battente verticale, non una quota del foro sul suolo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-07",
+      "sourceSha256": "3ef9b7559942e26a5c5bdd0dea04914ac9ca5a954f9b85d626e08e02e3f6d290",
+      "candidateSha256": "0be0e09fdbd0056c9b52c9279929e99e59fd940155fd97dcefcf3ba0507416cd",
+      "reviewedSignature": "7637eeda90722d53fcd1c9f5eacdffdb8ca4bdc0377d6e4efea4deb70d01420f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A g=10 fisso, H da 5 a 20 m quadruplica v²; velocità 10 e 20 m/s, rapporto 2.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "4 riguarda v²; 1/2 e 1/4 invertono; 20 è la velocità B numerica, non rapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A g=10 fisso, H da 5 a 20 m quadruplica v²; velocità 10 e 20 m/s, rapporto 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-08",
+      "sourceSha256": "461d2191977bd47f095292d7fe4cf47c93b28fc5f209948e14a8bdf35888e1f3",
+      "candidateSha256": "0dc42cd8f61437bed62853eb7495684764bdb6b345178f2564e3420a893aef32",
+      "reviewedSignature": "af907e32bf829930a21e554bb4da633ffb05b2bc49bfbde56f77de7d813b0bfd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Corretto 10 m/s, proposta 20: scarto +10 m/s. La proposta avrebbe v²/2=200 m²/s² contro i 50 disponibili dal battente.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "−10 ordine invertito; 20 proposta; 0 accetta; 5 dimezza lo scarto. Pressione comune non aggiunge energia differenziale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto 10 m/s, proposta 20: scarto +10 m/s. La proposta avrebbe v²/2=200 m²/s² contro i 50 disponibili dal battente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-09",
+      "sourceSha256": "bcb782c8f4a57ec0a9e65d567202dbf7b4671aa1fba429faf45368e7ecd2980a",
+      "candidateSha256": "d655d20637c186946608ab4ca6d90fe11a7ed35d6a3ddbdb9ad0e800c4249e80",
+      "reviewedSignature": "70744205c681ad0214418cc34f87f48de9a45fdcf34ef792f0d36c537a0ee499",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "g = v²/(2H)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Quadrare v=√(2gH), con v>0 e g,H>0, dà v²=2gH. Dividere per 2H isola g=v²/(2H).",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "v/(2H) dimensione errata; 2v²/H fattore quattro; H/(2v²) inverso di accelerazione; v²H/2 ha due potenze di lunghezza extra.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Quadrare v=√(2gH), con v>0 e g,H>0, dà v²=2gH. Dividere per 2H isola g=v²/(2H).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-10",
+      "sourceSha256": "f4c91c674d477c481ff9569e3490beede1c7bad365524fb9faca7afa659a5f25",
+      "candidateSha256": "55368d72d4c43bf9ec841fd0e9961f139b482d420d6e5f6af143ba8af8d0fafd",
+      "reviewedSignature": "db456f01bd4327a9cd78d7d43bad1bd27cb6c1acfca47c50de5fb62b0a1be9eb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "√(κ₁ κ₂)",
+      "dimension": {},
+      "manualArithmetic": "Le scalature g_B=κ₁g_A, H_B=κ₂H_A moltiplicano v² per κ₁κ₂. Il rapporto dei moduli positivi è √(κ₁κ₂).",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "Prodotto senza radice è rapporto di v²; quozienti invertono H; somma vale 2 per stati identici.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Le scalature g_B=κ₁g_A, H_B=κ₂H_A moltiplicano v² per κ₁κ₂. Il rapporto dei moduli positivi è √(κ₁κ₂).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-11",
+      "sourceSha256": "f14c6d4729747b1cb9a7c92dc549bbfb0f181421bbd07b88dcb59aef2b88db2d",
+      "candidateSha256": "f4c6c0cca4f3d5a734228ec7b3c6150263e8757257dcfe2acaa50078a301d8d2",
+      "reviewedSignature": "bdb812eb569252f67bd4da4de7ae8f4ccde304aa06193ee5952deb747851f54d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2*sqrt(5)/5",
+      "dimension": {},
+      "manualArithmetic": "B ha v²=2·2·20=80 m²/s², quindi v_B=4√5 m/s. Rapporto a 10 m/s: 2√5/5; quadrato 4/5<1.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "4/5 rapporto dei quadrati; √5/5 solo g; 2 solo H; 5/(2√5) è reciproco. Nessuna equivalenza esatta fra le opzioni.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B ha v²=2·2·20=80 m²/s², quindi v_B=4√5 m/s. Rapporto a 10 m/s: 2√5/5; quadrato 4/5<1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-12",
+      "sourceSha256": "3fb8a856e35e72c87e9c53849ee18b8488c5a066abdff1e4d8ee8320c12c2bd4",
+      "candidateSha256": "a8f205bc1c363cce389356ce08299a78c81356f95f6efeb05fbada3d471b1867",
+      "reviewedSignature": "cf8841cecfda034e604d7b8f3025e408de7e4a23af67e9ffaf050bc407835d81",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2*sqrt(5) + 5",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media (10+4√5)/2=5+2√5 m/s. È minore di 10 perché √5<5/2; gli ingressi medi darebbero 5√6>10. Entrambi i confronti si provano quadrando numeri positivi: 20<25 e 6>4.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "10+4√5 somma; ulteriore metà sbagliata; 5√6 ingressi medi; 2√5/5 rapporto invece di velocità media.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (10+4√5)/2=5+2√5 m/s. È minore di 10 perché √5<5/2; gli ingressi medi darebbero 5√6>10. Entrambi i confronti si provano quadrando numeri positivi: 20<25 e 6>4.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-13",
+      "sourceSha256": "16ebea1de3ffd7716f2dde4fd19a3c13e20798b95879559526ef52a93651845e",
+      "candidateSha256": "1b34cba872a277534c264b905ff5233ce6cfb64cf5cc9040bd3082b791f978a6",
+      "reviewedSignature": "9958982936438b25cd818ae6f6cf911165d887427dec59bf0ad9cab2bfe05e3b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "Target (2√5/5)·10=4√5 m/s; quadrato 80. Con g_B=2 m/s², H_B=80/4=20 m, rapporto 20/5=4.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "2 segue la radice del rapporto di H; 1/4 reciproco; 4/5 rapporto di v²; 20 valore H_B numerico.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target (2√5/5)·10=4√5 m/s; quadrato 80. Con g_B=2 m/s², H_B=80/4=20 m, rapporto 20/5=4.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-14",
+      "sourceSha256": "20c4d41cb2441f4131d53c3bc722f3a39e8601c8d17c46924e522ebce5e30985",
+      "candidateSha256": "f83069186f7e5d98cede11e0b7da08d4bd8200032d32045f1395e8c2cd847436",
+      "reviewedSignature": "15cced3ec33720f21499479aaede6dcf88c58fafdfcc60a5003809fe83d02df6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "q=30/(10 m/s)=3 s/m. S_B=12√5 significa v_B=4√5 m/s; v_B²=80, H=20 m→g_B=2 m/s².",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "S_B scambiata per velocità darebbe v² nove volte maggiore e g=18 m/s². Rimuovere q prima del quadrato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. q=30/(10 m/s)=3 s/m. S_B=12√5 significa v_B=4√5 m/s; v_B²=80, H=20 m→g_B=2 m/s².",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-15",
+      "sourceSha256": "125dff3d200fc7349d996e758b7921d59a277f29e3517aad19f456eb40e9754d",
+      "candidateSha256": "3f21e62a0ab5f15cb9be4e35d7673af53571fd6ae0fdeaee7c04370f17b1bfa4",
+      "reviewedSignature": "d33afe56b6df142dc0c572a6128e7bd427b8cda49a0062362ef0fd0f5a60123e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Differenze dei riferimenti: ΔS=2(4√5−10), Δv=(4√5−10) m/s, fattore non nullo perché 80≠100. q=2 s/m, offset 1. S_C=1+4√5→v_C=2√5, v_C²=20; H=5 m→g_C=2 m/s².",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "g=10,4,1,8 m/s² a H=5 darebbero S=21,1+4√10,1+2√10,1+8√5. Nessuna coincide con 1+4√5.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Differenze dei riferimenti: ΔS=2(4√5−10), Δv=(4√5−10) m/s, fattore non nullo perché 80≠100. q=2 s/m, offset 1. S_C=1+4√5→v_C=2√5, v_C²=20; H=5 m→g_C=2 m/s².",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-16",
+      "sourceSha256": "6fc61020dc13784b89397a77d91ed2cde82617f81af3da855878d88cf233679c",
+      "candidateSha256": "e563a60722f5d8fa64c5fab75caa35bb151d4e055eb3d7d01be90793e0ce4c1c",
+      "reviewedSignature": "e7beabd28e8d403be449513986f5f2abd532300b99b1c18de400021931e47f68",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Vincolo g=cH, c=2 s⁻²: v²=2cH². 100/(4 s⁻²)=25 m². Rami ±5 m; H=5 m dà g=10 m/s² ed è l’unico ramo con entrambi positivi.",
+      "physicalAssumptions": "Grande serbatoio rigido, liquido omogeneo incomprimibile, piccolo foro. Fotografia istantanea quasi stazionaria, velocità superficiale trascurata nel modello; stessa pressione assoluta esterna ai due punti, fase liquida compatibile, gravità uniforme positiva. Nessuna macchina o perdita lungo la stessa linea di corrente. H>0 è il battente e v>0 il modulo. I vincoli sono fra apparati.",
+      "distractors": "25 è H², non H. Ramo negativo viola sia H>0 sia g=cH>0; il vincolo è fra prove, non durante lo svuotamento.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo g=cH, c=2 s⁻²: v²=2cH². 100/(4 s⁻²)=25 m². Rami ±5 m; H=5 m dà g=10 m/s² ed è l’unico ramo con entrambi positivi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_Bernoulli_continuity_or_ballistic_motion",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "97785b1e80a52144095aea8ade0259b55694a3f6355004a314d087d00b85126e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "c6894b2364ba4a7e64cac209d1f1ec6191ec551a",
+  "packageSha256": "9ce671f3e1e1afc00bb9c15cfe51908ac7d50ea3e11c58eb01dc7cf412e1268c",
+  "bindingsSha256": "f51b5a74db038579c5f722ceccfdc47d41f984bc3f0edca02c369391cbd84518",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-03.json",
+    "reference": "All 80 original U3-03 prompts in these five families individually read and solved before opening candidate packages. Disclosure: prior author handoff already exposed 104-06 equal ranges and doubled A speed, plus qualitative information about radicals, a quartic and renamed h/H. These facts independently rederived from source models; no claim of wholly blind key reading for 104-06. All 16 final candidate records, alternatives, hints, feedback and scientific SVG XML/native rendering read before freezing. Never imports candidate authoring; real C2-L005/L006 lessons reread."
+  }
+}
