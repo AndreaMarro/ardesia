@@ -1,0 +1,551 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-line-load-efficiency-01",
+      "sourceSha256": "3bf25e9cd38347e8070d4004742d05e57007e289b2cbf64b2db1a14d5bcbc665",
+      "candidateSha256": "a547843178b15e8bec8c7ee86af33da2a6d6544d455713a3a6ce2dcf8849eabc",
+      "reviewedSignature": "dd376b1d4a0b6159de2fd72bc8d108bd6ac7a00b8ea6a7dbacf99eb3be6d8b0c",
+      "assetChecksums": {
+        "line-load-efficiency-progressive.svg": "f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "La corrente è comune nella serie. P_L=I²R_L e P_c=I²R_c; per I≠0 la frazione η=R_L/(R_L+R_c). Con 3 e 1 Ω si ottiene 3/4, compreso strettamente fra zero e uno. Se I=0 la definizione come rapporto di potenze sarebbe 0/0: l’edizione futura deve dichiarare funzionamento con corrente non nulla, oppure definire esplicitamente il rapporto dei coefficienti dissipativi come limite.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Le alternative sono state tutte lette: 1/4 è quota persa; 4/3 supera uno; 3 confronta utile con perdita anziché totale; 1 richiederebbe R_c=0. Solo 3/4 rispetta il modello.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La corrente è comune nella serie. P_L=I²R_L e P_c=I²R_c; per I≠0 la frazione η=R_L/(R_L+R_c). Con 3 e 1 Ω si ottiene 3/4, compreso strettamente fra zero e uno. Se I=0 la definizione come rapporto di potenze sarebbe 0/0: l’edizione futura deve dichiarare funzionamento con corrente non nulla, oppure definire esplicitamente il rapporto dei coefficienti dissipativi come limite.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1470 letti. Serie R_L=3 Ω e R_c=1 Ω, corrente 1 A e generatore 4 V: topologia senza ramo. Barre di potenza 180/60/240 corrispondono a 3/1/4 W, origine 150; barre delle quote 300/200/250 a 3/4,1/2,5/8 con scala distinta. Unica freccia separata, punta visibile e verso dal polo positivo. Simboli resistivi schematici, zeri 118 esterni agli assi.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-02",
+      "sourceSha256": "07f7ae4b245924bdfa0169e825028011fa57887258ef12803e2eebd2c78c0b8d",
+      "candidateSha256": "4c01b3fc27830e73368833c6525f9e9a4c2e3a089d9c7f10addb10abd3b71202",
+      "reviewedSignature": "52ed0afe930645ae5ae1365eec9088b9a3ba5ae6aa38a40f749d88883dcb3e26",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "η è rapporto di potenze e quindi adimensionale: unità 1, eventualmente espresso in percentuale dopo moltiplicazione per cento. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "1 è adimensionale. W, J e Ω rappresentano altre dimensioni; %·W conserva dimensione di potenza, non quella di una quota.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. η è rapporto di potenze e quindi adimensionale: unità 1, eventualmente espresso in percentuale dopo moltiplicazione per cento. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-03",
+      "sourceSha256": "8165181f94051e82716e4d9f4a499c83a0038e8cc9ade64e74fae23795732cc4",
+      "candidateSha256": "f691ee269ee8ca6791b6583e6e80ce37fc92b07836c692d4afd165ec43ff48ed",
+      "reviewedSignature": "89dacef9db72fb054ce403e64cbdc950b3ef3b5f71f50bc5e987169ba697790b",
+      "assetChecksums": {
+        "line-load-efficiency-progressive.svg": "f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "R_L / (R_L + R_c)",
+      "dimension": {},
+      "manualArithmetic": "Dalla somma delle potenze P_tot=I²(R_L+R_c) segue η=R_L/(R_L+R_c) per corrente comune non nulla. Non è un rendimento di conversione dell’intera rete termodinamica: qui utile significa precisamente potenza dissipata nel carico e persa significa quella nei cavi. Con resistenze positive finite, 0<η<1.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "R_c/(R_L+R_c) è la perdita; R_L/R_c e R_c/R_L non hanno il totale al denominatore; (R_L+R_c)/R_L è il reciproco della quota e supera uno. Il fattore I² si cancella soltanto con I>0, reso esplicito.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dalla somma delle potenze P_tot=I²(R_L+R_c) segue η=R_L/(R_L+R_c) per corrente comune non nulla. Non è un rendimento di conversione dell’intera rete termodinamica: qui utile significa precisamente potenza dissipata nel carico e persa significa quella nei cavi. Con resistenze positive finite, 0<η<1.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1470 letti. Serie R_L=3 Ω e R_c=1 Ω, corrente 1 A e generatore 4 V: topologia senza ramo. Barre di potenza 180/60/240 corrispondono a 3/1/4 W, origine 150; barre delle quote 300/200/250 a 3/4,1/2,5/8 con scala distinta. Unica freccia separata, punta visibile e verso dal polo positivo. Simboli resistivi schematici, zeri 118 esterni agli assi.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-04",
+      "sourceSha256": "6be52bc3c1ede1aaed4d4ca39078ba37c3627819ab2d6c5394f5745f2dc29cbd",
+      "candidateSha256": "382129712c6ed3269b50518e050ffa01a421c4d824442fe3a8a5f5d10de3ea25",
+      "reviewedSignature": "4be33781438249e6b784c51029e5c21023496c64f1a4cc9782b8015243b8679b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3/4 a 4/5",
+      "dimension": {},
+      "manualArithmetic": "R_c resta 1 Ω. Passare da R_L=3 a 4 Ω dà η da 3/4 a 4/5: aumenta, ma non di un fattore 4/3 perché cambia anche il denominatore. La corrente può cambiare a seconda del generatore; il rapporto delle potenze conserva questa formula.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "4/5−3/4=1/20. Le alternative 1,3/5,3/4,1/2 eliminano perdite, conservano il vecchio numeratore, ignorano la modifica o impongono resistenze uguali. Non si inferisce una maggiore potenza utile assoluta senza controllo del generatore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R_c resta 1 Ω. Passare da R_L=3 a 4 Ω dà η da 3/4 a 4/5: aumenta, ma non di un fattore 4/3 perché cambia anche il denominatore. La corrente può cambiare a seconda del generatore; il rapporto delle potenze conserva questa formula.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-05",
+      "sourceSha256": "16b4c2e1a5b280a70784bec1f89e1d8d135e15da4640e76b00558e13a1f582f2",
+      "candidateSha256": "4119b15ff408eba3bb46628760b7f5d32e242dd4f7d04be3704e2c3ff3161edc",
+      "reviewedSignature": "1706c91b4b77c33048ef6317d5bb9f11c540e97ca200e543f5af83460d8d8a90",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "η(R_L+R_c)=R_L implica (1−η)R_L=ηR_c. Con η=3/4 e R_c=1 Ω, R_L=(3/4)/(1/4) Ω=3 Ω. In generale servono R_c>0 e 0<η<1 per resistenza finita positiva.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Il valore 3 Ω ricompone la quota 3/4. I controesempi 3/4 Ω e 4/3 Ω danno quote 3/7 e 4/7. Il dominio inverso è aperto 0<η<1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. η(R_L+R_c)=R_L implica (1−η)R_L=ηR_c. Con η=3/4 e R_c=1 Ω, R_L=(3/4)/(1/4) Ω=3 Ω. In generale servono R_c>0 e 0<η<1 per resistenza finita positiva.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-06",
+      "sourceSha256": "8e84fc51770e94b89817810bb4c7c7481cecaac5cb1616f1c7e33b3b6dbe1ced",
+      "candidateSha256": "f31a45846bb3a67f3dc8fddd482f6a5106afcbe8fd00add4f967ea4e73b11a14",
+      "reviewedSignature": "11fdf43d270ee76f44b6a065284261856b2a99c200c9ba9f50ffe002d3798162",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "ηR_c=(1−η)R_L, quindi R_c=R_L(1−η)/η. Con R_L=3 Ω e η=3/4 si ottiene 3·(1/4)/(3/4)=1 Ω. Il denominatore η è strettamente positivo.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "R_c=1 Ω. Il valore errato 3/4 Ω è il prodotto R_L(1−η), privo della divisione per η; 9 Ω dà η=1/4 e zero darebbe η=1, esclusa. Quote sul totale e fra utile/perdita sono distinte.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ηR_c=(1−η)R_L, quindi R_c=R_L(1−η)/η. Con R_L=3 Ω e η=3/4 si ottiene 3·(1/4)/(3/4)=1 Ω. Il denominatore η è strettamente positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-07",
+      "sourceSha256": "7b249a59f6e8a9ec11dfbc46db769aa6aed7bce5385394a55ad950d39e0aff3b",
+      "candidateSha256": "419797224b843552f19fb67bca35a54cea38cbb1fb976e84c36ddf5f76d187e4",
+      "reviewedSignature": "ed7cb7aae00b71c881f986241dedab2731ffb7e57815cc733bc4cf4f46798865",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {},
+      "manualArithmetic": "η_A=3/4 e η_B=3/(3+2)=3/5. Rapporto (3/5)/(3/4)=4/5: l’aumento delle perdite nei cavi diminuisce la frazione utile. Il valore non è il reciproco semplice del rapporto delle resistenze dei cavi.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "4/5 è il rapporto delle due uscite; 5/4 ne è il reciproco, 1/2 considera solo R_c, 2 copia il suo fattore e 1 ignora la variazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. η_A=3/4 e η_B=3/(3+2)=3/5. Rapporto (3/5)/(3/4)=4/5: l’aumento delle perdite nei cavi diminuisce la frazione utile. Il valore non è il reciproco semplice del rapporto delle resistenze dei cavi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-08",
+      "sourceSha256": "74557a5ea017679722c2ba90087483968d7559fb9ae05d6cb9ed2fafb1089c4a",
+      "candidateSha256": "2ff30577495603c0a58166b45d911db5dcd4f43934f1bdd33c9644d04f8f90f3",
+      "reviewedSignature": "d559c6fab43ea4bacc4b73288c1eeb525ac16e879d311e4108247c80d6e43cbc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "Valore corretto 3/4; proposta 3/2. Scarto proposta−corretto=3/2−3/4=3/4, adimensionale. La proposta stessa supera uno, già incompatibile con due potenze dissipate positive nella definizione assegnata.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "La differenza è +3/4. Le altre scelte invertono il segno, formano il rapporto 2, ripetono 3/2 o accettano lo zero. La proposta non è fisicamente ammissibile anche se lo scarto si può calcolare.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Valore corretto 3/4; proposta 3/2. Scarto proposta−corretto=3/2−3/4=3/4, adimensionale. La proposta stessa supera uno, già incompatibile con due potenze dissipate positive nella definizione assegnata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-09",
+      "sourceSha256": "76773605f2c401b8d47fee421af513ed40c201ebd70099d0236bc7daf3283f05",
+      "candidateSha256": "9746c96a75627623655809942a74ed434038eeab6223d53c09200a73275fb481",
+      "reviewedSignature": "d48892a744435103b31e264d375b668cff70c95e3021a7b70ced44225402f089",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "η R_c / (1 − η)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Da η(R_L+R_c)=R_L si raccolgono i termini in R_L: (1−η)R_L=ηR_c. Si divide per 1−η>0: R_L=ηR_c/(1−η). Unità Ω; η=1 non ammette R_c>0 finita e η=0 non ammette R_L>0.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Con η=3/4 e R_c=1 Ω, il rapporto invertito darebbe R_L=1/3 Ω e quota1/4; ηR_c dà 3/4 Ω e quota3/7; R_c/(1−η) dà4 Ω e quota4/5. η/R_c ha unità S. Il noto resta R_c nelle formule effettive.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da η(R_L+R_c)=R_L si raccolgono i termini in R_L: (1−η)R_L=ηR_c. Si divide per 1−η>0: R_L=ηR_c/(1−η). Unità Ω; η=1 non ammette R_c>0 finita e η=0 non ammette R_L>0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-10",
+      "sourceSha256": "64a08ba9d337566168de862a9bda5457c9a8f155c8968e8a90f5f5d1928ed74c",
+      "candidateSha256": "2af3623d310652f70c0545a4b1e8e55539d9ae0a77ef1ab969a31fe20d3b6904",
+      "reviewedSignature": "ee7c2045ece2ea201a5b4702d7e201d7c61969850f3a9be90d7763904f5dcb54",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / (κ₁ a + κ₂ b)",
+      "dimension": {},
+      "manualArithmetic": "η_B=κ₁R_L/(κ₁R_L+κ₂R_c). Dividendo per η_A=R_L/(R_L+R_c), il rapporto è κ₁(R_L+R_c)/(κ₁R_L+κ₂R_c). Fattori positivi mantengono denominatore positivo; una scalatura comune κ₁=κ₂ lascia η invariata.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "La candidata definisce a=R_L/(R_L+R_c), b=R_c/(R_L+R_c). κ₁/(κ₁a+κ₂b) equivale esattamente alla formula della primaria. Il numeratore κ₂ segue i cavi; κ₁/κ₂ omette i pesi; la somma è il solo fattore totale; il prodotto fallisce già con κ₁=κ₂=2.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. η_B=κ₁R_L/(κ₁R_L+κ₂R_c). Dividendo per η_A=R_L/(R_L+R_c), il rapporto è κ₁(R_L+R_c)/(κ₁R_L+κ₂R_c). Fattori positivi mantengono denominatore positivo; una scalatura comune κ₁=κ₂ lascia η invariata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-11",
+      "sourceSha256": "6be14a934f8fa9a05a9c581970970f5be0c84517bd409b3831b53d7fa700580f",
+      "candidateSha256": "7917ba1d33fad38052edc6a1da4acfff73a9d8c78c18a13ccb502619de6ceab0",
+      "reviewedSignature": "970b8ba0d4e1e657842e764981524a4f032cdc85d0b056cb14d3371b6f33ec50",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "A: 3/(3+1)=3/4. B: 2/(2+2)=1/2. Rapporto (1/2)/(3/4)=2/3. La potenza utile resta definita sul carico, senza cambiare il significato del rapporto fra le prove.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "2/3 è il rapporto corretto; 3/2 è il reciproco e 1/2 copia η_B. 4/3 inverte la sola quota iniziale 3/4, non il rapporto dei carichi. Uno confonde totale uguale con ripartizione uguale. Finding 11 corretto nel finale aea78b9 e riletto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: 3/(3+1)=3/4. B: 2/(2+2)=1/2. Rapporto (1/2)/(3/4)=2/3. La potenza utile resta definita sul carico, senza cambiare il significato del rapporto fra le prove.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-12",
+      "sourceSha256": "253fc270572ba2f72f9d3d9c0cd3d89f1887f85f7403e92074461c9c8c56126b",
+      "candidateSha256": "8d1dd4b9422f5184f77460d3e0c0627ca3cdc4b11822fbc4498aa76118d1b2f9",
+      "reviewedSignature": "020c015a85a4ff8c54733c892fb0bae1542e39c9a41b7da264f4908710831dc3",
+      "assetChecksums": {
+        "line-load-efficiency-progressive.svg": "f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/8",
+      "dimension": {},
+      "manualArithmetic": "Media delle due uscite: (3/4+1/2)/2=5/8. Ai dati medi R_L=5/2 Ω e R_c=3/2 Ω si ottiene ancora (5/2)/4=5/8 perché in queste due prove il totale R_L+R_c è identico, 4 Ω. È una coincidenza motivata, non una regola generale per questa funzione non lineare.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Media5/8. Le alternative3/4 e1/2 ripetono una prova,5/4 non dimezza,1/8 è metà differenza. Il controesempio(1,1),(3,1) Ω dà media5/8 ma uscita ai dati medi2/3: la coincidenza del caso richiesto dipende dal totale4 Ω.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle due uscite: (3/4+1/2)/2=5/8. Ai dati medi R_L=5/2 Ω e R_c=3/2 Ω si ottiene ancora (5/2)/4=5/8 perché in queste due prove il totale R_L+R_c è identico, 4 Ω. È una coincidenza motivata, non una regola generale per questa funzione non lineare.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1470 letti. Serie R_L=3 Ω e R_c=1 Ω, corrente 1 A e generatore 4 V: topologia senza ramo. Barre di potenza 180/60/240 corrispondono a 3/1/4 W, origine 150; barre delle quote 300/200/250 a 3/4,1/2,5/8 con scala distinta. Unica freccia separata, punta visibile e verso dal polo positivo. Simboli resistivi schematici, zeri 118 esterni agli assi.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-13",
+      "sourceSha256": "1e4f742865339bb3abe453b930d3408ae18cc50378a302c9fea731ff2046ae37",
+      "candidateSha256": "3140f16bd0ca2efc23fa2be6f94febeb57dc1519d256c32690756f479511474e",
+      "reviewedSignature": "00611dcfb67a92f93377d2407c99204a023b3c1c417c2917a73655d91e72540e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio η_B=(2/3)(3/4)=1/2. Con R_L,B=2 Ω, 2/(2+R_c,B)=1/2 dà R_c,B=2 Ω. Dividendo per R_c,A=1 Ω segue il rapporto richiesto 2.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Il bersaglioη_B=1/2 e R_L,B=2 Ω danno R_c,B=2 Ω e rapporto2. Le altre alternative invertono il rapporto, seguono soltanto le quote o lasciano R_c invariata; quest’ultima darebbeη_B=2/3.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio η_B=(2/3)(3/4)=1/2. Con R_L,B=2 Ω, 2/(2+R_c,B)=1/2 dà R_c,B=2 Ω. Dividendo per R_c,A=1 Ω segue il rapporto richiesto 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-14",
+      "sourceSha256": "eceaaa6ca5fba351de4dffabac23dba17bfe2e82c1b39cb1b506575bf6fd0b26",
+      "candidateSha256": "bea31fbdc7510315ce9036ba1cb9bec9845a85d0d3c4639894ce95b634d5fc4e",
+      "reviewedSignature": "43208815084523bb3bb5cbc5436b17d3c747813e3726529bf2ecf2329528babe",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Il riferimento ha η=3/4 e lettura 9/4, quindi a_cal=(9/4)/(3/4)=3. La nuova lettura 3/2 restituisce η=1/2. Con R_c=2 Ω, R_L=ηR_c/(1−η)=2 Ω. La lettura strumentale non è direttamente una resistenza.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Guadagno 3, quota decodificata 1/2 e R_L=2 Ω. Sei Ω darebbe D=9/4 anziché 3/2; non è l’omissione del guadagno applicato alla quota. Finding 14 corretto nel finale aea78b9 e riletto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il riferimento ha η=3/4 e lettura 9/4, quindi a_cal=(9/4)/(3/4)=3. La nuova lettura 3/2 restituisce η=1/2. Con R_c=2 Ω, R_L=ηR_c/(1−η)=2 Ω. La lettura strumentale non è direttamente una resistenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-15",
+      "sourceSha256": "0b330bbf989af918a1d53e1a08e1a1d962f5d3a4e63a4ea224764cc64f23c0f8",
+      "candidateSha256": "7bb554f8ba27989d3552f4df57a388973b5ca6d604d48400399f5f46152b6591",
+      "reviewedSignature": "fb00dc99bbfa799286583473bfb62b2db7ce4d88699eda2ac8dcf0a081eb6a45",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "η_A=3/4 e η_B=1/2. Guadagno a_cal=[5/2−2]/[3/4−1/2]=2, offset b_cal=2−2·(1/2)=1. Lettura 13/5 restituisce η_C=(13/5−1)/2=4/5. Con R_c=1 Ω si trova R_L=(4/5)/(1/5) Ω=4 Ω, nel dominio fisico.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "Guadagno2, offset1,η_C=4/5,R_L,C=4 Ω. Omettere offset dà13/10; omettere guadagno dopo sottrazione dà8/5: entrambe quote impossibili. Le controprove R_L=1 e2 Ω ricostruiscono D=2 e7/3.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. η_A=3/4 e η_B=1/2. Guadagno a_cal=[5/2−2]/[3/4−1/2]=2, offset b_cal=2−2·(1/2)=1. Lettura 13/5 restituisce η_C=(13/5−1)/2=4/5. Con R_c=1 Ω si trova R_L=(4/5)/(1/5) Ω=4 Ω, nel dominio fisico.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-16",
+      "sourceSha256": "e63bb774219ee8a9a4bc1abfdda2563c5f254371787b309c58c6aa02efc23929",
+      "candidateSha256": "5e575da947377dfcd83bbc25970789b677295c6dc4dc5af5f7fc6d29eba2eee4",
+      "reviewedSignature": "a10e3e8f50cc8ee27dd4698e03cd3c34fe6f178be1072389615e1f77d1fd99ff",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie positive",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo R_L=3R_c rende η=3R_c/(4R_c)=3/4 per ogni R_c>0 finita. La misura è ridondante e non fissa la scala: infinite coppie positive (R_L,R_c)=(3x,x), x>0. Nessuna ulteriore misura assoluta è stata fornita.",
+      "physicalAssumptions": "Serie passiva con R_L,R_c finiti positivi e corrente operativa I>0 comune; utile è precisamente I²R_L, perdita I²R_c. Confronti fra preparazioni stazionarie, non obbligo di potenza utile assoluta crescente. Display continuo, guadagno positivo, offset rimosso prima della legge. Inverse con 0<η<1.",
+      "distractors": "R_L=3R_c elimina la scala dalla quota. Le coppie(3,1) e(6,2) Ω sono esempi di una famiglia continua, non le uniche due. Nessuna e coppie indipendenti contraddicono rispettivamente gli esempi e il vincolo; R_c=0 è esclusa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo R_L=3R_c rende η=3R_c/(4R_c)=3/4 per ogni R_c>0 finita. La misura è ridondante e non fissa la scala: infinite coppie positive (R_L,R_c)=(3x,x), x>0. Nessuna ulteriore misura assoluta è stata fornita.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "14db64e697dad8af806c91cd13892a7242b49003a4e366f44ae5b314585a889c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "aea78b9bbe3e4218b719049d231b31b54ebbc848",
+  "packageSha256": "c0adf6ca14559a267adaa84f45dc16da8439d00f50514928631c170a5cb57fef",
+  "bindingsSha256": "62525f3c389b0497d31703be39cac636bb5734a53a6449253d1ff6bf9c30f95b",
+  "sourceFirstPrimarySha256": "4c49ff1e2020d073891686e5289e263561531a9b81e84e2f0fa9c8648dc90f4b",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-03.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-03 215–219 congelata prima di qualunque candidato; modelli indipendenti preparati ed eseguiti prima delle chiavi. Successivamente letti individualmente tutti16 prompt/opzioni/blocchi/formule/hint/error/metadati del lotto finale, XML e nuovo PNG nativo completo. Rettifiche B rilette prima delle firme. Nessun modulo autore importato; lezioni C4-L03/L04/L07 e C3-L03/L04 reali rilette per i casi autonomi. UI prodotto e human NOT_RUN; confronto ROOT integrato PENDING."
+  }
+}

@@ -1,0 +1,3 @@
+# Primo run locale negativo
+
+Il primo run reale ha eseguito 14 test: 13 positivi e un confronto simbolico geometrico negativo, exit 1. Il termine (2*x−300)/(x−150) era confrontato strutturalmente con 2 dopo una sostituzione senza ulteriore cancellazione; sono algebricamente uguali nel grafico t>0. Il secondo confronto dello stesso tipo è stato corretto insieme al primo, usando cancel dell’espressione residua. Nessun candidato, SVG, chiave, legge o asserzione fisica è stato alterato. I 125 pacchetti mutati e i 10 guasti matematici erano già stati respinti. File test e riepilogo originali conservati byte per byte; non sono un PASS finale.
