@@ -1,0 +1,92 @@
+preview 1440 AR-u5-engine-efficiency-01
+preview 1440 AR-u5-engine-efficiency-02
+preview 1440 AR-u5-engine-efficiency-03
+preview 1440 AR-u5-engine-efficiency-04
+preview 1440 AR-u5-engine-efficiency-05
+preview 1440 AR-u5-engine-efficiency-06
+preview 1440 AR-u5-engine-efficiency-07
+preview 1440 AR-u5-engine-efficiency-08
+preview 1440 AR-u5-engine-efficiency-09
+preview 1440 AR-u5-engine-efficiency-10
+preview 1440 AR-u5-engine-efficiency-11
+preview 1440 AR-u5-engine-efficiency-12
+preview 1440 AR-u5-engine-efficiency-13
+preview 1440 AR-u5-engine-efficiency-14
+preview 1440 AR-u5-engine-efficiency-15
+preview 1440 AR-u5-engine-efficiency-16
+preview 768 AR-u5-engine-efficiency-01
+preview 768 AR-u5-engine-efficiency-02
+preview 768 AR-u5-engine-efficiency-03
+preview 768 AR-u5-engine-efficiency-04
+preview 768 AR-u5-engine-efficiency-05
+preview 768 AR-u5-engine-efficiency-06
+preview 768 AR-u5-engine-efficiency-07
+preview 768 AR-u5-engine-efficiency-08
+preview 768 AR-u5-engine-efficiency-09
+preview 768 AR-u5-engine-efficiency-10
+preview 768 AR-u5-engine-efficiency-11
+preview 768 AR-u5-engine-efficiency-12
+preview 768 AR-u5-engine-efficiency-13
+preview 768 AR-u5-engine-efficiency-14
+preview 768 AR-u5-engine-efficiency-15
+preview 768 AR-u5-engine-efficiency-16
+preview 320 AR-u5-engine-efficiency-01
+preview 320 AR-u5-engine-efficiency-02
+preview 320 AR-u5-engine-efficiency-03
+preview 320 AR-u5-engine-efficiency-04
+preview 320 AR-u5-engine-efficiency-05
+preview 320 AR-u5-engine-efficiency-06
+preview 320 AR-u5-engine-efficiency-07
+preview 320 AR-u5-engine-efficiency-08
+preview 320 AR-u5-engine-efficiency-09
+preview 320 AR-u5-engine-efficiency-10
+preview 320 AR-u5-engine-efficiency-11
+preview 320 AR-u5-engine-efficiency-12
+preview 320 AR-u5-engine-efficiency-13
+preview 320 AR-u5-engine-efficiency-14
+preview 320 AR-u5-engine-efficiency-15
+preview 320 AR-u5-engine-efficiency-16
+{"cases":48,"failed":1,"failures":[{"id":"AR-u5-engine-efficiency-03","width":320,"figureCount":0,"violations":[{"id":"scrollable-region-focusable","targets":[[".math:nth-child(3)"]]}],"formulas":[{"width":260,"scroll":260,"typeset":250.40625},{"width":260,"scroll":383,"typeset":250.40625}],"overflow":0}]}
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1 !== 0
+
+    at file:///private/tmp/cric-a130-private-runtime/tests/corpus/browser-drafts.mjs:101:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0
+file:///private/tmp/cric-a130-private-runtime/tests/corpus/browser-batches.mjs:89
+if(failures.length)throw new AggregateError(failures,'Private preview batches failed');
+                         ^
+
+AggregateError: Private preview batches failed
+    at file:///private/tmp/cric-a130-private-runtime/tests/corpus/browser-batches.mjs:89:26 {
+  [errors]: [
+    Error: engine-efficiency-159: exit 1, signal null
+        at ChildProcess.<anonymous> (file:///private/tmp/cric-a130-private-runtime/tests/corpus/browser-batches.mjs:57:79)
+        at Object.onceWrapper (node:events:633:26)
+        at ChildProcess.emit (node:events:518:28)
+        at ChildProcess._handle.onexit (node:internal/child_process:293:12),
+    Error: ENOENT: no such file or directory, open '/private/tmp/cric-author-a-previews/efficiency159-canonical-runner/engine-efficiency-159/completion.json'
+        at async open (node:internal/fs/promises:638:25)
+        at async readFile (node:internal/fs/promises:1242:14)
+        at async Promise.all (index 1)
+        at async file:///private/tmp/cric-a130-private-runtime/tests/corpus/browser-batches.mjs:77:38 {
+      errno: -2,
+      code: 'ENOENT',
+      syscall: 'open',
+      path: '/private/tmp/cric-author-a-previews/efficiency159-canonical-runner/engine-efficiency-159/completion.json'
+    }
+  ]
+}
+
+Node.js v22.14.0
