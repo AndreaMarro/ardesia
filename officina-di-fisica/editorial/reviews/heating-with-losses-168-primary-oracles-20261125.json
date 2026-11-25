@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "INDEPENDENT_PROMPT_ONLY_SOLVING_AND_MATHEMATICAL_ORACLES_BEFORE_CANDIDATE_KEYS",
+  "questionIds": [
+    "AR-u5-heating-with-losses-01",
+    "AR-u5-heating-with-losses-02",
+    "AR-u5-heating-with-losses-03",
+    "AR-u5-heating-with-losses-04",
+    "AR-u5-heating-with-losses-05",
+    "AR-u5-heating-with-losses-06",
+    "AR-u5-heating-with-losses-07",
+    "AR-u5-heating-with-losses-08",
+    "AR-u5-heating-with-losses-09",
+    "AR-u5-heating-with-losses-10",
+    "AR-u5-heating-with-losses-11",
+    "AR-u5-heating-with-losses-12",
+    "AR-u5-heating-with-losses-13",
+    "AR-u5-heating-with-losses-14",
+    "AR-u5-heating-with-losses-15",
+    "AR-u5-heating-with-losses-16"
+  ],
+  "sourceFileSha256": "417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b",
+  "files": {
+    "tools/corpus_engineering/heating_with_losses_oracle.py": "f9618f8c14cf63485c2c2f2a4ce18e0f8de7eaff29168dcd007db7f3b66d48ad",
+    "tests/corpus/test_heating_with_losses_primary.py": "961bbbb56cc4fd2f3a532a841fe08949834bb4af8a0d202550680e9a0248a54b",
+    "editorial/reviews/heating-with-losses-168-primary-source-only-20261125.md": "3d20a03b3a949bc28bc89abd1a0ff0b239708de59d71b403880d75160776b4e4"
+  },
+  "tests": {
+    "count": 6,
+    "seconds": 0.279,
+    "hypothesisExamples": 80,
+    "terminalExitCode": 0,
+    "transcript": "test_conservation_integral_symbolic_inverses_and_scaling (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_conservation_integral_symbolic_inverses_and_scaling) ... ok\ntest_monotonicity_of_real_domain_and_nonlinear_mean (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_monotonicity_of_real_domain_and_nonlinear_mean) ... ok\ntest_nonphysical_and_unidentifiable_states_fail_before_division (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_nonphysical_and_unidentifiable_states_fail_before_division) ... ok\ntest_positive_energy_balance_inverse_and_reciprocal_scale (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_positive_energy_balance_inverse_and_reciprocal_scale) ... ok\ntest_prompt_only_numeric_results_and_distinct_arithmetic_mean (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_prompt_only_numeric_results_and_distinct_arithmetic_mean) ... ok\ntest_units_and_exact_calibration_with_offset (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_units_and_exact_calibration_with_offset) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.279s\n\nOK\n",
+    "transcriptSha256": "aa381ad4b81755e26132cdcbcb42cf179ab983dee95e3e2f3281dc1b12d5b62c"
+  },
+  "candidateReview": "NOT_RUN",
+  "distractorReview": "NOT_RUN",
+  "figureReview": "NOT_RUN",
+  "scientificFullRevision": "NOT_RUN",
+  "completionCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
