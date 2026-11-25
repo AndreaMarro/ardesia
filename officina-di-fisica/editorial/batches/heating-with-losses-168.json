@@ -891,7 +891,7 @@
         },
         {
           "type": "text",
-          "text": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci è una potenza in watt, non il rapporto puro richiesto."
+          "text": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci copia il valore numerico di P_d,B espresso in watt, senza dividerlo per il valore 5 W di P_d,A: l’opzione 10 è un numero puro, ma non il rapporto richiesto."
         }
       ],
       "hints": [
@@ -900,7 +900,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci è una potenza in watt, non il rapporto puro richiesto.",
+        "message": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci copia il valore numerico di P_d,B espresso in watt, senza dividerlo per il valore 5 W di P_d,A: l’opzione 10 è un numero puro, ma non il rapporto richiesto.",
         "target": "C3-L03"
       },
       "coverage": [
@@ -940,7 +940,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "A dura 8 s, quindi q=24/8 s=3 s⁻¹. B dura 18/3=6 s e richiede 20 W netti. Aggiungendo i 10 W dispersi si ricostruiscono 30 W entranti. Il display non è una potenza né un conteggio obbligatoriamente intero."
+          "text": "A dura 8 s, quindi q=24/(8 s)=3 s⁻¹. B dura 18/3=6 s e richiede 20 W netti. Aggiungendo i 10 W dispersi si ricostruiscono 30 W entranti. Il display non è una potenza né un conteggio obbligatoriamente intero."
         },
         {
           "type": "formula",

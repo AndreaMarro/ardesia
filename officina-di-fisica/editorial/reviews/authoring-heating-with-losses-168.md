@@ -6,7 +6,7 @@ Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RU
 
 Due assembly in processi separati danno package e binding byte identici. Importatore canonico ROOT in SQLite temporaneo:16 nuovi, poi0 nuovi/16 invariati;991 pubblicati e loro versioni storiche invariati, stesso SHA. Asset SVG riletto come XML e nel rendering nativo completo. Nessun runtime, CSS, candidato ROOT, registro o checkpoint modificato.
 
-Stato UI: Il replay canonico era già partito prima della richiesta di sospendere nuove UI b963. È realmente terminato exit0/null signal con 48 casi a 1440/768/320px; report grezzo e completion autentico sono stati validati dal helper canonico e conservati byte per byte. Profilo b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f, nessun ritag verso la correzione futura8d. Questa prova tecnica resta riferita solo a b963 e non certifica scienza o esperienza umana.
+Stato UI: Per mandato dell’integratore non sono state avviate nuove anteprime del prodotto sul runtime b963 in attesa della correzione comune dei consumer. UI finale NOT_RUN per questo lotto; il gate rimane aperto. Nessun marker è stato creato o copiato da un’altra edizione.
 
 Energia obiettivo120 J fissata, potenze termiche costanti e P>P_d>0. Il bilancio usa la differenza delle potenze, senza trattare la dispersione costante come legge universale. Nel caso 12 la media7s è distinta da48/7s agli ingressi medi; il vincolo 16 lega preparazioni, non genera potenza variabile nel tempo. Guadagno e offset dei display sono espliciti. Figura: potenze 20px/W, energia netta 8/3px/J e tempo 40px/s su assi o pannelli diversi, senza confrontare lunghezze come grandezze omogenee.
 
@@ -162,21 +162,21 @@ Procedimento d’autore: Il bersaglio è 6 s. Per trattenere 120 J in quel tempo
 
 Passaggi: t_B=6\,\mathrm s;  P_{d,B}=30\,\mathrm W-\frac{120\,\mathrm J}{6\,\mathrm s};  P_{d,B}=10\,\mathrm W;  P_{d,B}/P_{d,A}=2.
 
-Distrattori: Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci è una potenza in watt, non il rapporto puro richiesto.
+Distrattori: Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci copia il valore numerico di P_d,B espresso in watt, senza dividerlo per il valore 5 W di P_d,A: l’opzione 10 è un numero puro, ma non il rapporto richiesto.
 
-Fonte canonica SHA256 71722bd80d75cf84180e414943da626c8e2df9ecd17f84e6a7afc0d8e709052b. Candidato SHA256 e4ed69c91a0e582449dc0ff03b86477f6e9756190d4b7105f9893b8f8433cacc. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 71722bd80d75cf84180e414943da626c8e2df9ecd17f84e6a7afc0d8e709052b. Candidato SHA256 6b590bfe6a5fa7c3f232b5a7f00e265998a89b6ca0d794f61c056d2aed721cc4. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-14 — Un display misura la durata
 
 Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Il display continuo adimensionale è S=q t, con q>0 costante. A: P=20 W, P_d=5 W, S=24. B: P_d=10 W, S=18. Quanto vale P_B in W?
 
-Procedimento d’autore: A dura 8 s, quindi q=24/8 s=3 s⁻¹. B dura 18/3=6 s e richiede 20 W netti. Aggiungendo i 10 W dispersi si ricostruiscono 30 W entranti. Il display non è una potenza né un conteggio obbligatoriamente intero.
+Procedimento d’autore: A dura 8 s, quindi q=24/(8 s)=3 s⁻¹. B dura 18/3=6 s e richiede 20 W netti. Aggiungendo i 10 W dispersi si ricostruiscono 30 W entranti. Il display non è una potenza né un conteggio obbligatoriamente intero.
 
 Passaggi: q=3\,\mathrm{s^{-1}};  t_B=6\,\mathrm s;  P_B=P_{d,B}+\frac E{t_B};  P_B=30\,\mathrm W.
 
 Distrattori: Venti W è la sola potenza netta. Usare 18 come secondi darebbe P_B=10+20/3 W, non 30 W. Quaranta W darebbero t_B=4 s e S=12, incompatibili con la lettura 18.
 
-Fonte canonica SHA256 c5d78614598cb5678986d032765386f1183ec46e47506b79b6c6f4e1e93300df. Candidato SHA256 867f6456338586ec80531cb12ee47a9a8e680fff577a73b2b7dcc13338d7847b. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 c5d78614598cb5678986d032765386f1183ec46e47506b79b6c6f4e1e93300df. Candidato SHA256 bcc358103f8d67aa4101628756fd8924bef0d1abaaf87ca61bdf9ff6b67bab89. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-15 — L’offset non è tempo di riscaldamento
 
@@ -201,3 +201,5 @@ Passaggi: P-P_d=3P_d;  P_d=\frac E{3t};  P_d=5\,\mathrm W;  P=20\,\mathrm W.
 Distrattori: Quindici watt copia la potenza netta e venti quella entrante.15/4 W divide per 4 anziché per 3 dopo aver omesso la dispersione. Meno cinque viola il verso positivo dichiarato e renderebbe anche l’ingresso negativo.
 
 Fonte canonica SHA256 87f5828b2dd64b715018400eab7a765dd40099acea4cd12e6a61eaf072153d76. Candidato SHA256 d94ba6aff14582e25bba85736f907e461c05baf71530b7a3b8adc6e96f6f040a. Revisione indipendente NOT_RUN; human NOT_RUN.
+
+Review distinta ROOT: corretti soltanto prosa14, con q=24/(8 s), e feedback13, distinguendo il numero puro10 dal valore numerico della potenza non ancora diviso per5 W. Gli8 vecchi file, raw e completion b963 autentici sono conservati con manifest di invalidazione in author-evidence/heating-with-losses-168-before-review-fix. Tutte le chiavi, formule, SVG e gli altri14 record sono identici. Nuovo package UI NOT_RUN; nessun marker sintetico.
