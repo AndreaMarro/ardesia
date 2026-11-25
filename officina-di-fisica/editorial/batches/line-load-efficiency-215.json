@@ -1,0 +1,1136 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-line-load-efficiency-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21501,
+      "title": "Quanta parte arriva al carico?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 1,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Con R_L=3 Ω e R_c=1 Ω, quanto vale η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "1/4",
+          "4/3",
+          "3",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Essendo in serie, carico e cavi sono attraversati dalla stessa corrente. La legge di Joule dà P_L=I²R_L e P_c=I²R_c: il fattore I², strettamente positivo, si elimina dal rapporto. Rimane 3/(3+1)=3/4. Un quarto della potenza totale si converte invece nei cavi; la loro energia non scompare."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630",
+          "text": "Il primo schema ha carico e cavi in serie, quindi corrente comune. Le barre di potenza sono quantitative per I=1 A; i simboli dei resistori sono schematici. Le barre delle quote nel terzo pannello condividono origine e scala, senza rappresentare potenze assolute."
+        },
+        {
+          "type": "formula",
+          "text": "P_L=I^2R_L"
+        },
+        {
+          "type": "formula",
+          "text": " P_c=I^2R_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{R_L}{R_L+R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "1/4 è la quota persa, non quella utile.4/3 inverte il rapporto e supera uno. Tre divide solo per R_c, ignorando che il denominatore è tutta la potenza. Uno richiederebbe cavi senza perdite, esclusi qui."
+        }
+      ],
+      "hints": [
+        "Esprimi entrambe le potenze con la stessa corrente prima di costruire il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/4 è la quota persa, non quella utile.4/3 inverte il rapporto e supera uno. Tre divide solo per R_c, ignorando che il denominatore è tutta la potenza. Uno richiederebbe cavi senza perdite, esclusi qui.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21502,
+      "title": "Una frazione di potenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 1,
+      "prompt": "La quota η=P_L/(P_L+P_c) confronta potenze positive. Quale unità esprime η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "W",
+          "J",
+          "Ω",
+          "%·W"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Numeratore e denominatore hanno entrambi unità watt. Il quoziente è un numero puro, compreso fra zero e uno nel modello con due resistenze positive. Si può rappresentarlo in percentuale moltiplicandolo per cento, ma questo non crea una dimensione di potenza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\eta]=\\frac{\\mathrm W}{\\mathrm W}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=1"
+        },
+        {
+          "type": "text",
+          "text": "W misura una potenza, J un’energia e Ω una resistenza. Il simbolo percentuale è una scala adimensionale; moltiplicarlo per W darebbe ancora una potenza, non una quota."
+        }
+      ],
+      "hints": [
+        "Controlla che le unità uguali si cancellino.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura una potenza, J un’energia e Ω una resistenza. Il simbolo percentuale è una scala adimensionale; moltiplicarlo per W darebbe ancora una potenza, non una quota.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21503,
+      "title": "La serie fissa la corrente comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 1,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Quale legge esprime η in termini delle due resistenze?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_L / (R_L + R_c)",
+          "R_c / (R_L + R_c)",
+          "R_L / R_c",
+          "R_c / R_L",
+          "(R_L + R_c) / R_L"
+        ],
+        "value": "R_L / (R_L + R_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza sul carico è I²R_L; la somma delle due potenze è I²(R_L+R_c). Dividendo si ottiene R_L/(R_L+R_c). L’eliminazione di I² richiede una prova alimentata: a I=0 entrambe le potenze sarebbero nulle e il rapporto originario sarebbe 0/0, non una misura di efficienza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630",
+          "text": "Il primo pannello identifica chiaramente quale resistenza conta come utile. La divisione è fra potenze della stessa prova alimentata, non fra resistenze di rami in parallelo."
+        },
+        {
+          "type": "formula",
+          "text": "P_L+P_c=I^2(R_L+R_c)"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{R_L}{R_L+R_c}"
+        },
+        {
+          "type": "text",
+          "text": "Il numeratore R_c scambia utile e perdita. R_L/R_c confronta le due potenze tra loro, non utile e totale. Il reciproco del risultato supera uno. Nessuna di queste espressioni rispetta la definizione assegnata."
+        }
+      ],
+      "hints": [
+        "Identifica prima che cosa conta come utile e che cosa entra nel totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il numeratore R_c scambia utile e perdita. R_L/R_c confronta le due potenze tra loro, non utile e totale. Il reciproco del risultato supera uno. Nessuna di queste espressioni rispetta la definizione assegnata.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21504,
+      "title": "Una quota maggiore non è una potenza maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 1,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. A ha R_L=3 Ω, R_c=1 Ω. B ha R_L=4 Ω, R_c=1 Ω. Come cambia η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3/4 a 4/5",
+          "Da 3/4 a 1",
+          "Da 3/4 a 3/5",
+          "Resta 3/4",
+          "Da 3/4 a 1/2"
+        ],
+        "value": "Da 3/4 a 4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assegna tre parti di potenza su quattro al carico; B ne assegna quattro su cinque.4/5 supera 3/4 perché 16>15 nel confronto su venti. Si conclude che la quota utile cresce. Senza sapere quale generatore venga mantenuto e la corrente nelle due prove, non si conclude che cresca anche P_L."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B-\\eta_A=\\frac1{20}"
+        },
+        {
+          "type": "text",
+          "text": "Uno cancella indebitamente le perdite non nulle.3/5 cambia il totale ma lascia il vecchio numeratore.3/4 ignora la nuova resistenza e 1/2 richiederebbe carico e cavi uguali."
+        }
+      ],
+      "hints": [
+        "Ricalcola numeratore e denominatore nella seconda prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno cancella indebitamente le perdite non nulle.3/5 cambia il totale ma lascia il vecchio numeratore.3/4 ignora la nuova resistenza e 1/2 richiederebbe carico e cavi uguali.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21505,
+      "title": "Ricostruire il carico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Si misura η=3/4 e si conosce R_c=1 Ω. Quanto vale R_L in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da η(R_L+R_c)=R_L segue (1−η)R_L=ηR_c. Quindi R_L=ηR_c/(1−η). Il denominatore è positivo perché la quota è minore di uno. Con 3/4 e 1 Ω il rapporto(3/4)/(1/4) dà 3 Ω; reinserendolo si torna a 3/4."
+        },
+        {
+          "type": "formula",
+          "text": "(1-\\eta)R_L=\\eta R_c"
+        },
+        {
+          "type": "formula",
+          "text": " R_L=\\frac{\\eta R_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " R_L=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare soltanto ηR_c darebbe 3/4 Ω e una quota 3/7. Dividere R_c perη darebbe 4/3 Ω e una quota 4/7. Valori negativi non descrivono resistenze passive."
+        }
+      ],
+      "hints": [
+        "Porta insieme i due termini che contengono R_L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare soltanto ηR_c darebbe 3/4 Ω e una quota 3/7. Dividere R_c perη darebbe 4/3 Ω e una quota 4/7. Valori negativi non descrivono resistenze passive.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21506,
+      "title": "La resistenza nascosta nei cavi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Si misura η=3/4 e si conosce R_L=3 Ω. Quanto vale R_c in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolando l’altro parametro si trova R_c=R_L(1−η)/η. La quota persa è 1/4 di tutta la potenza, ma è un terzo della potenza utile. Perciò R_c=3(1/4)/(3/4) Ω=1 Ω. È positivo, come richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "R_c=R_L\\frac{1-\\eta}{\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " R_c=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "3/4 Ω usa la quota persa moltiplicata per il carico senza dividere per quella utile. Nove Ω inverte il rapporto delle quote e darebbe η1/4. Zero produrrebbe η1, non 3/4."
+        }
+      ],
+      "hints": [
+        "Distingui quota sul totale da rapporto fra perdita e utile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 Ω usa la quota persa moltiplicata per il carico senza dividere per quella utile. Nove Ω inverte il rapporto delle quote e darebbe η1/4. Zero produrrebbe η1, non 3/4.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21507,
+      "title": "Cavi più resistivi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. A usa R_L=3 Ω, R_c=1 Ω. B mantiene R_L=3 Ω ma ha R_c=2 Ω. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quote sono 3/4 e 3/5. Il rapporto B/A è(3/5)/(3/4)=4/5: la quota utile diminuisce del fattore 4/5. Non si dimezza, perché al denominatore rimane anche R_L e non soltanto la resistenza dei cavi."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "5/4 inverte B/A.1/2 segue solo il raddoppio di R_c e due ne copia il fattore senza la legge del totale. Uno non vede le perdite maggiori."
+        }
+      ],
+      "hints": [
+        "Calcola le due quote prima di dividerle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/4 inverte B/A.1/2 segue solo il raddoppio di R_c e due ne copia il fattore senza la legge del totale. Uno non vede le perdite maggiori.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21508,
+      "title": "Una proposta oltre il totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Con R_L=3 Ω, R_c=1 Ω si propone η=3/2. Qual è lo scarto proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "−3/4",
+          "2",
+          "3/2",
+          "0"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota corretta è 3/4 e quella proposta supera persino uno, impossibile per la frazione utile definita. Lo scarto ordinato è 3/2−3/4=6/4−3/4=3/4, adimensionale. Questa sottrazione non trasforma la proposta in un dato fisicamente ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\eta=\\frac32-\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\eta=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "−3/4 scambia l’ordine; due è il rapporto proposta/corretta.3/2 copia la proposta e zero la accetta. Nessuno di questi è lo scarto richiesto."
+        }
+      ],
+      "hints": [
+        "Prima verifica il limite 0<η<1, poi mantieni l’ordine della differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3/4 scambia l’ordine; due è il rapporto proposta/corretta.3/2 copia la proposta e zero la accetta. Nessuno di questi è lo scarto richiesto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21509,
+      "title": "L’inversa con il suo dominio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Sono noti η e R_c. Quale espressione ricostruisce R_L per 0<η<1?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "η R_c / (1 − η)",
+          "(1 − η) R_c / η",
+          "η R_c",
+          "R_c / (1 − η)",
+          "η / R_c"
+        ],
+        "value": "η R_c / (1 − η)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico la definizione per R_L+R_c, raccolgo R_L e divido per 1−η. Si ottiene ηR_c/(1−η). La parte frazionaria è pura: il risultato conserva gli ohm del parametro noto. Gli estremi zero e uno sono esclusi per due resistenze finite positive."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta R_L+\\eta R_c=R_L"
+        },
+        {
+          "type": "formula",
+          "text": " R_L=\\frac{\\eta R_c}{1-\\eta}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto delle quote invertito isola invece R_c se il parametro noto fosse R_L. ηR_c omette il raccoglimento; R_c/(1−η) manca diη. η/R_c ha unitàΩ⁻¹ invece diΩ."
+        }
+      ],
+      "hints": [
+        "Raccogli l’incognita prima di dividere, e controlla il segno del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto delle quote invertito isola invece R_c se il parametro noto fosse R_L. ηR_c omette il raccoglimento; R_c/(1−η) manca diη. η/R_c ha unitàΩ⁻¹ invece diΩ.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21510,
+      "title": "Preparazioni scalate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Fra A e B: R_L, B=κ₁R_L, A e R_c, B=κ₂R_c, A, con fattori positivi. Poniamo a=R_L, A/(R_L, A+R_c, A), b=R_c, A/(R_L, A+R_c, A), dunque a+b=1. Qual è η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / (κ₁ a + κ₂ b)",
+          "κ₂ / (κ₁ a + κ₂ b)",
+          "κ₁ / κ₂",
+          "κ₁ a + κ₂ b",
+          "κ₁ κ₂"
+        ],
+        "value": "κ₁ / (κ₁ a + κ₂ b)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella prova B cambiano sia la parte utile sia il totale. Dividendo il nuovo totale per quello iniziale si ottiene κ₁a+κ₂b. La parte utile si moltiplica per κ₁, quindi il rapporto cercato èκ₁/(κ₁a+κ₂b). Se i due fattori coincidono, la quota resta invariata benché cambino le resistenze."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=a"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac{\\kappa_1a}{\\kappa_1a+\\kappa_2b}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac{\\kappa_1}{\\kappa_1a+\\kappa_2b}"
+        },
+        {
+          "type": "text",
+          "text": "κ₂ nel numeratore segue i cavi anziché il carico.κ₁/κ₂ ignora la somma nel totale; κ₁a+κ₂b è solo il fattore del totale. Il prodotto non conserva la quota per una scalatura comune."
+        }
+      ],
+      "hints": [
+        "Normalizza il nuovo totale rispetto a quello iniziale; a, b sono numeri puri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₂ nel numeratore segue i cavi anziché il carico.κ₁/κ₂ ignora la somma nel totale; κ₁a+κ₂b è solo il fattore del totale. Il prodotto non conserva la quota per una scalatura comune.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21511,
+      "title": "Cambiano entrambe le resistenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. A usa R_L=3 Ω, R_c=1 Ω. B usa R_L=2 Ω, R_c=2 Ω. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A fornisce una quota 3/4, B una quota 2/4=1/2. Il rapporto è(1/2)/(3/4)=2/3. Il totale resistivo resta 4 Ω, ma la sua ripartizione si sposta verso i cavi. Non serve assegnare la corrente per confrontare queste frazioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il rapporto; 1/2 copia la sola uscita B.4/3 segue il reciproco del carico nuovo rispetto al vecchio; uno presume che totale uguale significhi quota uguale."
+        }
+      ],
+      "hints": [
+        "La somma resta uguale, ma quale parte del totale è utile?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il rapporto; 1/2 copia la sola uscita B.4/3 segue il reciproco del carico nuovo rispetto al vecchio; uno presume che totale uguale significhi quota uguale.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21512,
+      "title": "La media di due quote",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 2,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. A usa R_L=3 Ω, R_c=1 Ω; B usa R_L=2 Ω, R_c=2 Ω. Qual è la media aritmetica delle due quote, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/8",
+          "3/4",
+          "1/2",
+          "5/4",
+          "1/8"
+        ],
+        "value": "5/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quote sono 3/4 e 1/2. La loro media è(3/4+2/4)/2=5/8. In questo caso anche le resistenze medie 5/2 Ω e 3/2 Ω danno 5/8, perché entrambe le prove hanno la stessa somma 4 Ω. Non è una regola universale: coppie(1, 1) e(3, 1) Ω danno quote 1/2 e 3/4, media 5/8; la coppia media(2, 1) darebbe 2/3."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630",
+          "text": "Le quote 3/4 e 1/2 sono pesate ugualmente: media 5/8. I tre segmenti hanno la stessa origine e scala entro il pannello. La coincidenza con i dati medi dipende qui dalla somma resistiva invariata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\eta=\\frac{3/4+1/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\eta=\\frac58"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_{\\rm dati\\ medi}=\\frac58"
+        },
+        {
+          "type": "text",
+          "text": "3/4 e 1/2 ripetono una sola prova; 5/4 somma senza dividere per due.1/8 è metà della differenza, non media. Qui la coincidenza con i dati medi è motivata dal totale costante, non da una linearità generale."
+        }
+      ],
+      "hints": [
+        "Prima pesa ugualmente le due uscite; poi, separatamente, valuta gli ingressi medi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 e 1/2 ripetono una sola prova; 5/4 somma senza dividere per due.1/8 è metà della differenza, non media. Qui la coincidenza con i dati medi è motivata dal totale costante, non da una linearità generale.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21513,
+      "title": "Il bersaglio determina i cavi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 3,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. A usa R_L=3 Ω, R_c=1 Ω. B ha R_L=2 Ω e deve raggiungere η_B=(2/3)η_A. Quanto vale R_c, B/R_c, A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "2/3",
+          "3/2",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è(2/3)(3/4)=1/2. Per dividere la potenza in due quote uguali, carico e cavi devono avere uguale resistenza. R_c, B=2 Ω; diviso il valore iniziale 1 Ω, il rapporto è due. La quota resta nel dominio aperto fra zero e uno."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " R_{c,B}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{c,B}/R_{c,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "1/2 inverte il confronto; 2/3 copia il fattore delle quote e 3/2 quello inverso. Uno lascerebbe R_c 1 Ω e darebbe η_B 2/3, diverso dal bersaglio."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima la quota nuova, poi isola la resistenza dei cavi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/2 inverte il confronto; 2/3 copia il fattore delle quote e 3/2 quello inverso. Uno lascerebbe R_c 1 Ω e darebbe η_B 2/3, diverso dal bersaglio.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21514,
+      "title": "Separare taratura e rete",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 3,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. D=a_cal η è continuo e adimensionale, a_cal>0. A con R_L=3 Ω, R_c=1 Ω dà D=9/4. B legge D=3/2 e ha R_c=2 Ω. Quanto vale R_L, B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A valeη_A 3/4, quindi a_cal=(9/4)/(3/4)=3. La lettura B 3/2 indicaη_B 1/2. Applicando l’inversa al cavo noto: R_L, B=2(1/2)/(1−1/2) Ω=2 Ω. La taratura è una relazione strumentale, distinta dalla legge fisica della rete."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " R_{L,B}=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Copiare D come resistenza darebbe 3/2 Ω e una quota 3/7. Trattare D comeη darebbe una quota maggiore di uno, incompatibile con il modello. Sei Ω non toglie il guadagno e produrrebbe D 9/4, non 3/2."
+        }
+      ],
+      "hints": [
+        "Decodifica una quota ammissibile prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Copiare D come resistenza darebbe 3/2 Ω e una quota 3/7. Trattare D comeη darebbe una quota maggiore di uno, incompatibile con il modello. Sei Ω non toglie il guadagno e produrrebbe D 9/4, non 3/2.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21515,
+      "title": "Due riferimenti tolgono l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 3,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. D=a_cal η+b_cal è continuo. A: R_L=3 Ω, R_c=1 Ω, D=5/2. B: R_L=2 Ω, R_c=2 Ω, D=2. C: R_c=1 Ω, D=13/5. Quanto vale R_L, C in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le quote di riferimento sono 3/4 e 1/2. a_cal=(5/2−2)/(3/4−1/2)=2 e b_cal=1. La lettura 13/5 decodificaη_C=(13/5−1)/2=4/5. L’inversa dà R_L, C=(4/5)/(1/5) Ω=4 Ω. Verifico:4/(4+1)=4/5 e 2·4/5+1=13/5."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " R_{L,C}=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Omettere l’offset darebbe 13/10, fuori dal dominio della quota; omettere il guadagno dopo la sottrazione darebbe 8/5, anch’esso impossibile. Un Ω darebbe D 2 e due Ω darebbero D 7/3."
+        }
+      ],
+      "hints": [
+        "Un dato strumentale può superare uno; la quota fisica decodificata deve restare fra zero e uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Omettere l’offset darebbe 13/10, fuori dal dominio della quota; omettere il guadagno dopo la sottrazione darebbe 8/5, anch’esso impossibile. Un Ω darebbe D 2 e due Ω darebbero D 7/3.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-line-load-efficiency-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza utile e perdite nei cavi",
+      "order": 21516,
+      "title": "La quota non fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "line-load-efficiency",
+      "difficulty": 3,
+      "prompt": "Un carico resistivo R_L>0 è in serie con la resistenza totale dei cavi R_c>0. Nella singola prova circola corrente continua I>0; le resistenze sono costanti e i fili restanti ideali. Definiamo utile la potenza convertita nel carico, P_L, e perdita quella convertita nei cavi, P_c. Si cerca η=P_L/(P_L+P_c), non la potenza assoluta né il rendimento di un motore. Fra preparazioni si impone R_L=3 R_c. Si misura anche η=3/4. Quante coppie positive(R_L, R_c) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Qualsiasi coppia indipendente"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si ottieneη=3 R_c/(3 R_c+R_c)=3/4 per ogni R_c>0. La misura non aggiunge un’equazione indipendente: resta libera una scala resistiva continua. Per esempio(3, 1) Ω e(6, 2) Ω soddisfano entrambe i dati; i due valori non sono però liberi separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "R_L=3R_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{3R_c}{4R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie confondono esempi con la famiglia intera. Nessuna contraddirebbe gli esempi positivi. Coppie arbitrarie indipendenti ignorano il vincolo del rapporto tre; R_c 0 è esclusa dal dominio."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di decidere se la misura è indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie confondono esempi con la famiglia intera. Nessuna contraddirebbe gli esempi positivi. Coppie arbitrarie indipendenti ignorano il vincolo del rapporto tre; R_c 0 è esclusa dal dominio.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Quota utile e corrente comune",
+        "Inverse con 0<η<1",
+        "Scalature, medie condizionate e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f6de01b9d00e97412c1b1696adedce3bf89a63a4638231776ed4a77abe422630",
+      "name": "line-load-efficiency-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ3MCIgdmlld0JveD0iMCAwIDY0MCAxNDcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNhcmljbyBlIGNhdmk6IHBvdGVuemUgZSBmcmF6aW9uaTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkNpcmN1aXRvIGluIHNlcmllIGNvbiBjYXJpY28gZGEgMyBvaG0gZSBjYXZpIGRhIDEgb2htLCBhbGltZW50YXRvIG5lbGxhIHByb3ZhIGlsbHVzdHJhdGEgY29uIDQgdm9sdCBlIDEgYW1wZXJlLiBCYXJyZSBkYSAzIHdhdHQgZSAxIHdhdHQgY29uIG1lZGVzaW1hIHNjYWxhLiBMZSB1bHRpbWUgYmFycmUgbW9zdHJhbm8gcXVvdGUgMy80LCAxLzIgZSBtZWRpYSA1Lzggc3UgdW5hIHNjYWxhIGRpc3RpbnRhLCBhZGltZW5zaW9uYWxlLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE4MmM0NiIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDcwIiByeD0iMTYiIGZpbGw9IiNmN2Y5ZmMiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBMYSBjb3JyZW50ZSDDqCBjb211bmU8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0Ij5Fc2VtcGlvIGFsaW1lbnRhdG86IEkgPSAxIEEsIHNvcmdlbnRlIGRhIDQgVi48L3RleHQ+PC9nPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTEwMCAxOTBIMTgwTTM1MCAxOTBINDEwTTUxMCAxOTBINTUwVjM0MEgxMDBWMjM1Ii8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMjEyIiByPSIyMyIvPjxyZWN0IHg9IjE4MCIgeT0iMTY4IiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjQ0IiBzdHJva2U9IiMxODVkODMiLz48cmVjdCB4PSI0MTAiIHk9IjE2OCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0NCIgc3Ryb2tlPSIjYjg1MzIyIi8+PHBhdGggZD0iTTExMCAxOTBIMTU1IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjwvZz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjIxOCIgeT0iMTUwIj5SX0wgPSAzIM6pPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iMTUwIj5SX2MgPSAxIM6pPC90ZXh0Pjx0ZXh0IHg9IjkxIiB5PSIyMDIiPis8L3RleHQ+PHRleHQgeD0iOTMiIHk9IjIyOSI+4oiSPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iMjk3Ij5JID0gMSBBPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0MDEiPlBfTCA9IDMgVyA7IFBfYyA9IDEgVyA7IHRvdGFsZSA9IDQgVy48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ0NCI+U2ltYm9saSByZXNpc3Rpdmkgc2NoZW1hdGljaTsgbmVzc3VuIHJhbW8gYWdnaXVudG8uPC90ZXh0PjwvZz4KPHBhdGggZD0iTTMyIDQ4MEg2MDgiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxnIGZpbGw9IiMxODJjNDYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIj48dGV4dCB4PSIzMiIgeT0iNTI4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IFV0aWxlIGUgcGVyZGl0YSBzdWxsbyBzdGVzc28gdG90YWxlPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NzAiPkJhcnJlIGRpIHBvdGVuemEgcmlmZXJpdGUgYWxs4oCZZXNlbXBpbyBJID0gMSBBLjwvdGV4dD48dGV4dCB4PSI0OCIgeT0iNjU1Ij5DYXJpY288L3RleHQ+PHRleHQgeD0iNDgiIHk9IjczNSI+Q2F2aTwvdGV4dD48dGV4dCB4PSI0OCIgeT0iODE1Ij5Ub3RhbGU8L3RleHQ+PC9nPgo8cGF0aCBkPSJNMTUwIDYxMFY4NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTUwIiB5PSI2MjUiIHdpZHRoPSIxODAiIGhlaWdodD0iNDIiIGZpbGw9IiMxODVkODMiLz48cmVjdCB4PSIxNTAiIHk9IjcwNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjYjg1MzIyIi8+PHJlY3QgeD0iMTUwIiB5PSI3ODUiIHdpZHRoPSIyNDAiIGhlaWdodD0iNDIiIGZpbGw9IiMzNTY1NGUiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjM0NyIgeT0iNjU0Ij4zIFc8L3RleHQ+PHRleHQgeD0iMjI3IiB5PSI3MzQiPjEgVzwvdGV4dD48dGV4dCB4PSI0MDciIHk9IjgxNCI+NCBXPC90ZXh0Pjx0ZXh0IHg9IjExOCIgeT0iODgzIj4wPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MzAiPs63ID0gMyBXIC8gNCBXID0gMy80LjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTcwIj5FbmVyZ2lhIG5laSBjYXZpOiBjb252ZXJzaW9uZSwgbm9uIHNjb21wYXJzYS48L3RleHQ+PC9nPgo8cGF0aCBkPSJNMzIgMTAxMEg2MDgiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxnIGZpbGw9IiMxODJjNDYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIj48dGV4dCB4PSIzMiIgeT0iMTA1NiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBEdWUgcXVvdGUgZSBsYSBsb3JvIG1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDk2Ij5BOiAoMyDOqSwgMSDOqSkgOyBCOiAoMiDOqSwgMiDOqSkuPC90ZXh0Pjx0ZXh0IHg9IjYzIiB5PSIxMTc2Ij5BPC90ZXh0Pjx0ZXh0IHg9IjYzIiB5PSIxMjU2Ij5CPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzM2Ij5NZWRpYTwvdGV4dD48L2c+CjxwYXRoIGQ9Ik0xNTAgMTEzMFYxMzc4IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE1MCIgeT0iMTE0NiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPjxyZWN0IHg9IjE1MCIgeT0iMTIyNiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2I4NTMyMiIvPjxyZWN0IHg9IjE1MCIgeT0iMTMwNiIgd2lkdGg9IjI1MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzM1NjU0ZSIvPgo8ZyBmaWxsPSIjMTgyYzQ2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSI+PHRleHQgeD0iNDY4IiB5PSIxMTc2Ij4zLzQ8L3RleHQ+PHRleHQgeD0iMzY4IiB5PSIxMjU2Ij4xLzI8L3RleHQ+PHRleHQgeD0iNDE4IiB5PSIxMzM2Ij41Lzg8L3RleHQ+PHRleHQgeD0iMTE4IiB5PSIxNDAyIj4wPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDQwIj5TY2FsYSBjb211bmUgZGVsbGUgcXVvdGUsIGRpc3RpbnRhIGRhbGxlIHBvdGVuemUuPC90ZXh0PjwvZz4KPC9zdmc+Cg=="
+    }
+  ]
+}
