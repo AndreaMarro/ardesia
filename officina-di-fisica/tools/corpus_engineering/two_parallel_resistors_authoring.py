@@ -39,7 +39,7 @@ TASKS=[
  ['2/3','3/2','1/2','2','1'],
  'A vale un ohm. B vale (2·1)/(2+1)=2/3 Ω. Il rapporto è 2/3, non il rapporto1/2 delle sole R₂: la corrente può ancora attraversare anche R₁.',
  r'R_{{\rm eq},A}=1\,\Omega\qquad R_{{\rm eq},B}=\frac23\,\Omega\qquad R_{{\rm eq},B}/R_{{\rm eq},A}=\frac23',
- '3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo.','Usa prodotto diviso somma in ciascuna prova.'),
+ '3/2 inverte il confronto; 1/2 segue un solo ramo; il rapporto due implicherebbe R_eq,B=2 Ω, impossibile per un parallelo che comprende un ramo da 1 Ω e uno ignora il nuovo parallelo.','Usa prodotto diviso somma in ciascuna prova.'),
 ('Lo scarto di una proposta',P+'Con R₁=2 Ω,R₂=2 Ω si propone R_eq=2 Ω. Quanto vale proposta meno risultato corretto?',
  ['1 Ω','−1 Ω','2 Ω','0 Ω','2'],
  'Il parallelo vale un ohm. La proposta lo supera di 2−1=1 Ω. L’equivalente non è uguale a uno dei resistori quando sono presenti due rami positivi finiti.',

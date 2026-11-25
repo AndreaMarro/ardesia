@@ -68,7 +68,7 @@ A vale un ohm. B vale (2·1)/(2+1)=2/3 Ω. Il rapporto è 2/3, non il rapporto1/
 
 Passaggi: `R_{{\rm eq},A}=1\,\Omega\qquad R_{{\rm eq},B}=\frac23\,\Omega\qquad R_{{\rm eq},B}/R_{{\rm eq},A}=\frac23`
 
-Distrattori: 3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo.
+Distrattori: 3/2 inverte il confronto; 1/2 segue un solo ramo; il rapporto due implicherebbe R_eq,B=2 Ω, impossibile per un parallelo che comprende un ramo da 1 Ω e uno ignora il nuovo parallelo.
 
 ## 08 — Lo scarto di una proposta
 
@@ -141,3 +141,9 @@ Con rami uguali la somma delle conduttanze è2/R₂ e quindi R_eq=R₂/2. La mis
 Passaggi: `\frac1{R_{\rm eq}}=\frac2{R_2}\qquad R_2=2R_{\rm eq}\qquad R_2=2\,\Omega`
 
 Distrattori: Uno Ω copia l’equivalente; mezzo Ω applica un dimezzamento al contrario; −2 viola la passività. Non rimane una famiglia libera dopo una misura positiva indipendente.
+
+## Rilettura richiesta dal revisore distinto
+
+Feedback07 sostituito con controprova di resistenza equivalente; SVG esplicita V_AB>0 anche nel dominio del rapporto delle correnti. Geometria/stili invariati. Nuovo render nativo finale realmente exit0 e letto completo. Tutte le chiavi, i dati e i domini restano invariati; gli altri record sono stati confrontati con l’archivio byte-identico. Nessuna firma scientifica dell’autore. Due assembly finali identici e import temporaneo16→0/16 reali;991 pubblicati invariati. UI prodotto e approvazione umana NOT_RUN.
+
+Primo tentativo CLI privo dei tre argomenti obbligatori: exit2 prima di assemblare. Comando corretto ripetuto realmente e completato exit0; nessun falso esito attribuito al tentativo fallito.

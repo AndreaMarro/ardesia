@@ -37,7 +37,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "src": "/asset/72b2807bdea2541782ef74dce39a3f33731b0b1eeba155d83b73090e25ae893c",
           "text": "Nel primo schema entrambi i resistori condividono i due nodi A,B. I simboli resistivi sono schematici: le loro dimensioni non codificano il valore. Nel secondo è illustrata una modifica distinta: ramo3 Ω aperto e6 Ω rimasto, a tensione costante. Le barre finali rappresentano le equivalenti1 e2 Ω e la media3/2 Ω."
         },
         {
@@ -194,7 +194,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "src": "/asset/72b2807bdea2541782ef74dce39a3f33731b0b1eeba155d83b73090e25ae893c",
           "text": "La connessione a due nodi comuni assegna la stessa tensione ai rami; non impone la stessa corrente se le resistenze sono diverse. Il pannello con interruttore aperto è un altro circuito, con valori3 e6 Ω."
         },
         {
@@ -418,7 +418,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "src": "/asset/72b2807bdea2541782ef74dce39a3f33731b0b1eeba155d83b73090e25ae893c",
           "text": "Nel secondo pannello è aperto soltanto il ramo3 Ω. La tensione ai nodi resta quella del generatore ideale; la corrente del ramo6 Ω resta V/(6 Ω), mentre la totale cala perché l’altro contributo è eliminato."
         },
         {
@@ -511,7 +511,7 @@
         },
         {
           "type": "text",
-          "text": "3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo."
+          "text": "3/2 inverte il confronto; 1/2 segue un solo ramo; il rapporto due implicherebbe R_eq,B=2 Ω, impossibile per un parallelo che comprende un ramo da 1 Ω e uno ignora il nuovo parallelo."
         }
       ],
       "hints": [
@@ -520,7 +520,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo.",
+        "message": "3/2 inverte il confronto; 1/2 segue un solo ramo; il rapporto due implicherebbe R_eq,B=2 Ω, impossibile per un parallelo che comprende un ramo da 1 Ω e uno ignora il nuovo parallelo.",
         "target": "C4-L06"
       },
       "coverage": [
@@ -855,7 +855,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "src": "/asset/72b2807bdea2541782ef74dce39a3f33731b0b1eeba155d83b73090e25ae893c",
           "text": "Le barre condividono origine e scala: equivalenti1 e2 Ω, media3/2 Ω. Non rappresentano resistenze dei singoli rami. Il modello ai dati medi darebbe20/13 Ω, diverso dalla media delle uscite."
         },
         {
@@ -1189,10 +1189,10 @@
   ],
   "assets": [
     {
-      "id": "ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+      "id": "72b2807bdea2541782ef74dce39a3f33731b0b1eeba155d83b73090e25ae893c",
       "name": "two-parallel-resistors-progressive.svg",
       "mime": "image/svg+xml",
-      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Ob2RpIGNvbXVuaSBlIGNvcnJlbnRlIGRpIHVuIHJhbW8gYXBlcnRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIHJlc2lzdG9yaSBkYTIgb2htIGZyYSBnbGkgc3Rlc3NpIG5vZGkgZGFubm8gZXF1aXZhbGVudGUxIG9obS4gTmVsIGNhc28gZGlzdGludG8zIGU2IG9obSwgaWwgcmFtbzMgb2htIMOoIGFwZXJ0byBlIHJpbWFuZSBzb2x0YW50bzYgb2htIGFsbGEgc3Rlc3NhIHRlbnNpb25lLiBJIHRvdGFsaTEgZTIgb2htIGRpIGR1ZSBwcm92ZSBoYW5ubyBtZWRpYTMvMiBvaG0uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0OTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHJhbWkgZnJhIGdsaSBzdGVzc2kgbm9kaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgyIiBmb250LXNpemU9IjE4Ij5MYSB0ZW5zaW9uZSDDqCBjb211bmUgOyBzaSBzb21tYW5vIGxlIGNvcnJlbnRpLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik02MCAyMzBIMTMwVjE1NUgyNTBNMzkwIDE1NUg1MTBWMzA1SDM5ME0yNTAgMzA1SDEzMFYyMzBNNTEwIDIzMEg1NzAiLz48cmVjdCB4PSIyNTAiIHk9IjEzNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjI1MCIgeT0iMjg1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PC9nPgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iOTEiIHk9IjI3MCI+QTwvdGV4dD48dGV4dCB4PSI1MjciIHk9IjI3MCI+QjwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjEyMCI+MiDOqTwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjM1NSI+MiDOqTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQwNSI+R19lcSA9IDEvMiBTICsgMS8yIFMgPSAxIFMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDQ3Ij5SX2VxID0gMSDOqS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0ODhINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUzMyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQXByaWFtbyBzb2x0YW50byB1biByYW1vPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTc0IiBmb250LXNpemU9IjE4Ij5DYXNvIGRpc3RpbnRvOiAzIM6pIGUgNiDOqSA7IFZfQUIgcmVzdGEgY29zdGFudGUuPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTYwIDczMEgxMzBWNjU1SDE4ME0yNDAgNjU1SDI1ME0zOTAgNjU1SDUxMFY4MDVIMzkwTTI1MCA4MDVIMTMwVjczME01MTAgNzMwSDU3MCIvPjxyZWN0IHg9IjI1MCIgeT0iNjM1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMjUwIiB5PSI3ODUiIHdpZHRoPSIxNDAiIGhlaWdodD0iNDAiLz48L2c+CjxwYXRoIGQ9Ik0xODAgNjU1TDIyMCA2MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjE4MCIgY3k9IjY1NSIgcj0iNCIgZmlsbD0iI2I0NTMyOCIvPjxjaXJjbGUgY3g9IjI0MCIgY3k9IjY1NSIgcj0iNCIgZmlsbD0iI2I0NTMyOCIvPgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSI3MzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSI3MzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iMjkwIiB5PSI2MjAiPjMgzqk8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSI4NTUiPjYgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MDAiPlByaW1hOiBJX2kgPSBWX0FCIC8gKDIgzqkpLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTQyIj5Eb3BvOiBJX2YgPSBWX0FCIC8gKDYgzqkpIDsgSV9mL0lfaSA9IDEvMy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5ODJINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjEwMjciIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IEVxdWl2YWxlbnRpIGRpIGR1ZSBwcm92ZSBkaXN0aW50ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNjciIGZvbnQtc2l6ZT0iMTgiPkE6IHJhbWkgMiDOqSBlIDIgzqkgOyBCOiByYW1pIDMgzqkgZSA2IM6pLjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMDk1VjEzNTAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTExNSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxNTAiIHk9IjExOTUiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMTUwIiB5PSIxMjc1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSIxMTQwIj5BPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMTE0MCI+MSDOqTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTIyMCI+QjwvdGV4dD48dGV4dCB4PSI0OTAiIHk9IjEyMjAiPjIgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzAwIj5NZWRpYTwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjEzMDAiPjMvMiDOqTwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjEzNDQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDAwIiBmb250LXNpemU9IjE4Ij5MZSBiYXJyZSBjb25kaXZpZG9ubyBvcmlnaW5lIGUgc2NhbGEgaW4gb2htLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQ0MCIgZm9udC1zaXplPSIxOCI+SWwgcGFyYWxsZWxvIGFpIGRhdGkgbWVkaSBkYXJlYmJlIDIwLzEzIM6pLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Ob2RpIGNvbXVuaSBlIGNvcnJlbnRlIGRpIHVuIHJhbW8gYXBlcnRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIHJlc2lzdG9yaSBkYTIgb2htIGZyYSBnbGkgc3Rlc3NpIG5vZGkgZGFubm8gZXF1aXZhbGVudGUxIG9obS4gTmVsIGNhc28gZGlzdGludG8zIGU2IG9obSwgaWwgcmFtbzMgb2htIMOoIGFwZXJ0byBlIHJpbWFuZSBzb2x0YW50bzYgb2htIGFsbGEgc3Rlc3NhIHRlbnNpb25lIHBvc2l0aXZhLiBJIHRvdGFsaTEgZTIgb2htIGRpIGR1ZSBwcm92ZSBoYW5ubyBtZWRpYTMvMiBvaG0uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0OTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHJhbWkgZnJhIGdsaSBzdGVzc2kgbm9kaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgyIiBmb250LXNpemU9IjE4Ij5MYSB0ZW5zaW9uZSDDqCBjb211bmUgOyBzaSBzb21tYW5vIGxlIGNvcnJlbnRpLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik02MCAyMzBIMTMwVjE1NUgyNTBNMzkwIDE1NUg1MTBWMzA1SDM5ME0yNTAgMzA1SDEzMFYyMzBNNTEwIDIzMEg1NzAiLz48cmVjdCB4PSIyNTAiIHk9IjEzNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjI1MCIgeT0iMjg1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PC9nPgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iOTEiIHk9IjI3MCI+QTwvdGV4dD48dGV4dCB4PSI1MjciIHk9IjI3MCI+QjwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjEyMCI+MiDOqTwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjM1NSI+MiDOqTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQwNSI+R19lcSA9IDEvMiBTICsgMS8yIFMgPSAxIFMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDQ3Ij5SX2VxID0gMSDOqS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0ODhINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUzMyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQXByaWFtbyBzb2x0YW50byB1biByYW1vPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTc0IiBmb250LXNpemU9IjE4Ij5DYXNvIGRpc3RpbnRvOiAzIM6pIGUgNiDOqSA7IFZfQUIgJmd0OyAwIHJlc3RhIGNvc3RhbnRlLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik02MCA3MzBIMTMwVjY1NUgxODBNMjQwIDY1NUgyNTBNMzkwIDY1NUg1MTBWODA1SDM5ME0yNTAgODA1SDEzMFY3MzBNNTEwIDczMEg1NzAiLz48cmVjdCB4PSIyNTAiIHk9IjYzNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjI1MCIgeT0iNzg1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PC9nPgo8cGF0aCBkPSJNMTgwIDY1NUwyMjAgNjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSIxODAiIGN5PSI2NTUiIHI9IjQiIGZpbGw9IiNiNDUzMjgiLz48Y2lyY2xlIGN4PSIyNDAiIGN5PSI2NTUiIHI9IjQiIGZpbGw9IiNiNDUzMjgiLz4KPGNpcmNsZSBjeD0iMTMwIiBjeT0iNzMwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNTEwIiBjeT0iNzMwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjI5MCIgeT0iNjIwIj4zIM6pPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iODU1Ij42IM6pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTAwIj5QcmltYTogSV9pID0gVl9BQiAvICgyIM6pKS48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk0MiI+RG9wbzogSV9mID0gVl9BQiAvICg2IM6pKSA7IElfZi9JX2kgPSAxLzMuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTgySDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDI3IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBFcXVpdmFsZW50aSBkaSBkdWUgcHJvdmUgZGlzdGludGU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMDY3IiBmb250LXNpemU9IjE4Ij5BOiByYW1pIDIgzqkgZSAyIM6pIDsgQjogcmFtaSAzIM6pIGUgNiDOqS48L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTA5NVYxMzUwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjExMTUiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTUwIiB5PSIxMTk1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjE1MCIgeT0iMTI3NSIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTE0MCI+QTwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjExNDAiPjEgzqk8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjEyMjAiPkI8L3RleHQ+PHRleHQgeD0iNDkwIiB5PSIxMjIwIj4yIM6pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMwMCI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDEwIiB5PSIxMzAwIj4zLzIgzqk8L3RleHQ+PHRleHQgeD0iMTI1IiB5PSIxMzQ0Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTQwMCIgZm9udC1zaXplPSIxOCI+TGUgYmFycmUgY29uZGl2aWRvbm8gb3JpZ2luZSBlIHNjYWxhIGluIG9obS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NDAiIGZvbnQtc2l6ZT0iMTgiPklsIHBhcmFsbGVsbyBhaSBkYXRpIG1lZGkgZGFyZWJiZSAyMC8xMyDOqS48L3RleHQ+CjwvZz48L3N2Zz4K"
     }
   ]
 }
