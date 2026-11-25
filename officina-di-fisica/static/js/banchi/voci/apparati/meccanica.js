@@ -126,7 +126,6 @@ export const meccanica = {
     b.label([2.8, oy + 0.14, 0], 'x');
     b.label([ox, oy + 0.14, -2.2], 'y');
     b.arrow(O, A, c.verde);
-    b.label([A[0], oy + 0.26, A[2]], s.bx === undefined ? 'v' : 'a', c.verde);
     if (s.proietta) {
       b.line([A, [A[0], oy, 0]], c.ocra, true);
       b.line([A, [ox, oy, A[2]]], c.ocra, true);
@@ -140,11 +139,9 @@ export const meccanica = {
         end[1] += 0.12;
       }
       b.arrow(start, end, c.ocra);
-      b.label([end[0], oy + 0.55, end[2]], 'b', c.ocra);
       if (s.somma) b.arrow([ox, oy + 0.42, 0], [end[0], oy + 0.42, end[2]], c.viola);
       if (s.croce) {
         b.arrow(O, [ox, oy + 1.55 * s.by, 0], c.viola);
-        b.label([ox, oy + 1.55 * s.by + 0.27, 0], 'a × b', c.viola);
       }
       if (s.prodotto) b.line([B, [B[0], oy, 0]], c.viola, true);
     }
@@ -157,7 +154,7 @@ export const meccanica = {
     b.rod([old, 0.06, 0.65], [old, 0.65, 0.65], 0.026, c.ocra);
     carrello(b, x, c.verde);
     b.arrow([x, 0.95, 0], [x + (s.freccia ?? 0) * 0.65, 0.95, 0], c.viola);
-    b.label([old, 0.85, 0.72], s.startLabel || 'Via', s.marks ? c.inchiostro : c.ocra);
+    if (s.startLabel) b.label([old, 0.85, 0.72], s.startLabel, s.marks ? c.inchiostro : c.ocra);
     if (s.turn !== undefined) {
       b.arrow([old, 0.12, -1.15], [at(s.turn), 0.12, -1.15], c.verde);
       b.arrow([at(s.turn), 0.12, -0.67], [x, 0.12, -0.67], c.viola);
@@ -202,11 +199,10 @@ export const meccanica = {
       );
       // tensione is T / 30 N; use the same 0.42 scene units per 20 N as weight.
       b.arrow([0.25, y, 0], [0.25, y + 0.42 * (30 / 20) * s.tensione, 0], c.verde);
-      b.label([0.5, y + 0.7, 0], 'Tensione', c.verde);
-      b.label([-0.4, y - 0.6, 0.25], 'Peso (20 N)', c.rosso);
     }
-    b.arrow([0, y, 0.25], [0, y - 0.42, 0.25], c.rosso);
-    b.label([0.5, y + 0.33, 0], 'Massa');
+    // The complete constant weight keeps its original vertical display axis
+    // and scale, above the body even at first contact with the base.
+    b.arrow([0, y + 0.64, 0.25], [0, y + 0.22, 0.25], c.rosso);
   },
   cerchio(b, s) {
     const r = s.r,
@@ -227,15 +223,16 @@ export const meccanica = {
       true,
     );
     b.ball([x, y, z], 0.14, c.ocra);
-    b.arrow([x, y + 0.13, z], [x - s.tangente * sin, y + 0.13, z - s.tangente * cos], c.verde);
-    b.arrow([x, y + 0.12, z], [x - s.radiale * cos, y + 0.12, z + s.radiale * sin], c.viola);
-    b.label([0, 0.8, 0], 'Centro');
-    b.label([x - s.tangente * sin, 0.78, z - s.tangente * cos], 'v', c.verde);
+    // Velocity and acceleration are drawn in a parallel plane: the entire
+    // cone radius clears the opaque marker, with each vector delta unchanged.
+    const arrowY = y + 0.25;
+    b.arrow([x, arrowY, z], [x - s.tangente * sin, arrowY, z - s.tangente * cos], c.verde);
+    b.arrow([x, arrowY, z], [x - s.radiale * cos, arrowY, z + s.radiale * sin], c.viola);
   },
   forze(b, s) {
     b.box([0, 0.55, 0], [1.3, 0.9, 0.9], c.ocra);
-    b.arrow([0, 0.86, 0.47], [1.14 * s.destra, 0.86, 0.47], c.verde);
-    b.arrow([0, 0.55, 0.47], [-1.14 * (s.sinistra ?? 0), 0.55, 0.47], c.rosso);
+    b.arrow([0, 0.55, 0.56], [1.14 * s.destra, 0.55, 0.56], c.verde);
+    b.arrow([0, 0.55, 0.56], [-1.14 * (s.sinistra ?? 0), 0.55, 0.56], c.rosso);
     if (s.acc !== undefined) b.arrow([0, 1.55, 0], [s.acc, 1.55, 0], c.viola);
     b.label([0, 2.0, 0], s.acc !== undefined ? 'Spinta e accelerazione' : 'Forze sul blocco');
   },
@@ -283,7 +280,6 @@ export const meccanica = {
     const p = at(1);
     b.ball(p, 0.25, c.ocra);
     if (s.forza !== undefined) exposedForce(b, p, [0.8 * s.forza, 0, 0], c.verde, 0.3);
-    b.label([p[0], p[1] + 0.41, 0], 'Estremo mobile');
   },
   gravita(b, s) {
     const d = 2.4 * s.distanza;
