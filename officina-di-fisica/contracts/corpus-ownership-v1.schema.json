@@ -58,7 +58,8 @@
           "independentVerifier": {
             "enum": [
               "author_vectors_a",
-              "author_vectors_b"
+              "author_vectors_b",
+              "root"
             ]
           },
           "questionIds": {
@@ -90,6 +91,19 @@
               },
               "independentVerifier": {
                 "const": "author_vectors_a"
+              }
+            }
+          },
+          {
+            "properties": {
+              "author": {
+                "enum": [
+                  "author_vectors_a",
+                  "author_vectors_b"
+                ]
+              },
+              "independentVerifier": {
+                "const": "root"
               }
             }
           }

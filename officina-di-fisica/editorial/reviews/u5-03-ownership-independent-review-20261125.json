@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Independent technical ownership/schema review only; no scientific approval or completion credit",
+  "reviewer": "author_vectors_b",
+  "date": "2026-11-25",
+  "schema": {
+    "path": "contracts/corpus-ownership-v1.schema.json",
+    "sha256": "81078530c93e292f6d715a663a6afd18626c2c5d371cd07bb6666e7653706551"
+  },
+  "assignment": {
+    "path": "editorial/assignments/u5-03-v1.json",
+    "sha256": "45f2be63bf19e74cd5dccd8705f18b2bc0f463e47bc47f6aae251d50c0b6ff5e"
+  },
+  "source": {
+    "ref": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+    "fileSha256": "417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b"
+  },
+  "checks": {
+    "draft202012Schema": "VALID",
+    "sourceQuestionCount": 160,
+    "assignedQuestionCount": 160,
+    "uniqueQuestionIds": 160,
+    "uniqueBatchIds": 10,
+    "idsPerBatch": 16,
+    "exactPinnedSourceIdCoverage": true,
+    "disjointAuthorOwnership": true,
+    "reviewerCounts": {
+      "root": 16,
+      "author_vectors_b": 64,
+      "author_vectors_a": 80
+    },
+    "independentVerifierRootOnlyExtension": true
+  },
+  "mutationTests": {
+    "invalidPairingsRejected": [
+      {
+        "author": "author_vectors_a",
+        "independentVerifier": "author_vectors_a"
+      },
+      {
+        "author": "author_vectors_b",
+        "independentVerifier": "author_vectors_b"
+      },
+      {
+        "author": "root",
+        "independentVerifier": "root"
+      },
+      {
+        "author": "root",
+        "independentVerifier": "author_vectors_a"
+      },
+      {
+        "author": "author_vectors_a",
+        "independentVerifier": "unknown"
+      }
+    ],
+    "validPairingsAccepted": [
+      {
+        "author": "author_vectors_a",
+        "independentVerifier": "author_vectors_b"
+      },
+      {
+        "author": "author_vectors_b",
+        "independentVerifier": "author_vectors_a"
+      },
+      {
+        "author": "author_vectors_a",
+        "independentVerifier": "root"
+      },
+      {
+        "author": "author_vectors_b",
+        "independentVerifier": "root"
+      }
+    ]
+  },
+  "findings": [],
+  "observations": [
+    "The oneOf alternatives remain mutually exclusive: A/B cross review or a distinct root reviewer. Self review and root as author are rejected.",
+    "Global unique-ID coverage was checked independently against the pinned source; JSON Schema alone only checks local array uniqueness and structural constraints.",
+    "Batch168 is reviewed by root because the discovery inventory accidentally exposed the original solution for16801 to B. This avoids treating its later review as blind source-first.",
+    "No candidate, key or SVG was opened for this technical review. Ownership is not evidence of scientific completion."
+  ],
+  "humanApproval": "NOT_RUN",
+  "scientificReview": "NOT_RUN",
+  "publicationAction": "NONE"
+}
