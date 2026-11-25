@@ -1,0 +1,1243 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16401,
+      "title": "Il lavoro è la differenza dei calori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Con T_h=400 K e T_c=200 K, quanto vale W in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sul ciclo l’energia interna torna al valore iniziale. Entrano quattrocento joule sull’isoterma calda e ne escono duecento sulla fredda: restano duecento joule di lavoro netto. Non occorre approssimare ln 2, già incluso nel fattore assegnato c. Le adiabatiche non scambiano calore, ma ciascuna può compiere lavoro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/445b2562a47028525d5688c4d9683779a09ebab52a195efca674d0951fbf7529",
+          "text": "Tre pannelli separano temperature, bilancio energetico e lavoro medio. Le barre termiche partono dalla stessa origine a 1 px/K; quelle dei calori e del lavoro usano 1 px/J. Nell’ultimo pannello i lavori 200 J, 300 J e la media 250 J sono in scala comune 1 px/J. Non è un grafico p–V né una rappresentazione del lavoro delle singole adiabatiche."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_{\\rm ciclo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " W=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W=c(T_h-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " W=(1\\,\\mathrm{J/K})(200\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " W=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Quattrocento J è il calore ricevuto sulla sola isoterma calda, non il lavoro netto. Sottrarre duecento kelvin da quattrocento joule sarebbe dimensionalmente scorretto: il fattore c converte il salto termico in energia."
+        }
+      ],
+      "hints": [
+        "Usa il bilancio dell’intero ciclo, con i calori come moduli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattrocento J è il calore ricevuto sulla sola isoterma calda, non il lavoro netto. Sottrarre duecento kelvin da quattrocento joule sarebbe dimensionalmente scorretto: il fattore c converte il salto termico in energia.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16402,
+      "title": "Un fattore in joule per kelvin",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Quale unità misura W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "K",
+          "J/K",
+          "Pa",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "c ha unità J/K e moltiplica una differenza in K. Rimangono joule, come richiesto per un lavoro. Il simbolo W del lavoro non va confuso con l’unità watt: il watt misura potenza, ossia joule al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "[W]=[c][T_h-T_c]"
+        },
+        {
+          "type": "formula",
+          "text": " [W]=\\mathrm{(J/K)K}"
+        },
+        {
+          "type": "formula",
+          "text": "\\mathrm{(J/K)K}=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "K misura il salto prima della moltiplicazione; J/K è l’unità del coefficiente. Pa è pressione e il watt richiederebbe dividere il lavoro per una durata, qui non assegnata."
+        }
+      ],
+      "hints": [
+        "Cancella i kelvin e distingui simbolo della grandezza e unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K misura il salto prima della moltiplicazione; J/K è l’unità del coefficiente. Pa è pressione e il watt richiederebbe dividere il lavoro per una durata, qui non assegnata.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16403,
+      "title": "La legge viene dal ciclo completo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Quale relazione fornisce il lavoro netto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W = nR ln 2 (T_h − T_c)",
+          "W = nR T_h ln 2",
+          "W = nR T_c ln 2",
+          "W = nR ln 2 (T_h + T_c)",
+          "W = nR ln 2 T_c / T_h"
+        ],
+        "value": "W = nR ln 2 (T_h − T_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per l’isoterma calda reversibile il calore assorbito è nRT_h ln 2. Nel ciclo di Carnot le adiabatiche collegano le due isoterme in modo che il rapporto dei volumi sull’isoterma fredda abbia lo stesso modulo logaritmico. Il calore ceduto ha quindi modulo nRT_c ln 2. Il primo principio sul ciclo ne impone la differenza, non la somma."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/445b2562a47028525d5688c4d9683779a09ebab52a195efca674d0951fbf7529",
+          "text": "Il ciclo di Carnot comprende due isoterme e due adiabatiche reversibili. La figura mostra il bilancio dell’intero ciclo, non sostituisce le adiabatiche con trasformazioni a lavoro nullo. Il fattore assegnato c=1 J/K converte ogni temperatura in un modulo di calore e il salto in lavoro netto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_h=nRT_h\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=nRT_c\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " W=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " W=nR\\ln2\\,(T_h-T_c)"
+        },
+        {
+          "type": "text",
+          "text": "I termini isolati descrivono un solo scambio termico. La somma attribuisce al gas anche il calore che esso cede. L’ultima espressione ha unità J/K, non J. Le adiabatiche hanno Q=0, non necessariamente W=0: il bilancio ciclico evita di confondere questi due fatti."
+        }
+      ],
+      "hints": [
+        "Calcola il calore entrante e quello uscente prima del lavoro netto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I termini isolati descrivono un solo scambio termico. La somma attribuisce al gas anche il calore che esso cede. L’ultima espressione ha unità J/K, non J. Le adiabatiche hanno Q=0, non necessariamente W=0: il bilancio ciclico evita di confondere questi due fatti.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16404,
+      "title": "Aumentare il salto, non solo T_h",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. T_c resta 200 K. T_h passa da 400 a 600 K. Come cambia W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 200 a 400 J: raddoppia",
+          "Da 200 a 300 J",
+          "Resta 200 J",
+          "Da 200 a 800 J",
+          "Diventa −200 J"
+        ],
+        "value": "Da 200 a 400 J: raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura calda viene moltiplicata per tre mezzi, ma il salto cresce da duecento a quattrocento kelvin. Essendo c invariato, è il salto a controllare il lavoro: duecento e quattrocento joule. Non si applica il fattore di T_h al lavoro senza tenere conto di T_c."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=c(400-200)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=c(600-200)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=400\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Trecento J moltiplica impropriamente W per 600/400. Ottocento introduce un ulteriore raddoppio; il segno negativo sarebbe incompatibile con un ciclo motore fra sorgenti ordinate come dichiarato."
+        }
+      ],
+      "hints": [
+        "Confronta i salti termici prima di confrontare i lavori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trecento J moltiplica impropriamente W per 600/400. Ottocento introduce un ulteriore raddoppio; il segno negativo sarebbe incompatibile con un ciclo motore fra sorgenti ordinate come dichiarato.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16405,
+      "title": "Dalla misura del lavoro alla sorgente calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. W=200 J e T_c=200 K. Quanto vale T_h in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo duecento joule per un joule al kelvin otteniamo un salto di duecento kelvin. La temperatura calda è la fredda più quel salto, dunque quattrocento kelvin. La sostituzione produce nuovamente W=200 J."
+        },
+        {
+          "type": "formula",
+          "text": "T_h-T_c=W/c"
+        },
+        {
+          "type": "formula",
+          "text": " W/c=200\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=T_c+W/c"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Il solo W/c è una differenza, non T_h. La somma è lecita perché prima si è convertito W in kelvin; non si sommano direttamente joule e kelvin."
+        }
+      ],
+      "hints": [
+        "Converti il lavoro in salto termico usando c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo W/c è una differenza, non T_h. La somma è lecita perché prima si è convertito W in kelvin; non si sommano direttamente joule e kelvin.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16406,
+      "title": "Dalla misura del lavoro alla sorgente fredda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. W=200 J e T_h=400 K. Quanto vale T_c in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro fissa il salto W/c=200 K. Lo sottraiamo ai quattrocento kelvin della sorgente calda. Si ottengono duecento kelvin, positivi: per questa inversa deve sempre valere 0<W<cT_h."
+        },
+        {
+          "type": "formula",
+          "text": "T_c=T_h-W/c"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=(400-200)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Aggiungere il salto darebbe una sorgente detta fredda più calda della calda. W≥cT_h condurrebbe invece a T_c≤0, fuori dal dominio del modello."
+        }
+      ],
+      "hints": [
+        "Sottrai il salto e controlla che T_c resti positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Aggiungere il salto darebbe una sorgente detta fredda più calda della calda. W≥cT_h condurrebbe invece a T_c≤0, fuori dal dominio del modello.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16407,
+      "title": "Una sorgente fredda più calda riduce W",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. T_h=400 K. A ha T_c=200 K, B ha T_c=300 K. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "1",
+          "3/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I salti sono rispettivamente duecento e cento kelvin. Il fattore c comune si cancella: il rapporto è cento su duecento, un mezzo. Il lavoro diminuisce anche se la temperatura fredda aumenta, perché conta la distanza fra le sorgenti."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi confronta le temperature fredde anziché i salti; due scambia il numeratore col denominatore. Tre quarti usa 300/400, rapporto termico che entra nel rendimento ma non è questo rapporto di lavori."
+        }
+      ],
+      "hints": [
+        "Sottrai T_c da T_h in entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi confronta le temperature fredde anziché i salti; due scambia il numeratore col denominatore. Tre quarti usa 300/400, rapporto termico che entra nel rendimento ma non è questo rapporto di lavori.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16408,
+      "title": "La proposta confonde calore e lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Con 400 K e 200 K si propone W=400 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 J",
+          "−200 J",
+          "400 J",
+          "0 J",
+          "100 J"
+        ],
+        "value": "200 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è duecento joule, perché metà dei quattrocento joule assorbiti viene ceduta alla sorgente fredda. La proposta supera il lavoro netto di duecento joule. Il segno positivo identifica la sovrastima."
+        },
+        {
+          "type": "formula",
+          "text": "W=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=W_{\\rm proposto}-W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(400-200)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno duecento inverte l’ordine della sottrazione. Quattrocento ripete il dato proposto, zero lo accetta e cento dimezza indebitamente lo scarto."
+        }
+      ],
+      "hints": [
+        "Il lavoro netto non coincide con il calore caldo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno duecento inverte l’ordine della sottrazione. Quattrocento ripete il dato proposto, zero lo accetta e cento dimezza indebitamente lo scarto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16409,
+      "title": "Isolare T_h con un coefficiente dimensionato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Quale formula isola T_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T_h = T_c + W/c",
+          "T_h = T_c − W/c",
+          "T_h = W/c",
+          "T_h = T_c + cW",
+          "T_h = T_c + W"
+        ],
+        "value": "T_h = T_c + W/c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo W=c(T_h−T_c) per c>0, poi sommiamo T_c. L’unità di W/c è K, perciò la somma è omogenea. È essenziale conservare il coefficiente anche quando il suo valore numerico nelle unità dichiarate è uno."
+        },
+        {
+          "type": "formula",
+          "text": "W/c=T_h-T_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=T_c+W/c"
+        },
+        {
+          "type": "formula",
+          "text": " [W/c]=\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno darebbe T_h<T_c per W>0. W/c da solo omette T_c. cW ha unità J²/K e W ha unità J: non possono essere sommati a una temperatura."
+        }
+      ],
+      "hints": [
+        "Prima elimina c mediante una divisione, poi aggiungi T_c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno darebbe T_h<T_c per W>0. W/c da solo omette T_c. cW ha unità J²/K e W ha unità J: non possono essere sommati a una temperatura.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16410,
+      "title": "Riscrivere entrambi i salti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. B ha T_h,B=κ₁T_h e T_c,B=κ₂T_c, con fattori positivi e κ₁T_h>κ₂T_c. A ha T_h>T_c. Qual è W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ T_h − κ₂ T_c) / (T_h − T_c)",
+          "κ₁ / κ₂",
+          "κ₁ − κ₂",
+          "κ₁ κ₂",
+          "(T_h − T_c) / (κ₁ T_h − κ₂ T_c)"
+        ],
+        "value": "(κ₁ T_h − κ₂ T_c) / (T_h − T_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c è identico e si cancella. Nel numeratore rimane il nuovo salto, nel denominatore quello iniziale. Non si può separare un rapporto di differenze in una differenza di rapporti. Se κ₁=κ₂=κ, tutto il salto è moltiplicato per κ e anche il lavoro cresce dello stesso fattore."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=c(\\kappa_1T_h-\\kappa_2T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=c(T_h-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{W_B}{W_A}=\\frac{\\kappa_1T_h-\\kappa_2T_c}{T_h-T_c}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ darebbe uno sotto riscalamento comune e perderebbe la crescita del lavoro. κ₁−κ₂ darebbe zero per prove identiche. L’ultima formula scambia B e A; il prodotto dei fattori non rappresenta una differenza termica."
+        }
+      ],
+      "hints": [
+        "Mantieni le due differenze intere fino alla cancellazione di c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ darebbe uno sotto riscalamento comune e perderebbe la crescita del lavoro. κ₁−κ₂ darebbe zero per prove identiche. L’ultima formula scambia B e A; il prodotto dei fattori non rappresenta una differenza termica.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16411,
+      "title": "Due sorgenti riscalate insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. A ha 400/200 K e B ha 600/300 K, nell’ordine calda/fredda. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "1",
+          "3",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto di A è duecento kelvin, quello di B trecento kelvin. I lavori sono quindi duecento e trecento joule: il rapporto è tre mezzi. Entrambe le temperature sono state riscalate dello stesso fattore; il rendimento resta uguale, ma il lavoro per questo campione aumenta."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Uno confonde l’uguaglianza dei rendimenti con l’uguaglianza dei lavori. Due terzi inverte il rapporto; tre e due non ricostruiscono i due salti assegnati."
+        }
+      ],
+      "hints": [
+        "Distingui il lavoro dimensionato dal rendimento adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno confonde l’uguaglianza dei rendimenti con l’uguaglianza dei lavori. Due terzi inverte il rapporto; tre e due non ricostruiscono i due salti assegnati.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16412,
+      "title": "La media coincide grazie alla linearità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. A usa 400/200 K, B usa 600/300 K. Qual è la media dei due lavori, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "250 J",
+          "500 J",
+          "100 J",
+          "200 J",
+          "300 J"
+        ],
+        "value": "250 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I lavori sono duecento e trecento joule. La loro somma è cinquecento e la metà duecentocinquanta. Qui anche le temperature medie, 500 K e 250 K, danno lo stesso lavoro: con c fisso la legge è lineare nella differenza dei due ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline W=\\frac{200+300}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=250\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " c(500-250)\\,\\mathrm K=250\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Cinquecento J è la somma, cento la differenza. Duecento e trecento ripetono un solo riferimento. La coincidenza con il modello agli ingressi medi è motivata dalla linearità, non da una regola universale sulle medie."
+        }
+      ],
+      "hints": [
+        "Somma le due uscite e dividi per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquecento J è la somma, cento la differenza. Duecento e trecento ripetono un solo riferimento. La coincidenza con il modello agli ingressi medi è motivata dalla linearità, non da una regola universale sulle medie.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16413,
+      "title": "La sorgente fredda per un lavoro maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. A ha 400/200 K. B usa T_h,B=600 K e deve dare W_B=(3/2)W_A. Quanto vale T_c,B/T_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "1",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento produce duecento joule, quindi il bersaglio è trecento joule. Per il campione assegnato occorre un salto di trecento kelvin. Sottratto dai seicento kelvin caldi lascia trecento kelvin freddi; rispetto ai duecento iniziali il rapporto è tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=T_{h,B}-W_B/c"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}/T_{c,A}=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare T_c a 200 K darebbe W_B=400 J, non 300 J. Un rapporto due porterebbe T_c a 400 K e W_B a 200 J. Due terzi rovescia il confronto richiesto."
+        }
+      ],
+      "hints": [
+        "Ricava il salto dal lavoro bersaglio, poi sottrailo a T_h,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare T_c a 200 K darebbe W_B=400 J, non 300 J. Un rapporto due porterebbe T_c a 400 K e W_B a 200 J. Due terzi rovescia il confronto richiesto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16414,
+      "title": "Tarare il lavoro letto sul display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. S=qW è continuo e adimensionale, q>0. A con 400/200 K dà S=600. B dà S=900 e usa T_c=300 K. Quanto vale T_h,B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 600,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce duecento joule: seicento diviso duecento fissa q=3 J⁻¹. La lettura novecento rappresenta trecento joule, ossia trecento kelvin di salto. Sommando i trecento kelvin freddi otteniamo seicento kelvin caldi."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=900/q"
+        },
+        {
+          "type": "formula",
+          "text": "900/q=300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=T_{c,B}+W_B/c"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=600\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Novecento non è un lavoro in joule finché non si usa la taratura; inserirlo direttamente darebbe 1200 K. Trecento K sarebbe il solo salto e annullerebbe il lavoro se usato anche come T_h."
+        }
+      ],
+      "hints": [
+        "Converti la lettura in energia prima dell’inversa termica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Novecento non è un lavoro in joule finché non si usa la taratura; inserirlo direttamente darebbe 1200 K. Trecento K sarebbe il solo salto e annullerebbe il lavoro se usato anche come T_h.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16415,
+      "title": "Eliminare l’offset prima del lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. S=qW+b è continuo e adimensionale. A: 400/200 K, S=401. B: 600/300 K, S=601. C usa T_c=200 K e dà S=801. Quanto vale T_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "600 K",
+          "400 K",
+          "500 K",
+          "1200 K",
+          "1201/2 K"
+        ],
+        "value": "600 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti producono duecento e trecento joule. Duecento unità di lettura su cento joule fissano q=2 J⁻¹; A dà b=1. Per C, (801−1)/2 vale quattrocento joule. Il salto è quattrocento kelvin e, aggiungendo i duecento freddi, si trova 600 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{601-401}{(300-200)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=(801-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=400\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,C}=600\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "400 K e 500 K riprodurrebbero rispettivamente S=401 e S=601. 1200 K darebbero S=2001. 1201/2 K deriva dall’usare 801/2 senza togliere l’offset: il mezzo kelvin spurio porta S a 802, non 801."
+        }
+      ],
+      "hints": [
+        "Usa le differenze per il guadagno e un riferimento per l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400 K e 500 K riprodurrebbero rispettivamente S=401 e S=601. 1200 K darebbero S=2001. 1201/2 K deriva dall’usare 801/2 senza togliere l’offset: il mezzo kelvin spurio porta S a 802, non 801.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-work-temperature-gap-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro di Carnot e differenza termica",
+      "order": 16416,
+      "title": "Un lavoro fissa una scala termica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-work-temperature-gap",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale compie un ciclo di Carnot motore reversibile fra T_h>T_c>0, espresse in K: due isoterme e due adiabatiche reversibili. Sull’isoterma calda il volume raddoppia. Il campione è scelto in modo che c=nR ln 2=1 J/K, costante fra le prove; c non è una capacità termica. Q_h=cT_h e Q_c=cT_c sono i moduli del calore assorbito e ceduto; il lavoro netto compiuto dal gas è W=Q_h−Q_c=c(T_h−T_c)>0. Si impone T_h=2T_c e si misura W=200 J. Quanto vale T_c>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 K",
+          "100 K",
+          "400 K",
+          "Infinite temperature positive",
+          "Nessuna temperatura positiva"
+        ],
+        "value": "200 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel salto T_h−T_c rimane una sola T_c. La relazione diventa W=cT_c e determina quindi la scala assoluta: duecento joule divisi per un joule al kelvin danno duecento kelvin. Segue T_h=400 K. Il lavoro dimensionato, diversamente dal solo rendimento, elimina qui la libertà di riscalamento."
+        },
+        {
+          "type": "formula",
+          "text": "W=c(2T_c-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " W=cT_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=W/c"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Cento K produrrebbero cento joule e quattrocento K ne produrrebbero quattrocento. Non ci sono infinite soluzioni perché il valore dimensionato di W e il campione fissato determinano T_c univocamente; la soluzione positiva esiste."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella differenza prima di dividere per c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cento K produrrebbero cento joule e quattrocento K ne produrrebbero quattrocento. Non ci sono infinite soluzioni perché il valore dimensionato di W e il campione fissato determinano T_c univocamente; la soluzione positiva esiste.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e isoterme reversibili",
+        "Coefficiente energetico dimensionato",
+        "Inverse, linearità e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "445b2562a47028525d5688c4d9683779a09ebab52a195efca674d0951fbf7529",
+      "name": "carnot-work-temperature-gap-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5JbCBzYWx0byB0ZXJtaWNvIGRpdmVudGEgbGF2b3JvIG5lbCBjaWNsbyBkaSBDYXJub3Q8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHBhbm5lbGxpIGNvbiBiYXJyZSBhIG9yaWdpbmUgY29tdW5lOiB0ZW1wZXJhdHVyZSBjYWxkYSA0MDAgZSBmcmVkZGEgMjAwIGtlbHZpbjsgY2Fsb3JlIGFzc29yYml0byA0MDAsIGNlZHV0byAyMDAgZSBsYXZvcm8gbmV0dG8gMjAwIGpvdWxlOyBsYXZvcmkgZGkgZHVlIHByb3ZlIDIwMCBlIDMwMCBqb3VsZSBjb24gbWVkaWEgMjUwLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTIwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFRlbXBlcmF0dXJlIGFzc29sdXRlIGUgc2FsdG88L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNzRWMjMyIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9Ijk1IiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYWI1YjIyIi8+PHJlY3QgeD0iMTMwIiB5PSIxNjUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iNDUiIHk9IjEyMCI+VOKClTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjEyMCI+NDAwIEs8L3RleHQ+PHRleHQgeD0iNDUiIHk9IjE5MCI+VOqcgDwvdGV4dD48dGV4dCB4PSIzNDUiIHk9IjE5MCI+MjAwIEs8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIyNzAiPlTigpUg4oiSIFTqnIAgPSAyMDAgSzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMwNSIgZm9udC1zaXplPSIxOCI+U2NhbGUgdGVybWljaGU6IDEgcHgvSzsgb3JpZ2luZSBjb211bmUgeCA9IDEzMC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAzMzhINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjM4MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgVW4gY2ljbG86IDQwMCDiiJIgMjAwID0gMjAwIEo8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNDA1VjYzMCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI0MjUiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzQiIGZpbGw9IiNhYjViMjIiLz48cmVjdCB4PSIxMzAiIHk9IjQ5NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iNTY1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjQ1IiB5PSI0NTAiPlHigpU8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSI0NTAiPjQwMCBKPC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSI1MjAiPlHqnIA8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSI1MjAiPjIwMCBKPC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSI1OTAiPlc8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSI1OTAiPjIwMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjY2IiBmb250LXNpemU9IjE4Ij5jID0gblIgbG4gMiA9IDEgSi9LOyB0dXR0ZSBsZSBiYXJyZSBhIDEgcHgvSi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3MDAiIGZvbnQtc2l6ZT0iMTgiPs6UVSBkZWwgY2ljbG8gPSAwIDsgVyA9IFHigpUg4oiSIFHqnIAgKG1vZHVsaSBkZWkgUSkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNzMzSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI3NzciIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IER1ZSBsYXZvcmkgZSBsYSBsb3JvIG1lZGlhPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDgwMVYxMDA3IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjgyMSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iODg0IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSI5NDciIHdpZHRoPSIyNTAiIGhlaWdodD0iMzIiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNDUiIHk9Ijg0NSI+QTwvdGV4dD48dGV4dCB4PSIzNDUiIHk9Ijg0NSI+MjAwIEo8L3RleHQ+PHRleHQgeD0iNDUiIHk9IjkwOCI+QjwvdGV4dD48dGV4dCB4PSI0NDUiIHk9IjkwOCI+MzAwIEo8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk3MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzk1IiB5PSI5NzEiPjI1MCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA0NiIgZm9udC1zaXplPSIxOCI+QTogNDAwLzIwMCBLOyBCOiA2MDAvMzAwIEsuIEJhcnJlIGEgMSBweC9KLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMTgiPkR1ZSBpc290ZXJtZSwgZHVlIGFkaWFiYXRpY2hlOiBpbCBjaWNsbyDDqCBkaSBDYXJub3QuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
