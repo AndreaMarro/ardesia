@@ -1,0 +1,100 @@
+{
+  "activityCredit": 0,
+  "artifactBytes": 133760011,
+  "artifactSha256IndependentlyStreamed": "cafbd2eb618dadc42dbaafadce7a0924b268e9c9414ac6030d32ff0d815c9267",
+  "findings": [
+    {
+      "boundedProbe": "Failed stubbed persistence leaves the old pointer; successful stub plus hashes advances it. This is control-flow validation, not a persistence/UI PASS.",
+      "fixObserved": "Pointer is excluded from the installation loop and replaced only after successful persistence and final adopted-byte checks.",
+      "id": "POINTER_BEFORE_VALIDATION",
+      "problem": "Earlier code installed the active pointer before terminal persistence and final hashes. A later failure could leave an unreceipted active generation.",
+      "status": "RESOLVED_IN_REVIEWED_SCRIPT"
+    },
+    {
+      "boundedProbe": "An added temp-only unlisted residual is rejected before adoption.",
+      "fixObserved": "The exact regular-file staging set must equal the pinned delivery member set; paths come only from that set.",
+      "id": "UNPINNED_REUSABLE_STAGING_RESIDUAL",
+      "problem": "Earlier rglob adoption accepted any residual file under reused delivery staging, including one absent from the pinned ZIP.",
+      "status": "RESOLVED_IN_REVIEWED_SCRIPT"
+    },
+    {
+      "boundedProbe": "No-receipt recovery and ordinary rerun retain the map; a changed archived prior is rejected.",
+      "fixObserved": "Prior is reconstructed from actual archived backup files, then checked against any old receipt.",
+      "id": "PRIOR_MAP_LOST_ON_RETRY",
+      "problem": "Resetting prior loses the map on normal rerun. Reading only an old receipt still misses first-run interruptions before a receipt exists.",
+      "status": "RESOLVED_IN_REVIEWED_SCRIPT"
+    },
+    {
+      "fixObserved": "The expected comparison is the exact ZIP member with independent frozen SHA checks; missing/present-tamper safeguards remain.",
+      "green": "14/14 PASS with both raw originals physically absent, 46.644 s. Both originals restored byte-identical afterward.",
+      "id": "CLEAN_CLONE_TEST_REQUIRES_UNTRACKED_RAW_MD",
+      "problem": "The test compared restored bytes to an untracked ordinary raw Markdown file, which is intentionally absent in a clean clone. This was a reviewer test error.",
+      "red": "14 tests, one FileNotFoundError with both raw originals physically absent, 43.617 s.",
+      "status": "FIXED_IN_OWNED_CORE_TEST"
+    }
+  ],
+  "frozen047InputsRecovered": [
+    {
+      "effect": "RESTORES_INVENTORY_INPUT_ONLY_NO_NEW_CREDIT",
+      "path": "editorial/reviews/experiments-pressure-hydrostatics-047-originals-frozen-1a35-20261125/editorial/reviews/experiments-pressure-hydrostatics-047-1a35-20261125/browser-raw.json",
+      "sameBytesAsFrozenCore": true,
+      "sha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2"
+    },
+    {
+      "effect": "RESTORES_INVENTORY_INPUT_ONLY_NO_NEW_CREDIT",
+      "path": "editorial/reviews/experiments-pressure-hydrostatics-047-originals-frozen-1a35-20261125/editorial/reviews/experiments-pressure-hydrostatics-047-originals.json",
+      "sameBytesAsFrozenCore": true,
+      "sha256": "32ef90d2393511097a0caa5497090e2abf78094117b2e3cc80d6604ac13f8859"
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "inventoryScope": "The recovered inputs and 7+7 inventory/transport tests restore a 139-original audit inventory only. The module grants activityCredit=0, overallAcceptanceGranted=false and per-record credit0; preserves 5 historical047 positives and their228+8 actual UI separately from129 UI_NOT_RUN, all source/manual/code/UI failures and the Stevino draft partial. It is not a new scientific or UI gate.",
+  "limits": [
+    "No full ETL, Node persistence, suite, browser or release was independently rerun here; only streamed ZIP identity, static reader checks and the declared bounded probes were performed.",
+    "Adoption is not a multi-file database transaction. Verified non-pointer reports may already be installed when a later step fails; retained priors and exact retries are the recovery mechanism.",
+    "An OS crash between atomic pointer replacement and receipt/stage-list write remains recoverable, not an assertion that every file and receipt changes atomically.",
+    "The exact successful first run reported by Root remains historical evidence; these retry fixes do not retroactively claim an unexecuted negative whole-adoption test."
+  ],
+  "newScientificAcceptances": 0,
+  "newUiCases": 0,
+  "phase": "LIMITED_INDEPENDENT_TRANSPORT_AND_INVENTORY_TECHNICAL_REVIEW",
+  "publicationAction": "NONE",
+  "registryEdits": 0,
+  "reusedPreviewProducerMetadataReadFromExactZip": {
+    "conclusion": "failure",
+    "head_sha": "7f5c956f92f7a1aeb284a680667caef5b1c3198f",
+    "id": 45611122114,
+    "path": ".github/workflows/cric-preintegration-evidence.yml",
+    "status": "completed"
+  },
+  "reviewedOperationalScriptOriginalPath": "work/adopt-456352-verified-artifact.py",
+  "reviewedScriptSha256": "b8bbb29c092cf4ca4b0ccd8ce1bf3a66e483464fd381dc52891b9b09d8e159a7",
+  "rootAdoptionReceiptPath": "editorial/reviews/preintegration-45635225687-root-adoption-20261125/receipt.json",
+  "rootAdoptionReceiptSha256": "00b2b57d36b090a810af7f94c8bb8bb2e55c4ee533116b61478a5c720ccf8865",
+  "rootEditsByReviewer": 0,
+  "rootInventoryReadOnlyPins": {
+    "editorial/reviews/partial-inventory-root-tests-20261125/receipt.json": "76e2fc607e5268803846dfa91674f733cecb69d67f9bd4ed4d7560ed59706d24",
+    "tests/corpus/test_partial_activity_inventory.py": "15b8ce36e46feff17ce39d73bb5a36cf9f94008785814d860513416cf8a26450",
+    "tools/corpus_engineering/partial_activity_inventory.py": "0ac0be68c31817c8087ea991cc85a43da07072e79851b1f908c2ac5f5371c63e"
+  },
+  "rootReportedRunId": 45635225687,
+  "rootReportedSuite": {
+    "observedExitCode": 0,
+    "seconds": 909.603,
+    "tests": 879
+  },
+  "rootReportedUiBatches": 209,
+  "rootReportedUiCases": 9507,
+  "runIdentityLimit": "The producer metadata describes reused earlier UI evidence, not the identity or conclusion of the adopted successful job. No GitHub API request or remote test rerun was made by this review.",
+  "runtimeEdits": 0,
+  "sourceRunnerHead": "6f7553f28b4134941db7c11fdb1d0e7e6a971269",
+  "testHistory": {
+    "beforeImagePath": "editorial/reviews/independent-artifact-adoption-456352-20261125/before/test_frozen_text_evidence.py",
+    "beforeImageSha256": "956c8549e47cdb416ea6a8a9b7ce35b2756d4d447f906224decf7a1451e85859",
+    "currentTestPath": "tests/corpus/test_frozen_text_evidence.py",
+    "currentTestSha256": "104acec5187c507040ebbe7b594973dd032c72286c3d77ab756fea3bb2f5e290",
+    "historicalArchiveFollowupManifestUnmodified": "ccba74f17a48a39c5a4b4023116381d9762a68648226f3eee36a8b62bd28fe01",
+    "historicalManifestCommit": "793a2cb27e10fc0428a2edf730d616dffb4705f7",
+    "limit": "The old followup manifest is a historical snapshot containing the old test. This new receipt pins the revised test; it does not rewrite that historical manifest or any frozen science input."
+  }
+}
