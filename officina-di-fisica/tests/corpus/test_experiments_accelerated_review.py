@@ -127,6 +127,16 @@ class AcceleratedExperimentsReview(unittest.TestCase):
         actual=deepcopy(self.actual);ball=next(e for e in actual['SIM-C1-L004-04']['cases'][0]['timeSamples'][1]['elements'] if e.get('kind')=='ball');ball['p'][1]+=1
         self.assertFalse(review.compare_runtime(actual)['SIM-C1-L004-04']['ok'])
 
+        # A preserved vector delta is insufficient: these former origins hid tips.
+        for key,color,shift in [('SIM-C1-L004-02',0xb94f48,.64),('SIM-C1-L004-04',0x7350b0,.13),('SIM-C1-L004-04',0x147979,.12)]:
+            actual=deepcopy(self.actual)
+            for case in actual[key]['cases']:
+                for frame in [case]+case['timeSamples']:
+                    for element in frame['elements']:
+                        if element.get('kind')=='arrow' and element.get('c')==color:
+                            element['a'][1]-=shift;element['b'][1]-=shift
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+
     def test_exact_manual_arithmetic_and_model_scope_are_independent(self):
         for checks in self.physics.values():
             self.assertTrue(all(c['ok'] for c in checks))

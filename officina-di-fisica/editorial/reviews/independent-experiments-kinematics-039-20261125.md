@@ -1,14 +1,13 @@
-# Rivalidazione indipendente039 sul profilo b963
+# Rivalidazione indipendente 039 sul profilo finale 1a3502
 
-Questa è una nuova esecuzione degli stessi sei ID storici, senza nuovo credito. Sono stati riletti individualmente gli originali completi dal pin Cric5d1dc8dc e rideterminate le leggi riportate sotto; gli oracoli recuperati erano già noti, quindi non si descrive questa attività come prima lettura cieca. La fonte completa ha SHA25684d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3.
+Si rieseguono gli stessi 6 ID già revisionati, senza nuovo credito. Gli originali completi sono stati riletti individualmente dal pin Cric 5d1dc8dc7b601aef959d10d564c75462be74708d; il file esperienze-C1.json ha SHA256 84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3. Le leggi, i segni e i conti manuali riportati sotto sono stati nuovamente ricavati. Gli oracoli recuperati erano già noti: questa è rivalidazione e non una prima revisione cieca.
 
-La snapshot5405 conserva byte per byte i vecchi verificatore, protocollo, test, report, nota e immagini. Le precedenti snapshot f897 e0e208 rimangono immutate. Il controllo iniziale sui18 test039/040 ha dato i6 fallimenti attesi perché le vecchie impronte rifiutavano il nuovo runtime: quel run non è positivo.
+Le snapshot f897, 0e208, 5405 e, per 039, il positivo b963 restano storiche e immutate. I negativi b963 della caduta e del cerchio sono conservati separatamente; non sono stati ritaggati né convertiti in esiti positivi. Nessun file di produzione, candidato, registro, checkpoint o Git è stato modificato da questa revisione.
 
-Sono state rilette le tre dipendenze cambiate: confronti corregge la potenza media a intervallo nullo per L00702; legende chiarisce peso/normale e fulcro; meccanica espone le forze di piano, molla e leva. I rami binario, volo, i modelli L003, i clock e i grafici di questi sei ID sono invariati. Tutte le22 dipendenze esplicite e il profilo globale rimangono vincolati prima e dopo l’esecuzione. Le funzioni degli oracoli e del confronto geometrico sono byte identiche alla snapshot5405: nessuna asserzione è stata allentata.
-
-Il profilo b963 è positivo per questi sei ID soltanto. Il nuovo rilievo visivo di040 è separato e non viene approvato da questo report; un’eventuale nuova modifica del runtime invaliderà anche il presente replay039 e richiederà un’esecuzione autentica ulteriore.
+Il delta effettivo rispetto a b963 riguarda le legende HTML e l’apparato meccanico. I modelli, i clock, le secanti e le leggi del moto assegnate non cambiano. Le etichette flottanti ridondanti vengono tolte; il via del binario è identificato dalla tacca ocra e dalla legenda. In caduta il peso mantiene il delta verticale −21/50 ma viene traslato sopra il corpo. Nel cerchio le due frecce sono nel piano parallelo y=57/100, come dichiarato dalla legenda, conservando tutte le componenti e le due scale fisiche distinte. Le 22 dipendenze esplicite e l’intero profilo sono vincolati prima e dopo ogni replay. L’ulteriore delta confronti rispetto a 5405 riguarda un’altra esperienza e non queste leggi.
 
 ## Derivazioni e letture per ID
+
 
 
 ### SIM-C1-L003-01 — Posizione e spostamento
@@ -47,22 +46,22 @@ x=2t fino a 2 s, poi x=8−2t, in metri. Le due espressioni coincidono a 2 s con
 
 Fonte SHA256 6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93, versione 2. Confronto attuale: 17 configurazioni di controllo, 51 osservazioni del clock. Le osservazioni ripetute su finestre diverse non sono nuovi ID o altre attività.
 
-## Replay e limiti effettivi
 
-Il nuovo protocollo canonico039 ha eseguito66 casi reali in Chrome nativo e fallback, con SQLite/sessione demo privati e richieste esterne bloccate. Processo realmente terminato con exit0; nessun page error. Le risposte sbagliate sono state rifiutate e i risultati ricavati indipendentemente sono stati accettati. Il campo scientificApproval=false è ora emesso direttamente dal protocollo prima dell’esecuzione, non aggiunto al report dopo il run.
+## Replay effettivo e limiti
 
-Sono stati confrontati100 valori della griglia e249 campioni temporali con SymPy/Pint/Fraction e geometria indipendente, incluse secanti con origine temporale coerente, intervalli strettamente positivi e cuspide con velocità non definita. Tutte le66 immagini nuove sono state effettivamente guardate nelle sei tavole di contatto, con immagini originali conservate separatamente; sono stati riletti i grafici e le unità. Il controllo riguarda le viste predefinite del protocollo a1280px, non tutte le rotazioni manuali né ogni dispositivo.
+Il protocollo reale ha completato 66 casi, processo exit 0, Chrome nativo e fallback, sessione demo e SQLite privati, richieste esterne bloccate. Nessun page error. Sono state respinte risposte sbagliate e accettate quelle ricavate indipendentemente. scientificApproval=false è emesso direttamente dal protocollo: il report browser non costituisce da solo un giudizio scientifico.
 
-I nove test esistenti sono tutti PASS, exit0 in18.468s. Restano le controprove su legge, segni, unità, grafici, componenti dei vettori, clock, provenienza sconosciuta, prova browser alterata, drift del runtime e falsa approvazione umana. Fresh e saved coincidono e soddisfano l’identità del contratto.
+Confrontati 100 valori di controllo e 249 campioni temporali, con grafici, unità, posizioni, clock e assegnazioni. Tutte le 66 immagini nuove sono state realmente lette nelle 6 tavole di contatto; gli originali sono conservati. Per 040 sono stati aperti anche gli originali nativi della caduta al contatto e del cerchio alla velocità minima. Il perimetro visivo di questo replay è la vista predefinita a 1280 px, nativa e fallback; non si attribuiscono a questi PNG prove a 320 px o su tutte le rotazioni manuali. Le griglie angolari e le ulteriori viste del revisore distinto rimangono prove separate.
 
-Human NOT_RUN; publicationAction NONE; originalEditionRetained true. Nessun file di produzione, candidato, registro o Git ROOT è stato mutato. La presente è rivalidazione degli stessi sei ID, senza nuovo incremento di copertura.
+Nove test PASS, exit 0 in 141.545 s. Identità fresh e saved controllata con assert_activity_identity e report byte canonici equivalenti. Le controprove su fonte, dipendenze, leggi, grafici, segni, unità, clock, prove alterate e falsa firma umana rimangono attive. Nessuna promozione automatica da chiave autore.
 
-## Impronte correnti
+Human NOT_RUN; publicationAction NONE; originalEditionRetained true. Esito AI limitato alle dieci esperienze e ai consumer effettivamente provati; nessun nuovo ID accreditato.
 
-- Runtime: b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f.
-- Verifier: 90e5706757c843b240f4664439a46e440fc9177b5b144b121d2a18569778a27f.
-- Protocollo: 865cc74dc62bbda08a8b1f1927a826e9b7fec97346ed7263306feb2b3b6b8634.
-- Prova browser: d943d2e7fca0deb046f78e4b1bac0870c3431cf7942db9fa195bb1e12865e365.
-- Report: 51c9a5140cc7b302a9a32c51ae1dbea0d5be5424f6dfbe247fccea00d59311da.
+## Impronte finali
+
+- Runtime: 1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba.
+- Verifier: da7c9f1a758be6c41f397ff8a490d4ecc9ef3bbd900f3794c54e952e04626268.
+- Protocollo browser: 406ca3d925d2bb21c1ec24698a4a3cf65430832c6c54dfce674e43ebb926b1ab.
+- Prova browser: ed8fdb40b10bdabd9c3e756c5bad2f8b1feb01df595e885ca1e21d6f1dec19c9.
 - Test: 50a496c2c6812ba06d27503f8abee64ac872990913ba5748b2733eba9dc2bda5.
-- Trascritto: 3968f86ab9081ab0cc476d86d1b44518c7fd8222dbc452d816e5415c3e25cea4.
+- Report: 368389bbc7c0772fbba35e9e4362a915b94d3fb5323ff70ad03f5eaf32870650.

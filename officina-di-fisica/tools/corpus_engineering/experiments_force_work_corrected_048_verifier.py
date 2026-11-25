@@ -14,10 +14,10 @@ SOURCE_PATH='officina-di-fisica/content/esperienze-C1.json'
 SOURCE_FILE_SHA256='84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3'
 BATCH='experiments-force-work-corrected-048'
 READ_SOURCE_SHA256={'SIM-C1-L006-01': '444a3d9fe8c31446e477dd3d72c9af784c84b1060678c31679f8ac3f1227c263', 'SIM-C1-L006-02': '3dd3ca74965f5e0fa3ce70272105418d5c1db2642f893da0ec77c1edd4632582', 'SIM-C1-L006-03': 'e44f957cf45b4effcd3f36f85850c95a04ffd10871075e7c2f6fe54a7b94ac43', 'SIM-C1-L007-01': 'f85003b40a9ad21a9aebb9d5568a2bbc15664d957dddf4dd47473d4e9182ad5c', 'SIM-C1-L007-02': 'fca8abba8445694bc3af22eef6156a0c96916efe31b4c2a752aab49043bdbe09', 'SIM-C1-L007-03': '6729a0318bbef2a6dabc6febcddd78b6cb95c3a086105947cea3744c43c77cc9'}
-READ_RUNTIME={'static/js/banchi/voci/esperimento.js': 'cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b', 'static/js/banchi/voci/engines.js': '09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab', 'static/js/banchi/voci/assessment-selection.js': '2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3', 'static/js/banchi/voci/geometria.js': '986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08', 'static/js/banchi/voci/tavola.js': 'cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283', 'static/js/banchi/voci/confronti.js': '83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39', 'static/js/banchi/voci/legende.js': '5de252eb39a3252aa4c8fccc2448410b68fe01f25201206340bef77de22deaec', 'static/js/banchi/voci/orologi.js': '30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6', 'static/js/banchi/voci/modelli/C1.js': 'e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34', 'static/js/banchi/voci/apparati/meccanica.js': '8d9761c74eb1475434379cd5db9b88690d3a036054ec233742706bf7396c67a7', 'static/js/banchi/banco.js': '8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9', 'static/js/banchi/misure.js': '46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d', 'static/js/banchi/grafici.js': 'e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd', 'static/js/banchi/scena.js': '4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095', 'static/js/banchi/etichette.js': '455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3', 'static/js/banchi/aula.js': '44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967', 'static/js/ui.js': '77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27'}
-READ_RUNTIME_PROFILE_SHA256='c177aba9dfdbfd8296addd3583ce487e8f43ed1b52cef784636a2d1cd40f0744'
-READ_BROWSER_PROOF_SHA256='baea6b36e5f56d24a678f430d51679e98407c53e033d224e746b8bdfe7c8dedf'
-READ_BROWSER_PROTOCOL_SHA256='b920cf79d09cf09dd9656584d5581c6fbd4104f76995805f5e0793f3d5401987'
+READ_RUNTIME={'static/js/banchi/voci/esperimento.js': 'cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b', 'static/js/banchi/voci/engines.js': '09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab', 'static/js/banchi/voci/assessment-selection.js': '2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3', 'static/js/banchi/voci/geometria.js': '986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08', 'static/js/banchi/voci/tavola.js': 'cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283', 'static/js/banchi/voci/confronti.js': '83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39', 'static/js/banchi/voci/legende.js': 'eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7', 'static/js/banchi/voci/orologi.js': '30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6', 'static/js/banchi/voci/modelli/C1.js': 'e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34', 'static/js/banchi/voci/apparati/meccanica.js': '9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d', 'static/js/banchi/banco.js': '8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9', 'static/js/banchi/misure.js': '46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d', 'static/js/banchi/grafici.js': 'e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd', 'static/js/banchi/scena.js': '4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095', 'static/js/banchi/etichette.js': '455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3', 'static/js/banchi/aula.js': '44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967', 'static/js/ui.js': '77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27'}
+READ_RUNTIME_PROFILE_SHA256='1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba'
+READ_BROWSER_PROOF_SHA256='ab2ed3d9724483b28964887af3c384be10f41c594bf1cecca0fe4a11f9c0181a'
+READ_BROWSER_PROTOCOL_SHA256='14af18cad4cd866c6bce87ac0e1f08aeae772783e8d372dd9e04e561a72d8416'
 CONSUMER_ISSUES={}
 SPECS={
 'SIM-C1-L006-01':(0,12,1,4,10,6,'N'),
@@ -82,13 +82,13 @@ def geometry(key,x,elements):
         rows=[e for e in elements if e.get('kind')=='arrow' and e.get('c')==color]
         if sum(float(z*z) for z in delta)<.015**2:return not rows
         return len(rows)==1 and all(near(rows[0]['b'][j]-rows[0]['a'][j],z) for j,z in enumerate(delta))
-    if key=='SIM-C1-L006-01':return arrow(G,[sp.Rational(57,350)*x,0,0]) and arrow(R,[-sp.Rational(57,350)*exact_value(key,x),0,0])
+    if key=='SIM-C1-L006-01':return force_pair_front_clear(elements) and arrow(G,[sp.Rational(57,350)*x,0,0]) and arrow(R,[-sp.Rational(57,350)*exact_value(key,x),0,0])
     if key=='SIM-C1-L006-02':
         balls=[e for e in elements if e.get('kind')=='ball' and e.get('c')==O];return len(balls)==1 and near(balls[0]['p'][0],-sp.Rational(3,5)+sp.Rational(21,100)*x) and arrow(G,[-x/5,0,0]) and spring_exposure(x,elements)
     if key=='SIM-C1-L006-03':
         balls=[e for e in elements if e.get('kind')=='ball'];arrows=[e for e in elements if e.get('kind')=='arrow' and e.get('c')==G]
         return len(balls)==2 and all(near(balls[i]['p'][0],sign*sp.Rational(3,5)*x) and near(balls[i]['r'],sp.Rational(27,100)) for i,sign in enumerate((-1,1))) and len(arrows)==2 and all(near(e['b'][0]-e['a'][0],sign*sp.Rational(17,20)/x**2) for e,sign in zip(arrows,(1,-1)))
-    if key=='SIM-C1-L007-01':return arrow(G,[sp.Rational(8,5),0,0]) and arrow(O,[sp.Rational(3,2)*sp.cos(x*sp.pi/180),0,-sp.Rational(3,2)*sp.sin(x*sp.pi/180)])
+    if key=='SIM-C1-L007-01':return all(e.get('text') in ('x','y') for e in elements if e.get('kind')=='label') and arrow(G,[sp.Rational(8,5),0,0]) and arrow(O,[sp.Rational(3,2)*sp.cos(x*sp.pi/180),0,-sp.Rational(3,2)*sp.sin(x*sp.pi/180)])
     boxes=[e for e in elements if e.get('kind')=='box' and e.get('c')==G];position=x*x if key.endswith('02') else x
     delta=sp.Rational(13,60)*(x if key.endswith('02') else sp.sqrt(x))
     return len(boxes)==1 and near(boxes[0]['p'][0],-sp.Rational(119,50)+sp.Rational(119,400)*position) and arrow(P,[delta,0,0])
@@ -172,7 +172,7 @@ def consumer_evidence():
     ok=ok and len(narrow)==len(expected)*2 and {(r.get('id'),r.get('input'),r.get('forcedFallback')) for r in narrow}=={(key,x,mode) for key,x in expected for mode in (False,True)}
     if BATCH.endswith('049'):
         ok=ok and all(r.get('legendEvidence',{}).get('openedByKeyboard') is True and all(word in r['legendEvidence']['visibleText'].lower() for word in ('perno viola','fulcro','gomito')) for r in narrow)
-    folder=APP/'editorial/reviews/evidence/c1-corrected-048-049-final-20261125';manifest=folder/'manifest.json'
+    folder=APP/'editorial/reviews/evidence/c1-corrected-048-049-1a35-20261125';manifest=folder/'manifest.json'
     if not manifest.is_file():ok=False
     else:
         ok=ok and sha(manifest.read_bytes())==READ_EVIDENCE_MANIFEST_SHA256
@@ -180,7 +180,8 @@ def consumer_evidence():
         for row in m.get('files',[]):
             name=row.get('name','');file=folder/name
             ok=ok and Path(name).name==name and file.is_file() and sha(file.read_bytes())==row.get('sha256')
-    return {'ok':bool(ok),'proofSha256':sha(raw),'protocolSha256':protocol,'observedCaseCount':len(rows),'runtimeProfileSha256':data.get('runtimeProfileSha256'),'meaning':'Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report.'}
+    layout=current_layout_evidence();ok=ok and layout['ok']
+    return {'layoutEvidence':layout,'ok':bool(ok),'proofSha256':sha(raw),'protocolSha256':protocol,'observedCaseCount':len(rows),'runtimeProfileSha256':data.get('runtimeProfileSha256'),'meaning':'Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report.'}
 
 
 def verify(sources):
@@ -236,6 +237,7 @@ def report(sources):
 
 def spring_exposure(x,elements):
     x=sp.Rational(str(x));balls=[e for e in elements if e.get('kind')=='ball' and e.get('c')==0xd49332];arrows=[e for e in elements if e.get('kind')=='arrow' and e.get('c')==0x147979]
+    if any(e.get('kind')=='label' for e in elements):return False
     if x==0:return not arrows
     if len(balls)!=1 or len(arrows)!=1:return False
     p=balls[0]['p'];a=arrows[0];direction=-sp.sign(x)
@@ -267,5 +269,27 @@ def mean_reading_ok(readings,t):
 
 VISUAL_REVIEW['SIM-C1-L006-02'] += ' Current force glyph is shifted.3sceneunits along the restoring line, retaining delta-.2*x_cm and zero omission. Entire nonzero arrow clears opaque massr.25; actual +/-small extensions and assigned+1cm visible in native/fallback, wide/narrow final pictures. No force magnitude or spring law changed.'
 
-READ_EVIDENCE_MANIFEST_SHA256='7cd38f65630bc5ed795f96ec0d815f1f2be029f907efc851687e86d61fbfa997'
+READ_EVIDENCE_MANIFEST_SHA256='13a3c9052508d25164c89db4ebff34295d506208eb6b525d116c358e5db73e92'
 NARROW_EXPECTED=[('SIM-C1-L006-02', -0.5), ('SIM-C1-L006-02', 1), ('SIM-C1-L007-02', 0)]
+
+
+def force_pair_front_clear(elements):
+    R=sp.Rational
+    rows=[e for e in elements if e.get('kind')=='arrow' and e.get('c') in (0x147979,0xb94f48)]
+    # Both forces use one front display line, preserving the translational
+    # force comparison and the common gain; head radius .0812 clears face .45.
+    return all(all(near(v,w) for v,w in zip(e['a'],[0,R(11,20),R(14,25)])) and near(e['b'][1],R(11,20)) and near(e['b'][2],R(14,25)) for e in rows)
+
+READ_LAYOUT_MANIFEST_SHA256='7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8'
+def current_layout_evidence():
+    folder=APP/'editorial/reviews/c1-grouped-visibility-independent-1a35-20261125';file=folder/'manifest.json'
+    if not file.is_file():return {'ok':False,'errors':['Current bounded layout review missing']}
+    try:
+        raw=file.read_bytes();m=json.loads(raw);review=json.loads((folder/'review.json').read_text());projection=json.loads((folder/'label-projection.json').read_text());view=json.loads((folder/'viewport.json').read_text());errors=[]
+        if sha(raw)!=READ_LAYOUT_MANIFEST_SHA256 or m.get('runtimeProfileSha256')!=READ_RUNTIME_PROFILE_SHA256:errors.append('Layout epoch differs from independently read evidence')
+        for name,pin in m.get('files',{}).items():
+            p=(folder/name).resolve()
+            if not p.is_relative_to(folder.resolve()) or not p.is_file() or sha(p.read_bytes())!=pin:errors.append('Layout proof asset differs:'+name)
+        if (review.get('terminalReview')!='PASS_AI_BOUNDED_LAYOUT' or review.get('runtimeProfileSha256')!=READ_RUNTIME_PROFILE_SHA256 or review.get('browser',{}).get('realCases')!=352 or projection.get('actualNativeCases')!=176 or projection.get('candidates')!=[] or view.get('allCompleteGlyphMeshesInsideViewport') is not True or review.get('scientificApproval') is not False or review.get('humanApproval')!='NOT_RUN' or review.get('publicationAction')!='NONE'):errors.append('Incomplete bounded layout review')
+        return {'ok':not errors,'errors':errors,'manifestSha256':sha(raw),'runtimeProfileSha256':READ_RUNTIME_PROFILE_SHA256,'scope':'26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee'}
+    except (OSError,ValueError,TypeError) as exc:return {'ok':False,'errors':[str(exc)]}

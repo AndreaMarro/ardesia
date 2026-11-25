@@ -1,0 +1,45 @@
+test_dynamic_label_covering_vector_tip_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_dynamic_label_covering_vector_tip_is_rejected) ... FAIL
+test_fresh_reachable_geometry_matches_after_review (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_fresh_reachable_geometry_matches_after_review) ... FAIL
+test_same_delta_pair_inside_box_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_same_delta_pair_inside_box_is_rejected) ... FAIL
+test_same_delta_weight_in_table_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_same_delta_weight_in_table_is_rejected) ... FAIL
+
+======================================================================
+FAIL: test_dynamic_label_covering_vector_tip_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_dynamic_label_covering_vector_tip_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_c1_corrected_visibility_guard_1a.py", line 16, in test_dynamic_label_covering_vector_tip_is_rejected
+    key='SIM-C1-L007-01';a=deepcopy(self.a);case=next(c for c in a[key]['cases'] if c['x']==0);ar=next(v for v in case['elements'] if v['kind']=='arrow');case['elements'].append({'kind':'label','p':[ar['b'][0],ar['b'][1]+.26,ar['b'][2]],'text':'a','c':ar['c']});self.assertFalse(f.compare_runtime(a)[key]['ok'])
+                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_fresh_reachable_geometry_matches_after_review (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_fresh_reachable_geometry_matches_after_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_c1_corrected_visibility_guard_1a.py", line 21, in test_fresh_reachable_geometry_matches_after_review
+    for key,row in module.compare_runtime(actual).items():self.assertTrue(row['ok'],(key,row['errors']))
+                                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : ('SIM-C1-L008-03', ['Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry', 'Actual apparatus differs from independent geometry'])
+
+======================================================================
+FAIL: test_same_delta_pair_inside_box_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_same_delta_pair_inside_box_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_c1_corrected_visibility_guard_1a.py", line 14, in test_same_delta_pair_inside_box_is_rejected
+    self.assertFalse(f.compare_runtime(a)[key]['ok'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_same_delta_weight_in_table_is_rejected (test_c1_corrected_visibility_guard_1a.CurrentVisibilityGuards.test_same_delta_weight_in_table_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_c1_corrected_visibility_guard_1a.py", line 18, in test_same_delta_weight_in_table_is_rejected
+    key='SIM-C1-L008-03';a=deepcopy(self.b);case=next(c for c in a[key]['cases'] if c['x']==0);ar=next(v for v in case['elements'] if v['kind']=='arrow');ar['a']=[0,.3,.25];ar['b']=[0,-.12,.25];self.assertFalse(e.geometry(key,0,case['elements']))
+                                                                                                                                                                                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 4 tests in 27.098s
+
+FAILED (failures=4)

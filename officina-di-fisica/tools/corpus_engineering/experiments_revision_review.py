@@ -10,12 +10,12 @@ from .pipeline import digest,sha
 from .review_contract import reviewed_rows
 from .runtime_fingerprint import runtime_fingerprint
 
-REVIEWED_RUNTIME='54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d'
+REVIEWED_RUNTIME='1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba'
 PROOF='experiments-revisions-118-119-140-independent-browser.json'
 PROTOCOL='browser-experiment-revisions-independent.mjs'
 # Filled only after observing the complete terminal replay of the exact protocol.
-READ_PROOF_SHA256='beaab749fa681a3dee74185e8749bc3c7f98d379fd13729cf22a0a18c6873fd7'
-READ_PROTOCOL_SHA256='ab78a9ace3b5de16d7286c08d918e19105a521180c294c6543c6181eb9138de6'
+READ_PROOF_SHA256='4ec768f89b52cfb097295f7fbf090e698bbab049e8c414ddb8330fdf6c363f8f'
+READ_PROTOCOL_SHA256='98af6c5ea04a4a74a476a2ea0874fc87c3196b6e753c708aba8ce6ca1f995ca8'
 ALL_IDS=tuple('SIM-C1-L%03d-%02d'%(lesson,index) for lesson,count in ((1,6),(2,4),(5,6)) for index in range(1,count+1))
 TARGETS={'SIM-C1-L001-06','SIM-C1-L002-04','SIM-C1-L005-05'}
 PACKAGE_FILES={'experiment-projection-revision-118':'38c312f80c4c2051be7b39cf79880fe58a87d0f189ccb40ab306b20d87e5095d',
@@ -40,6 +40,9 @@ def consumer_evidence(app):
     for row in cases:
         if row.get('kind')=='effective_bench':
             mode=row.get('renderMode','')
+            layout=row.get('layout',{}) or {};legend=row.get('legendEvidence',{}) or {}
+            if not layout.get('elements') or not legend.get('openedByKeyboard') or not legend.get('box',{}).get('visible') or legend['box'].get('scroll',1)>legend['box'].get('width',0)+1:errors.append('Actual layout and keyboard-opened names missing')
+            if row.get('id') in ('SIM-C1-L001-06','SIM-C1-L002-01','SIM-C1-L002-02','SIM-C1-L002-03','SIM-C1-L002-04') and any(e.get('text') not in ('x','y') for e in layout.get('elements',[]) if e.get('kind')=='label'):errors.append('Dynamic vector label can cover actual arrow tip')
             if not (('Tavola di misura' in mode) if row.get('noWebGL') else ('3D interattivo' in mode)):errors.append('Requested rendering mode was not actually observed')
         if row.get('kind')=='effective_bench' and row['id'] in TARGETS:
             reading=row.get('reading',{}) or {}
@@ -50,7 +53,10 @@ def consumer_evidence(app):
         or len(p.get('accessChecks',[]))!=3):errors.append('Canonical import/publication/access isolation evidence missing')
     for row in imports.get('imports',[]):
         if row.get('first',{}).get('saved')!=1 or row.get('second',{}).get('saved')!=0 or row.get('second',{}).get('unchanged')!=1:errors.append('Draft import was not idempotent')
-    return {'ok':not errors,'errors':errors,'proofSha256':sha(raw),'protocolSha256':protocol,'runtimeProfileSha256':REVIEWED_RUNTIME,'observedCaseCount':len(cases),
+    from .experiments_forces_revision_verifier import normal_visibility_evidence
+    normal=normal_visibility_evidence()
+    if not normal['ok']:errors.extend(normal['errors'])
+    return {'normalVisibilityEvidence':normal,'ok':not errors,'errors':errors,'proofSha256':sha(raw),'protocolSha256':protocol,'runtimeProfileSha256':REVIEWED_RUNTIME,'observedCaseCount':len(cases),
         'transport':'Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.',
         'scope':'44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration'}
 
@@ -95,6 +101,11 @@ def verify_family(module,sources,package=None,bindings=None):
                 ok=type(got) in (int,float) and math_isfinite(got) and abs(got-expected)<=max(.000001,abs(expected)*.005)
                 checks.append({'claim':'actual numeric display/input roundtrip'+str(index),'ok':ok,'dimension':{},'actual':echo,'independentExact':str(module.exact_value(key,x))})
                 if not ok:errors.append('Numeric display/input roundtrip fails')
+        if hasattr(module,'force_diagram_checks'):
+            extra=module.force_diagram_checks(actual or {}).get(key,[])
+            checks.extend(extra)
+            if key in ('SIM-C1-L005-05','SIM-C1-L005-06') and not extra:errors.append('Fresh full force-glyph comparison missing')
+            if any(not c['ok'] for c in extra):errors.append('Full force-glyph/body/base/action-line conformance failed')
         if key==module.REVISION_ID and draft is None:errors.append(module.SOURCE_ISSUES[key])
         record={'id':key,'sourceSha256':digest(source),'sourceVersion':source.get('version',1),'sourceRef':module.SOURCE_REF,'sourcePath':module.SOURCE_PATH,'sourceFileSha256':module.SOURCE_FILE_SHA256,
           'ok':not errors,'errors':errors,'checks':checks,'dimension':{c['claim']:c.get('dimension',{}) for c in checks},

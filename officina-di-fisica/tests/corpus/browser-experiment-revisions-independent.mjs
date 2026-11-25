@@ -9,7 +9,7 @@ import fs from 'node:fs/promises';
 import {chromium} from 'playwright';
 const root=fileURLToPath(new URL('../../',import.meta.url)).replace(/\/$/,'');
 const python=process.env.PYTHON||'python3';
-const reviewedProfile='54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d';
+const reviewedProfile='1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba';
 const names=['experiment-projection-revision-118','experiment-products-revision-119','experiment-normal-revision-140'];
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const profile=()=>JSON.parse(execFileSync(python,['-m','tools.corpus_engineering.runtime_fingerprint'],{cwd:root,encoding:'utf8'}));
@@ -140,7 +140,12 @@ try{
      reading={authoredBlocks:row.blocks.length,allBlocksReachable:true,progressPreservedAfterInput:true,statuses,layout,...await screenshot(panel,id+'-'+width+(noWebGL?'-fallback':'-native')+'-reading')};
     }else assert.equal(await panel.count(),0);
     await page.locator('[data-phase="2"]').click();await page.locator('.setting-actions [data-reset]').click();
-    report.cases.push({id,kind:'effective_bench',width,noWebGL,renderMode,draftTransport:!!row,savedVersion:row?2:null,modes,independentAnswers:answers,reading,...await screenshot(page.locator('.bench-instrument'),id+'-'+width+(noWebGL?'-fallback':'-native')+'-bench')});
+    const legendDetails=page.locator('details.scene-key');if(!await legendDetails.evaluate(el=>el.open)){await legendDetails.locator('summary').focus();await page.keyboard.press('Enter');}
+    const legendText=await page.locator('[data-legend]').innerText();const legendBox=await page.locator('[data-legend]').evaluate(el=>({width:el.clientWidth,scroll:el.scrollWidth,visible:el.getBoundingClientRect().height>0}));assert.ok(legendBox.visible&&legendBox.scroll<=legendBox.width+1);
+    const physical=row||(await(await context.request.get(base+'/api/item/'+id)).json());
+    const layout=await page.evaluate(async physical=>{const {esperienza}=await import('/js/banchi/voci/esperimento.js');const a=await esperienza(physical),x=Number(document.querySelector('[name=x]').value),elements=a.elements(x,1),canvas=document.querySelector('.bench-stage canvas').getBoundingClientRect(),ctx=document.createElement('canvas').getContext('2d');ctx.font='600 42px Arial';return{x,elements,spec:a.scene.spec,canvas:{width:canvas.width,height:canvas.height},labels:elements.filter(e=>e.kind==='label').map(e=>({...e,textureWidth:Math.ceil(ctx.measureText(e.text).width)+32,textureHeight:68}))};},physical);
+    if(physical.apparatus==='vettori'){assert.ok(layout.labels.every(e=>['x','y'].includes(e.text)));assert.match(legendText,/secondo vettore b/);assert.match(legendText,/a × b/);}
+    report.cases.push({id,kind:'effective_bench',width,noWebGL,renderMode,layout,legendEvidence:{openedByKeyboard:true,text:legendText,box:legendBox},draftTransport:!!row,savedVersion:row?2:null,modes,independentAnswers:answers,reading,...await screenshot(page.locator('.bench-instrument'),id+'-'+width+(noWebGL?'-fallback':'-native')+'-bench')});
    }
    await unmount(id);
   }

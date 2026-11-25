@@ -15,10 +15,10 @@ SOURCE_PATH='officina-di-fisica/content/esperienze-C1.json'
 SOURCE_FILE_SHA256='84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3'
 BATCH='experiments-energy-momentum-corrected-049'
 READ_SOURCE_SHA256={'SIM-C1-L008-01': '2b8d6d010928997afc9f7fd8d8c11280c378b19a5d62ba6a00697c899b1c9d12', 'SIM-C1-L008-02': '9c45efcc810be79778c82fbbc3c64b2d0a4a189091f4f544f7c2618b2f2650e6', 'SIM-C1-L008-03': 'd22fc2f2c71f9e014f8416f7093cf82d2e4ef54e2a9cd75451dba35383eb280f', 'SIM-C1-L009-01': 'eccdf47fee4ba0e66fa1b39662cc1fb43a15668928e9afdef5e08533cc54f91e', 'SIM-C1-L009-02': '30b511ec4f02a6306a50fdcf8154e765d0427287ed06d1213ba321fe11d2afb6', 'SIM-C1-L010-01': 'f6b55612be3759babf84f15ac73ec255231ebfaab03289b66c4d86eb4a4edd2f', 'SIM-C1-L010-02': '3cd2f92e596fc283f3701196e6a1dfa830fbedaa3be927f5529d2d1d5ded7a63', 'SIM-C1-L010-03': '87d69e9d1164d74700948dce8e744e4e8613d0fcb28e3667f268ab5847d83634', 'SIM-C1-L010-04': '89d0958e0230b3d1213481b542974af688857d4825eae01cb66e50094ec2fb96', 'SIM-C1-L010-05': 'e8e0c72bb68751a27756cf288ae133a61450c3d7f832271d6aa6870419d9201a'}
-READ_RUNTIME={'static/js/banchi/voci/esperimento.js': 'cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b', 'static/js/banchi/voci/engines.js': '09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab', 'static/js/banchi/voci/assessment-selection.js': '2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3', 'static/js/banchi/voci/geometria.js': '986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08', 'static/js/banchi/voci/tavola.js': 'cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283', 'static/js/banchi/voci/confronti.js': '83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39', 'static/js/banchi/voci/legende.js': '5de252eb39a3252aa4c8fccc2448410b68fe01f25201206340bef77de22deaec', 'static/js/banchi/voci/orologi.js': '30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6', 'static/js/banchi/voci/modelli/C1.js': 'e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34', 'static/js/banchi/voci/apparati/meccanica.js': '8d9761c74eb1475434379cd5db9b88690d3a036054ec233742706bf7396c67a7', 'static/js/banchi/banco.js': '8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9', 'static/js/banchi/misure.js': '46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d', 'static/js/banchi/grafici.js': 'e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd', 'static/js/banchi/scena.js': '4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095', 'static/js/banchi/etichette.js': '455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3', 'static/js/banchi/aula.js': '44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967', 'static/js/ui.js': '77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27'}
-READ_RUNTIME_PROFILE_SHA256='c177aba9dfdbfd8296addd3583ce487e8f43ed1b52cef784636a2d1cd40f0744'
-READ_BROWSER_PROOF_SHA256='19e3a6588b38e438d5f99a2d43ca6bdc59129688f003dc2a0871c98440d93671'
-READ_BROWSER_PROTOCOL_SHA256='939185a7d461efd71e57e7b2be68d50116f4b9dcc754c13222d9c234204fc522'
+READ_RUNTIME={'static/js/banchi/voci/esperimento.js': 'cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b', 'static/js/banchi/voci/engines.js': '09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab', 'static/js/banchi/voci/assessment-selection.js': '2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3', 'static/js/banchi/voci/geometria.js': '986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08', 'static/js/banchi/voci/tavola.js': 'cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283', 'static/js/banchi/voci/confronti.js': '83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39', 'static/js/banchi/voci/legende.js': 'eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7', 'static/js/banchi/voci/orologi.js': '30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6', 'static/js/banchi/voci/modelli/C1.js': 'e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34', 'static/js/banchi/voci/apparati/meccanica.js': '9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d', 'static/js/banchi/banco.js': '8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9', 'static/js/banchi/misure.js': '46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d', 'static/js/banchi/grafici.js': 'e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd', 'static/js/banchi/scena.js': '4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095', 'static/js/banchi/etichette.js': '455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3', 'static/js/banchi/aula.js': '44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967', 'static/js/ui.js': '77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27'}
+READ_RUNTIME_PROFILE_SHA256='1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba'
+READ_BROWSER_PROOF_SHA256='02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb'
+READ_BROWSER_PROTOCOL_SHA256='7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460'
 SPECS={'SIM-C1-L008-01': (1, 5, 0.5, 1, 4, 3, 'J'), 'SIM-C1-L008-02': (0, 10, 1, 2, 10, 5, 'mJ'), 'SIM-C1-L008-03': (0, 5, 0.25, 5, 2, 2.5, 'J'), 'SIM-C1-L009-01': (0, 3, 0.25, 1, 2, 1.5, 'N*s'), 'SIM-C1-L009-02': (-3, 3, 0.5, -2, 3, 0, 'm/s'), 'SIM-C1-L010-01': (0, 3, 0.25, 0, 2, 1.5, 'm'), 'SIM-C1-L010-02': (0, 90, 5, 30, 90, 45, 'cm'), 'SIM-C1-L010-03': (0, 40, 2, 10, 30, 20, 'N*m'), 'SIM-C1-L010-04': (10, 40, 2, 10, 30, 26, 'N'), 'SIM-C1-L010-05': (2, 6, 0.5, 3, 6, 4, 'N')}
 SI=pint.UnitRegistry(non_int_type=Fraction)
 
@@ -96,7 +96,7 @@ def geometry(key,x,elements,time=None):
         return len(balls)==1 and near(balls[0]['p'][1],R(8,5)+R(21,200)*x) and not any(e.get('kind')=='arrow' for e in elements)
     if key=='SIM-C1-L008-03':
         balls=[e for e in elements if e.get('kind')=='ball' and e.get('c')==O];y=R(3,10)+R(41,100)*x
-        return len(balls)==1 and all(near(a,b) for a,b in zip(balls[0]['p'],[0,y,0])) and arrow(red,[0,-R(21,50),0],[0,y,R(1,4)])
+        return len(balls)==1 and all(near(a,b) for a,b in zip(balls[0]['p'],[0,y,0])) and arrow(red,[0,-R(21,50),0],[0,y+R(16,25),R(1,4)]) and not any(e.get('kind')=='label' for e in elements)
     if key in ('SIM-C1-L009-01','SIM-C1-L009-02','SIM-C1-L010-01'):
         boxes={color:[e for e in elements if e.get('kind')=='box' and e.get('c')==color] for color in (P,G)}
         if key=='SIM-C1-L009-01':return len(boxes[P])==1 and not boxes[G] and near(boxes[P][0]['p'][0],-R(9,5)+x*x/4) and arrow(P,[x/2,0,0])
@@ -227,6 +227,7 @@ def report(sources):
 
 
 def consumer_evidence():
+    from .experiments_force_work_corrected_048_verifier import current_layout_evidence
     file=APP/('editorial/reviews/'+BATCH+'-browser.json');tool=APP/('tests/corpus/browser-'+BATCH+'.mjs')
     if not file.is_file() or not tool.is_file():return {'ok':False,'error':'Current corrected-consumer proof missing'}
     raw=file.read_bytes();data=json.loads(raw);protocol=sha(tool.read_bytes());rows=data.get('cases',[])
@@ -243,7 +244,7 @@ def consumer_evidence():
     ok=ok and len(narrow)==len(expected)*2 and {(r.get('id'),r.get('input'),r.get('forcedFallback')) for r in narrow}=={(key,x,mode) for key,x in expected for mode in (False,True)}
     if BATCH.endswith('049'):
         ok=ok and all(r.get('legendEvidence',{}).get('openedByKeyboard') is True and all(word in r['legendEvidence']['visibleText'].lower() for word in ('perno viola','fulcro','gomito')) for r in narrow)
-    folder=APP/'editorial/reviews/evidence/c1-corrected-048-049-final-20261125';manifest=folder/'manifest.json'
+    folder=APP/'editorial/reviews/evidence/c1-corrected-048-049-1a35-20261125';manifest=folder/'manifest.json'
     if not manifest.is_file():ok=False
     else:
         ok=ok and sha(manifest.read_bytes())==READ_EVIDENCE_MANIFEST_SHA256
@@ -252,7 +253,8 @@ def consumer_evidence():
             name=row.get('name','');file=folder/name
             ok=ok and Path(name).name==name and file.is_file() and sha(file.read_bytes())==row.get('sha256')
     clock=clock_scene_evidence();ok=ok and clock['ok']
-    return {'clockSceneEvidence':clock,'ok':bool(ok),'proofSha256':sha(raw),'protocolSha256':protocol,'observedCaseCount':len(rows),'runtimeProfileSha256':data.get('runtimeProfileSha256'),'meaning':'Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report.'}
+    layout=current_layout_evidence();ok=ok and layout['ok']
+    return {'layoutEvidence':layout,'clockSceneEvidence':clock,'ok':bool(ok),'proofSha256':sha(raw),'protocolSha256':protocol,'observedCaseCount':len(rows),'runtimeProfileSha256':data.get('runtimeProfileSha256'),'meaning':'Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report.'}
 
 
 def corrected_scene_checks(actual):
@@ -281,12 +283,12 @@ VISUAL_REVIEW['SIM-C1-L010-03']='10N downward force delta-.8 remains at horizont
 VISUAL_REVIEW['SIM-C1-L010-04']='Lever arms b/22 and20/22 and common force gain.1sceneunit/N remain unchanged. Full downward glyphs end.18 above their actual marked application points, so12N at10cm no longer penetrates the opaque table. F*b=6*20, pivot reaction balances translation. Both actual native and fallback views show the arrows; narrow final view and HTML legend read.'
 VISUAL_REVIEW['SIM-C1-L010-05']='Same-side rigid forearm handarm1.9 represents30cm, musclearm1.9*b/30. MuscleupT/90 and loaddown10/90 preserve common scale; upward glyph starts.18 above musclemarker, downward one ends.18 above handmarker. The formerly hidden10N load direction is now recognizable at assigned4/6cm in native and fallback final views, including320px. Purplepivot/gomito identity is retained in native HTML details. No total-occlusion or physiological calibration claim.'
 
-READ_EVIDENCE_MANIFEST_SHA256='7cd38f65630bc5ed795f96ec0d815f1f2be029f907efc851687e86d61fbfa997'
+READ_EVIDENCE_MANIFEST_SHA256='13a3c9052508d25164c89db4ebff34295d506208eb6b525d116c358e5db73e92'
 NARROW_EXPECTED=[('SIM-C1-L010-02', 90), ('SIM-C1-L010-03', 0), ('SIM-C1-L010-04', 10), ('SIM-C1-L010-05', 4), ('SIM-C1-L010-05', 6)]
 
 
 def clock_scene_evidence():
-    proof=APP/'editorial/reviews/experiments-collision-clock-049-supplement.json';tool=APP/'tests/corpus/browser-experiments-collision-clock-049-supplement.mjs';folder=APP/'editorial/reviews/evidence/collision-clock-049-final-20261125';manifest=folder/'manifest.json'
+    proof=APP/'editorial/reviews/experiments-collision-clock-049-supplement.json';tool=APP/'tests/corpus/browser-experiments-collision-clock-049-supplement.mjs';folder=APP/'editorial/reviews/evidence/collision-clock-049-1a35-20261125';manifest=folder/'manifest.json'
     if not all(p.is_file() for p in (proof,tool,manifest)):return {'ok':False,'error':'Actual clock-stage supplement missing'}
     data=json.loads(proof.read_text());rows=[r for r in data.get('cases',[]) if r.get('kind')=='collision_clock']
     ok=(sha(proof.read_bytes())==READ_CLOCK_PROOF_SHA256 and sha(tool.read_bytes())==READ_CLOCK_PROTOCOL_SHA256 and data.get('protocolSha256')==READ_CLOCK_PROTOCOL_SHA256 and data.get('terminalStatus')=='PASS' and not data.get('errors') and data.get('scientificApproval') is False and data.get('humanApproval')=='NOT_RUN' and data.get('publicationAction')=='NONE' and data.get('runtimeProfileSha256')==READ_RUNTIME_PROFILE_SHA256 and len(data.get('cases',[]))==24 and len(rows)==16)
@@ -298,6 +300,6 @@ def clock_scene_evidence():
         name=row.get('name','');p=folder/name;ok=ok and Path(name).name==name and p.is_file() and sha(p.read_bytes())==row.get('sha256')
     return {'ok':bool(ok),'proofSha256':sha(proof.read_bytes()),'protocolSha256':sha(tool.read_bytes()),'manifestSha256':sha(manifest.read_bytes()),'observedCaseCount':24,'visibleClockSceneCount':len(rows)}
 
-READ_CLOCK_PROOF_SHA256='2d74ac492480defeabbfdd4deb46f6470c108b070afe25bee8b05d6c1f7fbe8e'
-READ_CLOCK_PROTOCOL_SHA256='cfbce9e4dc5cbc06bfabe0ffd9ac39243c3a6742097a35e7088b81f81c5d9296'
-READ_CLOCK_MANIFEST_SHA256='d41fe256e9637433c3418ca4bf5b12c4c3d3c65b106b1ee91c2e3f3cdf80bc35'
+READ_CLOCK_PROOF_SHA256='3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2'
+READ_CLOCK_PROTOCOL_SHA256='6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b'
+READ_CLOCK_MANIFEST_SHA256='a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4'

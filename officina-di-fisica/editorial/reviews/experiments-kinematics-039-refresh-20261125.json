@@ -9,6 +9,7 @@
     "SIM-C1-L003-05",
     "SIM-C1-L003-06"
   ],
+  "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
   "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
   "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
   "sourceSha256": {
@@ -19,11 +20,9 @@
     "SIM-C1-L003-05": "7ace68920b58c5ec04db0caea277cda7b95574de483c5a072b6976242f9655b6",
     "SIM-C1-L003-06": "6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93"
   },
-  "previousRuntimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
-  "runtimeProfileSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
-  "historicalSnapshot": "editorial/reviews/experiments-kinematics-039-5405-snapshot",
-  "historicalManifestSha256": "d86bb41f53a103616e25e67431a15b87fb5f6858d0b6443564f33732bbde9a07",
-  "reusedPhysicsOracleFunctionsByteIdentical": [
+  "historicalSnapshot": "editorial/reviews/experiments-kinematics-039-b963-snapshot",
+  "historicalManifestSha256": "bee816a061291208af3f36325fe769eb0df7ec1b7479a7badd4bbc3f6d9b5e39",
+  "reusedOracleFunctionsByteIdentical": [
     "exact_value",
     "check",
     "independent_checks",
@@ -35,20 +34,20 @@
     "verify",
     "report"
   ],
+  "strengthenedGeometryWithoutWeakening": false,
   "browserCases": 66,
   "browserExitCode": 0,
   "clockSamples": 249,
-  "browserProofSha256": "d943d2e7fca0deb046f78e4b1bac0870c3431cf7942db9fa195bb1e12865e365",
-  "browserProtocolSha256": "865cc74dc62bbda08a8b1f1927a826e9b7fec97346ed7263306feb2b3b6b8634",
-  "verifierSha256": "90e5706757c843b240f4664439a46e440fc9177b5b144b121d2a18569778a27f",
-  "changedDependencies": {
-    "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
-    "static/js/banchi/voci/legende.js": "89730336965cc57c02580f7f10b185b35575c3dfc8b9bae37ddca8ec20831a93",
-    "static/js/banchi/voci/apparati/meccanica.js": "c87e54ddc90b8cf3b75f2db350274b55cc5d9b0c74e44151190fa37d4ece3f70"
-  },
-  "visualReview": "All66 newly captured frames/graphs read in6contact sheets; secant and cusp units checked independently. Positive on this b963 profile only; later runtime changes require another genuine replay.",
-  "otherScopeFinding": "Group040 has separate negative diagnostics and is NOT approved by this039 report.",
-  "scientificApprovalFromBrowserAlone": false,
+  "controlValues": 100,
+  "tests": 9,
+  "testsExitCode": 0,
+  "testsSeconds": "141.545",
+  "freshSavedCanonicalIdentical": true,
+  "identityContractCheckedFreshAndSaved": true,
+  "browserProofSha256": "ed8fdb40b10bdabd9c3e756c5bad2f8b1feb01df595e885ca1e21d6f1dec19c9",
+  "browserProtocolSha256": "406ca3d925d2bb21c1ec24698a4a3cf65430832c6c54dfce674e43ebb926b1ab",
+  "verifierSha256": "da7c9f1a758be6c41f397ff8a490d4ecc9ef3bbd900f3794c54e952e04626268",
+  "reportSha256": "368389bbc7c0772fbba35e9e4362a915b94d3fb5323ff70ad03f5eaf32870650",
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE"
 }

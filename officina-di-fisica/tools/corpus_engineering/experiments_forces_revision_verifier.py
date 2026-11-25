@@ -93,6 +93,7 @@ def near(actual,expected):
 
 
 def compare_runtime(actual):
+    from .experiments_force_work_corrected_048_verifier import force_pair_front_clear
     G=0x147979;R=0xb94f48;P=0x7350b0;O=0xd49332
     def arrow(elements,color,delta):
         arrows=[e for e in elements if e.get('kind')=='arrow' and e.get('c')==color]
@@ -104,8 +105,8 @@ def compare_runtime(actual):
             boxes=[e for e in elements if e.get('kind')=='box' and e.get('c')==G]
             position=-sp.Rational(119,50)+sp.Rational(119,125)*x
             return len(boxes)==1 and near(boxes[0]['p'][0],position) and arrow(elements,P,[sp.Rational(117,200),0,0])
-        if i==2:return arrow(elements,G,[sp.Rational(19,100)*x,0,0]) and arrow(elements,R,[-sp.Rational(57,50),0,0]) and arrow(elements,P,[0,0,0])
-        if i==3:return arrow(elements,G,[sp.Rational(57,250)*x,0,0]) and arrow(elements,P,[x/6,0,0]) and arrow(elements,R,[0,0,0])
+        if i==2:return force_pair_front_clear(elements) and arrow(elements,G,[sp.Rational(19,100)*x,0,0]) and arrow(elements,R,[-sp.Rational(57,50),0,0]) and arrow(elements,P,[0,0,0])
+        if i==3:return force_pair_front_clear(elements) and arrow(elements,G,[sp.Rational(57,250)*x,0,0]) and arrow(elements,P,[x/6,0,0]) and arrow(elements,R,[0,0,0])
         if i==4:
             arrows=[e for e in elements if e.get('kind')=='arrow'];bodies=[e for e in elements if e.get('kind')=='box']
             if len(bodies)!=2:return False
@@ -113,8 +114,10 @@ def compare_runtime(actual):
             return arrow(elements,P,[-x/9,0,0]) and arrow(elements,G,[x/9,0,0]) and all(near(e['a'][0],-sp.Rational(17,50) if e['c']==P else sp.Rational(17,50)) for e in arrows)
         if i==5:
             th=x*sp.pi/180;n=sp.cos(th)
-            return arrow(elements,R,[0,-sp.Rational(3,4),0]) and arrow(elements,G,[-sp.Rational(3,4)*n*sp.sin(th),sp.Rational(3,4)*n*sp.cos(th),0])
-        return arrow(elements,R,[0,-sp.Rational(21,50),0]) and arrow(elements,G,[0,sp.Rational(21,500)*(10+x),0])
+            return arrow(elements,R,[0,-sp.Rational(3,4),0]) and arrow(elements,G,[-sp.Rational(3,4)*n*sp.sin(th),sp.Rational(3,4)*n*sp.cos(th),0]) and all(c['ok'] for c in incline_force_visibility_checks(x,elements))
+        red=[e for e in elements if e.get('kind')=='arrow' and e.get('c')==R];balls=[e for e in elements if e.get('kind')=='ball']
+        weight_clear=len(red)==1 and len(balls)==1 and all(near(v,w+q) for v,w,q in zip(red[0]['a'],balls[0]['p'],[0,sp.Rational(16,25),sp.Rational(1,4)])) and not any(e.get('kind')=='label' for e in elements)
+        return weight_clear and arrow(elements,R,[0,-sp.Rational(21,50),0]) and arrow(elements,G,[0,sp.Rational(21,500)*(10+x),0])
     summaries={}
     for key,(lo,hi,step,x0,x1,transfer,unit) in SPECS.items():
         item=actual.get(key,{});cases=item.get('cases',[]);errors=[];count=round((hi-lo)/step)+1;i=int(key[-2:]);observations=0;clock=item.get('clock')
@@ -153,6 +156,61 @@ def compare_runtime(actual):
         summaries[key]={'ok':not errors,'numericPhysicsMatches':not errors,'caseCount':len(cases),'plannedCaseCount':count,'clockSampleCount':observations,'errors':errors,'firstAssessmentInput':x1,'transferInput':transfer,'manualityIssue':key in SOURCE_ISSUES,'formatRoundtrip':item.get('formatRoundtrip',[])}
     return summaries
 
+
+def incline_force_visibility_checks(angle,elements):
+    """Independent geometric bounds for the complete canonical incline glyphs.
+    Force magnitudes alone do not prove visibility. The implicit native base has
+    top y=0; shaft/head radii .028/.0812 and head lengthmin(.24,.32L) are read from
+    the unchanged Three renderer, not from a candidate's asserted coordinates.
+    Default-camera occlusion is additionally bound to A's actual complete review.
+    """
+    def fail(message):return [{'claim':'complete incline glyph geometry available','ok':False,'error':message,'dimension':{}}]
+    def vector(v):return isinstance(v,(list,tuple)) and len(v)==3 and all(type(x) in (int,float) and math.isfinite(x) for x in v)
+    def dot(a,b):return sum(x*y for x,y in zip(a,b))
+    def sub(a,b):return [x-y for x,y in zip(a,b)]
+    def cross(a,b):return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
+    def length(v):return math.sqrt(dot(v,v))
+    def projected_bounds(a,j,b,u,direction):
+        radial=math.sqrt(max(0,1-dot(u,direction)**2))
+        lo=min(dot(a,direction)-.028*radial,dot(j,direction)-.0812*radial,dot(b,direction))
+        hi=max(dot(a,direction)+.028*radial,dot(j,direction)+.0812*radial,dot(b,direction))
+        return lo,hi
+    if not isinstance(elements,list):return fail('Element list missing')
+    balls=[e for e in elements if e.get('kind')=='ball' and e.get('c')==0xd49332];arrows=[e for e in elements if e.get('kind')=='arrow'];rods=[e for e in elements if e.get('kind')=='rod']
+    if len(balls)!=1 or len(arrows)!=2 or len(rods)!=8 or len(elements)!=11:return fail('Unexpected/missing opaque body, supports, glyphs or overlay')
+    body=balls[0];point=body.get('p');radius=body.get('r');theta=float(angle)*math.pi/180
+    tangent=[math.cos(theta),math.sin(theta),0];normal=[-math.sin(theta),math.cos(theta),0]
+    if not vector(point) or type(radius) not in (int,float) or not math.isfinite(radius) or radius<=0:return fail('Opaque sphere geometry invalid')
+    if body.get('alpha')!=1:return fail('Reviewed opaque body changed')
+    rails=[e for e in rods if vector(e.get('a')) and vector(e.get('b')) and abs(e['a'][2]-e['b'][2])<1e-10 and length(sub(e['b'],e['a']))>2]
+    if len(rails)!=2:return fail('Fixed straight plane supports missing')
+    rail=rails[0];axis=sub(rail['b'],rail['a']);axis=[v/length(axis) for v in axis]
+    checks=[{'claim':'drawn plane tangent matches independently specified angle','ok':length(sub(axis,tangent))<1e-10,'dimension':{}}]
+    if any(type(e.get('r')) not in (int,float) or not math.isfinite(e['r']) or e['r']<=0 for e in rods):return fail('Plane support radius invalid')
+    support_radius=max(e['r'] for e in rods);plane_origin=rail['a'];bounds={}
+    for glyph in arrows:
+        color=glyph.get('c');a=glyph.get('a');b=glyph.get('b')
+        if color not in (0xb94f48,0x147979) or color in bounds or not vector(a) or not vector(b):return fail('Signed force glyph invalid/duplicated')
+        d=sub(b,a);L=length(d)
+        if L<=.015:return fail('Required nonzero force omitted')
+        u=[v/L for v in d];joint=[b[i]-min(.24,.32*L)*u[i] for i in range(3)]
+        name='normal' if color==0x147979 else 'weight';start=dot(sub(a,point),u);end=dot(sub(b,point),u)
+        same_line=length(cross(sub(a,point),u))<1e-10
+        # Every shaft/cone cross-section is perpendicular to u. For a collinear
+        # force whose two ends lie beyond the same sphere cap, all its vertices
+        # have |axial distance|>r, regardless of cone radial thickness.
+        sphere_clear=same_line and start*end>0 and min(abs(start),abs(end))>radius+1e-10
+        low,high=projected_bounds(a,joint,b,u,[0,1,0]);plane_low,_=projected_bounds(a,joint,b,u,normal);plane_low-=dot(plane_origin,normal)
+        bounds[color]=(low,high)
+        checks += [
+            {'claim':name+' unchanged physical line of action','ok':same_line,'dimension':{}},
+            {'claim':name+' entire shaft and head clear opaque body','ok':sphere_clear,'axialDistancesFromBody':[start,end],'sphereRadius':radius,'dimension':{}},
+            {'claim':name+' entire glyph above native opaque tabletop','ok':low>0,'minimumMeshY':low,'dimension':{}},
+            {'claim':name+' entire glyph clear plane supports','ok':plane_low>support_radius,'minimumPlaneClearance':plane_low,'supportRadius':support_radius,'dimension':{}}]
+    if set(bounds)!={0xb94f48,0x147979}:return fail('Two distinct force colors missing')
+    checks.append({'claim':'opposed force glyphs remain separate for same-unit comparison','ok':bounds[0xb94f48][0]>bounds[0x147979][1],'weightMinimumY':bounds[0xb94f48][0],'normalMaximumY':bounds[0x147979][1],'dimension':{}})
+    return checks
+
 def force_diagram_checks(actual):
     result={'SIM-C1-L005-05':[],'SIM-C1-L005-06':[]}
     for key,x,physical_green in [('SIM-C1-L005-05',0,20),('SIM-C1-L005-06',0,20),('SIM-C1-L005-06',-3,14)]:
@@ -168,6 +226,8 @@ def force_diagram_checks(actual):
             'independentForceValuesN':{'green':physical_green,'red':20},'dimension':{'[mass]':'1','[length]':'1','[time]':'-2'},
             'scope':'requested same-unit comparison with no declared independent/qualitative scales; scalar Newton physics remains correct',
             'mode':'AI_CONSUMER_FORCE_DIAGRAM_CONFORMANCE'})
+    for row in (actual or {}).get('SIM-C1-L005-05',{}).get('cases',[]):
+        result['SIM-C1-L005-05'].extend({**c,'controlAngle':row['x']} for c in incline_force_visibility_checks(row['x'],row['elements']))
     return result
 
 
@@ -207,3 +267,26 @@ def report(sources, package=None, bindings=None):
     from .experiments_revision_review import family_report
     import sys
     return family_report(sys.modules[__name__],sources,package,bindings)
+
+
+READ_NORMAL_VISIBILITY_MANIFEST_SHA256='fc8efd368725d02bcfbcd034f10eb7144d19e38726446227d6ccf5c2bc4f3bf1'
+def normal_visibility_evidence():
+    from .experiments_revision_review import REVIEWED_RUNTIME
+    folder=APP/'editorial/reviews/normal-visibility-independent-1a35-20261125';file=folder/'manifest.json'
+    if not file.is_file():return {'ok':False,'errors':['Normal full-glyph evidence missing']}
+    try:
+        raw=file.read_bytes();m=json.loads(raw);proof=json.loads((folder/'diagnostic.json').read_text());geometry=json.loads((folder/'complete-glyph-geometry.json').read_text());errors=[]
+        if sha(raw)!=READ_NORMAL_VISIBILITY_MANIFEST_SHA256 or m.get('runtimeProfileSha256')!=REVIEWED_RUNTIME:errors.append('Normal visual epoch differs')
+        for name,pin in m.get('files',{}).items():
+            f=(folder/name).resolve()
+            if not f.is_relative_to(folder.resolve()) or not f.is_file() or sha(f.read_bytes())!=pin:errors.append('Normal proof/PNG differs:'+name)
+        expected={(edition,width,fallback,angle) for edition in ('source-v1','draft-140-v2') for width in (320,1280) for fallback in (False,True) for angle in range(0,76,5)}
+        actual=[(r.get('edition'),r.get('width'),r.get('fallback'),r.get('angle')) for r in proof.get('cases',[])]
+        if len(actual)!=128 or set(actual)!=expected or proof.get('diagnosticStatus')!='COMPLETED' or proof.get('errors') or proof.get('runtimeFingerprint',{}).get('sha256')!=REVIEWED_RUNTIME or proof.get('scientificApproval') is not False or proof.get('humanApproval')!='NOT_RUN' or proof.get('publicationAction')!='NONE':errors.append('Incomplete real normal visibility matrix')
+        summary=geometry.get('summary',{})
+        if any(summary.get(k) is not True for k in ('allTipsUnoccluded','allHeadVerticesUnoccluded','allCenterlinesUnoccluded','allEntireGlyphMeshesInsideViewport')) or summary.get('shaftRimOcclusions')!=[] or summary.get('nativeConfigurations')!=32 or summary.get('forceGlyphs')!=64:errors.append('Full force glyph visibility not established')
+        for name,ref in m.get('historicalIndependentAReferences',{}).items():
+            f=APP/'editorial/reviews'/name/'manifest.json'
+            if not f.is_file() or sha(f.read_bytes())!=ref.get('manifestSha256'):errors.append('Independent A reference differs')
+        return {'ok':not errors,'errors':errors,'manifestSha256':sha(raw),'runtimeProfileSha256':REVIEWED_RUNTIME,'observedCaseCount':len(actual),'scope':'New current128 actual cases/64 complete native glyphs; historicalA negative and positive corroboration preserved without retag; originalv1manualFAIL unchanged'}
+    except (OSError,ValueError,TypeError) as exc:return {'ok':False,'errors':[str(exc)]}
