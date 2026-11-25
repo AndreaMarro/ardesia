@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-hydraulic-parallel-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11121,
+      "title": "Due vie aperte alla stessa pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 1,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Con R₁=R₂=2 kPa·s/L, quanto vale R_eq in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ramo riceve lo stesso salto di pressione e conduce la stessa portata. La portata esterna è doppia di quella di un ramo, perciò lo stesso salto diviso per la portata totale dà metà della resistenza singola: un kPa·s/L. In formula, il prodotto quattro diviso la somma quattro dà uno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2ec97254a3278224b06528887b4884c4ff755012d08101586c018864bb09683f",
+          "text": "Due rami fra gli stessi nodi, con blocchi simbolici senza scala geometrica. Pressioni assolute 106 e 100 kPa, quindi salto comune 6 kPa. R₁=R₂=2 kPa·s/L dà Q₁=Q₂=3 L/s e Q_T=6 L/s; scala delle frecce 20 px/(L/s), lunghezze 60,60,120 px."
+        },
+        {
+          "type": "formula",
+          "text": "Q_T=\\Delta p\\left(\\frac1{R_1}+\\frac1{R_2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=\\frac{R_1R_2}{R_1+R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro sommerebbe resistenze in serie; due è la resistenza di un solo ramo. Un mezzo è il valore della conduttanza di un ramo nelle unità reciproche, non la resistenza equivalente. Con entrambi i rami aperti, R_eq deve essere minore di ciascuna resistenza positiva."
+        }
+      ],
+      "hints": [
+        "Somma le due portate a caduta comune, poi dividi Δp per il totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro sommerebbe resistenze in serie; due è la resistenza di un solo ramo. Un mezzo è il valore della conduttanza di un ramo nelle unità reciproche, non la resistenza equivalente. Con entrambi i rami aperti, R_eq deve essere minore di ciascuna resistenza positiva.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11122,
+      "title": "La dimensione della resistenza vista dalla pompa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 1,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Quale unità proposta può esprimere R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa·s/L",
+          "kPa",
+          "L/s",
+          "Pa·s",
+          "L/(kPa·s)"
+        ],
+        "value": "kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La topologia cambia il valore equivalente, non la dimensione fisica della resistenza. Da Δp/Q_T si divide una pressione per un volume al secondo: si ottiene kPa·s/L, con dimensione ML⁻⁴T⁻¹."
+        },
+        {
+          "type": "formula",
+          "text": "[R_{\\rm eq}]=\\frac{[p]}{[Q_T]}"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=\\frac{M}{L^4T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{kPa}/(\\mathrm{L/s})=\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "kPa misura pressione e L/s misura portata. Pa·s è viscosità dinamica; L/(kPa·s) è conduttanza, cioè il reciproco della grandezza richiesta. I prefissi possono cambiare i numeri senza cambiare queste dimensioni."
+        }
+      ],
+      "hints": [
+        "Parti dalla definizione R_eq=Δp/Q_T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kPa misura pressione e L/s misura portata. Pa·s è viscosità dinamica; L/(kPa·s) è conduttanza, cioè il reciproco della grandezza richiesta. I prefissi possono cambiare i numeri senza cambiare queste dimensioni.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11123,
+      "title": "Somma delle conduttanze, non delle resistenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 1,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Quale formula esprime R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_eq = R₁ R₂ / (R₁ + R₂)",
+          "R_eq = R₁ + R₂",
+          "R_eq = R₁ − R₂",
+          "R_eq = (R₁ + R₂) / 2",
+          "R_eq = 1/R₁ + 1/R₂"
+        ],
+        "value": "R_eq = R₁ R₂ / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Al nodo si sommano Q₁=Δp/R₁ e Q₂=Δp/R₂. Raccogliere Δp mostra che la conduttanza equivalente è la somma dei reciproci delle resistenze. Portando a denominatore comune e invertendo si ottiene prodotto su somma."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2ec97254a3278224b06528887b4884c4ff755012d08101586c018864bb09683f",
+          "text": "Con lo stesso salto di 6 kPa, A ha R₁=R₂=2 e R_eq=1 kPa·s/L; B ha R₁=3,R₂=6 e R_eq=2. Le portate A sono 3+3=6 L/s, B sono 2+1=3 L/s. Barre a 40 px/(L/s), totali 240 e 120 px; scale di portata, non di resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_{\\rm eq}}=\\frac1{R_1}+\\frac1{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_{\\rm eq}}=\\frac{R_1+R_2}{R_1R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=\\frac{R_1R_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "La somma diretta descrive la serie; la differenza può annullarsi con due rami dissipativi. La semisomma non tiene conto dell’aumento della portata totale. La somma dei reciproci è corretta come conduttanza, ma va invertita per rispondere alla domanda sulla resistenza."
+        }
+      ],
+      "hints": [
+        "Applica la conservazione della portata al nodo comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma diretta descrive la serie; la differenza può annullarsi con due rami dissipativi. La semisomma non tiene conto dell’aumento della portata totale. La somma dei reciproci è corretta come conduttanza, ma va invertita per rispondere alla domanda sulla resistenza.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11124,
+      "title": "Un ramo più resistente, l’altro invariato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 1,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. A ha R₁=R₂=2 kPa·s/L; B ha R₁=3 e R₂=2 kPa·s/L. Come cambia R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 6/5 kPa·s/L",
+          "Da 1 a 3/2 kPa·s/L",
+          "Resta 1 kPa·s/L",
+          "Da 1 a 5 kPa·s/L",
+          "Da 1 a 2/3 kPa·s/L"
+        ],
+        "value": "Da 1 a 6/5 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha equivalente quattro diviso quattro, uno. B ha prodotto sei e somma cinque, quindi sei quinti kPa·s/L. Aumentare R₁ riduce la sua conduttanza e aumenta la resistenza esterna, ma resta aperta la via con R₂=2."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac65\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi scalerebbe direttamente l’equivalente come il solo R₁. Cinque è la somma serie; uno ignora la modifica e due terzi darebbe una diminuzione. Il risultato sei quinti resta minore di due e di tre, come deve accadere nel parallelo."
+        }
+      ],
+      "hints": [
+        "Ricalcola sia il prodotto sia la somma quando cambia R₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre mezzi scalerebbe direttamente l’equivalente come il solo R₁. Cinque è la somma serie; uno ignora la modifica e due terzi darebbe una diminuzione. Il risultato sei quinti resta minore di due e di tre, come deve accadere nel parallelo.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11125,
+      "title": "Ricostruire il primo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Si misura R_eq=1 kPa·s/L e si conosce R₂=2 kPa·s/L. Quanto vale R₁ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo 1=2R₁/(R₁+2), usando in questo passaggio i valori numerici in kPa·s/L. Moltiplicare per il denominatore dà R₁+2=2R₁, quindi R₁=2. In forma dimensionale l’inversa è R_eq R₂/(R₂−R_eq); il denominatore positivo richiede R_eq<R₂."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=\\frac{R_{\\rm eq}R_2}{R_2-R_{\\rm eq}}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=\\frac{1\\cdot2}{2-1}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Tre userebbe una somma, uno sottrarrebbe come in serie. Cambiare il segno del denominatore produrrebbe una resistenza negativa, incompatibile con il ramo passivo. Il controllo 2·2/(2+2)=1 ricostruisce la misura."
+        }
+      ],
+      "hints": [
+        "Isola il reciproco di R₁, mantenendo positiva la differenza R₂−R_eq.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre userebbe una somma, uno sottrarrebbe come in serie. Cambiare il segno del denominatore produrrebbe una resistenza negativa, incompatibile con il ramo passivo. Il controllo 2·2/(2+2)=1 ricostruisce la misura.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11126,
+      "title": "Chiusura di un ramo a salto imposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami lineari aperti, di resistenze positive R₁ e R₂, collegano gli stessi nodi di una rete orizzontale stazionaria incomprimibile. Una pompa mantiene la stessa differenza di pressione Δp>0 fra i nodi anche dopo una modifica; non impone la portata totale. Si chiude completamente il secondo ramo, lasciando invariato R₁. Confrontando i due stati stazionari, che cosa accade?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₁ resta uguale; Q_T diminuisce",
+          "Q₁ aumenta; Q_T resta uguale",
+          "Q₁ e Q_T restano entrambe uguali",
+          "Q₁ diminuisce; Q_T aumenta",
+          "Q₁ diventa zero; Q_T resta uguale"
+        ],
+        "value": "Q₁ resta uguale; Q_T diminuisce"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima della chiusura Q₁=Δp/R₁ e Q₂=Δp/R₂ sono entrambe positive. Dopo, il primo quoziente è identico perché pressione e R₁ non cambiano; nel secondo ramo chiuso la portata è zero. Il totale perde il contributo Q₂ e diminuisce. Non si conserva un totale fissato dalla pompa: qui è fissato il salto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2ec97254a3278224b06528887b4884c4ff755012d08101586c018864bb09683f",
+          "text": "Esempio della chiusura del secondo ramo partendo da R₁=R₂=2 kPa·s/L e Δp=6 kPa mantenuto. Q₁ resta 3 L/s, Q₂ passa da 3 a 0 e il totale da 6 a 3 L/s. Barre a 40 px/(L/s), primo contributo identico 120 px prima e dopo. Il ramo chiuso non è un cortocircuito."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,B}=Q_{1,A}"
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,A}=\\Delta p/R_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{T,B}=Q_{1,A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{T,A}=Q_{1,A}+Q_{2,A}"
+        },
+        {
+          "type": "text",
+          "text": "Un aumento di Q₁ per compensare il ramo chiuso richiederebbe una diversa condizione della pompa. Il totale non può restare uguale se scompare una portata positiva senza aumenti nell’altro ramo. Chiudere il secondo ramo non interrompe il primo: la chiusura è il limite di resistenza infinita, non resistenza nulla."
+        }
+      ],
+      "hints": [
+        "Chiediti quali dati del quoziente Δp/R₁ sono stati modificati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un aumento di Q₁ per compensare il ramo chiuso richiederebbe una diversa condizione della pompa. Il totale non può restare uguale se scompare una portata positiva senza aumenti nell’altro ramo. Chiudere il secondo ramo non interrompe il primo: la chiusura è il limite di resistenza infinita, non resistenza nulla.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11127,
+      "title": "Il secondo ramo triplica la sua resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. A ha R₁=R₂=2 kPa·s/L; B ha R₁=2 e R₂=6 kPa·s/L. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "1",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha equivalente uno. B ha prodotto dodici diviso somma otto, cioè tre mezzi kPa·s/L. Il rapporto è quindi tre mezzi. La triplicazione di R₂ non triplica il totale perché il primo ramo rimane disponibile."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac{12}{8}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi è il reciproco; tre copia il fattore di R₂. Uno ignora la modifica e due sarebbe il limite del totale quando il secondo ramo è completamente chiuso, non quando ha ancora resistenza finita sei. La nuova equivalente è infatti strettamente minore di R₁=2."
+        }
+      ],
+      "hints": [
+        "Calcola il prodotto dodici e la somma otto prima del rapporto fra stati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi è il reciproco; tre copia il fattore di R₂. Uno ignora la modifica e due sarebbe il limite del totale quando il secondo ramo è completamente chiuso, non quando ha ancora resistenza finita sei. La nuova equivalente è infatti strettamente minore di R₁=2.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11128,
+      "title": "Il ramo singolo sovrastima il parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Con R₁=R₂=2 kPa·s/L una proposta assegna R_eq=2 kPa·s/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 kPa·s/L",
+          "−1 kPa·s/L",
+          "2 kPa·s/L",
+          "0 kPa·s/L",
+          "1/2 kPa·s/L"
+        ],
+        "value": "1 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due rami uguali hanno equivalente uno. La proposta due considera soltanto un ramo e supera il risultato corretto di un kPa·s/L. Lo scarto richiesto è positivo perché si sottrae il corretto dal proposto."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno inverte la sottrazione, due ripete la proposta e zero la accetta senza includere la seconda via. Un mezzo non è la differenza fra i due valori. A salto fissato, la proposta sottostimerebbe di un fattore due la portata totale."
+        }
+      ],
+      "hints": [
+        "Due rami identici dimezzano la resistenza, poi forma lo scarto con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno inverte la sottrazione, due ripete la proposta e zero la accetta senza includere la seconda via. Un mezzo non è la differenza fra i due valori. A salto fissato, la proposta sottostimerebbe di un fattore due la portata totale.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11129,
+      "title": "L’inversa positiva del parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Sono noti R_eq e R₂, con 0<R_eq<R₂. Quale formula isola R₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R_eq R₂ / (R₂ − R_eq)",
+          "R₁ = R_eq R₂ / (R_eq − R₂)",
+          "R₁ = R_eq + R₂",
+          "R₁ = R_eq − R₂",
+          "R₁ = (R₂ − R_eq) / (R_eq R₂)"
+        ],
+        "value": "R₁ = R_eq R₂ / (R₂ − R_eq)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare la relazione prodotto su somma per R₁+R₂ dà R_eq R₁+R_eq R₂=R₁R₂. Portare i termini contenenti R₁ dallo stesso lato lascia R_eq R₂=R₁(R₂−R_eq); dividiamo per il fattore positivo. Il risultato ha dimensione di resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}(R_1+R_2)=R_1R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}R_2=R_1(R_2-R_{\\rm eq})"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=\\frac{R_{\\rm eq}R_2}{R_2-R_{\\rm eq}}"
+        },
+        {
+          "type": "text",
+          "text": "Invertire l’ordine nel denominatore dà un valore negativo. La somma e la differenza sono inverse della topologia sbagliata; l’ultima opzione è il reciproco della resistenza richiesta. Al bordo R_eq=R₂ servirebbe chiudere il primo ramo, non una resistenza finita."
+        }
+      ],
+      "hints": [
+        "Raccogli R₁ dopo aver eliminato il denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Invertire l’ordine nel denominatore dà un valore negativo. La somma e la differenza sono inverse della topologia sbagliata; l’ultima opzione è il reciproco della resistenza richiesta. Al bordo R_eq=R₂ servirebbe chiudere il primo ramo, non una resistenza finita.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11130,
+      "title": "Scalare due rami in modo diverso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. B ha R₁,B=κ₁R₁,A e R₂,B=κ₂R₂,A, con fattori positivi. Nelle scelte R₁,R₂ indicano A. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ (R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)",
+          "κ₁ κ₂",
+          "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)",
+          "(κ₁ R₁ + κ₂ R₂) / [κ₁ κ₂ (R₁ + R₂)]",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂ (R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto al numeratore dell’equivalente acquista κ₁κ₂, mentre la somma al denominatore diventa κ₁R₁+κ₂R₂. Dividere la nuova equivalente per l’iniziale cancella R₁R₂ ma conserva il rapporto fra le due somme. Non basta moltiplicare i fattori."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=\\kappa_1R_1+\\kappa_2R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac{\\kappa_1\\kappa_2R_1R_2}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_{{\\rm eq},B}}{R_{{\\rm eq},A}}=\\frac{\\kappa_1\\kappa_2S_A}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "S_A e S_B sono somme di resistenze definite per abbreviare i passaggi. Il solo prodotto trascura il denominatore, la terza scelta descrive la serie e la quarta è il reciproco del rapporto corretto. La somma dei fattori darebbe due per stati identici. Con κ₁=κ₂=κ il rapporto corretto torna κ."
+        }
+      ],
+      "hints": [
+        "Scrivi nuova e vecchia equivalente, poi cancella i fattori comuni nel loro quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "S_A e S_B sono somme di resistenze definite per abbreviare i passaggi. Il solo prodotto trascura il denominatore, la terza scelta descrive la serie e la quarta è il reciproco del rapporto corretto. La somma dei fattori darebbe due per stati identici. Con κ₁=κ₂=κ il rapporto corretto torna κ.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11131,
+      "title": "Due modifiche contemporanee",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. A ha R₁=R₂=2 kPa·s/L; B ha R₁=3 e R₂=6 kPa·s/L. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà quattro su quattro, uno. B dà diciotto su nove, due kPa·s/L; il rapporto è due. Pur essendo entrambi i rami più resistenti, l’equivalente B resta sotto il più piccolo dei due, tre."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Nove è la somma delle resistenze B, diciotto il loro prodotto; nessuno dei due è la loro equivalente. Un mezzo è il rapporto inverso e tre è soltanto il fattore di R₂. In generale i fattori separati devono essere inseriti nella formula completa."
+        }
+      ],
+      "hints": [
+        "Riduci diciotto noni prima di confrontare con la prova A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è la somma delle resistenze B, diciotto il loro prodotto; nessuno dei due è la loro equivalente. Un mezzo è il rapporto inverso e tre è soltanto il fattore di R₂. In generale i fattori separati devono essere inseriti nella formula completa.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11132,
+      "title": "Media delle letture e modello non lineare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 2,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. A ha R₁=R₂=2 kPa·s/L; B ha R₁=3 e R₂=6 kPa·s/L. Qual è la media aritmetica delle due R_eq, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 kPa·s/L",
+          "20/13 kPa·s/L",
+          "3 kPa·s/L",
+          "3/4 kPa·s/L",
+          "2 kPa·s/L"
+        ],
+        "value": "3/2 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due equivalenti sono uno e due: la loro semisomma è tre mezzi kPa·s/L. Gli ingressi medi sono R₁=5/2 e R₂=4; il parallelo di questi valori dà venti tredicesimi, che è una domanda diversa. La differenza 20/13−3/2 è un ventiseiesimo, quindi qui non coincidono."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R_{\\rm eq}=\\frac{1+2}{2}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R_{\\rm eq}=\\frac32\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}(\\overline R_1,\\overline R_2)=\\frac{20}{13}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Venti tredicesimi applica il modello agli ingressi medi; tre non divide per due, tre quarti divide una volta di troppo e due conserva solo la seconda lettura. Il peso statistico uguale non descrive tempi di funzionamento diversi."
+        }
+      ],
+      "hints": [
+        "Calcola prima le due equivalenti, poi fai la media dei risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti tredicesimi applica il modello agli ingressi medi; tre non divide per due, tre quarti divide una volta di troppo e due conserva solo la seconda lettura. Il peso statistico uguale non descrive tempi di funzionamento diversi.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11133,
+      "title": "Un bersaglio che determina il secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 3,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. A ha R₁,A=R₂,A=2 kPa·s/L. B deve avere R₁,B=3 kPa·s/L e R_eq,B=2R_eq,A. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha equivalente uno, quindi il bersaglio B è due kPa·s/L, inferiore al primo ramo B di tre. L’inversa rispetto al secondo ramo dà R₂,B=(2·3)/(3−2)=6 kPa·s/L. Dividendo per i due iniziali si trova tre."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=\\frac{2\\cdot3}{3-2}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}/R_{2,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Sei è il valore numerico di R₂,B, non il rapporto; un terzo lo inverte. Raddoppiare soltanto R₂ non basta per il target con R₁,B fissata. Il dominio richiede 0<R_eq,B<R₁,B: senza questa disuguaglianza l’inversa non darebbe un ramo finito positivo."
+        }
+      ],
+      "hints": [
+        "Trova il totale target e usa l’inversa scambiando i ruoli dei due rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è il valore numerico di R₂,B, non il rapporto; un terzo lo inverte. Raddoppiare soltanto R₂ non basta per il target con R₁,B fissata. Il dominio richiede 0<R_eq,B<R₁,B: senza questa disuguaglianza l’inversa non darebbe un ramo finito positivo.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11134,
+      "title": "Dalla lettura continua alla resistenza del ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 3,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Un display continuo adimensionale segue S=qR_eq, con q>0 e senza offset. A ha R₁=R₂=2 kPa·s/L e S=3. B ha R₂=6 kPa·s/L e S=6. Quanto vale R₁,B in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha equivalente uno, perciò q=3 L/(kPa·s). La lettura sei corrisponde a equivalente due kPa·s/L. L’inversa R₁=R_eq R₂/(R₂−R_eq) dà dodici su quattro, tre kPa·s/L. Il totale due è sotto il ramo noto sei, quindi il dominio positivo è rispettato."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=\\frac{2\\cdot6}{6-2}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è una lettura adimensionale, non una resistenza da porre direttamente nell’inversa. Due è la resistenza equivalente, quattro sottrae come in serie e dodici omette il denominatore. Il controllo 3·[3·6/(3+6)]=6 ricostruisce S_B."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno del display prima dell’inversione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è una lettura adimensionale, non una resistenza da porre direttamente nell’inversa. Due è la resistenza equivalente, quattro sottrae come in serie e dodici omette il denominatore. Il controllo 3·[3·6/(3+6)]=6 ricostruisce S_B.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11135,
+      "title": "Guadagno, offset e nuova resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 3,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Il display continuo adimensionale segue S=qR_eq+b, con q>0 e b costanti. A: R₁=R₂=2 kPa·s/L, S=3. B: R₁=3,R₂=6 kPa·s/L, S=5. C: R₂=2 kPa·s/L, S=17/5. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 kPa·s/L",
+          "4 kPa·s/L",
+          "2 kPa·s/L",
+          "6 kPa·s/L",
+          "3/2 kPa·s/L"
+        ],
+        "value": "3 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti di riferimento uno e due danno q=(5−3)/(2−1)=2 L/(kPa·s), poi b=1. Correggendo la lettura C si ha R_eq,C=(17/5−1)/2=6/5 kPa·s/L. L’inversa col ramo noto due dà (12/5)/(4/5)=3 kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},C}=\\frac65\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=\\frac{12/5}{4/5}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con R₂=2, valori R₁=4,2,6,3/2 darebbero equivalenti 4/3,1,3/2,6/7 e letture 11/3,3,4,19/7. Solo R₁=3 ricostruisce 17/5. Non si sottrae l’offset adimensionale da una resistenza: prima si corregge il display, poi si applica la legge del parallelo."
+        }
+      ],
+      "hints": [
+        "Taratura, equivalente fisica e inversa sono tre passaggi in questo ordine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con R₂=2, valori R₁=4,2,6,3/2 darebbero equivalenti 4/3,1,3/2,6/7 e letture 11/3,3,4,19/7. Solo R₁=3 ricostruisce 17/5. Non si sottrae l’offset adimensionale da una resistenza: prima si corregge il display, poi si applica la legge del parallelo.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-parallel-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in parallelo",
+      "order": 11136,
+      "title": "Rami uguali e identificabilità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-parallel",
+      "difficulty": 3,
+      "prompt": "Due rami resistivi idraulici lineari collegano gli stessi nodi di ingresso e uscita di una rete orizzontale. Il liquido è incomprimibile, il regime stazionario e non ci sono fughe o accumuli ai nodi. Ogni ramo aperto ha resistenza positiva R₁ o R₂ e soddisfa Q_i=Δp/R_i; Δp>0 è la caduta comune orientata verso l’uscita. Le prese hanno uguale quota e uguali contributi cinetici, con giunzioni ideali senza perdite aggiuntive o macchine fra i nodi. La portata esterna Q_T=Q₁+Q₂ definisce R_eq=Δp/Q_T. Le resistenze sono costanti entro ciascuna prova, ma possono cambiare fra apparati. Un vincolo costruttivo impone R₁=R₂. Si misura R_eq=1 kPa·s/L. Quanto vale R₂ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo R il valore comune positivo dei due rami. Il prodotto su somma diventa R²/(2R)=R/2. Per ottenere equivalente uno serve R=2 kPa·s/L. Il vincolo di uguaglianza, insieme alla misura, determina entrambi i rami: R₁=R₂=2."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_2"
+        },
+        {
+          "type": "formula",
+          "text": "R_2=R"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=R/2"
+        },
+        {
+          "type": "formula",
+          "text": " R=2R_{\\rm eq}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Uno confonderebbe il ramo con l’equivalente; un mezzo la dimezzerebbe ancora. Quattro darebbe equivalente due e zero viola il dominio positivo. Senza il vincolo R₁=R₂ una sola misura non separerebbe due resistenze incognite; con esso la soluzione positiva è unica. Non si tratta di un conteggio intero di rami da ricostruire."
+        }
+      ],
+      "hints": [
+        "Sostituisci lo stesso R nei due rami e semplifica soltanto perché R>0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno confonderebbe il ramo con l’equivalente; un mezzo la dimezzerebbe ancora. Quattro darebbe equivalente due e zero viola il dominio positivo. Senza il vincolo R₁=R₂ una sola misura non separerebbe due resistenze incognite; con esso la soluzione positiva è unica. Non si tratta di un conteggio intero di rami da ricostruire.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Salto comune e somma delle portate",
+        "Inverse, dominio positivo e condizioni della pompa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2ec97254a3278224b06528887b4884c4ff755012d08101586c018864bb09683f",
+      "name": "hydraulic-parallel-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTgwMCIgdmlld0JveD0iMCAwIDY0MCAxODAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkR1ZSByYW1pIHJlc2lzdGl2aSBpbiBwYXJhbGxlbG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TYWx0byBkaSBwcmVzc2lvbmUgY29tdW5lLCBwb3J0YXRlIHNvbW1hdGUgZSBjaGl1c3VyYSBkZWwgc2Vjb25kbyByYW1vIGEgc2FsdG8gaW1wb3N0by4gTGUgYmFycmUgdXNhbm8gc2NhbGUgZGkgcG9ydGF0YSBlc3BsaWNpdGUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY2NGE3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE4MDAiIGZpbGw9IiNmZmZkZjYiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxOTJmM2QiIGZvbnQtc2l6ZT0iMjIiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjI4Ij4xLiBTdGVzc2kgbm9kaSwgc3Rlc3NvIHNhbHRvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPlByZXNzaW9uaSBhc3NvbHV0ZTogMTA2IGUgMTAwIGtQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzMCI+zpRwID0gNiBrUGEgaW4gZW50cmFtYmkgaSByYW1pPC90ZXh0Pgo8cGF0aCBkPSJNMTYwIDIzMEgyNDVNMzQ1IDIzMEg0NzBNMTYwIDQxMEgyNDVNMzQ1IDQxMEg0NzBNMTYwIDIzMFY0MTBNNDcwIDIzMFY0MTBNMzUgMzIwSDE2ME00NzAgMzIwSDYwNSIgc3Ryb2tlPSIjODc5NjljIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iMjQ1IiB5PSIyMDUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNkY2VlZjgiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjI0NSIgeT0iMzg1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjZjNkZmI0IiBzdHJva2U9IiM5MjYxMWMiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIyNDUiIHk9IjE4NSI+UuKCgSA9IDI8L3RleHQ+PHRleHQgeD0iMjQ1IiB5PSI0NzAiPlLigoIgPSAyPC90ZXh0Pgo8cGF0aCBkPSJNMTc1IDIzMEgyMzUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMTc1IDQxMEgyMzUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNMzUgMzIwSDE1NSIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik00ODAgMzIwSDYwMCIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjM2MCIgeT0iMjE1Ij5R4oKBID0gMyBML3M8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSI0NTUiPlHigoIgPSAzIEwvczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjUzNSI+UV9UID0gMyArIDMgPSA2IEwvczsgUl9lcSA9IDEga1BhwrdzL0w8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1ODAiPlIgaW4ga1BhwrdzL0w7IGJsb2NjaGkgc2ltYm9saWNpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjIwIj5GcmVjY2U6IDIwIHB4LyhML3MpOyA2MCArIDYwID0gMTIwIHB4PC90ZXh0Pgo8cGF0aCBkPSJNMzUgNjYwSDYwNSIgc3Ryb2tlPSIjYzlkMWQ0Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI3MTAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjI4Ij4yLiBDYW1iaWFubyBlbnRyYW1iaSBpIHJhbWk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NTUiPlN0ZXNzbyDOlHAgPSA2IGtQYSBuZWxsZSBkdWUgcHJvdmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4MDAiPkE6IFLigoEgPSAyLCBS4oKCID0gMiBrUGHCt3MvTDwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI4MzUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjY0YTciLz48cmVjdCB4PSIyMjAiIHk9IjgzNSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2E4MzgzMiIvPgo8dGV4dCB4PSIxMDAiIHk9IjkwMCI+MyArIDMgPSA2IEwvczsgUl9lcSA9IDEga1BhwrdzL0w8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NjAiPkI6IFLigoEgPSAzLCBS4oKCID0gNiBrUGHCt3MvTDwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI5OTUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE2NjRhNyIvPjxyZWN0IHg9IjE4MCIgeT0iOTk1IiB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIGZpbGw9IiNhODM4MzIiLz4KPHRleHQgeD0iMTAwIiB5PSIxMDYwIj4yICsgMSA9IDMgTC9zOyBSX2VxID0gMiBrUGHCt3MvTDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExMjAiPkJhcnJlOiA0MCBweC8oTC9zKSwgdG90YWxpIDI0MCBlIDEyMCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExNjUiPkJsdTogcmFtbyAxOyByb3NzbzogcmFtbyAyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTIxMCI+TGEgY29uZHV0dGFuemEgdG90YWxlIGRpbWludWlzY2U7PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTI1MCI+bGEgcmVzaXN0ZW56YSBlcXVpdmFsZW50ZSBhdW1lbnRhLjwvdGV4dD4KPHBhdGggZD0iTTM1IDEyOTBINjA1IiBzdHJva2U9IiNjOWQxZDQiLz4KPHRleHQgeD0iMzUiIHk9IjEzNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjI4Ij4zLiBTaSBjaGl1ZGUgaWwgc2Vjb25kbyByYW1vPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM4NSI+RGEgQSwgbWFudGVuZW5kbyDOlHAgPSA2IGtQYSBlIFLigoEgPSAyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQzMCI+UHJpbWE6IFHigoEgPSAzIGUgUeKCgiA9IDMgTC9zPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjE0NjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjY0YTciLz48cmVjdCB4PSIyMjAiIHk9IjE0NjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiNhODM4MzIiLz4KPHRleHQgeD0iMzUiIHk9IjE1NDAiPkRvcG86IFHigoEgPSAzIGUgUeKCgiA9IDAgTC9zPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjE1NzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjY0YTciLz4KPHRleHQgeD0iMzUiIHk9IjE2NDAiPlN0ZXNzYSBzY2FsYTogNDAgcHgvKEwvcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjg1Ij5JbCByYW1vIDEgY29uc2VydmEgbGEgYmFycmEgZGEgMTIwIHB4LjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3MzAiPlFfVCBwYXNzYSBkYSA2IGEgMyBML3M6IG5vbiDDqCBpbXBvc3RvLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3NzUiPlJhbW8gY2hpdXNvOiBR4oKCID0gMCwgbm9uIFLigoIgPSAwLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
