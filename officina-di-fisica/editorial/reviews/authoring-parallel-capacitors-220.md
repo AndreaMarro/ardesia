@@ -20,7 +20,7 @@ Distrattori: 6/5 μF usa la legge della serie. Sei copia il prodotto dei numeri 
 
 Hint: Somma le cariche corrispondenti alla stessa tensione.
 
-Fonte canonica SHA256 4165a3af87c1c08f79fbb50751f8951fb772ce2ce3324b118304102c81fa1cc6. Candidato SHA256 aa4a778bf36c2ea1dfc9413ab48ee155c597b3d0c6ce7013e0812013a201e011. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 4165a3af87c1c08f79fbb50751f8951fb772ce2ce3324b118304102c81fa1cc6. Candidato SHA256 7449df8c63bb59c032af6d8481c591d818a9138075c4f82f43f9f2b4bd90574b. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-02 — La capacità non è una carica
 
@@ -90,7 +90,7 @@ Distrattori: Quattro V somma i due moduli e divide 12 μC per 3 μF, ignorando l
 
 Hint: Assegna il segno alle cariche delle armature che formeranno lo stesso nodo.
 
-Fonte canonica SHA256 80944fb512f5b542b2f9417342ae73193299658e5d5a9a014095a82e09fae8b3. Candidato SHA256 c49c779803e7c2967ce2443275092888042f88066422c64a9fecfb16889f6a75. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 80944fb512f5b542b2f9417342ae73193299658e5d5a9a014095a82e09fae8b3. Candidato SHA256 76a6029ca3f52f9981012b918772023f1693a5ae593d9a07996435584779c707. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-07 — Il rapporto delle somme
 
@@ -174,7 +174,7 @@ Distrattori: Tredici non divide per due; 3/2 è metà della differenza. Cinque e
 
 Hint: Media le due somme e riconosci la linearità.
 
-Fonte canonica SHA256 1e24e7fc20e42f1f8d0908b89ca02473558ff9509c2da1357a79cf753e0fe99f. Candidato SHA256 ac220232a47dee54ceefbe8b18da73bf86f458adb372acce244ea7426cab232b. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 1e24e7fc20e42f1f8d0908b89ca02473558ff9509c2da1357a79cf753e0fe99f. Candidato SHA256 d2179b3073fe0aba56dce30048c586eccee12246924abcd4a66169b38e1877d5. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-13 — C₂ per il bersaglio
 
@@ -238,6 +238,10 @@ Pannello 1: stessi nodi verticali A/B uniscono due condensatori schematici, senz
 
 ## Provenienza tecnica
 
-Asset SHA256 56c7be189a44a7e3a083d9db385d56a8a371829bea370b90d8f8dbce09749be3. Package file SHA256 c2e0753912ed0d79266cee2c57d279d6f79d145bfd60e082e9b6a771f1618edd. Binding file SHA256 ee9a476a7f994c0d374a2cfc7203799f8eee692689364711509956e8d076a8a2. Prova strutturale SHA256 28208e7271a53f0aa8d64465ebb22be43e092aaf442d740015d234da5645bf45. Manifest asset-only SHA256 948a3b261dbb00e4ac56fde5195c24756c5a8a1f4a70e2cea18ab1b52dec2180.
+Asset SHA256 02c6619b2df62e021cdeb7b0f5f0f954f1a289a402b6a60c680f6ec5632283f6. Package file SHA256 88356b6e37fc7ad784b4c3159725bbb11d456887c2ec2e19bb205abc92aa563d. Binding file SHA256 c496b6bf67d4fb74fed0cc375664edb4fd6754f73ff19517ef18bfeea9c92fb1. Prova strutturale SHA256 ccf1beaeae057e8620dbfc05cfddb8033bbd2459ea5e441ca6f10c7e1221e952. Manifest asset-only SHA256 e5092e2b78158eeeac9223f1e7b241ffb5e95c6958e6a9e3cdbb2954cbf6f32d.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
+
+## Finding distinto sulla notazione delle unità
+
+Nel terzo pannello le somme numeriche sono ora racchiuse fra parentesi prima di μF, così l’unità si applica a entrambi gli addendi. Assert XML: tutti tag e attributi geometrici/stilistici identici; il solo testo cambia. Strictdiff package: record01/06/12 cambiano soltanto il riferimento all’asset, altri13 record e tutte le chiavi/formule/caption identici. Binding delle tre figure rigenerati. Precedenti byte e vero native preservati con checksum nell’archivio peer-svg-units-superseded. Due nuove assembly/import16→0/16 e nuovo render browser-native completo640×1500 reale exit0, interamente visto. Non si attribuisce alla nuova versione il vecchio PNG; UI prodotto e nuova SCI distinta NOT_RUN.
