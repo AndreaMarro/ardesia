@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1320" role="img" aria-labelledby="title desc">
+<title id="title">Potenze additive in due pannelli in parallelo</title>
+<desc id="desc">Due percorsi collegano gli stessi nodi caldo e freddo. Le conduttanze uno e due watt per kelvin conducono dieci e venti watt, totale trenta. Raddoppiando entrambe le aree il totale diventa sessanta watt; la media delle prove è quarantacinque.</desc>
+<defs><marker id="heat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b45328"/></marker></defs>
+<rect width="640" height="1320" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Due rami fra gli stessi nodi</text>
+<text x="32" y="85" font-size="18">ΔT = 10 K in ciascun pannello ; L = 1 m.</text>
+<text x="60" y="132">Caldo</text><text x="480" y="132">Freddo</text>
+<path d="M100 160V390M520 160V390M100 205H180M420 205H520M100 355H180M420 355H520" fill="none" stroke="#14243a" stroke-width="3"/>
+<rect x="180" y="155" width="240" height="100" rx="8" fill="#fce6dc" stroke="#b45328"/>
+<rect x="180" y="305" width="240" height="100" rx="8" fill="#e4f3fa" stroke="#165a87"/>
+<text x="204" y="190">Pannello 1</text><text x="204" y="226">G₁ = 1 W/K</text><text x="204" y="340">Pannello 2</text><text x="204" y="376">G₂ = 2 W/K</text>
+<path d="M440 205H500" stroke="#b45328" stroke-width="3" marker-end="url(#heat)"/><path d="M440 355H500" stroke="#b45328" stroke-width="3" marker-end="url(#heat)"/>
+<text x="32" y="443" font-size="18">Schema dei collegamenti, non delle aree geometriche.</text>
+<text x="32" y="473" font-size="18">A₁ = A₂ = 1 m² ; le frecce indicano il verso del calore.</text>
+<path d="M32 500H608" stroke="#9babbc"/>
+<text x="32" y="544" font-size="25" font-weight="bold">2 · Le potenze dei rami si sommano</text>
+<path d="M130 578V837" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="600" width="100" height="34" fill="#b45328"/><rect x="130" y="676" width="200" height="34" fill="#165a87"/>
+<rect x="130" y="752" width="100" height="34" fill="#b45328"/><rect x="230" y="752" width="200" height="34" fill="#165a87"/>
+<text x="50" y="625">P₁</text><text x="248" y="625">10 W</text><text x="50" y="701">P₂</text><text x="348" y="701">20 W</text><text x="32" y="777">Totale</text><text x="448" y="777">30 W</text>
+<text x="32" y="876" font-size="18">Potenze in W, origine e scala comuni.</text>
+<path d="M32 906H608" stroke="#9babbc"/>
+<text x="32" y="950" font-size="25" font-weight="bold">3 · Due prove e la loro media</text>
+<path d="M130 974V1218" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="994" width="150" height="34" fill="#165a87"/><rect x="130" y="1070" width="300" height="34" fill="#165a87"/><rect x="130" y="1146" width="225" height="34" fill="#28664d"/>
+<text x="50" y="1019">A</text><text x="298" y="1019">30 W</text><text x="50" y="1095">B</text><text x="448" y="1095">60 W</text><text x="32" y="1171">Media</text><text x="373" y="1171">45 W</text>
+<text x="32" y="1258" font-size="18">A: aree 1 e 1 m² ; B: aree 2 e 2 m².</text>
+<text x="32" y="1288" font-size="18">La legge lineare dà 45 W anche alle aree medie.</text>
+</g></svg>

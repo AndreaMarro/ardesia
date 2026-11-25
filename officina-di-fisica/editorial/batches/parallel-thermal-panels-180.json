@@ -1,0 +1,1176 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-parallel-thermal-panels-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18001,
+      "title": "Due percorsi fra le stesse temperature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 1,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Con A₁=A₂=1 m², quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo pannello ha conduttanza 1 W/K e conduce 10 W; il secondo ha conduttanza 2 W/K e conduce 20 W. Entrambi ricevono l’intero salto di dieci kelvin. La potenza totale è la somma dei due contributi, 30 W: l’energia si ripartisce fra due percorsi distinti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/304c86a85353fa99ffad1b7bbcaf611235f433f20ea660c825d2f6d6ecdde9ba",
+          "text": "Il disegno in alto è uno schema dei due percorsi fra gli stessi nodi termici, non una misura delle aree dei riquadri. Nella prova A entrambi i pannelli hanno area 1 m², ma conducono 10 e 20 W perché k₂ è doppia. Il secondo pannello somma queste due potenze in 30 W con scala comune. L’ultimo confronta prove A=30 W e B=60 W con media 45 W."
+        },
+        {
+          "type": "formula",
+          "text": "P_1=G_1\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P_1=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_2=G_2\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P_2=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=P_1+P_2"
+        },
+        {
+          "type": "formula",
+          "text": " P=30\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "10 W o 20 W considerano un solo pannello. Un collegamento in serie condividerebbe la stessa potenza e ripartirebbe ΔT, mentre qui accade il contrario: i salti sono uguali e le potenze si sommano."
+        }
+      ],
+      "hints": [
+        "Applica il salto completo a ogni ramo e somma le due potenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10 W o 20 W considerano un solo pannello. Un collegamento in serie condividerebbe la stessa potenza e ripartirebbe ΔT, mentre qui accade il contrario: i salti sono uguali e le potenze si sommano.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18002,
+      "title": "Potenza totale e coefficienti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 1,
+      "prompt": "La grandezza richiesta è la potenza termica totale attraverso due pannelli. Quale unità è appropriata?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "m²",
+          "W/K",
+          "W/(m·K)"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ramo trasferisce energia per secondo e ha potenza in watt. La somma di due contributi espressi in watt rimane una potenza in watt. La conduttanza totale va ancora moltiplicata per un intervallo termico."
+        },
+        {
+          "type": "formula",
+          "text": "[G_1+G_2]=\\mathrm{W/K}"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm{W/K}\\cdot\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, m² area, W/K conduttanza e W/(m·K) conducibilità. Non si sommano due aree o due conducibilità per ottenere direttamente watt."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità di ciascun contributo prima di sommarlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, m² area, W/K conduttanza e W/(m·K) conducibilità. Non si sommano due aree o due conducibilità per ottenere direttamente watt.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18003,
+      "title": "La relazione del parallelo termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 1,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Quale espressione dà P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = ΔT (G₁ + G₂)",
+          "P = ΔT / (G₁ + G₂)",
+          "P = ΔT (G₁ − G₂)",
+          "P = ΔT G₁ G₂",
+          "P = (G₁ + G₂) / ΔT"
+        ],
+        "value": "P = ΔT (G₁ + G₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni potenza è G_iΔT, con lo stesso ΔT. Raccogliendo il salto si trova P=ΔT(G₁+G₂). La conduttanza equivalente è la somma delle conduttanze, non il reciproco della loro somma."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/304c86a85353fa99ffad1b7bbcaf611235f433f20ea660c825d2f6d6ecdde9ba",
+          "text": "Ogni ramo collega direttamente lo stesso lato caldo e lo stesso lato freddo, quindi ciascuno ha l’intero salto 10 K. Si sommano le potenze dei rami; il secondo pannello mostra 10 W+20 W=30 W. I riquadri superiori indicano connessioni, non una sezione metrica dei pannelli."
+        },
+        {
+          "type": "formula",
+          "text": "P=P_1+P_2"
+        },
+        {
+          "type": "formula",
+          "text": " P=G_1\\Delta T+G_2\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\Delta T(G_1+G_2)"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per la somma delle conduttanze non dà potenza. Sottrarre renderebbe il secondo ramo una sorgente opposta, mentre entrambi trasferiscono dal caldo al freddo. Il prodotto ha un fattore di conduttanza in più; dividere per ΔT dà W/K²."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore termico comune ai due rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere per la somma delle conduttanze non dà potenza. Sottrarre renderebbe il secondo ramo una sorgente opposta, mentre entrambi trasferiscono dal caldo al freddo. Il prodotto ha un fattore di conduttanza in più; dividere per ΔT dà W/K².",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18004,
+      "title": "Aumenta soltanto il primo pannello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 1,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. A ha A₁=A₂=1 m². In B A₁=2 m² e A₂ resta 1 m². Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 30 a 40 W",
+          "Da 30 a 60 W",
+          "Da 30 a 15 W",
+          "Resta 30 W",
+          "Da 30 a 20 W"
+        ],
+        "value": "Da 30 a 40 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo contributo raddoppia da 10 a 20 W. Il secondo rimane 20 W. Il totale passa quindi da 30 a 40 W, senza raddoppiare: è cambiata soltanto una parte della conduttanza complessiva."
+        },
+        {
+          "type": "formula",
+          "text": "P_{1,A}=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{1,B}=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{2,B}=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=40\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "60 W raddoppierebbe anche il pannello invariato. 15 W rende inversa la dipendenza dall’area; 20 W ignora uno dei due percorsi della prova B."
+        }
+      ],
+      "hints": [
+        "Aggiorna il ramo modificato e conserva l’altro contributo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "60 W raddoppierebbe anche il pannello invariato. 15 W rende inversa la dipendenza dall’area; 20 W ignora uno dei due percorsi della prova B.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18005,
+      "title": "L’area che completa trenta watt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. P=30 W e A₂=1 m². Quanto vale A₁ in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo pannello conduce già 20 W. Al primo restano 10 W, che devono essere prodotti con k₁=1 W/(m·K), ΔT=10 K e L=1 m. L’inversa A₁=P₁L/(k₁ΔT) dà 1 m². Il residuo positivo è necessario per un’area positiva."
+        },
+        {
+          "type": "formula",
+          "text": "P_1=P-P_2"
+        },
+        {
+          "type": "formula",
+          "text": " P_1=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=\\frac{P_1L}{k_1\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=1\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "3 m² attribuirebbero tutti i 30 W al primo ramo, aggiungendo poi erroneamente il secondo. Due metri quadrati darebbero 40 W totali. Non si sottrae un’area da una potenza."
+        }
+      ],
+      "hints": [
+        "Togli la potenza del ramo noto prima di invertire quello incognito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3 m² attribuirebbero tutti i 30 W al primo ramo, aggiungendo poi erroneamente il secondo. Due metri quadrati darebbero 40 W totali. Non si sottrae un’area da una potenza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18006,
+      "title": "Il materiale migliore richiede meno area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. P=30 W e A₁=1 m². Quanto vale A₂ in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo pannello conduce 10 W e restano 20 W al secondo. Per k₂=2 W/(m·K), ogni metro quadrato conduce 20 W nelle condizioni assegnate, quindi A₂=1 m². Il maggiore valore di k₂ è già incluso e non va aggiunto un secondo fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "P_2=P-P_1"
+        },
+        {
+          "type": "formula",
+          "text": " P_2=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{P_2L}{k_2\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=1\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "3/2 m² userebbe tutta la potenza nel secondo ramo. Due metri quadrati userebbero k₁ al posto di k₂ dopo aver trovato il residuo e darebbero 50 W totali. Zero annullerebbe il ramo che deve fornire 20 W."
+        }
+      ],
+      "hints": [
+        "Usa la conducibilità del pannello del quale cerchi l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 m² userebbe tutta la potenza nel secondo ramo. Due metri quadrati userebbero k₁ al posto di k₂ dopo aver trovato il residuo e darebbero 50 W totali. Zero annullerebbe il ramo che deve fornire 20 W.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18007,
+      "title": "Raddoppia il ramo che conduce di più",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. A ha A₁=A₂=1 m². B conserva A₁=1 m² e ha A₂=2 m². Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "2",
+          "3/5",
+          "1/2",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A conduce 10+20=30 W. B conduce 10+40=50 W. Il rapporto 50/30 si riduce a cinque terzi, perché il primo ramo resta invariato mentre raddoppia solo il secondo."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=30\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Due raddoppierebbe l’intera parete. Tre quinti è il reciproco; un mezzo rende inversa la dipendenza dall’area e uno ignora il contributo aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Confronta le somme complete, non soltanto A₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due raddoppierebbe l’intera parete. Tre quinti è il reciproco; un mezzo rende inversa la dipendenza dall’area e uno ignora il contributo aggiuntivo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18008,
+      "title": "Una proposta che raddoppia la parete",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Con A₁=A₂=1 m² si propone P=60 W. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 W",
+          "−30 W",
+          "60 W",
+          "0 W",
+          "2 W"
+        ],
+        "value": "30 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale corretto è 30 W, non sessanta. La differenza richiesta è 60−30=30 W. Una potenza di 60 W sarebbe coerente con entrambe le aree doppie, non con quelle assegnate qui."
+        },
+        {
+          "type": "formula",
+          "text": "P=30\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(60-30)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=30\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−30 W cambia l’ordine, 60 W copia la proposta, zero la accetta e due è il rapporto puro tra i due numeri."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il totale della configurazione assegnata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−30 W cambia l’ordine, 60 W copia la proposta, zero la accetta e due è il rapporto puro tra i due numeri.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18009,
+      "title": "Isolare l’area del primo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Sono noti P e A₂, quindi G₂. Quale relazione isola A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁ = L (P/ΔT − G₂) / k₁",
+          "A₁ = L (P/ΔT + G₂) / k₁",
+          "A₁ = P L / (k₁ ΔT)",
+          "A₁ = k₁ (P/ΔT − G₂) / L",
+          "A₁ = L G₂ / k₁"
+        ],
+        "value": "A₁ = L (P/ΔT − G₂) / k₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo la potenza per ΔT si ricava la conduttanza totale. Tolta G₂ resta G₁=k₁A₁/L. Moltiplichiamo per L e dividiamo per k₁: A₁=L(P/ΔT−G₂)/k₁. Il residuo deve essere positivo e il risultato è in metri quadrati."
+        },
+        {
+          "type": "formula",
+          "text": "G_1=\\frac P{\\Delta T}-G_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=\\frac{LG_1}{k_1}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno più aggiunge il ramo che bisogna togliere. PL/(k₁ΔT) attribuisce tutto P al primo pannello. Scambiare k₁ e L non dà area; l’ultima relazione dipende solo dal pannello noto e trascura la misura P."
+        }
+      ],
+      "hints": [
+        "Isola prima la conduttanza del ramo incognito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno più aggiunge il ramo che bisogna togliere. PL/(k₁ΔT) attribuisce tutto P al primo pannello. Scambiare k₁ e L non dà area; l’ultima relazione dipende solo dal pannello noto e trascura la misura P.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18010,
+      "title": "Aree diverse, stessa differenza termica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. B ha A₁,B=κ₁A₁,A e A₂,B=κ₂A₂,A, con fattori positivi. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ G₁ + κ₂ G₂) / (G₁ + G₂)",
+          "κ₁ κ₂",
+          "(G₁ + G₂) / (κ₁ G₁ + κ₂ G₂)",
+          "κ₁ / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁ G₁ + κ₂ G₂) / (G₁ + G₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni conduttanza cresce linearmente con la propria area. Il totale B è κ₁G₁+κ₂G₂. Il salto comune si cancella nel rapporto con P_A=ΔT(G₁+G₂), lasciando una media dei fattori pesata con le conduttanze iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "G_B=\\kappa_1G_1+\\kappa_2G_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\frac{\\kappa_1G_1+\\kappa_2G_2}{G_1+G_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto tratterebbe le aree come fattori della stessa potenza, ma appartengono a rami distinti. Il reciproco inverte il confronto. Per un fattore comune κ il rapporto è κ, non uno o 2κ."
+        }
+      ],
+      "hints": [
+        "La somma delle potenze deve restare anche dopo la sostituzione dei fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto tratterebbe le aree come fattori della stessa potenza, ma appartengono a rami distinti. Il reciproco inverte il confronto. Per un fattore comune κ il rapporto è κ, non uno o 2κ.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18011,
+      "title": "Raddoppiare tutta l’area dei due rami",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. A ha A₁=A₂=1 m². B ha A₁=A₂=2 m². Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "3",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I contributi da 10 e 20 W diventano 20 e 40 W. Il totale passa da 30 a 60 W: raddoppia come entrambe le aree. Sommare due contributi doppi non produce un fattore quattro sul totale."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=30\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=60\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplica due raddoppi che vanno invece distribuiti su una somma. Un mezzo è il reciproco; tre confonde la somma numerica dei coefficienti di conducibilità con il rapporto delle prove."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore due dalla somma dei contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplica due raddoppi che vanno invece distribuiti su una somma. Un mezzo è il reciproco; tre confonde la somma numerica dei coefficienti di conducibilità con il rapporto delle prove.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18012,
+      "title": "Una media che qui commuta con il modello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 2,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. A usa A₁=A₂=1 m²; B usa A₁=A₂=2 m². Qual è la media aritmetica delle potenze con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "45 W",
+          "90 W",
+          "15 W",
+          "30 W",
+          "60 W"
+        ],
+        "value": "45 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono 30 e 60 W. La metà della somma 90 W è 45 W. In questo modello lineare nelle due aree, anche le aree medie 3/2 m² e 3/2 m² danno 15+30=45 W. L’uguaglianza segue dalla linearità con k, L e ΔT fissati, non da una regola universale per ogni formula fisica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/304c86a85353fa99ffad1b7bbcaf611235f433f20ea660c825d2f6d6ecdde9ba",
+          "text": "Nell’ultimo pannello le barre 30 W, 60 W e 45 W hanno la stessa origine e scala. Il modello è lineare nelle aree: con tutte le altre condizioni fissate, anche le due aree medie 3/2 m² producono 45 W. L’uguaglianza qui è giustificata dalla legge, non assunta per ogni modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{30+60}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=45\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P(\\overline A_1,\\overline A_2)=45\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "90 W è la somma senza metà. 15 W è metà della differenza; 30 W o 60 W tengono soltanto uno dei due risultati. La media delle uscite è la grandezza richiesta anche quando coincide con il calcolo agli ingressi medi."
+        }
+      ],
+      "hints": [
+        "Dopo la media, verifica separatamente perché qui gli ingressi medi danno lo stesso numero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "90 W è la somma senza metà. 15 W è metà della differenza; 30 W o 60 W tengono soltanto uno dei due risultati. La media delle uscite è la grandezza richiesta anche quando coincide con il calcolo agli ingressi medi.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18013,
+      "title": "Una potenza doppia con A₁ già assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 3,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. A ha A₁=A₂=1 m². B ha A₁=2 m² e deve condurre due volte P_A. Quanto vale A₂,B/A₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "60"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 60 W. Il primo pannello B ne conduce 20; il secondo deve fornire 40 W. Con venti watt per metro quadrato occorrono 2 m² nel secondo ramo, il doppio dell’area iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=60\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{2,B}=40\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=2\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}/A_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo capovolge il rapporto. Quattro darebbe 100 W totali con il primo pannello già raddoppiato; uno darebbe 40 W. Sessanta copia il valore della potenza bersaglio."
+        }
+      ],
+      "hints": [
+        "Togli dal bersaglio il contributo del primo pannello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo capovolge il rapporto. Quattro darebbe 100 W totali con il primo pannello già raddoppiato; uno darebbe 40 W. Sessanta copia il valore della potenza bersaglio.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18014,
+      "title": "Tarare la somma prima dell’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 3,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Il display continuo adimensionale è S=qP, q>0. A con A₁=A₂=1 m² dà S=90. B dà S=180 e ha A₂=2 m². Quanto vale A₁,B in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento conduce 30 W, quindi q=3 W⁻¹. La lettura 180 indica 60 W. Il secondo pannello B conduce già 40 W, perciò al primo ne restano 20, che richiedono un’area di 2 m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=60\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{1,B}=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=2\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Senza taratura si userebbero 180 W, lasciando 140 W al primo pannello e ottenendo 14 m². Un metro quadrato darebbe 50 W totali e S=150, non 180."
+        }
+      ],
+      "hints": [
+        "Il display legge il totale: prima decodificalo, poi sottrai il ramo noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Senza taratura si userebbero 180 W, lasciando 140 W al primo pannello e ottenendo 14 m². Un metro quadrato darebbe 50 W totali e S=150, non 180.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18015,
+      "title": "Offset e potenza del pannello noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 3,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Il display è S=qP+b, continuo e adimensionale, q>0. A: A₁=A₂=1 m²,S=61. B: A₁=A₂=2 m²,S=121. C: A₂=1 m²,S=81. Quanto vale A₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m²",
+          "41/20 m²",
+          "1 m²",
+          "4 m²",
+          "40 m²"
+        ],
+        "value": "2 m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti conducono 30 e 60 W. q=(121−61)/(60−30)=2 W⁻¹ e b=1. C conduce (81−1)/2=40 W. Venti watt vengono dal secondo pannello noto; i venti restanti richiedono A₁,C=2 m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=40\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{1,C}=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,C}=2\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "41/20 m² omette b, usa 81/2 W e predice S=82. Un metro quadrato torna ad A; quattro metri quadrati darebbero totale 60 W e S=121. Quaranta copia il numero della potenza."
+        }
+      ],
+      "hints": [
+        "Dopo aver tolto l’offset resta ancora da separare il contributo del secondo pannello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "41/20 m² omette b, usa 81/2 W e predice S=82. Un metro quadrato torna ad A; quattro metri quadrati darebbero totale 60 W e S=121. Quaranta copia il numero della potenza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-thermal-panels-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Pannelli termici in parallelo",
+      "order": 18016,
+      "title": "Aree uguali e scala determinata dalla potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-thermal-panels",
+      "difficulty": 3,
+      "prompt": "Due pannelli affiancati collegano direttamente gli stessi lati caldo e freddo, mantenuti a differenza ΔT=10 K. Hanno spessore comune L=1 m, aree A₁,A₂>0 in m² e conducibilità costanti k₁=1 W/(m·K), k₂=2 W/(m·K). Il flusso in ciascun pannello è monodimensionale e stazionario, senza sorgenti e con scambi laterali trascurati. Definiamo le conduttanze G₁=k₁A₁/L e G₂=k₂A₂/L, in W/K. P>0 è la potenza totale dal caldo al freddo. Le aree possono cambiare fra apparati diversi: non è imposto un valore fisso di A₁+A₂. Si impone A₁=A₂ e si misura P=30 W. Quanto vale A₂>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m²",
+          "2 m²",
+          "3 m²",
+          "30 m²",
+          "Infinite possibilità"
+        ],
+        "value": "1 m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con aree uguali, P=[(k₁+k₂)ΔT/L]A₂. Il coefficiente vale 30 W/m². La misura di 30 W impone A₂=1 m² e dunque anche A₁=1 m². Il rapporto delle aree da solo non fisserebbe la scala, ma la potenza totale lo fa."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{(k_1+k_2)\\Delta T}{L}A_2"
+        },
+        {
+          "type": "formula",
+          "text": " P=(30\\,\\mathrm{W/m^2})A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=1\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Due metri quadrati darebbero 60 W e tre 90 W. Trenta copia la potenza come area. Non sono infinite possibilità con entrambe le condizioni imposte: il totale cresce con la scala comune delle aree."
+        }
+      ],
+      "hints": [
+        "Sostituisci l’uguaglianza delle aree prima di usare la misura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due metri quadrati darebbero 60 W e tre 90 W. Trenta copia la potenza come area. Non sono infinite possibilità con entrambe le condizioni imposte: il totale cresce con la scala comune delle aree.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanze in parallelo e potenze additive",
+        "Linearità nelle aree e medie",
+        "Inverse, rapporti e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "304c86a85353fa99ffad1b7bbcaf611235f433f20ea660c825d2f6d6ecdde9ba",
+      "name": "parallel-thermal-panels-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3RlbnplIGFkZGl0aXZlIGluIGR1ZSBwYW5uZWxsaSBpbiBwYXJhbGxlbG88L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+RHVlIHBlcmNvcnNpIGNvbGxlZ2FubyBnbGkgc3Rlc3NpIG5vZGkgY2FsZG8gZSBmcmVkZG8uIExlIGNvbmR1dHRhbnplIHVubyBlIGR1ZSB3YXR0IHBlciBrZWx2aW4gY29uZHVjb25vIGRpZWNpIGUgdmVudGkgd2F0dCwgdG90YWxlIHRyZW50YS4gUmFkZG9wcGlhbmRvIGVudHJhbWJlIGxlIGFyZWUgaWwgdG90YWxlIGRpdmVudGEgc2Vzc2FudGEgd2F0dDsgbGEgbWVkaWEgZGVsbGUgcHJvdmUgw6ggcXVhcmFudGFjaW5xdWUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJoZWF0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHJhbWkgZnJhIGdsaSBzdGVzc2kgbm9kaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg1IiBmb250LXNpemU9IjE4Ij7OlFQgPSAxMCBLIGluIGNpYXNjdW4gcGFubmVsbG8gOyBMID0gMSBtLjwvdGV4dD4KPHRleHQgeD0iNjAiIHk9IjEzMiI+Q2FsZG88L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxMzIiPkZyZWRkbzwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNjBWMzkwTTUyMCAxNjBWMzkwTTEwMCAyMDVIMTgwTTQyMCAyMDVINTIwTTEwMCAzNTVIMTgwTTQyMCAzNTVINTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyIvPgo8cmVjdCB4PSIxODAiIHk9IjE1NSIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIxMDAiIHJ4PSI4IiBmaWxsPSIjZmNlNmRjIiBzdHJva2U9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMTgwIiB5PSIzMDUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTAwIiByeD0iOCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjIwNCIgeT0iMTkwIj5QYW5uZWxsbyAxPC90ZXh0Pjx0ZXh0IHg9IjIwNCIgeT0iMjI2Ij5H4oKBID0gMSBXL0s8L3RleHQ+PHRleHQgeD0iMjA0IiB5PSIzNDAiPlBhbm5lbGxvIDI8L3RleHQ+PHRleHQgeD0iMjA0IiB5PSIzNzYiPkfigoIgPSAyIFcvSzwvdGV4dD4KPHBhdGggZD0iTTQ0MCAyMDVINTAwIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNoZWF0KSIvPjxwYXRoIGQ9Ik00NDAgMzU1SDUwMCIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjaGVhdCkiLz4KPHRleHQgeD0iMzIiIHk9IjQ0MyIgZm9udC1zaXplPSIxOCI+U2NoZW1hIGRlaSBjb2xsZWdhbWVudGksIG5vbiBkZWxsZSBhcmVlIGdlb21ldHJpY2hlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ3MyIgZm9udC1zaXplPSIxOCI+QeKCgSA9IEHigoIgPSAxIG3CsiA7IGxlIGZyZWNjZSBpbmRpY2FubyBpbCB2ZXJzbyBkZWwgY2Fsb3JlLjwvdGV4dD4KPHBhdGggZD0iTTMyIDUwMEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNTQ0IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMZSBwb3RlbnplIGRlaSByYW1pIHNpIHNvbW1hbm88L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNTc4VjgzNyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI2MDAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz48cmVjdCB4PSIxMzAiIHk9IjY3NiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9Ijc1MiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPjxyZWN0IHg9IjIzMCIgeT0iNzUyIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI2MjUiPlDigoE8L3RleHQ+PHRleHQgeD0iMjQ4IiB5PSI2MjUiPjEwIFc8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjcwMSI+UOKCgjwvdGV4dD48dGV4dCB4PSIzNDgiIHk9IjcwMSI+MjAgVzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNzc3Ij5Ub3RhbGU8L3RleHQ+PHRleHQgeD0iNDQ4IiB5PSI3NzciPjMwIFc8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NzYiIGZvbnQtc2l6ZT0iMTgiPlBvdGVuemUgaW4gVywgb3JpZ2luZSBlIHNjYWxhIGNvbXVuaS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5MDZINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijk1MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHByb3ZlIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD4KPHBhdGggZD0iTTEzMCA5NzRWMTIxOCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI5OTQiIHdpZHRoPSIxNTAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjEwNzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjExNDYiIHdpZHRoPSIyMjUiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9IjEwMTkiPkE8L3RleHQ+PHRleHQgeD0iMjk4IiB5PSIxMDE5Ij4zMCBXPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxMDk1Ij5CPC90ZXh0Pjx0ZXh0IHg9IjQ0OCIgeT0iMTA5NSI+NjAgVzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTE3MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzczIiB5PSIxMTcxIj40NSBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI1OCIgZm9udC1zaXplPSIxOCI+QTogYXJlZSAxIGUgMSBtwrIgOyBCOiBhcmVlIDIgZSAyIG3Csi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjg4IiBmb250LXNpemU9IjE4Ij5MYSBsZWdnZSBsaW5lYXJlIGTDoCA0NSBXIGFuY2hlIGFsbGUgYXJlZSBtZWRpZS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
