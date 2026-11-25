@@ -19,56 +19,36 @@
     "SIM-C1-L003-05": "7ace68920b58c5ec04db0caea277cda7b95574de483c5a072b6976242f9655b6",
     "SIM-C1-L003-06": "6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93"
   },
-  "previousRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
-  "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
-  "historicalSnapshot": "editorial/reviews/experiments-kinematics-039-f897-snapshot",
-  "historicalManifestSha256": "0a230c6be284f46e5ccaaff81cc47ac700c1c9496eacde465d9ad76a36e4c5b1",
+  "previousRuntimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "runtimeProfileSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "historicalSnapshot": "editorial/reviews/experiments-kinematics-039-5405-snapshot",
+  "historicalManifestSha256": "d86bb41f53a103616e25e67431a15b87fb5f6858d0b6443564f33732bbde9a07",
   "reusedPhysicsOracleFunctionsByteIdentical": [
     "exact_value",
     "check",
     "independent_checks",
     "runtime_values",
-    "compare_runtime"
+    "near",
+    "compare_runtime",
+    "runtime_hashes",
+    "consumer_evidence",
+    "verify",
+    "report"
   ],
-  "actualBrowserRun": {
-    "outputDirectory": "/private/tmp/cric-refresh-kinematics-54054f",
-    "log": "/private/tmp/cric-refresh-kinematics-54054f.log",
-    "terminalExitCode": 0,
-    "observedCases": 66,
-    "pageErrors": [],
-    "protocolSha256": "ea4449d2e4a495a18e87f6c7672bd81c6a7733eda6f6ac7c2abf71a65c7de45b",
-    "proofSha256": "2b981195a9bd5d359401444306daf8cc7d8041f6e49bf26fc4acfc86dee407a8",
-    "proof": "editorial/reviews/experiments-kinematics-039-browser.json",
-    "screenshotsInspected": "all default 3D and fallback frames; selected secant, corner, projectile/circle plots and quarter-turn/landing/cusp frames; other states executable assertions, not every PNG manually inspected"
+  "browserCases": 66,
+  "browserExitCode": 0,
+  "clockSamples": 249,
+  "browserProofSha256": "d943d2e7fca0deb046f78e4b1bac0870c3431cf7942db9fa195bb1e12865e365",
+  "browserProtocolSha256": "865cc74dc62bbda08a8b1f1927a826e9b7fec97346ed7263306feb2b3b6b8634",
+  "verifierSha256": "90e5706757c843b240f4664439a46e440fc9177b5b144b121d2a18569778a27f",
+  "changedDependencies": {
+    "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+    "static/js/banchi/voci/legende.js": "89730336965cc57c02580f7f10b185b35575c3dfc8b9bae37ddca8ec20831a93",
+    "static/js/banchi/voci/apparati/meccanica.js": "c87e54ddc90b8cf3b75f2db350274b55cc5d9b0c74e44151190fa37d4ece3f70"
   },
-  "staleTests": {
-    "tests": 9,
-    "failures": 3,
-    "seconds": 14.737,
-    "reason": "Old frozen consumer dependencies correctly reject final runtime; not a new physics defect",
-    "transcript": "editorial/reviews/experiments-kinematics-039-refresh-stale-20261125.txt"
-  },
-  "finalTests": {
-    "tests": 9,
-    "failures": 0,
-    "seconds": 17.811,
-    "terminalExitCode": 0,
-    "command": "PYTHONPYCACHEPREFIX=/private/tmp/cric-recovery-pycache /private/tmp/cric-recovery-venv/bin/python -m unittest discover -s tests/corpus -p test_experiments_kinematics_review.py -v",
-    "transcript": "editorial/reviews/experiments-kinematics-039-refresh-green-20261125.txt"
-  },
-  "verifierSha256": "590cca67ebb70083402ba5a3a3e41b4b6472be1833bede6e366533b1c7b29dc5",
-  "testSha256": "50a496c2c6812ba06d27503f8abee64ac872990913ba5748b2733eba9dc2bda5",
-  "reportSha256": "7a8b8dbd5c703ceed5123d4e70de5c88af05b0f1f8db2d08a9f9408cd7988160",
-  "canonicalReportSha256": "c4da80b4c3956b855bae9893e0de9035be2172af58c94b3a8cdabfe94404f6df",
-  "freshEqualsSaved": true,
-  "pinnedRuntimeDependencyCount": 22,
-  "controlConfigurations": 100,
-  "clockObservations": 249,
+  "visualReview": "All66 newly captured frames/graphs read in6contact sheets; secant and cusp units checked independently. Positive on this b963 profile only; later runtime changes require another genuine replay.",
+  "otherScopeFinding": "Group040 has separate negative diagnostics and is NOT approved by this039 report.",
+  "scientificApprovalFromBrowserAlone": false,
   "humanApproval": "NOT_RUN",
-  "publicationAction": "NONE",
-  "originalEditionRetained": true,
-  "newIdCredit": 0,
-  "completedIntermediateReplaySnapshot": "editorial/reviews/experiments-kinematics-039-0e208-snapshot",
-  "completedIntermediateReplayManifestSha256": "906b1529dbad830fb271a556a42b612e63e56f80f372cfa44c1a95dde0193a71",
-  "realRuntimeInvalidationProof": "editorial/reviews/experiments-kinematics-039-refresh-intermediate-invalidated-20261125.json"
+  "publicationAction": "NONE"
 }

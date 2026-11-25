@@ -1,0 +1,79 @@
+test_actual_clocks_frames_secants_and_corner_are_challenged (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_actual_clocks_frames_secants_and_corner_are_challenged) ... ok
+test_actual_law_domains_assignments_graphs_and_geometry_are_challenged (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_actual_law_domains_assignments_graphs_and_geometry_are_challenged) ... ok
+test_empty_or_failed_independent_physics_never_passes (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_empty_or_failed_independent_physics_never_passes) ... ok
+test_exact_manual_arithmetic_and_limits_are_independent (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_exact_manual_arithmetic_and_limits_are_independent) ... ok
+test_observed_diagnostic_proof_is_bound_and_not_scientific_approval (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_observed_diagnostic_proof_is_bound_and_not_scientific_approval) ... ok
+test_six_complete_originals_without_human_or_publication_escalation (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_six_complete_originals_without_human_or_publication_escalation) ... FAIL
+test_source_dependencies_version_and_entire_runtime_are_bound (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound) ... FAIL
+test_stale_missing_or_changed_runtime_rejects_before_execution (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution) ... FAIL
+test_unknown_sources_cannot_select_or_execute_an_engine (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_unknown_sources_cannot_select_or_execute_an_engine) ... ok
+test_actual_clocks_frames_signals_units_and_circle_directions_are_challenged (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_actual_clocks_frames_signals_units_and_circle_directions_are_challenged) ... ok
+test_actual_law_domains_assignments_graphs_and_geometry_are_challenged (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_actual_law_domains_assignments_graphs_and_geometry_are_challenged) ... ok
+test_empty_or_failed_independent_physics_never_passes (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_empty_or_failed_independent_physics_never_passes) ... ok
+test_exact_manual_arithmetic_and_model_scope_are_independent (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_exact_manual_arithmetic_and_model_scope_are_independent) ... ok
+test_four_complete_originals_without_human_or_publication_escalation (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_four_complete_originals_without_human_or_publication_escalation) ... FAIL
+test_observed_diagnostic_proof_is_bound_and_not_scientific_approval (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_observed_diagnostic_proof_is_bound_and_not_scientific_approval) ... ok
+test_source_dependencies_version_and_entire_runtime_are_bound (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound) ... FAIL
+test_stale_missing_or_changed_runtime_rejects_before_execution (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution) ... FAIL
+test_unknown_sources_cannot_select_or_execute_an_engine (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_unknown_sources_cannot_select_or_execute_an_engine) ... ok
+
+======================================================================
+FAIL: test_six_complete_originals_without_human_or_publication_escalation (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_six_complete_originals_without_human_or_publication_escalation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 23, in test_six_complete_originals_without_human_or_publication_escalation
+    self.assertEqual(fresh.call_count,2);self.assertEqual(first,second)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_source_dependencies_version_and_entire_runtime_are_bound (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 45, in test_source_dependencies_version_and_entire_runtime_are_bound
+    self.assertEqual(review.runtime_hashes(),review.READ_RUNTIME)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'sta[451 chars]s': '83f1ab0d443dc93eb72c0318e3285617948664325[1761 chars]0e6'} != {'sta[451 chars]s': 'f853be6383d2b9d45ea80c4dbfce108fc566e1b11[1761 chars]0e6'}
+Diff is 2668 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_stale_missing_or_changed_runtime_rejects_before_execution (tests.corpus.test_experiments_kinematics_review.KinematicsExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 77, in test_stale_missing_or_changed_runtime_rejects_before_execution
+    self.assertTrue(all('Runtime changed during check; discard evidence' in r['errors'] for r in review.verify(self.sources)))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_four_complete_originals_without_human_or_publication_escalation (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_four_complete_originals_without_human_or_publication_escalation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_accelerated_review.py", line 23, in test_four_complete_originals_without_human_or_publication_escalation
+    self.assertEqual(fresh.call_count,2);self.assertEqual(first,second)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_source_dependencies_version_and_entire_runtime_are_bound (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_accelerated_review.py", line 45, in test_source_dependencies_version_and_entire_runtime_are_bound
+    self.assertEqual(review.runtime_hashes(),review.READ_RUNTIME)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'sta[451 chars]s': '83f1ab0d443dc93eb72c0318e3285617948664325[1761 chars]0e6'} != {'sta[451 chars]s': 'f853be6383d2b9d45ea80c4dbfce108fc566e1b11[1761 chars]0e6'}
+Diff is 2668 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_stale_missing_or_changed_runtime_rejects_before_execution (tests.corpus.test_experiments_accelerated_review.AcceleratedExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_accelerated_review.py", line 77, in test_stale_missing_or_changed_runtime_rejects_before_execution
+    self.assertTrue(all('Runtime changed during check; discard evidence' in r['errors'] for r in review.verify(self.sources)))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 18 tests in 21.121s
+
+FAILED (failures=6)

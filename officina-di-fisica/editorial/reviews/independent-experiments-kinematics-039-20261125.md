@@ -1,18 +1,15 @@
-# Rivalidazione indipendente — experiments-kinematics-039
+# Rivalidazione indipendente039 sul profilo b963
 
-Rivalidazione degli stessi ID già revisionati, senza nuovo credito nel corpus. Riletti individualmente i record originali completi dal pin Cric 5d1dc8dc7b601aef959d10d564c75462be74708d, file content/esperienze-C1.json, SHA256 84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3, e le lezioni C1-L003/C1-L004. Le derivazioni seguenti sono state rifatte dalle leggi; gli oracoli recuperati erano già conosciuti, quindi non si presenta questa fase come prima revisione cieca. I riferimenti fonte, le chiavi generate e i flag editoriali non costituiscono l’oracolo.
+Questa è una nuova esecuzione degli stessi sei ID storici, senza nuovo credito. Sono stati riletti individualmente gli originali completi dal pin Cric5d1dc8dc e rideterminate le leggi riportate sotto; gli oracoli recuperati erano già noti, quindi non si descrive questa attività come prima lettura cieca. La fonte completa ha SHA25684d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3.
 
-Il runtime finale congelato è 54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d. La precedente prova f897 resta storica: sette file per lotto sono conservati byte per byte nella cartella di provenienza con manifest SHA256. Non è stato cambiato un fingerprint dentro un vecchio report per farlo apparire corrente. Prima dell’aggiornamento, i test hanno riprodotto tre fallimenti per lotto, sei in totale: le vecchie dipendenze congelate rifiutavano correttamente il nuovo consumer. I trascritti RED sono conservati separatamente; non sono PASS.
+La snapshot5405 conserva byte per byte i vecchi verificatore, protocollo, test, report, nota e immagini. Le precedenti snapshot f897 e0e208 rimangono immutate. Il controllo iniziale sui18 test039/040 ha dato i6 fallimenti attesi perché le vecchie impronte rifiutavano il nuovo runtime: quel run non è positivo.
 
-Sono state rilette le nuove dipendenze. assessment-selection.js e il validatore server ammettono soltanto due ingressi numerici finiti, distinti e sulla griglia; non forniscono risultati attesi e non cambiano le leggi installate. Questi originali non possiedono assessmentSelection e mantengono il fallback precedente. Il consumer inoltra gli stessi ingressi sia ai quesiti sia al testo del trasferimento. I contratti JSON e TypeScript, authoring e adapter sono ora inclusi nei pin espliciti: 22 dipendenze per verificatore, oltre al profilo completo. I test sfidano ciascuna dipendenza. L’unico aggiornamento alle loro vecchie asserzioni è il conteggio da 16 a 22, con nuove verifiche di presenza: nessuna vecchia verifica è rimossa o allentata.
+Sono state rilette le tre dipendenze cambiate: confronti corregge la potenza media a intervallo nullo per L00702; legende chiarisce peso/normale e fulcro; meccanica espone le forze di piano, molla e leva. I rami binario, volo, i modelli L003, i clock e i grafici di questi sei ID sono invariati. Tutte le22 dipendenze esplicite e il profilo globale rimangono vincolati prima e dopo l’esecuzione. Le funzioni degli oracoli e del confronto geometrico sono byte identiche alla snapshot5405: nessuna asserzione è stata allentata.
 
-La modifica del banco riusa il lettore dei blocchi editoriali; nei dieci originali blocks è vuoto, perciò non aggiunge spiegazioni alternative. Il formatter elimina il separatore delle migliaia e lascia leggibili i numeri assegnati qui. Le modifiche trigonometriche dei confronti L002 e le nuove scale delle forze negli apparati non cambiano le leggi L003/L004 qui esaminate. Sono stati riletti i rami effettivi di binario, caduta senza filo, volo e cerchio, non soltanto il nome del modello.
-
-Le funzioni exact_value, check, independent_checks, runtime_values e compare_runtime sono byte identiche alla snapshot storica. SymPy, Pint e Fraction vengono rieseguiti, non rietichettati: la parte nuova consiste nel confronto con i consumer finali e nei nuovi replay. Il profilo e i singoli byte sono controllati prima e dopo l’esecuzione; fonte sconosciuta, runtime mancante o mutato, errore del consumer e drift durante la prova continuano a rifiutare il report. Nessun codice app, sorgente, registro, checkpoint o Git ROOT è stato modificato.
-
-Human NOT_RUN, publicationAction NONE, originalEditionRetained true. L’esito AI riguarda questi modelli ideali e i consumer provati; non certifica misure empiriche, esiti di apprendimento, accessibilità su ogni dispositivo o una revisione umana.
+Il profilo b963 è positivo per questi sei ID soltanto. Il nuovo rilievo visivo di040 è separato e non viene approvato da questo report; un’eventuale nuova modifica del runtime invaliderà anche il presente replay039 e richiederà un’esecuzione autentica ulteriore.
 
 ## Derivazioni e letture per ID
+
 
 ### SIM-C1-L003-01 — Posizione e spostamento
 
@@ -50,28 +47,22 @@ x=2t fino a 2 s, poi x=8−2t, in metri. Le due espressioni coincidono a 2 s con
 
 Fonte SHA256 6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93, versione 2. Confronto attuale: 17 configurazioni di controllo, 51 osservazioni del clock. Le osservazioni ripetute su finestre diverse non sono nuovi ID o altre attività.
 
-## Replay effettivo e controlli
+## Replay e limiti effettivi
 
-Una prima rivalidazione realmente completata sul profilo intermedio 0e208 aveva superato 66+52 casi e 9+9 test. Una successiva correzione dell’integratore nel ramo piano del renderer classico static/js/banchi/tavola.js ha cambiato il profilo globale in 54054f. I file intermedi sono conservati byte per byte nelle due cartelle -0e208-snapshot e non sono stati ritaggati. Il primo sospetto del revisore su un cambiamento del protocollo di fingerprint era errato: il protocollo c23abf00 è rimasto identico; il cambio era nel renderer. La guardia globale ha correttamente invalidato i report e impedito l’esecuzione prima del nuovo replay, come documentato nei due proof intermediate-invalidated. I dieci ID usano invece voci/tavola.js; anche questa dipendenza esterna al percorso specifico continua a essere protetta dal vincolo globale. Dopo il freeze esplicito, entrambi i replay sono stati realmente rieseguiti una sola volta sul profilo finale.
+Il nuovo protocollo canonico039 ha eseguito66 casi reali in Chrome nativo e fallback, con SQLite/sessione demo privati e richieste esterne bloccate. Processo realmente terminato con exit0; nessun page error. Le risposte sbagliate sono state rifiutate e i risultati ricavati indipendentemente sono stati accettati. Il campo scientificApproval=false è ora emesso direttamente dal protocollo prima dell’esecuzione, non aggiunto al report dopo il run.
 
-Il protocollo browser esistente è stato rieseguito nel consumer reale, con app e SQLite temporanei, sessione demo privata, richieste esterne bloccate, Chrome di proprietà del test e WebGL abilitato o disabilitato. Output /private/tmp/cric-refresh-kinematics-54054f/consumer.json; log /private/tmp/cric-refresh-kinematics-54054f.log. Uscita 0, 66 casi, zero page error. Sono state esercitate le quattro fasi didattiche e tutte le risposte generate, respingendo numeri sbagliati e accettando i valori risolti indipendentemente. Nessun browser o dato dell’utente è stato toccato.
+Sono stati confrontati100 valori della griglia e249 campioni temporali con SymPy/Pint/Fraction e geometria indipendente, incluse secanti con origine temporale coerente, intervalli strettamente positivi e cuspide con velocità non definita. Tutte le66 immagini nuove sono state effettivamente guardate nelle sei tavole di contatto, con immagini originali conservate separatamente; sono stati riletti i grafici e le unità. Il controllo riguarda le viste predefinite del protocollo a1280px, non tutte le rotazioni manuali né ogni dispositivo.
 
-Gli oracoli rinnovati confrontano 100 configurazioni e 249 osservazioni temporali: griglie, valori scalari, previsioni e quesiti, grafici, posizioni effettive e direzioni dei vettori. In questi campioni la coincidenza fra controllo e clock è distinta dai clock che mantengono una velocità o una durata selezionata. Tutte le prove matematiche recuperate restano invariate e vengono davvero eseguite.
+I nove test esistenti sono tutti PASS, exit0 in18.468s. Restano le controprove su legge, segni, unità, grafici, componenti dei vettori, clock, provenienza sconosciuta, prova browser alterata, drift del runtime e falsa approvazione umana. Fresh e saved coincidono e soddisfano l’identità del contratto.
 
-Ispezionate visivamente tutte le immagini di default dei dieci ID, in 3D e fallback. Riletti inoltre i grafici nativi delle due secanti, della cuspide, del volo e del moto circolare, il quarto di giro circolare in 3D, l’atterraggio in fallback e il carrello alla cuspide in fallback. Le altre immagini di stati limite e temporali sono prove eseguibili più confronti geometrici indipendenti: non si afferma di aver guardato ogni PNG. I file immagini restano temporanei; i nuovi report ne conservano gli hash e gli strumenti le rigenerano.
+Human NOT_RUN; publicationAction NONE; originalEditionRetained true. Nessun file di produzione, candidato, registro o Git ROOT è stato mutato. La presente è rivalidazione degli stessi sei ID, senza nuovo incremento di copertura.
 
-Test mirati: 9/9 PASS, uscita 0 in 17.811 s. Il trascritto GREEN e il precedente RED da tre fallimenti sono versionabili accanto a questa nota. Si mantengono tutti i test su domini, segni, unità, grafici, direzioni fuori piano, sorgenti sconosciute, prove mancanti, drift runtime e falsa approvazione umana. Fresh e saved soddisfano assert_activity_identity e risultano identici. Nessun PASS è ricavato dalla sola chiave o da un vecchio flag.
+## Impronte correnti
 
-## Identità finali
-
-- Runtime completo: 54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d.
-- Verifier: 590cca67ebb70083402ba5a3a3e41b4b6472be1833bede6e366533b1c7b29dc5.
-- Test Python: 50a496c2c6812ba06d27503f8abee64ac872990913ba5748b2733eba9dc2bda5.
-- Protocollo browser: ea4449d2e4a495a18e87f6c7672bd81c6a7733eda6f6ac7c2abf71a65c7de45b.
-- Prova browser corrente: 2b981195a9bd5d359401444306daf8cc7d8041f6e49bf26fc4acfc86dee407a8.
-- Report: 7a8b8dbd5c703ceed5123d4e70de5c88af05b0f1f8db2d08a9f9408cd7988160.
-- Provenienza storica: editorial/reviews/experiments-kinematics-039-f897-snapshot, manifest 0a230c6be284f46e5ccaaff81cc47ac700c1c9496eacde465d9ad76a36e4c5b1.
-
-La rivalidazione conferma la stessa edizione originale sul nuovo runtime, non completa nuovi ID. Il precedente materiale f897 resta byte identico e identificato come storico. Nessuna nuova pubblicazione o firma umana.
-
-Confronto delle immagini finali con quelle intermedie già ispezionate: 19 dei 20 PNG di default sono byte identici, come tutti i grafici selezionati e gli stati di quarto di giro, atterraggio e cuspide citati sopra. L’unico default differente, SIM-C1-L004-01 in fallback, è stato aperto e nuovamente ispezionato sul run finale. Si distinguono così il nuovo replay effettivo dalla lettura visiva già compiuta di immagini identiche.
+- Runtime: b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f.
+- Verifier: 90e5706757c843b240f4664439a46e440fc9177b5b144b121d2a18569778a27f.
+- Protocollo: 865cc74dc62bbda08a8b1f1927a826e9b7fec97346ed7263306feb2b3b6b8634.
+- Prova browser: d943d2e7fca0deb046f78e4b1bac0870c3431cf7942db9fa195bb1e12865e365.
+- Report: 51c9a5140cc7b302a9a32c51ae1dbea0d5be5424f6dfbe247fccea00d59311da.
+- Test: 50a496c2c6812ba06d27503f8abee64ac872990913ba5748b2733eba9dc2bda5.
+- Trascritto: 3968f86ab9081ab0cc476d86d1b44518c7fd8222dbc452d816e5415c3e25cea4.
