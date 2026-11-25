@@ -4,7 +4,7 @@ Tutti i 16 prompt originali di questa famiglia U4-02 letti individualmente dal p
 
 Autore soltanto. Review scientifica indipendente NOT_RUN, human NOT_RUN, publication DRAFT/NONE. Le note di calcolo seguenti aiutano il revisore e non costituiscono un oracolo indipendente o un’autofirma.
 
-Controlli tecnici: due assembly identiche sui record e sui binding; importatore canonico ROOT con package assoluto A in SQLite temporaneo, 16 nuovi poi 0 nuovi/16 invariati. Tutti i 991 pubblicati, live heads e versioni storiche conservati. SVG XML e rendering completo letti dall’autore. Snapshot privata del runtime ROOT con fingerprint f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5 identica prima del run; medesimo harness b77d90368c3fa4d7fee43db65b402804615e0ba353f6514d699864e2cbd46372: 48/48 anteprime con exit 0, nessuna violazione di overflow, formule o axe. Questo non sostituisce il replay dell’integratore né certifica l’esperienza umana o l’apprendimento. Nessun registro o codice prodotto modificato.
+Controlli tecnici: due assembly identiche sui record e sui binding; importatore canonico ROOT con package assoluto A in SQLite temporaneo, 16 nuovi poi 0 nuovi/16 invariati. Tutti i 991 pubblicati, live heads e versioni storiche conservati. SVG XML e rendering completo letti dall’autore. Snapshot privata del runtime ROOT con fingerprint 97cd2aba7360c632b8d7421f8ccaaa58c00d8e600c14b67d6b74de13a35bea72 identica prima del run; medesimo harness b77d90368c3fa4d7fee43db65b402804615e0ba353f6514d699864e2cbd46372: 48/48 anteprime con exit 0, nessuna violazione di overflow, formule o axe. Questo non sostituisce il replay dell’integratore né certifica l’esperienza umana o l’apprendimento. Nessun registro o codice prodotto modificato.
 
 ## AR-u4-coherent-constructive-01 — Due oscillazioni locali in fase
 
@@ -80,19 +80,19 @@ Source SHA256 434ecbc314ea95e17b48b4baa78aa62b1a94f93d1dcdf07507a34b19e2ad0318; 
 
 ## AR-u4-coherent-constructive-10 — Due fattori di amplificazione
 
-I coefficienti risultanti delle due prove sono U e V. Il quoziente delle ampiezze è V/U, con contributi iniziali che pesano i due fattori. Il quadrato del rapporto comparirebbe nel confronto delle intensità a parità degli altri parametri, che qui non è chiesto.
+I coefficienti risultanti delle due prove sono U e V. Il quoziente delle ampiezze è V/U, con contributi iniziali che pesano i due fattori. Il quadrato del rapporto darebbe un confronto delle intensità per onde progressive codirezionali con lo stesso coefficiente I=C Aₜ², come nel caso 06; qui il confronto energetico non è chiesto.
 
 Controllo didattico d’autore: U/V inverte le prove; sommare o moltiplicare i soli fattori perde i pesi. (V/U)² cambia la grandezza richiesta in un rapporto energetico. Una maggiore ampiezza non autorizza a cambiare la fase mantenendo questa formula.
 
-Source SHA256 fdb0c054002cd0ef8ddd13e36e062ca6e1182890f9ebd56d5981d624a9f9b1c8; candidato SHA256 18c953f4ca344ccbe410329a4e31aaf9ac97808b0b868e522fd810e1fb5689a7. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 fdb0c054002cd0ef8ddd13e36e062ca6e1182890f9ebd56d5981d624a9f9b1c8; candidato SHA256 ced8bb1aaec321d1ec023d23c949a14de0ba3860dc7a5a21b3d296143be36b76. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u4-coherent-constructive-11 — Confronto fra due risultanti
 
-Le ampiezze totali sono tre e cinque millimetri. Il rapporto è cinque terzi, un numero puro. Venticinque noni sarebbe il suo quadrato, pertinente a un rapporto di intensità nelle medesime condizioni del mezzo e della frequenza.
+Le ampiezze totali sono tre e cinque millimetri. Il rapporto è cinque terzi, un numero puro. Venticinque noni sarebbe il suo quadrato: darebbe un rapporto di intensità per onde progressive codirezionali con lo stesso coefficiente I=C Aₜ², come nel caso 06. La sola fase locale comune non basta a fissare un flusso energetico netto per onde contropropaganti.
 
 Controllo didattico d’autore: Due e tre mezzi seguono soltanto la prima o la seconda componente; tre quinti inverte il confronto. La sovrapposizione delle coordinate deve essere effettuata prima del rapporto.
 
-Source SHA256 6b739bd036f3e2ceb0f49a33ba4b4787fab02e4fb2b0bfd559b54a208bba0f94; candidato SHA256 4de130f96c6f4fc546afc40aa13612cce5c5486baffdae04912b9b27c2aac845. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 6b739bd036f3e2ceb0f49a33ba4b4787fab02e4fb2b0bfd559b54a208bba0f94; candidato SHA256 f220f4b9d76f7c6f6afd4990cccfc55c9f973c11a2c04fee1b0831495c40d0aa. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u4-coherent-constructive-12 — Media dei coefficienti risultanti
 
@@ -134,4 +134,6 @@ Controllo didattico d’autore: Uno identifica la prima anziché la seconda comp
 
 Source SHA256 0f3efb86d796bc1cf27dc197d0a7a0adafd1b3bf36c430a4a1a1f3f844eff0e6; candidato SHA256 349d89f4f763c2a58504352e24cba853c1a700101e86da052ab2c8a7223e7c33. Nessun giudizio scientifico indipendente attribuito all’autore.
 
-La fase relativa costruttiva è fissata nel punto, per uguale frequenza e polarizzazione e nel regime lineare. Le ampiezze sono moduli dei coefficienti di una coordinata locale, non cammini della perturbazione. Il caso 06 è separato: dopo la fase invertita il coefficiente è negativo ma l’ampiezza è il suo modulo; il rapporto energetico richiede poi il quadrato. La figura usa segmenti di spostamento, senza frecce di forza; la scala di 100 px/mm nei primi pannelli è distinta da 60 px/mm nel terzo. La media delle somme del 12 coincide con la somma delle medie per linearità. Nessuna intensità viene sommata per sostituire la sovrapposizione coerente delle coordinate.
+Rilievo del revisore distinto: il solo accordo locale di fase non determina un flusso energetico I=C Aₜ² per onde contropropaganti. Nei soli commenti 10 e 11 è ora precisato che l’eventuale rapporto quadratico di intensità richiede onde progressive codirezionali con lo stesso coefficiente, come già esplicitato nel caso 06. Nessuna chiave, formula o SVG cambia; gli altri 14 record sono byte identici. Due assembly finali uguali e nuovo import canonico ROOT 16 poi 0/16 invariati, 991 preservati. Il run conclusivo coherent-constructive-144-reviewed-fix-browser usa davvero il package finale con hash controllato e il runtime ROOT 97cd2aba7360c632b8d7421f8ccaaa58c00d8e600c14b67d6b74de13a35bea72, harness b77d90368c3fa4d7fee43db65b402804615e0ba353f6514d699864e2cbd46372, 48 casi con exit 0 e zero failure. I 192 casi delle quattro edizioni precedenti restano prove tecniche storiche f897 e non sono rietichettati come nuovi. Un replay intermedio sul runtime nuovo aveva caricato ancora il vecchio payload ROOT: non è usato come prova della correzione. Il revisore distinto deve rileggere i nuovi due testi prima del freeze.
+
+La fase relativa costruttiva è fissata nel punto, per uguale frequenza e polarizzazione e nel regime lineare. Le ampiezze sono moduli dei coefficienti di una coordinata locale, non cammini della perturbazione. Il caso 06 è separato: dopo la fase invertita il coefficiente è negativo ma l’ampiezza è il suo modulo; il rapporto energetico richiede poi il quadrato. La figura usa segmenti di spostamento, senza frecce di forza; la scala di 100 px/mm nei primi pannelli è distinta da 60 px/mm nel terzo. La media delle somme del 12 coincide con la somma delle medie per linearità.
