@@ -1,0 +1,1188 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-identical-parallel-resistors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21001,
+      "title": "Tre rami fra due nodi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Ogni ramo ha r=12 Ω e N=3. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tre rami ricevono la stessa tensione orientata da A a B; non sono attraversati in successione. La corrente totale somma tre contributi V_AB/(12 Ω). Da I_T=V_AB/(4 Ω) segue R=4 Ω. Il risultato è minore di 12 Ω perché sono disponibili tre percorsi in parallelo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8786263c40f6cf2e2e210668f7db1dc78dc0879691e9d97076a3061b7783e1a8",
+          "text": "I tre resistori da 12 Ω condividono i nodi A e B: la tensione è comune e le correnti si sommano. Il disegno è schematico e non misura il valore di r dalla lunghezza del simbolo. Il secondo pannello mantiene r=12 Ω e confronta N=3 con il confine N=1. Il terzo cambia anche r fra le due preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "I_T=3\\frac{V_{AB}}{12\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{12}{3}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "36 Ω sarebbe la serie dei tre elementi. Dodici Ω conserva soltanto un ramo; 1/4 Ω è il reciproco numerico del risultato, ma il reciproco fisico è una conduttanza di 1/4 S. Due Ω conterebbe sei rami da 12 Ω, non tre."
+        }
+      ],
+      "hints": [
+        "Somma le correnti dei rami, mantenendo comune la tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "36 Ω sarebbe la serie dei tre elementi. Dodici Ω conserva soltanto un ramo; 1/4 Ω è il reciproco numerico del risultato, ma il reciproco fisico è una conduttanza di 1/4 S. Due Ω conterebbe sei rami da 12 Ω, non tre.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21002,
+      "title": "Il conteggio non cambia l’unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Quale unità esprime la resistenza equivalente R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "1",
+          "S",
+          "A",
+          "V"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "N conta i rami ed è adimensionale. Dividere una resistenza r per N mantiene l’unità Ω. Dalla definizione del coefficiente equivalente si ottiene anche V/A=Ω; non si sta chiedendo il numero di rami."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac rN"
+        },
+        {
+          "type": "formula",
+          "text": " [N]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "1 è l’unità del conteggio, non di R. S misura il reciproco di una resistenza; A misura corrente e V tensione. Il fatto che N non porti unità non rende adimensionale il quoziente r/N."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità del numeratore e quella del conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1 è l’unità del conteggio, non di R. S misura il reciproco di una resistenza; A misura corrente e V tensione. Il fatto che N non porti unità non rende adimensionale il quoziente r/N.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21003,
+      "title": "La legge dai rami identici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Quale formula dà R in funzione di r e N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = r / N",
+          "R = N r",
+          "R = N / r",
+          "R = r + N",
+          "R = r / N²"
+        ],
+        "value": "R = r / N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ramo ha conduttanza 1/r. Le N conduttanze si sommano perché i morsetti di tutti i rami coincidono: G_T=N/r. L’equivalente resistivo è il suo reciproco, R=r/N. Con un solo ramo si ritrova R=r, un controllo utile sul confine N=1."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8786263c40f6cf2e2e210668f7db1dc78dc0879691e9d97076a3061b7783e1a8",
+          "text": "Tutti i rami del primo pannello hanno gli stessi morsetti, quindi le tre conduttanze si sommano. L’equivalente vale 4 Ω. La disposizione verticale dei simboli non li rende in serie; il numero di rami resta intero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "G_T=\\frac Nr"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac1{G_T}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac rN"
+        },
+        {
+          "type": "text",
+          "text": "Nr è la serie, mentre N/r è già la conduttanza e ha unità S. r+N somma Ω e un numero puro. N² introdurrebbe un fattore di conteggio ulteriore che non nasce dalla somma delle correnti."
+        }
+      ],
+      "hints": [
+        "Somma prima le conduttanze e prendi il reciproco una sola volta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Nr è la serie, mentre N/r è già la conduttanza e ha unità S. r+N somma Ω e un numero puro. N² introdurrebbe un fattore di conteggio ulteriore che non nasce dalla somma delle correnti.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21004,
+      "title": "Si dimezza ogni resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. N resta 3. Il valore di ciascun ramo passa da 12 a 6 Ω. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 2 Ω",
+          "Da 4 a 8 Ω",
+          "Resta 4 Ω",
+          "Da 4 a 6 Ω",
+          "Da 4 a 1 Ω"
+        ],
+        "value": "Da 4 a 2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di rami non cambia. Inizialmente R_A=12/3=4 Ω; dopo la modifica R_B=6/3=2 Ω. R dipende linearmente dalla resistenza del singolo ramo, perciò si dimezza insieme a essa."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=\\frac63\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Otto Ω inverte la dipendenza da r. Quattro ignora il cambiamento; sei copia il singolo ramo senza dividerlo per tre; uno dimezza due volte. Non è cambiato N."
+        }
+      ],
+      "hints": [
+        "Mantieni il divisore N mentre cambia r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto Ω inverte la dipendenza da r. Quattro ignora il cambiamento; sei copia il singolo ramo senza dividerlo per tre; uno dimezza due volte. Non è cambiato N.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21005,
+      "title": "La resistenza di ciascun ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Si misura R=4 Ω e si contano N=3 rami. Quanto vale r in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da R=r/N moltiplichiamo entrambi i membri per N: r=NR. Con tre rami si trova r=3·4 Ω=12 Ω. Ricomponendo il parallelo, 12 Ω divisi per tre restituiscono esattamente la misura 4 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "r=NR"
+        },
+        {
+          "type": "formula",
+          "text": " r=3\\cdot4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r=12\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "4/3 Ω divide ancora per N invece di invertire la relazione e darebbe un equivalente 4/9 Ω. Quattro Ω copia il totale e darebbe 4/3 Ω. Trentasei Ω darebbe 12 Ω, non 4 Ω."
+        }
+      ],
+      "hints": [
+        "Rimuovi la divisione per N moltiplicando entrambi i membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 Ω divide ancora per N invece di invertire la relazione e darebbe un equivalente 4/9 Ω. Quattro Ω copia il totale e darebbe 4/3 Ω. Trentasei Ω darebbe 12 Ω, non 4 Ω.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21006,
+      "title": "Quanti rami sono presenti?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Si misura R=4 Ω e ogni elemento ha r=12 Ω. Quanto vale N?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da RN=r ricaviamo N=r/R=12/4=3. Il risultato è un intero positivo, quindi descrive una rete ammessa. Se r/R non fosse intero, i dati non descriverebbero esattamente un parallelo di elementi identici nel modello: non si dovrebbe arrotondare il conteggio."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac rR"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{12}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " N=3"
+        },
+        {
+          "type": "text",
+          "text": "1/3 inverte il rapporto ed è anche un conteggio non ammesso. Quarantotto moltiplica i valori anziché dividerli e dodici copia r senza confrontarlo con R. Zero non rappresenta una rete con almeno un ramo."
+        }
+      ],
+      "hints": [
+        "Dividi il valore di un ramo per l’equivalente e controlla l’integrità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 inverte il rapporto ed è anche un conteggio non ammesso. Quarantotto moltiplica i valori anziché dividerli e dodici copia r senza confrontarlo con R. Zero non rappresenta una rete con almeno un ramo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21007,
+      "title": "Resta un solo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. A ha r=12 Ω e N_A=3. B mantiene r e ha N_B=1. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "1",
+          "9",
+          "1/9"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha equivalente 4 Ω. Con un solo ramo B ha R_B=r=12 Ω. Il rapporto è 12/4=3: eliminare due percorsi aumenta l’equivalente. N=1 è un caso fisico ammesso, non una divisione per zero."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo usa N_B/N_A anziché il suo reciproco. Uno ignora la rimozione; nove e un nono elevano al quadrato un fattore che nella legge R=r/N compare una sola volta."
+        }
+      ],
+      "hints": [
+        "Con N=1 l’equivalente coincide con il solo resistore rimasto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo usa N_B/N_A anziché il suo reciproco. Uno ignora la rimozione; nove e un nono elevano al quadrato un fattore che nella legge R=r/N compare una sola volta.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21008,
+      "title": "Lo scarto della proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Con r=12 Ω e N=3 si propone R=8 Ω. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 Ω",
+          "−4 Ω",
+          "8 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 12/3=4 Ω. Lo scarto con l’ordine richiesto è 8−4=+4 Ω. Il numero due senza unità è invece il rapporto fra proposta e valore corretto, una quantità diversa dalla differenza."
+        },
+        {
+          "type": "formula",
+          "text": "R=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−4 Ω inverte l’ordine; 8 Ω copia la proposta e zero la accetta. Il rapporto puro due non porta l’unità della resistenza e non risponde alla domanda sullo scarto."
+        }
+      ],
+      "hints": [
+        "Calcola prima l’equivalente e poi conserva l’ordine della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 Ω inverte l’ordine; 8 Ω copia la proposta e zero la accetta. Il rapporto puro due non porta l’unità della resistenza e non risponde alla domanda sullo scarto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21009,
+      "title": "Isolare il valore del ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Sono noti R e N. Quale formula ricava r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = N R",
+          "r = R / N",
+          "r = N / R",
+          "r = R − N",
+          "r = N² R"
+        ],
+        "value": "r = N R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partiamo da R=r/N. Moltiplicare per N>0 dà NR=r. Poiché N è adimensionale, il risultato mantiene Ω. La formula vale per ogni conteggio intero positivo, non soltanto per i tre rami dell’esempio."
+        },
+        {
+          "type": "formula",
+          "text": "RN=r"
+        },
+        {
+          "type": "formula",
+          "text": " r=NR"
+        },
+        {
+          "type": "formula",
+          "text": " [r]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "R/N ripete la divisione invece di invertirla. N/R ha unità S, R−N sottrae grandezze incompatibili e N²R moltiplica per un fattore N in più. Con R=4 Ω e N=3, solo NR restituisce 12 Ω."
+        }
+      ],
+      "hints": [
+        "L’incognita è il numeratore di un quoziente noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "R/N ripete la divisione invece di invertirla. N/R ha unità S, R−N sottrae grandezze incompatibili e N²R moltiplica per un fattore N in più. Con R=4 Ω e N=3, solo NR restituisce 12 Ω.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21010,
+      "title": "Due fattori, conteggi ammessi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. B usa r_B=κ₁r_A e N_B=κ₂N_A. I fattori sono positivi; N_A e N_B sono interi positivi. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂²",
+          "κ₁²/κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella legge, R_B=(κ₁/κ₂)(r_A/N_A). Il rapporto cercato è κ₁/κ₂. Il fattore κ₂ non deve essere di per sé intero: basta che il prodotto κ₂N_A lo sia. Per esempio un passaggio da tre a cinque rami ha κ₂=5/3."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=\\frac{\\kappa_1r_A}{\\kappa_2N_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto l’effetto del numero di percorsi. Il reciproco scambia B/A. I quadrati dei fattori non compaiono nella legge del parallelo identico. La positività non sostituisce il vincolo discreto sui due conteggi."
+        }
+      ],
+      "hints": [
+        "Scala il numeratore e il divisore separatamente, conservando N intero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto l’effetto del numero di percorsi. Il reciproco scambia B/A. I quadrati dei fattori non compaiono nella legge del parallelo identico. La positività non sostituisce il vincolo discreto sui due conteggi.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21011,
+      "title": "Cambiano valore e numero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. A ha r=12 Ω e N=3; B ha r=15 Ω e N=5. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "5/4",
+          "3/5",
+          "25/12"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 12/3=4 Ω; B dà 15/5=3 Ω. Il rapporto è 3/4. Il valore di ciascun resistore cresce, ma l’aggiunta di due rami prevale: l’equivalente diminuisce. I due conteggi sono entrambi interi positivi."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 è il reciproco. 5/4 segue soltanto r_B/r_A; 3/5 segue soltanto N_A/N_B; 25/12 moltiplica i due fattori diretti invece di dividere per quello del conteggio."
+        }
+      ],
+      "hints": [
+        "Calcola i due equivalenti oppure combina (15/12)/(5/3).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 è il reciproco. 5/4 segue soltanto r_B/r_A; 3/5 segue soltanto N_A/N_B; 25/12 moltiplica i due fattori diretti invece di dividere per quello del conteggio.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21012,
+      "title": "Media delle reti preparate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. A usa r=12 Ω e N=3; B usa r=15 Ω e N=5. Qual è la media aritmetica delle due R, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 Ω",
+          "27/8 Ω",
+          "7 Ω",
+          "1/2 Ω",
+          "3 Ω"
+        ],
+        "value": "7/2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 4 e 3 Ω: la media è 7/2 Ω. Ai dati medi r=27/2 Ω e N=4, anch’esso conteggio ammissibile, si avrebbe invece (27/2)/4=27/8 Ω. La differenza fra media delle uscite e uscita ai dati medi è 1/8 Ω. Sono due domande distinte."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8786263c40f6cf2e2e210668f7db1dc78dc0879691e9d97076a3061b7783e1a8",
+          "text": "Le barre dell’ultimo pannello mostrano A: 4 Ω, B: 3 Ω e media 7/2 Ω, con origine e scala comuni entro il pannello. B usa r=15 Ω e cinque rami, quindi non appartiene al confronto centrale a r=12 Ω. Le scale dei due pannelli di barre sono indipendenti; la rete con gli ingressi medi darebbe 27/8 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{4+3}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=\\frac72\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm dati\\ medi}=\\frac{27}{8}\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "27/8 Ω applica la legge ai dati medi. Sette Ω non dimezza la somma; un mezzo è metà della differenza; tre copia B. La media non rappresenta un collegamento in serie o in parallelo fra le due reti."
+        }
+      ],
+      "hints": [
+        "Calcola ogni uscita prima di applicare i pesi statistici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "27/8 Ω applica la legge ai dati medi. Sette Ω non dimezza la somma; un mezzo è metà della differenza; tre copia B. La media non rappresenta un collegamento in serie o in parallelo fra le due reti.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21013,
+      "title": "Il conteggio per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. A ha r_A=12 Ω e N_A=3. B usa r_B=15 Ω e deve dare R_B=(3/4)R_A. Quanto vale N_B/N_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "3/4",
+          "5/4",
+          "5"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (3/4)·4=3 Ω. Da N_B=r_B/R_B si ottiene N_B=15/3=5, intero ammesso. Il rapporto con i tre rami iniziali è 5/3; un rapporto fra conteggi interi può essere frazionario."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=\\frac{15}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=5"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{N_B}{N_A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il rapporto. 3/4 copia il bersaglio delle resistenze e 5/4 quello dei valori di ramo. Cinque è soltanto N_B: manca la divisione per N_A. Nessuno di questi rapporti sostituisce il controllo che N_B sia intero."
+        }
+      ],
+      "hints": [
+        "Ricava prima il numero finale, poi confrontalo con il numero iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il rapporto. 3/4 copia il bersaglio delle resistenze e 5/4 quello dei valori di ramo. Cinque è soltanto N_B: manca la divisione per N_A. Nessuno di questi rapporti sostituisce il controllo che N_B sia intero.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21014,
+      "title": "Dal display al singolo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. D=a_cal R è un’uscita continua adimensionale, a_cal>0, senza offset. A con r=12 Ω e N=3 dà D=12. C dà D=9 e ha N=5. Quanto vale r_C in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha R_A=4 Ω, perciò a_cal=12/(4 Ω)=3 Ω⁻¹. La nuova lettura dà R_C=9/(3 Ω⁻¹)=3 Ω. Il singolo ramo deve avere r_C=N_CR_C=5·3 Ω=15 Ω. D non conta rami e non è direttamente una resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=5\\cdot3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=15\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Quarantacinque Ω usa D come equivalente e dimentica il guadagno. Tre Ω copia l’equivalente anziché ricavare il ramo. 3/5 Ω divide per N invece di moltiplicare. Dodici Ω copia il riferimento senza usare la nuova lettura."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura, poi inverti il parallelo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantacinque Ω usa D come equivalente e dimentica il guadagno. Tre Ω copia l’equivalente anziché ricavare il ramo. 3/5 Ω divide per N invece di moltiplicare. Dodici Ω copia il riferimento senza usare la nuova lettura.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21015,
+      "title": "Il piccolo valore oltre l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. D=a_cal R+b è continuo e adimensionale, a_cal>0. A: r=12 Ω, N=3, D=9. B: r=15 Ω, N=5, D=7. C: N=3, D=5. Quanto vale r_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 Ω",
+          "15/2 Ω",
+          "2 Ω",
+          "15 Ω",
+          "3 Ω"
+        ],
+        "value": "6 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno R_A=4 Ω e R_B=3 Ω. Guadagno a_cal=(9−7)/[(4−3) Ω]=2 Ω⁻¹ e b=1. C ha R_C=(5−1)/2 Ω=2 Ω. Con N_C=3 il valore di ogni ramo è r_C=3·2 Ω=6 Ω. L’offset va rimosso prima di dividere per il guadagno."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=6\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "15/2 Ω omette l’offset e ricostruisce D=6, non 5. Due Ω copia l’equivalente; quindici Ω ricostruisce D=11 e tre Ω ricostruisce D=3. Solo sei restituisce la lettura assegnata con tre rami."
+        }
+      ],
+      "hints": [
+        "Usa le due R di riferimento per trovare prima guadagno e offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15/2 Ω omette l’offset e ricostruisce D=6, non 5. Due Ω copia l’equivalente; quindici Ω ricostruisce D=11 e tre Ω ricostruisce D=3. Solo sei restituisce la lettura assegnata con tre rami.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-identical-parallel-resistors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Rami identici in parallelo",
+      "order": 21016,
+      "title": "Una misura ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "identical-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "N resistori ohmici identici, ciascuno di resistenza r>0 finita, sono collegati fra gli stessi due nodi A e B con fili ideali. La temperatura è fissata e il regime è stazionario. N è un intero positivo, anche N=1 è ammesso. La resistenza equivalente R è il coefficiente nella legge V_AB=RI_T: per V_AB non nulla, ogni ramo porta V_AB/r e I_T=N V_AB/r. Resta quindi R=r/N, anche come coefficiente al limite di tensione nulla. Fra prove possono cambiare r e N senza cambiare questa topologia. Fra preparazioni si impone r=βN, con β=4 Ω. Si misura inoltre R=4 Ω. Quante coppie (r,N) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie, con N intero positivo e r = (4 Ω) N",
+          "Una sola: r = 12 Ω e N = 3",
+          "Nessuna coppia",
+          "Solo r = 4 Ω e N = 1",
+          "Qualunque r positivo, indipendente da N"
+        ],
+        "value": "Infinite coppie, con N intero positivo e r = (4 Ω) N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si ottiene R=βN/N=β=4 Ω per ogni N intero positivo. La misura non aggiunge un vincolo indipendente. Per N=1 si ha r=4 Ω; per N=2, r=8 Ω; per N=3, r=12 Ω, e così via. Le soluzioni sono infinite ma discrete nel conteggio, non tutti i valori reali di N."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\beta N"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\beta N}{N}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " R=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie singole sono esempi e non esauriscono l’insieme. Nessuna è falso perché ne abbiamo costruite tre. r e N non sono liberi indipendentemente: r deve crescere come 4 Ω per ciascun ramo aggiunto fra preparazioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se la misura fissa ancora il conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie singole sono esempi e non esauriscono l’insieme. Nessuna è falso perché ne abbiamo costruite tre. r e N non sono liberi indipendentemente: r deve crescere come 4 Ω per ciascun ramo aggiunto fra preparazioni.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Stessi nodi e somma delle correnti",
+        "Conteggio intero e confine N=1",
+        "Inverse, rapporti, medie e taratura continua",
+        "Vincolo ridondante con scala discreta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8786263c40f6cf2e2e210668f7db1dc78dc0879691e9d97076a3061b7783e1a8",
+      "name": "identical-parallel-resistors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2ODAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY4MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlRyZSByYW1pIGlkZW50aWNpIGUgZHVlIGNvbmZyb250aSBkaXN0aW50aTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgcmVzaXN0b3JpIGRhIDEyIG9obSBjb2xsZWdhdGkgZnJhIEEgZSBCIGRhbm5vIGVxdWl2YWxlbnRlIDQgb2htLiBBIHJlc2lzdGVuemEgZGkgcmFtbyBmaXNzYSwgdW4gc29sbyByYW1vIGTDoCAxMiBvaG0uIE5lbGxlIGR1ZSBwcmVwYXJhemlvbmkgZmluYWxpIGkgdmFsb3JpIGVxdWl2YWxlbnRpIHNvbm8gNCBlIDMgb2htIGUgbGEgbWVkaWEgw6ggNy8yIG9obS4gTGUgc2NhbGUgc29ubyBjb211bmkgc29sbyBlbnRybyBjaWFzY3VuIHBhbm5lbGxvIGRpIGJhcnJlLjwvZGVzYz4KPHN0eWxlPnRleHR7Zm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmaWxsOiMxODM2NGE7Zm9udC1zaXplOjIwcHh9Lmh7Zm9udC1zaXplOjI2cHg7Zm9udC13ZWlnaHQ6NzAwfS5zbWFsbHtmb250LXNpemU6MThweH0ud2lyZXtzdHJva2U6IzI0NDg1YztzdHJva2Utd2lkdGg6MztmaWxsOm5vbmV9LnJlc3tzdHJva2U6IzE2NWE4NztzdHJva2Utd2lkdGg6MztmaWxsOiNlYWYzZjh9LmF4aXN7c3Ryb2tlOiM1MjZhNzg7c3Ryb2tlLXdpZHRoOjJ9LnRpY2t7Zm9udC1zaXplOjE2cHh9PC9zdHlsZT4KPHJlY3Qgd2lkdGg9IjY4MCIgaGVpZ2h0PSIxNTAwIiBmaWxsPSIjZmZmZGY2Ii8+Cjx0ZXh0IGNsYXNzPSJoIiB4PSIzNCIgeT0iNDgiPjEgwrcgTGEgc3Rlc3NhIGNvcHBpYSBkaSBub2RpPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iODgiPnIgPSAxMiDOqSA7IE4gPSAzIHJhbWkgaWRlbnRpY2kuPC90ZXh0Pgo8cGF0aCBjbGFzcz0id2lyZSIgZD0iTTkwIDI1MEgxNjBWMTYwSDUyMFYzNDBIMTYwVjI1ME01MjAgMjUwSDYwME0xNjAgMjUwSDMwME00MDAgMjUwSDUyMCIvPgo8cmVjdCBjbGFzcz0icmVzIiB4PSIzMDAiIHk9IjE0NSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCBjbGFzcz0icmVzIiB4PSIzMDAiIHk9IjIzNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMCIvPgo8cmVjdCBjbGFzcz0icmVzIiB4PSIzMDAiIHk9IjMyNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMCIvPgo8Y2lyY2xlIGN4PSIxNjAiIGN5PSIyNTAiIHI9IjYiIGZpbGw9IiMyNDQ4NWMiLz48Y2lyY2xlIGN4PSI1MjAiIGN5PSIyNTAiIHI9IjYiIGZpbGw9IiMyNDQ4NWMiLz4KPHRleHQgeD0iODUiIHk9IjIyNCI+QTwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjIyNCI+QjwvdGV4dD4KPHRleHQgeD0iMzE4IiB5PSIxMzAiPjEyIM6pPC90ZXh0Pjx0ZXh0IHg9IjMxOCIgeT0iMjIwIj4xMiDOqTwvdGV4dD48dGV4dCB4PSIzMTgiIHk9IjMxMCI+MTIgzqk8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI0MDIiPk9nbmkgcmFtbyByaWNldmUgVl9BQiA7IElfVCA9IDMgVl9BQiAvICgxMiDOqSkuPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iNDM4Ij5HX1QgPSAzIC8gKDEyIM6pKSA9IDEvNCBTIDsgUiA9IDQgzqkuPC90ZXh0Pgo8dGV4dCBjbGFzcz0iaCIgeD0iMzQiIHk9IjUxNSI+MiDCtyBSaW11b3ZlcmUgZHVlIHBlcmNvcnNpPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iNTU1Ij5RdWkgciByZXN0YSAxMiDOqSA7IE4gcGFzc2EgZGEgMyBhIDEuPC90ZXh0Pgo8bGluZSBjbGFzcz0iYXhpcyIgeDE9IjE1MCIgeTE9IjU5NSIgeDI9IjE1MCIgeTI9Ijc5MCIvPjxsaW5lIGNsYXNzPSJheGlzIiB4MT0iMTUwIiB5MT0iNzkwIiB4Mj0iNDMwIiB5Mj0iNzkwIi8+CjxyZWN0IHg9IjE1MCIgeT0iNjIwIiB3aWR0aD0iODAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNTAiIHk9IjcxMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzlhNGYyMyIvPgo8dGV4dCB4PSI0OCIgeT0iNjQ3Ij5OID0gMzwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjY0NyI+NCDOqTwvdGV4dD48dGV4dCB4PSI0OCIgeT0iNzM3Ij5OID0gMTwvdGV4dD48dGV4dCB4PSI0MDUiIHk9IjczNyI+MTIgzqk8L3RleHQ+Cjx0ZXh0IGNsYXNzPSJ0aWNrIiB4PSIxMjUiIHk9IjgxNSI+MDwvdGV4dD48dGV4dCBjbGFzcz0idGljayIgeD0iMjIzIiB5PSI4MTUiPjQ8L3RleHQ+PHRleHQgY2xhc3M9InRpY2siIHg9IjMwMyIgeT0iODE1Ij44PC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0aWNrIiB4PSIzODAiIHk9IjgxNSI+MTIgzqk8L3RleHQ+Cjx0ZXh0IGNsYXNzPSJzbWFsbCIgeD0iMzQiIHk9Ijg1OCI+VW4gcmFtbyDDqCBhbW1lc3NvOiBSIGNvaW5jaWRlIGNvbiByLjwvdGV4dD4KPHRleHQgY2xhc3M9ImgiIHg9IjM0IiB5PSI5NDAiPjMgwrcgRHVlIHByZXBhcmF6aW9uaSBlIGxhIG1lZGlhPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iOTgwIj5BOiByID0gMTIgzqksIE4gPSAzIDsgQjogciA9IDE1IM6pLCBOID0gNS48L3RleHQ+CjxsaW5lIGNsYXNzPSJheGlzIiB4MT0iMTUwIiB5MT0iMTAyMCIgeDI9IjE1MCIgeTI9IjEzMTAiLz48bGluZSBjbGFzcz0iYXhpcyIgeDE9IjE1MCIgeTE9IjEzMTAiIHgyPSIzOTAiIHkyPSIxMzEwIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTA0MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjE1MCIgeT0iMTE0MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPjxyZWN0IHg9IjE1MCIgeT0iMTI0MCIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzlhNGYyMyIvPgo8dGV4dCB4PSI4MCIgeT0iMTA2NSI+QTwvdGV4dD48dGV4dCB4PSIzMjYiIHk9IjEwNjUiPjQgzqk8L3RleHQ+PHRleHQgeD0iODAiIHk9IjExNjUiPkI8L3RleHQ+PHRleHQgeD0iMjg2IiB5PSIxMTY1Ij4zIM6pPC90ZXh0Pjx0ZXh0IHg9IjQ0IiB5PSIxMjY1Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSIzMDYiIHk9IjEyNjUiPjcvMiDOqTwvdGV4dD4KPHRleHQgY2xhc3M9InRpY2siIHg9IjEyNSIgeT0iMTMzNSI+MDwvdGV4dD48dGV4dCBjbGFzcz0idGljayIgeD0iMzAyIiB5PSIxMzM1Ij40IM6pPC90ZXh0Pgo8dGV4dCBjbGFzcz0ic21hbGwiIHg9IjM0IiB5PSIxMzkwIj5PcmlnaW5lIGUgc2NhbGEgY29tdW5pIGVudHJvIG9nbmkgcGFubmVsbG8gZGkgYmFycmUuPC90ZXh0Pgo8dGV4dCBjbGFzcz0ic21hbGwiIHg9IjM0IiB5PSIxNDMwIj5BaSBkYXRpIG1lZGk6IHIgPSAyNy8yIM6pLCBOID0gNCwgUiA9IDI3LzggzqkuPC90ZXh0Pgo8dGV4dCBjbGFzcz0ic21hbGwiIHg9IjM0IiB5PSIxNDcwIj5MZSBzY2FsZSBkZWkgcGFubmVsbGkgMiBlIDMgc29ubyBpbmRpcGVuZGVudGkuPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}
