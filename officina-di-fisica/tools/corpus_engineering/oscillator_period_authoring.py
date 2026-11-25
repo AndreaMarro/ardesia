@@ -76,7 +76,7 @@ TASKS=[
 ('Offset di una misura ridotta',SCENE+'Un display continuo adimensionale segue S=qτ+b con q>0 e q,b costanti. A: m=1 kg,k=4 N/m,S=2. B: m=4 kg,k=1 N/m,S=5. C: k=1 N/m,S=7. Quanto vale m_C?',['9 kg','3 kg','7 kg','4 kg','36 kg'],
  'A e B hanno τ=1/2 e 2 s. Il guadagno è (5−2)/(2−1/2) s⁻¹=2 s⁻¹, poi b=1. La lettura sette dà τ_C=(7−1)/2=3 s. La massa cercata è un kg/s² per nove secondi quadrati, cioè nove kg.',
  r'q=2\,\mathrm{s^{-1}}\qquad b=1\qquad \tau_C=3\,\mathrm s\qquad m_C=k_C\tau_C^2\qquad m_C=9\,\mathrm{kg}',
- 'Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei eleva al quadrato sei prima di dividere per il guadagno, trattando q come se comparisse una sola volta anziché al quadrato nell’inversa.',
+ 'Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei è il quadrato di S−b: omette del tutto la divisione per q² richiesta da m=k[(S−b)/q]².',
  'Sottrai b e dividi per q prima di fare il quadrato.'),
 ('Stesso τ, molte masse e rigidezze',SCENE+'Fra prove si impone m=bk con b=1/4 s². Si misura inoltre τ=1/2 s. Quante coppie positive (m,k) sono compatibili?',['Infinite coppie','Una sola coppia','Due coppie','Nessuna coppia','Solo la coppia nulla'],
  'Il rapporto m/k vale b=1/4 s² in ogni prova. La misura τ=√b=1/2 s ripete il vincolo e non determina la scala di m o k. Per esempio 1 kg con 4 N/m e 4 kg con 16 N/m danno lo stesso τ, pur essendo sistemi diversi.',

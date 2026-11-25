@@ -122,9 +122,9 @@ Source SHA256 f79efade72d08579f845c88bc4ccdf9a36c4673569a60d2983576697b0f24680; 
 
 A e B hanno τ=1/2 e 2 s. Il guadagno è (5−2)/(2−1/2) s⁻¹=2 s⁻¹, poi b=1. La lettura sette dà τ_C=(7−1)/2=3 s. La massa cercata è un kg/s² per nove secondi quadrati, cioè nove kg.
 
-Controllo didattico d’autore: Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei eleva al quadrato sei prima di dividere per il guadagno, trattando q come se comparisse una sola volta anziché al quadrato nell’inversa.
+Controllo didattico d’autore: Tre copia il numero di τ_C, sette quello del display e quattro la massa B. Trentasei è il quadrato di S−b: omette del tutto la divisione per q² richiesta da m=k[(S−b)/q]².
 
-Source SHA256 bd6e69aaa92c457d35f1e123ce3468faa683ae8fc831444d4db1b956bd0e0958; candidato SHA256 3cbe6c751eee697ee68705673a04533284674a3f39de66e27a7be362aab1ae25. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 bd6e69aaa92c457d35f1e123ce3468faa683ae8fc831444d4db1b956bd0e0958; candidato SHA256 6ea0393a59102156534c2a2e53d4358ca6756959374310603f0fcc4612a4d8eb. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u4-oscillator-period-16 — Stesso τ, molte masse e rigidezze
 
@@ -137,3 +137,5 @@ Source SHA256 63af74bcd5b1cc0568bb3435cfa50f789af31333d03eb175e0826d3aa49d02dc; 
 Distinzione centrale: τ=T/(2π), T=2πτ. Il derivare ω²=k/m usa F=−kx e Newton, perciò i prerequisiti C1-L005/L006 sono trasferimenti espliciti. Nel grafico una fase 2π corrisponde al ciclo completo, mentre le barre sono solo τ. I casi 04 lasciano √2/2 s esatto e 16 mantengono b=1/4 s² dimensionato.
 
 Il primo import è stato rifiutato correttamente perché answer.value del record01 era una stringa «1/2» invece di un numero JSON. Correzione strutturale d’autore a 0.5, che rappresenta esattamente 1/2; testi, formule, chiave matematica e figura invariati. Nuove assembly/import e 48 anteprime finali tutti su questo payload, nessun PASS attribuito al tentativo rifiutato.
+
+Finding del revisore indipendente nel feedback 15: 36 è (S−b)² e omette completamente q². Dividere soltanto per q darebbe invece 18, non 36. Corretta solo la spiegazione e il feedback/error derivato, con nuovo binding 15. Altri 15 record, tutte le risposte, formule e SVG identici. Nuove assembly equivalenti, import canonico 16 poi 0/16 e 48 anteprime finali con exit 0 sulla correzione; nessuna firma scientifica dell’autore.
