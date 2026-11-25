@@ -18,6 +18,8 @@ from pathlib import Path
 from urllib.parse import parse_qsl, quote, unquote, urlparse
 
 from . import commerce, editor, learning
+from .adapters import discipline_editions
+from . import discipline_study
 from .domain.catalog_search import search_catalog
 from .application.error_diary import ErrorDiary
 from .adapters.study_repository import SQLiteStudy
@@ -269,9 +271,13 @@ class Handler(BaseHTTPRequestHandler):
                     403,
                 )
                 size = int(self.headers.get("Content-Length", "0"))
-                require(0 < size <= 40_000_000, "Richiesta troppo grande o vuota.", 413)
+                limit = 8192 if path.startswith(("/api/v1/mathematics/", "/api/v1/disciplines/")) else 40_000_000
+                require(0 < size <= limit, "Richiesta troppo grande o vuota.", 413)
                 data = json.loads(self.rfile.read(size))
                 require(isinstance(data, dict), "Dati JSON non validi.")
+            if write and path == "/api/v1/mathematics/compare":
+                from .domain.rational_steps import compare
+                return self.response(compare(data))
             raw = cookies.SimpleCookie(self.headers.get("Cookie", ""))
             token = raw.get("astra_session")
             token = token.value if token else ""
@@ -321,10 +327,14 @@ class Handler(BaseHTTPRequestHandler):
 
     def route(self, db, u, p, d, post, token):
         path = "/".join(p)
+        if p[:3] == ["api", "v1", "disciplines"]:
+            local = (os.environ.get("ASTRA_HOSTED") != "1"
+                     and self.server.server_address[0] in ("127.0.0.1", "::1"))
+            return discipline_study.route(db, u, p[3:], d, post, local)
         if not post and path == "api/v1/openapi.json":
             return json.loads((CONTRACTS / "openapi.json").read_text())
         if not post and p[:3] == ["api", "v1", "schemas"] and len(p) == 4:
-            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1", "error-diary-v1", "reading-preferences-v1"}
+            names = {"engine-ref-v1", "engine-v1", "proposal-v1", "exam-v1", "pathway-v1", "library-v1", "catalog-search-v1", "error-diary-v1", "reading-preferences-v1", "disciplines-v1"}
             name = p[3].removesuffix(".schema.json")
             require(p[3] == name + ".schema.json" and name in names, "Schema assente.", 404)
             return json.loads((CONTRACTS / p[3]).read_text())
@@ -485,6 +495,12 @@ class Handler(BaseHTTPRequestHandler):
                 experiments = (r for r in rows if r["kind"] == "experiment")
             return {"lessons": simulation_index(rows, experiments)}
         if not post and p[:2] == ["api", "course"] and len(p) == 3:
+            if p[2].startswith("D~"):
+                course = next((c for c in discipline_editions.sale_courses(db) if c["id"] == p[2]), None)
+                require(course, "Percorso non trovato.", 404)
+                return {"course": course, "items": [], "preview": [], "activities": [],
+                        "owned": entitled(db, u, [course], p[2]), "offers": commerce.offers(db, p[2]),
+                        "terms": config(db).get("terms", "")}
             c = record(db, p[2])
             require(c["kind"] == "course", "Percorso non trovato.", 404)
             group = in_course(rows, c["id"])
@@ -657,6 +673,8 @@ class Handler(BaseHTTPRequestHandler):
             attach_formative_variant(run, draft_scope(token))
             return run
         if post and path == "api/orders":
+            if isinstance(d.get("course"), str) and d["course"].startswith("D~"):
+                rows = discipline_editions.sale_courses(db)
             return commerce.create(db, u, rows, d)
         if post and p[:2] == ["api", "order"] and len(p) == 3:
             return commerce.operation(db, u, p[2], d)
@@ -842,6 +860,7 @@ class Handler(BaseHTTPRequestHandler):
         if not post and route == "commerce":
             return {
                 "config": config(db),
+                "disciplineCourses": discipline_editions.sale_courses(db),
                 "orders": [
                     dict(commerce.public(r), email=r["email"])
                     for r in db.execute(

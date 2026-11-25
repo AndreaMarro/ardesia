@@ -599,6 +599,332 @@
           }
         ]
       }
+    },
+    "/v1/disciplines": {
+      "get": {
+        "summary": "Scopri le materie installate",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/directory"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/v1/disciplines/{discipline}": {
+      "get": {
+        "summary": "Consulta programmi, microcorsi e prerequisiti",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/catalog"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/disciplines/{discipline}/units/{unit}": {
+      "get": {
+        "summary": "Apri una lezione nella tua edizione",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/unit"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          },
+          {
+            "in": "path",
+            "name": "unit",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/disciplines/{discipline}/me": {
+      "get": {
+        "summary": "Riprendi il lavoro ed esamina le evidenze personali",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/notebook"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/disciplines/{discipline}/events": {
+      "post": {
+        "summary": "Registra un evento una sola volta per richiesta",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/receipt"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Astra-Request",
+            "required": true,
+            "schema": {
+              "const": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/event"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/disciplines/{discipline}/context": {
+      "post": {
+        "summary": "Seleziona gli ambiti del contesto da esportare",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/context"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Astra-Request",
+            "required": true,
+            "schema": {
+              "const": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/contextRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/disciplines/{discipline}/courses/{course}/editorial-library": {
+      "get": {
+        "summary": "Esporta all’autore i passaggi di una microdisciplina approvata",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/library-v1.schema.json"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "discipline",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          },
+          {
+            "in": "path",
+            "name": "course",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+            }
+          }
+        ],
+        "security": [
+          {
+            "session": []
+          }
+        ]
+      }
+    },
+    "/v1/mathematics/compare": {
+      "post": {
+        "summary": "Confronta due espressioni razionali univariate",
+        "responses": {
+          "200": {
+            "description": "Risultato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/verdict"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/Problem"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Astra-Request",
+            "required": true,
+            "schema": {
+              "const": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "/api/v1/schemas/disciplines-v1.schema.json#/$defs/comparison"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
