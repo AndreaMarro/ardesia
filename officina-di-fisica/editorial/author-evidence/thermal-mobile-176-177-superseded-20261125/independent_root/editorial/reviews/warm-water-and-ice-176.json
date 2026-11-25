@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-warm-water-and-ice-01",
+      "sourceSha256": "68fb763c5e1f05868262394c8ba202685781130441bc744927ef264e115e906b",
+      "candidateSha256": "249dc362fb36c1b837ee8a496816f5e29ad5d1c442145602ab5eddf6b488c149",
+      "reviewedSignature": "044b2a27161d5e4f684f7fbefa10b619c3b65762c84943a7a75bb0e75b8ff23d",
+      "assetChecksums": {
+        "warm-water-and-ice-progressive.svg": "a0d701a3f938978b82c70c09d308e2318449ce39d962c447f378e0ac7c5637fd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Il caldo cede 4·4(50−Θ) J, il ghiaccio riceve 300+4Θ J. 800−16Θ=300+4Θ dà Θ=25 K, lettura 25 °C; fusione completa perché 800>300 J.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Media aritmetica semplice delle temperature perde massa e calore latente; 50 °C non cede calore, zero ignora residuo positivo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il caldo cede 4·4(50−Θ) J, il ghiaccio riceve 300+4Θ J. 800−16Θ=300+4Θ dà Θ=25 K, lettura 25 °C; fusione completa perché 800>300 J.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Freccia unica e con punta dal caldo al ghiaccio, dichiarata schematica; nessuna lunghezza-massa inventata nei riquadri. Disponibilità 800 J al limite 0 °C distinta dai 400 J effettivamente ceduti alla finale 25 °C. Barre 320 e 240+80 rappresentano 400=300+100 J a scala comune 4/5. Incrementi 25/100/7/275/14 K con larghezze 175/100/137,5 a scala 7 coordinate/K.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-02",
+      "sourceSha256": "53da214525a008459925404f699297c7e8f77c93d8d105d12eb5e61269564c7a",
+      "candidateSha256": "01312bba98cc38f7ec4e1bab911552c5a7aba0c3add91ac8c7e94ad11ae58be8",
+      "reviewedSignature": "921b2db8e8507378a35bc34b57ff30e067243e3f5bac3b979e22e374da3ff819",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "°C",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Il risultato è una lettura in °C. L’incremento da 0 °C è in K con stesso numero, mentre il punto assoluto corrispondente è 298,15 K.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "J, g, J/g e W sono grandezze diverse da una lettura termica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il risultato è una lettura in °C. L’incremento da 0 °C è in K con stesso numero, mentre il punto assoluto corrispondente è 298,15 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-03",
+      "sourceSha256": "bac7ba648790360e1782a250ecc303ae53759cc871221aa512af698cb63b1350",
+      "candidateSha256": "979b20d7dff390c5ec5dd5affa304c865bc4ba4d33ed8be870b8755d814cfa31",
+      "reviewedSignature": "c41d8cc52831f79dcef348a4c0273f7174f4bd8ce35eaf6c366ffba43b821f78",
+      "assetChecksums": {
+        "warm-water-and-ice-progressive.svg": "a0d701a3f938978b82c70c09d308e2318449ce39d962c447f378e0ac7c5637fd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Θ = [c_l m_a (50 K) − m_i L_f] / [c_l (m_a + m_i)]",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Raccogliendo Θ nel bilancio c_lm_a(50 K−Θ)=m_iL_f+c_lm_iΘ, il denominatore è c_l(m_a+m_i), la capacità di tutta l’acqua finale.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il denominatore include entrambe le masse finali; segno più farebbe della fusione una sorgente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Raccogliendo Θ nel bilancio c_lm_a(50 K−Θ)=m_iL_f+c_lm_iΘ, il denominatore è c_l(m_a+m_i), la capacità di tutta l’acqua finale.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Freccia unica e con punta dal caldo al ghiaccio, dichiarata schematica; nessuna lunghezza-massa inventata nei riquadri. Disponibilità 800 J al limite 0 °C distinta dai 400 J effettivamente ceduti alla finale 25 °C. Barre 320 e 240+80 rappresentano 400=300+100 J a scala comune 4/5. Incrementi 25/100/7/275/14 K con larghezze 175/100/137,5 a scala 7 coordinate/K.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-04",
+      "sourceSha256": "dd6025630f7f293a8e315c2a94f3cabf4dcdede175ce6c2aa244df8f0b309ee7",
+      "candidateSha256": "51f4a80e71e7ae2948a5289fa24d1c596689b3fb19638363ad555c36f9e44924",
+      "reviewedSignature": "23e8c0f5a1d018d4e13256c80b9b541deaa64a7486662df8fc1c07cfa4f71660",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 25 a 325/9 °C",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Con caldo 8 g e ghiaccio 1 g: residuo 1600−300=1300 J, capacità 36 J/K, lettura 325/9 °C fra 25 e 50.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "50 °C è raddoppio ingiustificato; 25/2 °C va nel verso opposto, 100 °C supera le temperature iniziali.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con caldo 8 g e ghiaccio 1 g: residuo 1600−300=1300 J, capacità 36 J/K, lettura 325/9 °C fra 25 e 50.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-05",
+      "sourceSha256": "2f831e254decf4617d7cdb5a584c22070d9621341bc15d5fb52d75e503c52491",
+      "candidateSha256": "15cb6bf372dc4945ef33c97f4783d3039fa3dc7fd1915c82eac3c7119c61e15c",
+      "reviewedSignature": "7c944272f641986eeae6fe1455f3c0fd64c03fc2f4c05842be2e6f718033fab2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "A 25 °C il grammo di ghiaccio richiede 300+100=400 J; ogni grammo caldo cede 4·25=100 J. Servono 4 g.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "3 g coprono solo fusione a 25 K di raffreddamento; 1 g non garantisce fusione completa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A 25 °C il grammo di ghiaccio richiede 300+100=400 J; ogni grammo caldo cede 4·25=100 J. Servono 4 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-06",
+      "sourceSha256": "65965c5cffcef570125b46be97f2d7be7bd83d1477481f8dbe7b5ca8c1ca178f",
+      "candidateSha256": "a071cc3c24733f2ae2361122980668a57097f8abbff5f84e138fd94e1427a991",
+      "reviewedSignature": "fa5306d784df13d9d78e0c4557dd572f8cb7338176bfb468108bd1ea8e5e7189",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Il caldo di 4 g cede 400 J; ogni grammo di ghiaccio richiede 400 J/g per fondere e arrivare a 25 °C. Massa ghiaccio 1 g.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "4/3 g omettono il riscaldamento dell’acqua fusa; 4 g copiano il caldo e violano il ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il caldo di 4 g cede 400 J; ogni grammo di ghiaccio richiede 400 J/g per fondere e arrivare a 25 °C. Massa ghiaccio 1 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-07",
+      "sourceSha256": "1beba96a61f719526818236a32a375161444eaace94bf333c3d0928923262d8f",
+      "candidateSha256": "1d1d9e7007adb71da63b8ee9a334a952772b3854b9cc5d3d7f71bdc78780feec",
+      "reviewedSignature": "1bea894ebca488e95724236655ec929d7340a26f6f353ae86c6783dc2b689247",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/3",
+      "dimension": {},
+      "manualArithmetic": "B con 4 g caldi e 2 g di ghiaccio: (800−600)/24=25/3 K. Rapporto delle letture con A=25 è 1/3, entrambe nel ramo completo.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "1/2 segue solo massa ghiaccio, 3 è reciproco, 2 ha verso sbagliato, 1 ignora entrambi i costi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B con 4 g caldi e 2 g di ghiaccio: (800−600)/24=25/3 K. Rapporto delle letture con A=25 è 1/3, entrambe nel ramo completo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-08",
+      "sourceSha256": "4dd18223a94f0db4a734c08967d8c9ef78022e5fdd997becd3033a0d4acd850f",
+      "candidateSha256": "89e99cf967d80a6472c45e26a12a6a984993bf1a1eddd53846efc55e6859fbb7",
+      "reviewedSignature": "efa16ee9d790ac9e73dc1b18213af120d28dae84678f735f91a12a0ec9c57ff0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "La proposta 50 °C supera il corretto 25 °C di 25 K. Alla proposta il caldo non cederebbe calore, impossibile per fondere una massa positiva.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "−25 K inverte sottrazione; 50 K copia la proposta, 2 è rapporto puro e non scarto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La proposta 50 °C supera il corretto 25 °C di 25 K. Alla proposta il caldo non cederebbe calore, impossibile per fondere una massa positiva.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-09",
+      "sourceSha256": "fd73b8cbdbf267c53d5b556d69642da2ea4b76c8150e7bf02ab7f8431b10bf8b",
+      "candidateSha256": "2eb2411312dac63fe3d8457ead2b416af484f5b4aa2de3248ef3f0326187917d",
+      "reviewedSignature": "3603accedbf27607d8a158ed704c2b3d0d3551eb1676f4bc7f0a6fce5418b28c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m_a = m_i (L_f + c_l Θ) / [c_l (50 K − Θ)]",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m_a=m_i(L_f+c_lΘ)/[c_l(50 K−Θ)]. Il denominatore positivo richiede 0<Θ<50 K; la parentesi al numeratore è il fabbisogno per grammo ghiacciato.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Solo L_f omette il riscaldamento; c_lΘ al divisore scambia i due intervalli; reciproco non soddisfa il bilancio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. m_a=m_i(L_f+c_lΘ)/[c_l(50 K−Θ)]. Il denominatore positivo richiede 0<Θ<50 K; la parentesi al numeratore è il fabbisogno per grammo ghiacciato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-10",
+      "sourceSha256": "9fc9c86f2ca950beefe96688c456141836f8c9d4de10c194ffc6205d397d2b43",
+      "candidateSha256": "b221a869f03ea3a9ef3666a0fee8a10b2f8f8a7deda776d199ad068f39d942e2",
+      "reviewedSignature": "0935102969daa57cd2dea1dc42662fd8d4fa611611aaf334229b17339643f6ea",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "[(200 κ₁ m_a − 300 κ₂ m_i)(m_a + m_i)] / [(κ₁ m_a + κ₂ m_i)(200 m_a − 300 m_i)]",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto è [(200κ₁m_a−300κ₂m_i)(m_a+m_i)]/[(κ₁m_a+κ₂m_i)(200m_a−300m_i)]. Si mantengono sia residui sia capacità finali; fattore comune lascia il rapporto 1.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Residui da soli omettono capacità finali; prodotto e differenza non danno 1 per fattore comune.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il rapporto è [(200κ₁m_a−300κ₂m_i)(m_a+m_i)]/[(κ₁m_a+κ₂m_i)(200m_a−300m_i)]. Si mantengono sia residui sia capacità finali; fattore comune lascia il rapporto 1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-11",
+      "sourceSha256": "b33ab11c7edea4d83eaceb9316b715eeada6ac1dc2174683b34168941ae8d5e3",
+      "candidateSha256": "be3a6981597a4d1ca5641a9d5c21f6fa76f92746c8c52e0076054e6449b0cc76",
+      "reviewedSignature": "6c866750756056b2f81af07c4aa2cf94b1b66d8ba274a977a148e3ed2668a4dd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/7",
+      "dimension": {},
+      "manualArithmetic": "A=25 °C; B=(1000−600)/28=100/7 °C. Rapporto (100/7)/25=4/7. I 1000 J disponibili superano i 600 latenti.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "7/4 è reciproco; 5/4 segue solo caldo; 2 segue solo ghiaccio e 1/2 non è il rapporto completo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=25 °C; B=(1000−600)/28=100/7 °C. Rapporto (100/7)/25=4/7. I 1000 J disponibili superano i 600 latenti.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-12",
+      "sourceSha256": "1959b0d1914875f93033924b332e5e4a3c7362394b16f0cb9504c619c2ccfd91",
+      "candidateSha256": "535701a27ed99085fb0e1d47c1a1096432743cc6a7d8e1d0d256619aaa317437",
+      "reviewedSignature": "dcdf61d4aa7e918bcf274b22752387885833d4ab277c0cd9cc52026793dddfde",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "275/14",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Media (25+100/7)/2=275/14 °C. Le masse medie 9/2 e 3/2 g danno 75/4 °C; scarto esatto fra le operazioni 25/28 K.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "75/4 °C usa masse medie; 275/7 è somma e 75/14 metà differenza, 25 °C ignora B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (25+100/7)/2=275/14 °C. Le masse medie 9/2 e 3/2 g danno 75/4 °C; scarto esatto fra le operazioni 25/28 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-13",
+      "sourceSha256": "08dc252a1556bd99cd974e5ba6884c6b73777219416d116c1096f2785dfde2d3",
+      "candidateSha256": "db8c3bcc429ab0b69470bff2dd37d8bb107e6610d18c2deb8bd2338d9502c3dc",
+      "reviewedSignature": "d0da687515875108cc15a485bda832a3994d32dceeda27d0ab5b9f5bf72b52b7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio 100/7 K con caldo 5 g: cessione 5000/7 J; fabbisogno 2500/7 J/g. Ghiaccio B=2 g, rapporto con 1 g iniziale pari a 2.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "4/7 è rapporto termico e 5/4 rapporto del caldo; 1/2 inverte la massa ricostruita.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio 100/7 K con caldo 5 g: cessione 5000/7 J; fabbisogno 2500/7 J/g. Ghiaccio B=2 g, rapporto con 1 g iniziale pari a 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-14",
+      "sourceSha256": "82a6719726f16c4215a4be5455261ee6626815466f44e9bb2785dd1418caf250",
+      "candidateSha256": "275f8693dd2f26acb7bf2273f6354f5d090cd32565e0adcc91f2fc2ef34fd72e",
+      "reviewedSignature": "84db354f7290c59e34aa3b1b62bdaed5dfdd2226c1137d6fb874024a87a0de2a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "A con Θ=25 K e S=75 dà q=3 K⁻¹. S_B=300/7 dà Θ_B=100/7 K; ghiaccio 2 g richiede 5000/7 J, ogni grammo caldo cede 1000/7 J: caldo B=5 g.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il display grezzo non è Θ: q deve precedere l’inversa e la massa non si somma a una lettura.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A con Θ=25 K e S=75 dà q=3 K⁻¹. S_B=300/7 dà Θ_B=100/7 K; ghiaccio 2 g richiede 5000/7 J, ogni grammo caldo cede 1000/7 J: caldo B=5 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-15",
+      "sourceSha256": "8245da3e0a2a38e40a54a187bca9914af7b654fc03d76ecd6e19bdbdcd342061",
+      "candidateSha256": "ef8dc0edf12b9369eea92889db3e78d7395d0a935803775b4b89331587c70eec",
+      "reviewedSignature": "1c1aa2b03640c91dc60b4193a64369228cccac612a573ec321b775934b5c39ab",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Differenze dei riferimenti: ΔS=150/7 su ΔΘ=75/7 K, quindi q=2 K⁻¹, b=1. S_C=659/9 dà Θ_C=325/9 K. Il grammo ghiacciato chiede 4000/9 J, ogni grammo caldo cede 500/9 J: 8 g.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "4 g danno S=51; 5 g danno 178/3; 9 g danno 76, mentre C richiede 659/9.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Differenze dei riferimenti: ΔS=150/7 su ΔΘ=75/7 K, quindi q=2 K⁻¹, b=1. S_C=659/9 dà Θ_C=325/9 K. Il grammo ghiacciato chiede 4000/9 J, ogni grammo caldo cede 500/9 J: 8 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-warm-water-and-ice-16",
+      "sourceSha256": "fe96699620277c0d554f3dfae11875739d36980bd8a6a98c8a64f3489c5f3adf",
+      "candidateSha256": "daacd3cb65ddd5c4c5627dbcf9e825cd8d6d209ef7b23b0811916cba4669ec88",
+      "reviewedSignature": "0256e3dc1d91fc552e616c707b011cd855a19d8731bf79bb75fbc72362a8f726",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite: ogni m_i>0 con m_a=4m_i",
+      "dimension": {},
+      "manualArithmetic": "Sostituire m_a=4m_i dà Θ=(800−300)/(4·5)=25 K per ogni m_i>0. Fusione completa 8m_i>3m_i. Infinite coppie, non soltanto 4 g e 1 g.",
+      "physicalAssumptions": "Acqua iniziale a 50 °C e ghiaccio a 0 °C, masse positive e costanti. Modello calorimetrico isolato con capacità del recipiente trascurabile, coefficienti ideali c_l=4 J/(g K), L_f=300 J/g. 2m_a>3m_i garantisce completa fusione e 0<Θ<50 K. Si conserva il bilancio dei calori e si scalda anche l’acqua appena fusa; rapporti espliciti di letture Celsius, non temperature assolute. Il vincolo confronta preparazioni diverse, non modifica massa o coefficienti nel tempo interno della singola prova.",
+      "distractors": "4 g e 1 g sono un esempio; 25 g copia una lettura, zero viola positività e rende indefinito il rapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Sostituire m_a=4m_i dà Θ=(800−300)/(4·5)=25 K per ogni m_i>0. Fusione completa 8m_i>3m_i. Infinite coppie, non soltanto 4 g e 1 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "fbba798cb2d8b28f8bca65b71b1dc2e285b72a820e01d1a82f26ea498dd05131",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "5579fe2187e28f34c6dfa8632c07113f46610559",
+  "packageSha256": "cb026c59732b99647ffeb40fff987d275562ab23186cfa7701877cabf22092e0",
+  "bindingsSha256": "da67f24f0e0890895de5870af19e1cfea6e76207ba72c36f528be1662a9209fd",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+    "reference": "Primaria indipendente di tutti gli 80 prompt U5-03, prima di candidati, opzioni o chiavi: SHA256 ea13a6d7b6eca676daa520594e324f8c84aaabe64114d375dc3eabf35f47e2d9. Fonte intera pin 5cf, SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Dopo la primaria, tutti i 16 candidati del lotto letti integralmente, ogni blocco, formula, opzione, hint e feedback, metadati e didascalie. Derivazioni ricontrollate sui dati finali; SVG XML e rendering nativo integrali letti. Catalogo reale C3-L01/L03/L04 verificato. Nessun authoring importato; autore e revisore distinti. ROOT identico ai byte finali B 9d647bca e, per 17309, 5579fe21."
+  }
+}

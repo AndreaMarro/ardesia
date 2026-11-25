@@ -32,7 +32,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "L’acqua iniziale cede calore scendendo da 50 °C alla finale. Il ghiaccio riceve prima 300 J per fondere e poi si scalda come acqua fino alla stessa finale. Il bilancio è 4m_a(50−t_f)=300m_i+4m_it_f nei valori numerici delle unità dichiarate. Con le masse date, 800−16t_f=300+4t_f: 500=20t_f e la lettura è 25 °C. Il massimo calore cedibile fino a zero, 800 J, supera i 300 J di fusione e conferma il ramo."
+          "text": "Indichiamo con Q_h il calore ceduto dall’acqua iniziale, con Q_m il contributo di fusione e con Q_w quello che scalda l’acqua appena fusa. Il bilancio è Q_h=Q_m+Q_w. L’acqua iniziale cede calore scendendo da 50 °C alla finale. Il ghiaccio riceve prima 300 J per fondere e poi si scalda come acqua fino alla stessa finale. Il bilancio è 4m_a(50−t_f)=300m_i+4m_it_f nei valori numerici delle unità dichiarate. Con le masse date, 800−16t_f=300+4t_f: 500=20t_f e la lettura è 25 °C. Il massimo calore cedibile fino a zero, 800 J, supera i 300 J di fusione e conferma il ramo."
         },
         {
           "type": "figure",
@@ -41,7 +41,19 @@
         },
         {
           "type": "formula",
-          "text": "c_lm_a(50\\,\\mathrm K-\\Theta)=m_iL_f+c_lm_i\\Theta"
+          "text": "Q_h=c_lm_a(50\\,\\mathrm K-\\Theta)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_m=m_iL_f"
+        },
+        {
+          "type": "formula",
+          "text": " Q_w=c_lm_i\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=Q_m+Q_w"
         },
         {
           "type": "formula",
@@ -187,7 +199,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Il calore ceduto dal caldo va alla fusione e al riscaldamento della massa che era ghiaccio. Spostiamo i termini proporzionali a Θ nello stesso membro: la capacità finale comprende m_a+m_i, perché alla fine entrambe le masse sono acqua. L’energia residua sopra il riferimento di fusione divide la capacità di tutta l’acqua finale."
+          "text": "Il calore ceduto dal caldo va alla fusione e al riscaldamento della massa che era ghiaccio. Spostiamo i termini proporzionali a Θ nello stesso membro: la capacità finale comprende m_a+m_i, perché alla fine entrambe le masse sono acqua. L’energia residua sopra il riferimento di fusione divide la capacità di tutta l’acqua finale. Poniamo E_h=c_lm_a·50 K, energia che l’acqua calda cederebbe se arrivasse a 0 °C; E_m=m_iL_f è il costo di fusione. La capacità finale è C_t=c_l(m_a+m_i), in J/K. L’energia residua E_r=E_h−E_m è in J e vale C_tΘ: da questo passaggio ricaviamo Θ=E_r/C_t."
         },
         {
           "type": "figure",
@@ -196,11 +208,27 @@
         },
         {
           "type": "formula",
-          "text": "c_lm_a(50\\,\\mathrm K)-m_iL_f=c_l(m_a+m_i)\\Theta"
+          "text": "E_h=c_lm_a(50\\,\\mathrm K)"
         },
         {
           "type": "formula",
-          "text": " \\Theta=\\frac{c_lm_a(50\\,\\mathrm K)-m_iL_f}{c_l(m_a+m_i)}"
+          "text": " E_m=m_iL_f"
+        },
+        {
+          "type": "formula",
+          "text": " C_t=c_l(m_a+m_i)"
+        },
+        {
+          "type": "formula",
+          "text": " E_r=E_h-E_m"
+        },
+        {
+          "type": "formula",
+          "text": " C_t\\Theta=E_r"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=\\frac{E_r}{C_t}"
         },
         {
           "type": "formula",
@@ -620,15 +648,23 @@
       "blocks": [
         {
           "type": "text",
-          "text": "La massa calda moltiplica c_l(50 K−Θ), energia ceduta da ogni grammo caldo. Dividiamo il fabbisogno della massa inizialmente ghiacciata per questo fattore. Il rapporto di due energie specifiche è puro e moltiplica m_i, lasciando un risultato in g. Il denominatore positivo esclude una finale uguale o superiore al caldo iniziale."
+          "text": "La massa calda moltiplica c_l(50 K−Θ), energia ceduta da ogni grammo caldo. Dividiamo il fabbisogno della massa inizialmente ghiacciata per questo fattore. Il rapporto di due energie specifiche è puro e moltiplica m_i, lasciando un risultato in g. Il denominatore positivo esclude una finale uguale o superiore al caldo iniziale. Chiamiamo e_h l’energia ceduta per unità di massa calda ed e_i quella richiesta per unità di massa inizialmente ghiacciata, fusione e riscaldamento compresi. Entrambe hanno unità J/g: il bilancio diventa m_ae_h=m_ie_i e il loro rapporto resta puro."
         },
         {
           "type": "formula",
-          "text": "c_lm_a(50\\,\\mathrm K-\\Theta)=m_i(L_f+c_l\\Theta)"
+          "text": "e_h=c_l(50\\,\\mathrm K-\\Theta)"
         },
         {
           "type": "formula",
-          "text": " m_a=\\frac{m_i(L_f+c_l\\Theta)}{c_l(50\\,\\mathrm K-\\Theta)}"
+          "text": " e_i=L_f+c_l\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " m_ae_h=m_ie_i"
+        },
+        {
+          "type": "formula",
+          "text": " m_a=m_i\\frac{e_i}{e_h}"
         },
         {
           "type": "text",
