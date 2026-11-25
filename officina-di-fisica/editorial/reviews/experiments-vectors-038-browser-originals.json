@@ -1,0 +1,452 @@
+{
+  "appRoot": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "purpose": "DIAGNOSTIC_ORIGINAL_DEFECTS_NOT_SCIENTIFIC_APPROVAL",
+  "expectedSourceIssueIds": [
+    "SIM-C1-L002-04"
+  ],
+  "expectedConsumerIssueIds": [
+    "SIM-C1-L002-01",
+    "SIM-C1-L002-04"
+  ],
+  "cases": [
+    {
+      "id": "SIM-C1-L002-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl triangolo rettangolo ha per ipotenusa l’asta. La proiezione verticale è il cateto opposto all’angolo misurato dall’orizzontale.\n\nh = 10 sin θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Inclinazione del segmento» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.\n\nInclinazione del segmento = 30 ° · Altezza = 5 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nh = 10 sin θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × sin(30°) ≈ 5 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Inclinazione del segmento» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nh = 10 sin θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-3d.png",
+      "screenshotSha256": "43f80ae7ddf6503e68241efb52e449c9a2b01af573e4be8124551dc9e7ac12ec"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Inclinazione del segmento\n0 °\nAltezza\n0 cm\nProiezione orizzontale\n10 cm",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-x0-3d.png",
+      "screenshotSha256": "1fdd999f024516639ae2e88a068bd2430e9572e735174071defced16a66331df"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "boundary",
+      "input": 90,
+      "noWebGL": false,
+      "readings": "Inclinazione del segmento\n90 °\nAltezza\n10 cm\nProiezione orizzontale\n0,0000000000000006123 cm",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-x90-3d.png",
+      "screenshotSha256": "97885174691891769509476af3cb084861338fffee42706b478f211d67fbcdc0"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "observed_nonzero_horizontal_display",
+      "noWebGL": false,
+      "literal": "0,0000000000000006123 cm",
+      "residue": 6.123e-16
+    },
+    {
+      "id": "SIM-C1-L002-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSegui prima i due cateti e poi il segmento che unisce partenza e arrivo. Per il modulo si sommano i quadrati delle componenti ortogonali.\n\ns = √(3² + sᵧ²)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Componente verticale» e confronta la scena con il punto segnato sul grafico. Parti da 0 m, poi prova 4 m.\n\nComponente verticale = 0 m · Modulo dello spostamento = 3 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = √(3² + sᵧ²). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n√(3² + 0²) = 3 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Componente verticale» a 5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = √(3² + sᵧ²)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-02-3d.png",
+      "screenshotSha256": "ac917e1037ba82dadc4a88a9669f5cbeabb6ce50dd8bf9c21c2235bc6f105881"
+    },
+    {
+      "id": "SIM-C1-L002-02",
+      "kind": "boundary",
+      "input": 8,
+      "noWebGL": false,
+      "readings": "Componente verticale\n8 m\nModulo dello spostamento\n8,544 m\nVariazione dal riferimento\n5,544 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-02-x8-3d.png",
+      "screenshotSha256": "413abe924788229560b6d6175bf2b71003be41261800d7ae0e772adf9258abf9"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nTrasla la coda della seconda freccia sulla punta della prima. La risultante va dalla partenza all’arrivo. Se torni indietro di 4 m dopo i primi 3 m in avanti, finisci un metro a sinistra del via. Lo spostamento è −1 m e la distanza percorsa è 7 m.\n\ns = 3 m + b\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Secondo spostamento» e confronta la scena con il punto segnato sul grafico. Parti da -2 m, poi prova 3 m.\n\nSecondo spostamento = -2 m · Spostamento risultante = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = 3 m + b. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n3 + (-2) = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Secondo spostamento» a 0 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = 3 m + b\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-3d.png",
+      "screenshotSha256": "b12d19abde9892d8ef14b173da598cadeae8c3347da89645a1645d1cb091e682"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "kind": "boundary",
+      "input": -4,
+      "noWebGL": false,
+      "readings": "Secondo spostamento\n-4 m\nSpostamento risultante\n-1 m\nVariazione dal riferimento\n-2 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-x-4-3d.png",
+      "screenshotSha256": "02823eeb67b420e954793262da8ee3352b5dfb5329184de4e30ac9d8e0da2286"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "kind": "boundary",
+      "input": -3,
+      "noWebGL": false,
+      "readings": "Secondo spostamento\n-3 m\nSpostamento risultante\n0 m\nVariazione dal riferimento\n-1 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-x-3-3d.png",
+      "screenshotSha256": "2e304aa79f0fadfa11009c1b5ea56fe810ded8eb52d896e732a83b5198a65575"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Due segmenti orientati di 2 m e 3 m formano un angolo di 95 °. Quanto vale il prodotto che usa la proiezione del secondo sul primo?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. a·b = 6 cos θ; (a×b)𝓏 = 6 sin θ. 6 × cos(95°) ≈ -0,5229 m²."
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI due vettori sono lunghi 3 m e 2 m. Osserva la proiezione del secondo sul primo e ruota la vista per vedere la normale al loro piano. L’ordine a×b fissa il verso con la mano destra.\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo fra i vettori» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 90 °.\n\nAngolo fra i vettori = 0 ° · Prodotto scalare = 6 m²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 × cos(0°) = 6 m²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo fra i vettori» a 95 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-3d.png",
+      "screenshotSha256": "136c21921f6883b4af1444ea86127052076c67b52839a51476def8ef1060bccf"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "boundary",
+      "input": 90,
+      "noWebGL": false,
+      "readings": "Angolo fra i vettori\n90 °\nProdotto scalare\n0 m²\nComponente normale di a × b\n6 m²",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-x90-3d.png",
+      "screenshotSha256": "a6df07a45cc843fbaab91edbf9f24c58faadf65996f7c6adaac4ad7282a593ae"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "boundary",
+      "input": 180,
+      "noWebGL": false,
+      "readings": "Angolo fra i vettori\n180 °\nProdotto scalare\n-6 m²\nComponente normale di a × b\n0,0000000000000007348 m²",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-x180-3d.png",
+      "screenshotSha256": "91598156dbe8a32fc0ee58af1722581e70f7c3bb1cc79e28976d841c22c1b6d4"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "observed_nonzero_antiparallel_display",
+      "noWebGL": false,
+      "literal": "0,0000000000000007348 m²",
+      "residue": 7.348e-16
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl triangolo rettangolo ha per ipotenusa l’asta. La proiezione verticale è il cateto opposto all’angolo misurato dall’orizzontale.\n\nh = 10 sin θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Inclinazione del segmento» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.\n\nInclinazione del segmento = 30 ° · Altezza = 5 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nh = 10 sin θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × sin(30°) ≈ 5 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Inclinazione del segmento» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nh = 10 sin θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Inclinazione del segmento\n30 °\nAltezza\n5 cm\nProiezione orizzontale\n8,66 cm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-2d.png",
+      "screenshotSha256": "bdc25a2d470c0c708c1832532d21f36a3f6769790fa5b7d516a8b022f3ad1c58"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Inclinazione del segmento\n0 °\nAltezza\n0 cm\nProiezione orizzontale\n10 cm",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-x0-2d.png",
+      "screenshotSha256": "c632388d6790e94a7db06220dc38fa8cb17298225ae54d910a585c153b3faf5b"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "boundary",
+      "input": 90,
+      "noWebGL": true,
+      "readings": "Inclinazione del segmento\n90 °\nAltezza\n10 cm\nProiezione orizzontale\n0,0000000000000006123 cm",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-01-x90-2d.png",
+      "screenshotSha256": "9ff485f9a2b43e2ad1a0b4e266d4610bac1b1e7f583820f0094c42fa8da525fc"
+    },
+    {
+      "id": "SIM-C1-L002-01",
+      "kind": "observed_nonzero_horizontal_display",
+      "noWebGL": true,
+      "literal": "0,0000000000000006123 cm",
+      "residue": 6.123e-16
+    },
+    {
+      "id": "SIM-C1-L002-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSegui prima i due cateti e poi il segmento che unisce partenza e arrivo. Per il modulo si sommano i quadrati delle componenti ortogonali.\n\ns = √(3² + sᵧ²)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Componente verticale» e confronta la scena con il punto segnato sul grafico. Parti da 0 m, poi prova 4 m.\n\nComponente verticale = 0 m · Modulo dello spostamento = 3 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = √(3² + sᵧ²). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n√(3² + 0²) = 3 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Componente verticale» a 5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = √(3² + sᵧ²)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Componente verticale\n0 m\nModulo dello spostamento\n3 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-02-2d.png",
+      "screenshotSha256": "a6514126e8d8dbc5d84eb98915c4b6f8340bfa2f6eb5cf12599ab66f9e467886"
+    },
+    {
+      "id": "SIM-C1-L002-02",
+      "kind": "boundary",
+      "input": 8,
+      "noWebGL": true,
+      "readings": "Componente verticale\n8 m\nModulo dello spostamento\n8,544 m\nVariazione dal riferimento\n5,544 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-02-x8-2d.png",
+      "screenshotSha256": "d27016b93f9bd5fbc9184fc15a1c8096e9fee2c78f0e9dd3291431fc44097751"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nTrasla la coda della seconda freccia sulla punta della prima. La risultante va dalla partenza all’arrivo. Se torni indietro di 4 m dopo i primi 3 m in avanti, finisci un metro a sinistra del via. Lo spostamento è −1 m e la distanza percorsa è 7 m.\n\ns = 3 m + b\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Secondo spostamento» e confronta la scena con il punto segnato sul grafico. Parti da -2 m, poi prova 3 m.\n\nSecondo spostamento = -2 m · Spostamento risultante = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = 3 m + b. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n3 + (-2) = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Secondo spostamento» a 0 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = 3 m + b\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Secondo spostamento\n-2 m\nSpostamento risultante\n1 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-2d.png",
+      "screenshotSha256": "8cad15758e7c47a8ccb9651048911ff7c12d1990d2d30645196421d9de1d8f7d"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "kind": "boundary",
+      "input": -4,
+      "noWebGL": true,
+      "readings": "Secondo spostamento\n-4 m\nSpostamento risultante\n-1 m\nVariazione dal riferimento\n-2 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-x-4-2d.png",
+      "screenshotSha256": "39067df5753e89a806d671caa38e7a12b1f1feeb8f3e278f7ef0d84624d9a99f"
+    },
+    {
+      "id": "SIM-C1-L002-03",
+      "kind": "boundary",
+      "input": -3,
+      "noWebGL": true,
+      "readings": "Secondo spostamento\n-3 m\nSpostamento risultante\n0 m\nVariazione dal riferimento\n-1 m",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-03-x-3-2d.png",
+      "screenshotSha256": "b08a120ca877df1285a750bb3b1862da87d0b3207e9b8e214afb8b046cc08540"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Due segmenti orientati di 2 m e 3 m formano un angolo di 95 °. Quanto vale il prodotto che usa la proiezione del secondo sul primo?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. a·b = 6 cos θ; (a×b)𝓏 = 6 sin θ. 6 × cos(95°) ≈ -0,5229 m²."
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI due vettori sono lunghi 3 m e 2 m. Osserva la proiezione del secondo sul primo e ruota la vista per vedere la normale al loro piano. L’ordine a×b fissa il verso con la mano destra.\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo fra i vettori» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 90 °.\n\nAngolo fra i vettori = 0 ° · Prodotto scalare = 6 m²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 × cos(0°) = 6 m²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo fra i vettori» a 95 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na·b = 6 cos θ; (a×b)𝓏 = 6 sin θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo fra i vettori\n0 °\nProdotto scalare\n6 m²\nComponente normale di a × b\n0 m²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-2d.png",
+      "screenshotSha256": "a74b120a8dc15c22113b99a08b936f0c2b5a2d7bd8d6cad7e423c31fa3f45bff"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "boundary",
+      "input": 90,
+      "noWebGL": true,
+      "readings": "Angolo fra i vettori\n90 °\nProdotto scalare\n0 m²\nComponente normale di a × b\n6 m²",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-x90-2d.png",
+      "screenshotSha256": "a0f5b420881216c38003489b7cb0e74a00243e659410e6ebb9b5c6773331de7e"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "boundary",
+      "input": 180,
+      "noWebGL": true,
+      "readings": "Angolo fra i vettori\n180 °\nProdotto scalare\n-6 m²\nComponente normale di a × b\n0,0000000000000007348 m²",
+      "screenshot": "/tmp/cric-review-experiments038-proof-tMbs0Y/SIM-C1-L002-04-x180-2d.png",
+      "screenshotSha256": "81702cc17cda19ef0c59f1cd18d26e444821d5048da997c0da6fb0279ef45ef7"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "kind": "observed_nonzero_antiparallel_display",
+      "noWebGL": true,
+      "literal": "0,0000000000000007348 m²",
+      "residue": 7.348e-16
+    }
+  ],
+  "errors": [],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "base": "http://127.0.0.1:50403/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+    "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+    "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+    "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+    "content/esperienze-C1.json": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3"
+  },
+  "protocolSha256": "906d92b37658c5ee55dab481cdce1db4cb47662dba7faefeeeff1312cefb7efb",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37",
+  "screenshotsRetainedInRepository": false,
+  "scientificApproval": false,
+  "diagnosticDisposition": "Corrected historical review: technical PASS reproduces nonmanual95degree and both exact-zero display defects, not approval. Earlier3PASS1FAIL snapshot preserved separately."
+}

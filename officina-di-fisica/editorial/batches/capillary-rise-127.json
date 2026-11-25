@@ -1,0 +1,1159 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-capillary-rise-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12701,
+      "title": "La colonna sostenuta dal bordo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 1,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Con γ=50 mN/m e r=1 mm, quanto vale h in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso della colonna è proporzionale all’area πr²; la forza verticale di interfaccia è proporzionale al perimetro 2πr. Cancellando un fattore πr resta h=2γ/(ρgr). Convertiamo cinquanta mN/m in 1/20 N/m e un mm in 1/1000 m: h=1/100 m, cioè dieci mm."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e251fbd139492b8318d9b9a392b3c05094903b809de90297134ab5bd2c201547",
+          "text": "Modello di colonna cilindrica: r=1 mm, h=10 mm, γ=50 mN/m. Nella sezione longitudinale r e h usano la stessa scala 20 px/mm. h parte dal livello esterno zero. Le linee orizzontali interne sono piani di livello equivalenti del modello; il menisco curvo non è disegnato e il suo volume è trascurato nel bilancio."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=\\frac1{20}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{2\\gamma}{\\rho gr}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac1{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è una quota rispetto al serbatoio, non la lunghezza totale bagnata del tubo. Usare il diametro come raggio dimezzerebbe h; raddoppiare la forza come per un film di sapone conterebbe una seconda interfaccia assente."
+        }
+      ],
+      "hints": [
+        "Bilancia peso della colonna e forza lungo la circonferenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato è una quota rispetto al serbatoio, non la lunghezza totale bagnata del tubo. Usare il diametro come raggio dimezzerebbe h; raddoppiare la forza come per un film di sapone conterebbe una seconda interfaccia assente.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12702,
+      "title": "L’unità di un dislivello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 1,
+      "prompt": "L’altezza capillare h è un dislivello verticale rispetto alla superficie esterna. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mm",
+          "mm²",
+          "Pa",
+          "N/m",
+          "µL"
+        ],
+        "value": "mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un dislivello ha dimensione di lunghezza. Nel rapporto 2γ/(ρgr), il numeratore ha unità N/m e il denominatore N/m²: la divisione restituisce metri. Il millimetro è un sottomultiplo della stessa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho gr]=\\mathrm{N/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [h]=\\frac{\\mathrm{N/m}}{\\mathrm{N/m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " [h]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "mm² è area, Pa pressione, N/m tensione superficiale e µL volume. Conoscere il volume della colonna richiederebbe moltiplicare h per l’area del tubo."
+        }
+      ],
+      "hints": [
+        "Riduci le unità del bilancio di forze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mm² è area, Pa pressione, N/m tensione superficiale e µL volume. Conoscere il volume della colonna richiederebbe moltiplicare h per l’area del tubo.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12703,
+      "title": "Perché il raggio compare al denominatore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 1,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Quale relazione esprime h con grandezze fisiche in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h = 2 γ / (ρ g r)",
+          "h = 2 γ r / (ρ g)",
+          "h = γ / (ρ g r)",
+          "h = 2 γ / (ρ g r²)",
+          "h = ρ g r / (2 γ)"
+        ],
+        "value": "h = 2 γ / (ρ g r)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza di superficie cresce con il perimetro, mentre il peso per unità di altezza cresce con l’area. Il rapporto fra perimetro e area è 2/r. Più in generale la forza verticale contiene cosθ: a bagnamento perfetto cosθ=1. Un angolo maggiore di novanta gradi darebbe depressione e non il caso positivo assegnato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e251fbd139492b8318d9b9a392b3c05094903b809de90297134ab5bd2c201547",
+          "text": "Tre passaggi: quota rispetto al serbatoio, bilancio fra forza verticale lungo 2πr e peso della colonna, poi confronto con raddoppio del raggio a γ fissata. Le colonne A e B hanno raggi 1 e 2 mm e altezze 10 e 5 mm, tutte le lunghezze alla scala 20 px/mm. Il coseno del contatto vale uno nel modello assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "F_z=2\\pi r\\gamma\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho g\\pi r^2h=F_z"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{2\\gamma\\cos\\theta}{\\rho gr}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=0"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{2\\gamma}{\\rho gr}"
+        },
+        {
+          "type": "text",
+          "text": "r al numeratore inverte il rapporto perimetro/area. Omettere due perde il rapporto geometrico; r² al denominatore conserva erroneamente tutta l’area senza cancellare il raggio del bordo. L’ultima formula è un’altezza inversa."
+        }
+      ],
+      "hints": [
+        "La circonferenza cresce con r, l’area con r².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "r al numeratore inverte il rapporto perimetro/area. Omettere due perde il rapporto geometrico; r² al denominatore conserva erroneamente tutta l’area senza cancellare il raggio del bordo. L’ultima formula è un’altezza inversa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12704,
+      "title": "Una tensione assegnata minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 1,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. γ passa da 50 a 40 mN/m; r resta 1 mm. Come cambia h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 8 mm",
+          "Da 10 a 5 mm",
+          "Da 10 a 20 mm",
+          "Resta 10 mm",
+          "Da 10 a 40 mm"
+        ],
+        "value": "Da 10 a 8 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A geometria, densità e gravità fissate, h è direttamente proporzionale a γ. Quaranta cinquantesimi è quattro quinti: dieci mm diventano otto mm. Nelle unità numeriche dichiarate h in mm si ottiene dividendo γ in mN/m per cinque volte r in mm."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{h_B}{h_A}=\\frac{40}{50}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{40}{50}=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=8\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque e venti usano un dimezzamento o raddoppio che non è nei dati. Quaranta copia il numero di γ con unità diversa; dieci ignora la nuova forza di bordo."
+        }
+      ],
+      "hints": [
+        "Applica il fattore quattro quinti all’altezza iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque e venti usano un dimezzamento o raddoppio che non è nei dati. Quaranta copia il numero di γ con unità diversa; dieci ignora la nuova forza di bordo.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12705,
+      "title": "Inferire la tensione da h e r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Si misura h=10 mm con r=1 mm. Quanto vale γ in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Invertiamo il bilancio: γ=ρgrh/2. Dopo le conversioni r=1/1000 m e h=1/100 m, il prodotto ρgrh vale un decimo N/m; dividendolo per due si trova 1/20 N/m, ossia cinquanta mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=\\frac{\\rho grh}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\frac1{20}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=50\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Dimenticare il mezzo darebbe cento mN/m. Inserire dieci come metri al posto di dieci mm moltiplicherebbe per mille la tensione. Si verifica rimettendo γ nell’altezza del modello."
+        }
+      ],
+      "hints": [
+        "Converti entrambe le lunghezze prima di moltiplicarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dimenticare il mezzo darebbe cento mN/m. Inserire dieci come metri al posto di dieci mm moltiplicherebbe per mille la tensione. Si verifica rimettendo γ nell’altezza del modello.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12706,
+      "title": "Il raggio interno ricavato dal livello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. h=10 mm e γ=50 mN/m. Quanto vale r in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge dell’altezza si isola r=2γ/(ρgh). Il numeratore vale un decimo N/m; il denominatore, con h=1/100 m, vale cento N/m². Il rapporto è un millesimo di metro, un mm."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac{2\\gamma}{\\rho gh}"
+        },
+        {
+          "type": "formula",
+          "text": " h=10^{-2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "L’inversa restituisce il raggio, non il diametro di due mm. Il rapporto γ/h da solo non basta: mancano densità, gravità e il fattore due."
+        }
+      ],
+      "hints": [
+        "Isola r nel prodotto ρgrh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inversa restituisce il raggio, non il diametro di due mm. Il rapporto γ/h da solo non basta: mancano densità, gravità e il fattore due.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12707,
+      "title": "Raggio doppio a tensione fissa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. A: γ=50 mN/m,r=1 mm. B mantiene γ e usa r=2 mm. Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il perimetro raddoppia, ma l’area e il peso per unità di altezza quadruplicano. Per riequilibrare la colonna l’altezza si dimezza: da dieci a cinque mm. Il rapporto è un mezzo, non un quarto, perché anche la forza superficiale è cambiata."
+        },
+        {
+          "type": "formula",
+          "text": "h_A=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto segue solo l’area senza il perimetro; due rovescia l’inversa e quattro segue il solo aumento dell’area. Uno ignora il raggio nuovo."
+        }
+      ],
+      "hints": [
+        "Confronta insieme forza di bordo e peso per unità di altezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto segue solo l’area senza il perimetro; due rovescia l’inversa e quattro segue il solo aumento dell’area. Uno ignora il raggio nuovo.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12708,
+      "title": "L’errore di un’altezza duplicata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Con γ=50 mN/m,r=1 mm si propone h=20 mm. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 mm",
+          "−10 mm",
+          "20 mm",
+          "0 mm",
+          "30 mm"
+        ],
+        "value": "10 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio del modello dà dieci mm. La proposta venti eccede il valore corretto di dieci mm. Uno scarto positivo indica soltanto una sovrastima della quota."
+        },
+        {
+          "type": "formula",
+          "text": "h=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Meno dieci inverte la sottrazione; venti conserva la proposta, trenta somma e zero accetta il fattore due spurio."
+        }
+      ],
+      "hints": [
+        "Ricalcola h prima di valutare lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno dieci inverte la sottrazione; venti conserva la proposta, trenta somma e zero accetta il fattore due spurio.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12709,
+      "title": "Una formula inversa senza unità miste",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Quale formula isola γ, usando tutte le grandezze in SI?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "γ = ρ g r h / 2",
+          "γ = 2 h / (ρ g r)",
+          "γ = ρ g h / (2 r)",
+          "γ = 2 ρ g r h",
+          "γ = ρ g r / (2 h)"
+        ],
+        "value": "γ = ρ g r h / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo h per ρgr e dividiamo per due. Le unità sono (kg/m³)(m/s²)m² = kg/s² = N/m. Il risultato è una tensione: le conversioni da mm a m devono precedere l’uso della formula SI."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho grh=2\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\frac{\\rho grh}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\gamma]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Invertire il prodotto o spostare r al denominatore cambia dimensioni e dipendenze. Il fattore due al numeratore quadruplica la tensione rispetto all’inversa corretta."
+        }
+      ],
+      "hints": [
+        "Non confondere la formula SI con una scorciatoia numerica in millimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Invertire il prodotto o spostare r al denominatore cambia dimensioni e dipendenze. Il fattore due al numeratore quadruplica la tensione rispetto all’inversa corretta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12710,
+      "title": "Tensione e raggio variati insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. B ha γ_B=κ₁γ_A e r_B=κ₂r_A, con fattori positivi; densità, gravità e bagnamento restano uguali. Qual è h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione compare direttamente e il raggio inversamente. Cancellando il coefficiente comune 2/(ρg) rimane κ₁/κ₂. Aumentare entrambi dello stesso fattore lascia h invariata nel modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{h_B}{h_A}=\\frac{\\kappa_1\\gamma_A}{\\kappa_2r_A}\\frac{r_A}{\\gamma_A}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto tratta il raggio come dipendenza diretta; κ₂/κ₁ capovolge le due variazioni. Il quadrato dimentica la cancellazione di un raggio dal perimetro e la somma non vale uno per prove identiche."
+        }
+      ],
+      "hints": [
+        "Conserva un solo raggio dopo il bilancio di forze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto tratta il raggio come dipendenza diretta; κ₂/κ₁ capovolge le due variazioni. Il quadrato dimentica la cancellazione di un raggio dal perimetro e la somma non vale uno per prove identiche.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12711,
+      "title": "Meno tensione e un tubo più largo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. A: γ=50 mN/m,r=1 mm. B: γ=40 mN/m,r=2 mm. Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "4/5",
+          "1/2",
+          "4"
+        ],
+        "value": "2/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione diminuisce di un fattore quattro quinti e il raggio doppio dimezza ulteriormente l’altezza. Il prodotto è due quinti: h passa da dieci a quattro mm. Le due modifiche riducono entrambe il livello nel modello."
+        },
+        {
+          "type": "formula",
+          "text": "h_A=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=\\frac25"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti considera solo γ e un mezzo solo r. Cinque mezzi inverte il rapporto; quattro è il numero finale in mm, non una quantità adimensionale."
+        }
+      ],
+      "hints": [
+        "Moltiplica quattro quinti per un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti considera solo γ e un mezzo solo r. Cinque mezzi inverte il rapporto; quattro è il numero finale in mm, non una quantità adimensionale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12712,
+      "title": "La media dei due livelli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 2,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. A ha γ=50 mN/m,r=1 mm; B ha γ=40 mN/m,r=2 mm. Qual è la media aritmetica delle due h con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7 mm",
+          "14 mm",
+          "6 mm",
+          "3 mm",
+          "4 mm"
+        ],
+        "value": "7 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le altezze calcolate sono dieci e quattro mm. La semisomma è sette mm. Usare invece γ medio quarantacinque mN/m e r medio tre mezzi mm darebbe sei mm, un millimetro in meno della media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline h=\\frac{10+4}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline h=7\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Quattordici è la somma, tre la semidifferenza e quattro la sola lettura B. Sei appartiene agli ingressi medi: una dipendenza razionale non consente di scambiare automaticamente i due procedimenti."
+        }
+      ],
+      "hints": [
+        "Media le due uscite, non i due raggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattordici è la somma, tre la semidifferenza e quattro la sola lettura B. Sei appartiene agli ingressi medi: una dipendenza razionale non consente di scambiare automaticamente i due procedimenti.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12713,
+      "title": "Il raggio per un’altezza obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 3,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. A usa γ=50 mN/m,r=1 mm. B impone γ=40 mN/m e h_B=(2/5)h_A. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4/5",
+          "2/5",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è quattro mm. Il fattore di tensione è quattro quinti, quindi (4/5)/(r_B/r_A)=2/5. Moltiplicando in croce si trova r_B/r_A=2, cioè un raggio finale di due mm."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac25=\\frac{4/5}{r_B/r_A}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo capovolge la variazione; quattro quinti segue solo la tensione e due quinti il bersaglio. Quattro renderebbe l’altezza due mm, inferiore a quella richiesta."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore noto di γ per il fattore richiesto di h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo capovolge la variazione; quattro quinti segue solo la tensione e due quinti il bersaglio. Quattro renderebbe l’altezza due mm, inferiore a quella richiesta.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12714,
+      "title": "Da una lettura calibrata alla tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 3,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. S=qh è un display continuo adimensionale. Il riferimento γ=50 mN/m,r=1 mm dà S=30. B dà S=12 con r=2 mm. Quanto vale γ_B in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha altezza dieci mm: q=3 mm⁻¹. La lettura dodici corrisponde a quattro mm. L’inversa γ=ρgrh/2, con r due mm e h quattro mm, dà quaranta mN/m. Il raggio diverso va inserito dopo aver decodificato il livello."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_B=\\frac{\\rho gr_Bh_B}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_B=40\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici non è l’altezza fisica e quattro non è una tensione. Una lettura pari a due quinti del riferimento non implica γ pari a due quinti se r è cambiato."
+        }
+      ],
+      "hints": [
+        "Calibra l’altezza prima di risalire a γ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici non è l’altezza fisica e quattro non è una tensione. Una lettura pari a due quinti del riferimento non implica γ pari a due quinti se r è cambiato.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12715,
+      "title": "Sottrarre l’offset prima del bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 3,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. S=qh+z è continuo e adimensionale. A: γ=50 mN/m,r=1 mm,S=21. B: γ=40 mN/m,r=2 mm,S=9. C: r=1 mm,S=17. Quanto vale γ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 mN/m",
+          "50 mN/m",
+          "20 mN/m",
+          "80 mN/m",
+          "17 mN/m"
+        ],
+        "value": "40 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno h=10 e 4 mm. Dalle differenze si trova q=12/6=2 mm⁻¹ e quindi z=1. La prova C ha h=(17−1)/2=8 mm. Nel tubo da un mm il bilancio restituisce quaranta mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " h_C=8\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_C=40\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta riprodurrebbe S=21; venti darebbe S=9, ottanta S=33. Diciassette copia il display senza eliminare offset né unità."
+        }
+      ],
+      "hints": [
+        "Usa due altezze note per identificare q e z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta riprodurrebbe S=21; venti darebbe S=9, ottanta S=33. Diciassette copia il display senza eliminare offset né unità.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-capillary-rise-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza di bordo e colonna capillare",
+      "order": 12716,
+      "title": "Quando una misura non determina il raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capillary-rise",
+      "difficulty": 3,
+      "prompt": "Un tubo cilindrico verticale di raggio interno r>0 comunica con un serbatoio largo di acqua di densità ρ=1000 kg/m³; g=10 m/s². Lo stesso gas preme sul menisco e sul livello esterno; la sua densità è trascurabile. Il liquido bagna perfettamente la parete: angolo di contatto θ=0, misurato attraverso il liquido. γ>0 è una tensione assegnata costante, non un valore universale dell’acqua. Si adotta il modello di colonna cilindrica che trascura il volume del menisco: l’altezza h>0 sopra il livello esterno soddisfa ρgπr²h=2πrγ. Le risposte sono valori di questo modello di equilibrio. Fra prove vale γ=cr con c=50 N/m², equivalente a γ in mN/m pari a 50 volte r in mm. Si misura h=10 mm. Quante coppie positive sono compatibili nel modello?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie",
+          "Una sola coppia",
+          "Nessuna coppia",
+          "Due coppie",
+          "Solo r=1 mm e γ=50 mN/m"
+        ],
+        "value": "Infinite coppie"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo γ=cr, il raggio positivo si cancella: h=2c/(ρg)=1/100 m. La misura dieci mm ripete esattamente quel vincolo e non fissa la scala di r. Ogni r positivo con γ=cr soddisfa il modello; anche limitandosi a un intervallo di piccoli raggi ammissibili restano infinite coppie."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{2cr}{\\rho gr}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{2c}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " h=10\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "La coppia r=1 mm,γ=50 mN/m è un esempio, non una soluzione unica. Il vincolo è fra prove e non una proprietà universale dell’acqua; una seconda misura indipendente di r o γ fisserebbe la scala."
+        }
+      ],
+      "hints": [
+        "Controlla se il dato h resta informativo dopo la sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coppia r=1 mm,γ=50 mN/m è un esempio, non una soluzione unica. Il vincolo è fra prove e non una proprietà universale dell’acqua; una seconda misura indipendente di r o γ fisserebbe la scala.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Equilibrio e angolo di contatto",
+        "Quote, unità e inverse",
+        "Medie, tarature e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e251fbd139492b8318d9b9a392b3c05094903b809de90297134ab5bd2c201547",
+      "name": "capillary-rise-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgdmlld0JveD0iMCAwIDY0MCAxNTEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkFsdGV6emEgY2FwaWxsYXJlIGUgZm9yemEgZGkgYm9yZG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Nb2RlbGxvIGRpIGNvbG9ubmEgYSBiYWduYW1lbnRvIHBlcmZldHRvLiBQcmltYSBjb2xvbm5hIHJhZ2dpbyB1biBtaWxsaW1ldHJvIGUgYWx0ZXp6YSBkaWVjaSwgcG9pIGJpbGFuY2lvIGZyYSBmb3J6YSBkaSBib3JkbyBlIHBlc28uIENvbmZyb250byBjb24gcmFnZ2lvIGRvcHBpbyBlIGFsdGV6emEgZGltZXp6YXRhLCBhbGxhIHN0ZXNzYSBzY2FsYSBwZXIgdHV0dGUgbGUgbHVuZ2hlenplLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTQ1ZDgxIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MTAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgaCBwYXJ0ZSBkYWwgbGl2ZWxsbyBlc3Rlcm5vPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPs6zID0gNTAgbU4vbSDCtyByID0gMSBtbSDCtyDOuCA9IDA8L3RleHQ+CjxyZWN0IHg9IjcwIiB5PSI0MDAiIHdpZHRoPSI1MDAiIGhlaWdodD0iNzUiIGZpbGw9IiNkN2YxZmEiLz4KPHJlY3QgeD0iMTgwIiB5PSIyMDAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNhN2Q4ZWMiLz4KPHBhdGggZD0iTTE4MCAxNjBWNDUwTTIyMCAxNjBWNDUwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTgwIDIwMEgyMjAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik03MCA0MDBINTcwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPgo8cGF0aCBkPSJNMjgwIDIwMFY0MDBNMjcwIDIwMEgyOTBNMjcwIDQwMEgyOTAiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjMwNSIgeT0iMzAwIj5oID0gMTAgbW08L3RleHQ+PHRleHQgeD0iMzYwIiB5PSI0MzUiPmggPSAwIGVzdGVybm88L3RleHQ+CjxwYXRoIGQ9Ik0yMDAgMjM1SDIyMCIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI3MCIgeT0iMjU1Ij5yID0gMSBtbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjUwMCI+MjAgcHgvbW0gwrcgcGlhbmkgZGkgbGl2ZWxsbyBlcXVpdmFsZW50aTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjUzNSI+TWVuaXNjbyBub24gZGlzZWduYXRvOyB2b2x1bWUgdHJhc2N1cmF0by48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA1NTBINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjYwMCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBEdWUgZm9yemUgdmVydGljYWxpIHN1bGxhIGNvbG9ubmE8L3RleHQ+CjxyZWN0IHg9IjI3NSIgeT0iNjY1IiB3aWR0aD0iNzAiIGhlaWdodD0iMTY1IiBmaWxsPSIjZDdmMWZhIiBzdHJva2U9IiM2ZThiOWMiLz4KPHBhdGggZD0iTTI1MCA3NjBWNjYwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+CjxwYXRoIGQ9Ik0zNzUgNzMwVjgzMCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8dGV4dCB4PSI0MCIgeT0iNzEwIj4yz4ByzrM8L3RleHQ+PHRleHQgeD0iNDMwIiB5PSI3OTAiPs+BZ8+AcsKyaDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4NSI+Ms+Acs6zID0gz4Fnz4BywrJoIOKHkiBoID0gMs6zLyjPgWdyKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkzMCI+Rm9yemUgc2NoZW1hdGljaGUgwrcgY29zzrggPSAxPC90ZXh0Pgo8cGF0aCBkPSJNMzUgOTY1SDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDEwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IFJhZ2dpbyBkb3BwaW8sIGFsdGV6emEgYSBtZXTDoDwvdGV4dD4KPHRleHQgeD0iOTUiIHk9IjEwNjAiPkEgwrcgciA9IDEgbW08L3RleHQ+PHRleHQgeD0iMzcwIiB5PSIxMDYwIj5CIMK3IHIgPSAyIG1tPC90ZXh0Pgo8cmVjdCB4PSI3MCIgeT0iMTMxMCIgd2lkdGg9IjUwMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2Q3ZjFmYSIvPgo8cmVjdCB4PSIxODAiIHk9IjExMTAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNhN2Q4ZWMiLz4KPHJlY3QgeD0iMzgwIiB5PSIxMjEwIiB3aWR0aD0iODAiIGhlaWdodD0iMTAwIiBmaWxsPSIjYTdkOGVjIi8+CjxwYXRoIGQ9Ik0xODAgMTA5MFYxMzUwTTIyMCAxMDkwVjEzNTBNMzgwIDEwOTBWMTM1ME00NjAgMTA5MFYxMzUwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTgwIDExMTBIMjIwTTM4MCAxMjEwSDQ2MCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTcwIDEzMTBINTcwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPgo8dGV4dCB4PSI2NSIgeT0iMTE5MCI+MTAgbW08L3RleHQ+PHRleHQgeD0iNDg1IiB5PSIxMjYwIj41IG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQxNSI+U3Rlc3NhIM6zIMK3IHR1dHRlIGxlIGx1bmdoZXp6ZSBhIDIwIHB4L21tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ2MCI+UGVzbyBwZXIgdW5pdMOgIGRpIGgg4oidIHLCsjsgZm9yemEgZGkgYm9yZG8g4oidIHIuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

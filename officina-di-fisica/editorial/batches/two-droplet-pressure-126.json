@@ -1,0 +1,1158 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-two-droplet-pressure-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12601,
+      "title": "Sottrarre due sovrapressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 1,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. Con r₁=1 mm e r₂=4 mm, quanto vale D in Pa?",
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Convertiamo insieme tensione e raggi: dieci mN/m sono un centesimo N/m e un millimetro è un millesimo di metro. La prima sovrapressione vale venti Pa, la seconda cinque. La pressione esterna comune si cancella, lasciando quindici Pa fra gli interni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6233927b8a3837a727a1e61e6fbb2bd03838795f601e5682a7b8eb5d74510ee",
+          "text": "Le due cavità hanno raggi 1 e 4 mm alla stessa scala 25 px/mm. La pressione esterna comune non è fissata numericamente; i salti 20 e 5 Pa sono mostrati con barre a 10 px/Pa. La loro differenza è 15 Pa."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma=10^{-2}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1-p_e=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2-p_e=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Sommare darebbe venticinque Pa, mentre scambiare gli interni darebbe meno quindici. Trenta raddoppia il risultato come se ci fosse un film a due interfacce. Qui si conta una sola interfaccia per cavità."
+        }
+      ],
+      "hints": [
+        "Sottrai due salti riferiti allo stesso ambiente esterno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sommare darebbe venticinque Pa, mentre scambiare gli interni darebbe meno quindici. Trenta raddoppia il risultato come se ci fosse un film a due interfacce. Qui si conta una sola interfaccia per cavità.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12602,
+      "title": "La differenza fra due pressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 1,
+      "prompt": "D=p₁−p₂ è la differenza fra due pressioni misurate con lo stesso riferimento. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pa",
+          "N/m",
+          "N",
+          "m",
+          "Pa·s"
+        ],
+        "value": "Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottrarre grandezze omogenee conserva la loro dimensione. La pressione è forza su area e si esprime in pascal. La legge di Laplace lo conferma: tensione superficiale in N/m divisa per raggio in m dà N/m²."
+        },
+        {
+          "type": "formula",
+          "text": "[D]=\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\left[\\frac{\\gamma}{r}\\right]=\\mathrm{N/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{N/m^2}=\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "N/m è la tensione superficiale, N una forza, m un raggio e Pa·s una viscosità dinamica. Nessuna di queste diventa pressione soltanto sottraendo due letture."
+        }
+      ],
+      "hints": [
+        "Confronta le dimensioni dei due termini della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N/m è la tensione superficiale, N una forza, m un raggio e Pa·s una viscosità dinamica. Nessuna di queste diventa pressione soltanto sottraendo due letture.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12603,
+      "title": "Il raggio piccolo richiede più pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 1,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. Quale formula esprime D usando grandezze fisiche in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D = 2 γ (1/r₁ − 1/r₂)",
+          "D = 2 γ (1/r₂ − 1/r₁)",
+          "D = 2 γ / (r₂ − r₁)",
+          "D = 2 γ (r₂ − r₁)",
+          "D = 4 γ (1/r₁ − 1/r₂)"
+        ],
+        "value": "D = 2 γ (1/r₁ − 1/r₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo separatamente i due salti e sottraiamoli. L’ambiente esterno scompare perché è comune. Siccome r₁ è minore, il suo reciproco è maggiore: la differenza di pressioni ha il segno positivo dichiarato. È una differenza di curvature, non il reciproco di una differenza di raggi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b6233927b8a3837a727a1e61e6fbb2bd03838795f601e5682a7b8eb5d74510ee",
+          "text": "Tre letture progressive: geometria con raggi alla stessa scala, sottrazione delle due sovrapressioni rispetto a p_e comune, poi confronto A e B con barre a 10 px/Pa. In B i raggi 2 e 5 mm danno salti 10 e 4 Pa e differenza 6 Pa. La cavità più piccola ha sempre il salto maggiore nel modello a γ uguale."
+        },
+        {
+          "type": "formula",
+          "text": "D=(p_1-p_e)-(p_2-p_e)"
+        },
+        {
+          "type": "formula",
+          "text": " D=2\\gamma\\left(\\frac1{r_1}-\\frac1{r_2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " D>0"
+        },
+        {
+          "type": "text",
+          "text": "Invertire l’ordine dà −D. Il reciproco di r₂−r₁ divergerebbe per raggi uguali, quando D deve annullarsi. Moltiplicare per la differenza di raggi dà unità di forza e usare quattro conta due interfacce inesistenti."
+        }
+      ],
+      "hints": [
+        "Sottrai le curvature prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire l’ordine dà −D. Il reciproco di r₂−r₁ divergerebbe per raggi uguali, quando D deve annullarsi. Moltiplicare per la differenza di raggi dà unità di forza e usare quattro conta due interfacce inesistenti.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12604,
+      "title": "Aumentare soltanto il raggio piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 1,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. r₁ passa da 1 a 2 mm, mentre r₂ resta 4 mm. Come cambia D?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 15 a 5 Pa",
+          "Da 15 a 30 Pa",
+          "Da 15 a 10 Pa",
+          "Resta 15 Pa",
+          "Da 15 a 0 Pa"
+        ],
+        "value": "Da 15 a 5 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima sovrapressione scende da venti a dieci Pa, mentre la seconda resta cinque Pa. Le differenze sono dunque quindici e cinque Pa. Allargare la cavità piccola avvicina le due curvature e riduce D a un terzo."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=(20-5)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": "(20-5)\\,\\mathrm{Pa}=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=(10-5)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": "(10-5)\\,\\mathrm{Pa}=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci è il salto della prima cavità finale, non la differenza. Trenta attribuisce una dipendenza diretta al raggio e zero richiederebbe raggi uguali, che qui restano due e quattro mm."
+        }
+      ],
+      "hints": [
+        "Aggiorna solo la prima sovrapressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci è il salto della prima cavità finale, non la differenza. Trenta attribuisce una dipendenza diretta al raggio e zero richiederebbe raggi uguali, che qui restano due e quattro mm.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12605,
+      "title": "Ricavare il raggio della cavità piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. D=15 Pa e r₂=4 mm. Quanto vale r₁ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La cavità grande ha un salto di cinque Pa. Per superarlo di quindici, la piccola deve avere un salto di venti Pa. Da 2γ/r₁=20 Pa si trova un millimetro, positivo e inferiore ai quattro mm noti."
+        },
+        {
+          "type": "formula",
+          "text": "p_2-p_e=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1-p_e=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_1=\\frac{2\\gamma}{20\\,\\mathrm{Pa}}"
+        },
+        {
+          "type": "formula",
+          "text": " r_1=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere 2γ solo per D ometterebbe il salto della seconda cavità. Sottrarre cinque da quindici nella ricostruzione confonderebbe D con una somma. Il controllo restituisce venti meno cinque."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima la sovrapressione della cavità piccola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere 2γ solo per D ometterebbe il salto della seconda cavità. Sottrarre cinque da quindici nella ricostruzione confonderebbe D con una somma. Il controllo restituisce venti meno cinque.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12606,
+      "title": "Ricavare il raggio della cavità grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. D=15 Pa e r₁=1 mm. Quanto vale r₂ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sovrapressione nella prima cavità vale venti Pa. La seconda deve avere venti meno quindici, cinque Pa. Il suo raggio è quindi 2γ diviso cinque Pa: quattro millimetri. La positività richiede D inferiore al primo salto, come avviene qui."
+        },
+        {
+          "type": "formula",
+          "text": "p_1-p_e=20\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2-p_e=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_2=\\frac{2\\gamma}{5\\,\\mathrm{Pa}}"
+        },
+        {
+          "type": "formula",
+          "text": " r_2=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sommarvi D darebbe una seconda sovrapressione maggiore e un raggio più piccolo, contraddicendo r₁<r₂. Se D raggiungesse venti Pa non esisterebbe un r₂ finito: il denominatore sarebbe zero."
+        }
+      ],
+      "hints": [
+        "Sottrai D dal salto della prima cavità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sommarvi D darebbe una seconda sovrapressione maggiore e un raggio più piccolo, contraddicendo r₁<r₂. Se D raggiungesse venti Pa non esisterebbe un r₂ finito: il denominatore sarebbe zero.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12607,
+      "title": "Avvicinare il raggio grande al piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. A ha r₁=1 mm,r₂=4 mm; B mantiene r₁ e usa r₂=2 mm. Quanto vale D_B/D_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà quindici Pa. In B il salto della cavità grande cresce a dieci Pa e D diventa venti meno dieci, dieci Pa. Il rapporto dieci su quindici si riduce a due terzi: si riduce la differenza anche se una singola sovrapressione aumenta."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=10\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B/D_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo copia il rapporto fra i raggi grandi, che non coincide con il rapporto fra differenze. Tre mezzi inverte la richiesta, due segue la singola sovrapressione e uno ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Calcola le differenze in A e B, poi dividile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo copia il rapporto fra i raggi grandi, che non coincide con il rapporto fra differenze. Tre mezzi inverte la richiesta, due segue la singola sovrapressione e uno ignora il cambiamento.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12608,
+      "title": "Lo scarto di un fattore due",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. Per r₁=1 mm,r₂=4 mm si propone D=30 Pa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 Pa",
+          "−15 Pa",
+          "30 Pa",
+          "0 Pa",
+          "45 Pa"
+        ],
+        "value": "15 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I salti sono venti e cinque Pa; la differenza corretta vale quindici. La proposta trenta supera il risultato di quindici Pa. Il modello ha una sola interfaccia: il fattore due aggiuntivo non è giustificato."
+        },
+        {
+          "type": "formula",
+          "text": "D=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(30-15)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno quindici scambia proposta e risultato, trenta copia il valore iniziale e quarantacinque somma invece di sottrarre. Zero accetta la duplicazione."
+        }
+      ],
+      "hints": [
+        "Distingui il risultato dalla differenza fra proposta e risultato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quindici scambia proposta e risultato, trenta copia il valore iniziale e quarantacinque somma invece di sottrarre. Zero accetta la duplicazione.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12609,
+      "title": "L’inversa ha una somma di curvature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. Quale formula isola r₁ da D,γ,r₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r₁ = 1 / [D/(2 γ) + 1/r₂]",
+          "r₁ = 1 / [D/(2 γ) − 1/r₂]",
+          "r₁ = D/(2 γ) + 1/r₂",
+          "r₁ = 2 γ / D",
+          "r₁ = r₂ − D/(2 γ)"
+        ],
+        "value": "r₁ = 1 / [D/(2 γ) + 1/r₂]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Portiamo 1/r₂ a destra dopo aver diviso D per 2γ. Si ottiene una somma di due curvature positive. Il reciproco è quindi positivo e minore di r₂, proprio il dominio richiesto. Tutte le lunghezze devono essere nella stessa unità prima della somma."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{r_1}=\\frac{D}{2\\gamma}+\\frac1{r_2}"
+        },
+        {
+          "type": "formula",
+          "text": " r_1=\\left(\\frac{D}{2\\gamma}+\\frac1{r_2}\\right)^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno non ricostruisce il primo salto. Omettere il reciproco restituisce una curvatura; 2γ/D ignora la seconda cavità. Nell’ultima proposta si sottraggono lunghezza e lunghezza inversa."
+        }
+      ],
+      "hints": [
+        "Isola prima 1/r₁ e poi prendi il reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno non ricostruisce il primo salto. Omettere il reciproco restituisce una curvatura; 2γ/D ignora la seconda cavità. Nell’ultima proposta si sottraggono lunghezza e lunghezza inversa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12610,
+      "title": "Scalare due raggi distinti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. B ha r₁,B=κ₁r₁,A e r₂,B=κ₂r₂,A, con κ₁,κ₂>0 e κ₁r₁,A<κ₂r₂,A. Qual è D_B/D_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "[1/(κ₁ r₁) − 1/(κ₂ r₂)] / (1/r₁ − 1/r₂)",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "1 / (κ₁ κ₂)",
+          "κ₁ κ₂"
+        ],
+        "value": "[1/(κ₁ r₁) − 1/(κ₂ r₂)] / (1/r₁ − 1/r₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni curvatura riceve il proprio fattore inverso. Si sottraggono i contributi in B e si divide per la differenza in A; 2γ si cancella. Non esiste un unico prodotto di fattori valido per una differenza di due termini variati in modo indipendente."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{D_B}{D_A}=\\frac{1/(\\kappa_1r_1)-1/(\\kappa_2r_2)}{1/r_1-1/r_2}"
+        },
+        {
+          "type": "text",
+          "text": "I semplici rapporti o prodotti di κ perdono la differenza fra curvature. Se κ₁=κ₂=κ, il risultato deve ridursi a 1/κ: questo controllo esclude già tutte le quattro alternative proposte in generale."
+        }
+      ],
+      "hints": [
+        "Mantieni separati i due reciproci finché formi il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I semplici rapporti o prodotti di κ perdono la differenza fra curvature. Se κ₁=κ₂=κ, il risultato deve ridursi a 1/κ: questo controllo esclude già tutte le quattro alternative proposte in generale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12611,
+      "title": "Due raggi maggiori con differenze nuove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. A: r₁=1 mm,r₂=4 mm. B: r₁=2 mm,r₂=5 mm. Quanto vale D_B/D_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "1/2",
+          "4/5",
+          "6"
+        ],
+        "value": "2/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà quindici Pa. In B il primo salto vale dieci e il secondo quattro Pa, dunque D_B=6 Pa. Sei su quindici si riduce a due quinti. Aumentare entrambi i raggi non basta a conoscere il rapporto senza sottrarre le due curvature."
+        },
+        {
+          "type": "formula",
+          "text": "D_A=15\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=(10-4)\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": "(10-4)\\,\\mathrm{Pa}=6\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B/D_A=\\frac25"
+        },
+        {
+          "type": "text",
+          "text": "Sei è il valore finale in pascal, non il rapporto. Un mezzo e quattro quinti seguono soltanto uno dei due raggi; cinque mezzi capovolge il confronto."
+        }
+      ],
+      "hints": [
+        "Trova i salti dieci e quattro Pa nello stato B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è il valore finale in pascal, non il rapporto. Un mezzo e quattro quinti seguono soltanto uno dei due raggi; cinque mezzi capovolge il confronto.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12612,
+      "title": "Media di due differenze interne",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 2,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. A: r₁=1 mm,r₂=4 mm. B: r₁=2 mm,r₂=5 mm. Qual è la media aritmetica delle due D, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "21/2 Pa",
+          "21 Pa",
+          "9/2 Pa",
+          "80/9 Pa",
+          "6 Pa"
+        ],
+        "value": "21/2 Pa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due differenze sono quindici e sei Pa. La somma ventuno divisa per due è ventuno mezzi Pa. I raggi medi, tre mezzi e nove mezzi mm, darebbero invece 80/9 Pa: la legge dipende dai reciproci e non commuta con la media dei raggi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline D=\\frac{15+6}{2}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline D=\\frac{21}{2}\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Ventuno è la somma e nove mezzi la semidifferenza. Sei copia B. 80/9 risolve un’altra coppia di raggi anziché mediare le due uscite; la differenza rispetto a 21/2 è 29/18 Pa."
+        }
+      ],
+      "hints": [
+        "Esegui la semisomma dopo i due calcoli fisici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventuno è la somma e nove mezzi la semidifferenza. Sei copia B. 80/9 risolve un’altra coppia di raggi anziché mediare le due uscite; la differenza rispetto a 21/2 è 29/18 Pa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12613,
+      "title": "Il raggio grande per il bersaglio di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 3,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. A ha r₁=1 mm,r₂=4 mm. B impone r₁=2 mm e D_B=(2/5)D_A. Quanto deve valere r₂,B/r₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "2/5",
+          "2",
+          "1"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è sei Pa. Con r₁,B=2 mm il primo salto è dieci Pa, perciò il secondo deve essere quattro Pa: r₂,B=5 mm. Il rapporto richiesto è cinque su quattro e mantiene r₂,B>r₁,B."
+        },
+        {
+          "type": "formula",
+          "text": "D_B=6\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}-p_e=4\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_{2,B}=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " r_{2,B}/r_{2,A}=\\frac54"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti inverte i raggi. Due quinti è il bersaglio di D, non il fattore di r₂; due segue il cambiamento del solo r₁ e uno non produce sei Pa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la seconda sovrapressione prima del raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti inverte i raggi. Due quinti è il bersaglio di D, non il fattore di r₂; due segue il cambiamento del solo r₁ e uno non produce sei Pa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12614,
+      "title": "Un display della differenza senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 3,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. S=qD è continuo e adimensionale. A con r₁=1 mm,r₂=4 mm dà S=45. B dà S=18 e ha r₂=5 mm. Quanto vale r₁,B in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "D_A=15 Pa fissa q=3 Pa⁻¹. La nuova lettura dà D_B=6 Pa. Il salto della seconda cavità è quattro Pa e quindi quello della prima dieci Pa: il suo raggio è due mm. Non si usa la lettura come una pressione assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " D_B=6\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,B}-p_e=10\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_{1,B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Decodificare D e dimenticare il salto della seconda cavità darebbe un raggio diverso. La lettura riguarda una differenza: l’esterno comune si cancella ma i due salti restano nel modello."
+        }
+      ],
+      "hints": [
+        "Dividi la lettura per il guadagno e aggiungi il secondo salto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Decodificare D e dimenticare il salto della seconda cavità darebbe un raggio diverso. La lettura riguarda una differenza: l’esterno comune si cancella ma i due salti restano nel modello.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12615,
+      "title": "Offset e differenza di pressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 3,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. S=qD+z è continuo e adimensionale. A: r₁=1 mm,r₂=4 mm,S=31. B: r₁=2 mm,r₂=5 mm,S=13. C: r₂=4 mm,S=11. Quanto vale r₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mm",
+          "1 mm",
+          "4 mm",
+          "5/2 mm",
+          "1/2 mm"
+        ],
+        "value": "2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno D=15 e 6 Pa. Le differenze danno q=18/9=2 Pa⁻¹ e z=1. In C la differenza fisica è cinque Pa. La cavità di quattro mm ha già un salto di cinque Pa, quindi la prima deve averne dieci: r₁,C=2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{Pa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " D_C=5\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,C}-p_e=10\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " r_{1,C}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Fra le alternative, uno riproduce A, quattro annullerebbe D, cinque mezzi darebbe D=3 Pa e un mezzo darebbe D=35 Pa: nessuno restituisce S=11."
+        }
+      ],
+      "hints": [
+        "Togli l’offset prima di ricostruire le due curvature.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Fra le alternative, uno riproduce A, quattro annullerebbe D, cinque mezzi darebbe D=3 Pa e un mezzo darebbe D=35 Pa: nessuno restituisce S=11.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-droplet-pressure-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due curvature e una pressione esterna comune",
+      "order": 12616,
+      "title": "Un rapporto fisso fra i raggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-droplet-pressure",
+      "difficulty": 3,
+      "prompt": "Due cavità sferiche statiche hanno ciascuna una sola interfaccia gas–liquido, tensione uniforme γ=10 mN/m e raggi 0<r₁<r₂. La stessa pressione esterna p_e agisce su entrambe; gravità, elasticità e scambi di materia sono trascurati. Vale p_i−p_e=2γ/r_i. Indichiamo con D=p₁−p₂ la differenza positiva fra le pressioni interne. I raggi numerici sono espressi in mm e D in Pa. Fra prove vale r₁=r₂/4. Si misura D=15 Pa. Quanto vale r₂ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende la prima curvatura quattro volte la seconda. La loro differenza vale tre volte 1/r₂, così D=6γ/r₂. Con γ=10 mN/m il numeratore è sessanta mN/m; diviso quindici Pa dà quattro mm. Ne segue r₁=1 mm."
+        },
+        {
+          "type": "formula",
+          "text": "D=2\\gamma\\left(\\frac4{r_2}-\\frac1{r_2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac{6\\gamma}{r_2}"
+        },
+        {
+          "type": "formula",
+          "text": " r_2=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " r_1=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Il quarto è un rapporto adimensionale, non una lunghezza aggiunta al raggio. Omettere la sottrazione delle curvature sostituirebbe il fattore tre con quattro e non riprodurrebbe i quindici Pa."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nei reciproci, non nei raggi dopo il calcolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il quarto è un rapporto adimensionale, non una lunghezza aggiunta al raggio. Omettere la sottrazione delle curvature sostituirebbe il fattore tre con quattro e non riprodurrebbe i quindici Pa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Differenza dei salti di Laplace",
+        "Conversioni e inverse dei raggi",
+        "Riferimenti, medie e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b6233927b8a3837a727a1e61e6fbb2bd03838795f601e5682a7b8eb5d74510ee",
+      "name": "two-droplet-pressure-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgdmlld0JveD0iMCAwIDY0MCAxNTEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkR1ZSByYWdnaSwgZHVlIHNhbHRpIGRpIHByZXNzaW9uZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlJhZ2dpIHVubyBlIHF1YXR0cm8gbWlsbGltZXRyaSBhbGxhIHN0ZXNzYSBzY2FsYS4gQmFycmUgZGVsbGUgc292cmFwcmVzc2lvbmkgdmVudGkgZSBjaW5xdWUgcGFzY2FsIGUgbG9ybyBkaWZmZXJlbnphIHF1aW5kaWNpLiBVbmEgc2Vjb25kYSBwcm92YSBjb24gcmFnZ2kgZHVlIGUgY2lucXVlIGTDoCBkaWVjaSBlIHF1YXR0cm8gcGFzY2FsLCBkaWZmZXJlbnphIHNlaS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgcng9IjIwIiBmaWxsPSIjZjdmYmZmIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmQ0MCIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBVbmEgc29sYSBpbnRlcmZhY2NpYSBlIM6zIGNvbXVuZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj7OsyA9IDEwIG1OL20gwrcgcOKCkSB1Z3VhbGUgcGVyIGVudHJhbWJlPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIyNDUiIHI9IjI1IiBmaWxsPSIjZDdmMWZhIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI0NDAiIGN5PSIyNDUiIHI9IjEwMCIgZmlsbD0iI2Q3ZjFmYSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE1MCAyNDVIMTc1IiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik00NDAgMjQ1SDU0MCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iOTUiIHk9IjM5MCI+cuKCgSA9IDEgbW08L3RleHQ+PHRleHQgeD0iMzg1IiB5PSIzOTAiPnLigoIgPSA0IG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDQwIj5SYWdnaTogMjUgcHgvbW0gwrcgcOKCgSAmZ3Q7IHDigoI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0ODUiPklsIHZhbG9yZSBhc3NvbHV0byBkaSBw4oKRIG5vbiDDqCBhc3NlZ25hdG8uPC90ZXh0Pgo8cGF0aCBkPSJNMzUgNTIwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI1NzAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgU2FsdGkgcmlzcGV0dG8gYWxsbyBzdGVzc28gZXN0ZXJubzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjYxNSI+QmFycmUgZGEgemVybzogMTAgcHgvUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2OTAiPnDigoEg4oiSIHDigpE8L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI2NjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIzODAiIHk9IjY4NyI+MjAgUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3ODAiPnDigoIg4oiSIHDigpE8L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI3NTAiIHdpZHRoPSI1MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzZlYWFjNSIvPjx0ZXh0IHg9IjIzMCIgeT0iNzc3Ij41IFBhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODcwIj5EPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iODQwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjYzY1OTE5Ii8+PHRleHQgeD0iMzMwIiB5PSI4NjciPjE1IFBhPC90ZXh0Pgo8cGF0aCBkPSJNMTYwIDY0MFY4OTUiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI5NDAiPkQgPSAyzrMvcuKCgSDiiJIgMs6zL3LigoIgPSAoMjAg4oiSIDUpIFBhPC90ZXh0Pgo8cGF0aCBkPSJNMzUgOTgwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDMwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IEIgY2FtYmlhIGVudHJhbWJpIGkgcmFnZ2k8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDcwIj5y4oKBID0gMiBtbSDCtyBy4oKCID0gNSBtbSDCtyBzdGVzc2EgzrM8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTQ1Ij5w4oKBIOKIkiBw4oKRPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMTExNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjI4MCIgeT0iMTE0MiI+MTAgUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjM1Ij5w4oKCIOKIkiBw4oKRPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMTIwNSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjNmVhYWM1Ii8+PHRleHQgeD0iMjIwIiB5PSIxMjMyIj40IFBhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTMyNSI+RDwvdGV4dD48cmVjdCB4PSIxNjAiIHk9IjEyOTUiIHdpZHRoPSI2MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjI0MCIgeT0iMTMyMiI+NiBQYTwvdGV4dD4KPHBhdGggZD0iTTE2MCAxMDk1VjEzNTAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDAwIj5TZW1wcmUgMTAgcHgvUGEgwrcgROG0ri9E4bSsID0gNi8xNSA9IDIvNTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0NTAiPlNpIHNvdHRyYWdnb25vIGN1cnZhdHVyZSwgbm9uIHJhZ2dpLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

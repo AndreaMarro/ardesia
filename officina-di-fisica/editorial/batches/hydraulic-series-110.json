@@ -1,0 +1,1118 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-hydraulic-series-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11021,
+      "title": "Le due cadute si sommano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 1,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Con R₁=2 kPa·s/L e R₂=3 kPa·s/L, quanto vale R_eq in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa portata attraversa entrambi gli elementi. Le cadute di pressione sono R₁Q e R₂Q; sommando e raccogliendo Q si ottiene (R₁+R₂)Q. La resistenza equivalente vale quindi due più tre, cinque kPa·s/L. Le portate non si sommano lungo un unico percorso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97664a73195ed74761bb038e7f16ca181556c1046ead99682e2e154c689e27b8",
+          "text": "Schema di due elementi in serie, con dimensioni dei blocchi simboliche. R₁=2 e R₂=3 kPa·s/L, Q=2 L/s comune. Le tre frecce hanno lunghezza 80 px alla stessa scala 40 px/(L/s). Pressioni assolute di esempio 110,106,100 kPa danno cadute 4 e 6 kPa, totale 10; R_eq=5 kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_{\\rm tot}=R_1Q+R_2Q"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Sei quinti kPa·s/L sarebbe il risultato della connessione parallela degli stessi valori, diversa topologia. Due e tre sono i singoli contributi; dieci li conterebbe due volte. Il totale deve superare ciascuna resistenza positiva in serie."
+        }
+      ],
+      "hints": [
+        "Raccogli la portata comune dopo aver sommato le due cadute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei quinti kPa·s/L sarebbe il risultato della connessione parallela degli stessi valori, diversa topologia. Due e tre sono i singoli contributi; dieci li conterebbe due volte. Il totale deve superare ciascuna resistenza positiva in serie.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11022,
+      "title": "L’unità di una resistenza idraulica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 1,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Quale unità proposta esprime R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa·s/L",
+          "kPa",
+          "L/s",
+          "Pa·s",
+          "L/(kPa·s)"
+        ],
+        "value": "kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza è una differenza di pressione divisa per una portata volumetrica. Dividere kPa per L/s equivale a kPa·s/L. Questa unità non coincide con quella della viscosità dinamica: contiene anche un volume al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=\\frac{[p]}{[Q]}"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\frac{M}{L^4T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{kPa}/(\\mathrm{L/s})=\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "kPa è pressione, L/s portata e Pa·s viscosità dinamica. L/(kPa·s) è la conduttanza, reciproco della resistenza. Le due R nella somma devono essere espresse nella stessa unità."
+        }
+      ],
+      "hints": [
+        "Dividi una pressione per un volume al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kPa è pressione, L/s portata e Pa·s viscosità dinamica. L/(kPa·s) è la conduttanza, reciproco della resistenza. Le due R nella somma devono essere espresse nella stessa unità.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11023,
+      "title": "La pressione intermedia si cancella",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 1,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Quale formula esprime R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_eq = R₁ + R₂",
+          "R_eq = R₁ R₂ / (R₁ + R₂)",
+          "R_eq = R₁ − R₂",
+          "R_eq = (R₁ + R₂) / 2",
+          "R_eq = R₁ R₂"
+        ],
+        "value": "R_eq = R₁ + R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indichiamo con p_a,p_b,p_c le pressioni in ingresso, nel nodo intermedio e in uscita. La somma (p_a−p_b)+(p_b−p_c) elimina p_b e dà la caduta esterna. Ogni termine contiene la stessa Q: dividendo il bilancio per Q si sommano le resistenze."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97664a73195ed74761bb038e7f16ca181556c1046ead99682e2e154c689e27b8",
+          "text": "Le resistenze si sommano perché la portata è comune. Barre di resistenza 60+90=150 px a 30 px/(kPa·s/L); a Q=2 L/s le cadute sono barre 120+180=300 px a 30 px/kPa. Scale dimensionalmente diverse dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "(p_a-p_b)+(p_b-p_c)=p_a-p_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm tot}=(R_1+R_2)Q"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "text",
+          "text": "La formula prodotto su somma vale per due rami in parallelo. Una differenza può annullarsi anche con due elementi resistivi positivi e non descrive le due dissipazioni successive. La semisomma è una media, mentre il prodotto R₁R₂ ha dimensioni di resistenza al quadrato."
+        }
+      ],
+      "hints": [
+        "Segui l’unico percorso e cancella la pressione del nodo intermedio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La formula prodotto su somma vale per due rami in parallelo. Una differenza può annullarsi anche con due elementi resistivi positivi e non descrive le due dissipazioni successive. La semisomma è una media, mentre il prodotto R₁R₂ ha dimensioni di resistenza al quadrato.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11024,
+      "title": "Cambia un solo tratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 1,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. A ha R₁=2 kPa·s/L e B R₁=4 kPa·s/L; R₂ resta 3 kPa·s/L. Come cambia R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 7 kPa·s/L",
+          "Da 5 a 10 kPa·s/L",
+          "Resta 5 kPa·s/L",
+          "Da 5 a 1 kPa·s/L",
+          "Da 5 a 5/2 kPa·s/L"
+        ],
+        "value": "Da 5 a 7 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si aggiungono tre kPa·s/L sia ai due iniziali sia ai quattro finali: le resistenze equivalenti sono cinque e sette. Raddoppia soltanto un contributo della somma, non l’intero circuito."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=7\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci raddoppierebbe anche R₂; cinque ignorerebbe il cambiamento di R₁. Uno corrisponderebbe a sottrarre le resistenze e cinque mezzi darebbe una diminuzione quando si aggiunge resistenza lungo lo stesso percorso. A pressione totale imposta, la portata diminuirebbe, ma qui si chiede R_eq."
+        }
+      ],
+      "hints": [
+        "Mantieni i tre kPa·s/L del secondo elemento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci raddoppierebbe anche R₂; cinque ignorerebbe il cambiamento di R₁. Uno corrisponderebbe a sottrarre le resistenze e cinque mezzi darebbe una diminuzione quando si aggiunge resistenza lungo lo stesso percorso. A pressione totale imposta, la portata diminuirebbe, ma qui si chiede R_eq.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11025,
+      "title": "Isolare la prima resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Si misura R_eq=5 kPa·s/L e si conosce R₂=3 kPa·s/L. Quanto vale R₁ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza totale contiene quella del primo e quella del secondo elemento. Sottrarre il contributo noto tre dal totale cinque lascia due kPa·s/L. Il dominio positivo richiede R_eq>R₂."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_{\\rm eq}-R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=(5-3)\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Otto aggiungerebbe di nuovo una resistenza già inclusa nel totale; meno due invertirebbe l’ordine e non sarebbe un elemento passivo positivo. Il risultato non è una caduta di pressione: per ricavarla occorrerebbe anche Q."
+        }
+      ],
+      "hints": [
+        "Togli dal totale la parte attribuita al secondo elemento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto aggiungerebbe di nuovo una resistenza già inclusa nel totale; meno due invertirebbe l’ordine e non sarebbe un elemento passivo positivo. Il risultato non è una caduta di pressione: per ricavarla occorrerebbe anche Q.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11026,
+      "title": "Ripartire una pressione totale assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. In questa prova R₁=2 kPa·s/L, R₂=4 kPa·s/L e Δp_tot=12 kPa. Quanto vale la caduta Δp₁ sul primo elemento?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kPa",
+          "8 kPa",
+          "6 kPa",
+          "2 kPa",
+          "12 kPa"
+        ],
+        "value": "4 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza totale è sei kPa·s/L. La portata comune vale dodici diviso sei, due L/s. Il primo elemento richiede due per due, quattro kPa; al secondo restano otto kPa. La pressione si ripartisce in proporzione alle resistenze, mentre la portata è la stessa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97664a73195ed74761bb038e7f16ca181556c1046ead99682e2e154c689e27b8",
+          "text": "Esempio distinto con R₁=2,R₂=4 kPa·s/L e Δp_tot=12 kPa: resistenza totale 6, Q=2 L/s e cadute 4/8 kPa. Barre di 120 e 240 px a 30 px/kPa: la prima riceve un terzo del salto totale, non la metà."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=6\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=2\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_1=R_1Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_1=4\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è la caduta del secondo tratto; sei dividerebbe la pressione in parti uguali nonostante resistenze diverse. Due copia la portata con unità sbagliate e dodici è la caduta totale. Il controllo quattro più otto ricostruisce dodici."
+        }
+      ],
+      "hints": [
+        "Trova prima Q dalla resistenza totale, poi usa Δp₁=R₁Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è la caduta del secondo tratto; sei dividerebbe la pressione in parti uguali nonostante resistenze diverse. Due copia la portata con unità sbagliate e dodici è la caduta totale. Il controllo quattro più otto ricostruisce dodici.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11027,
+      "title": "Raddoppia il secondo contributo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. A ha R₁=2 e R₂=3 kPa·s/L; B mantiene R₁ e porta R₂ a 6 kPa·s/L. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "5/8",
+          "2",
+          "6/5",
+          "1"
+        ],
+        "value": "8/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza equivalente passa da due più tre, cinque, a due più sei, otto kPa·s/L. Il rapporto è otto quinti. R₂ raddoppia ma il contributo R₁ resta due, quindi il totale non raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=8\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=8/5"
+        },
+        {
+          "type": "text",
+          "text": "Cinque ottavi è il reciproco; due scala anche il primo tratto, sei quinti usa soltanto il valore nuovo R₂ rispetto al totale A e uno ignora l’incremento. Le due equivalenti restano maggiori di ciascun loro elemento."
+        }
+      ],
+      "hints": [
+        "Somma separatamente le resistenze delle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque ottavi è il reciproco; due scala anche il primo tratto, sei quinti usa soltanto il valore nuovo R₂ rispetto al totale A e uno ignora l’incremento. Le due equivalenti restano maggiori di ciascun loro elemento.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11028,
+      "title": "Lo scarto di una resistenza proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Con R₁=2 e R₂=3 kPa·s/L si propone R_eq=10 kPa·s/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 kPa·s/L",
+          "−5 kPa·s/L",
+          "10 kPa·s/L",
+          "0 kPa·s/L",
+          "5/2 kPa·s/L"
+        ],
+        "value": "5 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza corretta è cinque kPa·s/L. La proposta dieci supera il valore di cinque kPa·s/L. Si confrontano due resistenze equivalenti, non una resistenza con una pressione."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno inverte lo scarto, dieci copia la proposta, zero la accetta e cinque mezzi dimezza ancora. A Q=1 L/s, la proposta richiederebbe dieci kPa, mentre i due tratti dati richiedono solo due più tre kPa."
+        }
+      ],
+      "hints": [
+        "Ricava il totale prima della differenza con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno inverte lo scarto, dieci copia la proposta, zero la accetta e cinque mezzi dimezza ancora. A Q=1 L/s, la proposta richiederebbe dieci kPa, mentre i due tratti dati richiedono solo due più tre kPa.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11029,
+      "title": "La formula inversa e il dominio positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Quale formula isola R₁, per R_eq>R₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R_eq − R₂",
+          "R₁ = R_eq + R₂",
+          "R₁ = R₂ − R_eq",
+          "R₁ = R_eq / R₂",
+          "R₁ = R_eq R₂ / (R₂ − R_eq)"
+        ],
+        "value": "R₁ = R_eq − R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla somma R_eq=R₁+R₂ sottraiamo R₂ ai due membri. Il risultato è una resistenza nella stessa unità, positiva grazie alla condizione sul totale. Non si usa l’inversa del circuito parallelo."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_{\\rm eq}-R_2"
+        },
+        {
+          "type": "text",
+          "text": "Il più conta R₂ due volte e l’ordine inverso produce un valore negativo. Il quoziente è puro; l’ultima espressione appartiene a un tentativo di inversione di un’altra topologia e risulta negativa nel dominio serie dichiarato."
+        }
+      ],
+      "hints": [
+        "Elimina l’addendo noto con una sottrazione su entrambi i membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più conta R₂ due volte e l’ordine inverso produce un valore negativo. Il quoziente è puro; l’ultima espressione appartiene a un tentativo di inversione di un’altra topologia e risulta negativa nel dominio serie dichiarato.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11030,
+      "title": "Due fattori pesati dalle resistenze iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. B ha R₁,B=κ₁R₁,A e R₂,B=κ₂R₂,A, con fattori positivi. Nelle opzioni R₁,R₂ indicano A. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)",
+          "κ₁ κ₂",
+          "κ₁ + κ₂",
+          "(R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)",
+          "(κ₁ R₁ − κ₂ R₂) / (R₁ + R₂)"
+        ],
+        "value": "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo totale è κ₁R₁+κ₂R₂. Il rapporto col totale iniziale divide per R₁+R₂ e conserva il peso di ogni resistenza iniziale. Non esiste un unico prodotto dei due fattori per una somma con addendi indipendenti."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\kappa_1R_1+\\kappa_2R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1R_1+\\kappa_2R_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto ignora la somma; la somma dei soli fattori darebbe due per prove identiche. Il reciproco inverte gli stati e il meno sottrae una caduta che lungo l’unico percorso si aggiunge. Con κ₁=κ₂ il rapporto coincide con quel fattore comune."
+        }
+      ],
+      "hints": [
+        "Scala ogni addendo e soltanto dopo forma il rapporto dei totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto ignora la somma; la somma dei soli fattori darebbe due per prove identiche. Il reciproco inverte gli stati e il meno sottrae una caduta che lungo l’unico percorso si aggiunge. Con κ₁=κ₂ il rapporto coincide con quel fattore comune.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11031,
+      "title": "Entrambi gli elementi raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. A ha R₁=2,R₂=3 kPa·s/L; B ha R₁=4,R₂=6 kPa·s/L. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale A è cinque e quello B dieci kPa·s/L. Poiché entrambi gli addendi raddoppiano, il totale raddoppia esattamente. Il rapporto è due, senza una dipendenza quadratica."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=10\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplicherebbe due fattori che agiscono invece su addendi diversi. Un mezzo è il reciproco e dieci è il valore numerico del totale B, non il rapporto. La proprietà dipende dalla linearità della somma."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore due comune ai due addendi B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplicherebbe due fattori che agiscono invece su addendi diversi. Un mezzo è il reciproco e dieci è il valore numerico del totale B, non il rapporto. La proprietà dipende dalla linearità della somma.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11032,
+      "title": "Una media compatibile con la somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 2,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. A ha R₁=2,R₂=3 kPa·s/L; B ha R₁=4,R₂=6 kPa·s/L. Qual è la media aritmetica delle due R_eq con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15/2 kPa·s/L",
+          "15 kPa·s/L",
+          "15/4 kPa·s/L",
+          "17/2 kPa·s/L",
+          "13/2 kPa·s/L"
+        ],
+        "value": "15/2 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti cinque e dieci hanno semisomma quindici mezzi kPa·s/L. Anche la somma delle resistenze medie, tre più nove mezzi, dà lo stesso risultato: qui il modello è lineare e la media commuta con la somma."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R_{\\rm eq}=\\frac{5+10}{2}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R_{\\rm eq}=\\frac{15}2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quindici è la somma, quindici quarti dimezza ancora, diciassette mezzi e tredici mezzi spostano di una unità la media. Non si afferma che usare ingressi medi sia sempre sbagliato: per la somma coincide esattamente."
+        }
+      ],
+      "hints": [
+        "Media i due totali e confronta con la somma delle medie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quindici è la somma, quindici quarti dimezza ancora, diciassette mezzi e tredici mezzi spostano di una unità la media. Non si afferma che usare ingressi medi sia sempre sbagliato: per la somma coincide esattamente.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11033,
+      "title": "Il secondo elemento per il totale bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 3,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. A ha R₁,A=2,R₂,A=3 kPa·s/L. B deve avere R₁,B=4 kPa·s/L e R_eq,B=2R_eq,A. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha totale cinque e il target B è dieci kPa·s/L. Sottraendo il primo elemento B, quattro, restano sei kPa·s/L per il secondo. Rispetto ai tre iniziali, il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=10\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=6\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}/R_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Sei è il valore numerico di R₂,B e non il rapporto. Un mezzo inverte gli stati; quattro conterebbe due volte il raddoppio. Il bersaglio deve superare R₁,B per lasciare una seconda resistenza positiva, come qui accade."
+        }
+      ],
+      "hints": [
+        "Ricava il totale target e sottrai il contributo B già fissato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è il valore numerico di R₂,B e non il rapporto. Un mezzo inverte gli stati; quattro conterebbe due volte il raddoppio. Il bersaglio deve superare R₁,B per lasciare una seconda resistenza positiva, come qui accade.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11034,
+      "title": "Tarare il totale per ritrovare R₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 3,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Un display continuo adimensionale segue S=qR_eq,q>0,senza offset. A:R₁=2,R₂=3 kPa·s/L,S=15. B:R₂=6 kPa·s/L,S=30. Quanto vale R₁,B in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento totale cinque determina q=3 L/(kPa·s). La lettura trenta corrisponde a R_eq,B=10 kPa·s/L; tolti i sei del secondo elemento rimangono quattro per il primo."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=10\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=4\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta non è una resistenza fisica prima della rimozione della taratura; usarla direttamente darebbe ventiquattro per R₁,B. Dieci è il totale, non il primo elemento. Il controllo 3·(4+6)=30 ricostruisce il display."
+        }
+      ],
+      "hints": [
+        "Decodifica R_eq e sottrai R₂,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta non è una resistenza fisica prima della rimozione della taratura; usarla direttamente darebbe ventiquattro per R₁,B. Dieci è il totale, non il primo elemento. Il controllo 3·(4+6)=30 ricostruisce il display.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11035,
+      "title": "Guadagno e offset della resistenza equivalente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 3,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Il display continuo adimensionale segue S=qR_eq+b,q>0. A:R₁=2,R₂=3 kPa·s/L,S=11. B:R₁=4,R₂=6 kPa·s/L,S=21. C:R₂=3 kPa·s/L,S=15. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kPa·s/L",
+          "8 kPa·s/L",
+          "2 kPa·s/L",
+          "5 kPa·s/L",
+          "3 kPa·s/L"
+        ],
+        "value": "4 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali cinque e dieci danno q=(21−11)/(10−5)=2 L/(kPa·s), poi b=1. La lettura quindici rappresenta totale sette kPa·s/L. Sottraendo il secondo contributo tre si trova R₁,C=4 kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},C}=7\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=4\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "A R₂=3, primi elementi 8,2,5,3 kPa·s/L produrrebbero letture 23,11,17,13. Solo quattro dà quindici. L’offset del display si rimuove prima di sottrarre la resistenza fisica R₂: sono operazioni su grandezze con unità diverse."
+        }
+      ],
+      "hints": [
+        "Prima correggi il display, poi applica la somma serie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A R₂=3, primi elementi 8,2,5,3 kPa·s/L produrrebbero letture 23,11,17,13. Solo quattro dà quindici. L’offset del display si rimuove prima di sottrarre la resistenza fisica R₂: sono operazioni su grandezze con unità diverse.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-series-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Due resistenze idrauliche in serie",
+      "order": 11036,
+      "title": "Un rapporto fissato fra resistenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-series",
+      "difficulty": 3,
+      "prompt": "Due elementi resistivi idraulici lineari sono collegati in serie in una rete orizzontale, senza diramazioni, fughe o accumulo nel nodo intermedio. Il liquido è incomprimibile e il regime stazionario. Ogni elemento soddisfa Δp_i=R_iQ con R₁,R₂>0 costanti nella prova; le cadute sono orientate nel verso della portata Q>0. Le prese di pressione di ciascun elemento sono a uguale quota e con contributi cinetici uguali; giunzioni ideali, senza ulteriori perdite o macchine fra le prese esterne. R_eq=Δp_tot/Q è la resistenza equivalente. Le resistenze possono cambiare fra prove, non nel tempo entro ciascuna. Fra apparati si impone R₁=(2/3)R₂. Si misura R_eq=5 kPa·s/L. Quanto vale R₂ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma diventa (2/3+1)R₂=(5/3)R₂. Dividendo cinque kPa·s/L per cinque terzi si ottiene R₂=3 kPa·s/L, e il vincolo restituisce R₁=2. Il coefficiente del rapporto è puro, perché collega due resistenze."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=\\frac53R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac35R_{\\rm eq}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Sei raddoppia la seconda resistenza, tre mezzi la dimezza; due scambia i ruoli degli elementi e quattro non chiude il totale cinque. Nessun conteggio intero di tubi è richiesto: R₁ e R₂ sono grandezze continue, qui determinate da un vincolo lineare."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto nella somma prima di isolare R₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei raddoppia la seconda resistenza, tre mezzi la dimezza; due scambia i ruoli degli elementi e quattro non chiude il totale cinque. Nessun conteggio intero di tubi è richiesto: R₁ e R₂ sono grandezze continue, qui determinate da un vincolo lineare.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Portata comune e somma delle cadute",
+        "Inverse, ripartizione della pressione e linearità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "97664a73195ed74761bb038e7f16ca181556c1046ead99682e2e154c689e27b8",
+      "name": "hydraulic-series-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY4MCIgdmlld0JveD0iMCAwIDY0MCAxNjgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNlcmllOiBwb3J0YXRhIGNvbXVuZSBlIGNhZHV0ZSBkaSBwcmVzc2lvbmUgc29tbWF0ZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkVsZW1lbnRpIGRpIHJlc2lzdGVuemEgZHVlIGUgdHJlIGtpbG9wYXNjYWwgc2Vjb25kbyBwZXIgbGl0cm8gc29ubyBhdHRyYXZlcnNhdGkgZGEgZHVlIGxpdHJpIGFsIHNlY29uZG8uIExlIHByZXNzaW9uaSBkaSBlc2VtcGlvIGNlbnRvIGRpZWNpLCBjZW50byBzZWkgZSBjZW50byBraWxvcGFzY2FsIGRhbm5vIGNhZHV0ZSBxdWF0dHJvIGUgc2VpLiBVbiBzZWNvbmRvIGVzZW1waW8gY29uIHJlc2lzdGVuemUgZHVlIGUgcXVhdHRybyBkaXN0cmlidWlzY2UgZG9kaWNpIGtpbG9wYXNjYWwgaW4gcXVhdHRybyBwacO5IG90dG8uPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJxIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNTVmYTAiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTY4MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzJjM2IiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBVbiBzb2xvIHBlcmNvcnNvIHBlciBpbCBmbHVpZG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+RXNlbXBpbzogUSA9IDIgTC9zIGluIGVudHJhbWJpIGkgdHJhdHRpPC90ZXh0Pgo8dGV4dCB4PSI0NSIgeT0iMTU1Ij4xMTAga1BhPC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iMTU1Ij4xMDYga1BhPC90ZXh0Pjx0ZXh0IHg9IjQ5NSIgeT0iMTU1Ij4xMDAga1BhPC90ZXh0Pgo8cGF0aCBkPSJNNDAgMjUwSDYwMCIgc3Ryb2tlPSIjNzQ4ODkyIiBzdHJva2Utd2lkdGg9IjMiLz4KPHJlY3QgeD0iMTgwIiB5PSIyMjUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNkY2VjZjYiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMzkwIiB5PSIyMjUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmMGRkYmEiIHN0cm9rZT0iIzhiNjAyMiIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjE5NSIgeT0iMjA3Ij5S4oKBID0gMjwvdGV4dD48dGV4dCB4PSI0MDUiIHk9IjIwNyI+UuKCgiA9IDM8L3RleHQ+CjxwYXRoIGQ9Ik02NSAyNTBIMTQ1IiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNxKSIvPjxwYXRoIGQ9Ik0yOTUgMjUwSDM3NSIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjcSkiLz48cGF0aCBkPSJNNTA1IDI1MEg1ODUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3EpIi8+Cjx0ZXh0IHg9IjM1IiB5PSIzMjUiPlJlc2lzdGVuemUgaW4ga1BhwrdzL0w7IHByZXNzaW9uaSBhc3NvbHV0ZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM3MCI+RnJlY2NlOiA0MCBweC8oTC9zKSwgdHV0dGUgbHVuZ2hlIDgwIHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDEwIj5CbG9jY2hpIHNpbWJvbGljaSwgZ2VvbWV0cmlhIG5vbiBpbiBzY2FsYTwvdGV4dD4KPGxpbmUgeDE9IjM1IiB4Mj0iNjA1IiB5MT0iNDQ1IiB5Mj0iNDQ1IiBzdHJva2U9IiNiOWM0YzkiLz4KPHRleHQgeD0iMzUiIHk9IjQ5NSIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIFNvbW1hcmUgaSBjb250cmlidXRpIHN1Y2Nlc3Npdmk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1NDAiPlJlc2lzdGVuemU6IDIgKyAzID0gNSBrUGHCt3MvTDwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI1NzUiIHdpZHRoPSI2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE1NWZhMCIvPjxyZWN0IHg9IjE2MCIgeT0iNTc1IiB3aWR0aD0iOTAiIGhlaWdodD0iMzAiIGZpbGw9IiNhMzM0MzAiLz4KPHRleHQgeD0iMzUiIHk9IjY1NSI+U2NhbGEgUjogMzAgcHgvKGtQYcK3cy9MKSwgdG90YWxlIDE1MCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjcxNSI+Q2FkdXRlIGEgUSA9IDIgTC9zOiA0ICsgNiA9IDEwIGtQYTwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3NTAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNTVmYTAiLz48cmVjdCB4PSIyMjAiIHk9Ijc1MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2EzMzQzMCIvPgo8dGV4dCB4PSIzNSIgeT0iODMwIj5TY2FsYSDOlHA6IDMwIHB4L2tQYSwgdG90YWxlIDMwMCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4NSI+TGEgcHJlc3Npb25lIGludGVybWVkaWEgc2kgY2FuY2VsbGE6PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTI1Ij4oMTEwIOKIkiAxMDYpICsgKDEwNiDiiJIgMTAwKSA9IDEwIGtQYS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NzAiPkxlIGR1ZSBzY2FsZSB1c2FubyB1bml0w6AgZGl2ZXJzZS48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeDI9IjYwNSIgeTE9IjEwMTAiIHkyPSIxMDEwIiBzdHJva2U9IiNiOWM0YzkiLz4KPHRleHQgeD0iMzUiIHk9IjEwNjAiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBVbuKAmWFsdHJhIGNvcHBpYTogUuKCgSA9IDIsIFLigoIgPSA0PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTEwNSI+UmVzaXN0ZW56ZSBpbiBrUGHCt3MvTDsgdG90YWxlIDYga1BhwrdzL0w8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTU1Ij5TYWx0byBhc3NlZ25hdG8gMTIga1BhIOKGkiBRID0gMiBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjE1Ij5QcmltbzogMiDDlyAyID0gNCBrUGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyNjAiPlNlY29uZG86IDQgw5cgMiA9IDgga1BhPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjEzMDAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzIiIGZpbGw9IiMxNTVmYTAiLz48cmVjdCB4PSIyMjAiIHk9IjEzMDAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzIiIGZpbGw9IiNhMzM0MzAiLz4KPHRleHQgeD0iMzUiIHk9IjEzOTAiPlN0ZXNzYSBzY2FsYTogMzAgcHgva1BhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQzNSI+MTIwICsgMjQwID0gMzYwIHB4LCBjaW/DqCA0ICsgOCA9IDEyIGtQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1MDAiPklsIHByaW1vIHRyYXR0byByaWNldmUgMS8zIGRlbCBzYWx0byB0b3RhbGUuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTU0NSI+TGEgcG9ydGF0YSDDqCBjb211bmUsIGxlIGNhZHV0ZSBuby48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjEwIj5TZXJpZTogUiBlcXVpdmFsZW50ZSA9IFLigoEgKyBS4oKCPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

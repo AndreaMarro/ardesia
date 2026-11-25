@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1490" viewBox="0 0 640 1490" role="img" aria-labelledby="title desc">
+<title id="title">Stessa pressione, tensioni diverse</title><desc id="desc">Tre pannelli per due cavità sferiche a singola interfaccia. Raggi uno e due millimetri, tensioni venti e quaranta millinewton per metro e sovrapressione comune quaranta pascal. Bilancio di una semisfera e grafico della tensione piccola rispetto al rapporto dei raggi.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1490" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · Una sola interfaccia per cavità</text>
+<text x="35" y="85">Stesso ambiente esterno, pₑ comune</text>
+<circle cx="165" cy="230" r="40" fill="#d7f1fa" stroke="#145d81" stroke-width="3"/>
+<circle cx="440" cy="230" r="80" fill="#d7f1fa" stroke="#145d81" stroke-width="3"/>
+<path d="M165 230H205" fill="none" stroke="#145d81" stroke-width="2"/><path d="M440 230H520" fill="none" stroke="#145d81" stroke-width="2"/>
+<text x="110" y="320">Rₚ = 1 mm</text><text x="380" y="350">Rɡ = 2 mm</text>
+<text x="95" y="390">γₚ = 20 mN/m</text><text x="370" y="390">γɡ = 40 mN/m</text>
+<text x="35" y="435">Raggi: 40 px/mm · Δp = 40 Pa in entrambe</text>
+<text x="35" y="480">Schema sferico ideale, senza tessuto elastico.</text>
+<path d="M35 515H605" stroke="#b3cbd9"/>
+<text x="35" y="560" font-size="25" font-weight="700">2 · Il bilancio sulla semisfera</text>
+<path d="M190 700A110 110 0 0 1 410 700" fill="#d7f1fa" stroke="#145d81" stroke-width="3"/>
+<path d="M190 700H410" stroke="#6e8b9c" stroke-dasharray="7 5"/>
+<path d="M300 670V590" fill="none" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M190 700V750" fill="none" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M410 700V750" fill="none" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<text x="430" y="620">Δp · πR²</text><text x="225" y="795">γ · 2πR</text>
+<text x="35" y="845">Δp πR² = γ 2πR ⇒ Δp = 2γ/R</text>
+<text x="35" y="888">Forze schematiche, senza scala in newton.</text>
+<text x="35" y="930">Un film di sapone avrebbe due interfacce.</text>
+<path d="M35 960H605" stroke="#b3cbd9"/>
+<text x="35" y="1005" font-size="25" font-weight="700">3 · La tensione richiesta è γₚ = 40u</text>
+<text x="35" y="1042">γₚ in mN/m · γɡ fissata a 40 mN/m</text>
+<path d="M100 1340H560" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M100 1340V1080" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M100 1340L500 1140" stroke="#c65919" stroke-width="4" fill="none"/>
+<path d="M100 1240H300V1340" stroke="#6e8b9c" stroke-dasharray="6 5" fill="none"/>
+<circle cx="100" cy="1340" r="5" fill="#f7fbff" stroke="#c65919" stroke-width="2"/><circle cx="500" cy="1140" r="5" fill="#f7fbff" stroke="#c65919" stroke-width="2"/>
+<circle cx="300" cy="1240" r="6" fill="#c65919"/>
+<text x="68" y="1368">0</text><text x="282" y="1370">1/2</text><text x="494" y="1370">1</text><text x="566" y="1344">u</text>
+<text x="62" y="1246">20</text><text x="62" y="1146">40</text>
+<text x="35" y="1420">0 &lt; u &lt; 1 · Le due pressioni sono assegnate.</text>
+<text x="35" y="1460">La stabilità richiederebbe un modello ulteriore.</text>
+</g></svg>

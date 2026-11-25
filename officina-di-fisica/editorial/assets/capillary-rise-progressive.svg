@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1510" viewBox="0 0 640 1510" role="img" aria-labelledby="title desc">
+<title id="title">Altezza capillare e forza di bordo</title><desc id="desc">Modello di colonna a bagnamento perfetto. Prima colonna raggio un millimetro e altezza dieci, poi bilancio fra forza di bordo e peso. Confronto con raggio doppio e altezza dimezzata, alla stessa scala per tutte le lunghezze.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1510" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · h parte dal livello esterno</text>
+<text x="35" y="90">γ = 50 mN/m · r = 1 mm · θ = 0</text>
+<rect x="70" y="400" width="500" height="75" fill="#d7f1fa"/>
+<rect x="180" y="200" width="40" height="200" fill="#a7d8ec"/>
+<path d="M180 160V450M220 160V450" stroke="#145d81" stroke-width="3" fill="none"/>
+<path d="M180 200H220" stroke="#145d81" stroke-width="3"/>
+<path d="M70 400H570" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<path d="M280 200V400M270 200H290M270 400H290" stroke="#c65919" stroke-width="2" fill="none"/>
+<text x="305" y="300">h = 10 mm</text><text x="360" y="435">h = 0 esterno</text>
+<path d="M200 235H220" stroke="#c65919" stroke-width="2"/><text x="70" y="255">r = 1 mm</text>
+<text x="35" y="500">20 px/mm · piani di livello equivalenti</text>
+<text x="35" y="535">Menisco non disegnato; volume trascurato.</text>
+<path d="M35 550H605" stroke="#b3cbd9"/>
+<text x="35" y="600" font-size="25" font-weight="700">2 · Due forze verticali sulla colonna</text>
+<rect x="275" y="665" width="70" height="165" fill="#d7f1fa" stroke="#6e8b9c"/>
+<path d="M250 760V660" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M375 730V830" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<text x="40" y="710">2πrγ</text><text x="430" y="790">ρgπr²h</text>
+<text x="35" y="885">2πrγ = ρgπr²h ⇒ h = 2γ/(ρgr)</text>
+<text x="35" y="930">Forze schematiche · cosθ = 1</text>
+<path d="M35 965H605" stroke="#b3cbd9"/>
+<text x="35" y="1010" font-size="25" font-weight="700">3 · Raggio doppio, altezza a metà</text>
+<text x="95" y="1060">A · r = 1 mm</text><text x="370" y="1060">B · r = 2 mm</text>
+<rect x="70" y="1310" width="500" height="60" fill="#d7f1fa"/>
+<rect x="180" y="1110" width="40" height="200" fill="#a7d8ec"/>
+<rect x="380" y="1210" width="80" height="100" fill="#a7d8ec"/>
+<path d="M180 1090V1350M220 1090V1350M380 1090V1350M460 1090V1350" stroke="#145d81" stroke-width="3" fill="none"/>
+<path d="M180 1110H220M380 1210H460" stroke="#145d81" stroke-width="3"/>
+<path d="M70 1310H570" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<text x="65" y="1190">10 mm</text><text x="485" y="1260">5 mm</text>
+<text x="35" y="1415">Stessa γ · tutte le lunghezze a 20 px/mm</text>
+<text x="35" y="1460">Peso per unità di h ∝ r²; forza di bordo ∝ r.</text>
+</g></svg>

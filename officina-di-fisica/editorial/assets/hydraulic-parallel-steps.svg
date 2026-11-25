@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1800" viewBox="0 0 640 1800" role="img" aria-labelledby="title desc">
+<title id="title">Due rami resistivi in parallelo</title><desc id="desc">Salto di pressione comune, portate sommate e chiusura del secondo ramo a salto imposto. Le barre usano scale di portata esplicite.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#1664a7"/></marker></defs>
+<rect width="640" height="1800" fill="#fffdf6"/>
+<g font-family="Arial,sans-serif" fill="#192f3d" font-size="22">
+<text x="35" y="48" font-weight="bold" font-size="28">1. Stessi nodi, stesso salto</text>
+<text x="35" y="90">Pressioni assolute: 106 e 100 kPa</text>
+<text x="35" y="130">Δp = 6 kPa in entrambi i rami</text>
+<path d="M160 230H245M345 230H470M160 410H245M345 410H470M160 230V410M470 230V410M35 320H160M470 320H605" stroke="#87969c" stroke-width="3" fill="none"/>
+<rect x="245" y="205" width="100" height="50" fill="#dceef8" stroke="#1664a7" stroke-width="3"/>
+<rect x="245" y="385" width="100" height="50" fill="#f3dfb4" stroke="#92611c" stroke-width="3"/>
+<text x="245" y="185">R₁ = 2</text><text x="245" y="470">R₂ = 2</text>
+<path d="M175 230H235" stroke="#1664a7" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M175 410H235" stroke="#1664a7" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M35 320H155" stroke="#1664a7" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M480 320H600" stroke="#1664a7" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="360" y="215">Q₁ = 3 L/s</text><text x="360" y="455">Q₂ = 3 L/s</text>
+<text x="35" y="535">Q_T = 3 + 3 = 6 L/s; R_eq = 1 kPa·s/L</text>
+<text x="35" y="580">R in kPa·s/L; blocchi simbolici</text>
+<text x="35" y="620">Frecce: 20 px/(L/s); 60 + 60 = 120 px</text>
+<path d="M35 660H605" stroke="#c9d1d4"/>
+<text x="35" y="710" font-weight="bold" font-size="28">2. Cambiano entrambi i rami</text>
+<text x="35" y="755">Stesso Δp = 6 kPa nelle due prove</text>
+<text x="35" y="800">A: R₁ = 2, R₂ = 2 kPa·s/L</text>
+<rect x="100" y="835" width="120" height="30" fill="#1664a7"/><rect x="220" y="835" width="120" height="30" fill="#a83832"/>
+<text x="100" y="900">3 + 3 = 6 L/s; R_eq = 1 kPa·s/L</text>
+<text x="35" y="960">B: R₁ = 3, R₂ = 6 kPa·s/L</text>
+<rect x="100" y="995" width="80" height="30" fill="#1664a7"/><rect x="180" y="995" width="40" height="30" fill="#a83832"/>
+<text x="100" y="1060">2 + 1 = 3 L/s; R_eq = 2 kPa·s/L</text>
+<text x="35" y="1120">Barre: 40 px/(L/s), totali 240 e 120 px</text>
+<text x="35" y="1165">Blu: ramo 1; rosso: ramo 2</text>
+<text x="35" y="1210">La conduttanza totale diminuisce;</text>
+<text x="35" y="1250">la resistenza equivalente aumenta.</text>
+<path d="M35 1290H605" stroke="#c9d1d4"/>
+<text x="35" y="1340" font-weight="bold" font-size="28">3. Si chiude il secondo ramo</text>
+<text x="35" y="1385">Da A, mantenendo Δp = 6 kPa e R₁ = 2</text>
+<text x="35" y="1430">Prima: Q₁ = 3 e Q₂ = 3 L/s</text>
+<rect x="100" y="1460" width="120" height="30" fill="#1664a7"/><rect x="220" y="1460" width="120" height="30" fill="#a83832"/>
+<text x="35" y="1540">Dopo: Q₁ = 3 e Q₂ = 0 L/s</text>
+<rect x="100" y="1570" width="120" height="30" fill="#1664a7"/>
+<text x="35" y="1640">Stessa scala: 40 px/(L/s)</text>
+<text x="35" y="1685">Il ramo 1 conserva la barra da 120 px.</text>
+<text x="35" y="1730">Q_T passa da 6 a 3 L/s: non è imposto.</text>
+<text x="35" y="1775">Ramo chiuso: Q₂ = 0, non R₂ = 0.</text>
+</g></svg>

@@ -1,0 +1,1156 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12501,
+      "title": "Una cavità più piccola alla stessa pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 1,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Se γ_g=40 mN/m e u=1/2, quanto deve valere γ_p in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione esterna comune si sottrae dai due bilanci. Uguagliare le sovrapressioni impone lo stesso rapporto tensione/raggio. Il raggio piccolo è metà del grande: anche la sua tensione deve essere metà. Quaranta diviso due dà venti mN/m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7b7c3c1b2276041d272544300ef869b592d62c04520d616b08569a90859dfd71",
+          "text": "Due cavità ideali a una sola interfaccia: R_p=1 mm e R_g=2 mm, con raggi alla stessa scala 40 px/mm. Le tensioni 20 e 40 mN/m danno entrambe una sovrapressione di 40 Pa. I raggi dell’esempio illustrano u=1/2 e non sono dati clinici."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2\\gamma_p}{R_p}=\\frac{2\\gamma_g}{R_g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_p=\\gamma_g\\frac{R_p}{R_g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_p=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Mantenere 40 mN/m in entrambe darebbe nella cavità piccola una sovrapressione doppia. Ottanta inverte il rapporto geometrico. Il risultato riguarda la tensione richiesta a due raggi assegnati, senza dimostrare come cambi la tensione durante una perturbazione."
+        }
+      ],
+      "hints": [
+        "Confronta γ/R, perché la pressione esterna è comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mantenere 40 mN/m in entrambe darebbe nella cavità piccola una sovrapressione doppia. Ottanta inverte il rapporto geometrico. Il risultato riguarda la tensione richiesta a due raggi assegnati, senza dimostrare come cambi la tensione durante una perturbazione.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12502,
+      "title": "L’unità della tensione di interfaccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 1,
+      "prompt": "La tensione superficiale γ di una sola interfaccia si definisce come forza tangente per unità di lunghezza di un bordo. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mN/m",
+          "Pa",
+          "mN",
+          "m",
+          "J"
+        ],
+        "value": "mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione divide una forza per una lunghezza. Il prefisso milli riduce il newton di mille, lasciando inalterata la dimensione forza su lunghezza. Anche energia per area ha la stessa dimensione, perché un joule è il prodotto di un newton per un metro."
+        },
+        {
+          "type": "formula",
+          "text": "[\\gamma]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{J/m^2}=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mN/m}=10^{-3}\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Pa è forza per area e misura pressione; mN è una forza, m una lunghezza e J un’energia. Il fattore di curvatura 1/R trasforma la tensione in pressione nella legge di Laplace."
+        }
+      ],
+      "hints": [
+        "Dividi l’unità di forza per quella di lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa è forza per area e misura pressione; mN è una forza, m una lunghezza e J un’energia. Il fattore di curvatura 1/R trasforma la tensione in pressione nella legge di Laplace.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12503,
+      "title": "Contare l’interfaccia prima di uguagliare le pressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 1,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Quale espressione dà la tensione necessaria nella cavità piccola?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "γ_p = γ_g u",
+          "γ_p = γ_g / u",
+          "γ_p = 2 γ_g u",
+          "γ_p = γ_g u²",
+          "γ_p = γ_g"
+        ],
+        "value": "γ_p = γ_g u"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni cavità ha una sola interfaccia: il salto è 2γ/R. I fattori due si cancellano nell’uguaglianza, insieme alla pressione esterna comune. Moltiplicando per R_p rimane γ_p=γ_g u. Un film sottile di sapone in aria avrebbe due interfacce e richiederebbe un conteggio diverso del salto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7b7c3c1b2276041d272544300ef869b592d62c04520d616b08569a90859dfd71",
+          "text": "Lettura progressiva del modello: raggi alla stessa scala, bilancio sulla sezione di una singola interfaccia e grafico di γ_p contro u con γ_g=40 mN/m. Il grafico ha origine zero, scale 400 px per unità di u e 5 px/(mN/m); i punti estremi esclusi indicano 0<u<1. L’uguaglianza delle pressioni assegnate non prova stabilità dinamica."
+        },
+        {
+          "type": "formula",
+          "text": "p_p=p_g"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\gamma_p}{R_p}=\\frac{\\gamma_g}{R_g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_p=\\gamma_g u"
+        },
+        {
+          "type": "formula",
+          "text": " 0<\\gamma_p<\\gamma_g"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per u renderebbe maggiore la tensione della cavità piccola, aggravando la differenza di pressione. Il due aggiuntivo conta due volte un’interfaccia; u² scambia la curvatura con un rapporto di aree e γ_g ignora la differenza di raggi."
+        }
+      ],
+      "hints": [
+        "Cancella soltanto i fattori realmente comuni ai due salti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere per u renderebbe maggiore la tensione della cavità piccola, aggravando la differenza di pressione. Il due aggiuntivo conta due volte un’interfaccia; u² scambia la curvatura con un rapporto di aree e γ_g ignora la differenza di raggi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12504,
+      "title": "Diminuire la tensione della cavità grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 1,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. u resta 1/2; γ_g scende da 40 a 30 mN/m. Come cambia γ_p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 15 mN/m",
+          "Da 20 a 30 mN/m",
+          "Da 20 a 40 mN/m",
+          "Resta 20 mN/m",
+          "Da 20 a 10 mN/m"
+        ],
+        "value": "Da 20 a 15 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei raggi rimane lo stesso nelle due prove. La tensione piccola segue quindi linearmente quella grande: la metà di quaranta è venti, la metà di trenta è quindici. Il fattore fra le uscite è tre quarti."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_{p,A}=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{p,B}=15\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{p,B}/\\gamma_{p,A}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Trenta copia la tensione grande finale, quaranta raddoppia l’uscita iniziale e venti trascura il cambiamento. Dieci non è la metà di trenta: corrisponderebbe a un altro rapporto dei raggi."
+        }
+      ],
+      "hints": [
+        "Mantieni u e calcola la metà di ciascuna tensione grande.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trenta copia la tensione grande finale, quaranta raddoppia l’uscita iniziale e venti trascura il cambiamento. Dieci non è la metà di trenta: corrisponderebbe a un altro rapporto dei raggi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12505,
+      "title": "Risalire alla tensione della cavità grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. γ_p=20 mN/m e u=1/2. Quanto vale γ_g in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il dato della cavità piccola rappresenta metà della tensione cercata. Dividiamo venti per un mezzo, cioè moltiplichiamo per due. Si ottengono quaranta mN/m e il controllo restituisce venti moltiplicando ancora per un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_g=\\frac{\\gamma_p}{u}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_g=\\frac{20}{1/2}\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_g=40\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci moltiplica per u nel passaggio inverso; venti confonde le due cavità. L’inversa è lecita perché u è positivo e non nullo, e dà γ_g>γ_p come richiesto dai raggi."
+        }
+      ],
+      "hints": [
+        "Domandati di quale valore venti sia la metà.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci moltiplica per u nel passaggio inverso; venti confonde le due cavità. L’inversa è lecita perché u è positivo e non nullo, e dà γ_g>γ_p come richiesto dai raggi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12506,
+      "title": "Ricostruire il rapporto dei raggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. γ_p=20 mN/m e γ_g=40 mN/m. Qual è u?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "20"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le tensioni sono espresse nella stessa unità, che si cancella nel rapporto. Venti su quaranta si riduce a un mezzo. È un rapporto positivo inferiore a uno, coerente con il nome cavità piccola."
+        },
+        {
+          "type": "formula",
+          "text": "u=\\frac{\\gamma_p}{\\gamma_g}"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac{20}{40}"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il reciproco e contraddice R_p<R_g; un quarto eleva al quadrato un rapporto di lunghezze già ottenuto. Uno descriverebbe raggi uguali e venti conserva il numero della tensione senza normalizzarlo."
+        }
+      ],
+      "hints": [
+        "Dividi due tensioni nella medesima unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il reciproco e contraddice R_p<R_g; un quarto eleva al quadrato un rapporto di lunghezze già ottenuto. Uno descriverebbe raggi uguali e venti conserva il numero della tensione senza normalizzarlo.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12507,
+      "title": "Ridurre ulteriormente il raggio relativo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. A usa γ_g=40 mN/m e u=1/2; B mantiene γ_g e usa u=1/3. Quanto vale γ_p,B/γ_p,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/3",
+          "1/2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione grande comune si cancella. Il rapporto delle tensioni piccole è quindi (1/3)/(1/2), pari a due terzi. Le due tensioni valgono venti e quaranta terzi mN/m; la seconda è minore."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\gamma_{p,B}}{\\gamma_{p,A}}=\\frac{1/3}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\gamma_{p,B}}{\\gamma_{p,A}}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi scambia A e B. Un terzo o un mezzo copia un singolo u, mentre uno ignora la variazione. Anche in B la tensione resta positiva, senza far tendere il raggio a zero."
+        }
+      ],
+      "hints": [
+        "Fai il rapporto fra i due u, non la loro differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi scambia A e B. Un terzo o un mezzo copia un singolo u, mentre uno ignora la variazione. Anche in B la tensione resta positiva, senza far tendere il raggio a zero.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12508,
+      "title": "Lo scarto di una tensione troppo alta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Con γ_g=40 mN/m e u=1/2 si propone γ_p=40 mN/m. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 mN/m",
+          "−20 mN/m",
+          "40 mN/m",
+          "0 mN/m",
+          "10 mN/m"
+        ],
+        "value": "20 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’uguaglianza dei salti richiede venti mN/m. La proposta quaranta supera quel valore di venti: lo scarto è positivo. Il segno si riferisce alla sottrazione fra tensioni, non al verso di una forza nello spazio."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_{p,\\mathrm{corretta}}=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Meno venti rovescia la sottrazione, quaranta copia la proposta e zero la considera corretta. Dieci dimezza ancora lo scarto senza motivo."
+        }
+      ],
+      "hints": [
+        "Calcola prima la tensione richiesta e poi sottraila dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venti rovescia la sottrazione, quaranta copia la proposta e zero la considera corretta. Dieci dimezza ancora lo scarto senza motivo.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12509,
+      "title": "L’inversa con il rapporto esplicito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Quale formula isola γ_g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "γ_g = γ_p / u",
+          "γ_g = γ_p u",
+          "γ_g = u / γ_p",
+          "γ_g = γ_p / u²",
+          "γ_g = γ_p − u"
+        ],
+        "value": "γ_g = γ_p / u"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da γ_p=γ_g u dividiamo entrambi i membri per u, strettamente positivo. Essendo u adimensionale, il risultato mantiene l’unità N/m. L’inversa deve produrre una tensione maggiore di γ_p, perché si divide per un numero minore di uno."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_p=\\gamma_g u"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_g=\\frac{\\gamma_p}{u}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\gamma_g]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per u renderebbe la tensione ancora più piccola. u/γ_p è una tensione inversa; u² introduce una potenza assente e sottrarre u da una tensione somma dimensioni incompatibili."
+        }
+      ],
+      "hints": [
+        "Annulla il fattore u mediante divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per u renderebbe la tensione ancora più piccola. u/γ_p è una tensione inversa; u² introduce una potenza assente e sottrarre u da una tensione somma dimensioni incompatibili.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12510,
+      "title": "Due cambiamenti compatibili con i raggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. B ha γ_g,B=κ₁γ_g,A e u_B=κ₂u_A, con κ₁,κ₂>0 e 0<κ₂u_A<1. Qual è γ_p,B/γ_p,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione richiesta è il prodotto dei due ingressi. Sostituendo i fattori di B e dividendo per il prodotto di A rimane κ₁κ₂. Il vincolo su κ₂u_A mantiene la cavità designata piccola anche nella seconda prova."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_{p,B}=\\kappa_1\\gamma_{g,A}\\kappa_2u_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\gamma_{p,B}}{\\gamma_{p,A}}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Le frazioni rendono inversa una dipendenza diretta; il quadrato di κ₂ introduce un’area estranea alla curvatura. La somma varrebbe due per prove identiche, quando il rapporto deve valere uno."
+        }
+      ],
+      "hints": [
+        "Scrivi il prodotto in B prima di cancellare A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le frazioni rendono inversa una dipendenza diretta; il quadrato di κ₂ introduce un’area estranea alla curvatura. La somma varrebbe due per prove identiche, quando il rapporto deve valere uno.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12511,
+      "title": "Cambiare tensione e rapporto geometrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. A ha γ_g=40 mN/m,u=1/2; B ha γ_g=30 mN/m,u=1/3. Quanto vale γ_p,B/γ_p,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/4",
+          "2/3",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la tensione piccola è venti mN/m. In B trenta per un terzo dà dieci mN/m. Il rapporto dieci su venti vale un mezzo. Equivalentemente si moltiplicano tre quarti, variazione di γ_g, e due terzi, variazione di u."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_{p,A}=20\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{p,B}=10\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\gamma_{p,B}}{\\gamma_{p,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti segue solo γ_g e due terzi solo u; due è il reciproco del rapporto richiesto. Un quarto riduce l’uscita più del prodotto dei due fattori effettivi."
+        }
+      ],
+      "hints": [
+        "Calcola le due tensioni separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti segue solo γ_g e due terzi solo u; due è il reciproco del rapporto richiesto. Un quarto riduce l’uscita più del prodotto dei due fattori effettivi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12512,
+      "title": "Media di due tensioni richieste",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 2,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. A ha γ_g=40 mN/m,u=1/2; B ha γ_g=30 mN/m,u=1/3. Qual è la media aritmetica delle due γ_p con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 mN/m",
+          "30 mN/m",
+          "175/12 mN/m",
+          "10 mN/m",
+          "20 mN/m"
+        ],
+        "value": "15 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono venti e dieci mN/m: la loro semisomma è quindici. Non si stanno mediando raggi durante un moto. Se si mediassero prima gli ingressi si avrebbero γ_g medio trentacinque e u medio cinque dodicesimi: il prodotto sarebbe 175/12 mN/m, diverso di 5/12 dalla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\gamma_p}=\\frac{20+10}{2}\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\gamma_p}=15\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta è la somma e dieci o venti copia una sola prova. 175/12 è la risposta agli ingressi medi: un prodotto non conserva in generale la media aritmetica dei risultati."
+        }
+      ],
+      "hints": [
+        "Trova prima le due tensioni richieste e soltanto dopo fai la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta è la somma e dieci o venti copia una sola prova. 175/12 è la risposta agli ingressi medi: un prodotto non conserva in generale la media aritmetica dei risultati.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12513,
+      "title": "Compensare una diminuzione della tensione grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 3,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. A usa γ_g=40 mN/m,u=1/2. B impone γ_g=30 mN/m e γ_p,B=γ_p,A/2. Quale rapporto u_B/u_A serve?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "3/4",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è dieci mN/m. Con γ_g,B=30 mN/m questo richiede u_B=1/3. Dividendo per u_A=1/2 si ottiene due terzi. Il nuovo rapporto resta nel dominio fra zero e uno."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_{p,B}=10\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=\\frac{10}{30}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{30}=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " u_B/u_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue il solo bersaglio ignorando il cambiamento di γ_g; tre quarti segue il solo ingresso noto. Un terzo è u_B stesso, non il suo rapporto con u_A; tre mezzi lo capovolge."
+        }
+      ],
+      "hints": [
+        "Ricava prima u_B dal bersaglio di tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue il solo bersaglio ignorando il cambiamento di γ_g; tre quarti segue il solo ingresso noto. Un terzo è u_B stesso, non il suo rapporto con u_A; tre mezzi lo capovolge.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12514,
+      "title": "Decodificare una lettura senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 3,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Un display continuo adimensionale legge S=qγ_p, con q>0. Il riferimento γ_g=40 mN/m,u=1/2 dà S=60. B dà S=30 con u=1/3. Quanto vale γ_g,B in mN/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "mN/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha γ_p=20 mN/m, quindi il guadagno vale tre per mN/m. La nuova lettura corrisponde a dieci mN/m nella cavità piccola. Dividere per il nuovo u, un terzo, restituisce trenta mN/m nella grande."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m/mN}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{p,B}=10\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{g,B}=\\frac{10}{1/3}\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{g,B}=30\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Usare S=30 come tensione piccola darebbe novanta mN/m nella grande. Una lettura dimezzata non impone γ_g dimezzata, perché cambia anche u. Il display non è un conteggio di cavità."
+        }
+      ],
+      "hints": [
+        "Converti la lettura in γ_p prima dell’inversa geometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S=30 come tensione piccola darebbe novanta mN/m nella grande. Una lettura dimezzata non impone γ_g dimezzata, perché cambia anche u. Il display non è un conteggio di cavità.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12515,
+      "title": "Rimuovere l’offset dal display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 3,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. S=qγ_p+z è continuo e adimensionale. A: γ_g=40 mN/m,u=1/2,S=41. B: γ_g=30 mN/m,u=1/3,S=21. C: u=1/2,S=31. Quanto vale γ_g,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 mN/m",
+          "15 mN/m",
+          "20 mN/m",
+          "40 mN/m",
+          "31 mN/m"
+        ],
+        "value": "30 mN/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le tensioni piccole note sono venti e dieci mN/m. La differenza delle letture, venti, divisa per la differenza delle tensioni, dieci, dà q=2 m/mN; poi z=1. C corrisponde a quindici mN/m. Poiché u_C è un mezzo, la tensione grande è trenta mN/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m/mN}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{p,C}=15\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_{g,C}=30\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Quindici è la tensione piccola, venti e quaranta riciclano un riferimento e trentuno conserva l’offset e la scala strumentale. Il rapporto fra letture grezze non elimina z."
+        }
+      ],
+      "hints": [
+        "Calibra due tensioni, sottrai l’offset, poi dividi per u_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quindici è la tensione piccola, venti e quaranta riciclano un riferimento e trentuno conserva l’offset e la scala strumentale. Il rapporto fra letture grezze non elimina z.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-alveolar-surfactant-balance-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Curvatura e tensione di una sola interfaccia",
+      "order": 12516,
+      "title": "Un vincolo dimensionato fra le prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alveolar-surfactant-balance",
+      "difficulty": 3,
+      "prompt": "Considera due cavità sferiche ideali, ciascuna delimitata da una sola interfaccia gas–liquido con tensione uniforme. I raggi sono R_p<R_g, con u=R_p/R_g e 0<u<1. La pressione esterna p_e è la stessa; si vogliono pressioni interne uguali. Le tensioni positive sono γ_p e γ_g. Si trascurano gravità, elasticità del tessuto e dinamica; per ciascuna interfaccia vale p_i−p_e=2γ/R. È un modello fisico assegnato, senza conclusioni sulla stabilità di un polmone reale. Fra prove si impone γ_g=c u, con c=80 mN/m. Si richiede γ_p=20 mN/m. Qual è u nel dominio 0<u<1?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1/4",
+          "2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire il vincolo nel bilancio dà γ_p=c u². Il rapporto fra venti e ottanta è un quarto; la radice positiva è un mezzo. Il ramo negativo non è un rapporto di raggi positivi. Risulta γ_g=40 mN/m, e la tensione piccola torna venti."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma_p=cu^2"
+        },
+        {
+          "type": "formula",
+          "text": " u^2=\\frac{20}{80}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{80}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma_g=40\\,\\mathrm{mN/m}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è u², due è il reciproco della radice e uno non riproduce la misura. c conserva l’unità di tensione perché u è adimensionale: il vincolo riguarda prove assegnate, senza costituire una legge universale di surfattante."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e scegli la radice nel dominio geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un quarto è u², due è il reciproco della radice e uno non riproduce la misura. c conserva l’unità di tensione perché u è adimensionale: il vincolo riguarda prove assegnate, senza costituire una legge universale di surfattante.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Laplace a interfaccia singola",
+        "Pressioni uguali e rapporto dei raggi",
+        "Inverse, domini, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7b7c3c1b2276041d272544300ef869b592d62c04520d616b08569a90859dfd71",
+      "name": "alveolar-surfactant-balance-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ5MCIgdmlld0JveD0iMCAwIDY0MCAxNDkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlN0ZXNzYSBwcmVzc2lvbmUsIHRlbnNpb25pIGRpdmVyc2U8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkgcGVyIGR1ZSBjYXZpdMOgIHNmZXJpY2hlIGEgc2luZ29sYSBpbnRlcmZhY2NpYS4gUmFnZ2kgdW5vIGUgZHVlIG1pbGxpbWV0cmksIHRlbnNpb25pIHZlbnRpIGUgcXVhcmFudGEgbWlsbGluZXd0b24gcGVyIG1ldHJvIGUgc292cmFwcmVzc2lvbmUgY29tdW5lIHF1YXJhbnRhIHBhc2NhbC4gQmlsYW5jaW8gZGkgdW5hIHNlbWlzZmVyYSBlIGdyYWZpY28gZGVsbGEgdGVuc2lvbmUgcGljY29sYSByaXNwZXR0byBhbCByYXBwb3J0byBkZWkgcmFnZ2kuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE0NWQ4MSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDkwIiByeD0iMjAiIGZpbGw9IiNmN2ZiZmYiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZDQwIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFVuYSBzb2xhIGludGVyZmFjY2lhIHBlciBjYXZpdMOgPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODUiPlN0ZXNzbyBhbWJpZW50ZSBlc3Rlcm5vLCBw4oKRIGNvbXVuZTwvdGV4dD4KPGNpcmNsZSBjeD0iMTY1IiBjeT0iMjMwIiByPSI0MCIgZmlsbD0iI2Q3ZjFmYSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iNDQwIiBjeT0iMjMwIiByPSI4MCIgZmlsbD0iI2Q3ZjFmYSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE2NSAyMzBIMjA1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik00NDAgMjMwSDUyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTEwIiB5PSIzMjAiPlLigpogPSAxIG1tPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMzUwIj5SyaEgPSAyIG1tPC90ZXh0Pgo8dGV4dCB4PSI5NSIgeT0iMzkwIj7Os+KCmiA9IDIwIG1OL208L3RleHQ+PHRleHQgeD0iMzcwIiB5PSIzOTAiPs6zyaEgPSA0MCBtTi9tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDM1Ij5SYWdnaTogNDAgcHgvbW0gwrcgzpRwID0gNDAgUGEgaW4gZW50cmFtYmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0ODAiPlNjaGVtYSBzZmVyaWNvIGlkZWFsZSwgc2VuemEgdGVzc3V0byBlbGFzdGljby48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA1MTVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjU2MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBJbCBiaWxhbmNpbyBzdWxsYSBzZW1pc2ZlcmE8L3RleHQ+CjxwYXRoIGQ9Ik0xOTAgNzAwQTExMCAxMTAgMCAwIDEgNDEwIDcwMCIgZmlsbD0iI2Q3ZjFmYSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE5MCA3MDBINDEwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNSIvPgo8cGF0aCBkPSJNMzAwIDY3MFY1OTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHBhdGggZD0iTTE5MCA3MDBWNzUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+CjxwYXRoIGQ9Ik00MTAgNzAwVjc1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8dGV4dCB4PSI0MzAiIHk9IjYyMCI+zpRwIMK3IM+AUsKyPC90ZXh0Pjx0ZXh0IHg9IjIyNSIgeT0iNzk1Ij7OsyDCtyAyz4BSPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODQ1Ij7OlHAgz4BSwrIgPSDOsyAyz4BSIOKHkiDOlHAgPSAyzrMvUjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4OCI+Rm9yemUgc2NoZW1hdGljaGUsIHNlbnphIHNjYWxhIGluIG5ld3Rvbi48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MzAiPlVuIGZpbG0gZGkgc2Fwb25lIGF2cmViYmUgZHVlIGludGVyZmFjY2UuPC90ZXh0Pgo8cGF0aCBkPSJNMzUgOTYwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDA1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IExhIHRlbnNpb25lIHJpY2hpZXN0YSDDqCDOs+KCmiA9IDQwdTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEwNDIiPs6z4oKaIGluIG1OL20gwrcgzrPJoSBmaXNzYXRhIGEgNDAgbU4vbTwvdGV4dD4KPHBhdGggZD0iTTEwMCAxMzQwSDU2MCIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8cGF0aCBkPSJNMTAwIDEzNDBWMTA4MCIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8cGF0aCBkPSJNMTAwIDEzNDBMNTAwIDExNDAiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xMDAgMTI0MEgzMDBWMTM0MCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTM0MCIgcj0iNSIgZmlsbD0iI2Y3ZmJmZiIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIxMTQwIiByPSI1IiBmaWxsPSIjZjdmYmZmIiBzdHJva2U9IiNjNjU5MTkiIHN0cm9rZS13aWR0aD0iMiIvPgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMjQwIiByPSI2IiBmaWxsPSIjYzY1OTE5Ii8+Cjx0ZXh0IHg9IjY4IiB5PSIxMzY4Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI4MiIgeT0iMTM3MCI+MS8yPC90ZXh0Pjx0ZXh0IHg9IjQ5NCIgeT0iMTM3MCI+MTwvdGV4dD48dGV4dCB4PSI1NjYiIHk9IjEzNDQiPnU8L3RleHQ+Cjx0ZXh0IHg9IjYyIiB5PSIxMjQ2Ij4yMDwvdGV4dD48dGV4dCB4PSI2MiIgeT0iMTE0NiI+NDA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDIwIj4wICZsdDsgdSAmbHQ7IDEgwrcgTGUgZHVlIHByZXNzaW9uaSBzb25vIGFzc2VnbmF0ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDYwIj5MYSBzdGFiaWxpdMOgIHJpY2hpZWRlcmViYmUgdW4gbW9kZWxsbyB1bHRlcmlvcmUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
