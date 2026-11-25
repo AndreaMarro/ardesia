@@ -1,0 +1,1227 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-isobaric-work-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15501,
+      "title": "Forza e spostamento diventano pΔV",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Con p=2 kPa e ΔV=3 L, quanto vale W in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza esterna sul pistone ha modulo p per la sua area. Moltiplicando per lo spostamento, area per spostamento diventa incremento di volume. La pressione è costante, quindi il lavoro è pΔV. Due per tre sono sei; i fattori mille del kilopascal e un millesimo del litro si cancellano. Il segno è positivo perché il volume cresce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ae4879c7e836f775a366f65fced6cb68e6adbadff19ac81646d37ba700e5176f",
+          "text": "I primi due pannelli mostrano la stessa isobara a p=2 kPa fra 1 L e 4 L: all’andata W=+6 J, al ritorno W=−6 J. Assi con origine a zero e scale uguali nei due grafici: 35 px/L e 60 px/kPa. Le aree hanno uguale modulo; il verso determina il segno. Il terzo pannello usa barre energetiche a 15 px/J per le due prove della domanda 12 e la loro media."
+        },
+        {
+          "type": "formula",
+          "text": "F=pA"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=A\\Delta x"
+        },
+        {
+          "type": "formula",
+          "text": " W=p\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " W=(2\\,\\mathrm{kPa})(3\\,\\mathrm L)"
+        },
+        {
+          "type": "formula",
+          "text": " W=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Dodici J raddoppierebbero il lavoro senza un secondo cambiamento. Non serve aggiungere una pressione atmosferica: p è già la pressione esterna totale dichiarata. Il calcolo non determina da solo il calore scambiato."
+        }
+      ],
+      "hints": [
+        "Usa la pressione esterna totale e l’incremento, non il volume finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici J raddoppierebbero il lavoro senza un secondo cambiamento. Non serve aggiungere una pressione atmosferica: p è già la pressione esterna totale dichiarata. Il calcolo non determina da solo il calore scambiato.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15502,
+      "title": "Perché kPa per litro dà joule",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 1,
+      "prompt": "Quale unità misura il lavoro di espansione W=pΔV?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "Pa",
+          "L",
+          "W",
+          "N"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In unità SI una pressione per un volume dà N/m² per m³, cioè N·m. Questo è un joule. Il simbolo W usato per il lavoro non va confuso con l’unità watt: il watt misura potenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathrm{Pa\\,m^3}=\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\mathrm{N\\,m}=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=10^3\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm L=10^{-3}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa\\,L}=1\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Pa misura pressione, L volume e N forza. W come unità vale J/s: richiederebbe dividere per una durata, qui assente."
+        }
+      ],
+      "hints": [
+        "Controlla separatamente la dimensione e i due prefissi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa misura pressione, L volume e N forza. W come unità vale J/s: richiederebbe dividere per una durata, qui assente.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15503,
+      "title": "Ripercorrere la stessa isobara",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 1,
+      "prompt": "Un gas chiuso passa lentamente da V_A=1 L a V_B=4 L contro pressione esterna totale p=2 kPa costante, senza attrito. Poi ripercorre la stessa isobara da B ad A. In entrambi i tratti c’è equilibrio meccanico al limite quasi statico. Con W positivo se compiuto dal gas, qual è il confronto corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Andata +6 J, ritorno −6 J: la somma è zero",
+          "Entrambi i lavori sono +6 J",
+          "Il ritorno è nullo perché si raggiunge il volume iniziale",
+          "Il ritorno è +12 J",
+          "Il segno del ritorno non si determina senza la temperatura finale"
+        ],
+        "value": "Andata +6 J, ritorno −6 J: la somma è zero"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’andata l’incremento è più tre litri e il gas compie sei joule. Al ritorno la variazione è meno tre litri: l’ambiente compie lavoro sul gas e W vale meno sei joule nella convenzione scelta. Le due aree hanno uguale modulo e segno opposto, perciò il lavoro totale su questo specifico percorso di andata e ritorno è zero."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ae4879c7e836f775a366f65fced6cb68e6adbadff19ac81646d37ba700e5176f",
+          "text": "Due percorsi sullo stesso segmento p–V, disegnati separatamente per conservare leggibili entrambe le frecce. Il ritorno è una compressione con lavoro del gas negativo, non un lavoro nullo. Il lavoro totale di questo percorso ripercorso è zero; non si afferma che il lavoro di ogni ciclo sia nullo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V_{AB}=3\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " W_{AB}=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V_{BA}=-3\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " W_{BA}=-6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{AB}+W_{BA}=0"
+        },
+        {
+          "type": "text",
+          "text": "La compressione non ha lavoro nullo: il suo confine si muove. Prendere entrambi i moduli perde il verso. Il risultato dipende dal percorso p–V; una temperatura finale da sola non sostituisce l’integrale del lavoro."
+        }
+      ],
+      "hints": [
+        "Invertire il percorso inverte ΔV e quindi il segno del lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La compressione non ha lavoro nullo: il suo confine si muove. Prendere entrambi i moduli perde il verso. Il risultato dipende dal percorso p–V; una temperatura finale da sola non sostituisce l’integrale del lavoro.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15504,
+      "title": "La stessa espansione a pressione doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. A ha p=2 kPa e B ha p=4 kPa; entrambe le prove hanno ΔV=3 L. Come cambia W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 12 J",
+          "Resta 6 J",
+          "Da 6 a 3 J",
+          "Da 6 a 24 J",
+          "Diventa zero"
+        ],
+        "value": "Da 6 a 12 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume spazzato dal pistone è lo stesso. Raddoppiando la pressione si raddoppia la forza su ogni stessa area, quindi anche il lavoro: da sei a dodici joule. Si stanno confrontando prove diverse, ciascuna con la propria pressione costante."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=(2\\,\\mathrm{kPa})(3\\,\\mathrm L)"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=(4\\,\\mathrm{kPa})(3\\,\\mathrm L)"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=12\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Sei ignora p nuova, tre rende inversa la dipendenza e ventiquattro cambia due fattori invece di uno. Zero non segue da un’espansione contro pressione positiva."
+        }
+      ],
+      "hints": [
+        "Con ΔV invariato il lavoro segue p alla prima potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei ignora p nuova, tre rende inversa la dipendenza e ventiquattro cambia due fattori invece di uno. Zero non segue da un’espansione contro pressione positiva.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15505,
+      "title": "La pressione dal lavoro misurato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Il gas compie W=6 J espandendosi di ΔV=3 L. Quanto vale p in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo i sei joule per i tre litri. Un joule per litro equivale a un kilopascal; il quoziente è due kPa. Rimettendo questa pressione nella legge si ricostruiscono i sei joule misurati."
+        },
+        {
+          "type": "formula",
+          "text": "p=\\frac W{\\Delta V}"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{6\\,\\mathrm J}{3\\,\\mathrm L}"
+        },
+        {
+          "type": "formula",
+          "text": " p=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare W per ΔV darebbe energia moltiplicata per volume, non pressione. Il reciproco ΔV/W ha dimensione inversa della pressione. Non si usa V_f al posto dell’incremento."
+        }
+      ],
+      "hints": [
+        "Dividi per il volume effettivamente spazzato dal pistone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare W per ΔV darebbe energia moltiplicata per volume, non pressione. Il reciproco ΔV/W ha dimensione inversa della pressione. Non si usa V_f al posto dell’incremento.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15506,
+      "title": "Il volume spazzato dal lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Sono noti W=6 J e p=2 kPa. Quanto vale ΔV in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A due kPa ogni litro di incremento richiede due joule di lavoro. Sei joule corrispondono quindi a tre litri. Il risultato è V_f−V_i: per ricavare V_f occorrerebbe aggiungere il volume iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=\\frac Wp"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=\\frac{6\\,\\mathrm J}{2\\,\\mathrm{kPa}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=3\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica invece di dividere e due copia la pressione. L’unità J/kPa è L, non m³: tre litri equivalgono a tre millesimi di m³."
+        }
+      ],
+      "hints": [
+        "Ricorda l’identità J/kPa=L quando completi la divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica invece di dividere e due copia la pressione. L’unità J/kPa è L, non m³: tre litri equivalgono a tre millesimi di m³.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15507,
+      "title": "Una corsa maggiore alla stessa pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. A usa p=2 kPa e ΔV_A=3 L; B mantiene p e usa ΔV_B=5 L. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "25/9",
+          "1",
+          "2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A compie sei joule e B dieci. Il rapporto dieci su sei si riduce a cinque terzi. La pressione comune si cancella e rimane il rapporto degli incrementi di volume."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac{10}{6}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{10}{6}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti inverte il confronto; venticinque noni quadra una dipendenza lineare. Uno ignora la corsa maggiore e due assume un raddoppio non presente nei dati."
+        }
+      ],
+      "hints": [
+        "Confronta gli incrementi, entrambi misurati dal proprio volume iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti inverte il confronto; venticinque noni quadra una dipendenza lineare. Uno ignora la corsa maggiore e due assume un raddoppio non presente nei dati.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15508,
+      "title": "Lo scarto di un lavoro raddoppiato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Con p=2 kPa e ΔV=3 L una soluzione propone W=12 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 J",
+          "−6 J",
+          "12 J",
+          "0 J",
+          "3 J"
+        ],
+        "value": "6 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto corretto è sei joule. Dodici meno sei dà uno scarto di più sei joule. L’energia in eccesso della proposta non è una seconda componente da aggiungere al lavoro del pistone."
+        },
+        {
+          "type": "formula",
+          "text": "W=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno sei rovescia l’ordine; dodici copia la proposta; zero la accetta. Tre è metà dello scarto e non la differenza richiesta."
+        }
+      ],
+      "hints": [
+        "Calcola il lavoro prima di formare lo scarto con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno sei rovescia l’ordine; dodici copia la proposta; zero la accetta. Tre è metà dello scarto e non la differenza richiesta.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15509,
+      "title": "L’inversa della pressione costante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Quale formula isola p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p = W / ΔV",
+          "p = W ΔV",
+          "p = ΔV / W",
+          "p = W / (2ΔV)",
+          "p = 2W / ΔV"
+        ],
+        "value": "p = W / ΔV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiché ΔV è positivo possiamo dividere il lavoro per esso. In SI, joule su metri cubi sono pascal; nelle unità assegnate joule su litri sono kilopascal. Il fattore di conversione numerico vale uno proprio per questa coppia di unità."
+        },
+        {
+          "type": "formula",
+          "text": "W=p\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac W{\\Delta V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{J/m^3}=\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{J/L}=\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "In SI WΔV ha unità J·m³, non Pa; ΔV/W ha l’unità inversa della pressione. Il due al denominatore o al numeratore dà rispettivamente metà o doppio del lavoro quando si sostituisce p nella legge iniziale."
+        }
+      ],
+      "hints": [
+        "La divisione deve eliminare un volume, non aggiungerlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "In SI WΔV ha unità J·m³, non Pa; ΔV/W ha l’unità inversa della pressione. Il due al denominatore o al numeratore dà rispettivamente metà o doppio del lavoro quando si sostituisce p nella legge iniziale.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15510,
+      "title": "Scalare pressione e incremento di volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. B ha p_B=κ₁p_A e ΔV_B=κ₂ΔV_A, con κ₁,κ₂>0. Quale espressione dà W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo il lavoro di B con entrambi i nuovi fattori. Il rettangolo p–V si allarga di κ₂ e si alza di κ₁, quindi la sua area cresce per il loro prodotto. Il rapporto non dipende dal valore numerico del fattore kPa·L/J, uguale nelle due prove."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=(\\kappa_1p_A)(\\kappa_2\\Delta V_A)"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=p_A\\Delta V_A"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una delle dipendenze. La somma dà due per prove uguali; il quadrato di κ₂ tratterebbe un volume come se andasse elevato ancora al quadrato."
+        }
+      ],
+      "hints": [
+        "Confronta l’area dei due rettangoli, non soltanto un lato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una delle dipendenze. La somma dà due per prove uguali; il quadrato di κ₂ tratterebbe un volume come se andasse elevato ancora al quadrato.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15511,
+      "title": "Due modifiche nell’area del lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. A usa p=2 kPa, ΔV=3 L; B usa p=4 kPa, ΔV=5 L. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10/3",
+          "3/10",
+          "2",
+          "5/3",
+          "20"
+        ],
+        "value": "10/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento compie sei joule e B venti. Venti su sei si semplifica a dieci terzi. Il raddoppio della pressione si combina con il rapporto cinque terzi dei volumi spazzati."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac{20}{6}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{20}{6}=\\frac{10}{3}"
+        },
+        {
+          "type": "text",
+          "text": "Tre decimi è il reciproco; due considera soltanto p e cinque terzi soltanto ΔV. Venti è il numero di joule del processo B e non il rapporto senza unità."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i prodotti con la stessa convenzione di segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre decimi è il reciproco; due considera soltanto p e cinque terzi soltanto ΔV. Venti è il numero di joule del processo B e non il rapporto senza unità.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15512,
+      "title": "Media di due lavori del pistone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. A: p=2 kPa, ΔV=3 L. B: p=4 kPa, ΔV=5 L. Qual è la media aritmetica dei due lavori con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13 J",
+          "26 J",
+          "13/2 J",
+          "12 J",
+          "14 J"
+        ],
+        "value": "13 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I lavori sono sei e venti joule. La loro somma ventisei divisa per due dà tredici joule. Gli ingressi medi sarebbero tre kPa e quattro litri: il loro prodotto è dodici joule, il lavoro di una terza prova, non la media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=\\frac{6+20}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=13\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ventisei è la somma, 13/2 dimezza ancora e quattordici è la differenza. Dodici confonde la media dei prodotti con il prodotto delle medie."
+        }
+      ],
+      "hints": [
+        "Trova prima ciascuna energia trasferita come lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisei è la somma, 13/2 dimezza ancora e quattordici è la differenza. Dodici confonde la media dei prodotti con il prodotto delle medie.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15513,
+      "title": "Il volume per il lavoro desiderato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. A ha p=2 kPa, ΔV_A=3 L. B ha p=4 kPa e deve compiere W_B=(10/3)W_A. Quanto vale ΔV_B/ΔV_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "10/3",
+          "2",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è venti joule, poiché sei per dieci terzi dà venti. Alla pressione di quattro kPa occorrono cinque litri. Il rapporto fra cinque e tre litri è cinque terzi: si rimuove dal fattore di lavoro il raddoppio già fornito dalla pressione."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V_B=\\frac{20\\,\\mathrm J}{4\\,\\mathrm{kPa}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V_B=5\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V_B/\\Delta V_A=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti inverte il rapporto; dieci terzi copia il bersaglio senza togliere il contributo di p. Due darebbe W_B=24 J e uno W_B=12 J, entrambi diversi da venti."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore di lavoro per il fattore della pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti inverte il rapporto; dieci terzi copia il bersaglio senza togliere il contributo di p. Due darebbe W_B=24 J e uno W_B=12 J, entrambi diversi da venti.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15514,
+      "title": "Tarare una lettura di lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. S=qW è continuo e adimensionale. A con p=2 kPa, ΔV=3 L dà S=18. B dà S=60 e usa ΔV=5 L. Quanto vale p_B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A compie sei joule e fissa un guadagno q=3 J⁻¹. La lettura sessanta corrisponde a venti joule. Dividendo questi per i cinque litri di B si ottiene quattro kPa, la pressione esterna totale della nuova prova."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{W_B}{\\Delta V_B}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=4\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Usare direttamente sessanta come joule darebbe dodici kPa. Il display non misura già una pressione: il guadagno riguarda W, poi serve l’inversa con ΔV_B."
+        }
+      ],
+      "hints": [
+        "Converti la lettura in joule prima di dividere per i litri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare direttamente sessanta come joule darebbe dodici kPa. Il display non misura già una pressione: il guadagno riguarda W, poi serve l’inversa con ΔV_B.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15515,
+      "title": "Due riferimenti per pressione e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. S=qW+b è continuo e adimensionale. A: p=2 kPa, ΔV=3 L, S=13. B: p=4 kPa, ΔV=5 L, S=41. C: ΔV=3 L, S=25. Quanto vale p_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kPa",
+          "8 kPa",
+          "2 kPa",
+          "25/6 kPa",
+          "12 kPa"
+        ],
+        "value": "4 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti compiono sei e venti joule. La variazione ventotto di S divisa per quattordici joule dà q=2 J⁻¹; poi b=1. Per C, venticinque meno uno diviso due dà dodici joule. Dividendo per tre litri otteniamo quattro kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{41-13}{(20-6)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=4\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Otto kPa produrrebbero S=49, due kPa S=13. 25/6 kPa omette l’offset e dà S=26; dodici kPa copia il numero del lavoro e porterebbe S=73."
+        }
+      ],
+      "hints": [
+        "Ricava q dalle differenze e b da un riferimento prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto kPa produrrebbero S=49, due kPa S=13. 25/6 kPa omette l’offset e dà S=26; dodici kPa copia il numero del lavoro e porterebbe S=73.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-work-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro orientato a pressione esterna costante",
+      "order": 15516,
+      "title": "Un vincolo fra due parametri della prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas sposta lentamente un pistone senza attrito contro la pressione esterna totale p>0 costante. Il processo è quasi statico e meccanicamente equilibrato: la pressione interna coincide con p al limite. Non vi sono altri lavori; l’energia cinetica del pistone non cambia. Il lavoro W è positivo quando il gas lo compie sull’ambiente. Nelle espansioni indicate ΔV=V_f−V_i>0. Si usano p in kPa e ΔV in L; 1 kPa·L=1 J. Fra prove diverse si sceglie p=cΔV, con c=(2/3) kPa/L. In ciascuna espansione p resta costante: il vincolo non è una pressione variabile lungo il percorso. Se W=6 J, quanto vale ΔV>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 L",
+          "−3 L",
+          "9 L",
+          "3/2 L",
+          "6 L"
+        ],
+        "value": "3 L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il valore di p scelto per ogni prova si ottiene W=c(ΔV)². Poiché un joule equivale a un kPa·L, il quoziente W/c è nove litri quadrati. La radice positiva è tre litri e la pressione corrispondente è due kPa. Non compare un fattore un mezzo: p non cresce con il volume durante la singola espansione."
+        },
+        {
+          "type": "formula",
+          "text": "W=c(\\Delta V)^2"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta V)^2=\\frac Wc"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta V)^2=9\\,\\mathrm{L^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=3\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " p=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "La radice negativa viola l’espansione e p>0. Nove è il numero del quadrato; 3/2 L darebbero W=3/2 J e sei litri W=24 J. Sostituire p=c(V−V_i) lungo il processo cambierebbe il modello assegnato."
+        }
+      ],
+      "hints": [
+        "Distingui il vincolo fra prove dalla legge della pressione durante una prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice negativa viola l’espansione e p>0. Nove è il numero del quadrato; 3/2 L darebbero W=3/2 J e sei litri W=24 J. Sostituire p=c(V−V_i) lungo il processo cambierebbe il modello assegnato.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Pressione esterna e lavoro del confine",
+        "Segni e conversione kPa·L",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ae4879c7e836f775a366f65fced6cb68e6adbadff19ac81646d37ba700e5176f",
+      "name": "isobaric-work-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTE0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5MYXZvcm8gaXNvYmFybywgdW5pdMOgIGUgdmVyc288L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+RHVlIGdyYWZpY2kgcHJlc3Npb25lIHZvbHVtZSBjb24gYXNzaSBlIHNjYWxlIHVndWFsaSBtb3N0cmFubyBs4oCZYW5kYXRhIGRhIHVubyBhIHF1YXR0cm8gbGl0cmkgYSBkdWUga2lsb3Bhc2NhbCBlIGlsIHJpdG9ybm8uIExlIGFyZWUgc29ubyBzZWkgam91bGUgaW4gbW9kdWxvLCBjb24gc2Vnbm8gb3Bwb3N0by4gVHJlIGJhcnJlIGZpbmFsaSBtb3N0cmFubyBzZWksIHZlbnRpIGUgdHJlZGljaSBqb3VsZSBwZXIgdW5hIG1lZGlhIGRpIHByb3ZlIGRpdmVyc2UuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExNDAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgQW5kYXRhOiBpbCBnYXMgY29tcGllIGxhdm9ybzwvdGV4dD4KPHJlY3QgeD0iMTM1IiB5PSIxODAiIHdpZHRoPSIxMDUiIGhlaWdodD0iMTIwIiBmaWxsPSIjZGNlZWY2Ii8+CjxnIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTAwIDMwMFYxMDBNMTAwIDMwMEgzMjAiLz48cGF0aCBkPSJNOTUgMTgwSDEwNU0xMzUgMjk1VjMwNU0yNDAgMjk1VjMwNSIvPjwvZz4KPHBhdGggZD0iTTEzNSAxODBIMjQwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTEzNSAxODBWMzAwTTI0MCAxODBWMzAwIiBzdHJva2U9IiM3ZDhiOWUiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgo8dGV4dCB4PSI1MiIgeT0iODkiPnAgLyBrUGE8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjE4NyI+MjwvdGV4dD48dGV4dCB4PSI3NiIgeT0iMzI3Ij4wPC90ZXh0Pgo8dGV4dCB4PSIxMjkiIHk9IjMzMCI+MTwvdGV4dD48dGV4dCB4PSIyMzQiIHk9IjMzMCI+NDwvdGV4dD48dGV4dCB4PSIzMzQiIHk9IjMwNyI+ViAvIEw8L3RleHQ+Cjx0ZXh0IHg9IjEyNiIgeT0iMTU1Ij5BPC90ZXh0Pjx0ZXh0IHg9IjIzMiIgeT0iMTU1Ij5CPC90ZXh0Pgo8dGV4dCB4PSIzOTQiIHk9IjIwMSI+VyA9ICs2IEo8L3RleHQ+PHRleHQgeD0iMzk0IiB5PSIyMzkiPs6UViA9ICszIEw8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNzUiIGZvbnQtc2l6ZT0iMTgiPjEga1BhwrdMID0gMSBKOyBhcmVhIHDOlFYgPSAyIMOXIDMgSi48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0MTBINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjQ1NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgUml0b3JubzogbGF2b3JvIHN1bCBnYXM8L3RleHQ+CjxyZWN0IHg9IjEzNSIgeT0iNTgwIiB3aWR0aD0iMTA1IiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2U2ZjFlOSIvPgo8ZyBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCA3MDBWNTAwTTEwMCA3MDBIMzIwIi8+PHBhdGggZD0iTTk1IDU4MEgxMDVNMTM1IDY5NVY3MDVNMjQwIDY5NVY3MDUiLz48L2c+CjxwYXRoIGQ9Ik0yNDAgNTgwSDEzNSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0xMzUgNTgwVjcwME0yNDAgNTgwVjcwMCIgc3Ryb2tlPSIjN2Q4YjllIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHRleHQgeD0iNTIiIHk9IjQ4OSI+cCAvIGtQYTwvdGV4dD48dGV4dCB4PSI3MCIgeT0iNTg3Ij4yPC90ZXh0Pjx0ZXh0IHg9Ijc2IiB5PSI3MjciPjA8L3RleHQ+Cjx0ZXh0IHg9IjEyOSIgeT0iNzMwIj4xPC90ZXh0Pjx0ZXh0IHg9IjIzNCIgeT0iNzMwIj40PC90ZXh0Pjx0ZXh0IHg9IjMzNCIgeT0iNzA3Ij5WIC8gTDwvdGV4dD4KPHRleHQgeD0iMTI2IiB5PSI1NTUiPkE8L3RleHQ+PHRleHQgeD0iMjMyIiB5PSI1NTUiPkI8L3RleHQ+Cjx0ZXh0IHg9IjM5NCIgeT0iNjAxIj5XID0g4oiSNiBKPC90ZXh0Pjx0ZXh0IHg9IjM5NCIgeT0iNjM5Ij7OlFYgPSDiiJIzIEw8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3NzUiIGZvbnQtc2l6ZT0iMTgiPkluIGVudHJhbWJpOiAzNSBweC9MIGUgNjAgcHgva1BhOyBzb21tYSBXID0gMC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4MTBINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijg1NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTWVkaWEgZGkgcHJvdmUgZGl2ZXJzZTwvdGV4dD4KPHRleHQgeD0iNTEiIHk9IjkyMyI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjkwMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTY1YTg3Ii8+PHRleHQgeD0iMjU3IiB5PSI5MjMiPjYgSjwvdGV4dD4KPHRleHQgeD0iNTEiIHk9Ijk4MyI+QjwvdGV4dD48cmVjdCB4PSIxNTAiIHk9Ijk2MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzE2NWE4NyIvPjx0ZXh0IHg9IjQ2NyIgeT0iOTgzIj4yMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA0MyI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMDIwIiB3aWR0aD0iMTk1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjMjg2NjRkIi8+PHRleHQgeD0iMzYyIiB5PSIxMDQzIj4xMyBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA5MCIgZm9udC1zaXplPSIxOCI+QmFycmU6IDE1IHB4L0ouIE1lZGlhID0gKDYgKyAyMCkgSiAvIDIuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTEyMSIgZm9udC1zaXplPSIxOCI+UXVlc3RlIHByb3ZlIG5vbiBzb25vIGkgZHVlIHRyYXR0aSBkZWwgY2ljbG8gc29wcmEuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

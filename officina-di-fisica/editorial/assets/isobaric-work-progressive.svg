@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1140" role="img" aria-labelledby="title desc">
+<title id="title">Lavoro isobaro, unità e verso</title>
+<desc id="desc">Due grafici pressione volume con assi e scale uguali mostrano l’andata da uno a quattro litri a due kilopascal e il ritorno. Le aree sono sei joule in modulo, con segno opposto. Tre barre finali mostrano sei, venti e tredici joule per una media di prove diverse.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#165a87"/></marker></defs>
+<rect width="640" height="1140" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" font-size="20" fill="#14243a">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Andata: il gas compie lavoro</text>
+<rect x="135" y="180" width="105" height="120" fill="#dceef6"/>
+<g stroke="#14243a" stroke-width="2" fill="none"><path d="M100 300V100M100 300H320"/><path d="M95 180H105M135 295V305M240 295V305"/></g>
+<path d="M135 180H240" stroke="#165a87" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M135 180V300M240 180V300" stroke="#7d8b9e" stroke-dasharray="5 5"/>
+<text x="52" y="89">p / kPa</text><text x="70" y="187">2</text><text x="76" y="327">0</text>
+<text x="129" y="330">1</text><text x="234" y="330">4</text><text x="334" y="307">V / L</text>
+<text x="126" y="155">A</text><text x="232" y="155">B</text>
+<text x="394" y="201">W = +6 J</text><text x="394" y="239">ΔV = +3 L</text>
+<text x="32" y="375" font-size="18">1 kPa·L = 1 J; area pΔV = 2 × 3 J.</text>
+<path d="M32 410H608" stroke="#9babbc"/>
+<text x="32" y="455" font-size="25" font-weight="bold">2 · Ritorno: lavoro sul gas</text>
+<rect x="135" y="580" width="105" height="120" fill="#e6f1e9"/>
+<g stroke="#14243a" stroke-width="2" fill="none"><path d="M100 700V500M100 700H320"/><path d="M95 580H105M135 695V705M240 695V705"/></g>
+<path d="M240 580H135" stroke="#165a87" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M135 580V700M240 580V700" stroke="#7d8b9e" stroke-dasharray="5 5"/>
+<text x="52" y="489">p / kPa</text><text x="70" y="587">2</text><text x="76" y="727">0</text>
+<text x="129" y="730">1</text><text x="234" y="730">4</text><text x="334" y="707">V / L</text>
+<text x="126" y="555">A</text><text x="232" y="555">B</text>
+<text x="394" y="601">W = −6 J</text><text x="394" y="639">ΔV = −3 L</text>
+<text x="32" y="775" font-size="18">In entrambi: 35 px/L e 60 px/kPa; somma W = 0.</text>
+<path d="M32 810H608" stroke="#9babbc"/>
+<text x="32" y="855" font-size="25" font-weight="bold">3 · Media di prove diverse</text>
+<text x="51" y="923">A</text><rect x="150" y="900" width="90" height="32" fill="#165a87"/><text x="257" y="923">6 J</text>
+<text x="51" y="983">B</text><rect x="150" y="960" width="300" height="32" fill="#165a87"/><text x="467" y="983">20 J</text>
+<text x="32" y="1043">Media</text><rect x="150" y="1020" width="195" height="32" fill="#28664d"/><text x="362" y="1043">13 J</text>
+<text x="32" y="1090" font-size="18">Barre: 15 px/J. Media = (6 + 20) J / 2.</text>
+<text x="32" y="1121" font-size="18">Queste prove non sono i due tratti del ciclo sopra.</text>
+</g></svg>
