@@ -1,0 +1,82 @@
+{
+  "runtimeProfileSha256": "805e8e8b2be2f95edbc4071b4a2ff3e70e8aca51eb7bec53d2644e7d7f830e57",
+  "commit": "67fea1b07cb4ce278074a889c8e009176553a5a1",
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "scope": "Independent diagnostic; no current scientific freeze049 and no historical retag. All172 observation cases technicallycompleted, but small native label collision independently found.",
+  "findings": [
+    {
+      "id": "SIM-C1-L010-02",
+      "priority": "P3",
+      "viewport": [
+        320,
+        1000
+      ],
+      "input": 90,
+      "mode": "native default Obliqua",
+      "type": "LOWER_ENDPOINT_OCCLUDED_BY_SPRITE_AT_NARROW_WIDTH",
+      "projectedLowerMarker": {
+        "x": 146.64407704670012,
+        "y": 523.1221174396909,
+        "radius": 3.9925925925925925
+      },
+      "projectedCalloutAnchor": {
+        "x": 166.95164842241422,
+        "y": 519.2314429688872
+      },
+      "geometry": "Actual .bench-stage x13,y330.265625,w294,h340. Orthographic span=max(4.25,8.1/aspect); target[0,.95,0], camera direction[2.6,1.9,6.1]. Label minimum20px with dynamic Arial aspect. Actual image independently viewed; original5405 containment and47c3 table/head issues are not reused as current failures.",
+      "limits": "Failure in actual default narrow native view only. Wide native and narrow fallback are correct. Projection corroborates pixels; no claim about every possible user camera."
+    }
+  ],
+  "files": [
+    {
+      "name": "browser-experiments-force-work-corrected-048.mjs",
+      "sha256": "7894921a314a105315912c623b91afcbcfd69daefa101e9fd8706873c0ccfea9"
+    },
+    {
+      "name": "048-consumer.json",
+      "sha256": "07126253888d31425652414c2066faf65e6b5948641daa83f244680b9a6ffb16",
+      "technicalCaseCount": 68
+    },
+    {
+      "name": "browser-experiments-energy-momentum-corrected-049.mjs",
+      "sha256": "b88bc6ffd8446c3677040bf081c313caacd0faf351a84dcf82aecf9e3e83f35b"
+    },
+    {
+      "name": "049-consumer.json",
+      "sha256": "5c06b1ad0d2c10eeae7543d06f5a70dab7001a7517c5b32f4ecc4cc971fa7141",
+      "technicalCaseCount": 104
+    },
+    {
+      "name": "SIM-C1-L010-02-narrow-false-90.png",
+      "sha256": "f85247c48447a0c46de74a6bc077caad9ad2db1125227c71425da4bf5d951ba5",
+      "meaning": "Actual320 native90: lower marker fully obscured by callout",
+      "source": "/tmp/cric-review049-proof-ubALIy/SIM-C1-L010-02-narrow-false-90.png"
+    },
+    {
+      "name": "SIM-C1-L010-02-narrow-true-90.png",
+      "sha256": "52e6714b08725d3907cda81c3163ffe0c79ccfabb5b346aa3552e8c27144aa55",
+      "meaning": "Actual320 fallback SAME90 input: lower marker visible",
+      "source": "/tmp/cric-review049-proof-ubALIy/SIM-C1-L010-02-narrow-true-90.png"
+    },
+    {
+      "name": "SIM-C1-L010-02-false-boundary2.png",
+      "sha256": "7999d2f8104e99e9af587af2898c2a1a97eeca860a91eb9ae38bb8d13b94c71c",
+      "meaning": "Actual1280 native90: both markers visible; do not claim this viewport failed",
+      "source": "/tmp/cric-review049-proof-ubALIy/SIM-C1-L010-02-false-boundary2.png"
+    },
+    {
+      "name": "SIM-C1-L010-03-false-boundary0.png",
+      "sha256": "bf66f5def863ef1a69f320c468be1d43f64f066fdda8b627d4049924713127a0",
+      "meaning": "Actual1280 native0 arm: complete force arrow now visible",
+      "source": "/tmp/cric-review049-proof-ubALIy/SIM-C1-L010-03-false-boundary0.png"
+    },
+    {
+      "name": "SIM-C1-L010-04-false-boundary0.png",
+      "sha256": "9b1e82d8115d566e1562d86cd5a0b3cad5645f8573be2450404da9b64a25de6b",
+      "meaning": "Actual1280 native10cm: force arrow now above marker/table and fully visible",
+      "source": "/tmp/cric-review049-proof-ubALIy/SIM-C1-L010-04-false-boundary0.png"
+    }
+  ]
+}

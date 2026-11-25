@@ -351,7 +351,7 @@ export const meccanica = {
         b.arrow(tail, [tail[0], tail[1] + dy, tail[2]], s.braccio && u === l ? c.verde : c.rosso);
       }
     }
-    b.line([pivot, [pivot[0] + 0.55, 0.67, 0.35]], c.viola, true);
-    b.label([pivot[0] + 0.8, 0.57, 0.45], s.braccio ? 'Gomito' : 'Fulcro');
+    // Identify the pivot in the existing HTML legend. A minimum-size 3D text
+    // sprite can cover the lower rod endpoint on a narrow viewport.
   },
 };

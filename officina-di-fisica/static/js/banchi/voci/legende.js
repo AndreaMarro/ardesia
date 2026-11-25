@@ -13,7 +13,7 @@ export const legende = {
   gravita: 'Distanza fra i centri · frecce verdi di attrazione reciproca',
   percorso: 'Verde tratteggiato · cammino diretto. Viola · deviazione',
   urto: 'La freccia sopra il carrello rappresenta la sua velocità',
-  leva: 'Perno viola · punti di applicazione marcati sulle estremità',
+  leva: 'Il perno viola è il fulcro; nella leva umana rappresenta il gomito. I punti di applicazione delle forze sono marcati sull’asta.',
   fasi: 'Ogni sfera rappresenta la stessa quantità di materia',
   strati: 'Lastra ocra mobile · frecce verdi di velocità negli strati',
   vasca: 'La linea tratteggiata unisce le sonde che si trovano alla stessa quota',

@@ -4,6 +4,7 @@ import {tavolo, colore as c} from '../static/js/banchi/voci/geometria.js';
 import {meccanica} from '../static/js/banchi/voci/apparati/meccanica.js';
 import {experiments} from '../static/js/banchi/voci/modelli/C1.js';
 import {confronti} from '../static/js/banchi/voci/confronti.js';
+import {legende} from '../static/js/banchi/voci/legende.js';
 
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-12,`${a} differs from ${b}`);
 function drawing(id,x,kind){
@@ -83,12 +84,13 @@ test('the complete lever force glyph stays above the opaque table at every reach
  }
 });
 
-test('the fulcrum callout is outside the lower-left swept rod region',()=>{
- for(let angle=0;angle<=90;angle+=5){
-  const {items}=drawing('SIM-C1-L010-02',angle,'leva');
-  const pivot=items.find(e=>e.kind==='ball'&&e.c===c.viola);
-  const label=items.find(e=>e.kind==='label'&&e.text==='Fulcro');
-  assert.ok(label.p[0]>pivot.p[0]+0.5,'Callout is to the right of the lower rod sweep');
-  assert.ok(label.p[1]<pivot.p[1]-0.3,'Callout is below the force glyph region');
+test('fulcrum and elbow names remain in the existing HTML legend without covering the rod markers',()=>{
+ assert.match(legende.leva,/perno viola/iu);
+ assert.match(legende.leva,/fulcro/iu);
+ assert.match(legende.leva,/gomito/iu);
+ for(const [id,x] of [['SIM-C1-L010-02',90],['SIM-C1-L010-03',0],['SIM-C1-L010-05',4]]){
+  const {items}=drawing(id,x,'leva');
+  assert.equal(items.filter(e=>e.kind==='label'&&/fulcro|gomito/iu.test(e.text)).length,0,
+   'Identification belongs to the readable HTML legend, without screen-space sprite occlusion');
  }
 });
