@@ -1,0 +1,1214 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-parallel-heat-losses-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18501,
+      "title": "Sommo due potenze, non due temperature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 1,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Con ΔT=10 K e h=5 W/(m²·K), quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il sostegno cede GΔT=5·10=50 W. La superficie distinta cede hAΔT=5·1·10=50 W. I due percorsi funzionano contemporaneamente fra gli stessi punti termici: la somma è 100 W. Non sono due strati successivi che la stessa energia deve attraversare uno dopo l’altro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25",
+          "text": "Il corpo e l’ambiente sono collegati da due percorsi distinti e paralleli: il sostegno con G=5 W/K e la superficie con hA=5 W/K nella prova A. La differenza comune è 10 K e ciascun ramo cede 50 W. Le frecce del primo schema indicano collegamenti e verso, senza scala di potenza. Le barre successive sommano 50 e 50 W in 100 W, poi confrontano A=100 W, B=300 W e media 200 W dalla medesima origine."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm sost}=G\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": "G\\Delta T=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm conv}=hA\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": "hA\\Delta T=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=P_{\\rm sost}+P_{\\rm conv}"
+        },
+        {
+          "type": "formula",
+          "text": " P=100\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "50 W omette un percorso. 25 W tratterebbe come in serie due resistenze da 1/5 K/W, cambiando lo schema fisico. Il prodotto dei due numeri 50 non è una somma di potenze e avrebbe unità W²."
+        }
+      ],
+      "hints": [
+        "Calcola il contributo di ciascun collegamento e poi somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "50 W omette un percorso. 25 W tratterebbe come in serie due resistenze da 1/5 K/W, cambiando lo schema fisico. Il prodotto dei due numeri 50 non è una somma di potenze e avrebbe unità W².",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18502,
+      "title": "Le dispersioni simultanee hanno unità di potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 1,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Quale unità misura P fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "W/K",
+          "W/(m² K)",
+          "K"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si chiede quanta energia viene ceduta per unità di tempo. Ogni termine GΔT oppure hAΔT è in watt, così anche il totale. La conduttanza e il coefficiente convettivo sono parametri che devono ancora essere moltiplicati per un intervallo termico, e per l’area nel secondo caso."
+        },
+        {
+          "type": "formula",
+          "text": "[G\\Delta T]=\\mathrm{W/K}\\cdot\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " [hA\\Delta T]=\\mathrm{W/(m^2K)}\\cdot\\mathrm{m^2K}"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, W/K conduttanza, W/(m² K) coefficiente convettivo e K intervallo termico. G e h non si sommano direttamente perché hanno unità diverse."
+        }
+      ],
+      "hints": [
+        "Controlla le unità dopo tutte le moltiplicazioni, non solo quelle dei coefficienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, W/K conduttanza, W/(m² K) coefficiente convettivo e K intervallo termico. G e h non si sommano direttamente perché hanno unità diverse.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18503,
+      "title": "Una differenza comune per due collegamenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 1,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Quale legge dà la potenza totale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = (G + h A) ΔT",
+          "P = (G + h) ΔT",
+          "P = G h A ΔT",
+          "P = ΔT / (G + h A)",
+          "P = (G + h A) / ΔT"
+        ],
+        "value": "P = (G + h A) ΔT"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In regime assegnato, il sostegno e la superficie hanno la stessa differenza ΔT. Sommando GΔT e hAΔT si può raccogliere ΔT: la conduttanza totale è G+hA. Il prodotto hA ha unità W/K come G, quindi la somma è fisicamente lecita. Non si sommano le resistenze dei due rami."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25",
+          "text": "Lo schema non rappresenta un corpo che disperde prima per conduzione e poi per convezione attraverso lo stesso percorso. I due collegamenti toccano direttamente gli stessi estremi termici; si sommano quindi le potenze. Nel pannello dei contributi G e hA sono conduttanze in W/K, mentre i valori 50 W sono le loro potenze dopo la moltiplicazione per 10 K."
+        },
+        {
+          "type": "formula",
+          "text": "P=G\\Delta T+hA\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P=(G+hA)\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " p=(5+u)x"
+        },
+        {
+          "type": "text",
+          "text": "G+h mescola W/K e W/(m² K). GhAΔT ha W²/K. ΔT/(G+hA) ha K²/W, mentre (G+hA)/ΔT ha W/K²: nessuna delle ultime tre espressioni è una potenza."
+        }
+      ],
+      "hints": [
+        "Trasforma prima hA in una conduttanza e raccogli il salto termico comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "G+h mescola W/K e W/(m² K). GhAΔT ha W²/K. ΔT/(G+hA) ha K²/W, mentre (G+hA)/ΔT ha W/K²: nessuna delle ultime tre espressioni è una potenza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18504,
+      "title": "Raddoppiare il salto termico in entrambi i rami",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 1,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. h resta 5 W/(m²·K), mentre ΔT passa da 10 a 20 K. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 100 a 200 W",
+          "Da 100 a 50 W",
+          "Resta 100 W",
+          "Da 100 a 400 W",
+          "Da 100 a 150 W"
+        ],
+        "value": "Da 100 a 200 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conduttanza totale resta 5+5·1=10 W/K. A 10 K cede 100 W; a 20 K cede 200 W. Entrambi i rami raddoppiano il proprio contributo, da 50 a 100 W, senza modificare G, h o A."
+        },
+        {
+          "type": "formula",
+          "text": "G+hA=10\\,\\mathrm{W/K}"
+        },
+        {
+          "type": "formula",
+          "text": " P_A=100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=(10\\,\\mathrm{W/K})(20\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=200\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "50 W rende inversa la dipendenza dal salto; 400 W ne usa il quadrato. 150 W raddoppia un solo contributo pur cambiando ΔT comune a entrambi. Il valore invariato non rispetta nessuno dei due rami."
+        }
+      ],
+      "hints": [
+        "Il salto termico è comune: quando cambia, cambia ogni contributo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "50 W rende inversa la dipendenza dal salto; 400 W ne usa il quadrato. 150 W raddoppia un solo contributo pur cambiando ΔT comune a entrambi. Il valore invariato non rispetta nessuno dei due rami.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18505,
+      "title": "L’intervallo dal totale disperso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Si misura P=100 W e si conosce h=5 W/(m²·K). Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommiamo prima le conduttanze: G+hA=10 W/K. Dividendo la potenza totale per questo valore troviamo 100/(10 W/K)=10 K. È una differenza fra corpo e ambiente; la temperatura assoluta di nessuno dei due è determinata da questo solo dato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=\\frac{P}{G+hA}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{100\\,\\mathrm W}{10\\,\\mathrm{W/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "20 K usa solo G e ignora la superficie convettiva. 100 K copia il numero della potenza. Prendere il reciproco della conduttanza totale è utile per una resistenza equivalente, ma occorre poi moltiplicarlo per P."
+        }
+      ],
+      "hints": [
+        "Ricava l’intervallo dalla conduttanza totale, non da un solo percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 K usa solo G e ignora la superficie convettiva. 100 K copia il numero della potenza. Prendere il reciproco della conduttanza totale è utile per una resistenza equivalente, ma occorre poi moltiplicarlo per P.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18506,
+      "title": "Il coefficiente della superficie dal totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. P=100 W e ΔT=10 K. Quanto vale h in W/(m²·K)?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "W/(m² K)",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal totale per kelvin ricaviamo G+hA=P/ΔT=10 W/K. Il sostegno ne fornisce già 5 W/K; alla superficie restano altri 5 W/K. Dividendo per A=1 m² si ottiene h=5 W/(m² K). In generale serve P>GΔT per mantenere h positivo."
+        },
+        {
+          "type": "formula",
+          "text": "hA=\\frac{P}{\\Delta T}-G"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{P/\\Delta T-G}{A}"
+        },
+        {
+          "type": "formula",
+          "text": " h=5\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "formula",
+          "text": " P>G\\Delta T"
+        },
+        {
+          "type": "text",
+          "text": "10 W/(m² K) attribuisce alla superficie anche la dispersione del sostegno. 15 aggiunge G invece di sottrarla. Un risultato nullo o negativo segnalerebbe dati fuori dal ramo h>0 dichiarato."
+        }
+      ],
+      "hints": [
+        "Togli la conduttanza già nota del sostegno prima di dividere per l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10 W/(m² K) attribuisce alla superficie anche la dispersione del sostegno. 15 aggiunge G invece di sottrarla. Un risultato nullo o negativo segnalerebbe dati fuori dal ramo h>0 dichiarato.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18507,
+      "title": "Aumentare soltanto la dispersione convettiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. A ha ΔT=10 K e h=5 W/(m²·K). B mantiene ΔT=10 K e porta h a 10 W/(m²·K). Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2",
+          "1/2",
+          "2/3",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il sostegno cede 50 W in entrambe le prove. La superficie passa da 50 a 100 W: il totale B è 150 W contro 100 W in A. Il rapporto è 150/100=3/2. Raddoppiare h non raddoppia il contributo fisso del sostegno."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=50\\,\\mathrm W+50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=50\\,\\mathrm W+100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=150\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Due seguirebbe il solo ramo convettivo. Due terzi inverte il totale; un mezzo nega la maggiore cessione e uno ignora h nuova."
+        }
+      ],
+      "hints": [
+        "Conserva il contributo del sostegno mentre ricalcoli quello della superficie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due seguirebbe il solo ramo convettivo. Due terzi inverte il totale; un mezzo nega la maggiore cessione e uno ignora h nuova.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18508,
+      "title": "Lo scarto di un totale sovrastimato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Con ΔT=10 K e h=5 W/(m²·K) si propone P=200 W. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 W",
+          "−100 W",
+          "200 W",
+          "0 W",
+          "2"
+        ],
+        "value": "100 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza corretta è la somma 50+50=100 W. La proposta 200 W la supera di altri 100 W, quindi lo scarto richiesto è positivo. Il numero due misura invece il rapporto proposta/corretta e non una differenza in watt."
+        },
+        {
+          "type": "formula",
+          "text": "P=100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=P_{\\rm proposto}-P"
+        },
+        {
+          "type": "formula",
+          "text": " e=(200-100)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=100\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−100 W cambia il verso della sottrazione, 200 W copia la proposta, zero la accetta e due è una quantità pura diversa."
+        }
+      ],
+      "hints": [
+        "Trova prima il totale dei due rami e poi rispetta l’ordine dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−100 W cambia il verso della sottrazione, 200 W copia la proposta, zero la accetta e due è una quantità pura diversa.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18509,
+      "title": "Isolare il salto termico con tutte le conduttanze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Sono noti P>0 e h>0. Quale formula fornisce ΔT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔT = P / (G + h A)",
+          "ΔT = P / G",
+          "ΔT = P / (h A)",
+          "ΔT = (G + h A) / P",
+          "ΔT = P / (G h A)"
+        ],
+        "value": "ΔT = P / (G + h A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel totale P=(G+hA)ΔT la quantità che moltiplica ΔT è la conduttanza equivalente dei percorsi paralleli. Dividendo per la somma positiva si ottiene un intervallo positivo. Watt diviso watt per kelvin dà kelvin: l’inversa non determina separatamente la temperatura del corpo o quella ambiente."
+        },
+        {
+          "type": "formula",
+          "text": "P=(G+hA)\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{P}{G+hA}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta T]=\\frac{\\mathrm W}{\\mathrm{W/K}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm W}{\\mathrm{W/K}}=\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "P/G e P/(hA) eliminano un ramo e sovrastimano l’intervallo. Il rapporto inverso ha K⁻¹. P/(GhA) ha K²/W perché moltiplica due conduttanze anziché sommarle."
+        }
+      ],
+      "hints": [
+        "Isola l’unico fattore comune che moltiplica il salto termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "P/G e P/(hA) eliminano un ramo e sovrastimano l’intervallo. Il rapporto inverso ha K⁻¹. P/(GhA) ha K²/W perché moltiplica due conduttanze anziché sommarle.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18510,
+      "title": "Fattori diversi per salto e coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. B ha ΔT_B=κ₁ΔT_A e h_B=κ₂h_A, con κ₁,κ₂>0. G e A restano uguali. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (G + κ₂ h A)/(G + h A)",
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "(G + κ₂ h A)/(G + h A)",
+          "κ₁ (G + h A)/(G + κ₂ h A)"
+        ],
+        "value": "κ₁ (G + κ₂ h A)/(G + h A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto comune porta un fattore κ₁, ma dentro la conduttanza totale cambia solo hA. Il termine G non viene riscalato. Sostituendo i nuovi ingressi e dividendo per P_A rimane κ₁(G+κ₂hA)/(G+hA). Se κ₂=1 il rapporto si riduce correttamente a κ₁."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=(G+hA)\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=(G+\\kappa_2hA)\\kappa_1\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\kappa_1\\frac{G+\\kappa_2hA}{G+hA}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ tratta anche G come variabile. Il quoziente rende inverso h; omettere κ₁ perde il cambiamento del salto. L’ultima formula inverte il confronto fra le due conduttanze totali."
+        }
+      ],
+      "hints": [
+        "Tieni G fisso quando sostituisci il nuovo coefficiente convettivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ tratta anche G come variabile. Il quoziente rende inverso h; omettere κ₁ perde il cambiamento del salto. L’ultima formula inverte il confronto fra le due conduttanze totali.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18511,
+      "title": "Cambiano entrambi gli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. A ha ΔT=10 K e h=5 W/(m²·K). B ha ΔT=20 K e h=10 W/(m²·K). Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha conduttanza totale 10 W/K e cede 100 W. B ha 5+10=15 W/K e, con 20 K, cede 300 W. Il rapporto è tre: un fattore due dal salto e un fattore 3/2 dalla conduttanza totale."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=(15\\,\\mathrm{W/K})(20\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=300\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Quattro moltiplica i due raddoppi come se tutto il coefficiente cambiasse con h. Due segue solo ΔT e 3/2 solo la conduttanza; un terzo inverte il confronto."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima la somma G+hA in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro moltiplica i due raddoppi come se tutto il coefficiente cambiasse con h. Due segue solo ΔT e 3/2 solo la conduttanza; un terzo inverte il confronto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18512,
+      "title": "La media delle dispersioni non coincide con quella dei dati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 2,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. A usa ΔT=10 K, h=5 W/(m²·K); B usa ΔT=20 K, h=10 W/(m²·K). Qual è la media aritmetica delle potenze?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 W",
+          "375/2 W",
+          "400 W",
+          "100 W",
+          "300 W"
+        ],
+        "value": "200 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono 100 e 300 W. La loro media è 400/2=200 W. Usando prima gli ingressi medi ΔT=15 K e h=15/2 W/(m² K), la conduttanza sarebbe 25/2 W/K e la potenza 375/2 W. La parte GΔT è lineare, ma il prodotto hΔT non conserva in generale la media dei due ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{100+300}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=200\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ingressi\\ medi}=\\frac{25}{2}\\cdot15\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ingressi\\ medi}=375/2\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "375/2 W usa i dati medi. 400 W omette la metà; 100 e 300 W ripetono una sola prova. La media statistica non è un nuovo corpo con temperature miscelate."
+        }
+      ],
+      "hints": [
+        "Media le potenze ottenute, non i parametri prima del bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "375/2 W usa i dati medi. 400 W omette la metà; 100 e 300 W ripetono una sola prova. La media statistica non è un nuovo corpo con temperature miscelate.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18513,
+      "title": "Il coefficiente necessario per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 3,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. A ha ΔT=10 K e h_A=5 W/(m²·K). B usa ΔT=20 K e deve avere P_B=3P_A. Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "3/2",
+          "1/2",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 300 W. A salto 20 K occorre una conduttanza totale 300/20=15 W/K. Il sostegno fornisce 5 W/K: alla superficie ne servono 10 W/K e quindi h_B=10 W/(m² K). Il rapporto con h_A=5 è due."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=300\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " G+h_BA=15\\,\\mathrm{W/K}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=10\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia il fattore di potenza e 3/2 quello della conduttanza totale. Un mezzo è il reciproco di h_B/h_A. Quattro moltiplica fattori che nella legge non agiscono su tutto il coefficiente."
+        }
+      ],
+      "hints": [
+        "Sottrai G dal totale richiesto prima di confrontare i coefficienti h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre copia il fattore di potenza e 3/2 quello della conduttanza totale. Un mezzo è il reciproco di h_B/h_A. Quattro moltiplica fattori che nella legge non agiscono su tutto il coefficiente.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18514,
+      "title": "Dal display al salto termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 3,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. S=qP è continuo e adimensionale, q>0. Il riferimento ΔT=10 K, h=5 W/(m²·K) dà S=300. B ha h=10 W/(m²·K) e dà S=900. Quanto vale ΔT_B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento cede 100 W, quindi q=3 W⁻¹. Il display B indica 300 W. Con h_B=10, la conduttanza complessiva è 15 W/K: l’intervallo richiesto è 300/15=20 K. La taratura del display non cambia la somma fisica dei due rami."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=300\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " G+h_BA=15\\,\\mathrm{W/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "60 K usa 900 come watt senza taratura. 30 K mantiene la vecchia conduttanza totale 10 W/K; 300 K copia il numero della potenza come intervallo."
+        }
+      ],
+      "hints": [
+        "Decodifica i watt e poi usa la conduttanza complessiva della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "60 K usa 900 come watt senza taratura. 30 K mantiene la vecchia conduttanza totale 10 W/K; 300 K copia il numero della potenza come intervallo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18515,
+      "title": "Guadagno e offset prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 3,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Il display continuo è S=qP+b, adimensionale, q>0. A: ΔT=10 K, h=5 W/(m²·K), S=201. B: ΔT=20 K, h=10 W/(m²·K), S=601. C: h=5 W/(m²·K), S=401. Quanto vale ΔT_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 K",
+          "401/20 K",
+          "10 K",
+          "40 K",
+          "200 K"
+        ],
+        "value": "20 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze A e B sono 100 e 300 W. Il guadagno è (601−201)/(300−100)=2 W⁻¹ e b=1. C cede (401−1)/2=200 W. Con h=5 la conduttanza complessiva è 10 W/K, quindi ΔT_C=20 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=200\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_C=\\frac{200\\,\\mathrm W}{10\\,\\mathrm{W/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_C=20\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "401/20 K omette b. 10 K torna al riferimento A e al display 201. 40 K sottrae b ma non divide per q; 200 K copia i watt senza dividere per la conduttanza."
+        }
+      ],
+      "hints": [
+        "Taratura strumentale e conduttanza termica sono due divisioni diverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "401/20 K omette b. 10 K torna al riferimento A e al display 201. 40 K sottrae b ma non divide per q; 200 K copia i watt senza dividere per la conduttanza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Due percorsi paralleli di dispersione",
+      "order": 18516,
+      "title": "Un vincolo fra preparazioni dà due radici algebriche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-heat-losses",
+      "difficulty": 3,
+      "prompt": "Un corpo è mantenuto a una differenza di temperatura ΔT>0 rispetto all’ambiente. Due percorsi distinti collegano direttamente corpo e medesimo ambiente: un sostegno con conduttanza G=5 W/K e una superficie di area A=1 m² con coefficiente convettivo h>0 in W/(m²·K). G e h sono costanti entro ogni prova; il modello considera solo questi due percorsi e nessun accumulo energetico nei collegamenti. P>0 indica la potenza termica totale ceduta. Per le relazioni numeriche poniamo x=ΔT/(1 K), u=h/[1 W/(m²·K)] e p=P/(1 W), tutti adimensionali. Fra prove si impone x=2u, usando le variabili normalizzate dichiarate. Si misura P=100 W. Quanto vale h nel ramo fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 W/(m² K)",
+          "−10 W/(m² K)",
+          "10 W/(m² K)",
+          "50 W/(m² K)",
+          "Infiniti valori positivi"
+        ],
+        "value": "5 W/(m² K)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella relazione p=(5+u)x sostituiamo x=2u e p=100. Si ottiene 2u²+10u=100, ossia u²+5u−50=0. Il prodotto si fattorizza in (u−5)(u+10): le radici sono 5 e −10. Solo u=5 dà h>0 e, dal vincolo, ΔT=10 K>0. Il vincolo riguarda prove diverse con coefficienti costanti al loro interno."
+        },
+        {
+          "type": "formula",
+          "text": "100=2u(5+u)"
+        },
+        {
+          "type": "formula",
+          "text": " u^2+5u-50=0"
+        },
+        {
+          "type": "formula",
+          "text": " (u-5)(u+10)=0"
+        },
+        {
+          "type": "formula",
+          "text": " u=5"
+        },
+        {
+          "type": "formula",
+          "text": " h=5\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "text",
+          "text": "−10 viola sia h>0 sia il salto positivo imposto dal vincolo. Dieci non soddisfa la quadratica; cinquanta copia il termine noto senza risolverla. Il dato di potenza fissa la scala e non lascia infinite soluzioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella somma delle due dispersioni e filtra le radici col dominio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−10 viola sia h>0 sia il salto positivo imposto dal vincolo. Dieci non soddisfa la quadratica; cinquanta copia il termine noto senza risolverla. Il dato di potenza fissa la scala e non lascia infinite soluzioni.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Conduttanza del sostegno e superficie convettiva distinte",
+        "Somma di potenze, inverse e domini positivi",
+        "Scalature, medie, taratura e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25",
+      "name": "parallel-heat-losses-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EdWUgZGlzcGVyc2lvbmkgZnJhIGxlIHN0ZXNzZSB0ZW1wZXJhdHVyZTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5Tb3N0ZWdubyBlIHN1cGVyZmljaWUgY29udmV0dGl2YSBjb2xsZWdhbm8gaW4gcGFyYWxsZWxvIHVuIGNvcnBvIGNhbGRvIGFsIG1lZGVzaW1vIGFtYmllbnRlLiBDb24gZGlmZmVyZW56YSBkaWVjaSBrZWx2aW4gZSBjb25kdXR0YW56ZSBjaW5xdWUgd2F0dCBwZXIga2VsdmluIGNpYXNjdW5hLCBpIGR1ZSByYW1pIGNlZG9ubyBjaW5xdWFudGEgd2F0dCBjaWFzY3VubyBlIGlsIHRvdGFsZSDDqCBjZW50byB3YXR0LiBVbiBzdWNjZXNzaXZvIGNvbmZyb250byBoYSBwb3RlbnplIGNlbnRvIGUgdHJlY2VudG8gd2F0dCwgbWVkaWEgZHVlY2VudG8uPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJmbG93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgU3Rlc3NpIGVzdHJlbWksIHBlcmNvcnNpIGRpdmVyc2k8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+UHJvdmEgQTogZGlmZmVyZW56YSBjb211bmUgzpRUID0gMTAgSy48L3RleHQ+CjxyZWN0IHg9IjQ1IiB5PSIxMzAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMjAwIiByeD0iMTAiIGZpbGw9IiNmY2U2ZGMiIHN0cm9rZT0iI2I0NTMyOCIvPgo8cmVjdCB4PSI0NDUiIHk9IjEzMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMDAiIHJ4PSIxMCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9Ijc2IiB5PSIyMTgiPkNvcnBvPC90ZXh0Pjx0ZXh0IHg9Ijc2IiB5PSIyNTQiPmNhbGRvPC90ZXh0Pjx0ZXh0IHg9IjQ3MiIgeT0iMjE4Ij5TdGVzc288L3RleHQ+PHRleHQgeD0iNDYxIiB5PSIyNTQiPmFtYmllbnRlPC90ZXh0Pgo8cGF0aCBkPSJNMjEzIDE3MEg0MjciIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Zsb3cpIi8+CjxwYXRoIGQ9Ik0yMTMgMjc2SDQyNyIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjZmxvdykiLz4KPHRleHQgeD0iMjE5IiB5PSIxNDciIGZvbnQtc2l6ZT0iMTgiPlNvc3RlZ25vOiBHID0gNSBXL0s8L3RleHQ+PHRleHQgeD0iMjcxIiB5PSIyMDIiPjUwIFc8L3RleHQ+Cjx0ZXh0IHg9IjIyMiIgeT0iMjUxIiBmb250LXNpemU9IjE4Ij5TdXBlcmZpY2llOiBoQSA9IDUgVy9LPC90ZXh0Pjx0ZXh0IHg9IjI3MSIgeT0iMzEwIj41MCBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzc1IiBmb250LXNpemU9IjE4Ij5TY2hlbWEgZGVpIGNvbGxlZ2FtZW50aTsgZnJlY2NlIHNlbnphIHNjYWxhIG1ldHJpY2EuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDA3SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NTIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFNpIHNvbW1hbm8gbGUgcG90ZW56ZSBkZWkgcmFtaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ5MSIgZm9udC1zaXplPSIxOCI+Q29udHJpYnV0aSBkZWxsYSBwcm92YSBBLCB0dXR0aSBpbiBXLjwvdGV4dD4KPHBhdGggZD0iTTE0NSA1MjBWNzczIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNDUiIHk9IjU0NCIgd2lkdGg9IjE3NSIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPgo8cmVjdCB4PSIxNDUiIHk9IjYxNyIgd2lkdGg9IjE3NSIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxNDUiIHk9IjY5MCIgd2lkdGg9IjE3NSIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPjxyZWN0IHg9IjMyMCIgeT0iNjkwIiB3aWR0aD0iMTc1IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjMyIiB5PSI1NzAiPlNvc3RlZ25vPC90ZXh0Pjx0ZXh0IHg9IjMzOSIgeT0iNTcwIj41MCBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjQzIj5Db252ZXppb25lPC90ZXh0Pjx0ZXh0IHg9IjMzOSIgeT0iNjQzIj41MCBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzE2Ij5Ub3RhbGU8L3RleHQ+PHRleHQgeD0iNTE0IiB5PSI3MTYiPjEwMCBXPC90ZXh0Pgo8dGV4dCB4PSIxMjAiIHk9Ijc2NyI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgxNSIgZm9udC1zaXplPSIxOCI+Q29uZHV0dGFuemEgdG90YWxlOiA1ICsgNSA9IDEwIFcvSy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4NDdINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijg5MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHByb3ZlIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkzMSIgZm9udC1zaXplPSIxOCI+QjogzpRUID0gMjAgSywgaCA9IDEwIFcvKG3CssK3Syk7IEcgcmVzdGEgZmlzc28uPC90ZXh0Pgo8cGF0aCBkPSJNMTQ1IDk1N1YxMjA4IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNDUiIHk9Ijk3OSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxNDUiIHk9IjEwNTIiIHdpZHRoPSIzNjAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMTQ1IiB5PSIxMTI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSIxMDA1Ij5BPC90ZXh0Pjx0ZXh0IHg9IjI4NCIgeT0iMTAwNSI+MTAwIFc8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSIxMDc4Ij5CPC90ZXh0Pjx0ZXh0IHg9IjUyNCIgeT0iMTA3OCI+MzAwIFc8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTUxIj5NZWRpYTwvdGV4dD48dGV4dCB4PSI0MDQiIHk9IjExNTEiPjIwMCBXPC90ZXh0Pgo8dGV4dCB4PSIxMjAiIHk9IjEyMDIiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjQ5IiBmb250LXNpemU9IjE4Ij5NZWRpYSBkZWxsZSB1c2NpdGU6ICgxMDAgKyAzMDApLzIgPSAyMDAgVy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjgxIiBmb250LXNpemU9IjE4Ij5JbiBvZ25pIHBhbm5lbGxvIGxlIGJhcnJlIGhhbm5vIHVu4oCZb3JpZ2luZSBjb211bmUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
