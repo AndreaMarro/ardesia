@@ -46,7 +46,7 @@ TASKS=[
 ('L’inversa espressa con letture numeriche',SCENE+'Con d=ΔT/(1 K), quale relazione isola il numero della lettura Celsius t_c?',['t_c = t_f + d','t_c = d − t_f','t_c = t_f − d','t_c = d t_f','t_c = d / t_f'],
  'Dalla sottrazione d=t_c−t_f aggiungiamo t_f a entrambi i membri. Risulta t_c=t_f+d. I simboli qui sono numeri di letture nelle scale dichiarate, perciò la formula non mescola una temperatura Celsius assoluta con un offset Kelvin non convertito.',
  r'd=t_c-t_f\qquad t_c=t_f+d',
- 't_f−d ricostruirebbe il lato freddo a partire da quello caldo, non l’incognita richiesta. d−t_f cambia l’algebra e può essere negativo. Prodotto e quoziente non invertono un bilancio additivo.',
+ 't_f−d sottrae invece di aggiungere l’intervallo alla lettura fredda e renderebbe il corpo detto caldo più freddo di quello noto. d−t_f cambia l’algebra e può essere negativo. Prodotto e quoziente non invertono un bilancio additivo.',
  'Annulla la sottrazione di t_f con un’addizione.'),
 ('Fattori sulle temperature assolute','In questo confronto si usano direttamente temperature assolute T_c>T_f>0 in K. A ha intervallo ΔT_A=T_c−T_f. B impone T_c,B=κ₁T_c e T_f,B=κ₂T_f, con fattori positivi e κ₁T_c>κ₂T_f. Quale espressione dà ΔT_B/ΔT_A?',['(κ₁ T_c − κ₂ T_f) / (T_c − T_f)','κ₁ − κ₂','κ₁ / κ₂','κ₁ κ₂','(κ₁ T_c + κ₂ T_f) / (T_c + T_f)'],
  'I fattori scalano qui temperature assolute in kelvin. Applichiamoli prima di calcolare la nuova differenza e dividiamo per la differenza iniziale. Non si attribuiscono gli stessi fattori ai numeri Celsius, perché la conversione di scala contiene un offset.',
