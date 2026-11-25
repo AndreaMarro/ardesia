@@ -1,0 +1,1119 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-wave-wavelength-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13001,
+      "title": "Distanza percorsa dalla forma in un periodo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 1,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Con v=12 m/s e f=3 Hz, quanto vale λ in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Tre cicli al secondo corrispondono a un periodo di un terzo di secondo. In quel tempo la forma avanza di una lunghezza d’onda: dodici metri al secondo per un terzo di secondo dà quattro metri. La velocità non è quella di una particella del mezzo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b96c92d23ac7f9b392367a11394d3a153f266c73899437292d659c2c90307426",
+          "text": "L’istantanea spaziale ha creste a x=0,4,8 m: λ=4 m, alla scala orizzontale 55 px/m. Il sensore fermo registra invece massimi a t=0,1/3,2/3,1 s, con scala orizzontale 420 px/s. Le ordinate descrivono uno spostamento trasversale illustrativo di ampiezza 1 cm a 45 px/cm; le scale dei due assi non sono confrontabili. v=12 m/s è la propagazione della forma, non la velocità locale del mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac1f"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac13\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=vT"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac vf"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare dodici per tre darebbe trentasei con unità m/s², non una lunghezza. Un terzo di secondo è il periodo: non è ancora λ. L’ampiezza dell’oscillazione non entra in questo conto."
+        }
+      ],
+      "hints": [
+        "Durante un ciclo la forma percorre una lunghezza d’onda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare dodici per tre darebbe trentasei con unità m/s², non una lunghezza. Un terzo di secondo è il periodo: non è ancora λ. L’ampiezza dell’oscillazione non entra in questo conto.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13002,
+      "title": "L’unità della separazione fra creste",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 1,
+      "prompt": "λ indica la distanza fra due creste consecutive di un’onda periodica, misurata nello stesso istante. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "Hz",
+          "m/s",
+          "m/s²"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura è una separazione spaziale. Poiché Hz=s⁻¹, il rapporto (m/s)/Hz restituisce metri. L’eventuale prefisso, come centimetro, cambia il numero ma non la dimensione di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\lambda]=\\frac{\\mathrm{m/s}}{\\mathrm{s^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\lambda]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Secondi misurano durata, hertz frequenza, m/s velocità e m/s² accelerazione. Un grafico nel tempo può dare il periodo, mentre una fotografia spaziale dà λ."
+        }
+      ],
+      "hints": [
+        "Controlla che cosa è misurato sull’asse orizzontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Secondi misurano durata, hertz frequenza, m/s velocità e m/s² accelerazione. Un grafico nel tempo può dare il periodo, mentre una fotografia spaziale dà λ.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13003,
+      "title": "Oscillazione dell’aria e cammino del suono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 1,
+      "prompt": "Una piccola perturbazione sonora si propaga rettilinea nell’aria ferma, trattata come fluido omogeneo. Nel modello acustico lineare, come si muovono le particelle d’aria rispetto alla direzione di propagazione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Oscillano parallelamente alla propagazione",
+          "Oscillano perpendicolarmente alla propagazione",
+          "Viaggiano tutte con la forma alla velocità del suono",
+          "Restano sempre immobili durante il passaggio",
+          "Descrivono necessariamente circonferenze"
+        ],
+        "value": "Oscillano parallelamente alla propagazione"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il suono nell’aria è longitudinale: gli strati di fluido si avvicinano e si allontanano lungo la direzione in cui avanzano compressioni e rarefazioni. Una particella oscilla intorno alla propria posizione di equilibrio; la compressione passa anche quando quella particella torna indietro."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{moto longitudinale}"
+        },
+        {
+          "type": "text",
+          "text": "Il moto perpendicolare descrive una perturbazione trasversale, come quella di una corda, non questo suono in aria. La velocità del fronte non è la velocità delle molecole. Una sinusoide di pressione in funzione della posizione non disegna una traiettoria circolare o un movimento verticale dell’aria."
+        }
+      ],
+      "hints": [
+        "Distingui il moto locale del mezzo dal trasporto della perturbazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il moto perpendicolare descrive una perturbazione trasversale, come quella di una corda, non questo suono in aria. La velocità del fronte non è la velocità delle molecole. Una sinusoide di pressione in funzione della posizione non disegna una traiettoria circolare o un movimento verticale dell’aria.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13004,
+      "title": "Un’altra velocità, stessa sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 1,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Si confrontano A con v=12 m/s e B con v=1 m/s; in entrambe f=3 Hz. Come cambia λ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 1/3 m",
+          "Da 4 a 48 m",
+          "Da 4 a 3 m",
+          "Resta 4 m",
+          "Da 4 a 1/12 m"
+        ],
+        "value": "Da 4 a 1/3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sorgente mantiene il periodo di un terzo di secondo, ma nel secondo mezzo la forma percorre solo un terzo di metro durante un ciclo. La lunghezza passa da quattro a un terzo di metro: è dodici volte più piccola."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_A=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=\\frac13\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\lambda_B}{\\lambda_A}=\\frac1{12}"
+        },
+        {
+          "type": "text",
+          "text": "Quarantotto applica il fattore inverso. Tre copia il numero della frequenza e un dodicesimo è il rapporto puro delle lunghezze, non λ_B in metri. Mantenere f non mantiene λ quando cambia il mezzo e quindi v."
+        }
+      ],
+      "hints": [
+        "A frequenza fissa λ è direttamente proporzionale a v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quarantotto applica il fattore inverso. Tre copia il numero della frequenza e un dodicesimo è il rapporto puro delle lunghezze, non λ_B in metri. Mantenere f non mantiene λ quando cambia il mezzo e quindi v.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13005,
+      "title": "Ricostruire la velocità della forma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Si misurano λ=4 m e f=3 Hz. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ciclo corrisponde a quattro metri di avanzamento. Tre cicli al secondo producono dodici metri al secondo. Moltiplicare λ per f restituisce la velocità della forma; non specifica l’ampiezza né la velocità massima del materiale oscillante."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\lambda f"
+        },
+        {
+          "type": "formula",
+          "text": " v=(4\\,\\mathrm m)(3\\,\\mathrm{s^{-1}})"
+        },
+        {
+          "type": "formula",
+          "text": " v=12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere quattro per tre avrebbe unità m·s. Per ottenere m/s si può anche dividere λ per T=1/3 s. Nessun ramo negativo è coerente con il modulo v dichiarato positivo."
+        }
+      ],
+      "hints": [
+        "Quante lunghezze d’onda passano in un secondo?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere quattro per tre avrebbe unità m·s. Per ottenere m/s si può anche dividere λ per T=1/3 s. Nessun ramo negativo è coerente con il modulo v dichiarato positivo.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13006,
+      "title": "Contare i cicli per unità di tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Si conoscono v=12 m/s e λ=4 m. Quanto vale f in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo i metri percorsi in un secondo per i metri di un ciclo spaziale: dodici diviso quattro dà tre al secondo. Il periodo inverso è un terzo di secondo e controlla lo stesso avanzamento."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac v\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " f=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " f=3\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac13\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Quattro diviso dodici darebbe T in secondi, non f. Quarantotto moltiplicherebbe due grandezze quando occorre un rapporto. Hertz non è radiante al secondo: la pulsazione sarebbe ω=2πf."
+        }
+      ],
+      "hints": [
+        "Dividi la velocità della forma per la distanza di un ciclo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro diviso dodici darebbe T in secondi, non f. Quarantotto moltiplicherebbe due grandezze quando occorre un rapporto. Hertz non è radiante al secondo: la pulsazione sarebbe ω=2πf.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13007,
+      "title": "La frequenza diminuisce nello stesso mezzo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. A ha v=12 m/s e f=3 Hz. B resta nello stesso mezzo con v=12 m/s e f=1 Hz. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "9",
+          "1",
+          "12"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità resta dodici metri al secondo, ma un ciclo dura ora un secondo. Le lunghezze sono quattro e dodici metri: il rapporto è tre. La relazione inversa con f è possibile perché il mezzo è non dispersivo nel confronto."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_A=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo segue la frequenza nel verso sbagliato; nove quadra un rapporto di prima potenza. Uno ignora il periodo nuovo e dodici è il numero di metri di λ_B, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Con v fissa, un ciclo più lungo nel tempo occupa più spazio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo segue la frequenza nel verso sbagliato; nove quadra un rapporto di prima potenza. Uno ignora il periodo nuovo e dodici è il numero di metri di λ_B, non il rapporto adimensionale.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13008,
+      "title": "Una lunghezza proposta troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Con v=12 m/s e f=3 Hz si propone λ=8 m. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "−4 m",
+          "8 m",
+          "0 m",
+          "12 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione v=λf richiede λ=4 m. Otto meno quattro è più quattro metri. La proposta otto, inserita in v=λf, predirebbe ventiquattro m/s, diversa dalla velocità assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Meno quattro scambia l’ordine della sottrazione. Otto conserva la proposta, dodici somma e zero accetta il valore errato. Il segno dello scarto non è il verso di propagazione."
+        }
+      ],
+      "hints": [
+        "Ricalcola λ prima di sottrarla dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quattro scambia l’ordine della sottrazione. Otto conserva la proposta, dodici somma e zero accetta il valore errato. Il segno dello scarto non è il verso di propagazione.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13009,
+      "title": "Isolare una velocità dal rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Si misura λ e si conosce f. Quale relazione isola v in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = λ f",
+          "v = λ / f",
+          "v = f / λ",
+          "v = λ f²",
+          "v = λ + f"
+        ],
+        "value": "v = λ f"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo entrambi i membri di λ=v/f per f>0. Il prodotto λf ha dimensioni lunghezza su tempo e restituisce v. Non è necessario scegliere una radice: v compare alla prima potenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda f=v"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\lambda f"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "λ/f ha unità m·s, f/λ unità 1/(m·s), λf² accelerazione. La somma λ+f unisce dimensioni incompatibili. Tutti i fattori della formula corretta sono positivi nel dominio dato."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore f moltiplicando per la stessa grandezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "λ/f ha unità m·s, f/λ unità 1/(m·s), λf² accelerazione. La somma λ+f unisce dimensioni incompatibili. Tutti i fattori della formula corretta sono positivi nel dominio dato.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13010,
+      "title": "Scalare velocità e frequenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. B ha v_B=κ₁v_A e f_B=κ₂f_A, con κ₁,κ₂ positivi. Entrambi i mezzi e gli stati rispettano le ipotesi. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità dà un fattore diretto e la frequenza uno inverso. Sostituendo entrambi nel rapporto v/f e dividendo per la lunghezza iniziale rimane κ₁/κ₂. Se entrambi i fattori coincidono, le due lunghezze sono uguali."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_B=\\frac{\\kappa_1v_A}{\\kappa_2f_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto tratta f come diretta; il rapporto opposto scambia gli effetti. Il quadrato aggiunge una potenza assente. La somma darebbe due per stati identici, invece di uno."
+        }
+      ],
+      "hints": [
+        "Scrivi prima il nuovo rapporto v_B/f_B e cancella lo stato A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto tratta f come diretta; il rapporto opposto scambia gli effetti. Il quadrato aggiunge una potenza assente. La somma darebbe due per stati identici, invece di uno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13011,
+      "title": "Due cambiamenti, una lunghezza finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. A ha v=12 m/s,f=3 Hz. B ha v=30 m/s,f=6 Hz. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "5/2",
+          "1/2",
+          "5"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha quattro metri; B ha trenta diviso sei, cinque metri. Il rapporto finale su iniziale è cinque quarti. Lo stesso risultato viene dal fattore di velocità cinque mezzi diviso il fattore di frequenza due."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b96c92d23ac7f9b392367a11394d3a153f266c73899437292d659c2c90307426",
+          "text": "Tre passaggi distinguono fotografia nello spazio, cronometro in un punto e confronto fra prove. Le barre finali rappresentano λ_A=4 m e λ_B=5 m alla stessa scala 55 px/m, per A con v=12 m/s,f=3 Hz e B con v=30 m/s,f=6 Hz. Non sono ampiezze né traiettorie di molecole d’aria."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_A=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\lambda_B}{\\lambda_A}=\\frac54"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti è il reciproco; cinque mezzi considera solo v e un mezzo solo f. Cinque è il numero di metri del risultato B, non il rapporto puro. La lunghezza aumenta, anche se il periodo si dimezza, perché la forma viaggia più rapidamente."
+        }
+      ],
+      "hints": [
+        "Combina l’aumento di v e l’aumento di f prima di concludere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti è il reciproco; cinque mezzi considera solo v e un mezzo solo f. Cinque è il numero di metri del risultato B, non il rapporto puro. La lunghezza aumenta, anche se il periodo si dimezza, perché la forma viaggia più rapidamente.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13012,
+      "title": "La media delle lunghezze misurate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 2,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Si registrano A con v=12 m/s,f=3 Hz e B con v=30 m/s,f=6 Hz. Qual è la media aritmetica delle due λ con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 m",
+          "9 m",
+          "1/2 m",
+          "14/3 m",
+          "5 m"
+        ],
+        "value": "9/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due risultati sono quattro e cinque metri. La somma nove metri va divisa per due: la media è nove mezzi metri. Non è richiesta la lunghezza calcolata usando prima velocità e frequenza medie."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\lambda=\\frac{4+5}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\lambda=\\frac92\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Nove è la somma, un mezzo la semidifferenza e cinque la sola B. Gli ingressi medi v=21 m/s e f=9/2 Hz darebbero 14/3 m, maggiore della media richiesta di 1/6 m. Un quoziente non commuta in generale con la media."
+        }
+      ],
+      "hints": [
+        "Calcola ciascuna uscita prima di fare la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è la somma, un mezzo la semidifferenza e cinque la sola B. Gli ingressi medi v=21 m/s e f=9/2 Hz darebbero 14/3 m, maggiore della media richiesta di 1/6 m. Un quoziente non commuta in generale con la media.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13013,
+      "title": "Scegliere la frequenza per un obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 3,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. A ha v=12 m/s,f=3 Hz. B impone v=30 m/s e λ_B=(5/4)λ_A. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "5/2",
+          "5/4",
+          "6"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza obiettivo è cinque metri. A trenta metri al secondo servono sei cicli al secondo: f_B=30/5=6 Hz. Il rapporto con i tre hertz iniziali è due, non sei."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{30\\,\\mathrm{m/s}}{5\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=6\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto. Cinque mezzi copia l’aumento di v e cinque quarti quello di λ, senza combinarli. Sei è il valore di f_B nelle unità Hz e non il rapporto senza dimensioni."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore noto della velocità per quello richiesto alla lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto. Cinque mezzi copia l’aumento di v e cinque quarti quello di λ, senza combinarli. Sei è il valore di f_B nelle unità Hz e non il rapporto senza dimensioni.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13014,
+      "title": "Tarare una lettura di lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 3,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Un display continuo adimensionale segue S=qλ con q>0, senza offset. A con v=12 m/s,f=3 Hz legge S=12. B legge S=15 e ha f=6 Hz. Quanto vale v_B in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha λ=4 m, quindi q=12/(4 m)=3 m⁻¹. La lettura quindici rappresenta λ_B=5 m. Sei cicli al secondo per cinque metri di ogni ciclo danno v_B=30 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\lambda_B f_B"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=30\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quindici è una lettura adimensionale, non una lunghezza in metri. Usarla direttamente come λ darebbe novanta m/s. Il display non misura la velocità delle particelle del mezzo."
+        }
+      ],
+      "hints": [
+        "Calibra λ e solo dopo moltiplica per la frequenza della prova B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quindici è una lettura adimensionale, non una lunghezza in metri. Usarla direttamente come λ darebbe novanta m/s. Il display non misura la velocità delle particelle del mezzo.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13015,
+      "title": "Eliminare un offset prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 3,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Un display continuo adimensionale segue S=qλ+b con q>0 e q,b costanti. A: v=12 m/s,f=3 Hz,S=9. B: v=30 m/s,f=6 Hz,S=11. C: f=1 Hz,S=3. Quanto vale v_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s",
+          "3 m/s",
+          "2 m/s",
+          "4 m/s",
+          "1/2 m/s"
+        ],
+        "value": "1 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due riferimenti hanno λ=4 e 5 m. La differenza due delle letture divisa per un metro fissa q=2 m⁻¹; da nove meno otto segue b=1. C ha λ=(3−1)/2=1 m. A un hertz, v_C=1 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_C=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia la lettura; due o quattro non ricostruiscono S_C dopo la taratura. Un mezzo confonde una divisione per il guadagno con un’ulteriore divisione indebita. Un rapporto di letture grezze non elimina b."
+        }
+      ],
+      "hints": [
+        "Ricava q e b dai due riferimenti prima di interpretare la lettura C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre copia la lettura; due o quattro non ricostruiscono S_C dopo la taratura. Un mezzo confonde una divisione per il guadagno con un’ulteriore divisione indebita. Un rapporto di letture grezze non elimina b.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-wavelength-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Forma d’onda nello spazio e nel tempo",
+      "order": 13016,
+      "title": "Un rapporto che lascia libera la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-wavelength",
+      "difficulty": 3,
+      "prompt": "Un’onda periodica progressiva si propaga senza deformarsi in un mezzo omogeneo, fermo e non dispersivo nelle frequenze considerate. v>0 è il modulo della velocità della forma d’onda rispetto al mezzo; f>0 è la frequenza della sorgente e di un sensore fermo. λ>0 è la distanza fra due creste consecutive allo stesso istante. In ogni prova i parametri sono costanti. Se cambia v, si confrontano mezzi o condizioni materiali diversi; non si attribuisce a f un cambiamento di v nello stesso mezzo non dispersivo. Fra prove vale v=c f con c=4 m. Si misura inoltre λ=4 m. Quante coppie positive (v,f) sono compatibili nel modello?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite coppie"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c è una lunghezza: v/f=c=4 m per ogni f>0. La misura di λ ripete esattamente il vincolo e non identifica una frequenza. Per esempio f=1 Hz,v=4 m/s e f=3 Hz,v=12 m/s sono entrambe compatibili. Il confronto ammette mezzi o condizioni materiali diversi."
+        },
+        {
+          "type": "formula",
+          "text": "v=cf"
+        },
+        {
+          "type": "formula",
+          "text": " c=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac{cf}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=c"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non esauriscono la famiglia continua; la coppia nulla è esclusa e darebbe 0/0. Una misura indipendente di f oppure di v fisserebbe una coppia. In un singolo mezzo non dispersivo di velocità già fissata non sarebbe lecito variare v: qui il vincolo riguarda prove diverse."
+        }
+      ],
+      "hints": [
+        "Sostituisci v=cf e verifica se λ aggiunge un’informazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non esauriscono la famiglia continua; la coppia nulla è esclusa e darebbe 0/0. Una misura indipendente di f oppure di v fisserebbe una coppia. In un singolo mezzo non dispersivo di velocità già fissata non sarebbe lecito variare v: qui il vincolo riguarda prove diverse.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Lunghezza d’onda, periodo e propagazione",
+        "Suono longitudinale e moto del mezzo",
+        "Inverse, medie, tarature e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b96c92d23ac7f9b392367a11394d3a153f266c73899437292d659c2c90307426",
+      "name": "wave-wavelength-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgdmlld0JveD0iMCAwIDY0MCAxNTUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlVuYSBkaXN0YW56YSBuZWxsbyBzcGF6aW8sIHVuIGNpY2xvIG5lbCB0ZW1wbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPklzdGFudGFuZWEgZGkgdW7igJlvbmRhIHRyYXN2ZXJzYWxlIGlsbHVzdHJhdGl2YSBjb24gY3Jlc3RlIG9nbmkgcXVhdHRybyBtZXRyaS4gVW4gc2Vuc29yZSBmZXJtbyByZWdpc3RyYSB0cmUgY2ljbGkgYWwgc2Vjb25kby4gQ29uZnJvbnRvIGZyYSBsdW5naGV6emUgcXVhdHRybyBlIGNpbnF1ZSBtZXRyaSwgc2VuemEgY29uZm9uZGVyZSBwcm9wYWdhemlvbmUgZSBtb3RvIGRlbCBtZXp6by48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFyciIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE0NWQ4MSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTUwIiByeD0iMjAiIGZpbGw9IiNmN2ZiZmYiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZDQwIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IEZvdG9ncmFmaWEgYSB1biBpc3RhbnRlIGZpc3NhdG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+eTogc3Bvc3RhbWVudG8gdHJhc3ZlcnNhbGUgaWxsdXN0cmF0aXZvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTMwIj5BID0gMSBjbSDCtyB2ID0gMTIgbS9zIMK3IGYgPSAzIEh6PC90ZXh0Pgo8cGF0aCBkPSJNNzUgMjU1SDU3NSIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8cGF0aCBkPSJNMTAwIDMyNVYxNzUiIHN0cm9rZT0iIzE0MmQ0MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHRleHQgeD0iNTgyIiB5PSIyNjIiPng8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjE3MCI+eTwvdGV4dD4KPHBhdGggZD0iTTEwMC4wMDAgMjEwLjAwMCBMMTAxLjgzMyAyMTAuMDYyIEwxMDMuNjY3IDIxMC4yNDcgTDEwNS41MDAgMjEwLjU1NCBMMTA3LjMzMyAyMTAuOTgzIEwxMDkuMTY3IDIxMS41MzMgTDExMS4wMDAgMjEyLjIwMiBMMTEyLjgzMyAyMTIuOTg5IEwxMTQuNjY3IDIxMy44OTAgTDExNi41MDAgMjE0LjkwNSBMMTE4LjMzMyAyMTYuMDI5IEwxMjAuMTY3IDIxNy4yNjAgTDEyMi4wMDAgMjE4LjU5NCBMMTIzLjgzMyAyMjAuMDI4IEwxMjUuNjY3IDIyMS41NTggTDEyNy41MDAgMjIzLjE4MCBMMTI5LjMzMyAyMjQuODg5IEwxMzEuMTY3IDIyNi42ODEgTDEzMy4wMDAgMjI4LjU1MCBMMTM0LjgzMyAyMzAuNDkxIEwxMzYuNjY3IDIzMi41MDAgTDEzOC41MDAgMjM0LjU3MCBMMTQwLjMzMyAyMzYuNjk3IEwxNDIuMTY3IDIzOC44NzMgTDE0NC4wMDAgMjQxLjA5NCBMMTQ1LjgzMyAyNDMuMzUzIEwxNDcuNjY3IDI0NS42NDQgTDE0OS41MDAgMjQ3Ljk2MCBMMTUxLjMzMyAyNTAuMjk2IEwxNTMuMTY3IDI1Mi42NDUgTDE1NS4wMDAgMjU1LjAwMCBMMTU2LjgzMyAyNTcuMzU1IEwxNTguNjY3IDI1OS43MDQgTDE2MC41MDAgMjYyLjA0MCBMMTYyLjMzMyAyNjQuMzU2IEwxNjQuMTY3IDI2Ni42NDcgTDE2Ni4wMDAgMjY4LjkwNiBMMTY3LjgzMyAyNzEuMTI3IEwxNjkuNjY3IDI3My4zMDMgTDE3MS41MDAgMjc1LjQzMCBMMTczLjMzMyAyNzcuNTAwIEwxNzUuMTY3IDI3OS41MDkgTDE3Ny4wMDAgMjgxLjQ1MCBMMTc4LjgzMyAyODMuMzE5IEwxODAuNjY3IDI4NS4xMTEgTDE4Mi41MDAgMjg2LjgyMCBMMTg0LjMzMyAyODguNDQyIEwxODYuMTY3IDI4OS45NzIgTDE4OC4wMDAgMjkxLjQwNiBMMTg5LjgzMyAyOTIuNzQwIEwxOTEuNjY3IDI5My45NzEgTDE5My41MDAgMjk1LjA5NSBMMTk1LjMzMyAyOTYuMTEwIEwxOTcuMTY3IDI5Ny4wMTEgTDE5OS4wMDAgMjk3Ljc5OCBMMjAwLjgzMyAyOTguNDY3IEwyMDIuNjY3IDI5OS4wMTcgTDIwNC41MDAgMjk5LjQ0NiBMMjA2LjMzMyAyOTkuNzUzIEwyMDguMTY3IDI5OS45MzggTDIxMC4wMDAgMzAwLjAwMCBMMjExLjgzMyAyOTkuOTM4IEwyMTMuNjY3IDI5OS43NTMgTDIxNS41MDAgMjk5LjQ0NiBMMjE3LjMzMyAyOTkuMDE3IEwyMTkuMTY3IDI5OC40NjcgTDIyMS4wMDAgMjk3Ljc5OCBMMjIyLjgzMyAyOTcuMDExIEwyMjQuNjY3IDI5Ni4xMTAgTDIyNi41MDAgMjk1LjA5NSBMMjI4LjMzMyAyOTMuOTcxIEwyMzAuMTY3IDI5Mi43NDAgTDIzMi4wMDAgMjkxLjQwNiBMMjMzLjgzMyAyODkuOTcyIEwyMzUuNjY3IDI4OC40NDIgTDIzNy41MDAgMjg2LjgyMCBMMjM5LjMzMyAyODUuMTExIEwyNDEuMTY3IDI4My4zMTkgTDI0My4wMDAgMjgxLjQ1MCBMMjQ0LjgzMyAyNzkuNTA5IEwyNDYuNjY3IDI3Ny41MDAgTDI0OC41MDAgMjc1LjQzMCBMMjUwLjMzMyAyNzMuMzAzIEwyNTIuMTY3IDI3MS4xMjcgTDI1NC4wMDAgMjY4LjkwNiBMMjU1LjgzMyAyNjYuNjQ3IEwyNTcuNjY3IDI2NC4zNTYgTDI1OS41MDAgMjYyLjA0MCBMMjYxLjMzMyAyNTkuNzA0IEwyNjMuMTY3IDI1Ny4zNTUgTDI2NS4wMDAgMjU1LjAwMCBMMjY2LjgzMyAyNTIuNjQ1IEwyNjguNjY3IDI1MC4yOTYgTDI3MC41MDAgMjQ3Ljk2MCBMMjcyLjMzMyAyNDUuNjQ0IEwyNzQuMTY3IDI0My4zNTMgTDI3Ni4wMDAgMjQxLjA5NCBMMjc3LjgzMyAyMzguODczIEwyNzkuNjY3IDIzNi42OTcgTDI4MS41MDAgMjM0LjU3MCBMMjgzLjMzMyAyMzIuNTAwIEwyODUuMTY3IDIzMC40OTEgTDI4Ny4wMDAgMjI4LjU1MCBMMjg4LjgzMyAyMjYuNjgxIEwyOTAuNjY3IDIyNC44ODkgTDI5Mi41MDAgMjIzLjE4MCBMMjk0LjMzMyAyMjEuNTU4IEwyOTYuMTY3IDIyMC4wMjggTDI5OC4wMDAgMjE4LjU5NCBMMjk5LjgzMyAyMTcuMjYwIEwzMDEuNjY3IDIxNi4wMjkgTDMwMy41MDAgMjE0LjkwNSBMMzA1LjMzMyAyMTMuODkwIEwzMDcuMTY3IDIxMi45ODkgTDMwOS4wMDAgMjEyLjIwMiBMMzEwLjgzMyAyMTEuNTMzIEwzMTIuNjY3IDIxMC45ODMgTDMxNC41MDAgMjEwLjU1NCBMMzE2LjMzMyAyMTAuMjQ3IEwzMTguMTY3IDIxMC4wNjIgTDMyMC4wMDAgMjEwLjAwMCBMMzIxLjgzMyAyMTAuMDYyIEwzMjMuNjY3IDIxMC4yNDcgTDMyNS41MDAgMjEwLjU1NCBMMzI3LjMzMyAyMTAuOTgzIEwzMjkuMTY3IDIxMS41MzMgTDMzMS4wMDAgMjEyLjIwMiBMMzMyLjgzMyAyMTIuOTg5IEwzMzQuNjY3IDIxMy44OTAgTDMzNi41MDAgMjE0LjkwNSBMMzM4LjMzMyAyMTYuMDI5IEwzNDAuMTY3IDIxNy4yNjAgTDM0Mi4wMDAgMjE4LjU5NCBMMzQzLjgzMyAyMjAuMDI4IEwzNDUuNjY3IDIyMS41NTggTDM0Ny41MDAgMjIzLjE4MCBMMzQ5LjMzMyAyMjQuODg5IEwzNTEuMTY3IDIyNi42ODEgTDM1My4wMDAgMjI4LjU1MCBMMzU0LjgzMyAyMzAuNDkxIEwzNTYuNjY3IDIzMi41MDAgTDM1OC41MDAgMjM0LjU3MCBMMzYwLjMzMyAyMzYuNjk3IEwzNjIuMTY3IDIzOC44NzMgTDM2NC4wMDAgMjQxLjA5NCBMMzY1LjgzMyAyNDMuMzUzIEwzNjcuNjY3IDI0NS42NDQgTDM2OS41MDAgMjQ3Ljk2MCBMMzcxLjMzMyAyNTAuMjk2IEwzNzMuMTY3IDI1Mi42NDUgTDM3NS4wMDAgMjU1LjAwMCBMMzc2LjgzMyAyNTcuMzU1IEwzNzguNjY3IDI1OS43MDQgTDM4MC41MDAgMjYyLjA0MCBMMzgyLjMzMyAyNjQuMzU2IEwzODQuMTY3IDI2Ni42NDcgTDM4Ni4wMDAgMjY4LjkwNiBMMzg3LjgzMyAyNzEuMTI3IEwzODkuNjY3IDI3My4zMDMgTDM5MS41MDAgMjc1LjQzMCBMMzkzLjMzMyAyNzcuNTAwIEwzOTUuMTY3IDI3OS41MDkgTDM5Ny4wMDAgMjgxLjQ1MCBMMzk4LjgzMyAyODMuMzE5IEw0MDAuNjY3IDI4NS4xMTEgTDQwMi41MDAgMjg2LjgyMCBMNDA0LjMzMyAyODguNDQyIEw0MDYuMTY3IDI4OS45NzIgTDQwOC4wMDAgMjkxLjQwNiBMNDA5LjgzMyAyOTIuNzQwIEw0MTEuNjY3IDI5My45NzEgTDQxMy41MDAgMjk1LjA5NSBMNDE1LjMzMyAyOTYuMTEwIEw0MTcuMTY3IDI5Ny4wMTEgTDQxOS4wMDAgMjk3Ljc5OCBMNDIwLjgzMyAyOTguNDY3IEw0MjIuNjY3IDI5OS4wMTcgTDQyNC41MDAgMjk5LjQ0NiBMNDI2LjMzMyAyOTkuNzUzIEw0MjguMTY3IDI5OS45MzggTDQzMC4wMDAgMzAwLjAwMCBMNDMxLjgzMyAyOTkuOTM4IEw0MzMuNjY3IDI5OS43NTMgTDQzNS41MDAgMjk5LjQ0NiBMNDM3LjMzMyAyOTkuMDE3IEw0MzkuMTY3IDI5OC40NjcgTDQ0MS4wMDAgMjk3Ljc5OCBMNDQyLjgzMyAyOTcuMDExIEw0NDQuNjY3IDI5Ni4xMTAgTDQ0Ni41MDAgMjk1LjA5NSBMNDQ4LjMzMyAyOTMuOTcxIEw0NTAuMTY3IDI5Mi43NDAgTDQ1Mi4wMDAgMjkxLjQwNiBMNDUzLjgzMyAyODkuOTcyIEw0NTUuNjY3IDI4OC40NDIgTDQ1Ny41MDAgMjg2LjgyMCBMNDU5LjMzMyAyODUuMTExIEw0NjEuMTY3IDI4My4zMTkgTDQ2My4wMDAgMjgxLjQ1MCBMNDY0LjgzMyAyNzkuNTA5IEw0NjYuNjY3IDI3Ny41MDAgTDQ2OC41MDAgMjc1LjQzMCBMNDcwLjMzMyAyNzMuMzAzIEw0NzIuMTY3IDI3MS4xMjcgTDQ3NC4wMDAgMjY4LjkwNiBMNDc1LjgzMyAyNjYuNjQ3IEw0NzcuNjY3IDI2NC4zNTYgTDQ3OS41MDAgMjYyLjA0MCBMNDgxLjMzMyAyNTkuNzA0IEw0ODMuMTY3IDI1Ny4zNTUgTDQ4NS4wMDAgMjU1LjAwMCBMNDg2LjgzMyAyNTIuNjQ1IEw0ODguNjY3IDI1MC4yOTYgTDQ5MC41MDAgMjQ3Ljk2MCBMNDkyLjMzMyAyNDUuNjQ0IEw0OTQuMTY3IDI0My4zNTMgTDQ5Ni4wMDAgMjQxLjA5NCBMNDk3LjgzMyAyMzguODczIEw0OTkuNjY3IDIzNi42OTcgTDUwMS41MDAgMjM0LjU3MCBMNTAzLjMzMyAyMzIuNTAwIEw1MDUuMTY3IDIzMC40OTEgTDUwNy4wMDAgMjI4LjU1MCBMNTA4LjgzMyAyMjYuNjgxIEw1MTAuNjY3IDIyNC44ODkgTDUxMi41MDAgMjIzLjE4MCBMNTE0LjMzMyAyMjEuNTU4IEw1MTYuMTY3IDIyMC4wMjggTDUxOC4wMDAgMjE4LjU5NCBMNTE5LjgzMyAyMTcuMjYwIEw1MjEuNjY3IDIxNi4wMjkgTDUyMy41MDAgMjE0LjkwNSBMNTI1LjMzMyAyMTMuODkwIEw1MjcuMTY3IDIxMi45ODkgTDUyOS4wMDAgMjEyLjIwMiBMNTMwLjgzMyAyMTEuNTMzIEw1MzIuNjY3IDIxMC45ODMgTDUzNC41MDAgMjEwLjU1NCBMNTM2LjMzMyAyMTAuMjQ3IEw1MzguMTY3IDIxMC4wNjIgTDU0MC4wMDAgMjEwLjAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTEwMCAyMTBWMzQwTTMyMCAyMTBWMzQwTTU0MCAyMTBWMzQwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgo8cGF0aCBkPSJNMTAwIDM1NUgzMjBNMTAwIDM0NVYzNjVNMzIwIDM0NVYzNjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjkzIiB5PSIzOTUiPjA8L3RleHQ+PHRleHQgeD0iMzA2IiB5PSIzOTUiPjQ8L3RleHQ+PHRleHQgeD0iNTI2IiB5PSIzOTUiPjggbTwvdGV4dD4KPHRleHQgeD0iMTgwIiB5PSIzNDUiPs67ID0gNCBtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDQwIj5Pcml6em9udGFsZTogNTUgcHgvbSDCtyB2ZXJ0aWNhbGU6IDQ1IHB4L2NtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDgwIj5EdWUgc2NhbGUgZGl2ZXJzZTogzrsgbm9uIMOoIGzigJlhbXBpZXp6YS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA1MTVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjU2MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBVbiBzZW5zb3JlIGZlcm1vIG5lbCBtZXp6bzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjYwMCI+U3Rlc3NvIEEgPSAxIGNtIMK3IFQgPSAxLzMgczwvdGV4dD4KPHBhdGggZD0iTTc1IDc0MEg1NzUiIHN0cm9rZT0iIzE0MmQ0MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHBhdGggZD0iTTEwMCA4MTBWNjYwIiBzdHJva2U9IiMxNDJkNDAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+Cjx0ZXh0IHg9IjU4MiIgeT0iNzQ3Ij50PC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI2NTUiPnk8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAuMDAwIDY5NS4wMDAgTDEwMS43NTAgNjk1LjEzOSBMMTAzLjUwMCA2OTUuNTU0IEwxMDUuMjUwIDY5Ni4yNDMgTDEwNy4wMDAgNjk3LjIwMiBMMTA4Ljc1MCA2OTguNDI1IEwxMTAuNTAwIDY5OS45MDUgTDExMi4yNTAgNzAxLjYzMSBMMTE0LjAwMCA3MDMuNTk0IEwxMTUuNzUwIDcwNS43ODIgTDExNy41MDAgNzA4LjE4MCBMMTE5LjI1MCA3MTAuNzc1IEwxMjEuMDAwIDcxMy41NTAgTDEyMi43NTAgNzE2LjQ4OCBMMTI0LjUwMCA3MTkuNTcwIEwxMjYuMjUwIDcyMi43NzkgTDEyOC4wMDAgNzI2LjA5NCBMMTI5Ljc1MCA3MjkuNDk1IEwxMzEuNTAwIDczMi45NjAgTDEzMy4yNTAgNzM2LjQ2OSBMMTM1LjAwMCA3NDAuMDAwIEwxMzYuNzUwIDc0My41MzEgTDEzOC41MDAgNzQ3LjA0MCBMMTQwLjI1MCA3NTAuNTA1IEwxNDIuMDAwIDc1My45MDYgTDE0My43NTAgNzU3LjIyMSBMMTQ1LjUwMCA3NjAuNDMwIEwxNDcuMjUwIDc2My41MTIgTDE0OS4wMDAgNzY2LjQ1MCBMMTUwLjc1MCA3NjkuMjI1IEwxNTIuNTAwIDc3MS44MjAgTDE1NC4yNTAgNzc0LjIxOCBMMTU2LjAwMCA3NzYuNDA2IEwxNTcuNzUwIDc3OC4zNjkgTDE1OS41MDAgNzgwLjA5NSBMMTYxLjI1MCA3ODEuNTc1IEwxNjMuMDAwIDc4Mi43OTggTDE2NC43NTAgNzgzLjc1NyBMMTY2LjUwMCA3ODQuNDQ2IEwxNjguMjUwIDc4NC44NjEgTDE3MC4wMDAgNzg1LjAwMCBMMTcxLjc1MCA3ODQuODYxIEwxNzMuNTAwIDc4NC40NDYgTDE3NS4yNTAgNzgzLjc1NyBMMTc3LjAwMCA3ODIuNzk4IEwxNzguNzUwIDc4MS41NzUgTDE4MC41MDAgNzgwLjA5NSBMMTgyLjI1MCA3NzguMzY5IEwxODQuMDAwIDc3Ni40MDYgTDE4NS43NTAgNzc0LjIxOCBMMTg3LjUwMCA3NzEuODIwIEwxODkuMjUwIDc2OS4yMjUgTDE5MS4wMDAgNzY2LjQ1MCBMMTkyLjc1MCA3NjMuNTEyIEwxOTQuNTAwIDc2MC40MzAgTDE5Ni4yNTAgNzU3LjIyMSBMMTk4LjAwMCA3NTMuOTA2IEwxOTkuNzUwIDc1MC41MDUgTDIwMS41MDAgNzQ3LjA0MCBMMjAzLjI1MCA3NDMuNTMxIEwyMDUuMDAwIDc0MC4wMDAgTDIwNi43NTAgNzM2LjQ2OSBMMjA4LjUwMCA3MzIuOTYwIEwyMTAuMjUwIDcyOS40OTUgTDIxMi4wMDAgNzI2LjA5NCBMMjEzLjc1MCA3MjIuNzc5IEwyMTUuNTAwIDcxOS41NzAgTDIxNy4yNTAgNzE2LjQ4OCBMMjE5LjAwMCA3MTMuNTUwIEwyMjAuNzUwIDcxMC43NzUgTDIyMi41MDAgNzA4LjE4MCBMMjI0LjI1MCA3MDUuNzgyIEwyMjYuMDAwIDcwMy41OTQgTDIyNy43NTAgNzAxLjYzMSBMMjI5LjUwMCA2OTkuOTA1IEwyMzEuMjUwIDY5OC40MjUgTDIzMy4wMDAgNjk3LjIwMiBMMjM0Ljc1MCA2OTYuMjQzIEwyMzYuNTAwIDY5NS41NTQgTDIzOC4yNTAgNjk1LjEzOSBMMjQwLjAwMCA2OTUuMDAwIEwyNDEuNzUwIDY5NS4xMzkgTDI0My41MDAgNjk1LjU1NCBMMjQ1LjI1MCA2OTYuMjQzIEwyNDcuMDAwIDY5Ny4yMDIgTDI0OC43NTAgNjk4LjQyNSBMMjUwLjUwMCA2OTkuOTA1IEwyNTIuMjUwIDcwMS42MzEgTDI1NC4wMDAgNzAzLjU5NCBMMjU1Ljc1MCA3MDUuNzgyIEwyNTcuNTAwIDcwOC4xODAgTDI1OS4yNTAgNzEwLjc3NSBMMjYxLjAwMCA3MTMuNTUwIEwyNjIuNzUwIDcxNi40ODggTDI2NC41MDAgNzE5LjU3MCBMMjY2LjI1MCA3MjIuNzc5IEwyNjguMDAwIDcyNi4wOTQgTDI2OS43NTAgNzI5LjQ5NSBMMjcxLjUwMCA3MzIuOTYwIEwyNzMuMjUwIDczNi40NjkgTDI3NS4wMDAgNzQwLjAwMCBMMjc2Ljc1MCA3NDMuNTMxIEwyNzguNTAwIDc0Ny4wNDAgTDI4MC4yNTAgNzUwLjUwNSBMMjgyLjAwMCA3NTMuOTA2IEwyODMuNzUwIDc1Ny4yMjEgTDI4NS41MDAgNzYwLjQzMCBMMjg3LjI1MCA3NjMuNTEyIEwyODkuMDAwIDc2Ni40NTAgTDI5MC43NTAgNzY5LjIyNSBMMjkyLjUwMCA3NzEuODIwIEwyOTQuMjUwIDc3NC4yMTggTDI5Ni4wMDAgNzc2LjQwNiBMMjk3Ljc1MCA3NzguMzY5IEwyOTkuNTAwIDc4MC4wOTUgTDMwMS4yNTAgNzgxLjU3NSBMMzAzLjAwMCA3ODIuNzk4IEwzMDQuNzUwIDc4My43NTcgTDMwNi41MDAgNzg0LjQ0NiBMMzA4LjI1MCA3ODQuODYxIEwzMTAuMDAwIDc4NS4wMDAgTDMxMS43NTAgNzg0Ljg2MSBMMzEzLjUwMCA3ODQuNDQ2IEwzMTUuMjUwIDc4My43NTcgTDMxNy4wMDAgNzgyLjc5OCBMMzE4Ljc1MCA3ODEuNTc1IEwzMjAuNTAwIDc4MC4wOTUgTDMyMi4yNTAgNzc4LjM2OSBMMzI0LjAwMCA3NzYuNDA2IEwzMjUuNzUwIDc3NC4yMTggTDMyNy41MDAgNzcxLjgyMCBMMzI5LjI1MCA3NjkuMjI1IEwzMzEuMDAwIDc2Ni40NTAgTDMzMi43NTAgNzYzLjUxMiBMMzM0LjUwMCA3NjAuNDMwIEwzMzYuMjUwIDc1Ny4yMjEgTDMzOC4wMDAgNzUzLjkwNiBMMzM5Ljc1MCA3NTAuNTA1IEwzNDEuNTAwIDc0Ny4wNDAgTDM0My4yNTAgNzQzLjUzMSBMMzQ1LjAwMCA3NDAuMDAwIEwzNDYuNzUwIDczNi40NjkgTDM0OC41MDAgNzMyLjk2MCBMMzUwLjI1MCA3MjkuNDk1IEwzNTIuMDAwIDcyNi4wOTQgTDM1My43NTAgNzIyLjc3OSBMMzU1LjUwMCA3MTkuNTcwIEwzNTcuMjUwIDcxNi40ODggTDM1OS4wMDAgNzEzLjU1MCBMMzYwLjc1MCA3MTAuNzc1IEwzNjIuNTAwIDcwOC4xODAgTDM2NC4yNTAgNzA1Ljc4MiBMMzY2LjAwMCA3MDMuNTk0IEwzNjcuNzUwIDcwMS42MzEgTDM2OS41MDAgNjk5LjkwNSBMMzcxLjI1MCA2OTguNDI1IEwzNzMuMDAwIDY5Ny4yMDIgTDM3NC43NTAgNjk2LjI0MyBMMzc2LjUwMCA2OTUuNTU0IEwzNzguMjUwIDY5NS4xMzkgTDM4MC4wMDAgNjk1LjAwMCBMMzgxLjc1MCA2OTUuMTM5IEwzODMuNTAwIDY5NS41NTQgTDM4NS4yNTAgNjk2LjI0MyBMMzg3LjAwMCA2OTcuMjAyIEwzODguNzUwIDY5OC40MjUgTDM5MC41MDAgNjk5LjkwNSBMMzkyLjI1MCA3MDEuNjMxIEwzOTQuMDAwIDcwMy41OTQgTDM5NS43NTAgNzA1Ljc4MiBMMzk3LjUwMCA3MDguMTgwIEwzOTkuMjUwIDcxMC43NzUgTDQwMS4wMDAgNzEzLjU1MCBMNDAyLjc1MCA3MTYuNDg4IEw0MDQuNTAwIDcxOS41NzAgTDQwNi4yNTAgNzIyLjc3OSBMNDA4LjAwMCA3MjYuMDk0IEw0MDkuNzUwIDcyOS40OTUgTDQxMS41MDAgNzMyLjk2MCBMNDEzLjI1MCA3MzYuNDY5IEw0MTUuMDAwIDc0MC4wMDAgTDQxNi43NTAgNzQzLjUzMSBMNDE4LjUwMCA3NDcuMDQwIEw0MjAuMjUwIDc1MC41MDUgTDQyMi4wMDAgNzUzLjkwNiBMNDIzLjc1MCA3NTcuMjIxIEw0MjUuNTAwIDc2MC40MzAgTDQyNy4yNTAgNzYzLjUxMiBMNDI5LjAwMCA3NjYuNDUwIEw0MzAuNzUwIDc2OS4yMjUgTDQzMi41MDAgNzcxLjgyMCBMNDM0LjI1MCA3NzQuMjE4IEw0MzYuMDAwIDc3Ni40MDYgTDQzNy43NTAgNzc4LjM2OSBMNDM5LjUwMCA3ODAuMDk1IEw0NDEuMjUwIDc4MS41NzUgTDQ0My4wMDAgNzgyLjc5OCBMNDQ0Ljc1MCA3ODMuNzU3IEw0NDYuNTAwIDc4NC40NDYgTDQ0OC4yNTAgNzg0Ljg2MSBMNDUwLjAwMCA3ODUuMDAwIEw0NTEuNzUwIDc4NC44NjEgTDQ1My41MDAgNzg0LjQ0NiBMNDU1LjI1MCA3ODMuNzU3IEw0NTcuMDAwIDc4Mi43OTggTDQ1OC43NTAgNzgxLjU3NSBMNDYwLjUwMCA3ODAuMDk1IEw0NjIuMjUwIDc3OC4zNjkgTDQ2NC4wMDAgNzc2LjQwNiBMNDY1Ljc1MCA3NzQuMjE4IEw0NjcuNTAwIDc3MS44MjAgTDQ2OS4yNTAgNzY5LjIyNSBMNDcxLjAwMCA3NjYuNDUwIEw0NzIuNzUwIDc2My41MTIgTDQ3NC41MDAgNzYwLjQzMCBMNDc2LjI1MCA3NTcuMjIxIEw0NzguMDAwIDc1My45MDYgTDQ3OS43NTAgNzUwLjUwNSBMNDgxLjUwMCA3NDcuMDQwIEw0ODMuMjUwIDc0My41MzEgTDQ4NS4wMDAgNzQwLjAwMCBMNDg2Ljc1MCA3MzYuNDY5IEw0ODguNTAwIDczMi45NjAgTDQ5MC4yNTAgNzI5LjQ5NSBMNDkyLjAwMCA3MjYuMDk0IEw0OTMuNzUwIDcyMi43NzkgTDQ5NS41MDAgNzE5LjU3MCBMNDk3LjI1MCA3MTYuNDg4IEw0OTkuMDAwIDcxMy41NTAgTDUwMC43NTAgNzEwLjc3NSBMNTAyLjUwMCA3MDguMTgwIEw1MDQuMjUwIDcwNS43ODIgTDUwNi4wMDAgNzAzLjU5NCBMNTA3Ljc1MCA3MDEuNjMxIEw1MDkuNTAwIDY5OS45MDUgTDUxMS4yNTAgNjk4LjQyNSBMNTEzLjAwMCA2OTcuMjAyIEw1MTQuNzUwIDY5Ni4yNDMgTDUxNi41MDAgNjk1LjU1NCBMNTE4LjI1MCA2OTUuMTM5IEw1MjAuMDAwIDY5NS4wMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xMDAgNjk1VjgyNU0yNDAgNjk1VjgyNU0zODAgNjk1VjgyNU01MjAgNjk1VjgyNSIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHBhdGggZD0iTTEwMCA4NDVIMjQwTTEwMCA4MzVWODU1TTI0MCA4MzVWODU1IiBzdHJva2U9IiNjNjU5MTkiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSI5MyIgeT0iOTAwIj4wPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iOTAwIj4xLzM8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSI5MDAiPjIvMzwvdGV4dD48dGV4dCB4PSI1MTAiIHk9IjkwMCI+MSBzPC90ZXh0Pgo8dGV4dCB4PSIxMzUiIHk9IjgzMiI+VCA9IDEvMyBzPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTQ1Ij5Pcml6em9udGFsZTogNDIwIHB4L3MgwrcgdmVydGljYWxlOiA0NSBweC9jbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk4NSI+TGEgZm9ybWEgYXZhbnphIGRpIM67IGR1cmFudGUgdW4gcGVyaW9kby48L3RleHQ+CjxwYXRoIGQ9Ik0zNSAxMDIwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDY1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IER1ZSBwcm92ZSwgbHVuZ2hlenplIGRpdmVyc2U8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTA1Ij5CYXJyZSBkYSB6ZXJvOiBzdGVzc2Egc2NhbGEgNTUgcHgvbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExNjAiPkEgwrcgdiA9IDEyIG0vcyDCtyBmID0gMyBIejwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMTkwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ1ZDgxIi8+PHRleHQgeD0iMzQwIiB5PSIxMjE3Ij40IG08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjkwIj5CIMK3IHYgPSAzMCBtL3MgwrcgZiA9IDYgSHo8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTMyMCIgd2lkdGg9IjI3NSIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjM5NSIgeT0iMTM0NyI+NSBtPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDExNzVWMTI0ME0xMDAgMTMwNVYxMzcwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgo8dGV4dCB4PSIzNSIgeT0iMTQyMCI+zrvhtK4vzrvhtKwgPSA1LzQgwrcgdiDDqCBsYSB2ZWxvY2l0w6AgZGVsbGEgZm9ybWEuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ2NSI+SWwgbWV6em8gb3NjaWxsYSB2aWNpbm8gYWwgc3VvIGVxdWlsaWJyaW8uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTUxMCI+SWwgY2FzbyBzb25vcm8gbG9uZ2l0dWRpbmFsZSDDqCBkaXN0aW50by48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
