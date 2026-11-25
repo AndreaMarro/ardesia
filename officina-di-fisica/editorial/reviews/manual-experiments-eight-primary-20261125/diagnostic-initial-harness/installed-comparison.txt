@@ -1,0 +1,10 @@
+<anonymous_script>:8
+          Math.abs(answer - a.value) <= Math.max(activity ? 0.000001 : 0.001, Math.abs(a.value) * 0.005);
+                                                 ^
+
+ReferenceError: activity is not defined
+    at eval (eval at <anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/manual-experiments-eight-primary-20261125/compare-installed.mjs:30:13), <anonymous>:8:50)
+    at score (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/manual-experiments-eight-primary-20261125/compare-installed.mjs:31:27)
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/manual-experiments-eight-primary-20261125/compare-installed.mjs:42:16
+
+Node.js v22.14.0

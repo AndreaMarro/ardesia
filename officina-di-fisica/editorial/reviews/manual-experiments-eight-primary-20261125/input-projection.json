@@ -1,0 +1,284 @@
+{
+  "activityCredit": 0,
+  "allowlist": [
+    "id",
+    "kind",
+    "course",
+    "skill",
+    "version",
+    "title",
+    "summary",
+    "apparatus",
+    "control",
+    "measure",
+    "formula"
+  ],
+  "disclosure": "Reviewer previously solved/read the 139 original partial activities, including original models and generated tasks; this is not blind to originals. Only the eight selected input pairs were newly supplied by the separate author. No new Root candidate text, SVG, authoring module or answer has been read.",
+  "excludedOriginalFields": [
+    "blocks",
+    "substitution",
+    "transferPrompt",
+    "references",
+    "interpretation"
+  ],
+  "humanApproval": "NOT_RUN",
+  "newCandidateExposure": "NONE",
+  "newCandidateWritten": false,
+  "phase": "ORIGINAL_INPUT_PROJECTION_BEFORE_NEW_CANDIDATE_READING",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "originalInputProjection": {
+        "apparatus": "pistone",
+        "control": {
+          "label": "Rapporto di espansione V/V₀",
+          "max": 4.0,
+          "min": 1.0,
+          "step": 0.25,
+          "unit": "1"
+        },
+        "course": "C3",
+        "formula": "p = 100(V₀/V)ᵞ, qui γ = 1,5",
+        "id": "SIM-C3-L07-05",
+        "kind": "experiment",
+        "measure": {
+          "label": "Pressione adiabatica",
+          "unit": "kPa"
+        },
+        "skill": "C3-L07",
+        "summary": "A parità di espansione la pressione scende più in isoterma o in adiabatica?",
+        "title": "Adiabatica e confronto qualitativo",
+        "version": 1
+      },
+      "originalRecordSha256": "4bd92caee07e88d5a8c27241b49545c10cb826643a34d10ae7a5c1582f4dc476",
+      "selectedAssessmentInputs": [
+        "2.25",
+        "4"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "lorentz",
+        "control": {
+          "label": "Angolo tra velocità e campo",
+          "max": 180.0,
+          "min": 0.0,
+          "step": 5.0,
+          "unit": "°"
+        },
+        "course": "C4",
+        "formula": "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T",
+        "id": "SIM-C4-L09-02",
+        "kind": "experiment",
+        "measure": {
+          "label": "Forza sulla carica",
+          "unit": "µN"
+        },
+        "skill": "C4-L09",
+        "summary": "Dove punta la forza rispetto alla velocità e al campo magnetico?",
+        "title": "Forza di Lorentz su una carica in moto e su un filo",
+        "version": 1
+      },
+      "originalRecordSha256": "1a95c439565a3ee5f38e39fa62ecbc5a93cfc19c35e25e960c95b3aa02d3c394",
+      "selectedAssessmentInputs": [
+        "30",
+        "90"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C4.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "oscillatore",
+        "control": {
+          "label": "Tempo dall’estremo positivo",
+          "max": 4.0,
+          "min": 0.0,
+          "step": 0.125,
+          "unit": "s"
+        },
+        "course": "C5",
+        "formula": "x = A cos(2πt/T); A = 4 cm, T = 2 s",
+        "id": "SIM-C5-L01-01",
+        "kind": "experiment",
+        "measure": {
+          "label": "Posizione",
+          "unit": "cm"
+        },
+        "skill": "C5-L01",
+        "summary": "Quale moto della sorgente produce un’oscillazione sinusoidale?",
+        "title": "Oscillatore armonico come sorgente",
+        "version": 1
+      },
+      "originalRecordSha256": "91f949bcdac0c7729b9248459ffba3c6863600b33e44dca6d1d0c8c736c40751",
+      "selectedAssessmentInputs": [
+        "0.5",
+        "1"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "onda",
+        "control": {
+          "label": "Tempo alla sonda",
+          "max": 2.0,
+          "min": 0.0,
+          "step": 0.125,
+          "unit": "s"
+        },
+        "course": "C5",
+        "formula": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0",
+        "id": "SIM-C5-L02-03",
+        "kind": "experiment",
+        "measure": {
+          "label": "Spostamento a x = 0",
+          "unit": "cm"
+        },
+        "skill": "C5-L02",
+        "summary": "Dove leggi la fase di un’onda che passa davanti a una sonda ferma?",
+        "title": "Equazione armonica di propagazione",
+        "version": 1
+      },
+      "originalRecordSha256": "c5d893691f554faa7c310ab7d8954f2fc02932920f0bd466b965823ec411f9d3",
+      "selectedAssessmentInputs": [
+        "0.25",
+        "0.75"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "onde2",
+        "control": {
+          "label": "Differenza di cammino in lunghezze d’onda",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C5",
+        "formula": "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm",
+        "id": "SIM-C5-L03-02",
+        "kind": "experiment",
+        "measure": {
+          "label": "Ampiezza risultante",
+          "unit": "cm"
+        },
+        "skill": "C5-L03",
+        "summary": "Quanta ampiezza misura la sonda per mezzo periodo spaziale di differenza?",
+        "title": "Interferenza costruttiva e distruttiva",
+        "version": 1
+      },
+      "originalRecordSha256": "814f76fadf0eaf75d279104775cc0c7ac1ffe3ec514d42a8f6df036a27216fa8",
+      "selectedAssessmentInputs": [
+        "0.5",
+        "1"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "assorbitore",
+        "control": {
+          "label": "Spessore in strati emivalenti",
+          "max": 5.0,
+          "min": 0.0,
+          "step": 0.25,
+          "unit": "1"
+        },
+        "course": "C5",
+        "formula": "I/I₀ = e^(−μx) = (½)ⁿ",
+        "id": "SIM-C5-L07-02",
+        "kind": "experiment",
+        "measure": {
+          "label": "Intensità trasmessa",
+          "unit": "%"
+        },
+        "skill": "C5-L07",
+        "summary": "Due strati identici sottraggono la stessa energia assoluta?",
+        "title": "Assorbimento e legge di Lambert–Beer",
+        "version": 1
+      },
+      "originalRecordSha256": "b470a53daf69051ea6eadbc70408301390205a8737675f5feeb3d81d88b0daba",
+      "selectedAssessmentInputs": [
+        "2",
+        "3"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "decadimento",
+        "control": {
+          "label": "Tempo in emivite",
+          "max": 5.0,
+          "min": 0.0,
+          "step": 0.25,
+          "unit": "1"
+        },
+        "course": "C5",
+        "formula": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N",
+        "id": "SIM-C5-L08-02",
+        "kind": "experiment",
+        "measure": {
+          "label": "Numero medio di nuclei rimasti",
+          "unit": "1"
+        },
+        "skill": "C5-L08",
+        "summary": "In un’emivita decade sempre esattamente metà di un piccolo campione?",
+        "title": "Attività, legge di decadimento e tempo di dimezzamento",
+        "version": 1
+      },
+      "originalRecordSha256": "97a549bff7d4c05e610a55bc33d7a05813900afc4df46e9826b868ffbc7a4aa9",
+      "selectedAssessmentInputs": [
+        "2",
+        "4"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    {
+      "originalInputProjection": {
+        "apparatus": "ottica",
+        "control": {
+          "label": "Angolo incidente in aria",
+          "max": 80.0,
+          "min": 0.0,
+          "step": 5.0,
+          "unit": "°"
+        },
+        "course": "C5",
+        "formula": "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5",
+        "id": "SIM-C5-L09-02",
+        "kind": "experiment",
+        "measure": {
+          "label": "Angolo rifratto nel vetro",
+          "unit": "°"
+        },
+        "skill": "C5-L09",
+        "summary": "Da aria a vetro il raggio piega verso la normale o se ne allontana?",
+        "title": "Indice di rifrazione e legge di Snell",
+        "version": 1
+      },
+      "originalRecordSha256": "8d1449cddaa11ad052bde7d338aaeeded2a27751c598377cc8970a755d75c2ca",
+      "selectedAssessmentInputs": [
+        "30",
+        "45"
+      ],
+      "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    }
+  ],
+  "sourceFileSha256": {
+    "officina-di-fisica/content/esperienze-C3.json": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+    "officina-di-fisica/content/esperienze-C4.json": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+    "officina-di-fisica/content/esperienze-C5.json": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84"
+  }
+}
