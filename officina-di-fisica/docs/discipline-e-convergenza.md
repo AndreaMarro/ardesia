@@ -13,6 +13,8 @@ Il pacchetto di esempio contiene un microcorso di geometria utile al collaudo di
 
 Ogni importazione valida il grafo dei prerequisiti, i riferimenti, le opzioni, le correzioni, gli orali e le simulazioni prima di rendere attiva un’edizione. La coppia disciplina/versione identifica un contenuto immutabile. Un secondo import identico è idempotente. Una modifica al contenuto richiede una nuova versione. Per riattivare un’edizione già archiviata si usa `--activate`. L’operatore può attestare l’approvazione editoriale con `--publish-reviewed`. Questa è una decisione editoriale esplicita e abilita l’offerta commerciale. L’impostazione predefinita è l’anteprima.
 
+La matrice descrive le unità e i programmi nazionali collegati alla consegna. [Copertura di Analisi Matematica 1](analisi-programmi.md)
+
 I prezzi dei microcorsi pubblicati sono configurabili nel banco autore. Ordini, conferma dell’accredito e concessioni di accesso attraversano l’autorità commerciale già usata da Fisica. La banca di Analisi e i registri privati viaggiano separatamente dal repository e dalla distribuzione pubblica.
 
 ## Architettura e contratti
