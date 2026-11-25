@@ -870,7 +870,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Usando invece le temperature medie 250 e 500 K si otterrebbe 600(1/250−1/500)=6/5 J/K, diverso. Non si stanno mettendo in contatto fisico quattro sorgenti."
+          "text": "Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Per confrontarla con il modello alle temperature medie, poniamo T_c,m=250 K e T_h,m=500 K. Definiamo a_m=Q/T_c,m, entropia acquistata dalla fredda, e b_m=Q/T_h,m, modulo di quella persa dalla calda: valgono 12/5 e 6/5 J/K. Il modello dà ΔS_m=a_m−b_m=6/5 J/K. Chiamiamo d_m la media delle uscite meno ΔS_m: è 1/20 J/K. Non si stanno mettendo in contatto fisico quattro sorgenti."
         },
         {
           "type": "formula",
@@ -882,11 +882,35 @@
         },
         {
           "type": "formula",
-          "text": " \\Delta S_{\\rm temperature\\ medie}=600\\left(\\frac1{250}-\\frac1{500}\\right)\\,\\mathrm{J/K}"
+          "text": " a_m=\\frac{600}{250}\\,\\mathrm{J/K}"
         },
         {
           "type": "formula",
-          "text": " \\Delta S_{\\rm temperature\\ medie}=6/5\\,\\mathrm{J/K}"
+          "text": " a_m=12/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " b_m=\\frac{600}{500}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " b_m=6/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_m=a_m-b_m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_m=6/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " d_m=\\overline{\\Delta S_{\\rm tot}}-\\Delta S_m"
+        },
+        {
+          "type": "formula",
+          "text": " d_m=1/20\\,\\mathrm{J/K}"
         },
         {
           "type": "text",
