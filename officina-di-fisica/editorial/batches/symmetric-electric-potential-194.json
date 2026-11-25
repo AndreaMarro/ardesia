@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-symmetric-electric-potential-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19401,
+      "title": "Due contributi positivi allo stesso potenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 1,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Con Q₁=1 nC e Q₂=2 nC, quanto vale V_P in volt?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni nanocoulomb a tre metri produce 3 V. La prima sorgente dà 3 V, la seconda 6 V: il totale è 9 V. I segni delle cariche sono entrambi positivi e lo zero è comune all’infinito. Le direzioni delle congiungenti non cambiano questa somma scalare."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0f73f7116b3168a3439c8c079f8ff6f9ffecfb9c1351d655616f1933aeac485d",
+          "text": "Il primo schema sceglie posizioni opposte, entrambe a 3 m da P, come configurazione possibile del modello. Q₁=1 nC e Q₂=2 nC danno potenziali scalari 3 e 6 V, totale 9 V. Il pannello centrale è un caso distinto con sorgenti uguali a 1 nC: lì i campi si cancellano e il potenziale vale 6 V. Il confronto finale usa due prove con potenziali 9 e 15 V e media 12 V."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_P=V_1+V_2"
+        },
+        {
+          "type": "formula",
+          "text": " V_P=9\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Tre V è la differenza dei moduli e non la somma dei potenziali. Diciotto V aggiunge un fattore due non presente. Zero potrebbe descrivere il campo per cariche uguali in un punto simmetrico, ma non la somma positiva di questi potenziali."
+        }
+      ],
+      "hints": [
+        "Usa lo stesso zero per i due contributi e conserva la natura scalare di V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre V è la differenza dei moduli e non la somma dei potenziali. Diciotto V aggiunge un fattore due non presente. Zero potrebbe descrivere il campo per cariche uguali in un punto simmetrico, ma non la somma positiva di questi potenziali.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19402,
+      "title": "La somma di potenziali resta in volt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 1,
+      "prompt": "Due sorgenti danno potenziali V₁ e V₂ riferiti allo stesso zero. Quale unità esprime V_P=V₁+V₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "J",
+          "N/C",
+          "C",
+          "N"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due termini sono energie potenziali per unità di carica di prova, quindi volt. Una somma di due grandezze con la stessa unità conserva quella unità. Il risultato non è un’energia finché non viene moltiplicato per una carica di prova."
+        },
+        {
+          "type": "formula",
+          "text": "V_P=V_1+V_2"
+        },
+        {
+          "type": "formula",
+          "text": " [V_P]=\\mathrm{J/C}"
+        },
+        {
+          "type": "formula",
+          "text": " [V_P]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, N/C campo, C carica e N forza. Sommando volt non si ottengono né newton né joule; nessun segno geometrico trasforma una grandezza nell’altra."
+        }
+      ],
+      "hints": [
+        "Controlla le unità dei due termini prima di sommarli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, N/C campo, C carica e N forza. Sommando volt non si ottengono né newton né joule; nessun segno geometrico trasforma una grandezza nell’altra.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19403,
+      "title": "Campo nullo non impone potenziale nullo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 1,
+      "prompt": "Due cariche puntiformi uguali e positive sono ferme in posizioni opposte e simmetriche rispetto al loro punto medio P, alla stessa distanza d>0. Il potenziale è nullo all’infinito. Quale affermazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "In P il campo è nullo e il potenziale è positivo",
+          "In P sono nulli sia campo sia potenziale",
+          "In P il campo è positivo e il potenziale è nullo",
+          "I due potenziali si cancellano perché le cariche sono su lati opposti",
+          "Il potenziale ha necessariamente lo stesso verso della forza"
+        ],
+        "value": "In P il campo è nullo e il potenziale è positivo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In P i due campi hanno moduli uguali e direzioni opposte, quindi si cancellano vettorialmente. I potenziali, invece, sono entrambi k_eQ/d>0 e si sommano in 2k_eQ/d. Il riferimento all’infinito rende questo valore positivo, anche dove il campo locale è zero. Un potenziale scalare non ha un verso da confrontare con una forza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0f73f7116b3168a3439c8c079f8ff6f9ffecfb9c1351d655616f1933aeac485d",
+          "text": "Nel pannello centrale le sorgenti sono uguali e simmetriche: i contributi al campo in P hanno moduli uguali e versi opposti, quindi E(P)=0. Il potenziale non si annulla: con zero all’infinito i due contributi positivi danno 6 V nell’esempio. Le frecce rappresentano soltanto campi, non potenziali vettoriali."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec E_1+\\vec E_2=\\vec0"
+        },
+        {
+          "type": "formula",
+          "text": " V_1=\\frac{k_eQ}{d}>0"
+        },
+        {
+          "type": "formula",
+          "text": " V_P=\\frac{2k_eQ}{d}>0"
+        },
+        {
+          "type": "text",
+          "text": "La cancellazione vettoriale del campo non si trasferisce al potenziale. La posizione su lati opposti inverte il versore del campo, non il segno di una carica positiva in k_eQ/d. V_P=0 richiederebbe un diverso riferimento o una diversa distribuzione."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente la somma dei vettori E e quella degli scalari V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La cancellazione vettoriale del campo non si trasferisce al potenziale. La posizione su lati opposti inverte il versore del campo, non il segno di una carica positiva in k_eQ/d. V_P=0 richiederebbe un diverso riferimento o una diversa distribuzione.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19404,
+      "title": "Cambia una sola delle due sorgenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 1,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Q₁ passa da 1 a 2 nC, mentre Q₂=2 nC. Come cambia V_P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 9 a 12 V",
+          "Da 9 a 18 V",
+          "Da 9 a 6 V",
+          "Resta 9 V",
+          "Da 9 a 27 V"
+        ],
+        "value": "Da 9 a 12 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma delle cariche passa da tre a quattro nanocoulomb. Il potenziale passa perciò da 3·3=9 V a 3·4=12 V. Raddoppiare Q₁ non raddoppia l’intera somma, perché il contributo della seconda sorgente resta 6 V."
+        },
+        {
+          "type": "formula",
+          "text": "V_{P,A}=9\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}=3(2+2)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}=12\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto V raddoppia anche il contributo di Q₂, che è fisso. Sei V fa diminuire il totale aumentando una sorgente positiva. Nove ignora il cambio e ventisette usa un fattore non ricavato dalla somma."
+        }
+      ],
+      "hints": [
+        "Ricalcola Q₁+Q₂ mantenendo invariato il secondo termine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Diciotto V raddoppia anche il contributo di Q₂, che è fisso. Sei V fa diminuire il totale aumentando una sorgente positiva. Nove ignora il cambio e ventisette usa un fattore non ricavato dalla somma.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19405,
+      "title": "La prima sorgente dal totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Si misura V_P=9 V e si conosce Q₂=2 nC. Quanto vale Q₁ in nC?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale normalizzato w/3=3 rappresenta u+v. Sottraendo v=2 si ottiene u=1, quindi Q₁=1 nC. In generale, con Q₂ fissata, il ramo Q₁>0 richiede V_P>k_eQ₂/d: il totale deve superare il contributo noto."
+        },
+        {
+          "type": "formula",
+          "text": "u+v=w/3"
+        },
+        {
+          "type": "formula",
+          "text": " u=w/3-v"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=1\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " V_P>\\frac{k_eQ_2}{d}"
+        },
+        {
+          "type": "text",
+          "text": "Tre nC copia la somma delle cariche senza sottrarre Q₂ e darebbe 15 V. Cinque nC aggiunge il termine noto invece di toglierlo e darebbe 21 V. Zero violerebbe Q₁>0 e darebbe soltanto 6 V."
+        }
+      ],
+      "hints": [
+        "Trasforma i volt in somma delle sorgenti e poi sottrai quella nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre nC copia la somma delle cariche senza sottrarre Q₂ e darebbe 15 V. Cinque nC aggiunge il termine noto invece di toglierlo e darebbe 21 V. Zero violerebbe Q₁>0 e darebbe soltanto 6 V.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19406,
+      "title": "Cambiare lo zero non cambia le cariche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "La distribuzione di cariche resta identica. Con V=0 all’infinito si hanno V_P=18 V e V_R=6 V. Si sceglie ora P come nuovo zero del potenziale. Quanto vale V′_R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−12 V",
+          "12 V",
+          "6 V",
+          "24 V",
+          "0 V"
+        ],
+        "value": "−12 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo riferimento si ottiene sottraendo la stessa costante 18 V a tutti i potenziali. In P si ha V′_P=0 e in R si ha V′_R=6−18=−12 V. Il valore negativo non significa che siano cambiate le sorgenti: il campo e le differenze di potenziale restano invariati."
+        },
+        {
+          "type": "formula",
+          "text": "V^{\\prime}=V-V_P"
+        },
+        {
+          "type": "formula",
+          "text": " V^{\\prime}_P=0"
+        },
+        {
+          "type": "formula",
+          "text": " V^{\\prime}_R=(6-18)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V^{\\prime}_R=-12\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dodici V perde il segno della differenza; sei V conserva il vecchio riferimento. Ventiquattro V aggiunge invece di sottrarre la costante, e zero sposterebbe lo zero anche in R senza rispettare la differenza originaria. Non si usa qui l’ipotesi V positivo con zero all’infinito degli altri quesiti."
+        }
+      ],
+      "hints": [
+        "Sottrai il vecchio valore di P da ogni punto, non solo da P.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici V perde il segno della differenza; sei V conserva il vecchio riferimento. Ventiquattro V aggiunge invece di sottrarre la costante, e zero sposterebbe lo zero anche in R senza rispettare la differenza originaria. Non si usa qui l’ipotesi V positivo con zero all’infinito degli altri quesiti.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19407,
+      "title": "Ridurre la seconda sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. A ha Q₁=1 nC, Q₂=2 nC. C mantiene Q₁ e ha Q₂=1 nC. Quanto vale V_P,C/V_P,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "1",
+          "2"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha totale 9 V. C ha due contributi da 3 V, per un totale di 6 V. Il rapporto è 6/9=2/3. Il dimezzamento di Q₂ non dimezza il contributo di Q₁, che rimane uguale."
+        },
+        {
+          "type": "formula",
+          "text": "V_{P,A}=9\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}/V_{P,A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il rapporto. Un mezzo segue la sola Q₂; uno ignora il cambio e due fa crescere il totale riducendo una sorgente positiva."
+        }
+      ],
+      "hints": [
+        "Confronta le somme delle cariche, non il solo rapporto del termine variato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il rapporto. Un mezzo segue la sola Q₂; uno ignora il cambio e due fa crescere il totale riducendo una sorgente positiva.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19408,
+      "title": "La proposta raddoppia il totale corretto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Con Q₁=1 nC e Q₂=2 nC, si propone V_P=18 V. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 V",
+          "−9 V",
+          "18 V",
+          "0 V",
+          "2"
+        ],
+        "value": "9 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma scalare corretta è 3+6=9 V. La proposta la supera di 18−9=+9 V. Il numero due è il rapporto delle letture; non ha le unità di una differenza di potenziale."
+        },
+        {
+          "type": "formula",
+          "text": "V_P=9\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=(18-9)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=9\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−9 V capovolge l’ordine, diciotto V copia la proposta e zero la accetta. Due è un fattore puro, non lo scarto chiesto. Lo zero all’infinito resta comune alle due valutazioni."
+        }
+      ],
+      "hints": [
+        "Somma prima i contributi e poi sottrai il totale dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−9 V capovolge l’ordine, diciotto V copia la proposta e zero la accetta. Due è un fattore puro, non lo scarto chiesto. Lo zero all’infinito resta comune alle due valutazioni.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19409,
+      "title": "L’inversa sottrae il contributo noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Quale formula fisica isola Q₁ da V_P e Q₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₁ = V_P d / k_e − Q₂",
+          "Q₁ = V_P d / k_e + Q₂",
+          "Q₁ = k_e / (V_P d) − Q₂",
+          "Q₁ = (V_P − Q₂) d / k_e",
+          "Q₁ = V_P / (k_e d) − Q₂"
+        ],
+        "value": "Q₁ = V_P d / k_e − Q₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando V_P=k_e(Q₁+Q₂)/d per d/k_e si trova la somma delle sorgenti. Si sottrae poi Q₂: Q₁=V_Pd/k_e−Q₂. Entrambi i termini sono cariche in C se le grandezze sono in SI. La positività richiede che il totale superi il solo contributo di Q₂."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_Pd}{k_e}=Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac{V_Pd}{k_e}-Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " V_P>\\frac{k_eQ_2}{d}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno più non annulla la somma originaria. Il reciproco del primo termine avrebbe unità C⁻¹ e non si sottrae a una carica. V_P−Q₂ mescola unità diverse e lasciare d al denominatore non inverte la legge del potenziale."
+        }
+      ],
+      "hints": [
+        "Ricava la somma delle due cariche prima di sottrarre la seconda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno più non annulla la somma originaria. Il reciproco del primo termine avrebbe unità C⁻¹ e non si sottrae a una carica. V_P−Q₂ mescola unità diverse e lasciare d al denominatore non inverte la legge del potenziale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19410,
+      "title": "Due fattori dentro una somma scalare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. C ha Q₁,C=κ₁Q₁,A e Q₂,C=κ₂Q₂,A, con fattori positivi. Quale legge generale dà V_P,C/V_P,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ Q₁ + κ₂ Q₂) / (Q₁ + Q₂)",
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "(κ₁ Q₁ − κ₂ Q₂) / (Q₁ − Q₂)",
+          "(Q₁ + Q₂) / (κ₁ Q₁ + κ₂ Q₂)"
+        ],
+        "value": "(κ₁ Q₁ + κ₂ Q₂) / (Q₁ + Q₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Distanza e costante sono comuni, quindi si cancellano nel rapporto. Restano però i pesi delle due sorgenti: (κ₁Q₁+κ₂Q₂)/(Q₁+Q₂). Il denominatore è positivo perché entrambe le cariche sono positive. Un fattore comune κ₁=κ₂ moltiplica l’intero potenziale per quel fattore, non per il suo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_{P,C}}{V_{P,A}}=\\frac{\\kappa_1Q_1+\\kappa_2Q_2}{Q_1+Q_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto o quoziente dei soli fattori perde i pesi Q₁ e Q₂. La differenza appartiene a un altro schema di sovrapposizione e può annullare il denominatore per cariche uguali, dove il potenziale qui è invece positivo. L’ultima frazione capovolge il confronto."
+        }
+      ],
+      "hints": [
+        "Sostituisci ciascun fattore nella sua sorgente, mantenendo il segno della somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto o quoziente dei soli fattori perde i pesi Q₁ e Q₂. La differenza appartiene a un altro schema di sovrapposizione e può annullare il denominatore per cariche uguali, dove il potenziale qui è invece positivo. L’ultima frazione capovolge il confronto.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19411,
+      "title": "Da tre a cinque nanocoulomb complessivi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. A ha Q₁=1 nC, Q₂=2 nC. C ha Q₁=2 nC, Q₂=3 nC. Quanto vale V_P,C/V_P,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "2",
+          "3/2",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le somme delle cariche sono 3 e 5 nC. I potenziali sono 9 e 15 V e il rapporto è 15/9=5/3. Nessuno dei due rapporti delle singole sorgenti basta a descrivere l’intero potenziale."
+        },
+        {
+          "type": "formula",
+          "text": "V_{P,A}=9\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}=15\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}/V_{P,A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 è il reciproco. Due segue soltanto Q₁ e 3/2 soltanto Q₂; uno ignora entrambe le sorgenti cresciute. Tutti i potenziali sono riferiti allo stesso zero."
+        }
+      ],
+      "hints": [
+        "Confronta la somma delle cariche di C con quella di A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 è il reciproco. Due segue soltanto Q₁ e 3/2 soltanto Q₂; uno ignora entrambe le sorgenti cresciute. Tutti i potenziali sono riferiti allo stesso zero.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19412,
+      "title": "La linearità conserva questa media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 2,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. A usa Q₁=1 nC, Q₂=2 nC; C usa Q₁=2 nC, Q₂=3 nC. Qual è la media aritmetica delle due V_P con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 V",
+          "24 V",
+          "3 V",
+          "9 V",
+          "15 V"
+        ],
+        "value": "12 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 9 V e C dà 15 V. La media è (9+15)/2=12 V. La legge è lineare nelle due sorgenti a distanze e riferimento fissati: con Q₁ medio 3/2 nC e Q₂ medio 5/2 nC si avrebbe ancora 3·4=12 V. Questa coincidenza è una conseguenza della somma lineare, non un principio generale sulle medie."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0f73f7116b3168a3439c8c079f8ff6f9ffecfb9c1351d655616f1933aeac485d",
+          "text": "Le barre finali hanno origine e scala comuni: A dà 9 V, C dà 15 V e la media è 12 V. La somma scalare a distanze uguali fissate è lineare: le cariche medie 3/2 e 5/2 nC danno lo stesso valore 12 V. Sono prove distinte, non quattro sorgenti da sovrapporre."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{V_P}=\\frac{9+15}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{V_P}=12\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " 3\\left(\\frac32+\\frac52\\right)=12"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro V omette la metà della somma; tre V è metà della differenza. Nove e quindici V ripetono una sola prova. Le letture non descrivono quattro sorgenti presenti contemporaneamente nello stesso punto."
+        }
+      ],
+      "hints": [
+        "Media le uscite e poi verifica perché qui il modello ai dati medi coincide.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventiquattro V omette la metà della somma; tre V è metà della differenza. Nove e quindici V ripetono una sola prova. Le letture non descrivono quattro sorgenti presenti contemporaneamente nello stesso punto.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19413,
+      "title": "Il bersaglio determina la seconda carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 3,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. A ha Q₁=1 nC, Q₂,A=2 nC. C ha Q₁=2 nC e deve avere V_P,C=(5/3)V_P,A. Quanto vale Q₂,C/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/3",
+          "2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 15 V e richiede somma delle cariche pari a 5 nC. Poiché Q₁,C=2 nC, la seconda sorgente deve valere 3 nC. Il rapporto con Q₂,A=2 nC è 3/2. La sottrazione riguarda le sorgenti dopo aver usato la somma scalare del potenziale."
+        },
+        {
+          "type": "formula",
+          "text": "V_{P,C}=15\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,C}=3\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,C}/Q_{2,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto; 5/3 copia il fattore dei potenziali e due quello della prima sorgente. Tre copia il numero di Q₂,C senza dividerlo per i 2 nC iniziali."
+        }
+      ],
+      "hints": [
+        "Dal potenziale bersaglio trova prima la somma richiesta e poi togli Q₁,C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto; 5/3 copia il fattore dei potenziali e due quello della prima sorgente. Tre copia il numero di Q₂,C senza dividerlo per i 2 nC iniziali.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19414,
+      "title": "Decodificare il totale prima della sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 3,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Il display continuo adimensionale è D=aV_P, a>0. A con Q₁=1 nC, Q₂=2 nC dà D=27. C ha Q₂=3 nC e D=45. Quanto vale Q₁,C in nC?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale 9 V: a=3 V⁻¹. La lettura C corrisponde a V_P,C=15 V, cioè somma delle cariche di 5 nC. Sottraendo Q₂,C=3 nC si trova Q₁,C=2 nC. La taratura e il riferimento all’infinito sono condizioni diverse e vanno conservate entrambe."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{V^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,C}=15\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}+Q_{2,C}=5\\,\\mathrm{nC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}=2\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici nC usa 45 come volt senza togliere il guadagno. Cinque nC copia la somma senza sottrarre Q₂. Tre nC copierebbe la sorgente nota e darebbe 18 V, con D=54 invece di 45."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno, ricava la somma delle sorgenti e sottrai quella nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici nC usa 45 come volt senza togliere il guadagno. Cinque nC copia la somma senza sottrarre Q₂. Tre nC copierebbe la sorgente nota e darebbe 18 V, con D=54 invece di 45.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19415,
+      "title": "Tarare prima di sottrarre la carica nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 3,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. D=aV_P+b è continuo e adimensionale, a>0. A: Q₁=1 nC, Q₂=2 nC, D=19. C: Q₁=2 nC, Q₂=3 nC, D=31. Prova G: Q₂=5 nC, D=49. Quanto vale Q₁,G?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 nC",
+          "19/6 nC",
+          "5 nC",
+          "8 nC",
+          "1 nC"
+        ],
+        "value": "3 nC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno potenziali 9 e 15 V. Il guadagno è (31−19)/(15−9)=2 V⁻¹ e b=1. La lettura G indica V_P,G=(49−1)/a=24 V, quindi le cariche sommano 8 nC. Sottraendo i 5 nC noti si ottiene Q₁,G=3 nC."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{V^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_{P,G}=24\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,G}=3\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "19/6 nC omette b e predice D=50. Cinque nC copia Q₂ e darebbe D=61; otto nC copia la somma e darebbe D=79. Un nC produrrebbe D=37, non 49. Il riferimento fisico del potenziale resta all’infinito."
+        }
+      ],
+      "hints": [
+        "Rimuovi b e a prima di dividere per tre e sottrarre Q₂,G.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "19/6 nC omette b e predice D=50. Cinque nC copia Q₂ e darebbe D=61; otto nC copia la somma e darebbe D=79. Un nC produrrebbe D=37, non 49. Il riferimento fisico del potenziale resta all’infinito.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-symmetric-electric-potential-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Somma scalare e riferimento del potenziale",
+      "order": 19416,
+      "title": "Un rapporto di cariche non elimina la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "symmetric-electric-potential",
+      "difficulty": 3,
+      "prompt": "Due sorgenti puntiformi positive Q₁ e Q₂ sono mantenute fisse nel vuoto, entrambe a distanza d=3 m dal punto P. Si usa k_e=9×10⁹ N·m²/C² come valore di modello e V=0 all’infinito per entrambe. Il potenziale totale è la somma scalare V_P=k_e(Q₁+Q₂)/d; non si sommano vettori di potenziale. Poniamo u=Q₁/(1 nC), v=Q₂/(1 nC), w=V_P/(1 V): w=3(u+v). Per questo potenziale bastano le distanze; non occorre assegnare l’angolo fra le posizioni delle sorgenti. Fra configurazioni si impone Q₁=Q₂/2. Si misura V_P=9 V. Quanto vale Q₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 nC",
+          "1 nC",
+          "3 nC",
+          "−2 nC",
+          "Infinite cariche positive"
+        ],
+        "value": "2 nC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo u=v/2 nella legge w=3(u+v), si trova w=(9/2)v. La misura w=9 impone v=2: Q₂=2 nC e Q₁=1 nC. Il rapporto fissato delle cariche non rende ridondante la misura, perché il potenziale continua a crescere linearmente con la loro scala."
+        },
+        {
+          "type": "formula",
+          "text": "w=3(v/2+v)"
+        },
+        {
+          "type": "formula",
+          "text": " w=\\frac92v"
+        },
+        {
+          "type": "formula",
+          "text": " v=2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=2\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "Un nC darebbe 9/2 V e tre nC 27/2 V, non nove. Il valore negativo viola le due cariche positive. Non sono infinite soluzioni, perché la scala non si cancella dalla somma del potenziale."
+        }
+      ],
+      "hints": [
+        "Inserisci il rapporto delle cariche prima di risolvere la somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un nC darebbe 9/2 V e tre nC 27/2 V, non nove. Il valore negativo viola le due cariche positive. Non sono infinite soluzioni, perché la scala non si cancella dalla somma del potenziale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Sovrapposizione con riferimento comune",
+        "Campo nullo distinto da potenziale nullo e cambio dello zero",
+        "Inverse positive, linearità, display e vincolo fra sorgenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0f73f7116b3168a3439c8c079f8ff6f9ffecfb9c1351d655616f1933aeac485d",
+      "name": "symmetric-electric-potential-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3RlbnppYWxpIGNoZSBzaSBzb21tYW5vLCBjYW1waSBjaGUgcG9zc29ubyBhbm51bGxhcnNpPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPkR1ZSBzb3JnZW50aSBwb3NpdGl2ZSBkYSB1bm8gZSBkdWUgbmFub2NvdWxvbWIgYSB0cmUgbWV0cmkgZGEgUCBkYW5ubyB0cmUgZSBzZWkgdm9sdCwgdG90YWxlIG5vdmUgY29uIHplcm8gYWxs4oCZaW5maW5pdG8uIFVuIGRpc3RpbnRvIGNhc28gY29uIHNvcmdlbnRpIHVndWFsaSBkYSB1biBuYW5vY291bG9tYiBlIHNpbW1ldHJpY2hlIGhhIGNhbXBvIG51bGxvIGluIFAgbWEgcG90ZW56aWFsZSBzZWkgdm9sdC4gRHVlIGxldHR1cmUgbm92ZSBlIHF1aW5kaWNpIHZvbHQgZGFubm8gbWVkaWEgZG9kaWNpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iZmllbGQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgSSBwb3RlbnppYWxpIHNvbm8gc2NhbGFyaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgzIiBmb250LXNpemU9IjE4Ij5R4oKBID0gMSBuQyA7IFHigoIgPSAyIG5DIDsgemVybyBhbGzigJlpbmZpbml0by48L3RleHQ+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjE2NSIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9IjQ5MCIgY3k9IjE2NSIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjEwMiIgeT0iMTcyIj4rPC90ZXh0Pjx0ZXh0IHg9IjQ4MiIgeT0iMTcyIj4rPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxNjUiIHI9IjQiIGZpbGw9IiMxNDI0M2EiLz4KPHRleHQgeD0iOTQiIHk9IjIwOCI+UeKCgTwvdGV4dD48dGV4dCB4PSIyODgiIHk9IjIwOCI+UDwvdGV4dD48dGV4dCB4PSI0NzQiIHk9IjIwOCI+UeKCgjwvdGV4dD4KPHBhdGggZD0iTTExMCAyNTBIMzAwTTExMCAyMzlWMjYxTTMwMCAyMzlWMjYxIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMzAwIDI1MEg0OTBNNDkwIDIzOVYyNjEiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjE4NiIgeT0iMjg3Ij4zIG08L3RleHQ+PHRleHQgeD0iMzc2IiB5PSIyODciPjMgbTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMzMSIgZm9udC1zaXplPSIxOCI+VuKCgSA9IDMgViA7IFbigoIgPSA2IFYgOyBWX1AgPSAzICsgNiA9IDkgVi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNjMiIGZvbnQtc2l6ZT0iMTgiPk5lc3N1bmEgZnJlY2NpYSBwZXIgVjogaWwgcG90ZW56aWFsZSBub24gaGEgdmVyc28uPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMzk2SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NDEiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IE9yYSBsZSBkdWUgc29yZ2VudGkgc29ubyB1Z3VhbGk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0ODEiIGZvbnQtc2l6ZT0iMTgiPlHigoEgPSBR4oKCID0gMSBuQyA7IHN0ZXNzYSBzaW1tZXRyaWEgZSBkaXN0YW56ZSAzIG0uPC90ZXh0Pgo8cGF0aCBkPSJNMzAwIDU2NUg0MjAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2ZpZWxkKSIvPgo8cGF0aCBkPSJNMzAwIDU2NUgxODAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2ZpZWxkKSIvPgo8dGV4dCB4PSIxNzMiIHk9IjUzMSI+MSBOL0M8L3RleHQ+PHRleHQgeD0iMzcxIiB5PSI1MzEiPjEgTi9DPC90ZXh0Pgo8dGV4dCB4PSIyODkiIHk9IjYxMCI+UDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY2MCIgZm9udC1zaXplPSIyMCI+Q2FtcGkgb3Bwb3N0aSBpbiBQOiBFKFApID0gMC48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3MDgiIGZvbnQtc2l6ZT0iMjAiPlBvdGVuemlhbGkgcG9zaXRpdmk6IFZfUCA9IDMgKyAzID0gNiBWLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijc1NiIgZm9udC1zaXplPSIxOCI+TGUgZnJlY2NlIHJhcHByZXNlbnRhbm8gY2FtcGksIG5vbiBwb3RlbnppYWxpLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijc4OSIgZm9udC1zaXplPSIxOCI+Q2FtcG8gbnVsbG8gbm9uIGltcG9uZSBWX1AgPSAwIGNvbiBxdWVzdG8gemVyby48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4NDZINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijg5MSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTGEgbWVkaWEgZGkgZHVlIGxldHR1cmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MzEiIGZvbnQtc2l6ZT0iMTgiPkE6IFHigoEgPSAxLCBR4oKCID0gMiBuQyA7IEM6IFHigoEgPSAyLCBR4oKCID0gMyBuQy48L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgOTYzVjEyMDAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iOTg1IiB3aWR0aD0iMjE2IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjE1MCIgeT0iMTA1NiIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPgo8cmVjdCB4PSIxNTAiIHk9IjExMjciIHdpZHRoPSIyODgiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9IjEwMTEiPkE8L3RleHQ+PHRleHQgeD0iMzg2IiB5PSIxMDExIj45IFY8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSIxMDgyIj5DPC90ZXh0Pjx0ZXh0IHg9IjUzMCIgeT0iMTA4MiI+MTUgVjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNTMiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjQ1OCIgeT0iMTE1MyI+MTIgVjwvdGV4dD4KPHRleHQgeD0iMTI1IiB5PSIxMTk0Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI0NyIgZm9udC1zaXplPSIxOCI+TWVkaWEgZGVsbGUgdXNjaXRlOiAoOSArIDE1KS8yID0gMTIgVi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjc5IiBmb250LXNpemU9IjE4Ij5PcmlnaW5lIGUgc2NhbGEgY29tdW5pIGRlbGxlIGJhcnJlIGRlbCBwb3RlbnppYWxlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
