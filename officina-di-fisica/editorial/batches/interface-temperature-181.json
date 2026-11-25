@@ -1,0 +1,1188 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-interface-temperature-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18101,
+      "title": "Metà del salto cade su ciascuna resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 1,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Con R_h=R_c=1 K/W, quanto vale T_i in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza totale è 2 K/W e la potenza 100/2=50 W. Il tratto verso il freddo sostiene la caduta Θ=PR_c=50 K. Poiché il freddo è a 0 °C, l’interfaccia è a 50 °C. L’uguaglianza delle resistenze divide a metà il salto, non la temperatura assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ffdb5512d03ed91cbe7b8fb77380581c2814a776ec3b74805116cd3658a98795",
+          "text": "La prova A ha due resistenze uguali da 1 K/W: la stessa potenza 50 W produce cadute 50 e 50 K, con interfaccia a 50 °C. I riquadri superiori sono uno schema della rete termica, non una misura di spessori. Nel profilo centrale l’ascissa è la resistenza termica cumulativa, non la distanza: il segmento di A va da 100 a 0 °C e passa per il contatto a 50 °C. Le barre finali rappresentano letture Celsius A=50, B=60 e media=55, riferite allo zero scelto."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{\\Delta T}{R_h+R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " P=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=PR_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_i=50\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Cento gradi coinciderebbero con il lato caldo e non lascerebbero caduta sul tratto caldo di resistenza positiva. Zero coinciderebbe con il freddo. 323,15 è il numero del medesimo punto in kelvin, non la lettura richiesta in °C."
+        }
+      ],
+      "hints": [
+        "Ricava la potenza comune e la caduta fra interfaccia e freddo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento gradi coinciderebbero con il lato caldo e non lascerebbero caduta sul tratto caldo di resistenza positiva. Zero coinciderebbe con il freddo. 323,15 è il numero del medesimo punto in kelvin, non la lettura richiesta in °C.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18102,
+      "title": "L’unità della lettura richiesta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 1,
+      "prompt": "La temperatura di contatto viene richiesta come lettura sulla scala Celsius. Quale unità la esprime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "°C",
+          "K/W",
+          "W/K",
+          "W",
+          "J"
+        ],
+        "value": "°C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una temperatura puntuale letta sulla scala Celsius si esprime in gradi Celsius. Le differenze possono essere espresse in kelvin con lo stesso numero, ma il punto corrispondente in kelvin ha uno zero diverso."
+        },
+        {
+          "type": "formula",
+          "text": "50\\,{}^\\circ\\mathrm C\\longleftrightarrow323{,}15\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=50\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "K/W è resistenza, W/K conduttanza, W potenza e J energia. Nessuna di queste quattro unità misura una temperatura. La freccia nella conversione indica lo stesso punto, non una differenza di 273,15 K nel corpo."
+        }
+      ],
+      "hints": [
+        "Distingui il punto termometrico da resistenze e intervalli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K/W è resistenza, W/K conduttanza, W potenza e J energia. Nessuna di queste quattro unità misura una temperatura. La freccia nella conversione indica lo stesso punto, non una differenza di 273,15 K nel corpo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18103,
+      "title": "Usare il tratto giusto per l’intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 1,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Quale relazione ricava Θ, da cui segue la lettura θ_i=Θ/(1 K)?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Θ = ΔT R_c / (R_h + R_c)",
+          "Θ = ΔT R_h / (R_h + R_c)",
+          "Θ = ΔT (R_h + R_c) / R_c",
+          "Θ = ΔT / (R_h + R_c)",
+          "Θ = ΔT R_c R_h"
+        ],
+        "value": "Θ = ΔT R_c / (R_h + R_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza fra interfaccia e freddo è la caduta sul tratto R_c, cioè PR_c. Sostituendo P=ΔT/(R_h+R_c) si trova Θ=ΔT R_c/(R_h+R_c). Il rapporto di resistenze è puro e sta fra zero e uno, quindi l’interfaccia resta strettamente fra le due facce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ffdb5512d03ed91cbe7b8fb77380581c2814a776ec3b74805116cd3658a98795",
+          "text": "Il profilo usa la resistenza cumulativa R in K/W, perché gli spessori e le conducibilità dei singoli strati non sono dati. La temperatura è continua al contatto perfetto. L’intervallo rispetto al lato freddo e la lettura Celsius hanno qui lo stesso numero; nessuna barra raffigura una temperatura assoluta di 50 K."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta=PR_c"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{\\Delta T}{R_h+R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=\\frac{\\Delta T R_c}{R_h+R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<\\Theta<100\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "R_h al numeratore darebbe la caduta dal caldo all’interfaccia, non Θ. L’inverso del rapporto supererebbe il salto totale. ΔT/(R_h+R_c) è una potenza e il prodotto delle resistenze non restituisce un intervallo."
+        }
+      ],
+      "hints": [
+        "Θ è misurato a partire dalla faccia fredda, non da quella calda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "R_h al numeratore darebbe la caduta dal caldo all’interfaccia, non Θ. L’inverso del rapporto supererebbe il salto totale. ΔT/(R_h+R_c) è una potenza e il prodotto delle resistenze non restituisce un intervallo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18104,
+      "title": "Una barriera maggiore dalla parte calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 1,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. A ha R_h=R_c=1 K/W. B ha R_h=3 K/W e R_c=1 K/W. Come cambia T_i?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 50 a 25 °C",
+          "Da 50 a 75 °C",
+          "Da 50 a 100 °C",
+          "Resta 50 °C",
+          "Da 50 a 150 °C"
+        ],
+        "value": "Da 50 a 25 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B la potenza è 100/4=25 W. Sul tratto freddo, rimasto 1 K/W, cadono 25 K: l’interfaccia scende a 25 °C. I restanti 75 K cadono sul tratto caldo più resistente. Il punto di contatto si avvicina alla temperatura del lato al quale resta meglio collegato."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=25\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=P_BR_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=25\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{i,B}=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "75 °C confonde la caduta sul tratto caldo con la temperatura dal riferimento freddo. 100 o 150 °C non sono punti interni compatibili con due resistenze positive e nessuna sorgente."
+        }
+      ],
+      "hints": [
+        "Calcola prima la nuova potenza, poi usa il tratto R_c invariato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "75 °C confonde la caduta sul tratto caldo con la temperatura dal riferimento freddo. 100 o 150 °C non sono punti interni compatibili con due resistenze positive e nessuna sorgente.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18105,
+      "title": "Il tratto caldo da una lettura interna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. T_i=50 °C e R_c=1 K/W. Quanto vale R_h in K/W?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "K/W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intervallo dal freddo è Θ=50 K. Dal tratto noto ricaviamo P=Θ/R_c=50 W. Il tratto caldo sostiene altri 50 K, quindi R_h=(100 K−50 K)/(50 W)=1 K/W. Le due cadute uguali sulla stessa potenza producono resistenze uguali."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\Theta/R_c"
+        },
+        {
+          "type": "formula",
+          "text": " P=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_h=\\frac{\\Delta T-\\Theta}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " R_h=1\\,\\mathrm{K/W}"
+        },
+        {
+          "type": "text",
+          "text": "Due K/W assegnerebbero al tratto caldo tutto il salto esterno senza sottrarre la parte fredda. Zero annullerebbe la caduta sul lato caldo e porterebbe l’interfaccia a 100 °C."
+        }
+      ],
+      "hints": [
+        "Usa il tratto noto per trovare P, poi la caduta residua per trovare R_h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due K/W assegnerebbero al tratto caldo tutto il salto esterno senza sottrarre la parte fredda. Zero annullerebbe la caduta sul lato caldo e porterebbe l’interfaccia a 100 °C.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18106,
+      "title": "Ricostruire la resistenza verso il freddo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. T_i=50 °C e R_h=1 K/W. Quanto vale R_c in K/W?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "K/W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La caduta dal caldo è 100−50=50 K. Divisa per R_h dà P=50 W. Dal freddo all’interfaccia ci sono ancora 50 K, perciò R_c=Θ/P=1 K/W. Si deve usare lo stesso valore di P nei due tratti."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{\\Delta T-\\Theta}{R_h}"
+        },
+        {
+          "type": "formula",
+          "text": " P=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_c=\\frac{\\Theta}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " R_c=1\\,\\mathrm{K/W}"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre una lettura Celsius da una resistenza non ha senso dimensionale. Un valore negativo di R_c non appartiene al modello passivo e non può sostenere il flusso caldo-freddo assegnato."
+        }
+      ],
+      "hints": [
+        "Ricava la potenza dal tratto caldo, poi passa a quello freddo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre una lettura Celsius da una resistenza non ha senso dimensionale. Un valore negativo di R_c non appartiene al modello passivo e non può sostenere il flusso caldo-freddo assegnato.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18107,
+      "title": "Una resistenza maggiore verso il freddo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. A ha R_h=R_c=1 K/W. B mantiene R_h=1 K/W e ha R_c=3 K/W. Quanto vale θ_i,B/θ_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "3",
+          "2/3",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha lettura 50 °C. In B P=25 W e Θ_B=25·3=75 K, quindi lettura 75 °C. Il rapporto numerico Celsius è 75/50=3/2. Il rapporto fra le temperature assolute sarebbe 348,15/323,15 e non è quello richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{i,A}=50"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{i,B}=75"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{i,B}/\\theta_{i,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Tre segue soltanto R_c, dimenticando che P diminuisce. Due terzi è il reciproco; un mezzo ha il verso contrario e uno ignora il cambio di ripartizione."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la lettura dal salto prima di fare il rapporto sulla scala dichiarata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre segue soltanto R_c, dimenticando che P diminuisce. Due terzi è il reciproco; un mezzo ha il verso contrario e uno ignora il cambio di ripartizione.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18108,
+      "title": "Lo scarto di una temperatura proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Con R_h=R_c=1 K/W si propone T_i=100 °C. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 K",
+          "−50 K",
+          "100 K",
+          "0 K",
+          "2"
+        ],
+        "value": "50 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lettura corretta è 50 °C. La proposta 100 °C la supera di 50 gradi, cioè 50 K di differenza. Il rapporto due tra le letture Celsius è un’altra quantità e non misura questo scarto."
+        },
+        {
+          "type": "formula",
+          "text": "T_i=50\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " e=T_{i,\\rm proposto}-T_i"
+        },
+        {
+          "type": "formula",
+          "text": " e=50\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "−50 K scambia l’ordine, 100 K copia la proposta e zero la accetta. Due è un rapporto puro, non una differenza termica."
+        }
+      ],
+      "hints": [
+        "Per una differenza Celsius e kelvin hanno lo stesso intervallo numerico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−50 K scambia l’ordine, 100 K copia la proposta e zero la accetta. Due è un rapporto puro, non una differenza termica.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18109,
+      "title": "L’inversa richiede una temperatura fra le facce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Sono noti Θ con 0<Θ<100 K e R_c. Quale formula ricava R_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_h = R_c (ΔT − Θ) / Θ",
+          "R_h = R_c Θ / (ΔT − Θ)",
+          "R_h = R_c ΔT / Θ",
+          "R_h = (ΔT − Θ) / R_c",
+          "R_h = R_c (ΔT + Θ) / Θ"
+        ],
+        "value": "R_h = R_c (ΔT − Θ) / Θ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo Θ=ΔT R_c/(R_h+R_c) per il totale e raccogliamo ΘR_h=R_c(ΔT−Θ). Dividendo per Θ>0 otteniamo R_h=R_c(ΔT−Θ)/Θ. Il rapporto termico è puro e positivo soltanto per un punto fra le facce."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta(R_h+R_c)=\\Delta T R_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta R_h=R_c(\\Delta T-\\Theta)"
+        },
+        {
+          "type": "formula",
+          "text": " R_h=\\frac{R_c(\\Delta T-\\Theta)}{\\Theta}"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco del rapporto termico scambia la ripartizione. R_cΔT/Θ è la resistenza totale, non R_h. Dividere il salto residuo per R_c dà una potenza; il segno più aggiunge invece di sottrarre la caduta fredda."
+        }
+      ],
+      "hints": [
+        "Non dimenticare il termine ΘR_c quando isoli ΘR_h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco del rapporto termico scambia la ripartizione. R_cΔT/Θ è la resistenza totale, non R_h. Dividere il salto residuo per R_c dà una potenza; il segno più aggiunge invece di sottrarre la caduta fredda.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18110,
+      "title": "Un rapporto di letture con due resistenze nuove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. B usa R_h,B=κ₁R_h,A e R_c,B=κ₂R_c,A, fattori positivi. Quanto vale θ_i,B/θ_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ (R_h + R_c) / (κ₁ R_h + κ₂ R_c)",
+          "(κ₁ R_h + κ₂ R_c) / [κ₂ (R_h + R_c)]",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₂ (R_h + R_c) / (κ₁ R_h + κ₂ R_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore della legge per Θ cambia di κ₂ e il denominatore diventa κ₁R_h+κ₂R_c. Rapportando con A si ottiene κ₂(R_h+R_c)/(κ₁R_h+κ₂R_c). Qui è anche il rapporto delle letture Celsius perché la faccia fredda è a 0 °C. Un fattore comune sulle resistenze lascia immutata la temperatura di contatto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_A=\\frac{\\Delta T R_c}{R_h+R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=\\frac{\\Delta T\\kappa_2R_c}{\\kappa_1R_h+\\kappa_2R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\theta_{i,B}}{\\theta_{i,A}}=\\frac{\\kappa_2(R_h+R_c)}{\\kappa_1R_h+\\kappa_2R_c}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto inverso scambia A e B. Il prodotto e la somma non restituiscono uno per un fattore comune arbitrario. Il solo quoziente κ₁/κ₂ trascura la somma delle due resistenze."
+        }
+      ],
+      "hints": [
+        "Confronta le due ripartizioni del medesimo salto totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto inverso scambia A e B. Il prodotto e la somma non restituiscono uno per un fattore comune arbitrario. Il solo quoziente κ₁/κ₂ trascura la somma delle due resistenze.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18111,
+      "title": "Due cambiamenti che non si cancellano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. A ha R_h=R_c=1 K/W. B ha R_h=2 K/W,R_c=3 K/W. Quanto vale θ_i,B/θ_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5",
+          "3/2",
+          "5/6",
+          "2",
+          "1"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha lettura 50 °C. B ha P=100/5=20 W e Θ_B=20·3=60 K, quindi lettura 60 °C. Il rapporto delle letture è 60/50=6/5. Il totale aumenta, ma aumenta anche la frazione del salto sul tratto freddo."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta_B=60\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{i,B}/\\theta_{i,A}=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi usa il rapporto R_c/R_h della sola B senza ricostruire il punto termico. Cinque sesti è il reciproco; due e uno non riflettono la nuova ripartizione 2:3."
+        }
+      ],
+      "hints": [
+        "Trova prima il totale delle resistenze B e la sua potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi usa il rapporto R_c/R_h della sola B senza ricostruire il punto termico. Cinque sesti è il reciproco; due e uno non riflettono la nuova ripartizione 2:3.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18112,
+      "title": "Media di due punti sulla stessa scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 2,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. A ha R_h=R_c=1 K/W; B ha R_h=2 K/W,R_c=3 K/W. Qual è la media aritmetica delle letture T_i con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "55 °C",
+          "400/7 °C",
+          "110 °C",
+          "5 °C",
+          "50 °C"
+        ],
+        "value": "55 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono 50 e 60 °C: media 55 °C. Le resistenze medie R_h=3/2 K/W e R_c=2 K/W darebbero invece Θ=100·2/(7/2)=400/7 K e lettura 400/7 °C. Mediare due punti Celsius è lecito; convertire il punto medio in kelvin conserva la media, ma non rende uguali queste due operazioni sui dati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ffdb5512d03ed91cbe7b8fb77380581c2814a776ec3b74805116cd3658a98795",
+          "text": "Le barre confrontano letture numeriche sulla stessa scala Celsius: 50, 60 e media 55 °C. Non sono potenze né rapporti di temperature assolute. Il profilo riguarda A; la prova B usa R_h=2 K/W e R_c=3 K/W e non è quel medesimo segmento geometrico."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\theta_i=\\frac{50+60}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\theta_i=55"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_i(\\overline R_h,\\overline R_c)=\\frac{400}{7}"
+        },
+        {
+          "type": "text",
+          "text": "400/7 °C usa gli ingressi medi. 110 °C non dimezza, 5 °C è metà della differenza e 50 °C ignora B. Il risultato statistico non è una nuova temperatura d’equilibrio ottenuta mettendo insieme le pareti."
+        }
+      ],
+      "hints": [
+        "Calcola i due punti e fai solo dopo la media delle letture.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400/7 °C usa gli ingressi medi. 110 °C non dimezza, 5 °C è metà della differenza e 50 °C ignora B. Il risultato statistico non è una nuova temperatura d’equilibrio ottenuta mettendo insieme le pareti.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18113,
+      "title": "La lettura bersaglio fissa una resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 3,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. A ha R_h=R_c=1 K/W. B ha R_h=2 K/W e deve avere θ_i,B=(6/5)θ_i,A. Quanto vale R_c,B/R_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "3/2",
+          "1/3",
+          "2",
+          "6/5"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 60 °C, quindi Θ_B=60 K. Sul tratto caldo cadono 40 K: con R_h=2 K/W la potenza è 20 W. Per sostenere i 60 K del tratto freddo occorre R_c,B=60/20=3 K/W. Il rapporto con 1 K/W iniziale è tre."
+        },
+        {
+          "type": "formula",
+          "text": "\\Theta_B=60\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac{40\\,\\mathrm K}{2\\,\\mathrm{K/W}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_{c,B}=3\\,\\mathrm{K/W}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{c,B}/R_{c,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il rapporto R_c,B/R_h,B e non quello richiesto rispetto ad A. Un terzo inverte la risposta, due segue soltanto R_h e sei quinti copia il bersaglio sulla lettura."
+        }
+      ],
+      "hints": [
+        "Usa la caduta calda e la resistenza già nota per trovare P_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il rapporto R_c,B/R_h,B e non quello richiesto rispetto ad A. Un terzo inverte la risposta, due segue soltanto R_h e sei quinti copia il bersaglio sulla lettura.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18114,
+      "title": "Un display tarato sulle letture Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 3,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Il display continuo adimensionale è S=qθ_i, q>0. A con R_h=R_c=1 K/W dà S=150. B dà S=180 e ha R_c=3 K/W. Quanto vale R_h,B in K/W?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "K/W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A indica 50 °C, dunque q=150/50=3 per unità della lettura Celsius. B indica 180/3=60 °C e Θ_B=60 K. Dal tratto freddo si ottiene P_B=60/3=20 W; i restanti 40 K sul lato caldo richiedono R_h,B=2 K/W. Il display non misura un rapporto termodinamico assoluto."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{i,B}=60"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_{h,B}=2\\,\\mathrm{K/W}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 180 come lettura Celsius porrebbe l’interfaccia sopra la faccia calda e darebbe una resistenza negativa nell’inversa. Prima si deve rimuovere il guadagno, poi usare il punto nel dominio 0<θ_i<100."
+        }
+      ],
+      "hints": [
+        "Decodifica la lettura prima di ripartire le cadute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 180 come lettura Celsius porrebbe l’interfaccia sopra la faccia calda e darebbe una resistenza negativa nell’inversa. Prima si deve rimuovere il guadagno, poi usare il punto nel dominio 0<θ_i<100.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18115,
+      "title": "Offset e resistenza del lato caldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 3,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Il display è S=qθ_i+b, continuo e adimensionale, q>0. A: R_h=R_c=1 K/W,S=101. B: R_h=2 K/W,R_c=3 K/W,S=121. C: R_c=1 K/W,S=51. Quanto vale R_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 K/W",
+          "149/51 K/W",
+          "1 K/W",
+          "2 K/W",
+          "25 K/W"
+        ],
+        "value": "3 K/W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti indicano 50 e 60 °C. Il guadagno è (121−101)/(60−50)=2 e l’offset è uno. C indica (51−1)/2=25 °C: sul tratto freddo da 1 K/W passano 25 W, mentre il tratto caldo sostiene 75 K. La sua resistenza è 75/25=3 K/W."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{i,C}=25"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=25\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_{h,C}=3\\,\\mathrm{K/W}"
+        },
+        {
+          "type": "text",
+          "text": "149/51 K/W omette b, usa θ_i=51/2 e produce lettura S=52. Un K/W torna ad A; 2 K/W con R_c=1 darebbero θ_i=100/3 e non 25. Venticinque copia il numero della lettura."
+        }
+      ],
+      "hints": [
+        "Tolto l’offset, usa sia la caduta fredda sia quella calda del punto trovato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "149/51 K/W omette b, usa θ_i=51/2 e produce lettura S=52. Un K/W torna ad A; 2 K/W con R_c=1 darebbero θ_i=100/3 e non 25. Venticinque copia il numero della lettura.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-interface-temperature-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperatura di contatto fra strati",
+      "order": 18116,
+      "title": "Resistenze uguali senza una scala assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "interface-temperature",
+      "difficulty": 3,
+      "prompt": "Due strati conduttivi in serie collegano una faccia a T_h=100 °C e una a T_c=0 °C, quindi ΔT=100 K. Le resistenze dal caldo all’interfaccia e dall’interfaccia al freddo sono R_h,R_c>0, in K/W. Contatto perfetto, lati isolati, nessuna generazione interna e regime stazionario: la stessa potenza P attraversa i due strati. T_i è la temperatura comune di contatto; poniamo Θ=T_i−T_c in K e θ_i il numero della sua lettura Celsius. Qui Θ=(θ_i K), perché T_c=0 °C. I rapporti fra θ_i sono rapporti di letture Celsius, dipendenti dallo zero scelto, non rapporti di temperature assolute. Fra preparazioni si impone R_h=R_c. Si misura T_i=50 °C. Quante coppie positive di resistenze soddisfano questi dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni R_h=R_c>0",
+          "Una sola: R_h=R_c=1 K/W",
+          "Nessuna coppia",
+          "Solo R_h=R_c=50 K/W",
+          "Solo R_h=R_c=0"
+        ],
+        "value": "Infinite: ogni R_h=R_c>0"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo resistenze uguali nella ripartizione, Θ=ΔT/2=50 K per qualunque valore comune positivo. La misura ripete la conseguenza del vincolo e non fissa la scala. Per esempio 1 e 1 K/W danno P=50 W, mentre 2 e 2 K/W danno P=25 W: la temperatura d’interfaccia resta 50 °C."
+        },
+        {
+          "type": "formula",
+          "text": "R_h=R_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=\\frac{\\Delta T R_c}{2R_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Theta=50\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "La coppia 1 e 1 è un esempio e non l’unica soluzione. Cinquanta copia una lettura come resistenza; zero viola il dominio e annulla il denominatore. Senza una misura di P o una resistenza nota non si ricava una scala assoluta."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e osserva se il valore comune si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coppia 1 e 1 è un esempio e non l’unica soluzione. Cinquanta copia una lettura come resistenza; zero viola il dominio e annulla il denominatore. Senza una misura di P o una resistenza nota non si ricava una scala assoluta.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Continuità della potenza e cadute termiche",
+        "Letture Celsius e riferimento esplicito",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ffdb5512d03ed91cbe7b8fb77380581c2814a776ec3b74805116cd3658a98795",
+      "name": "interface-temperature-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5UZW1wZXJhdHVyYSBkaSBjb250YXR0byBlIHJlc2lzdGVuemEgY3VtdWxhdGl2YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5EdWUgcmVzaXN0ZW56ZSBkYSB1biBrZWx2aW4gYWwgd2F0dCBpbiBzZXJpZSBmcmEgY2VudG8gZSB6ZXJvIGdyYWRpIENlbHNpdXMgY29uZHVjb25vIGNpbnF1YW50YSB3YXR0IGUgaGFubm8gY29udGF0dG8gYSBjaW5xdWFudGEgZ3JhZGkuIElsIHByb2ZpbG8gdXNhIHJlc2lzdGVuemEgY3VtdWxhdGl2YSwgbm9uIGRpc3RhbnphLiBMZSBiYXJyZSBmaW5hbGkgY29uZnJvbnRhbm8gbGV0dHVyZSBjaW5xdWFudGEsIHNlc3NhbnRhIGUgbWVkaWEgY2lucXVhbnRhY2lucXVlIGdyYWRpIENlbHNpdXMuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJoZWF0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgTG8gc3Rlc3NvIGZsdXNzbyBuZWkgZHVlIHRyYXR0aTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg1IiBmb250LXNpemU9IjE4Ij5Qcm92YSBBOiBSX2ggPSBSX2MgPSAxIEsvVyA7IM6UVCA9IDEwMCBLLjwvdGV4dD4KPHRleHQgeD0iNDgiIHk9IjE1MiI+MTAwIMKwQzwvdGV4dD48dGV4dCB4PSIyNzUiIHk9IjE1MiI+NTAgwrBDPC90ZXh0Pjx0ZXh0IHg9IjQ5NiIgeT0iMTUyIj4wIMKwQzwvdGV4dD4KPHBhdGggZD0iTTEwMCAyMzVINTQwIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNoZWF0KSIvPgo8cmVjdCB4PSIxNDAiIHk9IjE5MCIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI5MCIgcng9IjgiIGZpbGw9IiNmY2U2ZGMiIHN0cm9rZT0iI2I0NTMyOCIvPjxyZWN0IHg9IjM2MCIgeT0iMTkwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjkwIiByeD0iOCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjE4MSIgeT0iMjIyIj5SX2g8L3RleHQ+PHRleHQgeD0iMTcwIiB5PSIyNTciPjEgSy9XPC90ZXh0Pjx0ZXh0IHg9IjQwNCIgeT0iMjIyIj5SX2M8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSIyNTciPjEgSy9XPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMzUiIHI9IjgiIGZpbGw9IiNiNDUzMjgiLz4KPHRleHQgeD0iMjUxIiB5PSIzMjkiPlAgPSA1MCBXPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzc1IiBmb250LXNpemU9IjE4Ij5TY2hlbWEgZGVsbGEgcmV0ZTsgaWwgY29udGF0dG8gbm9uIGFnZ2l1bmdlIHJlc2lzdGVuemEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDA3IiBmb250LXNpemU9IjE4Ij5MYSBmcmVjY2lhIGluZGljYSBpbCB2ZXJzbyBkZWwgdHJhc2ZlcmltZW50byBlbmVyZ2V0aWNvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQ0MEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDg0IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBVbiBwcm9maWxvIHN1IHVuYSBjb29yZGluYXRhIHRlcm1pY2E8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1MjMiIGZvbnQtc2l6ZT0iMTgiPlQgaW4gwrBDIDsgUiDDqCBsYSByZXNpc3RlbnphIGN1bXVsYXRpdmEgZGFsIGxhdG8gY2FsZG8uPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDc3NVY1NjBNMTAwIDc3NUg1MzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMDAgNTc1TDMwMCA2NzVMNTAwIDc3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTEwMCA2NzVIMzAwVjc3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPGcgZmlsbD0iIzE2NWE4NyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNTc1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iNjc1IiByPSI1Ii8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iNzc1IiByPSI1Ii8+PC9nPgo8dGV4dCB4PSI0OSIgeT0iNTgyIj4xMDA8L3RleHQ+PHRleHQgeD0iNTkiIHk9IjY4MiI+NTA8L3RleHQ+PHRleHQgeD0iNjUiIHk9Ijc4MiI+MDwvdGV4dD48dGV4dCB4PSI4MiIgeT0iODEyIj4wPC90ZXh0Pjx0ZXh0IHg9IjI5MSIgeT0iODEyIj4xPC90ZXh0Pjx0ZXh0IHg9IjQ5MSIgeT0iODEyIj4yPC90ZXh0Pgo8dGV4dCB4PSIzMjIiIHk9IjY1MCI+Q29udGF0dG88L3RleHQ+PHRleHQgeD0iMzkyIiB5PSI4NTAiPlIgLyAoSy9XKTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg3OCIgZm9udC1zaXplPSIxOCI+TOKAmWFzY2lzc2Egbm9uIGluZGljYSBsbyBzcGVzc29yZSBkZWkgbWF0ZXJpYWxpLjwvdGV4dD4KPHBhdGggZD0iTTMyIDkwN0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iOTUxIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkaSBkdWUgbGV0dHVyZSBDZWxzaXVzPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDk3NFYxMjE1IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9Ijk5NCIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTA3MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTE0NiIgd2lkdGg9IjI3NSIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTAxOSI+QTwvdGV4dD48dGV4dCB4PSIzOTgiIHk9IjEwMTkiPjUwIMKwQzwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTA5NSI+QjwvdGV4dD48dGV4dCB4PSI0NDgiIHk9IjEwOTUiPjYwIMKwQzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTE3MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDIzIiB5PSIxMTcxIj41NSDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjU1IiBmb250LXNpemU9IjE4Ij5CIHVzYSBSX2ggPSAyIEsvVyBlIFJfYyA9IDMgSy9XLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyODciIGZvbnQtc2l6ZT0iMTgiPkJhcnJlIHJpZmVyaXRlIGEgMCDCsEMsIG5vbiBhbGxvIHplcm8gYXNzb2x1dG8uPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
