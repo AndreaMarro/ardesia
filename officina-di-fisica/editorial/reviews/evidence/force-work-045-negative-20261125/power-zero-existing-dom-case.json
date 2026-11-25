@@ -1,0 +1,19 @@
+{
+  "provenance": "Exact existing case extracted from frozen045 proof, not a new run",
+  "sourceProofSha256": "4c03ce23dc6518a8a5a720f0cfcf5391e332f202dcd5aba069e98a394fbfd375",
+  "case": {
+    "id": "SIM-C1-L007-02",
+    "boundary": 0,
+    "input": 0,
+    "want": "0 W",
+    "readings": "Istante della lettura\n0 s\nPotenza istantanea\n0 W\nPotenza media dall’avvio\n0 W",
+    "observedIssue": {
+      "id": "SIM-C1-L007-02",
+      "kind": "UNDEFINED_MEAN_OVER_EMPTY_INTERVAL_SHOWN_AS_ZERO",
+      "actual": "Potenza media dall’avvio\n0 W",
+      "independent": "W(t)=3t², mean=W/t for t>0 only; at0 undefined, limit0 is not labeled"
+    },
+    "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-boundary0.png",
+    "screenshotSha256": "2996aff05e7c4f602030f8f55fec3f37cba6e44805b8bb31a2d566b18b1d310c"
+  }
+}
