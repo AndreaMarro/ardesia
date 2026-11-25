@@ -8,12 +8,14 @@ import sympy as sp
 from tools.corpus_engineering import experiments_forces_activity_verifier as review
 from tools.corpus_engineering.pipeline import canonical,digest,sha
 from tools.corpus_engineering.batches import assert_activity_identity
+from tests.corpus.historical_runtime import reviewed_runtime
 
 
 class ForcesExperimentsReview(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.raw=subprocess.check_output(['git','show',review.SOURCE_REF+':'+review.SOURCE_PATH],cwd=review.APP)
+        cls.enterClassContext(reviewed_runtime(review))
         cls.sources={r['id']:r for r in json.loads(cls.raw) if r['id'] in review.READ_SOURCE_SHA256}
         cls.actual=review.runtime_values(cls.sources);cls.physics=review.independent_checks()
 
