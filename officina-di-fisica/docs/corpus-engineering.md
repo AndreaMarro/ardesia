@@ -1,3 +1,19 @@
+## Stato operativo — PR #364 in CI, runtime nuovo in rivalidazione
+
+Ultimo checkpoint integralmente validato: 2.048 quesiti DRAFT e 214 attività, generazione 90d05fb5, sulla SHA `5a9a0b8fe700034dc2494fe1fce2223ded89bb50`, runtime f897. [PR #364](https://github.com/AndreaMarro/ardesia/pull/364) aperta e congelata su quella SHA; CI in corso, nessun merge dichiarato. Release 2048 riproducibile/smoke e boundary verificati, SHA256 `a62a386c649b4b90bf40f6e4c233cb3ad21af3135bdcc1dc49eeb144f4130eb5`, zero sorgenti e figure DRAFT distribuiti.
+
+Canone remoto: `831b73fa71076b2e9b363006ffd94a350f22fe90`, PR #363 MERGED, 1.728/204, post-merge 14/14 SUCCESS sui run 45540501792/45540501766. Report versionato. Non confondere il checkpoint della feature con il conteggio già canonico.
+
+ROOT `/private/tmp/cric-resident-integrator`, nuovo ramo `feat/cric-experiment-manual-revisions`. Core 32c6763 integrato localmente nel merge `1db37d69ca3d8006fb53b1d713a32a40f1082212`; attuale runtime `97cd2aba7360c632b8d7421f8ccaaa58c00d8e600c14b67d6b74de13a35bea72`. Il checkpoint 2048 resta storico del runtime precedente finché i gate dipendenti non sono realmente rinnovati. Nessun FP ritoccato. `editorial/reviews/runtime-transition-20261125.json` marca CURRENT_RUNTIME_REVALIDATION_PENDING.
+
+Replay esaustivo in corso con il runner esistente `tests/corpus/browser-batches.mjs`, quattro worker, output `/private/tmp/cric-runtime97-all-ui`, log `/private/tmp/cric-runtime97-all-ui.log`. Il processo verifica tutti i lotti registrati e le 14 edizioni correttive già registrate. Le 9 anteprime118/119/140 sono state davvero rifatte sul 97cd nella worktree core, oltre a12 casi tecnici nel banco reale. La revisione scientifica distinta dei 16 ID di037/038/041 continua in `/private/tmp/cric-experiment-contract-fix`; nuovi verifier non sono ancora nel registro. Originali negativi e test riprodotti su vero Git snapshot f897, non sul runtime nuovo mascherato.
+
+035/036/039/040 richiedono nuova lettura delle dipendenze cambiate, veri replay e report attuali prima del prossimo ETL. I test storici037/038/041 usano ora un fixture autentico isolato; nessuna vecchia asserzione rimossa. Il helper ha 3 test e review tecnica distinta, che segnala correttamente che il test di conservazione confronta banco.js e APP, mentre la costruzione scrive solo nel TemporaryDirectory.
+
+I 112 candidati U4-02 sono tutti salvati sui rami autore. ROOT include 141–147; review incrociata in corso. Piccolo finding 144-11 sulle ipotesi per confrontare intensità: autore deve precisare onde progressive codirezionali e stesso coefficiente, poi rilettura distinta e nuovi hash. Non congelare 144 prima di quel fix. Prossimo ID operativo del checkpoint: `u4-wave-amplitude-energy-01`, 141. Ancora 2.558 quesiti e 171 attività sul checkpoint; nessun nuovo credito dai lavori in corso. Human NOT_RUN, nuove pubblicazioni 0, 93 esami protetti. Mandato aperto.
+
+Le sezioni seguenti sono snapshot storici.
+
 ## Checkpoint corrente — 2.048 quesiti e 214 attività, 25 novembre 2026
 
 Generazione `90d05fb5bd0d0ffda8f110475c4b8af7d923e08987254f670e49ee4ec0476cc0`, manifest `a5aa43a38ec626635c91e45f81de4282b9b9bd2ab8d02be98601a112a3bf2a01`. Tutti i 4.606 quesiti e le 385 attività sono contabilizzati. **2.048 revisioni individuali DRAFT e 214 attività complete**; restano **2.558 quesiti e 171 attività**. U1, U2, U3 e U4-01 revisionati in bozza. Prossimo ID operativo `u4-wave-amplitude-energy-01`, lotto 141, distinto dall’ordinamento lessicografico della coda completa.
