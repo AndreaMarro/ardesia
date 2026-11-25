@@ -1,5 +1,6 @@
 """Independent geometricoptics originaljudgments with two sourceprecision findings."""
 from copy import deepcopy
+import base64
 import json
 from pathlib import Path
 import shutil
@@ -122,5 +123,141 @@ class OpticsExamplesReview(unittest.TestCase):
         self.assertFalse(sp.asin(sp.sqrt(2)/3).atoms(sp.Float))
 
 
-if __name__ == '__main__':
-    unittest.main()
+
+class RefractionRevisionReview(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.sources={r['id']:r for r in json.loads((review.APP/'content/C5.json').read_text()) if r['id'] in review.READ_SOURCE_SHA256}
+        cls.package=json.loads((review.APP/'editorial/batches/examples-refraction-revisions-106.json').read_text())
+        cls.bindings=json.loads((review.APP/'editorial/batches/examples-refraction-revisions-106-bindings.json').read_text())
+
+    @staticmethod
+    def rebind(package,bindings):
+        byid={b['id']:b for b in bindings};tokens={}
+        for row in package['records']:
+            binding=byid[row['id']];binding['candidateSha256']=digest(row)
+            tokens[row['id']]=digest({'record':row,'assets':binding['assetChecksums'],'source':{
+                'id':binding['sourceId'],'ref':binding['sourceRef'],'sha256':binding['sourceSha256']}})
+        return tokens
+
+    def test_two_drafts_keep_two_distinct_failed_originals(self):
+        old=review.report(self.sources);new=review.report(self.sources,self.package,self.bindings)
+        self.assertEqual((old['acceptedCount'],old['failedCount']),(2,2))
+        self.assertEqual((new['acceptedCount'],new['failedCount'],new['draftReviewedCount']),(4,0,2))
+        self.assertEqual(sum(len(r['checks']) for r in new['records']),76)
+        self.assertEqual(new,review.report(self.sources,self.package,self.bindings))
+        assert_activity_identity(new['records'],set(review.READ_SOURCE_SHA256),self.sources,
+            {r['id']:r for r in self.package['records']},{b['id']:b for b in self.bindings})
+        for r in new['records']:
+            self.assertTrue(r['ok']);self.assertTrue(all(c['ok'] for c in r['checks']))
+            self.assertEqual(r['humanApproval'],'NOT_RUN');self.assertTrue(r['originalEditionRetained'])
+            if r['id'] in review.REVISION_IDS:
+                self.assertEqual((r['candidateVersion'],r['baseVersion']),(2,1))
+                self.assertEqual(r['publicationAction'],'DRAFT');self.assertTrue(r['failedPublishedEdition'])
+                self.assertEqual(r['publishedEditionReview'],next(a for a in old['records'] if a['id']==r['id']))
+                self.assertFalse(r['publishedEditionReview']['ok'])
+            else:self.assertEqual(r['publicationAction'],'NONE')
+
+    def test_wrong_sines_inverse_and_domains_fail_even_after_test_only_token_override(self):
+        cases=[(0,'sine'),(0,'arcsin'),(0,'inverse'),(0,'input'),(1,'sine'),(1,'critical'),(1,'arcsin'),(1,'inverse'),(1,'input')]
+        for index,case in cases:
+            with self.subTest(index=index,case=case):
+                p,b=deepcopy(self.package),deepcopy(self.bindings);row=p['records'][index];key=row['id']
+                if index==0:
+                    if case=='input':row['prompt']=row['prompt'].replace('n₂=3/2','n₂=2')
+                    else:
+                        lookup={'sine':(r'\sin\theta_2=\frac{\sqrt2}{3}',r'\sin\theta_2=\frac{\sqrt2}{2}'),
+                                'arcsin':(r'\theta_2=\arcsin\!\left(\frac{\sqrt2}{3}\right)',r'\theta_2=\arcsin\!\left(\frac12\right)'),
+                                'inverse':(r'n_2=\frac32',r'n_2=\frac23')}
+                        before,after=lookup[case];target=next(a for a in row['blocks'] if a.get('text','').strip()==before);target['text']=after
+                else:
+                    if case=='input':row['prompt']=row['prompt'].replace('n₁=4/3','n₁=3/4')
+                    else:
+                        lookup={'sine':(r'\sin\theta_{2,A}=\frac23',r'\sin\theta_{2,A}=\frac34'),
+                                'critical':(r'\sin\theta_c=\frac34',r'\sin\theta_c=\frac43'),
+                                'inverse':(r'\frac1{3/4}=\frac43',r'\frac1{3/4}=\frac34'),
+                                'arcsin':(r'\theta_c=\arcsin\!\left(\frac34\right)',r'\theta_c=\arcsin\!\left(\frac12\right)')}
+                        before,after=lookup[case];target=next(a for a in row['blocks'] if a.get('text','').strip()==before);target['text']=after
+                tokens=self.rebind(p,b)
+                result=next(r for r in review.verify(self.sources,p,b) if r['id']==key)
+                self.assertFalse(result['ok']);self.assertIn('Independent reviewed signature mismatch',result['errors'])
+                with patch.object(review,'REVIEWED_REVISIONS',tokens):
+                    result=next(r for r in review.verify(self.sources,p,b) if r['id']==key)
+                    self.assertFalse(result['ok']);self.assertIn('Independent new draft mathematics or physical domain failed',result['errors'])
+
+    def test_wrong_provenance_identity_versions_kind_or_answer_cannot_pass(self):
+        for index in (0,1):
+            for case in ('ref','id','hash','version','base','boolean','kind','answer'):
+                with self.subTest(index=index,case=case):
+                    p,b=deepcopy(self.package),deepcopy(self.bindings);row=p['records'][index];binding=b[index]
+                    if case=='ref':binding['sourceRef']='0'*40
+                    elif case=='id':binding['sourceId']='C5-E001'
+                    elif case=='hash':binding['sourceSha256']='0'*64
+                    elif case=='version':row['version']=3
+                    elif case=='base':row['baseVersion']=0
+                    elif case=='boolean':row['version']=True
+                    elif case=='kind':row['kind']='question'
+                    else:row['answer']={'type':'text','value':'not an example'}
+                    with patch.object(review,'REVIEWED_REVISIONS',self.rebind(p,b)):
+                        self.assertFalse(next(r for r in review.verify(self.sources,p,b) if r['id']==row['id'])['ok'])
+            sources=deepcopy(self.sources);key=self.package['records'][index]['id'];sources[key]['version']=2
+            p,b=deepcopy(self.package),deepcopy(self.bindings);p['records'][index].update(version=3,baseVersion=2);b[index]['sourceSha256']=digest(sources[key])
+            with patch.object(review,'REVIEWED_REVISIONS',self.rebind(p,b)):
+                self.assertFalse(next(r for r in review.verify(sources,p,b) if r['id']==key)['ok'])
+
+    def test_payload_asset_completeness_and_reading_required(self):
+        for field in ('records','bindings'):
+            for duplicate in (False,True):
+                p,b=deepcopy(self.package),deepcopy(self.bindings)
+                if field=='records':p['records']=p['records'][:1]*2 if duplicate else []
+                else:b=b[:1]*2 if duplicate else []
+                with self.assertRaises(ValueError):review.verify(self.sources,p,b)
+        with self.assertRaises(ValueError):review.verify(self.sources,self.package,None)
+        with self.assertRaises(ValueError):review.verify(self.sources,None,self.bindings)
+        for index in (0,1):
+            p=deepcopy(self.package);raw=base64.b64decode(p['assets'][index]['data']);p['assets'][index]['data']=base64.b64encode(raw+b' changed').decode()
+            with self.assertRaises(ValueError):review.verify(self.sources,p,self.bindings)
+        p=deepcopy(self.package);raw=b'<svg xmlns="http://www.w3.org/2000/svg"/>'
+        p['assets'].append({'id':sha(raw),'name':'orphan.svg','mime':'image/svg+xml','data':base64.b64encode(raw).decode()})
+        with self.assertRaises(ValueError):review.verify(self.sources,p,self.bindings)
+        with tempfile.TemporaryDirectory() as home:
+            root=Path(home)
+            for mapping in review.REVISION_ASSETS.values():
+                for name in mapping:shutil.copyfile(review.APP/'editorial/assets'/name,root/name)
+            for key,mapping in review.REVISION_ASSETS.items():
+                name=next(iter(mapping));file=root/name;raw=file.read_bytes()
+                for replacement in (None,raw+b'\n'):
+                    if replacement is None:file.unlink()
+                    else:file.write_bytes(replacement)
+                    self.assertFalse(next(r for r in review.verify(self.sources,self.package,self.bindings,asset_root=root) if r['id']==key)['ok'])
+                    file.write_bytes(raw)
+        for key in review.REVISION_IDS:
+            original=review.revised_checks
+            def empty(row,root):return [] if row['id']==key else original(row,root)
+            with patch.object(review,'revised_checks',side_effect=empty):
+                self.assertFalse(next(r for r in review.verify(self.sources,self.package,self.bindings) if r['id']==key)['ok'])
+
+    def test_exact_models_and_distinct_native_diagram_geometry(self):
+        for row in self.package['records']:
+            checks=review.revised_checks(row,review.APP/'editorial/assets')
+            self.assertTrue(all(c['ok'] for c in checks))
+            self.assertFalse(any(sp.sympify(c['independentExact']).atoms(sp.Float) for c in checks))
+        self.assertEqual(sp.sin(sp.pi/4)/sp.Rational(3,2),sp.sqrt(2)/3)
+        self.assertLess(sp.Rational(2,9),sp.Rational(1,4))
+        self.assertTrue(sp.Rational(1,2)<sp.Rational(9,16)<sp.Rational(3,4))
+        self.assertTrue(sp.Rational(1,4)<sp.Rational(4,9)<sp.Rational(1,2))
+        self.assertGreater((sp.Rational(4,3)*sp.sin(sp.pi/3))**2,1)
+        # Geometric check independently notices an erroneously reversed ray,
+        # even without considering the separate cryptographic asset guard.
+        with tempfile.TemporaryDirectory() as home:
+            root=Path(home)
+            for row in self.package['records']:
+                name=next(iter(review.REVISION_ASSETS[row['id']]))
+                raw=(review.APP/'editorial/assets'/name).read_text()
+                if row['id']=='C5-E017':raw=raw.replace('L424.852814 478.745079','L424.852814 161.254921')
+                else:raw=raw.replace('L453.333333 720.928802','L453.333333 1019.071198')
+                (root/name).write_text(raw)
+                self.assertTrue(any(not c['ok'] for c in review.revised_checks(row,root)))
+
+
+if __name__ == '__main__':unittest.main()

@@ -17,3 +17,28 @@ Recovery Python: `python -m unittest discover -s tests/corpus -p test_examples_o
 - Test SHA-256: `989097486fdf321283529465de25b9bc01827f5abbebe1e8c3fea5fa6947410d`
 - Both report files SHA-256: `8692ce35964d571fb79d426497047f9de63b5bbc16329d4f7ad636b4aaa448c5`
 - Canonical report digest: `6a59967bdfbf7aafffe83e9bd47565dbdf08263a08cc334abc42341177a96164`
+
+
+## Independent review of additive refraction revision106
+
+AuthorB commit e96c66a3dd24ce42ebe63ff9650c3f7272ca3213, integrated by rootf2d49dc. As reviewer distinct from the revision author, I read **both standalone prompts, all26E017+37E018 blocks, both entire SVG XML files and complete native640×1470/640×1760 Chromium renders**. Screenshots `/private/tmp/cric-review-106-example-refraction-exact.png` and `/private/tmp/cric-review-106-example-total-reflection-exact.png` were fully inspected, including bottomlabels; cropped tallQuickLook previews are not substituted. Candidate/binding/asset bytes remained unchanged by this reviewer.
+
+**E017v2/base1:** Assigned air1/glass3/2 and surface45° give normal45°, reflected45°. Exact Snell sine=(2/3)(√2/2)=√2/3; responseθ₂=arcsin(√2/3) is explicitly allowed without decimal inversion. Since2/9<1/4 (crossmultiply8<9),0<θ₂<30°. Inverse(√2/2)/(√2/3)=3/2 recovers the index. All quantities under the inverse are positive admissible dimensionless ratios. Reversing indexratio would give squaredsine9/8>1, a ratio error, not physical TIR for these air–glass inputs. The text correctly warns that coincident45° alone cannot diagnose surface/normal confusion for generalangles90−α. New diagram rays have correct incoming/reflected45° and transmitteddirection closer to normal in glass. Separate triangle sides√2,√7,3 at common50px/unit satisfy2+7=9; printed six-decimal pixelcoordinates differ from exact sidecoordinates by<1e-6px. Raylengths explicitly do not encode intensity.
+
+**E018v2/base1:** This is an explicitly declared **new exact-model parametrization**, water4/3/air1 and incidence30°/60°, while historical1.33/40°/55° remains preserved in the nested original judgment. It does not claim realwater has an exactly universal index4/3. Criticalsine3/4 givesθc=arcsin3/4;1/2<9/16<3/4 via8<9<12 places45<θc<60. At30°,Snell sine2/3 givesθ₂=arcsin2/3, with1/4<4/9<1/2, hence30<θ₂<45; reflected30. At60°,candidate2√3/3 has square4/3>1, so no real outgoing propagating ray; reflected60. Exactcritical is grazinglimit, distinct from strictlygreater-angle TIR. Both1/(3/4) and(2/3)/(1/2) recover4/3. All are fractions/radicals/notable-angle comparisons, no decimalinverse. Three complete diagram panels have correct waterbelow/airabove and direction arrows; two transmittedpaths only (criticalgrazing,30°outgoing); no thirdpropagating ray in60°case. Roundedpixel squaredsine discrepancies are bounded by an exact1e-7 tolerance, not treated as exactcoordinateidentities. Evanescentfields are not denied by the geometric ray statement; no Fresnel intensity estimate is inferred from arrowlengths.
+
+No remaining concrete finding in the new editions. Default/original report remains **2PASS/2FAIL/29checks** with E017falseexactchain and E018lastdigit-roundingfailures distinct. Effective report is **4PASS/0FAIL/2DRAFT/76checks**. Both new records nest the entire failed `publishedEditionReview`, retain failedPublishedEditionTrue, sourcepinnedoriginalversion1 and additivecandidateversion2/base1; E019/E020 remain originalNONE. HumanNOT_RUN and publicationNONE at reportlevel, DRAFTonlyfor reviewedneweditions. This is AI review, not humanapproval or publication.
+
+Expanded target **11/11testsPASS,exit0,0.774s**. Tests cover original judgments/Git source/threehistoricalfigures, exactneworacles/nativegeometry, source/candidate/base/kind/answer mutations, typedbooleanversions, coherent sourceversion drift, duplicate/omittedidentities, missingpackages/bindings, Base64tampering/orphan/missing/changedassets, emptyoracles and wrongraydirection in actualSVG geometry. Rebound wrongsines/criticalratio/arcsinarguments/inverses/inputs failfrozenreading; TEST-ONLY tokenoverrides also failindependentboundednumeric/domain guards. Sourcecounterexamples and previousoriginalfailures remain checked. No reviewer implementation failure in this target; the final pass includes added directprinted E018inversechecks.
+
+Current exact hashes:
+
+- Package file `0d6506544242e5bb19ef688eb96d2a99316943faa32ec3bb08d349c46fbf8ec1`; canonical `12c132df46c7fdc73951fb0fd3732bd0dc3faa6012e0b0acabd56f3e3419940e`.
+- Binding file `7ba47ee8960ec6022d5080ae307b6967e7672a08910c011c9c0cd11e9b06bd71`; canonical `1b8287c70ef84b6b41247221124a9edcf62d26edabe3e0ef494c796a762deb96`.
+- E017 independent signature `bc01a618c55a69a561bc89e5fe3ca95f0a5d92aef5f74a858213e5dc6454715b`; E018 `e30c2948c89530e8312e3a19171c44e426c465362c5978c0658fb9aea53af89e`.
+- NewSVGs: refraction `f71210b2e778122bb5f9e409d648f5bfcb133b7318273c2afe80fb0a0c4391b9`; totalreflection `53297e6c88590bf8a70bd25d1036de19b6aa629030c2eeb3d149cdac59960a3a`.
+- Verifier `1725e47e649f8c18e0bc06a74b0590a9975d0c29c3fd72f568ddf21ce4a19abf`; test `d2f6ac98320e615e07ab53801bab4f3b3fec8f09743da97441a8deb0a3a0f710`.
+- Original report file `0e41a8ca689ce564125f97d3681f6bbf4c4fc1651456186576f51c0fb1e903cc`; canonical `159dab9b931947dbd169b897486de6ec1523b59cb72e925cfda75d5a0d261d75`.
+- Effective report file `8d6942bfaa8493fd8c039f368d0f0da3592c48ff7db00811c31619f16031fc63`; canonical `01b72a741e5469531c3f84eec72db2d5e944c373584d31641fbb27a0d56243c1`.
+
+Only ownverifier, test, tworeports and this note changed; no candidates/sources/assets/registry/checkpoint/app/Git mutation. Historical hashes earlier in this note describe the initial original-only review, not the current wrappermodule/reportbytes.
