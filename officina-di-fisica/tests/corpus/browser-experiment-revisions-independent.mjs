@@ -9,7 +9,7 @@ import fs from 'node:fs/promises';
 import {chromium} from 'playwright';
 const root=fileURLToPath(new URL('../../',import.meta.url)).replace(/\/$/,'');
 const python=process.env.PYTHON||'python3';
-const reviewedProfile='0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd';
+const reviewedProfile='54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d';
 const names=['experiment-projection-revision-118','experiment-products-revision-119','experiment-normal-revision-140'];
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const profile=()=>JSON.parse(execFileSync(python,['-m','tools.corpus_engineering.runtime_fingerprint'],{cwd:root,encoding:'utf8'}));

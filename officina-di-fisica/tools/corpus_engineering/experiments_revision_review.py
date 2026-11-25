@@ -10,12 +10,12 @@ from .pipeline import digest,sha
 from .review_contract import reviewed_rows
 from .runtime_fingerprint import runtime_fingerprint
 
-REVIEWED_RUNTIME='0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd'
+REVIEWED_RUNTIME='54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d'
 PROOF='experiments-revisions-118-119-140-independent-browser.json'
 PROTOCOL='browser-experiment-revisions-independent.mjs'
 # Filled only after observing the complete terminal replay of the exact protocol.
-READ_PROOF_SHA256='eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132'
-READ_PROTOCOL_SHA256='201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3'
+READ_PROOF_SHA256='beaab749fa681a3dee74185e8749bc3c7f98d379fd13729cf22a0a18c6873fd7'
+READ_PROTOCOL_SHA256='ab78a9ace3b5de16d7286c08d918e19105a521180c294c6543c6181eb9138de6'
 ALL_IDS=tuple('SIM-C1-L%03d-%02d'%(lesson,index) for lesson,count in ((1,6),(2,4),(5,6)) for index in range(1,count+1))
 TARGETS={'SIM-C1-L001-06','SIM-C1-L002-04','SIM-C1-L005-05'}
 PACKAGE_FILES={'experiment-projection-revision-118':'38c312f80c4c2051be7b39cf79880fe58a87d0f189ccb40ab306b20d87e5095d',
