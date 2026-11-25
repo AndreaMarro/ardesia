@@ -20,7 +20,7 @@ Il campo compie lavoro qU=(1 μC)(2 kV)=2 mJ. La partenza da fermo dà K_f=mv²/
 
 Passaggi: `qU=2\,\mathrm{mJ}\qquad \frac12mv^2=qU\qquad v^2=4\,\mathrm{m^2/s^2}\qquad v=2\,\mathrm{m/s}`
 
-Distrattori: Quattro m/s copia v² come se fosse v; un m/s perde il fattore due del bilancio. Due km/s confonderebbe grammi con chilogrammi o i prefissi della tensione. Il lavoro è in millijoule, non in kilojoule.
+Distrattori: Quattro m/s copia v² come se fosse v. Un m/s darebbe K_f=1/2 mJ, non i 2 mJ disponibili. Due km/s tratterebbe 1 μC come 1 C, sovrastimando qU di 10⁶ e v di 10³. Il lavoro assegnato è in millijoule, non in kilojoule.
 
 ## 02 — La dimensione di una rapidità
 
@@ -141,3 +141,7 @@ Sostituendo U=αm nel rapporto energetico, v²=2qα e la massa si cancella per m
 Passaggi: `U=\alpha m\qquad v^2=\frac{2q\alpha m}{m}\qquad v^2=2q\alpha\qquad v=2\,\mathrm{m/s}`
 
 Distrattori: Le coppie specifiche proposte sono esempi, non uniche soluzioni. Non sono tutte le masse con U=2 kV fisso: il vincolo richiede di cambiare U insieme a m. Non si importa qui il vincolo intero dei conteggi di microstati di un altro modello.
+
+## Rilievo distinto sul feedback 01
+
+Il revisore A ha osservato che omettere il fattore due produce √2 m/s, non 1 m/s, e che il solo errore g/kg non produce 2 km/s. Corrette soltanto le due attribuzioni: 1 m/s dà K_f=1/2 mJ, non 2 mJ; trattare 1 μC come 1 C moltiplica qU per10⁶ e v per10³, producendo proprio 2 km/s. Le chiavi, formule, SVG e gli altri15 record sono identici. Edizione precedente conservata in author-evidence/charge-accelerating-voltage-197-feedback01-superseded-20261125 con checksum. Nessuna firma scientifica aggiornata dall’autore; rilettura A e UI prodotto della nuova edizione NOT_RUN.
