@@ -1,0 +1,1186 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-torricelli-flow-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10301,
+      "title": "Un millimetro quadrato sotto cinque metri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Con A=1 mm² e H=5 m,quanto vale Q in mL/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "mL/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Torricelli dà velocità√(2gH)=10 m/s. Moltiplicandola per1 mm² otteniamo10·10⁻⁶ m³/s. Poiché1 mL=10⁻⁶ m³,la portata è10 mL/s: la coincidenza dei numeri discende dalle due conversioni esatte,non dall’uguaglianza fra area e volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7887bac5278404ef33743c1ac47562a450175a33ede0c54f6182647936e39f8e",
+          "text": "Dettagli di due fori rettangolari,non circolari:1×1mm e1×2mm hanno aree1e2mm². La scala del dettaglio è20px/mm. A H5m la velocità ideale10m/s è uguale e le portate10e20mL/s sono barre100e200px a10px/(mL/s)."
+        },
+        {
+          "type": "formula",
+          "text": "v=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=10\\cdot10^{-6}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mL}=10^{-6}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=10\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci mL/s è un volume per tempo,non una velocità. Dimenticare la conversione dell’area darebbe un valore un milione di volte troppo grande in m³/s. Il modello non include un coefficiente sperimentale di efflusso minore di uno."
+        }
+      ],
+      "hints": [
+        "Trova la velocità e converti l’area prima del prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci mL/s è un volume per tempo,non una velocità. Dimenticare la conversione dell’area darebbe un valore un milione di volte troppo grande in m³/s. Il modello non include un coefficiente sperimentale di efflusso minore di uno.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10302,
+      "title": "L’unità di una portata del getto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Quale unità proposta esprime Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mL/s",
+          "m/s",
+          "mm²",
+          "mL",
+          "kg/s"
+        ],
+        "value": "mL/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto area per velocità ha dimensione di volume per tempo. Il millilitro è una misura di volume;non è una lunghezza da moltiplicare ancora per un’area. Per questa scelta di unità,1 mm²·1 m/s equivale esattamente a1 mL/s."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=L^3/T"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mm^2}\\cdot1\\,\\mathrm{m/s}=10^{-6}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 10^{-6}\\,\\mathrm{m^3/s}=1\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "m/s è velocità,mm² area,mL volume senza tempo e kg/s portata massica. Per passare a massa al secondo occorrerebbe moltiplicare Q per la densità del liquido."
+        }
+      ],
+      "hints": [
+        "Un’area moltiplicata per una lunghezza al secondo dà un volume al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è velocità,mm² area,mL volume senza tempo e kg/s portata massica. Per passare a massa al secondo occorrerebbe moltiplicare Q per la densità del liquido.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10303,
+      "title": "Dalla velocità di Torricelli alla portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Quale formula fisica dà Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = A√(2gH)",
+          "Q = √(2gH)/A",
+          "Q = A(2gH)",
+          "Q = A√(gH)",
+          "Q = 2A√(2gH)"
+        ],
+        "value": "Q = A√(2gH)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello di piccolo foro la velocità è√(2gH). La portata è il volume che attraversa l’area per secondo:Q=Av. Moltiplichiamo quindi l’area per il modulo della velocità uniforme. La pressione comune elimina un contributo energetico differenziale,non l’area di efflusso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7887bac5278404ef33743c1ac47562a450175a33ede0c54f6182647936e39f8e",
+          "text": "La conversione è esatta:1mm²·1m/s=10⁻⁶m³/s=1mL/s. Il confronto finale fra(A1mm²,H5m) e(A2mm²,H20m) combina area doppia e velocità doppia:Q10e40mL/s. Barre a10px/(mL/s),lunghezze100e400px;non sono quote del serbatoio."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\sqrt{2gH}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=Av"
+        },
+        {
+          "type": "formula",
+          "text": " Q=A\\sqrt{2gH}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere perA inverte la dipendenza geometrica e altera le dimensioni. A·2gH usa v² invece di v;√(gH) perde il fattore due energetico e il doppio esterno non deriva da alcun foro aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Combina Q=Av con la velocità istantanea di Torricelli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere perA inverte la dipendenza geometrica e altera le dimensioni. A·2gH usa v² invece di v;√(gH) perde il fattore due energetico e il doppio esterno non deriva da alcun foro aggiuntivo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10304,
+      "title": "Area doppia allo stesso battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Fra prove A passa da1 a2 mm² e H resta5 m. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da10 a20 mL/s",
+          "Da10 a10√2 mL/s",
+          "Resta10 mL/s",
+          "Da10 a40 mL/s",
+          "Da10 a5 mL/s"
+        ],
+        "value": "Da10 a20 mL/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa profondità la velocità rimane10 m/s. Il foro più grande lascia passare il doppio volume per secondo:Q cresce da10 a20 mL/s. La scala assegnata è quella delle aree già calcolate,non di un raggio da elevare al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=v_B"
+        },
+        {
+          "type": "formula",
+          "text": "v_B=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=A_B/A_A"
+        },
+        {
+          "type": "formula",
+          "text": "A_B/A_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=20\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "√2 applicherebbe la radice all’area anziché al battente;quaranta conta due volte il raddoppio. Cinque inverte l’effetto e dieci ignora il nuovo foro. Entrambi i fori restano piccoli rispetto al serbatoio nel modello."
+        }
+      ],
+      "hints": [
+        "Mantieni la velocità e raddoppia soltanto l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "√2 applicherebbe la radice all’area anziché al battente;quaranta conta due volte il raddoppio. Cinque inverte l’effetto e dieci ignora il nuovo foro. Entrambi i fori restano piccoli rispetto al serbatoio nel modello.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10305,
+      "title": "L’area del foro dalla portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Q=10 mL/s e H=5 m. Quanto vale A in mm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il battente assegna v=10 m/s. Dividendo la portata per la velocità si ricava un’area:10 mL/s corrispondono a10·10⁻⁶ m³/s,quindi A=10⁻⁶ m²=1 mm². Il rapporto fra numeri vale uno perché le unità sono state convertite coerentemente."
+        },
+        {
+          "type": "formula",
+          "text": "A=Q/v"
+        },
+        {
+          "type": "formula",
+          "text": " v=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=1\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Qv non è un’area e il reciproco v/Q è area inversa. Il valore1 non può essere seguito da m²:quella diversa unità cambierebbe l’area di un milione."
+        }
+      ],
+      "hints": [
+        "Decodifica la velocità e dividi Q per v con le unità coerenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Qv non è un’area e il reciproco v/Q è area inversa. Il valore1 non può essere seguito da m²:quella diversa unità cambierebbe l’area di un milione.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10306,
+      "title": "Il battente dalla portata di un foro noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Q=10 mL/s e A=1 mm². Quanto vale H in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal rapporto Q/A ricaviamo v=10 m/s,usando le conversioni esatte di mL e mm². Poi H=v²/(2g)=100/20=5 m. L’area deve essere nota:una sola portata senza area non identifica il battente."
+        },
+        {
+          "type": "formula",
+          "text": "v=Q/A"
+        },
+        {
+          "type": "formula",
+          "text": "Q/A=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{v^2}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{100}{20}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare v/(2g) fallirebbe il controllo dimensionale e dimenticare il due darebbe10 m. Il valore ricostruito è il battente verticale istantaneo,non una distanza lungo il tubo."
+        }
+      ],
+      "hints": [
+        "Ricava v dalla portata prima di quadrare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare v/(2g) fallirebbe il controllo dimensionale e dimenticare il due darebbe10 m. Il valore ricostruito è il battente verticale istantaneo,non una distanza lungo il tubo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10307,
+      "title": "Battente quadruplo, stessa area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. A ha A=1 mm²,H_A=5 m. B mantiene A e ha H_B=20 m. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1/4",
+          "20"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità passa da10 a20 m/s perché il battente quadruplica. Alla stessa area le portate passano da10 a20 mL/s e il rapporto è due. La portata è lineare in A,ma cresce con la radice di H."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=10\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=20\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro tratta Q come proporzionale aH;un mezzo e un quarto invertono il confronto. Venti è il numero della portata B,non il suo rapporto aQ_A."
+        }
+      ],
+      "hints": [
+        "A area fissa,usa la radice del rapporto dei battenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro tratta Q come proporzionale aH;un mezzo e un quarto invertono il confronto. Venti è il numero della portata B,non il suo rapporto aQ_A.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10308,
+      "title": "Una portata proposta eccessiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Con A=1 mm²,H=5 m si propone Q=20 mL/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 mL/s",
+          "−10 mL/s",
+          "20 mL/s",
+          "0 mL/s",
+          "5 mL/s"
+        ],
+        "value": "10 mL/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità10 m/s e l’area1 mm² danno10 mL/s. La proposta ne aggiunge altrettanti:lo scarto è+10 mL/s. Per ottenere20 mL/s con la stessa area servirebbe velocità20 m/s e battente20 m,non5 m."
+        },
+        {
+          "type": "formula",
+          "text": "Q=10\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno scambia l’ordine;venti copia la proposta,zero la accetta e cinque dimezza lo scarto. Non si sommano due volte i volumi di ingresso e uscita nello stesso bilancio di portata."
+        }
+      ],
+      "hints": [
+        "Calcola Q dal prodotto Av prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno scambia l’ordine;venti copia la proposta,zero la accetta e cinque dimezza lo scarto. Non si sommano due volte i volumi di ingresso e uscita nello stesso bilancio di portata.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10309,
+      "title": "L’inversa simbolica dell’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Quale formula isola A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A = Q/√(2gH)",
+          "A = Q√(2gH)",
+          "A = √(2gH)/Q",
+          "A = Q/(2gH)",
+          "A = 2Q/√(2gH)"
+        ],
+        "value": "A = Q/√(2gH)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore√(2gH) è una velocità positiva. Dividere Q per esso lascia un’area,come richiede l’incognita. L’equazione è fisica e vale con qualsiasi insieme coerente di unità;il risultato può poi essere convertito in mm²."
+        },
+        {
+          "type": "formula",
+          "text": "Q=A\\sqrt{2gH}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{Q}{\\sqrt{2gH}}"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=(L^3/T)/(L/T)"
+        },
+        {
+          "type": "formula",
+          "text": "(L^3/T)/(L/T)=L^2"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per la velocità o prendere il reciproco fallisce le dimensioni di un’area. Dividere per2gH userebbe v²,non v;il doppio finale modifica la portata senza un fattore dato."
+        }
+      ],
+      "hints": [
+        "Dividi la portata per la velocità di efflusso positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per la velocità o prendere il reciproco fallisce le dimensioni di un’area. Dividere per2gH userebbe v²,non v;il doppio finale modifica la portata senza un fattore dato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10310,
+      "title": "Area e battente scalati insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. B ha A_B=κ₁A_A e H_B=κ₂H_A,con fattori positivi. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁√κ₂",
+          "κ₁ κ₂",
+          "√(κ₁ κ₂)",
+          "κ₁ / √κ₂",
+          "κ₁²√κ₂"
+        ],
+        "value": "κ₁√κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area compare come fattore lineare fuori dalla radice,il battente dentro la radice. Sostituendo e dividendo perQ_A si ottieneκ₁√κ₂. Il coefficiente ideale di efflusso resta lo stesso e vale uno in entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\kappa_1A_A\\sqrt{2g\\kappa_2H_A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\sqrt{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ perde la radice suH;√(κ₁κ₂) applica la radice anche all’area. Il quoziente rende inversa la dipendenza daH e il quadrato diκ₁ scambia un’area con un raggio."
+        }
+      ],
+      "hints": [
+        "Lascia l’area fuori dalla radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ perde la radice suH;√(κ₁κ₂) applica la radice anche all’area. Il quoziente rende inversa la dipendenza daH e il quadrato diκ₁ scambia un’area con un raggio.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10311,
+      "title": "Due volte l’area e quattro volte il battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. A: A=1 mm²,H=5 m. B: A=2 mm²,H=20 m. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "8",
+          "1/4",
+          "40"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità raddoppia e l’area raddoppia,perciò la portata quadruplica. I valori sono10 e40 mL/s;il rapporto è quattro. Il fattore otto moltiplicherebbe erroneamente per quattro anche la velocità."
+        },
+        {
+          "type": "formula",
+          "text": "v_B=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=40\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue soltanto una delle due variazioni,otto trattaH linearmente,un quarto inverte gli stati. Quaranta è il numero della portata B in mL/s,non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Combina2 per l’area e√4 per la velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue soltanto una delle due variazioni,otto trattaH linearmente,un quarto inverte gli stati. Quaranta è il numero della portata B in mL/s,non il rapporto puro.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10312,
+      "title": "Media delle due portate ideali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Le prove A=1 mm²,H=5 m e A=2 mm²,H=20 m hanno uguale peso statistico. Qual è la media aritmetica delle due Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 mL/s",
+          "50 mL/s",
+          "25/2 mL/s",
+          "15√10/2 mL/s",
+          "30 mL/s"
+        ],
+        "value": "25 mL/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le portate sono10 e40 mL/s. Sommate danno50 mL/s e la semisomma è25 mL/s. Non si sta descrivendo lo svuotamento di un singolo serbatoio nel tempo:è una media di risultati di due prove."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{10+40}{2}\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=25\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta è la somma,25/2 divide ancora e trenta è la differenza. Area media3/2 mm² e battente medio25/2 m darebbero15√10/2 mL/s. Il quadrato di quel numero è1125/2,diverso da625=25²,quindi non è la media richiesta senza dover approssimare√10."
+        }
+      ],
+      "hints": [
+        "Media10e40 dopo aver applicato Torricelli separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta è la somma,25/2 divide ancora e trenta è la differenza. Area media3/2 mm² e battente medio25/2 m darebbero15√10/2 mL/s. Il quadrato di quel numero è1125/2,diverso da625=25²,quindi non è la media richiesta senza dover approssimare√10.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10313,
+      "title": "Il battente per quadruplicare la portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. A ha A_A=1 mm²,H_A=5 m. B ha A_B=2 mm² e deve ottenere Q_B=4Q_A. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "8",
+          "20"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è40 mL/s. L’area doppia richiede velocità20 m/s,il doppio del riferimento. Per raddoppiare la velocità occorre quadruplicare il battente:da5 a20 m,rapporto quattro."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=40\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la velocità invece del suo quadrato;un quarto inverte gli stati. Otto moltiplica ancora per l’area già inserita e venti è il battente B come numero in m,non il rapporto."
+        }
+      ],
+      "hints": [
+        "Ricava la velocità richiesta dall’area doppia e poi quadra il suo fattore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la velocità invece del suo quadrato;un quarto inverte gli stati. Otto moltiplica ancora per l’area già inserita e venti è il battente B come numero in m,non il rapporto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10314,
+      "title": "Tarare Q per trovare l’area del foro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Un display continuo adimensionale segue S=qQ,q>0,senza offset. A con A=1 mm²,H=5 m dà S=30. B con H=20 m dà S=120. Quanto vale A_B in mm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento10 mL/s fissa q=3 s/mL. La lettura120 rappresenta40 mL/s. Il battente20 m dà velocità20 m/s e quindi area2 mm²,grazie alla conversione esatta fra mm²·m/s e mL/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=40\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=2\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Interpretare120 come portata fisica darebbe6 mm²,incorporando il guadagno nell’area. Il numero2 si riferisce a mm²:non a un lato del foro da elevare ancora al quadrato."
+        }
+      ],
+      "hints": [
+        "Decodifica Q prima di dividerla per la velocità al battenteB.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Interpretare120 come portata fisica darebbe6 mm²,incorporando il guadagno nell’area. Il numero2 si riferisce a mm²:non a un lato del foro da elevare ancora al quadrato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10315,
+      "title": "Due tarature e una portata intermedia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Un display continuo adimensionale segue S=qQ+z. A:A=1 mm²,H=5 m,S=21. B:A=2 mm²,H=20 m,S=81. C:H=5 m,S=41. Quanto vale A_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mm²",
+          "1 mm²",
+          "3 mm²",
+          "4 mm²",
+          "1/2 mm²"
+        ],
+        "value": "2 mm²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le portate di riferimento10 e40 mL/s danno q=(81−21)/(40−10)=2 s/mL e z=1. La lettura41 significa Q_C=20 mL/s. Con velocità10 m/s,l’area è2 mm²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=20\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=2\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Al battente5 m,aree1,3,4,1/2 mm² darebbero letture21,61,81,11. Solo2 mm² restituisce41. L’offset va rimosso prima della divisione perq,e la conversione delle unità resta parte dell’inversa."
+        }
+      ],
+      "hints": [
+        "Trova q,z e poi ricavaA=Q/v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Al battente5 m,aree1,3,4,1/2 mm² darebbero letture21,61,81,11. Solo2 mm² restituisce41. L’offset va rimosso prima della divisione perq,e la conversione delle unità resta parte dell’inversa.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-flow-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10316,
+      "title": "Un vincolo che porta a un cubo perfetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-flow",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile defluisce da un piccolo foro di area A>0 sotto battente H>0 in un serbatoio molto più largo. Si considera l’istante quasi stazionario, con velocità superficiale trascurata nel modello, pressioni assolute uguali alla superficie e nel getto, e liquido nello stato di fase assunto. La gravità è uniforme, g=10 m/s². Perdite, contrazione del getto e macchine sono escluse: il coefficiente ideale di efflusso è1 e la velocità nel foro è assunta uniforme. A è espressa in mm²,H in m e la portata volumetrica Q in mL/s. Fra apparati si impone A=cH,con c=1/5 mm²/m. Si misura Q=10 mL/s. Quanto vale H>0 in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=H/(1 m)>0 e a=A/(1 mm²). Il vincolo diventa a=x/5. Con le unità dichiarate il numero della portata valea√(20x). Elevando al quadrato una quantità positiva,100=(x²/25)20x=(4/5)x³. Ne segue x³=125,cioè x=5 senza approssimazioni."
+        },
+        {
+          "type": "formula",
+          "text": "x=H/(1\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": " a=x/5"
+        },
+        {
+          "type": "formula",
+          "text": " 100=\\frac45x^3"
+        },
+        {
+          "type": "formula",
+          "text": " x^3=125"
+        },
+        {
+          "type": "formula",
+          "text": " x=5"
+        },
+        {
+          "type": "formula",
+          "text": " H=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il vincolo mantiene le unità di c:area per lunghezza,non un numero puro. H5 m dàA1 mm² e riproduceQ10 mL/s. Nel dominio positivo il cubo è strettamente crescente:non ci sono due battenti fisici né un ramo negativo da conservare."
+        }
+      ],
+      "hints": [
+        "Rendi pure le variabili,quadra Q e riconosci5³=125.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il vincolo mantiene le unità di c:area per lunghezza,non un numero puro. H5 m dàA1 mm² e riproduceQ10 mL/s. Nel dominio positivo il cubo è strettamente crescente:non ci sono due battenti fisici né un ramo negativo da conservare.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Portata di un piccolo foro e velocità istantanea",
+        "Conversioni mm²,metri e millilitri",
+        "Scalature e vincoli fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7887bac5278404ef33743c1ac47562a450175a33ede0c54f6182647936e39f8e",
+      "name": "torricelli-flow-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+QXJlYSBkZWwgZm9ybywgdmVsb2NpdMOgIGUgdm9sdW1lIGFsIHNlY29uZG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EZXR0YWdsaSBkaSBmb3JpIHJldHRhbmdvbGFyaSB1bm8gcGVyIHVubyBlIHVubyBwZXIgZHVlIG1pbGxpbWV0cmksIHZlbnRpIHBpeGVsIHBlciBtaWxsaW1ldHJvOiBhcmVlIHVubyBlIGR1ZSBtaWxsaW1ldHJpIHF1YWRyYXRpLiBBbGxvIHN0ZXNzbyBiYXR0ZW50ZSBjaW5xdWUgbWV0cmkgbGEgdmVsb2NpdMOgIGRpZWNpIG1ldHJpIGFsIHNlY29uZG8gZMOgIHBvcnRhdGUgZGllY2kgZSB2ZW50aSBtaWxsaWxpdHJpIGFsIHNlY29uZG8uIEJhcnJlIGRpZWNpIHBpeGVsIHBlciBtaWxsaWxpdHJvIGFsIHNlY29uZG8uIENvbnZlcnNpb25lIHVuIG1pbGxpbWV0cm8gcXVhZHJhdG8gcGVyIG1ldHJvIGFsIHNlY29uZG8gdWd1YWxlIHVuIG1pbGxpbGl0cm8gYWwgc2Vjb25kby4gQ29uZnJvbnRvIGZpbmFsZSBwb3J0YXRlIGRpZWNpIGUgcXVhcmFudGEuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgcng9IjIwIiBmaWxsPSIjZmFmOGYxIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxOTNhNDkiPjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNSI+MSDCtyBEdWUgZGV0dGFnbGkgZGkgZm9yaSByZXR0YW5nb2xhcmk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwIj5TY2FsYSBkZWwgZGV0dGFnbGlvMjBweC9tbSwgbm9uIHNjYWxhIGRlbCBzZXJiYXRvaW8uPC90ZXh0PjxyZWN0IHg9IjE4MCIgeT0iMTY1IiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9IiMwODg2OWIiLz48cmVjdCB4PSI0MjAiIHk9IjE1NSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjYjQ2MTQ1Ii8+PHRleHQgeD0iMTA1IiB5PSIyNTAiPjHDlzFtbSDihpIgMW1twrI8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIyNTAiPjHDlzJtbSDihpIgMm1twrI8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjMxNSI+SCA9IDVtLCBnID0gMTBtL3PCsjogdmVsb2NpdMOgMTBtL3MgcGVyIGVudHJhbWJpLjwvdGV4dD48cmVjdCB4PSIyMDAiIHk9IjM3MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2JhZDllNSIvPjxyZWN0IHg9IjIwMCIgeT0iNDUwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjZTdjOTk0Ii8+PHRleHQgeD0iMjgiIHk9IjM5NiI+QSA9IDFtbcKyPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0NzYiPkEgPSAybW3CsjwvdGV4dD48dGV4dCB4PSI0MzAiIHk9IjM5NSI+MTBtTC9zPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iNDc1Ij4yMG1ML3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU1MCI+UG9ydGF0YToxMHB4LyhtTC9zKSwgYmFycmUxMDBlMjAwcHguPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2MzAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgTOKAmXVndWFnbGlhbnphIGRlaSBudW1lcmkgdmllbmUgZGFsbGUgdW5pdMOgPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2ODUiPjFtbcKyID0gMTDigbvigbZtwrIuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3MzUiPjFtbcKyIMOXIDFtL3MgPSAxMOKBu+KBtm3Csy9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzg1Ij4xbUwgPSAxMOKBu+KBtm3CsywgcXVpbmRpIGlsIHByb2RvdHRvIHZhbGUxbUwvcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgzNSI+USA9IEHiiJooMmdIKSwgY29uIHVuaXTDoCBjb252ZXJ0aXRlIHByaW1hIGRlbCBjb25mcm9udG8uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MTUiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgQXJlYSBkb3BwaWEsIGJhdHRlbnRlIHF1YWRydXBsbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTY1Ij5BOiBhcmVhMW1twrIsSDVtIOKGkiB2ZWxvY2l0w6AxMG0vcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEwMTAiPkI6IGFyZWEybW3CsixIMjBtIOKGkiB2ZWxvY2l0w6AyMG0vcy48L3RleHQ+PHJlY3QgeD0iMTMwIiB5PSIxMDgwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjYmFkOWU1Ii8+PHJlY3QgeD0iMTMwIiB5PSIxMTcwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjZTdjOTk0Ii8+PHRleHQgeD0iMjgiIHk9IjExMDciPkE8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExOTciPkI8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSIxMTA3Ij4xMG1ML3M8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMjYwIj40MG1ML3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMjAiPlN0ZXNzYSBzY2FsYTEwcHgvKG1ML3MpOjEwMGU0MDBweC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzNzAiPlFfQi9RX0EgPSAy4oiaNCA9IDQuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNDIwIj5PZ25pIHByb3ZhIHVzYSBpbCBzdW8gYmF0dGVudGUgaXN0YW50YW5lby48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
