@@ -1,0 +1,1233 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-isochoric-heat-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15301,
+      "title": "Riscaldare senza spostare il confine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 1,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Con C_V=2 J/K e ΔT=10 K, quanto calore Q entra nel campione, in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parete rigida non si sposta: il lavoro di espansione è zero. Il primo principio lascia quindi Q=ΔU. La capacità totale indica quanti joule servono per ogni kelvin; due joule per kelvin per dieci kelvin danno venti joule. L’energia entra durante il processo e aumenta U: non si attribuisce al gas una quantità di calore immagazzinata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/48854cd134b7168f7f2d597cae84cb36eaee3237e7e9aab4b6d38552ee535895",
+          "text": "Tre passaggi per un’isocora: il recipiente rigido non cambia volume; nel grafico Q contro ΔT la pendenza è la capacità totale; la media di due energie si calcola dopo i due processi. La freccia Q del primo pannello è schematica. Nel secondo le scale sono 15 px/K in orizzontale e 5 px/J in verticale. Nel terzo tutte le barre usano 5 px/J."
+        },
+        {
+          "type": "formula",
+          "text": "W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=C_V\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q=(2\\,\\mathrm{J/K})(10\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " Q=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta J richiederebbero C_V=4 J/K oppure ΔT=20 K, diversi dai dati. Non si moltiplica ancora per massa o moli: C_V appartiene già all’intero campione. Volume fermo non significa pressione ferma."
+        }
+      ],
+      "hints": [
+        "Chiediti se il confine si sposta, poi usa la capacità dell’intero campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta J richiederebbero C_V=4 J/K oppure ΔT=20 K, diversi dai dati. Non si moltiplica ancora per massa o moli: C_V appartiene già all’intero campione. Volume fermo non significa pressione ferma.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15302,
+      "title": "L’unità del calore trasferito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 1,
+      "prompt": "C_V è la capacità totale in J/K e ΔT è un intervallo in K. Quale unità misura il calore Q=C_VΔT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "K",
+          "J/K",
+          "J/(kg·K)",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel prodotto si cancellano i kelvin e rimane il joule. Il calore è un trasferimento di energia. La capacità termica misura energia per variazione di temperatura; il calore specifico aggiunge invece una divisione per massa."
+        },
+        {
+          "type": "formula",
+          "text": "[C_V\\Delta T]=\\mathrm{(J/K)K}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "K misura temperatura o intervallo termico, J/K capacità totale e J/(kg·K) calore specifico. W=J/s richiederebbe dividere l’energia per un tempo, che qui non compare."
+        }
+      ],
+      "hints": [
+        "Cancella K fra capacità e intervallo, senza introdurre una massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K misura temperatura o intervallo termico, J/K capacità totale e J/(kg·K) calore specifico. W=J/s richiederebbe dividere l’energia per un tempo, che qui non compare.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15303,
+      "title": "Un recipiente rigido può aumentare la pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 1,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Il gas assorbe calore. Quale affermazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il lavoro di espansione è nullo; energia interna e pressione aumentano",
+          "La pressione resta necessariamente costante perché il volume è fisso",
+          "Il calore scambiato è nullo perché il recipiente è chiuso",
+          "Il gas compie lavoro positivo soltanto perché le molecole si agitano di più",
+          "L’energia interna resta costante perché il volume non cambia"
+        ],
+        "value": "Il lavoro di espansione è nullo; energia interna e pressione aumentano"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiuso significa che non passa materia, non che non passa energia. La rigidità annulla il lavoro di espansione ma permette il riscaldamento. Per il campione ideale a n e V fissi, p è proporzionale alla temperatura assoluta: aumentando T cresce p. Gli urti molecolari esercitano forza sulla parete; senza spostamento della parete non producono lavoro di espansione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/48854cd134b7168f7f2d597cae84cb36eaee3237e7e9aab4b6d38552ee535895",
+          "text": "La parete del recipiente resta ferma anche quando entra energia. Il grafico separato Q–ΔT usa C_V=2 J/K costante e passa per l’origine. Le barre finali confrontano prove diverse: 20 J, 80 J e la loro media 50 J; non sono calori simultaneamente contenuti nel gas."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=0"
+        },
+        {
+          "type": "formula",
+          "text": " W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=Q>0"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{nRT}{V}"
+        },
+        {
+          "type": "text",
+          "text": "Pressione costante è un vincolo diverso. Q=0 descriverebbe un isolamento termico, non una semplice chiusura alla materia. Maggiore agitazione non sostituisce lo spostamento del confine nella definizione del lavoro."
+        }
+      ],
+      "hints": [
+        "Distingui chiusura alla materia, rigidità e isolamento termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Pressione costante è un vincolo diverso. Q=0 descriverebbe un isolamento termico, non una semplice chiusura alla materia. Maggiore agitazione non sostituisce lo spostamento del confine nella definizione del lavoro.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15304,
+      "title": "Due campioni con capacità diversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 1,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. A ha C_V=2 J/K e B ha C_V=4 J/K. Entrambi aumentano la temperatura di 10 K in prove separate. Quale confronto è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q passa da 20 a 40 J",
+          "Q resta 20 J",
+          "Q passa da 20 a 10 J",
+          "Q passa da 20 a 80 J",
+          "Q diventa zero"
+        ],
+        "value": "Q passa da 20 a 40 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due capacità descrivono campioni preparati separatamente; non si cambia la quantità di gas nel corso della singola prova chiusa. B richiede quattro joule per kelvin invece di due. Con lo stesso aumento di dieci kelvin, il calore raddoppia da venti a quaranta joule."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=(2\\,\\mathrm{J/K})(10\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=(4\\,\\mathrm{J/K})(10\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti ignora il nuovo campione, dieci rende inversa la dipendenza e ottanta raddoppia anche ΔT senza motivo. Zero contraddice capacità e incremento entrambi positivi."
+        }
+      ],
+      "hints": [
+        "A parità di ΔT, confronta direttamente le capacità totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venti ignora il nuovo campione, dieci rende inversa la dipendenza e ottanta raddoppia anche ΔT senza motivo. Zero contraddice capacità e incremento entrambi positivi.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15305,
+      "title": "La capacità dall’energia entrata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Entrano Q=20 J e si osserva ΔT=10 K. Quanto vale C_V in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per trovare l’energia necessaria a un kelvin dividiamo i venti joule per i dieci kelvin effettivamente percorsi. Si ottengono due joule per kelvin. La sostituzione nella legge iniziale ricostruisce esattamente il calore misurato."
+        },
+        {
+          "type": "formula",
+          "text": "C_V=\\frac Q{\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " C_V=\\frac{20\\,\\mathrm J}{10\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " C_V=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " (2\\,\\mathrm{J/K})(10\\,\\mathrm K)=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare Q per ΔT darebbe J·K, non J/K. Il reciproco ΔT/Q avrebbe K/J. Non occorre conoscere la massa per ricavare questa capacità totale."
+        }
+      ],
+      "hints": [
+        "Isola C_V dividendo per l’aumento positivo di temperatura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare Q per ΔT darebbe J·K, non J/K. Il reciproco ΔT/Q avrebbe K/J. Non occorre conoscere la massa per ricavare questa capacità totale.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15306,
+      "title": "Un aumento, non la temperatura finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Entrano Q=20 J in un campione con C_V=2 J/K. Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni kelvin richiede due joule. Venti diviso due dà dieci kelvin di aumento. La temperatura finale richiederebbe anche T_i, che non è assegnata; qui si determina soltanto la differenza. Un intervallo di dieci kelvin ha la stessa ampiezza di dieci gradi Celsius."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=\\frac Q{C_V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{20\\,\\mathrm J}{2\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Non si aggiunge 273,15 a un intervallo termico. Venti copia il valore dell’energia senza dividerlo per C_V; quaranta moltiplica anziché dividere. Nessuno di questi procedimenti ricostruisce Q=20 J."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia per i joule richiesti a ogni kelvin.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non si aggiunge 273,15 a un intervallo termico. Venti copia il valore dell’energia senza dividerlo per C_V; quaranta moltiplica anziché dividere. Nessuno di questi procedimenti ricostruisce Q=20 J.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15307,
+      "title": "Raddoppiare l’intervallo termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. A e B hanno C_V=2 J/K. A usa ΔT_A=10 K e B usa ΔT_B=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo processo trasferisce venti joule e il secondo quaranta. Dividendo quaranta per venti si ottiene due. La capacità comune si cancella, perciò il rapporto coincide con quello degli incrementi termici."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_B}{Q_A}=\\frac{\\Delta T_B}{\\Delta T_A}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta T_B}{\\Delta T_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto, quattro quadra una dipendenza lineare e uno ignora il cambiamento. Il rapporto non è negativo: entrambe le prove assorbono calore."
+        }
+      ],
+      "hints": [
+        "Calcola le due energie o cancella la capacità comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto, quattro quadra una dipendenza lineare e uno ignora il cambiamento. Il rapporto non è negativo: entrambe le prove assorbono calore.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15308,
+      "title": "Lo scarto di una proposta troppo alta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Con C_V=2 J/K e ΔT=10 K si propone Q_proposto=40 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 J",
+          "−20 J",
+          "40 J",
+          "0 J",
+          "10 J"
+        ],
+        "value": "20 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello richiede venti joule. La proposta di quaranta supera il valore corretto di venti joule; lo scarto richiesto è dunque positivo. Il suo segno descrive una sovrastima e non una diversa convenzione per il calore."
+        },
+        {
+          "type": "formula",
+          "text": "Q=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=Q_{\\rm proposto}-Q"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno venti esegue la sottrazione opposta. Quaranta copia la proposta, zero la accetta e dieci dimezza ancora lo scarto."
+        }
+      ],
+      "hints": [
+        "Prima ricava Q, poi rispetta l’ordine della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venti esegue la sottrazione opposta. Quaranta copia la proposta, zero la accetta e dieci dimezza ancora lo scarto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15309,
+      "title": "La formula inversa per la capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Quale formula isola C_V dalla relazione Q=C_VΔT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C_V = Q / ΔT",
+          "C_V = Q ΔT",
+          "C_V = ΔT / Q",
+          "C_V = 2Q / ΔT",
+          "C_V = Q / (2ΔT)"
+        ],
+        "value": "C_V = Q / ΔT"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "ΔT è positivo, quindi possiamo dividere entrambi i membri per esso senza annullare un fattore nullo. L’unità di Q/ΔT è J/K, quella della capacità totale. Per esempio, venti joule su dieci kelvin restituiscono due J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q=C_V\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac Q{\\Delta T}=C_V"
+        },
+        {
+          "type": "formula",
+          "text": " [C_V]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto QΔT ha unità J·K e il reciproco ΔT/Q ha K/J. Le formule con il fattore due hanno unità corrette ma producono rispettivamente il doppio o la metà del calore assegnato quando si torna nella legge iniziale."
+        }
+      ],
+      "hints": [
+        "L’incognita moltiplica ΔT: elimina quel fattore con una divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto QΔT ha unità J·K e il reciproco ΔT/Q ha K/J. Le formule con il fattore due hanno unità corrette ma producono rispettivamente il doppio o la metà del calore assegnato quando si torna nella legge iniziale.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15310,
+      "title": "Due fattori fra prove diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Fra due prove si ha C_V,B=κ₁C_V,A e ΔT_B=κ₂ΔT_A, con κ₁,κ₂>0. Quale espressione dà sempre Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo il prodotto completo in entrambe le prove. Il nuovo campione porta un fattore κ₁ e il nuovo intervallo porta κ₂. Entrambi agiscono alla prima potenza: dopo la cancellazione degli ingressi di A rimane il loro prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=(\\kappa_1C_{V,A})(\\kappa_2\\Delta T_A)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=C_{V,A}\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta. La somma darebbe due per prove identiche, mentre il rapporto deve essere uno; κ₂² introduce un quadrato dell’intervallo assente nella legge."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori in ciascun ingresso prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta. La somma darebbe due per prove identiche, mentre il rapporto deve essere uno; κ₂² introduce un quadrato dell’intervallo assente nella legge.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15311,
+      "title": "Capacità e intervallo aumentano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. A: C_V=2 J/K, ΔT=10 K. B: C_V=4 J/K, ΔT=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe venti joule; B ne assorbe ottanta. Il rapporto ottanta su venti è quattro. Si può anche moltiplicare il raddoppio della capacità per quello dell’intervallo termico."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=(4\\,\\mathrm{J/K})(20\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due tiene conto di un solo raddoppio. Ottanta è un’energia, non il rapporto adimensionale. Un quarto rovescia B e A."
+        }
+      ],
+      "hints": [
+        "Ricava entrambe le energie prima di dividerle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due tiene conto di un solo raddoppio. Ottanta è un’energia, non il rapporto adimensionale. Un quarto rovescia B e A.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15312,
+      "title": "La media delle energie nelle due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 2,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. A usa C_V=2 J/K e ΔT=10 K; B usa C_V=4 J/K e ΔT=20 K. Qual è la media aritmetica dei due Q con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 J",
+          "100 J",
+          "25 J",
+          "45 J",
+          "60 J"
+        ],
+        "value": "50 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due trasferimenti sono venti e ottanta joule. La loro somma è cento e la metà è cinquanta joule. Gli ingressi medi sarebbero tre J/K e quindici K: il loro prodotto dà quarantacinque joule, che descrive una terza prova, non la media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{20+80}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=50\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Cento è la somma, venticinque dimezza ancora e sessanta è la differenza delle energie. Quarantacinque usa il prodotto degli ingressi medi: qui non coincide con la media delle uscite."
+        }
+      ],
+      "hints": [
+        "Media le due energie dopo aver applicato la legge a ogni prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento è la somma, venticinque dimezza ancora e sessanta è la differenza delle energie. Quarantacinque usa il prodotto degli ingressi medi: qui non coincide con la media delle uscite.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15313,
+      "title": "L’intervallo per un bersaglio quadruplo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 3,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. A ha C_V=2 J/K e ΔT_A=10 K. B ha C_V=4 J/K e deve assorbire Q_B=4Q_A. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento trasferisce venti joule e il bersaglio ne richiede ottanta. La capacità di B è già raddoppiata, quindi per arrivare a quattro volte l’energia resta un fattore due nell’intervallo. Ottanta diviso quattro J/K dà venti kelvin, il doppio dei dieci iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=\\frac{80\\,\\mathrm J}{4\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un fattore quattro nell’intervallo insieme alla capacità doppia porterebbe a otto volte Q_A. Uno lascerebbe soltanto il raddoppio già dato dal campione."
+        }
+      ],
+      "hints": [
+        "Togli dal fattore energetico il contributo della nuova capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un fattore quattro nell’intervallo insieme alla capacità doppia porterebbe a otto volte Q_A. Uno lascerebbe soltanto il raddoppio già dato dal campione.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15314,
+      "title": "Tarare il display prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 3,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. S=qQ è un display continuo e adimensionale, con q>0 costante. A con C_V=2 J/K, ΔT=10 K dà S=60. B dà S=240 e usa ΔT=20 K. Quanto vale C_V,B in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe venti joule: sessanta unità di display su venti joule danno q=3 J⁻¹. La lettura duecentoquaranta corrisponde quindi a ottanta joule. Dividiamo questa energia per i venti kelvin di B e troviamo quattro J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac{240}{q}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{240}{q}=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_{V,B}=\\frac{Q_B}{\\Delta T_B}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{V,B}=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere direttamente 240 per 20 darebbe dodici, triplo del valore corretto: S non è espresso in joule. Il guadagno si applica alle energie, non agli incrementi termici."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per convertire le letture in joule.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere direttamente 240 per 20 darebbe dodici, triplo del valore corretto: S non è espresso in joule. Il guadagno si applica alle energie, non agli incrementi termici.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15315,
+      "title": "Separare guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 3,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. S=qQ+b è un display continuo e adimensionale. A: C_V=2 J/K, ΔT=10 K, S=41. B: C_V=4 J/K, ΔT=20 K, S=161. C: ΔT=10 K, S=81. Quanto vale C_V,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 J/K",
+          "8 J/K",
+          "2 J/K",
+          "81/20 J/K",
+          "40 J/K"
+        ],
+        "value": "4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie dei riferimenti sono venti e ottanta joule. La differenza centoventi delle letture divisa per sessanta joule dà q=2 J⁻¹; dalla prima prova segue b=1. Per C togliamo l’offset e dividiamo per il guadagno: ottanta su due sono quaranta joule. Con dieci kelvin di aumento servono quattro J/K."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{161-41}{(80-20)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=\\frac{81-1}{q}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_{V,C}=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Otto J/K produrrebbero S=161, due J/K darebbero S=41. 81/20 J/K omette l’offset e ricostruisce S=82. Quaranta J/K scambia il numero dell’energia con quello della capacità e darebbe S=801."
+        }
+      ],
+      "hints": [
+        "Determina q dalle differenze, poi b da un riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto J/K produrrebbero S=161, due J/K darebbero S=41. 81/20 J/K omette l’offset e ricostruisce S=82. Quaranta J/K scambia il numero dell’energia con quello della capacità e darebbe S=801.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isochoric-heat-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore trasferito a volume costante",
+      "order": 15316,
+      "title": "Un vincolo fra preparazioni del campione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isochoric-heat",
+      "difficulty": 3,
+      "prompt": "In ogni prova il sistema è un campione chiuso di gas ideale, in un recipiente rigido. La capacità termica totale C_V>0, in J/K, è costante durante il riscaldamento; non è una capacità molare né un calore specifico. L’aumento ΔT=T_f−T_i>0 è in K, con temperature assolute positive. Non vi sono agitatori, lavoro elettrico o altre forme di lavoro, né variazioni di energia cinetica o potenziale macroscopica. Q è positivo se entra come calore e W è positivo se il gas compie lavoro. Fra prove diverse si sceglie C_V=cΔT, con c=(1/5) J/K². In ciascuna singola prova C_V resta costante: il vincolo collega preparazioni diverse, non C_V alla temperatura istantanea. Se Q=20 J, quanto vale ΔT>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 K",
+          "−10 K",
+          "100 K",
+          "5 K",
+          "20 K"
+        ],
+        "value": "10 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo la capacità scelta per la prova nel prodotto Q=C_VΔT. Si ottiene Q=c(ΔT)². Venti joule divisi per un quinto di joule per kelvin quadrato danno cento kelvin quadrati. La radice positiva è dieci kelvin e restituisce C_V=2 J/K. Non si integra una capacità variabile con T: all’interno del processo essa rimane costante."
+        },
+        {
+          "type": "formula",
+          "text": "Q=c(\\Delta T)^2"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta T)^2=\\frac Qc"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta T)^2=100\\,\\mathrm{K^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " C_V=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "La radice negativa renderebbe negativi sia l’incremento sia C_V, fuori dominio. Cento è il numero del quadrato, non dell’intervallo. Cinque e venti kelvin darebbero rispettivamente Q=5 J e Q=80 J."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo, controlla le unità del quadrato e scegli il ramo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice negativa renderebbe negativi sia l’incremento sia C_V, fuori dominio. Cento è il numero del quadrato, non dell’intervallo. Cinque e venti kelvin darebbero rispettivamente Q=5 J e Q=80 J.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica totale e intervallo",
+        "Primo principio a confine rigido",
+        "Inverse, rapporti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "48854cd134b7168f7f2d597cae84cb36eaee3237e7e9aab4b6d38552ee535895",
+      "name": "isochoric-heat-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTA4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5DYWxvcmUgYSB2b2x1bWUgY29zdGFudGUsIGRhbCBjb25maW5lIGFsIGNvbmZyb250bzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IHVuIHJlY2lwaWVudGUgcmlnaWRvIHJpY2V2ZSB2ZW50aSBqb3VsZSBzZW56YSBsYXZvcm8gZGkgZXNwYW5zaW9uZTsgdW5hIHJldHRhIGNhbG9yZSBpbmNyZW1lbnRvIHRlcm1pY28gY29uIGNhcGFjaXTDoCB0b3RhbGUgZHVlIGpvdWxlIHBlciBrZWx2aW47IHRyZSBiYXJyZSBwZXIgdmVudGksIG90dGFudGEgZSBjaW5xdWFudGEgam91bGUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEwODAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgSWwgY29uZmluZSBub24gc2kgbXVvdmU8L3RleHQ+CjxyZWN0IHg9IjIzMCIgeT0iOTMiIHdpZHRoPSIyMjAiIGhlaWdodD0iMTUwIiByeD0iNyIgZmlsbD0iI2RjZWVmNiIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjYiLz4KPHBhdGggZD0iTTY1IDE2OEgyMTgiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI1OCIgeT0iMTQ0Ij5RID0gMjAgSjwvdGV4dD4KPHRleHQgeD0iMjUxIiB5PSIxMzUiPkPhtaUgPSAyIEovSzwvdGV4dD48dGV4dCB4PSIyNTEiIHk9IjE3MyI+zpRUID0gMTAgSzwvdGV4dD48dGV4dCB4PSIyNTEiIHk9IjIxMSI+ViBmaXNzbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjI4MiI+VyA9IDAg4oaSIM6UVSA9IFEgPSAyMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzE2IiBmb250LXNpemU9IjE3Ij5GcmVjY2lhIHNjaGVtYXRpY2E6IGVuZXJnaWEgdHJhc2Zlcml0YSBhbCBjYW1waW9uZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAzNDdINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjM5MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgT2duaSBrZWx2aW4gcmljaGllZGUgMiBKPC90ZXh0Pgo8ZyBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCA2NDBWNDI1TTEwMCA2NDBINDY1Ii8+PHBhdGggZD0iTTI1MCA2MzVWNjQ1TTQwMCA2MzVWNjQ1TTk1IDU0MEgxMDVNOTUgNDQwSDEwNSIvPjwvZz4KPHBhdGggZD0iTTEwMCA2NDBMNDAwIDQ0MCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTI1MCA2NDBWNTQwSDEwME00MDAgNjQwVjQ0MEgxMDAiIHN0cm9rZT0iIzdkOGI5ZSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxnIGZpbGw9IiMxNjVhODciPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjU0MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjQ0MCIgcj0iNSIvPjwvZz4KPHRleHQgeD0iNjMiIHk9IjY0OSI+MDwvdGV4dD48dGV4dCB4PSI1OCIgeT0iNTQ3Ij4yMDwvdGV4dD48dGV4dCB4PSI1OCIgeT0iNDQ3Ij40MDwvdGV4dD4KPHRleHQgeD0iMjM4IiB5PSI2NzAiPjEwPC90ZXh0Pjx0ZXh0IHg9IjM4OCIgeT0iNjcwIj4yMDwvdGV4dD48dGV4dCB4PSI0NzYiIHk9IjY0NiI+zpRUIC8gSzwvdGV4dD4KPHRleHQgeD0iNTciIHk9IjQxNiI+USAvIEo8L3RleHQ+PHRleHQgeD0iNDQwIiB5PSI1MDAiPlEgPSBD4bWlIM6UVDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjcwOSIgZm9udC1zaXplPSIxNyI+U2NhbGU6IDE1IHB4L0s7IDUgcHgvSi4gUGVuZGVuemE6IDIgSi9LLjwvdGV4dD4KPHBhdGggZD0iTTMyIDczOEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNzgxIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBQcmltYSBsZSBlbmVyZ2llLCBwb2kgbGEgbWVkaWE8L3RleHQ+CjxnIGZpbGw9IiMxNjVhODciPjxyZWN0IHg9IjEyMCIgeT0iODE5IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMyIi8+PHJlY3QgeD0iMTIwIiB5PSI4NzkiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzIiLz48L2c+CjxyZWN0IHg9IjEyMCIgeT0iOTM5IiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjQ1IiB5PSI4NDMiPkE8L3RleHQ+PHRleHQgeD0iMjM3IiB5PSI4NDMiPjIwIEo8L3RleHQ+Cjx0ZXh0IHg9IjQ1IiB5PSI5MDMiPkI8L3RleHQ+PHRleHQgeD0iNTM3IiB5PSI5MDMiPjgwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NjMiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM4NyIgeT0iOTYzIj41MCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAxMSIgZm9udC1zaXplPSIxOCI+QTogMiBKL0sgw5cgMTAgSzsgQjogNCBKL0sgw5cgMjAgSy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMDQ0IiBmb250LXNpemU9IjE4Ij5CYXJyZTogNSBweC9KLiBNZWRpYSA9ICgyMCArIDgwKSBKIC8gMi48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
