@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u3-mass-flow-01",
+      "sourceSha256": "c168d990bcabcf868a259cf276a893486b30e2b8cb8d0cf508b1ab93815f08d4",
+      "candidateSha256": "58c60e1043e12fe6efa343654fb655f5dfcb9ab00d20ac5a72bc1886264633ff",
+      "reviewedSignature": "7a3d7cea85f6dd022ae44af31746a90228d2c35dfc3224902d75666c5be0d4a8",
+      "assetChecksums": {
+        "mass-flow-progressive.svg": "c56a17268d70538125a69c92cc8d6174d082dbbe1bbadc4c2c3a3eb38e659241"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "In Δ t passa Δ V=QΔ t e massa Δ m=ρΔ V. Il tasso è ṁ=ρ Q=1·4=4 kg/s; in 2 s stazionari passano 8 kg.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Una portata non è massa finita; Q/ρ ha dimensioni diverse.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. In Δ t passa Δ V=QΔ t e massa Δ m=ρΔ V. Il tasso è ṁ=ρ Q=1·4=4 kg/s; in 2 s stazionari passano 8 kg.",
+      "scientificAssetReview": "XML e rendering completo letti. Quattro celle uguali da 1 L nel secondo considerato, totale 160 px a 40 px/L. A Q 4 L/s le densità 1 e 4/5 kg/L danno barre 200 e 160 px per 4 e 16/5 kg/s alla scala 50 px/(kg/s). Grafico con x 40 px/(L/s), y 40 px/(kg/s): A(4, 4) a(260, 1300), B(3, 12/5) a(220, 1364), origine(100, 1460). Rette di pendenza dimensionata ρ, non grafici massa-tempo. Ogni freccia degli assi ha un proprio path.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-02",
+      "sourceSha256": "aea26589f02f4716fa8d6e7b4cc7dd2bcfde4b467fcbc9750285de13ffa1329a",
+      "candidateSha256": "76ccd7e97a9683c8fe21fd6a057eb769dcc1c5cd0aee692bcd6813748d3d36f4",
+      "reviewedSignature": "9d5f904a6744412bddd282e24f25ba9515ef6cec3a5793930eb257cdfb0f6406",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "kg/s",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Dimensione massa/tempo, unità kg/s; kg/L per L/s cancella il volume.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "L/s volume per tempo, kg massa, N/s forza per tempo, kg/L densità; solo kg/s corretto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dimensione massa/tempo, unità kg/s; kg/L per L/s cancella il volume.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-03",
+      "sourceSha256": "fd74e57d46e2337f279ed0c627d75d1c76bf3174fa6ba952cbb9f37df95c47b8",
+      "candidateSha256": "59cc9c6cfab1fd3a11527bdc6a503c38116e7250b4c68c0eeffe45f0dd9b6e34",
+      "reviewedSignature": "fe66d4d2040904a6332c7a596eadfb439d5d8f1e5d3e1b69958340179969d766",
+      "assetChecksums": {
+        "mass-flow-progressive.svg": "c56a17268d70538125a69c92cc8d6174d082dbbe1bbadc4c2c3a3eb38e659241"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ṁ = ρ Q",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Densità uniforme sulla sezione permette di estrarre ρ dall’integrale di massa: ṁ=ρ Q. Non è una portata di peso e non compare g.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Q/ρ e ρ/Q non M/T; doppio/metà aggiungono frazioni di volume mai assegnate.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Densità uniforme sulla sezione permette di estrarre ρ dall’integrale di massa: ṁ=ρ Q. Non è una portata di peso e non compare g.",
+      "scientificAssetReview": "XML e rendering completo letti. Quattro celle uguali da 1 L nel secondo considerato, totale 160 px a 40 px/L. A Q 4 L/s le densità 1 e 4/5 kg/L danno barre 200 e 160 px per 4 e 16/5 kg/s alla scala 50 px/(kg/s). Grafico con x 40 px/(L/s), y 40 px/(kg/s): A(4, 4) a(260, 1300), B(3, 12/5) a(220, 1364), origine(100, 1460). Rette di pendenza dimensionata ρ, non grafici massa-tempo. Ogni freccia degli assi ha un proprio path.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-04",
+      "sourceSha256": "76f7ebc4d7e4eac856284eebdfd794d675669807e280b8e0fc175a131a27b315",
+      "candidateSha256": "fda4763423e5fcb202a08c6687c2f72547f8a303b256fb89bc1a3b537646a818",
+      "reviewedSignature": "76608c330fb11973ca8792203600d2843020daec24517e484da1f17b353cb82f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 a 16/5 kg/s",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "ρ1→4/5 kg/L, Q 4 L/s fisso: ṁ4→16/5 kg/s, proporzionalità diretta fra prove.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "5 inverte la densità, 4 la ignora, 4/5 copia ρ, 8 raddoppia senza dato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ1→4/5 kg/L, Q 4 L/s fisso: ṁ4→16/5 kg/s, proporzionalità diretta fra prove.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-05",
+      "sourceSha256": "453d78e771573e4a6fb023b693101e563e9ed3b9f0c4aed38ad8a1dff7ba1035",
+      "candidateSha256": "361c78e81ee89b5ba0677d43db0e342b6d8ef4baea7281b36fc42251692b9574",
+      "reviewedSignature": "40e065b538fde7c63e6316e58ef1b22c7242768ef21449661aaa6cdafe643243",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "ρ=ṁ/Q=(4 kg/s)/(4 L/s)=1 kg/L=1000 kg/m³.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Prodotto ṁ Q non densità; Q/ṁ volume specifico, inverso.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ=ṁ/Q=(4 kg/s)/(4 L/s)=1 kg/L=1000 kg/m³.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-06",
+      "sourceSha256": "a03f378f89f426cc50fe51f21df310cbc33c43e7c948f5eae90a9980bda6c575",
+      "candidateSha256": "fc22a3bca85dba3051302e5caeaf0d8273e7671bb6c7bea9627ab9bb0e77103d",
+      "reviewedSignature": "742b492eef71ac9ddbe9a8bd318254c4d51631500acd828a7df8b826981b6060",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Q=ṁ/ρ=(4 kg/s)/(1 kg/L)=4 L/s, non una massa accumulata.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Il numero 4 non conserva l’unità kg/s: si chiede L/s. Tempo aggiuntivo serve soltanto al volume totale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q=ṁ/ρ=(4 kg/s)/(1 kg/L)=4 L/s, non una massa accumulata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-07",
+      "sourceSha256": "d3909f10b6a24bbef8536fb4c0018be56375a05e42caff12bb8930254e0e1b11",
+      "candidateSha256": "0f65d0ad48e6851cee679d323a42237cb9755129729353533e5a9acd8a3e5945",
+      "reviewedSignature": "c7795c74794c53d23ab57f92dcaaf34494dbec999a586daf2252ccf9f47101f9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/4",
+      "dimension": {},
+      "manualArithmetic": "A 4 kg/s e B 5 kg/s, rapporto 5/4. L’incremento relativo è invece 1/4.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "4/5 reciproco, 5 uscita numerica, 1/4 incremento, 1 ignora il cambio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A 4 kg/s e B 5 kg/s, rapporto 5/4. L’incremento relativo è invece 1/4.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-08",
+      "sourceSha256": "d073715bc1d02c985cfebfe39468cc4a00f19086c37e080a7647da2473fb393b",
+      "candidateSha256": "cc119c5ce06c29b81b4013394e17890eacf9276cbe9e19bcef7a3b0032b61649",
+      "reviewedSignature": "742f229d304140f772b508772401c9d52482927e910f28a3c35879e9c4245468",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Proposta 8 meno corretto 4=+4 kg/s; occorre un tempo per trasformare la differenza di tassi in massa.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "−4 ordine invertito, 8 proposta, 0 accetta, 2 dimezza lo scarto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 8 meno corretto 4=+4 kg/s; occorre un tempo per trasformare la differenza di tassi in massa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-09",
+      "sourceSha256": "e1a1e7df870d5b0394397bd6ea2aed6ceb80b6ba8c1a390e70e6882ee7f970af",
+      "candidateSha256": "4a42ddf0933558cd55c4d3cf56fa8aa2b4ccfd77564fa518d62a6fcb0d566de9",
+      "reviewedSignature": "d8c4c76746e9505b4807a50c36c8b2d6e54988c6e915df621bcb4749e2fca72f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ρ = ṁ / Q",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Dividere per Q>0 isola ρ=ṁ/Q con unità massa/volume.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Prodotto non cancella i tempi; reciproco volume specifico; fattori 2 errati.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dividere per Q>0 isola ρ=ṁ/Q con unità massa/volume.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-10",
+      "sourceSha256": "bb9af904c1aa224b9cddd65d8c7325068fe410a331ecd15445a193feca2ca3dd",
+      "candidateSha256": "ff882e5ddeda719d923ae28c8eea5f841337907460d41eb8c707d79399c5605d",
+      "reviewedSignature": "2cb9e36e5eabaf97f88765be3392d57588e24e01c9033e69d81ab92bc018cdce",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "I due fattori diretti ρ e Q scalano ṁ con κ₁ κ₂.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Quozienti effetto inverso, κ₁² duplica ρ, somma 2 per prove identiche.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I due fattori diretti ρ e Q scalano ṁ con κ₁ κ₂.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-11",
+      "sourceSha256": "2a3cfa4d7dff508671cf07e92e18d78103dceed7a9ef6e1f0964094e5b0f49f5",
+      "candidateSha256": "f5fcae98211ef4b4ec623d5a1a4e81f9d32e5c01b889d98d3122b2faf6c16e58",
+      "reviewedSignature": "fc4e456e06f8cebb4acea83ad29cc96ec00c91a59a4dabbdc17ae1abb19add1c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/5",
+      "dimension": {},
+      "manualArithmetic": "A 4 kg/s, B(4/5)·3=12/5 kg/s; rapporto(12/5)/4=3/5.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "5/3 reciproco, 4/5 solo ρ, 3/4 solo Q, 12/5 singola uscita numerica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A 4 kg/s, B(4/5)·3=12/5 kg/s; rapporto(12/5)/4=3/5.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-12",
+      "sourceSha256": "d34dc85e35c3e1db5bb59eaead089d04652834cc0ea1cd944f7656b6959a4919",
+      "candidateSha256": "25622f33dc18b626cd59e959eae1337d4e47ab0fbd06623e7408e32a19b621c2",
+      "reviewedSignature": "84876b12ae42cc7bd16d0bc733126eb15f1c8dad92ed78e8e433d62817d2d583",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16/5",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media(4+12/5)/2=16/5 kg/s. Ingressi medi 9/10 kg/L e 7/2 L/s danno 63/20 kg/s, inferiore di 1/20.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "32/5 somma, 8/5 doppia metà, 63/20 ingressi medi, 4 solo A.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media(4+12/5)/2=16/5 kg/s. Ingressi medi 9/10 kg/L e 7/2 L/s danno 63/20 kg/s, inferiore di 1/20.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-13",
+      "sourceSha256": "e2c0e7270ab644e2bd3dcefb45b9887b6df1ee7421627e42eab3a8b312d1e4fa",
+      "candidateSha256": "1e63dbd579e31b2de12736bd2dfeb21a8bc562b55f4c9f74099b6d42e5b91166",
+      "reviewedSignature": "437c315037efa90233a1c3edf2f5bf1ae93afa500f8d609f8091b1fad302c8be",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "Target(3/5)4=12/5 kg/s; ρ_B 4/5→Q_B 3 L/s; rapporto a 4 uguale 3/4.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "4/3 reciproco, 3/5 fattore di massa, 4/5 fattore ρ, 3 numero Q_B, non il rapporto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target(3/5)4=12/5 kg/s; ρ_B 4/5→Q_B 3 L/s; rapporto a 4 uguale 3/4.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-14",
+      "sourceSha256": "35c12ae96083e03bed81d554e2b24e9c2f79b5663e0271c4269b702d2f85a0c0",
+      "candidateSha256": "3f181d79cd52b8db65158e9c18701d91fb8efcd486db6bb7040ad62af1016427",
+      "reviewedSignature": "2a2868167bf5ae415b898653a4ee2eccd8638aee29ec5c911d1dda7fb5fada6f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "q = 12/(4 kg/s)=3 s/kg. S 36/5→ṁ12/5 kg/s; Q 3 L/s→ρ4/5 kg/L.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "12/5 kg/L viene da lettura grezza 36/5 divisa per Q 3; ρ1 ignora il dato; 3/5 dà S 27/5; 5/4 non ricostruisce la lettura.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. q = 12/(4 kg/s)=3 s/kg. S 36/5→ṁ12/5 kg/s; Q 3 L/s→ρ4/5 kg/L.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-15",
+      "sourceSha256": "02f31b90c9e253a0a1361071dbb7feefaad943ccb6cabad856eea8b6cc21cbe1",
+      "candidateSha256": "1e2ee0611ad452b8118f693a5fcad25992a8b5fd4c1802941ad18664d42c86bb",
+      "reviewedSignature": "32705386350c96c9417ae50a2cf6ba5a64dabdb3fb22e6c3196e6f3a96872a14",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Δ S−16/5 e Δṁ−8/5 kg/s danno q = 2 s/kg, offset 1. S 37/5→ṁ16/5 kg/s; Q 4→ρ4/5 kg/L.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "ρ1, 3/5, 2/5, 6/5 kg/L con Q 4 producono S 9, 29/5, 21/5, 53/5; solo 4/5 dà 37/5.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Δ S−16/5 e Δṁ−8/5 kg/s danno q = 2 s/kg, offset 1. S 37/5→ṁ16/5 kg/s; Q 4→ρ4/5 kg/L.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-mass-flow-16",
+      "sourceSha256": "f9b7f7cf1efc809bae872add4b0dd7a12acd7f35fa329462ee6711f75fa5f58d",
+      "candidateSha256": "3bc601ac1a0f0bf89425f17ba520a0b063af2c09502b84c410f6abff90b5e770",
+      "reviewedSignature": "69695449fd2ca097b12db358bf73fcfe3efe958ac7ab7dd0edb0399ad5acb799",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "ρ=c Q, c 1/4 kg·s/L² fra prove. ṁ=c Q²4 kg/s→Q²16 L²/s²; rami±4 L/s, solo +4 con ρ1 kg/L ammesso.",
+      "physicalAssumptions": "Prove stazionarie indipendenti con densità omogenea e uniforme nella sezione, ρ>0 inkg/L. Portata volumetrica Q>0 in L/s nel verso dichiarato. La densità può cambiare fra prove, non mescolando stati diversi nel medesimo bilancio locale. La portata massica conta massa per tempo, non forza o massa totale; per un fluido compressibile non si impone Q uguale altrove senza ulteriori condizioni.",
+      "distractors": "Ramo negativo rende negativa anche ρ; 16 è quadrato portata, non portata. Vincolo fra prove, non densità variabile lungo il tubo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ρ=c Q, c 1/4 kg·s/L² fra prove. ṁ=c Q²4 kg/s→Q²16 L²/s²; rami±4 L/s, solo +4 con ρ1 kg/L ammesso.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_buoyancy_equilibrium_or_flux_integral_or_mass_continuity",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "6731ffb69bee1afd89ca8d7cbf0674f69fd06954d6e8a7a1956cd0ece26af98f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "fc01e7b",
+  "packageSha256": "4e9319ef1818053ac457c39f11efa63bc25817243f7d75a9f6fd37b403ca310e",
+  "bindingsSha256": "78398b283c2fcb63b00d8e94b6d7a6a7071beebc14ef0379f34f8ab2681113ba",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json",
+    "reference": "All80 original U3-02 prompts in the assigned five families individually read and solved before candidate keys. All16 final candidate records, alternatives, hints, feedback and scientific SVG XML/native rendering read before freezing; never imports candidate authoring. C2 lessons L004/L005 and supplied profile assumptions reviewed separately."
+  }
+}
