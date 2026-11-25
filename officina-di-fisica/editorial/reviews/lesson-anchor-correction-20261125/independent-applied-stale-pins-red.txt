@@ -1,0 +1,45 @@
+.....F......F.....
+======================================================================
+FAIL: test_mixed_lessons_keep_separate_historical_findings (tests.corpus.test_lessons_foundations_review.FoundationsLessonReview.test_mixed_lessons_keep_separate_historical_findings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_lessons_foundations_review.py", line 75, in test_mixed_lessons_keep_separate_historical_findings
+    self.assertEqual((report['acceptedCount'],report['failedCount'],report['draftReviewedCount']),(4,0,2))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (3, 1, 2) != (4, 0, 2)
+
+First differing element 0:
+3
+4
+
+- (3, 1, 2)
+?  ^  ^
+
++ (4, 0, 2)
+?  ^  ^
+
+
+======================================================================
+FAIL: test_new_draft_retains_separate_original_failure_and_repairs_only_new_edition (tests.corpus.test_lessons_viscous_capillary_review.ViscousCapillaryLessonReview.test_new_draft_retains_separate_original_failure_and_repairs_only_new_edition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_lessons_viscous_capillary_review.py", line 116, in test_new_draft_retains_separate_original_failure_and_repairs_only_new_edition
+    self.assertEqual((report['acceptedCount'], report['failedCount'], report['draftReviewedCount']), (4, 0, 1))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (3, 1, 1) != (4, 0, 1)
+
+First differing element 0:
+3
+4
+
+- (3, 1, 1)
+?  ^  ^
+
++ (4, 0, 1)
+?  ^  ^
+
+
+----------------------------------------------------------------------
+Ran 18 tests in 22.776s
+
+FAILED (failures=2)

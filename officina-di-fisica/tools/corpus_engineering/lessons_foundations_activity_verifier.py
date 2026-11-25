@@ -41,7 +41,7 @@ SI=pint.UnitRegistry(non_int_type=Fraction)
 REVISION_IDS={'C1-L002','C1-L003'}
 # Final complete editions reread after formula splitting and asset-binding fixes.
 REVIEWED_REVISIONS={
-    'C1-L002':'324fbaf412dfe2e9ce582999433a950820fa4250ede765c59f4d56cf22ace2c5',
+    'C1-L002':'1686898c49d4a603e58f396cbc7466d05d197a8a927bfd51b04314fd2dec6d3e',
     'C1-L003':'5bbc6f5055a9345120879dc10a7016c4be35a0cc8883e2866e02820d6cd3dc8f',
 }
 

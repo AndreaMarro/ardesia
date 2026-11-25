@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "event": "MACOS_TASK_BROWSER_ORPHAN_HELPER_TEARDOWN_CLEANUP",
+  "testProcess": 11418,
+  "testBatch": "coherent-constructive-144",
+  "observedReportCases": 48,
+  "reportBeforeCleanupSha256": "c1831e1b4fa5f4da8e7d859b960bb432c81f59f71623973aa73219518677b975",
+  "reason": "Browser test Node process had no live child processes, but lsof proved its inherited IPC endpoint remained open in three orphaned Chrome crash-handler helpers created with this test. No generic Chrome process selection was used.",
+  "terminatedHelperPids": [
+    11429,
+    11679,
+    11682
+  ],
+  "signal": "SIGTERM",
+  "testProcessWasNotSignaled": true,
+  "assertionsOrReportChanged": false,
+  "testProcessFinalExitCode": 0,
+  "macroFinalExitCode": 0,
+  "processObservation": "  PID  PPID ELAPSED COMMAND\n11418  6160   03:12 /usr/local/bin/node /private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/browser-drafts.mjs coherent-constructive-144\n11429     1   03:09 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/158.0.8127.37/Helpers/chrome_crashpad_handler --monitor-self-annotation=ptype=crashpad-handler --database=/Users/andreamarro/Library/Application Support/Google/Chrome/Crashpad --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=plat=OS X --annotation=prod=Chrome_Mac --annotation=ver=158.0.8127.37 --handshake-fd=8\n11679     1   02:49 /Users/andreamarro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=159.0.8140.0 --attachment=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/updater.log --attachment=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl --handshake-fd=6\n11682     1   02:49 /Users/andreamarro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/159.0.8140.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=159.0.8140.0 --attachment=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/updater.log --attachment=/Users/andreamarro/Library/Application Support/Google/GoogleUpdater/updater_history.jsonl --handshake-fd=6\n",
+  "fileDescriptorObservation": "node      11418 andreamarro   17      PIPE 0x99d6d005f1f41c61      16384                     ->0x334749d270537d5e\nnode      11418 andreamarro   18u     unix 0xb1799e3a0a11c70e        0t0                     ->0xe32d6237de44688e\nnode      11418 andreamarro   19      PIPE 0x334749d270537d5e      16384                     ->0x99d6d005f1f41c61\nchrome_cr 11429 andreamarro    2u     unix 0xe32d6237de44688e        0t0                     ->0xb1799e3a0a11c70e\nGoogleUpd 11679 andreamarro    2u     unix 0xe32d6237de44688e        0t0                     ->0xb1799e3a0a11c70e\nGoogleUpd 11682 andreamarro    2u     unix 0xe32d6237de44688e        0t0                     ->0xb1799e3a0a11c70e\n",
+  "initialMacroSummary": {
+    "batches": 147,
+    "workers": 4,
+    "reused": 2,
+    "rendered": 145,
+    "failed": 0,
+    "registrySha256": "5bee85f99313f0c9212f0108316ab72c031b88f9bb78469172fcc5122d2c280a"
+  },
+  "firstIdempotentReuseSummary": {
+    "batches": 147,
+    "workers": 4,
+    "reused": 147,
+    "rendered": 0,
+    "failed": 0,
+    "registrySha256": "5bee85f99313f0c9212f0108316ab72c031b88f9bb78469172fcc5122d2c280a"
+  },
+  "reuseFinalExitCode": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
