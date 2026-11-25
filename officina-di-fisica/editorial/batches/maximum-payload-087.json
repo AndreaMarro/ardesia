@@ -1,0 +1,1123 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-maximum-payload-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8721,
+      "title": "La spinta deve sostenere anche la piattaforma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 1,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Con ρ_p=1/2 kg/L e V=20 L, quanto vale m_lim in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A immersione completa il peso del liquido escluso sostiene una massa totaleρV=20 kg. La piattaforma ne occupa giàρ_pV=10 kg: resta capacità per altri dieci kg. Il fattore g si cancella fra la spinta massima e i due pesi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f02d7ef66424b49af9b5e56dcad5ffe309044b13b00f820fe6844cc37bdec3c",
+          "text": "Esempio di piattaforma5×4×1dm,volume20L,densità1/2kg/L,massa propria10kg. Scala geometrica40px/dm:fronte200×40px. Senza carico è immersa per20px,cioè1/2dm;con carico limite10kg tutta l’altezza40px è immersa e il bordo superiore raggiunge la superficie. Il carico resta asciutto e non sposta acqua."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho Vg=(\\rho_pV+m_{lim})g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim}=(\\rho-\\rho_p)V"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim}=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Venti kg è la massa totale sostenibile, non il carico aggiuntivo. Trattare il risultato come dieci N confonderebbe massa e peso: con g=10 m/s² il peso del carico sarebbe cento N. Il limite ha volume emerso nullo e non include riserve di galleggiamento operative."
+        }
+      ],
+      "hints": [
+        "Togli dalla massa totale sostenibile la massa propria della piattaforma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti kg è la massa totale sostenibile, non il carico aggiuntivo. Trattare il risultato come dieci N confonderebbe massa e peso: con g=10 m/s² il peso del carico sarebbe cento N. Il limite ha volume emerso nullo e non include riserve di galleggiamento operative.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8722,
+      "title": "L’unità della capacità aggiuntiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 1,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Quale unità proposta esprime m_lim?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg",
+          "N",
+          "L",
+          "Pa",
+          "kg/L"
+        ],
+        "value": "kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità richiesta è una massa. Il prodotto(ρ−ρ_p)V ha unità kg/L per L, quindi kg. L’equilibrio nasce da forze, ma g si cancella quando si risolve per la massa aggiuntiva."
+        },
+        {
+          "type": "formula",
+          "text": "[m_{lim}]=[\\rho V]"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{kg/L}\\cdot\\mathrm L=\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "N sarebbe il peso del carico, L un volume, Pa una pressione e kg/L una densità. Non si deve moltiplicare ancora per g se la consegna chiede chilogrammi. Il rapporto fra massa e forza resta esplicito anche al limite di immersione."
+        }
+      ],
+      "hints": [
+        "Densità per volume produce una massa, non una forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N sarebbe il peso del carico, L un volume, Pa una pressione e kg/L una densità. Non si deve moltiplicare ancora per g se la consegna chiede chilogrammi. Il rapporto fra massa e forza resta esplicito anche al limite di immersione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8723,
+      "title": "La formula deve sottrarre il peso proprio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 1,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Quale formula dà m_lim?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m_lim = (ρ − ρ_p) V",
+          "m_lim = (ρ + ρ_p) V",
+          "m_lim = ρV",
+          "m_lim = ρ_pV",
+          "m_lim = (ρ − ρ_p) / V"
+        ],
+        "value": "m_lim = (ρ − ρ_p) V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla massima immersione la spinta valeρgV. I pesi da sostenere sono quello della piattaformaρ_pVg e quello del carico m_lim g. Uguagliandoli e dividendo per g rimane la differenza delle densità per il volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f02d7ef66424b49af9b5e56dcad5ffe309044b13b00f820fe6844cc37bdec3c",
+          "text": "Massa totale sostenibile al limiteρV20kg;si sottraggono10kg propri e restano10kg aggiuntivi. Barre100+100=200px alla scala10px/kg,rappresentano masse e non forze. Il limite teorico annulla il margine emerso;oltre il limite il modello con carico asciutto non offre altro volume escluso."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho V=\\rho_pV+m_{lim}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim}=\\rho V-\\rho_pV"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim}=(\\rho-\\rho_p)V"
+        },
+        {
+          "type": "text",
+          "text": "La somma conterebbe la massa propria come una capacità in più. ρV è il totale sostenibile eρ_pV la sola massa della piattaforma; possono avere coincidenze numeriche in casi particolari, ma non sono la legge generale della capacità residua. Dividere per V non ha dimensione di massa."
+        }
+      ],
+      "hints": [
+        "La riserva è spinta massima meno peso proprio, poi diviso per g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma conterebbe la massa propria come una capacità in più. ρV è il totale sostenibile eρ_pV la sola massa della piattaforma; possono avere coincidenze numeriche in casi particolari, ma non sono la legge generale della capacità residua. Dividere per V non ha dimensione di massa.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8724,
+      "title": "Una piattaforma più pesante a parità di volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 1,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. A ha ρ_p=1/2 kg/L e B ρ_p=4/5 kg/L, con V=20 L. Come cambia m_lim?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 4 kg",
+          "Da 10 a 16 kg",
+          "Resta 10 kg",
+          "Da 10 a 25 kg",
+          "Diventa 20 kg"
+        ],
+        "value": "Da 10 a 4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le piattaforme possono escludere al massimo venti kg d’acqua. La massa propria aumenta da dieci a sedici kg, lasciando una riserva che scende da dieci a quattro kg. Più densità della piattaforma significa meno capacità aggiuntiva, non più spinta massima."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim,A}=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{p,B}=16\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=(20-16)\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici è la nuova massa propria, venti il totale sostenibile. Dieci ignora il cambio e venticinque applica una proporzione inversa alla densità senza il termineρ−ρ_p. Entrambi i valoriρ_p restano minori della densità dell’acqua."
+        }
+      ],
+      "hints": [
+        "La massa totale sostenibile resta venti kg: cambia quanto ne occupa la piattaforma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici è la nuova massa propria, venti il totale sostenibile. Dieci ignora il cambio e venticinque applica una proporzione inversa alla densità senza il termineρ−ρ_p. Entrambi i valoriρ_p restano minori della densità dell’acqua.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8725,
+      "title": "La densità dalla riserva osservata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Si conoscono m_lim=10 kg e V=20 L. Quanto vale ρ_p in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità per litro è10/20=1/2 kg/L. Essa è la differenzaρ−ρ_p, nonρ_p automaticamente. Sottraendola alla densità dell’acqua1 kg/L otteniamoρ_p=1/2 kg/L. Per avere0<ρ_p<ρ serve0<m_lim<ρV."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_p=\\rho-\\frac{m_{lim}}V"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_p=\\left(1-\\frac{10}{20}\\right)\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_p=\\frac12\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Qui capacità per litro e densità della piattaforma coincidono solo perché entrambe valgono metà della densità dell’acqua. In generale m_lim/V non èρ_p. Una densità negativa o superiore all’acqua violerebbe il modello di piattaforma liberamente galleggiante."
+        }
+      ],
+      "hints": [
+        "Sottrai la capacità per litro dalla densità del liquido.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Qui capacità per litro e densità della piattaforma coincidono solo perché entrambe valgono metà della densità dell’acqua. In generale m_lim/V non èρ_p. Una densità negativa o superiore all’acqua violerebbe il modello di piattaforma liberamente galleggiante.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8726,
+      "title": "Il volume necessario per una capacità assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Con ρ_p=1/2 kg/L e m_lim=10 kg, quanto vale V in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni litro esterno offre una riserva diρ−ρ_p=1/2 kg/L. Per sostenere dieci kg aggiuntivi occorrono10/(1/2)=20 L. Il denominatore positivo rende il volume positivo e finito."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac{m_{lim}}{\\rho-\\rho_p}"
+        },
+        {
+          "type": "formula",
+          "text": " V=10\\cdot2\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V=20\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Dieci litri fornirebbero solo cinque kg di capacità residua. Dividere per la solaρ darebbe il volume di acqua equivalente al carico, senza sostenere anche la piattaforma. Non serve una radice: è il volume, non una dimensione lineare, l’incognita."
+        }
+      ],
+      "hints": [
+        "Dividi la massa aggiuntiva per la riserva di massa offerta da ogni litro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci litri fornirebbero solo cinque kg di capacità residua. Dividere per la solaρ darebbe il volume di acqua equivalente al carico, senza sostenere anche la piattaforma. Non serve una radice: è il volume, non una dimensione lineare, l’incognita.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8727,
+      "title": "Stessa densità, piattaforma più grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. A haρ_p=1/2 kg/L,V_A=20 L. B mantieneρ_p e usa V_B=50 L. Quanto vale m_lim,B/m_lim,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2",
+          "2/5",
+          "5",
+          "1/2",
+          "1"
+        ],
+        "value": "5/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La riserva per litro resta un mezzo kg/L. Le capacità sono quindi dieci e venticinque kg, con rapporto25/10=5/2. Qui cresce sia la spinta massima sia la massa propria, ma la loro differenza mantiene lo stesso coefficiente per litro."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim,A}=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=25\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}/m_{lim,A}=5/2"
+        },
+        {
+          "type": "text",
+          "text": "Due quinti inverte il confronto; cinque dimentica il volume iniziale venti. Un mezzo segue la densità della piattaforma invece del rapporto delle capacità; uno ignora il volume maggiore. Il confronto riguarda piattaforme diverse."
+        }
+      ],
+      "hints": [
+        "A densità fisse la capacità residua è proporzionale aV.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due quinti inverte il confronto; cinque dimentica il volume iniziale venti. Un mezzo segue la densità della piattaforma invece del rapporto delle capacità; uno ignora il volume maggiore. Il confronto riguarda piattaforme diverse.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8728,
+      "title": "Lo scarto di una capacità che dimentica la piattaforma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Perρ_p=1/2 kg/L,V=20 L si propone m_lim=20 kg. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 kg",
+          "−10 kg",
+          "20 kg",
+          "0 kg",
+          "5 kg"
+        ],
+        "value": "10 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La proposta ha usato tutta la massa d’acqua spostabile per il carico, lasciando senza sostegno i dieci kg della piattaforma. La capacità corretta è dieci kg e lo scarto20−10=+10 kg."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim}=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno cambia l’ordine; venti copia la proposta, zero la accetta e cinque dimezza ancora lo scarto. Un carico da venti kg sommato alla piattaforma da dieci richiederebbe trenta kg di liquido escluso, oltre i venti disponibili nel modello."
+        }
+      ],
+      "hints": [
+        "Sottrai prima la massa propria dal totale sostenibile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno cambia l’ordine; venti copia la proposta, zero la accetta e cinque dimezza ancora lo scarto. Un carico da venti kg sommato alla piattaforma da dieci richiederebbe trenta kg di liquido escluso, oltre i venti disponibili nel modello.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8729,
+      "title": "Isolare la densità della piattaforma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Quale formula isolaρ_p, con0<m_lim<ρV?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ_p = ρ − m_lim/V",
+          "ρ_p = ρ + m_lim/V",
+          "ρ_p = ρ − V/m_lim",
+          "ρ_p = m_lim/V",
+          "ρ_p = 2(ρ − m_lim/V)"
+        ],
+        "value": "ρ_p = ρ − m_lim/V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la legge m_lim=(ρ−ρ_p)V per V positivo, poi isoliamoρ_p. Il rapporto m_lim/V è una densità e si può sottrarre aρ. Il dominio assegnato garantisce che il risultato resti positivo e minore diρ."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim}/V=\\rho-\\rho_p"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_p=\\rho-m_{lim}/V"
+        },
+        {
+          "type": "text",
+          "text": "La somma darebbe una piattaforma più densa dell’acqua. V/m_lim ha unità inverse di densità e non si può sottrarre aρ. Il solo m_lim/V è la riserva per volume, non in generale la densità cercata; il doppio non deriva dall’equazione."
+        }
+      ],
+      "hints": [
+        "Dividi per V prima di spostareρ_p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma darebbe una piattaforma più densa dell’acqua. V/m_lim ha unità inverse di densità e non si può sottrarre aρ. Il solo m_lim/V è la riserva per volume, non in generale la densità cercata; il doppio non deriva dall’equazione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8730,
+      "title": "Scalare densità e volume senza perdere la differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. B usaρ_p,B=κ₁ρ_p,A e V_B=κ₂V_A, con fattori positivi eρ_p,B<ρ. Poniamo D_A=ρ−ρ_p,A e D_B=ρ−κ₁ρ_p,A, entrambe differenze positive di densità. Quanto vale m_lim,B/m_lim,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ D_B / D_A",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "D_A / (κ₂ D_B)",
+          "κ₂ D_A / D_B"
+        ],
+        "value": "κ₂ D_B / D_A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A offre la capacitàD_A V_A; B offreD_Bκ₂V_A. Si cancella V_A e rimaneκ₂D_B/D_A. La scalatura della densità propria modifica una differenza dalla densità dell’acqua, che resta fissa."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim,A}=D_AV_A"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=\\kappa_2D_BV_A"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{m_{lim,B}}{m_{lim,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_2D_B}{D_A}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto dei soli fattori trattaρ_p come un contributo diretto alla capacità; il quoziente assegna al volume un effetto inverso. Il reciproco scambia gli stati eκ₂D_A/D_B inverte la variazione della riserva. Occorre mantenere positiva ancheD_B."
+        }
+      ],
+      "hints": [
+        "Scala il volume ma ricalcola la riservaρ−ρ_p nella nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto dei soli fattori trattaρ_p come un contributo diretto alla capacità; il quoziente assegna al volume un effetto inverso. Il reciproco scambia gli stati eκ₂D_A/D_B inverte la variazione della riserva. Occorre mantenere positiva ancheD_B.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8731,
+      "title": "Raddoppiare il volume può non bastare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. A haρ_p=1/2 kg/L,V=20 L. B haρ_p=4/5 kg/L,V=40 L. Quanto vale m_lim,B/m_lim,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "2",
+          "8/5",
+          "8"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A offre dieci kg. B ha solo un quinto kg/L di riserva ma quaranta litri, quindi otto kg. Il rapporto è8/10=4/5: il volume doppio non compensa la densità propria maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim,A}=10\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=\\frac15\\cdot40\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=8\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}/m_{lim,A}=4/5"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti inverte il confronto; due considera solo il volume e otto quinti solo il rapporto delle densità proprie. Otto è la massa aggiuntiva B come numero in kg, non il rapporto. La massa totale sostenibile B è quaranta kg, di cui trentadue già propri."
+        }
+      ],
+      "hints": [
+        "Calcola prima la densità di riserva in ogni piattaforma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque quarti inverte il confronto; due considera solo il volume e otto quinti solo il rapporto delle densità proprie. Otto è la massa aggiuntiva B come numero in kg, non il rapporto. La massa totale sostenibile B è quaranta kg, di cui trentadue già propri.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8732,
+      "title": "Media statistica delle capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 2,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. A haρ_p=1/2 kg/L,V=20 L; Bρ_p=4/5 kg/L,V=40 L. Qual è la media aritmetica delle due m_lim con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 kg",
+          "18 kg",
+          "9/2 kg",
+          "21/2 kg",
+          "2 kg"
+        ],
+        "value": "9 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le capacità sono dieci e otto kg. La semisomma18/2 vale nove kg. Non si stanno assemblando le piattaforme né sommando due riserve: si media il risultato di due prove."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline m_{lim}=\\frac{10+8}{2}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline m_{lim}=9\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto è la somma,9/2 divide ancora e due è la differenza. Gli ingressi mediρ_p=13/20 kg/L,V=30 L darebbero(7/20)·30=21/2 kg, maggiore di nove di3/2 kg. Il prodotto con una densità che varia non commuta con questa media."
+        }
+      ],
+      "hints": [
+        "Applica la legge a ogni prova prima di calcolare la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto è la somma,9/2 divide ancora e due è la differenza. Gli ingressi mediρ_p=13/20 kg/L,V=30 L darebbero(7/20)·30=21/2 kg, maggiore di nove di3/2 kg. Il prodotto con una densità che varia non commuta con questa media.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8733,
+      "title": "Il volume per una capacità bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 3,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. A haρ_p,A=1/2 kg/L,V_A=20 L. B usaρ_p,B=4/5 kg/L e deve avere m_lim,B=(4/5)m_lim,A. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4/5",
+          "8/5",
+          "40"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è otto kg. La nuova piattaforma offre solo un quinto kg per litro di riserva, quindi servono8/(1/5)=40 L. Il rapporto ai venti litri iniziali è due."
+        },
+        {
+          "type": "formula",
+          "text": "m_{lim,B}=8\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=40\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto; quattro quinti ripete il bersaglio di capacità e otto quinti il fattore della densità propria. Quaranta è un volume numerico in litri, non il rapporto. La nuova densità resta inferiore a quella dell’acqua."
+        }
+      ],
+      "hints": [
+        "Dividi il target per la nuova densità di riserva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto; quattro quinti ripete il bersaglio di capacità e otto quinti il fattore della densità propria. Quaranta è un volume numerico in litri, non il rapporto. La nuova densità resta inferiore a quella dell’acqua.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8734,
+      "title": "Decodificare la capacità prima della densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 3,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Un display continuo adimensionale segue S=qm_lim,q>0,senza offset. A conρ_p=1/2 kg/L,V=20 L dà S=30. B con V=40 L dà S=24. Quanto valeρ_p,B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "1/2 kg/L",
+          "1/5 kg/L",
+          "1 kg/L",
+          "6/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha capacità dieci kg e determina q=3 kg⁻¹. La lettura B24 significa capacità otto kg; divisa per quaranta litri dà riserva1/5 kg/L. La densità propria è quindi1−1/5=4/5 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kg^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,B}=8\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{p,B}=\\rho-\\frac{m_{lim,B}}{V_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{p,B}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con V40 L,ρ_p1/2 darebbe S60 eρ_p1/5 darebbe S96. Le densità1 e6/5 kg/L non rispettanoρ_p<ρ: non sono piattaforme con capacità aggiuntiva positiva nel modello. Non si assegna una capacità fisica negativa per salvare una scelta fuori dominio."
+        }
+      ],
+      "hints": [
+        "Dalla lettura ricava la capacità, poi sottrai la riserva per litro daρ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con V40 L,ρ_p1/2 darebbe S60 eρ_p1/5 darebbe S96. Le densità1 e6/5 kg/L non rispettanoρ_p<ρ: non sono piattaforme con capacità aggiuntiva positiva nel modello. Non si assegna una capacità fisica negativa per salvare una scelta fuori dominio.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8735,
+      "title": "Due riferimenti e una riserva residua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 3,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Un display continuo adimensionale segue S=qm_lim+b,q>0. A:ρ_p=1/2 kg/L,V=20 L,S=21. B:ρ_p=4/5 kg/L,V=40 L,S=17. C:V=20 L,S=9. Quanto valeρ_p,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5 kg/L",
+          "1/2 kg/L",
+          "1/5 kg/L",
+          "1 kg/L",
+          "6/5 kg/L"
+        ],
+        "value": "4/5 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le capacità note sono dieci e otto kg. Le differenze−4 e−2 kg danno q=2 kg⁻¹, poi b=1. C indica(9−1)/2=4 kg; su venti litri è1/5 kg/L di riserva. La piattaforma ha densità4/5 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kg^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " m_{lim,C}=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{p,C}=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con V_C20 L,ρ_p1/2 darebbe S21 eρ_p1/5 S33. La densità1 kg/L è la soglia senza capacità positiva;6/5 supera la densità dell’acqua e non appartiene al dominio. Solo4/5 ricostruisce S9 mantenendo una riserva positiva."
+        }
+      ],
+      "hints": [
+        "Elimina il display con due tarature prima di usare l’inversa idrostatica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con V_C20 L,ρ_p1/2 darebbe S21 eρ_p1/5 S33. La densità1 kg/L è la soglia senza capacità positiva;6/5 supera la densità dell’acqua e non appartiene al dominio. Solo4/5 ricostruisce S9 mantenendo una riserva positiva.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-maximum-payload-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Capacità idrostatica di carico",
+      "order": 8736,
+      "title": "Il bersaglio coincide col massimo della famiglia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "maximum-payload",
+      "difficulty": 3,
+      "prompt": "Una piattaforma piena, rigida, omogenea e impermeabile ha volume esterno V>0 e densità 0<ρ_p<ρ, con acqua omogenea in quiete di densità ρ=1 kg/L. Il carico è centrato, resta fuori dall’acqua e non aggiunge volume spostato. Si considera l’equilibrio verticale in assetto stabile, senza appoggi, aria o capillarità. m_lim indica la massa aggiuntiva limite teorica, raggiunta quando tutta la piattaforma è immersa; non è una massa totale né un peso. Sotto il limite resta parte emersa, al limite il margine emerso si annulla. Oltre il limite non c’è equilibrio con queste ipotesi di carico asciutto e volume escluso limitato a V. Fra piattaforme si imponeρ_p=cV, con c=1/40 kg/L². Si misura m_lim=10 kg. Quanto vale V nel dominio0<ρ_p<ρ, espresso in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=V/(1 L), puro. Il vincolo dàρ_p=(x/40) kg/L e impone0<x<40. La capacità è(x−x²/40) kg. Eguagliandola a dieci si ottiene x²−40x+400=0, cioè(x−20)²=0: c’è una sola radice distinta, x20."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac{V}{1\\,\\mathrm L}"
+        },
+        {
+          "type": "formula",
+          "text": " x^2-40x+400=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-20)^2=0"
+        },
+        {
+          "type": "formula",
+          "text": " x=20"
+        },
+        {
+          "type": "formula",
+          "text": " V=20\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Il quadrato nullo non dà due valori distinti: la radice è doppia ma unica. La capacità si riscrive[10−(x−20)²/40] kg e non supera dieci nel dominio; la misura è il massimo della famiglia. V20 L dàρ_p1/2 kg/L, valido. Il vincolo collega piattaforme diverse, non una densità che cambia durante l’immersione."
+        }
+      ],
+      "hints": [
+        "Completa il quadrato e distingui radice doppia da due soluzioni diverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il quadrato nullo non dà due valori distinti: la radice è doppia ma unica. La capacità si riscrive[10−(x−20)²/40] kg e non supera dieci nel dominio; la misura è il massimo della famiglia. V20 L dàρ_p1/2 kg/L, valido. Il vincolo collega piattaforme diverse, non una densità che cambia durante l’immersione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Spinta massima e massa propria",
+        "Limite geometrico di immersione completa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6f02d7ef66424b49af9b5e56dcad5ffe309044b13b00f820fe6844cc37bdec3c",
+      "name": "maximum-payload-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ3MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDcwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODJkNDIiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+Q2FwYWNpdMOgIGFnZ2l1bnRpdmEgYWwgbGltaXRlIGRpIGltbWVyc2lvbmUgY29tcGxldGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5QaWF0dGFmb3JtYSBwaWVuYSBkaSB2b2x1bWUgdmVudGkgbGl0cmkgZSBtYXNzYSBkaWVjaSBjaGlsb2dyYW1taS4gU2VuemEgY2FyaWNvIMOoIGltbWVyc2EgcGVyIG1ldMOgLiBDb24gZGllY2kgY2hpbG9ncmFtbWkgYWdnaXVudGl2aSByYWdnaXVuZ2UgbGEgcGllbmEgaW1tZXJzaW9uZSBzZW56YSBtYXJnaW5lIGVtZXJzby4gVW5hIGJhcnJhIHNlcGFyYSBsYSBtYXNzYSBwcm9wcmlhIGRhIHF1ZWxsYSBhZ2dpdW50aXZhIG5lbCB0b3RhbGUgc29zdGVuaWJpbGUgZGkgdmVudGkgY2hpbG9ncmFtbWkuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0NzAiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIElsIHZvbHVtZSBkaXNwb25pYmlsZSBoYSB1biBsaW1pdGU8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0Ij5QaWF0dGFmb3JtYTogNSDDlyA0IMOXIDEgZG0sIFYgPSAyMCBMLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTIyIj7PgV9wID0gMS8yIGtnL0w7IGFjcXVhIGEgz4EgPSAxIGtnL0wuPC90ZXh0Pgo8cmVjdCB4PSI1NSIgeT0iMzAwIiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2I1ZGNmMSIvPjxyZWN0IHg9IjM1MCIgeT0iMzAwIiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2I1ZGNmMSIvPgo8cmVjdCB4PSI3NSIgeT0iMjgwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTliYjcwIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjM3MCIgeT0iMzAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTliYjcwIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0MzAiIHk9IjI1MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjY2Y5OTgzIiBzdHJva2U9IiMyNjNmNTUiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik00NSAzMDBIMzE1TTM0MCAzMDBINjEwIiBzdHJva2U9IiMyODdhYWIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+Cjx0ZXh0IHg9Ijc1IiB5PSIyMzIiPlNlbnphIGNhcmljby48L3RleHQ+PHRleHQgeD0iMzkwIiB5PSIyMjYiPkNhcmljbzogMTAga2cuPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI0NjQiPkltbWVyc2lvbmU6IDEvMiBkbS48L3RleHQ+PHRleHQgeD0iMzcwIiB5PSI0NjQiPkltbWVyc2lvbmU6IDEgZG0uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTE0Ij5TY2FsYSA0MCBweC9kbTsgZnJvbnRpIDIwMCDDlyA0MCBweC48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU0OCI+SW1tZXJzaW9uaTogMjAgZSA0MCBweDsgdGVyemEgZGltZW5zaW9uZTogNCBkbS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA1ODhINjA4IiBzdHJva2U9IiM2YTdkOGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iNjM4IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gU290dHJhaSBsYSBtYXNzYSBwcm9wcmlhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2NzgiPkFsIGxpbWl0ZTogz4FWID0gMjAga2cgdG90YWxpIHNvc3RlbmliaWxpLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNzE2Ij5NYXNzYSBwcm9wcmlhIGRlbGxhIHBpYXR0YWZvcm1hOiAxMCBrZy48L3RleHQ+CjxyZWN0IHg9IjExMCIgeT0iNzc1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQ2IiBmaWxsPSIjZTliYjcwIi8+PHJlY3QgeD0iMjEwIiB5PSI3NzUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDYiIGZpbGw9IiNjZjk5ODMiLz4KPHRleHQgeD0iMzUwIiB5PSI4MDYiPlRvdGFsZTogMjAga2cuPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI4NzAiPlByb3ByaWE6IDEwIGtnLjwvdGV4dD48dGV4dCB4PSIzNDAiIHk9Ijg3MCI+QWdnaXVudGl2YTogMTAga2cuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTI4Ij5CYXJyZTogMTAwICsgMTAwID0gMjAwIHB4LCBzY2FsYSAxMCBweC9rZy48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk2NiI+U29ubyBtYXNzZTsgaSBwZXNpIGNvcnJpc3BvbmRlbnRpIGNvbnRlbmdvbm8gZy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMDA2SDYwOCIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjEwNTYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBJbCBsaW1pdGUgbm9uIGxhc2NpYSBtYXJnaW5lIGVtZXJzbzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEwMCI+bV9saW0gPSAoz4Eg4oiSIM+BX3ApViA9IDEwIGtnLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNjAiPlNvdHRvIDEwIGtnOiB1bmEgcGFydGUgZGVsbGEgcGlhdHRhZm9ybWEgZW1lcmdlLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTIwMCI+QSAxMCBrZzogdHV0dGEgbGEgcGlhdHRhZm9ybWEgZXNjbHVkZSBsaXF1aWRvLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTI0MCI+SWwgY2FyaWNvIHJpbWFuZSBhc2NpdXR0byBlIG5vbiBzcG9zdGEgYWNxdWEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTMwMCI+T2x0cmUgMTAga2c6IGlsIHZvbHVtZSBWIG5vbiBiYXN0YSBhbCBiaWxhbmNpby48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzNDAiPk5vbiBj4oCZw6ggYWx0cm8gZXF1aWxpYnJpbyBjb24gcXVlc3RlIGlwb3Rlc2kuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDAwIiBmb250LXNpemU9IjE4Ij7DiCB1biBsaW1pdGUgaWRyb3N0YXRpY28gdGVvcmljbyBzZW56YSByaXNlcnZhIGVtZXJzYSw8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MzQiIGZvbnQtc2l6ZT0iMTgiPm5vbiB1biBjYXJpY28gb3BlcmF0aXZvIGdhcmFudGl0by48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}
