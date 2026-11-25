@@ -1,0 +1,81 @@
+{
+  "purpose": "DIAGNOSTIC_B963_REAL_REPLAYS_AND_NEGATIVE_VISUAL_READING_NO_APPROVAL",
+  "runtimeProfileSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "runs": [
+    {
+      "run": "048",
+      "originalOutput": "/tmp/cric-review048-proof-pwDHmI",
+      "technicalStatus": "PASS",
+      "caseCount": 68,
+      "scientificApproval": false
+    },
+    {
+      "run": "049",
+      "originalOutput": "/tmp/cric-review049-proof-ryWhnu",
+      "technicalStatus": "PASS",
+      "caseCount": 104,
+      "scientificApproval": false
+    },
+    {
+      "run": "049-clock",
+      "originalOutput": "/tmp/cric-review049-clock-proof-L5rfMN",
+      "technicalStatus": "PASS",
+      "caseCount": 24,
+      "scientificApproval": false
+    },
+    {
+      "run": "hooke-canary",
+      "originalOutput": "/tmp/cric-census-hooke-proof-BmU5J2",
+      "technicalStatus": "PASS",
+      "caseCount": 5,
+      "scientificApproval": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "SIM-C1-L008-03",
+      "input": 0,
+      "claim": "Native weight arrow tip in opaque tabletop; fallback shows tip",
+      "evidence": "energy-height-zero-native1280.png",
+      "additionalGeometricOnlyCase": {
+        "input": 0.25,
+        "tipY": -0.0175,
+        "screenshotCaptured": false
+      }
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "input": 6,
+      "claim": "Native320 Estremo mobile minimum20px sprite covers arrow tip, not entire arrow",
+      "evidence": "hooke-plus6-native320.png",
+      "comparisonLimit": "Minus4 screenshot is a different signed input, not same-value fallback comparison"
+    }
+  ],
+  "limits": [
+    "Technical case PASS verifies instrument assertions only; independent visual review found defects",
+    "No current048049 scientific approval; prior c177 acceptance has reopened visual gaps",
+    "No image at height.25 was captured; only geometry supports that case",
+    "No current runtime was relabelled b963 and original files remain unmodified"
+  ],
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "files": {
+    "actual-elements.json": "4b743ccb10a6ad798920063554100e0e555cc98f6b870b231c918ca27a625f60",
+    "browser-hooke-canary.mjs": "6b4bd073ac29005f8633046776c3c4c09b16bb34802f1fda931ef3c7c301bdd3",
+    "capture_actual.py": "dd7812a252e143dfb49164022e0340d56d80046656b9aef538c2e8b77416a404",
+    "completed-replays/048-consumer.json": "a4674f7163f9efdade65e60a9138dbdcb2a12bb0ef7ea60212f8724581b2cdb0",
+    "completed-replays/048-protocol.mjs": "c2e3c4be0581958146a3853b4a0c3c07196a10917819d996b1257b5bb5be9012",
+    "completed-replays/049-clock-consumer.json": "3bb1a67853d3ac754d2294e30813bec86bd35e457782e03f18de7da1a4de663c",
+    "completed-replays/049-clock-protocol.mjs": "037419d3c3dc58c21d1ad49a8f7ebd312ae213effae425e007961e23c84766dc",
+    "completed-replays/049-consumer.json": "fe50f67999f7af2a4c3d30c7a6177712c05350e6050f8a98dd28ca286b5d5bb0",
+    "completed-replays/049-protocol.mjs": "90abc32b887d8767c6fb352722a090d7344145c37883de3a867a0d3a4925e89a",
+    "completed-replays/energy-height-zero-fallback1280.png": "777d7e049dad922e8341df6cf81f63f223906c69dea439c5b04545b7f14394a1",
+    "completed-replays/energy-height-zero-native1280.png": "114f71a260471c31bc90ff4a19cad3b24caa46e7fe93d7db039246961f84d3be",
+    "completed-replays/hooke-canary-consumer.json": "2e6c46f4ff89bd375bbdcc575a5f70b1fd915f149e0f5bf4f86e86682456271f",
+    "completed-replays/hooke-canary-protocol.mjs": "6b4bd073ac29005f8633046776c3c4c09b16bb34802f1fda931ef3c7c301bdd3",
+    "completed-replays/hooke-minus4-native320.png": "82d78739ea5f30643ce168e40afc4d7689b979b8802cd7b12a1958bfe686f53f",
+    "completed-replays/hooke-plus6-native320.png": "de5755ac53a0e83f83003c7c35a46f3b070c5f1640e5e5e258d5a115d6d6953b"
+  }
+}
