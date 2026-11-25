@@ -1,0 +1,1398 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "experiments-forces-revision-140",
+  "records": [
+    {
+      "id": "SIM-C1-L005-01",
+      "sourceSha256": "b9dfdc98daf4d56e9998cb667dfcb3f21fad96e3d20ec44091c9c984c1f488ec",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "velocity retainedafterforceceases",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "zeroacceleration ininertialframe",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "one secondincrement",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actualtransferunits",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 21,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "6",
+            "parsed": 6
+          },
+          "independentExact": "6"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "3,75",
+            "parsed": 3.75
+          },
+          "independentExact": "15/4"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "comparison assignment": {
+          "[length]": "1"
+        },
+        "actual generated transfer": {
+          "[length]": "1"
+        },
+        "velocity retainedafterforceceases": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "zeroacceleration ininertialframe": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "one secondincrement": {
+          "[length]": "1"
+        },
+        "actualtransferunits": {
+          "[length]": "1"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Inertialframe,zeronetforce preservesgiveninitial1.5m/s, x=1.5t. References1=>1.5/4=>6, actual2.5=>15/4=3.75m. Zeroresultantdoesnotforcezerovelocity. Finitequarterproducts.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Rail0..7.5m, body1.5t; fixedpositivevelocityarrow, actualelapsedclock0..5s. Zeroforce isnotcodedaszerovelocity.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 84,
+        "errors": [],
+        "firstAssessmentInput": 4,
+        "transferInput": 2.5,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "6",
+            "parsed": 6
+          },
+          {
+            "display": "3,75",
+            "parsed": 3.75
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L005-02",
+      "sourceSha256": "a242feda39348f6bc774adb2643e992ad03e74f3045597084093ac1320458ff5",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "samebodyforcebalance6minus6",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "no rightforce leavesleftminus6",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "largest rightforce net4",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 11,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "3",
+            "parsed": 3
+          },
+          "independentExact": "3"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "-2",
+            "parsed": -2
+          },
+          "independentExact": "-2"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "samebodyforcebalance6minus6": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "no rightforce leavesleftminus6": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "largest rightforce net4": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Bothforcesonsamebody, +F and-6N: totalF-6. Ref6=>0/9=>3, actual4=>-2N. InitiallyrestbodyremainsrestonlyatbalanceF6; weight/normalverticalbalanceasstated, notan actionreactionpaironsamebody.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Forcesfromsameblock rightFandleft6 sharecommon1.14/6gain andopposeddirections, equalarrowsatF6. No motiontrajectoryclaimed bystaticFBD.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 11,
+        "plannedCaseCount": 11,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 9,
+        "transferInput": 4,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "-2",
+            "parsed": -2
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L005-03",
+      "sourceSha256": "dff8e8986cde6a2d31a15c48e55ebf8f781ada93df3ac5b059e0a10159060a2f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "6newtons divided2kilograms",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "negativeforce negativeaccel",
+          "independentExact": "-4",
+          "expectedValue": "-4",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "zeroforce zeroacceleration",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "Newton relation reconstructed",
+          "independentExact": "F",
+          "expectedValue": "F",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 17,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "3",
+            "parsed": 3
+          },
+          "independentExact": "3"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "0",
+            "parsed": 0
+          },
+          "independentExact": "0"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "6newtons divided2kilograms": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "negativeforce negativeaccel": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "zeroforce zeroacceleration": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "Newton relation reconstructed": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Fixedmass2kg,inertialhorizontalfrictionlessguide, a=F/2. Ref-4=>-2/6=>3,actual0=>0m/s². Oppositeforcesignchangesaccelerationsign, notmass. N/kg=m/s², forceandaccelerationnotcommensuratelengthunits.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Signedforcegreen andaccelerationpurple sharecorrectdirection butdifferentphysicalunits/scales explicitlydistinguished. Weight/normalnotdrawnin horizontal-onlyview.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 17,
+        "plannedCaseCount": 17,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 6,
+        "transferInput": 0,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "0",
+            "parsed": 0
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L005-04",
+      "sourceSha256": "0a8955d3271923573c49aa0c711719d7924ae3913d604de7b1b34d0879221900",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "-3",
+          "expectedValue": "-3",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "-8",
+          "expectedValue": "-8",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actionreaction sum internalforces",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "reversingbodylabels reversesforce",
+          "independentExact": "F",
+          "expectedValue": "F",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "zero interaction bothzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 13,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "-8",
+            "parsed": -8
+          },
+          "independentExact": "-8"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "-6",
+            "parsed": -6
+          },
+          "independentExact": "-6"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actionreaction sum internalforces": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "reversingbodylabels reversesforce": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "zero interaction bothzero": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "AonB +F, BonA -F ondistinctbodies. Ref3=>-3/8=>-8, actual6=>-6N. Internalforcescancelonlyinthecombinedsystem, not singlecartforcebalance. Directionlabels/appliedbodiesmatter; nopredictedvelocityfromforcealone.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Two carts Aleft/Bright, forcearrowsappliedtoeachbody atseparateorigins withsamegain1/9 andequalopposeddeltas; zerointeractionomitsbotharrows.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 8,
+        "transferInput": 6,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "-8",
+            "parsed": -8
+          },
+          {
+            "display": "-6",
+            "parsed": -6
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L005-05",
+      "sourceSha256": "9117caf0752244e252695fd63abff0dc6fbcdacb500edb960cf430807f4f5ea7",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "new actual transfer0 degrees",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "normal perpendicular tangent",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "weightnormalcomponent negative20cos",
+          "independentExact": "-20*cos(theta)",
+          "expectedValue": "-20*cos(theta)",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "positive normal balances perpendicularweight",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "parallel holdingforce balances downslopeweight",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "normalat75 exactoptionalinstrumentvalue",
+          "independentExact": "-5*sqrt(2) + 5*sqrt(6)",
+          "expectedValue": "-5*sqrt(2) + 5*sqrt(6)",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_optional_instrument_model_not_assigned_numeric_task"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 16,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "10",
+            "parsed": 10
+          },
+          "independentExact": "10"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "20",
+            "parsed": 20
+          },
+          "independentExact": "20"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "new actual transfer0 degrees": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "normal perpendicular tangent": {},
+        "weightnormalcomponent negative20cos": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "positive normal balances perpendicularweight": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "parallel holdingforce balances downslopeweight": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "normalat75 exactoptionalinstrumentvalue": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "NEW DRAFT: mg20N, m2kg and g10m/s² are consistent. With contact and zero acceleration perpendicular to a fixed straight plane, N-mg cos(theta)=0. At60deg N20/2=10N; at0deg N20N. Parallel support forces do not alter this perpendicular balance. Domain0..75 has0<N<=20; inverse m=10/(10*1/2)=2kg and cos(theta)=1/2 gives60deg uniquely there. Normal and weight act on the same body and are not an action-reaction pair. Actual consumer selects60/0, not unsupported40.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Actual force renderer read with every builtin caller. Normal/weight use common0.75 scene units per20N, giving green/red1 at0 and1/2 at60deg. Tension/weight now use common0.42 per20N: ratios1 at a0 and7/10 at a-3. Independent actual SVG toggle measurements confirm these same-unit ratios; separate-unit acceleration/velocity arrows retain independent scales. Native authored reading is reachable in Comprendi.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 16,
+        "plannedCaseCount": 16,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 60,
+        "transferInput": 0,
+        "manualityIssue": true,
+        "formatRoundtrip": [
+          {
+            "display": "10",
+            "parsed": 10
+          },
+          {
+            "display": "20",
+            "parsed": 20
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "EXACT_ORACLE",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "DRAFT",
+      "candidateSha256": "1675a67f4d06a81448a5161627fdffc5f744dbae668e989a025fc635bb92dbf1",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "reviewedSignature": "2d189fdf9d39e9364eab663c2a08fecf58e7ef1f34d2ee1bc8784776b379b221",
+      "publishedEditionReview": {
+        "id": "SIM-C1-L005-05",
+        "sourceSha256": "9117caf0752244e252695fd63abff0dc6fbcdacb500edb960cf430807f4f5ea7",
+        "ok": false,
+        "errors": [
+          "P2 actual generated transfer40degrees requires numerical20cos40, exact20cos(2pi/9) rejected by Number-only input; no supplied nonnotable-angle manual approximation method. Scalarphysics correct."
+        ],
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE",
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Original legacy numeric transfer requires a nonnotable trigonometric value without a supplied manual approximation, while the actual Number-only grader rejects the exact symbolic expression. Scalar law remains correct. Historical negative evidence is preserved, not overwritten."
+      },
+      "reviewedEdition": "NEW_DRAFT"
+    },
+    {
+      "id": "SIM-C1-L005-06",
+      "sourceSha256": "bf9444ff3003230c2f8ca274a523d15b737e49a806dd3ef75ccfb710d48f135b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "26",
+          "expectedValue": "26",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "Newtonverticalbalance reconstructed",
+          "independentExact": "2*a",
+          "expectedValue": "2*a",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "inertialmass SIrelation",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "constantvelocity T20",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "minimumacceleration tensionpositive10",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "maximumacceleration tension30",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "negative3 downwardnetforce6",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual law/domain/graph/apparatus/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 11,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "26",
+            "parsed": 26
+          },
+          "independentExact": "26"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "18",
+            "parsed": 18
+          },
+          "independentExact": "18"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "Newtonverticalbalance reconstructed": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "inertialmass SIrelation": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "constantvelocity T20": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "minimumacceleration tensionpositive10": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "maximumacceleration tension30": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "negative3 downwardnetforce6": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual law/domain/graph/apparatus/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Upwardpositive: T-mg=ma,m2kg,g10 ->T20+2a. Ref0=>20/3=>26, actual-1=>18N. Domaina-5..5givesT10..30positive, no slack/negativeTbranch. a-3 givesT14N andnet-6N downward; constantvelocitya0givesTmg20. ScalarNewtonrelation/manualarithmeticcorrect, separatevisualforce-scaleconcern retained.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Full source physical setup and units retained; force results are in an inertialframe on the stated domain. Actual tasks distinguished from idealized force-only drawings and optional instrument outputs; no measuredstudentcalibration or motion inferredfromforcealone.",
+      "pedagogicalReview": "Read all source and actual generated tasks, phases/readings/graphs/apparatus. Independent literal arithmetic and physicalforcebalance, not sourceapproval. Same-body force balance distinctfrom actionreactionacrossbodies; same-unit force-arrow comparison concerns separatedfromcorrect scalarphysics.",
+      "figureReview": "Common force scale now0.42 per20N; T20 equalsweight20 and T14 is0.7 ofweight20. Fixed body pose represents force comparison, not trajectory. All other caduta callers read: free fall and kinetic-energy cases have no filo, so do not inherit the20N tension legend.",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 11,
+        "plannedCaseCount": 11,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 3,
+        "transferInput": -1,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "26",
+            "parsed": 26
+          },
+          {
+            "display": "18",
+            "parsed": 18
+          }
+        ]
+      },
+      "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "reviewedRuntimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "eb67c2d25a3335180b5edfd21d5599148f14783c6f83b95cadcf9be61a4df132",
+        "protocolSha256": "201f1dbbe723d1e08e74f4089caa16e2c440beeeb7f3d514e03b31d95261e2a3",
+        "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+        "observedCaseCount": 58,
+        "transport": "Three canonical owner-fetched DRAFT records mounted only by an explicitly private exact-item transport fixture; other13 use native published port. Guest denied author401 and draft assets403; demo learner still receives original v1. No public draft route or publication claimed.",
+        "scope": "44 effective bench cases plus14 independent formatter/zero/force-scale closure cases; historical f897 negatives retained separately; not empirical student calibration"
+      },
+      "oracleDependencySha256": "32d9b7ff3071eea765ff4d17bc004a77ee81b6458892541b94cfe161daf5e58e",
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "ad692a127e274b26dd57bdbc0f8522bae03afe4adab76e249f73b0b8f2850356",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "acceptedCount": 6,
+  "failedCount": 0,
+  "draftReviewedCount": 1,
+  "failedPublishedEditionIds": [
+    "SIM-C1-L005-05"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
