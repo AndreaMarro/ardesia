@@ -1760,3 +1760,27 @@ Prossimi passi:
 2. Preparare fixture 5405 e rivalidazione del CORE c177, preservando il ROOT congelato.
 3. Integrare dopo review i lotti 158–167, primo `AR-u5-cyclic-work-01`.
 4. Riprendere 047 completa e continuare tutto il corpus, mantenendo human NOT_RUN e nuove pubblicazioni zero.
+
+
+## Stato operativo — 2.320 quesiti; 229 attività effettive; ritiro visivo aperto
+
+Il mandato continua. Il checkpoint storico `67fe90ae` (manifest `03ee6336`) registra 2.320 quesiti DRAFT e 230 attività. La nuova prova indipendente ritira l'accettazione di `SIM-C1-L005-05`: **229 attività effettivamente accettate e 156 ancora da chiudere**, 2.286 quesiti ancora da integrare. Non promuovere il ROOT 5405 o la vecchia head della PR #364 mentre il ritiro è aperto. Human NOT_RUN, pubblicazioni nuove zero, 93 esami protetti.
+
+HEAD remoto canonico riconfermato `831b73fa71076b2e9b363006ffd94a350f22fe90`; main sorgente ancora `5cfbdcb055ba3ba136f97fb56e997f06e6cf3605`. PR #364 resta DRAFT sulla vecchia `5a9a0b8fe700034dc2494fe1fce2223ded89bb50`; i suoi check precedenti non approvano questa nuova fotografia. Il canone ha 1.728 quesiti/204 attività storiche, 203 effettive per il precedente ritiro LAB3D-01; il fix di quel banco è indipendentemente verificato solo nella feature.
+
+Ritiro salvato e pushato ROOT `2258a1d`: 49 file originali verificati e copiati byte per byte, manifest `33c21222478335a063a50b41d81e57342e837117705ef89a379e71db4b8558e7`. Le fotografie sono state eseguite sul CORE c177; l'applicabilità al ROOT 5405 deriva dall'identità verificata della funzione piano e delle dipendenze pertinenti. Non sono fotografie rieseguite sul ROOT. Difetti: normale a 75° interamente nella sfera opaca e punta del peso a 0° nascosta dal tavolo. Modulo, leggi e conti manuali erano corretti; il PASS numerico non provava la leggibilità del vettore.
+
+CORE `27610cc9d625d291d9522251e18061aa755c5ab9` contiene una correzione proposta, runtime `b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f`: vettori completi fuori dagli occludenti, stessa scala e linee d'azione, nomi nella legenda HTML esistente. 9 test mirati, 273 Node e 2 contratti reali PASS; la review visiva indipendente A sul nuovo runtime è in corso, nessuna accettazione anticipata. Le precedenti prove c177 di 048/049 restano storiche e richiedono riesecuzione reale.
+
+Gate nella pipeline esistente: CORE `9621a9c`, ritiro ancora OPEN. Cambiare candidato o runtime non lo chiude; serve chiusura esplicita legata a runtime attuale e report scientifico positivo dello stesso ID/lotto, oltre alla normale verifica fresca. ROOT ha letto i diff e verificato 8 SHA, invarianti del registry, 46 test reali PASS in 0,915 s e rifiuto del caso reale. Fixture storica CORE `b925c3c`: veri archivi Git f897/5405, niente alias del runtime attuale. ROOT 10 test PASS in 1,886 s e 42 negativi storici PASS in 110,807 s; tutti i 16 corpi dei test 045/046 invariati. Questi commit tecnici non chiudono il ritiro scientifico.
+
+U5-02: tutte le 160 revisioni 158–167 hanno review scientifica distinta, salvata e pushata ROOT `7ead34c`; 255 controprove, 480 configurazioni Hypothesis e 25 test ROOT freschi PASS in 3,962 s. Il primo precedente run da 25 in 6,065 s resta distinto. Una didascalia 166-01 è stata corretta e riletta. Nessun credito aggiunto al checkpoint prima dell'integrazione. Prossimo ID esatto **`u5-cyclic-work-01` / `AR-u5-cyclic-work-01`**, batch `cyclic-work-158`. Discovery U5-03 source-only in corso; niente duplicazione dei 160 già scritti.
+
+Suite completa effettiva della fotografia 2320: **579 test PASS, 86 moduli, 467,946 s**, startingHead `da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b`, exit 0, input e checkpoint invariati; ricevuta salvata ROOT `1b8168d`. È una prova tecnica anteriore al ritiro visivo, non un'approvazione scientifica globale. I 25 nuovi test non sono sommati come singola suite da 604. I 157 pacchetti/7.011 casi 5405 e la release tecnica 2320 (SHA `485a48cadac3589ddd7811d5663a79b31e5553e9d83e3d9fa2cdb72c3ad5b554`) restano prove storiche di quell'epoca; nessun ritag al b963.
+
+Priorità eseguibili:
+
+1. Chiudere la review indipendente A della correzione piano sul b963, conservando ogni negativo; solo dopo ottenere vera nuova prova 140 e chiusura esplicita del ritiro.
+2. Rinnovare davvero 035/036/039/040, 118/119/140 e 048/049 sul runtime definitivo; poi integrare con un solo integratore e rieseguire anteprime, ETL fresh/incrementale, coesistenza e suite completa. Nessun marker sintetico.
+3. Registrare i dieci lotti 158–167 con prove aggiornate e proseguire U5-03 con ownership disgiunta e autori/verificatori distinti. Riprendere anche il gruppo attività 047, finora solo primaria parametrica.
+4. Aggiornare la stessa PR #364 quando tutti i gate sono concreti, CI sulla SHA finale, merge senza bypass e verifica post-merge. Proseguire fino a 4.606/385; i 199 controlli recuperati e le 100 revisioni Pro NOT_IDENTIFIED non sostituiscono revisioni complete.
