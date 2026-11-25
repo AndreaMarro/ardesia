@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "GLOBAL_FAILED_DURING_ENOSPC_NO_GLOBAL_PASS",
+  "actualTerminalExitCode": 1,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "registrySha256AtRun": "2889697e01a05b4f21b51b57786507c393e6d5c8371277f929538350ae25022a",
+  "expectedBatches": 167,
+  "expectedCases": 7491,
+  "verifiedCompletedBatches": 41,
+  "verifiedCompletedCases": 2016,
+  "rawLogSha256": "704c6e0e0e6a7d2134ccd13e17634179f8fa36d925cf36c6a263f598705b3802",
+  "observedErrors": [
+    "shell heredoc: no space left on device",
+    "sqlite3.OperationalError: disk I/O error",
+    "page.waitForFunction: Timeout15000ms"
+  ],
+  "observedAvailableBefore": "640MiB then523MiB",
+  "hostRamBytes": 8589934592,
+  "observedSwapUsedMiB": 7714.19,
+  "cacheCleanup": [
+    "ignored/reinstallable dependencies in old cric-pr360-validation/node_modules",
+    "ignored/reinstallable dependencies in old work/cric-ci-web/node_modules",
+    "task compiler cache /private/tmp/cric-swift-cache"
+  ],
+  "cleanupScope": "No source, Git, candidates, editions, authored assets, proofs, current runtime dependencies, user databases or venv removed",
+  "resumePolicy": "Existing runner, same runtime/protocol, one worker, only genuine matching per-batch terminal markers reused; report-only incomplete cases replayed",
+  "globalPass": false,
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

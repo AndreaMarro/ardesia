@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "SIX_EXPLICIT_CURRENT_RUNTIME_ACCEPTANCE_CLOSURES_NOT_HUMAN_APPROVAL",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "priorLedgerSha256": "b024a59c180dd50739a61328d8a65769a7ce1e386362e078e5fddfa8fb2f84dd",
+  "currentLedgerSha256": "44fa3980cb5a789de9798eda26220379acb76412c6378b03cab2c07773b92ef4",
+  "closures": [
+    {
+      "id": "SIM-C1-L005-05",
+      "batch": "experiments-forces-revision-140",
+      "reportSha256": "04a12b00d636df36900fcd93681cc4364a4f1b400b2fbf2709d143bf42778e61",
+      "historicalWithdrawalSha256": "9b3df7186826bce060eb327e5ef23f9190ae55ceac972347b05fb47f7c2cf02b"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "batch": "experiments-accelerated-040",
+      "reportSha256": "d82be449a8c95c0af1f7fa328d200de5d869df36aac2972195447fb85876ace7",
+      "historicalWithdrawalSha256": "f781cb49addd6d25bf0fb21b702938a396370e4f0788b930ce0028b5275aa324"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "batch": "experiments-accelerated-040",
+      "reportSha256": "d82be449a8c95c0af1f7fa328d200de5d869df36aac2972195447fb85876ace7",
+      "historicalWithdrawalSha256": "43508fd6805cda4745c6e95ba62c95accbcb17dcd92799f1b886c3c01e035cb0"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "batch": "experiments-force-work-corrected-048",
+      "reportSha256": "c1b27ade2c0385b5c5369d874fec0b248d5f0876e1fcde4dff1c4d2c3940d314",
+      "historicalWithdrawalSha256": "68c7a872a629f5384f5f038d3737b6effaea22315f58b4e4dd42e01665bbe2bf"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "batch": "experiments-energy-momentum-corrected-049",
+      "reportSha256": "3a879c2a4e65b24d6192c21ff6b0530f1fa1d4d5bb626aced5da3a75c2b54305",
+      "historicalWithdrawalSha256": "883e5e9d91c131e6fbc01d73ab72003454d99d0d012f7255420f9b87b3d1a597"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "batch": "experiments-force-work-corrected-048",
+      "reportSha256": "c1b27ade2c0385b5c5369d874fec0b248d5f0876e1fcde4dff1c4d2c3940d314",
+      "historicalWithdrawalSha256": "b5cca62298640489624ab5638f0f27a5cf88b1f046f83669f94276bf731ddb27"
+    }
+  ],
+  "priorRegisteredWithdrawalsRestored": 3,
+  "unregisteredGroupsStillRequireRegistration": 2,
+  "checkpointAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "gateTestTranscript": "test_compiler_preserves_activity_withdrawal_closure_audit (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_compiler_preserves_activity_withdrawal_closure_audit) ... ok\ntest_compiler_preserves_question_audit_and_open_blocks_compilation (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_compiler_preserves_question_audit_and_open_blocks_compilation) ... ok\ntest_diagnostic_missing_corrupt_or_external_cannot_be_credited (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_diagnostic_missing_corrupt_or_external_cannot_be_credited) ... ok\ntest_duplicate_json_fields_are_corrupt_even_with_fresh_file_hash (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_duplicate_json_fields_are_corrupt_even_with_fresh_file_hash) ... ok\ntest_later_batch_cannot_reopen_earlier_acceptance_before_compilation (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_later_batch_cannot_reopen_earlier_acceptance_before_compilation) ... ok\ntest_missing_malformed_wrong_hash_and_external_ledger_fail_closed (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_missing_malformed_wrong_hash_and_external_ledger_fail_closed) ... ok\ntest_open_withdrawal_blocks_before_any_approval_and_survives_changed_runtime (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_open_withdrawal_blocks_before_any_approval_and_survives_changed_runtime) ... ok\ntest_other_ids_and_absent_configuration_remain_backward_compatible (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_other_ids_and_absent_configuration_remain_backward_compatible) ... ok\ntest_positive_closure_cannot_bypass_fresh_or_saved_identity (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_positive_closure_cannot_bypass_fresh_or_saved_identity) ... ok\ntest_question_closure_still_rejects_fresh_candidate_identity (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_question_closure_still_rejects_fresh_candidate_identity) ... ok\ntest_question_withdrawal_blocks_before_verifier_even_after_candidate_changes (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_question_withdrawal_blocks_before_verifier_even_after_candidate_changes) ... ok\ntest_registry_loader_rejects_referenced_bad_ledger (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_registry_loader_rejects_referenced_bad_ledger) ... ok\ntest_runtime_or_report_change_during_fresh_validation_is_rejected (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_runtime_or_report_change_during_fresh_validation_is_rejected) ... ok\ntest_schema_malformed_and_duplicate_withdrawals_fail_closed (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_schema_malformed_and_duplicate_withdrawals_fail_closed) ... ok\ntest_stale_runtime_wrong_group_id_report_hash_or_path_cannot_close (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_stale_runtime_wrong_group_id_report_hash_or_path_cannot_close) ... ok\ntest_valid_explicit_closure_keeps_audit_and_runs_standard_verifier (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_valid_explicit_closure_keeps_audit_and_runs_standard_verifier) ... ok\ntest_withdrawal_is_by_id_even_if_moved_to_another_batch (tests.corpus.test_acceptance_withdrawals.AcceptanceWithdrawals.test_withdrawal_is_by_id_even_if_moved_to_another_batch) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.590s\n\nOK\n"
+}
