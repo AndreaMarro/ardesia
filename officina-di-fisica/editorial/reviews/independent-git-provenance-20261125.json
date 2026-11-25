@@ -1,0 +1,40 @@
+{
+  "elapsedSeconds": 0.5293463340058224,
+  "humanApproval": "NOT_RUN",
+  "independentChecks": {
+    "actualEightTestFamilyRefsCoveredWithoutImport": {
+      "charge_accelerating_voltage": "48744edef2aa133813c6a23500422343a902a311",
+      "electric_gravity_balance": "e82f91ab990e0c43ca7073dd7492aa2ba23fbfd0",
+      "electric_transverse_displacement": "16e815a385061fd23fc62bef7271cf040b06c29c",
+      "identical_series_resistors": "07d1f0a80b73ea6f3768b6ff3aa7f3fc6fc2a4a0",
+      "series_parallel_resistor_network": "8c30df9ded9344adddd257b241fbd103d3532fe1",
+      "two_parallel_resistors": "c5cb085c15bdbadd305ef6295475a04cfed65d23",
+      "two_series_resistors": "0188d3f00956cf376c2090bf822826a5fa02c25d",
+      "wire_stretched_fixed_volume": "e9405f9104380baffa38f7c6725765a239317a89"
+    },
+    "badBatch0_65_boolRejected": true,
+    "discoveredFixtureCommitCount": 10,
+    "fetchBatch65": [
+      32,
+      32,
+      1
+    ],
+    "idempotentSecondFetched": 0,
+    "missingAfterFetchRejected": true,
+    "presenceHasNoLazyFetch": true
+  },
+  "judgment": "NO_ACTIONABLE_BLOCKER_FOUND_IN_REVIEWED_SCOPE",
+  "limits": "Object hydration only, not scientific approval. Package/commit equality remains enforced by unchanged downstream gitshow tests. No remote fetch performed by audit except isolated tempfile-local remotes in official tests. No production/Rootfiles altered. No fullsuite/UI claimed.",
+  "observedFiles": {
+    "../.github/workflows/cric-corpus.yml": "069e36cb93d2bd2e7f71a01dd92fd3174302dabfdc381ac45d0e3adbd62d43e9",
+    "../.github/workflows/cric-preintegration-evidence.yml": "ffba82961010a395ff42804c070a51403ff01e5aee5895798eca7d90861015fa",
+    "tests/corpus/test_git_provenance.py": "04b089be184cc0f22bc14ab4385c3340d77eb912c6ac1a6829b857ac2791c5bd",
+    "tools/corpus_engineering/git_provenance.py": "520c434be231dbb8c7b46f0b2718d558d9ac51fe3b900cb6606db69fbb24d942"
+  },
+  "officialTests": {
+    "log": "test_fixture_discovery_deduplicates_and_ignores_informational_metadata (test_git_provenance.GitProvenance.test_fixture_discovery_deduplicates_and_ignores_informational_metadata) ... ok\ntest_mutable_refs_and_changed_or_missing_fixture_bytes_are_rejected (test_git_provenance.GitProvenance.test_mutable_refs_and_changed_or_missing_fixture_bytes_are_rejected) ... ok\ntest_real_missing_object_fetch_and_second_execution_are_idempotent (test_git_provenance.GitProvenance.test_real_missing_object_fetch_and_second_execution_are_idempotent) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.398s\n\nOK\n",
+    "passed": 3
+  },
+  "phase": "INDEPENDENT_READ_ONLY_TECHNICAL_AUDIT",
+  "publicationAction": "NONE"
+}

@@ -80,6 +80,7 @@ jobs:
           git fetch --depth=1 --filter=blob:none origin "$CRIC_ORIGINAL_REF"
           git fetch --depth=1 --filter=blob:none origin 493df796527bdb31b71f223343384656258e8e3a
           git fetch --depth=1 --filter=blob:none origin da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b
+          var/corpus-venv/bin/python -m tools.corpus_engineering.git_provenance --fetch-missing
       - name: Recover actual producer artifacts, preserving their origin
         env:
           GH_TOKEN: ${{ github.token }}

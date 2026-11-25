@@ -1,0 +1,37 @@
+{
+  "scope": "Latest user instruction explicitly authorizes public repository and all editorial contents; prior GitHub confidentiality request superseded",
+  "observedAt": "2026-11-25T14:17:20.707316+00:00",
+  "userCorrections": [
+    "no, mantieni pubblico",
+    "no, metti pure tutto"
+  ],
+  "briefPrivateTransitionOccurred": true,
+  "currentVisibility": "PUBLIC",
+  "anonymousRepositoryHTTP": 200,
+  "protectionAndRulesetObservationsUnchanged": {
+    "main-protection": true,
+    "canonical-protection": true,
+    "rulesets": true
+  },
+  "endpointResults": {
+    "repository": {
+      "exitCode": 0
+    },
+    "main-protection": {
+      "exitCode": 0
+    },
+    "canonical-protection": {
+      "exitCode": 1
+    },
+    "rulesets": {
+      "exitCode": 0
+    }
+  },
+  "canonicalBranchProtectionObservation": "HTTP404 both before and after; not newly removed or claimed protected",
+  "newContentPushedDuringPrivateTransition": false,
+  "lastPublicRootBeforeNewPush": "83cafbb9e42ebf6d32f505573602add041c00bf8",
+  "furtherPushesOfAllEditorialContentAuthorized": true,
+  "applicationDefaultDenyRetained": true,
+  "humanApproval": "NOT_RUN",
+  "applicationPublicationAction": "NONE"
+}

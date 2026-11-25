@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T14:01:28.286950+00:00",
-  "snapshotHead": "8dda5f7c32f6b4b7173e91a98707c2d70166d546",
+  "observedAt": "2026-11-25T14:31:40.975932+00:00",
+  "snapshotHead": "ab1266583475c964a569a6a1ad7e759174a8b1bc",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
@@ -29,7 +29,8 @@
     "partialC2C3C4DeliveriesRecovered": true,
     "partialRootTargetTests": "PENDING",
     "C3L0705PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; exact radical not accepted by Number, reviewer approximation method absent from source",
-    "C4L0902PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; sin95 input not supported, accepted6 approximation alone is not usability proof"
+    "C4L0902PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; sin95 input not supported, accepted6 approximation alone is not usability proof",
+    "partialC5C6DeliveriesRecovered": true
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -81,7 +82,7 @@
       "failed": 0,
       "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1"
     },
-    "etl3152": "NOT_RUN_YET",
+    "etl3152": "FRESH_AND_INCREMENTAL_PASS_56_IDENTICAL_FILES",
     "coexistence3152": "NOT_RUN_YET",
     "fullSuite3152": "NOT_RUN_YET",
     "release3152": "NOT_RUN_YET",
@@ -95,13 +96,14 @@
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
     "newMaterials": "DRAFT",
-    "repositoryVisibility": "PUBLIC_OBSERVED",
+    "repositoryVisibility": "PUBLIC_VERIFIED",
     "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
-    "externalWrites": "HOLD_PENDING_USER_SCOPE_CLARIFICATION",
-    "requiredClarification": "Whether no DRAFT exposure applies only in the application or also to publicly readable GitHub files",
+    "externalWrites": "AUTHORIZED_BY_LATEST_USER_INSTRUCTIONS",
+    "requiredClarification": "RESOLVED: no,mantieni pubblico; no,metti pure tutto",
     "priorPublicPushesExist": true,
     "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
-    "automaticApprovalReviewRejected": false
+    "automaticApprovalReviewRejected": false,
+    "githubEditorialContentsPublicExplicitlyAuthorized": true
   },
   "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger",
   "lastPublicRootHead": "83cafbb9e42ebf6d32f505573602add041c00bf8",
@@ -142,16 +144,29 @@
     "bytes": 43555590,
     "heads": "8dda5f7c32f6b4b7173e91a98707c2d70166d546 refs/heads/feat/cric-experiment-manual-revisions\n7c71e095686a96dae449f7a4507c98bd651f45e8 refs/heads/feat/cric-inclines-a\n459f43c7869844673c18f14d86b40e2de2b636ec refs/heads/feat/cric-contact-b\n",
     "prerequisite": "83cafbb9e42ebf6d32f505573602add041c00bf8 and its reachable objects from existing repository or public GitHub history",
-    "sourcePinsIncluded": {
-      "ardesia-source": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
-      "cric-source": "5d1dc8dc7b601aef959d10d564c75462be74708d",
-      "historical-fixture-493": "493df796527bdb31b71f223343384656258e8e3a",
-      "historical-fixture-da2": "da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b"
-    },
     "verifiedAgainstExistingRepository": true,
     "restore": "Ensure prerequisite commit exists; git bundle verify PATH; git fetch PATH refs/heads/feat/cric-experiment-manual-revisions:refs/heads/recovered-cric; other listed refs likewise as needed",
     "uploads": false,
     "humanApproval": "NOT_RUN",
-    "publicationAction": "NONE"
+    "publicationAction": "NONE",
+    "sourcePinsReachableFromPrerequisite": {
+      "ardesia-source": {
+        "sha256": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "cric-source": {
+        "sha256": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "historical-fixture-493": {
+        "sha256": "493df796527bdb31b71f223343384656258e8e3a",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "historical-fixture-da2": {
+        "sha256": "da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b",
+        "reachableFromRequired83cafbbHistory": true
+      }
+    },
+    "listedHeadsAreActualBundleContents": true
   }
 }

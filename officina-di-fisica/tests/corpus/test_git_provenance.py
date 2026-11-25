@@ -1,0 +1,60 @@
+import hashlib
+import json
+import subprocess
+import tempfile
+from pathlib import Path
+import unittest
+from tools.corpus_engineering.git_provenance import fixture_commit_refs, ensure_commits
+
+
+def fixture(root, name, ref):
+    directory = root / name
+    directory.mkdir()
+    files = {}
+    for name, data in [("package.json", b'{"schema":"astra/1"}'), ("bindings.json", b'[]')]:
+        (directory / name).write_bytes(data)
+        files[name] = hashlib.sha256(data).hexdigest()
+    (directory / "manifest.json").write_text(json.dumps({"sourceCandidateCommit": ref, "files": files}))
+
+
+class GitProvenance(unittest.TestCase):
+    def test_fixture_discovery_deduplicates_and_ignores_informational_metadata(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            fixture(root, "one", "a" * 40)
+            fixture(root, "two", "a" * 40)
+            (root / "manifest.json").write_text('{"candidateLabel":"007219e"}')
+            self.assertEqual(fixture_commit_refs(root), ["a" * 40])
+
+    def test_mutable_refs_and_changed_or_missing_fixture_bytes_are_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            fixture(root, "one", "main")
+            with self.assertRaises(ValueError):
+                fixture_commit_refs(root)
+            p = root / "one/manifest.json"
+            manifest = json.loads(p.read_text())
+            manifest["sourceCandidateCommit"] = "a" * 40
+            p.write_text(json.dumps(manifest))
+            (root / "one/package.json").write_bytes(b'{"tampered":true}')
+            with self.assertRaises(ValueError):
+                fixture_commit_refs(root)
+            (root / "one/package.json").unlink()
+            with self.assertRaises(FileNotFoundError):
+                fixture_commit_refs(root)
+
+    def test_real_missing_object_fetch_and_second_execution_are_idempotent(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            origin, consumer = root / "origin", root / "consumer"
+            for repo in [origin, consumer]:
+                subprocess.run(["git", "init", "-q", str(repo)], check=True)
+            subprocess.run(["git", "-c", "commit.gpgsign=false", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+                            "commit", "-q", "--allow-empty", "-m", "immutable fixture"], cwd=origin, check=True)
+            ref = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=origin, text=True).strip()
+            subprocess.run(["git", "remote", "add", "origin", str(origin)], cwd=consumer, check=True)
+            self.assertEqual(ensure_commits(consumer, [ref], 1)["fetchedCommits"], 1)
+            self.assertEqual(ensure_commits(consumer, [ref], 1)["fetchedCommits"], 0)
+            for bad in ["--upload-pack=bad", "main"]:
+                with self.assertRaises(ValueError):
+                    ensure_commits(consumer, [bad])
