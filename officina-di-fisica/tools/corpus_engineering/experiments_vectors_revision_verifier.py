@@ -1,4 +1,4 @@
-"""Independent effective experiment review on the final0e208 runtime; original unsupported-angle probes remain historical boundaries, not new student tasks. No authoring imports or human approval."""
+"""Independent effective experiment review on the final reviewed runtime (see shared integrity boundary); original unsupported-angle probes remain historical boundaries, not new student tasks. No authoring imports or human approval."""
 from fractions import Fraction
 from pathlib import Path
 import json
