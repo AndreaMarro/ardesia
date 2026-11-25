@@ -1,5 +1,4 @@
 from .. import store
-from .discipline_editions import sale_courses
 
 
 class SQLiteOrders:
@@ -10,7 +9,7 @@ class SQLiteOrders:
         return store.config(self.db)
 
     def courses(self):
-        return store.published(self.db) + sale_courses(self.db)
+        return store.published(self.db)
 
     def set_config(self, settings):
         self.db.execute("UPDATE settings SET value=? WHERE key='commerce'", (store.encode(settings),))
@@ -19,8 +18,6 @@ class SQLiteOrders:
         return store.entitled(self.db, user, rows, course)
 
     def course_title(self, course):
-        if course.startswith("D~"):
-            return next(row["title"] for row in sale_courses(self.db) if row["id"] == course)
         return store.record(self.db, course)["title"]
 
     def existing(self, user, course, offer, mode):

@@ -8,9 +8,12 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import patch
 
-from server import commerce, discipline_study as study, store
-from server.adapters import discipline_editions as ed
-from server.adapters.discipline_pack import load_pack
+from server import store
+from server.application import orders
+from multidiscipline import study
+from multidiscipline.web import DisciplineOrders
+from multidiscipline import editions as ed
+from multidiscipline.pack import load_pack
 from server.domain.errors import Problem
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -106,8 +109,8 @@ class Disciplines(unittest.TestCase):
         self.assertFalse(pack["courses"][0]["accessible"])
         with store.connect() as db:
             rows=ed.sale_courses(db)
-            order=commerce.create(db,self.student,rows,{"course":key,"accepted":True})
-            commerce.operation(db,{"id":"owner","role":"autore"},order["id"],{"action":"confirm","verified":True,"amount":"1.00"})
+            order=orders.create(DisciplineOrders(db),self.student,rows,{"course":key,"accepted":True})
+            orders.operation(DisciplineOrders(db),{"id":"owner","role":"autore"},order["id"],{"action":"confirm","verified":True,"amount":"1.00"})
             self.assertEqual(order["snapshot"]["courseTitle"], "Area del rettangolo")
         self.assertTrue(self.call(["misure"],user=self.student)["courses"][0]["accessible"])
         with store.connect() as db:

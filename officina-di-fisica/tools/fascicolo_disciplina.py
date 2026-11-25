@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 
-from server.adapters.discipline_pack import load_pack
+from multidiscipline.pack import load_pack
 from server.printing import chrome
 
 ROOT = Path(__file__).resolve().parents[1]

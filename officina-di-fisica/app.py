@@ -24,7 +24,8 @@ from server.store import (
     published,
     require,
 )
-from server.web import Handler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
+from multidiscipline.web import Handler
 
 
 def main():
@@ -56,7 +57,7 @@ def main():
         p.error("Le opzioni del catalogo si usano con install-discipline")
     initialize()
     if args.action == "install-discipline":
-        from server.adapters.discipline_editions import install
+        from multidiscipline.editions import install
         with connect() as db:
             db.execute("BEGIN IMMEDIATE")
             state = "published" if args.publish_reviewed else "preview"

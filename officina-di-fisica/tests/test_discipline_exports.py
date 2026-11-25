@@ -5,7 +5,7 @@ from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
 from tools.export_discipline import CP, QTI, export
-from server.adapters.discipline_pack import load_pack
+from multidiscipline.pack import load_pack
 
 
 class Export(unittest.TestCase):

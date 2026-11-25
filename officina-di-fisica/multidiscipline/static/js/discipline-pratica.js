@@ -1,5 +1,5 @@
-import { api, esc, head, main, state } from './ui.js';
-import { chiaveBozza } from './recupero/bozza.js';
+import { api, esc, head, main, state } from '/js/ui.js';
+import { chiaveBozza } from '/js/recupero/bozza.js';
 
 function requestId() {
   return globalThis.crypto?.randomUUID?.() || 'd' + Date.now().toString(36) + Math.random().toString(36).slice(2);

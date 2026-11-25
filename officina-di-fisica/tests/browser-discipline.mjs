@@ -38,7 +38,7 @@ const scope = '/api/v1/disciplines/' + catalog.id;
 const env = {...process.env, ASTRA_DATA: storage};
 const install = spawnSync('python3', ['app.py', 'install-discipline', catalogFile], {cwd: root, env, encoding: 'utf8'});
 assert.equal(install.status, 0, install.stderr);
-const code = 'from server.web import Handler, ThreadingHTTPServer; server=ThreadingHTTPServer(("127.0.0.1",0),Handler); print(server.server_port,flush=True); server.serve_forever()';
+const code = 'from http.server import ThreadingHTTPServer; from multidiscipline.web import Handler; server=ThreadingHTTPServer(("127.0.0.1",0),Handler); print(server.server_port,flush=True); server.serve_forever()';
 const service = spawn('python3', ['-uc', code], {cwd: root, env, stdio: ['ignore', 'pipe', 'inherit']});
 const axe = await fs.readFile(path.join(root, 'node_modules/axe-core/axe.min.js'), 'utf8');
 const report = {statistics: [], audits: [], checks: [], errors: []};
@@ -90,6 +90,7 @@ async function journey(browser, name, width, height) {
   await context.route('**/__qa__/axe.min.js', route => route.fulfill({contentType:'text/javascript', body:axe}));
   const page = await context.newPage();
   page.setDefaultTimeout(45000);
+  page.setDefaultNavigationTimeout(90000);
   page.on('pageerror', e => report.errors.push(name + ': ' + e.message));
   page.on('console', m => { if (m.type() === 'error') report.errors.push(name + ': ' + m.text()); });
   const desktop = name === 'desktop';
@@ -108,6 +109,7 @@ async function journey(browser, name, width, height) {
   await page.locator('.lettore-opzioni summary').waitFor().catch(async error => {
     throw Error(error.message + '\n' + page.url() + '\n' + (await page.locator('main').innerText()).slice(0, 1000));
   });
+  await page.locator('main:not([aria-busy]) .lettore-opzioni summary').waitFor();
   const toLesson = performance.now() - untilInteraction;
   if (desktop) {
     await activate(page.locator('.lettore-opzioni summary'));
@@ -150,14 +152,14 @@ async function journey(browser, name, width, height) {
     const snapshot = await page.locator('main').ariaSnapshot();
     assert.ok(snapshot.includes('Soluzione commentata') && snapshot.includes('Confronta le alternative'));
     await fs.writeFile(path.join(evidence, 'semantica-correzione.yml'), snapshot);
-    await page.pdf({path: path.join(evidence, 'svolgimento-stampato.pdf'), format:'A4', printBackground:true,
+    await page.pdf({path: path.join(evidence, 'svolgimento-stampato.pdf'), format:'A4', printBackground:true, tagged:true, outline:true,
       margin: {top:'14mm', right:'15mm', bottom:'15mm', left:'15mm'}});
   }
   const response = await (await page.request.get(url + scope + '/me')).json();
   assert.equal(response.skills[first.skillId].errors, 1);
   assert.equal(response.skills[first.skillId].independent, 0);
   if (desktop) assert.equal(response.skills[first.skillId].completions, 1);
-  await page.reload();
+  await page.reload({waitUntil:'domcontentloaded'});
   await page.getByText('Tentativo ritrovato nel quaderno.').waitFor();
   await activate(page.locator('.mast-tools').getByRole('link', {name:'Materie'}));
   await activate(page.locator('.discipline-entry').filter({hasText: catalog.title}));
@@ -240,6 +242,8 @@ async function studyTools(page) {
   checks('Confronto simbolico e vincoli di dominio, secante degenere e somme di Riemann con alternativa tabellare');
   if (catalog.syllabi.length) {
     await page.goto(url + route());
+    await page.locator('.mast-search').click();
+    await page.waitForFunction(() => document.activeElement?.matches('.discipline-filter input[type=search]'));
     await page.getByLabel('Programma universitario').selectOption(catalog.syllabi[0].id);
     await page.locator('[data-syllabus-source] a').waitFor();
     assert.equal(await page.locator('[data-syllabus-source] a').getAttribute('href'), catalog.syllabi[0].url);
@@ -255,7 +259,7 @@ async function studyTools(page) {
     await page.getByRole('button', {name:'Inizia l’esercitazione'}).click();
     await page.getByRole('radio').first().check();
     await page.getByRole('button', {name:'Quesito successivo'}).click();
-    await page.reload();
+    await page.reload({waitUntil:'domcontentloaded'});
     await page.getByText(/^Quesito 2 di/).waitFor();
     assert.equal(await page.getByRole('heading', {name:'Soluzione commentata'}).count(), 0);
     await page.getByRole('button', {name:'Rivedi e consegna'}).click();

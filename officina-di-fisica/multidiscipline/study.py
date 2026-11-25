@@ -1,11 +1,11 @@
 """Classify observable study evidence and recommend a concrete next activity."""
 import json
 
-from .adapters import discipline_editions as ed
-from .adapters.discipline_pack import PHYSICS, fields, student_unit
-from .domain.errors import Problem, require
-from .domain.identity import encode, need_author, need_user, safe_key
-from . import store
+from . import editions as ed
+from .pack import PHYSICS, fields, student_unit
+from server.domain.errors import Problem, require
+from server.domain.identity import encode, need_author, need_user, safe_key
+from server import store
 
 # An explicit scheduling policy. Its intervals are editable product defaults.
 REVIEW_DELAY = 2 * 24 * 60 * 60
@@ -30,10 +30,10 @@ def notebook(db, user, pack, allowed, now):
         model[skill] = {k: int(h.get(k, 0)) for k in ("exposures", "completions", "assisted", "independent", "transfer", "retention", "errors")}
         last = h.get("lastIndependent")
         model[skill]["dueAt"] = last + (RETAINED_DELAY if h.get("retention") else REVIEW_DELAY) if last is not None else None
-    attempted = {r[0] for r in db.execute("SELECT DISTINCT activity FROM discipline_events WHERE user=? AND discipline=? "
+    attempted = {r[0] for r in db.execute("SELECT DISTINCT activity FROM discipline_events INDEXED BY discipline_seen WHERE user=? AND discipline=? "
                                           "AND kind IN ('answer','hint')", (uid, discipline))}
     resume = None
-    for r in db.execute("SELECT unit,activity FROM discipline_events WHERE user=? AND discipline=? ORDER BY seq DESC", (uid, discipline)):
+    for r in db.execute("SELECT unit,activity FROM discipline_events INDEXED BY discipline_history WHERE user=? AND discipline=? ORDER BY seq DESC", (uid, discipline)):
         if r[0] in by_id:
             resume = {"unitId": r[0], "activityId": r[1] if r[1] in by_id[r[0]]["activityIds"] else None}
             break
@@ -153,7 +153,7 @@ def route(db, user, parts, data, post, local):
         require(unit["courseId"] in allowed, "Accesso al microcorso richiesto.", 403)
         return student_unit(unit, pack["version"])
     if len(tail) == 3 and tail[0] == "courses" and tail[2] == "editorial-library" and not post:
-        from .editorial.service import editorial_library
+        from server.editorial.service import editorial_library
         need_author(user)
         require(pack["status"] == "published", "La biblioteca editoriale richiede un’edizione approvata.", 403)
         course = next((c for c in pack["courses"] if c["id"] == tail[1]), None)

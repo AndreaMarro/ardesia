@@ -64,20 +64,15 @@ function catalog() {
   return '<nav class="rows course-index" aria-label="Catalogo dei percorsi">' + entries.join('') + '</nav>';
 }
 
-async function home() {
-  // An uninstalled or temporarily unavailable extension must leave the physics cover usable.
-  const directory = await api('/v1/disciplines').catch(() => ({ disciplines: [] }));
-  const subjects = directory.disciplines.filter(subject => subject.route !== 'percorsi');
-  const branchLinks = subjects.map(subject => link(subject.title, 'disciplina/' + encodeURIComponent(subject.id)));
-  const combined = subjects.length > 0;
+function home() {
   main.innerHTML = `<section class="hero" aria-labelledby="cover-title">
     <div class="hero-copy">
-      <h1 id="cover-title"><span>${combined ? 'Lo studio,' : 'La fisica,'}</span> <em>in pratica.</em></h1>
-      <p>${combined ? 'Entra nei percorsi di Fisica per Medicina o scegli un’altra materia. Il quaderno conserva il punto in cui ti fermi.' : 'Sei percorsi per Medicina: studia un argomento con calma oppure preparati all’esame attraverso esercizi, grafici e formule inverse.'}</p>
+      <h1 id="cover-title"><span>La fisica,</span> <em>in pratica.</em></h1>
+      <p>Sei percorsi per Medicina: studia un argomento con calma oppure preparati all’esame attraverso esercizi, grafici e formule inverse.</p>
       <div class="hero-actions">
-        <a class="button solid" href="#percorsi">${combined ? 'Fisica per Medicina' : 'Studio completo'} <span class="arrow" aria-hidden="true">→</span></a>
-        ${branchLinks.join('')}
-        ${combined ? '' : '<a class="button" href="#sprint">Preparazione rapida all’esame</a><a class="button" href="#laboratori">Laboratori 3D per capitolo</a>'}
+        <a class="button solid" href="#percorsi">Studio completo <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#sprint">Preparazione rapida all’esame</a>
+        <a class="button" href="#laboratori">Laboratori 3D per capitolo</a>
         <button type="button" class="textbtn" data-prova-portata>Prova un esperimento</button>
       </div>
     </div>
@@ -88,7 +83,7 @@ async function home() {
       <figcaption id="cover-caption"><strong>Cric</strong><span>La chiave inglese col vizio del disegno. Premi per cambiare posa.</span></figcaption>
     </figure>
   </section>
-  <section aria-labelledby="cover-index"><div class="rule-head ${combined ? 'discipline-intro' : ''}"><h2 id="cover-index">${combined ? 'Fisica per Medicina' : 'I percorsi'}</h2><p>Cinque microcorsi tematici e un percorso completo.</p></div>${catalog()}</section>
+  <section aria-labelledby="cover-index"><div class="rule-head"><h2 id="cover-index">I percorsi</h2><p>Cinque microcorsi tematici e un percorso completo.</p></div>${catalog()}</section>
   ${previewOfficina()}`;
 }
 async function labs(courseId, lessonId) {
@@ -368,13 +363,9 @@ async function router() {
   main.setAttribute('aria-busy', 'true');
   const section = {
     corso: 'percorsi', materiale: 'percorsi', acquisto: 'percorsi', allenamento: 'percorsi',
-    disciplina: 'discipline', prova: 'studio', lab: 'laboratori', banco: 'laboratori', accedi: 'studio',
+    prova: 'studio', lab: 'laboratori', banco: 'laboratori', accedi: 'studio',
   }[page] || page;
-  const search = document.querySelector('.mast-search');
-  const subjectSearch = page === 'disciplina' && parts[0];
-  search.href = subjectSearch ? '#disciplina/' + encodeURIComponent(parts[0]) + '/%40cerca' : '#percorsi/cerca';
-  search.title = subjectSearch ? 'Cerca in questa materia' : 'Cerca nei percorsi di Fisica';
-  for (const a of document.querySelectorAll('.mast nav a, .mast-tools a')) {
+  for (const a of document.querySelectorAll('.mast nav a')) {
     const active = a.hash === '#' + section;
     a.classList.toggle('active', active);
     if (active) a.setAttribute('aria-current', page === section ? 'page' : 'location');
@@ -392,9 +383,7 @@ async function router() {
       window.scrollTo({top: prior.scroll, behavior: 'instant'});
       return;
     }
-    if (page === 'home') await home();
-    else if (page === 'discipline') await (await import('./discipline.js')).directoryPage();
-    else if (page === 'disciplina') focusOnArrival = await (await import('./discipline.js')).disciplinePage(...parts);
+    if (page === 'home') home();
     else if (page === 'percorsi') {
       const { catalogPage } = await import('./ricerca.js');
       focusOnArrival = await catalogPage(parts[0], parts[1], catalog);
@@ -495,7 +484,7 @@ window.addEventListener('hashchange', schedule);
 window.addEventListener('pagehide', () => segnaleLettori(main, 'lettura:sospendi'));
 let leavingSession = false;
 function privateActivity(route = '') {
-  return /^(?:disciplina\/|discipline$|materiale\/|prova\/|studio(?:\/|$))/.test(route.replace(/^#/, ''));
+  return /^(?:materiale\/|prova\/|studio\/diario(?:\/|$))/.test(route.replace(/^#/, ''));
 }
 function changedSession() {
   segnaleLettori(main, 'lettura:sospendi');

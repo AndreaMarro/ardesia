@@ -6,7 +6,7 @@ import tempfile
 from xml.etree import ElementTree as ET
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-from server.adapters.discipline_pack import load_pack
+from multidiscipline.pack import load_pack
 
 QTI = "http://www.imsglobal.org/xsd/imsqtiasi_v3p0"
 CP = "http://www.imsglobal.org/xsd/qti/qtiv3p0/imscp_v1p1"

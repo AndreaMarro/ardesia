@@ -1,6 +1,6 @@
-import { api, button, crumb, esc, go, head, link, main, on, refresh, state } from './ui.js';
-import { lettorePersonale } from './lettura.js';
-import { vignetta } from './anteprima.js';
+import { api, button, crumb, esc, go, head, link, main, on, refresh, state } from '/js/ui.js';
+import { lettorePersonale } from '/js/lettura.js';
+import { vignetta } from '/js/anteprima.js';
 import { activityPage, eventsFor } from './discipline-pratica.js';
 
 const endpoint = id => '/v1/disciplines/' + encodeURIComponent(id);
@@ -120,10 +120,10 @@ function gate(data, course, route) {
 
 function bindAccess() {
   on('#demo', 'click', async () => {
+    const original = location.hash;
     await api('/demo', {});
     await refresh();
-    // Keep a more recent navigation when registration and a subsequent click overlap.
-    go(location.hash.slice(1) || 'home');
+    if (location.hash === original) go(original.slice(1) || 'home');
   });
 }
 
@@ -338,16 +338,14 @@ export async function disciplinePage(id, courseId, unitId, activityId) {
   const unit = await api(endpoint(id) + '/units/' + encodeURIComponent(unitId));
   if (location.hash !== route) return;
   const events = eventsFor(endpoint(id), unit.version, unitId, activityId);
-  let notice;
-  if (activityId) {
-    const activity = unit.activities.find(item => item.id === activityId);
-    if (!activity) throw Error('Questo esercizio non appartiene all’unità.');
-    notice = await activityPage(data, unit, activity, events, crumbs(data, course, unit, activity), pathTo(data.id, course.id, unit.id));
-  } else {
-    notice = await renderLesson(data, course, unit, me, events);
-  }
-  if (location.hash === route) {
-    try { await events('open'); }
-    catch (error) { notice.textContent = 'Punto di ripresa non salvato. ' + error.message; }
-  }
+  const activity = activityId && unit.activities.find(item => item.id === activityId);
+  if (activityId && !activity) throw Error('Questo esercizio non appartiene all’unità.');
+  let openError;
+  try { await events('open'); }
+  catch (error) { openError = error.message; }
+  if (location.hash !== route) return;
+  const notice = activity
+    ? await activityPage(data, unit, activity, events, crumbs(data, course, unit, activity), pathTo(data.id, course.id, unit.id))
+    : await renderLesson(data, course, unit, me, events);
+  if (openError && notice?.isConnected) notice.textContent = 'Punto di ripresa non salvato. ' + openError;
 }

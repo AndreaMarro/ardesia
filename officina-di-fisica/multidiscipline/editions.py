@@ -2,9 +2,9 @@
 import hashlib
 import json
 
-from .discipline_pack import PHYSICS, fields, load_pack
-from ..domain.errors import require
-from ..domain.identity import encode
+from .pack import PHYSICS, fields, load_pack
+from server.domain.errors import require
+from server.domain.identity import encode
 
 SCHEMA = (
     """CREATE TABLE IF NOT EXISTS discipline_editions(

@@ -1,6 +1,7 @@
 .mast-tools { margin-inline-start: auto; display: flex; align-items: center; gap: 1rem; }
 .mast-tools a { display: inline-flex; align-items: center; min-height: 44px; color: var(--violet-dark); font-weight: 650; }
 .mast-tools a[aria-current] { text-decoration-thickness: 3px; }
+.crumb a[href="#discipline"], .crumb a[href^="#disciplina/"] { display: inline-flex; align-items: center; min-height: 30px; max-width: 100%; }
 .discipline-entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(23rem, 100%), 1fr)); gap: 1rem; margin-block: 1.5rem 3rem; }
 .discipline-entry { display: flex; align-items: flex-start; flex-direction: column; gap: .8rem; padding: clamp(1.2rem, 3vw, 2.5rem); border: 1.5px solid var(--ink); text-decoration: none; }
 .discipline-entry:nth-child(odd) { background: var(--wash); }
@@ -104,6 +105,6 @@
   .mast-tools, .discipline-side, .discipline-filter, .discipline-save, .discipline-compare, .discipline-share { display: none !important; }
   .discipline-spread, .discipline-reader, .discipline-practice { display: block; max-width: none; }
   .discipline-reader .copy h2, .discipline-practice :is(h2,h3,summary) { break-after: avoid; }
-  .discipline-mathlab { break-inside: avoid; }
+  .discipline-mathlab, .discipline-alternatives details, .discipline-steps li { break-inside: avoid; }
   .discipline-mathlab input { display: none; }
 }

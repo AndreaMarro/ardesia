@@ -12,8 +12,8 @@ import tempfile
 APP = Path(__file__).resolve().parents[1]
 PRODUCT = APP.name
 ROOT = APP.parent
-CORE = ("app.py", "server", "migrations", "content", "contracts", "policies", "examples", "static/lab-models.json")
-PROTECTED = ("editorial/", "tools/corpus_engineering/", "tests/corpus/", "materials/", "static/figures/")
+CORE = ("app.py", "server", "migrations", "content", "contracts", "policies", "examples", "static/lab-models.json", "static/index.html", "static/js/app.js", "static/js/account.js")
+PROTECTED = ("server/", "static/", "content/", "contracts/", "migrations/", "policies/", "extensions/", "package.json", "package-lock.json", "editorial/", "tools/corpus_engineering/", "tests/corpus/", "materials/", "static/figures/")
 HISTORY = """
 import hashlib,json
 from server import store
@@ -83,6 +83,11 @@ def rehearse(base, platform, scientific):
                 continue
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(git("show",platform+":"+record))
+        # Compile every entry point against the exact client sources from the scientific commit.
+        local_command(composed, database, "-c", "from multidiscipline.frontend import PUBLIC_ASSETS,public_asset; "
+                      "assert all(public_asset(name) for name in PUBLIC_ASSETS)")
+        report["physicsRuntimeFilesChanged"] = 0
+        report["composedBrowserAssets"] = "verified"
         for _ in range(2):
             install=json.loads(local_command(composed,database,"app.py","install-discipline","examples/discipline/catalog.json"))
             if install["changed"] != (_ == 0):
@@ -91,7 +96,8 @@ def rehearse(base, platform, scientific):
         reopened=json.loads(local_command(old,database,"-c",HISTORY))
         if before != current or current != reopened:
             raise RuntimeError("Lo storico differisce dopo aggiornamento o riapertura con il vecchio lettore.")
-        tx="""from server import store,discipline_study as s
+        tx="""from server import store
+from multidiscipline import study as s
 with store.connect() as db:
  db.execute('BEGIN IMMEDIATE')
  u=db.execute("SELECT * FROM users WHERE id='rehearsal'").fetchone()

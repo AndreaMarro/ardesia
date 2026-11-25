@@ -19,7 +19,8 @@ test('Contratti HTTP, consenso sul quaderno e biblioteca MCP di una disciplina i
   const install = (...args) => execFileSync('python3', ['app.py', 'install-discipline', 'examples/discipline/catalog.json', ...args], {cwd: root, env});
   const boot = [
     'from server.store import connect, digest, NOW',
-    'from server.web import Handler, ThreadingHTTPServer',
+    'from http.server import ThreadingHTTPServer',
+    'from multidiscipline.web import Handler',
     'with connect() as db: db.execute("INSERT INTO tickets VALUES(?,?)",(digest("example-only"),NOW()+60))',
     's=ThreadingHTTPServer(("127.0.0.1",0),Handler)',
     'print(s.server_port,flush=True)',

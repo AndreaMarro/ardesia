@@ -1,5 +1,5 @@
-import { api, crumb, esc, head, link, main, state } from './ui.js';
-import { chiaveBozza } from './recupero/bozza.js';
+import { api, crumb, esc, head, link, main, state } from '/js/ui.js';
+import { chiaveBozza } from '/js/recupero/bozza.js';
 import { correction, eventsFor } from './discipline-pratica.js';
 
 // Responses stay editable on this tab until delivery. Only the chosen answer and its retry key are cached.

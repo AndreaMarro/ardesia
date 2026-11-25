@@ -273,3 +273,6 @@ try {
   if(service.exitCode===null && service.signalCode===null){ const ended=once(service,'exit');service.kill();await ended;}
   await fs.rm(storage,{recursive:true,force:true});
 }
+
+// Run the composed product against a separate account, database and browser session.
+await import('./browser-discipline.mjs');

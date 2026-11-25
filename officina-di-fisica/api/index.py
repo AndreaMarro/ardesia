@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 
 os.environ.update(ASTRA_HOSTED="1", ASTRA_HTTPS="1", ASTRA_DATA=str(Path(tempfile.gettempdir()) / "officina"))
-from server.web import Handler
+from multidiscipline.web import Handler
 
 
 class handler(Handler):

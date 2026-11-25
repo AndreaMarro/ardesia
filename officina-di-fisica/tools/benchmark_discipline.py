@@ -7,8 +7,9 @@ from statistics import median
 import tempfile
 from time import perf_counter
 
-from server import discipline_study as study, store
-from server.adapters import discipline_editions as ed
+from server import store
+from multidiscipline import study
+from multidiscipline import editions as ed
 
 
 def run(catalog_path, sizes, repetitions):

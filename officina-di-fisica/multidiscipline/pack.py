@@ -2,8 +2,8 @@
 import json
 from pathlib import Path
 
-from ..domain.errors import Problem, require
-from ..domain.identity import safe_key
+from server.domain.errors import Problem, require
+from server.domain.identity import safe_key
 
 SCHEMA_VERSION = 1
 PHYSICS = "fisica"

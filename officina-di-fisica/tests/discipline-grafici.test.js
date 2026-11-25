@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { polynomialLab } from '../static/js/discipline-grafici.js';
+import { polynomialLab } from '../multidiscipline/static/js/discipline-grafici.js';
 
 test('La secante e la tangente in un punto negativo hanno pendenze distinte', () => {
   const spec = {kind:'secant', coefficients:[1,-2,0,1], point:-1};

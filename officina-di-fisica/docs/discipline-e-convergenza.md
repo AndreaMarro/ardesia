@@ -21,6 +21,8 @@ I prezzi dei microcorsi pubblicati sono configurabili nel banco autore. Ordini, 
 
 Il prodotto è un monolite Python con router HTTP condiviso fra il server locale e l’entry point Vercel. I moduli ES della SPA consumano lo stesso HTTP. Il server riusa l’identità di sessione, il controllo di origine, il registro ordini e la transazione SQLite. In configurazione hosted il repository usa il primary libSQL e letture da replica sincronizzata. L’estensione aggiunge le proprie tabelle nello stesso database con una transazione esplicita all’import. Il numero delle migrazioni storiche di Fisica rimane leggibile dalle edizioni precedenti.
 
+Il pacchetto Python `multidiscipline/` estende l’handler HTTP di Fisica. Il dispatcher delega le rotte storiche al runtime esistente e monta le nuove API con gli stessi controlli di accesso. I dati editoriali privati si installano da una directory esterna all’applicazione. I file firmati dal revisore scientifico conservano la loro impronta. Il client originario rimane raggiungibile a `/index.html`. La copertina a `/` carica i moduli multidisciplinari e riusa i moduli storici dai loro URL. La costruzione verifica ogni punto di innesto sul client della specifica edizione e produce gli stessi asset per la pubblicazione statica e per il server locale.
+
 I record editoriali di Fisica continuano ad avere `heads` e `versions` come autorità. Il catalogo Materie proietta da lì i microcorsi di Fisica. Un nuovo pack contiene le definizioni delle competenze e le edizioni dei microcorsi con ID stabili. Il caricatore compone l’indice leggero e salva un documento per unità. Gli svolgimenti restano nell’unità privata. L’API dell’allievo consegna il testo delle attività accessibili e apre la correzione dopo una risposta valida.
 
 | Capacità | Contratto |
@@ -78,3 +80,8 @@ python3 -m tools.benchmark_discipline examples/discipline/catalog.json
 ## Protocollo di valutazione con studenti
 
 Per la prima sperimentazione usare compiti nuovi sugli stessi obiettivi e versionare l’assegnazione. Raccogliere consenso e conservare solo dati pseudonimi del pilot. Bilanciare competenza iniziale e ordine dei compiti. Registrare il primo accesso utile, il ritrovamento dell’ultima attività dopo un’interruzione, il successo nel tornare alla correzione e la prestazione su una forma parallela a distanza. Distinguere uso degli indizi e degli strumenti di accessibilità. Registrare i tempi con e senza tecnologie assistive e chiedere il carico percepito dopo ciascun percorso. Predefinire criteri di esclusione, esito primario e intervalli di incertezza. Finora le misure di interazione provengono da test automatici.
+
+
+## Budget per il quaderno
+
+L’obiettivo per una lettura del quaderno già aperto con 10.000 eventi è un p95 entro 250 ms sul database SQLite locale, misurato su 25 ripetizioni dopo il riscaldamento. Per l’import atomico del catalogo dimostrato il budget è di 5 secondi sullo stesso host. Registrare le distribuzioni a 0, 1.000 e 10.000 eventi, versione del pacchetto e condizioni del dispositivo. Per il servizio remoto occorrono anche prove end-to-end dalla rete dello studente.

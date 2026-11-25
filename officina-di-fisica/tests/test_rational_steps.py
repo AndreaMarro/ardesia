@@ -1,5 +1,5 @@
 import unittest
-from server.domain.rational_steps import compare
+from multidiscipline.rational import compare
 
 
 def verdict(a,b,op="equivalent"):

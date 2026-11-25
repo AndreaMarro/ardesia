@@ -8,7 +8,7 @@ import subprocess
 import tempfile
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
-from server.adapters.discipline_pack import load_pack
+from multidiscipline.pack import load_pack
 from tools import package_release
 
 START = """#!/bin/sh
