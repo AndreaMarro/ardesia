@@ -1,0 +1,23 @@
+{
+  "scope": "Actual negative technical run after text-only22415 correction; no scientific verdict",
+  "observedExitCode": 1,
+  "failure": "subprocess.TimeoutExpired",
+  "canonicalImporterTimeoutSeconds": 60,
+  "traceSummary": "assemble_author_u603_a.py line10 called ROOT exercise_package; integration.py line53 subprocess.run(CODE,timeout=60) timed out. The two independent assemblies and byte-equality assertion preceded that call. No new structural report was produced.",
+  "wrapperObservedFreeBytesAfterExit": 4400721920,
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "/private/tmp/cric_a_bounded_local.py",
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "/private/tmp/assemble_author_u603_a.py",
+    "capacitor-sharing-energy-loss-224"
+  ],
+  "files": {
+    "capacitor-sharing-energy-loss-224.json": "2305f4249da1ff10ff4e06d87a2f984b3703ad3118cec09088b286f1023831d7",
+    "capacitor-sharing-energy-loss-224-bindings.json": "f819ee8b667e3e9584197d20e898a7df6270ce0418dedf2193bfe268448c96e3"
+  },
+  "changesToProtocol": "NONE:60second limit and assertions unchanged",
+  "productUi": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

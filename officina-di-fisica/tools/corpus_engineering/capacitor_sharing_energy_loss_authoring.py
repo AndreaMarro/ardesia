@@ -76,7 +76,7 @@ TASKS=[
 ('Una piccola lettura sopra l’offset',SCENE+'D=a_cal L+b è continuo. A: V₁=4 V,V₂=2 V,D=3. B: V₁=8 V,V₂=4 V,D=9. C: V₂=1 V,D=3/2. Quanto vale V₁,C?',['2 V','(1 + √3) V','1 V','3 V','4 V'],
  'I riferimenti hanno L_A=1 e L_B=4 μJ. Guadagno (9−3)/(4−1)=2 μJ⁻¹ e offset 1. Lettura 3/2 dà L_C=(3/2−1)/2 μJ=1/4 μJ. Quindi Δ_C=√(4·1/4) V=1 V e V₁,C=1+1=2 V, maggiore di V₂,C.',
  r'a_{\rm cal}=2\,(\mu\mathrm J)^{-1}\qquad b=1\qquad L_C=\frac14\,\mu\mathrm J\qquad \Delta_C=1\,\mathrm V\qquad V_{1,C}=2\,\mathrm V',
- '1+√3 V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.',
+ '(1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.',
  'Sottrai prima l’offset; il quarto di microjoule produce una radice notevole.'),
 ('Il vincolo conserva il ramo positivo',SCENE+'Fra preparazioni vale V₁=2V₂. Si misura L=1 μJ. Quanto vale V₂?',['2 V','4 V','−2 V','1 V','Infinite tensioni positive'],
  'Con il vincolo, lo scarto V₁−V₂ coincide con V₂. Scrivendo v₂=V₂/(1 V), la legge diventa L/(1 μJ)=v₂²/4. La misura implica v₂²=4; soltanto v₂=2 è positivo e mantiene V₁>V₂. Quindi V₂=2 V e V₁=4 V: la misura fissa la scala.',

@@ -1,52 +1,30 @@
 {
   "schemaVersion": "1.0.0",
-  "scope": "AUTHOR_TECHNICAL_STRUCTURE_ONLY_NOT_SCIENTIFIC_APPROVAL",
+  "scope": "AUTHOR_TECHNICAL_ASSEMBLY_ONLY_IMPORT_PENDING_ROOT_NOT_SCIENTIFIC_APPROVAL",
   "twoIndependentAssembliesByteIdentical": true,
-  "packageFileSha256": "24f5bc9a55e40bad17a23927815b538f7d8772e2d69bc34733bfa5d4dea516f8",
-  "bindingFileSha256": "0bd9c05373c6b27645c1aee304fd66d2cfecc4d142ed8275cc9fef3618c5778c",
-  "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
-  "applicationUI": "NOT_RUN_LOCAL_PRODUCT_UI_PROHIBITED_BY_INTEGRATOR",
-  "humanApproval": "NOT_RUN",
-  "publicationAction": "NONE",
+  "assemblyExitCodes": [
+    0,
+    0
+  ],
+  "assemblyStdout": [
+    "{\"batch\":\"capacitor-sharing-energy-loss-224\",\"humanApproval\":\"NOT_RUN\",\"independentReview\":\"NOT_RUN\",\"questions\":16,\"status\":\"DRAFT\"}\n",
+    "{\"batch\":\"capacitor-sharing-energy-loss-224\",\"humanApproval\":\"NOT_RUN\",\"independentReview\":\"NOT_RUN\",\"questions\":16,\"status\":\"DRAFT\"}\n"
+  ],
+  "packageFileSha256": "2305f4249da1ff10ff4e06d87a2f984b3703ad3118cec09088b286f1023831d7",
+  "bindingFileSha256": "f819ee8b667e3e9584197d20e898a7df6270ce0418dedf2193bfe268448c96e3",
   "integration": {
-    "afterPublishedCount": 991,
-    "afterPublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
-    "beforePublishedCount": 991,
-    "beforePublishedSha256": "99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee",
-    "database": "disposable_sqlite",
-    "firstImport": {
-      "publication": "DRAFT",
-      "saved": 16,
-      "unchanged": 0
-    },
-    "humanApproval": "NOT_RUN",
-    "packageSha256": "e3050d1bd5284c6a1763ec05babb30ae9d74542f1045931fe690c053bf5bb68b",
-    "preservedHistoricalVersions": 991,
-    "preservedLiveHeads": 0,
-    "publication": "DRAFT",
-    "repeatedImport": {
-      "publication": "DRAFT",
-      "saved": 0,
-      "unchanged": 16
-    },
-    "schemaVersion": "1.0.0",
-    "verifiedIds": [
-      "AR-u6-capacitor-sharing-energy-loss-01",
-      "AR-u6-capacitor-sharing-energy-loss-02",
-      "AR-u6-capacitor-sharing-energy-loss-03",
-      "AR-u6-capacitor-sharing-energy-loss-04",
-      "AR-u6-capacitor-sharing-energy-loss-05",
-      "AR-u6-capacitor-sharing-energy-loss-06",
-      "AR-u6-capacitor-sharing-energy-loss-07",
-      "AR-u6-capacitor-sharing-energy-loss-08",
-      "AR-u6-capacitor-sharing-energy-loss-09",
-      "AR-u6-capacitor-sharing-energy-loss-10",
-      "AR-u6-capacitor-sharing-energy-loss-11",
-      "AR-u6-capacitor-sharing-energy-loss-12",
-      "AR-u6-capacitor-sharing-energy-loss-13",
-      "AR-u6-capacitor-sharing-energy-loss-14",
-      "AR-u6-capacitor-sharing-energy-loss-15",
-      "AR-u6-capacitor-sharing-energy-loss-16"
-    ]
-  }
+    "status": "FAILED_LOCAL_TIMEOUT_TWICE_CANONICAL_REMOTE_REPLAY_PENDING_ROOT",
+    "canonicalTimeoutSeconds": 60,
+    "attempts": [
+      "capacitor-sharing-energy-loss-224-peer-units15-negative-import-1/observed-failure.json",
+      "capacitor-sharing-energy-loss-224-peer-units15-negative-import-2/observed-failure.json"
+    ],
+    "unchangedImporter": true,
+    "publishedPreservationForTheseNewBytes": "NOT_RUN_TO_COMPLETION",
+    "olderSuccessfulImport": "Only for previous package bytes, preserved in peer-units15-superseded archive"
+  },
+  "applicationUI": "NOT_RUN",
+  "independentScientificReview": "NOT_RUN_BY_AUTHOR",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
 }

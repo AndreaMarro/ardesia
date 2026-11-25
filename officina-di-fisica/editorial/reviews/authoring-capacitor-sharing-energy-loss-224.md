@@ -4,7 +4,7 @@ Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima d
 
 Prima di candidature U604 entrambi i revisori avevano congelato la propria primaria: B per A220–224 SHA08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58 (non aperta dall’autore); A per B225–229 SHA1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a, lettura solo allowlist id/prompt senza opzioni o chiavi altrui.
 
-Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. Importatore canonico ROOT read-only su SQLite temporaneo: 16 nuovi, poi 0 nuovi e 16 invariati, 991 pubblicati e relativo storico invariati. Sono prove tecniche, senza accredito d’integrazione.
+Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. Per questi byte finali l’importatore canonico ROOT su SQLite temporaneo è terminato due volte per timeout invariato di 60 secondi. I negativi autentici sono preservati. Non si applica il vecchio import positivo, riferito soltanto alla precedente edizione. Importazione canonica dei byte finali PENDING_ROOT sul runner esistente; nessuna prova di preservazione o idempotenza è attribuita al tentativo incompleto. Le sole due assembly attuali sono realmente terminate exit 0 con byte identici. Nessun accredito d’integrazione.
 
 Figura realmente prodotta nel browser soltanto come SVG inline a piena altezza, sotto mutex e guardia ≥2 GiB, processo terminale exit0. XML integrale e PNG intero sono stati letti; dimensioni e bounding box esatti nel manifest. Nessuna pagina dell’app aperta, nessun marker di UI prodotto creato o riusato. UI prodotto e layout a 320px NOT_RUN; collaudo canonico riservato all’integratore. I testi visibili usano grandezze fisiche, non metriche dell’implementazione.
 
@@ -212,11 +212,11 @@ Procedimento d’autore: I riferimenti hanno L_A=1 e L_B=4 μJ. Guadagno (9−3)
 
 Passaggi: a_{\rm cal}=2\,(\mu\mathrm J)^{-1};  b=1;  L_C=\frac14\,\mu\mathrm J;  \Delta_C=1\,\mathrm V;  V_{1,C}=2\,\mathrm V.
 
-Distrattori: 1+√3 V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.
+Distrattori: (1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.
 
 Hint: Sottrai prima l’offset; il quarto di microjoule produce una radice notevole.
 
-Fonte canonica SHA256 017690357f7a15b11c0b3619042f61cc2223bb1d5b739f5340e1364ac3bb31ef. Candidato SHA256 c15c5642df3ca2749601d412446b0888162b18445323314389dcd71643279ee2. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 017690357f7a15b11c0b3619042f61cc2223bb1d5b739f5340e1364ac3bb31ef. Candidato SHA256 9fe15f33428ba12bce021d9a12755ef060dc21ca6837d3249584b19d78bfcd97. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-16 — Il vincolo conserva il ramo positivo
 
@@ -234,10 +234,10 @@ Fonte canonica SHA256 de758c52d6c258e8f4c146daa967b195e059f14e0b0404b3c99cbe184b
 
 ## Provenienza tecnica
 
-Asset SHA256 28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e. Package file SHA256 24f5bc9a55e40bad17a23927815b538f7d8772e2d69bc34733bfa5d4dea516f8. Binding file SHA256 0bd9c05373c6b27645c1aee304fd66d2cfecc4d142ed8275cc9fef3618c5778c. Prova strutturale SHA256 6efd44288b02cd71f5cdc245ea486d0b156d5e86167dbe3d861283362b065a9f. Manifest asset-only SHA256 49b9331d600759a30516f84b341cfbea5337ea4c88a98a0921d65880c8ed216a.
+Asset SHA256 28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e. Package file SHA256 2305f4249da1ff10ff4e06d87a2f984b3703ad3118cec09088b286f1023831d7. Binding file SHA256 f819ee8b667e3e9584197d20e898a7df6270ce0418dedf2193bfe268448c96e3. Prova strutturale SHA256 f3977f3c58621d450ba878d58ff4fb1f440d2b2697fceefe6aa61cb2d26a701d. Manifest asset-only SHA256 49b9331d600759a30516f84b341cfbea5337ea4c88a98a0921d65880c8ed216a.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
-## Lettura geometrica d’autore
+## Finding distinto15 e prove tecniche separate
 
-XML integrale e PNG completo640×1650 realmente letti, processo nativo terminale0. Primo pannello: stato finale in parallelo con3 μC per armatura su A, totale6 μC e tensione3 V, partendo da4 e2 V su due capacità da1 μF. Pannello energetico: barra400 per10 μJ prima; dopo segmenti360+40 per9 μJ di campo e1 μJ di calore, origine150 e scala40 coordinate/μJ comune, stessa lunghezza totale. Non si rappresenta distruzione di energia. Ultime barre80/320/200 per1/4/5/2 μJ convertiti, origine150 e scala80 coordinate/μJ propria; il testo e la caption distinguono le due scale e la conversione dall’energia finale. Zero118 libero, tutti i testi letti lontani dalle piastre e dalle barre. Nessuna misura tecnica è visibile al discente.
+La frase del feedback scrive ora (1+√3) V: l’unità si applica all’intera somma, come nell’opzione già corretta. Strictdiff: soltanto ultimo blocco/error15 e binding15 derivato; altri15, tutti prompt/risposte/formule e SVG byte-identici. Vecchi file e handoff preservati con checksum nell’archivio peer-units15-superseded. Le due nuove assembly-only sono realmente terminate0 e producono byte identici. Due tentativi canonici di importazione sono realmente terminati1 per timeout invariato60s e sono conservati separatamente; non si attribuisce al finale il vecchio import positivo. Root ha disposto il replay con lo stesso importatore sul runner esistente. Import finale PENDING_ROOT, nessun proprioSCI o markerUI. Stesso SVG e PNG nativo già effettivamente letto da A e indipendentemente da B, nessun rerender necessario per questa modifica testuale.
