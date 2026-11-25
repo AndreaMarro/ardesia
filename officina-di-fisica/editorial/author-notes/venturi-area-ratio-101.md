@@ -134,4 +134,6 @@ Poniamo x=v₁/(1 m/s),così r=x e x>1. La pressione numerica in kPa èx²(x²�
 
 Passaggi: `x^4-x^2-12=0\qquad u=x^2\qquad (u-4)(u+3)=0\qquad u_1=4\qquad u_2=-3\qquad x_+=2\qquad x_-=-2`
 
-Errori e controllo: Il solo ramo x=2 soddisfa insieme v₁>0 e r=x>1. Allora v₁2 m/s,r2 ricostruiscono6 kPa. La radice−2 non è un rapporto di aree ammissibile;u−3 non genera velocità reali. Il vincolo collega apparati distinti.
+Errori e controllo: Il solo ramo x=2 soddisfa insieme v₁>0 e r=x>1. Allora v₁2 m/s,r2 ricostruiscono6 kPa. La radice−2 non è un rapporto di aree ammissibile;il valore u=−3 non genera velocità reali. Il vincolo collega apparati distinti.
+
+Rilettura distinta: corretto soltanto il riferimento al ramo algebrico u=−3 nel feedback 16; formule, chiave e SVG invariati.

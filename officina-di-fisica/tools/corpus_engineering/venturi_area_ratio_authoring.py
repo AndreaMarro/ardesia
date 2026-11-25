@@ -65,7 +65,7 @@ TASKS=[
 ('Un vincolo che conduce a un quadrato di v₁²',P+'Fra prove si impone r=cv₁,con c=1 s/m. Si misura Δp=6 kPa. Quanto vale v₁>0 in m/s, rispettando r>1?',2,
  'Poniamo x=v₁/(1 m/s),così r=x e x>1. La pressione numerica in kPa èx²(x²−1)/2. Eguagliandola a6 otteniamo x⁴−x²−12=0. Con u=x²≥0 si fattorizza(u−4)(u+3)=0;u=−3 è impossibile per un quadrato reale.',
  r'x^4-x^2-12=0\qquad u=x^2\qquad (u-4)(u+3)=0\qquad u_1=4\qquad u_2=-3\qquad x_+=2\qquad x_-=-2',
- 'Il solo ramo x=2 soddisfa insieme v₁>0 e r=x>1. Allora v₁2 m/s,r2 ricostruiscono6 kPa. La radice−2 non è un rapporto di aree ammissibile;u−3 non genera velocità reali. Il vincolo collega apparati distinti.','Riduci il polinomio a un’equazione in u=x² prima di filtrare il dominio.'),
+ 'Il solo ramo x=2 soddisfa insieme v₁>0 e r=x>1. Allora v₁2 m/s,r2 ricostruiscono6 kPa. La radice−2 non è un rapporto di aree ammissibile;il valore u=−3 non genera velocità reali. Il vincolo collega apparati distinti.','Riduci il polinomio a un’equazione in u=x² prima di filtrare il dominio.'),
 ]
 CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15]}
 UNITS={1:'kPa',5:'1',6:'m/s',14:'1',16:'m/s'}
