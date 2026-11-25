@@ -1,0 +1,1224 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-electric-gravity-balance-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19901,
+      "title": "La forza elettrica equilibra il peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Con m=1 mg e q=2 μC, quanto vale E in N/C?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "N/C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è verso il basso, la forza qE verso l’alto. All’equilibrio qE−mg=0. Un milligrammo è 10⁻³ g e un grammo è 10⁻³ kg: m=10⁻⁶ kg. Il peso vale 10⁻⁵ N; dividendo per 2·10⁻⁶ C si ottiene E=5 N/C."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f02ab4be1e639dc09b6d80b673ec86eb67221cfc04bf0c584ced957a7c67a87",
+          "text": "Nel primo pannello il campo verso l’alto esercita qE=10 μN sulla carica positiva; il peso è 10 μN verso il basso. Le frecce delle due forze hanno uguale lunghezza e verso opposto; il campo è una grandezza diversa e la sua freccia è schematica. Il pannello delle conversioni distingue 1 mg da 1 g. Le barre finali confrontano E_A=5 N/C ed E_B=20 N/C, media 25/2 N/C."
+        },
+        {
+          "type": "formula",
+          "text": "qE-mg=0"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mg}=10^{-3}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mg}=10^{-6}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " mg=10^{-5}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " E=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci N/C ignorerebbero il valore due della carica. Cinquemila N/C confonderebbero un milligrammo con 10⁻³ kg. La risultante è zero, ma ciascuna delle due forze ha modulo non nullo."
+        }
+      ],
+      "hints": [
+        "Converti milligrammi e microcoulomb separatamente prima di dividere peso per carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci N/C ignorerebbero il valore due della carica. Cinquemila N/C confonderebbero un milligrammo con 10⁻³ kg. La risultante è zero, ma ciascuna delle due forze ha modulo non nullo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19902,
+      "title": "L’unità del campo necessario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Quale unità è adatta a E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N/C",
+          "N",
+          "C",
+          "kg",
+          "V"
+        ],
+        "value": "N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo è forza elettrica per carica. Dal bilancio E=mg/q, il numeratore è un peso in N e il denominatore una carica in C. L’unità richiesta è N/C. Il fatto che le forze si equilibrino non rende nullo il campo."
+        },
+        {
+          "type": "formula",
+          "text": "[E]=[mg]/[q]"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "N misura una forza, C carica e kg massa. V misura potenziale elettrico: il campo sarebbe equivalente a V/m, non V da solo."
+        }
+      ],
+      "hints": [
+        "Controlla le unità del rapporto peso/carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N misura una forza, C carica e kg massa. V misura potenziale elettrico: il campo sarebbe equivalente a V/m, non V da solo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19903,
+      "title": "La risultante verticale è nulla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Quale relazione ricava E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E = m g / q",
+          "E = q / (m g)",
+          "E = m g q",
+          "E = m / (q g)",
+          "E = −m g / q"
+        ],
+        "value": "E = m g / q"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente elettrica è +qE e quella del peso è −mg. Per il corpo fermo la somma deve essere zero: qE=mg. Dividendo per q>0 si ottiene E=mg/q>0, coerente con il campo orientato verso l’alto. Non si annulla separatamente il peso o la forza elettrica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f02ab4be1e639dc09b6d80b673ec86eb67221cfc04bf0c584ced957a7c67a87",
+          "text": "Le due frecce sul medesimo corpo rappresentano forze distinte, non una coppia azione-reazione. La risultante verticale è zero ma i moduli delle forze sono entrambi 10 μN. La carica è positiva: il campo verso l’alto dà forza elettrica verso l’alto. Le barre finali mostrano campi richiesti da due prove diverse, non una somma di forze."
+        },
+        {
+          "type": "formula",
+          "text": "F_{y,\\rm tot}=qE-mg"
+        },
+        {
+          "type": "formula",
+          "text": " F_{y,\\rm tot}=0"
+        },
+        {
+          "type": "formula",
+          "text": " qE=mg"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{mg}{q}"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco ha unità C/N. Il prodotto mgq ha N·C; dividere per g invece di moltiplicare cambia le dimensioni. Il segno meno richiederebbe un campo verso il basso, che su una carica positiva aiuterebbe il peso invece di equilibrarlo."
+        }
+      ],
+      "hints": [
+        "Somma prima le componenti con segno, poi isola il modulo positivo E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il reciproco ha unità C/N. Il prodotto mgq ha N·C; dividere per g invece di moltiplicare cambia le dimensioni. Il segno meno richiederebbe un campo verso il basso, che su una carica positiva aiuterebbe il peso invece di equilibrarlo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19904,
+      "title": "Una massa tripla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. A ha m=1 mg, B ha m=3 mg; entrambe hanno q=2 μC. Come cambia E necessario?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 15 N/C",
+          "Da 5 a 5/3 N/C",
+          "Da 5 a 10 N/C",
+          "Resta 5 N/C",
+          "Da 5 a 45 N/C"
+        ],
+        "value": "Da 5 a 15 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso triplica e la carica resta uguale. Per avere una forza elettrica tripla occorre un campo triplo: E_A=5 N/C, E_B=15 N/C. Il bilancio resta quello dell’equilibrio, non dell’accelerazione del corpo in un campo lasciato invariato."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=15\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=3"
+        },
+        {
+          "type": "text",
+          "text": "5/3 rende inversa la dipendenza da m. Dieci raddoppia anziché triplicare; cinque ignora il nuovo peso e quarantacinque applica il quadrato del fattore tre."
+        }
+      ],
+      "hints": [
+        "Confronta i pesi prima di mantenere l’equilibrio con la stessa carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "5/3 rende inversa la dipendenza da m. Dieci raddoppia anziché triplicare; cinque ignora il nuovo peso e quarantacinque applica il quadrato del fattore tre.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19905,
+      "title": "La massa dal campo di equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Si misura E=5 N/C e si conosce q=2 μC. Quanto vale m in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza elettrica è qE=10·10⁻⁶ N. Per equilibrio è anche il peso: m=qE/g=10⁻⁶ kg, cioè 1 mg. La divisione per g trasforma il peso in massa; non si legge una massa direttamente in newton."
+        },
+        {
+          "type": "formula",
+          "text": "qE=10^{-5}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{qE}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " m=10^{-6}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci mg dimenticherebbero la divisione numerica per g nelle unità scelte. Un grammo perderebbe un fattore mille nella conversione da kg. Non si somma una carica a un campo per ricavare una massa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la forza qE, dividila per g e infine converti kg in mg.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci mg dimenticherebbero la divisione numerica per g nelle unità scelte. Un grammo perderebbe un fattore mille nella conversione da kg. Non si somma una carica a un campo per ricavare una massa.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19906,
+      "title": "La carica che sostiene la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Si misura E=5 N/C e si conosce m=1 mg. Quanto vale q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso vale (10⁻⁶ kg)(10 m/s²)=10⁻⁵ N. L’inversa q=mg/E dà 2·10⁻⁶ C, cioè 2 μC. Il segno positivo è coerente con una forza verso l’alto nel campo indicato."
+        },
+        {
+          "type": "formula",
+          "text": "mg=10^{-5}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac{mg}{E}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\cdot10^{-6}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare peso e campo non dà unità di carica. Due coulomb perderebbero il prefisso micro; un microcoulomb in questo campo fornirebbe solo metà del peso. Una carica negativa non rispetterebbe il verso richiesto qui."
+        }
+      ],
+      "hints": [
+        "Dividi il peso per il campo e mantieni il segno della carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare peso e campo non dà unità di carica. Due coulomb perderebbero il prefisso micro; un microcoulomb in questo campo fornirebbe solo metà del peso. Una carica negativa non rispetterebbe il verso richiesto qui.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19907,
+      "title": "Meno carica richiede più campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. A ha m=1 mg, q=2 μC. B mantiene m e ha q=1 μC. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso è lo stesso. Dimezzando la carica, il campo deve raddoppiare per lasciare invariato il prodotto qE. A richiede 5 N/C e B 10 N/C, quindi il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=10\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rende diretta la dipendenza da q, uno ignora la variazione e quattro introduce un quadrato. Il rapporto negativo non descrive due moduli positivi entrambi orientati verso l’alto."
+        }
+      ],
+      "hints": [
+        "Mantieni costante il prodotto qE richiesto dallo stesso peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rende diretta la dipendenza da q, uno ignora la variazione e quattro introduce un quadrato. Il rapporto negativo non descrive due moduli positivi entrambi orientati verso l’alto.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19908,
+      "title": "Un campo proposto troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Con m=1 mg e q=2 μC si propone E=10 N/C. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 N/C",
+          "−5 N/C",
+          "10 N/C",
+          "0 N/C",
+          "2"
+        ],
+        "value": "5 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio richiede 5 N/C. La proposta di 10 N/C lo supera di cinque newton al coulomb. Il numero due è invece il rapporto proposta/corretto; usando il campo proposto il corpo non resterebbe in equilibrio con le altre condizioni ferme."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm corretto}=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "−5 cambia l’ordine, dieci copia la proposta e zero la accetta. Il numero puro due non è una differenza di campi. Una forza netta non nulla non può essere ignorata solo perché il corpo era inizialmente fermo."
+        }
+      ],
+      "hints": [
+        "Ricalcola E=mg/q prima dello scarto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 cambia l’ordine, dieci copia la proposta e zero la accetta. Il numero puro due non è una differenza di campi. Una forza netta non nulla non può essere ignorata solo perché il corpo era inizialmente fermo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19909,
+      "title": "Isolare la massa nel bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Sono noti E e q. Quale formula dimensionale ricava m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = q E / g",
+          "m = q E g",
+          "m = g / (q E)",
+          "m = E / (q g)",
+          "m = q / (E g)"
+        ],
+        "value": "m = q E / g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da qE=mg si divide per g>0 e si ottiene m=qE/g. Le unità sono N/(m/s²)=kg. Nei valori numerici assegnati, poiché mg e μC introducono entrambi 10⁻⁶ in SI, m/(1 mg)=[q/(1 μC)][E/(1 N/C)]/10."
+        },
+        {
+          "type": "formula",
+          "text": "qE=mg"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{qE}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\frac{\\mathrm N}{\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per g aggiunge due fattori di g rispetto all’inversa corretta. g/(qE) ha dimensione di massa inversa. E/(qg) ha kg/C²; q/(Eg) non cancella i due fattori di carica e non dà kg."
+        }
+      ],
+      "hints": [
+        "Dividi una forza per l’accelerazione g, conservando tutti i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per g aggiunge due fattori di g rispetto all’inversa corretta. g/(qE) ha dimensione di massa inversa. E/(qg) ha kg/C²; q/(Eg) non cancella i due fattori di carica e non dà kg.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19910,
+      "title": "Scalare massa e carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. B usa m_B=κ₁m_A e q_B=κ₂q_A, con fattori positivi e g invariato. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁ + κ₂",
+          "κ₁/κ₂²"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso B cambia di κ₁, mentre il denominatore q cambia di κ₂. La stessa accelerazione g si cancella nel rapporto dei campi di equilibrio: E_B/E_A=κ₁/κ₂. Se massa e carica crescono dello stesso fattore, il campo necessario resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=\\frac{\\kappa_1m_Ag}{\\kappa_2q_A}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta anche la dipendenza dalla carica. Il reciproco scambia le prove; la somma non dà uno per prove identiche e il quadrato di κ₂ non compare nel bilancio qE=mg."
+        }
+      ],
+      "hints": [
+        "Sostituisci i due fattori nel quoziente mg/q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta anche la dipendenza dalla carica. Il reciproco scambia le prove; la somma non dà uno per prove identiche e il quadrato di κ₂ non compare nel bilancio qE=mg.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19911,
+      "title": "Più massa e meno carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. A usa m=1 mg, q=2 μC. B usa m=2 mg, q=1 μC. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 10·1/2=5 N/C. B richiede 10·2/1=20 N/C. Il rapporto è quattro: un fattore due per il peso e un altro perché la carica è dimezzata. Le due operazioni aumentano entrambe il campo necessario."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=20\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo cambiamento. Un quarto inverte il rapporto; un mezzo considera q nel verso sbagliato e uno presume una compensazione che qui non c’è."
+        }
+      ],
+      "hints": [
+        "Ricostruisci entrambi i rapporti massa/carica prima del confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo cambiamento. Un quarto inverte il rapporto; un mezzo considera q nel verso sbagliato e uno presume una compensazione che qui non c’è.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19912,
+      "title": "Media di due campi di equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. A usa m=1 mg, q=2 μC; B usa m=2 mg, q=1 μC. Qual è la media aritmetica di E con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25/2 N/C",
+          "10 N/C",
+          "25 N/C",
+          "15/2 N/C",
+          "5 N/C"
+        ],
+        "value": "25/2 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I campi richiesti sono 5 e 20 N/C. La media è 25/2 N/C. Le medie degli ingressi sarebbero m=3/2 mg e q=3/2 μC, il cui rapporto dà E=10 N/C: un altro apparato di equilibrio, non la media delle due uscite."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f02ab4be1e639dc09b6d80b673ec86eb67221cfc04bf0c584ced957a7c67a87",
+          "text": "Le barre finali hanno origine e scala comuni nei moduli del campo: 5 N/C, 20 N/C e media 25/2 N/C. La prova B ha m=2 mg e q=1 μC. Il campo ai dati medi sarebbe 10 N/C, diverso dalla media rappresentata. Le frecce di equilibrio in alto si riferiscono alla sola prova A."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{5+20}{2}\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=25/2\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E(\\overline m,\\overline q)=10\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci usa gli ingressi medi. Venticinque non dimezza; 15/2 è metà della differenza e cinque copia A. Non si stanno sovrapponendo due campi nello stesso punto per ottenere una risultante."
+        }
+      ],
+      "hints": [
+        "Media i campi già determinati dalle due coppie di dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci usa gli ingressi medi. Venticinque non dimezza; 15/2 è metà della differenza e cinque copia A. Non si stanno sovrapponendo due campi nello stesso punto per ottenere una risultante.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19913,
+      "title": "Il bersaglio fissa la carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. A usa m=1 mg, q_A=2 μC. B ha m_B=2 mg e deve richiedere E_B=4E_A. Quanto vale q_B/q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo bersaglio è 20 N/C. Il peso B è 20 μN e la carica necessaria è q_B=20 μN/(20 N/C)=1 μC. Dividendo per i 2 μC di A si ottiene un mezzo. La carica è positiva e la forza resta verso l’alto."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=20\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=\\frac{m_Bg}{E_B}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=1\\,\\mathrm{\\mu C}"
+        },
+        {
+          "type": "formula",
+          "text": " q_B/q_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. Uno darebbe solo 10 N/C; un quarto richiederebbe 40 N/C e quattro darebbe 5/2 N/C. Non si copia il rapporto quattro dei campi direttamente sulla carica."
+        }
+      ],
+      "hints": [
+        "Trova il campo bersaglio, poi dividi il nuovo peso per quel campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. Uno darebbe solo 10 N/C; un quarto richiederebbe 40 N/C e quattro darebbe 5/2 N/C. Non si copia il rapporto quattro dei campi direttamente sulla carica.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19914,
+      "title": "Tarare il campo prima della massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Il display continuo adimensionale D=aE ha a>0 e nessun offset. A con m=1 mg, q=2 μC dà D=15. B dà D=60 e ha q=1 μC. Quanto vale m_B in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede E=5 N/C, quindi a=3 C/N. La lettura B indica E_B=20 N/C. La forza elettrica su 1 μC vale 20 μN; divisa per g dà m_B=2 mg. La massa si ricava dal campo fisico, non dalla lettura grezza."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{C/N}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=20\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{q_BE_B}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=2\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare D=60 come N/C darebbe 6 mg. Un mg non richiederebbe il campo decodificato con quella carica; venti copia il numero del campo. Non si modifica g per adattare il display."
+        }
+      ],
+      "hints": [
+        "Decodifica E, moltiplica per q e dividi per g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare D=60 come N/C darebbe 6 mg. Un mg non richiederebbe il campo decodificato con quella carica; venti copia il numero del campo. Non si modifica g per adattare il display.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19915,
+      "title": "L’offset non è un peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. D=aE+b è continuo e adimensionale, a>0. A: m=1 mg, q=2 μC, D=11. B: m=2 mg, q=1 μC, D=41. C: q=2 μC, D=31. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 mg",
+          "31/10 mg",
+          "1 mg",
+          "2 mg",
+          "15 mg"
+        ],
+        "value": "3 mg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti richiedono 5 e 20 N/C. a=(41−11)/(20−5)=2 C/N e b=1. C ha E_C=(31−1)/2=15 N/C. Con q_C=2 μC il peso è 30 μN e la massa 3 mg. Il termine b è uno zero strumentale, non una forza da sommare al corpo."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{C/N}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=15\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=3\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "31/10 mg omette b e ricostruisce D=32. Un mg torna ad A; due mg con questa carica darebbero E=10 N/C e D=21. Quindici copia il numero del campo e darebbe D=151."
+        }
+      ],
+      "hints": [
+        "Togli l’offset prima di ricostruire il campo e il peso corrispondente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "31/10 mg omette b e ricostruisce D=32. Un mg torna ad A; due mg con questa carica darebbero E=10 N/C e D=21. Quindici copia il numero del campo e darebbe D=151.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-electric-gravity-balance-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Equilibrio elettrico e forza peso",
+      "order": 19916,
+      "title": "Una misura già imposta dal rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "electric-gravity-balance",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale di massa m>0, in milligrammi, e carica positiva q>0, in microcoulomb, è inizialmente fermo. Nel punto in cui si trova il campo elettrico è verticale verso l’alto. Si assume g=10 m/s² e non ci sono altre forze verticali. Scegliamo +y verso l’alto. Si cerca il modulo E>0 necessario all’equilibrio in N/C: forza elettrica e peso sono forze distinte sul medesimo corpo. Nel modello macroscopico continuo si impone m=βq, con β=(1/2) mg/μC. Si misura E=5 N/C. Quante coppie positive (m,q) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: m = 1 mg, q = 2 μC",
+          "Nessuna coppia",
+          "Solo m = 2 mg, q = 4 μC",
+          "Tutte le masse, con q fisso a 2 μC"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente β vale 1/2 kg/C perché milligrammi e microcoulomb introducono entrambi 10⁻⁶. Sostituendo m=βq nell’equilibrio si trova E=βg=5 N/C per qualunque q>0. La misura ripete il vincolo e non fissa la scala: per esempio (1 mg,2 μC) e (3/2 mg,3 μC) soddisfano entrambi. Le masse e cariche sono parametri continui del modello, non conteggi interi."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta=1/2\\,\\mathrm{kg/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{\\beta qg}{q}"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\beta g"
+        },
+        {
+          "type": "formula",
+          "text": " E=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Le singole coppie elencate sono esempi e non esauriscono le soluzioni. Non sono tutte le masse con q fisso: m e q devono rispettare il medesimo rapporto. Non si aggiunge un dato indipendente soltanto riscrivendo la conseguenza del vincolo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto massa/carica e osserva se il campo misurato determina ancora una scala.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le singole coppie elencate sono esempi e non esauriscono le soluzioni. Non sono tutte le masse con q fisso: m e q devono rispettare il medesimo rapporto. Non si aggiunge un dato indipendente soltanto riscrivendo la conseguenza del vincolo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Somma delle forze con segno",
+        "Conversioni milligrammi e microcoulomb",
+        "Inverse, rapporti, medie e tarature",
+        "Vincolo e scala continua non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3f02ab4be1e639dc09b6d80b673ec86eb67221cfc04bf0c584ced957a7c67a87",
+      "name": "electric-gravity-balance-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTM5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5JbCBjYW1wbyBlcXVpbGlicmEgaWwgcGVzbyBkZWxsYSBjYXJpY2EgcG9zaXRpdmE8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW5hIG1hc3NhIGRpIHVuIG1pbGxpZ3JhbW1vIGNvbiBjYXJpY2EgZHVlIG1pY3JvY291bG9tYiDDqCBpbiBlcXVpbGlicmlvIGluIHVuIGNhbXBvIHZlcnNvIGzigJlhbHRvIGRpIGNpbnF1ZSBuZXd0b24gYWwgY291bG9tYi4gTGEgZm9yemEgZWxldHRyaWNhIGUgaWwgcGVzbyB2YWxnb25vIGVudHJhbWJpIGRpZWNpIG1pY3JvbmV3dG9uIGUgaGFubm8gdmVyc2kgb3Bwb3N0aS4gTGUgY29udmVyc2lvbmkgcG9ydGFubyBlbnRyYW1iaSBpIHByZWZpc3NpIGEgZGllY2kgYWxsYSBtZW5vIHNlaSBpbiBTSS4gTGUgYmFycmUgY29uZnJvbnRhbm8gY2FtcGkgY2lucXVlIGUgdmVudGkgZSBsYSBtZWRpYSB2ZW50aWNpbnF1ZSBtZXp6aS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImVsZWN0cmljIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMjg2NjRkIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0id2VpZ2h0IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0iZmllbGQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNjVhODciLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBEdWUgZm9yemUgc3VsbG8gc3Rlc3NvIGNvcnBvPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODUiIGZvbnQtc2l6ZT0iMTgiPmcgPSAxMCBtL3PCsiA7IHZlcnNvIHBvc2l0aXZvIHZlcnRpY2FsZSB2ZXJzbyBs4oCZYWx0by48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNDAwVjE0NSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjZmllbGQpIi8+Cjx0ZXh0IHg9IjM1IiB5PSIxMjYiIGZpbGw9IiMxNjVhODciPkUgPSA1IE4vQzwvdGV4dD4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iMjYwIiByPSIyOCIgZmlsbD0iI2ZjZTZkYyIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzEwIiB5PSIyNzAiIGZvbnQtc2l6ZT0iMjgiPis8L3RleHQ+CjxwYXRoIGQ9Ik0zMjAgMjMyVjEyMCIgc3Ryb2tlPSIjMjg2NjRkIiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjZWxlY3RyaWMpIi8+CjxwYXRoIGQ9Ik0zMjAgMjg4VjQwMCIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjd2VpZ2h0KSIvPgo8dGV4dCB4PSIzNTUiIHk9IjE3MSIgZmlsbD0iIzI4NjY0ZCI+cUUgPSAxMCDOvE48L3RleHQ+Cjx0ZXh0IHg9IjM1NSIgeT0iMzYzIiBmaWxsPSIjYjQ1MzI4Ij5tZyA9IDEwIM68TjwvdGV4dD4KPHRleHQgeD0iMjQwIiB5PSI0NDAiPm0gPSAxIG1nIDsgcSA9IDIgzrxDPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDgwIiBmb250LXNpemU9IjE4Ij5xRSDiiJIgbWcgPSAwIDsgbGUgZHVlIGZvcnplIHJlc3Rhbm8gbm9uIG51bGxlLjwvdGV4dD4KPHBhdGggZD0iTTMyIDUxMEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNTU0IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBEYWxsZSB1bml0w6AgYWwgcXVvemllbnRlPC90ZXh0Pgo8dGV4dCB4PSI2NSIgeT0iNjAyIj5tID0gMSBtZyA9IDEw4oG74oG2IGtnPC90ZXh0Pgo8dGV4dCB4PSI2NSIgeT0iNjQ3Ij5xID0gMiDOvEMgPSAyIMK3IDEw4oG74oG2IEM8L3RleHQ+Cjx0ZXh0IHg9IjY1IiB5PSI2OTIiPm0gZyA9IDEwIMK3IDEw4oG74oG2IE48L3RleHQ+Cjx0ZXh0IHg9IjY1IiB5PSI3MzciPkUgPSAoMTAgwrcgMTDigbvigbYgTikgLyAoMiDCtyAxMOKBu+KBtiBDKSA9IDUgTi9DPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzg1IiBmb250LXNpemU9IjE4Ij5VbiBtaWxsaWdyYW1tbyDDqCAxMOKBu8KzIGcsIHF1aW5kaSAxMOKBu+KBtiBrZy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MTciIGZvbnQtc2l6ZT0iMTgiPkNhbXBvIGUgZm9yemEgbm9uIGhhbm5vIGxhIHN0ZXNzYSB1bml0w6AuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgODQ5SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI4OTMiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IE1lZGlhIGRlaSBjYW1waSBuZWNlc3Nhcmk8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgOTIwVjExOTUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iOTQ1IiB3aWR0aD0iODAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDI1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTEwNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iOTczIj5BPC90ZXh0Pjx0ZXh0IHg9IjIzMCIgeT0iOTczIj41IE4vQzwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjEwNTMiPkI8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMDUzIj4yMCBOL0M8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTMzIj5NZWRpYTwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjExMzMiPjI1LzIgTi9DPC90ZXh0Pgo8dGV4dCB4PSIxMDQiIHk9IjExODkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjM3IiBmb250LXNpemU9IjE4Ij5BOiBtID0gMSBtZywgcSA9IDIgzrxDIDsgQjogbSA9IDIgbWcsIHEgPSAxIM68Qy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjY5IiBmb250LXNpemU9IjE4Ij5Nb2R1bGkgaW4gTi9DLCBvcmlnaW5lIGUgc2NhbGEgY29tdW5pLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzMDEiIGZvbnQtc2l6ZT0iMTgiPkFpIGRhdGkgbWVkaSBzaSBhdnJlYmJlIDEwIE4vQywgbm9uIHF1ZXN0YSBtZWRpYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzMzIiBmb250LXNpemU9IjE4Ij5MZSBmcmVjY2UgaW4gYWx0byByaWd1YXJkYW5vIGxhIHNvbGEgcHJvdmEgQS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzY1IiBmb250LXNpemU9IjE4Ij5QZXIgZXF1aWxpYnJhcmUgaWwgcGVzbywgcSAmZ3Q7IDAgcmljaGllZGUgRSB2ZXJzbyBs4oCZYWx0by48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
