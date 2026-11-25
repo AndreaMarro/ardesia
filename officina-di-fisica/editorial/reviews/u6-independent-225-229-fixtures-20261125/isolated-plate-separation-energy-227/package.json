@@ -1,0 +1,1171 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22701,
+      "title": "Allontanare le piastre a carica fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Con U₀=2 μJ e s=2, quanto vale U in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità è inversa alla distanza: C=C₀/s. L’isolamento conserva il modulo Q della carica libera su ciascuna armatura. Usando U=Q²/(2C), dividere C per s moltiplica l’energia per s: U=sU₀=4 μJ. L’aumento non nasce dal nulla: separare le piastre richiede apporto meccanico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2",
+          "text": "Le sezioni mostrano distanze d₀ e 2d₀ con piastre e carica libera invariate. La geometria laterale è schematica; barre energetiche e grafico hanno scale autonome."
+        },
+        {
+          "type": "formula",
+          "text": "C=C_0/s"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac{Q^2}{2C}"
+        },
+        {
+          "type": "formula",
+          "text": " U=sU_0"
+        },
+        {
+          "type": "formula",
+          "text": " U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Un μJ userebbe la dipendenza a tensione mantenuta, incompatibile con l’isolamento. Due μJ imporrebbe energia del campo costante. Otto μJ applicherebbe s² invece di s."
+        }
+      ],
+      "hints": [
+        "Scegli la forma energetica che mantiene Q costante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un μJ userebbe la dipendenza a tensione mantenuta, incompatibile con l’isolamento. Due μJ imporrebbe energia del campo costante. Otto μJ applicherebbe s² invece di s.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22702,
+      "title": "Energia, non tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 1,
+      "prompt": "U è l’energia elettrostatica finale di un condensatore. Quale unità è dimensionalmente corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "V",
+          "C",
+          "F",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia si misura in joule. Nella relazione U=Q²/(2C), coulomb al quadrato divisi per farad danno C·V=J. Il prefisso micro corrisponde a un milionesimo di joule."
+        },
+        {
+          "type": "formula",
+          "text": "[U]=\\mathrm{C^2/F}"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm{C\\cdot V}"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "V misura tensione, C carica, F capacità. W è potenza, cioè energia divisa per tempo, e non energia da sola."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità di Q²/C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "V misura tensione, C carica, F capacità. W è potenza, cioè energia divisa per tempo, e non energia da sola.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22703,
+      "title": "La legge dopo il vincolo di isolamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Quale relazione lega U a U₀ e s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U = s U₀",
+          "U = U₀ / s",
+          "U = s² U₀",
+          "U = U₀",
+          "U = U₀ / s²"
+        ],
+        "value": "U = s U₀"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La geometria dà C₀/C=s. Poiché Q è lo stesso nei due stati, il rapporto delle energie Q²/(2C) è proprio C₀/C. Quindi U=sU₀: una capacità minore trattiene la stessa carica a tensione e a energia maggiori."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2",
+          "text": "L’isolamento mantiene Q. Diminuire la capacità a Q fissata aumenta l’energia del campo; l’apporto può essere meccanico, senza generatore."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{U}{U_0}=\\frac{C_0}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_0}{C}=s"
+        },
+        {
+          "type": "formula",
+          "text": " U=sU_0"
+        },
+        {
+          "type": "text",
+          "text": "U₀/s applica erroneamente la legge a V costante. Le potenze s² e 1/s² ignorano che la capacità varia già come 1/s e Q resta fissata; U=U₀ omette il lavoro meccanico possibile."
+        }
+      ],
+      "hints": [
+        "Non confondere energia del campo con energia totale di un sistema isolato più ampio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "U₀/s applica erroneamente la legge a V costante. Le potenze s² e 1/s² ignorano che la capacità varia già come 1/s e Q resta fissata; U=U₀ omette il lavoro meccanico possibile.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22704,
+      "title": "Preparare un’energia iniziale doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. A ha U₀=2 μJ, s=2. B ha U₀=4 μJ allo stesso s. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 μJ a 8 μJ",
+          "Da 4 μJ a 2 μJ",
+          "Resta 4 μJ",
+          "Da 4 μJ a 16 μJ",
+          "Da 4 μJ a 4/3 μJ"
+        ],
+        "value": "Da 4 μJ a 8 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due preparazioni iniziali sono distinte. L’allontanamento moltiplica per due entrambe le energie iniziali: A dà 4 μJ, B dà 8 μJ. La carica resta fissa durante ciascun allontanamento, ma non è imposto lo stesso Q fra le due preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=2\\cdot2\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=2\\cdot4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Due μJ dividerebbe per s. Sedici μJ introdurrebbe un altro fattore due senza vincolo aggiuntivo. Quattro μJ ignorerebbe la diversa energia iniziale."
+        }
+      ],
+      "hints": [
+        "Mantieni separati confronto fra prove e trasformazione di una prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due μJ dividerebbe per s. Sedici μJ introdurrebbe un altro fattore due senza vincolo aggiuntivo. Quattro μJ ignorerebbe la diversa energia iniziale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22705,
+      "title": "Ricostruire l’energia iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Si misura U=4 μJ e si conosce s=2. Quanto vale U₀ in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa è U₀=U/s. Quattro microjoule divisi per due danno 2 μJ. Poiché s≥1, l’energia iniziale non supera quella finale nel modello a carica fissata."
+        },
+        {
+          "type": "formula",
+          "text": "U_0=U/s"
+        },
+        {
+          "type": "formula",
+          "text": " U_0=2\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Otto μJ moltiplica invece di dividere e non ricostruisce U=4 μJ. Quattro μJ trascura l’allontanamento. Un mezzo μJ darebbe U=1 μJ, non il valore misurato."
+        }
+      ],
+      "hints": [
+        "Verifica U=sU₀ dopo l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto μJ moltiplica invece di dividere e non ricostruisce U=4 μJ. Quattro μJ trascura l’allontanamento. Un mezzo μJ darebbe U=1 μJ, non il valore misurato.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22706,
+      "title": "Un fattore geometrico senza unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Si misura U=4 μJ e U₀=2 μJ è noto. Quanto vale s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal rapporto delle energie segue s=U/U₀=2. Le unità si cancellano. Il risultato è compatibile con un allontanamento; un valore sotto uno indicherebbe avvicinamento, escluso da questo quesito."
+        },
+        {
+          "type": "formula",
+          "text": "s=\\frac{U}{U_0}"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "formula",
+          "text": " d=2d_0"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte finale e iniziale e viola s≥1. Otto moltiplica le energie; quattro copia il numero dell’energia finale come fattore."
+        }
+      ],
+      "hints": [
+        "s confronta distanze, ma può essere ricavato dal rapporto delle energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte finale e iniziale e viola s≥1. Otto moltiplica le energie; quattro copia il numero dell’energia finale come fattore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22707,
+      "title": "Il riferimento senza separazione aggiuntiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. A usa U₀=2 μJ e s=2. B ha lo stesso U₀ ma s=1. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina con 4 μJ. In B s=1 lascia la distanza iniziale e quindi U_B=2 μJ. Il rapporto B/A è 1/2; nessuna energia finale si annulla solo perché non si allontanano le piastre."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=2\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto. Uno ignora il diverso s, un quarto introduce un quadrato e zero confonde variazione di energia nulla con energia finale nulla."
+        }
+      ],
+      "hints": [
+        "Distingui U da U−U₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto. Uno ignora il diverso s, un quarto introduce un quadrato e zero confonde variazione di energia nulla con energia finale nulla.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22708,
+      "title": "Proposta ed energia finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Per U₀=2 μJ e s=2 si propone U=8 μJ. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 μJ",
+          "−4 μJ",
+          "2",
+          "8 μJ",
+          "0 μJ"
+        ],
+        "value": "4 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà 4 μJ. Lo scarto richiesto è 8−4=+4 μJ, mentre due sarebbe il rapporto della proposta alla soluzione. La variazione corretta rispetto a U₀ è un’altra differenza, pari a 2 μJ."
+        },
+        {
+          "type": "formula",
+          "text": "U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta U=(8-4)\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta U=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−4 μJ scambia l’ordine. Otto μJ copia la proposta e zero non la confronta col modello. Due puro non ha l’unità di uno scarto energetico."
+        }
+      ],
+      "hints": [
+        "Non sostituire allo scarto l’incremento rispetto allo stato iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 μJ scambia l’ordine. Otto μJ copia la proposta e zero non la confronta col modello. Due puro non ha l’unità di uno scarto energetico.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22709,
+      "title": "Isolare U₀ nella legge fisica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Quale relazione ricava U₀ da U e s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U₀ = U / s",
+          "U₀ = s U",
+          "U₀ = s / U",
+          "U₀ = U / s²",
+          "U₀ = U − s"
+        ],
+        "value": "U₀ = U / s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U=sU₀ contiene un fattore geometrico positivo e adimensionale. Dividendo per s si ottiene U₀=U/s. L’inversa mantiene la dimensione di energia e richiede U>0 e s≥1."
+        },
+        {
+          "type": "formula",
+          "text": "U=sU_0"
+        },
+        {
+          "type": "formula",
+          "text": " U_0=\\frac Us"
+        },
+        {
+          "type": "formula",
+          "text": " 0<U_0\\le U"
+        },
+        {
+          "type": "text",
+          "text": "sU ripete la trasformazione diretta. s/U ha unità di energia inversa; U−s sottrae un numero puro da un’energia. Il quadrato non segue dalla geometria di questo processo."
+        }
+      ],
+      "hints": [
+        "Dividere per un fattore adimensionale non cambia l’unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "sU ripete la trasformazione diretta. s/U ha unità di energia inversa; U−s sottrae un numero puro da un’energia. Il quadrato non segue dalla geometria di questo processo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22710,
+      "title": "Due scalature ammissibili",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Fra preparazioni U₀,B=κ₁U₀,A e s_B=κ₂s_A. I fattori sono positivi e s_A,s_B≥1. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U dipende linearmente sia dall’energia iniziale sia dal fattore di separazione. Le due scalature si moltiplicano: U_B/U_A=κ₁κ₂. Devono restare validi s≥1 e il regime geometrico a bordi trascurabili in entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=(\\kappa_2s_A)(\\kappa_1U_{0,A})"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₂ trasferisce una legge diversa; la somma vale due per fattori unitari e non supera la prova delle preparazioni identiche."
+        }
+      ],
+      "hints": [
+        "Applica entrambi i fattori alla stessa legge U=sU₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₂ trasferisce una legge diversa; la somma vale due per fattori unitari e non supera la prova delle preparazioni identiche.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22711,
+      "title": "Preparazioni diverse, stesso modello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. A usa U₀=2 μJ, s=2; B usa U₀=3 μJ, s=3. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "4/9",
+          "3/2",
+          "9/2",
+          "1"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 4 μJ e B dà 9 μJ. Il rapporto è 9/4. In questo caso entrambi gli ingressi crescono del fattore 3/2 e il loro prodotto vale 9/4; non è una legge quadratica in s a U₀ fissata."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=9\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_B/U_A=\\frac94"
+        },
+        {
+          "type": "text",
+          "text": "4/9 inverte B/A. 3/2 considera un solo ingresso; 9/2 divide per il numero iniziale U₀,A invece che per l’uscita U_A. Uno trascura il confronto."
+        }
+      ],
+      "hints": [
+        "Calcola due energie finali prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/9 inverte B/A. 3/2 considera un solo ingresso; 9/2 divide per il numero iniziale U₀,A invece che per l’uscita U_A. Uno trascura il confronto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22712,
+      "title": "Media delle energie dopo l’allontanamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. A usa U₀=2 μJ, s=2; B usa U₀=3 μJ, s=3. Qual è la media aritmetica delle due U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 μJ",
+          "25/4 μJ",
+          "13 μJ",
+          "5/2 μJ",
+          "0 μJ"
+        ],
+        "value": "13/2 μJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle uscite 4 e 9 μJ è 13/2 μJ. Agli ingressi medi U₀=5/2 μJ e s=5/2 si otterrebbero 25/4 μJ, inferiori di 1/4 μJ. Il prodotto di due ingressi variabili non è una funzione lineare congiunta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2",
+          "text": "Le barre 4 μJ, 9 μJ e 13/2 μJ hanno origine e scala comuni. La retta successiva vale a U₀=2 μJ fissata ed è limitata a s≥1."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline U=\\frac{4+9}{2}\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=\\frac{13}{2}\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_{\\rm dati\\ medi}=\\frac{25}{4}\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "25/4 μJ usa gli ingressi medi. Tredici μJ non divide per due; 5/2 μJ è la semidifferenza. Zero non rappresenta una media di due energie positive."
+        }
+      ],
+      "hints": [
+        "La trasformazione non è la media di due condensatori collegati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/4 μJ usa gli ingressi medi. Tredici μJ non divide per due; 5/2 μJ è la semidifferenza. Zero non rappresenta una media di due energie positive.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22713,
+      "title": "Il fattore di separazione richiesto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. A ha U₀=2 μJ, s_A=2. B ha U₀=3 μJ e deve ottenere U_B=(9/4)U_A. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "9/4",
+          "3/4",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (9/4)4 μJ=9 μJ. Divido per U₀,B=3 μJ e ricavo s_B=3. Il rapporto geometrico cercato è 3/2, con entrambi i fattori almeno uno."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=9\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto. 9/4 copia il rapporto energetico senza compensare U₀ diversa. Due darebbe s_B=4 e U_B=12 μJ, oltre il bersaglio."
+        }
+      ],
+      "hints": [
+        "Separa il bersaglio energetico dal rapporto di distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto. 9/4 copia il rapporto energetico senza compensare U₀ diversa. Due darebbe s_B=4 e U_B=12 μJ, oltre il bersaglio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22714,
+      "title": "Dalla lettura all’energia iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. D=a_cal U è continuo e adimensionale. A con U₀=2 μJ, s=2 dà D=12. B legge D=27 e ha s=3. Quanto vale U₀,B in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha energia finale 4 μJ, perciò a_cal=3 μJ⁻¹. D_B=27 indica U_B=9 μJ. Dividendo per s_B=3 ottengo U₀,B=3 μJ; la taratura riguarda U, non direttamente U₀."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=9\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_{0,B}=3\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Nove μJ salta la divisione fisica per s dopo la taratura. Ventisette μJ copia D come un’energia e salta entrambi i passaggi. Un μJ darebbe U_B=3 μJ e D=9."
+        }
+      ],
+      "hints": [
+        "Decodifica prima l’energia finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove μJ salta la divisione fisica per s dopo la taratura. Ventisette μJ copia D come un’energia e salta entrambi i passaggi. Un μJ darebbe U_B=3 μJ e D=9.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22715,
+      "title": "L’offset non è energia iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. D=a_cal U+b_cal è continuo. A: U₀=2 μJ, s=2, D=9. B: U₀=3 μJ, s=3, D=19. C: s=2, D=17. Quanto vale U₀,C in μJ?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno U_A=4 e U_B=9 μJ. La pendenza vale due per μJ e l’offset uno. D_C=17 decodifica U_C=8 μJ; con s_C=2 l’energia iniziale era 4 μJ."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm J)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=8\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_{0,C}=4\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "17/4 μJ omette l’offset e predice D=18. Otto μJ copia l’energia finale senza dividere per s. Sedici μJ darebbe U_C=32 μJ e D=65."
+        }
+      ],
+      "hints": [
+        "L’offset appartiene allo strumento, non al condensatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17/4 μJ omette l’offset e predice D=18. Otto μJ copia l’energia finale senza dividere per s. Sedici μJ darebbe U_C=32 μJ e D=65.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Separazione delle piastre a carica fissata",
+      "order": 22716,
+      "title": "Un vincolo quadratico nella separazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isolated-plate-separation-energy",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano lineare, scollegato da ogni generatore e senza perdite di carica, ha energia iniziale U₀>0. Le armature passano dalla distanza d₀ alla distanza d=sd₀, con s≥1, mantenendo area e permittività. In entrambi gli stati la distanza è piccola rispetto alle dimensioni laterali: si trascurano gli effetti di bordo. Si cerca l’energia elettrostatica finale U, non il lavoro del generatore, che è assente. Fra preparazioni U₀=(1 μJ)s. Si misura U=4 μJ. Quanto vale s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "−2",
+          "4",
+          "1/2",
+          "Infinite separazioni"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si ottiene U=(1 μJ)s². Il dato finale quattro impone s²=4. Il dominio s≥1 seleziona s=2, con U₀=2 μJ: una sola coppia ammessa."
+        },
+        {
+          "type": "formula",
+          "text": "U=(1\\,\\mu\\mathrm J)s^2"
+        },
+        {
+          "type": "formula",
+          "text": " s^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "text",
+          "text": "−2 è la radice algebrica incompatibile con una distanza positiva. Quattro omette la radice; un mezzo descriverebbe avvicinamento e non soddisfa la misura. Il vincolo non rende U costante."
+        }
+      ],
+      "hints": [
+        "Scegli il ramo compatibile con un allontanamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−2 è la radice algebrica incompatibile con una distanza positiva. Quattro omette la radice; un mezzo descriverebbe avvicinamento e non soddisfa la misura. Il vincolo non rende U costante.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Geometria e capacità a carica costante",
+        "Energia del campo e apporto meccanico",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2",
+      "name": "isolated-plate-separation-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+QWxsb250YW5hcmUgbGUgcGlhc3RyZSBpc29sYXRlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBzZXBhcmF6aW9uZSByYWRkb3BwaWF0YSBhIGNhcmljYSBsaWJlcmEgaW52YXJpYXRhOyBlbmVyZ2llIGRpIGR1ZSBwcmVwYXJhemlvbmkgZSBtZWRpYTsgZW5lcmdpYSBmaW5hbGUgY29udHJvIGZhdHRvcmUgZGkgc2VwYXJhemlvbmUgbmVsIGRvbWluaW8gZGEgdW5vIGluIHN1LjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkFsbG9udGFuYXJlIGxlIHBpYXN0cmUgaXNvbGF0ZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBRIGNvc3RhbnRlOiBsYSBjYXBhY2l0w6AgZGltaW51aXNjZTwvdGV4dD48dGV4dCB4PSI0NSIgeT0iMTMyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlByaW1hOiBV4oKAID0gMiDOvEo8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIxMzIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+RG9wbzogVSA9IDQgzrxKPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjE2MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjM3MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjQ4MCIgeT0iMTY1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTYwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjx0ZXh0IHg9Ijc1IiB5PSIyMTUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+KzwvdGV4dD48dGV4dCB4PSIxODUiIHk9IjIxNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7iiJI8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSIyMTUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+KzwvdGV4dD48dGV4dCB4PSI1MDUiIHk9IjIxNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7iiJI8L3RleHQ+PHRleHQgeD0iODAiIHk9IjM2OCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5zdGVzc28gUTwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjM2OCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5zdGVzc28gUTwvdGV4dD48bGluZSB4MT0iMTEwIiB5MT0iNDAwIiB4Mj0iMTYwIiB5Mj0iNDAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMzgwIiB5MT0iNDAwIiB4Mj0iNDgwIiB5Mj0iNDAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxMzUiIHk9IjQzNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ZOKCgDwvdGV4dD48dGV4dCB4PSI0MzAiIHk9IjQzNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MmTigoA8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4MCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MYSBzZXppb25lIGxhdGVyYWxlIMOoIHNjaGVtYXRpY2E7IGFyZWEgaW52YXJpYXRhLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTQwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgRW5lcmdpZSBmaW5hbGkgZSBsb3JvIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSI1NjAiIHgyPSIxNDUiIHkyPSI4MTUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI1IiB5PSI2MDciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI1OTAiIHdpZHRoPSIxMjgiIGhlaWdodD0iMjciIGZpbGw9IiMzMTZiOWIiIHJ4PSIzIi8+PHRleHQgeD0iMjgzIiB5PSI2MTEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+NCDOvEo8L3RleHQ+PHRleHQgeD0iMTI1IiB5PSI2OTIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2NzUiIHdpZHRoPSIyODgiIGhlaWdodD0iMjciIGZpbGw9IiNhNzZkMjAiIHJ4PSIzIi8+PHRleHQgeD0iNDQzIiB5PSI2OTYiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+OSDOvEo8L3RleHQ+PHRleHQgeD0iMTI1IiB5PSI3NzciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzYwIiB3aWR0aD0iMjA4LjAiIGhlaWdodD0iMjciIGZpbGw9IiM0ODgyNjUiIHJ4PSIzIi8+PHRleHQgeD0iMzYzLjAiIHk9Ijc4MSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij42LjUgzrxKPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4NzUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+QTogVeKCgCA9IDIgzrxKLCBzID0gMiDCtyBCOiBV4oKAID0gMyDOvEosIHMgPSAzPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBTb2xvIFXigoAgPSAyIM68SjogVSA9IHNV4oKAPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxMzAwIiB4Mj0iNTIwIiB5Mj0iMTMwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEzMDUiIHgyPSIxNTAiIHkyPSIxMDQwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMjUwIiB5MT0iMTI2MCIgeDI9IjQ1MCIgeTI9IjExODAiIHN0cm9rZT0iIzMxNmI5YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTI2MCIgcj0iNCIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTMyNCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjEzMzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iNDUwIiB5PSIxMzMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTI2NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+MjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjExODYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPjY8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMzEwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnM8L3RleHQ+PHRleHQgeD0iMTAwIiB5PSIxMDI1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlUgKM68Sik8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzOTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgc2VnbWVudG8gcmFwcHJlc2VudGEgc29sdGFudG8gMSDiiaQgcyDiiaQgMy48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

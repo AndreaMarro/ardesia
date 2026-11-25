@@ -1,0 +1,1183 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-lorentz-force-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22901,
+      "title": "I prefissi si compensano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 1,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Con v=2 km/s e B=3 mT, quanto vale F_B in μN?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "μN",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per velocità perpendicolare al campo, il seno dell’angolo è uno e F_B=|q|vB. Il fattore mille di km/s cancella il millesimo di mT. Con q=1 μC, il prodotto dei numeri 2·3 dà perciò sei μN. La forza è perpendicolare alla velocità: il suo modulo non ne assegna il lavoro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/53c6a4680532572d052416b345cb5d27e7cda8f37c44202d82f2723150f493d0",
+          "text": "Per q positiva, velocità verso destra e B entrante nel foglio danno forza verso l’alto. Le frecce del primo pannello sono schematiche e rappresentano grandezze con unità diverse; barre e retta successive sono quantitative."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=|q|vB"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{km/s}=10^3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mT}=10^{-3}\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Dodici μN aggiunge un fattore due non previsto. Tre μN trascura il valore numerico della rapidità. Sei N, invece di sei μN, tratterebbe la carica microcoulomb come un coulomb."
+        }
+      ],
+      "hints": [
+        "Usa il seno dell’angolo e poi separa i prefissi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici μN aggiunge un fattore due non previsto. Tre μN trascura il valore numerico della rapidità. Sei N, invece di sei μN, tratterebbe la carica microcoulomb come un coulomb.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22902,
+      "title": "L’unità della forza magnetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 1,
+      "prompt": "Quale unità è dimensionalmente adatta al modulo F_B di una forza magnetica?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "T",
+          "C",
+          "J",
+          "V"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una forza ha unità newton. Il tesla è definito in modo che C·(m/s)·T dia N. La provenienza magnetica della forza non ne cambia la dimensione rispetto a una forza meccanica."
+        },
+        {
+          "type": "formula",
+          "text": "[F_B]=\\mathrm{C\\cdot(m/s)\\cdot T}"
+        },
+        {
+          "type": "formula",
+          "text": " [F_B]=\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "T misura il campo, C la carica, J il lavoro e V la differenza di potenziale. La forza e il campo non hanno la stessa unità, anche se sono proporzionali a v e q fissati."
+        }
+      ],
+      "hints": [
+        "Controlla la dimensione di qvB, non quella di B da sola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "T misura il campo, C la carica, J il lavoro e V la differenza di potenziale. La forza e il campo non hanno la stessa unità, anche se sono proporzionali a v e q fissati.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22903,
+      "title": "Una forza che cambia la direzione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 1,
+      "prompt": "Una particella carica è soggetta soltanto a un campo magnetico uniforme e statico, senza campo elettrico o altre forze. Nel modello classico senza radiazione, quale proprietà resta costante?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il modulo della velocità",
+          "Il vettore velocità",
+          "La direzione della velocità in ogni caso",
+          "La posizione",
+          "L’accelerazione vettoriale in ogni caso"
+        ],
+        "value": "Il modulo della velocità"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza q(vettore v × vettore B) è ortogonale alla velocità, perciò la potenza istantanea è nulla. L’energia cinetica e il modulo della velocità restano costanti. La direzione può cambiare: con componente perpendicolare al campo il moto curva, mentre una componente parallela resta invariata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/53c6a4680532572d052416b345cb5d27e7cda8f37c44202d82f2723150f493d0",
+          "text": "Le croci indicano B entrante. La forza è ortogonale alla velocità e non compie lavoro sulla particella nel modello; le direzioni sono istantanee, non una traiettoria rettilinea."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_B\\cdot\\vec v=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{dK}{dt}=0"
+        },
+        {
+          "type": "formula",
+          "text": " |\\vec v|=\\text{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Il vettore velocità non è in generale costante perché la forza lo devia. Posizione e accelerazione vettoriale non sono invarianti generali. Il caso particolare v parallela a B non autorizza a estendere una traiettoria rettilinea a tutti gli ingressi."
+        }
+      ],
+      "hints": [
+        "Distingui la rapidità dalla velocità come vettore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il vettore velocità non è in generale costante perché la forza lo devia. Posizione e accelerazione vettoriale non sono invarianti generali. Il caso particolare v parallela a B non autorizza a estendere una traiettoria rettilinea a tutti gli ingressi.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22904,
+      "title": "Una rapidità dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 1,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. A usa v=2 km/s, B=3 mT. In una nuova prova v=1 km/s allo stesso campo. Come cambia F_B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 μN a 3 μN",
+          "Da 6 μN a 12 μN",
+          "Resta 6 μN",
+          "Da 6 μN a 3/2 μN",
+          "Da 6 μN a 0 μN"
+        ],
+        "value": "Da 6 μN a 3 μN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A carica, campo e angolo fissati, il modulo magnetico è lineare nella rapidità. Dimezzare v dimezza F_B da sei a tre μN. Non è il quadrato di v che entra nella legge di Lorentz, anche se compare in un’espressione centripeta con r da determinare."
+        },
+        {
+          "type": "formula",
+          "text": "F_{B,A}=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}=3\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}/F_{B,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Dodici μN inverte la proporzionalità. 3/2 μN usa un quadrato improprio. Zero richiederebbe v nulla oppure v parallela al campo, nessuna delle due condizioni dichiarata."
+        }
+      ],
+      "hints": [
+        "Il confronto mantiene l’angolo retto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici μN inverte la proporzionalità. 3/2 μN usa un quadrato improprio. Zero richiederebbe v nulla oppure v parallela al campo, nessuna delle due condizioni dichiarata.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22905,
+      "title": "Isolare la rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Si misura F_B=6 μN con B=3 mT. Quanto vale v in km/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "km/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa fisica è v=F_B/(|q|B). Con la carica fissata, la combinazione delle unità dichiarate rende il valore numerico v=6/3=2 km/s. I fattori micro non si cancellano da soli senza considerare anche il millesimo di tesla."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{F_B}{|q|B}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{km/s}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplica i numeri di forza e campo; un mezzo ne prende il rapporto inverso. Sei copia la forza come una velocità senza dividere per il campo."
+        }
+      ],
+      "hints": [
+        "Conserva q nell’inversa dimensionale, anche se il suo valore è fissato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplica i numeri di forza e campo; un mezzo ne prende il rapporto inverso. Sei copia la forza come una velocità senza dividere per il campo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22906,
+      "title": "Ricostruire il campo magnetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Si misura F_B=6 μN e si conosce v=2 km/s. Quanto vale B in mT?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mT",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ricavo B=F_B/(|q|v). Nelle unità assegnate il valore numerico è 6/2=3 mT. Il campo ricavato è positivo perché si è misurato un modulo e l’angolo retto è noto; la sola misura del modulo non ne determina il verso nello spazio."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{F_B}{|q|v}"
+        },
+        {
+          "type": "formula",
+          "text": " B=3\\,\\mathrm{mT}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica forza e rapidità, 1/3 inverte il rapporto corretto. Sei copia la forza senza normalizzarla. Un segno negativo non si deduce dal modulo F_B misurato."
+        }
+      ],
+      "hints": [
+        "Il verso di B richiede informazione vettoriale ulteriore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica forza e rapidità, 1/3 inverte il rapporto corretto. Sei copia la forza senza normalizzarla. Un segno negativo non si deduce dal modulo F_B misurato.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22907,
+      "title": "Un campo tre volte minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. A ha v=2 km/s, B_A=3 mT. La seconda prova mantiene v e usa B_2=1 mT. Quanto vale F_B,2/F_B,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "9",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze hanno moduli sei e due μN. Il rapporto è 1/3, uguale al rapporto dei campi. La carica e la rapidità non cambiano, e la velocità resta perpendicolare al campo in entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "F_{B,A}=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}=2\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}/F_{B,A}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il confronto. Un nono e nove importano un quadrato assente; uno ignora la riduzione del campo."
+        }
+      ],
+      "hints": [
+        "Forma lo stesso rapporto per campo e forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il confronto. Un nono e nove importano un quadrato assente; uno ignora la riduzione del campo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22908,
+      "title": "Scarto con segno della proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Per v=2 km/s e B=3 mT si propone F_B=12 μN. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 μN",
+          "−6 μN",
+          "2",
+          "12 μN",
+          "0 μN"
+        ],
+        "value": "6 μN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo corretto è 6 μN. La proposta supera il risultato di 12−6=6 μN. Il fatto che la forza sia perpendicolare al moto non rende nullo il suo modulo né questo scarto."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta F=(12-6)\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta F=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "−6 μN cambia l’ordine. Due è il rapporto puro, dodici copia la proposta e zero confonde lavoro magnetico nullo con forza nulla."
+        }
+      ],
+      "hints": [
+        "Un lavoro nullo può accompagnare una forza non nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 μN cambia l’ordine. Due è il rapporto puro, dodici copia la proposta e zero confonde lavoro magnetico nullo con forza nulla.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22909,
+      "title": "L’inversa simbolica non perde q",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. F_B, q e B sono noti. Quale formula isola v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = F_B / (|q| B)",
+          "v = |q| B / F_B",
+          "v = F_B B / |q|",
+          "v = F_B / B",
+          "v = F_B / (|q| B²)"
+        ],
+        "value": "v = F_B / (|q| B)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido F_B=|q|vB per i due fattori positivi noti. v=F_B/(|q|B) ha unità m/s. Il modulo di q evita di attribuire alla rapidità un segno: per una carica negativa cambierebbe il verso della forza, non questa legge del modulo."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=|q|vB"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{F_B}{|q|B}"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "L’inverso ha dimensione di rapidità inversa. Moltiplicare per B o elevarlo al quadrato modifica le dimensioni. F_B/B omette q e ha unità C·m/s, non m/s."
+        }
+      ],
+      "hints": [
+        "La carica fissata numericamente resta necessaria nelle unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "L’inverso ha dimensione di rapidità inversa. Moltiplicare per B o elevarlo al quadrato modifica le dimensioni. F_B/B omette q e ha unità C·m/s, non m/s.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22910,
+      "title": "Fattori su rapidità e campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Fra prove v_2=κ₁v_A e B_2=κ₂B_A, con fattori positivi. q e l’angolo retto restano uguali. Quanto vale F_B,2/F_B,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella legge del modulo, i due fattori si moltiplicano. La carica fissata e il seno uguale a uno si cancellano nel rapporto. Il verso vettoriale richiederebbe anche le direzioni dei campi e delle velocità, qui non richieste dal confronto dei moduli."
+        },
+        {
+          "type": "formula",
+          "text": "F_{B,2}=|q|(\\kappa_1v_A)(\\kappa_2B_A)"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}/F_{B,A}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta. Il quadrato di κ₁ non appartiene alla legge; la somma darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Tieni fisso anche l’angolo, oltre a q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta. Il quadrato di κ₁ non appartiene alla legge; la somma darebbe due per prove identiche.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22911,
+      "title": "Rapidità minore, campo maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. A usa v=2 km/s, B=3 mT. La seconda prova usa v=1 km/s, B=4 mT. Quanto vale il rapporto dei moduli seconda/A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo modulo è 6 μN, il secondo 4 μN. Il rapporto vale 2/3: il fattore 1/2 della rapidità moltiplica 4/3 del campo. Il maggiore campo non compensa completamente la riduzione di v."
+        },
+        {
+          "type": "formula",
+          "text": "F_{B,A}=6\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}=4\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,2}/F_{B,A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il rapporto, 1/2 segue soltanto la rapidità e 4/3 soltanto il campo. Uno imporrebbe una compensazione esatta non presente nei dati."
+        }
+      ],
+      "hints": [
+        "Non dedurre l’uscita dal solo aumento di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il rapporto, 1/2 segue soltanto la rapidità e 4/3 soltanto il campo. Uno imporrebbe una compensazione esatta non presente nei dati.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22912,
+      "title": "Media di due moduli magnetici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 2,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. A usa v=2 km/s, B=3 mT; la seconda prova usa v=1 km/s, B=4 mT. Qual è la media aritmetica dei due F_B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 μN",
+          "21/4 μN",
+          "10 μN",
+          "1 μN",
+          "0 μN"
+        ],
+        "value": "5 μN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due moduli sono 6 e 4 μN: la loro media è 5 μN. Ai valori medi v=3/2 km/s e B=7/2 mT si otterrebbero invece 21/4 μN. La differenza è −1/4 μN; una legge bilineare non commuta in generale con la media degli ingressi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/53c6a4680532572d052416b345cb5d27e7cda8f37c44202d82f2723150f493d0",
+          "text": "Le barre di 6 μN, 4 μN e 5 μN condividono origine e scala. La retta finale mantiene B=3 mT e q=1 μC, mentre la seconda prova delle barre usa B=4 mT. L’origine del grafico è soltanto un limite, escluso dal dominio v>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F_B=\\frac{6+4}{2}\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F_B=5\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_{B,\\rm dati\\ medi}=\\frac{21}{4}\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "21/4 μN usa gli ingressi medi; dieci μN somma senza dimezzare. Un μN è la semidifferenza e zero confonde media dei moduli con possibile cancellazione di vettori diversi."
+        }
+      ],
+      "hints": [
+        "La media richiesta non è una risultante vettoriale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/4 μN usa gli ingressi medi; dieci μN somma senza dimezzare. Un μN è la semidifferenza e zero confonde media dei moduli con possibile cancellazione di vettori diversi.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22913,
+      "title": "Il campo necessario a un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 3,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. A usa v=2 km/s, B_A=3 mT. La seconda prova ha v=1 km/s e deve ottenere F_B,2=(2/3)F_B,A. Quanto vale B_2/B_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "1/2",
+          "2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 4 μN. Con v=1 km/s serve B_2=4 mT. Il fattore rispetto ai 3 mT iniziali è 4/3. Il fattore della forza non coincide con quello del campo perché cambia anche la rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "F_{B,2}=4\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " B_2=4\\,\\mathrm{mT}"
+        },
+        {
+          "type": "formula",
+          "text": " B_2/B_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto. Due terzi copia il bersaglio della forza e un mezzo segue solo v. Due darebbe B_2=6 mT e forza 6 μN, non quattro."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima il modulo bersaglio in μN.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto. Due terzi copia il bersaglio della forza e un mezzo segue solo v. Due darebbe B_2=6 mT e forza 6 μN, non quattro.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22914,
+      "title": "Taratura proporzionale del sensore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 3,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. D=a_cal F_B è continuo e adimensionale. A con v=2 km/s, B=3 mT dà D=18. La seconda prova legge D=12 e ha B=4 mT. Quanto vale v in km/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "km/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale 6 μN, perciò a_cal=3 μN⁻¹. La lettura dodici indica un modulo di 4 μN. Con q e le unità dichiarate, v=4/4=1 km/s. La lettura non misura direttamente la rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm N)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=4\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " v=1\\,\\mathrm{km/s}"
+        },
+        {
+          "type": "text",
+          "text": "Tre km/s tratta D=12 come dodici μN. Quattro km/s copia il modulo della forza; 1/4 km/s darebbe una forza di 1 μN e lettura tre."
+        }
+      ],
+      "hints": [
+        "Separa la legge del sensore dalla legge di Lorentz.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre km/s tratta D=12 come dodici μN. Quattro km/s copia il modulo della forza; 1/4 km/s darebbe una forza di 1 μN e lettura tre.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22915,
+      "title": "Guadagno e offset prima della rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 3,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. D=a_cal F_B+b_cal è continuo. A: v=2 km/s, B=3 mT, D=13. Secondo riferimento: v=1 km/s, B=4 mT, D=9. Nuova prova: B=5 mT, D=41. Quanto vale v in km/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "km/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno moduli 6 e 4 μN: a_cal=(13−9)/(6−4)=2 μN⁻¹, b_cal=1. La nuova forza è (41−1)/2=20 μN. Dividendo il valore numerico per B=5 mT si ottiene v=4 km/s."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm N)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=20\\,\\mu\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " v=4\\,\\mathrm{km/s}"
+        },
+        {
+          "type": "text",
+          "text": "41/10 km/s omette l’offset e predirebbe D=42. Otto km/s sottrae b ma salta il guadagno. Venti km/s copia il numero della forza senza dividerlo per il campo."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima della divisione per il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "41/10 km/s omette l’offset e predirebbe D=42. Otto km/s sottrae b ma salta il guadagno. Venti km/s copia il numero della forza senza dividerlo per il campo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-lorentz-force-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo e direzione della forza magnetica",
+      "order": 22916,
+      "title": "Il vincolo seleziona un campo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lorentz-force",
+      "difficulty": 3,
+      "prompt": "Una particella ideale con q=+1 μC si muove istantaneamente perpendicolare a un campo magnetico uniforme B>0. Si considera il modello classico non relativistico, trascurando radiazione; v>0 è la rapidità. F_B indica il modulo della forza magnetica, mentre il verso si ottiene da q(vettore v × vettore B). v è espressa in km/s, B in mT e F_B in μN. Fra preparazioni v=(2/3 km·s⁻¹·mT⁻¹)B. Si misura F_B=6 μN. Quanto vale B in mT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "−3",
+          "9",
+          "2",
+          "Infinite intensità di campo"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo β=B/(1 mT)>0. Il vincolo dà v/(1 km/s)=(2/3)β, quindi F_B/(1 μN)=(2/3)β². Il valore sei impone β²=9; scelgo β=3 perché si cerca il modulo positivo del campo. La rapidità è allora 2 km/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta=\\frac{B}{1\\,\\mathrm{mT}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " B=3\\,\\mathrm{mT}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{km/s}"
+        },
+        {
+          "type": "text",
+          "text": "−3 è la radice algebrica esclusa dai moduli positivi e dal vincolo sulla rapidità. Nove omette la radice, due copia v. Non restano infinite coppie dopo la misura del quadrato."
+        }
+      ],
+      "hints": [
+        "Il coefficiente del vincolo porta unità: v e B non sono la stessa grandezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 è la radice algebrica esclusa dai moduli positivi e dal vincolo sulla rapidità. Nove omette la radice, due copia v. Non restano infinite coppie dopo la misura del quadrato.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza di Lorentz e prefissi SI",
+        "Ortogonalità e potenza magnetica nulla",
+        "Inverse, confronti, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "53c6a4680532572d052416b345cb5d27e7cda8f37c44202d82f2723150f493d0",
+      "name": "lorentz-force-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Rm9yemEgbWFnbmV0aWNhOiBtb2R1bG8gZSBkaXJlemlvbmU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IHZlbG9jaXTDoCBhIGRlc3RyYSwgY2FtcG8gZW50cmFudGUgZSBmb3J6YSB2ZXJzbyBs4oCZYWx0byBwZXIgY2FyaWNhIHBvc2l0aXZhOyBiYXJyZSBkZWkgbW9kdWxpIGUgbG9ybyBtZWRpYTsgcmV0dGEgZGVsIG1vZHVsbyBjb250cm8gcmFwaWRpdMOgIGEgY2FtcG8gdHJlIG1pbGxpdGVzbGEuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiM1MjY2N2EiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiBmaWxsPSIjZjdmYWZjIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+Rm9yemEgbWFnbmV0aWNhOiBtb2R1bG8gZSBkaXJlemlvbmU8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkyIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgRGlyZXppb25pIGlzdGFudGFuZWUsIHEgcG9zaXRpdmE8L3RleHQ+PGxpbmUgeDE9IjMwMCIgeTE9IjMwMCIgeDI9IjQ3MCIgeTI9IjMwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjMwMCIgeTE9IjMwMCIgeDI9IjMwMCIgeTI9IjE2MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMzAwIiByPSIxMiIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjMwMCIgeT0iMzA2IiBmb250LXNpemU9IjE5IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KzwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjMzNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+djwvdGV4dD48dGV4dCB4PSIzMjIiIHk9IjE5NyIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5GX0I8L3RleHQ+PHBhdGggZD0iTTMwMCAyNzBIMzMwVjMwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIzMDAiIHI9IjE3IiBmaWxsPSJub25lIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMzkiIHkxPSIyODkiIHgyPSIxNjEiIHkyPSIzMTEiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEzOSIgeTE9IjMxMSIgeDI9IjE2MSIgeTI9IjI4OSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2NSIgeT0iMzk1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkIgZW50cmFudGUgbmVsIGZvZ2xpbzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDUwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkZyZWNjZSBzY2hlbWF0aWNoZTogdiBlIEZfQiBoYW5ubyB1bml0w6AgZGl2ZXJzZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Gb3J6YSBvcnRvZ29uYWxlIGEgdjogcG90ZW56YSBtYWduZXRpY2EgbnVsbGEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBNb2R1bGkgZGVsbGEgZm9yemEgZSBsb3JvIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSI1NzAiIHgyPSIxNDUiIHkyPSI4MjUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI1IiB5PSI2MTciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2MDAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjciIGZpbGw9IiMzMTZiOWIiIHJ4PSIzIi8+PHRleHQgeD0iNDU1IiB5PSI2MjEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+NiDOvE48L3RleHQ+PHRleHQgeD0iMTI1IiB5PSI3MDIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPnNlY29uZGE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2ODUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjciIGZpbGw9IiNhNzZkMjAiIHJ4PSIzIi8+PHRleHQgeD0iMzU1IiB5PSI3MDYiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+NCDOvE48L3RleHQ+PHRleHQgeD0iMTI1IiB5PSI3ODciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzcwIiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjI3IiBmaWxsPSIjNDg4MjY1IiByeD0iMyIvPjx0ZXh0IHg9IjQwNSIgeT0iNzkxIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjUgzrxOPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4ODUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+QTogdiA9IDIga20vcywgQiA9IDMgbVQ8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkxNSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TZWNvbmRhOiB2ID0gMSBrbS9zLCBCID0gNCBtVDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTg1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgU29sbyBCID0gMyBtVCBlIHEgPSAxIM68QzwvdGV4dD48bGluZSB4MT0iMTQ1IiB5MT0iMTMxMCIgeDI9IjUyMCIgeTI9IjEzMTAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMzE1IiB4Mj0iMTUwIiB5Mj0iMTA2MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEzMTAiIHgyPSI0NzAiIHkyPSIxMTMwIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEzMTAiIHI9IjQiIGZpbGw9IiNmN2ZhZmMiIHN0cm9rZT0iIzMxNmI5YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxMzM0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjQ3MCIgeT0iMTM0MCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjExMzYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPjY8L3RleHQ+PHRleHQgeD0iNTEwIiB5PSIxMzc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnYgKGttL3MpPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSIxMDQ1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkZfQiAozrxOKTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQyMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5PcmlnaW5lIGFwZXJ0YTogbGltaXRlIHYgPSAwLCBmdW9yaSBkYSB2ID4gMC48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

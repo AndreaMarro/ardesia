@@ -1,0 +1,553 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-connected-plate-separation-charge-01",
+      "sourceSha256": "5425aecae9f0b69ac8da92b246a1dbf090dd56dca74a6bc286bde05a5f7654f8",
+      "candidateSha256": "cf99d8621e778cae3e2cfd508827796c7383fd440e390690aa772558c49b649a",
+      "reviewedSignature": "c7f6b8ecd197e18a072fe5870b249ec746a82f4a514b51b3cb066f8f238807cd",
+      "assetChecksums": {
+        "connected-plate-separation-charge-progressive.svg": "2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Con generatore ideale collegato, V resta costante entro ciascun processo. Area e dielettrico invariati danno C=C₀/s, dunque Q=CV=Q₀/s. Per Q₀=12 μC e s=2 si trova Q=6 μC su una sola piastra in modulo. La carica libera può ritornare al generatore: non è l’isolamento delle armature.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q=CVg=Q₀/s e Vg fissata durante prova danno 6 μC. 24 inverte s, 12 impone altro isolamento, 3 divide due volte. Carica può tornare al generatore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con generatore ideale collegato, V resta costante entro ciascun processo. Area e dielettrico invariati danno C=C₀/s, dunque Q=CV=Q₀/s. Per Q₀=12 μC e s=2 si trova Q=6 μC su una sola piastra in modulo. La carica libera può ritornare al generatore: non è l’isolamento delle armature.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: due batterie concordi col segno delle piastre, Vg 2 V per entrambi gli stati del medesimo processo, gap 50→100 eQ 12→6 μC. Barre 240/120/180 per 6/3/9/2 μC, comune 40 coordinate/μC. Grafico soltanto tre punti(1, 12),(2, 6),(3, 4), x=150+100 s, y=1320−20 Q, nessuna interpolazione lineare. Zeri e label liberi, quote schematiche dichiarate.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-02",
+      "sourceSha256": "2b22a31f865ddeeb00d0f11f8ee6b3eb23f750eefb1c77e19b4373377e4b4d39",
+      "candidateSha256": "93eef9c94d86a35f7e1b84c1024af41f2a3bda002a7de18d52a049ae950a6f27",
+      "reviewedSignature": "cc0612f20038897e5838b1f63b56f578a2924a41503c9b7ac656d8fb1dd8cbef",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La carica ha unità coulomb C e qui μC. Il rapporto s=d/d₀ è puro, quindi Q₀/s conserva la dimensione di carica. Non sono ancora state lette le cinque alternative e non si confonde la capacità con la carica. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "C è carica. s=d/d₀ puro non introduce metri; F capacità, V tensione, J energia, A corrente distinta dalla carica trasferita in intervallo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La carica ha unità coulomb C e qui μC. Il rapporto s=d/d₀ è puro, quindi Q₀/s conserva la dimensione di carica. Non sono ancora state lette le cinque alternative e non si confonde la capacità con la carica. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-03",
+      "sourceSha256": "22f119bae967bd2220b85be7f547d1068c45c9450a57302131c8a56ca8bac4d7",
+      "candidateSha256": "a31e462f1bc7fd315b8f2511edfd95184c1bf30ff6c3d4871bd1a44dff604add",
+      "reviewedSignature": "b72aab2e4ab408677602d7d42dba7a26192832607a4dd6922f08855b65076c45",
+      "assetChecksums": {
+        "connected-plate-separation-charge-progressive.svg": "2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q = Q₀ / s",
+      "dimension": {},
+      "manualArithmetic": "Dal modello piano C=εA/d e dalla tensione imposta segue C/C₀=1/s e Q/Q₀=1/s. La formula richiesta è Q=Q₀/s. Un confronto fra preparazioni con Q₀ differente va realizzato con stati iniziali coerenti, ad esempio tensioni iniziali diverse; il generatore mantiene la propria tensione durante ciascuna separazione, non obbliga tutte le preparazioni ad avere lo stesso C₀ e lo stesso V insieme a Q₀ diverso.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q/Q₀=C/C₀=1/s con Vg fissa. sQ₀ inverte geometria, Q₀ costante è altro circuito, quadrati non derivano da C=εA/d.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dal modello piano C=εA/d e dalla tensione imposta segue C/C₀=1/s e Q/Q₀=1/s. La formula richiesta è Q=Q₀/s. Un confronto fra preparazioni con Q₀ differente va realizzato con stati iniziali coerenti, ad esempio tensioni iniziali diverse; il generatore mantiene la propria tensione durante ciascuna separazione, non obbliga tutte le preparazioni ad avere lo stesso C₀ e lo stesso V insieme a Q₀ diverso.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: due batterie concordi col segno delle piastre, Vg 2 V per entrambi gli stati del medesimo processo, gap 50→100 eQ 12→6 μC. Barre 240/120/180 per 6/3/9/2 μC, comune 40 coordinate/μC. Grafico soltanto tre punti(1, 12),(2, 6),(3, 4), x=150+100 s, y=1320−20 Q, nessuna interpolazione lineare. Zeri e label liberi, quote schematiche dichiarate.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-04",
+      "sourceSha256": "aab22aee16b14be6d8250bd8374d70946ec23f0dc5bcb1284fe05e7d94d80419",
+      "candidateSha256": "53557a7a8398f4a80078da80c1e70967ccdb96e61ef68c1860c04a602ae8a44c",
+      "reviewedSignature": "0c3d616839b4be93cb934a0079f0347be0b3ac58a5a11ff454034011640615e3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 6 μC a 1/2 μC",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "A s=2, Q₀=12 μC dà Q=6 μC e Q₀=1 μC dà Q=1/2 μC. Il fattore fra le due uscite è 1/12. Il cambio di Q₀ riguarda preparazioni iniziali distinte; non si afferma una variazione arbitraria di carica a C₀ e V simultaneamente fissati.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "A 6 e B 1/2 μC: rapporto 1/12. Due moltiplica nuovoQ₀1 per s 2, uno ignora separazione, sei copiaA, dodici ignora nuova preparazione. Non imposto identiciV eC₀ fra prove.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A s=2, Q₀=12 μC dà Q=6 μC e Q₀=1 μC dà Q=1/2 μC. Il fattore fra le due uscite è 1/12. Il cambio di Q₀ riguarda preparazioni iniziali distinte; non si afferma una variazione arbitraria di carica a C₀ e V simultaneamente fissati.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-05",
+      "sourceSha256": "0337075cded3f7f50ff9e60cc3b9fcb27fa3801f69fcdaa70566ac15ad506bd9",
+      "candidateSha256": "7980ef68d443ec76e763905bc3e662aa167bb23e19502cd9113d62e314376c30",
+      "reviewedSignature": "242e8a0dac2c3620dba892dca7ff3e8921dd6825c939c583bb8f9a603985559f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Q=Q₀/s si inverte moltiplicando per s: Q₀=sQ. Con Q=6 μC e s=2 si ricostruisce Q₀=12 μC. Il modulo iniziale deve essere positivo e non minore del finale nel dominio s≥1.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q₀=sQ=12 μC≥Q. Tre ripete divisione, sei ignora geometria, 24 ricostruisceQ 12 non 6.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q=Q₀/s si inverte moltiplicando per s: Q₀=sQ. Con Q=6 μC e s=2 si ricostruisce Q₀=12 μC. Il modulo iniziale deve essere positivo e non minore del finale nel dominio s≥1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-06",
+      "sourceSha256": "6e33b7026a1247ccc897fa6b180fd76820b3d2e00561ae2b0d2081aea916055b",
+      "candidateSha256": "a07eb66e033987cee89c685e5ebaec6954a17a44eafd010ddd81e7576b4bbbee",
+      "reviewedSignature": "29a923be49b87a501e29a5d4cccd4ccb6333cdff2cc953195577ee22aae0ad58",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "s=Q₀/Q=12/6=2 è un rapporto puro. Serve Q>0 e Q≤Q₀ per ottenere allontanamento. s=1 è ammesso e significa d=d₀, mentre una misura Q>Q₀ non appartiene a questo processo ideale.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "s=Q₀/Q=2, puro. Mezzo inverte, seicopia Q, settantadue prodotto invece rapporto. s≥1 e regime piano anche nello stato finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. s=Q₀/Q=12/6=2 è un rapporto puro. Serve Q>0 e Q≤Q₀ per ottenere allontanamento. s=1 è ammesso e significa d=d₀, mentre una misura Q>Q₀ non appartiene a questo processo ideale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-07",
+      "sourceSha256": "150b541b847c2de93cabc96c11f9797b52bb1c638137de754b0ffe5cd33c106d",
+      "candidateSha256": "8f44fe74d08a83ed5094792a32a7c4473022e5ab280c7594ab888de1e3d9cb91",
+      "reviewedSignature": "e1848078a5dc7f1eb5069e431d5eb56ac4c8916be8bcca941bd785b6b7d0c6df",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A: Q_A=12/2=6 μC. B con s=1: Q_B=12 μC. Rapporto Q_B/Q_A=2. La corrente transitoria di scambio con il generatore non è la grandezza richiesta né implica perdita di carica totale dell’intero circuito.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "B s 1 rimaneQ 12, A 6 μC: rapporto 2. Mezzo reciproco, uno ignora, quattro quadra, zero confonde ΔQ nulla con Q nulla.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: Q_A=12/2=6 μC. B con s=1: Q_B=12 μC. Rapporto Q_B/Q_A=2. La corrente transitoria di scambio con il generatore non è la grandezza richiesta né implica perdita di carica totale dell’intero circuito.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-08",
+      "sourceSha256": "616533d923f5d429394baa1c0a074ebee113a10d259eb206a3a26886219d00f6",
+      "candidateSha256": "09bbc310800e8733e24cba41d97945dac28c3a9f1553d9ac3d67bac4ca177965",
+      "reviewedSignature": "9c98821a4c2d743bd71393e7f67f84ea1163d6d6da1f969a152475b364f81be7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Corretto Q=6 μC e proposta 12 μC: scarto proposto meno corretto=+6 μC. La proposta mantiene impropriamente la carica su una piastra pur mantenendo la tensione durante l’allontanamento.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Scarto+6 μC.−6 inverte, due rapporto, 12 proposta, zero sostituisce netta di due piastre alla carica di una.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto Q=6 μC e proposta 12 μC: scarto proposto meno corretto=+6 μC. La proposta mantiene impropriamente la carica su una piastra pur mantenendo la tensione durante l’allontanamento.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-09",
+      "sourceSha256": "a30718ec7c0d6e570c86c049bf721cfaad86736d9d0a5f3c9369e9a29640c605",
+      "candidateSha256": "3816fb9f88173aa9800be589fbfb340ea5a2d7a5d26f1f0241b5ac0e6c9c1353",
+      "reviewedSignature": "58dafbe3fa2756704fce48559e270b470fadcbeb232a371ce07512e398fdf651",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q₀ = s Q",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Moltiplico Q=Q₀/s per s finito almeno uno e ricavo Q₀=sQ. Unità μC se Q è in μC. La relazione differisce dal condensatore isolato, nel quale Q₀ sarebbe uguale a Q e sarebbe V a cambiare.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q₀=sQ ha carica.Q/s è diretta, s/Q carica inversa, s²Q potenzaaggiunta, Q−s differenzia grandezze diverse.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Moltiplico Q=Q₀/s per s finito almeno uno e ricavo Q₀=sQ. Unità μC se Q è in μC. La relazione differisce dal condensatore isolato, nel quale Q₀ sarebbe uguale a Q e sarebbe V a cambiare.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-10",
+      "sourceSha256": "c06432c3729f383a1e4aa75e3285a493989fce7c75c3358250d9612b0b6c5d8a",
+      "candidateSha256": "4c16c7969f778ff3f08a739a01ec65b6c4152e24412268171d0ac79445427ba5",
+      "reviewedSignature": "aa02a637d4896476410343ef30e32dcf023f037bc81d6fcf173a121885bb7edd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "La stringa sorgente di s nei pedici va letta s_B=κ₂s_A. Con Q₀,B=κ₁Q₀,A, Q_B/Q_A=[κ₁Q₀,A/(κ₂s_A)]/[Q₀,A/s_A]=κ₁/κ₂. Entrambe le separazioni soddisfano s≥1 e il regime piano; il generatore resta costante entro ogni prova.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "κ₁/κ₂ da Q₀/s.Prodotto rende diretto s, inverso scambia ingressi, quadrato aggiunge potenza, somma due sui fattori unitari.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La stringa sorgente di s nei pedici va letta s_B=κ₂s_A. Con Q₀,B=κ₁Q₀,A, Q_B/Q_A=[κ₁Q₀,A/(κ₂s_A)]/[Q₀,A/s_A]=κ₁/κ₂. Entrambe le separazioni soddisfano s≥1 e il regime piano; il generatore resta costante entro ogni prova.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-11",
+      "sourceSha256": "46b8596ca9ba1e52891d8d2d69a6e3e92bc3cf95c1de195134554219e66921fa",
+      "candidateSha256": "9f15bf057c743be2fb4a0ad9b041d7a4250de6067d6937aaad769cabefa91cfc",
+      "reviewedSignature": "e77c45cdb10ce9d5cbf13ced5d642183c37407f5c8ad2db58801b93052997377",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A: Q_A=12/2=6 μC. B: Q_B=9/3=3 μC. Rapporto 3/6=1/2, puro. Ogni stato iniziale è definito da Q₀ coerente con C₀V della propria preparazione.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q_A 6, Q_B 3 μC→1/2. Due reciproco, 3/4 solo Q₀, 3/2 solo s, uno presume compensazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: Q_A=12/2=6 μC. B: Q_B=9/3=3 μC. Rapporto 3/6=1/2, puro. Ogni stato iniziale è definito da Q₀ coerente con C₀V della propria preparazione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-12",
+      "sourceSha256": "8d286ad10b351bbb1bab162bd4b795a3c652ceb341b235d487221386393b0ae4",
+      "candidateSha256": "f620ed603e81514962562930eee638728e7153b7b1b1e9a21fe8eae740229a6e",
+      "reviewedSignature": "08acfd01bfb6c357b36acf735555cc9c16c7d3a1d715cfafb312cbca722bacf6",
+      "assetChecksums": {
+        "connected-plate-separation-charge-progressive.svg": "2776c978f8bcfe8b5c9650e5960bcded9a1dcbfae3a6164618d213e6f31df285"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/2",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Media delle uscite (6+3)/2=9/2 μC. Ai dati medi Q₀=21/2 μC e s=5/2, il modello darebbe 21/5 μC. Differenza 9/2−21/5=3/10 μC. Il rapporto fra medie non è in generale la media dei rapporti.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Media 9/2 μC contro 21/5 ai dati medi:scarto 3/10. Nove somma, 3/2 semidifferenza, zero somma algebrica di armature.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite (6+3)/2=9/2 μC. Ai dati medi Q₀=21/2 μC e s=5/2, il modello darebbe 21/5 μC. Differenza 9/2−21/5=3/10 μC. Il rapporto fra medie non è in generale la media dei rapporti.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: due batterie concordi col segno delle piastre, Vg 2 V per entrambi gli stati del medesimo processo, gap 50→100 eQ 12→6 μC. Barre 240/120/180 per 6/3/9/2 μC, comune 40 coordinate/μC. Grafico soltanto tre punti(1, 12),(2, 6),(3, 4), x=150+100 s, y=1320−20 Q, nessuna interpolazione lineare. Zeri e label liberi, quote schematiche dichiarate.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-13",
+      "sourceSha256": "a1fdd7712d5acedc65697dc3088983d90db2b5f541e6eaf32526e64b90b2e1d5",
+      "candidateSha256": "8bed845f3725c9349f97e6e723e01ab6e8a9c0b338627128b1bc431edf868bee",
+      "reviewedSignature": "6bcbafb1010d40936c9f5427dd39212cd6d5e2fd98400be5d9cfda9d0c46f911",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio è Q_B=(1/2)·6=3 μC. Con Q₀,B=9 μC serve s_B=9/3=3. Il rapporto cercato s_B/s_A=3/2, nella notazione chiarita anziché nella stringa sorgente ripetuta.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Bersaglio 3 μC e Q₀B 9 richiedono sB 3: rapporto 3/2; 2/3 reciproco, mezzo copia bersaglio, 3/4 segueQ₀, 2 darebbe 9/4 μC.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bersaglio è Q_B=(1/2)·6=3 μC. Con Q₀,B=9 μC serve s_B=9/3=3. Il rapporto cercato s_B/s_A=3/2, nella notazione chiarita anziché nella stringa sorgente ripetuta.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-14",
+      "sourceSha256": "4b461ea449f21ae6f69cb13d599cf080dcdb2bbb688b9c641738274835ec8225",
+      "candidateSha256": "b132ccb9639acf48a99d8fde54ab1e8c6cfb4df935523104e474a7edad1536bb",
+      "reviewedSignature": "2c98cfc482bed0464b0a38cdf91f7e4fd6bb7a6861b0606820f9a6e31646e15d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Il riferimento Q_A=6 μC e lettura 18 dà a_cal=3 unità/μC. Lettura 9 indica Q_B=3 μC. Con s_B=3 l’inversa dà Q₀,B=9 μC. Una lettura strumentale non è direttamente Q₀.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Guadagno 3 μC⁻¹, D 9→Q 3, s 3→Q₀9 μC. 27 tratta D come Q, 1 divide ancora, 3 copia il finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il riferimento Q_A=6 μC e lettura 18 dà a_cal=3 unità/μC. Lettura 9 indica Q_B=3 μC. Con s_B=3 l’inversa dà Q₀,B=9 μC. Una lettura strumentale non è direttamente Q₀.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-15",
+      "sourceSha256": "e982e87300d3b3aadeb789171579bc1bfd27e0582d8b9b553371d5075023fc71",
+      "candidateSha256": "076a8582fcd3d429ca2478e338aef5beb2170329e2a24ea898452ec5968067e7",
+      "reviewedSignature": "a31c5c40ea659b7ec571529fea8aa7c91b29ff7f204fd60c17e980742e4193fb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Riferimenti Q_A=6 μC e Q_B=3 μC, letture 13 e 7: a_cal=(13−7)/(6−3)=2 unità/μC e b_cal=1. Lettura 5 dà Q_C=2 μC. Con s_C=4, Q₀,C=8 μC. La sottrazione dell’offset precede la moltiplicazione per s.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Guadagno 2 μC⁻¹, offset 1, D 5→Q 2, s 4→Q₀8 μC. 10 omette l’offset e D 6; 16 omette il guadagno; 2 omette inversa fisica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti Q_A=6 μC e Q_B=3 μC, letture 13 e 7: a_cal=(13−7)/(6−3)=2 unità/μC e b_cal=1. Lettura 5 dà Q_C=2 μC. Con s_C=4, Q₀,C=8 μC. La sottrazione dell’offset precede la moltiplicazione per s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-connected-plate-separation-charge-16",
+      "sourceSha256": "8d43ab085d68b7d865b97dc6d2796e73fec5cf499b2d9159e3a1a4df8ed3ae97",
+      "candidateSha256": "24a665d4322c26c8d2bfd20a26d353d8c16b8fc082fb02e285b35831d541938e",
+      "reviewedSignature": "668df22a91c510395b02ce26e417f524e6fe08f4bc1eac08a13138b77ab7a4d7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie continue nel regime geometrico dichiarato",
+      "dimension": {},
+      "manualArithmetic": "Interpreto Q₀=6·s=d/d₀ come Q₀=(6 μC)s e s=d/d₀. Allora Q=Q₀/s=6 μC per ogni s≥1 compatibile col regime piano. La misura è ridondante e lascia infinite coppie (Q₀,s)=(6 s μC,s); non fissa una separazione assoluta né autorizza distanze arbitrarie fuori dall’approssimazione.",
+      "physicalAssumptions": "Condensatore piano lineare collegato a generatore ideale, tensione fissata durante ogni allontanamento, non necessariamente identica fra diverse preparazioni oltre ai dati dichiarati. Area e permittività costanti, s=d/d₀≥1 con regime piastre grandi valido in entrambi gli stati. Q₀,Q moduli liberi positivi su una armatura, non netta neutra; scambio di carica col circuito permesso.",
+      "distractors": "Q₀=(6 μC)s dà Q 6 μC per ogni s≥1 nel regime geometrico. Misura ridondante; infinite coppie continue, non soltanto intere, non radici discrete.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Interpreto Q₀=6·s=d/d₀ come Q₀=(6 μC)s e s=d/d₀. Allora Q=Q₀/s=6 μC per ogni s≥1 compatibile col regime piano. La misura è ridondante e lascia infinite coppie (Q₀,s)=(6 s μC,s); non fissa una separazione assoluta né autorizza distanze arbitrarie fuori dall’approssimazione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "14c611a829ae39877629e4e17d8bd1d2737b8e7569625a03bc9bbb65aa27d91e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "df0e949226d67d210baa01717d958ee33a636f7c",
+  "packageSha256": "ed42479b65ac424be4edc1243a863ba3127204d34c93c8402485a0fbc09d463b",
+  "bindingsSha256": "86db1b9802836c2779bd294e924943ea8f76e8d0b0a387e3adafba9644760cff",
+  "sourceFirstPrimarySha256": "1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-04.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-04 B225–229 congelata prima di qualunque candidato. Successiva lettura allowlist di tutti80 prompt finali, poi modelli indipendenti scritti ed eseguiti realmente prima delle chiavi. Solo dopo sono stati letti individualmente tutti16 record finali completi, opzioni, formule, hint, feedback, metadata, XML e nuovo PNG nativo integrale. Nessuna esposizione anticipata a chiavi, nessun modulo autore importato o primaria B aperta. UI prodotto e human NOT_RUN; confronto integrato ROOT PENDING."
+  }
+}
