@@ -1,0 +1,1232 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-series-parallel-resistor-network-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20801,
+      "title": "Riduci prima il parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 1,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Con r=2 Ω e R=2 Ω, quanto vale T in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due rami da2 Ω hanno equivalente1 Ω. Solo dopo questa riduzione si aggiunge il resistore esterno da2 Ω: T=3 Ω. Tutti e tre gli elementi non condividono la stessa coppia di nodi e non sono neppure una catena senza derivazioni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd",
+          "text": "Il circuito mostra un elemento r in serie con il blocco a due rami r,R. Per r=R=2 Ω il parallelo vale1 Ω e il totale3 Ω. I simboli elettrici sono schematici; le barre dei pannelli successivi hanno invece scala comune in ohm."
+        },
+        {
+          "type": "formula",
+          "text": "R_p=\\frac{rR}{r+R}"
+        },
+        {
+          "type": "formula",
+          "text": " R_p=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T=r+R_p"
+        },
+        {
+          "type": "formula",
+          "text": " T=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω mette tutti e tre in serie;2/3 Ω li mette tutti in parallelo. Uno Ω si ferma al parallelo e due Ω omette il contributo del parallelo."
+        }
+      ],
+      "hints": [
+        "Individua i due nodi condivisi dai rami prima di sommare il tratto esterno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω mette tutti e tre in serie;2/3 Ω li mette tutti in parallelo. Uno Ω si ferma al parallelo e due Ω omette il contributo del parallelo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20802,
+      "title": "Una resistenza vista dai morsetti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 1,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Quale unità misura T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "S",
+          "A",
+          "V",
+          "Ω²"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il termine rR/(r+R) ha Ω² al numeratore e Ω al denominatore: è una resistenza in ohm. Si può quindi sommare a r, anch’esso in ohm. T è resistenza e non una temperatura o un intervallo temporale, nonostante il simbolo scelto."
+        },
+        {
+          "type": "formula",
+          "text": "[R_p]=\\Omega^2/\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " [R_p]=\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " [T]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "S misura conduttanza, A corrente e V tensione. Ω² corrisponde al solo prodotto rR, prima della divisione. La scelta del simbolo T non cambia l’unità definita nel testo."
+        }
+      ],
+      "hints": [
+        "Controlla l’omogeneità della somma r+R_p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "S misura conduttanza, A corrente e V tensione. Ω² corrisponde al solo prodotto rR, prima della divisione. La scelta del simbolo T non cambia l’unità definita nel testo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20803,
+      "title": "La topologia decide l’ordine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 1,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Quale legge dà T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T = r + r R / (r + R)",
+          "T = 2r + R",
+          "T = r R / (2r + R)",
+          "T = 1 / (2/r + 1/R)",
+          "T = r + R"
+        ],
+        "value": "T = r + r R / (r + R)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per i due rami interni 1/R_p=1/r+1/R, quindi R_p=rR/(r+R). Il nodo fra l’elemento esterno e la rete interna è un nodo di diramazione solo all’ingresso del parallelo: il tratto esterno è in serie con l’intero equivalente R_p. Si ottiene T=r+R_p."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd",
+          "text": "I due elementi r hanno lo stesso valore ma ruoli topologici diversi: uno è esterno alla diramazione, l’altro è un ramo del parallelo con R. La riduzione del parallelo precede l’aggiunta del tratto esterno."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_p}=\\frac1r+\\frac1R"
+        },
+        {
+          "type": "formula",
+          "text": " R_p=\\frac{rR}{r+R}"
+        },
+        {
+          "type": "formula",
+          "text": " T=r+\\frac{rR}{r+R}"
+        },
+        {
+          "type": "text",
+          "text": "2r+R tratta tutti in serie. Le espressioni che mettono tutti in parallelo non rispettano i nodi; rR/(2r+R) altera il denominatore del parallelo r∥R. r+R ignora uno dei due rami interni."
+        }
+      ],
+      "hints": [
+        "Sostituisci una sola sottorete con il suo equivalente, poi guarda i nodi rimasti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2r+R tratta tutti in serie. Le espressioni che mettono tutti in parallelo non rispettano i nodi; rR/(2r+R) altera il denominatore del parallelo r∥R. r+R ignora uno dei due rami interni.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20804,
+      "title": "Cambiano entrambi gli elementi r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 1,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. A ha r=2 Ω,R=2 Ω. B porta r a1 Ω e mantiene R=2 Ω. Come cambia T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 5/3 Ω",
+          "Da 3 a 2 Ω",
+          "Da 3 a 3/2 Ω",
+          "Resta 3 Ω",
+          "Da 3 a 4 Ω"
+        ],
+        "value": "Da 3 a 5/3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B il tratto esterno vale1 Ω e il parallelo fra1 e2 Ω vale2/3 Ω. Il totale è5/3 Ω. Cambiare r significa cambiare sia il resistore esterno sia quello del ramo: non si lascia il vecchio parallelo da1 Ω invariato."
+        },
+        {
+          "type": "formula",
+          "text": "R_{p,B}=\\frac23\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=1\\,\\Omega+\\frac23\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac53\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due Ω cambia solo il tratto esterno lasciando il parallelo di A. 3/2 Ω dimezza il totale come se anche R fosse dimezzata. Tre ignora il cambio e quattro va contro la diminuzione di entrambi gli elementi r."
+        }
+      ],
+      "hints": [
+        "Aggiorna le due occorrenze dello stesso parametro r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due Ω cambia solo il tratto esterno lasciando il parallelo di A. 3/2 Ω dimezza il totale come se anche R fosse dimezzata. Tre ignora il cambio e quattro va contro la diminuzione di entrambi gli elementi r.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20805,
+      "title": "Una misura genera un’equazione di secondo grado",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Si misura T=3 Ω e si conosce R=2 Ω. Quanto vale r in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando T=r+rR/(r+R) per r+R si trova r²+(2R−T)r−TR=0. Con i dati, se x=r/(1 Ω), l’equazione è x²+x−6=0=(x−2)(x+3). Il solo valore positivo è x=2: r=2 Ω. Il valore−3 Ω non descrive i resistori passivi richiesti."
+        },
+        {
+          "type": "formula",
+          "text": "r^2+(2R-T)r-TR=0"
+        },
+        {
+          "type": "formula",
+          "text": " x=\\frac r{1\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+x-6=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-2)(x+3)=0"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−3 Ω è l’altra radice algebrica ma viola r>0. Uno Ω darebbe5/3 Ω con R=2 Ω; tre Ω copierebbe il totale e darebbe21/5 Ω. Non si sottrae direttamente R come se fosse in serie."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore r+R, poi filtra le radici nel dominio positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 Ω è l’altra radice algebrica ma viola r>0. Uno Ω darebbe5/3 Ω con R=2 Ω; tre Ω copierebbe il totale e darebbe21/5 Ω. Non si sottrae direttamente R come se fosse in serie.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20806,
+      "title": "L’altro ramo richiede un totale intermedio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Si misura T=3 Ω e si conosce r=2 Ω. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il parallelo deve valere T−r=1 Ω. Dalla relazione T−r=rR/(r+R) si ricava R=r(T−r)/(2r−T). Con i dati è2·1/(4−3)=2 Ω. Per R positivo finito occorre r<T<2r: il parallelo è positivo ma minore di r."
+        },
+        {
+          "type": "formula",
+          "text": "R_p=T-r"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{r(T-r)}{2r-T}"
+        },
+        {
+          "type": "formula",
+          "text": " r<T<2r"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Un Ω scambia R con il parallelo e darebbe T=8/3 Ω. Tre Ω copia T e darebbe16/5 Ω. T=r non ammette R>0 finito; T=2r renderebbe nullo il denominatore e corrisponderebbe al limite di ramo R aperto."
+        }
+      ],
+      "hints": [
+        "Isola il parallelo e controlla che sia compreso fra zero e r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un Ω scambia R con il parallelo e darebbe T=8/3 Ω. Tre Ω copia T e darebbe16/5 Ω. T=r non ammette R>0 finito; T=2r renderebbe nullo il denominatore e corrisponderebbe al limite di ramo R aperto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20807,
+      "title": "Cambia solo il ramo R",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. A ha r=2 Ω,R=2 Ω. B mantiene r e ha R=1 Ω. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/9",
+          "9/8",
+          "1/2",
+          "2/3",
+          "1"
+        ],
+        "value": "8/9"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale3 Ω. In B il parallelo è2/3 Ω e il tratto esterno resta2 Ω: T_B=8/3 Ω. Il rapporto è(8/3)/3=8/9. Il dimezzamento di R non dimezza il totale perché r esterno resta invariato."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac83\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac89"
+        },
+        {
+          "type": "text",
+          "text": "9/8 è il reciproco;1/2 segue il solo R. 2/3 copia il numero della resistenza del parallelo in B e uno ignora la modifica."
+        }
+      ],
+      "hints": [
+        "Aggiungi il tratto esterno anche nella nuova prova, prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/8 è il reciproco;1/2 segue il solo R. 2/3 copia il numero della resistenza del parallelo in B e uno ignora la modifica.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20808,
+      "title": "Uno scarto dopo la riduzione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Con r=2 Ω,R=2 Ω si propone T=6 Ω. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 Ω",
+          "−3 Ω",
+          "6 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale corretto è3 Ω; la proposta di6 Ω, ottenibile mettendo tutti in serie, lo supera di3 Ω. La differenza ha unità ohm e va distinta dal rapporto2."
+        },
+        {
+          "type": "formula",
+          "text": "T=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−3 inverte l’ordine, sei copia la proposta e zero la accetta. Due puro esprime il rapporto, non lo scarto fisico."
+        }
+      ],
+      "hints": [
+        "Riduci prima la rete reale, poi fai la sottrazione ordinata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 inverte l’ordine, sei copia la proposta e zero la accetta. Due puro esprime il rapporto, non lo scarto fisico.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20809,
+      "title": "Scegliere il ramo positivo dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Quale formula restituisce r da T e R, nel dominio positivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = (T − 2R + √(T² + 4R²)) / 2",
+          "r = (T − 2R − √(T² + 4R²)) / 2",
+          "r = T − R",
+          "r = T R / (T + R)",
+          "r = (T + 2R + √(T² + 4R²)) / 2"
+        ],
+        "value": "r = (T − 2R + √(T² + 4R²)) / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equazione quadratica è r²+(2R−T)r−TR=0. Il discriminante si semplifica in D=T²+4R², positivo e con unità Ω². Definiamo u=√D in Ω: la soluzione ammessa è r=(T−2R+u)/2. L’altra ha segno negativo perché D−(T−2R)²=4TR>0: la radice supera il modulo di T−2R."
+        },
+        {
+          "type": "formula",
+          "text": "r^2+(2R-T)r-TR=0"
+        },
+        {
+          "type": "formula",
+          "text": " D=T^2+4R^2"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\sqrt D"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{T-2R+u}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " D-(T-2R)^2=4TR>0"
+        },
+        {
+          "type": "text",
+          "text": "Il meno davanti alla radice seleziona r<0. T−R tratta la rete come una semplice serie. TR/(T+R) ricava un parallelo di T e R non presente; il più davanti a2R cambia il coefficiente della quadratica."
+        }
+      ],
+      "hints": [
+        "Usa il discriminante e poi verifica il segno della radice scelta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno davanti alla radice seleziona r<0. T−R tratta la rete come una semplice serie. TR/(T+R) ricava un parallelo di T e R non presente; il più davanti a2R cambia il coefficiente della quadratica.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20810,
+      "title": "I fattori entrano in entrambe le occorrenze r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. B usa r_B=κ₁r_A e R_B=κ₂R_A, con fattori positivi. Nelle alternative r,R sono quelli di A. Quale espressione dà T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (κ₁ r + 2κ₂ R) (r + R) / [(κ₁ r + κ₂ R) (r + 2R)]",
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "(κ₁ r + κ₂ R) / (r + R)",
+          "1/κ₁"
+        ],
+        "value": "κ₁ (κ₁ r + 2κ₂ R) (r + R) / [(κ₁ r + κ₂ R) (r + 2R)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo T=r(r+2R)/(r+R). Il rapporto conserva tutti e tre i fattori della frazione. Per svolgerlo in tappe brevi definiamo a=κ₁r+2κ₂R, b=κ₁r+κ₂R, c=r+R e d=r+2R, tutti in ohm. Si ottiene T_B/T_A=κ₁ac/(bd). Se i due fattori coincidono con κ, il rapporto si riduce a κ."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{r(r+2R)}{r+R}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\kappa_1r+2\\kappa_2R"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\kappa_1r+\\kappa_2R"
+        },
+        {
+          "type": "formula",
+          "text": " c=r+R"
+        },
+        {
+          "type": "formula",
+          "text": " d=r+2R"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac{\\kappa_1ac}{bd}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei soli fattori ignorano la somma al denominatore. Il rapporto delle sole somme descriverebbe un’altra rete;1/κ₁ renderebbe inversa la scala comune, mentre resistenze tutte moltiplicate per κ danno T moltiplicata per κ."
+        }
+      ],
+      "hints": [
+        "Riduci T a una singola frazione e sostituisci i fattori in ogni r e R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto e quoziente dei soli fattori ignorano la somma al denominatore. Il rapporto delle sole somme descriverebbe un’altra rete;1/κ₁ renderebbe inversa la scala comune, mentre resistenze tutte moltiplicate per κ danno T moltiplicata per κ.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20811,
+      "title": "Un nuovo tratto esterno e un nuovo parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. A usa r=2 Ω,R=2 Ω. B usa r=3 Ω,R=6 Ω. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "3/2",
+          "3",
+          "2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale3 Ω. B ha parallelo(3·6)/(3+6)=2 Ω e tratto esterno3 Ω: T_B=5 Ω. Il rapporto è5/3, includendo entrambe le occorrenze di r."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{p,B}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il confronto;3/2 segue il solo parametro r e tre il solo R. Due è il rapporto dei paralleli, ma manca il tratto esterno."
+        }
+      ],
+      "hints": [
+        "Calcola il parallelo di B e aggiungi il suo resistore esterno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il confronto;3/2 segue il solo parametro r e tre il solo R. Due è il rapporto dei paralleli, ma manca il tratto esterno.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20812,
+      "title": "Media di due totali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 2,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. A usa r=2 Ω,R=2 Ω; B usa r=3 Ω,R=6 Ω. Qual è la media aritmetica di T con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 Ω",
+          "105/26 Ω",
+          "8 Ω",
+          "1 Ω",
+          "3 Ω"
+        ],
+        "value": "4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali sono3 e5 Ω: media4 Ω. Ai dati medi r=5/2 Ω,R=4 Ω, il parallelo è20/13 Ω e il totale è5/2+20/13=105/26 Ω. Poiché4=104/26, è diverso anche senza calcoli decimali. La sottorete parallela rende non lineare il modello completo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd",
+          "text": "Le barre finali confrontano i totali3 e5 Ω, media4 Ω con origine e scala comuni. B usa r=3 Ω,R=6 Ω; le barre centrali mostrano separatamente tratto esterno e parallelo. Il totale ai dati medi sarebbe105/26 Ω, non4 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline T=\\frac{3+5}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_{\\rm dati\\ medi}=\\frac52\\,\\Omega+\\frac{20}{13}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " T_{\\rm dati\\ medi}=\\frac{105}{26}\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "105/26 Ω usa gli ingressi medi. Otto Ω somma senza dimezzare, un Ω è metà della differenza e tre Ω ripete A. Le due prove non sono circuiti collegati insieme."
+        }
+      ],
+      "hints": [
+        "Media le letture già ridotte, non i parametri prima della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "105/26 Ω usa gli ingressi medi. Otto Ω somma senza dimezzare, un Ω è metà della differenza e tre Ω ripete A. Le due prove non sono circuiti collegati insieme.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20813,
+      "title": "Un bersaglio fra r e 2r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 3,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. A usa r=2 Ω,R_A=2 Ω. B ha r_B=3 Ω e deve avere T_B=(5/3)T_A. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "5/3",
+          "6",
+          "3/2"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio T_B=5 Ω è compreso fra r_B=3 Ω e2r_B=6 Ω. L’inversa dà R_B=3(5−3)/(6−5)=6 Ω. Rispetto ai2 Ω di A il rapporto è tre."
+        },
+        {
+          "type": "formula",
+          "text": "T_B=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=\\frac{3(5-3)}{6-5}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=3"
+        },
+        {
+          "type": "text",
+          "text": "1/3 è il reciproco. 5/3 copia il fattore del totale, sei copia gli ohm finali e3/2 segue soltanto r. Il controllo r<T<2r impedisce di accettare inversi non passivi."
+        }
+      ],
+      "hints": [
+        "Trova il bersaglio e verifica il dominio prima dell’inversa per R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 è il reciproco. 5/3 copia il fattore del totale, sei copia gli ohm finali e3/2 segue soltanto r. Il controllo r<T<2r impedisce di accettare inversi non passivi.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20814,
+      "title": "Decodificare la misura prima della quadratica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 3,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. D=aT è continuo e adimensionale,a>0. A con r=2 Ω,R=2 Ω dà D=9. B dà D=15 e ha R=6 Ω. Quanto vale r_B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha totale3 Ω, quindi a=3 Ω⁻¹. D=15 indica T_B=5 Ω. Con R=6 Ω, ponendo x=r_B/(1 Ω), l’inversa diventa x²+7x−30=0=(x−3)(x+10). Si sceglie x=3, quindi r_B=3 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+7x-30=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-3)(x+10)=0"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−10 Ω è la radice esclusa. Cinque Ω copia il totale, ignorando il parallelo. Due Ω con R=6 Ω darebbero T=7/2 Ω e D=21/2, non15."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno e poi ricostruisci la quadratica del nuovo R noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−10 Ω è la radice esclusa. Cinque Ω copia il totale, ignorando il parallelo. Due Ω con R=6 Ω darebbero T=7/2 Ω e D=21/2, non15.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20815,
+      "title": "Guadagno e offset prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 3,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. D=aT+b è continuo e adimensionale. A: r=2 Ω,R=2 Ω,D=7. B: r=3 Ω,R=6 Ω,D=11. C: R=4 Ω,D=13. Quanto vale r_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 Ω",
+          "6 Ω",
+          "2 Ω",
+          "3 Ω",
+          "−6 Ω"
+        ],
+        "value": "4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono3 e5 Ω. a=(11−7)/(5−3)=2 Ω⁻¹ e b=1. C ha T_C=(13−1)/2=6 Ω. Con R=4 Ω, x=r_C/(1 Ω) soddisfa x²+2x−24=0=(x−4)(x+6). La radice positiva è4 Ω; il parallelo4∥4 vale2 Ω e il totale torna6 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+2x-24=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-4)(x+6)=0"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω copia il totale e darebbe42/5 Ω. Due Ω darebbero10/3 Ω; tre Ω darebbero33/7 Ω. −6 Ω è l’altra radice algebrica, esclusa dal dominio passivo."
+        }
+      ],
+      "hints": [
+        "Decodifica il totale prima di filtrare le radici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω copia il totale e darebbe42/5 Ω. Due Ω darebbero10/3 Ω; tre Ω darebbero33/7 Ω. −6 Ω è l’altra radice algebrica, esclusa dal dominio passivo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-parallel-resistor-network-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Una serie con un blocco parallelo",
+      "order": 20816,
+      "title": "Tre elementi dello stesso valore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-parallel-resistor-network",
+      "difficulty": 3,
+      "prompt": "Una rete ohmica, con fili ideali e temperature fissate, ha un resistore r>0 in serie con un parallelo fra un secondo resistore dello stesso valore r e un resistore R>0. Il parallelo condivide due nodi; il resistore esterno è percorso dalla corrente totale. Indichiamo con T la resistenza totale fra i morsetti: T=r+rR/(r+R). Quando cambia r, cambiano entrambi gli elementi chiamati r. I valori sono costanti entro ogni prova. Fra prove si impone r=R. Si misura T=3 Ω. Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 Ω",
+          "1 Ω",
+          "3 Ω",
+          "−2 Ω",
+          "Infinite resistenze positive"
+        ],
+        "value": "2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il parallelo fra due resistenze uguali vale R/2; il tratto esterno vale ancora R. Quindi T=(3/2)R. La misura tre ohm determina R=2 Ω e anche r=2 Ω. Il rapporto tra parametri non rende ridondante la misura del totale."
+        },
+        {
+          "type": "formula",
+          "text": "R_p=\\frac R2"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac32R"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac23T"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Uno Ω copia il solo parallelo della prova corretta. Tre Ω copia il totale e−2 Ω viola la passività. La misura positiva fissa una scala unica dopo il vincolo."
+        }
+      ],
+      "hints": [
+        "Riduci prima il parallelo dei due elementi uguali, poi aggiungi il terzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno Ω copia il solo parallelo della prova corretta. Tre Ω copia il totale e−2 Ω viola la passività. La misura positiva fissa una scala unica dopo il vincolo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Riduzione dei nodi e due occorrenze di r",
+        "Inverse quadratiche e dominio r<T<2r",
+        "Rapporti, medie e decodifica dei display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "00531f9a59bbbc856d13f5a51de78ef5cbdd7571e47bd693f8d5fca252b262dd",
+      "name": "series-parallel-resistor-network-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5QcmltYSBpbCBwYXJhbGxlbG8sIHBvaSBsYSBzZXJpZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVuIHJlc2lzdG9yZSByIMOoIGVzdGVybm8gYWwgcGFyYWxsZWxvIHIsUi4gQ29uIHIgZVIgZW50cmFtYmkyIG9obSBpbCBwYXJhbGxlbG8gdmFsZTEgZSBpbCB0b3RhbGUzLiBDb24gcjMgZVI2IG9obSBpbCBwYXJhbGxlbG8gdmFsZTIgZSBpbCB0b3RhbGU1LiBMYSBtZWRpYSBkZWkgZHVlIHRvdGFsaSDDqDQgb2htLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDYwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IExvIHN0ZXNzbyByIGluIGR1ZSBwb3Npemlvbmk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MiIgZm9udC1zaXplPSIxOCI+SWwgcmVzaXN0b3JlIGVzdGVybm8gbm9uIGNvbmRpdmlkZSBpIGR1ZSBub2RpIGRlbCBibG9jY28uPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTYwIDI0MEgxMjBNMjIwIDI0MEgzMDBWMTY1SDM4ME00ODAgMTY1SDU1MFYzMTVINDgwTTM4MCAzMTVIMzAwVjI0ME01NTAgMjQwSDU5MCIvPjxyZWN0IHg9IjEyMCIgeT0iMjIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMzgwIiB5PSIxNDUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSIzODAiIHk9IjI5NSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MCIvPjwvZz4KPGNpcmNsZSBjeD0iMzAwIiBjeT0iMjQwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNTUwIiBjeT0iMjQwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjE0MyIgeT0iMTk4Ij5yID0gMiDOqTwvdGV4dD48dGV4dCB4PSIzODEiIHk9IjEzMCI+ciA9IDIgzqk8L3RleHQ+PHRleHQgeD0iMzgxIiB5PSIzNzUiPlIgPSAyIM6pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDIyIj5JbCBibG9jY28gaW50ZXJubyB2YWxlIDEgzqkgOyBUID0gMiDOqSArIDEgzqkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDY0SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1MDkiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IENvbnRyaWJ1dGkgYWwgdG90YWxlLCBpbiBvaG08L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMTgiPkJsdTogcmVzaXN0b3JlIGVzdGVybm8gOyB2ZXJkZTogcGFyYWxsZWxvIGludGVybm8uPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDU4NVY4MjAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iNjEwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIyMzAiIHk9IjYxMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjg2NjRkIi8+CjxyZWN0IHg9IjE1MCIgeT0iNzIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMjcwIiB5PSI3MjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iNjM4Ij5BPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iNjM4Ij4yIM6pICsgMSDOqSA9IDMgzqk8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSI3NDgiPkI8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSI3NDgiPjMgzqkgKyAyIM6pID0gNSDOqTwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjgxNCI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg3MyIgZm9udC1zaXplPSIxOCI+QTogciA9IFIgPSAyIM6pIDsgQjogciA9IDMgzqksUiA9IDYgzqkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTExIiBmb250LXNpemU9IjE4Ij5TdGVzc2Egb3JpZ2luZSBlIHN0ZXNzYSBzY2FsYSBwZXIgZW50cmFtYmkgaSBzZWdtZW50aS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NTJINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijk5NyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTGEgbWVkaWEgZGVpIGR1ZSB0b3RhbGk8L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTA0MFYxMzEwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjEwNjAiIHdpZHRoPSIxODAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNTAiIHk9IjExNDUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz48cmVjdCB4PSIxNTAiIHk9IjEyMzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9IjEwODUiPkE8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSIxMDg1Ij4zIM6pPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxMTcwIj5CPC90ZXh0Pjx0ZXh0IHg9IjQ3MCIgeT0iMTE3MCI+NSDOqTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNTUiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iMTI1NSI+NCDOqTwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjEzMDQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzYwIiBmb250LXNpemU9IjE4Ij5CYXJyZSBkZWwgdG90YWxlIGNvbiBvcmlnaW5lIGUgc2NhbGEgY29tdW5pLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQwMCIgZm9udC1zaXplPSIxOCI+QWkgZGF0aSBtZWRpOiBUID0gMTA1LzI2IM6pLCBkaXZlcnNvIGRhIDQgzqkuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

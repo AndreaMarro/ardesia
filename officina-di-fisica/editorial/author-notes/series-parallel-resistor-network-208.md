@@ -141,3 +141,7 @@ Il parallelo fra due resistenze uguali vale R/2; il tratto esterno vale ancora R
 Passaggi: `R_p=\frac R2\qquad T=\frac32R\qquad R=\frac23T\qquad R=2\,\Omega`
 
 Distrattori: Uno Ω copia il solo parallelo della prova corretta. Tre Ω copia il totale e−2 Ω viola la passività. La misura positiva fissa una scala unica dopo il vincolo.
+
+## Rilettura richiesta dal revisore distinto
+
+Didascalia01 chiarisce scala comune entro ciascun pannello e scale indipendenti fra pannelli. SVG byte-identico; immagine precedente valida per gli stessi byte. Tutte le chiavi, i dati e i domini restano invariati; gli altri record sono stati confrontati con l’archivio byte-identico. Nessuna firma scientifica dell’autore. Due assembly finali identici e import temporaneo16→0/16 reali;991 pubblicati invariati. UI prodotto e approvazione umana NOT_RUN.
