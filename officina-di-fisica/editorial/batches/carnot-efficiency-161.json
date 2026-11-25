@@ -1,0 +1,1140 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-carnot-efficiency-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16101,
+      "title": "Il limite reversibile fra due sorgenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 1,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. T_h=400 K e T_c=200 K. Quanto vale η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "200"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il teorema di Carnot dà η=1−T_c/T_h. Il rapporto fra200 K e400 K è un mezzo; il complemento a uno è ancora un mezzo. La differenza di temperatura200 K non è un rendimento: va rapportata alla temperatura calda assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2589782b9763036abe301d9f205b540b8affb2b2fcabaaa48747bfc7fcdb6743",
+          "text": "Le due altezze delle temperature assolute400 K e200 K usano lo stesso zero e la scala1/2 px/K. Il rapporto fredda/calda è1/2 e il rendimento1/2. Il pannello energetico è un esempio aggiuntivo compatibile, con Q_h=100 J,Q_c=50 J,W=50 J: queste energie non sono determinate dalle sole temperature. Le barre energetiche usano3 px/J e non la scala termica. L’ultimo pannello mostra A conη=1/2 e B900 K/300 K conη=2/3, alla scala360 px per unità di rendimento."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1-\\frac{200}{400}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto caldo/freddo, un quarto ne introduce un quadrato e uno ignorerebbe il calore ceduto a una sorgente fredda con T_c>0. Duecento è una differenza di temperature in K, non un numero puro."
+        }
+      ],
+      "hints": [
+        "Dividi le temperature assolute e poi sottrai da uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto caldo/freddo, un quarto ne introduce un quadrato e uno ignorerebbe il calore ceduto a una sorgente fredda con T_c>0. Duecento è una differenza di temperature in K, non un numero puro.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16102,
+      "title": "Due kelvin si cancellano nel rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 1,
+      "prompt": "Per una macchina di Carnot η=1−T_c/T_h, con temperature assolute. Quale unità ha η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 (adimensionale)",
+          "K",
+          "J",
+          "W",
+          "K⁻¹"
+        ],
+        "value": "1 (adimensionale)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto T_c/T_h ha unità K/K=1 e può essere sottratto da uno. Il rendimento è quindi puro. La scelta dei kelvin è essenziale per il valore del rapporto: cambiare lo zero della scala con una trasformazione affine non mantiene il rapporto dei numeri."
+        },
+        {
+          "type": "formula",
+          "text": "[T_c/T_h]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=1"
+        },
+        {
+          "type": "text",
+          "text": "K sarebbe adatto alla differenza fra temperature, J a un calore e W a una potenza. K⁻¹ è dimensione di un reciproco di temperatura, non di un rapporto fra due temperature."
+        }
+      ],
+      "hints": [
+        "Non confondere la dimensione del rapporto con quella dei suoi termini.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K sarebbe adatto alla differenza fra temperature, J a un calore e W a una potenza. K⁻¹ è dimensione di un reciproco di temperatura, non di un rapporto fra due temperature.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16103,
+      "title": "Il fluido non cambia il limite di Carnot",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 1,
+      "prompt": "Due macchine ideali reversibili compiono cicli fra le stesse due sorgenti T_h>T_c>0, ma usano fluidi operanti diversi. Quale confronto dei rendimenti è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Hanno lo stesso rendimento 1 − T_c/T_h",
+          "Il gas più pesante ha sempre rendimento maggiore",
+          "Il fluido con capacità termica maggiore ha sempre rendimento maggiore",
+          "Il rendimento dipende soltanto dal numero di moli",
+          "È impossibile confrontarle senza conoscere i calori assorbiti"
+        ],
+        "value": "Hanno lo stesso rendimento 1 − T_c/T_h"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il teorema di Carnot fissa il rendimento di tutte le macchine reversibili fra la medesima coppia di sorgenti. Il fluido e i dettagli del ciclo possono cambiare le energie scambiate e il lavoro per ciclo, ma non il loro rapporto η=1−T_c/T_h. Non si deduce che le due macchine compiano lo stesso lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_1=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_2=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_1=\\eta_2"
+        },
+        {
+          "type": "text",
+          "text": "Massa molecolare, capacità termica e numero di moli possono incidere sul ciclo concreto, non sul rendimento reversibile fra sorgenti fissate. Conoscere Q_h serve per W=ηQ_h, non per confrontare questi rendimenti."
+        }
+      ],
+      "hints": [
+        "Individua le ipotesi comuni: reversibilità e stesse due sorgenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Massa molecolare, capacità termica e numero di moli possono incidere sul ciclo concreto, non sul rendimento reversibile fra sorgenti fissate. Conoscere Q_h serve per W=ηQ_h, non per confrontare questi rendimenti.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16104,
+      "title": "Una sorgente calda più calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 1,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. A usa T_h=400 K,T_c=200 K. B usa T_h=600 K e mantiene T_c=200 K. Come cambia η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a 2/3",
+          "Da 1/2 a 3/4",
+          "Da 1/2 a 1/3",
+          "Resta 1/2",
+          "Da 1/2 a 1"
+        ],
+        "value": "Da 1/2 a 2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha rendimento un mezzo. In B il rapporto freddo/caldo è200/600=1/3, perciò η_B=2/3. Aumentare T_h con T_c fissa aumenta il rendimento, ma non lo rende unitario a una temperatura calda finita."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=1-\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti moltiplica direttamente η_A per il fattore3/2 su T_h, ma la legge contiene un complemento. Un terzo è la quota ceduta; un mezzo ignora il cambiamento e uno richiederebbe T_c=0 in questa formula."
+        }
+      ],
+      "hints": [
+        "Ricalcola prima T_c/T_h, non il solo fattore su T_h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre quarti moltiplica direttamente η_A per il fattore3/2 su T_h, ma la legge contiene un complemento. Un terzo è la quota ceduta; un mezzo ignora il cambiamento e uno richiederebbe T_c=0 in questa formula.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16105,
+      "title": "La temperatura calda dall’efficienza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. η=1/2 e T_c=200 K. Quanto vale T_h in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione T_c/T_h è1−η=1/2. Duecento kelvin sono metà della temperatura calda: l’inversa dà200/(1/2)=400 K. Il valore supera T_c e rispetta il dominio motore."
+        },
+        {
+          "type": "formula",
+          "text": "1-\\eta=\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=\\frac{T_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Cento K moltiplica per un mezzo invece di dividere e sarebbe minore di T_c. Duecento K annullerebbe il rendimento. I400 K non significano400 °C: il risultato è sulla scala assoluta."
+        }
+      ],
+      "hints": [
+        "L’incognita è al denominatore: elimina il rapporto prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento K moltiplica per un mezzo invece di dividere e sarebbe minore di T_c. Duecento K annullerebbe il rendimento. I400 K non significano400 °C: il risultato è sulla scala assoluta.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16106,
+      "title": "La sorgente fredda compatibile con η",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. η=1/2 e T_h=400 K. Quanto vale T_c in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione di temperatura fredda è1−η=1/2. Moltiplicandola per400 K otteniamo200 K. Questo dato è strettamente positivo e inferiore a T_h, quindi non richiede il limite non fisico T_c=0."
+        },
+        {
+          "type": "formula",
+          "text": "T_c=(1-\\eta)T_h"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=\\frac12\\,400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Ottocento K dividerebbe per un mezzo e violerebbe T_c<T_h. Quattrocento K darebbe η=0; zero darebbeη=1, diverso dal dato. L’inversa usa il complemento del rendimento."
+        }
+      ],
+      "hints": [
+        "Ricava T_c/T_h prima di moltiplicare per T_h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottocento K dividerebbe per un mezzo e violerebbe T_c<T_h. Quattrocento K darebbe η=0; zero darebbeη=1, diverso dal dato. L’inversa usa il complemento del rendimento.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16107,
+      "title": "Riscaldare la sorgente fredda riduce il rendimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. A usa T_h=400 K,T_c=200 K. B mantiene T_h e porta T_c a300 K. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "2/3",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A haη=1/2. In B la quota ceduta reversibile è300/400=3/4 e il rendimento è1/4. Un quarto diviso un mezzo dà un mezzo: la differenza fra le temperature si è ridotta, pur lasciando il ramo T_h>T_c."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=1-\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto; tre mezzi segue solo T_c e due terzi il suo inverso. Uno ignora la minore differenza fra sorgenti. La variazione del rendimento non segue direttamente T_c."
+        }
+      ],
+      "hints": [
+        "Valuta il complemento di ciascun rapporto termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto; tre mezzi segue solo T_c e due terzi il suo inverso. Uno ignora la minore differenza fra sorgenti. La variazione del rendimento non segue direttamente T_c.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16108,
+      "title": "Il rendimento unitario proposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. T_h=400 K e T_c=200 K. Si propone η=1. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1",
+          "0",
+          "2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento corretto è un mezzo. La proposta uno lo supera di un mezzo. Con T_c>0 e T_h finita, il termine T_c/T_h è positivo e il rendimento di Carnot rimane strettamente minore di uno."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " e=1-\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Meno un mezzo scambia l’ordine dello scarto. Uno copia la proposta, zero la accetta e due è T_h/T_c. L’uguaglianza η=1 non segue dalla sola reversibilità."
+        }
+      ],
+      "hints": [
+        "Una macchina reversibile non significa che scarichi zero calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno un mezzo scambia l’ordine dello scarto. Uno copia la proposta, zero la accetta e due è T_h/T_c. L’uguaglianza η=1 non segue dalla sola reversibilità.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16109,
+      "title": "L’inversa simbolica richiede η minore di uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. Sono noti T_c e0<η<1. Quale formula ricava T_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T_h = T_c / (1 − η)",
+          "T_h = T_c / η",
+          "T_h = (1 − η) T_c",
+          "T_h = T_c / (η − 1)",
+          "T_h = η / T_c"
+        ],
+        "value": "T_h = T_c / (1 − η)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla formula di Carnot si ricava(1−η)T_h=T_c. Dividendo per il coefficiente positivo1−η si trova T_h=T_c/(1−η). Poiché tale coefficiente è minore di uno, T_h supera T_c. η=1 non appartiene al dominio dell’inversa."
+        },
+        {
+          "type": "formula",
+          "text": "(1-\\eta)T_h=T_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=\\frac{T_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h>T_c>0"
+        },
+        {
+          "type": "text",
+          "text": "T_c/η sostituisce la frazione complementare con quella utile: coincide per caso aη=1/2, ma non in generale. Moltiplicare non isola T_h; dividere perη−1 la rende negativa. η/T_c ha unità K⁻¹."
+        }
+      ],
+      "hints": [
+        "Controlla l’inversa anche a un rendimento diverso da un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "T_c/η sostituisce la frazione complementare con quella utile: coincide per caso aη=1/2, ma non in generale. Moltiplicare non isola T_h; dividere perη−1 la rende negativa. η/T_c ha unità K⁻¹.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16110,
+      "title": "Due nuove temperature, due domini da mantenere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. B usa T_h,B=κ₁T_h e T_c,B=κ₂T_c, dove i simboli senza pedice sono di A. κ₁,κ₂>0 eκ₁T_h>κ₂T_c. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ T_h − κ₂ T_c) / [κ₁ (T_h − T_c)]",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ T_h − κ₂ T_c) / (T_h − T_c)",
+          "κ₁ − κ₂"
+        ],
+        "value": "(κ₁ T_h − κ₂ T_c) / [κ₁ (T_h − T_c)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni rendimento è la differenza delle temperature divisa per la propria temperatura calda. Per B il denominatore èκ₁T_h; nel rapporto con A si cancella T_h e rimane l’espressione indicata. La disuguaglianza del testo mantiene B come motore fra due sorgenti ordinate. Un fattore comune sulle temperature assolute lascia il rendimento invariato."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_B=1-\\frac{\\kappa_2T_c}{\\kappa_1T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_A=1-\\frac{T_c}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac{\\kappa_1T_h-\\kappa_2T_c}{\\kappa_1(T_h-T_c)}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ ignora il complemento a uno, il prodotto non resta uno per fattori comuni. Omettereκ₁ dal denominatore dà il rapporto delle differenze termiche, non dei rendimenti. κ₁−κ₂ si annullerebbe per prove identiche."
+        }
+      ],
+      "hints": [
+        "Le temperature calde compaiono anche nei denominatori dei rendimenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ ignora il complemento a uno, il prodotto non resta uno per fattori comuni. Omettereκ₁ dal denominatore dà il rapporto delle differenze termiche, non dei rendimenti. κ₁−κ₂ si annullerebbe per prove identiche.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16111,
+      "title": "Un confronto con temperature tutte diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. A usa T_h=400 K,T_c=200 K. B usa T_h=900 K,T_c=300 K. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "9/4",
+          "3/2",
+          "2/3"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha rendimento1/2. Per B il rapporto300/900 è1/3 e il rendimento2/3. Dividere due terzi per un mezzo dà quattro terzi. Il rapporto fra due rendimenti può superare uno anche se ciascun rendimento resta minore di uno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2589782b9763036abe301d9f205b540b8affb2b2fcabaaa48747bfc7fcdb6743",
+          "text": "L’ultimo pannello confronta i rendimenti A=1/2 e B=2/3, con barre180 px e240 px a360 px per unità; il rapporto è4/3. Le barre termiche iniziali riguardano soltanto A e usano kelvin assoluti. Il pannello energetico è una realizzazione possibile, non un’inferenza del lavoro dalle sole temperature."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti capovolge il confronto. Nove quarti segue soltanto T_h e tre mezzi soltanto T_c. Due terzi è il rendimento B, non il rapporto B/A. Nessuna potenza o lavoro è determinato senza conoscere anche il calore assorbito."
+        }
+      ],
+      "hints": [
+        "Riduci i rapporti termici prima del rapporto fra rendimenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti capovolge il confronto. Nove quarti segue soltanto T_h e tre mezzi soltanto T_c. Due terzi è il rendimento B, non il rapporto B/A. Nessuna potenza o lavoro è determinato senza conoscere anche il calore assorbito.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16112,
+      "title": "La media non si calcola sulle temperature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 2,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. A usa T_h=400 K,T_c=200 K. B usa T_h=900 K,T_c=300 K. Qual è la media aritmetica dei due η con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/12",
+          "8/13",
+          "7/6",
+          "1/6",
+          "2/3"
+        ],
+        "value": "7/12"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rendimenti1/2 e2/3 si scrivono3/6 e4/6. La metà della somma7/6 è7/12. Le temperature medie sarebbero650 K e250 K: il rendimento valutato su quelle è1−250/650=8/13. Il rapporto non è lineare, perciò questa è una diversa operazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\eta=\\frac{\\frac12+\\frac23}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\eta=\\frac7{12}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_{\\rm temperature\\ medie}=\\frac8{13}"
+        },
+        {
+          "type": "text",
+          "text": "Otto tredicesimi usa le temperature medie; sette sesti non divide per due. Un sesto è la differenza dei rendimenti e due terzi copia B. Il confronto esatto7·13=91 e8·12=96 prova che le due medie non coincidono senza usare decimali."
+        }
+      ],
+      "hints": [
+        "Media le uscite del modello, non sostituire medie ai suoi ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto tredicesimi usa le temperature medie; sette sesti non divide per due. Un sesto è la differenza dei rendimenti e due terzi copia B. Il confronto esatto7·13=91 e8·12=96 prova che le due medie non coincidono senza usare decimali.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16113,
+      "title": "Ricostruire la temperatura fredda del bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 3,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. A usa T_h=400 K,T_c,A=200 K. B ha T_h,B=900 K e deve avere η_B=(4/3)η_A. Quanto vale T_c,B/T_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "4/3",
+          "9/4",
+          "1/3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è quattro terzi di un mezzo, due terzi. La quota complementare è un terzo, quindi T_c,B=(1/3)900 K=300 K. Il rapporto300/200 è tre mezzi. Il dato ricostruito è positivo e sotto900 K."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_B=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=(1-\\eta_B)T_{h,B}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}/T_{c,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il rapporto, quattro terzi copia il bersaglio sui rendimenti e nove quarti segue le temperature calde. Un terzo è T_c,B/T_h,B, con un denominatore diverso da quello richiesto."
+        }
+      ],
+      "hints": [
+        "Trova T_c,B dalla quota complementare e poi confrontala con T_c,A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il rapporto, quattro terzi copia il bersaglio sui rendimenti e nove quarti segue le temperature calde. Un terzo è T_c,B/T_h,B, con un denominatore diverso da quello richiesto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16114,
+      "title": "Un display continuo sul rendimento di Carnot",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 3,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. S=qη è un display continuo adimensionale con q>0 costante. A: T_h=400 K,T_c=200 K,S=3/2. B: T_c=300 K,S=2. Quanto vale T_h,B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 900,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A haη=1/2: q=(3/2)/(1/2)=3. La lettura B di due dàη_B=2/3. Il complemento è1/3 e T_h,B=300/(1/3)=900 K. Il valore della lettura può superare uno perché è amplificato da q; il rendimento fisico resta sotto uno."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=\\frac{300}{1/3}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=900\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Trecento K copia la sorgente fredda e darebbeη=0. Quattrocentocinquanta K divide perη_B invece di1−η_B. Usare S=2 come rendimento viola il dominio; la taratura serve prima dell’inversa."
+        }
+      ],
+      "hints": [
+        "Non applicare il limiteη<1 direttamente alla lettura amplificata S.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trecento K copia la sorgente fredda e darebbeη=0. Quattrocentocinquanta K divide perη_B invece di1−η_B. Usare S=2 come rendimento viola il dominio; la taratura serve prima dell’inversa.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16115,
+      "title": "Due riferimenti per la taratura affine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 3,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. Il display continuo è S=qη+b, con q>0 e q,b costanti. A: T_h=400 K,T_c=200 K,S=2. B: T_h=900 K,T_c=300 K,S=7/3. C: T_c=600 K,S=5/3. Quanto vale T_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "900 K",
+          "1200 K",
+          "1800 K",
+          "3600 K",
+          "300 K"
+        ],
+        "value": "900 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hannoη=1/2 e2/3. Il rapporto delle differenze(1/3)/(1/6) dàq=2, poi b=1. C haη_C=(5/3−1)/2=1/3. Il complemento è2/3, quindi600 K diviso2/3 dà900 K. La sorgente calda resta sopra quella fredda."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,C}=\\frac{600}{2/3}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,C}=900\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Milleduecento K imporrebbeη=1/2 eS=2. Milleottocento divide perη_C invece di1−η_C. Tremilaseicento omette l’offset e usaη=5/6. Trecento K viola T_h>T_c e non descrive la macchina motrice dichiarata."
+        }
+      ],
+      "hints": [
+        "Ricava primaη_C, poi isola T_h sulla legge termodinamica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Milleduecento K imporrebbeη=1/2 eS=2. Milleottocento divide perη_C invece di1−η_C. Tremilaseicento omette l’offset e usaη=5/6. Trecento K viola T_h>T_c e non descrive la macchina motrice dichiarata.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-carnot-efficiency-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Carnot e temperature assolute",
+      "order": 16116,
+      "title": "Un rapporto di temperature non fissa la loro scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "carnot-efficiency",
+      "difficulty": 3,
+      "prompt": "Si considera una macchina di Carnot ideale, ciclica e reversibile, che scambia calore soltanto con due sorgenti ideali a temperature assolute T_h>T_c>0. Ciascuna sorgente mantiene la propria temperatura costante durante una prova; fra prove le temperature possono cambiare come dichiarato. η è il rendimento del lavoro netto rispetto al calore assorbito. Tutte le temperature riportate sono in kelvin, e non letture Celsius. Fra prove vale T_h=2T_c. Una misura dàη=1/2. Quali T_c>0 sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni T_c>0, con T_h=2T_c",
+          "Solo T_c=200 K",
+          "Solo T_c=1/2 K",
+          "Nessuna",
+          "Solo T_c=0 K"
+        ],
+        "value": "Infinite: ogni T_c>0, con T_h=2T_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sostituzioneη=1−T_c/(2T_c) dà1/2 per ogni temperatura fredda positiva. La misura ripete il vincolo di rapporto e non ne determina la scala. Per esempio200 K/400 K e300 K/600 K sono entrambe coppie valide ordinate fredda/calda."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=1-\\frac{T_c}{2T_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac12\\quad(T_c>0)"
+        },
+        {
+          "type": "text",
+          "text": "Duecento K è un esempio, non un valore imposto. Mezzo kelvin confonde il rendimento puro con una temperatura. Nessuna ignora le coppie valide e zero è escluso: con il vincolo renderebbe nulle entrambe le temperature e il rapporto non definito."
+        }
+      ],
+      "hints": [
+        "Controlla se l’equazione della misura si riduce a un’identità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Duecento K è un esempio, non un valore imposto. Mezzo kelvin confonde il rendimento puro con una temperatura. Nessuna ignora le coppie valide e zero è escluso: con il vincolo renderebbe nulle entrambe le temperature e il rapporto non definito.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Reversibilità e universalità di Carnot",
+        "Rapporti in kelvin e domini fisici",
+        "Inverse, medie, display e dati ridondanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2589782b9763036abe301d9f205b540b8affb2b2fcabaaa48747bfc7fcdb6743",
+      "name": "carnot-efficiency-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM3MCIgdmlld0JveD0iMCAwIDY0MCAxMzcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2Fybm90OiB0ZW1wZXJhdHVyZSBlIHJlbmRpbWVudG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UZW1wZXJhdHVyZSBhc3NvbHV0ZTQwMCBlMjAwIGtlbHZpbiBhbGxhIHN0ZXNzYSBzY2FsYSBjb24gb3JpZ2luZSB6ZXJvLiBVbmEgcmVhbGl6emF6aW9uZSBlbmVyZ2V0aWNhIGFnZ2l1bnRpdmExMDAgam91bGUgaW4gaW5ncmVzc28sNTAgY2VkdXRpIGU1MCBkaSBsYXZvcm8uIENvbmZyb250byBkZWkgcmVuZGltZW50aSBkaTQwMC8yMDAga2VsdmluIGU5MDAvMzAwIGtlbHZpbi4gTGUgc2NhbGUgZGVpIHRyZSBwYW5uZWxsaSBzb25vIGRpc3RpbnRlLjwvZGVzYz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzNzAiIHJ4PSIyMCIgZmlsbD0iI2Y1ZmFmZiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMDQ3Ij48dGV4dCB4PSIzNSIgeT0iNTAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IElsIHJhcHBvcnRvIHVzYSBsbyB6ZXJvIGFzc29sdXRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDAiPlNjYWxhIGNvbXVuZTogMS8yIHB4L0sgwrcgQTwvdGV4dD48cGF0aCBkPSJNODAgMTIwVjM2MEg1MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3Mzk0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTQwIiB5PSIxNjAiIHdpZHRoPSI4NSIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNjNzdjNDciLz48cmVjdCB4PSIzNTAiIHk9IjI2MCIgd2lkdGg9Ijg1IiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzQ0N2Y5OSIvPjx0ZXh0IHg9IjE0MCIgeT0iMTQwIj40MDAgSzwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjI0MCI+MjAwIEs8L3RleHQ+PHRleHQgeD0iMTQwIiB5PSIzOTUiPlRfaDwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjM5NSI+VF9jPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSIzNjUiPjAgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDQ1Ij7Ot19BID0gMSDiiJIgMjAwLzQwMCA9IDEvMjwvdGV4dD48cGF0aCBkPSJNMzUgNDkwSDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjU0NSIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgVW4gcG9zc2liaWxlIGJpbGFuY2lvIGVuZXJnZXRpY288L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU5MCI+RXNlbXBpbyBhZ2dpdW50aXZvOiBRX2ggPSAxMDAgSiDCtyBBPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzAiPkJhcnJlIGRhIHplcm8sIHNjYWxhIGNvbXVuZSAzIHB4L0o8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSI2NzUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiMxNjMwNDciLz48dGV4dCB4PSIxNzAiIHk9IjcwNSIgZmlsbD0id2hpdGUiPlFfaCA9IDEwMCBKPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iNzU1IiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMzk3NDViIi8+PHJlY3QgeD0iMjUwIiB5PSI3NTUiIHdpZHRoPSIxNTAiIGhlaWdodD0iNDUiIGZpbGw9IiMxOTYwODIiLz48dGV4dCB4PSIxMTUiIHk9Ijc4NSIgZmlsbD0id2hpdGUiPlFfYyA9IDUwIEo8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSI3ODUiIGZpbGw9IndoaXRlIj5XID0gNTAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODUwIj5MZSBzb2xlIHRlbXBlcmF0dXJlIG5vbiBmaXNzYW5vIFFfaCBvIFcuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4OTAiPkZpc3Nhbm8gaWwgcmFwcG9ydG8gVy9RX2ggPSAxLzIuPC90ZXh0PjxwYXRoIGQ9Ik0zNSA5MzVINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iOTkwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBEdWUgcmVuZGltZW50aSwgbm9uIGR1ZSBsYXZvcmk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMzUiPkE6IDQwMCBLIC8gMjAwIEsgwrcgQjogOTAwIEsgLyAzMDAgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA4MCI+U2NhbGE6IDM2MCBweCBwZXIgdW5pdMOgIGRpIHJlbmRpbWVudG88L3RleHQ+PHRleHQgeD0iNTAiIHk9IjExNTAiPkE8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMTI1IiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMzM1IiB5PSIxMTUwIj4xLzI8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjEyMjAiPkI8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMTk1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMzk1IiB5PSIxMjIwIj4yLzM8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyOTAiPs63X0IgLyDOt19BID0gKDIvMykgLyAoMS8yKSA9IDQvMzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTMzNSI+RW50cmFtYmkgaSByZW5kaW1lbnRpIHJlc3Rhbm8gbWlub3JpIGRpIDEuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
