@@ -1,3 +1,23 @@
+## Stato operativo — runtime corretto, riesecuzione completa in corso
+
+Aggiornato 2026-11-25T05:03:31.037528+00:00. HEAD canonico nuovamente verificato su `831b73fa71076b2e9b363006ffd94a350f22fe90`: PR #363 MERGED, conteggio storico 1.728 quesiti/204 attività e CI post-merge 14/14 SUCCESS. L'accettazione visiva storica di LAB3D-01 è stata ritirata: fino all'integrazione della correzione sono 203 le attività con accettazione ancora valida sul canone. Non confondere questo difetto con il distinto controesempio μd>μs, già ritirato perché fuori dal dominio UI.
+
+PR [#364](https://github.com/AndreaMarro/ardesia/pull/364) DRAFT, head `5a9a0b8fe700034dc2494fe1fce2223ded89bb50`: tutti i 25 controlli tecnici SUCCESS e uno SKIPPED, ma **non integrare questa vecchia head**. Il checkpoint 2.048 quesiti/214 attività, generazione `90d05fb5`, rimane uno snapshot storico del runtime f897; l'accettazione di una di quelle 214 attività è stata ritirata. La release 2048 è storica, non la distribuzione finale della correzione.
+
+ROOT `/private/tmp/cric-resident-integrator`, ramo `feat/cric-experiment-manual-revisions`. Runtime congelato `54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d`. Correzione LAB3D-01 verificata da autore e revisore distinti: frecce con scala comune, base geometrica coerente, nessun taglio o sovrapposizione nei 168 layout effettivi; 28.560 configurazioni indipendenti. Conservati i precedenti esiti negativi e il falso GREEN causato da un comando shell che mascherava exit 1; il test corretto ha ora un vero exit 0, 4 test mirati, 264 test Node e 2 test di contratto. Vedere i report di ritiro e chiusura in `editorial/reviews/bench-piano2d-*`.
+
+035/036/039/040 sono stati realmente rieseguiti sul runtime 5405; nessun hash storico ritoccato. Le 16 attività di 118/119/140 hanno review scientifica distinta completa, 162 controlli, 271 input e 58 casi consumer. Tre nuove edizioni DRAFT correggono i campionamenti assegnati; il banco mostra le spiegazioni nel lettore esistente. 93 esami protetti, cronologia, tentativi e pubblicazioni restano preservati.
+
+Riesecuzione generale attiva: 147 pacchetti, 6.531 casi attesi, quattro worker; runner esistente esteso con marker atomici di conclusione, hash e invalidazione selettiva, 36 test PASS. Output `/private/tmp/cric-runtime5405-all-ui`, log omonimo `.log`. Sono stati recuperati soltanto 54 casi con marker terminali autentici e tutti gli input identici; mai creati marker a partire da soli report. Il precedente replay 97cd è stato interrotto ed è storico. Durante questo run non modificare runtime, runner, registry o pacchetti registrati.
+
+I 112 quesiti U4-02 (141–147) hanno review incrociata completa, correzione delle ipotesi di 144 riletta e prove persistite. Registry esteso a questi lotti e ai 16 esperimenti, ma **nessun nuovo credito di checkpoint** finché tutti i gate attuali non passano. Prossimo checkpoint possibile: 2.160 quesiti/230 attività; il puntatore effettivo resta quello storico 2048. Prossimo ID operativo da consolidare `u4-wave-amplitude-energy-01`. Gli 80 candidati U5-01 di 148–152 sono salvati su ROOT, quelli 153–157 proseguono con verificatori distinti; nessun credito per il solo authoring.
+
+045 resta fuori registro: sei esperienze lette, quattro PASS e due FAIL consumer. SIM-C1-L006-02 nasconde nel corpo opaco la freccia non nulla di Hooke; SIM-C1-L007-02 mostra 0 W per una media su intervallo nullo senza qualificazione. Leggi e conti assegnati corretti, difetti distinti e riproducibili. 046 continua sulle dieci esperienze C1 rimanenti. Raccogliere i rilievi prima di un successivo cambio runtime; non invalidare il replay corrente per pacchetti ancora fuori registro.
+
+Approvazioni umane NOT_RUN; nuove pubblicazioni 0; 100 revisioni Pro NOT_IDENTIFIED; 199 controlli tecnici recuperati non sono revisioni complete. Il mandato resta aperto. Le sezioni seguenti sono snapshot storici, non lo stato attuale.
+
+---
+
 ## Stato operativo — PR #364 in CI, runtime nuovo in rivalidazione
 
 Ultimo checkpoint integralmente validato: 2.048 quesiti DRAFT e 214 attività, generazione 90d05fb5, sulla SHA `5a9a0b8fe700034dc2494fe1fce2223ded89bb50`, runtime f897. [PR #364](https://github.com/AndreaMarro/ardesia/pull/364) aperta e congelata su quella SHA; CI in corso, nessun merge dichiarato. Release 2048 riproducibile/smoke e boundary verificati, SHA256 `a62a386c649b4b90bf40f6e4c233cb3ad21af3135bdcc1dc49eeb144f4130eb5`, zero sorgenti e figure DRAFT distribuiti.
