@@ -1,10 +1,10 @@
 # Authoring DRAFT — series-capacitor-voltage-222
 
-Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Riletta integralmente la lezione reale C4-L07, capacità come Q/V, geometria piana, lavoro di carica e distinzione fra condensatore isolato e collegato; prerequisiti reali C4-L01/L03/L04 e C1-L001. Nessuna nuova lezione inventata.
+Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Rilette integralmente le lezioni reali C4-L07 e C4-L08: L07 definisce il singolo condensatore e resta prerequisito; L08 tratta reti, tensioni in serie, carica dei nodi e dissipazione nella condivisione ed è la competenza primaria corretta dei presenti quesiti. Prerequisiti reali C4-L01/L03/L04/L07/L08 e C1-L001. Nessuna nuova lezione inventata.
 
 Prima di candidature U604 entrambi i revisori avevano congelato la propria primaria: B per A220–224 SHA08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58 (non aperta dall’autore); A per B225–229 SHA1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a, lettura solo allowlist id/prompt senza opzioni o chiavi altrui.
 
-Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. Importatore canonico ROOT read-only su SQLite temporaneo: 16 nuovi, poi 0 nuovi e 16 invariati, 991 pubblicati e relativo storico invariati. Sono prove tecniche, senza accredito d’integrazione.
+Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. L’import positivo 16→0/16 con 991 pubblicati invariati appartiene alla precedente edizione, preservata in archivio. Per i presenti byte con nuova mappatura, import PENDING_ROOT_REMOTE; non si trasferisce il precedente esito.
 
 Figura realmente prodotta nel browser soltanto come SVG inline a piena altezza, sotto mutex e guardia ≥2 GiB, processo terminale exit0. XML integrale e PNG intero sono stati letti; dimensioni e bounding box esatti nel manifest. Nessuna pagina dell’app aperta, nessun marker di UI prodotto creato o riusato. UI prodotto e layout a 320px NOT_RUN; collaudo canonico riservato all’integratore. I testi visibili usano grandezze fisiche, non metriche dell’implementazione.
 
@@ -20,7 +20,7 @@ Distrattori: Dodici V assegna tutta la caduta al primo e zero al secondo. Tre V 
 
 Hint: Trova la carica comune della serie e dividila per C₁.
 
-Fonte canonica SHA256 bf120f64c9b0f0d3d56e0b84bc770324f1e873fcef1181bbb754ab8c39839dec. Candidato SHA256 9c793fb87c80f03dbc0b834e4ebe533df10949a83e2cd15a6639d8853e5df881. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 bf120f64c9b0f0d3d56e0b84bc770324f1e873fcef1181bbb754ab8c39839dec. Candidato SHA256 278117189de664655c74c0e05d005a0df9961768ccfb348e246345f8a1cf2266. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-02 — L’unità della caduta
 
@@ -34,7 +34,7 @@ Distrattori: A misura corrente, μF capacità e W potenza. Il numero 1 è l’un
 
 Hint: Il rapporto delle capacità moltiplica una tensione.
 
-Fonte canonica SHA256 fa2054f4b867655f16d595b8ee7e8a6cc1da5abbd8b8ebec173e75ecc775eb90. Candidato SHA256 fc1fff35a64f029ce0c74d1a8f5a877d24a34534327318b8d4dd406cc5642b92. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 fa2054f4b867655f16d595b8ee7e8a6cc1da5abbd8b8ebec173e75ecc775eb90. Candidato SHA256 ea10c9ccd6d6600608ebcfd2dac968bbb31498409afcd46754d8305d17dfc207. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-03 — Carica comune, tensioni diverse
 
@@ -48,7 +48,7 @@ Distrattori: C₁ al numeratore dà la caduta sul secondo condensatore. Invertir
 
 Hint: Somma Q/C₁ e Q/C₂ e poi isola Q.
 
-Fonte canonica SHA256 e934f4ef2f5e533cbb4360e5711328b92d196308b1cc441d11bd09fd8c317780. Candidato SHA256 7511bbca9cc5e984ba27e73af02d43ed925e892f53414742477315daab2735bf. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 e934f4ef2f5e533cbb4360e5711328b92d196308b1cc441d11bd09fd8c317780. Candidato SHA256 bb316c9fa58d97c0402977d8c3dd7576b286132c1c65cd3f0d7fed9b9bfe0595. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-04 — Il primo condensatore diminuisce
 
@@ -62,7 +62,7 @@ Distrattori: Tre V rende la caduta direttamente proporzionale a C₁, sei la con
 
 Hint: La caduta sul componente più piccolo aumenta a tensione totale fissata.
 
-Fonte canonica SHA256 f1b4ba0e30f9e9e09684a374f093a43f7084a2c5fc6e466c7948656846be3a2c. Candidato SHA256 d7ef2a3ceb21052c51b082e523234d0a18415142a1315c08ae92b7b2f3187eeb. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 f1b4ba0e30f9e9e09684a374f093a43f7084a2c5fc6e466c7948656846be3a2c. Candidato SHA256 b33ec91c5ace61f7e1226f5dc23654c45451d2b9d294c9508c6308a57caf500c. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-05 — Ricostruire C₁
 
@@ -76,7 +76,7 @@ Distrattori: Sei μF darebbe V₁=3 V; quattro μF darebbe V₁=4 V. Sottrarre d
 
 Hint: Porta il termine V₁C₂ a destra prima di dividere per V₁.
 
-Fonte canonica SHA256 448c4e9addd00f77e9284be7612199ee8ca91045d6ed2ef809177ef932e213ce. Candidato SHA256 03e4bdb074cb06d71d370e762dc1cf4d01c6512b34ca730dd50afac06ba57aa6. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 448c4e9addd00f77e9284be7612199ee8ca91045d6ed2ef809177ef932e213ce. Candidato SHA256 e830fcaaf5805c491bc6c437cd2ae146d3f81436ad1becc15e3103922005cbc5. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-06 — Ricostruire C₂
 
@@ -90,7 +90,7 @@ Distrattori: Quattro μF darebbe V₁=8 V; un μF darebbe V₁=4 V. Sostituire E
 
 Hint: Raccogli C₂ e dividi per la tensione positiva E−V₁.
 
-Fonte canonica SHA256 508b4b3fa60ff0b12ec48391ee885b2d3f646a0071323eed62df26996934ce92. Candidato SHA256 4d467de4c4ea88e35cba4e9074153a5020cb878b01ebc33fcf80737a43cc4cb9. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 508b4b3fa60ff0b12ec48391ee885b2d3f646a0071323eed62df26996934ce92. Candidato SHA256 237c029f8955c55b26d29d0c6f6a92d4a501a6bb6d3e342e3ca0ab8f6740308f. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-07 — Il secondo condensatore aumenta
 
@@ -104,7 +104,7 @@ Distrattori: 3/4 inverte il confronto. Due segue soltanto C₂, mezzo ne inverte
 
 Hint: Valuta sia il numeratore sia il denominatore della nuova prova.
 
-Fonte canonica SHA256 72889de8fde0b454dcabe836e15b24ba076c604388a410a72710283f291935cf. Candidato SHA256 ce5bd54a83ce51ca7447dba47cdb548c5c2e66a20e38edfb4ce78b0ba998e8e1. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 72889de8fde0b454dcabe836e15b24ba076c604388a410a72710283f291935cf. Candidato SHA256 08ce61a4b328db6fcf1eb57761043b39cce3b928a2a0abda814dcdb6070cd354. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-08 — Scarto della tensione proposta
 
@@ -118,7 +118,7 @@ Distrattori: −6 V scambia l’ordine, dodici copia la proposta e zero la accet
 
 Hint: Dividi prima la tensione fra i due condensatori uguali.
 
-Fonte canonica SHA256 aad04bcb030140f6f80c5a61a4460eae8c515f09915d4991c12a69731c2b2c2a. Candidato SHA256 3cff80ed0b7a832b4f83661e0db40da0146192663c08bff875f6c22d94beb985. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 aad04bcb030140f6f80c5a61a4460eae8c515f09915d4991c12a69731c2b2c2a. Candidato SHA256 ca2946ae546b8e18a12a1ccdaf947f3cf5e04cef7afb950d213b622c72381640. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-09 — L’inversa nella prima capacità
 
@@ -132,7 +132,7 @@ Distrattori: Il più non isola il termine. C₂V₁/(E−V₁) inverte il rappor
 
 Hint: Controlla insieme l’algebra e il dominio 0<V₁<E.
 
-Fonte canonica SHA256 67b739baa8e6876566b93943c9812846f8146c3e6f6b429bfafd089f599c536d. Candidato SHA256 05dfb185442cc58b40f6e8190ae7a447bfc814a80555af2f1897c59a22a443e5. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 67b739baa8e6876566b93943c9812846f8146c3e6f6b429bfafd089f599c536d. Candidato SHA256 0f602e0b7c47fae6c2324e6a2fd24a3959067ab81be930d5e44bf2ef4e79c712. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-10 — Fattori separati nella somma
 
@@ -146,7 +146,7 @@ Distrattori: κ₁ al numeratore scala il componente sbagliato nella formula del
 
 Hint: Distingui il fattore dell’elemento inferiore dalla variazione del totale.
 
-Fonte canonica SHA256 8d4ec6ef4db474ed2b85610aa04e20349ac0d84fa8d44e6fb1e5232a90a0dc13. Candidato SHA256 8ecff7af23b48172db7008cca4eed507d0769558420e3a39091aa2b2882f153d. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 8d4ec6ef4db474ed2b85610aa04e20349ac0d84fa8d44e6fb1e5232a90a0dc13. Candidato SHA256 026f893c9f4f614c8513cd349595c6e1927b99c580789ba98a4933dbc34d0fec. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-11 — Nuova ripartizione elettrostatica
 
@@ -160,7 +160,7 @@ Distrattori: Due inverte il rapporto. 3/2 segue soltanto C₁; un terzo usa C₂
 
 Hint: Calcola la frazione inferiore in ciascuna prova.
 
-Fonte canonica SHA256 ebceba0fdbec71f445cfb3a2e89686a25dcd7322aa0d63367fcf00df015dca98. Candidato SHA256 97332850fc5286a76c366f035a7a59f53d771a593004f3f89b47205beb1c6351. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 ebceba0fdbec71f445cfb3a2e89686a25dcd7322aa0d63367fcf00df015dca98. Candidato SHA256 30574746d9177d2ca0141ea05124821fdd7d3f63a7bd76274ce8f3b8febf631f. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-12 — Media con somma comune
 
@@ -174,7 +174,7 @@ Distrattori: Nove V somma; 3/2 V è metà della differenza; sei e tre ripetono u
 
 Hint: Media le due tensioni già calcolate e controlla il totale comune.
 
-Fonte canonica SHA256 2908e23ccfae36ef8f3e4950eb8e865e8378c1471e2b7cd2c62f2784e89af17f. Candidato SHA256 ba10a2cfd5d93b45887fc22fc87a627a13f483f18254102c6253766f58288852. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 2908e23ccfae36ef8f3e4950eb8e865e8378c1471e2b7cd2c62f2784e89af17f. Candidato SHA256 487fe6dc604883e184f16425ac4e3dfb8c5acf1e31f6f83d9c79582ae3793b5b. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-13 — C₂ per la caduta bersaglio
 
@@ -188,7 +188,7 @@ Distrattori: Due inverte il confronto. Un terzo confronta C₂,B con C₁,B anzi
 
 Hint: Fissa la tensione bersaglio prima di invertire la legge.
 
-Fonte canonica SHA256 6058329c5a16f9d8db28608841727574a8ac8589478cfcd071e6258bb65946d3. Candidato SHA256 d4e714516b5e56c21952d1f4acf369197341a5953188985b4824355389c703f9. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 6058329c5a16f9d8db28608841727574a8ac8589478cfcd071e6258bb65946d3. Candidato SHA256 34db72eaa9b4c94ecfcd023c1fa1c4df30f2d82034ee94192dd91eec96ce2ccd. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-14 — Display proporzionale della caduta
 
@@ -202,7 +202,7 @@ Distrattori: 1/3 μF usa D=9 come volt e produrrebbe 9 V. Un μF dà 6 V; nove �
 
 Hint: Decodifica la tensione prima dell’inversa di C₁.
 
-Fonte canonica SHA256 69b6f440ed066d5a3c0a1d38e19bb48eb17426d94ea49fa41f7334225dcea2bc. Candidato SHA256 73da2f4ca84fc20c0599824df18c3e453e8dff358f72b88b2a0a78c9421d475f. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 69b6f440ed066d5a3c0a1d38e19bb48eb17426d94ea49fa41f7334225dcea2bc. Candidato SHA256 30f3051e595ede81cb556b57309cb102ecb14ddedfbe55d8181f4a4323831392. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-15 — Taratura prima dell’inversa
 
@@ -216,7 +216,7 @@ Distrattori: 14/17 μF omette l’offset e usa V₁=17/2 V: ricostruisce D=18. D
 
 Hint: Sottrai b prima di dividere per a_cal, poi controlla V₁<E.
 
-Fonte canonica SHA256 8141f78f1c97514f9d35c3caa0995d6adb0f51f2e3c31b499d33e8f60e7bc05c. Candidato SHA256 75c4bce9223ae905ed9f74c8b68e2d04d239ad40ad5df5cd4cef42aa7a9f4d2f. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 8141f78f1c97514f9d35c3caa0995d6adb0f51f2e3c31b499d33e8f60e7bc05c. Candidato SHA256 cfc2c24cef22d43768e1c7bff2020d6afcf6559a493ef7e10388ea1099648d29. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitor-voltage-16 — La caduta non fissa la scala
 
@@ -230,14 +230,18 @@ Distrattori: Le coppie singole sono esempi e non soluzioni uniche. La risposta �
 
 Hint: Sostituisci il vincolo e verifica se resta una capacità libera.
 
-Fonte canonica SHA256 70969fb7468c2f8079eec69f276ffcb4217799f1cd050da08730b75da8652f28. Candidato SHA256 7241b4cbff55eca195b0d322e4e4cc6281be9af999a2e2a91246dc9e22ed6f58. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 70969fb7468c2f8079eec69f276ffcb4217799f1cd050da08730b75da8652f28. Candidato SHA256 078a69e967d77817f329ab4f3ff2375676719e6a7dcaf6ec919b5bc288d28f12. Revisione indipendente e human NOT_RUN.
 
 ## Provenienza tecnica
 
-Asset SHA256 798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb. Package file SHA256 2530d65f9887d8266466bcf630c448c07c108d2c82f442521777ab8603344f96. Binding file SHA256 dfc3758c81d92128d22b4faaa15419c5e0ffe0cd13bbfa69d3124513f5d75bd0. Prova strutturale SHA256 99f386b78d0fa4499320a16ef1961c48bee247afa4e61f771b277090254a4ce9. Manifest asset-only SHA256 72ba2b3b07cbabd169f94b4f613425d1a24129c0c7891bae3c1317923c582699.
+Asset SHA256 798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb. Package file SHA256 33cce09aff0b63ed849f5c8e6dfe91301de12763f8ef431e81f82bbb8a395ba8. Binding file SHA256 b755cd7c96e5f2d04ca6f67771795f487e6e49fc8eb2e67942fadd9609a6a1f4. Prova strutturale SHA256 1df4a51d225afd104b7842914217d5d37329ff9de702c3a3da6ee62bc4268ff1. Manifest asset-only SHA256 72ba2b3b07cbabd169f94b4f613425d1a24129c0c7891bae3c1317923c582699.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
 ## Rilettura del finding distinto16
 
 Ripristinata la parola Una nel distrattore falso che indica una sola coppia, dopo sostituzione del simbolo U. Il feedback ora dice esplicitamente che la risposta Nessuna coppia è smentita dagli esempi. Strictdiff: soltanto quell’opzione e ultimo blocco/error16, con binding16 derivato; chiave, formule, SVG e altri15 record byte-identici. Vecchia edizione e native realmente eseguito conservati nel relativo archivio peer-wording16 con manifest. Due nuove assembly/import reali16→0/16; native non ripetuto perché SVG identico, nessuna nuova UI o SCI propria.
+
+## Correzione di mappatura didattica dopo review distinta
+
+La lezione originale C4-L08 «Mettere insieme i condensatori», riletta nel pin Cric5d1d, è il riferimento primario per questa famiglia. Aggiornati soltanto skill, error.target e aggiunta della competenza esistente L08 ai prerequisiti, conservando L07. Ogni altro campo dei sedici record, tutte le formule e le scelte e ogni byte SVG sono identici per confronto strutturale. Due nuove assembly effettive exit0 e identiche; nessun nuovo render necessario per asset immutato. I precedenti import/report SCI sono conservati nell’archivio con checksum e restano storici sulle vecchie firme. Import finale PENDING_ROOT_REMOTE; nessun nuovo DB locale, come autorizzato dall’integratore. Revisione scientifica distinta delle nuove associazioni e human NOT_RUN, DRAFT e publicationAction NONE.

@@ -1,6 +1,6 @@
 # Authoring DRAFT — capacitor-sharing-energy-loss-224
 
-Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Riletta integralmente la lezione reale C4-L07, capacità come Q/V, geometria piana, lavoro di carica e distinzione fra condensatore isolato e collegato; prerequisiti reali C4-L01/L03/L04 e C1-L001. Nessuna nuova lezione inventata.
+Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Rilette integralmente le lezioni reali C4-L07 e C4-L08: L07 definisce il singolo condensatore e resta prerequisito; L08 tratta reti, tensioni in serie, carica dei nodi e dissipazione nella condivisione ed è la competenza primaria corretta dei presenti quesiti. Prerequisiti reali C4-L01/L03/L04/L07/L08 e C1-L001. Nessuna nuova lezione inventata.
 
 Prima di candidature U604 entrambi i revisori avevano congelato la propria primaria: B per A220–224 SHA08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58 (non aperta dall’autore); A per B225–229 SHA1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a, lettura solo allowlist id/prompt senza opzioni o chiavi altrui.
 
@@ -20,7 +20,7 @@ Distrattori: Due μJ darebbe il doppio del saldo. Nove μJ è l’energia finale
 
 Hint: Conserva prima la carica per trovare V_f, poi confronta le due energie.
 
-Fonte canonica SHA256 5e39023c448a366f8134e78d615f7e0af6ec694c8568a699748ec125947ee721. Candidato SHA256 d07eb69a3c70fa2ac7c1605ec7513c70a2bc8d30dd3a537edf13629bff95ed05. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 5e39023c448a366f8134e78d615f7e0af6ec694c8568a699748ec125947ee721. Candidato SHA256 69f1f5052ca10cf7aa603e52c81bc49c929896d5741af29f6c2f126553485948. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-02 — Una conversione di energia
 
@@ -34,7 +34,7 @@ Distrattori: W misura energia per tempo, non energia. C,F,V indicano carica, cap
 
 Hint: Controlla la dimensione di capacità per tensione al quadrato.
 
-Fonte canonica SHA256 91172e29a32d754d293db66b1d4b53667f71d47d687a4546b33e1446d1593c13. Candidato SHA256 88878fd043db2d59854b1d796e17d62c60e5b5617b0229e1654e8e5408c2d371. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 91172e29a32d754d293db66b1d4b53667f71d47d687a4546b33e1446d1593c13. Candidato SHA256 7c2ddc057aa21f71fada34495c0d285a18121f11ad8d62c2e4f8ff5db274a46a. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-03 — Il saldo in forma compatta
 
@@ -48,7 +48,7 @@ Distrattori: Il denominatore due raddoppia la conversione. Il quadrato della som
 
 Hint: Sottrai l’energia finale da quella iniziale e raccogli il quadrato della differenza.
 
-Fonte canonica SHA256 c6e434fb08e7d74be1621f050d5bb2a8db2808163f172078846b599d20b8db19. Candidato SHA256 100793067b8ffc97e826c391e71d6920571dedbf1f0b53a47242469415b648f0. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 c6e434fb08e7d74be1621f050d5bb2a8db2808163f172078846b599d20b8db19. Candidato SHA256 4a932ad4c9eac87d61c1a41b2771c5a2c3b900ca87b014f95b77b1f24904f1d8. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-04 — Raddoppia la differenza di tensione
 
@@ -62,7 +62,7 @@ Distrattori: Due μJ tratta L come lineare nella differenza. 3/2 μJ segue solta
 
 Hint: Forma la differenza prima di applicare il quadrato.
 
-Fonte canonica SHA256 dd1c1167df11ff1202ace4deb5ad3f908810664159c6c97812e351fa912f1e10. Candidato SHA256 86b9227e848de7b2a55a1cba377b91b5d5c62b151a47bf32c552e14d5c714017. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 dd1c1167df11ff1202ace4deb5ad3f908810664159c6c97812e351fa912f1e10. Candidato SHA256 c8c8c09404169aef5a12c23e09af96f329942c6291d921cca8ecda3e5285ca61. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-05 — Ricostruire la tensione maggiore
 
@@ -76,7 +76,7 @@ Distrattori: Due V copia la differenza Δ, non la tensione V₁. Zero viene dal 
 
 Hint: Trova lo scarto positivo e aggiungilo a V₂.
 
-Fonte canonica SHA256 918654e57a1a38a9df7a7638a9de6aa38d182a57700eba5e5d01c3591e1be4e3. Candidato SHA256 f4929b33d302fb9f21c0a049d7ce68121937938f1a53dd77130ab8603802dc33. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 918654e57a1a38a9df7a7638a9de6aa38d182a57700eba5e5d01c3591e1be4e3. Candidato SHA256 eb8ce9dc662c9d00c14411d629e7561eaeeae8c80c9e7057839a05fd00c4e4d5. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-06 — Ricostruire la tensione minore
 
@@ -90,7 +90,7 @@ Distrattori: Sei V conserva la stessa differenza in modulo ma scambia l’ordine
 
 Hint: Sottrai lo scarto positivo dalla tensione maggiore.
 
-Fonte canonica SHA256 8ea51570f60313dec15414adf7f6e9ea75aa04251295e0d75fd2692b1d546010. Candidato SHA256 1b089a4f97c4b65db5237114f4f57cd40abcdaefab5941eaca72701091b61ad0. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 8ea51570f60313dec15414adf7f6e9ea75aa04251295e0d75fd2692b1d546010. Candidato SHA256 5743cf10ba9e2128554364e44276525bf7a9e53917c33e6a30ae82498b82638a. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-07 — Una differenza più grande
 
@@ -104,7 +104,7 @@ Distrattori: 4/9 inverte il confronto. Mezzo segue solo V₂, due il suo recipro
 
 Hint: Confronta i due scarti e poi i loro quadrati.
 
-Fonte canonica SHA256 692618cd923ca391073acfcfa3bfd78ec0da300714d417a3aeb4058f2435d182. Candidato SHA256 0b53d033c418991af09f100cf1aa5a45569d25d903d02e9081a38c61017b45af. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 692618cd923ca391073acfcfa3bfd78ec0da300714d417a3aeb4058f2435d182. Candidato SHA256 e41fddf107e788023962cdd4b5460d7a8ae09d38bbbeb0ac335e109ac6475c92. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-08 — Scarto e segno del saldo
 
@@ -118,7 +118,7 @@ Distrattori: −1 scambia l’ordine dello scarto; 2 μJ copia la proposta e zer
 
 Hint: Usa la definizione proposto meno corretto, dopo aver trovato L.
 
-Fonte canonica SHA256 f88abde7b14b0c1621f01a91b011f4c314bcd05710c6fe124aaf40d301d0b678. Candidato SHA256 83e51093a125deba5b5acb412d4b04f3f4c059daaf9370b43a1124cc27a71411. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 f88abde7b14b0c1621f01a91b011f4c314bcd05710c6fe124aaf40d301d0b678. Candidato SHA256 d5e02188e0a579d186c33c88572211a1f1d85c1f13076e99c5ab03ad02c1ee83. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-09 — L’inversa con ordine dichiarato
 
@@ -132,7 +132,7 @@ Distrattori: Il meno viola V₁>V₂. La radice da sola è soltanto la differenz
 
 Hint: Applica la condizione d’ordine alla radice dello scarto.
 
-Fonte canonica SHA256 7d1d954bde7062b8250f379ae86fac4ab909ef9fba4910df437fab4aa0010d45. Candidato SHA256 2350b35c4b905c115f0e7d8e4e1c7a53a9f16bc426c383100e6167edbcb391e3. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 7d1d954bde7062b8250f379ae86fac4ab909ef9fba4910df437fab4aa0010d45. Candidato SHA256 a1dd6870bee92d093fd7f02f0b4720bfd7ea3d520a6285f865cfc7a646d5813d. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-10 — Due fattori e un ordine da conservare
 
@@ -146,7 +146,7 @@ Distrattori: Il rapporto semplice omette il quadrato. Il prodotto dei fattori no
 
 Hint: Forma la nuova differenza orientata prima del rapporto.
 
-Fonte canonica SHA256 ed48f3afa3ec35654989ddd24d03981396860e658894261133e196947e17f1da. Candidato SHA256 405e2689357cb14a8dce3217f51f75138378573c96479dba1a0ad87d8f6adeaa. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 ed48f3afa3ec35654989ddd24d03981396860e658894261133e196947e17f1da. Candidato SHA256 71a81fd7dc998bd708c6c6524491ace1fef1740201dc9431eb5ef568ee250fd9. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-11 — Una scala comune raddoppiata
 
@@ -160,7 +160,7 @@ Distrattori: Due segue linearmente la differenza. 1/4 è il reciproco, mezzo ren
 
 Hint: Il saldo è quadratico nello scarto, anche con scala comune.
 
-Fonte canonica SHA256 1a1ac4d8c6a1e83183b118710438d0e0c6ab2686553b55eb300a13fdbe6124aa. Candidato SHA256 de1c086da81a5d3225bc3761283ffc03e4c454ba9a9c3d2488294418d08482c8. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 1a1ac4d8c6a1e83183b118710438d0e0c6ab2686553b55eb300a13fdbe6124aa. Candidato SHA256 a0ab1fe093cb8c157d80fb2c3e456a1329b68e28965145e7a6ce1cd36de6db96. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-12 — Media delle conversioni
 
@@ -174,7 +174,7 @@ Distrattori: 9/4 μJ applica il modello agli ingressi medi. Cinque somma, 3/2 è
 
 Hint: Calcola ogni saldo prima della media.
 
-Fonte canonica SHA256 c0228b01583733c31af939a88c4335f83395709322ce31db0a31a8d856fe20f8. Candidato SHA256 d4cbf356a86dd790b727893d6a64cce8b70a1b00d379dd27485f89ca96d5d600. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 c0228b01583733c31af939a88c4335f83395709322ce31db0a31a8d856fe20f8. Candidato SHA256 4565acdbd87378ca1f9f9745a60c51965b59a30aef929cfd8e514c25b98c5a66. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-13 — V₂ per il saldo bersaglio
 
@@ -188,7 +188,7 @@ Distrattori: Mezzo inverte il rapporto, quattro copia il fattore dei saldi, 3/2 
 
 Hint: Dalla conversione ricava lo scarto, poi sottrailo da V₁,B.
 
-Fonte canonica SHA256 9e250af367e9a9f16ff6a1f3e163b0fbc21421963ef80dc5b36b3098ac0fd18d. Candidato SHA256 27418986572488583bedfb0dcb0e2b275699c73064fb56e7fd535ddcf175f1cd. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 9e250af367e9a9f16ff6a1f3e163b0fbc21421963ef80dc5b36b3098ac0fd18d. Candidato SHA256 4c6799b47a990f8e77a68dabe895ee5da9b71762780363ada11930f8c5a5057e. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-14 — Guadagno prima della radice
 
@@ -202,7 +202,7 @@ Distrattori: Quattro V copia lo scarto o V₂ e darebbe saldo nullo. Dodici V pr
 
 Hint: Decodifica L prima di estrarre la radice e sommare V₂.
 
-Fonte canonica SHA256 5012eec4b693ea497fb5ee08041b48e22687099192efabdced2a87aeb475235e. Candidato SHA256 9e7e9dc5e28e583f2defbb037110a4b81e17a9def98a9fff068445ea50675676. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 5012eec4b693ea497fb5ee08041b48e22687099192efabdced2a87aeb475235e. Candidato SHA256 a966888d029c4a41c709a7e7583d5709807004786d0003e07f3fb3ad450cdfe1. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-15 — Una piccola lettura sopra l’offset
 
@@ -216,7 +216,7 @@ Distrattori: (1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; 
 
 Hint: Sottrai prima l’offset; il quarto di microjoule produce una radice notevole.
 
-Fonte canonica SHA256 017690357f7a15b11c0b3619042f61cc2223bb1d5b739f5340e1364ac3bb31ef. Candidato SHA256 9fe15f33428ba12bce021d9a12755ef060dc21ca6837d3249584b19d78bfcd97. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 017690357f7a15b11c0b3619042f61cc2223bb1d5b739f5340e1364ac3bb31ef. Candidato SHA256 89deafbbd49ee7cde3671b1617f4aeda01ba5bc1f92ec3132f8fed72397ce559. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-capacitor-sharing-energy-loss-16 — Il vincolo conserva il ramo positivo
 
@@ -230,14 +230,18 @@ Distrattori: Quattro V è il valore della tensione maggiore nella soluzione. −
 
 Hint: Sostituisci il vincolo e scegli la radice compatibile con entrambe le disuguaglianze.
 
-Fonte canonica SHA256 de758c52d6c258e8f4c146daa967b195e059f14e0b0404b3c99cbe184b09a8c9. Candidato SHA256 d877d53053586cf377d55604a7b8ce021732c7e3ab9809610bb5a373c77284d0. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 de758c52d6c258e8f4c146daa967b195e059f14e0b0404b3c99cbe184b09a8c9. Candidato SHA256 975f420132d6c12449ed1bfa4e3e30df153af8d96088c2dbfebb7e8cbcff80fe. Revisione indipendente e human NOT_RUN.
 
 ## Provenienza tecnica
 
-Asset SHA256 28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e. Package file SHA256 2305f4249da1ff10ff4e06d87a2f984b3703ad3118cec09088b286f1023831d7. Binding file SHA256 f819ee8b667e3e9584197d20e898a7df6270ce0418dedf2193bfe268448c96e3. Prova strutturale SHA256 f3977f3c58621d450ba878d58ff4fb1f440d2b2697fceefe6aa61cb2d26a701d. Manifest asset-only SHA256 49b9331d600759a30516f84b341cfbea5337ea4c88a98a0921d65880c8ed216a.
+Asset SHA256 28c31b150ffbd077958723c67584c564338a98adac010124b85b8c1d7df64d4e. Package file SHA256 7881949f791d8ba9f925cdb046cef1ae4ce3158a1d18f6f4b88b4a6b1f640c1d. Binding file SHA256 22dab95e32d3d84a09b02f448f7d7356a0f22cff8824aac5009f0d59f623bf74. Prova strutturale SHA256 e5adb67dc64a7e3f1f06a59af0f09edf606390b916d7467e860997de27d6f4fd. Manifest asset-only SHA256 49b9331d600759a30516f84b341cfbea5337ea4c88a98a0921d65880c8ed216a.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
 ## Finding distinto15 e prove tecniche separate
 
 La frase del feedback scrive ora (1+√3) V: l’unità si applica all’intera somma, come nell’opzione già corretta. Strictdiff: soltanto ultimo blocco/error15 e binding15 derivato; altri15, tutti prompt/risposte/formule e SVG byte-identici. Vecchi file e handoff preservati con checksum nell’archivio peer-units15-superseded. Le due nuove assembly-only sono realmente terminate0 e producono byte identici. Due tentativi canonici di importazione sono realmente terminati1 per timeout invariato60s e sono conservati separatamente; non si attribuisce al finale il vecchio import positivo. Root ha disposto il replay con lo stesso importatore sul runner esistente. Import finale PENDING_ROOT, nessun proprioSCI o markerUI. Stesso SVG e PNG nativo già effettivamente letto da A e indipendentemente da B, nessun rerender necessario per questa modifica testuale.
+
+## Correzione di mappatura didattica dopo review distinta
+
+La lezione originale C4-L08 «Mettere insieme i condensatori», riletta nel pin Cric5d1d, è il riferimento primario per questa famiglia. Aggiornati soltanto skill, error.target e aggiunta della competenza esistente L08 ai prerequisiti, conservando L07. Ogni altro campo dei sedici record, tutte le formule e le scelte e ogni byte SVG sono identici per confronto strutturale. Due nuove assembly effettive exit0 e identiche; nessun nuovo render necessario per asset immutato. I precedenti import/report SCI sono conservati nell’archivio con checksum e restano storici sulle vecchie firme. Import finale PENDING_ROOT_REMOTE; nessun nuovo DB locale, come autorizzato dall’integratore. Revisione scientifica distinta delle nuove associazioni e human NOT_RUN, DRAFT e publicationAction NONE.

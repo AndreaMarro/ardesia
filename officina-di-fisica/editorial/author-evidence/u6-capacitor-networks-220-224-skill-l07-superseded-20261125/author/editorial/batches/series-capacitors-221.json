@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-series-capacitors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22101,
+      "title": "La tensione totale si ripartisce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Con C₁=C₂=2 μF, quanto vale S in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La neutralità di M impone cariche opposte e di uguale modulo sulle due armature interne. Quindi i due condensatori hanno lo stesso Q in modulo. Le cadute sono Q/C₁ e Q/C₂; sommandole si ottiene V=Q(1/C₁+1/C₂). Con due capacità da 2 μF, la somma dei reciproci è 1 μF⁻¹ e S=1 μF."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6",
+          "text": "Il nodo intermedio M rimane neutro: sulle due armature interne compaiono cariche uguali e opposte. L’esempio C₁=C₂=2 μF ha S=1 μF. I simboli sono schematici e le cariche non rappresentano un conteggio di particelle."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac Q{C_1}+\\frac Q{C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1S=\\frac1{C_1}+\\frac1{C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " S=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μF è la somma del parallelo. Due μF ignora un condensatore; mezzo μF divide ancora per due. L’equivalente della serie deve essere minore di ciascuna delle capacità positive finite."
+        }
+      ],
+      "hints": [
+        "Somma le tensioni corrispondenti allo stesso modulo Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro μF è la somma del parallelo. Due μF ignora un condensatore; mezzo μF divide ancora per due. L’equivalente della serie deve essere minore di ciascuna delle capacità positive finite.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22102,
+      "title": "Reciproci con la loro unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Quale unità esprime S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F",
+          "F⁻¹",
+          "C",
+          "V",
+          "1"
+        ],
+        "value": "F"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "S collega una carica a una tensione e si misura in farad. La somma 1/C₁+1/C₂ ha unità F⁻¹: bisogna prenderne il reciproco per ottenere S. Non si cambia unità della capacità perché si è cambiata la topologia."
+        },
+        {
+          "type": "formula",
+          "text": "[1/S]=\\mathrm F^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " [S]=\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "F⁻¹ è l’unità del reciproco, non di S. C indica carica, V tensione e 1 un rapporto puro. I prefissi come μ conservano la dimensione fisica del farad."
+        }
+      ],
+      "hints": [
+        "Controlla se stai leggendo S oppure 1/S.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "F⁻¹ è l’unità del reciproco, non di S. C indica carica, V tensione e 1 un rapporto puro. I prefissi come μ conservano la dimensione fisica del farad.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22103,
+      "title": "Il vincolo del nodo neutro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Quale grandezza ha lo stesso modulo nei due condensatori a regime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La carica su ciascuna armatura",
+          "La tensione, per qualsiasi C₁ e C₂",
+          "La capacità, per qualsiasi C₁ e C₂",
+          "L’energia, per qualsiasi C₁ e C₂",
+          "Una corrente continua di conduzione non nulla attraverso il dielettrico"
+        ],
+        "value": "La carica su ciascuna armatura"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nodo M comprende una piastra di ciascun condensatore e non riceve carica dall’esterno. Poiché era neutro, le due cariche su M devono sommarsi a zero: sono −Q e +Q. Ne segue uguale modulo sulle armature dei due condensatori. Le tensioni Q/C dipendono invece dalla rispettiva capacità."
+        },
+        {
+          "type": "formula",
+          "text": "Q_M=-Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_M=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=Q_2"
+        },
+        {
+          "type": "text",
+          "text": "Tensioni ed energie coincidono soltanto in casi particolari, come capacità uguali, non per ogni serie. La connessione non rende identiche C₁ e C₂. Una corrente continua di conduzione non nulla è impossibile attraverso un dielettrico ideale nello stato elettrostatico finale."
+        }
+      ],
+      "hints": [
+        "Usa la carica netta conservata sul nodo intermedio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tensioni ed energie coincidono soltanto in casi particolari, come capacità uguali, non per ogni serie. La connessione non rende identiche C₁ e C₂. Una corrente continua di conduzione non nulla è impossibile attraverso un dielettrico ideale nello stato elettrostatico finale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22104,
+      "title": "Una capacità si dimezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. C₁ passa da 2 a 1 μF mentre C₂ resta 2 μF. Come cambia S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2/3 μF",
+          "Da 1 a 1/2 μF",
+          "Da 1 a 3 μF",
+          "Resta 1 μF",
+          "Da 1 a 2 μF"
+        ],
+        "value": "Da 1 a 2/3 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima la serie di 2 e 2 μF dà S_A=1 μF. Dopo il prodotto è 2 μF² e la somma 3 μF, dunque S_B=2/3 μF. La capacità diminuisce, ma non si dimezza perché cambia anche la somma al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "S=\\frac{C_1C_2}{C_1+C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=\\frac23\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo μF segue soltanto il fattore di C₁ senza il denominatore. Tre μF è il parallelo nuovo; uno ignora il cambio e due copia C₂. Il risultato deve restare minore del componente da 1 μF."
+        }
+      ],
+      "hints": [
+        "Aggiorna sia il prodotto sia la somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Mezzo μF segue soltanto il fattore di C₁ senza il denominatore. Tre μF è il parallelo nuovo; uno ignora il cambio e due copia C₂. Il risultato deve restare minore del componente da 1 μF.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22105,
+      "title": "L’inversa con denominatore positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Si misura S=1 μF e si conosce C₂=2 μF. Quanto vale C₁ in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico S=C₁C₂/(C₁+C₂) per la somma e raccolgo C₁: SC₂=C₁(C₂−S). Quindi C₁=SC₂/(C₂−S). I dati danno (1·2)/(2−1) μF=2 μF. Il divisore è positivo perché S<C₂."
+        },
+        {
+          "type": "formula",
+          "text": "SC_2=C_1(C_2-S)"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=\\frac{SC_2}{C_2-S}"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre semplicemente il noto dà un valore negativo: sarebbe l’inversa di una somma, non della serie. Un μF ricopia S e con C₂=2 μF darebbe 2/3 μF. Il confine S=C₂ non ammette un C₁ finito positivo."
+        }
+      ],
+      "hints": [
+        "Sottrai le capacità nel denominatore e controlla S<C₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre semplicemente il noto dà un valore negativo: sarebbe l’inversa di una somma, non della serie. Un μF ricopia S e con C₂=2 μF darebbe 2/3 μF. Il confine S=C₂ non ammette un C₁ finito positivo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22106,
+      "title": "Stessi componenti, altra topologia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Caso autonomo: due condensatori lineari identici da 2 μF sono misurati prima come collegamento in serie, con nodo intermedio inizialmente neutro, e poi come collegamento in parallelo fra due nodi comuni. Si confrontano soltanto le capacità equivalenti delle due configurazioni. Non si impone conservazione di tensione o carica durante un esperimento di commutazione. Quanto vale C_parallelo/C_serie?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La serie di due capacità uguali C vale C/2, quindi 1 μF; il parallelo vale 2C, quindi 4 μF. Il rapporto fra i due coefficienti Q/V è quattro. Non è il rapporto delle cariche di una stessa commutazione, che richiederebbe ulteriori condizioni iniziali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6",
+          "text": "Nel pannello centrale gli stessi due componenti da 2 μF condividono entrambi i nodi, quindi il parallelo vale 4 μF. Il circuito superiore in serie vale 1 μF: il rapporto delle capacità è quattro. Non è una sequenza temporale con carica o tensione conservate."
+        },
+        {
+          "type": "formula",
+          "text": "C_{\\rm serie}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm parallelo}=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_{\\rm parallelo}}{C_{\\rm serie}}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due confronta 2C con C e ignora il dimezzamento della serie. 1/4 è il reciproco, mezzo segue il solo dimezzamento e uno presume che i componenti fissino l’equivalente indipendentemente dai collegamenti."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente C/2 e 2C, poi forma il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due confronta 2C con C e ignora il dimezzamento della serie. 1/4 è il reciproco, mezzo segue il solo dimezzamento e uno presume che i componenti fissino l’equivalente indipendentemente dai collegamenti.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22107,
+      "title": "Cambia soltanto C₂",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. A ha C₁=C₂=2 μF. B mantiene C₁=2 μF e usa C₂=1 μF. Quanto vale S_B/S_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha S_A=1 μF. B ha S_B=(2·1)/(2+1) μF=2/3 μF. Il rapporto è 2/3. La simmetria della legge scambia i nomi dei componenti, ma non trasforma la serie in una dipendenza lineare da uno solo di essi."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=\\frac23\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B/S_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il confronto. Mezzo segue C₂ da sola, due rende diretto il suo reciproco e uno non modifica l’uscita. Nessuno tiene insieme prodotto e somma nuovi."
+        }
+      ],
+      "hints": [
+        "Usa la legge della serie in ciascuna preparazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il confronto. Mezzo segue C₂ da sola, due rende diretto il suo reciproco e uno non modifica l’uscita. Nessuno tiene insieme prodotto e somma nuovi.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22108,
+      "title": "Uno scarto di capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Con C₁=C₂=2 μF si propone S=2 μF. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 μF",
+          "−1 μF",
+          "2 μF",
+          "0 μF",
+          "2"
+        ],
+        "value": "1 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equivalente corretto è 1 μF. La proposta supera il corretto di 2−1=1 μF. La proposta stessa coincide con un singolo componente e non con la serie dei due."
+        },
+        {
+          "type": "formula",
+          "text": "S=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "−1 scambia l’ordine; 2 μF copia la proposta; zero la accetta. Il numero puro due è il rapporto e non una differenza di capacità."
+        }
+      ],
+      "hints": [
+        "Non confondere l’unità dello scarto con quella di un rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 scambia l’ordine; 2 μF copia la proposta; zero la accetta. Il numero puro due è il rapporto e non una differenza di capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22109,
+      "title": "La formula inversa generale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. S e C₂ sono noti, con 0<S<C₂. Quale relazione isola C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C₁ = S C₂ / (C₂ − S)",
+          "C₁ = S C₂ / (C₂ + S)",
+          "C₁ = S C₂ / (S − C₂)",
+          "C₁ = S − C₂",
+          "C₁ = C₂ / S"
+        ],
+        "value": "C₁ = S C₂ / (C₂ − S)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla somma delle tensioni segue SC₁+SC₂=C₁C₂. Raccogliendo i termini della capacità ignota si trova SC₂=C₁(C₂−S). Dividendo per C₂−S>0 segue C₁=SC₂/(C₂−S); F²/F restituisce F."
+        },
+        {
+          "type": "formula",
+          "text": "SC_2=C_1(C_2-S)"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=\\frac{SC_2}{C_2-S}"
+        },
+        {
+          "type": "text",
+          "text": "Il più al denominatore non deriva dal raccoglimento. S−C₂ rende negativo il risultato nel dominio; la semplice differenza è l’inversa del parallelo. C₂/S è puro e non una capacità."
+        }
+      ],
+      "hints": [
+        "Porta il termine SC₁ dallo stesso lato di C₁C₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più al denominatore non deriva dal raccoglimento. S−C₂ rende negativo il risultato nel dominio; la semplice differenza è l’inversa del parallelo. C₂/S è puro e non una capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22110,
+      "title": "Scalare entrambi i condensatori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. B usa C₁,B=κ₁C₁ e C₂,B=κ₂C₂. Definiamo T=C₁+C₂ e T_B=κ₁C₁+κ₂C₂. I fattori sono positivi. Quanto vale S_B/S_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ T / T_B",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "T_B / T",
+          "T_B / (κ₁ κ₂ T)"
+        ],
+        "value": "κ₁ κ₂ T / T_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto C₁C₂ riceve entrambi i fattori; il denominatore diventa T_B. Dividendo la legge nuova per quella vecchia compare anche T al numeratore. Il rapporto è κ₁κ₂T/T_B. Con una scalatura comune κ si ottiene κ, come richiesto dall’omogeneità di una capacità equivalente."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=\\frac{C_1C_2}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=\\frac{\\kappa_1\\kappa_2C_1C_2}{T_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_B}{S_A}=\\frac{\\kappa_1\\kappa_2T}{T_B}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo prodotto perde la variazione del denominatore. κ₁/κ₂ perde i pesi delle capacità; T_B/T descrive una somma di parallelo. L’ultima espressione è il reciproco del rapporto corretto."
+        }
+      ],
+      "hints": [
+        "Conserva il fattore della somma oltre a quelli del prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo prodotto perde la variazione del denominatore. κ₁/κ₂ perde i pesi delle capacità; T_B/T descrive una somma di parallelo. L’ultima espressione è il reciproco del rapporto corretto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22111,
+      "title": "Una nuova coppia in serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. A ha C₁=C₂=2 μF. B ha C₁=3 μF e C₂=6 μF. Quanto vale S_B/S_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "3",
+          "9/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 1 μF. B dà (3·6)/(3+6) μF=18/9 μF=2 μF. Quindi il rapporto è due. Anche B ha equivalente minore del più piccolo componente da 3 μF."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B/S_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo è il reciproco; 3/2 segue il solo C₁ e tre il solo C₂. 9/4 è il rapporto delle somme e appartiene alla topologia parallela, non a questa serie."
+        }
+      ],
+      "hints": [
+        "Controlla il risultato rispetto alla capacità più piccola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo è il reciproco; 3/2 segue il solo C₁ e tre il solo C₂. 9/4 è il rapporto delle somme e appartiene alla topologia parallela, non a questa serie.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22112,
+      "title": "Le medie non commutano con la serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. A usa 2 e 2 μF; B usa 3 e 6 μF. Qual è la media aritmetica delle due S con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 μF",
+          "20/13 μF",
+          "3 μF",
+          "1/2 μF",
+          "2 μF"
+        ],
+        "value": "3/2 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 1 e 2 μF, quindi la media vale 3/2 μF. Ai dati medi C₁=5/2 μF e C₂=4 μF si otterrebbe invece 10/(13/2) μF=20/13 μF. Con denominatore comune 26, i risultati sono 39/26 e 40/26 μF: differiscono di 1/26 μF senza bisogno di decimali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6",
+          "text": "Le barre inferiori sono le capacità di serie della prova A: 2 e 2 μF e della prova B: 3 e 6 μF. I valori 1 μF, 2 μF e 3/2 μF hanno origine e scala comuni; il valore B non è il parallelo del pannello centrale."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline S=\\frac32\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_{\\rm dati\\ medi}=\\frac{20}{13}\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{20}{13}-\\frac32=\\frac1{26}"
+        },
+        {
+          "type": "text",
+          "text": "20/13 μF usa gli ingressi medi anziché le uscite. Tre somma, mezzo è metà della differenza e due ripete B. La capacità di una rete costruita con dati medi non è la media statistica delle capacità di due reti."
+        }
+      ],
+      "hints": [
+        "Completa ogni calcolo di serie prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20/13 μF usa gli ingressi medi anziché le uscite. Tre somma, mezzo è metà della differenza e due ripete B. La capacità di una rete costruita con dati medi non è la media statistica delle capacità di due reti.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22113,
+      "title": "C₂ per raddoppiare S",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. A ha C₁=C₂=2 μF. B usa C₁=3 μF e deve dare S_B=2S_A. Quanto vale C₂,B/C₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "2",
+          "3/2",
+          "6"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio S_B=2 μF è minore del C₁,B da 3 μF, quindi l’inversa passiva esiste. C₂,B=S_BC₁,B/(C₁,B−S_B)=6/(3−2) μF=6 μF. Il rapporto con C₂,A=2 μF è tre."
+        },
+        {
+          "type": "formula",
+          "text": "S_B=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}=6\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_{2,B}}{C_{2,A}}=3"
+        },
+        {
+          "type": "text",
+          "text": "1/3 inverte il confronto, due copia il rapporto degli equivalenti, 3/2 segue C₁. Sei copia il valore numerico di C₂,B in μF senza dividerlo per C₂,A=2 μF."
+        }
+      ],
+      "hints": [
+        "Fissa il bersaglio e usa l’inversa nell’altro componente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 inverte il confronto, due copia il rapporto degli equivalenti, 3/2 segue C₁. Sei copia il valore numerico di C₂,B in μF senza dividerlo per C₂,A=2 μF.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22114,
+      "title": "Display proporzionale della serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. D=a_cal S è continuo e adimensionale, senza offset. A con C₁=C₂=2 μF dà D=3. B legge D=6 e ha C₂=6 μF. Quanto vale C₁,B in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha S_A=1 μF, dunque a_cal=3 μF⁻¹. Lettura 6 indica S_B=2 μF. L’inversa dà C₁,B=(2·6)/(6−2) μF=3 μF. Usare direttamente D come capacità darebbe il confine S=C₂, non una capacità finita."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm F)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,B}=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Due μF copia l’equivalente e produrrebbe S=3/2 μF. Sei μF dà S=3 μF e D=9. Un valore ottenuto dividendo per zero non è un’ulteriore soluzione fisica."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno e controlla che S sia minore del componente noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due μF copia l’equivalente e produrrebbe S=3/2 μF. Sei μF dà S=3 μF e D=9. Un valore ottenuto dividendo per zero non è un’ulteriore soluzione fisica.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22115,
+      "title": "Offset e inversa della capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. D=a_cal S+b è continuo. A: C₁=C₂=2 μF, D=3. B: C₁=3 μF, C₂=6 μF, D=5. C: C₂=1 μF, D=2. Quanto vale C₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 μF",
+          "1/2 μF",
+          "2 μF",
+          "3 μF",
+          "Nessuna capacità positiva"
+        ],
+        "value": "1 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno S_A=1 e S_B=2 μF. Il guadagno è 2 μF⁻¹ e l’offset 1. Lettura 2 restituisce S_C=1/2 μF, strettamente minore di C₂=1 μF. Quindi C₁,C=[(1/2)·1]/[1−1/2] μF=1 μF."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm F)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " S_C=\\frac12\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo μF copia S e darebbe equivalente 1/3 μF. Due μF dà S=2/3 μF e D=7/3; tre μF dà S=3/4 μF e D=5/2. Una soluzione positiva esiste; omettere l’offset porterebbe erroneamente al confine S=C₂."
+        }
+      ],
+      "hints": [
+        "Controlla il dominio dopo aver decodificato la lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo μF copia S e darebbe equivalente 1/3 μF. Due μF dà S=2/3 μF e D=7/3; tre μF dà S=3/4 μF e D=5/2. Una soluzione positiva esiste; omettere l’offset porterebbe erroneamente al confine S=C₂.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-series-capacitors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Serie e neutralità del nodo intermedio",
+      "order": 22116,
+      "title": "Il vincolo dei componenti uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "series-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, di capacità finite positive C₁ e C₂, sono inizialmente scarichi e poi collegati in serie fra A e B. Il nodo intermedio M non è collegato ad altri corpi e conserva carica netta iniziale zero. Si considera lo stato elettrostatico finale con V=V_A−V_B>0. Q è il modulo di carica su ciascuna armatura; S è la capacità equivalente definita da Q=SV. Fra preparazioni C₁=C₂. Si misura S=1 μF. Quanto vale C₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 μF",
+          "1 μF",
+          "1/2 μF",
+          "−2 μF",
+          "Infinite capacità positive"
+        ],
+        "value": "2 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con capacità comune x>0, la legge di serie dà S=x²/(2x)=x/2. La misura fissa x=2S=2 μF. Il rapporto C₁/C₂=1 da solo lascia una scala libera; la capacità equivalente misurata la determina."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=C_2"
+        },
+        {
+          "type": "formula",
+          "text": "C_2=x"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\frac x2"
+        },
+        {
+          "type": "formula",
+          "text": " x=2S"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Uno μF copia S e darebbe mezzo μF. Mezzo μF divide invece di moltiplicare per due. Il valore negativo non è ammesso; infinite soluzioni ignorerebbe la misura assoluta dell’equivalente."
+        }
+      ],
+      "hints": [
+        "Semplifica la serie di due componenti uguali prima di invertire.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno μF copia S e darebbe mezzo μF. Mezzo μF divide invece di moltiplicare per due. Il valore negativo non è ammesso; infinite soluzioni ignorerebbe la misura assoluta dell’equivalente.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Carica uguale e tensioni additive",
+        "Topologia distinta dal transitorio di commutazione",
+        "Inverse con equivalente minore del noto",
+        "Medie non lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6",
+      "name": "series-capacitors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgdmlld0JveD0iMCAwIDY0MCAxNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+U2VyaWUsIHBhcmFsbGVsbyBlIG5vZG8gaW50ZXJtZWRpbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBjb25kZW5zYXRvcmkgaW4gc2VyaWUgY29uIG5vZG8gaW50ZXJtZWRpbyBuZXV0cm8gZSBjYXJpY2hlIGludGVybmUgb3Bwb3N0ZS4gR2xpIHN0ZXNzaSBkdWUgY29tcG9uZW50aSBkYSBkdWUgbWljcm9mYXJhZCBjb25mcm9udGF0aSBpbiBwYXJhbGxlbG8sIG5vbiBjb21tdXRhdGkgbmVsIHRlbXBvLiBDYXBhY2l0w6AgZGkgc2VyaWUgdW5vIGUgZHVlIG1pY3JvZmFyYWQgZSBtZWRpYSB0cmUgbWV6emkuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgcng9IjE2IiBmaWxsPSIjZjdmOWZjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgU2VyaWU6IG5vZG8gaW50ZXJtZWRpbyBuZXV0cm88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkPigoEgPSBD4oKCID0gMiDOvEYgOyBzaW1ib2xpIHNjaGVtYXRpY2kuPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE5NUgyMzVNMjU1IDE5NUgzODVNNDA1IDE5NUg1NDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yMzUgMTcwVjIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTI1NSAxNzBWMjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzg1IDE3MFYyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik00MDUgMTcwVjIyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTk1IiByPSI0IiBmaWxsPSIjMTgyYzQ2Ii8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjE5NSIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1NDAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHRleHQgeD0iNzgiIHk9IjI0MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjMxMCIgeT0iMjQwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TTwvdGV4dD4KPHRleHQgeD0iNTM4IiB5PSIyNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSIxOTQiIHk9IjE1MyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPitRPC90ZXh0Pgo8dGV4dCB4PSIyNjMiIHk9IjE1MyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPuKIklE8L3RleHQ+Cjx0ZXh0IHg9IjM0MyIgeT0iMTUzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+K1E8L3RleHQ+Cjx0ZXh0IHg9IjQxMyIgeT0iMTUzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+4oiSUTwvdGV4dD4KPHRleHQgeD0iMTc4IiB5PSIyOTEiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5D4oKBID0gMiDOvEY8L3RleHQ+Cjx0ZXh0IHg9IjM4MiIgeT0iMjkxIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Q+KCgiA9IDIgzrxGPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzUyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+U3VsIG5vZG8gTTog4oiSUSArIFEgPSAwLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM5NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlYgPSBRL0PigoEgKyBRL0PigoIgOyBTID0gMSDOvEYuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDYwSDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgQ29uZnJvbnRvIGRpc3RpbnRvOiBwYXJhbGxlbG88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NTQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5TdGVzc2kgY29tcG9uZW50aSwgZGl2ZXJzaSBjb2xsZWdhbWVudGkuPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDY1MFY3ODBNNTMwIDY1MFY3ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMTAgNjUwSDI5ME0zMTAgNjUwSDUzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTI5MCA2MjVWNjc1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMzEwIDYyNVY2NzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjY1MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1MzAiIGN5PSI2NTAiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHBhdGggZD0iTTExMCA3ODBIMjkwTTMxMCA3ODBINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjkwIDc1NVY4MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0zMTAgNzU1VjgwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTEwIiBjeT0iNzgwIiByPSI0IiBmaWxsPSIjMTgyYzQ2Ii8+CjxjaXJjbGUgY3g9IjUzMCIgY3k9Ijc4MCIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8dGV4dCB4PSI2NyIgeT0iNjQ2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QTwvdGV4dD4KPHRleHQgeD0iNTQ4IiB5PSI2NDYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSIyMzQiIHk9IjYwOCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkPigoEgPSAyIM68RjwvdGV4dD4KPHRleHQgeD0iMjM0IiB5PSI3MzgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5D4oKCID0gMiDOvEY8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NjQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DX3BhcmFsbGVsbyA9IDQgzrxGIDsgQ19zZXJpZSA9IDEgzrxGLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkwNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlJhcHBvcnRvIDQgOyBuZXNzdW4gdmluY29sbyBkaSBjb21tdXRhemlvbmUuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTc0SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjEwMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IEFsdHJlIHByZXBhcmF6aW9uaSBpbiBzZXJpZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNjgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BOiAyIGUgMiDOvEYgOyBCOiAzIGUgNiDOvEY8L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTEzMFYxNTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjExNjAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNDQiIGZpbGw9IiMxODVkODMiLz4KPHRleHQgeD0iMzIiIHk9IjExOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BPC90ZXh0Pgo8dGV4dCB4PSIzMjgiIHk9IjExOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xIM68RjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxMjgwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjYjg1MzIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMzEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QjwvdGV4dD4KPHRleHQgeD0iNDg4IiB5PSIxMzEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MiDOvEY8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMTQwMCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0NCIgZmlsbD0iIzM1NjU0ZSIvPgo8dGV4dCB4PSIzMiIgeT0iMTQzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPk1lZGlhPC90ZXh0Pgo8dGV4dCB4PSI0MDgiIHk9IjE0MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4zLzIgzrxGPC90ZXh0Pgo8dGV4dCB4PSIxMTgiIHk9IjE1NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTU5MiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPk9yaWdpbmUgZSBzY2FsYSBjb211bmkgZW50cm8gaWwgcGFubmVsbG8uPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

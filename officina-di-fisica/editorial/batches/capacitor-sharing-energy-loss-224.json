@@ -10,14 +10,15 @@
       "title": "Dove va l’energia del campo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -73,7 +74,7 @@
       "error": {
         "category": "algebra",
         "message": "Due μJ darebbe il doppio del saldo. Nove μJ è l’energia finale e dieci quella iniziale, non la loro differenza. −1 μJ è l’incremento U_f−U_i del campo: la domanda definisce invece la sua diminuzione positiva.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -92,14 +93,15 @@
       "title": "Una conversione di energia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -143,7 +145,7 @@
       "error": {
         "category": "unità",
         "message": "W misura energia per tempo, non energia. C,F,V indicano carica, capacità e tensione. Il transitorio ha una durata, ma qui non si divide L per essa e non si chiede una potenza media.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -162,14 +164,15 @@
       "title": "Il saldo in forma compatta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -222,7 +225,7 @@
       "error": {
         "category": "concetto",
         "message": "Il denominatore due raddoppia la conversione. Il quadrato della somma dà U_f. La differenza dei quadrati non è il quadrato della differenza: con 4 e 2 V darebbe 3 μJ, non 1 μJ; C(V₁−V₂)/4 ha dimensione di carica e non energia.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -241,14 +244,15 @@
       "title": "Raddoppia la differenza di tensione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -296,7 +300,7 @@
       "error": {
         "category": "concetto",
         "message": "Due μJ tratta L come lineare nella differenza. 3/2 μJ segue soltanto V₁, uno non aggiorna gli ingressi e nove μJ non è il saldo della prova nuova. La conversione dipende dallo scarto V₁−V₂.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -315,14 +319,15 @@
       "title": "Ricostruire la tensione maggiore",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -369,7 +374,7 @@
       "error": {
         "category": "algebra",
         "message": "Due V copia la differenza Δ, non la tensione V₁. Zero viene dal ramo negativo ed è escluso. Sei V darebbe una differenza di 4 V e L=4 μJ. Il segno si decide dal dominio, non soltanto dalla positività della radice.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -388,14 +393,15 @@
       "title": "Ricostruire la tensione minore",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -438,7 +444,7 @@
       "error": {
         "category": "algebra",
         "message": "Sei V conserva la stessa differenza in modulo ma scambia l’ordine delle tensioni iniziali. Quattro V darebbe L=0, escluso dal dominio stretto; zero V darebbe L=4 μJ e non è positivo. La misura e il ramo selezionano una sola V₂.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -457,14 +463,15 @@
       "title": "Una differenza più grande",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -512,7 +519,7 @@
       "error": {
         "category": "algebra",
         "message": "4/9 inverte il confronto. Mezzo segue solo V₂, due il suo reciproco e uno ignora il cambiamento. L’argomento del quadrato passa da 2 a 3 V, non da 2 a 1 V.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -531,14 +538,15 @@
       "title": "Scarto e segno del saldo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -586,7 +594,7 @@
       "error": {
         "category": "algebra",
         "message": "−1 scambia l’ordine dello scarto; 2 μJ copia la proposta e zero la accetta. Il numero puro due è il rapporto della proposta col corretto, non una differenza di energie.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -605,14 +613,15 @@
       "title": "L’inversa con ordine dichiarato",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -656,7 +665,7 @@
       "error": {
         "category": "algebra",
         "message": "Il meno viola V₁>V₂. La radice da sola è soltanto la differenza; 4L/C senza radice ha unità V² e non si somma a V₂. La divisione finale per due non deriva dall’equazione del saldo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -675,14 +684,15 @@
       "title": "Due fattori e un ordine da conservare",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -730,7 +740,7 @@
       "error": {
         "category": "algebra",
         "message": "Il rapporto semplice omette il quadrato. Il prodotto dei fattori non sviluppa una differenza; il loro quoziente perde i pesi V₁,V₂. L’ultimo rapporto è il reciproco del corretto. Se l’ordine non fosse conservato non si userebbe lo stesso ramo delle inverse.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -749,14 +759,15 @@
       "title": "Una scala comune raddoppiata",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -804,7 +815,7 @@
       "error": {
         "category": "algebra",
         "message": "Due segue linearmente la differenza. 1/4 è il reciproco, mezzo rende inversa una sola scala e uno confonde raddoppio comune con invarianza della differenza.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -823,14 +834,15 @@
       "title": "Media delle conversioni",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -883,7 +895,7 @@
       "error": {
         "category": "algebra",
         "message": "9/4 μJ applica il modello agli ingressi medi. Cinque somma, 3/2 è metà della differenza e quattro ripete soltanto B. Il valore medio non è l’energia finale del sistema.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -902,14 +914,15 @@
       "title": "V₂ per il saldo bersaglio",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -961,7 +974,7 @@
       "error": {
         "category": "algebra",
         "message": "Mezzo inverte il rapporto, quattro copia il fattore dei saldi, 3/2 non produce lo scarto bersaglio. Uno lascerebbe V₂,B=2 V e darebbe L_B=9 μJ anziché 4 μJ.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -980,14 +993,15 @@
       "title": "Guadagno prima della radice",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1034,7 +1048,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro V copia lo scarto o V₂ e darebbe saldo nullo. Dodici V produrrebbe L=16 μJ e D=48. Sei V darebbe L=1 μJ e D=3, tornando al saldo del riferimento e non alla nuova lettura.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -1053,14 +1067,15 @@
       "title": "Una piccola lettura sopra l’offset",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1116,7 +1131,7 @@
       "error": {
         "category": "algebra",
         "message": "(1+√3) V omette l’offset e usa L=3/4 μJ. Un V dà saldo zero; tre V dà L=1 μJ e D=3; quattro V dà L=9/4 μJ e D=11/2. Tutte le radici restano esatte: non occorre valutarle in decimali.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",
@@ -1135,14 +1150,15 @@
       "title": "Il vincolo conserva il ramo positivo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C1-L007",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1190,7 +1206,7 @@
       "error": {
         "category": "concetto",
         "message": "Quattro V è il valore della tensione maggiore nella soluzione. −2 viola V₂>0; un V darebbe L=1/4 μJ. Infinite soluzioni ignorerebbe l’informazione assoluta della misura, distinta dal solo rapporto delle tensioni.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Conservazione della carica e diminuzione del campo",

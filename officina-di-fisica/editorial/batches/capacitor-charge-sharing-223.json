@@ -10,13 +10,14 @@
       "title": "La carica iniziale si distribuisce",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -64,7 +65,7 @@
       "error": {
         "category": "algebra",
         "message": "Sei V mantiene la tensione come se il generatore fosse ancora collegato. Dodici copia il numero della carica in μC, non una tensione; 3/2 dimezza ancora e zero confonde la carica netta delle due armature con quella conservata su ciascun nodo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -83,13 +84,14 @@
       "title": "L’unità del potenziale comune",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -137,7 +139,7 @@
       "error": {
         "category": "unità",
         "message": "C è carica, F capacità e J energia. Il numero 1 può descrivere il rapporto delle capacità, ma non la tensione ottenuta moltiplicandolo per V₀.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -156,13 +158,14 @@
       "title": "La legge della condivisione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -211,7 +214,7 @@
       "error": {
         "category": "concetto",
         "message": "V₀ invariata richiederebbe il generatore o C=0, escluso. Invertire la frazione dà una tensione maggiore dell’iniziale; usare C al numeratore assegna carica iniziale al condensatore sbagliato. Il prodotto (C₀+C)V₀ è carica, non tensione.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -230,13 +233,14 @@
       "title": "Una diversa preparazione iniziale",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -284,7 +288,7 @@
       "error": {
         "category": "concetto",
         "message": "Otto V copia V₀,B; tre ignora il cambiamento. 3/2 V applica un ulteriore dimezzamento e sei V copia l’ingresso della prima preparazione. Nessuno conserva la carica iniziale di B con capacità finale 4 μF.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -303,13 +307,14 @@
       "title": "Ricostruire la tensione di carica",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -348,7 +353,7 @@
       "error": {
         "category": "algebra",
         "message": "Tre V copia la finale senza compensare la condivisione; 3/2 V inverte la frazione e predirebbe soltanto 3/4 V alla fine. Dodici copia il numero della carica e darebbe V_f=6 V.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -367,13 +372,14 @@
       "title": "Ricostruire il condensatore scarico",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -416,7 +422,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro μF omette il termine meno uno e predirebbe V_f=2 V. Un μF darebbe V_f=4 V. Una capacità negativa non appartiene al modello e non può essere scelta per evitare il controllo del dominio.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -435,13 +441,14 @@
       "title": "Meno capacità da caricare",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -489,7 +496,7 @@
       "error": {
         "category": "algebra",
         "message": "3/4 inverte il confronto, due segue soltanto il reciproco di C, mezzo ne segue il fattore diretto e uno non cambia la tensione. Il nuovo V_f resta comunque minore dei 6 V iniziali.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -508,13 +515,14 @@
       "title": "Scarto della proposta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -562,7 +570,7 @@
       "error": {
         "category": "algebra",
         "message": "−3 V scambia l’ordine, sei copia la proposta e zero la accetta. Due è il rapporto fra proposta e corretto, adimensionale, non lo scarto richiesto.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -581,13 +589,14 @@
       "title": "L’inversa generale per V₀",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -631,7 +640,7 @@
       "error": {
         "category": "algebra",
         "message": "La frazione inversa riduce ancora la tensione; C/C₀ omette l’addendo C₀ della somma. Gli ultimi quozienti hanno F/V o V/F e non tensione. La conservazione riguarda il nodo e non l’energia del solo campo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -650,13 +659,14 @@
       "title": "Rapporto tra preparazioni",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -704,7 +714,7 @@
       "error": {
         "category": "algebra",
         "message": "κ₂ al numeratore scala l’ingresso sbagliato. Il prodotto perde il denominatore; S_B/(κ₁S) inverte il confronto. κ₁/κ₂ sarebbe corretto solo se tutto il denominatore fosse scalato da κ₂, mentre C₀ resta invariato.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -723,13 +733,14 @@
       "title": "Cambiano entrambi gli ingressi",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -777,7 +788,7 @@
       "error": {
         "category": "algebra",
         "message": "3/4 inverte il rapporto; due segue soltanto V₀ e mezzo soltanto C in modo inverso. Uno presume una compensazione esatta e ignora il termine C₀ fisso nel denominatore.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -796,13 +807,14 @@
       "title": "Media delle tensioni finali",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -855,7 +867,7 @@
       "error": {
         "category": "algebra",
         "message": "18/5 V usa gli ingressi medi. Sette V somma, mezzo è metà della differenza e quattro ripete solo B. La media è statistica di stati finali, non il valore durante un transitorio.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -874,13 +886,14 @@
       "title": "La capacità per il bersaglio",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -928,7 +941,7 @@
       "error": {
         "category": "algebra",
         "message": "Mezzo inverte il confronto. 4/3 copia il rapporto delle tensioni finali; 3/4 il suo reciproco. Quattro copia il valore numerico di C_B in μF senza dividerlo per il C_A da 2 μF.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -947,13 +960,14 @@
       "title": "Un display senza offset",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -996,7 +1010,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro V copia l’uscita finale e darebbe un’altra lettura. Trentasei V usa D=12 come tensione finale e ricostruirebbe D=36. Otto V darebbe V_f=8/3 V e D=8.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -1015,13 +1029,14 @@
       "title": "Offset nella misura finale",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1073,7 +1088,7 @@
       "error": {
         "category": "algebra",
         "message": "65/4 V omette l’offset e usa V_f=13/2 V: ricostruisce D=14, non 13. Sei V copia l’uscita finale; trenta V omette il guadagno dopo la sottrazione; tredici V copia la lettura strumentale. Tutti possono essere confutati reinserendoli nella legge.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",
@@ -1092,13 +1107,14 @@
       "title": "Il vincolo non è ridondante",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1146,7 +1162,7 @@
       "error": {
         "category": "concetto",
         "message": "Un μF darebbe V_f=2 V e tre μF darebbe 18/5 V. −2 μF viola la positività e annulla il denominatore della forma normalizzata. Infinite soluzioni confonde questo vincolo con uno che renderebbe l’uscita costante.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica algebrica conservata sul nodo",

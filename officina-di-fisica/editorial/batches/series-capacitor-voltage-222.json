@@ -10,13 +10,14 @@
       "title": "Caduta sul primo condensatore",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -68,7 +69,7 @@
       "error": {
         "category": "algebra",
         "message": "Dodici V assegna tutta la caduta al primo e zero al secondo. Tre V è la caduta che si avrebbe con C₁=3C₂, non con capacità uguali. Quattro e due copiano numeri di capacità senza ricostruire Q/C₁. Il rapporto delle tensioni non si legge come quello diretto delle capacità.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -87,13 +88,14 @@
       "title": "L’unità della caduta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -137,7 +139,7 @@
       "error": {
         "category": "unità",
         "message": "A misura corrente, μF capacità e W potenza. Il numero 1 è l’unità del rapporto delle capacità, non della caduta. La capacità ha cambiato il riparto, non la dimensione di V₁.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -156,13 +158,14 @@
       "title": "Carica comune, tensioni diverse",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -210,7 +213,7 @@
       "error": {
         "category": "concetto",
         "message": "C₁ al numeratore dà la caduta sul secondo condensatore. Invertire il rapporto produce una caduta maggiore di E; dividere per il solo C₁ omette C₂ nella somma. EC₁C₂ ha unità V·F² e non V.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -229,13 +232,14 @@
       "title": "Il primo condensatore diminuisce",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -288,7 +292,7 @@
       "error": {
         "category": "concetto",
         "message": "Tre V rende la caduta direttamente proporzionale a C₁, sei la conserva ignorando il cambio, dodici annulla l’altra caduta. Quattro V è la caduta finale sul secondo condensatore, non sul primo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -307,13 +311,14 @@
       "title": "Ricostruire C₁",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -356,7 +361,7 @@
       "error": {
         "category": "algebra",
         "message": "Sei μF darebbe V₁=3 V; quattro μF darebbe V₁=4 V. Sottrarre direttamente una tensione da una capacità mescola unità. Il confine V₁=0 non permette un primo componente positivo finito in questa serie.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -375,13 +380,14 @@
       "title": "Ricostruire C₂",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -424,7 +430,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro μF darebbe V₁=8 V; un μF darebbe V₁=4 V. Sostituire E+V₁ al denominatore darebbe 2/3 μF e non ricostruirebbe la caduta. Il confine V₁=E è escluso.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -443,13 +449,14 @@
       "title": "Il secondo condensatore aumenta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -497,7 +504,7 @@
       "error": {
         "category": "algebra",
         "message": "3/4 inverte il confronto. Due segue soltanto C₂, mezzo ne inverte l’effetto e uno ignora la modifica. La nuova caduta sul primo deve restare minore di 12 V.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -516,13 +523,14 @@
       "title": "Scarto della tensione proposta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -570,7 +578,7 @@
       "error": {
         "category": "algebra",
         "message": "−6 V scambia l’ordine, dodici copia la proposta e zero la accetta. Due puro è un rapporto e non una differenza di tensione.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -589,13 +597,14 @@
       "title": "L’inversa nella prima capacità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -643,7 +652,7 @@
       "error": {
         "category": "algebra",
         "message": "Il più non isola il termine. C₂V₁/(E−V₁) inverte il rapporto delle tensioni: con E=12 V,V₁=3 V,C₂=1 μF darebbe 1/3 μF, mentre C₁=3 μF. V₁/C₂ e C₂−V₁ non hanno la dimensione richiesta.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -662,13 +671,14 @@
       "title": "Fattori separati nella somma",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -716,7 +726,7 @@
       "error": {
         "category": "algebra",
         "message": "κ₁ al numeratore scala il componente sbagliato nella formula della caduta. Il prodotto omette la variazione della somma; S_B/(κ₂S) inverte il confronto. κ₂/κ₁ perde i pesi delle capacità nel denominatore.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -735,13 +745,14 @@
       "title": "Nuova ripartizione elettrostatica",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -789,7 +800,7 @@
       "error": {
         "category": "algebra",
         "message": "Due inverte il rapporto. 3/2 segue soltanto C₁; un terzo usa C₂,B/C₁,B anziché C₂,B/(C₁,B+C₂,B). Uno riconosce la somma uguale ma ignora il cambiamento del riparto.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -808,13 +819,14 @@
       "title": "Media con somma comune",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -867,7 +879,7 @@
       "error": {
         "category": "algebra",
         "message": "Nove V somma; 3/2 V è metà della differenza; sei e tre ripetono una sola prova. La coincidenza con il modello ai dati medi va motivata dalla somma comune.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -886,13 +898,14 @@
       "title": "C₂ per la caduta bersaglio",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -940,7 +953,7 @@
       "error": {
         "category": "algebra",
         "message": "Due inverte il confronto. Un terzo confronta C₂,B con C₁,B anziché con C₂,A; 3/2 segue C₁; uno lascerebbe C₂=2 μF e produrrebbe 24/5 V, non 3 V.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -959,13 +972,14 @@
       "title": "Display proporzionale della caduta",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1008,7 +1022,7 @@
       "error": {
         "category": "algebra",
         "message": "1/3 μF usa D=9 come volt e produrrebbe 9 V. Un μF dà 6 V; nove μF dà 6/5 V. Solo tre μF restituisce 3 V e lettura 9.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -1027,13 +1041,14 @@
       "title": "Taratura prima dell’inversa",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1085,7 +1100,7 @@
       "error": {
         "category": "algebra",
         "message": "14/17 μF omette l’offset e usa V₁=17/2 V: ricostruisce D=18. Due μF dà D=13, quattro dà D=9, otto dà D=29/5. La capacità cercata deve restare positiva.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",
@@ -1104,13 +1119,14 @@
       "title": "La caduta non fissa la scala",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1166,7 +1182,7 @@
       "error": {
         "category": "concetto",
         "message": "Le coppie singole sono esempi e non soluzioni uniche. La risposta “Nessuna coppia” è smentita da esempi espliciti. Non qualsiasi coppia positiva è ammessa: deve valere C₁=C₂.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Neutralità del nodo e carica comune",

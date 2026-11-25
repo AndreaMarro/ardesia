@@ -10,13 +10,14 @@
       "title": "Due cariche alla stessa tensione",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -68,7 +69,7 @@
       "error": {
         "category": "algebra",
         "message": "6/5 μF usa la legge della serie. Sei copia il prodotto dei numeri senza una divisione che ne ripristini l’unità; due e tre ignorano una capacità. L’equivalente in parallelo è maggiore di ciascun componente positivo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -87,13 +88,14 @@
       "title": "La capacità non è una carica",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -137,7 +139,7 @@
       "error": {
         "category": "unità",
         "message": "C è coulomb, unità di carica, mentre C₁ e C₂ sono simboli di capacità. V misura tensione, J energia e 1 una quantità pura: nessuno di questi è l’unità di S.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -156,13 +158,14 @@
       "title": "La legge del parallelo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -214,7 +217,7 @@
       "error": {
         "category": "concetto",
         "message": "Il prodotto diviso la somma è la capacità di due elementi in serie con nodo intermedio neutro. La differenza può essere negativa; la somma dei reciproci ha F⁻¹ e il prodotto F². Nel parallelo si sommano le cariche a tensione comune.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -233,13 +236,14 @@
       "title": "Si riduce soltanto C₁",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -287,7 +291,7 @@
       "error": {
         "category": "concetto",
         "message": "5/2 μF dimezza erroneamente entrambi gli addendi. Cinque ignora il cambio, sei rende inversa la diminuzione e uno copia il solo C₁ nuovo. La topologia rimane parallela.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -306,13 +310,14 @@
       "title": "L’addendo mancante",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -355,7 +360,7 @@
       "error": {
         "category": "algebra",
         "message": "Otto μF aggiunge il noto e darebbe un totale di 11 μF. Cinque μF copia S e darebbe 8 μF. Il confine S=C₂ richiederebbe C₁=0, escluso; S<C₂ darebbe una capacità negativa fuori dal modello.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -374,13 +379,14 @@
       "title": "Polarità opposte: conservare il segno",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -437,7 +443,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro V somma i due moduli e divide 12 μC per 3 μF, ignorando le polarità opposte; meno quattro inverte quella somma errata. Tre e sei copiano tensioni iniziali. L’energia iniziale può dissiparsi nella resistenza: non si impone la conservazione dell’energia del solo campo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -456,13 +462,14 @@
       "title": "Il rapporto delle somme",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -510,7 +517,7 @@
       "error": {
         "category": "algebra",
         "message": "5/3 è il reciproco; 1/3 segue il solo C₂; tre copia il numero dell’equivalente B in μF. Uno ignora la modifica. Entrambi gli equivalenti restano maggiori delle rispettive capacità singole.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -529,13 +536,14 @@
       "title": "Uno scarto con unità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -583,7 +591,7 @@
       "error": {
         "category": "algebra",
         "message": "−5 μF scambia l’ordine, dieci copia la proposta e zero la accetta. Due confronta per divisione; una differenza di capacità deve invece essere espressa in un’unità di capacità.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -602,13 +610,14 @@
       "title": "L’inversa del parallelo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -656,7 +665,7 @@
       "error": {
         "category": "algebra",
         "message": "Il più non isola l’addendo; C₂−S dà un valore negativo nel dominio. S/C₂ è puro. La differenza dei reciproci ha F⁻¹ e appartiene a un’altra manipolazione, non all’inversa della somma.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -675,13 +684,14 @@
       "title": "Scalature con pesi diversi",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -725,7 +735,7 @@
       "error": {
         "category": "algebra",
         "message": "Il prodotto ignora che si somma e non si moltiplica. Il quoziente dei soli fattori perde i pesi; S/S_B inverte il confronto. La somma κ₁+κ₂ darebbe due anche per prove identiche.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -744,13 +754,14 @@
       "title": "Entrambe le capacità cambiano",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -798,7 +809,7 @@
       "error": {
         "category": "algebra",
         "message": "5/8 inverte il confronto; 3/2 segue solo C₁ e 5/3 solo C₂. Due darebbe un equivalente di 10 μF e non gli 8 μF ricavati dalla nuova somma.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -817,13 +828,14 @@
       "title": "La media coincide per linearità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -876,7 +888,7 @@
       "error": {
         "category": "algebra",
         "message": "Tredici non divide per due; 3/2 è metà della differenza. Cinque e otto ripetono una sola uscita. Qui il modello ai dati medi coincide con la media richiesta e va spiegato perché.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -895,13 +907,14 @@
       "title": "C₂ per il bersaglio",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -949,7 +962,7 @@
       "error": {
         "category": "algebra",
         "message": "3/5 inverte il confronto, 8/5 copia il rapporto delle somme, 3/2 segue C₁. Uno manterrebbe C₂=3 μF e darebbe S_B=6 μF, inferiore al bersaglio.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -968,13 +981,14 @@
       "title": "Rimuovere il guadagno",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1017,7 +1031,7 @@
       "error": {
         "category": "algebra",
         "message": "Diciannove μF usa D=24 come capacità totale e predirebbe una lettura 72. Otto μF copia il totale senza sottrarre il noto; cinque copia C₂. Il guadagno non è una capacità aggiunta al circuito.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -1036,13 +1050,14 @@
       "title": "Prima l’offset, poi la somma",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1094,7 +1109,7 @@
       "error": {
         "category": "algebra",
         "message": "3/2 μF omette l’offset e ricostruisce D=6. Due μF copia l’equivalente e dà D=7; quattro μF dà una somma di 5 μF e ricostruisce D=11; cinque usa D come se fosse l’incognita e dà D=13.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",
@@ -1113,13 +1128,14 @@
       "title": "Il vincolo fissa la scala",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1167,7 +1183,7 @@
       "error": {
         "category": "concetto",
         "message": "Due μF è C₁, non C₂. Cinque copia il totale. Il valore negativo viola la passività; infinite capacità ignorerebbe l’informazione della misura S, che elimina la scala libera del solo rapporto.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Tensione comune e somma delle cariche",

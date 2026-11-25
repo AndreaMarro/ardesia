@@ -10,13 +10,14 @@
       "title": "La tensione totale si ripartisce",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -64,7 +65,7 @@
       "error": {
         "category": "algebra",
         "message": "Quattro μF è la somma del parallelo. Due μF ignora un condensatore; mezzo μF divide ancora per due. L’equivalente della serie deve essere minore di ciascuna delle capacità positive finite.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -83,13 +84,14 @@
       "title": "Reciproci con la loro unità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -133,7 +135,7 @@
       "error": {
         "category": "unità",
         "message": "F⁻¹ è l’unità del reciproco, non di S. C indica carica, V tensione e 1 un rapporto puro. I prefissi come μ conservano la dimensione fisica del farad.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -152,13 +154,14 @@
       "title": "Il vincolo del nodo neutro",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -206,7 +209,7 @@
       "error": {
         "category": "concetto",
         "message": "Tensioni ed energie coincidono soltanto in casi particolari, come capacità uguali, non per ogni serie. La connessione non rende identiche C₁ e C₂. Una corrente continua di conduzione non nulla è impossibile attraverso un dielettrico ideale nello stato elettrostatico finale.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -225,13 +228,14 @@
       "title": "Una capacità si dimezza",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -275,7 +279,7 @@
       "error": {
         "category": "concetto",
         "message": "Mezzo μF segue soltanto il fattore di C₁ senza il denominatore. Tre μF è il parallelo nuovo; uno ignora il cambio e due copia C₂. Il risultato deve restare minore del componente da 1 μF.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -294,13 +298,14 @@
       "title": "L’inversa con denominatore positivo",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -343,7 +348,7 @@
       "error": {
         "category": "algebra",
         "message": "Sottrarre semplicemente il noto dà un valore negativo: sarebbe l’inversa di una somma, non della serie. Un μF ricopia S e con C₂=2 μF darebbe 2/3 μF. Il confine S=C₂ non ammette un C₁ finito positivo.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -362,13 +367,14 @@
       "title": "Stessi componenti, altra topologia",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -421,7 +427,7 @@
       "error": {
         "category": "algebra",
         "message": "Due confronta 2C con C e ignora il dimezzamento della serie. 1/4 è il reciproco, mezzo segue il solo dimezzamento e uno presume che i componenti fissino l’equivalente indipendentemente dai collegamenti.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -440,13 +446,14 @@
       "title": "Cambia soltanto C₂",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -494,7 +501,7 @@
       "error": {
         "category": "algebra",
         "message": "3/2 inverte il confronto. Mezzo segue C₂ da sola, due rende diretto il suo reciproco e uno non modifica l’uscita. Nessuno tiene insieme prodotto e somma nuovi.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -513,13 +520,14 @@
       "title": "Uno scarto di capacità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -567,7 +575,7 @@
       "error": {
         "category": "algebra",
         "message": "−1 scambia l’ordine; 2 μF copia la proposta; zero la accetta. Il numero puro due è il rapporto e non una differenza di capacità.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -586,13 +594,14 @@
       "title": "La formula inversa generale",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -636,7 +645,7 @@
       "error": {
         "category": "algebra",
         "message": "Il più al denominatore non deriva dal raccoglimento. S−C₂ rende negativo il risultato nel dominio; la semplice differenza è l’inversa del parallelo. C₂/S è puro e non una capacità.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -655,13 +664,14 @@
       "title": "Scalare entrambi i condensatori",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -709,7 +719,7 @@
       "error": {
         "category": "algebra",
         "message": "Il solo prodotto perde la variazione del denominatore. κ₁/κ₂ perde i pesi delle capacità; T_B/T descrive una somma di parallelo. L’ultima espressione è il reciproco del rapporto corretto.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -728,13 +738,14 @@
       "title": "Una nuova coppia in serie",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -782,7 +793,7 @@
       "error": {
         "category": "algebra",
         "message": "Mezzo è il reciproco; 3/2 segue il solo C₁ e tre il solo C₂. 9/4 è il rapporto delle somme e appartiene alla topologia parallela, non a questa serie.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -801,13 +812,14 @@
       "title": "Le medie non commutano con la serie",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -860,7 +872,7 @@
       "error": {
         "category": "algebra",
         "message": "20/13 μF usa gli ingressi medi anziché le uscite. Tre somma, mezzo è metà della differenza e due ripete B. La capacità di una rete costruita con dati medi non è la media statistica delle capacità di due reti.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -879,13 +891,14 @@
       "title": "C₂ per raddoppiare S",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -933,7 +946,7 @@
       "error": {
         "category": "algebra",
         "message": "1/3 inverte il confronto, due copia il rapporto degli equivalenti, 3/2 segue C₁. Sei copia il valore numerico di C₂,B in μF senza dividerlo per C₂,A=2 μF.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -952,13 +965,14 @@
       "title": "Display proporzionale della serie",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1001,7 +1015,7 @@
       "error": {
         "category": "algebra",
         "message": "Due μF copia l’equivalente e produrrebbe S=3/2 μF. Sei μF dà S=3 μF e D=9. Un valore ottenuto dividendo per zero non è un’ulteriore soluzione fisica.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -1020,13 +1034,14 @@
       "title": "Offset e inversa della capacità",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1078,7 +1093,7 @@
       "error": {
         "category": "algebra",
         "message": "Mezzo μF copia S e darebbe equivalente 1/3 μF. Due μF dà S=2/3 μF e D=7/3; tre μF dà S=3/4 μF e D=5/2. Una soluzione positiva esiste; omettere l’offset porterebbe erroneamente al confine S=C₂.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",
@@ -1097,13 +1112,14 @@
       "title": "Il vincolo dei componenti uguali",
       "version": 1,
       "baseVersion": 0,
-      "skill": "C4-L07",
+      "skill": "C4-L08",
       "prerequisites": [
         "C1-L001",
         "C4-L01",
         "C4-L03",
         "C4-L04",
-        "C4-L07"
+        "C4-L07",
+        "C4-L08"
       ],
       "reuse": [
         "C6"
@@ -1159,7 +1175,7 @@
       "error": {
         "category": "concetto",
         "message": "Uno μF copia S e darebbe mezzo μF. Mezzo μF divide invece di moltiplicare per due. Il valore negativo non è ammesso; infinite soluzioni ignorerebbe la misura assoluta dell’equivalente.",
-        "target": "C4-L07"
+        "target": "C4-L08"
       },
       "coverage": [
         "Carica uguale e tensioni additive",

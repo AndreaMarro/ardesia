@@ -1,10 +1,10 @@
 # Authoring DRAFT — parallel-capacitors-220
 
-Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Riletta integralmente la lezione reale C4-L07, capacità come Q/V, geometria piana, lavoro di carica e distinzione fra condensatore isolato e collegato; prerequisiti reali C4-L01/L03/L04 e C1-L001. Nessuna nuova lezione inventata.
+Letti individualmente tutti gli 80 prompt originali assegnati A220–224 prima di scrivere il primo candidato. Fonte Git immutabile 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, U6-04 SHA256 179bf1cacfb83482e32bb41e99cb78296990faafba1fe9ce3b0e3cbc3a6a09cf. Compiti e ID conservati, incluse eccezioni: 22006 polarità opposte e transitorio esaurito; 22106 capacità delle due topologie, senza falsa conservazione di una commutazione. Rilette integralmente le lezioni reali C4-L07 e C4-L08: L07 definisce il singolo condensatore e resta prerequisito; L08 tratta reti, tensioni in serie, carica dei nodi e dissipazione nella condivisione ed è la competenza primaria corretta dei presenti quesiti. Prerequisiti reali C4-L01/L03/L04/L07/L08 e C1-L001. Nessuna nuova lezione inventata.
 
 Prima di candidature U604 entrambi i revisori avevano congelato la propria primaria: B per A220–224 SHA08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58 (non aperta dall’autore); A per B225–229 SHA1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a, lettura solo allowlist id/prompt senza opzioni o chiavi altrui.
 
-Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. Importatore canonico ROOT read-only su SQLite temporaneo: 16 nuovi, poi 0 nuovi e 16 invariati, 991 pubblicati e relativo storico invariati. Sono prove tecniche, senza accredito d’integrazione.
+Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN, publicationAction NONE. Nessun proprio verificatore o firma scientifica. Due processi separati dell’assembler unico producono byte identici. L’import positivo 16→0/16 con 991 pubblicati invariati appartiene alla precedente edizione, preservata in archivio. Per i presenti byte con nuova mappatura, import PENDING_ROOT_REMOTE; non si trasferisce il precedente esito.
 
 Figura realmente prodotta nel browser soltanto come SVG inline a piena altezza, sotto mutex e guardia ≥2 GiB, processo terminale exit0. XML integrale e PNG intero sono stati letti; dimensioni e bounding box esatti nel manifest. Nessuna pagina dell’app aperta, nessun marker di UI prodotto creato o riusato. UI prodotto e layout a 320px NOT_RUN; collaudo canonico riservato all’integratore. I testi visibili usano grandezze fisiche, non metriche dell’implementazione.
 
@@ -20,7 +20,7 @@ Distrattori: 6/5 μF usa la legge della serie. Sei copia il prodotto dei numeri 
 
 Hint: Somma le cariche corrispondenti alla stessa tensione.
 
-Fonte canonica SHA256 4165a3af87c1c08f79fbb50751f8951fb772ce2ce3324b118304102c81fa1cc6. Candidato SHA256 7449df8c63bb59c032af6d8481c591d818a9138075c4f82f43f9f2b4bd90574b. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 4165a3af87c1c08f79fbb50751f8951fb772ce2ce3324b118304102c81fa1cc6. Candidato SHA256 9f68eee1e0003218c30e1e4ab0608dee551e445a2f4e9fc4bab9f7b04ee6c0d5. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-02 — La capacità non è una carica
 
@@ -34,7 +34,7 @@ Distrattori: C è coulomb, unità di carica, mentre C₁ e C₂ sono simboli di 
 
 Hint: Dividi una carica per una differenza di potenziale.
 
-Fonte canonica SHA256 5732f8477e174d63c2615be84ed03fbd3aa424f4315a5511b915a294303a784a. Candidato SHA256 35f2a89ac83f53481016884aedd4924c6de8eee38fcb091ee21d3fad4f146168. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 5732f8477e174d63c2615be84ed03fbd3aa424f4315a5511b915a294303a784a. Candidato SHA256 61b464f05fcae8f97c98d2e0ae3df3410308595ac7aac6a7813836a302274f24. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-03 — La legge del parallelo
 
@@ -48,7 +48,7 @@ Distrattori: Il prodotto diviso la somma è la capacità di due elementi in seri
 
 Hint: Chiediti quale grandezza rende comune la topologia dei nodi.
 
-Fonte canonica SHA256 ddbfd1b6d8baca5793822cba2c8e17c1f59d0eb940543267281edc7577190d31. Candidato SHA256 0755a7e68493bfd7b15c9d429fa090c59cfcad0474fc8db62acbf61579e92d56. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 ddbfd1b6d8baca5793822cba2c8e17c1f59d0eb940543267281edc7577190d31. Candidato SHA256 835a1beff936287908caa9d490eac3f6c87f2d00d1f5c82ebc2c59d365546c41. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-04 — Si riduce soltanto C₁
 
@@ -62,7 +62,7 @@ Distrattori: 5/2 μF dimezza erroneamente entrambi gli addendi. Cinque ignora il
 
 Hint: Mantieni invariato l’addendo da 3 μF.
 
-Fonte canonica SHA256 b0ad5c5409ae5f528950fc7153f342a68bdb25965d45418b475ddcdfc067a972. Candidato SHA256 b7ab892008b03378c213490331166e43f96cbbd37388a7378acf40e706728d5d. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 b0ad5c5409ae5f528950fc7153f342a68bdb25965d45418b475ddcdfc067a972. Candidato SHA256 d1dd0e6075a8ff2af72e45888a832643bf6bd9c7de79407a7fbcb68780bb4afa. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-05 — L’addendo mancante
 
@@ -76,7 +76,7 @@ Distrattori: Otto μF aggiunge il noto e darebbe un totale di 11 μF. Cinque μF
 
 Hint: Isola l’addendo e verifica che sia strettamente positivo.
 
-Fonte canonica SHA256 980b1cbea69a7501aa92b23f53c3bd6f8620739d91d680b5dcfd42c60095ed74. Candidato SHA256 040074f654185ece42a025968702004461c2e95fdbe2fef55d8acc89b96a8fbc. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 980b1cbea69a7501aa92b23f53c3bd6f8620739d91d680b5dcfd42c60095ed74. Candidato SHA256 534dc73da1a02d921738cfec25954e4f736259ee1a991ad2728731cfe1188e5d. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-06 — Polarità opposte: conservare il segno
 
@@ -90,7 +90,7 @@ Distrattori: Quattro V somma i due moduli e divide 12 μC per 3 μF, ignorando l
 
 Hint: Assegna il segno alle cariche delle armature che formeranno lo stesso nodo.
 
-Fonte canonica SHA256 80944fb512f5b542b2f9417342ae73193299658e5d5a9a014095a82e09fae8b3. Candidato SHA256 76a6029ca3f52f9981012b918772023f1693a5ae593d9a07996435584779c707. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 80944fb512f5b542b2f9417342ae73193299658e5d5a9a014095a82e09fae8b3. Candidato SHA256 e90bba7ff534873fd8993aeaefb159f7aed98ffbcece603be74ab69eff553ec1. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-07 — Il rapporto delle somme
 
@@ -104,7 +104,7 @@ Distrattori: 5/3 è il reciproco; 1/3 segue il solo C₂; tre copia il numero de
 
 Hint: Calcola entrambe le somme prima di confrontarle.
 
-Fonte canonica SHA256 14265b7165556573e8602dc2fee4b6dea8d8a34369626e54d561123f25b16cee. Candidato SHA256 5c4a2510f14f5c6cff92dedb9438f5d031c2304c6f5057f6e36c89e016196270. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 14265b7165556573e8602dc2fee4b6dea8d8a34369626e54d561123f25b16cee. Candidato SHA256 395d6958a4dc3e7c18f643e533643d99a098225abf37af4272620717732c3d6f. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-08 — Uno scarto con unità
 
@@ -118,7 +118,7 @@ Distrattori: −5 μF scambia l’ordine, dieci copia la proposta e zero la acce
 
 Hint: Sottrai il corretto dalla proposta nello stesso ordine del testo.
 
-Fonte canonica SHA256 3270a103ba161343ee2715718c44aeeff8a048eb0c4ba5e2076fce18c542e819. Candidato SHA256 3b3fc1bd3a8a2ed07f5f5e04dc7f7eb1cd02beb47fe8d0a7fdb36e2f1da8f35f. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 3270a103ba161343ee2715718c44aeeff8a048eb0c4ba5e2076fce18c542e819. Candidato SHA256 9405d830d7d954749030a566bdffc2694466ce19776f933e32ade7ea3f65206e. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-09 — L’inversa del parallelo
 
@@ -132,7 +132,7 @@ Distrattori: Il più non isola l’addendo; C₂−S dà un valore negativo nel 
 
 Hint: Controlla sia l’algebra sia la positività dell’incognita.
 
-Fonte canonica SHA256 27b1e1f9a0784f5782bb28907cf15d490578e0a7f68a5d189b5ba43b04191996. Candidato SHA256 6c78905a5428306da9bd47b17cee7aa8617f8d0949957bdf42ac62722949b27d. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 27b1e1f9a0784f5782bb28907cf15d490578e0a7f68a5d189b5ba43b04191996. Candidato SHA256 d50ecdc854a9404c262a4816b767714b9eeddc7dbaa69eff790193595e13382b. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-10 — Scalature con pesi diversi
 
@@ -146,7 +146,7 @@ Distrattori: Il prodotto ignora che si somma e non si moltiplica. Il quoziente d
 
 Hint: Scala separatamente ciascun addendo, poi dividi per la somma originale.
 
-Fonte canonica SHA256 c7eebad30fddebdaf6cad34449633d2f5bbae1c5874ff4a23838d77d20905299. Candidato SHA256 1287602bcfdac1f51de61379899ea7e22390c51a905b80e0eec659699fce4a13. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 c7eebad30fddebdaf6cad34449633d2f5bbae1c5874ff4a23838d77d20905299. Candidato SHA256 85ad79be6ad344d7c9c811601fc745e4c2190442a4048d1f92aa49e8ea50bfee. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-11 — Entrambe le capacità cambiano
 
@@ -160,7 +160,7 @@ Distrattori: 5/8 inverte il confronto; 3/2 segue solo C₁ e 5/3 solo C₂. Due 
 
 Hint: Non scegliere il fattore di un solo componente quando cambiano entrambi.
 
-Fonte canonica SHA256 11093bb50024798825f5a8dd554c337d20836c7c3bd6eafb21ff675a3a39662f. Candidato SHA256 0c7459dd17e5e77864a65bcff24133a00be86f8e145a30c37b37af086a20a9ec. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 11093bb50024798825f5a8dd554c337d20836c7c3bd6eafb21ff675a3a39662f. Candidato SHA256 d0e873c9f1cd490bbaed81dded1b18e84b5f12c4a875fc17eb78f8ce7e6675f0. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-12 — La media coincide per linearità
 
@@ -174,7 +174,7 @@ Distrattori: Tredici non divide per due; 3/2 è metà della differenza. Cinque e
 
 Hint: Media le due somme e riconosci la linearità.
 
-Fonte canonica SHA256 1e24e7fc20e42f1f8d0908b89ca02473558ff9509c2da1357a79cf753e0fe99f. Candidato SHA256 d2179b3073fe0aba56dce30048c586eccee12246924abcd4a66169b38e1877d5. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 1e24e7fc20e42f1f8d0908b89ca02473558ff9509c2da1357a79cf753e0fe99f. Candidato SHA256 72b49c7e755a32fdd9fbb1cbe7ac66323eef38f1a2a23e8d296c888585e67253. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-13 — C₂ per il bersaglio
 
@@ -188,7 +188,7 @@ Distrattori: 3/5 inverte il confronto, 8/5 copia il rapporto delle somme, 3/2 se
 
 Hint: Trova prima la somma bersaglio e poi l’addendo mancante.
 
-Fonte canonica SHA256 e226414ed01566e44ebc2d11943b18d49cb4a8e9fa22ac2f33284d993db94ebd. Candidato SHA256 941e4e6ca520f81e439d341a74ea8e7fdef8b7e9c8970fe8fc2641395c996b99. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 e226414ed01566e44ebc2d11943b18d49cb4a8e9fa22ac2f33284d993db94ebd. Candidato SHA256 49a4b079b81ae2c2b8e53b440eb0305936e471e6f126bc7cdaffde08064a3c2c. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-14 — Rimuovere il guadagno
 
@@ -202,7 +202,7 @@ Distrattori: Diciannove μF usa D=24 come capacità totale e predirebbe una lett
 
 Hint: Decodifica la capacità equivalente prima di sottrarre C₂.
 
-Fonte canonica SHA256 bc2aaa5879b8a4652863bb44218146c512afcee806d6fb81f96a3110647ed575. Candidato SHA256 7beb0206ef680a57b925f20a320c09fc1e64f235fee185807a263adb03f24127. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 bc2aaa5879b8a4652863bb44218146c512afcee806d6fb81f96a3110647ed575. Candidato SHA256 942a569f52dc72aa57a1b194e6c613ef05048f29a39f91a6879ac65956766a81. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-15 — Prima l’offset, poi la somma
 
@@ -216,7 +216,7 @@ Distrattori: 3/2 μF omette l’offset e ricostruisce D=6. Due μF copia l’equ
 
 Hint: Sottrai b, dividi per il guadagno e infine togli l’addendo noto.
 
-Fonte canonica SHA256 1fe83405d3b4009dcc79ba5c81cb91d0b3db3f6e4abc31b240b798231a49927f. Candidato SHA256 4ae6f19b1df59c0f2abfc8475b691969c23cf6c03286c517188552e253945994. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 1fe83405d3b4009dcc79ba5c81cb91d0b3db3f6e4abc31b240b798231a49927f. Candidato SHA256 98b17ed15820878b21606cbef3dd08b9825f96be145143e18d4ad834bfcdc311. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-parallel-capacitors-16 — Il vincolo fissa la scala
 
@@ -230,7 +230,7 @@ Distrattori: Due μF è C₁, non C₂. Cinque copia il totale. Il valore negati
 
 Hint: Inserisci il vincolo nella legge prima di decidere se la misura è ridondante.
 
-Fonte canonica SHA256 dc034612d8cba9f3e98e3b774e0febbbcd0cdacebad4e9c44c1911e73381aa05. Candidato SHA256 1c90e3d9b161ad9c40238ba0a6107e37c6594349a5554b8538941bbe13e2b397. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 dc034612d8cba9f3e98e3b774e0febbbcd0cdacebad4e9c44c1911e73381aa05. Candidato SHA256 d9405eca8dacb0e3386fdbe780be69e0826591c211170792898e027ef117bb14. Revisione indipendente e human NOT_RUN.
 
 ## Lettura geometrica d’autore
 
@@ -238,10 +238,14 @@ Pannello 1: stessi nodi verticali A/B uniscono due condensatori schematici, senz
 
 ## Provenienza tecnica
 
-Asset SHA256 02c6619b2df62e021cdeb7b0f5f0f954f1a289a402b6a60c680f6ec5632283f6. Package file SHA256 88356b6e37fc7ad784b4c3159725bbb11d456887c2ec2e19bb205abc92aa563d. Binding file SHA256 c496b6bf67d4fb74fed0cc375664edb4fd6754f73ff19517ef18bfeea9c92fb1. Prova strutturale SHA256 ccf1beaeae057e8620dbfc05cfddb8033bbd2459ea5e441ca6f10c7e1221e952. Manifest asset-only SHA256 e5092e2b78158eeeac9223f1e7b241ffb5e95c6958e6a9e3cdbb2954cbf6f32d.
+Asset SHA256 02c6619b2df62e021cdeb7b0f5f0f954f1a289a402b6a60c680f6ec5632283f6. Package file SHA256 26b3c0dcb54f85d2815f405dfdfc33f6bd5b2354750c76d0df2bd0512fada9b8. Binding file SHA256 72502761c473fa50694f544da49584fa17355b611af2d4d83380e34be0a37e15. Prova strutturale SHA256 34e98bf337cd71cc75387a7961451085fd37e964d3e3ce5460b6f029427a6f35. Manifest asset-only SHA256 e5092e2b78158eeeac9223f1e7b241ffb5e95c6958e6a9e3cdbb2954cbf6f32d.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
 ## Finding distinto sulla notazione delle unità
 
 Nel terzo pannello le somme numeriche sono ora racchiuse fra parentesi prima di μF, così l’unità si applica a entrambi gli addendi. Assert XML: tutti tag e attributi geometrici/stilistici identici; il solo testo cambia. Strictdiff package: record01/06/12 cambiano soltanto il riferimento all’asset, altri13 record e tutte le chiavi/formule/caption identici. Binding delle tre figure rigenerati. Precedenti byte e vero native preservati con checksum nell’archivio peer-svg-units-superseded. Due nuove assembly/import16→0/16 e nuovo render browser-native completo640×1500 reale exit0, interamente visto. Non si attribuisce alla nuova versione il vecchio PNG; UI prodotto e nuova SCI distinta NOT_RUN.
+
+## Correzione di mappatura didattica dopo review distinta
+
+La lezione originale C4-L08 «Mettere insieme i condensatori», riletta nel pin Cric5d1d, è il riferimento primario per questa famiglia. Aggiornati soltanto skill, error.target e aggiunta della competenza esistente L08 ai prerequisiti, conservando L07. Ogni altro campo dei sedici record, tutte le formule e le scelte e ogni byte SVG sono identici per confronto strutturale. Due nuove assembly effettive exit0 e identiche; nessun nuovo render necessario per asset immutato. I precedenti import/report SCI sono conservati nell’archivio con checksum e restano storici sulle vecchie firme. Import finale PENDING_ROOT_REMOTE; nessun nuovo DB locale, come autorizzato dall’integratore. Revisione scientifica distinta delle nuove associazioni e human NOT_RUN, DRAFT e publicationAction NONE.
