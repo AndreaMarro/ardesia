@@ -100,7 +100,7 @@ A fornisce una quota 3/4, B una quota 2/4=1/2. Il rapporto è(1/2)/(3/4)=2/3. Il
 
 Passaggi: `\eta_A=\frac34\qquad \eta_B=\frac12\qquad \frac{\eta_B}{\eta_A}=\frac23`
 
-Distrattori: 3/2 inverte il rapporto; 1/2 copia la sola uscita B.4/3 segue il reciproco del carico nuovo rispetto al vecchio; uno presume che totale uguale significhi quota uguale.
+Distrattori: 3/2 inverte il rapporto; 1/2 copia la sola uscita B.4/3 inverte la sola quota iniziale, senza confrontarla con la nuova; uno presume che totale uguale significhi quota uguale.
 
 ## 12 — La media di due quote
 
@@ -124,7 +124,7 @@ A valeη_A 3/4, quindi a_cal=(9/4)/(3/4)=3. La lettura B 3/2 indicaη_B 1/2. App
 
 Passaggi: `a_{\rm cal}=3\qquad \eta_B=\frac12\qquad R_{L,B}=2\,\Omega`
 
-Distrattori: Copiare D come resistenza darebbe 3/2 Ω e una quota 3/7. Trattare D comeη darebbe una quota maggiore di uno, incompatibile con il modello. Sei Ω non toglie il guadagno e produrrebbe D 9/4, non 3/2.
+Distrattori: Copiare D come resistenza darebbe 3/2 Ω e una quota 3/7. Trattare D comeη darebbe una quota maggiore di uno, incompatibile con il modello. Sei Ω produrrebbe D=9/4, non 3/2.
 
 ## 15 — Due riferimenti tolgono l’offset
 
@@ -141,3 +141,7 @@ Sostituendo il vincolo si ottieneη=3 R_c/(3 R_c+R_c)=3/4 per ogni R_c>0. La mis
 Passaggi: `R_L=3R_c\qquad \eta=\frac{3R_c}{4R_c}\qquad \eta=\frac34`
 
 Distrattori: Una o due coppie confondono esempi con la famiglia intera. Nessuna contraddirebbe gli esempi positivi. Coppie arbitrarie indipendenti ignorano il vincolo del rapporto tre; R_c 0 è esclusa dal dominio.
+
+## Correzioni richieste dal revisore distinto
+
+21511: il rapporto dei carichi è 2/3 e il suo reciproco 3/2, mentre 4/3 è il reciproco della sola quota iniziale. Corretta solo quella attribuzione nel feedback/error.21514: omettere la taratura darebbe una quota 3/2 fuori dominio, quindi non spiega una resistenza positiva 6 Ω; mantenuta soltanto la controprova esatta 6 Ω→D9/4, non 3/2. Vecchi otto file e manifest conservati prima di mutare. Ultima doppia assembly/import 16→0/16 reali; altri 14 record, tutte chiavi/formule e SVG byte-identici. Il PNG precedente resta riferito allo stesso SVG; nessun nuovo render o credito UI. Revisione distinta non rinnovata dall’autore, human NOT_RUN/DRAFT.
