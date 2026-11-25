@@ -7,7 +7,7 @@ TASKS=[
 ('Dall’energia alla rapidità',P+'Con U=2 kV e m=1 g, quanto vale v?',2,
  'Il campo compie lavoro qU=(1 μC)(2 kV)=2 mJ. La partenza da fermo dà K_f=mv²/2=qU. Con m=10⁻³ kg e qU=2·10⁻³ J si trova v²=4 m²/s², quindi v=2 m/s. Non si sceglie una velocità negativa da un bilancio che determina solo il modulo.',
  r'qU=2\,\mathrm{mJ}\qquad \frac12mv^2=qU\qquad v^2=4\,\mathrm{m^2/s^2}\qquad v=2\,\mathrm{m/s}',
- 'Quattro m/s copia v² come se fosse v; un m/s perde il fattore due del bilancio. Due km/s confonderebbe grammi con chilogrammi o i prefissi della tensione. Il lavoro è in millijoule, non in kilojoule.','Converti prima qU e m, poi ricava il quadrato della rapidità.'),
+ 'Quattro m/s copia v² come se fosse v. Un m/s darebbe K_f=1/2 mJ, non i 2 mJ disponibili. Due km/s tratterebbe 1 μC come 1 C, sovrastimando qU di 10⁶ e v di 10³. Il lavoro assegnato è in millijoule, non in kilojoule.','Converti prima qU e m, poi ricava il quadrato della rapidità.'),
 ('La dimensione di una rapidità',P+'Quale unità è adatta a v?',
  ['m/s','m/s²','J','V','kg'],
  'Una rapidità è lunghezza per tempo. Dal bilancio, 2qU/m ha unità J/kg=m²/s²; la radice quadrata lascia m/s. Il fatto che il fenomeno sia elettrico non rende la velocità una tensione.',
