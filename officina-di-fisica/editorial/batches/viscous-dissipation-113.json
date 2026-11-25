@@ -1,0 +1,1186 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-viscous-dissipation-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11301,
+      "title": "Dalla caduta di pressione ai watt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 1,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Con R=2 kPa·s/L e Q=3 L/s, quanto vale P_d in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 18,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima ricaviamo il salto che mantiene la portata: due per tre dà sei kPa. In un secondo passano tre litri; ciascun litro perde sei joule di energia meccanica, perché un kPa per un litro è un joule. I diciotto joule al secondo corrispondono a diciotto watt dissipati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c8a0152fa5ca871959035ddfce7ccbb59eb14f2acb26e5f9c0e2b5fdea361a19",
+          "text": "Elemento resistivo schematico: Q=3 L/s comune alle sezioni, pressione assoluta da 106 a 100 kPa e Δp=6 kPa. Frecce separate di 120 px alla scala 40 px/(L/s). In un secondo tre litri perdono 18 J di energia meccanica, rappresentati da tre gruppi di sei caselle da 1 J. Le caselle sono conteggi, non geometria di un campione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=RQ"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=6\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=\\Delta pQ"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=(6\\,\\mathrm{kPa})(3\\,\\mathrm{L/s})"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=18\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Sei è il numero della caduta in kPa, non della potenza. Nove è il quadrato numerico della portata senza R. La potenza dissipata è positiva; il contributo dell’attrito al bilancio dell’energia meccanica ha invece segno negativo."
+        }
+      ],
+      "hints": [
+        "Trova prima Δp e poi il lavoro per volume trasferito ogni secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è il numero della caduta in kPa, non della potenza. Nove è il quadrato numerico della portata senza R. La potenza dissipata è positiva; il contributo dell’attrito al bilancio dell’energia meccanica ha invece segno negativo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11302,
+      "title": "La conversione che restituisce potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 1,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Quale unità proposta esprime P_d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "kPa",
+          "L/s",
+          "kPa·s/L"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza di pressione moltiplicata per la portata ha dimensione di energia per tempo. Mille pascal per un millesimo di metro cubo al secondo è un pascal moltiplicato per un metro cubo al secondo: i due prefissi si cancellano esattamente."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{kPa}=1000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{L/s}=10^{-3}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa\\,L/s}=1\\,\\mathrm{Pa\\,m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa\\,m^3/s}=1\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "J sarebbe l’energia dissipata durante un intervallo; kPa è pressione, L/s portata e kPa·s/L resistenza. Per un tempo t la quantità di energia convertita sarebbe P_dt, non P_d da sola."
+        }
+      ],
+      "hints": [
+        "Sostituisci Pa=N/m² e controlla il tempo al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J sarebbe l’energia dissipata durante un intervallo; kPa è pressione, L/s portata e kPa·s/L resistenza. Per un tempo t la quantità di energia convertita sarebbe P_dt, non P_d da sola.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11303,
+      "title": "Perché la portata compare due volte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 1,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Quale relazione dà P_d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P_d = R Q²",
+          "P_d = R Q",
+          "P_d = R / Q²",
+          "P_d = Q² / R",
+          "P_d = 2 R Q²"
+        ],
+        "value": "P_d = R Q²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro delle forze di pressione per trasportare un volume dV è Δp dV. Per unità di tempo diventa ΔpQ. Nel resistore assegnato Δp cresce a sua volta come RQ: una Q stabilisce il salto necessario e l’altra conta il volume che lo attraversa ogni secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c8a0152fa5ca871959035ddfce7ccbb59eb14f2acb26e5f9c0e2b5fdea361a19",
+          "text": "Il grafico finale mantiene R=2 kPa·s/L: P_d=2Q² con numeri nelle unità dichiarate. Asse Q da zero, scala 50 px/(L/s); asse P_d da zero, scala 10 px/W. I punti (2,8),(3,18),(4,32) e la curva parabolica usano queste stesse scale; non si collega la prova a R=3 alla curva con R=2."
+        },
+        {
+          "type": "formula",
+          "text": "dW=\\Delta p\\,dV"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=\\Delta pQ"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=RQ"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=RQ^2"
+        },
+        {
+          "type": "text",
+          "text": "RQ da solo è una pressione. Le due espressioni inverse hanno dipendenze e dimensioni sbagliate. Il fattore due non nasce da una legge di energia cinetica: qui si usa il lavoro delle pressioni su un elemento resistivo."
+        }
+      ],
+      "hints": [
+        "Sostituisci Δp=RQ nel prodotto ΔpQ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "RQ da solo è una pressione. Le due espressioni inverse hanno dipendenze e dimensioni sbagliate. Il fattore due non nasce da una legge di energia cinetica: qui si usa il lavoro delle pressioni su un elemento resistivo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11304,
+      "title": "Più resistenza a portata mantenuta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 1,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. R passa da 2 a 3 kPa·s/L, mentre Q resta 3 L/s. Come cambia P_d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 18 a 27 W",
+          "Da 18 a 12 W",
+          "Resta 18 W",
+          "Da 18 a 81/2 W",
+          "Diventa zero"
+        ],
+        "value": "Da 18 a 27 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quadrato della portata resta nove. Moltiplicarlo per due o per tre dà diciotto e ventisette watt. Per mantenere la stessa portata la caduta aumenta da sei a nove kPa: è la pompa esterna a dover fornire più potenza meccanica al sistema."
+        },
+        {
+          "type": "formula",
+          "text": "Q^2=9\\,\\mathrm{L^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,A}=18\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=27\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Dodici usa il fattore inverso della resistenza. Ottantuno mezzi applica il quadrato al fattore 3/2, ma l’esponente due riguarda Q, non R. Invariata o nulla non è compatibile con R,Q positivi e con la portata mantenuta."
+        }
+      ],
+      "hints": [
+        "A Q fissa P_d dipende linearmente da R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici usa il fattore inverso della resistenza. Ottantuno mezzi applica il quadrato al fattore 3/2, ma l’esponente due riguarda Q, non R. Invariata o nulla non è compatibile con R,Q positivi e con la portata mantenuta.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11305,
+      "title": "La resistenza da una potenza dissipata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Si misura P_d=18 W e si conosce Q=3 L/s. Quanto vale R in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo per il quadrato della portata. Tre al quadrato vale nove, quindi diciotto diviso nove è due. L’unità W/(L²/s²) coincide con kPa·s/L, usando la stessa equivalenza kPa·L/s=W."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac{P_d}{Q^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{18\\,\\mathrm W}{9\\,\\mathrm{L^2/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere soltanto per Q darebbe Δp=6 kPa, non la resistenza. Questo errore conserva un numero plausibile ma cambia la grandezza richiesta."
+        }
+      ],
+      "hints": [
+        "Isola R dividendo per Q², poi controlla l’unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere soltanto per Q darebbe Δp=6 kPa, non la resistenza. Questo errore conserva un numero plausibile ma cambia la grandezza richiesta.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11306,
+      "title": "La radice fisica della portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Si misura P_d=18 W e si conosce R=2 kPa·s/L. Quanto vale Q in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto potenza su resistenza dà il quadrato della portata. Diciotto diviso due è nove e la radice richiesta è tre. L’equazione algebrica ammetterebbe anche il segno negativo, ma il verso di flusso è stato assegnato positivo."
+        },
+        {
+          "type": "formula",
+          "text": "Q^2=\\frac{P_d}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " Q^2=9\\,\\mathrm{L^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Nove è un quadrato di portata, non Q. La radice −3 L/s descriverebbe il verso opposto e non è ammessa in questa consegna; non si sceglie il segno in base alla sola positività della dissipazione."
+        }
+      ],
+      "hints": [
+        "Ricava Q² e seleziona il ramo coerente con il verso assegnato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è un quadrato di portata, non Q. La radice −3 L/s descriverebbe il verso opposto e non è ammessa in questa consegna; non si sceglie il segno in base alla sola positività della dissipazione.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11307,
+      "title": "Meno flusso, due fattori di riduzione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. A ha R=2 kPa·s/L, Q=3 L/s. B mantiene R e usa Q=2 L/s. Quanto vale P_d,B/P_d,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/9",
+          "9/4",
+          "2/3",
+          "3/2",
+          "1"
+        ],
+        "value": "4/9"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata diventa due terzi e la potenza contiene il suo quadrato. In A si dissipano diciotto watt, in B due per quattro, otto watt. Otto diciottesimi si riduce a quattro noni. Calano sia il volume al secondo sia la pressione necessaria a farlo passare."
+        },
+        {
+          "type": "formula",
+          "text": "P_{d,A}=18\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{d,B}}{P_{d,A}}=\\frac8{18}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{d,B}}{P_{d,A}}=\\frac49"
+        },
+        {
+          "type": "text",
+          "text": "Nove quarti è il reciproco; due terzi trascura uno dei due fattori di portata, tre mezzi ne inverte il verso e uno ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il rapporto delle portate, non quello delle resistenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quarti è il reciproco; due terzi trascura uno dei due fattori di portata, tre mezzi ne inverte il verso e uno ignora il cambiamento.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11308,
+      "title": "Una dissipazione proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Con R=2 kPa·s/L e Q=3 L/s si propone P_d=36 W. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "18 W",
+          "−18 W",
+          "36 W",
+          "0 W",
+          "9 W"
+        ],
+        "value": "18 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La caduta è sei kPa e il prodotto con tre L/s dà diciotto watt. La proposta trentasei contiene un fattore due non previsto. Lo scarto richiesto è positivo, trentasei meno diciotto: il segno dell’errore non è il segno del lavoro dell’attrito."
+        },
+        {
+          "type": "formula",
+          "text": "P_d=18\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(36-18)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=18\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Meno diciotto scambia l’ordine, trentasei ripete la proposta, zero la accetta e nove dimezza l’errore. Una dissipazione positiva non giustifica qualunque valore positivo."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima il prodotto ΔpQ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno diciotto scambia l’ordine, trentasei ripete la proposta, zero la accetta e nove dimezza l’errore. Una dissipazione positiva non giustifica qualunque valore positivo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11309,
+      "title": "Isolare R senza perdere il quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Quale formula isola R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = P_d / Q²",
+          "R = P_d / Q",
+          "R = P_d Q²",
+          "R = Q² / P_d",
+          "R = √(P_d / Q²)"
+        ],
+        "value": "R = P_d / Q²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R moltiplica Q². Dividendo entrambi i lati per il quadrato positivo si ottiene l’inversa, senza radici. La radice servirebbe se l’incognita fosse Q; qui la dipendenza da R è lineare."
+        },
+        {
+          "type": "formula",
+          "text": "P_d=RQ^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{P_d}{Q^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q>0"
+        },
+        {
+          "type": "text",
+          "text": "P_d/Q restituisce pressione. Il prodotto con Q² inverte l’operazione, Q²/P_d restituisce una resistenza inversa e la radice finale altera sia la legge sia le dimensioni."
+        }
+      ],
+      "hints": [
+        "Riconosci quale variabile è effettivamente elevata al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "P_d/Q restituisce pressione. Il prodotto con Q² inverte l’operazione, Q²/P_d restituisce una resistenza inversa e la radice finale altera sia la legge sia le dimensioni.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11310,
+      "title": "Due scalature nella dissipazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. B ha R_B=κ₁R_A e Q_B=κ₂Q_A, con fattori positivi. Quanto vale P_d,B/P_d,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁ / κ₂²",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo le nuove grandezze, il quadrato di κ₂Q contiene κ₂². Nel rapporto si cancellano R e Q² originari; il fattore di resistenza compare una volta sola. Le portate, non i soli salti di pressione, sono i secondi ingressi controllati."
+        },
+        {
+          "type": "formula",
+          "text": "P_{d,B}=\\kappa_1R_A(\\kappa_2Q_A)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{d,B}}{P_{d,A}}=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto semplice dimentica il secondo Q. Il quadrato su κ₁ riguarda la variabile sbagliata; le due opzioni con divisione trasformano una dipendenza diretta in inversa."
+        }
+      ],
+      "hints": [
+        "Distribuisci il quadrato su tutto κ₂Q_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto semplice dimentica il secondo Q. Il quadrato su κ₁ riguarda la variabile sbagliata; le due opzioni con divisione trasformano una dipendenza diretta in inversa.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11311,
+      "title": "La portata ridotta può prevalere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. A ha R=2 kPa·s/L, Q=3 L/s; B ha R=3 kPa·s/L, Q=2 L/s. Quanto vale P_d,B/P_d,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "4/9",
+          "1",
+          "12"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova resistenza è maggiore di un fattore tre mezzi, ma la portata al quadrato è minore di un fattore quattro noni. Il prodotto è due terzi. Direttamente, B dissipa tre per quattro, dodici watt, contro diciotto in A: l’effetto della portata prevale."
+        },
+        {
+          "type": "formula",
+          "text": "P_{d,A}=18\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{d,B}}{P_{d,A}}=\\frac32\\frac49"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{d,B}}{P_{d,A}}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue soltanto R, quattro noni soltanto Q²; uno tratterebbe i due effetti come perfettamente compensati e dodici è la potenza numerica di B, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Calcola la potenza di ogni prova o moltiplica i due fattori corretti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue soltanto R, quattro noni soltanto Q²; uno tratterebbe i due effetti come perfettamente compensati e dodici è la potenza numerica di B, non il rapporto.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11312,
+      "title": "La media riguarda le due potenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 2,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Le prove A con R=2 kPa·s/L,Q=3 L/s e B con R=3 kPa·s/L,Q=2 L/s hanno uguale peso statistico. Qual è la media aritmetica delle P_d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 W",
+          "30 W",
+          "15/2 W",
+          "125/8 W",
+          "6 W"
+        ],
+        "value": "15 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono diciotto e dodici watt. Sommandole si ottengono trenta watt e dividendo per due si trova quindici. La media descrive il registro delle due prove, non un unico resistore con parametri medi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P_d=\\frac{18+12}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P_d=15\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Trenta è la somma, quindici mezzi dimezza ancora e sei è la differenza. Usando R_media=5/2 kPa·s/L e Q_media=5/2 L/s si otterrebbe 125/8 W, maggiore di 15 W di 5/8 W: il prodotto con un quadrato non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Valuta RQ² in ciascuna prova prima di mediare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta è la somma, quindici mezzi dimezza ancora e sei è la differenza. Usando R_media=5/2 kPa·s/L e Q_media=5/2 L/s si otterrebbe 125/8 W, maggiore di 15 W di 5/8 W: il prodotto con un quadrato non commuta con la media.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11313,
+      "title": "Scegliere il flusso per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 3,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. A ha R=2 kPa·s/L,Q=3 L/s. B ha R=3 kPa·s/L e deve dissipare (2/3)P_d,A. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "4/9",
+          "2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è dodici watt. Dividendo per tre kPa·s/L rimane Q_B²=4 L²/s², da cui Q_B=2 L/s nel verso positivo. Il rapporto con i tre iniziali è due terzi. Il quadrato del rapporto sarebbe quattro noni, una grandezza diversa."
+        },
+        {
+          "type": "formula",
+          "text": "P_{d,B}=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B^2=4\\,\\mathrm{L^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=2\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi rovescia gli stati, quattro noni risponde sul quadrato e due copia la portata numerica finale. Uno lascerebbe Q=3 e produrrebbe 27 W, oltre il bersaglio."
+        }
+      ],
+      "hints": [
+        "Trova il bersaglio in watt e poi la radice della portata al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi rovescia gli stati, quattro noni risponde sul quadrato e due copia la portata numerica finale. Uno lascerebbe Q=3 e produrrebbe 27 W, oltre il bersaglio.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11314,
+      "title": "Tarare un indicatore di dissipazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 3,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Un display continuo adimensionale segue S=qP_d, q>0. A con R=2 kPa·s/L,Q=3 L/s dà S=54. B dà S=36 e ha Q=2 L/s. Quanto vale R_B in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza di riferimento è diciotto watt, quindi il guadagno vale tre per watt. La nuova lettura trentasei significa dodici watt. Il quadrato della nuova portata è quattro L²/s²: dividendo dodici per quattro si ricava R_B=3 kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=\\frac{P_{d,B}}{Q_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=3\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Trattare 36 come watt triplicherebbe il valore vero e darebbe R=9. Togliere il guadagno non elimina la necessità di elevare la portata al quadrato."
+        }
+      ],
+      "hints": [
+        "Decodifica P_d, poi usa l’inversa per R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trattare 36 come watt triplicherebbe il valore vero e darebbe R=9. Togliere il guadagno non elimina la necessità di elevare la portata al quadrato.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11315,
+      "title": "Taratura affine e resistenza ignota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 3,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Un display continuo adimensionale segue S=qP_d+z. A: R=2 kPa·s/L,Q=3 L/s,S=37. B: R=3 kPa·s/L,Q=2 L/s,S=25. C: Q=3 L/s,S=55. Quanto vale R_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 kPa·s/L",
+          "2 kPa·s/L",
+          "4 kPa·s/L",
+          "1 kPa·s/L",
+          "6 kPa·s/L"
+        ],
+        "value": "3 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti corrispondono a diciotto e dodici watt. La differenza dodici delle letture divisa per sei watt dà q=2 W⁻¹; sottraendone il contributo in A resta z=1. In C la potenza è (55−1)/2=27 W e R vale ventisette su nove, tre kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,C}=27\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=3\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con Q=3 L/s, R=2,4,1,6 kPa·s/L produrrebbe letture 37,73,19,109. Nessuna vale 55; R=3 restituisce esattamente quel valore. I rapporti delle letture non eliminano un offset non nullo."
+        }
+      ],
+      "hints": [
+        "Ricava q e z con le due potenze note prima della nuova resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con Q=3 L/s, R=2,4,1,6 kPa·s/L produrrebbe letture 37,73,19,109. Nessuna vale 55; R=3 restituisce esattamente quel valore. I rapporti delle letture non eliminano un offset non nullo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-viscous-dissipation-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza dissipata nei condotti",
+      "order": 11316,
+      "title": "Un vincolo che rende cubica la portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "viscous-dissipation",
+      "difficulty": 3,
+      "prompt": "Un elemento resistivo lineare contiene un liquido omogeneo incomprimibile in moto stazionario. Si assumono uguali quota e velocità media alle due sezioni di misura, nessuna macchina interna e nessun accumulo di energia meccanica. La pressione diminuisce verso il flusso: Δp=p_monte−p_valle>0, Q>0 in L/s. La resistenza R>0, in kPa·s/L, segue Δp=RQ. P_d indica la potenza meccanica dissipata per attrito nel fluido, in W; non è una potenza meccanica prodotta dall’elemento. Fra prove si impone R=cQ, con c=2/3 kPa·s²/L². Si misura P_d=18 W. Quanto vale Q>0 in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo introduce un terzo fattore di portata: P_d=cQ³. Dividendo diciotto per due terzi si trova ventisette nelle unità del cubo di Q. La radice cubica positiva è tre, riconoscibile perché 3·3·3=27. La resistenza conseguente è due kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "P_d=cQ^3"
+        },
+        {
+          "type": "formula",
+          "text": " Q^3=\\frac{P_d}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " Q^3=27\\,\\mathrm{L^3/s^3}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette è il valore del cubo, nove deriverebbe da una radice non pertinente e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale."
+        }
+      ],
+      "hints": [
+        "Sostituisci R=cQ prima di contare la potenza di Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventisette è il valore del cubo, nove deriverebbe da una radice non pertinente e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Lavoro di pressione e dissipazione",
+        "Resistenza lineare e quadrato della portata",
+        "Unità, inverse e vincolo cubico fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c8a0152fa5ca871959035ddfce7ccbb59eb14f2acb26e5f9c0e2b5fdea361a19",
+      "name": "viscous-dissipation-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTcyMCIgdmlld0JveD0iMCAwIDY0MCAxNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlByZXNzaW9uZSwgZW5lcmdpYSB0cmFzZmVyaXRhIGUgZGlzc2lwYXppb25lPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHBhc3NpOiBhIHJlc2lzdGVuemEgZHVlIGUgcG9ydGF0YSB0cmUgaWwgc2FsdG8gZGkgcHJlc3Npb25lIMOoIHNlaSBraWxvcGFzY2FsIGUgbGEgcG90ZW56YSBkaWNpb3R0byB3YXR0LiBUcmUgZ3J1cHBpIGRpIHNlaSBjYXNlbGxlIGNvbnRhbm8gZGljaW90dG8gam91bGUgaW4gdW4gc2Vjb25kby4gSW5maW5lIGlsIGdyYWZpY28gYSByZXNpc3RlbnphIGZpc3NhdGEgZHVlIMOoIHVuYSBwYXJhYm9sYSBjb24gcHVudGkgZHVlIG90dG8sIHRyZSBkaWNpb3R0byBlIHF1YXR0cm8gdHJlbnRhZHVlIG5lbGxlIHVuaXTDoCBpbmRpY2F0ZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImZsb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTU1ZmEwIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE3MjAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTcyYzNiIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3Ij4xLiBVbmEgY2FkdXRhIG1hbnRpZW5lIGlsIGZsdXNzbzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk1Ij5QcmVzc2lvbmkgYXNzb2x1dGUgYWxsZSBkdWUgc2V6aW9uaTwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjE1NSI+MTA2IGtQYTwvdGV4dD48dGV4dCB4PSI0NDUiIHk9IjE1NSI+MTAwIGtQYTwvdGV4dD4KPHJlY3QgeD0iMjQ1IiB5PSIxODAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTAwIiByeD0iMTIiIGZpbGw9IiNmNWU5ZDIiIHN0cm9rZT0iIzc5NjYzYiIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjI2NSIgeT0iMjM1Ij5yZXNpc3RvcmU8L3RleHQ+CjxwYXRoIGQ9Ik03NSAyMzBIMTk1IiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNmbG93KSIvPgo8cGF0aCBkPSJNNDI1IDIzMEg1NDUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIiBtYXJrZXItZW5kPSJ1cmwoI2Zsb3cpIi8+Cjx0ZXh0IHg9Ijc1IiB5PSIzMjUiPjMgTC9zPC90ZXh0Pjx0ZXh0IHg9IjQyNSIgeT0iMzI1Ij4zIEwvczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM3NSI+RnJlY2NlOiA0MCBweC8oTC9zKSwgbHVuZ2hlenphIDEyMCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQyMCI+UiA9IDIga1BhwrdzL0w7IM6UcCA9IDYga1BhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDY1Ij5TY2hlbWEgZGVsbOKAmWVsZW1lbnRvLCBub24gZ2VvbWV0cmlhIGluIHNjYWxhPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHkxPSI1MDUiIHgyPSI2MDUiIHkyPSI1MDUiIHN0cm9rZT0iI2JjYzZjYSIvPgo8dGV4dCB4PSIzNSIgeT0iNTUwIiBmb250LXNpemU9IjI3Ij4yLiBJbiB1biBzZWNvbmRvIHBhc3Nhbm8gdHJlIGxpdHJpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTk1Ij5PZ25pIGxpdHJvIHBlcmRlIDYgSiBkaSBlbmVyZ2lhIG1lY2NhbmljYS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2NDAiPk9nbmkgY2FzZWxsYSB2YWxlIDEgSjogdHJlIGdydXBwaSBkYSBzZWkuPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMDAiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMDAiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMjUiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMjUiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMjUiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIxMDAiIHk9IjgwNSI+MSBMPC90ZXh0Pgo8cmVjdCB4PSIyNjAiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyNjAiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyNjAiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyODUiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyODUiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyODUiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNjAiIHk9IjgwNSI+MSBMPC90ZXh0Pgo8cmVjdCB4PSI0MjAiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0MjAiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0MjAiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0NDUiIHk9IjY5MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0NDUiIHk9IjcxNSIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0NDUiIHk9Ijc0MCIgd2lkdGg9IjI1IiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI0MjAiIHk9IjgwNSI+MSBMPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODYwIj4xOCBKIGluIDEgcyDihpIgMTggVyBkaXNzaXBhdGk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MDUiPkNvbnZlcnNpb25lIG1lY2NhbmljYSBpbiBlbmVyZ2lhIGludGVybmEsPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTQ1Ij5ub24gcHJvZHV6aW9uZSBkaSBlbmVyZ2lhIGRhbGzigJllbGVtZW50by48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9Ijk4NSIgeDI9IjYwNSIgeTI9Ijk4NSIgc3Ryb2tlPSIjYmNjNmNhIi8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDMwIiBmb250LXNpemU9IjI3Ij4zLiBSIGZpc3NhdGE6IHVuYSBkaXBlbmRlbnphIHF1YWRyYXRpY2E8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDc1Ij5SID0gMiBrUGHCt3MvTDsgbnVtZXJpOiBQX2QgPSAyIFHCsjwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNTAwVjExMDBNMTAwIDE1MDBINDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIxMTAiIHk9IjExMzUiPlBfZCAoVyk8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSIxNTEwIj5RIChML3MpPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE1MDBRMjAwIDE1MDAgMzAwIDExODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2EzMzQzMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0yMDAgMTQ5NVYxNTA1TTI1MCAxNDk1VjE1MDVNMzAwIDE0OTVWMTUwNU05NSAxNDIwSDEwNU05NSAxMzIwSDEwNU05NSAxMTgwSDEwNSIgc3Ryb2tlPSIjMTcyYzNiIiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE0MjAiIHI9IjYiIGZpbGw9IiMxNTVmYTAiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSIxMzIwIiByPSI2IiBmaWxsPSIjMTU1ZmEwIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTE4MCIgcj0iNiIgZmlsbD0iIzE1NWZhMCIvPgo8dGV4dCB4PSI3OCIgeT0iMTUyOCI+MDwvdGV4dD48dGV4dCB4PSIxOTMiIHk9IjE1MzgiPjI8L3RleHQ+PHRleHQgeD0iMjQzIiB5PSIxNTM4Ij4zPC90ZXh0Pjx0ZXh0IHg9IjI5MyIgeT0iMTUzOCI+NDwvdGV4dD4KPHRleHQgeD0iNjAiIHk9IjE0MjgiPjg8L3RleHQ+PHRleHQgeD0iNDgiIHk9IjEzMjgiPjE4PC90ZXh0Pjx0ZXh0IHg9IjQ4IiB5PSIxMTg4Ij4zMjwvdGV4dD4KPHRleHQgeD0iMjIwIiB5PSIxNDMwIj4oMiwgOCk8L3RleHQ+PHRleHQgeD0iMjc1IiB5PSIxMzMwIj4oMywgMTgpPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTE5MCI+KDQsIDMyKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE2MDAiPlE6IDUwIHB4LyhML3MpOyBQX2Q6IDEwIHB4L1c8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjQ1Ij5MZSBkdWUgb3JpZ2luaSBzb25vIHplcm8uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTY5MCI+Tm9uIHNpIGNvbmZyb250YW5vIGx1bmdoZXp6ZSBkaSB1bml0w6AgZGl2ZXJzZS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
