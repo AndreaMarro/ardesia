@@ -12,7 +12,7 @@ Tecnico reale: due assembly identici, hash source/candidate/provenance e opzioni
 
 Render nativo SVG-only realmente terminato exit0 e immagine completa letta; PNG, risultato geometrico e checksum conservati in author-evidence/dielectric-connected-charge-226-asset-only. Non è UI del prodotto: axe, formule e overflow a 320 nel lettore NOT_RUN. Non esistono marker sintetici o nuovi giudizi scientifici ricavati dal render.
 
-Geometria per il revisore, in coordinate intrinseche SVG: Primo pannello: due piastre con dielettrico completo e fili fino al generatore, polo positivo a sinistra coerente con armatura positiva, tensione2V. Sezione schematica, non scala spaziale dei campi. Barre A8μC/B6μC/media7μC da x150, lunghezze320/240/280, scala40coordinate/μC. Retta Q(C₀) aκ2 eV_g2V da(150,1300) a(470,1140), ossia(0,0)→(2μF,8μC), scale160coordinate/μF e20coordinate/μC. Le due scale non sono confrontabili come una sola quantità; labelorigine a sinistra, nessuna intersezione visiva.
+Geometria per il revisore, in coordinate intrinseche SVG: Primo pannello: piastre con dielettrico completo e fili fino al generatore, polo positivo a sinistra coerente con l’armatura positiva, tensione 2 V. Sezione schematica, senza scala spaziale dei campi. Barre A 8 μC, B 6 μC e media 7 μC da x150, lunghezze 320/240/280, scala 40 coordinate/μC. Retta Q(C₀) a κ=2 e V_g=2 V da (150,1300) a (470,1140), ossia (0,0)→(2 μF,8 μC). Scale 160 coordinate/μF e 20 coordinate/μC, indipendenti dalle barre. Origine a sinistra, nessuna intersezione visiva osservata.
 
 ## 01 — Il generatore mantiene la tensione
 

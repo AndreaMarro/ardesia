@@ -12,7 +12,7 @@ Tecnico reale: due assembly identici, hash source/candidate/provenance e opzioni
 
 Render nativo SVG-only realmente terminato exit0 e immagine completa letta; PNG, risultato geometrico e checksum conservati in author-evidence/isolated-plate-separation-energy-227-asset-only. Non è UI del prodotto: axe, formule e overflow a 320 nel lettore NOT_RUN. Non esistono marker sintetici o nuovi giudizi scientifici ricavati dal render.
 
-Geometria per il revisore, in coordinate intrinseche SVG: Sezioni con facce interne a110/160 e380/480: distanze50 e100, rapporto2, area laterale schematica e Q invariata. Nessun generatore. Barre U_A4/U_B9/media13/2μJ da x150 con lunghezze128/288/208, scala32coordinate/μJ. Retta aU₀2μJ rappresentata solo fra s1 es3: punti(250,1260) e(450,1180), assi con origine(150,1300), scale100coordinate/s e20coordinate/μJ. Punto iniziale incluso, nessuna estensione grafica nel dominio s<1. La crescita dell’energia del campo non è descritta come creazione di energia.
+Geometria per il revisore, in coordinate intrinseche SVG: Sezioni con facce interne a 110/160 e 380/480: distanze 50 e 100 in rapporto due, area laterale schematica e Q invariata. Nessun generatore. Barre U_A=4 μJ, U_B=9 μJ e media 13/2 μJ da x150 con lunghezze 128/288/208, scala 32 coordinate/μJ. Retta a U₀=2 μJ rappresentata solo fra s=1 e s=3: punti (250,1260) e (450,1180), origine degli assi (150,1300), scale 100 coordinate per unità di s e 20 coordinate/μJ. Punto iniziale incluso e nessuna estensione nel dominio s<1. La crescita dell’energia del campo non è descritta come creazione di energia.
 
 ## 01 — Allontanare le piastre a carica fissata
 

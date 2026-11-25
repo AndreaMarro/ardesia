@@ -12,7 +12,7 @@ Tecnico reale: due assembly identici, hash source/candidate/provenance e opzioni
 
 Render nativo SVG-only realmente terminato exit0 e immagine completa letta; PNG, risultato geometrico e checksum conservati in author-evidence/dielectric-isolated-voltage-225-asset-only. Non è UI del prodotto: axe, formule e overflow a 320 nel lettore NOT_RUN. Non esistono marker sintetici o nuovi giudizi scientifici ricavati dal render.
 
-Geometria per il revisore, in coordinate intrinseche SVG: Tre pannelli. Sezioni iniziale/finale schematiche con identica geometria, generatore assente e stessa Q libera; esempio aggiuntivo esplicito C₀1μF,V₀12V,Q12μC e κ2,C2μF,V6V. Non si conta la carica dai simboli+ e−. Barre A6V/B3V/media9/2V dal comune x150 con larghezze240/120/180, scala40coordinate/V. Grafico finale a κ2: (V₀,V)=(0,0)→(12,6) fra(150,1300) e(470,1140), scale80/3coordinate perV iniziale e80/3coordinate perV finale; rapporto pendenze fisiche1/2. Origini scritte a sinistra degli assi, nessuna interpolazione fra prove conκdiverso.
+Geometria per il revisore, in coordinate intrinseche SVG: Tre pannelli. Sezioni iniziale e finale schematiche con identica geometria, generatore assente e stessa Q libera. Esempio aggiuntivo esplicito: C₀=1 μF, V₀=12 V, Q=12 μC; dopo κ=2, C=2 μF, V=6 V. I simboli + e − indicano il segno, non conteggi di cariche. Barre A 6 V, B 3 V e media 9/2 V dal comune x150: larghezze 240/120/180, scala 40 coordinate/V. Grafico finale a κ=2 da (150,1300) a (470,1140), cioè (V₀,V)=(0,0)→(12,6). Scale 80/3 coordinate per volt su ciascun asse e pendenza fisica 1/2. Origini a sinistra degli assi; nessuna interpolazione fra prove con κ diverso.
 
 ## 01 — Prima il vincolo di isolamento
 
