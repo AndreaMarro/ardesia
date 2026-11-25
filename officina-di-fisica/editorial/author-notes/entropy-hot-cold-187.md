@@ -104,9 +104,9 @@ Distrattori e controllo: 3/2 è il reciproco del confronto richiesto. Uno ignora
 
 ## 12 — Media delle variazioni totali, non dei serbatoi
 
-Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Usando invece le temperature medie 250 e 500 K si otterrebbe 600(1/250−1/500)=6/5 J/K, diverso. Non si stanno mettendo in contatto fisico quattro sorgenti.
+Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Per confrontarla con il modello alle temperature medie, poniamo T_c,m=250 K e T_h,m=500 K. Definiamo a_m=Q/T_c,m, entropia acquistata dalla fredda, e b_m=Q/T_h,m, modulo di quella persa dalla calda: valgono 12/5 e 6/5 J/K. Il modello dà ΔS_m=a_m−b_m=6/5 J/K. Chiamiamo d_m la media delle uscite meno ΔS_m: è 1/20 J/K. Non si stanno mettendo in contatto fisico quattro sorgenti.
 
-Passaggi: `\overline{\Delta S_{\rm tot}}=\frac{3/2+1}{2}\,\mathrm{J/K}\qquad \overline{\Delta S_{\rm tot}}=5/4\,\mathrm{J/K}\qquad \Delta S_{\rm temperature\ medie}=600\left(\frac1{250}-\frac1{500}\right)\,\mathrm{J/K}\qquad \Delta S_{\rm temperature\ medie}=6/5\,\mathrm{J/K}`
+Passaggi: `\overline{\Delta S_{\rm tot}}=\frac{3/2+1}{2}\,\mathrm{J/K}\qquad \overline{\Delta S_{\rm tot}}=5/4\,\mathrm{J/K}\qquad a_m=\frac{600}{250}\,\mathrm{J/K}\qquad a_m=12/5\,\mathrm{J/K}\qquad b_m=\frac{600}{500}\,\mathrm{J/K}\qquad b_m=6/5\,\mathrm{J/K}\qquad \Delta S_m=a_m-b_m\qquad \Delta S_m=6/5\,\mathrm{J/K}\qquad d_m=\overline{\Delta S_{\rm tot}}-\Delta S_m\qquad d_m=1/20\,\mathrm{J/K}`
 
 Distrattori e controllo: 6/5 J/K applica il modello alle temperature medie. 5/2 J/K non dimezza la somma; 1/4 J/K è metà della differenza e 3/2 J/K copia A.
 
@@ -141,3 +141,9 @@ Sostituiamo T_c=T_h/2 nella differenza dei reciproci. Il termine freddo diventa 
 Passaggi: `\Delta S_{\rm tot}=Q\left(\frac2{T_h}-\frac1{T_h}\right)\qquad \Delta S_{\rm tot}=Q/T_h\qquad T_h=\frac{600\,\mathrm J}{3/2\,\mathrm{J/K}}\qquad T_h=400\,\mathrm K`
 
 Distrattori e controllo: −400 K viola le temperature assolute positive. 200 K copia il valore finale della fredda e darebbe totale 3 J/K con il vincolo; 600 K darebbe 1 J/K. La misura è indipendente dal semplice rapporto fra temperature e determina una sola scala positiva.
+
+## Correzione di presentazione mobile del record 12
+
+La run remota reale 45611122114, sulla candidata indicata dall’integratore come 7f5c956, ha rilevato a 320 px una formula larga 363 px in un contenitore da 260 px, con violazione axe scrollable-region-focusable. La nuova edizione definisce i contributi a_m e b_m del modello alle temperature medie e il confronto d_m, poi li sviluppa in formule separate. Restano identici risposta 5/4 J/K, interpretazione fisica, quindici altri record e SVG. Le vecchie package/binding, note e prove scientifiche indipendenti sono conservate byte per byte nell’archivio entropy-hot-cold-187-mobile12-superseded-20261125 con manifest SHA256 9b01450eac94164202d8dabf564d070b39b8d71fc19edfe73e9e11e408790eab.
+
+Nuovi controlli tecnici reali sotto mutex e guardia almeno 2 GiB: due assembly identici e import canonico 16 nuove bozze, poi 0 nuove e 16 invariati, con 991 pubblicati byte identici. Nessun browser del prodotto, nessuna nuova firma o rapporto scientifico prodotto dall’autore. Per questa edizione revisione scientifica distinta, nuova UI e approvazione umana NOT_RUN; pubblicazione DRAFT. L’asset non è cambiato, quindi la lettura nativa precedente riguarda ancora esattamente lo stesso SVG e non viene convertita in un PASS UI.
