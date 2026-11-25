@@ -94,3 +94,37 @@ test('fulcrum and elbow names remain in the existing HTML legend without coverin
    'Identification belongs to the readable HTML legend, without screen-space sprite occlusion');
  }
 });
+
+test('incline normals keep the complete common-scale vector outside the opaque body on the full angle grid',()=>{
+ for(let angle=0;angle<=75;angle+=5){
+  const {items}=drawing('SIM-C1-L005-05',angle,'piano');
+  const ball=items.find(e=>e.kind==='ball'&&e.c===c.ocra);
+  const normal=items.find(e=>e.kind==='arrow'&&e.c===c.verde);
+  const theta=angle*Math.PI/180,dx=normal.b[0]-normal.a[0],dy=normal.b[1]-normal.a[1];
+  near(dx,-0.75*Math.cos(theta)*Math.sin(theta));near(dy,0.75*Math.cos(theta)**2);
+  near((normal.a[0]-ball.p[0])*dy-(normal.a[1]-ball.p[1])*dx,0);
+  assert.ok(distance(normal.a,ball.p)>ball.r+0.01,'Normal arrow begins outside its opaque body');
+ }
+});
+
+test('incline weight stays above the table and separate from the normal without moving its line of action',()=>{
+ for(let angle=0;angle<=75;angle+=5){
+  const {items}=drawing('SIM-C1-L005-05',angle,'piano');
+  const ball=items.find(e=>e.kind==='ball'&&e.c===c.ocra);
+  const weight=items.find(e=>e.kind==='arrow'&&e.c===c.rosso);
+  const normal=items.find(e=>e.kind==='arrow'&&e.c===c.verde);
+  near(weight.a[0],ball.p[0]);near(weight.b[0],ball.p[0]);near(weight.b[1]-weight.a[1],-0.75);
+  assert.ok(Math.min(weight.a[1],weight.b[1])>0.05,'Entire vertical cone clears the opaque tabletop');
+  assert.ok(Math.min(weight.a[1],weight.b[1])>Math.max(normal.a[1],normal.b[1])+0.09,
+   'Opposite collinear vectors remain distinct at zero angle');
+  assert.ok(Math.max(weight.a[1],weight.b[1],normal.a[1],normal.b[1])<3.45);
+ }
+});
+
+test('incline force names and fixed weight remain readable in the HTML legend instead of covering the glyphs',()=>{
+ assert.match(legende.piano,/peso/iu);assert.match(legende.piano,/normale/iu);assert.match(legende.piano,/20\s*N/u);
+ for(const angle of [0,75]){
+  const {items}=drawing('SIM-C1-L005-05',angle,'piano');
+  assert.equal(items.filter(e=>e.kind==='label'&&/peso|normale/iu.test(e.text)).length,0);
+ }
+});

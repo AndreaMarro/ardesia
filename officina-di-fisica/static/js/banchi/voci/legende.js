@@ -8,7 +8,7 @@ export const legende = {
   cerchio: 'Velocità verde tangente alla circonferenza · accelerazione viola verso il centro',
   forze: 'Le frecce partono dal corpo. Il verso indica il segno lungo la guida',
   coppia: 'Carrello A viola · carrello B verde. Ogni corpo riceve una forza',
-  piano: 'Peso rosso verticale · reazione verde perpendicolare al piano',
+  piano: 'Rosso · peso verticale di 20 N. Verde · reazione normale perpendicolare al piano. Le frecce sono separate lungo le loro linee d’azione e hanno la stessa scala. La forza che trattiene il blocco lungo il piano non è disegnata.',
   molla: 'Supporto fisso · molla viola · massa ocra',
   gravita: 'Distanza fra i centri · frecce verdi di attrazione reciproca',
   percorso: 'Verde tratteggiato · cammino diretto. Viola · deviazione',

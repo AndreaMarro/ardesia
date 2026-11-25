@@ -258,10 +258,14 @@ export const meccanica = {
     const p = at(1.3, 0.22, 0);
     b.ball(p, 0.22, c.ocra);
     // peso and normale are normalized to the same 20 N reference.
-    b.arrow(p, [p[0], p[1] - 0.75 * s.peso, p[2]], c.rosso);
-    b.arrow(p, at(1.3, 0.22 + 0.75 * s.normale, 0), c.verde);
-    b.label([p[0] - 0.35, p[1] - 1.0, p[2]], 'Peso (20 N)', c.rosso);
-    b.label(at(1.7, 0.7, 0), 'Normale', c.verde);
+    const normalLength = 0.75 * s.normale;
+    const normalTop = (0.25 + normalLength) * dir[0];
+    // Separate the two full vectors along their own lines of action. The
+    // weight ends above the normal, clearing both the table and its opposite
+    // arrow at zero angle; the normal starts outside the opaque sphere.
+    const weightEnd = p[1] + normalTop + 0.18;
+    b.arrow([p[0], weightEnd + 0.75 * s.peso, p[2]], [p[0], weightEnd, p[2]], c.rosso);
+    exposedForce(b, p, [-normalLength * dir[1], normalLength * dir[0], 0], c.verde, 0.25);
   },
   molla(b, s) {
     const vert = s.verticale,
