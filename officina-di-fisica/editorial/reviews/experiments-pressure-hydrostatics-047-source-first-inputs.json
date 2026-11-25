@@ -1,0 +1,317 @@
+[
+  {
+    "id": "SIM-C2-L001-01",
+    "course": "C2",
+    "skill": "C2-L001",
+    "title": "Stati di aggregazione",
+    "topic": "Stati di aggregazione",
+    "anchor": "Una siringa chiusa piena d’aria si comprime",
+    "summary": "Come cambia lo spazio occupato dalla stessa massa in tre stati ideali?",
+    "apparatus": "fasi",
+    "control": {
+      "label": "Stato del campione",
+      "unit": "1",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 1.0,
+      "choices": [
+        "Solido",
+        "Liquido",
+        "Gas"
+      ]
+    },
+    "measure": {
+      "label": "Volume del modello",
+      "unit": "cm³"
+    },
+    "transferPrompt": "Preleva 6 g di materiale e scegli lo stato «{x}». Usando la densità indicata per questo campione, quale volume occupa?",
+    "referenceInputsOnly": [
+      {
+        "x": 1.0
+      },
+      {
+        "x": 3.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L001-02",
+    "course": "C2",
+    "skill": "C2-L001",
+    "title": "Fluidi e solidi",
+    "topic": "Fluidi e solidi",
+    "anchor": "Una siringa chiusa piena d’aria si comprime",
+    "summary": "Come distinguere un fluido che scorre da un solido che si deforma?",
+    "apparatus": "strati",
+    "control": {
+      "label": "Velocità della lastra superiore",
+      "unit": "cm/s",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Sforzo viscoso",
+      "unit": "Pa"
+    },
+    "transferPrompt": "Una piastra scorre a {x} sopra uno strato spesso 2 cm con viscosità 1 Pa·s. Quanto sforzo tangenziale dev’essere trasmesso?",
+    "referenceInputsOnly": [
+      {
+        "x": 2.0
+      },
+      {
+        "x": 6.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L001-03",
+    "course": "C2",
+    "skill": "C2-L001",
+    "title": "Densità",
+    "topic": "Densità",
+    "anchor": "Per confrontare campioni di dimensioni diverse, rapporta",
+    "summary": "Come misuri una densità senza confonderla con la massa del campione?",
+    "apparatus": "campione",
+    "control": {
+      "label": "Volume del materiale",
+      "unit": "cm³",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa sulla bilancia",
+      "unit": "g"
+    },
+    "transferPrompt": "Una provetta contiene {x} di un materiale con densità 2,5 g/cm³. Qual è la massa del solo contenuto?",
+    "referenceInputsOnly": [
+      {
+        "x": 2.0
+      },
+      {
+        "x": 6.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L001-04",
+    "course": "C2",
+    "skill": "C2-L001",
+    "title": "Pressione e forza normale",
+    "topic": "Pressione e forza normale",
+    "anchor": "Una parete bagnata riceve una forza distribuita.",
+    "summary": "Con lo stesso peso come riduci la pressione sulla superficie?",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Area della faccia",
+      "unit": "cm²",
+      "min": 1.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Pressione sul piano",
+      "unit": "kPa"
+    },
+    "transferPrompt": "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area {x}, quale pressione in kPa registra il piano?",
+    "referenceInputsOnly": [
+      {
+        "x": 2.0
+      },
+      {
+        "x": 5.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L001-05",
+    "course": "C2",
+    "skill": "C2-L001",
+    "title": "Pressione assoluta e relativa",
+    "topic": "Pressione assoluta e relativa",
+    "anchor": "La pressione assoluta ha come riferimento il",
+    "summary": "Come distingui le letture di un manometro relativo e di uno assoluto?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Pressione atmosferica",
+      "unit": "kPa",
+      "min": 70.0,
+      "max": 110.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Pressione assoluta a 1 m",
+      "unit": "kPa"
+    },
+    "transferPrompt": "Sposti la vasca in un luogo con pressione atmosferica {x}. Che pressione assoluta indica il sensore a un metro sott’acqua?",
+    "referenceInputsOnly": [
+      {
+        "x": 80.0
+      },
+      {
+        "x": 100.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L002-01",
+    "course": "C2",
+    "skill": "C2-L002",
+    "title": "Legge di Stevino",
+    "topic": "Legge di Stevino",
+    "anchor": "Più scendi in acqua, maggiore è la",
+    "summary": "Quanto vale il peso della colonna per unità di area alla profondità scelta?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Profondità della sonda",
+      "unit": "m",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Sovrapressione dell’acqua",
+      "unit": "kPa"
+    },
+    "transferPrompt": "Un sensore azzerato in superficie viene immerso a {x} nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+    "referenceInputsOnly": [
+      {
+        "x": 1.0
+      },
+      {
+        "x": 2.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L002-02",
+    "course": "C2",
+    "skill": "C2-L002",
+    "title": "Pressione con la profondità",
+    "topic": "Pressione con la profondità",
+    "anchor": "Usa densità uniforme e g quasi costante,",
+    "summary": "Alzando una sonda dal fondo, leggi quota o profondità?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Quota della sonda sopra il fondo",
+      "unit": "m",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione relativa",
+      "unit": "kPa"
+    },
+    "transferPrompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota {x}. Quale pressione relativa devi aspettarti?",
+    "referenceInputsOnly": [
+      {
+        "x": 0.0
+      },
+      {
+        "x": 2.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L002-03",
+    "course": "C2",
+    "skill": "C2-L002",
+    "title": "Esperimento di Torricelli",
+    "topic": "Esperimento di Torricelli",
+    "anchor": "Più scendi in acqua, maggiore è la",
+    "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Pressione dell’aria",
+      "unit": "kPa",
+      "min": 68.0,
+      "max": 108.8,
+      "step": 1.36
+    },
+    "measure": {
+      "label": "Altezza della colonna di mercurio",
+      "unit": "cm"
+    },
+    "transferPrompt": "Un barometro a mercurio è esposto alla pressione {x}. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?",
+    "referenceInputsOnly": [
+      {
+        "x": 68.0
+      },
+      {
+        "x": 102.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L002-04",
+    "course": "C2",
+    "skill": "C2-L002",
+    "title": "Manometro a U",
+    "topic": "Manometro a U",
+    "anchor": "Un manometro a U traduce una differenza",
+    "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Differenza di pressione",
+      "unit": "kPa",
+      "min": -2.0,
+      "max": 2.0,
+      "step": 0.2
+    },
+    "measure": {
+      "label": "Dislivello con segno",
+      "unit": "cm"
+    },
+    "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+    "referenceInputsOnly": [
+      {
+        "x": -1.0
+      },
+      {
+        "x": 2.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  },
+  {
+    "id": "SIM-C2-L003-01",
+    "course": "C2",
+    "skill": "C2-L003",
+    "title": "Principio di Pascal",
+    "topic": "Principio di Pascal",
+    "anchor": "Due pistoni di area diversa chiudono un",
+    "summary": "Che cosa si trasmette identico ai due pistoni?",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Pressione aggiunta",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Incremento di forza sul pistone grande",
+      "unit": "N"
+    },
+    "transferPrompt": "Aumenti di {x} la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?",
+    "referenceInputsOnly": [
+      {
+        "x": 2.0
+      },
+      {
+        "x": 6.0
+      }
+    ],
+    "blockCountNotReadYet": 0
+  }
+]

@@ -1730,3 +1730,18 @@ Replay esaustivo in corso con il runner esistente `tests/corpus/browser-batches.
 I 112 candidati U4-02 sono tutti salvati sui rami autore. ROOT include 141–147; review incrociata in corso. Piccolo finding 144-11 sulle ipotesi per confrontare intensità: autore deve precisare onde progressive codirezionali e stesso coefficiente, poi rilettura distinta e nuovi hash. Non congelare 144 prima di quel fix. Prossimo ID operativo del checkpoint: `u4-wave-amplitude-energy-01`, 141. Ancora 2.558 quesiti e 171 attività sul checkpoint; nessun nuovo credito dai lavori in corso. Human NOT_RUN, nuove pubblicazioni 0, 93 esami protetti. Mandato aperto.
 
 Le sezioni seguenti sono snapshot storici.
+
+
+## Cric — checkpoint 2160/230 e prova completa sul runtime 5405, 25 novembre 2026
+
+Salvata generazione23f95645, manifestbda3dc42:2160quesiti DRAFT/230attività/17edizioni correttive, residui2446/155. Fresh e incrementale coincidono su tutti55file. Coesistenza2177bozze, ripetizione senza scritture,991pubblicati e181entry point preservati. Tutti147pacchetti/6531anteprime hanno veri marker terminali; recupero esclusivo di54casi autentici, poi riuso147/0 e invalidazione selettiva145/2. Nessun ritag. Il macOS crash-handler teardown144 ha richiesto pulizia soltanto degli helper collegati, documentata per PID e socket.
+
+Errore trovato e corretto: l'import per lotto nascondeva quattro anchor persi in due lezioni DRAFT durante la coesistenza. Tre paragrafi corretti da ROOT, rilettura distinta A, snapshot/RED conservati; introdotto controllo generale su tutti181esperimenti. Non è stato indebolito il validatore. Suite completa554test PASS475,907s su84moduli della fotografia8fc95a0, input/checkpoint invariati. Altri12test nuovi U5-01 PASS2,468s, dichiarati separatamente; CI finale ancora necessaria.
+
+Diagnostici045/046 persistiti:11PASS/5FAIL consumer su16attività, calcoli manuali corretti. Nessun credito di registrazione. Nuova patch isolata CORE, primo47c3 respinto da due ulteriori finding visivi; negativo conservato, seconda805e in review distinta048/049. ROOT5405 non cambia. Tutti160candidati U5-01 salvati;80revisioni153–157 complete, altri80in chiusura dopo quattro fix testuali con chiavi invariate. Primarie dei revisori recuperate dai file reali con SHA registrate, non dal solo contesto.
+
+Priorità di prosecuzione:
+1. Consolidare la release2160 e aggiornare la stessa PR364, ancora DRAFT sulla vecchia head: verificare CI della nuova SHA, merge senza bypass, poi14job post-merge reali. Canone attuale831b73f,1728/204storici; accettazioneLAB3D01 ritirata sul canone, fix soltanto nella feature.
+2. Chiudere la rilettura B dei fix148/150/152 e integrare U5-01 tramite registry esistente, marker autentici e nuovo checkpoint; primo ID AR-u5-temperature-difference-01. Proseguire U5-02 con ownership158–167.
+3. Completare review distinta048/049 sul CORE805e, preservando045/046negativi; prima di un nuovo runtime creare fixture storiche5405 e rieseguire davvero i dipendenti.
+4. Riprendere047 dopo lettura integrale, senza contare la primaria parametrica come revisione completa. Continuare fino a4606/385;100Pro ancora NOT_IDENTIFIED, humanNOT_RUN, pubblicazioni0,93esami protetti.

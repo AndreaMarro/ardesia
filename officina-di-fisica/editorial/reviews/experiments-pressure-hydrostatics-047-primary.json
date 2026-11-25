@@ -1,0 +1,371 @@
+{
+  "batch": "experiments-pressure-hydrostatics-047",
+  "phase": "PRIMARY_SOURCE_FIRST_ONLY_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "catalog": {
+    "path": "officina-di-fisica/content/catalog.json",
+    "fileSha256": "d748fc64cf4e8eec21791fc92009d73f7831da795116c74d82522f26827f1050",
+    "course": {
+      "id": "C2",
+      "title": "Fluidi",
+      "summary": "Pressioni, galleggiamento e condotti. Segui un fluido dalla quiete al moto viscoso.",
+      "plate": "Una sezione di condotto",
+      "labTitle": "La quarta potenza"
+    }
+  },
+  "readingBoundary": {
+    "included": [
+      "id/title/course/skill/topic/anchor/summary/apparatus/control/measure/transferPrompt",
+      "reference abscissas only",
+      "catalog C2",
+      "generic assignment input-selection algorithm only"
+    ],
+    "excludedUntilPrimarySaved": [
+      "formula",
+      "interpretation",
+      "substitution",
+      "reference ordinates",
+      "law/model solve",
+      "candidate/authoring/verifier content"
+    ],
+    "blocks": {
+      "allTenEmpty": true
+    },
+    "consumerStatus": "NOT_RUN_NO_NEW_REPLAY",
+    "actualAssignedInputsStatus": "Derived from generic x1/median-unused-grid algorithm; no fresh runtime execution or grader assertion. Final consumer confirmation pending."
+  },
+  "records": [
+    {
+      "id": "SIM-C2-L001-01",
+      "title": "Stati di aggregazione",
+      "sourceIdentitySha256_NotApproval": "62d5e54b6ef6ab079e8dc48e0772df3349ce0d3c7153a2dd229f3beb8520073b",
+      "assignedInput1": "3",
+      "assignedTransferInput": "2",
+      "controlUnit": "1",
+      "outputUnit": "cm³",
+      "derivation": "Density definition rho=m/V gives V=m/rho. For each assigned state use its own given density, not a universal density inferred from its phase name. Transfer at state2 (Liquido) uses6g and yields6/rho_liquid cm3 if density is in g/cm3. The first assignment at state3 cannot be numeric without model mass and gas density.",
+      "domain": "Control is discrete1,2,3, not continuous phase interpolation. Same mass is specified for the comparison. Assigned phase densities are model data; no universal monotonic solid/liquid/gas density law or thermodynamic transition path is inferred.",
+      "manual": "Divide the given mass by the state-specific density; g cancels g in g/cm3. Numerical manual work remains pending until model mass/density table is legitimately read.",
+      "first": "m_model/rho_gas cm3",
+      "transfer": "6/rho_liquid cm3",
+      "pending": [
+        "model comparison mass",
+        "three assigned phase densities",
+        "compressibility vs fixed toy-phase display"
+      ]
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "title": "Fluidi e solidi",
+      "sourceIdentitySha256_NotApproval": "98fe4067a10e28ae9abd8d94f67a611b6ede0b453fdbdac7414091c595ebbcef",
+      "assignedInput1": "6",
+      "assignedTransferInput": "4",
+      "controlUnit": "cm/s",
+      "outputUnit": "Pa",
+      "derivation": "For stationary plane Couette flow, u(z)=U*z/d under no slip. Newtonian shear tau=eta*du/dz=eta*U/d. With eta1Pa s,d2cm,U=xcm/s, tau=x/2Pa. First6cm/s gives3Pa; transfer4cm/s gives2Pa.",
+      "domain": "U0..8cm/s; nonnegative shear magnitude. Parallel stationary lower plate and uniformly moving upper plate; incompressible Newtonian constant viscosity, linear developed profile/no pressure gradient. Startup is not automatically this steady profile.",
+      "manual": "The same centimetres cancel in U/d, leaving s^-1. Multiply by1Pa s and divide by2. Zero speed giveszero stress. Fluids sustain steady shear by continuous deformation; an elastic solid may sustain static shear.",
+      "first": "3 Pa",
+      "transfer": "2 Pa",
+      "pending": [
+        "whether student-delivered context states steady linear Newtonian profile rather than arbitrary startup"
+      ]
+    },
+    {
+      "id": "SIM-C2-L001-03",
+      "title": "Densità",
+      "sourceIdentitySha256_NotApproval": "78084f0d65eadcfea0a9b93dd043fbcc25a20a1b39c14bfc15a2c29c0cb4e6ae",
+      "assignedInput1": "6",
+      "assignedTransferInput": "5",
+      "controlUnit": "cm³",
+      "outputUnit": "g",
+      "derivation": "Uniform material mass m=rho V. rho=5/2g/cm3, xcm3 gives(5/2)xg. First6cm3 gives15g; transfer5cm3 gives25/2g=12.5g.",
+      "domain": "V1..8cm3; same uniform density, content mass excluding container tare. Density2500kg/m3 is material property here, not mass or apparent weight.",
+      "manual": "Multiply volume by5, then halve; units cm3 cancel. Use the contents only, not the tube mass.",
+      "first": "15 g",
+      "transfer": "25/2 g",
+      "pending": [
+        "delivered tare/context and apparatus calibration"
+      ]
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "title": "Pressione e forza normale",
+      "sourceIdentitySha256_NotApproval": "9f26f80ffa3441925c41497c73f043baf07d624d5cadcafc2f0e43da17614d0f",
+      "assignedInput1": "5",
+      "assignedTransferInput": "7",
+      "controlUnit": "cm²",
+      "outputUnit": "kPa",
+      "derivation": "Mean normal contact pressure p=F_perp/A. A=x*10^-4m2,F10N yields100000/xPa=100/xkPa. First5cm2 gives20kPa; transfer7cm2 gives100/7kPa.",
+      "domain": "Positive area1..10cm2; total normal load10N fixed. Mean pressure formula does not prove uniform local pressure or shear-normal equality.",
+      "manual": "1cm2=(1/100m)^2=1/10000m2; divide Pa by1000 for kPa. 100/7=14+2/7=14.285714...;100000=7*14285+5 supports decimal by long division. Entering14.286 gives relativeerror1/50000; actual grader tolerance still to inspect.",
+      "first": "20 kPa",
+      "transfer": "100/7 kPa",
+      "pending": [
+        "effective formatter/parser/grader tolerance"
+      ]
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "title": "Pressione assoluta e relativa",
+      "sourceIdentitySha256_NotApproval": "4ad7ee8bb05309e37052c43fcdb7a687ef4184d0f2c42e7a64d180b659de8234",
+      "assignedInput1": "100",
+      "assignedTransferInput": "90",
+      "controlUnit": "kPa",
+      "outputUnit": "kPa",
+      "derivation": "Open stationary liquid: dp/dz=-rho*g. At depth1m, p_abs=p_atm+rho*g*(1m). In kPa output is x+rho*g/1000 (rho SI,g SI). First100kPa and transfer90kPa become110 and100kPa ONLY IF assigned rho1000kg/m3 andg10m/s2. Relative pressure at that depth is independent of atmosphere.",
+      "domain": "Atmosphere70..110kPa; open surface, same liquid density and uniform g, depth held1m. Absolute zero refers to vacuum; relative pressure references surface atmospheric pressure.",
+      "manual": "Add the same hydrostatic increment to each atmospheric value. Do not replace rho*g by10000Pa/m until actual assigned constants are read.",
+      "first": "100+rho*g/1000 kPa",
+      "transfer": "90+rho*g/1000 kPa",
+      "pending": [
+        "assigned water density",
+        "assigned g",
+        "actual surface/boundary assumptions"
+      ]
+    },
+    {
+      "id": "SIM-C2-L002-01",
+      "title": "Legge di Stevino",
+      "sourceIdentitySha256_NotApproval": "39b198952767ed38a2e5fa8dd81fd439fa8a7c0334ae1aaf08054629bb8f4abb",
+      "assignedInput1": "2",
+      "assignedTransferInput": "3/2",
+      "controlUnit": "m",
+      "outputUnit": "kPa",
+      "derivation": "Sensor zeroed at surface measures rho*g*h. Assigned g10m/s2, h=xm. If water density1000kg/m3 is assigned, output10xkPa: first2m20kPa, transfer3/2m15kPa.",
+      "domain": "Depth0..3m measured downward from free surface, static constant-density liquid, constantg10. Zero depth giveszero relative pressure, notzero absolute pressure.",
+      "manual": "Multiply depth byrho*10 and divide by1000. Withrho1000 this reduces to10x. Column-area cancels:rho*A*h*g/A.",
+      "first": "rho/50 kPa (20kPa ifrho1000)",
+      "transfer": "3*rho/200 kPa (15kPa ifrho1000)",
+      "pending": [
+        "explicit assigned water density",
+        "actual zeroed sensor behavior"
+      ]
+    },
+    {
+      "id": "SIM-C2-L002-02",
+      "title": "Pressione con la profondità",
+      "sourceIdentitySha256_NotApproval": "c1796958ce9c149c706ec657215910a75a615e03c981646a7bedd1121435983b",
+      "assignedInput1": "2",
+      "assignedTransferInput": "3/2",
+      "controlUnit": "m",
+      "outputUnit": "kPa",
+      "derivation": "Quota z abovebottom differs from depth. With surface quota3m, h=3-z. Relativep=rho*g*(3-z). In kPa outputrho*g*(3-x)/1000. Withrho1000,g10, firstz2m gives10kPa; transferz3/2m gives15kPa.",
+      "domain": "z0..3m; uniform static liquid andg. Pressure decreases upward, derivative-rho*g; top boundary relative0. No negative pressures inside this assigned interval.",
+      "manual": "Subtract selected quota from3 before multiplying. Never substitute quota itself for depth. Constants remain conditional until delivered context is read.",
+      "first": "rho*g/1000 kPa",
+      "transfer": "3*rho*g/2000 kPa",
+      "pending": [
+        "assigned water density andg",
+        "actual rendered surface/depth coordinate"
+      ]
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "title": "Esperimento di Torricelli",
+      "sourceIdentitySha256_NotApproval": "c2be7516d571aa319bb70077386c4d915ed29409885a5a9d09aca460a27abf09",
+      "assignedInput1": "102",
+      "assignedTransferInput": "442/5",
+      "controlUnit": "kPa",
+      "outputUnit": "cm",
+      "derivation": "Balance on a stationary barometer column with negligible top-vapor pressure gives p_air=rho*g*h. rho13600kg/m3,g10; h_cm=100*x*1000/136000=(25/34)x. First102kPa gives75cm; transfer442/5kPa=88.4 gives65cm.",
+      "domain": "p68..108.8kPa, increments1.36kPa. Ideal vacuum above mercury or vaporpressure explicitly neglected. Nonzero top pressure would require subtraction; tube must be tall enough and surface reference clear.",
+      "manual": "13600*10=136000; cmconversion reduces multiplier to25/34.102/34=3 ->75;88.4/34=2.6 ->65. Each1.36kPa grid increment corresponds exactly1cm.",
+      "first": "75 cm",
+      "transfer": "65 cm",
+      "pending": [
+        "actual top-vacuum/vaporpressure assumption and rendered height reference"
+      ]
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "title": "Manometro a U",
+      "sourceIdentitySha256_NotApproval": "6931192982208a0aad15a657d2fbcafa7d40a727a951e25fda05f1ddee372c24",
+      "assignedInput1": "2",
+      "assignedTransferInput": "0",
+      "controlUnit": "kPa",
+      "outputUnit": "cm",
+      "derivation": "At commonbottomlevel, p_L+rho*g*(H-z_L)=p_R+rho*g*(H-z_R). Thus dp=p_L-p_R=rho*g*(z_R-z_L), so signedright-minus-left height in cm=100000*x/(rho*g) for xkPa. First2kPa gives200000/(rho*g)cm, transfer0 gives0cm. If liquidrho1000,g10 these are20 and0cm, but liquid is not assumed from apparatus name.",
+      "domain": "Signed pressure difference-2..2kPa; one static constant-density manometer liquid, negligible/known gascolumns, equal bottomreference. Equal section area needed only for symmetric displacement of individual levels, not difference formula. Positiveleft excess makes left level lower/right levelhigher.",
+      "manual": "Convert kPa toPa, divide byrho*g to metres, thenmultiply100 forcm; preserve sign. Transfer0 requires no division approximation, both levels equal. Numerical first task remains conditional on material constants.",
+      "first": "200000/(rho*g) cm",
+      "transfer": "0 cm",
+      "pending": [
+        "identity/density of manometer liquid",
+        "assignedg",
+        "rendered right-minus-left orientation"
+      ]
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "title": "Principio di Pascal",
+      "sourceIdentitySha256_NotApproval": "94028905ba7c74aceb6579da0400b5b3f89e923d3ef093d0a897379df752d79a",
+      "assignedInput1": "6",
+      "assignedTransferInput": "5",
+      "controlUnit": "kPa",
+      "outputUnit": "N",
+      "derivation": "Pascal transmits added pressure, not equalforces across unequalareas. DeltaF=DeltaP*Aout. Aout20cm2=1/500m2, xkPa=1000xPa, so DeltaF=2xN. First6kPa gives12N; transfer5kPa gives10N.",
+      "domain": "Addedpressure0..10kPa; confined ideal static incompressible liquid, connected pistons, area fixed20cm2, no unmodeled pressureloss. Hydrostatic baseline differences may exist but same pressureincrement is transmitted.",
+      "manual": "Square the cm conversion:20/10000m2=1/500m2;1000/500=2. Multiply eachpressureincrement by2. This is increment force, nottotal piston force including baseline or mass.",
+      "first": "12 N",
+      "transfer": "10 N",
+      "pending": [
+        "actual piston areas/forceincrement vs total force readout",
+        "geometric rendering and constraints"
+      ]
+    }
+  ],
+  "independentChecks": [
+    {
+      "claim": "fixed mass volume by definition of density",
+      "derived": "m/rho",
+      "expected": "m/rho",
+      "ok": true
+    },
+    {
+      "claim": "Couette tangential stress from stationary linear velocity profile",
+      "derived": "x/2",
+      "expected": "x/2",
+      "ok": true
+    },
+    {
+      "claim": "cm per second divided by 2cm times 1Pas",
+      "convertedMagnitude": "1/2",
+      "expectedMagnitude": "1/2",
+      "unitPowers": {
+        "pascal": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "density2.5g/cm3 equals2500kg/m3",
+      "convertedMagnitude": "2500",
+      "expectedMagnitude": "2500",
+      "unitPowers": {
+        "kilogram": "1",
+        "meter": "-3"
+      },
+      "ok": true
+    },
+    {
+      "claim": "mass at5cm3",
+      "convertedMagnitude": "25/2",
+      "expectedMagnitude": "25/2",
+      "unitPowers": {
+        "gram": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "10N over1cm2 is100kPa",
+      "convertedMagnitude": "100",
+      "expectedMagnitude": "100",
+      "unitPowers": {
+        "kilopascal": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "hydrostatic pressure differential integrates to rho*g*h",
+      "derived": "g*h*rho",
+      "expected": "g*h*rho",
+      "ok": true
+    },
+    {
+      "claim": "free surface at quota3 pressure decreases upward",
+      "derived": "-g*rho",
+      "expected": "-g*rho",
+      "ok": true
+    },
+    {
+      "claim": "conditional water1000kg/m3 g10 depth1m",
+      "convertedMagnitude": "10",
+      "expectedMagnitude": "10",
+      "unitPowers": {
+        "kilopascal": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "conditional water1000kg/m3 g10 depth1.5m",
+      "convertedMagnitude": "15",
+      "expectedMagnitude": "15",
+      "unitPowers": {
+        "kilopascal": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "Torricelli ideal vacuum column force balance",
+      "derived": "p/(g*rho)",
+      "expected": "p/(g*rho)",
+      "ok": true
+    },
+    {
+      "claim": "barometer102kPa",
+      "convertedMagnitude": "75",
+      "expectedMagnitude": "75",
+      "unitPowers": {
+        "centimeter": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "barometer88.4kPa",
+      "convertedMagnitude": "65",
+      "expectedMagnitude": "65",
+      "unitPowers": {
+        "centimeter": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "U-tube right-minus-left sign from same-bottom pressure",
+      "derived": "dp/(g*rho)",
+      "expected": "dp/(g*rho)",
+      "ok": true
+    },
+    {
+      "claim": "zero pressure difference gives zero level difference",
+      "derived": "0",
+      "expected": "0",
+      "ok": true
+    },
+    {
+      "claim": "hydraulic20cm2 at1kPa yields2N",
+      "convertedMagnitude": "2",
+      "expectedMagnitude": "2",
+      "unitPowers": {
+        "newton": "1"
+      },
+      "ok": true
+    },
+    {
+      "claim": "pressure reciprocal derivative",
+      "derived": "-100/x**2",
+      "expected": "-100/x**2",
+      "ok": true
+    },
+    {
+      "claim": "long division100/7=14+2/7",
+      "derived": "100/7",
+      "expected": "100/7",
+      "ok": true
+    },
+    {
+      "claim": "manual14.286kPa relative error1/50000, conditional on actual grader tolerance to inspect later",
+      "ok": true
+    }
+  ],
+  "checkCount": 19,
+  "verifierApproval": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "scientificApproval": false,
+  "completedActivityCredit": 0,
+  "reviewer": "separate_AI_source_first_review",
+  "moduleSha256": "acf55282278b8d0d06524ca11d49622498a35ead1e31ea8a56e1316d833800c3",
+  "sourceProjectionSha256": "273adba78ecb93e16b76cb5b0a62a1a80e7108c606300ceae8259c84519a182a"
+}
