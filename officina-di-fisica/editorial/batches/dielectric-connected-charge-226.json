@@ -1,0 +1,1175 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-dielectric-connected-charge-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22601,
+      "title": "Il generatore mantiene la tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Con C₀=2 μF e κ=2, quanto vale Q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il dielettrico porta la capacità a κC₀=4 μF. Il generatore mantiene due volt, quindi Q=CV_g=8 μC. A differenza del caso isolato, la carica libera può essere trasferita attraverso il circuito esterno: non deve rimanere quella iniziale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb",
+          "text": "Il generatore resta collegato e mantiene 2 V. Piastre e dielettrico sono schematici; le barre successive misurano moduli di carica libera su una sola armatura."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\kappa C_0"
+        },
+        {
+          "type": "formula",
+          "text": " C=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " Q=CV_g"
+        },
+        {
+          "type": "formula",
+          "text": " Q=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μC è la carica prima dell’inserimento e ignora la capacità finale. Due μC dividerebbe per κ; sedici μC conterebbe insieme i moduli su entrambe le armature, cambiando la grandezza richiesta."
+        }
+      ],
+      "hints": [
+        "Fissa prima la tensione controllata dal generatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro μC è la carica prima dell’inserimento e ignora la capacità finale. Due μC dividerebbe per κ; sedici μC conterebbe insieme i moduli su entrambe le armature, cambiando la grandezza richiesta.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22602,
+      "title": "Coulomb, non farad",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 1,
+      "prompt": "Q è il modulo della carica libera su una armatura di un condensatore. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C",
+          "F",
+          "V",
+          "J",
+          "T"
+        ],
+        "value": "C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica si misura in coulomb. La capacità ha unità farad, pari a coulomb per volt; moltiplicando la capacità per la tensione si ritrova il coulomb. Il prefisso micro non cambia questa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=\\mathrm F\\cdot\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "F indica capacità, V tensione, J energia e T campo magnetico. Nessuna di queste unità da sola esprime la carica richiesta."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità di CV prima del numero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "F indica capacità, V tensione, J energia e T campo magnetico. Nessuna di queste unità da sola esprime la carica richiesta.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22603,
+      "title": "Collegato non significa carica fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Che cosa accade inserendo il dielettrico con κ>1?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V resta 2 V e il modulo Q aumenta",
+          "Q resta costante e V diminuisce",
+          "V e Q restano entrambi invariati",
+          "La capacità diminuisce",
+          "Il generatore impone Q uguale a zero"
+        ],
+        "value": "V resta 2 V e il modulo Q aumenta"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il generatore mantiene la differenza di potenziale. Il dielettrico aumenta la capacità e, per Q=CV_g, aumenta il modulo della carica libera su ciascuna armatura. Il materiale si polarizza; la carica libera aggiuntiva è trasferita dal circuito, non creata dalla polarizzazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb",
+          "text": "La tensione è uguale prima e dopo. Il circuito permette il trasferimento della carica libera aggiuntiva mentre il materiale si polarizza."
+        },
+        {
+          "type": "formula",
+          "text": "V_f=V_i"
+        },
+        {
+          "type": "formula",
+          "text": "V_i=V_g"
+        },
+        {
+          "type": "formula",
+          "text": " C_f=\\kappa C_0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_f=\\kappa Q_i"
+        },
+        {
+          "type": "text",
+          "text": "Carica costante e tensione ridotta descrivono il condensatore isolato. L’energia del campo cambia e il suo bilancio va distinto da quello completo con generatore e lavoro meccanico. Per κ=1 soltanto, la capacità non cambia."
+        }
+      ],
+      "hints": [
+        "Riconosci quale vincolo impone il collegamento elettrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Carica costante e tensione ridotta descrivono il condensatore isolato. L’energia del campo cambia e il suo bilancio va distinto da quello completo con generatore e lavoro meccanico. Per κ=1 soltanto, la capacità non cambia.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22604,
+      "title": "Capacità iniziale raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. A usa C₀=2 μF, κ=2. B usa C₀=4 μF allo stesso κ. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 8 μC a 16 μC",
+          "Da 8 μC a 4 μC",
+          "Resta 8 μC",
+          "Da 8 μC a 32 μC",
+          "Da 8 μC a 2 μC"
+        ],
+        "value": "Da 8 μC a 16 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "κ e la tensione sono uguali nelle due preparazioni. La capacità finale raddoppia da 4 a 8 μF e così la carica da 8 a 16 μC. La carica finale è lineare in C₀ a generatore mantenuto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=16\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μC inverte l’effetto di C₀. Trentadue μC lo eleva al quadrato; otto μC imporrebbe una carica conservata non prevista dal circuito collegato."
+        }
+      ],
+      "hints": [
+        "Lascia costanti κ e V_g mentre cambia C₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro μC inverte l’effetto di C₀. Trentadue μC lo eleva al quadrato; otto μC imporrebbe una carica conservata non prevista dal circuito collegato.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22605,
+      "title": "Ritrovare la capacità senza dielettrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Si misura Q=8 μC e si conosce κ=2. Quanto vale C₀ in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo C₀=Q/(κV_g). Il denominatore è 2·2 V=4 V; otto μC diviso quattro volt dà 2 μF. Questa è la capacità prima dell’inserimento, non la capacità finale di 4 μF."
+        },
+        {
+          "type": "formula",
+          "text": "C_0=\\frac{Q}{\\kappa V_g}"
+        },
+        {
+          "type": "formula",
+          "text": " C_0=\\frac{8\\,\\mu\\mathrm C}{4\\,\\mathrm V}"
+        },
+        {
+          "type": "formula",
+          "text": " C_0=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Quattro μF divide soltanto per la tensione e restituisce C finale. Otto copia il numero della carica; un mezzo μF darebbe Q=2 μC invece degli otto misurati."
+        }
+      ],
+      "hints": [
+        "Distingui C₀ dalla capacità κC₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro μF divide soltanto per la tensione e restituisce C finale. Otto copia il numero della carica; un mezzo μF darebbe Q=2 μC invece degli otto misurati.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22606,
+      "title": "κ da una misura di carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Si misura Q=8 μC e si conosce C₀=2 μF. Quanto vale κ?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica prima dell’inserimento sarebbe C₀V_g=4 μC. Il rapporto Q/(C₀V_g)=8/4=2 misura κ. È un numero puro almeno uguale a uno, non una carica espressa in microcoulomb."
+        },
+        {
+          "type": "formula",
+          "text": "\\kappa=\\frac{Q}{C_0V_g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa=\\frac{8\\,\\mu\\mathrm C}{4\\,\\mu\\mathrm C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto e cade sotto il dominio ammesso. Quattro copia la capacità finale in μF come se fosse κ; sedici moltiplica ingressi che devono formare un rapporto."
+        }
+      ],
+      "hints": [
+        "Normalizza Q rispetto alla carica senza il dielettrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto e cade sotto il dominio ammesso. Quattro copia la capacità finale in μF come se fosse κ; sedici moltiplica ingressi che devono formare un rapporto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22607,
+      "title": "Il caso limite κ uguale a uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. A: C₀=2 μF, κ=2. B: stessa C₀, κ=1. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B ha capacità 2 μF e carica 4 μC, mentre A ha 8 μC. Il rapporto è 1/2. Il caso κ=1 non annulla né la capacità né la carica: recupera il riferimento iniziale a due volt."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=4\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte B/A. Un quarto applica un quadrato che non compare in Q=CV; zero tratta κ=1 come assenza del condensatore. Uno ignora la variazione della capacità."
+        }
+      ],
+      "hints": [
+        "Q dipende direttamente da κ, senza quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte B/A. Un quarto applica un quadrato che non compare in Q=CV; zero tratta κ=1 come assenza del condensatore. Uno ignora la variazione della capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22608,
+      "title": "Differenza fra proposta e carica corretta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Con C₀=2 μF, κ=2 si propone Q=16 μC. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 μC",
+          "−8 μC",
+          "2",
+          "16 μC",
+          "0 μC"
+        ],
+        "value": "8 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica corretta su una sola armatura è 8 μC. La proposta la supera di 16−8=8 μC. Il rapporto fra i due valori sarebbe due, ma lo scarto conserva l’unità di carica."
+        },
+        {
+          "type": "formula",
+          "text": "Q=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=(16-8)\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "−8 μC scambia l’ordine. Sedici μC copia la proposta e zero non verifica la legge. Due puro è un rapporto, non la differenza richiesta."
+        }
+      ],
+      "hints": [
+        "Non sommare le cariche opposte delle armature.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−8 μC scambia l’ordine. Sedici μC copia la proposta e zero non verifica la legge. Due puro è un rapporto, non la differenza richiesta.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22609,
+      "title": "Invertire la legge della carica finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Quale formula ricava C₀ da Q, κ e V_g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C₀ = Q / (κ V_g)",
+          "C₀ = Q κ / V_g",
+          "C₀ = Q V_g / κ",
+          "C₀ = κ V_g / Q",
+          "C₀ = Q / V_g"
+        ],
+        "value": "C₀ = Q / (κ V_g)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q=κC₀V_g contiene C₀ moltiplicata per due fattori positivi noti. Divido per entrambi: C₀=Q/(κV_g). Il rapporto ha unità coulomb per volt, dunque farad."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\kappa C_0V_g"
+        },
+        {
+          "type": "formula",
+          "text": " C_0=\\frac{Q}{\\kappa V_g}"
+        },
+        {
+          "type": "formula",
+          "text": " [C_0]=\\mathrm{C/V}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per κ non annulla il suo effetto. QV_g è un’energia; κV_g/Q è una capacità inversa. Q/V_g ricava la capacità finale, non quella iniziale."
+        }
+      ],
+      "hints": [
+        "Ogni fattore che moltiplica C₀ deve passare al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per κ non annulla il suo effetto. QV_g è un’energia; κV_g/Q è una capacità inversa. Q/V_g ricava la capacità finale, non quella iniziale.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22610,
+      "title": "Due variazioni che si moltiplicano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. C₀,B=κ₁C₀,A e κ_B=κ₂κ_A. I fattori sono positivi e κ_A,κ_B≥1. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il generatore mantiene due volt in entrambe le prove. Nella carica finale si moltiplicano capacità iniziale e costante relativa, quindi il rapporto è κ₁κ₂. Anche dopo la scalatura deve rimanere κ_B≥1."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=(\\kappa_2\\kappa_A)(\\kappa_1C_{0,A})V_g"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₂ aggiunge una potenza non presente; la somma darebbe due anche per preparazioni identiche."
+        }
+      ],
+      "hints": [
+        "V_g si cancella perché il controllo esterno è lo stesso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₂ aggiunge una potenza non presente; la somma darebbe due anche per preparazioni identiche.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22611,
+      "title": "Capacità minore e κ maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. A usa C₀=2 μF, κ=2; B usa C₀=1 μF, κ=3. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "1/2",
+          "3/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le cariche finali sono 8 e 6 μC. Il rapporto B/A è 3/4: il fattore 1/2 della capacità iniziale e il fattore 3/2 di κ si moltiplicano. L’aumento di κ non compensa completamente il dimezzamento di C₀."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il confronto, 1/2 segue soltanto C₀ e 3/2 soltanto κ. Uno presumerebbe una compensazione esatta assente dai dati."
+        }
+      ],
+      "hints": [
+        "Trova prima entrambe le cariche libere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il confronto, 1/2 segue soltanto C₀ e 3/2 soltanto κ. Uno presumerebbe una compensazione esatta assente dai dati.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22612,
+      "title": "Media delle uscite, non degli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. A usa C₀=2 μF, κ=2; B usa C₀=1 μF, κ=3. Qual è la media aritmetica dei moduli Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7 μC",
+          "15/2 μC",
+          "14 μC",
+          "1 μC",
+          "0 μC"
+        ],
+        "value": "7 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media di 8 e 6 μC è 7 μC. Ai valori medi C₀=3/2 μF e κ=5/2 corrisponderebbe invece Q=15/2 μC. Il prodotto degli ingressi non commuta in generale con la media; si stanno confrontando prove distinte."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb",
+          "text": "Le barre 8 μC, 6 μC e 7 μC condividono origine e scala. La retta del terzo pannello vale soltanto con κ=2 fissato."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{8+6}{2}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=7\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm dati\\ medi}=\\frac{15}{2}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "15/2 μC usa gli ingressi medi. Quattordici somma senza dividere per due; uno μC è la semidifferenza. Zero considera la carica netta delle due armature, non il modulo richiesto."
+        }
+      ],
+      "hints": [
+        "Mantieni il significato di Q anche mentre fai la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15/2 μC usa gli ingressi medi. Quattordici somma senza dividere per due; uno μC è la semidifferenza. Zero considera la carica netta delle due armature, non il modulo richiesto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22613,
+      "title": "Quale aumento di κ compensa la capacità?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. A usa C₀=2 μF, κ_A=2. B ha C₀=1 μF e deve ottenere Q_B=(3/4)Q_A. Quanto vale κ_B/κ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3/4",
+          "1/2",
+          "2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 6 μC. Con C₀,B=1 μF e due volt, Q_B=(2 μC)κ_B, quindi κ_B=3. Rispetto al valore iniziale due occorre il fattore 3/2."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_B/\\kappa_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il fattore cercato. Tre quarti copia il rapporto delle cariche senza tener conto di C₀ dimezzata. Due imporrebbe κ_B=4 e Q_B=8 μC, fuori bersaglio."
+        }
+      ],
+      "hints": [
+        "Isola κ_B solo dopo aver espresso Q_B in μC.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il fattore cercato. Tre quarti copia il rapporto delle cariche senza tener conto di C₀ dimezzata. Due imporrebbe κ_B=4 e Q_B=8 μC, fuori bersaglio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22614,
+      "title": "Tarare una misura di carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. D=a_cal Q è continuo e adimensionale. A con C₀=2 μF, κ=2 dà D=24. B legge D=18 e ha κ=3. Quanto vale C₀,B in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha Q_A=8 μC, dunque a_cal=3 μC⁻¹. La nuova lettura indica Q_B=6 μC. Divido per κ_BV_g=6 V: la capacità senza il dielettrico è 1 μF."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " C_{0,B}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Tre μF tratterebbe D=18 come 18 μC. Due μF dividerebbe Q solo per κ e salterebbe i due volt. Sei μF copia il numero di Q senza una divisione fisica."
+        }
+      ],
+      "hints": [
+        "Decodifica la carica prima di usare la capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre μF tratterebbe D=18 come 18 μC. Due μF dividerebbe Q solo per κ e salterebbe i due volt. Sei μF copia il numero di Q senza una divisione fisica.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22615,
+      "title": "Offset, carica e capacità iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. D=a_cal Q+b_cal è continuo. A: C₀=2 μF, κ=2, D=17. B: C₀=1 μF, κ=3, D=13. C: κ=2, D=33. Quanto vale C₀,C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno 8 e 6 μC. La pendenza è due per μC e l’offset uno. D_C=33 significa Q_C=(33−1)/2=16 μC. Dividendo per κ_CV_g=4 V ottengo C₀,C=4 μF."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=16\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " C_{0,C}=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "33/8 μF ignora l’offset e darebbe D=34. Otto μF salta il fattore due della tensione. Sedici μF copia la carica decodificata come se avesse unità di capacità."
+        }
+      ],
+      "hints": [
+        "Il guadagno è quello dello strumento, separato da κV_g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "33/8 μF ignora l’offset e darebbe D=34. Otto μF salta il fattore due della tensione. Sedici μF copia la carica decodificata come se avesse unità di capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Dielettrico a tensione mantenuta",
+      "order": 22616,
+      "title": "Un vincolo con una radice fisica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "dielectric-connected-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità iniziale C₀>0 rimane collegato a un generatore ideale che mantiene V_g=2 V. Un dielettrico ideale di costante relativa κ≥1 riempie completamente lo spazio fra le armature senza modificarne la geometria. Si confrontano gli stati elettrostatici; Q è il modulo della carica libera su una sola armatura, non la carica netta del condensatore. C₀ è espresso in μF e Q in μC. Fra preparazioni C₀=(1 μF)κ. Si misura Q=8 μC. Quanto vale κ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "−2",
+          "4",
+          "8",
+          "Infinite costanti relative"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo porta Q=(2 μC)κ². La misura otto impone κ²=4. Il dominio κ≥1 seleziona κ=2 e quindi C₀=2 μF: una sola preparazione ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "Q=(2\\,\\mu\\mathrm C)\\kappa^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa=2"
+        },
+        {
+          "type": "text",
+          "text": "−2 è la radice algebrica esclusa anche dalla capacità positiva. Quattro omette la radice; otto copia il numero della carica. Non restano infinite coppie perché la misura non è ridondante."
+        }
+      ],
+      "hints": [
+        "Controlla κ≥1 dopo la soluzione quadratica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−2 è la radice algebrica esclusa anche dalla capacità positiva. Quattro omette la radice; otto copia il numero della carica. Non restano infinite coppie perché la misura non è ridondante.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Generatore ideale e carica libera",
+        "Capacità finale e polarizzazione",
+        "Inverse, medie, taratura e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb",
+      "name": "dielectric-connected-charge-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+VGVuc2lvbmUgZmlzc2F0YSwgY2FyaWNhIGRpdmVyc2E8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IGNvbmRlbnNhdG9yZSByaWVtcGl0byBjb24gZ2VuZXJhdG9yZSBjb2xsZWdhdG87IGJhcnJlIGRlbGxlIGNhcmljaGUgZmluYWxpOyByZXR0YSBjYXJpY2EgY29udHJvIGNhcGFjaXTDoCBpbml6aWFsZSBhIGNvc3RhbnRlIHJlbGF0aXZhIGR1ZS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzUyNjY3YSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0ODAiIGZpbGw9IiNmN2ZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5UZW5zaW9uZSBmaXNzYXRhLCBjYXJpY2EgZGl2ZXJzYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBJbCBnZW5lcmF0b3JlIHJlc3RhIG5lbCBjaXJjdWl0bzwvdGV4dD48dGV4dCB4PSI0MiIgeT0iMTMyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkPigoAgPSAyIM68RiDCtyDOuiA9IDIgwrcgQyA9IDQgzrxGPC90ZXh0PjxyZWN0IHg9IjIxOCIgeT0iMTc1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjM1MCIgeT0iMTc1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjMzE2YjliIiByeD0iMyIvPjxyZWN0IHg9IjIzMCIgeT0iMTg2IiB3aWR0aD0iMTE4IiBoZWlnaHQ9IjEyOCIgZmlsbD0iI2M5ZGZlZCIgcng9IjMiLz48dGV4dCB4PSIxOTAiIHk9IjIyMCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4rPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iMjIwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPuKIkjwvdGV4dD48bGluZSB4MT0iMjE4IiB5MT0iMjUwIiB4Mj0iMTAwIiB5Mj0iMjUwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMDAiIHkxPSIyNTAiIHgyPSIxMDAiIHkyPSI0MjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwMCIgeTE9IjQyMCIgeDI9IjI4MCIgeTI9IjQyMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzYwIiB5MT0iMjUwIiB4Mj0iNTQwIiB5Mj0iMjUwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1NDAiIHkxPSIyNTAiIHgyPSI1NDAiIHkyPSI0MjAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjU0MCIgeTE9IjQyMCIgeDI9IjMyMCIgeTI9IjQyMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjgwIiB5MT0iMzk4IiB4Mj0iMjgwIiB5Mj0iNDQyIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMjAiIHkxPSI0MDgiIHgyPSIzMjAiIHkyPSI0MzIiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjc4IiB5PSI0NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPis8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI0NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKIkjwvdGV4dD48dGV4dCB4PSIzNDgiIHk9IjQ2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5WX2cgPSAyIFY8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIzNjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+USA9IDggzrxDIHN1IHVuYSBhcm1hdHVyYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTM1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgTW9kdWxpIGRpIGNhcmljYSBlIGxvcm8gbWVkaWE8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjU1NSIgeDI9IjE0NSIgeTI9IjgxMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMjUiIHk9IjYwMiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjU4NSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyNyIgZmlsbD0iIzMxNmI5YiIgcng9IjMiLz48dGV4dCB4PSI0NzUiIHk9IjYwNiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij44IM68QzwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjY4NyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+QjwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjY3MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNyIgZmlsbD0iI2E3NmQyMCIgcng9IjMiLz48dGV4dCB4PSIzOTUiIHk9IjY5MSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij42IM68QzwvdGV4dD48dGV4dCB4PSIxMjUiIHk9Ijc3MiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3NTUiIHdpZHRoPSIyODAiIGhlaWdodD0iMjciIGZpbGw9IiM0ODgyNjUiIHJ4PSIzIi8+PHRleHQgeD0iNDM1IiB5PSI3NzYiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+NyDOvEM8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg3MCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBD4oKAID0gMiDOvEYsIM66ID0gMiDCtyBCOiBD4oKAID0gMSDOvEYsIM66ID0gMzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTUwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgU29sbyDOuiA9IDIgZSBWX2cgPSAyIFY8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjEzMDAiIHgyPSI1MjAiIHkyPSIxMzAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTMwNSIgeDI9IjE1MCIgeTI9IjEwNDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMzAwIiB4Mj0iNDcwIiB5Mj0iMTE0MCIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEzMjQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMzMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzNTRkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTE0NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9ImVuZCI+ODwvdGV4dD48dGV4dCB4PSI1MjUiIHk9IjEzNDUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+Q+KCgCAozrxGKTwvdGV4dD48dGV4dCB4PSIxMDUiIHk9IjEwMjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDM1NGQiIHRleHQtYW5jaG9yPSJzdGFydCI+USAozrxDKTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQwMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzU0ZCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MYSByZXR0YSByaWd1YXJkYSBD4oKAIHZhcmlhYmlsZSBlIM66IGZpc3NhdG8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
