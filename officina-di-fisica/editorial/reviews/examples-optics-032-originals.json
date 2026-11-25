@@ -1,0 +1,522 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-optics-032",
+  "records": [
+    {
+      "id": "C5-E017",
+      "sourceSha256": "55b6070a7bd23e2ef92297bc9e2064adc519c63e3a8e98ceaa2b211d741bb30b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": false,
+      "errors": [
+        "P2 false exact chain/manual procedure: exact sin(theta2)=sqrt(2)/3 is rounded to0.471, then source states theta2=arcsin(0.471). These are not equal; exact squared-sine gap3431/9000000. Exact symbolic inverse must be retained; numerical degree evaluation needs an optional qualified/manual procedure.",
+        "Independent example mathematics failed"
+      ],
+      "checks": [
+        {
+          "claim": "actual surface45 complementedtonormal45",
+          "independentExact": "45",
+          "expectedValue": "45",
+          "unit": "degree",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual reflectionangle45",
+          "independentExact": "pi/4",
+          "expectedValue": "pi/4",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exacttransmittedsine sqrt2over3",
+          "independentExact": "sqrt(2)/3",
+          "expectedValue": "sqrt(2)/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exacttransmittedangle symbolic",
+          "independentExact": "asin(sqrt(2)/3)",
+          "expectedValue": "asin(sqrt(2)/3)",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source exactthetaequalsasinrounded471 wouldrequirezerosquaredsinegap",
+          "independentExact": "3431/9000000",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "3431/9000000",
+          "ok": false,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent nonzero squaredsinegap quantifiesbadexactchain",
+          "independentExact": "3431/9000000",
+          "expectedValue": "3431/9000000",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual final28point1 isvalidrounded separately",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual surface45 complementedtonormal45": {},
+        "actual reflectionangle45": {},
+        "actual exacttransmittedsine sqrt2over3": {},
+        "actual exacttransmittedangle symbolic": {},
+        "source exactthetaequalsasinrounded471 wouldrequirezerosquaredsinegap": {},
+        "independent nonzero squaredsinegap quantifiesbadexactchain": {},
+        "actual final28point1 isvalidrounded separately": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualsurfaceangle45givesnormalangle90-45=45andreflection45deg. Snell exactsin(theta2)=sqrt2/3;exacttheta2=asin(sqrt2/3). Sourcefirstroundssineto0.471thenstatesexacttheta2=asin(0.471);squaringwouldrequire2/9=(471/1000)², falseby3431/9000000. Trueangle28.1255057degandrounded-inputangle28.0992283degbothround28.1butarenotidentical. Highprecisionwasanadditionalreviewcrosscheck,notamanualstudentmethod. ExactrationalTaylorboundscancheckoptional28.1nearesttenth;thepublishedliteralexactchainandunexplainednumericalinverseprocedureareFAIL. Figure28wholedegreeannotationremainsvalidandisnotthesourceofthisfinding.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Ordinarypositiveair/glassindices1and1.5,stationaryinterface,geometricrayanglesfromnormal. ExactworkinginputsandtrueinverseofexactSnellsine mustnotbeidentifiedwithroundedinputinverse. Approximatewhole-degreepictureisqualitative,notfalseexactformula.",
+      "pedagogicalReview": "FAILP2: preservesgoodnormal-angleconversionbutintroducesfalseexactinverseusingroundedsineandnumericaldegreeswithoutmanualprocedure. ExactsymbolicSnellanswerorqualifiedoptionalapproximationmustreplaceitinanewedition.",
+      "assetChecksums": {
+        "/figures/C5-rifrazione.svg": "12fbefd55feb65146632a6cf1295e143c2014048c7ad44b5cb09b71df277a26e"
+      },
+      "figureReview": "C5-rifrazionecompleteXML/renderreadin024andbytechecked/re-viewedhere;normalvertical,incident/reflected45,Snell geometry consistent with the integer-rounded28degree label. Thatroundeddiagramlabelhasnoexactequalityanddoesnotjustifythefalseexactarcsin(0.471)block.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E018",
+      "sourceSha256": "c811d98f55d2ef93ffb7fbe7d651eac76db3ff9e0b7fb6575993f85573b8dda4",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": false,
+      "errors": [
+        "P3 optional approximation precision: source shows transmittedangle58.8degrees afterrounding sine to0.855. Nominal exact n1.33 at40deg gives58.74951959...deg, so directnearest0.1deg is58.7. Exact rational bounds placeit58.65..58.75. Criticalangle48.8 andrefraction/TIR classification remaincorrect; this isnot a direction/model failure.",
+        "Independent example mathematics failed"
+      ],
+      "checks": [
+        {
+          "claim": "exact criticalangle asin100over133",
+          "independentExact": "asin(100/133)",
+          "expectedValue": "asin(100/133)",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "40degree Snell upperbound belowone",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "55degree Snell lowerbound aboveone",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "critical48point8 nearesttenth valid",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual40deg transmittedangle above58point65",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual40deg transmittedangle below58point75",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source58point8 nearesttenth wouldrequireangleatleast58point75",
+          "independentExact": "0",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "-1",
+          "ok": false,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent directround58point7 interval holds",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "1point33 times sin55 rounds1point09",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "exact criticalangle asin100over133": {},
+        "40degree Snell upperbound belowone": {},
+        "55degree Snell lowerbound aboveone": {},
+        "critical48point8 nearesttenth valid": {},
+        "actual40deg transmittedangle above58point65": {},
+        "actual40deg transmittedangle below58point75": {},
+        "source58point8 nearesttenth wouldrequireangleatleast58point75": {},
+        "independent directround58point7 interval holds": {},
+        "1point33 times sin55 rounds1point09": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Exactcriticalangleasin100/133;40degcaseexactsin(theta2)=(133/100)*sin(2pi/9)<1,soarealtransmittedray.55degcasegivesproduct>1,soTIRingeometricmodel. RationalTaylorseriesboundswith3.14159<pi<355/113confirmbothandcriticalrounded48.8. Theyalsoprove58.65deg<theta2(40)<58.75deg,so58.7isnearesttenthatthegivennominalindices. Source58.8comesfromfirstroundingthesine0.85490752...to0.855andinvertingthat;optionalapproxprecisionP3ratherthanwrongrefraction/TIRphysics. Directreviewhighprecision58.74951959degvsthe rounded-input58.75973478isnotclaimedstudentmanualwork. No needtoforceanumericalinversetriganswerwhereexactexpression/classificationwouldsuffice.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Givenworkingindices1.33to1.00,geometricalopticsofidealtransparentmediaandangles40/55fromnormal. SourceTIRclassificationcorrect,evanescentfieldnotdenied. P3concernsdisplayednearest-tenthprecisionafterprematurerounding,notmacroscopicmeasurementuncertaintyortheunderlyinglaw.",
+      "pedagogicalReview": "FAILP3precisiononly:correctcritical-anglephysicsandclassifications,minorlastdigitfromdoublerounding;separatefromE017exactnotationfailure. Exactexpressionsandsupplied/manualboundscouldavoidunsupportednumericalinversework.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;allindices/anglesaretextual.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E019",
+      "sourceSha256": "062c14487b0a86e0d31a9e275302ca5f239dfecd87e709f29ddf18c935387c69",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual inverseimage distanceoneover15percm",
+          "independentExact": "1/15",
+          "expectedValue": "1/15",
+          "unit": "1/cm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual realimage distance15cm",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual magnificationnegativeonehalf",
+          "independentExact": "-1/2",
+          "expectedValue": "-1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual imageheightnegative1point5cm",
+          "independentExact": "-3/2",
+          "expectedValue": "-3/2",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "realimage betweenfarfocustenanddoubletwenty",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "commoncentimetreunits convertcorrectimage distance",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent principalrays intersectat15cm",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual inverseimage distanceoneover15percm": {
+          "[length]": "-1"
+        },
+        "actual realimage distance15cm": {
+          "[length]": "1"
+        },
+        "actual magnificationnegativeonehalf": {},
+        "actual imageheightnegative1point5cm": {
+          "[length]": "1"
+        },
+        "realimage betweenfarfocustenanddoubletwenty": {},
+        "commoncentimetreunits convertcorrectimage distance": {
+          "[length]": "1"
+        },
+        "independent principalrays intersectat15cm": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual1/q=1/10-1/30=(3-1)/30=1/15percm,soq+15cm. m=-15/30=-1/2;hprime=(-1/2)*3=-3/2cm. Realimageisscreenable15cmonexit,betweenf10and2f20. Independentlyraysy=3-3x/10andy=-3x/30intersectx15,y-1.5. Sharedunits/negativeheightareexplicit;nosquare-rootortrignumerics.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Thinconvergingparaxiallens,samemediumbothsidespercoursemodel,f10cm,p30cmrealobject,height3cm. qpositiveexitrealimage,signedtransverseheight. Schematicsnotisotropicallycalibratedphysicalangleplots.",
+      "pedagogicalReview": "Common-denominatorinversealgebraprecedessubstitution,signandheightinterpretationmatchrayconstruction.",
+      "assetChecksums": {
+        "/figures/C5-lente-reale.svg": "fc2ef2fc62d53691378c1258e2eb72017bbe6cbb7e66ab664720cce13c45f7f4"
+      },
+      "figureReview": "C5-lente-realefullXML/render/Gitbyteschecked;axialp3f,q1.5fandheightminusonehalfmatchthisprompt. Existingtransverse/axialdrawingunitsschematic,notstatedisotropiccm-per-pixel;relativeheightsandfocalcrossingscorrect.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E020",
+      "sourceSha256": "09d0eea7fa7fead98e1b80a327f51ec9ed9676ab942030bf6e3ca804b5590af5",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual inversevirtualimage distance minusoneover12",
+          "independentExact": "-1/12",
+          "expectedValue": "-1/12",
+          "unit": "1/cm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual virtualimage distance minus12cm",
+          "independentExact": "-12",
+          "expectedValue": "-12",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual uprightmagnificationplus2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent principalrayextensions intersectatminus12",
+          "independentExact": "-12",
+          "expectedValue": "-12",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "virtualpoint onobjectside physicalemergingraysdiverge",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "same half-focalobject genericmagnification2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual inversevirtualimage distance minusoneover12": {
+          "[length]": "-1"
+        },
+        "actual virtualimage distance minus12cm": {
+          "[length]": "1"
+        },
+        "actual uprightmagnificationplus2": {},
+        "independent principalrayextensions intersectatminus12": {
+          "[length]": "1"
+        },
+        "virtualpoint onobjectside physicalemergingraysdiverge": {},
+        "same half-focalobject genericmagnification2": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual1/q=1/12-1/6=-1/12percm,soq-12cm,m=-(-12)/6=2. Principalraybackwardextensionsy=1-x/12andy=-x/6meetx-12,y2forunitobjectheight,whilephysicaloutgoingraysdiverge. Imageliesonobjectside,upright/doubletransverseheight. Eyeonexitsidecanfocusdivergingrayswithappropriateposition/accommodation;nofiniteexit-sidescreenformsvirtualimage. Transversem2isnotaclaimangularmagnification2forallobserverpositions.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Thinconvergingparaxiallens,f12cm,p6cmrealobjectandcommondistanceunits,samemediumpercourse. qnegativebackwardintersection/virtualimage,mtransverse. Viewingrequiresappropriateeyefocus/position,nouniversalangularmagnificationorhumanvisionmeasurementclaim.",
+      "pedagogicalReview": "Explainsactualraysversusbackwardextensions,virtualsign,uprightheightandwhyanexit-sidescreendoesnotcapturethevirtualimage.",
+      "assetChecksums": {
+        "/figures/C5-lente-virtuale.svg": "774c01eee8661d1802b9f7cccca4a8f893c99673ded0e538ffc7ee3a2eff05f5"
+      },
+      "figureReview": "C5-lente-virtualefullXML/render/Gitbyteschecked;p=f/2andq=-f,backwarddashedintersectionuprightdoubleheight. Actualrayssolid/divergent,extensionsdashed;sourcef12/p6sharesratioswithoutnumericpixelcalibration.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "0efbb69bf5e208020de1b34892c04a88218fc4ea7de3ee8ea6e3879a7f85753c",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 2,
+  "failedCount": 2,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [
+    "C5-E017",
+    "C5-E018"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
