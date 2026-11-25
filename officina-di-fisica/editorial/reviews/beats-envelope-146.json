@@ -1,0 +1,483 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u4-beats-envelope-01",
+      "sourceSha256": "e0387cee52f056c09b2899e39a21922f711fe4fef02a04ceccbb2a6d376d3462",
+      "candidateSha256": "b6b2e87abbf8e1df3460a8d6ec424aafbb3f4f0f9a64e9e7a7ed9d627089c4f5",
+      "reviewedSignature": "5c56349b88ed368543f152f898936f90e827a40e3a1bd47900f550b3c59781ca",
+      "assetChecksums": {
+        "beats-envelope-progressive.svg": "185bc66d6c7de4e3f78df455bf907067ab14dec555280dc93b8b7bbd3fd8221b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nuovi dati 302−300=2 Hz. Frequenza media301 Hz; somma2A cos(2πu)cos(602πu), u=t/(1 s). Modulo inviluppo2A|cos(2πu)| ha massimi ogni1/2 s:2 Hz, mentre fattore lento con segno ha1 Hz.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "602 Hz somma,301 media,1 metà dello scarto e frequenza del coseno lento con segno; i massimi del suo modulo hanno frequenza doppia.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Nuovi dati 302−300=2 Hz. Frequenza media301 Hz; somma2A cos(2πu)cos(602πu), u=t/(1 s). Modulo inviluppo2A|cos(2πu)| ha massimi ogni1/2 s:2 Hz, mentre fattore lento con segno ha1 Hz.",
+      "scientificAssetReview": "XML e rendering completo letti. Frecce separate e schematiche a t0,1/4,1/2 s hanno segni concordi/opposti/concordi coerenti con302/300 Hz. Inviluppo normalizzato2|cos(2πt/s)|:400 px/s e60 px per E/A, massimi a x100/300/500 e ordinata830, zeri200/400 a950. Il pannello Doppler è esplicitamente senza scala metrica, con fronti più ravvicinati davanti alla sorgente; non applica la differenza dei battimenti al moto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-02",
+      "sourceSha256": "0c25c192165f002e9df3c4bf5fa7992004177785d0b022dcc764cd3b4345da3c",
+      "candidateSha256": "34ba755ab611e492db2c32c5c35ab946dca95715ec9f4bfe333669741f29f29d",
+      "reviewedSignature": "63cb0d80f9e752d25a6427c5bc5c4b5ff94a39aad089566d34c7da3621f52bf8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Hz",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "f_b è numero di massimi del modulo per secondo, dimensione T⁻¹ e unità Hz. Il periodo fra massimi è1/f_b in secondi.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "s periodo,m lunghezza,W/m² intensità,rad fase; nessuna alternativa ha dimensione T⁻¹.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. f_b è numero di massimi del modulo per secondo, dimensione T⁻¹ e unità Hz. Il periodo fra massimi è1/f_b in secondi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-03",
+      "sourceSha256": "4746d19efc556a1369d956dadc7bc25b895852902d314c581254db6d7f2a5c7b",
+      "candidateSha256": "14cb257b81105c39638cb42e860ecff57f0567336e91a744b03c7206dbffe31b",
+      "reviewedSignature": "5ad45ddbbb57ac3ccfb99303b0b99f1f5837eecae93b3d87215757e532ab3390",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La frequenza ricevuta è maggiore di quella emessa",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Doppler distinto: f_ric/f₀=(c+v_o)/(c−v_s)>1 per0≤v_o,v_s<c con almeno un modulo positivo. Numeratore−denominatore=v_o+v_s>0; c nel mezzo non aumenta.",
+      "physicalAssumptions": "Doppler separato da battimenti: aria ferma, avvicinamento rettilineo, velocità rispetto al mezzo subsoniche e almeno un modulo non nullo; sorgente a frequenza propria costante. Nessuna seconda portante necessaria.",
+      "distractors": "Meno frequenza descrive allontanamento; invariata contraddice numero maggiore di fronti; c non raddoppia e una seconda onda non è necessaria.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Doppler distinto: f_ric/f₀=(c+v_o)/(c−v_s)>1 per0≤v_o,v_s<c con almeno un modulo positivo. Numeratore−denominatore=v_o+v_s>0; c nel mezzo non aumenta.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-04",
+      "sourceSha256": "8e0d10b0236ff917800ca5c6c0216b5ca935b3e364b30dd4dd2e3d0e35b060f1",
+      "candidateSha256": "8c1210585c2798037c68bc35eb7415a8520c611d9aafe5af9e0321772b5c1b04",
+      "reviewedSignature": "9af8a560d9983ca4fb0e9b0be9de36d035fe04ecaf6815c983e6d0cc2b1d8e54",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 1 Hz",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Nuove portanti301 e300 Hz danno1 Hz rispetto ai2 Hz iniziali. Periodo fra massimi passa da1/2 s a1 s.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "4 aumenta anziché ridurre lo scarto;1/2 dimezza ancora;301 copia portante e2 ignora variazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Nuove portanti301 e300 Hz danno1 Hz rispetto ai2 Hz iniziali. Periodo fra massimi passa da1/2 s a1 s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-05",
+      "sourceSha256": "3fb2eeb1a99fd17002d8ccaec0c562b8f5e8f6e31ef91d6eece238ccfafa0c11",
+      "candidateSha256": "11de3890d8bbb0325dc1c12c07214ed37e23cfce84c25ab29ef67041900292a9",
+      "reviewedSignature": "a525a02039dd3b09042d8255c07922bed17b36dce236849267e163e420515924",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "302",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Ramo superiore f₁=f₂+f_b=300+2=302 Hz;298 Hz invertirebbe l’ordine delle etichette.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "298 Hz ramo inverso,2 battimento e300 frequenza inferiore. Nessuna somma di quadrati dà la frequenza mancante.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Ramo superiore f₁=f₂+f_b=300+2=302 Hz;298 Hz invertirebbe l’ordine delle etichette.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-06",
+      "sourceSha256": "71bd9dc740773c8af36f40b1acceb6e96cce274f154b29d098a35cf312039334",
+      "candidateSha256": "33199af17f28f51db95d61de0fdffa3e0fc8e6c9fe7298b743d0f4e6fb8e52cb",
+      "reviewedSignature": "c29cc6dc1d41d97202a64424ed8d9b9ec54a8022d737752e34b2e9cfdd86f190",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "f₂=f₁−f_b=302−2=300 Hz, positiva e vicina alla maggiore. Richiede0<f_b<f₁.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "304 Hz supera la prima e cambia ramo;0 o valori negativi violano il dominio delle frequenze.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. f₂=f₁−f_b=302−2=300 Hz, positiva e vicina alla maggiore. Richiede0<f_b<f₁.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-07",
+      "sourceSha256": "884312d94c6ce66b6f9854ca8852f62914a76b2ca677c3a9e5104aa33828f891",
+      "candidateSha256": "6c579d46a1f334a792ca33b7e55c49357d4171a75e5b0e6e6e38f0f218e71293",
+      "reviewedSignature": "f4d65c7b9c51bae9ceb673337aa52257f2447b4dcad86f42bcc0e24f366f7aaf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "B:302−301=1 Hz; A:302−300=2 Hz. Rapporto1/2, pur variando pochissimo la portante inferiore.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "2 reciproco,1 ignora cambiamento,301/300 segue portante e1/4 quadra il rapporto senza motivo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B:302−301=1 Hz; A:302−300=2 Hz. Rapporto1/2, pur variando pochissimo la portante inferiore.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-08",
+      "sourceSha256": "13d4353b2b7f71157d72f47d7a2bff188e105b362061bbe8c49898e5ebaf7b5f",
+      "candidateSha256": "59d507e5a7cb5806ec003060bc02e7e72e95df880cfe348e406b74476bcc6b58",
+      "reviewedSignature": "09a80efe49a644aa6f3e318624fd3f9db7f87590f940120c753e0942a3567b90",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Proposto4 Hz meno corretto2 Hz dà+2 Hz. Non si confronta il battimento con la frequenza media.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "−2 ordine inverso,4 proposta,0 la accetta e6 somma. Tutte le quantità hanno la medesima unità Hz.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposto4 Hz meno corretto2 Hz dà+2 Hz. Non si confronta il battimento con la frequenza media.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-09",
+      "sourceSha256": "3708131701efe3ed7281763285165b885cf22002e444c1c3243b5ead99613c60",
+      "candidateSha256": "16bef29d698fdba6280f2e82ba42c0cf62d52fef2082be102a130bd41887ff13",
+      "reviewedSignature": "163cd625ac096264559306a33e2107f10332d419f9236f540f68588384eebe00",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "f₁ = f_b + f₂",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "f_b=f₁−f₂ sul ramo dichiarato; aggiungendo f₂ a entrambi i membri si ricava f₁=f_b+f₂.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "f₂−f_b scende sotto f₂; prodotto e somma quadrati Hz²; quoziente puro invece di frequenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. f_b=f₁−f₂ sul ramo dichiarato; aggiungendo f₂ a entrambi i membri si ricava f₁=f_b+f₂.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-10",
+      "sourceSha256": "c1c28ceebad85e0ee9c80a35738b353fbe3212faf453f1911fed943492149076",
+      "candidateSha256": "1a0ec5836aff0d97454502cc201992c46afae97ee2b14359870926cd253df4f7",
+      "reviewedSignature": "f1550d9c4dc060873123ce0629a54ec964f982f058c5ea3828a1bc51d701e3f9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(κ₁ f₁ − κ₂ f₂) / (f₁ − f₂)",
+      "dimension": {},
+      "manualArithmetic": "Rapporto (κ₁f₁−κ₂f₂)/(f₁−f₂); i due ordini e il regime vicino sono esplicitamente mantenuti. Fattore comuneκ dà rapportoκ.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "Differenza fattori nulla per prove identiche, prodotto/quoziente ignorano separazioni, rapporto somme confronta portanti medie. Unicità come legge generale, non per coincidenze isolate.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Rapporto (κ₁f₁−κ₂f₂)/(f₁−f₂); i due ordini e il regime vicino sono esplicitamente mantenuti. Fattore comuneκ dà rapportoκ.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-11",
+      "sourceSha256": "8007e25e8a268912d02d9ca57fd5add8f20293501bfa70a5a3a51520ba82f99d",
+      "candidateSha256": "2b81c83d0d7c4c9a1224314b5e1c68e329acf6c84d1fd251c0d3354d8469d294",
+      "reviewedSignature": "c129aa0a9d6a6efe0dde8025b4e2bb1fa170e339191eaaf5759401d171047728",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A:302−300=2 Hz; B:401−400=1 Hz. Rapporto1/2 benché entrambe le portanti crescano.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "2 reciproco,401/302 sola f₁,4/3 sola f₂,1 ignora lo scarto che si dimezza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:302−300=2 Hz; B:401−400=1 Hz. Rapporto1/2 benché entrambe le portanti crescano.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-12",
+      "sourceSha256": "a427b97ecc680f69df395a65d14a9cd1a0d627bcc17863f119df7a176d24eec9",
+      "candidateSha256": "286e0a148e2a717d9da9879e4c3790eb5f1534e97be770d1fd3f3d5044af788f",
+      "reviewedSignature": "24aeb4a0af68ef620bac644b248a5a17a63365600bd81199e54f36a5186d886f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media(2+1)/2=3/2 Hz; portanti medie703/2 e350 Hz differiscono ancora3/2 Hz. Media dei periodi(1/2+1)/2=3/4 s, diversa da2/3 s reciproco della frequenza media.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "3 somma,1/2 semidifferenza,2 e1 una sola prova. Non confondere media frequenze e media periodi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media(2+1)/2=3/2 Hz; portanti medie703/2 e350 Hz differiscono ancora3/2 Hz. Media dei periodi(1/2+1)/2=3/4 s, diversa da2/3 s reciproco della frequenza media.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-13",
+      "sourceSha256": "f7d472a9d70637ce5706657ea43f47067358dc86afd12acf59d76db822a29992",
+      "candidateSha256": "964b866183b599ce0467f0c5551a0bebdda82b036e9d206e849a589fac67d788",
+      "reviewedSignature": "887195b1bc6c95dc0067a679ff5e5ef57f8fdaaad1192f205c05a598573eedaf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "Target1 Hz con f₁,B401 Hz impone f₂,B400 Hz. Rapporto400/300=4/3, ordine e vicinanza rispettati.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "3/4 reciproco,1/2 target,401/302 sola maggiore,400 frequenza numerica non rapporto puro.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target1 Hz con f₁,B401 Hz impone f₂,B400 Hz. Rapporto400/300=4/3, ordine e vicinanza rispettati.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-14",
+      "sourceSha256": "b51e452c7d1b89a683d37cf163c074064f67fb7a41e796e1014a8d020ff17649",
+      "candidateSha256": "4317cade6fe4e83d79f8ed52a4592befd698c9c0164626ea20f01bd39b4c376a",
+      "reviewedSignature": "b34de3fc9bac254c35569b869f9b010319b36fea8ca06b7e2aca8fd18ce77810",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "401",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "q=6/(2 Hz)=3 s. S_B3 rappresenta1 Hz; aggiungendo400 Hz si trova f₁,B401 Hz. Verifica S=3·(401−400)=3.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "Usare S_B3 come Hz porta403 Hz e lettura9, non3.1 Hz è battimento, non portante.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. q=6/(2 Hz)=3 s. S_B3 rappresenta1 Hz; aggiungendo400 Hz si trova f₁,B401 Hz. Verifica S=3·(401−400)=3.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-15",
+      "sourceSha256": "a0b6e14453f05cd23d3d657520f7d642421644598ea94d3b98bac6a5fb094836",
+      "candidateSha256": "c1799f4b3396eb70c9d6cf03a5683f7b9da59b221c30583b434fa22f632ba7db",
+      "reviewedSignature": "8aaed6613dd19478c1415f8b0a4ba6a8d5a959e8e7c3635b9e6f656bdc2c12c9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "503",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "q=(5−3)/(2−1) Hz=2 s,b1; S_C7 dà f_b3 Hz. f₁,C=500+3=503 Hz; legge strumentale ricostruisce7.",
+      "physicalAssumptions": "Somma locale lineare di contributi stabili di uguale ampiezza e polarizzazione; portanti vicine ma fase relativa variabile. Il battimento conta massimi del modulo dell’inviluppo, non del coseno lento con segno. Frequenze positive e ordine preservato.",
+      "distractors": "507 usa S come scarto;500 annulla.501 darebbeS3,505 darebbeS11.503 restituisceS7.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. q=(5−3)/(2−1) Hz=2 s,b1; S_C7 dà f_b3 Hz. f₁,C=500+3=503 Hz; legge strumentale ricostruisce7.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-beats-envelope-16",
+      "sourceSha256": "3f7a9a2d8a45c1fb4ee194b8e1f87e794f5a7c527a39034dbaa1f50423860771",
+      "candidateSha256": "75803e1ba167a4ccdf870ad035faf77919ba08ecd20abfc4768190aadc74f7ce",
+      "reviewedSignature": "f9f1384d33d48e0f4f851bf60ba6308cf78f13a304b8f19754a141b2da662a30",
+      "assetChecksums": {
+        "beats-envelope-progressive.svg": "185bc66d6c7de4e3f78df455bf907067ab14dec555280dc93b8b7bbd3fd8221b"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "480",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Doppler separato: somma reciproci1/600+1/400=1/240 s=2/f₀. Quindi f₀480 Hz. Rapporto v/c=(600−400)/(600+400)=1/5;480/(1−1/5)=600 e480/(1+1/5)=400.",
+      "physicalAssumptions": "Doppler separato: osservatore e mezzo fermi, sorgente in due prove rettilinee con uguale modulo0<v<c e stessa f₀. Leggi classiche assegnate, c comune e positivo; escluso cambiamento di ramo o velocità fra le due misure.",
+      "distractors": "500 media aritmetica: non risolve entrambi i dati con uguale v.200 differenza è altra grandezza; stare fra400 e600 è necessario ma non sufficiente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Doppler separato: somma reciproci1/600+1/400=1/240 s=2/f₀. Quindi f₀480 Hz. Rapporto v/c=(600−400)/(600+400)=1/5;480/(1−1/5)=600 e480/(1+1/5)=400.",
+      "scientificAssetReview": "XML e rendering completo letti. Frecce separate e schematiche a t0,1/4,1/2 s hanno segni concordi/opposti/concordi coerenti con302/300 Hz. Inviluppo normalizzato2|cos(2πt/s)|:400 px/s e60 px per E/A, massimi a x100/300/500 e ordinata830, zeri200/400 a950. Il pannello Doppler è esplicitamente senza scala metrica, con fronti più ravvicinati davanti alla sorgente; non applica la differenza dei battimenti al moto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "cc1e856dd9169473c4094924e10ff1d3fd5491aac4e1fe3e8605cfbcd20d8963",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "13db5a6e0945076d49ea0afb4574b6d6498e76cb",
+  "packageSha256": "47af5876c9794ae01d0bc113634254636d4a5c7ac875db2fe61dc5a7af5deb5b",
+  "bindingsSha256": "b080ff9fc3784a2362059f2474b3dc45003014725a96d70fc134c5503582425c",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-02.json",
+    "reference": "All 48 B145–147 U4-02 original prompts individually read and independent per-ID derivations persisted before opening any B candidate. Handoffs exposed only commits, files and general assumptions, no numeric result or key. Reviewer authored distinct A141–144 and already knows superposition laws; no claim of ignorance of the physics. All 16 final candidate records, every option, block, hint, feedback, metadata and caption read completely, with complete SVG XML structure and native rendering. Never imports authoring. Actual C5-L01/L02/L03/L05 and C1-L001 lessons reread. Edition 146 frequencies independently recalculated from its declared close-carrier parametrization; separate Doppler03/16 preserved. Edition147 frozen only after rereading final feedback15 at72861a39."
+  }
+}
