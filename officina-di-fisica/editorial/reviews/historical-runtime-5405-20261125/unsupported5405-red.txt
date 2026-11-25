@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_real5405_snapshot_reproduces_zero_mean_and_hidden_spring_without_current_alias (tests.corpus.test_historical_runtime_5405.Historical5405.test_real5405_snapshot_reproduces_zero_mean_and_hidden_spring_without_current_alias)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_historical_runtime_5405.py", line 25, in test_real5405_snapshot_reproduces_zero_mean_and_hidden_spring_without_current_alias
+    self.assertIsNone(error,'Known5405 review must execute actual archived runtime: '+str(error));self.assertEqual(force.APP,original)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Unrecognized historical review fingerprint' is not None : Known5405 review must execute actual archived runtime: Unrecognized historical review fingerprint
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

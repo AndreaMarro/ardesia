@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "PASS_TECHNICAL_HISTORICAL_REPLAY",
+  "reviewer": "root_distinct_from_fixture_author",
+  "currentRuntimeSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "knownHistoricalEpochsOnly": true,
+  "actualArchivedGitRuntimeNoFingerprintSubstitution": true,
+  "negativeTestBodies": [
+    {
+      "path": "officina-di-fisica/tests/corpus/test_experiments_force_work_045_review.py",
+      "oldSha256": "0883c10e83546af63265cf35cc303d31e5aaea707ed0e2e41c094053ca131a02",
+      "newSha256": "517c9a491edac3dffee0810725d0874c42ec6f01574ac72c59121d290a5ff41d",
+      "fullOriginalRestoredByRemovingOnlyContextAdapter": true
+    },
+    {
+      "path": "officina-di-fisica/tests/corpus/test_experiments_energy_momentum_046_review.py",
+      "oldSha256": "73cdb1b32f01096c938599f1752ff8d05b4598e67773a7e8b75dfcbb9f08edec",
+      "newSha256": "00b03087d19724c1ddcaa70c284637168ab2b843c39936a6dbb40e5ece357f84",
+      "fullOriginalRestoredByRemovingOnlyContextAdapter": true
+    }
+  ],
+  "tests": [
+    {
+      "count": 10,
+      "seconds": 1.886,
+      "terminalExitCode": 0,
+      "transcript": "..........\n----------------------------------------------------------------------\nRan 10 tests in 1.886s\n\nOK\n",
+      "transcriptSha256": "33ac44d94858bdb78b58bc276d8120c851cf63637383aaed133c41025142380b"
+    },
+    {
+      "count": 42,
+      "seconds": 110.807,
+      "terminalExitCode": 0,
+      "transcript": "..........................................\n----------------------------------------------------------------------\nRan 42 tests in 110.807s\n\nOK\n",
+      "transcriptSha256": "1e226ebcfc1a377d54e99e8ee111af64195e60efddcdc6b0744f0542839bdb8b"
+    }
+  ],
+  "originalAuthorManifest": {
+    "path": "editorial/reviews/historical-runtime-5405-20261125/manifest.json",
+    "sha256": "4d936e59c14cb64a53b826289b2331dcb4184ee6ab3c7e5ef2590514596a2e1f"
+  },
+  "scientificJudgmentsChanged": 0,
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
