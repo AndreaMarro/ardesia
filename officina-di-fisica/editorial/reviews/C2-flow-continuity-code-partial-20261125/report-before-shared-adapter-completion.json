@@ -1,0 +1,754 @@
+{
+  "phase": "SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proofSha256": "a8713980edaf67d64ab06b6182ad569c2b719bc9c50d5946a4d5014067b751f0",
+  "exactCheckCount": 42,
+  "installedStates": 68,
+  "clockFrames": 130,
+  "records": [
+    {
+      "id": "SIM-C2-L005-01",
+      "sourceVersion": 1,
+      "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "8",
+          "expected": "8",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "24",
+          "expected": "24",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "28",
+          "expected": "28",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control2",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control6",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control7",
+          "independentExact": "7",
+          "expected": "7",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "swept volume rate",
+          "independentExact": "A*v",
+          "expected": "A*v",
+          "residual": "0",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "four square centimetres times7cm_per_s",
+          "independentExact": "28",
+          "expected": "28",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "clock distance after6seconds at7",
+          "independentExact": "42",
+          "expected": "42",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 13,
+        "clockFrameCount": 65,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Velocità media» su 6 cm/s. Quale valore ottieni per «Portata volumetrica»?",
+            "input": 6,
+            "independentExact": "24",
+            "actualAnswer": 24,
+            "actualWorked": "Q = A v media; A = 4 cm². 4 × 6 = 24 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media 7 cm/s. Quanti millilitri entrano nel recipiente ogni secondo?",
+            "input": 7,
+            "independentExact": "28",
+            "actualAnswer": 28,
+            "actualWorked": "Q = A v media; A = 4 cm². 4 × 7 = 28 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Q=4v in cm3/s=mL/s. Actual6→24 and7→28; divide by4 to invert. Clock x*t gives42cm at7cm/s after6s, not collected volume. Markers wrap every12cm.",
+      "physicalAssumptionsAndDomain": "Steady incompressible fixed-density liquid, prescribed section means/flow rates and no accumulation or leakage unless the source explicitly describes local parabolic tracers. Control and clock domains are checked separately; diagram coordinates are not automatically calibrated physical lengths.",
+      "pedagogicalReview": "All source fields and actual generated questions read against the frozen prompt-only primary (prior shared implementation exposure disclosed). Finite fraction/decimal arithmetic; no calculator required for assigned transfers. UI/rendering/grader submission not run. Q=4v in cm3/s=mL/s. Actual6→24 and7→28; divide by4 to invert. Clock x*t gives42cm at7cm/s after6s, not collected volume. Markers wrap every12cm.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "ae12f3301ba7b1523a8da0642e115d0dfda63bdddb3a8a113c3f5699a98d287a",
+        "experiments_flow_continuity_code_verifier.py": "a87d1f4b49b515cf3400ba89f93c181450c95344ff635a980e9ae101df0fc52d",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "sourceVersion": 1,
+      "sourceSha256": "c5e314679d7b705bb65c6dea69abfbcdb56e0588b2723328890314dd91e806de",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "4/5",
+          "expected": "4/5",
+          "residual": "0",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "12/5",
+          "expected": "12/5",
+          "residual": "0",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control3",
+          "independentExact": "3",
+          "expected": "3",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control2.5",
+          "independentExact": "5/2",
+          "expected": "5/2",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "density0.8kg_per_L inSI",
+          "independentExact": "800",
+          "expected": "800",
+          "residual": "0",
+          "unit": "kg/m^3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "ok": true
+        },
+        {
+          "claim": "mass out equals input under no accumulation",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 21,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Portata in ingresso» su 3 L/s. Quale valore ottieni per «Portata massica in uscita»?",
+            "input": 3,
+            "independentExact": "12/5",
+            "actualAnswer": 2.4000000000000004,
+            "actualWorked": "ṁ = ρQ; ρ = 0,8 kg/L. 0,8 × 3 ≈ 2,4 kg/s.",
+            "unit": "kg/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "All’ingresso di un tubo arrivano 2,5 L/s di un liquido da 0,8 kg/L. In regime stazionario, quanti chilogrammi al secondo escono?",
+            "input": 2.5,
+            "independentExact": "2",
+            "actualAnswer": 2,
+            "actualWorked": "ṁ = ρQ; ρ = 0,8 kg/L. 0,8 × 2,5 = 2 kg/s.",
+            "unit": "kg/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Steady no storage/loss: mdot=rhoQ=(4/5)Q kg/s.3→12/5=2.4; actual2.5→2. Multiply4 then divide5. Local velocity changes do not alter mass balance.",
+      "physicalAssumptionsAndDomain": "Steady incompressible fixed-density liquid, prescribed section means/flow rates and no accumulation or leakage unless the source explicitly describes local parabolic tracers. Control and clock domains are checked separately; diagram coordinates are not automatically calibrated physical lengths.",
+      "pedagogicalReview": "All source fields and actual generated questions read against the frozen prompt-only primary (prior shared implementation exposure disclosed). Finite fraction/decimal arithmetic; no calculator required for assigned transfers. UI/rendering/grader submission not run. Steady no storage/loss: mdot=rhoQ=(4/5)Q kg/s.3→12/5=2.4; actual2.5→2. Multiply4 then divide5. Local velocity changes do not alter mass balance.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "ae12f3301ba7b1523a8da0642e115d0dfda63bdddb3a8a113c3f5699a98d287a",
+        "experiments_flow_continuity_code_verifier.py": "a87d1f4b49b515cf3400ba89f93c181450c95344ff635a980e9ae101df0fc52d",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "sourceVersion": 1,
+      "sourceSha256": "fd13a8fe629571a0f27076fd812c706b5339129227ae2468e7cf4ea09f68680f",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "24/5",
+          "expected": "24/5",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control2",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control6",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control5",
+          "independentExact": "5",
+          "expected": "5",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "inverse continuity velocity",
+          "independentExact": "24/A",
+          "expected": "24/A",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual area5cm2 with fixed24cm3_per_s",
+          "independentExact": "24/5",
+          "expected": "24/5",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Area della seconda sezione» su 6 cm². Quale valore ottieni per «Velocità nella seconda sezione»?",
+            "input": 6,
+            "independentExact": "4",
+            "actualAnswer": 4,
+            "actualWorked": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂. 24 / 6 = 4 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Passano 24 cm³ d’acqua al secondo. In un punto di area 5 cm², quale velocità media serve perché non si accumuli acqua?",
+            "input": 5,
+            "independentExact": "24/5",
+            "actualAnswer": 4.8,
+            "actualWorked": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂. 24 / 5 = 4,8 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Q24cm3/s, meanv=24/A. Actual6→4,5→24/5=4.8cm/s. Area1..8 excludes singular zero; inverseA=24/v requiresv3..24. Input area4,v6 give same24flow.",
+      "physicalAssumptionsAndDomain": "Steady incompressible fixed-density liquid, prescribed section means/flow rates and no accumulation or leakage unless the source explicitly describes local parabolic tracers. Control and clock domains are checked separately; diagram coordinates are not automatically calibrated physical lengths.",
+      "pedagogicalReview": "All source fields and actual generated questions read against the frozen prompt-only primary (prior shared implementation exposure disclosed). Finite fraction/decimal arithmetic; no calculator required for assigned transfers. UI/rendering/grader submission not run. Q24cm3/s, meanv=24/A. Actual6→4,5→24/5=4.8cm/s. Area1..8 excludes singular zero; inverseA=24/v requiresv3..24. Input area4,v6 give same24flow.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "ae12f3301ba7b1523a8da0642e115d0dfda63bdddb3a8a113c3f5699a98d287a",
+        "experiments_flow_continuity_code_verifier.py": "a87d1f4b49b515cf3400ba89f93c181450c95344ff635a980e9ae101df0fc52d",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "sourceVersion": 1,
+      "sourceSha256": "7088898e6f138971991dfde43178ea1ed50ffa1b7dd7e91a1c01a1a40d1fe10e",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "5",
+          "expected": "5",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "3",
+          "expected": "3",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control4",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control10",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control6",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "area weighted parabolic mean",
+          "independentExact": "peak/2",
+          "expected": "peak/2",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "local half-radius speed differs from mean",
+          "independentExact": "3*peak/4",
+          "expected": "3*peak/4",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual probe distance peak6 after5s",
+          "independentExact": "45/2",
+          "expected": "45/2",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 13,
+        "clockFrameCount": 65,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Velocità sull’asse» su 10 cm/s. Quale valore ottieni per «Velocità media»?",
+            "input": 10,
+            "independentExact": "5",
+            "actualAnswer": 5,
+            "actualWorked": "v media = v massima/2 in un tubo circolare laminare. 10 / 2 = 5 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Nel centro di un capillare a flusso laminare la sonda misura 6 cm/s. Quale velocità media devi usare per calcolare la portata?",
+            "input": 6,
+            "independentExact": "3",
+            "actualAnswer": 3,
+            "actualWorked": "v media = v massima/2 in un tubo circolare laminare. 6 / 2 = 3 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Full source explicitly assigns a parabolic circular profile. Annular area averaging givespeak/2; actual10→5 and6→3cm/s. Probe atR/2 instead moves3peak/4, giving22.5cm after5s atpeak6; mean and local speed are distinct.",
+      "physicalAssumptionsAndDomain": "Steady incompressible fixed-density liquid, prescribed section means/flow rates and no accumulation or leakage unless the source explicitly describes local parabolic tracers. Control and clock domains are checked separately; diagram coordinates are not automatically calibrated physical lengths.",
+      "pedagogicalReview": "All source fields and actual generated questions read against the frozen prompt-only primary (prior shared implementation exposure disclosed). Finite fraction/decimal arithmetic; no calculator required for assigned transfers. UI/rendering/grader submission not run. Full source explicitly assigns a parabolic circular profile. Annular area averaging givespeak/2; actual10→5 and6→3cm/s. Probe atR/2 instead moves3peak/4, giving22.5cm after5s atpeak6; mean and local speed are distinct.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "ae12f3301ba7b1523a8da0642e115d0dfda63bdddb3a8a113c3f5699a98d287a",
+        "experiments_flow_continuity_code_verifier.py": "a87d1f4b49b515cf3400ba89f93c181450c95344ff635a980e9ae101df0fc52d",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "sourceVersion": 1,
+      "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control2",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control8",
+          "independentExact": "8",
+          "expected": "8",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "independent inverse reconstructs control6",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "node conservation sum",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual transfer split6plus6",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": false,
+        "geometryErrors": [
+          "grid@0: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@1: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@2: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@3: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@4: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@5: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@6: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@7: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@8: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@9: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@10: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@11: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+          "grid@12: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent"
+        ],
+        "caseCount": 13,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Portata nel ramo superiore» su 8 mL/s. Quale valore ottieni per «Portata nel ramo inferiore»?",
+            "input": 8,
+            "independentExact": "4",
+            "actualAnswer": 4,
+            "actualWorked": "Q entrante = Q₁ + Q₂ = 12 mL/s. 12 − 8 = 4 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un raccordo riceve 12 mL/s e manda 6 mL/s nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?",
+            "input": 6,
+            "independentExact": "6",
+            "actualAnswer": 6,
+            "actualWorked": "Q entrante = Q₁ + Q₂ = 12 mL/s. 12 − 6 = 6 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Steady node12=Qupper+Qlower. Actual8→4,6→6mL/s. Range0..12 keeps both branches nonnegative. Scalar law/readout correct; source asks comparison with an incoming arrow absent in installed elements.",
+      "physicalAssumptionsAndDomain": "Steady incompressible fixed-density liquid, prescribed section means/flow rates and no accumulation or leakage unless the source explicitly describes local parabolic tracers. Control and clock domains are checked separately; diagram coordinates are not automatically calibrated physical lengths.",
+      "pedagogicalReview": "All source fields and actual generated questions read against the frozen prompt-only primary (prior shared implementation exposure disclosed). Finite fraction/decimal arithmetic; no calculator required for assigned transfers. UI/rendering/grader submission not run. Steady node12=Qupper+Qlower. Actual8→4,6→6mL/s. Range0..12 keeps both branches nonnegative. Scalar law/readout correct; source asks comparison with an incoming arrow absent in installed elements.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "ae12f3301ba7b1523a8da0642e115d0dfda63bdddb3a8a113c3f5699a98d287a",
+        "experiments_flow_continuity_code_verifier.py": "a87d1f4b49b515cf3400ba89f93c181450c95344ff635a980e9ae101df0fc52d",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

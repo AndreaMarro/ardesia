@@ -1,0 +1,13 @@
+{
+  "scope": "Exact frozen documents preserved without modifying terminal whitespace or weakening git hygiene; original source manifests remain immutable",
+  "archiveSha256": "2984d8fe2f3ea635ffd505f8db8ad4fcd744592e83375132e0b256d39df69f4e",
+  "files": {
+    "editorial/reviews/C2-remaining26-code-partial-20261125/independent-review.md": "600c8af1de627891d1db22a94be755fb6804155356caa3f60d8b5c1e8a1d5a98",
+    "editorial/reviews/independent-C3-36-source-only-primary-20261125.md": "f79bf7dce43ac234c4681ad511e7bd3659117d024dcb5191a98d0a0414332933"
+  },
+  "restoreFromApplicationDirectory": "python3 -m zipfile -e editorial/reviews/C2-C3-frozen-raw-evidence-20261125/raw-frozen-documents.zip .",
+  "why": "Original two frozen Markdown documents end in an extra blank line; store verbatim in deterministic ZIP instead of rewriting their SHA-pinned bytes",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

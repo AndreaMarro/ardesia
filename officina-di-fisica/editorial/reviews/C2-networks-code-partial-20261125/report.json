@@ -1,0 +1,430 @@
+{
+  "phase": "SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proofSha256": "a52f569301bebf6001be0b26889d023834388683e25fe95e59955c25e2603874",
+  "exactCheckCount": 23,
+  "promptPrimaryPath": "editorial/reviews/experiments-C2-flow-capillarity-prompt-primary-20261125.json",
+  "promptPrimarySha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42",
+  "installedStates": 24,
+  "clockFrames": 0,
+  "records": [
+    {
+      "id": "SIM-C2-L009-01",
+      "sourceVersion": 1,
+      "sourceSha256": "d27bbd66f3ae41df70dbd93d632ed058afa7ea75d31a8f09377fcd6e06356f9c",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "kPa*s/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "3/2",
+          "expected": "3/2",
+          "residual": "0",
+          "unit": "kPa*s/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "10/7",
+          "expected": "10/7",
+          "residual": "0",
+          "unit": "kPa*s/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "parallel reciprocal sum",
+          "independentExact": "10/7",
+          "expected": "10/7",
+          "residual": "0",
+          "unit": "kPa*s/mL",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-4",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "manual decimal relative-error bound (not a submitted UI answer)",
+          "independentExact": "1/1000",
+          "expected": "1/1000",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Seconda resistenza» su 6 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+            "input": 6,
+            "independentExact": "3/2",
+            "actualAnswer": 1.5,
+            "actualWorked": "R parallelo = 2R₂/(2+R₂); R serie = 2+R₂. 2 × 6 / (2 + 6) = 1,5 kPa·s/mL.",
+            "unit": "kPa·s/mL",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Affianchi un ramo da 2 kPa·s/mL a un secondo da 5 kPa·s/mL. Quale resistenza equivalente presenta la coppia ai suoi capi?",
+            "input": 5,
+            "independentExact": "10/7",
+            "actualAnswer": 1.4285714285714286,
+            "actualWorked": "R parallelo = 2R₂/(2+R₂); R serie = 2+R₂. 2 × 5 / (2 + 5) ≈ 1,429 kPa·s/mL.",
+            "unit": "kPa·s/mL",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Parallel equal pressure:1/Req=1/2+1/R2 => Req=2R2/(2+R2). Two linear positive hydraulic resistances in parallel with common endpoints. Multiply2R2 and divide by sum. ActualReq10/7; hand1.43 relative error1/1000, within0.5%; fractions not entered as Number syntax.",
+      "physicalAssumptionsAndDomain": "Two linear positive hydraulic resistances in parallel with common endpoints. Multiply2R2 and divide by sum.",
+      "pedagogicalReview": "Equivalent below each branch; same formula is not a series sum. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "sourceVersion": 1,
+      "sourceSha256": "a3797a919d164840d33a25031e9dcaa3bb2b02bbffe9daff5eccae0556f7972e",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "12/5",
+          "expected": "12/5",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "upper branch flow units",
+          "independentExact": "12/5",
+          "expected": "12/5",
+          "residual": "0",
+          "unit": "mL/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Resistenza del ramo superiore» su 6 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+            "input": 6,
+            "independentExact": "2",
+            "actualAnswer": 2,
+            "actualWorked": "Q₁ = Δp/R₁ = 12/R₁. 12 / 6 = 2 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di 5 kPa·s/mL, quanta portata passa proprio in quel ramo?",
+            "input": 5,
+            "independentExact": "12/5",
+            "actualAnswer": 2.4,
+            "actualWorked": "Q₁ = Δp/R₁ = 12/R₁. 12 / 5 = 2,4 mL/s.",
+            "unit": "mL/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Q_upper=delta_p/R_upper=12/R_upper. Shared prescribed12kPa node pressure difference; positive linear branch resistance. Divide12 by resistance.",
+      "physicalAssumptionsAndDomain": "Shared prescribed12kPa node pressure difference; positive linear branch resistance. Divide12 by resistance.",
+      "pedagogicalReview": "Other branch changes do not change this branch flow if node pressure difference remains externally fixed. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "sourceVersion": 1,
+      "sourceSha256": "1dd1702b1816f4c3638a58043d25914d9710539beccd34166e198ea47cf8b49a",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "5",
+          "expected": "5",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "15/2",
+          "expected": "15/2",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "50/7",
+          "expected": "50/7",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "downstream voltage-divider analogue",
+          "independentExact": "50/7",
+          "expected": "50/7",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "manual decimal relative-error bound (not a submitted UI answer)",
+          "independentExact": "1/2500",
+          "expected": "1/2500",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Resistenza a valle» su 6 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+            "input": 6,
+            "independentExact": "15/2",
+            "actualAnswer": 7.5,
+            "actualWorked": "p nodo = 10 R₂/(2 + R₂), con uscita a 0 kPa. 10 × 6 / (2 + 6) = 7,5 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da 5 kPa·s/mL. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?",
+            "input": 5,
+            "independentExact": "50/7",
+            "actualAnswer": 7.142857142857143,
+            "actualWorked": "p nodo = 10 R₂/(2 + R₂), con uscita a 0 kPa. 10 × 5 / (2 + 5) ≈ 7,143 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Series Q=(10-0)/(2+Rdown), node p=Q*Rdown=10Rdown/(2+Rdown). Steady positive linear resistances; downstream outlet0kPa, inlet10kPa. Divide total drop by sum then multiply downstreamR. Actualnode50/7; hand7.14 relative error1/2500, within0.5%.",
+      "physicalAssumptionsAndDomain": "Steady positive linear resistances; downstream outlet0kPa, inlet10kPa. Divide total drop by sum then multiply downstreamR.",
+      "pedagogicalReview": "Node pressure is measured relative to downstream0; upstream drop uses other resistor. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

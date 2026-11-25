@@ -1,0 +1,186 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "defaultMaterialDepthTest": true,
+  "dependencies": {
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/voci/apparati/termica.js": "d4fc6087783e0888f1680df6b940ed551582eeea8314d83c56deed36560d310d",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/vendor/three-r180/three.module.min.js": "e2b5ee6bccd38fd6d8a2428546b83c5f2426d84b152ef82be8055556e3b40eb6"
+  },
+  "fallbackRaster": "NOT_RUN",
+  "fridgeTips": [
+    {
+      "axisMargins": [
+        -0.020999999999999908,
+        0.6749999999999999,
+        0.46
+      ],
+      "input": 70,
+      "max": [
+        -1.66,
+        1.775,
+        0.46
+      ],
+      "min": [
+        -2.34,
+        0.32500000000000007,
+        -0.46
+      ],
+      "tip": [
+        -1.639,
+        1,
+        0
+      ],
+      "tipStrictlyInside": false,
+      "wholeConeClaim": false
+    },
+    {
+      "axisMargins": [
+        0.022500000000000187,
+        0.6749999999999999,
+        0.46
+      ],
+      "input": 75,
+      "max": [
+        -1.66,
+        1.775,
+        0.46
+      ],
+      "min": [
+        -2.34,
+        0.32500000000000007,
+        -0.46
+      ],
+      "tip": [
+        -1.6825,
+        1,
+        0
+      ],
+      "tipStrictlyInside": true,
+      "wholeConeClaim": false
+    },
+    {
+      "axisMargins": [
+        0.06600000000000006,
+        0.6749999999999999,
+        0.46
+      ],
+      "input": 80,
+      "max": [
+        -1.66,
+        1.775,
+        0.46
+      ],
+      "min": [
+        -2.34,
+        0.32500000000000007,
+        -0.46
+      ],
+      "tip": [
+        -1.726,
+        1,
+        0
+      ],
+      "tipStrictlyInside": true,
+      "wholeConeClaim": false
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "materialSourceContract": "scena.js source read: opacity1 transparentfalse depthWritetrue DoubleSide; defaultdepthTest verified below. These are not a browser material inspection.",
+  "nativeRaster": "NOT_RUN",
+  "phase": "LOCAL_MESH_HALFSPACE_CODE_PROOF_NOT_UI",
+  "protocolSha256": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+  "publicationAction": "NONE",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "thermometerCaps": [
+    {
+      "bulbCenter": [
+        0,
+        0.39,
+        0
+      ],
+      "bulbRadius": 0.27,
+      "center": [
+        0,
+        0.55,
+        0
+      ],
+      "input": -50,
+      "margins": [
+        {
+          "entireCapInside": true,
+          "faces": 720,
+          "geometry": "static_radius",
+          "minimumPlaneMargin": 0.08701060127640564
+        },
+        {
+          "entireCapInside": true,
+          "faces": 720,
+          "geometry": "dynamic_unit_scaled",
+          "minimumPlaneMargin": 0.08701059331368682
+        }
+      ],
+      "radius": 0.085
+    },
+    {
+      "bulbCenter": [
+        0,
+        0.39,
+        0
+      ],
+      "bulbRadius": 0.27,
+      "center": [
+        0,
+        0.6073333333333334,
+        0
+      ],
+      "input": -45,
+      "margins": [
+        {
+          "entireCapInside": true,
+          "faces": 720,
+          "geometry": "static_radius",
+          "minimumPlaneMargin": 0.035811594646792455
+        },
+        {
+          "entireCapInside": true,
+          "faces": 720,
+          "geometry": "dynamic_unit_scaled",
+          "minimumPlaneMargin": 0.03581158270554466
+        }
+      ],
+      "radius": 0.085
+    },
+    {
+      "bulbCenter": [
+        0,
+        0.39,
+        0
+      ],
+      "bulbRadius": 0.27,
+      "center": [
+        0,
+        0.6646666666666667,
+        0
+      ],
+      "input": -40,
+      "margins": [
+        {
+          "entireCapInside": false,
+          "faces": 720,
+          "geometry": "static_radius",
+          "minimumPlaneMargin": -0.019012965795772885
+        },
+        {
+          "entireCapInside": false,
+          "faces": 720,
+          "geometry": "dynamic_unit_scaled",
+          "minimumPlaneMargin": -0.019012974810438177
+        }
+      ],
+      "radius": 0.085
+    }
+  ]
+}

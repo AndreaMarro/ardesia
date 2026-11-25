@@ -1,0 +1,548 @@
+{
+  "phase": "SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proofSha256": "fdb28b39fa32e029e1df5a80be29bc933f258ec390eeb6ec5dff07d59642679f",
+  "exactCheckCount": 28,
+  "promptPrimaryPath": "editorial/reviews/experiments-C2-flow-capillarity-prompt-primary-20261125.json",
+  "promptPrimarySha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42",
+  "installedStates": 58,
+  "clockFrames": 0,
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "sourceVersion": 1,
+      "sourceSha256": "a8641f475c5461bd70081f0e1f75f7e6399ce44c1a4a1fa689c2c8f7e58445c3",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "16",
+          "expected": "16",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input3",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "139/8",
+          "expected": "139/8",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "horizontal Bernoulli physical units",
+          "independentExact": "139/8",
+          "expected": "139/8",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 13,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Velocità nella gola» su 3 m/s. Quale valore ottieni per «Pressione statica nella gola»?",
+            "input": 3,
+            "independentExact": "16",
+            "actualAnswer": 16,
+            "actualWorked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 3 × 3) = 16 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a 2,5 m/s, quale pressione statica vi leggi?",
+            "input": 2.5,
+            "independentExact": "139/8",
+            "actualAnswer": 17.375,
+            "actualWorked": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s. 20,5 − (0,5 × 2,5 × 2,5) ≈ 17,38 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Bernoulli: p2=p1+(rho/2)(v1²-v2²); with rho1000kg/m³ gives p2[kPa]=41/2-v2²/2. Steady incompressible inviscid same streamline, horizontal, no pump/loss; density1000kg/m³ must be assigned in full context. Square velocity, subtract1, halve and subtract from20.",
+      "physicalAssumptionsAndDomain": "Steady incompressible inviscid same streamline, horizontal, no pump/loss; density1000kg/m³ must be assigned in full context. Square velocity, subtract1, halve and subtract from20. Full-source audit adopts conventional model water density1000kg/m³ (explicit in00602); not a universally exact real-water density.",
+      "pedagogicalReview": "Conditional on assigned water density; kPa conversion is Pa/1000, not multiply1000. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "8",
+          "expected": "8",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "25/8",
+          "expected": "25/8",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "Pitot stagnation excess units",
+          "independentExact": "25/8",
+          "expected": "25/8",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": false,
+        "geometryErrors": [
+          "grid@9/2: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube",
+          "grid@19/4: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube",
+          "grid@5: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube"
+        ],
+        "caseCount": 21,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Velocità dell’acqua» su 4 m/s. Quale valore ottieni per «Pressione dinamica»?",
+            "input": 4,
+            "independentExact": "8",
+            "actualAnswer": 8,
+            "actualWorked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 4 × 4 = 8 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Su un tubo di Pitot in acqua che scorre a 2,5 m/s, di quanti kPa la pressione di ristagno supera quella statica?",
+            "input": 2.5,
+            "independentExact": "25/8",
+            "actualAnswer": 3.125,
+            "actualWorked": "q = ½ρv², con ρ = 1000 kg/m³. 0,5 × 2,5 × 2,5 = 3,125 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Pitot stagnation-minus-static pressure=rho*v²/2; with rho1000 gives q[kPa]=v²/2. Ideal stagnation along streamline, incompressible liquid, correct alignment and equal datum; rho needs full context. Square then divide2.",
+      "physicalAssumptionsAndDomain": "Ideal stagnation along streamline, incompressible liquid, correct alignment and equal datum; rho needs full context. Square then divide2.",
+      "pedagogicalReview": "Stagnation pressure exceeds static; this is not absolute static pressure. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "sourceVersion": 1,
+      "sourceSha256": "9c5c80d7f2f0d324fc23bcaab1e9c658a43e6b279b1e9c747811ef98233201cc",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "8/5",
+          "expected": "8/5",
+          "residual": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1.25",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "continuity at area5over4",
+          "independentExact": "8/5",
+          "expected": "8/5",
+          "residual": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 7,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Area locale rispetto a quella iniziale» su 2. Quale valore ottieni per «Velocità locale»?",
+            "input": 2,
+            "independentExact": "1",
+            "actualAnswer": 1,
+            "actualWorked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 2 = 1 m/s.",
+            "unit": "m/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa 1,25 volte quella iniziale, quale velocità trovi?",
+            "input": 1.25,
+            "independentExact": "8/5",
+            "actualAnswer": 1.6,
+            "actualWorked": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s. 2 / 1,25 = 1,6 m/s.",
+            "unit": "m/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Q=A0*2m/s=A_local*v => v=2/area_ratio. Steady incompressible flow and positive area ratio. Divide2 by dimensionless area ratio.",
+      "physicalAssumptionsAndDomain": "Steady incompressible flow and positive area ratio. Divide2 by dimensionless area ratio.",
+      "pedagogicalReview": "Area ratio is not radius ratio; mechanical physiology in real pulsatile/compliant vessels not implied. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b03e54d1553407d7135907a2bd3c436b01d0ebf4e4f805feab3ab6e7140bd437",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "15",
+          "expected": "15",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "9",
+          "expected": "9",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "11",
+          "expected": "11",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "dissipation pressure units",
+          "independentExact": "11",
+          "expected": "11",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 17,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Perdita di energia per volume» su 6 kPa. Quale valore ottieni per «Pressione statica in uscita»?",
+            "input": 6,
+            "independentExact": "9",
+            "actualAnswer": 9,
+            "actualWorked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 6 = 9 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde 4 kPa di energia per volume. Quale pressione statica rimane in uscita?",
+            "input": 4,
+            "independentExact": "11",
+            "actualAnswer": 11,
+            "actualWorked": "A e quota costanti: p₂ = p₁ − Δp perdita. 15 − 4 = 11 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "p_out=15kPa-loss_per_volume. Steady horizontal constant-area incompressible flow; no pump/turbine, identical velocity terms. Subtract loss in kPa.",
+      "physicalAssumptionsAndDomain": "Steady horizontal constant-area incompressible flow; no pump/turbine, identical velocity terms. Subtract loss in kPa.",
+      "pedagogicalReview": "Loss positive reduces pressure; J/m³=Pa. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

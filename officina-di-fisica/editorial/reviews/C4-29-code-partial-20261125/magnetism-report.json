@@ -1,0 +1,577 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "consumerCodeFailIds": [
+    "SIM-C4-L09-02"
+  ],
+  "disclosure": "PriorrelatedC4lessons,fieldsbenchesandsharedclocks/secondaryreading;notblind.29sourceonlyprimaryfrozenbeforeNEWC4model/solutionreading.",
+  "group": "magnetism",
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "ok": false,
+  "overallComplete": false,
+  "phase": "ORIGINAL_SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "primaryPath": "editorial/reviews/C4-29-source-only-primary-20261125.json",
+  "primarySha256": "bc79ade1d508af29ae85d2660eedef00826100270d1d8a86e6a1277226697740",
+  "proofPath": "editorial/reviews/C4-magnetism-installed-code-1a35-20261125.json",
+  "proofSha256": "73d300a7cf22d0821255d9bbfce2c86e85b0898abcba8619d1f0b2bc8805d76a",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 20,
+          "independentExact": "20",
+          "input": "5",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "20",
+          "ok": true,
+          "prompt": "Imposta «Corrente verticale nel filo» su 5 A. Quale valore ottieni per «Campo tangenziale con segno»?",
+          "unit": "µT"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale 0 A. Quale campo tangenziale con segno legge secondo il verso indicato?",
+          "unit": "µT"
+        }
+      ],
+      "assumptionsAndDomain": "Longstraightwire negligibleEarthfield, workingμ0approximate; right-handLorentzpositiveq, forceperpendicularv/B; transverseuniformB, vconstant, r=.12/B, elapsedclockq/m1C/kg andv.12m/s specified. Sourceversion2L09-03.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 25,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L09-01",
+      "manualProcedure": "Longwireμ0I/(2π*.05m)≈4IµT,workingμ0≈4π1e−7:20;0.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "34fb98439cc9a68270e42205bb0ec14aeb3363dd36cbe016a760304f6856e351",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE"
+      ],
+      "ManualityFailure": true,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 6,
+          "independentExact": "6",
+          "input": "90",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "6",
+          "ok": true,
+          "prompt": "Imposta «Angolo tra velocità e campo» su 90 °. Quale valore ottieni per «Forza sulla carica»?",
+          "unit": "µN"
+        },
+        {
+          "actualValue": 5.977168188550474,
+          "independentExact": "6*sin(17*pi/36)",
+          "input": "95",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "6",
+          "ok": true,
+          "prompt": "Una carica da 2 µC procede a 3 m/s in un campo da 1 T, con angolo 95 ° fra velocità e campo. Quanto vale il modulo della forza magnetica in µN?",
+          "unit": "µN"
+        }
+      ],
+      "assumptionsAndDomain": "Longstraightwire negligibleEarthfield, workingμ0approximate; right-handLorentzpositiveq, forceperpendicularv/B; transverseuniformB, vconstant, r=.12/B, elapsedclockq/m1C/kg andv.12m/s specified. Sourceversion2L09-03.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": false,
+      "consumerJudgment": "FAIL_CODE_GEOMETRY",
+      "errors": [],
+      "geometryObservations": [
+        {
+          "a": [
+            0,
+            1.33,
+            0
+          ],
+          "center": [
+            0,
+            1.33,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.15,
+          "tip": [
+            0,
+            1.2472020443897247,
+            0
+          ],
+          "tipDistance": 0.08279795561027536
+        },
+        {
+          "a": [
+            0,
+            1.33,
+            0
+          ],
+          "center": [
+            0,
+            1.33,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 175.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.15,
+          "tip": [
+            0,
+            1.2472020443897245,
+            0
+          ],
+          "tipDistance": 0.08279795561027559
+        }
+      ],
+      "gridCount": 37,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L09-02",
+      "manualProcedure": "First6sin90=6µN. Actualtransfer95° gives6cos5°≈5.977168. Numberrejectssinexpression. Literal6 iswithin.5% but requiresjustifyingapproximation: θ=π/36<11/126,cosθ≥1−θ²/2>.99618; hence5.977<6cos5≤6. This reviewer-provided identity/bound isABSENTfromsource; originalmanualreadinessFAIL, notcuredbygraderacceptance.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [
+          {
+            "a": [
+              0,
+              1.33,
+              0
+            ],
+            "bodyCenter": [
+              0,
+              1.33,
+              0
+            ],
+            "bodyRadius": 0.15,
+            "id": "SIM-C4-L09-02",
+            "input": 5,
+            "minimumTipPlaneMargin": 0.06687287961987702,
+            "minimumWholeGlyphPlaneMargin": 0.04999142298264557,
+            "time": null,
+            "tip": [
+              0,
+              1.2472020443897247,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              0,
+              1.33,
+              0
+            ],
+            "bodyCenter": [
+              0,
+              1.33,
+              0
+            ],
+            "bodyRadius": 0.15,
+            "id": "SIM-C4-L09-02",
+            "input": 175,
+            "minimumTipPlaneMargin": 0.0668728796198768,
+            "minimumWholeGlyphPlaneMargin": 0.04999142298264543,
+            "time": null,
+            "tip": [
+              0,
+              1.2472020443897245,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          }
+        ],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "1a95c439565a3ee5f38e39fa62ecbc5a93cfc19c35e25e960c95b3aa02d3c394",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 4,
+          "independentExact": "4",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4",
+          "ok": true,
+          "prompt": "Imposta «Campo magnetico» su 3 T. Quale valore ottieni per «Raggio dell’orbita»?",
+          "unit": "cm"
+        },
+        {
+          "actualValue": 5.333333333333333,
+          "independentExact": "16/3",
+          "input": "9/4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "5.333",
+          "ok": true,
+          "prompt": "In un’orbita perpendicolare al campo, mv/|q| vale 0,12 T·m. Se il campo diventa 2,25 T, quale raggio misuri in centimetri?",
+          "unit": "cm"
+        }
+      ],
+      "assumptionsAndDomain": "Longstraightwire negligibleEarthfield, workingμ0approximate; right-handLorentzpositiveq, forceperpendicularv/B; transverseuniformB, vconstant, r=.12/B, elapsedclockq/m1C/kg andv.12m/s specified. Sourceversion2L09-03.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 75,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 15,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L09-03",
+      "manualProcedure": "r=.12/B m=12/Bcm:12/3=4;12/(9/4)=16/3, longdivision5.333...",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "da6b7bcb24bce5ec63f766d9cc21c5e90eebe367d41d69972b18e04b008e07f7",
+      "sourceVersion": 2,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": -2.9999999999999987,
+          "independentExact": "-3",
+          "input": "120",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-3",
+          "ok": true,
+          "prompt": "Imposta «Angolo tra campo e normale» su 120 °. Quale valore ottieni per «Flusso magnetico»?",
+          "unit": "mWb"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "90",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma 90 ° con il campo, quale flusso con segno ottieni in mWb?",
+          "unit": "mWb"
+        }
+      ],
+      "assumptionsAndDomain": "Orientednormalangle, ΦBAcosθ, Nturns/concatenatedfluxdistinguished, femsignedminusfluxderivative; loop2Ωselfinductionneglected. Timeclockfluxlinear, controlsnotreplaceinstanttime.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 37,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L10-01",
+      "manualProcedure": "BA=.006Wb=6mWb:cos120=−1/2 gives−3;cos90=0. Exactquadrature expected0, not floatingresidual.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "55a9bdba2a98084995ab1d3d9510ba9bb6d7908eaeec292101ed5ed282c99a74",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": -1.5,
+          "independentExact": "-3/2",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-1.5",
+          "ok": true,
+          "prompt": "Imposta «Velocità di variazione del campo» su 3 T/s. Quale valore ottieni per «Fem indotta»?",
+          "unit": "V"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Una bobina da 10 spire di 0,05 m² è perpendicolare al campo, che varia al ritmo con segno di 0 T/s. Quale fem compare secondo il verso orientato?",
+          "unit": "V"
+        }
+      ],
+      "assumptionsAndDomain": "Orientednormalangle, ΦBAcosθ, Nturns/concatenatedfluxdistinguished, femsignedminusfluxderivative; loop2Ωselfinductionneglected. Timeclockfluxlinear, controlsnotreplaceinstanttime.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L10-02",
+      "manualProcedure": "−10*.05*dB/dt=−.5rate:−1.5;0V; Nnotmultipliedtwice.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "d00c58ddac63630ef2fbb197cc9f37bc501cd34ae88d03f0793251d10774a95f",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": -1,
+          "independentExact": "-1",
+          "input": "2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-1",
+          "ok": true,
+          "prompt": "Imposta «Tempo per la stessa variazione di flusso» su 2 s. Quale valore ottieni per «Fem media»?",
+          "unit": "V"
+        },
+        {
+          "actualValue": -0.8,
+          "independentExact": "-4/5",
+          "input": "5/2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-.8",
+          "ok": true,
+          "prompt": "Il flusso concatenato aumenta di 2 Wb durante 2,5 s. Con l’orientazione della bobina fissata, quale fem media misura il voltmetro?",
+          "unit": "V"
+        }
+      ],
+      "assumptionsAndDomain": "Orientednormalangle, ΦBAcosθ, Nturns/concatenatedfluxdistinguished, femsignedminusfluxderivative; loop2Ωselfinductionneglected. Timeclockfluxlinear, controlsnotreplaceinstanttime.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 80,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 16,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L10-03",
+      "manualProcedure": "ConcatenatedΔflux2Wb includesN:−2/2=−1;−2/2.5=−.8V, meanorlinearinstantaneous.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "48177b6e17e3293b3dd1ef320536ee5f661fce2665aa862ccf288ea1446f6554",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": -3,
+          "independentExact": "-3",
+          "input": "6",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-3",
+          "ok": true,
+          "prompt": "Imposta «Variazione del flusso concatenato» su 6 Wb/s. Quale valore ottieni per «Corrente indotta con segno»?",
+          "unit": "A"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "In una spira da 2 Ω il flusso concatenato varia a 0 Wb/s. Quale corrente orientata prevede la legge di Lenz?",
+          "unit": "A"
+        }
+      ],
+      "assumptionsAndDomain": "Orientednormalangle, ΦBAcosθ, Nturns/concatenatedfluxdistinguished, femsignedminusfluxderivative; loop2Ωselfinductionneglected. Timeclockfluxlinear, controlsnotreplaceinstanttime.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 13,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L10-04",
+      "manualProcedure": "FaradayplusOhm I=−fluxrate/2:−6/2=−3;0A. Opposeschange notfielditself.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "90617804ffa1159bf4eb79b49d1c30a7fa997048772836ebba7e5530d70b13ff",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    }
+  ],
+  "remoteDispatch": false,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+  "sourceManualityFailureIds": [
+    "SIM-C4-L09-02"
+  ],
+  "sourceMathPassCount": 7,
+  "sourcePath": "officina-di-fisica/content/esperienze-C4.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+}

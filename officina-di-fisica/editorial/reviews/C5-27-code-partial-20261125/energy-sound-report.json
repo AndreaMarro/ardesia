@@ -1,0 +1,2479 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "consumerCodeFailIds": [
+    "SIM-C5-L05-03"
+  ],
+  "disclosure": "PriorrelatedC5wave/opticslessons/examples/benchesandsharedclocks/secondaryreading;notblind.27sourceonlyprimaryfrozenbeforeNEWC5model/solutionreading.",
+  "group": "energy-sound",
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "ok": false,
+  "overallComplete": false,
+  "phase": "ORIGINAL_SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "primaryPath": "editorial/reviews/C5-27-source-only-primary-20261125.json",
+  "primarySha256": "d6c1c7cc43c0fb06360f5ef6636352f4f09719c881e9f145d3a492ee1ce0b1bb",
+  "proofPath": "editorial/reviews/C5-energy-sound-installed-code-1a35-20261125.json",
+  "proofSha256": "84c801bd6f88cc6eb8c714e6afc450f48dde5b2693eb64a443c3e2b6e6fed1c9",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "CodeGeometryFailure": [],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 4,
+          "independentExact": "4",
+          "input": "2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4",
+          "ok": true,
+          "prompt": "Imposta «Ampiezza rispetto ad A₀» su 2. Quale valore ottieni per «Potenza media rispetto a P₀»?",
+          "unit": "1"
+        },
+        {
+          "actualValue": 2.25,
+          "independentExact": "9/4",
+          "input": "3/2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "2.25",
+          "ok": true,
+          "prompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a 1,5 volte quella iniziale. Per quale fattore cambia la potenza media?",
+          "unit": "1"
+        }
+      ],
+      "assumptionsAndDomain": "Progressivewavesamecord/μ/tension/frequency linearregime; detectornormaltoflux; isotropicsourceP4πW,noabsorption/reflection, r>0.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 13,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L04-01",
+      "manualProcedure": "(.5)^2 reference.25; comparison2²=4, transfer1.5²=2.25. Samecordfrequency/tension/μ.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": []
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "a652d6a67e2d02544859fc0aa12675cb518e61baa6bca1a68f78fa99bbe702f6",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 8,
+          "independentExact": "8",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "8",
+          "ok": true,
+          "prompt": "Imposta «Area del ricevitore» su 4 cm². Quale valore ottieni per «Energia raccolta in 2 s»?",
+          "unit": "mJ"
+        },
+        {
+          "actualValue": 6,
+          "independentExact": "6",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "6",
+          "ok": true,
+          "prompt": "Un ricevitore di area 3 cm² è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?",
+          "unit": "mJ"
+        }
+      ],
+      "assumptionsAndDomain": "Progressivewavesamecord/μ/tension/frequency linearregime; detectornormaltoflux; isotropicsourceP4πW,noabsorption/reflection, r>0.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 10,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L04-02",
+      "manualProcedure": "10W/m²*2s*Acm²*1e−4m²/cm²=2AmJ:8;6mJ.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": []
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "656ec6c416299b2698f8c789a5cdb84d4a4abcaed07ecf36dc913bfbfc0165ca",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 0.0625,
+          "independentExact": "1/16",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".0625",
+          "ok": true,
+          "prompt": "Imposta «Distanza dalla sorgente» su 4 m. Quale valore ottieni per «Intensità»?",
+          "unit": "W/m²"
+        },
+        {
+          "actualValue": 0.1111111111111111,
+          "independentExact": "1/9",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".1111",
+          "ok": true,
+          "prompt": "Una sorgente isotropa irradia 4π W. Alla distanza di 3 m, quale intensità attraversa una piccola superficie perpendicolare ai raggi?",
+          "unit": "W/m²"
+        }
+      ],
+      "assumptionsAndDomain": "Progressivewavesamecord/μ/tension/frequency linearregime; detectornormaltoflux; isotropicsourceP4πW,noabsorption/reflection, r>0.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L04-03",
+      "manualProcedure": "4π/(4πr²)=1/r²:1/16=.0625;1/9=.1111... literal.1111W/m².",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": []
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "e6a38b36f5ae9eddeeb016774a45e7c202b292ce1f6d8ca4ace2a9d17c95e289",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 30,
+          "independentExact": "30",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "30",
+          "ok": true,
+          "prompt": "Imposta «Mezzo di propagazione» su Acciaio. Quale valore ottieni per «Tempo su 150 m»?",
+          "unit": "ms"
+        },
+        {
+          "actualValue": 441.1764705882353,
+          "independentExact": "7500/17",
+          "input": "1",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "441.2",
+          "ok": true,
+          "prompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «Aria». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?",
+          "unit": "ms"
+        }
+      ],
+      "assumptionsAndDomain": "Assignedillustrativesoundspeeds340/1500/5000m/s;150mone-way, notecho. Decibelintensityratio10n, notamplituderatio20log. Dopplersubsonic±40,stationaryreceiver,mediumspeed300,sourcef300,steadytrainwithpreexistingfronts.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 15,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 3,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L05-01",
+      "manualProcedure": "Actualstudentformula explicitly assignsair340,water1500,steel5000m/s. Comparisonsteel150000/5000=30ms; transferair150000/340=7500/17, longdivide441.17647, enter441.2. Noecho doubling.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": []
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "53a90c553e07fc367d7917482c3ad12b88e9c40a456b004be2f8a4ecdbcf239d",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 60,
+          "independentExact": "60",
+          "input": "6",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "60",
+          "ok": true,
+          "prompt": "Imposta «Esponente in I/I₀ = 10ⁿ» su 6. Quale valore ottieni per «Livello di intensità»?",
+          "unit": "dB"
+        },
+        {
+          "actualValue": 40,
+          "independentExact": "40",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "40",
+          "ok": true,
+          "prompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = 4. Quale livello leggeresti sul fonometro in decibel?",
+          "unit": "dB"
+        }
+      ],
+      "assumptionsAndDomain": "Assignedillustrativesoundspeeds340/1500/5000m/s;150mone-way, notecho. Decibelintensityratio10n, notamplituderatio20log. Dopplersubsonic±40,stationaryreceiver,mediumspeed300,sourcef300,steadytrainwithpreexistingfronts.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 9,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L05-02",
+      "manualProcedure": "10log10(10^6)=60;10log10(10^4)=40dB, exactlogpowercancellation.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": []
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "dbcdc03d1c2daf7a64ed725b04b5cbf007cd5283d30b83f2e6a14e7fbfd8d028",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE"
+      ],
+      "ManualSupportGap": false,
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 333.3333333333333,
+          "independentExact": "1000/3",
+          "input": "30",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "333.3",
+          "ok": true,
+          "prompt": "Imposta «Velocità della sorgente verso il ricevitore» su 30 m/s. Quale valore ottieni per «Frequenza ricevuta»?",
+          "unit": "Hz"
+        },
+        {
+          "actualValue": 295.08196721311475,
+          "independentExact": "18000/61",
+          "input": "-5",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "295.1",
+          "ok": true,
+          "prompt": "La sorgente emette 300 Hz e ha velocità con segno -5 m/s verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?",
+          "unit": "Hz"
+        }
+      ],
+      "assumptionsAndDomain": "Assignedillustrativesoundspeeds340/1500/5000m/s;150mone-way, notecho. Decibelintensityratio10n, notamplituderatio20log. Dopplersubsonic±40,stationaryreceiver,mediumspeed300,sourcef300,steadytrainwithpreexistingfronts.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods plusglobalopaquebase/raysegmentintersections; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 85,
+      "consumerCodeGeometryOk": false,
+      "consumerJudgment": "FAIL_CODE_GEOMETRY",
+      "errors": [],
+      "geometryObservations": [
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -20.0,
+          "instantPhysicalInput": -20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8889856356941092,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -20.0,
+          "instantPhysicalInput": -20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8889856356941092,
+            0
+          ],
+          "tipDistance": 0.10898563569410913
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -20.0,
+          "instantPhysicalInput": -20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8889856356941092,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -20.0,
+          "instantPhysicalInput": -20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8889856356941092,
+            0
+          ],
+          "tipDistance": 0.10898563569410913
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -15.0,
+          "instantPhysicalInput": -15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8646608962341533,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -15.0,
+          "instantPhysicalInput": -15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8646608962341533,
+            0
+          ],
+          "tipDistance": 0.0846608962341533
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -15.0,
+          "instantPhysicalInput": -15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8646608962341533,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -15.0,
+          "instantPhysicalInput": -15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8646608962341533,
+            0
+          ],
+          "tipDistance": 0.0846608962341533
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -10.0,
+          "instantPhysicalInput": -10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.846051260259983,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -10.0,
+          "instantPhysicalInput": -10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.846051260259983,
+            0
+          ],
+          "tipDistance": 0.06605126025998298
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -10.0,
+          "instantPhysicalInput": -10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.846051260259983,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -10.0,
+          "instantPhysicalInput": -10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.846051260259983,
+            0
+          ],
+          "tipDistance": 0.06605126025998298
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -5.0,
+          "instantPhysicalInput": -5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.834169236368123,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -5.0,
+          "instantPhysicalInput": -5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.834169236368123,
+            0
+          ],
+          "tipDistance": 0.054169236368122986
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": -5.0,
+          "instantPhysicalInput": -5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.834169236368123,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": -5.0,
+          "instantPhysicalInput": -5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.834169236368123,
+            0
+          ],
+          "tipDistance": 0.054169236368122986
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 0.0,
+          "instantPhysicalInput": 0.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.83,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 0.0,
+          "instantPhysicalInput": 0.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.83,
+            0
+          ],
+          "tipDistance": 0.04999999999999993
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 0.0,
+          "instantPhysicalInput": 0.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.83,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 0.0,
+          "instantPhysicalInput": 0.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.83,
+            0
+          ],
+          "tipDistance": 0.04999999999999993
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 5.0,
+          "instantPhysicalInput": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8344560758475295,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 5.0,
+          "instantPhysicalInput": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8344560758475295,
+            0
+          ],
+          "tipDistance": 0.05445607584752943
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 5.0,
+          "instantPhysicalInput": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8344560758475295,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 5.0,
+          "instantPhysicalInput": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8344560758475295,
+            0
+          ],
+          "tipDistance": 0.05445607584752943
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 10.0,
+          "instantPhysicalInput": 10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.848321390086019,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 10.0,
+          "instantPhysicalInput": 10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.848321390086019,
+            0
+          ],
+          "tipDistance": 0.06832139008601901
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 10.0,
+          "instantPhysicalInput": 10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.848321390086019,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 10.0,
+          "instantPhysicalInput": 10.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.848321390086019,
+            0
+          ],
+          "tipDistance": 0.06832139008601901
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 15.0,
+          "instantPhysicalInput": 15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8721841870777289,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 15.0,
+          "instantPhysicalInput": 15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8721841870777289,
+            0
+          ],
+          "tipDistance": 0.09218418707772891
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 15.0,
+          "instantPhysicalInput": 15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 0.0,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8721841870777289,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 15.0,
+          "instantPhysicalInput": 15.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8721841870777289,
+            0
+          ],
+          "tipDistance": 0.09218418707772891
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 5.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 20.0,
+          "instantPhysicalInput": 20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.9063589811361898,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 15.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 20.0,
+          "instantPhysicalInput": 20.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.9063589811361898,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 0.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 35.0,
+          "instantPhysicalInput": 35.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.9018009455053266,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 20.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 35.0,
+          "instantPhysicalInput": 35.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.9018009455053266,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 0.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 40.0,
+          "instantPhysicalInput": 40.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8401703639008817,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 0.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 40.0,
+          "instantPhysicalInput": 40.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8401703639008817,
+            0
+          ],
+          "tipDistance": 0.06017036390088171
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "bodyA": [
+            0.8400000000000001,
+            0.1,
+            0
+          ],
+          "bodyB": [
+            0.8400000000000001,
+            0.91,
+            0
+          ],
+          "clockTime": 20.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_CAPPED_ROD",
+          "input": 40.0,
+          "instantPhysicalInput": 40.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radialDistance": 1.1102230246251565e-16,
+          "radiusAtTip": 0.085,
+          "tip": [
+            0.8400000000000001,
+            0.8401703639008817,
+            0
+          ]
+        },
+        {
+          "a": [
+            0.8400000000000001,
+            1.18,
+            0
+          ],
+          "center": [
+            0.8400000000000001,
+            0.78,
+            0
+          ],
+          "clockTime": 20.0,
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 40.0,
+          "instantPhysicalInput": 40.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.11,
+          "tip": [
+            0.8400000000000001,
+            0.8401703639008817,
+            0
+          ],
+          "tipDistance": 0.06017036390088171
+        }
+      ],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C5-L05-03",
+      "manualProcedure": "300*300/(300−30)=1000/3, enter333.3Hz; u−5 gives90000/305=18000/61, longdivide295.081967, enter295.1Hz.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "baseIntersections": [],
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "path": "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json",
+        "rodInteriors": [
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -20,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8889856356941092,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -20,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8889856356941092,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -15,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8646608962341533,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -15,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8646608962341533,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -10,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.846051260259983,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -10,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.846051260259983,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -5,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.834169236368123,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": -5,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.834169236368123,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 0,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.83,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 0,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.83,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 5,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8344560758475295,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 5,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8344560758475295,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 10,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.848321390086019,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 10,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.848321390086019,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 15,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8721841870777289,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 15,
+            "radialDistance": 0,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8721841870777289,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 20,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.9063589811361898,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 20,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.9063589811361898,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 35,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 0,
+            "tip": [
+              0.8400000000000001,
+              0.9018009455053266,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 35,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 20,
+            "tip": [
+              0.8400000000000001,
+              0.9018009455053266,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 40,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 0,
+            "tip": [
+              0.8400000000000001,
+              0.8401703639008817,
+              0
+            ]
+          },
+          {
+            "id": "SIM-C5-L05-03",
+            "input": 40,
+            "radialDistance": 1.1102230246251565e-16,
+            "radiusAtTip": 0.085,
+            "rodA": [
+              0.8400000000000001,
+              0.1,
+              0
+            ],
+            "rodB": [
+              0.8400000000000001,
+              0.91,
+              0
+            ],
+            "time": 20,
+            "tip": [
+              0.8400000000000001,
+              0.8401703639008817,
+              0
+            ]
+          }
+        ],
+        "sha256": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "sphereObservations": [
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -20,
+            "minimumTipPlaneMargin": 0.0010093958113112506,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8889856356941092,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -20,
+            "minimumTipPlaneMargin": 0.0010093958113112506,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8889856356941092,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -15,
+            "minimumTipPlaneMargin": 0.02521498938309283,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8646608962341533,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -15,
+            "minimumTipPlaneMargin": 0.02521498938309283,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8646608962341533,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -10,
+            "minimumTipPlaneMargin": 0.043733472824657726,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.846051260259983,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -10,
+            "minimumTipPlaneMargin": 0.043733472824657726,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.846051260259983,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -5,
+            "minimumTipPlaneMargin": 0.05555729694454343,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.834169236368123,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": -5,
+            "minimumTipPlaneMargin": 0.05555729694454343,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.834169236368123,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 0,
+            "minimumTipPlaneMargin": 0.05970611182486777,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.83,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 0,
+            "minimumTipPlaneMargin": 0.05970611182486777,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.83,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 5,
+            "minimumTipPlaneMargin": 0.055271862443989635,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8344560758475295,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 5,
+            "minimumTipPlaneMargin": 0.055271862443989635,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8344560758475295,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 10,
+            "minimumTipPlaneMargin": 0.041474462403819815,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.848321390086019,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 10,
+            "minimumTipPlaneMargin": 0.041474462403819815,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.848321390086019,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 15,
+            "minimumTipPlaneMargin": 0.017728548643134015,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 5,
+            "tip": [
+              0.8400000000000001,
+              0.8721841870777289,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 15,
+            "minimumTipPlaneMargin": 0.017728548643134015,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 15,
+            "tip": [
+              0.8400000000000001,
+              0.8721841870777289,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 40,
+            "minimumTipPlaneMargin": 0.04958556375210702,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 0,
+            "tip": [
+              0.8400000000000001,
+              0.8401703639008817,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.8400000000000001,
+              1.18,
+              0
+            ],
+            "bodyCenter": [
+              0.8400000000000001,
+              0.78,
+              0
+            ],
+            "bodyRadius": 0.11,
+            "id": "SIM-C5-L05-03",
+            "input": 40,
+            "minimumTipPlaneMargin": 0.04958556375210702,
+            "minimumWholeGlyphPlaneMargin": -0.2913474762022437,
+            "time": 20,
+            "tip": [
+              0.8400000000000001,
+              0.8401703639008817,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          }
+        ]
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C5-27-code-partial-20261125/mesh-halfspace-negatives.json": "db9b1524a2c3c091adea62be1e7d706131e234f7f0ea210be2dd33d3e9bce359",
+        "tests/corpus/check-C5-contained-geometry.mjs": "379004de7e6f40434a3076a40de4a9edb4f66949054ca222deb013716f3943ab",
+        "tests/corpus/collect-C5-bounded-code-only.mjs": "8a3d8e78dfb85067c3c40f86511f168a25992a269b209214e3f6b44b173d1023",
+        "tools/corpus_engineering/collect_C5_code_partial.py": "31ddc56d5a9d80206138de014b143b8f5306599ccbf760b6fbd2e82ccd1ac474",
+        "tools/corpus_engineering/experiments_C5_code_partial_verifier.py": "88d1d3e15656fb6e6ba44f18cb0cf09251ccb5fca01451ade2a7fe8bc388f142"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "9807a57580d4e19f071ff6ebd83f4ae03cbe443f205b206a6a34f3b54e81adbb",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    }
+  ],
+  "remoteDispatch": false,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+  "sourceManualSupportGapIds": [],
+  "sourceManualityFailureIds": [],
+  "sourceMathPassCount": 6,
+  "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+}

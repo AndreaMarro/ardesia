@@ -1,0 +1,1122 @@
+{
+  "phase": "LOCAL_FUTURE_UI_INPUT_PLAN_NOT_EXECUTED",
+  "remoteDispatchAuthorized": false,
+  "privacyStatus": "PENDING_USER_SCOPE_FOR_PUBLIC_REPOSITORY",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "currentCodeEpoch": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "profiles": [
+    {
+      "width": 320,
+      "fallback": false
+    },
+    {
+      "width": 320,
+      "fallback": true
+    },
+    {
+      "width": 1280,
+      "fallback": false
+    },
+    {
+      "width": 1280,
+      "fallback": true
+    }
+  ],
+  "baselineActivityProfiles": 104,
+  "records": [
+    {
+      "id": "SIM-C2-L005-01",
+      "sourceVersion": 1,
+      "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Velocità media» su 6 cm/s. Quale valore ottieni per «Portata volumetrica»?",
+          "input": 6,
+          "independentExact": "24",
+          "manualCorrectNumericSubmission": "24",
+          "deliberatelyWrongSignProbe": "-24",
+          "unit": "mL/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Un tubo di area 4 cm² porta un liquido a velocità media 7 cm/s. Quanti millilitri entrano nel recipiente ogni secondo?",
+          "input": 7,
+          "independentExact": "28",
+          "manualCorrectNumericSubmission": "28",
+          "deliberatelyWrongSignProbe": "-28",
+          "unit": "mL/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Velocità media",
+          "max": 12,
+          "min": 0,
+          "step": 1,
+          "unit": "cm/s",
+          "value": 2
+        }
+      ],
+      "clock": {
+        "clockUnit": "s",
+        "label": "Distanza alla velocità media",
+        "pace": 1,
+        "setup": "Il tratto rappresenta 12 cm. I marcatori avanzano alla velocità media di sezione.",
+        "unit": "cm"
+      },
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "sourceVersion": 1,
+      "sourceSha256": "c5e314679d7b705bb65c6dea69abfbcdb56e0588b2723328890314dd91e806de",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Portata in ingresso» su 3 L/s. Quale valore ottieni per «Portata massica in uscita»?",
+          "input": 3,
+          "independentExact": "12/5",
+          "manualCorrectNumericSubmission": "2.4",
+          "deliberatelyWrongSignProbe": "-2.4",
+          "unit": "kg/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "All’ingresso di un tubo arrivano 2,5 L/s di un liquido da 0,8 kg/L. In regime stazionario, quanti chilogrammi al secondo escono?",
+          "input": 2.5,
+          "independentExact": "2",
+          "manualCorrectNumericSubmission": "2",
+          "deliberatelyWrongSignProbe": "-2",
+          "unit": "kg/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Portata in ingresso",
+          "max": 5,
+          "min": 0,
+          "step": 0.25,
+          "unit": "L/s",
+          "value": 1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "sourceVersion": 1,
+      "sourceSha256": "fd13a8fe629571a0f27076fd812c706b5339129227ae2468e7cf4ea09f68680f",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Area della seconda sezione» su 6 cm². Quale valore ottieni per «Velocità nella seconda sezione»?",
+          "input": 6,
+          "independentExact": "4",
+          "manualCorrectNumericSubmission": "4",
+          "deliberatelyWrongSignProbe": "-4",
+          "unit": "cm/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Passano 24 cm³ d’acqua al secondo. In un punto di area 5 cm², quale velocità media serve perché non si accumuli acqua?",
+          "input": 5,
+          "independentExact": "24/5",
+          "manualCorrectNumericSubmission": "4.8",
+          "deliberatelyWrongSignProbe": "-4.8",
+          "unit": "cm/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Area della seconda sezione",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "cm²",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "sourceVersion": 1,
+      "sourceSha256": "7088898e6f138971991dfde43178ea1ed50ffa1b7dd7e91a1c01a1a40d1fe10e",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Velocità sull’asse» su 10 cm/s. Quale valore ottieni per «Velocità media»?",
+          "input": 10,
+          "independentExact": "5",
+          "manualCorrectNumericSubmission": "5",
+          "deliberatelyWrongSignProbe": "-5",
+          "unit": "cm/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Nel centro di un capillare a flusso laminare la sonda misura 6 cm/s. Quale velocità media devi usare per calcolare la portata?",
+          "input": 6,
+          "independentExact": "3",
+          "manualCorrectNumericSubmission": "3",
+          "deliberatelyWrongSignProbe": "-3",
+          "unit": "cm/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Velocità sull’asse",
+          "max": 12,
+          "min": 0,
+          "step": 1,
+          "unit": "cm/s",
+          "value": 4
+        }
+      ],
+      "clock": {
+        "clockUnit": "s",
+        "label": "Cammino a metà raggio",
+        "pace": 1,
+        "setup": "Il tratto osservato è lungo 20 cm. La sonda è a metà raggio.",
+        "unit": "cm"
+      },
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "sourceVersion": 1,
+      "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Portata nel ramo superiore» su 8 mL/s. Quale valore ottieni per «Portata nel ramo inferiore»?",
+          "input": 8,
+          "independentExact": "4",
+          "manualCorrectNumericSubmission": "4",
+          "deliberatelyWrongSignProbe": "-4",
+          "unit": "mL/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Un raccordo riceve 12 mL/s e manda 6 mL/s nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?",
+          "input": 6,
+          "independentExact": "6",
+          "manualCorrectNumericSubmission": "6",
+          "deliberatelyWrongSignProbe": "-6",
+          "unit": "mL/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Portata nel ramo superiore",
+          "max": 12,
+          "min": 0,
+          "step": 1,
+          "unit": "mL/s",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": true,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L006-01",
+      "sourceVersion": 1,
+      "sourceSha256": "a8641f475c5461bd70081f0e1f75f7e6399ce44c1a4a1fa689c2c8f7e58445c3",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Velocità nella gola» su 3 m/s. Quale valore ottieni per «Pressione statica nella gola»?",
+          "input": 3,
+          "independentExact": "16",
+          "manualCorrectNumericSubmission": "16",
+          "deliberatelyWrongSignProbe": "-16",
+          "unit": "kPa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a 2,5 m/s, quale pressione statica vi leggi?",
+          "input": 2.5,
+          "independentExact": "139/8",
+          "manualCorrectNumericSubmission": "17.375",
+          "deliberatelyWrongSignProbe": "-17.375",
+          "unit": "kPa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Velocità nella gola",
+          "max": 4,
+          "min": 1,
+          "step": 0.25,
+          "unit": "m/s",
+          "value": 1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Velocità dell’acqua» su 4 m/s. Quale valore ottieni per «Pressione dinamica»?",
+          "input": 4,
+          "independentExact": "8",
+          "manualCorrectNumericSubmission": "8",
+          "deliberatelyWrongSignProbe": "-8",
+          "unit": "kPa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Su un tubo di Pitot in acqua che scorre a 2,5 m/s, di quanti kPa la pressione di ristagno supera quella statica?",
+          "input": 2.5,
+          "independentExact": "25/8",
+          "manualCorrectNumericSubmission": "3.125",
+          "deliberatelyWrongSignProbe": "-3.125",
+          "unit": "kPa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Velocità dell’acqua",
+          "max": 5,
+          "min": 0,
+          "step": 0.25,
+          "unit": "m/s",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": true,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "sourceVersion": 1,
+      "sourceSha256": "9c5c80d7f2f0d324fc23bcaab1e9c658a43e6b279b1e9c747811ef98233201cc",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Area locale rispetto a quella iniziale» su 2. Quale valore ottieni per «Velocità locale»?",
+          "input": 2,
+          "independentExact": "1",
+          "manualCorrectNumericSubmission": "1",
+          "deliberatelyWrongSignProbe": "-1",
+          "unit": "m/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa 1,25 volte quella iniziale, quale velocità trovi?",
+          "input": 1.25,
+          "independentExact": "8/5",
+          "manualCorrectNumericSubmission": "1.6",
+          "deliberatelyWrongSignProbe": "-1.6",
+          "unit": "m/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Area locale rispetto a quella iniziale",
+          "max": 2,
+          "min": 0.5,
+          "step": 0.25,
+          "unit": "",
+          "value": 0.5
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b03e54d1553407d7135907a2bd3c436b01d0ebf4e4f805feab3ab6e7140bd437",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Perdita di energia per volume» su 6 kPa. Quale valore ottieni per «Pressione statica in uscita»?",
+          "input": 6,
+          "independentExact": "9",
+          "manualCorrectNumericSubmission": "9",
+          "deliberatelyWrongSignProbe": "-9",
+          "unit": "kPa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde 4 kPa di energia per volume. Quale pressione statica rimane in uscita?",
+          "input": 4,
+          "independentExact": "11",
+          "manualCorrectNumericSubmission": "11",
+          "deliberatelyWrongSignProbe": "-11",
+          "unit": "kPa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Perdita di energia per volume",
+          "max": 8,
+          "min": 0,
+          "step": 0.5,
+          "unit": "kPa",
+          "value": 0
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L007-01",
+      "sourceVersion": 1,
+      "sourceSha256": "43d8002c952171c642ddc397022fbffcaab52eff5561847636c907afd88c1c54",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Velocità media» su 0,4 m/s. Quale valore ottieni per «Numero di Reynolds»?",
+          "input": 0.4,
+          "independentExact": "4000",
+          "manualCorrectNumericSubmission": "4000",
+          "deliberatelyWrongSignProbe": "-4000",
+          "unit": "1",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a 0,3 m/s. Quale numero di Reynolds useresti per valutare il regime?",
+          "input": 0.3,
+          "independentExact": "3000",
+          "manualCorrectNumericSubmission": "3000",
+          "deliberatelyWrongSignProbe": "-3000",
+          "unit": "1",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Velocità media",
+          "max": 0.6,
+          "min": 0,
+          "step": 0.05,
+          "unit": "m/s",
+          "value": 0.1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "sourceVersion": 1,
+      "sourceSha256": "8048f775f330690d327f059138ae21efcebca800a42e31dbc4e448dfe4f4c638",
+      "independentPredictionIndex": 1,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Istante di osservazione» su 3 s. Quale valore ottieni per «Velocità a metà raggio»?",
+          "input": 3,
+          "independentExact": "6",
+          "manualCorrectNumericSubmission": "6",
+          "deliberatelyWrongSignProbe": "-6",
+          "unit": "cm/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo 2 s, quale velocità locale dovrebbe ancora segnalare?",
+          "input": 2,
+          "independentExact": "6",
+          "manualCorrectNumericSubmission": "6",
+          "deliberatelyWrongSignProbe": "-6",
+          "unit": "cm/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Istante di osservazione",
+          "max": 4,
+          "min": 0,
+          "step": 0.25,
+          "unit": "s",
+          "value": 1
+        }
+      ],
+      "clock": {
+        "clockUnit": "s",
+        "input": true,
+        "pace": 1
+      },
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "sourceVersion": 1,
+      "sourceSha256": "da3e9f332d1ea839522145e74419e3c8fb77073f950bb8c698915556357797de",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Viscosità dinamica» su 1,5 Pa·s. Quale valore ottieni per «Sforzo di taglio»?",
+          "input": 1.5,
+          "independentExact": "6",
+          "manualCorrectNumericSubmission": "6",
+          "deliberatelyWrongSignProbe": "-6",
+          "unit": "Pa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità 1,1 Pa·s. Quale sforzo tangenziale si esercita?",
+          "input": 1.1,
+          "independentExact": "22/5",
+          "manualCorrectNumericSubmission": "4.4",
+          "deliberatelyWrongSignProbe": "-4.4",
+          "unit": "Pa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Viscosità dinamica",
+          "max": 2,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa·s",
+          "value": 0.5
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": true,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "sourceVersion": 1,
+      "sourceSha256": "f2a470e8114936cd1d6938f01d0b0b187c4da9d70d4f1aee1ec57ec667b8d9ea",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Distanza fra le lastre» su 4 mm. Quale valore ottieni per «Gradiente di velocità»?",
+          "input": 4,
+          "independentExact": "10",
+          "manualCorrectNumericSubmission": "10",
+          "deliberatelyWrongSignProbe": "-10",
+          "unit": "s⁻¹",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Due piastre distano 6 mm e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?",
+          "input": 6,
+          "independentExact": "20/3",
+          "manualCorrectNumericSubmission": "6.67",
+          "deliberatelyWrongSignProbe": "-6.67",
+          "unit": "s⁻¹",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Distanza fra le lastre",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "mm",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": true,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "sourceVersion": 1,
+      "sourceSha256": "220dca3fc2752aaa2f1bd57b5d3fd72847ef153406794cb44e8190f2d7b179ac",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Raggio della sonda diviso R» su 0,5. Quale valore ottieni per «Velocità locale»?",
+          "input": 0.5,
+          "independentExact": "9",
+          "manualCorrectNumericSubmission": "9",
+          "deliberatelyWrongSignProbe": "-9",
+          "unit": "cm/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale 0,55, quale velocità locale ti aspetti?",
+          "input": 0.55,
+          "independentExact": "837/100",
+          "manualCorrectNumericSubmission": "8.37",
+          "deliberatelyWrongSignProbe": "-8.37",
+          "unit": "cm/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Raggio della sonda diviso R",
+          "max": 1,
+          "min": 0,
+          "step": 0.05,
+          "unit": "",
+          "value": 0
+        }
+      ],
+      "clock": {
+        "clockUnit": "s",
+        "label": "Cammino alla sonda",
+        "pace": 1,
+        "setup": "Il tratto osservato è lungo 20 cm. Segui il tracciante della sonda.",
+        "unit": "cm"
+      },
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "sourceVersion": 1,
+      "sourceSha256": "06d3d66e54a7105e373de949a4826416dd6dd7d4516c61be6dec6ffd2f45ed3f",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Raggio rispetto a r₀» su 2. Quale valore ottieni per «Portata relativa a Q₀»?",
+          "input": 2,
+          "independentExact": "16",
+          "manualCorrectNumericSubmission": "16",
+          "deliberatelyWrongSignProbe": "-16",
+          "unit": "1",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Nel medesimo capillare porti il raggio a 1,25 volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?",
+          "input": 1.25,
+          "independentExact": "625/256",
+          "manualCorrectNumericSubmission": "2.44",
+          "deliberatelyWrongSignProbe": "-2.44",
+          "unit": "1",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Raggio rispetto a r₀",
+          "max": 2,
+          "min": 0.5,
+          "step": 0.25,
+          "unit": "",
+          "value": 1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "sourceVersion": 1,
+      "sourceSha256": "632f7aaa84c87be8af43ed32d77600d597e36c259853fab0b168526098754273",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Modifica rispetto al riferimento» su Pressione doppia. Quale valore ottieni per «Portata rispetto a Q₀»?",
+          "input": 4,
+          "independentExact": "2",
+          "manualCorrectNumericSubmission": "2",
+          "deliberatelyWrongSignProbe": "-2",
+          "unit": "1",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Il tecnico sceglie la modifica «Viscosità doppia» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?",
+          "input": 3,
+          "independentExact": "1/2",
+          "manualCorrectNumericSubmission": "0.5",
+          "deliberatelyWrongSignProbe": "-0.5",
+          "unit": "1",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Modifica rispetto al riferimento",
+          "options": [
+            [
+              "1",
+              "Raggio doppio"
+            ],
+            [
+              "2",
+              "Lunghezza doppia"
+            ],
+            [
+              "3",
+              "Viscosità doppia"
+            ],
+            [
+              "4",
+              "Pressione doppia"
+            ]
+          ],
+          "value": "1"
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": true,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "sourceVersion": 1,
+      "sourceSha256": "01d6c2b8a9c87b8133e7054c2f88ba5928fb947ed2403e0f570c85d1dd861c09",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Portata richiesta» su 5 mL/s. Quale valore ottieni per «Differenza di pressione»?",
+          "input": 5,
+          "independentExact": "15",
+          "manualCorrectNumericSubmission": "15",
+          "deliberatelyWrongSignProbe": "-15",
+          "unit": "kPa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Per ottenere una portata di 4 mL/s in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?",
+          "input": 4,
+          "independentExact": "12",
+          "manualCorrectNumericSubmission": "12",
+          "deliberatelyWrongSignProbe": "-12",
+          "unit": "kPa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Portata richiesta",
+          "max": 8,
+          "min": 0,
+          "step": 0.5,
+          "unit": "mL/s",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b4535a6be84e66bf373dbd1830d121f97a971ac21152e96839401fd447809842",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Variazione del raggio rispetto al riferimento» su 20 %. Quale valore ottieni per «Portata del modello rigido rispetto a Q₀»?",
+          "input": 20,
+          "independentExact": "1296/625",
+          "manualCorrectNumericSubmission": "2.0736",
+          "deliberatelyWrongSignProbe": "-2.0736",
+          "unit": "1",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Il modello rigido prevede una variazione del raggio del 0 %. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+          "input": 0,
+          "independentExact": "1",
+          "manualCorrectNumericSubmission": "1",
+          "deliberatelyWrongSignProbe": "-1",
+          "unit": "1",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Variazione del raggio rispetto al riferimento",
+          "max": 20,
+          "min": -20,
+          "step": 5,
+          "unit": "%",
+          "value": -20
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L009-01",
+      "sourceVersion": 1,
+      "sourceSha256": "d27bbd66f3ae41df70dbd93d632ed058afa7ea75d31a8f09377fcd6e06356f9c",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Seconda resistenza» su 6 kPa·s/mL. Quale valore ottieni per «Resistenza equivalente in parallelo»?",
+          "input": 6,
+          "independentExact": "3/2",
+          "manualCorrectNumericSubmission": "1.5",
+          "deliberatelyWrongSignProbe": "-1.5",
+          "unit": "kPa·s/mL",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Affianchi un ramo da 2 kPa·s/mL a un secondo da 5 kPa·s/mL. Quale resistenza equivalente presenta la coppia ai suoi capi?",
+          "input": 5,
+          "independentExact": "10/7",
+          "manualCorrectNumericSubmission": "1.43",
+          "deliberatelyWrongSignProbe": "-1.43",
+          "unit": "kPa·s/mL",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Seconda resistenza",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "kPa·s/mL",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "sourceVersion": 1,
+      "sourceSha256": "a3797a919d164840d33a25031e9dcaa3bb2b02bbffe9daff5eccae0556f7972e",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Resistenza del ramo superiore» su 6 kPa·s/mL. Quale valore ottieni per «Portata nel ramo superiore»?",
+          "input": 6,
+          "independentExact": "2",
+          "manualCorrectNumericSubmission": "2",
+          "deliberatelyWrongSignProbe": "-2",
+          "unit": "mL/s",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di 5 kPa·s/mL, quanta portata passa proprio in quel ramo?",
+          "input": 5,
+          "independentExact": "12/5",
+          "manualCorrectNumericSubmission": "2.4",
+          "deliberatelyWrongSignProbe": "-2.4",
+          "unit": "mL/s",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Resistenza del ramo superiore",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "kPa·s/mL",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "sourceVersion": 1,
+      "sourceSha256": "1dd1702b1816f4c3638a58043d25914d9710539beccd34166e198ea47cf8b49a",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Resistenza a valle» su 6 kPa·s/mL. Quale valore ottieni per «Pressione nel nodo centrale»?",
+          "input": 6,
+          "independentExact": "15/2",
+          "manualCorrectNumericSubmission": "7.5",
+          "deliberatelyWrongSignProbe": "-7.5",
+          "unit": "kPa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da 5 kPa·s/mL. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?",
+          "input": 5,
+          "independentExact": "50/7",
+          "manualCorrectNumericSubmission": "7.14",
+          "deliberatelyWrongSignProbe": "-7.14",
+          "unit": "kPa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Resistenza a valle",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "kPa·s/mL",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L010-01",
+      "sourceVersion": 1,
+      "sourceSha256": "5a5c1b69ba3e8cae507782979d941352624f264e1d3738e3fba92f1564fde4b1",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Lunghezza del bordo mobile» su 4 cm. Quale valore ottieni per «Forza sul bordo»?",
+          "input": 4,
+          "independentExact": "4",
+          "manualCorrectNumericSubmission": "4",
+          "deliberatelyWrongSignProbe": "-4",
+          "unit": "mN",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Una pellicola di sapone con due superfici trascina un bordo lungo 3 cm. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?",
+          "input": 3,
+          "independentExact": "3",
+          "manualCorrectNumericSubmission": "3",
+          "deliberatelyWrongSignProbe": "-3",
+          "unit": "mN",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Lunghezza del bordo mobile",
+          "max": 5,
+          "min": 0.5,
+          "step": 0.5,
+          "unit": "cm",
+          "value": 1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3448a2a8c4d6a9469e59b8042145f004f869bcbf11591c2fdc50a67c2db39a8f",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Raggio della goccia» su 3 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+          "input": 3,
+          "independentExact": "1",
+          "manualCorrectNumericSubmission": "1",
+          "deliberatelyWrongSignProbe": "-1",
+          "unit": "mm⁻¹",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Suddividendo un liquido ottieni gocce sferiche di raggio 2,5 mm. Quanta area espongono per unità di volume, in mm⁻¹?",
+          "input": 2.5,
+          "independentExact": "6/5",
+          "manualCorrectNumericSubmission": "1.2",
+          "deliberatelyWrongSignProbe": "-1.2",
+          "unit": "mm⁻¹",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Raggio della goccia",
+          "max": 4,
+          "min": 0.5,
+          "step": 0.5,
+          "unit": "mm",
+          "value": 1
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "sourceVersion": 1,
+      "sourceSha256": "0202092c21750466a79f5442db69e255d26063b2b7cd1d28cf4b4fd590a1e65c",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Angolo di contatto» su 120 °. Quale valore ottieni per «Salita con segno»?",
+          "input": 120,
+          "independentExact": "-5",
+          "manualCorrectNumericSubmission": "-5",
+          "deliberatelyWrongSignProbe": "5",
+          "unit": "mm",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa 90 °, quale dislivello con segno devi cercare?",
+          "input": 90,
+          "independentExact": "0",
+          "manualCorrectNumericSubmission": "0",
+          "deliberatelyWrongSignProbe": "1",
+          "unit": "mm",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Angolo di contatto",
+          "max": 180,
+          "min": 0,
+          "step": 5,
+          "unit": "°",
+          "value": 0
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "sourceVersion": 1,
+      "sourceSha256": "5e83d0f1151cff064534575f479b28d8e1a0139e827586f029a316e0fdf9c182",
+      "independentPredictionIndex": 2,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Curvatura 1/r» su 1 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+          "input": 1,
+          "independentExact": "100",
+          "manualCorrectNumericSubmission": "100",
+          "deliberatelyWrongSignProbe": "-100",
+          "unit": "Pa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale 1,25 mm⁻¹. Di quanti pascal la pressione interna supera quella esterna?",
+          "input": 1.25,
+          "independentExact": "125",
+          "manualCorrectNumericSubmission": "125",
+          "deliberatelyWrongSignProbe": "-125",
+          "unit": "Pa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Curvatura 1/r",
+          "max": 2,
+          "min": 0,
+          "step": 0.25,
+          "unit": "mm⁻¹",
+          "value": 0
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "sourceVersion": 1,
+      "sourceSha256": "a5564f12b6ced7c4c43d7297762370ead5a970574d3c07a84f7c9943d83da467",
+      "independentPredictionIndex": 0,
+      "tasks": [
+        {
+          "actualQuestionExpected": "Imposta «Raggio della bolla di sapone» su 5 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+          "input": 5,
+          "independentExact": "40",
+          "manualCorrectNumericSubmission": "40",
+          "deliberatelyWrongSignProbe": "-40",
+          "unit": "Pa",
+          "submittedInUI": false
+        },
+        {
+          "actualQuestionExpected": "Una bolla di sapone ha due interfacce e raggio 6 mm. Con γ = 0,05 N/m, quale sovrapressione interna serve?",
+          "input": 6,
+          "independentExact": "100/3",
+          "manualCorrectNumericSubmission": "33.33",
+          "deliberatelyWrongSignProbe": "-33.33",
+          "unit": "Pa",
+          "submittedInUI": false
+        }
+      ],
+      "params": [
+        {
+          "key": "x",
+          "label": "Raggio della bolla di sapone",
+          "max": 8,
+          "min": 1,
+          "step": 1,
+          "unit": "mm",
+          "value": 2
+        }
+      ],
+      "clock": null,
+      "knownCodeNegative": false,
+      "executionStatus": "NOT_RUN"
+    }
+  ],
+  "requiredProtocolProperties": [
+    "Use original047actual-consumer harness pattern without mutating frozen common protocols.",
+    "Fresh temporary DB and canonical source identity/version fetch; original editions retained, no publish.",
+    "Capture actual question first paragraph, not response-field label (known047initialcollectorlimitation).",
+    "Submit independent manual numeric answers and wrong-sign probes; never copy installed answer key as scientific oracle.",
+    "Actually exercise Observe/Understand/Try/checking, comparison and clock, keyboard/axe/overflows; capture native andfallback320/1280.",
+    "Collect diagnostic boundaries including Pitot4.5/4.75/5, all4Poiseuille choices, assignedCouetteη/gap and missing inlet.",
+    "Review all actual PNG and raw geometry; no UI_PASS from this plan or Node artifacts.",
+    "A future runtime fix needs fresh epoch-bound collection and new UI evidence, preserving current negatives.",
+    "No dispatch/upload/push until root resolves explicit public-repository privacy authorization."
+  ],
+  "UI": "NOT_RUN",
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

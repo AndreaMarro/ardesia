@@ -1,0 +1,662 @@
+{
+  "phase": "SOURCE_INPUT_ONLY_PROJECTION_BEFORE_NEW_C4_MODEL_READING",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C4.json",
+  "sourceFileSha256": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+  "excluded": [
+    "measure/output",
+    "formula",
+    "substitution",
+    "interpretation",
+    "reference ordinates",
+    "prediction.correct",
+    "implementation",
+    "blocks",
+    "apparatus"
+  ],
+  "disclosure": "Prior C4 electrostatics/circuits lessons, fields/optics benches and shared clocks/secondary consumers reviewed in earlier work. Not fully blind; no new C4 model/solution fields read in this phase before projection/primary. No guarantee of historical zero exposure.",
+  "records": [
+    {
+      "id": "SIM-C4-L01-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L01",
+      "version": 1,
+      "title": "Carica elettrica, segno, unità e conservazione",
+      "section": "Cariche che si attraggono e si respingono",
+      "summary": "Quale corpo diventa positivo quando passi elettroni da A a B?",
+      "transferPrompt": "Due sfere erano neutre. Trasferisci {x} elettroni da A a B. Quale carica con segno, espressa in cariche elementari, rimane su A?",
+      "control": {
+        "label": "Elettroni trasferiti da A a B",
+        "unit": "1",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L01-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L01",
+      "version": 1,
+      "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+      "section": "Cariche che si attraggono e si respingono",
+      "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+      "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?",
+      "control": {
+        "label": "Distanza fra le cariche",
+        "unit": "cm",
+        "min": 1.0,
+        "max": 6.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L02",
+      "version": 1,
+      "title": "Campo elettrico e linee di forza",
+      "section": "Guardare il campo prima della forza",
+      "summary": "Che relazione c’è fra la tangente alla linea di campo e la freccia della sonda?",
+      "transferPrompt": "Sposti una sonda alla distanza di {x} da una carica puntiforme di +1 nC. Quale intensità di campo leggi in kN/C?",
+      "control": {
+        "label": "Distanza della sonda",
+        "unit": "cm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L02",
+      "version": 1,
+      "title": "Campo di una o più cariche puntiformi",
+      "section": "Guardare il campo prima della forza",
+      "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+      "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?",
+      "control": {
+        "label": "Carica di destra",
+        "unit": "nC",
+        "min": -3.0,
+        "max": 3.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L02-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L02",
+      "version": 1,
+      "title": "Moto in un campo elettrico uniforme",
+      "section": "Guardare il campo prima della forza",
+      "summary": "Come si muove una particella positiva lasciata ferma fra piastre parallele?",
+      "transferPrompt": "Una particella parte ferma e acquista 1000 m/s² lungo il campo. Dopo {x}, quanti millimetri ha percorso?",
+      "control": {
+        "label": "Tempo dalla partenza",
+        "unit": "ms",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L03-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L03",
+      "version": 1,
+      "title": "Energia potenziale di una distribuzione di cariche",
+      "section": "Dal potenziale all’energia",
+      "summary": "Quante coppie devi contare per assemblare tre cariche ai vertici di un triangolo?",
+      "transferPrompt": "Due vertici di un triangolo equilatero di lato 1 cm portano +1 nC ciascuno. Se il terzo porta {x}, quanto vale in µJ l’energia totale delle tre coppie?",
+      "control": {
+        "label": "Terza carica al vertice",
+        "unit": "nC",
+        "min": -2.0,
+        "max": 3.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L03-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L03",
+      "version": 1,
+      "title": "Potenziale e differenza di potenziale",
+      "section": "Dal potenziale all’energia",
+      "summary": "Il potenziale aumenta quando ti sposti nel verso del campo?",
+      "transferPrompt": "Ti sposti di {x}, con segno lungo un campo uniforme di 200 V/m. Quale differenza di potenziale finale meno iniziale misura il voltmetro?",
+      "control": {
+        "label": "Spostamento lungo il campo",
+        "unit": "cm",
+        "min": -4.0,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L03-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L03",
+      "version": 1,
+      "title": "Conservazione dell’energia in un campo elettrico",
+      "section": "Dal potenziale all’energia",
+      "summary": "Dove si ritrova l’energia potenziale persa da una carica positiva?",
+      "transferPrompt": "Una carica di +3 µC attraversa una caduta di potenziale di {x}. Di quanti microjoule varia la sua energia cinetica per azione del campo?",
+      "control": {
+        "label": "Caduta di potenziale",
+        "unit": "V",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L04-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L04",
+      "version": 1,
+      "title": "Conduttori e induzione elettrostatica",
+      "section": "Cariche mobili e cariche legate",
+      "summary": "Come può il campo interno restare nullo mentre avvicini una sorgente esterna?",
+      "transferPrompt": "Applichi {x} a un conduttore e attendi l’equilibrio elettrostatico. Quanto campo dovrebbe misurare una sonda nel materiale conduttore?",
+      "control": {
+        "label": "Campo esterno uniforme",
+        "unit": "kV/m",
+        "min": 0.0,
+        "max": 10.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        2.0,
+        8.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L04-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L04",
+      "version": 1,
+      "title": "Dielettrici e polarizzazione",
+      "section": "Cariche mobili e cariche legate",
+      "summary": "Perché nel materiale isolante il campo si riduce senza annullarsi?",
+      "transferPrompt": "Scolleghi il generatore per mantenere fissa la carica sulle piastre. Il campo senza dielettrico sarebbe {x}. Inserendo un materiale con εᵣ = 3, quale campo resta al suo interno?",
+      "control": {
+        "label": "Campo esterno a carica libera fissata",
+        "unit": "kV/m",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        3.0,
+        9.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L05",
+      "version": 1,
+      "title": "Corrente continua e intensità",
+      "section": "Quanto vale una corrente",
+      "summary": "Quanta carica attraversa la sezione marcata del filo?",
+      "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?",
+      "control": {
+        "label": "Durata della misura",
+        "unit": "s",
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        1.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L05",
+      "version": 1,
+      "title": "Generatore ideale",
+      "section": "Quanto vale una corrente",
+      "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+      "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?",
+      "control": {
+        "label": "Resistenza del carico",
+        "unit": "Ω",
+        "min": 2.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        3.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L05",
+      "version": 1,
+      "title": "Conduzione ohmica",
+      "section": "Quanto vale una corrente",
+      "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+      "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?",
+      "control": {
+        "label": "Tensione al resistore",
+        "unit": "V",
+        "min": -8.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        -4.0,
+        8.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-04",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L05",
+      "version": 1,
+      "title": "Prima e seconda legge di Ohm",
+      "section": "Quanto vale una corrente",
+      "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+      "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?",
+      "control": {
+        "label": "Lunghezza del filo",
+        "unit": "m",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L05-05",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L05",
+      "version": 1,
+      "title": "Resistività",
+      "section": "Quanto vale una corrente",
+      "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+      "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?",
+      "control": {
+        "label": "Resistività",
+        "unit": "µΩ·m",
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.1
+      },
+      "referenceInputs": [
+        0.2,
+        0.8
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L06",
+      "version": 1,
+      "title": "Resistenze in serie e in parallelo",
+      "section": "Seguire i nodi di un circuito",
+      "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+      "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?",
+      "control": {
+        "label": "Seconda resistenza",
+        "unit": "Ω",
+        "min": 2.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        4.0,
+        12.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L06-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L06",
+      "version": 1,
+      "title": "Potenza elettrica ed effetto Joule",
+      "section": "Seguire i nodi di un circuito",
+      "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+      "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?",
+      "control": {
+        "label": "Corrente nel resistore",
+        "unit": "A",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L07",
+      "version": 1,
+      "title": "Capacità elettrica e condensatore piano",
+      "section": "Immagazzinare carica ed energia",
+      "summary": "Come cambia la capacità separando due piastre della stessa area?",
+      "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?",
+      "control": {
+        "label": "Distanza tra le piastre",
+        "unit": "mm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L07",
+      "version": 1,
+      "title": "Effetto del dielettrico",
+      "section": "Immagazzinare carica ed energia",
+      "summary": "Cosa fa la batteria quando inserisci un dielettrico fra le armature?",
+      "transferPrompt": "Un condensatore da 1 nF resta collegato a 2 V mentre inserisci un dielettrico di permittività relativa {x}. Quanti nanocoulomb si accumulano su un’armatura?",
+      "control": {
+        "label": "Permittività relativa",
+        "unit": "1",
+        "min": 1.0,
+        "max": 7.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L07-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L07",
+      "version": 1,
+      "title": "Energia immagazzinata",
+      "section": "Immagazzinare carica ed energia",
+      "summary": "Quanto lavoro occorre per caricare il condensatore?",
+      "transferPrompt": "Carichi un condensatore da 2 µF a {x}. Quanti microjoule contiene prima della scarica?",
+      "control": {
+        "label": "Tensione di carica",
+        "unit": "V",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L08-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L08",
+      "version": 1,
+      "title": "Condensatori in serie e in parallelo",
+      "section": "Mettere insieme i condensatori",
+      "summary": "Perché la serie di due condensatori immagazzina meno carica a uguale tensione?",
+      "transferPrompt": "Colleghi un condensatore da 2 µF in serie con uno da {x}. Quale capacità equivalente vedresti dai morsetti esterni?",
+      "control": {
+        "label": "Seconda capacità",
+        "unit": "µF",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L08-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L08",
+      "version": 1,
+      "title": "Conservazione di carica nei collegamenti",
+      "section": "Mettere insieme i condensatori",
+      "summary": "Dove va la carica collegando due condensatori isolati dalla batteria?",
+      "transferPrompt": "Il primo condensatore da 1 µF porta {x}, il secondo da 2 µF è scarico. Li colleghi in parallelo isolati dall’esterno. A quale tensione comune arrivano?",
+      "control": {
+        "label": "Carica iniziale sul primo",
+        "unit": "µC",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        3.0,
+        9.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L09",
+      "version": 1,
+      "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+      "section": "Correnti, bussole e traiettorie curve",
+      "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+      "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?",
+      "control": {
+        "label": "Corrente verticale nel filo",
+        "unit": "A",
+        "min": -6.0,
+        "max": 6.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L09",
+      "version": 1,
+      "title": "Forza di Lorentz su una carica in moto e su un filo",
+      "section": "Correnti, bussole e traiettorie curve",
+      "summary": "Dove punta la forza rispetto alla velocità e al campo magnetico?",
+      "transferPrompt": "Una carica da 2 µC procede a 3 m/s in un campo da 1 T, con angolo {x} fra velocità e campo. Quanto vale il modulo della forza magnetica in µN?",
+      "control": {
+        "label": "Angolo tra velocità e campo",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "referenceInputs": [
+        30.0,
+        90.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L09-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L09",
+      "version": 2,
+      "title": "Moto circolare in campo magnetico uniforme",
+      "section": "Correnti, bussole e traiettorie curve",
+      "summary": "Perché un campo più intenso incurva di più la traiettoria?",
+      "transferPrompt": "In un’orbita perpendicolare al campo, mv/|q| vale 0,12 T·m. Se il campo diventa {x}, quale raggio misuri in centimetri?",
+      "control": {
+        "label": "Campo magnetico",
+        "unit": "T",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-01",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L10",
+      "version": 1,
+      "title": "Flusso magnetico",
+      "section": "Indurre una tensione cambiando il flusso",
+      "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+      "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?",
+      "control": {
+        "label": "Angolo tra campo e normale",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "referenceInputs": [
+        0.0,
+        120.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-02",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L10",
+      "version": 1,
+      "title": "Forza elettromotrice indotta",
+      "section": "Indurre una tensione cambiando il flusso",
+      "summary": "Una bobina immobile può generare una tensione?",
+      "transferPrompt": "Una bobina da 10 spire di 0,05 m² è perpendicolare al campo, che varia al ritmo con segno di {x}. Quale fem compare secondo il verso orientato?",
+      "control": {
+        "label": "Velocità di variazione del campo",
+        "unit": "T/s",
+        "min": -4.0,
+        "max": 4.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-03",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L10",
+      "version": 1,
+      "title": "Legge di Faraday–Neumann–Lenz",
+      "section": "Indurre una tensione cambiando il flusso",
+      "summary": "Che cosa cambia se la stessa variazione di flusso avviene più lentamente?",
+      "transferPrompt": "Il flusso concatenato aumenta di 2 Wb durante {x}. Con l’orientazione della bobina fissata, quale fem media misura il voltmetro?",
+      "control": {
+        "label": "Tempo per la stessa variazione di flusso",
+        "unit": "s",
+        "min": 0.25,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        0.5,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C4-L10-04",
+      "kind": "experiment",
+      "course": "C4",
+      "skill": "C4-L10",
+      "version": 1,
+      "title": "Correnti indotte e loro verso",
+      "section": "Indurre una tensione cambiando il flusso",
+      "summary": "Il verso della corrente si oppone al campo o al suo cambiamento?",
+      "transferPrompt": "In una spira da 2 Ω il flusso concatenato varia a {x}. Quale corrente orientata prevede la legge di Lenz?",
+      "control": {
+        "label": "Variazione del flusso concatenato",
+        "unit": "Wb/s",
+        "min": -6.0,
+        "max": 6.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        -4.0,
+        6.0
+      ]
+    }
+  ],
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "localOnly": true,
+  "pushOrUploadPerformed": false
+}
