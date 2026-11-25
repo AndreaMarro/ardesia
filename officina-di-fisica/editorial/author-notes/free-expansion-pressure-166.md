@@ -135,3 +135,7 @@ Sostituiamo nella legge e moltiplichiamo per V₀+V_v, che è positivo. Rimane u
 Passaggi: `p_f=\frac{dV_vV_0}{V_0+V_v}\qquad p_fV_0=(dV_0-p_f)V_v\qquad V_v=\frac{p_fV_0}{dV_0-p_f}\qquad V_v=1\,\mathrm L`
 
 Errori e controllo: Meno un litro viola il dominio. Due litri darebbero 200/3 kPa finali e mezzo litro 100/3 kPa. Il denominatore è non nullo e fissa una sola soluzione; per questo vincolo il dominio delle pressioni finali è 0<p_f<dV₀.
+
+## Correzione dopo lettura distinta
+
+Il revisore A ha rilevato che la didascalia01 menzionava una freccia di processo assente dal disegno. È stata sostituita soltanto quella frase con una descrizione della sequenza dei pannelli fra equilibri. Le altre15 schede, tutte le risposte, formule e lo SVG sono byte invariati. Binding01 aggiornato e nuove48 anteprime canoniche concluse exit0 con raw report e completion autentici; nessuna firma scientifica dell’autore.
