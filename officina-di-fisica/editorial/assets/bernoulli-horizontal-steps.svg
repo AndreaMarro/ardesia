@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1750" viewBox="0 0 640 1750" role="img" aria-labelledby="title desc">
+<title id="title">Scambiare pressione statica e contributo cinetico</title><desc id="desc">Nella prova A un liquido ideale accelera da due a quattro metri al secondo. La pressione assoluta scende da cento a novantaquattro kilopascal e la somma statica più dinamica resta centodue. In una prova diversa si scambiano le velocità: la pressione finale è centosei e la somma costante nella prova B vale centootto.</desc>
+<defs><marker id="v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1750" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Accelerare alla stessa quota</text>
+<text x="35" y="90">Prova A: ρ = 1000 kg/m³</text>
+<path d="M55 220H260L380 245H585V295H380L260 320H55Z" fill="#e4eff7" stroke="#155fa0" stroke-width="3"/>
+<path d="M100 270H180" fill="none" stroke="#155fa0" stroke-width="5" marker-end="url(#v)"/><path d="M405 270H565" fill="none" stroke="#155fa0" stroke-width="5" marker-end="url(#v)"/>
+<text x="75" y="175">v₁ = 2 m/s</text><text x="395" y="175">v₂ = 4 m/s</text>
+<text x="75" y="365">p₁ = 100 kPa</text><text x="395" y="365">p₂ = 94 kPa</text>
+<text x="35" y="410">Profondità fuori foglio: 1 cm</text>
+<text x="35" y="450">Altezze 2 e 1 cm, scala 50 px/cm</text>
+<text x="35" y="490">Aree 2 e 1 cm²: stessa Q = 0,4 L/s</text>
+<text x="35" y="530">Frecce: 80 e 160 px a 40 px/(m/s)</text>
+<line x1="35" x2="605" y1="565" y2="565" stroke="#b9c4c9"/>
+<text x="35" y="615" font-size="27" font-weight="bold">2. Conservare la somma nella prova A</text>
+<text x="35" y="660">Pressione statica blu, dinamica rossa</text>
+<text x="35" y="705">Ingresso: 100 + 2 = 102 kPa</text>
+<rect x="100" y="735" width="300" height="28" fill="#155fa0"/><rect x="400" y="735" width="6" height="28" fill="#a33430"/>
+<text x="35" y="810">Uscita: 94 + 8 = 102 kPa</text>
+<rect x="100" y="840" width="282" height="28" fill="#155fa0"/><rect x="382" y="840" width="24" height="28" fill="#a33430"/>
+<text x="35" y="920">Scala comune: 3 px/kPa</text>
+<text x="35" y="960">Totali uguali: 306 px</text>
+<text x="35" y="1000">Più 6 kPa cinetici, meno 6 kPa statici</text>
+<line x1="35" x2="605" y1="1035" y2="1035" stroke="#b9c4c9"/>
+<text x="35" y="1085" font-size="27" font-weight="bold">3. Una nuova prova, velocità scambiate</text>
+<text x="35" y="1130">Prova B: v₁ = 4 m/s, v₂ = 2 m/s</text>
+<text x="35" y="1175">p₁ resta 100 kPa; cambia la geometria.</text>
+<text x="35" y="1235">Ingresso: 100 + 8 = 108 kPa</text>
+<rect x="100" y="1265" width="300" height="28" fill="#155fa0"/><rect x="400" y="1265" width="24" height="28" fill="#a33430"/>
+<text x="35" y="1340">Uscita: 106 + 2 = 108 kPa</text>
+<rect x="100" y="1370" width="318" height="28" fill="#155fa0"/><rect x="418" y="1370" width="6" height="28" fill="#a33430"/>
+<text x="35" y="1450">Stessa scala: 3 px/kPa; totali 324 px</text>
+<text x="35" y="1500">Bernoulli è costante nella singola prova.</text>
+<text x="35" y="1540">A e B hanno energie di ingresso diverse.</text>
+<text x="35" y="1605">Tutte le pressioni statiche sono assolute.</text>
+<text x="35" y="1650">Non si impone una costante comune</text>
+<text x="35" y="1690">a due apparati differenti.</text>
+</g></svg>
