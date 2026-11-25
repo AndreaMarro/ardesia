@@ -1,6 +1,6 @@
 """Independent U5-01 heat/work review, never imports candidate authoring."""
 from fractions import Fraction
-import ast,re
+from .exact_arithmetic_literals import exact_literal
 from functools import lru_cache
 from pathlib import Path
 import pint
@@ -14,35 +14,6 @@ FAMILY='isochoric-heat'
 EXPECTED_IDS={f'AR-u5-{FAMILY}-{n:02}' for n in range(1,17)}
 REVIEWED_SKILLS={n:'C3-L03' for n in range(1,17)}
 
-def exact_literal(raw):
-    """Bounded arithmetic AST for rational, pi and integer-radical numeric choices."""
-    if len(raw)>60:raise ValueError('literal too long')
-    raw=raw.replace('π','p')
-    raw=re.sub(r'√([0-9]{1,4})',r'r(\1)',raw)
-    raw=re.sub(r'(?<=\d)(?=r\(|p)', '*',raw)
-    if not re.fullmatch(r'[0-9rp()+*/. \-]+',raw):raise ValueError('unsupported numeric literal')
-    tree=ast.parse(raw,mode='eval')
-    if len(list(ast.walk(tree)))>80:raise ValueError('numeric literal too complex')
-    def visit(node):
-        if isinstance(node,ast.Name) and node.id=='p':return sp.pi
-        if isinstance(node,ast.Constant) and type(node.value) is int and abs(node.value)<=10**9:return sp.Integer(node.value)
-        if isinstance(node,ast.Constant) and type(node.value) is float and len(str(node.value))<=16:
-            return sp.Rational(str(node.value))
-        if isinstance(node,ast.UnaryOp) and isinstance(node.op,(ast.UAdd,ast.USub)):
-            value=visit(node.operand);return value if isinstance(node.op,ast.UAdd) else -value
-        if isinstance(node,ast.BinOp):
-            left,right=visit(node.left),visit(node.right)
-            if isinstance(node.op,ast.Add):return left+right
-            if isinstance(node.op,ast.Sub):return left-right
-            if isinstance(node.op,ast.Mult):return left*right
-            if isinstance(node.op,ast.Div) and right!=0:return left/right
-        if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id=='r' and len(node.args)==1 and not node.keywords:
-            value=visit(node.args[0])
-            if value.is_Integer and 0<=value<=10**4:return sp.sqrt(value)
-        raise ValueError('unsupported arithmetic node')
-    value=visit(tree.body)
-    if value.is_real is not True or value.is_finite is not True:raise ValueError('nonreal numeric result')
-    return value
 
 
 def unique(options,want):
@@ -134,6 +105,7 @@ def verify(package,bindings,asset_root=None):
         if row['answer']['type']=='numeric' and row['answer'].get('unit')!=NUMERIC_UNITS.get(n):errors.append('Independent '+FAMILY+' numeric unit mismatch')
         results.append({'id':row['id'],'sourceSha256':binding['sourceSha256'],'candidateSha256':digest(row),'reviewedSignature':signature,'assetChecksums':assets,
           'ok':not errors,'errors':errors,'expectedExact':str(want),
+          'reviewDependencySha256':{'exact_arithmetic_literals.py':sha(Path(exact_literal.__code__.co_filename).read_bytes())},
           'dimension':{str(k):str(v) for k,v in SI.Unit(UNITS[n]).dimensionality.items()},
           'manualArithmetic':MANUAL[n-1],'physicalAssumptions':ASSUMPTIONS[n-1],'distractors':DISTRACTORS[n-1],
           'pedagogicalReview':'Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. '+MANUAL[n-1],
