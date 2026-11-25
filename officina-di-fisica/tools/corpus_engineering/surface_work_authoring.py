@@ -38,7 +38,7 @@ TASKS=[
 ('Isolare γ senza introdurre superfici nuove',SCENE+'Quale formula isola γ in unità coerenti?',['γ = W / ΔA','γ = 2 W / ΔA','γ = W / (2 ΔA)','γ = W ΔA','γ = ΔA / W'],
  'La tensione moltiplica l’incremento totale di area. Dividere entrambi i membri per ΔA>0 isola γ=W/ΔA. Il rapporto energia su area ha unità J/m²=N/m; la conversione nei prefissi richiesti si esegue solo dopo aver formato un rapporto coerente.',
  r'W=\gamma\Delta A\qquad \gamma=\frac W{\Delta A}\qquad [\gamma]=\mathrm{J/m^2}\qquad \mathrm{J/m^2}=\mathrm{N/m}',
- 'I fattori due e un mezzo cambiano l’area fisica che è stata assegnata totale. Il prodotto WΔA ha una superficie in più; il reciproco è tensione superficiale inversa. Non serve una radice: γ è alla prima potenza.', 'Dividi per tutta l’area totale, una sola volta.'),
+ 'I fattori due e un mezzo cambiano l’area fisica che è stata assegnata totale. Il prodotto WΔA ha unità J·m² invece di J/m²; ΔA/W ha unità inverse di una tensione superficiale. Non serve una radice: γ è alla prima potenza.', 'Dividi per tutta l’area totale, una sola volta.'),
 ('Scalare tensione e incremento di area',SCENE+'Fra A e B, γ_B=κ₁γ_A e ΔA_B=κ₂ΔA_A, con fattori positivi. Quanto vale W_B/W_A?',['κ₁ κ₂','κ₁ / κ₂','κ₂ / κ₁','κ₁ κ₂²','κ₁ + κ₂'],
  'Sostituire le nuove grandezze in W=γΔA produce un fattore κ₁ dalla tensione e κ₂ dall’area. Si moltiplicano, senza introdurre un quadrato del fattore di area: la geometria che ha prodotto ΔA è già compresa nel dato.',
  r'W_B=\kappa_1\gamma_A\kappa_2\Delta A_A\qquad W_B/W_A=\kappa_1\kappa_2',
