@@ -2,7 +2,7 @@
 
 Primaria completa degli 80 originali220–224 congelata prima di candidati, opzioni, chiavi e figure: editorial/reviews/u6-capacitor-networks-220-224-primary-source-only.md, SHA256 08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58. Le riformulazioni finali sono state risolte nuovamente sui dati effettivi. Implementazione dei modelli indipendenti SHA85dad5e28940ee486e847302a0d2a0d5fc88925e17115e897e3b5fb43184e35a scritta dopo la prima lettura testuale220–222 a partire dalla primaria già congelata: il codice non è dichiarato fonte-only precedente ai candidati. Nessun modulo autore importato e nessun candidato modificato.
 
-Letti tutti i campi di ogni candidato, opzioni, passaggi discorsivi, formule, hint, feedback, competenze e prerequisiti. Package, binding e SVG finali confrontati con i byte finali dell’autore alla SHA 351f28ae64d0a66d79ca010abbd51ef7bfa6ce63. Firme congelate soltanto dopo questa lettura completa. La geometria dello SVG è stata letta sia in XML sia nel rendering completo indipendente conservato con checksum. Si tratta di resa asset-only, non UI del prodotto, accettazione di un runtime o prova di overflow mobile.
+Letti tutti i campi di ogni candidato, opzioni, passaggi discorsivi, formule, hint, feedback, competenze e prerequisiti. Package, binding e SVG finali confrontati con i byte finali dell’autore alla SHA 8e21066b36cb9b4390c0390f26d3295fdbd09ffc. Firme congelate soltanto dopo questa lettura completa. La geometria dello SVG è stata letta sia in XML sia nel rendering completo indipendente conservato con checksum. Si tratta di resa asset-only, non UI del prodotto, accettazione di un runtime o prova di overflow mobile.
 
 Gli esiti EXACT_ORACLE derivano da SymPy/Pint/Fraction e calcoli manuali separati; AI_CONCEPTUAL identifica enunciati o leggi simboliche controllati con lettura distinta. Le controprove rinnovano binding, pin e token soltanto nel test per provare gli oracoli; una prosa fisica falsa con chiave corretta è respinta dalla firma della lettura, senza pretendere comprensione semantica automatica.
 
@@ -18,11 +18,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Sei volt imporrebbe il generatore ancora collegato. Dodici copia una carica in μC come tensione; 3/2 V divide due volte e zero confonde il nodo positivo con la carica netta complessiva.
 
-Didattica: Legge motivata con ipotesi e unità prima della risposta, distinguendo grandezza fisica e numero.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Legge motivata con ipotesi e unità prima della risposta, distinguendo grandezza fisica e numero.
 
 Figura: XML e native indipendente completo 640×1580 letti. Prima: barra carica 12 μC lunga 360 da x 150, scala 30 coordinate/μC; secondo elemento scarico è punto allo zero. Circuito finale con entrambi i rami agli stessi nodi, cariche 6+6 μC e tensione comune 3 V. Ultime uscite 3/4/7/2 V in barre 240/320/280 da x 150, scala 80 coordinate/V. Origini fuori dagli assi, tutte label leggibili; scala delle cariche distinta da quella delle tensioni.
 
-Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `1b3c22aacaff7c255de9f776d214c8966e2a9bff8b1fc70c04262e24d52687ec`.
+Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `33c9605b60b1a631c4814592315d6c115a5d3e0d8ac95040c367d7b78f947d15`.
 
 ## AR-u6-capacitor-charge-sharing-02
 
@@ -32,11 +32,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: C, F, J e 1 indicano carica, capacità, energia e rapporto puro. Q divisa per la capacità totale ha unità volt.
 
-Didattica: Dimensione e unità determinate indipendentemente, poi opzioni finali lette.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Dimensione e unità determinate indipendentemente, poi opzioni finali lette.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `V`. Firma: `dc97d2e67e6564816f223fd5ceead4750db8f7cca27ca448f4afcc5aa3a42e05`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `V`. Firma: `7c12aa72b5010c317c12355d4b0a904f0a03697870e0b767b63d73efe87cd896`.
 
 ## AR-u6-capacitor-charge-sharing-03
 
@@ -46,11 +46,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: V₀ invariata richiederebbe un generatore oppure C=0, escluso. La frazione inversa supera V₀. Usare C al numeratore assegna carica iniziale al condensatore scarico; (C₀+C)V₀ è una carica.
 
-Didattica: Legge o vincolo riconosciuti nel contesto esplicito e motivati dalla carica e dai nodi; compito guidato, non richiamo senza aiuti.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Legge o vincolo riconosciuti nel contesto esplicito e motivati dalla carica e dai nodi; compito guidato, non richiamo senza aiuti.
 
 Figura: XML e native indipendente completo 640×1580 letti. Prima: barra carica 12 μC lunga 360 da x 150, scala 30 coordinate/μC; secondo elemento scarico è punto allo zero. Circuito finale con entrambi i rami agli stessi nodi, cariche 6+6 μC e tensione comune 3 V. Ultime uscite 3/4/7/2 V in barre 240/320/280 da x 150, scala 80 coordinate/V. Origini fuori dagli assi, tutte label leggibili; scala delle cariche distinta da quella delle tensioni.
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `V_f = C₀ V₀ / (C₀ + C)`. Firma: `f14342df25070bfc44775d626b6b04a7047b4b9bcc6497fb20a4167b73d71ff9`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `V_f = C₀ V₀ / (C₀ + C)`. Firma: `6e19cfbe63de6d1ced72254a9e92e18e883afdeeac8a90e6f760b0bead3da4d3`.
 
 ## AR-u6-capacitor-charge-sharing-04
 
@@ -60,11 +60,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Otto volt copia l’ingresso B; tre ignora il cambiamento, 3/2 dimezza ancora e sei copia l’ingresso A. La capacità finale resta 4 μF ma la carica iniziale cambia fra preparazioni.
 
-Didattica: Confronto controllato con parametro fissato e risultato esatto anche se radicale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Confronto controllato con parametro fissato e risultato esatto anche se radicale.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `Da 3 a 4 V`. Firma: `816034de1162c6d24db19ffbd1624f140e3691cd2e5d0d1d978985745984e5bc`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `Da 3 a 4 V`. Firma: `09200c4888243fd182676eb0f200ad0624d4fb89fcb03f39176160055cdcd7bf`.
 
 ## AR-u6-capacitor-charge-sharing-05
 
@@ -74,11 +74,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Tre volt copia la tensione finale; 3/2 V ripete la frazione diretta e darebbe V_f=3/4 V. Dodici volt copia il numero della carica iniziale e darebbe V_f=6 V.
 
-Didattica: Prima inversa derivata e reinserita nella legge diretta.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Prima inversa derivata e reinserita nella legge diretta.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `6`. Firma: `18f31907d423853083f24dd524fdd1bff4a70575450e57b1a12f091ca469932e`.
+Modalità EXACT_ORACLE. Risultato indipendente: `6`. Firma: `1f07bce8e89b8bacff356f02e3fe9350025f654ec399500ec4afe39d87e2b71c`.
 
 ## AR-u6-capacitor-charge-sharing-06
 
@@ -88,11 +88,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Quattro μF omette il termine meno uno e darebbe V_f=2 V. Un μF darebbe V_f=4 V. Il confine V_f=V₀ impone C=0, fuori dal modello con secondo componente positivo.
 
-Didattica: Seconda inversa con unità e divisioni lecite; eventuale ramo fisico e limiti della misura.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Seconda inversa con unità e divisioni lecite; eventuale ramo fisico e limiti della misura.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `b859d2d86e57ec59e9ac412b7069fb00db0b16d31c62202ac8c2300101bfd28d`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `b925f85ca5fceec361aa7cb2a4844b7da4fe00e0261bce9d51d7c87b3f3ea425`.
 
 ## AR-u6-capacitor-charge-sharing-07
 
@@ -102,11 +102,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: 3/4 è il reciproco. Due usa erroneamente solo 1/C e omette C₀; un mezzo segue C direttamente e uno ignora il cambiamento. I quattro volt restano sotto i sei volt iniziali.
 
-Didattica: Due configurazioni ricostruite prima del rapporto adimensionale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Due configurazioni ricostruite prima del rapporto adimensionale.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `4/3`. Firma: `26cf4e0a356ef93627ac28a5079f4ebc202804bb29db570abe4cd3c58c544824`.
+Modalità EXACT_ORACLE. Risultato indipendente: `4/3`. Firma: `851f62133fd7eb9e07ca2d9a9b9ab6c0b78fad670cc72873d9f27fe18b30db14`.
 
 ## AR-u6-capacitor-charge-sharing-08
 
@@ -116,11 +116,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: −3 V scambia l’ordine dello scarto; sei copia la proposta e zero la accetta. Due è un rapporto puro e non una differenza di tensioni.
 
-Didattica: Ordine della differenza mantenuto e distinto dal rapporto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Ordine della differenza mantenuto e distinto dal rapporto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `daca7bb343966bd965a0b9b860dfd969ff0a4fbac44d0f27e8b390da74961c1a`.
+Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `f445247bc2ed3ebf36e3310764f16acf9a3d91fa65a05607913f895637202992`.
 
 ## AR-u6-capacitor-charge-sharing-09
 
@@ -130,11 +130,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: La frazione inversa errata riduce V₀ invece di ricostruirla. C/C₀ omette l’addendo fisso. Gli ultimi quozienti hanno unità F/V e V/F, diverse dal volt.
 
-Didattica: Inversa simbolica con controllo delle unità e delle divisioni lecite.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Inversa simbolica con controllo delle unità e delle divisioni lecite.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `V₀ = V_f (C₀ + C) / C₀`. Firma: `84b6edc8e0bf11de37af87de7ced2b1b80d70d0a0a0eedc00bd19b722f6387da`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `V₀ = V_f (C₀ + C) / C₀`. Firma: `33562f97af92f4eefa095b1dc00301f5f6c7ce12cd5e51fcf57d86fb00c4937b`.
 
 ## AR-u6-capacitor-charge-sharing-10
 
@@ -144,11 +144,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: κ₂ al numeratore scala l’ingresso sbagliato. Il prodotto perde il denominatore, il reciproco inverte B/A e κ₁/κ₂ ignora il termine C₀ che resta fissato.
 
-Didattica: Fattori inseriti nelle posizioni effettive della legge prima della semplificazione.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Fattori inseriti nelle posizioni effettive della legge prima della semplificazione.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `κ₁ S / S_B`. Firma: `caf16fe3b70caef0313a76aeae5fdafaf0eea739aa4d3d7bc2ec8c0b9901a96c`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `κ₁ S / S_B`. Firma: `a68de676025e3125a7cbab25b7a3504f82f7b4f4635e2df74bdb68b94276c7ef`.
 
 ## AR-u6-capacitor-charge-sharing-11
 
@@ -158,11 +158,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: 3/4 è il reciproco; due segue soltanto V₀. Un mezzo usa 1/C ignorando C₀ e uno presume una compensazione impedita dal termine fisso della capacità iniziale.
 
-Didattica: Entrambi gli ingressi nuovi usati prima del confronto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Entrambi gli ingressi nuovi usati prima del confronto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `4/3`. Firma: `3ff79e8fc93429014b0b5ad1b22575b9ef1234e97eca10662a7e8b5033bb6f2d`.
+Modalità EXACT_ORACLE. Risultato indipendente: `4/3`. Firma: `29b5098691c8c24440317b709da65147398978fbe8ebfab6f8534f04b97520ce`.
 
 ## AR-u6-capacitor-charge-sharing-12
 
@@ -172,11 +172,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: 18/5 V usa gli ingressi medi. Sette somma le uscite, un mezzo è la semidifferenza e quattro ripete B. La differenza rispetto ai dati medi è 1/10 V, calcolata esattamente.
 
-Didattica: Media delle uscite distinta da legge ai dati medi e dalla ponderazione temporale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Media delle uscite distinta da legge ai dati medi e dalla ponderazione temporale.
 
 Figura: XML e native indipendente completo 640×1580 letti. Prima: barra carica 12 μC lunga 360 da x 150, scala 30 coordinate/μC; secondo elemento scarico è punto allo zero. Circuito finale con entrambi i rami agli stessi nodi, cariche 6+6 μC e tensione comune 3 V. Ultime uscite 3/4/7/2 V in barre 240/320/280 da x 150, scala 80 coordinate/V. Origini fuori dagli assi, tutte label leggibili; scala delle cariche distinta da quella delle tensioni.
 
-Modalità EXACT_ORACLE. Risultato indipendente: `7/2`. Firma: `6996c3aece447990aef9bb7c051bb19938b0153d5af91ae7d1108e2ab21647b3`.
+Modalità EXACT_ORACLE. Risultato indipendente: `7/2`. Firma: `ac402cc4ce14e5a8dfc5656114666103312652e5b5d26ab743bfea00d617cb65`.
 
 ## AR-u6-capacitor-charge-sharing-13
 
@@ -186,11 +186,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Un mezzo inverte il rapporto; 4/3 copia quello delle tensioni finali e 3/4 il suo reciproco. Quattro copia il valore numerico di C_B in μF senza normalizzarlo ai 2 μF iniziali.
 
-Didattica: Bersaglio ricostruito prima dell’inversa, valore distinto dal rapporto richiesto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Bersaglio ricostruito prima dell’inversa, valore distinto dal rapporto richiesto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `2d3fa13fe843f7ff85dbbdc125b28a6cfe9dd204fb99d8edf4455aabfb7a0903`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `06aded05b4853a1be8bc927d26d0b61ad49c05cbde889d4df5df10ee812f2358`.
 
 ## AR-u6-capacitor-charge-sharing-14
 
@@ -200,11 +200,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: Quattro volt copia la tensione finale. Trentasei usa D=12 come tensione finale e ricostruisce D=36; otto volt darebbe D=8. La coincidenza numerica fra D=12 e V₀=12 V è contingente.
 
-Didattica: Guadagno strumentale rimosso prima dell’inversa fisica.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Guadagno strumentale rimosso prima dell’inversa fisica.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `12`. Firma: `dd67d0fb4879c8fd382e30f58522f9d22c419d9d65e06b141c391bd7552e1a4d`.
+Modalità EXACT_ORACLE. Risultato indipendente: `12`. Firma: `c115493c2e5291e060c583e5757d571663923069955a3d7426996bab7c774d3e`.
 
 ## AR-u6-capacitor-charge-sharing-15
 
@@ -214,11 +214,11 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: 65/4 V omette l’offset e ricostruisce D=14. Sei volt copia V_f; trenta omette il guadagno e tredici copia la lettura strumentale. Ogni esito è confutato reinserendolo nella legge.
 
-Didattica: Offset e guadagno identificati da due riferimenti, poi applicati all’incognita.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Offset e guadagno identificati da due riferimenti, poi applicati all’incognita.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `15`. Firma: `a17e91bb71b4df35924f103447b30203f83a3674415e47acea3ea3abfd300140`.
+Modalità EXACT_ORACLE. Risultato indipendente: `15`. Firma: `3b19564af848713d1ccb4812dd978625fe9ba34245f9f02083c16c1f23d77933`.
 
 ## AR-u6-capacitor-charge-sharing-16
 
@@ -228,8 +228,14 @@ Ipotesi e dominio: C₀ fissato 2 μF, inizialmente carico, seconda capacità C 
 
 Distrattori: C=1 μF darebbe V_f=2 V e C=3 μF darebbe 18/5 V. −2 μF viola la positività e annulla il denominatore. Infinite soluzioni non seguono da questo vincolo con C₀ fissato.
 
-Didattica: Vincolo fra preparazioni sostituito prima di decidere unicità o scala libera.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Vincolo fra preparazioni sostituito prima di decidere unicità o scala libera.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `ccc3941cf7b511d122521368f8ca06d5595ee29b65854a7bc639395751cc508a`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `daa69a11de94efa36313a2b7c579117da8a050065a6324e8d7b712054b37bfa0`.
+
+## Rilettura del catalogo e mapping finale C4-L08
+
+Tutti i 16 delta metadata finali di 8e21066b36cb9b4390c0390f26d3295fdbd09ffc sono stati letti singolarmente e confrontati con i testi integrali canonici C4-L07 e C4-L08 al pin 5d1dc8dc7b601aef959d10d564c75462be74708d (content/C4.json SHA19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c). C4-L08 tratta reti in serie/parallelo, carica conservata nei collegamenti e transitori; C4-L07 resta il prerequisito sulle singole capacità. skill e feedback target sono ora C4-L08 e i prerequisiti mantengono L07 aggiungendo L08. Non esistono altri campi competencies nei record.
+
+Il confronto esatto su ogni record verifica che prompt, risposte, opzioni, leggi, formule, hint, prose fisiche e SVG non cambiano. Nei binding cambia soltanto candidateSha256. Il precedente esito matematico e le vecchie firme sono conservati byte-identici nell’archivio pre-L08; non sono riattribuiti ai nuovi byte. I presenti token sono congelati dopo questa rilettura, con nuovi report realmente calcolati e successivo target fresh/saved. Nessuna nuova resa SVG è necessaria poiché gli asset sono identici; nessun credito UI/importazione è attribuito qui. Tutte le importazioni dei nuovi metadata sono PENDING_ROOT_REMOTE.

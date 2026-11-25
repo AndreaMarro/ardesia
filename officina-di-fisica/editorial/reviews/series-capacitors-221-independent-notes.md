@@ -2,7 +2,7 @@
 
 Primaria completa degli 80 originali220–224 congelata prima di candidati, opzioni, chiavi e figure: editorial/reviews/u6-capacitor-networks-220-224-primary-source-only.md, SHA256 08e1a184ade8bd85a9d6d8f4b919b18105877f0c2007729ba514f0f48f36eb58. Le riformulazioni finali sono state risolte nuovamente sui dati effettivi. Implementazione dei modelli indipendenti SHA85dad5e28940ee486e847302a0d2a0d5fc88925e17115e897e3b5fb43184e35a scritta dopo la prima lettura testuale220–222 a partire dalla primaria già congelata: il codice non è dichiarato fonte-only precedente ai candidati. Nessun modulo autore importato e nessun candidato modificato.
 
-Letti tutti i campi di ogni candidato, opzioni, passaggi discorsivi, formule, hint, feedback, competenze e prerequisiti. Package, binding e SVG finali confrontati con i byte finali dell’autore alla SHA 13cdc06845e88aa86bdd9dfeb4f0549411db8ad5. Firme congelate soltanto dopo questa lettura completa. La geometria dello SVG è stata letta sia in XML sia nel rendering completo indipendente conservato con checksum. Si tratta di resa asset-only, non UI del prodotto, accettazione di un runtime o prova di overflow mobile.
+Letti tutti i campi di ogni candidato, opzioni, passaggi discorsivi, formule, hint, feedback, competenze e prerequisiti. Package, binding e SVG finali confrontati con i byte finali dell’autore alla SHA 8e21066b36cb9b4390c0390f26d3295fdbd09ffc. Firme congelate soltanto dopo questa lettura completa. La geometria dello SVG è stata letta sia in XML sia nel rendering completo indipendente conservato con checksum. Si tratta di resa asset-only, non UI del prodotto, accettazione di un runtime o prova di overflow mobile.
 
 Gli esiti EXACT_ORACLE derivano da SymPy/Pint/Fraction e calcoli manuali separati; AI_CONCEPTUAL identifica enunciati o leggi simboliche controllati con lettura distinta. Le controprove rinnovano binding, pin e token soltanto nel test per provare gli oracoli; una prosa fisica falsa con chiave corretta è respinta dalla firma della lettura, senza pretendere comprensione semantica automatica.
 
@@ -20,11 +20,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 4 μF è parallelo, 2 un solo elemento, 1/2 divide due volte. Serie positiva deve risultare minore di ciascun componente.
 
-Didattica: Legge motivata con ipotesi e unità prima della risposta, distinguendo grandezza fisica e numero.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Legge motivata con ipotesi e unità prima della risposta, distinguendo grandezza fisica e numero.
 
 Figura: Letti XML e native completo 640×1660: primo circuito in serie con nodi A/M/B e cariche+Q/−Q sul nodo intermedio; assi e fili non attraversano label. Secondo circuito parallelo separato, stessi due 2 μF. Barre inferiori 1/2/3/2 μF lunghe 160/320/240 da x 150, scala 160 coordinate/μF. Zero posto a sinistra fuori asse. Nessuna commutazione temporale dedotta dai due circuiti.
 
-Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `1c01f7d1f7875323712073357e1ebdf80460db1db9a668666067049e73c89ce4`.
+Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `8ed2012cf1c10058f48c827560aaac28cf866cf9e7630af00ef1521e173bce84`.
 
 ## AR-u6-series-capacitors-02
 
@@ -34,11 +34,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: F⁻¹ misura 1/S, non S; C, V e 1 hanno altre dimensioni. Il reciproco della somma è indispensabile.
 
-Didattica: Dimensione e unità determinate indipendentemente, poi opzioni finali lette.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Dimensione e unità determinate indipendentemente, poi opzioni finali lette.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `F`. Firma: `1e29c6e2e462729c956203dec98f741948384ec5a4cf8af92347c90936e1586a`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `F`. Firma: `85eec09e1d55f736ab98482ac094f02073fd9c854e09b2b38d9bf431a1638638`.
 
 ## AR-u6-series-capacitors-03
 
@@ -48,11 +48,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: Tensioni ed energie non coincidono in generale per capacità diverse; la connessione non rende uguali le capacità. Il distrattore finale non nullo è impossibile; il precedente zero in entrambi era una seconda risposta vera e non è congelato.
 
-Didattica: Legge o vincolo riconosciuti nel contesto esplicito e motivati dalla carica e dai nodi; compito guidato, non richiamo senza aiuti.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Legge o vincolo riconosciuti nel contesto esplicito e motivati dalla carica e dai nodi; compito guidato, non richiamo senza aiuti.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `La carica su ciascuna armatura`. Firma: `3b5a515043b4a210802c656446fd40678133abfce47d9ebe83821c26b815762c`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `La carica su ciascuna armatura`. Firma: `c907d8dcda961d137444daee932dcbade7421b848b0d3c26d8879d9334d4c4c7`.
 
 ## AR-u6-series-capacitors-04
 
@@ -62,11 +62,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 1/2 μF scala un solo fattore senza aggiornare la somma; 3 è parallelo, 1 ignora modifica, 2 copia ramo.
 
-Didattica: Confronto controllato con parametro fissato e risultato esatto anche se radicale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Confronto controllato con parametro fissato e risultato esatto anche se radicale.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `Da 1 a 2/3 μF`. Firma: `38c136a8c0d22404f78a5fb96c2e7308d83a5c9039cadc96669fa62a1989c57c`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `Da 1 a 2/3 μF`. Firma: `1917586ccf5f5f7bc1a8b595efe968d9900ab36cdf29e817bec3dea1ceb0c503`.
 
 ## AR-u6-series-capacitors-05
 
@@ -76,11 +76,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: La sottrazione semplice è inversa del parallelo. C₁1 μF darebbe 2/3 μF, non 1. S=C₂ non ha soluzione finita positiva.
 
-Didattica: Prima inversa derivata e reinserita nella legge diretta.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Prima inversa derivata e reinserita nella legge diretta.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `22ed4a9e40a955ee559213a0e6a7144b1a8244a029ba2a18d757835d3870aee8`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `e3b878b507b393cf2497a89e7f4b7ac556432b296061adf1c76b26451877f450`.
 
 ## AR-u6-series-capacitors-06
 
@@ -90,11 +90,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 2 omette il dimezzamento della serie, 1/4 reciproco, 1/2 considera una sola topologia, 1 ignora i collegamenti.
 
-Didattica: Seconda inversa con unità e divisioni lecite; eventuale ramo fisico e limiti della misura.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Seconda inversa con unità e divisioni lecite; eventuale ramo fisico e limiti della misura.
 
 Figura: Letti XML e native completo 640×1660: primo circuito in serie con nodi A/M/B e cariche+Q/−Q sul nodo intermedio; assi e fili non attraversano label. Secondo circuito parallelo separato, stessi due 2 μF. Barre inferiori 1/2/3/2 μF lunghe 160/320/240 da x 150, scala 160 coordinate/μF. Zero posto a sinistra fuori asse. Nessuna commutazione temporale dedotta dai due circuiti.
 
-Modalità EXACT_ORACLE. Risultato indipendente: `4`. Firma: `0a11951abb8ff28c5d61579019e32357be1aeb545bf346505cc362d17cdc4630`.
+Modalità EXACT_ORACLE. Risultato indipendente: `4`. Firma: `f1f8486cf57a2d4ba3c1418d1eea3322c265ba6b64eea351a3c1c8f7d338001d`.
 
 ## AR-u6-series-capacitors-07
 
@@ -104,11 +104,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 3/2 reciproco, 1/2 segue un solo componente, 2 ne inverte l’effetto, 1 ignora. Prodotto e somma nuovi danno 2/3.
 
-Didattica: Due configurazioni ricostruite prima del rapporto adimensionale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Due configurazioni ricostruite prima del rapporto adimensionale.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2/3`. Firma: `1641768ebc16f86a857b9fe932326df4b5aa27bddad0a13219919c2f4aad5a18`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2/3`. Firma: `a509c53a354d75bd81b868dc601f438de71241d701e228581bc4c1eda6517a9a`.
 
 ## AR-u6-series-capacitors-08
 
@@ -118,11 +118,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: −1 scambia ordine, 2 μF copia proposta, 0 la accetta; 2 puro è rapporto e non scarto.
 
-Didattica: Ordine della differenza mantenuto e distinto dal rapporto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Ordine della differenza mantenuto e distinto dal rapporto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `9a6ec4aac725629ad99f62c519017ff1b618849237a14fcaf6c166ef0ddc6dc7`.
+Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `7fe9a09e85f80aafa52902661797fdb95a61461587e038e46609a8a3a9315cdc`.
 
 ## AR-u6-series-capacitors-09
 
@@ -132,11 +132,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: Denominatore con più altera algebra, quello S−C₂ rende incognita negativa. Differenza semplice non inverte serie; C₂/S puro.
 
-Didattica: Inversa simbolica con controllo delle unità e delle divisioni lecite.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Inversa simbolica con controllo delle unità e delle divisioni lecite.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `C₁ = S C₂ / (C₂ − S)`. Firma: `be19912912098dc80176fc1349ce77bbbe63bb5c19a2f4f64fb5f9a227179c8c`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `C₁ = S C₂ / (C₂ − S)`. Firma: `cf2318355fe5d250bc304f24f1ae56073f7890b63acbd8f831d5a99ddb5c701f`.
 
 ## AR-u6-series-capacitors-10
 
@@ -146,11 +146,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: Solo prodotto omette denominatore, rapporto dei fattori perde pesi, T_B/T è scalatura del parallelo. Ultima opzione reciproca.
 
-Didattica: Fattori inseriti nelle posizioni effettive della legge prima della semplificazione.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Fattori inseriti nelle posizioni effettive della legge prima della semplificazione.
 
 Figura: not attached to this record
 
-Modalità AI_CONCEPTUAL. Risultato indipendente: `κ₁ κ₂ T / T_B`. Firma: `a02398b6963d40e9df763dd987783ad3b5d5815ccdf17fef89df17e1cc5e14d0`.
+Modalità AI_CONCEPTUAL. Risultato indipendente: `κ₁ κ₂ T / T_B`. Firma: `15792cd959dd1ee956a539751d09ec368234aafdb54c8dd78d829263baf406da`.
 
 ## AR-u6-series-capacitors-11
 
@@ -160,11 +160,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 1/2 reciproco, 3/2 segue C₁, 3 segue C₂, 9/4 è rapporto delle somme. Equivalente B2 μF resta sotto 3 μF.
 
-Didattica: Entrambi gli ingressi nuovi usati prima del confronto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Entrambi gli ingressi nuovi usati prima del confronto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `16f6fa7737c203b2d961bf702cccf915d077b08e1f8197d02fbf5f78146c11d3`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `3a6fe504fdc8374c977776b4fd157c420e9c4f3d2ade8cd891fece60683c9067`.
 
 ## AR-u6-series-capacitors-12
 
@@ -174,11 +174,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 20/13 applica legge agli ingressi medi, 3 somma, 1/2 semidifferenza, 2 ripete B. Scarto fra 20/13 e 3/2 è 1/26.
 
-Didattica: Media delle uscite distinta da legge ai dati medi e dalla ponderazione temporale.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Media delle uscite distinta da legge ai dati medi e dalla ponderazione temporale.
 
 Figura: Letti XML e native completo 640×1660: primo circuito in serie con nodi A/M/B e cariche+Q/−Q sul nodo intermedio; assi e fili non attraversano label. Secondo circuito parallelo separato, stessi due 2 μF. Barre inferiori 1/2/3/2 μF lunghe 160/320/240 da x 150, scala 160 coordinate/μF. Zero posto a sinistra fuori asse. Nessuna commutazione temporale dedotta dai due circuiti.
 
-Modalità EXACT_ORACLE. Risultato indipendente: `3/2`. Firma: `91acdfa5afa08f094fd9e19204c92b779092ca9b3f3f3738c8a45653f5518d0c`.
+Modalità EXACT_ORACLE. Risultato indipendente: `3/2`. Firma: `1184374ac8f5fd89c7c8ec19bf51a7373a8367f2c64e97932b91cdb725197133`.
 
 ## AR-u6-series-capacitors-13
 
@@ -188,11 +188,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 1/3 reciproco, 2 copia raddoppio di equivalente, 3/2 segue C₁, 6 copia C₂, B inμF senza normalizzare al 2 μF iniziale.
 
-Didattica: Bersaglio ricostruito prima dell’inversa, valore distinto dal rapporto richiesto.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Bersaglio ricostruito prima dell’inversa, valore distinto dal rapporto richiesto.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `990ddbfbab43c5c99e1f4e129040188d0807759cebd04d2715f5c5bc94e010d0`.
+Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `27f36d85903ac651ef9754a804ebbe44b8ae7edc982a8635bcab948c887eea04`.
 
 ## AR-u6-series-capacitors-14
 
@@ -202,11 +202,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 2 μF come C₁ dàS3/2 μF; 6 μF dàS3 μF eD9. D6 preso come S6 μF cade nel confine non finito.
 
-Didattica: Guadagno strumentale rimosso prima dell’inversa fisica.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Guadagno strumentale rimosso prima dell’inversa fisica.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `03569d955a56e84083ea0214b2ae15d9ed1e033fd6fc4109b5d23fe1d098a52c`.
+Modalità EXACT_ORACLE. Risultato indipendente: `3`. Firma: `1b7afc280afad95ef6e5ad9cced9b3655b6d93cab83f81727859cbc023a1b454`.
 
 ## AR-u6-series-capacitors-15
 
@@ -216,11 +216,11 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 1/2 μF copia equivalente e dà 1/3; 2 μF produce D7/3, 3 μF produce D5/2. La soluzione positiva esiste, omissioneoffset dà confine spurio.
 
-Didattica: Offset e guadagno identificati da due riferimenti, poi applicati all’incognita.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Offset e guadagno identificati da due riferimenti, poi applicati all’incognita.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `d88ea92212f8ed30bc0ab5e5423f0b5312af6ad040f142b943083649203cb308`.
+Modalità EXACT_ORACLE. Risultato indipendente: `1`. Firma: `b55be9f4b390a10dbd83f633d70ae0792438f42344f2218ef78c4509ce00c325`.
 
 ## AR-u6-series-capacitors-16
 
@@ -230,8 +230,14 @@ Ipotesi e dominio: Capacità finite positive inizialmente scariche; nodo interme
 
 Distrattori: 1 copia S e dimezza ancora l’equivalente; 1/2 divide invece di moltiplicare, negativo viola passività. Misura fissa la scala del vincolo uguale.
 
-Didattica: Vincolo fra preparazioni sostituito prima di decidere unicità o scala libera.
+Didattica: Competenza primaria C4-L08, con fondamento C4-L07 mantenuto fra i prerequisiti. Vincolo fra preparazioni sostituito prima di decidere unicità o scala libera.
 
 Figura: not attached to this record
 
-Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `c7e7dea42f0f543821cbc6cd10022e7abea284a71aa7ff686239c547916ae535`.
+Modalità EXACT_ORACLE. Risultato indipendente: `2`. Firma: `d567dab91c42ebb4ebb0df30403bf22363b6c2c8acae1506d890416a81a14592`.
+
+## Rilettura del catalogo e mapping finale C4-L08
+
+Tutti i 16 delta metadata finali di 8e21066b36cb9b4390c0390f26d3295fdbd09ffc sono stati letti singolarmente e confrontati con i testi integrali canonici C4-L07 e C4-L08 al pin 5d1dc8dc7b601aef959d10d564c75462be74708d (content/C4.json SHA19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c). C4-L08 tratta reti in serie/parallelo, carica conservata nei collegamenti e transitori; C4-L07 resta il prerequisito sulle singole capacità. skill e feedback target sono ora C4-L08 e i prerequisiti mantengono L07 aggiungendo L08. Non esistono altri campi competencies nei record.
+
+Il confronto esatto su ogni record verifica che prompt, risposte, opzioni, leggi, formule, hint, prose fisiche e SVG non cambiano. Nei binding cambia soltanto candidateSha256. Il precedente esito matematico e le vecchie firme sono conservati byte-identici nell’archivio pre-L08; non sono riattribuiti ai nuovi byte. I presenti token sono congelati dopo questa rilettura, con nuovi report realmente calcolati e successivo target fresh/saved. Nessuna nuova resa SVG è necessaria poiché gli asset sono identici; nessun credito UI/importazione è attribuito qui. Tutte le importazioni dei nuovi metadata sono PENDING_ROOT_REMOTE.

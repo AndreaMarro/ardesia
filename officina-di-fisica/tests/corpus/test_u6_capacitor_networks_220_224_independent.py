@@ -40,6 +40,32 @@ class CapacitorNetworksIndependent(unittest.TestCase):
     self.assertEqual(result['primaryBeforeCandidateKeys']['sha256'],sha(primary.read_bytes()));self.assertEqual(result['primaryBeforeCandidateKeys']['path'],str(primary.relative_to(APP)))
     self.assertEqual(result['packageSha256'],m.REVIEWED_PACKAGE_SHA256);self.assertEqual(result['bindingsSha256'],m.REVIEWED_BINDINGS_SHA256)
     self.assertEqual(result['humanApproval'],'NOT_RUN');self.assertEqual(result['publication'],'DRAFT')
+ def test_actual_catalog_network_lesson_and_single_capacitor_prerequisite(self):
+  from tools.corpus_engineering.pipeline import git_bytes
+  raw=git_bytes(APP.parent,'5d1dc8dc7b601aef959d10d564c75462be74708d','officina-di-fisica/content/C4.json')
+  self.assertEqual(sha(raw),'19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c')
+  catalog=json.loads(raw);lesson=next(x for x in catalog if x['id']=='C4-L08');foundation=next(x for x in catalog if x['id']=='C4-L07')
+  self.assertEqual(lesson['title'],'Mettere insieme i condensatori');self.assertEqual(lesson['prerequisites'],['C4-L07']);self.assertEqual(foundation['title'],'Immagazzinare carica ed energia')
+  self.assertIn('6.5 Conservazione di carica nei collegamenti',lesson['coverage'])
+  for m,p,b in self.rows:
+   self.assertEqual(m.LESSON_REFERENCE['sourceSha256'],sha(raw));self.assertEqual(m.LESSON_REFERENCE['primarySkill'],lesson['id'])
+   for row in p['records']:
+    self.assertEqual(row['skill'],lesson['id']);self.assertEqual(row['error']['target'],lesson['id']);self.assertIn('C4-L07',row['prerequisites']);self.assertIn('C4-L08',row['prerequisites'])
+   for report in (m.report(p,b,CANDIDATE/'editorial/assets'),json.loads((APP/'editorial/reviews'/(m.BATCH+'.json')).read_bytes())):
+    self.assertEqual(report['lessonReference'],m.LESSON_REFERENCE)
+ def test_retokenized_old_lesson_mapping_is_rejected_for_all_eighty(self):
+  from tools.corpus_engineering.review_contract import reviewed_rows
+  checked=0
+  for m,p,b in self.rows:
+   bad=deepcopy(p);bindings=deepcopy(b);by_id={x['id']:x for x in bindings}
+   for row in bad['records']:
+    row['skill']='C4-L07';row['error']['target']='C4-L07';row['prerequisites'].remove('C4-L08');by_id[row['id']]['candidateSha256']=digest(row)
+   tokens={r['id']:token for r,z,token,assets,errors in reviewed_rows(bad,bindings,{},m.EXPECTED_IDS,CANDIDATE/'editorial/assets')}
+   with patch.dict(m.REVIEWED_CANDIDATES,tokens),patch.object(m,'REVIEWED_PACKAGE_SHA256',digest(bad)),patch.object(m,'REVIEWED_BINDINGS_SHA256',digest(bindings)):
+    rejected=m.verify(bad,bindings,CANDIDATE/'editorial/assets')
+   for row in rejected:
+    self.assertFalse(row['ok']);self.assertEqual(row['errors'],['Independent reviewed course or actual lesson mapping mismatch']);checked+=1
+  self.assertEqual(checked,80)
  def test_hostile_rebinding_retokenized_wrong_math_units_and_geometry(self):
   for m,p,b in self.rows:
    before=(digest(p),digest(b),dict(m.REVIEWED_CANDIDATES),m.REVIEWED_PACKAGE_SHA256,m.REVIEWED_BINDINGS_SHA256)
