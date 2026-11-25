@@ -18,7 +18,7 @@ Errori e controllo: Mantenere 40 mN/m in entrambe darebbe nella cavità piccola 
 
 ## 02 — L’unità della tensione di interfaccia
 
-La definizione divide una forza per una lunghezza. Il prefisso milli riduce il newton di mille, lasciando inalterata la dimensione forza su lunghezza. Anche energia per area ha la stessa dimensione, perché un joule è un newton per metro.
+La definizione divide una forza per una lunghezza. Il prefisso milli riduce il newton di mille, lasciando inalterata la dimensione forza su lunghezza. Anche energia per area ha la stessa dimensione, perché un joule è il prodotto di un newton per un metro.
 
 Passaggi: `[\gamma]=\mathrm{N/m}\qquad \mathrm{J/m^2}=\mathrm{N/m}\qquad 1\,\mathrm{mN/m}=10^{-3}\,\mathrm{N/m}`
 
@@ -135,3 +135,7 @@ Sostituire il vincolo nel bilancio dà γ_p=c u². Il rapporto fra venti e ottan
 Passaggi: `\gamma_p=cu^2\qquad u^2=\frac{20}{80}=\frac14\qquad u=\frac12\qquad \gamma_g=40\,\mathrm{mN/m}`
 
 Errori e controllo: Un quarto è u², due è il reciproco della radice e uno non riproduce la misura. c conserva l’unità di tensione perché u è adimensionale: il vincolo riguarda prove assegnate, senza costituire una legge universale di surfattante.
+
+## Correzione dopo la review distinta
+
+Il revisore A ha rilevato nella scheda 02 la frase «un joule è un newton per metro», che poteva indicare erroneamente una divisione. Ora si scrive «un joule è il prodotto di un newton per un metro», cioè J = N·m. La formula J/m² = N/m, tutte le chiavi e gli SVG restano identici. Rigenerati solo il testo iniziale 02 e il suo binding; gli altri 15 record sono identici. La nuova edizione richiede la rilettura indipendente del revisore, senza firme dell’autore.
