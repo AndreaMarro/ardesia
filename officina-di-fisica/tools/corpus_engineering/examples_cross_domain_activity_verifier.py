@@ -7,6 +7,9 @@ from fractions import Fraction
 from pathlib import Path
 import pint
 import sympy as sp
+import re
+import xml.etree.ElementTree as ET
+from .review_contract import reviewed_rows
 from .pipeline import digest,sha
 APP=Path(__file__).resolve().parents[2]
 SOURCE_REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
@@ -19,6 +22,11 @@ FIGURES_BY_ID={key:(['C6-pompa.svg'] if key=='C6-E002' else []) for key in READ_
 SOURCE_ISSUES={
 'C6-E003':'P3 exact-equality/rounding defect: the printed180/(0.050*4200)K=0.86K is false, with no rounding declaration in prompt or blocks. Exact6/7K differs from0.86 by1/350K;0.86 is a correct nearest-hundredth approximation only.',
 'C6-E004':'P2 standalone prompt underdetermines detector signal: fixed detector area/orientation first appears in solution. A linear planar detector initially normal and then60degrees from radial incidence yields3/40 ratherthan3/20 after inverse-square and0.60transmission. State unchanged detector orientation/response in prompt or ask for incident irradiance explicitly.'}
+REVISION_IDS={'C6-E003','C6-E004'}
+# Frozen only after independent complete50block reading and both fullnativeSVG renders.
+REVIEWED_REVISIONS={'C6-E003': '215aca6bc07a79976ad459a8fc7b3eaa4b424dfcdb41e06064765fb938c9e786', 'C6-E004': 'cb33464560be56ede2dd185a80c6590d0807bccb061d6402ac548c87e0a4ebfd'}
+REVISION_ASSETS={'C6-E003':{'joule-water-exact.svg':'eeba8c609ad5c89a033cca9e5b4b5f5a4d3cbdabee1aba12583a25d602c674b2'},
+'C6-E004':{'signal-distance-filter.svg':'b3ac6eed7332745562cc4a2d58674e1d431e86ff51ff1a85bc68b51c72a5c4c2'}}
 SI=pint.UnitRegistry(non_int_type=Fraction)
 
 
@@ -127,7 +135,7 @@ PEDAGOGY={
 'C6-E005':'Grapharea is a verbal pVrepresentation, no missingfigure. Signconvention and energyclosurearevisible; genericbilancedoesnotrequire idealgas.',
 'C6-E006':'Correctsarea-squareprefix and distinguishesobjectheatcapacityfromspecificheat; absorbedversusincidentenergy, boundedlinear-timeextension.'}
 FIGURE_REVIEW={key:('C6-pompa.svg fullXML and complete640x235Chromiumrender independentlyread, actualGit/staticbytesidentical. Left electricalarrowenterspump; right liftedwaterarrowanddownothertransfersleave;6V*.20A and1.2L/min*2m match inputs. Arrowlengths schematic, no quantitativeenergywidthscaleassigned; do not infer allremainingoutputs thermal.' if key=='C6-E002' else 'All originalblocksread: no figure reference, no hidden numericgraphic required.') for key in READ_SOURCE_SHA256}
-def verify(sources, asset_root=None):
+def verify_originals(sources, asset_root=None):
     missing = set(READ_SOURCE_SHA256)-set(sources)
     if missing:
         raise ValueError('Missing independently read examples: '+','.join(sorted(missing)))
@@ -168,14 +176,152 @@ def verify(sources, asset_root=None):
 
 
 
-def report(sources):
-    records=verify(sources)
+
+def _small_fraction(text):
+    if re.fullmatch(r'\d{1,4}',text):return sp.Integer(text)
+    if m:=re.fullmatch(r'\\frac(?:\{(\d{1,4})\}|(\d))(?:\{(\d{1,4})\}|(\d))',text):
+        n,d=int(m[1] or m[2]),int(m[3] or m[4]);return sp.Rational(n,d) if d else None
+    return None
+
+
+def _printed_result(row,prefix,unit,expected,claim,checks):
+    values=[]
+    for block in row.get('blocks',[]):
+        text=block.get('text','').strip()
+        if block.get('type')!='formula' or not text.startswith(prefix+'='):continue
+        value=text.rsplit('=',1)[1]
+        if unit:
+            if not value.endswith(unit):continue
+            value=value[:-len(unit)]
+        result=_small_fraction(value)
+        if result is not None:values.append(result)
+    checks.append(check(claim+' complete numeric results',sp.Integer(len(values)),2 if prefix=='C' else 1))
+    for value in values:checks.append(check(claim,value,expected))
+
+
+def revised_checks(row,asset_root):
+    key=row['id'];F=sp.Rational;Q=SI.Quantity;flag=lambda x:sp.Integer(int(bool(x)))
+    # Retain independently solved values, never the original false equality.
+    checks=[dict(c) for c in independent_checks()[key] if c['claim']!='SOURCE FALSE exact equality to0point86kelvin']
+    for c in checks:
+        c['scope']=('boundary_case_excluded_by_new_explicit_detector_conditions'
+                    if key=='C6-E004' and c['scope'].startswith('reviewer_')
+                    else 'new_draft_calculation_or_explicitly_qualified_rounding_check')
+    prompt=' '.join(row.get('prompt','').split()).casefold()
+    if key=='C6-E003':
+        clauses=('resistenza ohmica r=8 ω','corrente costante i=1/2 a','120 s','50 g d’acqua','75%',
+                 'questa frazione comprende già tutte le perdite','c=4200 j/(kg·k) costanti',
+                 'senza cambiamenti di stato o altro apporto energetico','frazione esatta di kelvin')
+        checks.extend([
+            check('new Joule-heating model and inputs explicit in prompt',flag(all(c in prompt for c in clauses)),1),
+            check('new current timesresistance dimension isvoltage notpower',Q(F(1,2),'A')*Q(8,'ohm'),4,'V'),
+            check('new inverse duration from exactthermalbudget',Q(210,'J/K')*Q(F(6,7),'K')/(Q(F(3,4),'')*Q(2,'W')),120,'s'),
+            check('new exact reconstruction returns180joules',sp.Integer(210)*F(6,7),180,'J'),
+            check('new absorbedfraction bookkeeping rejectsall240joules',F(240,210),F(8,7),'K'),
+            check('new missing kilogram conversion changesgainby1000',F(180,50*4200)/(F(6,7)),F(1,1000)),
+        ])
+        for prefix,unit,expected,claim in [
+            ('P',r'\,\mathrm W',2,'printed Joulepower'),
+            ('E',r'\,\mathrm J',240,'printed dissipatedenergy'),
+            ('Q',r'\,\mathrm J',180,'printed absorbedenergy'),
+            ('C',r'\,\frac{\mathrm J}{\mathrm K}',210,'printed heatcapacity'),
+            (r'\Delta T',r'\,\mathrm K',F(6,7),'printed exact temperaturegain'),
+            (r'\Delta t',r'\,\mathrm s',120,'printed inverse duration')]:
+            _printed_result(row,prefix,unit,expected,claim,checks)
+    else:
+        domain=('s=ki','stessa costante positiva k','senza saturazione né fondo additivo',
+                'apertura trascurabile rispetto alla distanza','mantiene area e orientazione normale al raggio',
+                'stessa direzione radiale','da 1 m a 2 m','trasmissione di potenza 0,60=3/5',
+                'senza ulteriori contributi al segnale')
+        checks.extend([
+            check('new fixed geometry linear response and powertransmission explicit',flag(all(c in prompt for c in domain)),1),
+            check('new inverse positive distancefactor2',sp.sqrt(F(3,5)/F(3,20)),2),
+            check('new initialconstant k cancels if nooffset',sp.simplify((sp.Symbol('k',positive=True)*F(3,20))/(sp.Symbol('k',positive=True)*1)),F(3,20)),
+            check('new combinedfactorbeloweachpositiveattenuation',flag(0<F(3,20)<F(1,4)<1 and F(3,20)<F(3,5)),1),
+            check('new wrongunsquared distancefactor givesthreetenths',F(3,5)*F(1,2),F(3,10)),
+            check('new additiveoffset excluded would change measuredratio',F(F(3,20)+1,2),F(23,40)),
+        ])
+        for prefix,unit,expected,claim in [
+            (r'\tau','',F(3,5),'printed powertransmission'),
+            (r'\frac{I_2}{I_1}','',F(3,20),'printed irradianceratio'),
+            (r'\frac{S_2}{S_1}','',F(3,20),'printed signalratio'),
+            (r'\frac{r_2}{r_1}','',2,'printed positiveinverse distancefactor'),
+            ('r_2',r'\,\mathrm m',2,'printed recovered distance')]:
+            _printed_result(row,prefix,unit,expected,claim,checks)
+    try:
+        name=next(iter(REVISION_ASSETS[key]));svg=ET.fromstring((Path(asset_root)/name).read_bytes())
+        bars=[e.attrib for e in svg.iter() if e.tag.endswith('rect') and e.attrib.get('x')=='64' and e.attrib.get('height')=='38']
+        checks.append(check('new three samebaseline sameheight bars',sp.Integer(len(bars)),3))
+        if len(bars)==3:
+            widths=[F(b['width']) for b in bars]
+            expected=[240,180,60] if key=='C6-E003' else [320,80,48]
+            for i,(width,want) in enumerate(zip(widths,expected)):
+                checks.append(check('new independent barwidth'+str(i),width,want))
+            checks.append(check('new absorbedfraction orgeometricfactor represented',widths[1]/widths[0],F(3,4) if key=='C6-E003' else F(1,4)))
+            checks.append(check('new remainder orfinalfilterfactor represented',widths[2]/widths[0],F(1,4) if key=='C6-E003' else F(3,20)))
+    except (OSError,ET.ParseError,ValueError,KeyError,ZeroDivisionError):
+        checks.append(check('new energy/signal diagram must be independently readable',sp.Integer(0),1))
+    return checks
+
+
+REVISION_MANUAL={
+'C6-E003':'NEW DRAFT28blocks: I1/2A,R8ohm giveP2W;120s gives240J. Delivered3/4 gives180J andother60J.50g=1/20kg,mc210J/K. ExactDeltaT180/210=6/7K, reconstructed210*(6/7)=180J.0.86isexplicitlydiscussedonlyasapproximationnotrequiredanswer; defaultsourcefalseequalityremainsnestedFAIL. Inverse180/((3/4)*2)=120s. All240Jwouldgive8/7K; omittingg-to-kg makesgain1000times too small. CurrenttimesRhasvoltageunits, notpower. No decimaldivision or calculatorneeded.',
+'C6-E004':'NEW DRAFT22blocks: isotropicI=P/(4pir²), r1/r2=1/2 givesfactor1/4. Assignedpowertransmissiontau3/5 multiplies to3/20=15/100. Fixedpositivek inS=kIwithnooffsetcancels, so signalratioequalsirradiance ratio. Inversepositive sqrt((3/5)/(3/20))=sqrt4=2, recovered2m. Sines/rotationandadditiveoffsetcounterexamplesarenowexcluded by explicitpromptdomain.20equalinitialparts reduce5afterdistance then3afterfilter. No numericalpi/radicalinverse or calculatorneeded.'}
+REVISION_ASSUMPTIONS={
+'C6-E003':'NEW DRAFT actuallyread: constantgivenohmicR8/current1/2 for120s,50gwater, constantc4200, assigned75percentdeliveredassensibleheat alreadyincludesalllosses, nophasechange orotherenergyinput. Exactmodel data andpositiveheatcapacity; no lossdoublecount.',
+'C6-E004':'NEW DRAFT actuallyread: constantpointisotropicsource, losslessmedium, negligibledetectoraperture relative todistance, identicalarea/orientationnormalalongfixedradialline, fixedpositive linearresponseS=kI withoutsaturation/background, assignedidealpowertransmission3/5/nofurthercontributions. Positive distances selectpositiveinverseroot. This repairsoriginalstandaloneambiguity before solution.'}
+REVISION_PEDAGOGY={key:'NEW DRAFT fullprompt/allblocksread independently, formula choice justified before exactmanualsubstitution; units/cancellations/balance/errorroutes/inverseexplicit. Newprotecteddiagramalsoreadfully. SourceFAILremainsnestedunchanged; no empiricalstudentcalibration or humanapproval inferred.' for key in REVISION_IDS}
+REVISION_FIGURES={
+'C6-E003':'joule-water-exact.svg entireXML/fullnative480x730Chromiumrenderread. Commonx64/height38, widths240/180/60 at1px/J, energybalance180+60=240. Tickorigin64 and240Jat304consistent. Capacity210J/K andDeltaT6/7K labelsvisible. Not temperatures or temporaltransient.',
+'C6-E004':'signal-distance-filter.svg entireXML/fullnative480x720Chromiumrenderread. Commonx64/height38, widths320/80/48 at320px perS1 give1,1/4,3/20. Captionseparatesdistancefactorandpowerfilter, neithertransient norphysicalwattsaxis. Allbottomlabelsvisible.'}
+
+def verify(sources,package=None,bindings=None,asset_root=None,original_asset_root=None):
+    historical_root=original_asset_root if original_asset_root is not None else asset_root if package is None else None
+    originals=verify_originals(sources,historical_root)
+    if package is None:
+        if bindings is not None:raise ValueError('Bindings require a revision package')
+        return originals
+    if bindings is None:raise ValueError('Revision package requires complete source bindings')
+    root=Path(asset_root) if asset_root is not None else APP/'editorial/assets'
+    byid={record['id']:record for record in originals}
+    for row,binding,signature,assets,errors in reviewed_rows(package,bindings,REVIEWED_REVISIONS,REVISION_IDS,root):
+        key=row['id'];original=byid[key]
+        if (binding['sourceRef']!=SOURCE_REF or binding['sourceId']!=key
+                or binding['sourceSha256']!=original['sourceSha256']
+                or original['sourceSha256']!=READ_SOURCE_SHA256[key]):
+            errors.append('Revision not bound to independently read original source')
+        if (row.get('kind')!='example' or 'answer' in row
+                or type(row.get('version')) is not int or type(row.get('baseVersion')) is not int
+                or row['version']!=original['sourceVersion']+1 or row['baseVersion']!=original['sourceVersion']):
+            errors.append('Expected additive next example edition with correct base and no answer key')
+        if binding.get('assetChecksums')!=REVISION_ASSETS[key]:
+            errors.append('Revision figure differs from independently read protected asset')
+        checks=revised_checks(row,root)
+        if not checks or not all(claim['ok'] for claim in checks):
+            errors.append('Independent new draft mathematics or physical domain failed')
+        revised=dict(original)
+        revised.update(ok=not errors,errors=errors,checks=checks,
+            dimension={claim['claim']:claim['dimension'] for claim in checks},
+            manualFeasibility='PASS_AI_EXACT' if not errors else 'FAIL_NEW_DRAFT',
+            manualArithmetic=REVISION_MANUAL[key],physicalAssumptions=REVISION_ASSUMPTIONS[key],
+            pedagogicalReview=REVISION_PEDAGOGY[key],figureReview=REVISION_FIGURES[key],
+            assetChecksums=assets,candidateSha256=digest(row),reviewedSignature=signature,
+            candidateVersion=row.get('version'),baseVersion=row.get('baseVersion'),
+            failedPublishedEdition=True,publishedEditionReview=original,reviewedEdition='NEW_DRAFT',
+            verificationMode='EXACT_ORACLE',publicationAction='DRAFT')
+        byid[key]=revised
+    return [byid[key] for key in sorted(byid)]
+
+
+def report(sources,package=None,bindings=None):
+    records=verify(sources,package,bindings)
     return {'schemaVersion':'1.0.0','batch':BATCH,'records':records,
         'verifierSha256':sha(Path(__file__).read_bytes()),'sourceRef':SOURCE_REF,
         'sourcePath':SOURCE_PATH,'sourceFileSha256':SOURCE_FILE_SHA256,
         'contractSha256':sha(Path(__file__).with_name('review_contract.py').read_bytes()),
         'acceptedCount':sum(row['ok'] for row in records),'failedCount':sum(not row['ok'] for row in records),
-        'draftReviewedCount':0,'failedPublishedEditionIds':sorted(SOURCE_ISSUES),
+        'draftReviewedCount':sum(row['publicationAction']=='DRAFT' for row in records),
+        'failedPublishedEditionIds':sorted(SOURCE_ISSUES),
         'dependencyVersions':{'sympy':sp.__version__,'pint':pint.__version__},
         'reviewer':'separate_AI_reviewer_not_original_or_revision_author',
         'originalEditionRetained':True,'humanApproval':'NOT_RUN','publicationAction':'NONE'}

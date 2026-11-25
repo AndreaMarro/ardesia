@@ -311,11 +311,8 @@
       "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
       "sourcePath": "officina-di-fisica/content/C6.json",
       "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
-      "ok": false,
-      "errors": [
-        "P3 exact-equality/rounding defect: the printed180/(0.050*4200)K=0.86K is false, with no rounding declaration in prompt or blocks. Exact6/7K differs from0.86 by1/350K;0.86 is a correct nearest-hundredth approximation only.",
-        "Independent example mathematics failed"
-      ],
+      "ok": true,
+      "errors": [],
       "checks": [
         {
           "claim": "actual Joule power2watt",
@@ -330,7 +327,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "actual inputheat240joules",
@@ -345,7 +342,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "actual water received180joules",
@@ -360,7 +357,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "actual50grams conversion",
@@ -373,7 +370,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "actual total heatcapacity210joulesperkelvin",
@@ -389,7 +386,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "independent temperatureincrease6over7kelvin",
@@ -402,20 +399,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
-        },
-        {
-          "claim": "SOURCE FALSE exact equality to0point86kelvin",
-          "independentExact": "6/7",
-          "expectedValue": "43/50",
-          "unit": "K",
-          "dimension": {
-            "[temperature]": "1"
-          },
-          "relation": "exact",
-          "residual": "-1/350",
-          "ok": false,
-          "scope": "actual_source_false_exact_equality"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "0point86 is valid only as hundredth approximation",
@@ -426,7 +410,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_rounding_checked_not_exact_identity"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "false identity residual minus1over350kelvin",
@@ -439,12 +423,300 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "symbolic_source_claim"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "under one kelvin heatbudget180less210",
           "independentExact": "1",
           "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
+        },
+        {
+          "claim": "new Joule-heating model and inputs explicit in prompt",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new current timesresistance dimension isvoltage notpower",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new inverse duration from exactthermalbudget",
+          "independentExact": "120",
+          "expectedValue": "120",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new exact reconstruction returns180joules",
+          "independentExact": "180",
+          "expectedValue": "180",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new absorbedfraction bookkeeping rejectsall240joules",
+          "independentExact": "8/7",
+          "expectedValue": "8/7",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new missing kilogram conversion changesgainby1000",
+          "independentExact": "1/1000",
+          "expectedValue": "1/1000",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed Joulepower complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed Joulepower",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed dissipatedenergy complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed dissipatedenergy",
+          "independentExact": "240",
+          "expectedValue": "240",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed absorbedenergy complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed absorbedenergy",
+          "independentExact": "180",
+          "expectedValue": "180",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed heatcapacity complete numeric results",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed heatcapacity",
+          "independentExact": "210",
+          "expectedValue": "210",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed heatcapacity",
+          "independentExact": "210",
+          "expectedValue": "210",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact temperaturegain complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact temperaturegain",
+          "independentExact": "6/7",
+          "expectedValue": "6/7",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed inverse duration complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed inverse duration",
+          "independentExact": "120",
+          "expectedValue": "120",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new three samebaseline sameheight bars",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth0",
+          "independentExact": "240",
+          "expectedValue": "240",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth1",
+          "independentExact": "180",
+          "expectedValue": "180",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth2",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new absorbedfraction orgeometricfactor represented",
+          "independentExact": "3/4",
+          "expectedValue": "3/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new remainder orfinalfilterfactor represented",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
           "unit": "",
           "dimension": {},
           "relation": "exact",
@@ -481,27 +753,267 @@
         "independent temperatureincrease6over7kelvin": {
           "[temperature]": "1"
         },
-        "SOURCE FALSE exact equality to0point86kelvin": {
-          "[temperature]": "1"
-        },
         "0point86 is valid only as hundredth approximation": {},
         "false identity residual minus1over350kelvin": {
           "[temperature]": "1"
         },
-        "under one kelvin heatbudget180less210": {}
+        "under one kelvin heatbudget180less210": {},
+        "new Joule-heating model and inputs explicit in prompt": {},
+        "new current timesresistance dimension isvoltage notpower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "new inverse duration from exactthermalbudget": {
+          "[time]": "1"
+        },
+        "new exact reconstruction returns180joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "new absorbedfraction bookkeeping rejectsall240joules": {
+          "[temperature]": "1"
+        },
+        "new missing kilogram conversion changesgainby1000": {},
+        "printed Joulepower complete numeric results": {},
+        "printed Joulepower": {},
+        "printed dissipatedenergy complete numeric results": {},
+        "printed dissipatedenergy": {},
+        "printed absorbedenergy complete numeric results": {},
+        "printed absorbedenergy": {},
+        "printed heatcapacity complete numeric results": {},
+        "printed heatcapacity": {},
+        "printed exact temperaturegain complete numeric results": {},
+        "printed exact temperaturegain": {},
+        "printed inverse duration complete numeric results": {},
+        "printed inverse duration": {},
+        "new three samebaseline sameheight bars": {},
+        "new independent barwidth0": {},
+        "new independent barwidth1": {},
+        "new independent barwidth2": {},
+        "new absorbedfraction orgeometricfactor represented": {},
+        "new remainder orfinalfilterfactor represented": {}
       },
       "calculationScope": "EXACT_MANUAL_CALCULATION",
-      "manualArithmetic": "ActualI²R=(1/2)²*8=2W, times120s=240J. Water gets3/4=>180J.50g=1/20kg,mc=210J/K. ExactDeltaT=180/210=6/7K. Originalprints=0.86K without any approximation/precision declaration in allfiveblocks orprompt, hence FAIL.6/7-.86=-1/350K. Integer crossproducts prove.855<6/7<.865, so0.86 would be a valid hundredth approximation with approxnotation. No calculator needed for exactfraction or rounding. Heat180J<210J perK confirmsunder1K.",
-      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
-      "physicalAssumptions": "Constantgivenohmic8ohm/current.5A over120s, assigned75percent deliveryto50gwater, constantc4200 in smallsinglephaseinterval and no other energychange assigned. SourceFAIL is equality/precision, not Joulelaw or heatbudget.",
-      "pedagogicalReview": "FAILminorprecision: correctphysicalmodel/exactfraction, but unqualifiedequalityto.86false. Do not silentlyread=asapprox. Separately authoredneweditionneeded; originalretained.",
-      "assetChecksums": {},
-      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
-      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "manualArithmetic": "NEW DRAFT28blocks: I1/2A,R8ohm giveP2W;120s gives240J. Delivered3/4 gives180J andother60J.50g=1/20kg,mc210J/K. ExactDeltaT180/210=6/7K, reconstructed210*(6/7)=180J.0.86isexplicitlydiscussedonlyasapproximationnotrequiredanswer; defaultsourcefalseequalityremainsnestedFAIL. Inverse180/((3/4)*2)=120s. All240Jwouldgive8/7K; omittingg-to-kg makesgain1000times too small. CurrenttimesRhasvoltageunits, notpower. No decimaldivision or calculatorneeded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT actuallyread: constantgivenohmicR8/current1/2 for120s,50gwater, constantc4200, assigned75percentdeliveredassensibleheat alreadyincludesalllosses, nophasechange orotherenergyinput. Exactmodel data andpositiveheatcapacity; no lossdoublecount.",
+      "pedagogicalReview": "NEW DRAFT fullprompt/allblocksread independently, formula choice justified before exactmanualsubstitution; units/cancellations/balance/errorroutes/inverseexplicit. Newprotecteddiagramalsoreadfully. SourceFAILremainsnestedunchanged; no empiricalstudentcalibration or humanapproval inferred.",
+      "assetChecksums": {
+        "joule-water-exact.svg": "eeba8c609ad5c89a033cca9e5b4b5f5a4d3cbdabee1aba12583a25d602c674b2"
+      },
+      "figureReview": "joule-water-exact.svg entireXML/fullnative480x730Chromiumrenderread. Commonx64/height38, widths240/180/60 at1px/J, energybalance180+60=240. Tickorigin64 and240Jat304consistent. Capacity210J/K andDeltaT6/7K labelsvisible. Not temperatures or temporaltransient.",
+      "verificationMode": "EXACT_ORACLE",
       "failedPublishedEdition": true,
       "originalEditionRetained": true,
       "humanApproval": "NOT_RUN",
-      "publicationAction": "NONE"
+      "publicationAction": "DRAFT",
+      "candidateSha256": "ea6fbed296308578414aa5a16feeaba1660f9079d5cfa5c9bc10759c2f33c0b5",
+      "reviewedSignature": "215aca6bc07a79976ad459a8fc7b3eaa4b424dfcdb41e06064765fb938c9e786",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C6-E003",
+        "sourceSha256": "c839404e2c7c05da0f138de109b89e64ac31bb5db5f6fc4fd2e145c85b709981",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+        "ok": false,
+        "errors": [
+          "P3 exact-equality/rounding defect: the printed180/(0.050*4200)K=0.86K is false, with no rounding declaration in prompt or blocks. Exact6/7K differs from0.86 by1/350K;0.86 is a correct nearest-hundredth approximation only.",
+          "Independent example mathematics failed"
+        ],
+        "checks": [
+          {
+            "claim": "actual Joule power2watt",
+            "independentExact": "2",
+            "expectedValue": "2",
+            "unit": "W",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "2",
+              "[time]": "-3"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "actual inputheat240joules",
+            "independentExact": "240",
+            "expectedValue": "240",
+            "unit": "J",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "2",
+              "[time]": "-2"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "actual water received180joules",
+            "independentExact": "180",
+            "expectedValue": "180",
+            "unit": "J",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "2",
+              "[time]": "-2"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "actual50grams conversion",
+            "independentExact": "1/20",
+            "expectedValue": "1/20",
+            "unit": "kg",
+            "dimension": {
+              "[mass]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "actual total heatcapacity210joulesperkelvin",
+            "independentExact": "210",
+            "expectedValue": "210",
+            "unit": "J/K",
+            "dimension": {
+              "[mass]": "1",
+              "[length]": "2",
+              "[time]": "-2",
+              "[temperature]": "-1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "independent temperatureincrease6over7kelvin",
+            "independentExact": "6/7",
+            "expectedValue": "6/7",
+            "unit": "K",
+            "dimension": {
+              "[temperature]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "SOURCE FALSE exact equality to0point86kelvin",
+            "independentExact": "6/7",
+            "expectedValue": "43/50",
+            "unit": "K",
+            "dimension": {
+              "[temperature]": "1"
+            },
+            "relation": "exact",
+            "residual": "-1/350",
+            "ok": false,
+            "scope": "actual_source_false_exact_equality"
+          },
+          {
+            "claim": "0point86 is valid only as hundredth approximation",
+            "independentExact": "1",
+            "expectedValue": "1",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_rounding_checked_not_exact_identity"
+          },
+          {
+            "claim": "false identity residual minus1over350kelvin",
+            "independentExact": "-1/350",
+            "expectedValue": "-1/350",
+            "unit": "K",
+            "dimension": {
+              "[temperature]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "under one kelvin heatbudget180less210",
+            "independentExact": "1",
+            "expectedValue": "1",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          }
+        ],
+        "dimension": {
+          "actual Joule power2watt": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "actual inputheat240joules": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "actual water received180joules": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "actual50grams conversion": {
+            "[mass]": "1"
+          },
+          "actual total heatcapacity210joulesperkelvin": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "independent temperatureincrease6over7kelvin": {
+            "[temperature]": "1"
+          },
+          "SOURCE FALSE exact equality to0point86kelvin": {
+            "[temperature]": "1"
+          },
+          "0point86 is valid only as hundredth approximation": {},
+          "false identity residual minus1over350kelvin": {
+            "[temperature]": "1"
+          },
+          "under one kelvin heatbudget180less210": {}
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "ActualI²R=(1/2)²*8=2W, times120s=240J. Water gets3/4=>180J.50g=1/20kg,mc=210J/K. ExactDeltaT=180/210=6/7K. Originalprints=0.86K without any approximation/precision declaration in allfiveblocks orprompt, hence FAIL.6/7-.86=-1/350K. Integer crossproducts prove.855<6/7<.865, so0.86 would be a valid hundredth approximation with approxnotation. No calculator needed for exactfraction or rounding. Heat180J<210J perK confirmsunder1K.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Constantgivenohmic8ohm/current.5A over120s, assigned75percent deliveryto50gwater, constantc4200 in smallsinglephaseinterval and no other energychange assigned. SourceFAIL is equality/precision, not Joulelaw or heatbudget.",
+        "pedagogicalReview": "FAILminorprecision: correctphysicalmodel/exactfraction, but unqualifiedequalityto.86false. Do not silentlyread=asapprox. Separately authoredneweditionneeded; originalretained.",
+        "assetChecksums": {},
+        "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "reviewedEdition": "NEW_DRAFT"
     },
     {
       "id": "C6-E004",
@@ -510,10 +1022,8 @@
       "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
       "sourcePath": "officina-di-fisica/content/C6.json",
       "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
-      "ok": false,
-      "errors": [
-        "P2 standalone prompt underdetermines detector signal: fixed detector area/orientation first appears in solution. A linear planar detector initially normal and then60degrees from radial incidence yields3/40 ratherthan3/20 after inverse-square and0.60transmission. State unchanged detector orientation/response in prompt or ask for incident irradiance explicitly."
-      ],
+      "ok": true,
+      "errors": [],
       "checks": [
         {
           "claim": "intended inverse square factor onequarter",
@@ -524,7 +1034,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "intended combined ratio3over20",
@@ -535,7 +1045,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "intended15percent nominalsignal",
@@ -546,7 +1056,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "independent planar detector60degree counterexample",
@@ -557,7 +1067,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          "scope": "boundary_case_excluded_by_new_explicit_detector_conditions"
         },
         {
           "claim": "edge-on planar detector counterexample zero",
@@ -568,7 +1078,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          "scope": "boundary_case_excluded_by_new_explicit_detector_conditions"
         },
         {
           "claim": "identical two attenuation factors multiply not add",
@@ -579,7 +1089,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "symbolic_source_claim"
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
         },
         {
           "claim": "inverse square irradiance dimensions",
@@ -590,6 +1100,248 @@
             "[mass]": "1",
             "[time]": "-3"
           },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_calculation_or_explicitly_qualified_rounding_check"
+        },
+        {
+          "claim": "new fixed geometry linear response and powertransmission explicit",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new inverse positive distancefactor2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new initialconstant k cancels if nooffset",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new combinedfactorbeloweachpositiveattenuation",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new wrongunsquared distancefactor givesthreetenths",
+          "independentExact": "3/10",
+          "expectedValue": "3/10",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new additiveoffset excluded would change measuredratio",
+          "independentExact": "23/40",
+          "expectedValue": "23/40",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed powertransmission complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed powertransmission",
+          "independentExact": "3/5",
+          "expectedValue": "3/5",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed irradianceratio complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed irradianceratio",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed signalratio complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed signalratio",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed positiveinverse distancefactor complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed positiveinverse distancefactor",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed recovered distance complete numeric results",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed recovered distance",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new three samebaseline sameheight bars",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth0",
+          "independentExact": "320",
+          "expectedValue": "320",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth1",
+          "independentExact": "80",
+          "expectedValue": "80",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new independent barwidth2",
+          "independentExact": "48",
+          "expectedValue": "48",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new absorbedfraction orgeometricfactor represented",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new remainder orfinalfilterfactor represented",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
           "relation": "exact",
           "residual": "0",
           "ok": true,
@@ -606,20 +1358,167 @@
         "inverse square irradiance dimensions": {
           "[mass]": "1",
           "[time]": "-3"
-        }
+        },
+        "new fixed geometry linear response and powertransmission explicit": {},
+        "new inverse positive distancefactor2": {},
+        "new initialconstant k cancels if nooffset": {},
+        "new combinedfactorbeloweachpositiveattenuation": {},
+        "new wrongunsquared distancefactor givesthreetenths": {},
+        "new additiveoffset excluded would change measuredratio": {},
+        "printed powertransmission complete numeric results": {},
+        "printed powertransmission": {},
+        "printed irradianceratio complete numeric results": {},
+        "printed irradianceratio": {},
+        "printed signalratio complete numeric results": {},
+        "printed signalratio": {},
+        "printed positiveinverse distancefactor complete numeric results": {},
+        "printed positiveinverse distancefactor": {},
+        "printed recovered distance complete numeric results": {},
+        "printed recovered distance": {},
+        "new three samebaseline sameheight bars": {},
+        "new independent barwidth0": {},
+        "new independent barwidth1": {},
+        "new independent barwidth2": {},
+        "new absorbedfraction orgeometricfactor represented": {},
+        "new remainder orfinalfilterfactor represented": {}
       },
       "calculationScope": "EXACT_MANUAL_CALCULATION",
-      "manualArithmetic": "Intended fixed detector geometry/linear signal: distance doubles, inverse-square gives1/4, filter3/5 multiplies to3/20=15percent. But fixed area/orientation is only firststatedin workedsolution, not prompt. A planar linear sensor initially normal then60degrees rotated yields3/20*cos60=3/40=7.5percent with same source, distances and filter; edge-onidealresponse0. OriginalFAIL is standalone prompt/model issue, not wrong intended3/20 arithmetic. Ratios dimensionless, irradianceW/m² distinct totalpower.",
-      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
-      "physicalAssumptions": "Pointisotropicconstantsource, inverse-square losslessair, assignedfiltertransmission.60 for relevant incidence. Intended detectorconstantarea/orientation/linearresponse onlysolution-level; promptdoesnotexcludeprojectedarearesponsechanges when moved. SourceFAILpreserved.",
-      "pedagogicalReview": "FAIL: promptasksdetectorsignalwhileconstantdetectorgeometryappearsfirstinsolution. Explicitunchangednormal/orientation/linearresponse or askingirradiancewouldmake15percentunique; no autoedit.",
-      "assetChecksums": {},
-      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
-      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "manualArithmetic": "NEW DRAFT22blocks: isotropicI=P/(4pir²), r1/r2=1/2 givesfactor1/4. Assignedpowertransmissiontau3/5 multiplies to3/20=15/100. Fixedpositivek inS=kIwithnooffsetcancels, so signalratioequalsirradiance ratio. Inversepositive sqrt((3/5)/(3/20))=sqrt4=2, recovered2m. Sines/rotationandadditiveoffsetcounterexamplesarenowexcluded by explicitpromptdomain.20equalinitialparts reduce5afterdistance then3afterfilter. No numericalpi/radicalinverse or calculatorneeded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT actuallyread: constantpointisotropicsource, losslessmedium, negligibledetectoraperture relative todistance, identicalarea/orientationnormalalongfixedradialline, fixedpositive linearresponseS=kI withoutsaturation/background, assignedidealpowertransmission3/5/nofurthercontributions. Positive distances selectpositiveinverseroot. This repairsoriginalstandaloneambiguity before solution.",
+      "pedagogicalReview": "NEW DRAFT fullprompt/allblocksread independently, formula choice justified before exactmanualsubstitution; units/cancellations/balance/errorroutes/inverseexplicit. Newprotecteddiagramalsoreadfully. SourceFAILremainsnestedunchanged; no empiricalstudentcalibration or humanapproval inferred.",
+      "assetChecksums": {
+        "signal-distance-filter.svg": "b3ac6eed7332745562cc4a2d58674e1d431e86ff51ff1a85bc68b51c72a5c4c2"
+      },
+      "figureReview": "signal-distance-filter.svg entireXML/fullnative480x720Chromiumrenderread. Commonx64/height38, widths320/80/48 at320px perS1 give1,1/4,3/20. Captionseparatesdistancefactorandpowerfilter, neithertransient norphysicalwattsaxis. Allbottomlabelsvisible.",
+      "verificationMode": "EXACT_ORACLE",
       "failedPublishedEdition": true,
       "originalEditionRetained": true,
       "humanApproval": "NOT_RUN",
-      "publicationAction": "NONE"
+      "publicationAction": "DRAFT",
+      "candidateSha256": "a35777bede73227d01ba3af02fca98f4aa85bf87886f2e3e7c851422f83ed49f",
+      "reviewedSignature": "cb33464560be56ede2dd185a80c6590d0807bccb061d6402ac548c87e0a4ebfd",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C6-E004",
+        "sourceSha256": "f20471c6da49103370bd40f3c18667a6069fefb9a1596738574fa2d024fa3635",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C6.json",
+        "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+        "ok": false,
+        "errors": [
+          "P2 standalone prompt underdetermines detector signal: fixed detector area/orientation first appears in solution. A linear planar detector initially normal and then60degrees from radial incidence yields3/40 ratherthan3/20 after inverse-square and0.60transmission. State unchanged detector orientation/response in prompt or ask for incident irradiance explicitly."
+        ],
+        "checks": [
+          {
+            "claim": "intended inverse square factor onequarter",
+            "independentExact": "1/4",
+            "expectedValue": "1/4",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended combined ratio3over20",
+            "independentExact": "3/20",
+            "expectedValue": "3/20",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended15percent nominalsignal",
+            "independentExact": "15",
+            "expectedValue": "15",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "independent planar detector60degree counterexample",
+            "independentExact": "3/40",
+            "expectedValue": "3/40",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "edge-on planar detector counterexample zero",
+            "independentExact": "0",
+            "expectedValue": "0",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "identical two attenuation factors multiply not add",
+            "independentExact": "3/20",
+            "expectedValue": "3/20",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "inverse square irradiance dimensions",
+            "independentExact": "1",
+            "expectedValue": "1",
+            "unit": "W/m^2",
+            "dimension": {
+              "[mass]": "1",
+              "[time]": "-3"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          }
+        ],
+        "dimension": {
+          "intended inverse square factor onequarter": {},
+          "intended combined ratio3over20": {},
+          "intended15percent nominalsignal": {},
+          "independent planar detector60degree counterexample": {},
+          "edge-on planar detector counterexample zero": {},
+          "identical two attenuation factors multiply not add": {},
+          "inverse square irradiance dimensions": {
+            "[mass]": "1",
+            "[time]": "-3"
+          }
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Intended fixed detector geometry/linear signal: distance doubles, inverse-square gives1/4, filter3/5 multiplies to3/20=15percent. But fixed area/orientation is only firststatedin workedsolution, not prompt. A planar linear sensor initially normal then60degrees rotated yields3/20*cos60=3/40=7.5percent with same source, distances and filter; edge-onidealresponse0. OriginalFAIL is standalone prompt/model issue, not wrong intended3/20 arithmetic. Ratios dimensionless, irradianceW/m² distinct totalpower.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Pointisotropicconstantsource, inverse-square losslessair, assignedfiltertransmission.60 for relevant incidence. Intended detectorconstantarea/orientation/linearresponse onlysolution-level; promptdoesnotexcludeprojectedarearesponsechanges when moved. SourceFAILpreserved.",
+        "pedagogicalReview": "FAIL: promptasksdetectorsignalwhileconstantdetectorgeometryappearsfirstinsolution. Explicitunchangednormal/orientation/linearresponse or askingirradiancewouldmake15percentunique; no autoedit.",
+        "assetChecksums": {},
+        "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "reviewedEdition": "NEW_DRAFT"
     },
     {
       "id": "C6-E005",
@@ -934,14 +1833,14 @@
       "publicationAction": "NONE"
     }
   ],
-  "verifierSha256": "728268bc8ef8b8294ece217d534fe448c82d6f0baee223b829023d5ec46c7a55",
+  "verifierSha256": "de7f756f73fc948df483b1f39c4e49b2d237875ac29db63138eaf57aede0ac16",
   "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
   "sourcePath": "officina-di-fisica/content/C6.json",
   "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
   "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
-  "acceptedCount": 4,
-  "failedCount": 2,
-  "draftReviewedCount": 0,
+  "acceptedCount": 6,
+  "failedCount": 0,
+  "draftReviewedCount": 2,
   "failedPublishedEditionIds": [
     "C6-E003",
     "C6-E004"
