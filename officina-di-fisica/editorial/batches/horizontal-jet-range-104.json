@@ -1,0 +1,1195 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-horizontal-jet-range-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10401,
+      "title": "Un metro di battente e quattro metri di caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 1,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Con h=1 m e H=4 m,quanto vale R in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il battente determina la velocità iniziale v₀=√(2gh),mentre la quota del foro determina il tempo di caduta t=√(2H/g). Il moto orizzontale è uniforme e R=v₀t. Moltiplicando le due radici, g si cancella e rimane2√(hH)=4 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/357f7cff398f00d1ac051d4eb03172b5b59735d783c5436d28c17a0633cbabdb",
+          "text": "Esempio separato con g2m/s²:h1m di battente e H4m di quota danno v₀2m/s,tempo2s e gittata4m. Geometria50px/m su entrambi gli assi;la superficie è a quota5m,il foro a4m. La traiettoria ha punti(x,y)=(0,4),(2,3),(4,0)m e la tangente iniziale è orizzontale. Freccia velocità60px a30px/(m/s)."
+        },
+        {
+          "type": "formula",
+          "text": "v_0=\\sqrt{2gh}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\sqrt{2H/g}"
+        },
+        {
+          "type": "formula",
+          "text": " R=v_0t"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\sqrt{hH}"
+        },
+        {
+          "type": "formula",
+          "text": " R=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il battente h non è l’altezza di caduta H. Sommare le due quote darebbe la quota della superficie,non R. Il valore non richiede conoscere numericamente g perché la stessa gravità regola efflusso e caduta."
+        }
+      ],
+      "hints": [
+        "Ricava separatamente velocità iniziale e tempo di caduta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il battente h non è l’altezza di caduta H. Sommare le due quote darebbe la quota della superficie,non R. Il valore non richiede conoscere numericamente g perché la stessa gravità regola efflusso e caduta.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10402,
+      "title": "Il prodotto delle radici dà una lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 1,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Quale unità proposta esprime R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "s",
+          "m²",
+          "1"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R è il prodotto di una velocità per un tempo. Anche2√(hH) ha dimensione di lunghezza: sotto la radice c’è il prodotto di due lunghezze e il fattore due è puro."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=[v_0t]"
+        },
+        {
+          "type": "formula",
+          "text": "[v_0t]=L"
+        },
+        {
+          "type": "formula",
+          "text": " [\\sqrt{hH}]=\\sqrt{L^2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt{L^2}=L"
+        },
+        {
+          "type": "text",
+          "text": "m/s è velocità,s un tempo,m² un’area e1 un numero puro. La cancellazione di g non rende la gittata adimensionale:restano le due quote geometriche."
+        }
+      ],
+      "hints": [
+        "Controlla la radice del prodotto hH.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è velocità,s un tempo,m² un’area e1 un numero puro. La cancellazione di g non rende la gittata adimensionale:restano le due quote geometriche.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10403,
+      "title": "Efflusso e caduta nella stessa gravità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 1,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Quale relazione dà R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = 2√(hH)",
+          "R = √(2gh)",
+          "R = 2g√(hH)",
+          "R = 2hH",
+          "R = √(hH)"
+        ],
+        "value": "R = 2√(hH)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo l’origine verticale al suolo e il tempo zero all’uscita. Poiché la componente verticale iniziale è nulla,il punto raggiunge il suolo quando H−gt²/2=0. Con il tempo positivo e la velocità orizzontale di Torricelli,la distanza è2√(hH). Il calcolo usa la stessa g nelle due fasi."
+        },
+        {
+          "type": "formula",
+          "text": "y(t)=H-gt^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\sqrt{2H/g}"
+        },
+        {
+          "type": "formula",
+          "text": " x(t)=v_0t"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\sqrt{2gh}\\sqrt{2H/g}"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\sqrt{hH}"
+        },
+        {
+          "type": "text",
+          "text": "√(2gh) è soltanto la velocità all’uscita,non una gittata. Un fattore g residuo altera le dimensioni;2hH è un’area. La radice senza il due perde un fattore proveniente dalle due leggi del moto."
+        }
+      ],
+      "hints": [
+        "Imponi y(t)=0 dopo l’uscita orizzontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "√(2gh) è soltanto la velocità all’uscita,non una gittata. Un fattore g residuo altera le dimensioni;2hH è un’area. La radice senza il due perde un fattore proveniente dalle due leggi del moto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10404,
+      "title": "Battente quadruplo con la stessa quota del foro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 1,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Fra prove h passa da1 a4 m,mantenendo H=4 m. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da4 a8 m",
+          "Da4 a16 m",
+          "Resta4 m",
+          "Da4 a2 m",
+          "Da4 a4√2 m"
+        ],
+        "value": "Da4 a8 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità iniziale raddoppia perché h quadruplica;il tempo di caduta resta uguale perché il foro è ancora a quota4 m. La distanza raddoppia da4 a8 m. Le superfici dei due serbatoi stanno a quote5 e8 m:non si impone una quota totale fissa fra queste prove."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=2\\sqrt{1\\cdot4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": "2\\sqrt{1\\cdot4}\\,\\mathrm m=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\sqrt{4\\cdot4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sedici tratta la gittata come lineare nel battente;due ne inverte l’effetto e quattro ignora la velocità nuova.4√2 corrisponderebbe a un battente soltanto doppio."
+        }
+      ],
+      "hints": [
+        "A quota di caduta fissa,usa la radice del fattore di h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici tratta la gittata come lineare nel battente;due ne inverte l’effetto e quattro ignora la velocità nuova.4√2 corrisponderebbe a un battente soltanto doppio.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10405,
+      "title": "Il battente dalla gittata misurata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. R=4 m e H=4 m. Quanto vale h in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quadrando la distanza otteniamo R²=4hH. Dividendo per4H si trova h=16 m²/(16 m)=1 m. Il battente così ricostruito pone la superficie a5 m dal suolo,un metro sopra il foro."
+        },
+        {
+          "type": "formula",
+          "text": "R^2=4hH"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{R^2}{4H}"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto R/(4H) sarebbe puro e non una quota. Dividere perH senza il quattro darebbe4 m,che produrrebbe una gittata8 m. La geometria finale mantiene h>0 e H>0."
+        }
+      ],
+      "hints": [
+        "Quadra R prima di dividere per4H.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto R/(4H) sarebbe puro e non una quota. Dividere perH senza il quattro darebbe4 m,che produrrebbe una gittata8 m. La geometria finale mantiene h>0 e H>0.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10406,
+      "title": "Due fori simmetrici rispetto alla metà della quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "La superficie libera di un grande serbatoio è mantenuta a quota Z=10 m sul suolo. Due piccoli fori A e B emettono getti orizzontali ideali,con pressione uguale a quella della superficie e velocità superficiale trascurata. Si assumono gravità uniforme e positiva,aria e interazioni fra getti trascurate. Il foro A è a quota H_A=2 m e B a quota H_B=8 m. Il battente di ciascuno è h=Z−H. Quale confronto è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Gittate uguali; velocità maggiore da A",
+          "Gittate uguali; velocità uguali",
+          "Gittata maggiore da A; velocità uguali",
+          "Gittata maggiore da B; velocità maggiore da B",
+          "Gittate entrambe nulle"
+        ],
+        "value": "Gittate uguali; velocità maggiore da A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha battente8 m e quota di caduta2 m;B ha battente2 m e quota8 m. I prodotti hH sono entrambi16 m²,perciò le gittate valgono8 m. Le velocità non sono uguali:la radice del rapporto dei battenti8/2 dà v_A/v_B=2. Il tempo di caduta di A è invece metà di quello di B,e il prodotto velocità per tempo coincide."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/357f7cff398f00d1ac051d4eb03172b5b59735d783c5436d28c17a0633cbabdb",
+          "text": "Per superficie a quota10m,i fori a quote2e8m hanno battenti8e2m:prodotti16m² e gittate8m uguali. La velocità di A è doppia,il tempo di volo metà. Il terzo pannello usa due barre di gittata uguali,240px a30px/m,non due frecce di velocità uguali."
+        },
+        {
+          "type": "formula",
+          "text": "h_A=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_A=R_B"
+        },
+        {
+          "type": "formula",
+          "text": "R_B=2\\sqrt{16}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_A=R_B"
+        },
+        {
+          "type": "formula",
+          "text": "R_B=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_A/v_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " t_A/t_B=1/2"
+        },
+        {
+          "type": "text",
+          "text": "La stessa gittata non implica la stessa velocità,perché i tempi di volo differiscono. Guardare solo il battente farebbe ignorare la quota di caduta;guardare solo l’altezza del foro perderebbe il diverso efflusso. Entrambi i fori sono sotto la superficie e sopra il suolo."
+        }
+      ],
+      "hints": [
+        "Confronta i prodotti hH e poi separatamente i battenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La stessa gittata non implica la stessa velocità,perché i tempi di volo differiscono. Guardare solo il battente farebbe ignorare la quota di caduta;guardare solo l’altezza del foro perderebbe il diverso efflusso. Entrambi i fori sono sotto la superficie e sopra il suolo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10407,
+      "title": "Abbassare il foro mantenendo il battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. A ha h=1 m,H_A=4 m. B mantiene h ma ha H_B=1 m. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità iniziale resta uguale perché il battente non cambia. La quota di caduta si riduce a un quarto,quindi il tempo di volo e la gittata si dimezzano. Le distanze sono4 e2 m,rapporto un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte gli stati,un quarto tratta il tempo come lineare nell’altezza. Uno trascura il tempo di volo minore e un segno negativo non confronta distanze positive. La quota della superficie cambia insieme al foro per mantenere h."
+        }
+      ],
+      "hints": [
+        "A battente fisso,confronta i tempi di caduta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte gli stati,un quarto tratta il tempo come lineare nell’altezza. Uno trascura il tempo di volo minore e un segno negativo non confronta distanze positive. La quota della superficie cambia insieme al foro per mantenere h.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10408,
+      "title": "Lo scarto di una gittata doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Per h=1 m,H=4 m si propone R=8 m. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "−4 m",
+          "8 m",
+          "0 m",
+          "2 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello dà R=4 m. La proposta otto eccede di4 m. A quota del foro uguale,ottenere8 m richiederebbe battente4 m e velocità iniziale doppia,non il battente1 m assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "R=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−4 inverte la sottrazione;otto ripete la proposta,zero la accetta e due dimezza lo scarto. Non si può raddoppiare il tempo di caduta mantenendo la stessa H e la stessa g."
+        }
+      ],
+      "hints": [
+        "Calcola la radice del prodotto geometrico prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 inverte la sottrazione;otto ripete la proposta,zero la accetta e due dimezza lo scarto. Non si può raddoppiare il tempo di caduta mantenendo la stessa H e la stessa g.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10409,
+      "title": "Isolare il battente con le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Quale formula isola h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h = R²/(4H)",
+          "h = R/(4H)",
+          "h = 4R²/H",
+          "h = 4H/R²",
+          "h = R²H/4"
+        ],
+        "value": "h = R²/(4H)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione positiva R=2√(hH) si ottiene R²=4hH. Dividiamo per4H>0 per isolare il battente. Una lunghezza al quadrato divisa per una lunghezza restituisce una lunghezza,coerente con h."
+        },
+        {
+          "type": "formula",
+          "text": "R^2=4hH"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{R^2}{4H}"
+        },
+        {
+          "type": "text",
+          "text": "R/(4H) è puro;4R²/H ha un fattore sedici in più rispetto alla formula corretta.4H/R² è inverso di una lunghezza e R²H/4 è un volume. La gravità non deve essere reinserita dopo essersi cancellata."
+        }
+      ],
+      "hints": [
+        "Quadra la legge e dividi per tutto4H.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "R/(4H) è puro;4R²/H ha un fattore sedici in più rispetto alla formula corretta.4H/R² è inverso di una lunghezza e R²H/4 è un volume. La gravità non deve essere reinserita dopo essersi cancellata.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10410,
+      "title": "Scalare separatamente le due quote",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. B ha h_B=κ₁h_A e H_B=κ₂H_A,con fattori positivi. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁ κ₂)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "√(κ₁ / κ₂)",
+          "κ₁ + κ₂"
+        ],
+        "value": "√(κ₁ κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza al quadrato è4hH. Le due quote moltiplicano R² con il prodotto dei fattori;il rapporto delle distanze positive è quindi√(κ₁κ₂). I simboli distinguono il battente dalla caduta anche se il prodotto finale è simmetrico."
+        },
+        {
+          "type": "formula",
+          "text": "R_B^2/R_A^2=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\sqrt{\\kappa_1\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto senza radice riguarda R²;il quoziente assegna un effetto inverso alla quota del foro. La somma darebbe due per stati uguali. Il risultato non richiede né una g numerica né una pressione differenziale aggiuntiva."
+        }
+      ],
+      "hints": [
+        "Forma il rapporto dei quadrati e scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto senza radice riguarda R²;il quoziente assegna un effetto inverso alla quota del foro. La somma darebbe due per stati uguali. Il risultato non richiede né una g numerica né una pressione differenziale aggiuntiva.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10411,
+      "title": "Battente quattro e caduta otto metri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. A: h=1 m,H=4 m. B: h=4 m,H=8 m. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2√2",
+          "8",
+          "√2",
+          "1/(2√2)",
+          "4"
+        ],
+        "value": "2√2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha gittata4 m. Per B il prodotto hH vale32 m² e la distanza è2√32=8√2 m. Il rapporto con4 m si semplifica a2√2. Il prodotto delle scalature è4·2=8 per R²,non per R."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=2\\sqrt{32}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=8\\sqrt2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=2\\sqrt2"
+        },
+        {
+          "type": "text",
+          "text": "Otto omette la radice;√2 segue solo la caduta e quattro non combina correttamente i due fattori. Il reciproco1/(2√2) inverte gli stati. Il radicale resta esatto."
+        }
+      ],
+      "hints": [
+        "Semplifica√32=4√2 e poi confronta con4 m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto omette la radice;√2 segue solo la caduta e quattro non combina correttamente i due fattori. Il reciproco1/(2√2) inverte gli stati. Il radicale resta esatto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10412,
+      "title": "Media esatta di due gittate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 2,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Le prove h=1 m,H=4 m e h=4 m,H=8 m hanno uguale peso statistico. Qual è la media aritmetica delle due R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2+4√2 m",
+          "4+8√2 m",
+          "1+2√2 m",
+          "2√15 m",
+          "2√2 m"
+        ],
+        "value": "2+4√2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le gittate sono4 e8√2 m. La loro semisomma è2+4√2 m,senza approssimare√2. Gli ingressi medi definirebbero un’altra coppia di quote,non la media di queste due distanze."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{4+8\\sqrt2}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=(2+4\\sqrt2)\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "4+8√2 è la somma,1+2√2 dimezza due volte e2√2 ripete il rapporto fra gittate. Gli ingressi medi h5/2 m,H6 m darebbero2√15 m. Il quadrato della media corretta è36+16√2,strettamente minore di60 perché√2<3/2:le due risposte sono distinte senza decimali."
+        }
+      ],
+      "hints": [
+        "Dividi per due ciascun termine della somma delle due R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4+8√2 è la somma,1+2√2 dimezza due volte e2√2 ripete il rapporto fra gittate. Gli ingressi medi h5/2 m,H6 m darebbero2√15 m. Il quadrato della media corretta è36+16√2,strettamente minore di60 perché√2<3/2:le due risposte sono distinte senza decimali.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10413,
+      "title": "La quota di caduta per un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 3,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. A ha h_A=1 m,H_A=4 m. B ha h_B=4 m e deve avere R_B=2√2 R_A. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "2√2",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è8√2 m e il suo quadrato128 m². Isolando H_B=R_B²/(4h_B) troviamo128/16=8 m. Rispetto ai4 m di A il rapporto è due. La superficie di B si trova allora a12 m dal suolo."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=8\\sqrt2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R_B^2=128\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto è la quota finale numerica,non il rapporto.2√2 è il bersaglio delle distanze,quattro segue il battente e un mezzo inverte gli stati. Il bersaglio conserva H>0 e h>0."
+        }
+      ],
+      "hints": [
+        "Quadra il bersaglio e dividi per4h_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è la quota finale numerica,non il rapporto.2√2 è il bersaglio delle distanze,quattro segue il battente e un mezzo inverte gli stati. Il bersaglio conserva H>0 e h>0.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10414,
+      "title": "Tarare la gittata per trovare il battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 3,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Un display continuo adimensionale segue S=qR,q>0,senza offset. A con h=1 m,H=4 m dà S=12. B con H=8 m dà S=24√2. Quanto vale h_B in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza A4 m fissa q=3 m⁻¹. La lettura24√2 rappresenta8√2 m. Il suo quadrato128 m²,diviso per4H_B=32 m,dà battente4 m. La superficie è dunque sopra il foro,come richiede l’efflusso."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=8\\sqrt2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=\\frac{128\\,\\mathrm{m^2}}{32\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura come distanza darebbe36 m di battente perché il guadagno verrebbe elevato al quadrato. Il fattoreq va rimosso prima di quadrare R. La quota H_B8 m resta un dato della caduta,non il battente da ricostruire."
+        }
+      ],
+      "hints": [
+        "Decodifica la gittata prima dell’inversa geometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura come distanza darebbe36 m di battente perché il guadagno verrebbe elevato al quadrato. Il fattoreq va rimosso prima di quadrare R. La quota H_B8 m resta un dato della caduta,non il battente da ricostruire.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10415,
+      "title": "Una taratura con riferimento radicale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 3,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Un display continuo adimensionale segue S=qR+z. A:h=1 m,H=4 m,S=9. B:h=4 m,H=8 m,S=1+16√2. C:H=4 m,S=17. Quanto vale h_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "1 m",
+          "2 m",
+          "8 m",
+          "16 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le gittate note sono4 e8√2 m. La differenza delle letture è2(8√2−4),quindiq=2 m⁻¹ e z=1. C ha R_C=(17−1)/2=8 m. ConH_C4 m il battente vale64/(4·4)=4 m."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{2(8\\sqrt2-4)}{8\\sqrt2-4}\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=8\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_C=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il denominatore della taratura è non nullo:8√2>4. A H4 m,i battenti1,2,8,16 m darebbero letture9,1+8√2,1+16√2,33;nessuna è17. L’offset va sottratto prima del guadagno e del quadrato."
+        }
+      ],
+      "hints": [
+        "Elimina q,z usando i riferimenti,poi applica h=R²/(4H).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il denominatore della taratura è non nullo:8√2>4. A H4 m,i battenti1,2,8,16 m darebbero letture9,1+8√2,1+16√2,33;nessuna è17. L’offset va sottratto prima del guadagno e del quadrato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-horizontal-jet-range-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso e traiettoria del getto",
+      "order": 10416,
+      "title": "Un battente pari a un quarto della quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "horizontal-jet-range",
+      "difficulty": 3,
+      "prompt": "Un piccolo foro orizzontale scarica da un grande serbatoio di liquido omogeneo incomprimibile. In questa redazione h>0 è il battente verticale dalla superficie al foro; H>0 è la quota del foro sul suolo piano. La superficie è dunque a quota H+h. Nell’istante quasi stazionario si trascura la velocità superficiale; pressione assoluta uguale alla superficie e nel getto, fase liquida mantenuta, nessuna macchina o perdita lungo la linea di corrente. Un elemento di liquido esce orizzontalmente e poi cade nel campo uniforme g>0, senza resistenza dell’aria né ostacoli o interazioni con altri getti. Durante il volo il battente è trattato costante nel modello. R è la distanza orizzontale dal foro al primo impatto col suolo. Fra apparati si impone h=H/4 e si misura R=4 m. Quanto vale H>0 in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nel prodotto geometrico,R=2√(H²/4)=√(H²)=|H|. La quota è positiva per ipotesi,quindi R=H. La misura4 m fissa H4 m e battente h1 m,con superficie a quota5 m."
+        },
+        {
+          "type": "formula",
+          "text": "h=H/4"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\sqrt{H^2/4}"
+        },
+        {
+          "type": "formula",
+          "text": " R=|H|"
+        },
+        {
+          "type": "formula",
+          "text": " H>0"
+        },
+        {
+          "type": "formula",
+          "text": " H=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La radice diH² è il valore assoluto,non automaticamente H su tutti i reali:il dominio positivo seleziona qui la quota corretta. Un’altezza negativa non descrive un foro sopra il suolo. Il vincolo è geometrico fra apparati e determina una sola coppia positiva."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto fra quote prima di semplificare la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice diH² è il valore assoluto,non automaticamente H su tutti i reali:il dominio positivo seleziona qui la quota corretta. Un’altezza negativa non descrive un foro sopra il suolo. Il vincolo è geometrico fra apparati e determina una sola coppia positiva.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e quota del foro distinti",
+        "Torricelli e caduta orizzontale",
+        "Gittata,taratura e domini geometrici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "357f7cff398f00d1ac051d4eb03172b5b59735d783c5436d28c17a0633cbabdb",
+      "name": "horizontal-jet-range-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTcwMCIgdmlld0JveD0iMCAwIDY0MCAxNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+QmF0dGVudGUgZSBhbHRlenphIGRpIGNhZHV0YSBzb25vIGR1ZSBxdW90ZSBkaXZlcnNlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RXNlbXBpbyBjb24gZ3Jhdml0w6AgZHVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJvOiBiYXR0ZW50ZSB1biBtZXRybywgZm9ybyBxdWF0dHJvIG1ldHJpIHNvcHJhIGlsIHN1b2xvLCBzdXBlcmZpY2llIGEgcXVvdGEgY2lucXVlLiBHZW9tZXRyaWEgY2lucXVhbnRhIHBpeGVsIHBlciBtZXRybyBzdSBlbnRyYW1iaSBnbGkgYXNzaS4gSWwgZ2V0dG8gZXNjZSBhIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIGUgcmFnZ2l1bmdlIGlsIHN1b2xvIGRvcG8gZHVlIHNlY29uZGkgYSBkaXN0YW56YSBxdWF0dHJvIG1ldHJpLiBUcmFpZXR0b3JpYSBwYXNzYSBwZXIgemVyby1xdWF0dHJvLCBkdWUtdHJlLCBxdWF0dHJvLXplcm8uIEVzZW1waW8gc2VwYXJhdG8gY29uIHN1cGVyZmljaWUgZGllY2kgbWV0cmkgZSBmb3JpIGFsbGUgcXVvdGUgZHVlIGUgb3R0bzogZ2l0dGF0ZSB1Z3VhbGkgZGkgb3R0byBtZXRyaSwgdmVsb2NpdMOgIGRpdmVyc2UuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjEwIiBtYXJrZXJIZWlnaHQ9IjEwIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE3MDAiIHJ4PSIyMCIgZmlsbD0iI2ZhZjhmMSIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTkzYTQ5Ij48dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiPjEgwrcgRXNlbXBpbyBjb24gZyA9IDJtL3PCsjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkdlb21ldHJpYTUwcHgvbSBzdSBlbnRyYW1iaSBnbGkgYXNzaS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMCI+aCA9IDFtIGRpIGJhdHRlbnRlOyBIID0gNG0gc3VsIHN1b2xvLjwvdGV4dD48cmVjdCB4PSI2MCIgeT0iMzAwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2JhZDllNSIvPjxwYXRoIGQ9Ik02MCAyNjBWNDgwSDIwMFYzNjBNMjAwIDI2MFYzNDAiIHN0cm9rZT0iIzU5N2Y4MyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTQ1IDMwMEgyMjAiIHN0cm9rZT0iIzU5N2Y4MyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+PHBhdGggZD0iTTI0MCAzMDBWMzUwIiBzdHJva2U9IiNiNDYxNDUiLz48dGV4dCB4PSIyNjAiIHk9IjMyNSI+aCA9IDFtPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIyMzAiPlN1cGVyZmljaWU6NW08L3RleHQ+PHBhdGggZD0iTTIwMCAzNTBRMzAwIDM1MCA0MDAgNTUwIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yMDAgMzUwSDI2MCIgc3Ryb2tlPSIjMTkzYTQ5IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIzNTAiIHI9IjQiIGZpbGw9IiMwODg2OWIiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSI0MDAiIHI9IjQiIGZpbGw9IiMwODg2OWIiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSI1NTAiIHI9IjQiIGZpbGw9IiMwODg2OWIiLz48cGF0aCBkPSJNNTAwIDM1MFY1NTAiIHN0cm9rZT0iI2I0NjE0NSIvPjx0ZXh0IHg9IjUyMCIgeT0iNDYwIj5IID0gNG08L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIzMDAiPnbigoAgPSAybS9zPC90ZXh0PjxwYXRoIGQ9Ik0zMCA1NTBINjAwIiBzdHJva2U9IiM1OTdmODMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM1IiB5PSI1OTUiPlN1b2xvOnkgPSAwPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iNTk1Ij5JbXBhdHRvOnggPSA0bTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjUwIj5QdW50aSh4LHkpOiAoMCw0KSwgKDIsMyksICg0LDApbS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjY5NSI+RnJlY2NpYTYwcHggYTMwcHgvKG0vcyksIHRhbmdlbnRlIGluaXppYWxlLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzc1IiBmb250LXNpemU9IjI1Ij4yIMK3IER1ZSBmYXNpIGNvbiBsYSBzdGVzc2EgZzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODI1Ij5FZmZsdXNzbzp24oKAID0g4oiaKDJnaCkgPSAybS9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODc1Ij5DYWR1dGE6dCA9IOKImigySC9nKSA9IDJzLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTI1Ij5Nb3RvIG9yaXp6b250YWxlOlIgPSB24oKAdCA9IDRtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTc1Ij5SID0gMuKImihoSCk6IGcgc2kgY2FuY2VsbGEgbmVsbGEgZGlzdGFuemEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDI1Ij524oKAIGUgdCBzZXBhcmF0YW1lbnRlIGRpcGVuZG9ubyBhbmNvcmEgZGEgZy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExMDUiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgQWx0cm8gZXNlbXBpbzpzdXBlcmZpY2llIGEgcXVvdGExMG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExNTUiPkE6Zm9ybyBhMm0sYmF0dGVudGU4bTsgQjpmb3JvIGE4bSxiYXR0ZW50ZTJtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTIwNSI+aF9BIEhfQSA9IGhfQiBIX0IgPSAxNm3Csi48L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSIxMjYwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjYmFkOWU1Ii8+PHJlY3QgeD0iMTYwIiB5PSIxMzUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjZTdjOTk0Ii8+PHRleHQgeD0iMjgiIHk9IjEyODciPlJfQTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTM3NyI+Ul9CPC90ZXh0Pjx0ZXh0IHg9IjQzNSIgeT0iMTI4NyI+OG08L3RleHQ+PHRleHQgeD0iNDM1IiB5PSIxMzc3Ij44bTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ1NSI+QmFycmUgZGkgZGlzdGFuemE6MzBweC9tLCBlbnRyYW1iZTI0MHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTUwNSI+dl9BL3ZfQiA9IDI7IHRfQS90X0IgPSAxLzIuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNTU1Ij5TdGVzc2EgZ2l0dGF0YSwgdmVsb2NpdMOgIGluaXppYWxpIGRpdmVyc2UuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNjE1Ij5CYXR0ZW50ZSBlIGNhZHV0YSBkZXZvbm8gcmVzdGFyZSBwb3NpdGl2aS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE2NjAiPkFyaWEgdHJhc2N1cmF0YTsgcGVyY29yc28gbGliZXJvIGZpbm8gYWwgc3VvbG8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
