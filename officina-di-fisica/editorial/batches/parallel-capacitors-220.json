@@ -1,0 +1,1189 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-parallel-capacitors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22001,
+      "title": "Due cariche alla stessa tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Con C₁=2 μF e C₂=3 μF, quanto vale S in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione comune permette di sommare le cariche: Q_A=C₁V+C₂V=(C₁+C₂)V. Il coefficiente cercato è quindi S=C₁+C₂=5 μF. Per esempio, a 2 V le cariche sono 4 e 6 μC e la somma 10 μC: divisa per 2 V restituisce proprio 5 μF."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56c7be189a44a7e3a083d9db385d56a8a371829bea370b90d8f8dbce09749be3",
+          "text": "Le due coppie di armature condividono A e B: a V=2 V, C₁=2 μF porta 4 μC e C₂=3 μF porta 6 μC sul nodo A. La carica totale di quel nodo è 10 μC e S=5 μF. I simboli geometrici sono schematici."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=(C_1+C_2)V"
+        },
+        {
+          "type": "formula",
+          "text": " S=C_1+C_2"
+        },
+        {
+          "type": "formula",
+          "text": " S=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "6/5 μF usa la legge della serie. Sei copia il prodotto dei numeri senza una divisione che ne ripristini l’unità; due e tre ignorano una capacità. L’equivalente in parallelo è maggiore di ciascun componente positivo."
+        }
+      ],
+      "hints": [
+        "Somma le cariche corrispondenti alla stessa tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6/5 μF usa la legge della serie. Sei copia il prodotto dei numeri senza una divisione che ne ripristini l’unità; due e tre ignorano una capacità. L’equivalente in parallelo è maggiore di ciascun componente positivo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22002,
+      "title": "La capacità non è una carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Quale unità è adatta a S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F",
+          "C",
+          "V",
+          "J",
+          "1"
+        ],
+        "value": "F"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto fra carica e tensione ha unità C/V, chiamata farad. Un μF è un milionesimo di farad: il prefisso cambia la scala e non la grandezza. Anche la somma C₁+C₂ conserva l’unità di capacità."
+        },
+        {
+          "type": "formula",
+          "text": "[S]=\\mathrm{C/V}"
+        },
+        {
+          "type": "formula",
+          "text": " [S]=\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "C è coulomb, unità di carica, mentre C₁ e C₂ sono simboli di capacità. V misura tensione, J energia e 1 una quantità pura: nessuno di questi è l’unità di S."
+        }
+      ],
+      "hints": [
+        "Dividi una carica per una differenza di potenziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "C è coulomb, unità di carica, mentre C₁ e C₂ sono simboli di capacità. V misura tensione, J energia e 1 una quantità pura: nessuno di questi è l’unità di S.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22003,
+      "title": "La legge del parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Quale relazione dà S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "S = C₁ + C₂",
+          "S = C₁ C₂ / (C₁ + C₂)",
+          "S = C₁ − C₂",
+          "S = 1/C₁ + 1/C₂",
+          "S = C₁ C₂"
+        ],
+        "value": "S = C₁ + C₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La connessione ai medesimi nodi rende uguali le tensioni. Sommando Q₁=C₁V e Q₂=C₂V si ottiene Q_A=(C₁+C₂)V. Il confronto con Q_A=SV identifica S=C₁+C₂. Non occorre assumere uguali le cariche dei due condensatori."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=C_1V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=C_2V"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=(C_1+C_2)V"
+        },
+        {
+          "type": "formula",
+          "text": " S=C_1+C_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto diviso la somma è la capacità di due elementi in serie con nodo intermedio neutro. La differenza può essere negativa; la somma dei reciproci ha F⁻¹ e il prodotto F². Nel parallelo si sommano le cariche a tensione comune."
+        }
+      ],
+      "hints": [
+        "Chiediti quale grandezza rende comune la topologia dei nodi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il prodotto diviso la somma è la capacità di due elementi in serie con nodo intermedio neutro. La differenza può essere negativa; la somma dei reciproci ha F⁻¹ e il prodotto F². Nel parallelo si sommano le cariche a tensione comune.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22004,
+      "title": "Si riduce soltanto C₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 1,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. C₁ passa da 2 a 1 μF; C₂ resta 3 μF. Come cambia S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 4 μF",
+          "Da 5 a 5/2 μF",
+          "Resta 5 μF",
+          "Da 5 a 6 μF",
+          "Da 5 a 1 μF"
+        ],
+        "value": "Da 5 a 4 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima S_A=2+3=5 μF. Dopo S_B=1+3=4 μF. La riduzione è un μF, uguale alla riduzione di C₁, perché l’altro addendo resta invariato. Dimezzare un componente non dimezza tutta la somma."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=(1+3)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "5/2 μF dimezza erroneamente entrambi gli addendi. Cinque ignora il cambio, sei rende inversa la diminuzione e uno copia il solo C₁ nuovo. La topologia rimane parallela."
+        }
+      ],
+      "hints": [
+        "Mantieni invariato l’addendo da 3 μF.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "5/2 μF dimezza erroneamente entrambi gli addendi. Cinque ignora il cambio, sei rende inversa la diminuzione e uno copia il solo C₁ nuovo. La topologia rimane parallela.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22005,
+      "title": "L’addendo mancante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Si misura S=5 μF e si conosce C₂=3 μF. Quanto vale C₁ in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla somma S=C₁+C₂ si sottrae C₂: C₁=S−C₂=2 μF. L’inversa passiva richiede S>C₂; qui 5>3. Reinserendo 2+3 si recupera la misura di 5 μF."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=S-C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=(5-3)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Otto μF aggiunge il noto e darebbe un totale di 11 μF. Cinque μF copia S e darebbe 8 μF. Il confine S=C₂ richiederebbe C₁=0, escluso; S<C₂ darebbe una capacità negativa fuori dal modello."
+        }
+      ],
+      "hints": [
+        "Isola l’addendo e verifica che sia strettamente positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto μF aggiunge il noto e darebbe un totale di 11 μF. Cinque μF copia S e darebbe 8 μF. Il confine S=C₂ richiederebbe C₁=0, escluso; S<C₂ darebbe una capacità negativa fuori dal modello.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22006,
+      "title": "Polarità opposte: conservare il segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Caso autonomo: C_a=1 μF è carico a 6 V e C_b=2 μF a 3 V. I generatori sono scollegati. L’armatura positiva di C_a viene unita alla negativa di C_b nel nodo A; le altre due formano B. Una piccola resistenza positiva nel collegamento permette al transitorio di esaurirsi; nessuna carica entra nei due nodi dall’esterno. Si chiede la tensione finale V_f=V_A−V_B, non quella istantanea durante il collegamento. Quanto vale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0 V",
+          "4 V",
+          "3 V",
+          "6 V",
+          "−4 V"
+        ],
+        "value": "0 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima del contatto le armature che formeranno A portano +C_a·6 V=+6 μC e −C_b·3 V=−6 μC. La somma conservata è zero. Alla fine i condensatori sono in parallelo e Q_A=(C_a+C_b)V_f: con capacità totale 3 μF, V_f=0 V. La capacità equivalente non è zero; sono le cariche orientate iniziali a compensarsi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56c7be189a44a7e3a083d9db385d56a8a371829bea370b90d8f8dbce09749be3",
+          "text": "Il pannello centrale riguarda soltanto il caso autonomo a polarità opposte: le armature che formeranno A hanno +6 e −6 μC, con somma zero. Le barre orientate hanno scala comune. Alla fine la capacità totale è 3 μF e la tensione è zero: una tensione nulla non rende nulla la capacità."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=(6-6)\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=0"
+        },
+        {
+          "type": "formula",
+          "text": " C_a+C_b=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=0\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V somma i due moduli e divide 12 μC per 3 μF, ignorando le polarità opposte; meno quattro inverte quella somma errata. Tre e sei copiano tensioni iniziali. L’energia iniziale può dissiparsi nella resistenza: non si impone la conservazione dell’energia del solo campo."
+        }
+      ],
+      "hints": [
+        "Assegna il segno alle cariche delle armature che formeranno lo stesso nodo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V somma i due moduli e divide 12 μC per 3 μF, ignorando le polarità opposte; meno quattro inverte quella somma errata. Tre e sei copiano tensioni iniziali. L’energia iniziale può dissiparsi nella resistenza: non si impone la conservazione dell’energia del solo campo.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22007,
+      "title": "Il rapporto delle somme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. A usa C₁=2 μF, C₂=3 μF. B mantiene C₁ e usa C₂=1 μF. Quanto vale S_B/S_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5",
+          "5/3",
+          "1/3",
+          "3",
+          "1"
+        ],
+        "value": "3/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equivalente A è 5 μF e B è 3 μF. Il rapporto è 3/5, puro: ogni capacità entra nell’uscita attraverso la somma. Il rapporto 1/3 delle sole C₂ non è il rapporto delle uscite perché C₁ non è stata eliminata."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B/S_A=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "5/3 è il reciproco; 1/3 segue il solo C₂; tre copia il numero dell’equivalente B in μF. Uno ignora la modifica. Entrambi gli equivalenti restano maggiori delle rispettive capacità singole."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le somme prima di confrontarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/3 è il reciproco; 1/3 segue il solo C₂; tre copia il numero dell’equivalente B in μF. Uno ignora la modifica. Entrambi gli equivalenti restano maggiori delle rispettive capacità singole.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22008,
+      "title": "Uno scarto con unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Con C₁=2 μF e C₂=3 μF si propone S=10 μF. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 μF",
+          "−5 μF",
+          "10 μF",
+          "0 μF",
+          "2"
+        ],
+        "value": "5 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma corretta è 5 μF. La proposta la supera di 10−5=5 μF. Il numero puro due è il rapporto e non mantiene l’unità dello scarto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "S=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "−5 μF scambia l’ordine, dieci copia la proposta e zero la accetta. Due confronta per divisione; una differenza di capacità deve invece essere espressa in un’unità di capacità."
+        }
+      ],
+      "hints": [
+        "Sottrai il corretto dalla proposta nello stesso ordine del testo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 μF scambia l’ordine, dieci copia la proposta e zero la accetta. Due confronta per divisione; una differenza di capacità deve invece essere espressa in un’unità di capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22009,
+      "title": "L’inversa del parallelo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. S e C₂ sono noti. Quale formula isola C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C₁ = S − C₂",
+          "C₁ = S + C₂",
+          "C₁ = C₂ − S",
+          "C₁ = S / C₂",
+          "C₁ = 1/S − 1/C₂"
+        ],
+        "value": "C₁ = S − C₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraendo lo stesso addendo C₂ dai due membri della somma si ottiene C₁=S−C₂. Il dato S deve essere maggiore di C₂ per rientrare nel modello con entrambi i componenti positivi. La differenza conserva l’unità farad."
+        },
+        {
+          "type": "formula",
+          "text": "S=C_1+C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=S-C_2"
+        },
+        {
+          "type": "formula",
+          "text": " S>C_2"
+        },
+        {
+          "type": "text",
+          "text": "Il più non isola l’addendo; C₂−S dà un valore negativo nel dominio. S/C₂ è puro. La differenza dei reciproci ha F⁻¹ e appartiene a un’altra manipolazione, non all’inversa della somma."
+        }
+      ],
+      "hints": [
+        "Controlla sia l’algebra sia la positività dell’incognita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più non isola l’addendo; C₂−S dà un valore negativo nel dominio. S/C₂ è puro. La differenza dei reciproci ha F⁻¹ e appartiene a un’altra manipolazione, non all’inversa della somma.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22010,
+      "title": "Scalature con pesi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. B usa C₁,B=κ₁C₁ e C₂,B=κ₂C₂, con fattori positivi. Definiamo S_B=κ₁C₁+κ₂C₂. Quanto vale S_B/S?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ C₁ + κ₂ C₂) / S",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "S / (κ₁ C₁ + κ₂ C₂)",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁ C₁ + κ₂ C₂) / S"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ciascun addendo conserva il proprio fattore. La somma nuova è S_B=κ₁C₁+κ₂C₂ e si divide per S=C₁+C₂. Una scalatura comune κ₁=κ₂=κ dà S_B/S=κ, non κ²; i pesi delle due capacità non vanno persi."
+        },
+        {
+          "type": "formula",
+          "text": "S_B=\\kappa_1C_1+\\kappa_2C_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{S_B}{S}=\\frac{\\kappa_1C_1+\\kappa_2C_2}{S}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto ignora che si somma e non si moltiplica. Il quoziente dei soli fattori perde i pesi; S/S_B inverte il confronto. La somma κ₁+κ₂ darebbe due anche per prove identiche."
+        }
+      ],
+      "hints": [
+        "Scala separatamente ciascun addendo, poi dividi per la somma originale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto ignora che si somma e non si moltiplica. Il quoziente dei soli fattori perde i pesi; S/S_B inverte il confronto. La somma κ₁+κ₂ darebbe due anche per prove identiche.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22011,
+      "title": "Entrambe le capacità cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. A usa C₁=2 μF, C₂=3 μF. B usa C₁=3 μF, C₂=5 μF. Quanto vale S_B/S_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "5/8",
+          "3/2",
+          "5/3",
+          "2"
+        ],
+        "value": "8/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha S_A=5 μF; B ha S_B=8 μF. Il rapporto è 8/5. I fattori 3/2 e 5/3 dei singoli componenti non sono uguali: nessuno dei due può essere applicato indistintamente alla somma."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=5\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=8\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " S_B/S_A=\\frac85"
+        },
+        {
+          "type": "text",
+          "text": "5/8 inverte il confronto; 3/2 segue solo C₁ e 5/3 solo C₂. Due darebbe un equivalente di 10 μF e non gli 8 μF ricavati dalla nuova somma."
+        }
+      ],
+      "hints": [
+        "Non scegliere il fattore di un solo componente quando cambiano entrambi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/8 inverte il confronto; 3/2 segue solo C₁ e 5/3 solo C₂. Due darebbe un equivalente di 10 μF e non gli 8 μF ricavati dalla nuova somma.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22012,
+      "title": "La media coincide per linearità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 2,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. A usa 2 e 3 μF; B usa 3 e 5 μF. Qual è la media aritmetica delle due S con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 μF",
+          "13 μF",
+          "3/2 μF",
+          "5 μF",
+          "8 μF"
+        ],
+        "value": "13/2 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 5 e 8 μF. La media vale 13/2 μF. Anche le capacità medie 5/2 e 4 μF danno 13/2 μF: la coincidenza è una conseguenza della linearità S=C₁+C₂, non una regola da trasferire a qualunque rete."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/56c7be189a44a7e3a083d9db385d56a8a371829bea370b90d8f8dbce09749be3",
+          "text": "L’ultimo pannello confronta le somme delle prove ordinarie A: 2 e 3 μF, B: 3 e 5 μF. Le barre 5 μF, 8 μF e 13/2 μF hanno origine e scala comuni. Non si riferiscono al caso autonomo a polarità opposte."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline S=\\frac{5+8}{2}\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline S=\\frac{13}{2}\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac52+4=\\frac{13}{2}"
+        },
+        {
+          "type": "text",
+          "text": "Tredici non divide per due; 3/2 è metà della differenza. Cinque e otto ripetono una sola uscita. Qui il modello ai dati medi coincide con la media richiesta e va spiegato perché."
+        }
+      ],
+      "hints": [
+        "Media le due somme e riconosci la linearità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tredici non divide per due; 3/2 è metà della differenza. Cinque e otto ripetono una sola uscita. Qui il modello ai dati medi coincide con la media richiesta e va spiegato perché.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22013,
+      "title": "C₂ per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. A ha C₁=2 μF, C₂=3 μF. B usa C₁=3 μF e deve avere S_B=(8/5)S_A. Quanto vale C₂,B/C₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "8/5",
+          "3/2",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è S_B=(8/5)·5 μF=8 μF. Sottraendo il nuovo C₁=3 μF si ottiene C₂,B=5 μF. Il rapporto con C₂,A=3 μF è 5/3, non il fattore dell’intera somma."
+        },
+        {
+          "type": "formula",
+          "text": "S_B=8\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}=(8-3)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_{2,B}}{C_{2,A}}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il confronto, 8/5 copia il rapporto delle somme, 3/2 segue C₁. Uno manterrebbe C₂=3 μF e darebbe S_B=6 μF, inferiore al bersaglio."
+        }
+      ],
+      "hints": [
+        "Trova prima la somma bersaglio e poi l’addendo mancante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il confronto, 8/5 copia il rapporto delle somme, 3/2 segue C₁. Uno manterrebbe C₂=3 μF e darebbe S_B=6 μF, inferiore al bersaglio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22014,
+      "title": "Rimuovere il guadagno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. D=a_cal S è continuo e adimensionale, a_cal>0. A con C₁=2 μF, C₂=3 μF dà D=15. B legge D=24 e ha C₂=5 μF. Quanto vale C₁,B in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha S_A=5 μF, quindi a_cal=15/(5 μF)=3 μF⁻¹. La lettura 24 indica S_B=8 μF. Sottraendo C₂=5 μF si trova C₁,B=3 μF. Ricomponendo il totale si torna alla lettura 24."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm F)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=8\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,B}=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Diciannove μF usa D=24 come capacità totale e predirebbe una lettura 72. Otto μF copia il totale senza sottrarre il noto; cinque copia C₂. Il guadagno non è una capacità aggiunta al circuito."
+        }
+      ],
+      "hints": [
+        "Decodifica la capacità equivalente prima di sottrarre C₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciannove μF usa D=24 come capacità totale e predirebbe una lettura 72. Otto μF copia il totale senza sottrarre il noto; cinque copia C₂. Il guadagno non è una capacità aggiunta al circuito.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22015,
+      "title": "Prima l’offset, poi la somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. D=a_cal S+b è continuo. A: C₁=2 μF, C₂=3 μF, D=11. B: C₁=3 μF, C₂=5 μF, D=17. C: C₂=1 μF, D=5. Quanto vale C₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 μF",
+          "3/2 μF",
+          "2 μF",
+          "4 μF",
+          "5 μF"
+        ],
+        "value": "1 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le somme dei riferimenti sono 5 e 8 μF. Il guadagno è (17−11)/(8−5)=2 μF⁻¹ e l’offset vale 1. Lettura 5 dà S_C=(5−1)/2 μF=2 μF. Tolto C₂=1 μF resta C₁,C=1 μF, strettamente positivo."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm F)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " S_C=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "3/2 μF omette l’offset e ricostruisce D=6. Due μF copia l’equivalente e dà D=7; quattro μF dà una somma di 5 μF e ricostruisce D=11; cinque usa D come se fosse l’incognita e dà D=13."
+        }
+      ],
+      "hints": [
+        "Sottrai b, dividi per il guadagno e infine togli l’addendo noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 μF omette l’offset e ricostruisce D=6. Due μF copia l’equivalente e dà D=7; quattro μF dà una somma di 5 μF e ricostruisce D=11; cinque usa D come se fosse l’incognita e dà D=13.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-parallel-capacitors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Capacità e cariche su nodi comuni",
+      "order": 22016,
+      "title": "Il vincolo fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-capacitors",
+      "difficulty": 3,
+      "prompt": "Due condensatori lineari ideali, con capacità finite positive C₁ e C₂, sono collegati fra la stessa coppia di nodi A e B. V=V_A−V_B>0 è comune alle due coppie di armature. Q₁ e Q₂ sono i moduli sulle armature connesse ad A; Q_A=Q₁+Q₂ è la carica di quel nodo, non la carica netta di entrambe le armature. La capacità equivalente S è definita da Q_A=SV. Si confrontano preparazioni in regime elettrostatico; i valori di capacità non cambiano entro una prova. Fra preparazioni vale C₁=(2/3)C₂. Si misura S=5 μF. Quanto vale C₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 μF",
+          "2 μF",
+          "5 μF",
+          "−3 μF",
+          "Infinite capacità positive"
+        ],
+        "value": "3 μF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nella somma: S=(2/3)C₂+C₂=(5/3)C₂. La misura 5 μF implica C₂=(3/5)·5 μF=3 μF e C₁=2 μF. A differenza del solo rapporto delle capacità, l’equivalente misurato fornisce qui una scala assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "S=\\frac53C_2"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=\\frac35S"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Due μF è C₁, non C₂. Cinque copia il totale. Il valore negativo viola la passività; infinite capacità ignorerebbe l’informazione della misura S, che elimina la scala libera del solo rapporto."
+        }
+      ],
+      "hints": [
+        "Inserisci il vincolo nella legge prima di decidere se la misura è ridondante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due μF è C₁, non C₂. Cinque copia il totale. Il valore negativo viola la passività; infinite capacità ignorerebbe l’informazione della misura S, che elimina la scala libera del solo rapporto.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Tensione comune e somma delle cariche",
+        "Polarità opposte come caso autonomo",
+        "Inverse positive e misura della scala",
+        "Medie lineari e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "56c7be189a44a7e3a083d9db385d56a8a371829bea370b90d8f8dbce09749be3",
+      "name": "parallel-capacitors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UGFyYWxsZWxvLCBwb2xhcml0w6AgZSBjYXBhY2l0w6AgZXF1aXZhbGVudGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgY29uZGVuc2F0b3JpIGRhIGR1ZSBlIHRyZSBtaWNyb2ZhcmFkIGNvbmRpdmlkb25vIGkgbm9kaSBBIGUgQi4gTmVsIGNhc28gYXV0b25vbW8gY29uIHBvbGFyaXTDoCBvcHBvc3RlLCBzZWkgbWljcm9jb3Vsb21iIHBvc2l0aXZpIGUgc2VpIG5lZ2F0aXZpIHN1bCBmdXR1cm8gbm9kbyBBIHNpIGNvbXBlbnNhbm8uIEluZmluZSBjYXBhY2l0w6AgZXF1aXZhbGVudGkgY2lucXVlLCBvdHRvIGUgdHJlZGljaSBtZXp6aSBtaWNyb2ZhcmFkLjwvZGVzYz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MDAiIHJ4PSIxNiIgZmlsbD0iI2Y3ZjlmYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFN0ZXNzaSBkdWUgbm9kaSwgc3Rlc3NhIHRlbnNpb25lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5WX0Eg4oiSIFZfQiA9IDIgViA7IHNpbWJvbGkgc2NoZW1hdGljaS48L3RleHQ+CjxwYXRoIGQ9Ik0xMTAgMTk1VjMxNU01MzAgMTk1VjMxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTExMCAxOTVIMjkwTTMxMCAxOTVINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjkwIDE3MFYyMjBNMzEwIDE3MFYyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjE5NSIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1MzAiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHBhdGggZD0iTTExMCAzMTVIMjkwTTMxMCAzMTVINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjkwIDI5MFYzNDBNMzEwIDI5MFYzNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjExMCIgY3k9IjMxNSIgcj0iNCIgZmlsbD0iIzE4MmM0NiIvPgo8Y2lyY2xlIGN4PSI1MzAiIGN5PSIzMTUiIHI9IjQiIGZpbGw9IiMxODJjNDYiLz4KPHRleHQgeD0iNjciIHk9IjE4NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjU0OCIgeT0iMTg3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QjwvdGV4dD4KPHRleHQgeD0iMjEwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5D4oKBID0gMiDOvEYgOyBR4oKBID0gNCDOvEM8L3RleHQ+Cjx0ZXh0IHg9IjIxMCIgeT0iMjcwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Q+KCgiA9IDMgzrxGIDsgUeKCgiA9IDYgzrxDPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+UV9BID0gUeKCgSArIFHigoIgPSAxMCDOvEM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5TID0gUV9BIC8gViA9IDUgzrxGPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDc1SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUyNCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgQ2FzbyBzZXBhcmF0bzogcG9sYXJpdMOgIG9wcG9zdGU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DX2EgPSAxIM68RiwgNiBWIDsgQ19iID0gMiDOvEYsIDMgVjwvdGV4dD4KPHBhdGggZD0iTTE4MCA2MDBWODgwTTE4MCA3NDBINTQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyNDAiIHk9IjYyMCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI2I4NTMyMiIvPgo8cmVjdCB4PSI0MjAiIHk9Ijc0MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIyMzIiIHk9IjYwNCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPis2IM68QzwvdGV4dD4KPHRleHQgeD0iNDEwIiB5PSI4OTIiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij7iiJI2IM68QzwvdGV4dD4KPHRleHQgeD0iMTQ2IiB5PSI3NDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIyMzUiIHk9Ijc4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkNfYTwvdGV4dD4KPHRleHQgeD0iNDIwIiB5PSI3MTYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DX2I8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NDMiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5Tb21tYSBzdWwgZnV0dXJvIG5vZG8gQTogMCDOvEMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTgzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+Q2FwYWNpdMOgIHRvdGFsZSAzIM68RiA7IFZfZiA9IDAgVi48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMDMwSDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjEwNzgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IFNvbW1lIGUgbWVkaWEgZGVsbGUgdXNjaXRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTEyMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE6IDIgKyAzIM68RiA7IEI6IDMgKyA1IM68RjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTUwVjE0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTE3MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE5OSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjM2OCIgeT0iMTE5OSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjUgzrxGPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEyNTAiIHdpZHRoPSIzMjAiIGhlaWdodD0iNDAiIGZpbGw9IiNiODUzMjIiLz4KPHRleHQgeD0iMzIiIHk9IjEyNzkiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSI0ODgiIHk9IjEyNzkiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij44IM68RjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxMzMwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMzU2NTRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMzU5IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjQyOCIgeT0iMTM1OSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjEzLzIgzrxGPC90ZXh0Pgo8dGV4dCB4PSIxMTgiIHk9IjE0MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTQ2MiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPk9yaWdpbmUgZSBzY2FsYSBjb211bmkgZW50cm8gaWwgcGFubmVsbG8uPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}
