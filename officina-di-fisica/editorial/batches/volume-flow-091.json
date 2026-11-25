@@ -1,0 +1,1130 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-volume-flow-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9101,
+      "title": "Sei centimetri cubi in un secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 1,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Con A=2 cm² e v=3 cm/s, quanto vale Q in cm³/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "cm³/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per una velocità uniforme, in un secondo attraversa il piano una colonna lunga 3 cm: moltiplicata per 2 cm² dà 6 cm³. Se il profilo non è uniforme, la definizione di media areale rende ancora valida Q=Av: non occorre supporre tutte le particelle ugualmente veloci."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e0898ce9ed7a8b4c4d3cab010884bdaac04b46d4f68c1986704673b975564d3f",
+          "text": "Il grafico area per lunghezza rappresenta un volume:100px orizzontali a50px/cm² e150px verticali a50px/cm danno A2cm² per3cm, cioè6cm³ nel secondo considerato. Non è un disegno del diametro del tubo. La portata vale6cm³/s."
+        },
+        {
+          "type": "formula",
+          "text": "Q=A v"
+        },
+        {
+          "type": "formula",
+          "text": " Q=(2\\,\\mathrm{cm^2})(3\\,\\mathrm{cm/s})"
+        },
+        {
+          "type": "formula",
+          "text": " Q=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto ha tre potenze di lunghezza per tempo, non velocità né area. Un valore 3 copierebbe v e 2 copierebbe A. In un secondo transita esattamente 6 cm³, pari a 6 mL."
+        }
+      ],
+      "hints": [
+        "Moltiplica area per velocità normale media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto ha tre potenze di lunghezza per tempo, non velocità né area. Un valore 3 copierebbe v e 2 copierebbe A. In un secondo transita esattamente 6 cm³, pari a 6 mL.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9102,
+      "title": "Un volume per unità di tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 1,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Quale unità proposta esprime Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm³/s",
+          "cm/s",
+          "cm²/s",
+          "cm³",
+          "kg/s"
+        ],
+        "value": "cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata conta il volume transitato, non la lunghezza percorsa da una singola particella. Area per velocità fornisce L²·L/T=L³/T. Il centimetro cubo coincide con il millilitro, perciò cm³/s e mL/s esprimono la stessa dimensione e scala."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=L^3/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{cm^2}\\cdot\\mathrm{cm/s}=\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{cm^3}=1\\,\\mathrm{mL}"
+        },
+        {
+          "type": "text",
+          "text": "cm/s è velocità, cm²/s ha una potenza di lunghezza in meno, cm³ è volume senza tempo e kg/s è portata massica. Quest’ultima richiederebbe anche la densità."
+        }
+      ],
+      "hints": [
+        "Conta le tre potenze di lunghezza del volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm/s è velocità, cm²/s ha una potenza di lunghezza in meno, cm³ è volume senza tempo e kg/s è portata massica. Quest’ultima richiederebbe anche la densità.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9103,
+      "title": "Il massimo sull’asse non è la media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 1,
+      "prompt": "Un fluido newtoniano incomprimibile scorre in moto laminare stazionario pienamente sviluppato in un tubo circolare rigido di raggio R>0, con aderenza alla parete. Il profilo normale è v(s)=v_max[1−(s/R)²], dove s è la distanza dall’asse e v_max>0. Si può usare Q=A v_max senza correzioni?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "No: Q = A v_max / 2",
+          "Sì: Q = A v_max",
+          "No: Q = 2A v_max",
+          "No: Q = A v_max / 4",
+          "No: Q = 0"
+        ],
+        "value": "No: Q = A v_max / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità massima riguarda soltanto l’asse, mentre vicino alla parete tende a zero. Per mediare correttamente pesiamo ogni corona con la sua area. Ponendo u=s²/R², una frazione du dell’area totale porta velocità v_max(1−u). Il grafico in u è un segmento e l’area sottesa è un triangolo di area 1/2: la media è v_max/2."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e0898ce9ed7a8b4c4d3cab010884bdaac04b46d4f68c1986704673b975564d3f",
+          "text": "Per il profilo parabolico si usa u=s²/R²: frazioni uguali du corrispondono a corone di uguale area. Il grafico di v/v_max contro u è lineare da1a0; il triangolo occupa metà del quadrato unitario. È un grafico in raggio al quadrato, non il profilo contro il raggio. Quindi la media areale vale v_max/2."
+        },
+        {
+          "type": "formula",
+          "text": "u=s^2/R^2"
+        },
+        {
+          "type": "formula",
+          "text": " dA=A\\,du"
+        },
+        {
+          "type": "formula",
+          "text": " \\int_0^1(1-u)\\,du=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=v_{max}/2"
+        },
+        {
+          "type": "formula",
+          "text": " Q=A v_{max}/2"
+        },
+        {
+          "type": "text",
+          "text": "Usare A v_max attribuirebbe a tutta la sezione la velocità del solo asse e raddoppierebbe Q. Il quarto non è la media areale di questo profilo; zero è la velocità alla sola parete, non quella di tutto il fluido. Il risultato dipende dal profilo parabolico dichiarato."
+        }
+      ],
+      "hints": [
+        "Media con l’area delle corone, non con la sola distanza dall’asse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Usare A v_max attribuirebbe a tutta la sezione la velocità del solo asse e raddoppierebbe Q. Il quarto non è la media areale di questo profilo; zero è la velocità alla sola parete, non quella di tutto il fluido. Il risultato dipende dal profilo parabolico dichiarato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9104,
+      "title": "Area maggiore con velocità mantenuta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 1,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Fra prove A passa da 2 a 3 cm², mentre v resta 3 cm/s. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 9 cm³/s",
+          "Da 6 a 4 cm³/s",
+          "Resta 6 cm³/s",
+          "Da 6 a 12 cm³/s",
+          "Diventa zero"
+        ],
+        "value": "Da 6 a 9 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A velocità media fissata, ogni centimetro quadrato trasporta lo stesso volume per secondo. Aumentare l’area di un fattore 3/2 porta quindi Q da 6 a 9 cm³/s. Non è il confronto fra due sezioni dello stesso tubo con Q già imposta: qui v è il dato controllato in prove diverse."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=2\\cdot3\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": "2\\cdot3\\,\\mathrm{cm^3/s}=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=3\\cdot3\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=9\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro usa un effetto inverso dell’area; sei imporrebbe un vincolo di portata non dato. Dodici raddoppia invece di moltiplicare per 3/2; zero è incompatibile con area e velocità positive."
+        }
+      ],
+      "hints": [
+        "Mantieni v, cambia soltanto A nel prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro usa un effetto inverso dell’area; sei imporrebbe un vincolo di portata non dato. Dodici raddoppia invece di moltiplicare per 3/2; zero è incompatibile con area e velocità positive.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9105,
+      "title": "L’area attraversata dalla portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Q=6 cm³/s e v=3 cm/s. Quanto vale A in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo il volume al secondo per la lunghezza al secondo rimane l’area del fascio che lo trasporta. A=Q/v=2 cm²; il tempo si cancella fra numeratore e denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "A=Q/v"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{6\\,\\mathrm{cm^3/s}}{3\\,\\mathrm{cm/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Qv avrebbe dimensioni L⁴/T² e non area; v/Q sarebbe area inversa. Per ricavare un raggio servirebbe anche la forma della sezione, mentre qui basta l’area."
+        }
+      ],
+      "hints": [
+        "Dividi Q per v>0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Qv avrebbe dimensioni L⁴/T² e non area; v/Q sarebbe area inversa. Per ricavare un raggio servirebbe anche la forma della sezione, mentre qui basta l’area.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9106,
+      "title": "La velocità media da volume e area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Q=6 cm³/s e A=2 cm². Quanto vale v in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni centimetro di avanzamento attraverso 2 cm² trasporta 2 cm³. Per trasportarne 6 ogni secondo occorrono 3 cm/s di velocità normale media. Il valore non stabilisce il massimo locale di un profilo non uniforme."
+        },
+        {
+          "type": "formula",
+          "text": "v=Q/A"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{6\\,\\mathrm{cm^3/s}}{2\\,\\mathrm{cm^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " v=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto QA non ha dimensioni di velocità; l’inverso A/Q è un tempo per lunghezza. Se il profilo fosse quello parabolico del caso03, il massimo sarebbe 6 cm/s, ma tale profilo non è necessario per questa inversa."
+        }
+      ],
+      "hints": [
+        "Dividi il volume al secondo per la sezione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto QA non ha dimensioni di velocità; l’inverso A/Q è un tempo per lunghezza. Se il profilo fosse quello parabolico del caso03, il massimo sarebbe 6 cm/s, ma tale profilo non è necessario per questa inversa.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9107,
+      "title": "Accelerare la media a sezione fissa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. A mantiene A=2 cm² e passa da v_A=3 a v_B=4 cm/s. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/3",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con la stessa sezione, le portate sono 6 e 8 cm³/s. Il loro rapporto 8/6=4/3 coincide con quello delle velocità medie perché A si cancella. Non stiamo confrontando velocità massime."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=8\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti inverte gli stati; due raddoppia senza dato; un terzo è il solo incremento relativo e uno ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Area uguale: confronta direttamente le due v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti inverte gli stati; due raddoppia senza dato; un terzo è il solo incremento relativo e uno ignora il cambiamento.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9108,
+      "title": "Un volume al secondo raddoppiato per errore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Per A=2 cm²,v=3 cm/s si propone Q=12 cm³/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 cm³/s",
+          "−6 cm³/s",
+          "12 cm³/s",
+          "0 cm³/s",
+          "3 cm³/s"
+        ],
+        "value": "6 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto Av dà 6 cm³/s. La proposta dodici include un fattore due non previsto e sovrastima di 6 cm³/s. Non si sommano automaticamente ingresso e uscita: attraversare un piano è un unico conteggio del volume."
+        },
+        {
+          "type": "formula",
+          "text": "Q=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno negativo inverte l’ordine; dodici ripete il dato errato, zero lo conferma e tre dimezza la differenza. Un fattore 1/2 riguarda soltanto il passaggio da massimo a media per il profilo specifico, non questa v già media."
+        }
+      ],
+      "hints": [
+        "Controlla se il valore dato è già una media sulla sezione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno negativo inverte l’ordine; dodici ripete il dato errato, zero lo conferma e tre dimezza la differenza. Un fattore 1/2 riguarda soltanto il passaggio da massimo a media per il profilo specifico, non questa v già media.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9109,
+      "title": "Isolare l’area senza cambiare il flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Quale formula isola A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A = Q / v",
+          "A = Qv",
+          "A = v / Q",
+          "A = 2Q / v",
+          "A = Q / (2v)"
+        ],
+        "value": "A = Q / v"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione Q=Av contiene A come fattore lineare. Dividendo entrambi i membri per v>0 si ottiene A=Q/v. Nessuna ipotesi sulla pressione è necessaria per questa identità cinematica."
+        },
+        {
+          "type": "formula",
+          "text": "Q=A v"
+        },
+        {
+          "type": "formula",
+          "text": " Q/v=A"
+        },
+        {
+          "type": "formula",
+          "text": " A=Q/v"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto Qv e il reciproco v/Q falliscono il controllo dimensionale. Doppio e metà attribuiscono una correzione di profilo a una velocità già definita come media."
+        }
+      ],
+      "hints": [
+        "Dividi entrambi i membri per la velocità media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto Qv e il reciproco v/Q falliscono il controllo dimensionale. Doppio e metà attribuiscono una correzione di profilo a una velocità già definita come media.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9110,
+      "title": "Due fattori diretti nella portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. B ha A_B=κ₁A_A e v_B=κ₂v_A, con fattori positivi. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni variazione entra in un fattore del prodotto Av. Sostituendo i due dati scalati, Q_B=κ₁κ₂A_Av_A e il rapporto con Q_A elimina le grandezze iniziali. L’area è già l’area, non un raggio da elevare al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=(\\kappa_1 A_A)(\\kappa_2 v_A)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta; κ₁² conta due volte la scalatura dell’area. La somma vale due per stati identici e non può essere un rapporto che deve valere uno."
+        }
+      ],
+      "hints": [
+        "Moltiplica i fattori che scalano A e v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta; κ₁² conta due volte la scalatura dell’area. La somma vale due per stati identici e non può essere un rapporto che deve valere uno.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9111,
+      "title": "Sezione e velocità entrambe maggiori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. A: A=2 cm²,v=3 cm/s. B: A=3 cm²,v=4 cm/s. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "4/3",
+          "12"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasporta 6 cm³/s e B ne trasporta 12. Le scalature 3/2 per l’area e 4/3 per la velocità si moltiplicano e si semplificano a due. Il confronto è fra portate, non fra volumi contenuti nei tubi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=12\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte gli stati, 3/2 e 4/3 considerano un solo cambiamento. Dodici è il numero di Q_B in cm³/s e non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i prodotti oppure semplifica (3/2)(4/3).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte gli stati, 3/2 e 4/3 considerano un solo cambiamento. Dodici è il numero di Q_B in cm³/s e non il rapporto adimensionale.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9112,
+      "title": "Media di due portate indipendenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 2,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Due prove di uguale peso statistico hanno A=2 cm²,v=3 cm/s e A=3 cm²,v=4 cm/s. Qual è la media aritmetica di Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 cm³/s",
+          "18 cm³/s",
+          "9/2 cm³/s",
+          "35/4 cm³/s",
+          "6 cm³/s"
+        ],
+        "value": "9 cm³/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I prodotti dei due stati sono 6 e 12 cm³/s. La loro semisomma è 9 cm³/s. Si mediano risultati separati; non è stato descritto un unico tubo che cambia simultaneamente area e profilo nel tempo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{6+12}{2}\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=9\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto è la somma, 9/2 divide due volte e sei è solo la prima prova. Area media5/2 cm² e velocità media7/2 cm/s darebbero35/4 cm³/s, inferiore di1/4: il prodotto non commuta in generale con la media."
+        }
+      ],
+      "hints": [
+        "Media i due prodotti già calcolati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto è la somma, 9/2 divide due volte e sei è solo la prima prova. Area media5/2 cm² e velocità media7/2 cm/s darebbero35/4 cm³/s, inferiore di1/4: il prodotto non commuta in generale con la media.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9113,
+      "title": "La velocità necessaria per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 3,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. A ha A_A=2 cm²,v_A=3 cm/s. B ha A_B=3 cm² e deve ottenere Q_B=2Q_A. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "3/2",
+          "4"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata bersaglio è 12 cm³/s. Con sezione 3 cm² si ottiene v_B=4 cm/s, e il rapporto con 3 cm/s è 4/3. L’area maggiore realizza già una parte dell’aumento richiesto, così non occorre raddoppiare anche la velocità."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=12\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=Q_B/A_B"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Due, insieme all’area aumentata di3/2, triplicherebbe Q. Quattro è il numero della velocità finale, non il suo rapporto; 3/4 inverte il risultato."
+        }
+      ],
+      "hints": [
+        "Dividi la portata bersaglio per l’area di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due, insieme all’area aumentata di3/2, triplicherebbe Q. Quattro è il numero della velocità finale, non il suo rapporto; 3/4 inverte il risultato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9114,
+      "title": "La taratura di una misura di portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 3,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Un display continuo adimensionale segue S=qQ,q>0, senza offset. A con A=2 cm²,v=3 cm/s dà S=18. B con v=4 cm/s dà S=36. Quanto vale A_B in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento Q_A=6 cm³/s determina q=3 s/cm³. La lettura 36 equivale a Q_B=12 cm³/s. Dividendo per v_B=4 cm/s otteniamo l’area 3 cm², che ricostruisce il prodotto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=12\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=Q_B/v_B"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=3\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Trattare 36 come portata darebbe9 cm², conservando erroneamente il guadagno. Lo strumento non misura direttamente l’area, che è ottenuta da un’inversa dopo la decodifica."
+        }
+      ],
+      "hints": [
+        "Ricava Q dalla lettura prima di dividere per v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trattare 36 come portata darebbe9 cm², conservando erroneamente il guadagno. Lo strumento non misura direttamente l’area, che è ottenuta da un’inversa dopo la decodifica.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9115,
+      "title": "L’area dopo due riferimenti strumentali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 3,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Un display continuo adimensionale segue S=qQ+z. A: A=2 cm²,v=3 cm/s,S=13. B: A=3 cm²,v=4 cm/s,S=25. C: v=3 cm/s,S=19. Quanto vale A_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 cm²",
+          "2 cm²",
+          "4 cm²",
+          "1 cm²",
+          "6 cm²"
+        ],
+        "value": "3 cm²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti Q=6 e 12 cm³/s portano a q=(25−13)/(12−6)=2 s/cm³ e z=1. C ha portata (19−1)/2=9 cm³/s. Il rapporto con 3 cm/s dà un’area di 3 cm²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=9\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=9/3\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=3\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Aree2,4,1,6 cm² a3 cm/s darebbero S13,25,7,37. Solo3 dà19. Dividere direttamente la lettura per la velocità mescolerebbe un numero strumentale con una grandezza fisica."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset, dividi per q e usa A=Q/v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Aree2,4,1,6 cm² a3 cm/s darebbero S13,25,7,37. Solo3 dà19. Dividere direttamente la lettura per la velocità mescolerebbe un numero strumentale con una grandezza fisica.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-volume-flow-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9116,
+      "title": "Un vincolo area-velocità e due radici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "volume-flow",
+      "difficulty": 3,
+      "prompt": "In una prova stazionaria un liquido attraversa una sezione di area A>0. La grandezza v>0 è la media sulla sezione della componente di velocità normale al piano, positiva nel verso del flusso, non una velocità locale sull’asse. La portata volumetrica Q è il volume che attraversa il piano per unità di tempo. Usiamo A in cm² e v in cm/s. Le prove confrontate sono indipendenti. Fra apparati si impone A=cv, con c=2/3 cm·s. Si misura Q=6 cm³/s. Quanto vale v nel dominio positivo, in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente ha dimensioni di lunghezza per tempo, così cv è un’area. Sostituendo in Q=Av si ottiene Q=cv²: il quadrato della velocità è 9 cm²/s². I due segni algebrici v=±3 cm/s vanno considerati separatamente, ma solo quello positivo mantiene anche A positiva."
+        },
+        {
+          "type": "formula",
+          "text": "Q=cv^2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=Q/c"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=9\\,\\mathrm{cm^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_+=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_-=-3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "La radice negativa violerebbe il verso di flusso assegnato e darebbe A<0 nel vincolo. La soluzione fisica v3 cm/s implica A2 cm² e riproduce Q6 cm³/s. Non si tratta di una dipendenza temporale A(t): il vincolo collega prove diverse."
+        }
+      ],
+      "hints": [
+        "Trova prima v², poi seleziona il segno fisico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice negativa violerebbe il verso di flusso assegnato e darebbe A<0 nel vincolo. La soluzione fisica v3 cm/s implica A2 cm² e riproduce Q6 cm³/s. Non si tratta di una dipendenza temporale A(t): il vincolo collega prove diverse.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Portata volumetrica e media normale sulla sezione",
+        "Profilo parabolico e media pesata con l’area",
+        "Inverse, unità e rami fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e0898ce9ed7a8b4c4d3cab010884bdaac04b46d4f68c1986704673b975564d3f",
+      "name": "volume-flow-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU3MCIgdmlld0JveD0iMCAwIDY0MCAxNTcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgdm9sdW1lIHRyYW5zaXRhdG8gZSBsYSBtZWRpYSBjb3JyZXR0YSBkZWxsYSB2ZWxvY2l0w6A8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5QcmltbyBncmFmaWNvIGFyZWEgcGVyIGx1bmdoZXp6YTogZHVlIGNlbnRpbWV0cmkgcXVhZHJhdGkgcGVyIHRyZSBjZW50aW1ldHJpIGRhbm5vIHNlaSBjZW50aW1ldHJpIGN1YmkgaW4gdW4gc2Vjb25kby4gQXNzaSBjaW5xdWFudGEgcGl4ZWwgcGVyIGNlbnRpbWV0cm8gcXVhZHJhdG8gZSBjaW5xdWFudGEgcGl4ZWwgcGVyIGNlbnRpbWV0cm8uIE5lbCBwcm9maWxvIHBhcmFib2xpY28gaWwgY2FtYmlvIGRpIHZhcmlhYmlsZSB1IHVndWFsZSBzIHF1YWRybyBkaXZpc28gUiBxdWFkcm8gcmVuZGUgdW5pZm9ybWUgaWwgcGVzbyBhcmVhbGU6IHZlbG9jaXTDoCBub3JtYWxpenphdGEgdW5vIG1lbm8gdSwgdHJpYW5nb2xvIGRpIGFyZWEgdW4gbWV6em8gbmVsIHF1YWRyYXRvIHVuaXRhcmlvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTcwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IEluIHVuIHNlY29uZG8gdHJhbnNpdGEgdW4gdm9sdW1lPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+R3JhZmljbyBhcmVhIMOXIGx1bmdoZXp6YTogbm9uIMOoIHVuIHByb2ZpbG8gZGkgdHViby48L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxOTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjYmFkOWU1Ii8+PHBhdGggZD0iTTE1MCAxNDBWMzQwSDQ0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTk3ZjgzIi8+PHRleHQgeD0iNzAiIHk9IjI1NSI+MyBjbTwvdGV4dD48dGV4dCB4PSIxNjAiIHk9IjM5MCI+MiBjbcKyPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMjQwIj7OlHQgPSAxIHM8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIyODUiPnYgPSAzIGNtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQ1MCI+T3JpenpvbnRhbGU1MHB4L2NtwrIsIHZlcnRpY2FsZTUwcHgvY20uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0OTAiPs6UViA9IDJjbcKyIMOXIDNjbSA9IDZjbcKzOyBRID0gNmNtwrMvcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU3MCIgZm9udC1zaXplPSIyNSI+MiDCtyBVbmEgbWVkaWEgc3VsbGEgc2V6aW9uZSwgbm9uIHN1bGzigJlhc3NlPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2MjAiPlEgPSBBIHYsIGRvdmUgdiDDqCBsYSBtZWRpYSBkZWxsYSBjb21wb25lbnRlIG5vcm1hbGUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2NzAiPlByb2ZpbG8gcGFyYWJvbGljbzogdihzKSA9IHZfbWF4IFsxIOKIkiBzwrIvUsKyXS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjcyMCI+dSA9IHPCsi9SwrI7IHVuYSBjb3JvbmEgaGEgYXJlYSBBIGR1LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzcwIj5QZXJjacOyIHVndWFsaSBpbnRlcnZhbGxpIGRpIHUgcGVzYW5vIHVndWFsbWVudGUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI4NTAiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgTGEgbWVkaWEgYXJlYWxlIGRhbCB0cmlhbmdvbG8gdW5pdGFyaW88L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMDAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYWJiYWJiIi8+PHBhdGggZD0iTTE1MCAxMDAwTDM1MCAxMjAwSDE1MFoiIGZpbGw9IiNlN2M5OTQiLz48cGF0aCBkPSJNMTUwIDEwMDBMMzUwIDEyMDAiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE1MCAxMjAwSDQ3MCIgc3Ryb2tlPSIjMTkzYTQ5IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTE1MCAxMjAwVjkzMCIgc3Ryb2tlPSIjMTkzYTQ5IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iODAiIHk9IjEwMTAiPjE8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSIxMjQwIj4wPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMTI0MCI+MTwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjEyNDAiPnU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjkxMCI+dihzKS92X21heDwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjEwNTAiPjEg4oiSIHU8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMTAiPkVudHJhbWJpIGdsaSBhc3NpOjIwMHB4IHBlciB1bml0w6AgcHVyYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzNjAiPlRyaWFuZ29sbzogbWV0w6AgZGVsIHF1YWRyYXRvLCBtZWRpYSA9IDEvMi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0MTAiPlF1aW5kaSB2X21lZGlhID0gdl9tYXgvMiBlIFEgPSBBIHZfbWF4LzIuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNDYwIj5M4oCZYXNzZSB1IHJhcHByZXNlbnRhIGlsIHJhZ2dpbyBhbCBxdWFkcmF0by48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE1MTAiPkxhIHZlbG9jaXTDoCBzdWxs4oCZYXNzZSBkYSBzb2xhIHNvdnJhc3RpbWEgUS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
