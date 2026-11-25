@@ -1,0 +1,1187 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-droplet-fragmentation-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12901,
+      "title": "Otto figlie e volume conservato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 1,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². Con R=1 mm e N=8, quanto vale E_f in µJ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2π/25 µJ",
+          "π/25 µJ",
+          "8π/25 µJ",
+          "π/50 µJ",
+          "16π/25 µJ"
+        ],
+        "value": "2π/25 µJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Otto volumi uguali impongono r³=R³/8, dunque r=R/2. Le otto superfici hanno area totale otto volte 4π(R/2)², cioè 8πR²: il doppio della superficie iniziale. Convertendo γ=1/100 N/m e R²=10⁻⁶ m², l’energia finale è 8π per dieci alla meno otto J, pari a 2π/25 µJ."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ef8bea892e946c7e3055b8c61d5ce5269b191f06604e62ac0e31a90baeb4c918",
+          "text": "Una sfera iniziale di raggio R=1 mm diventa otto sfere figlie di raggio r=1/2 mm. I cerchi rappresentano sezioni centrali, tutti alla scala 50 px/mm. Il volume totale è conservato, mentre la superficie totale raddoppia. Le otto figlie sono contate singolarmente."
+        },
+        {
+          "type": "formula",
+          "text": "Nr^3=R^3"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac R2"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=8\\pi R^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=8\\pi\\,10^{-8}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=\\frac{2\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "π/25 µJ è l’energia iniziale e anche, in questo caso particolare, il solo incremento; non è l’energia finale. 8π/25 conserva troppo raggio alle figlie. Il volume conservato non implica superficie conservata."
+        }
+      ],
+      "hints": [
+        "Trova prima il raggio figlio tramite il volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "π/25 µJ è l’energia iniziale e anche, in questo caso particolare, il solo incremento; non è l’energia finale. 8π/25 conserva troppo raggio alle figlie. Il volume conservato non implica superficie conservata.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12902,
+      "title": "L’unità dell’energia di superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 1,
+      "prompt": "E_s=γA è un’energia di interfaccia; γ si misura in N/m e A in m². Quale unità è adatta a E_s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "µJ",
+          "N/m",
+          "Pa",
+          "mm²",
+          "N"
+        ],
+        "value": "µJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto (N/m)m² è N·m, cioè un joule. Un microjoule è un milionesimo di joule: cambia la scala ma conserva la dimensione energetica. Area e tensione da sole non sono energie."
+        },
+        {
+          "type": "formula",
+          "text": "[E_s]=\\mathrm{N/m}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [E_s]=\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{\\mu J}=10^{-6}\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "N/m è γ, Pa una pressione, mm² una superficie e N una forza. Il prefisso micro non indica il numero di goccioline."
+        }
+      ],
+      "hints": [
+        "Moltiplica le dimensioni di tensione e area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N/m è γ, Pa una pressione, mm² una superficie e N una forza. Il prefisso micro non indica il numero di goccioline.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12903,
+      "title": "Il fattore cresce con la radice cubica di N",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 1,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². Quale relazione esprime l’energia totale finale, usando grandezze fisiche in SI?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E_f = 4 π γ R² ∛N",
+          "E_f = 4 π γ R² N",
+          "E_f = 4 π γ R² / ∛N",
+          "E_f = 4 π γ r²",
+          "E_f = 4 π γ R² (∛N − 1)"
+        ],
+        "value": "E_f = 4 π γ R² ∛N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione del volume dà r=R/∛N. N superfici hanno area 4πNr²; sostituendo r, il fattore N si divide per N elevato a due terzi e resta ∛N. L’energia aumenta perché dividere il volume crea superficie. La differenza rispetto all’iniziale rappresenterebbe un’altra quantità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ef8bea892e946c7e3055b8c61d5ce5269b191f06604e62ac0e31a90baeb4c918",
+          "text": "Tre tappe: conservazione del volume con otto figlie, aree iniziale e finale espresse in unità A₀=4πR², poi energie E_i, E_f e incremento alla stessa scala 100 px per π/25 µJ. Il minimo lavoro reversibile, a γ costante e senza altri cambiamenti energetici, è E_f−E_i; un processo dissipativo può richiedere più lavoro. Non si confonde questo incremento con E_f."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac R{\\sqrt[3]N}"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=4\\pi R^2\\sqrt[3]N"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=4\\pi\\gamma R^2\\sqrt[3]N"
+        },
+        {
+          "type": "formula",
+          "text": " E_i=4\\pi\\gamma R^2"
+        },
+        {
+          "type": "text",
+          "text": "N al posto di ∛N tratta le figlie come se avessero raggio iniziale. La divisione per ∛N farebbe diminuire l’area; 4πγr² conta una sola figlia. Il termine ∛N−1 è l’incremento, non il valore finale."
+        }
+      ],
+      "hints": [
+        "Combina il conteggio N con il quadrato del raggio figlio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "N al posto di ∛N tratta le figlie come se avessero raggio iniziale. La divisione per ∛N farebbe diminuire l’area; 4πγr² conta una sola figlia. Il termine ∛N−1 è l’incremento, non il valore finale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12904,
+      "title": "Raddoppiare il raggio iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 1,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². R passa da 1 a 2 mm e N resta 8. Come cambia E_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2π/25 a 8π/25 µJ",
+          "Da 2π/25 a 4π/25 µJ",
+          "Da 2π/25 a 16π/25 µJ",
+          "Resta 2π/25 µJ",
+          "Da 2π/25 a π/25 µJ"
+        ],
+        "value": "Da 2π/25 a 8π/25 µJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A N fissato anche il raggio figlio raddoppia. Ogni superficie, e quindi l’area totale, quadruplica. Con γ invariata l’energia passa da 2π/25 a 8π/25 µJ. Il volume iniziale cresce invece di otto: le due leggi non vanno confuse."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_{f,B}}{E_{f,A}}=\\left(\\frac{R_B}{R_A}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{R_B}{R_A}\\right)^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}=\\frac{8\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "4π/25 segue una lunghezza e 16π/25 un volume. L’energia superficiale segue l’area, mentre γ costante non rende costante l’area stessa."
+        }
+      ],
+      "hints": [
+        "A parità di N confronta i quadrati dei raggi iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "4π/25 segue una lunghezza e 16π/25 un volume. L’energia superficiale segue l’area, mentre γ costante non rende costante l’area stessa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12905,
+      "title": "L’inversa per il raggio iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². E_f=2π/25 µJ e N=8. Quanto vale R in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con otto figlie ∛N=2, quindi E_f=8πγR². Isoliamo R² e convertiamo l’energia in joule prima della divisione: si ottiene 10⁻⁶ m². La radice positiva è 10⁻³ m, un millimetro. È il raggio iniziale, doppio del raggio di ciascuna figlia."
+        },
+        {
+          "type": "formula",
+          "text": "R^2=\\frac{E_f}{8\\pi\\gamma}"
+        },
+        {
+          "type": "formula",
+          "text": " R^2=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non rappresenta un raggio. Un mezzo mm sarebbe il raggio figlio in questa prova e non la grandezza richiesta. π si elimina esattamente senza una sua approssimazione decimale."
+        }
+      ],
+      "hints": [
+        "Dividi prima per il coefficiente dell’area, poi scegli la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il ramo negativo non rappresenta un raggio. Un mezzo mm sarebbe il raggio figlio in questa prova e non la grandezza richiesta. π si elimina esattamente senza una sua approssimazione decimale.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12906,
+      "title": "Ricavare un conteggio intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². E_f=2π/25 µJ e R=1 mm. Quante gocce figlie uguali ci sono?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia iniziale è π/25 µJ. Il rapporto E_f/E_i vale due e coincide con ∛N. Elevando al cubo si ottiene N=8, intero positivo. Una radice cubica ricavata dai dati non va arrotondata a un conteggio: se il cubo non fosse un intero, i dati non rispetterebbero il modello esatto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_f}{E_i}=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt[3]N=2"
+        },
+        {
+          "type": "formula",
+          "text": " N=2^3"
+        },
+        {
+          "type": "formula",
+          "text": " N=8"
+        },
+        {
+          "type": "text",
+          "text": "Due è la radice cubica del conteggio, quattro il suo quadrato e non il numero richiesto. Usare direttamente E_f/E_i come N ignora che il raggio di ogni figlia si riduce."
+        }
+      ],
+      "hints": [
+        "Controlla prima ∛N e poi il cubo intero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è la radice cubica del conteggio, quattro il suo quadrato e non il numero richiesto. Usare direttamente E_f/E_i come N ignora che il raggio di ogni figlia si riduce.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12907,
+      "title": "Da otto a ventisette figlie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². R=1 mm in entrambe le prove; N_A=8 e N_B=27. Quanto vale E_f,B/E_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "27/8",
+          "2/3",
+          "9/4",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le radici cubiche esatte dei due conteggi sono due e tre. Con lo stesso raggio iniziale e la stessa γ il rapporto energetico è tre mezzi. Le figlie più numerose sono più piccole, quindi l’energia non cresce come il loro conteggio diretto."
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt[3]8=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt[3]{27}=3"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}/E_{f,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "27/8 è il rapporto dei conteggi, nove quarti è il quadrato del rapporto corretto e due terzi lo inverte. Uno confonde volume conservato e area conservata."
+        }
+      ],
+      "hints": [
+        "Usa le radici cubiche esatte dei due interi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "27/8 è il rapporto dei conteggi, nove quarti è il quadrato del rapporto corretto e due terzi lo inverte. Uno confonde volume conservato e area conservata.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12908,
+      "title": "Lo scarto fra energia proposta e finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². Con R=1 mm,N=8 si propone E_f=4π/25 µJ. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2π/25 µJ",
+          "−2π/25 µJ",
+          "4π/25 µJ",
+          "0 µJ",
+          "6π/25 µJ"
+        ],
+        "value": "2π/25 µJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia finale corretta è 2π/25 µJ. Sottraendola da 4π/25 resta 2π/25 µJ, positivo. Non si sta chiedendo l’aumento rispetto alla goccia iniziale: il riferimento dello scarto è la risposta finale corretta."
+        },
+        {
+          "type": "formula",
+          "text": "E_f=\\frac{2\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{4\\pi-2\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{2\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno negativo inverte la sottrazione. 4π/25 copia la proposta, 6π/25 somma e zero la accetta. Il solo incremento fisico sarebbe π/25 µJ, quantità ancora diversa."
+        }
+      ],
+      "hints": [
+        "Mantieni distinti proposta, energia iniziale ed energia finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno negativo inverte la sottrazione. 4π/25 copia la proposta, 6π/25 somma e zero la accetta. Il solo incremento fisico sarebbe π/25 µJ, quantità ancora diversa.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12909,
+      "title": "Una radice quadrata per R",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². Quale formula isola il raggio iniziale R>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R = √[E_f / (4 π γ ∛N)]",
+          "R = E_f / (4 π γ ∛N)",
+          "R = √[4 π γ ∛N / E_f]",
+          "R = √[E_f ∛N / (4 π γ)]",
+          "R = ∛[E_f / (4 π γ N)]"
+        ],
+        "value": "R = √[E_f / (4 π γ ∛N)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello contiene R² moltiplicato per 4πγ∛N. Dividiamo l’energia per quel coefficiente e prendiamo la radice positiva. Il quoziente ha dimensione di area, mentre N è un conteggio senza dimensione. γ e l’energia devono usare unità coerenti."
+        },
+        {
+          "type": "formula",
+          "text": "R^2=\\frac{E_f}{4\\pi\\gamma\\sqrt[3]N}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\sqrt{\\frac{E_f}{4\\pi\\gamma\\sqrt[3]N}}"
+        },
+        {
+          "type": "formula",
+          "text": " R>0"
+        },
+        {
+          "type": "text",
+          "text": "Omettere la radice dà un’area, invertire la frazione una lunghezza inversa. Spostare ∛N al numeratore inverte il conteggio nell’inversa. La radice cubica è già servita alla conservazione del volume, ma R entra al quadrato nell’energia."
+        }
+      ],
+      "hints": [
+        "Prima isola R², poi scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Omettere la radice dà un’area, invertire la frazione una lunghezza inversa. Spostare ∛N al numeratore inverte il conteggio nell’inversa. La radice cubica è già servita alla conservazione del volume, ma R entra al quadrato nell’energia.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12910,
+      "title": "Fattori compatibili con conteggi fisici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². B ha R_B=κ₁R_A e N_B=κ₂N_A. I fattori sono positivi e sia N_A sia κ₂N_A sono interi positivi. Qual è E_f,B/E_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁² ∛κ₂",
+          "κ₁ ∛κ₂",
+          "κ₁² κ₂",
+          "κ₁² / ∛κ₂",
+          "κ₁³ κ₂"
+        ],
+        "value": "κ₁² ∛κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area dà il quadrato del fattore di R e la frammentazione dà la radice cubica del fattore di N. Il coefficiente 4πγ si cancella. κ₂ può essere razionale, purché trasformi il conteggio iniziale in un altro intero positivo: non si introduce un numero continuo di figlie."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_{f,B}}{E_{f,A}}=\\kappa_1^2\\sqrt[3]{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " N_A\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "formula",
+          "text": " \\kappa_2N_A\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Una sola potenza di κ₁ segue il raggio, tre seguono il volume. κ₂ diretto dimentica il raggio ridotto delle figlie; la radice al denominatore farebbe diminuire l’energia aumentando il numero a R fissato."
+        }
+      ],
+      "hints": [
+        "Separa il quadrato geometrico dalla radice cubica del conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Una sola potenza di κ₁ segue il raggio, tre seguono il volume. κ₂ diretto dimentica il raggio ridotto delle figlie; la radice al denominatore farebbe diminuire l’energia aumentando il numero a R fissato.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12911,
+      "title": "Raggio doppio e ventisette figlie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². A: R=1 mm,N=8. B: R=2 mm,N=27. Quanto vale E_f,B/E_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6",
+          "3/2",
+          "4",
+          "27/2",
+          "1/6"
+        ],
+        "value": "6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio iniziale doppio dà un fattore quattro. Il passaggio da otto a ventisette figlie dà un fattore tre mezzi. Il prodotto è sei; le energie sono 2π/25 e 12π/25 µJ."
+        },
+        {
+          "type": "formula",
+          "text": "E_{f,A}=\\frac{2\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}=\\frac{12\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}/E_{f,A}=6"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue solo N e quattro solo R. Ventisette mezzi usa il conteggio direttamente e un sesto inverte le prove. Il rapporto resta senza unità."
+        }
+      ],
+      "hints": [
+        "Moltiplica quattro per tre mezzi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue solo N e quattro solo R. Ventisette mezzi usa il conteggio direttamente e un sesto inverte le prove. Il rapporto resta senza unità.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12912,
+      "title": "Media di energie con conteggi distinti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 2,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². A ha R=1 mm,N=8; B ha R=2 mm,N=27. Qual è la media aritmetica delle due E_f con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7π/25 µJ",
+          "14π/25 µJ",
+          "5π/25 µJ",
+          "12π/25 µJ",
+          "π/25 µJ"
+        ],
+        "value": "7π/25 µJ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono 2π/25 e 12π/25 µJ. La somma 14π/25 divisa per due dà 7π/25 µJ. Il conteggio medio sarebbe 35/2: non è intero e non definisce una prova di frammentazione nel dominio assegnato. La media statistica delle energie resta invece perfettamente definita."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E_f=\\frac{2\\pi+12\\pi}{50}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E_f=\\frac{7\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "text",
+          "text": "14π/25 è la somma, 5π/25 la semidifferenza e 12π/25 copia B. π/25 è l’energia iniziale di A. Non si sostituisce tacitamente N con un parametro continuo per applicare il modello agli ingressi medi."
+        }
+      ],
+      "hints": [
+        "Media i due valori energetici già calcolati, non il numero di figlie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14π/25 è la somma, 5π/25 la semidifferenza e 12π/25 copia B. π/25 è l’energia iniziale di A. Non si sostituisce tacitamente N con un parametro continuo per applicare il modello agli ingressi medi.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12913,
+      "title": "Il conteggio per sestuplicare l’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 3,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². A ha R=1 mm,N=8. B impone R=2 mm e E_f,B=6E_f,A. Quale rapporto N_B/N_A serve?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "27/8",
+          "3/2",
+          "8/27",
+          "6",
+          "9/4"
+        ],
+        "value": "27/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio doppio fornisce quattro dei sei fattori richiesti. La radice cubica del rapporto dei conteggi deve quindi valere sei quarti, tre mezzi. Elevando al cubo troviamo 27/8. Moltiplicando per le otto figlie iniziali si ottiene N_B=27, intero ammissibile."
+        },
+        {
+          "type": "formula",
+          "text": "6=4\\sqrt[3]{N_B/N_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt[3]{N_B/N_A}=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " N_B/N_A=\\frac{27}{8}"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=27"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è soltanto la radice cubica del rapporto; nove quarti il quadrato di quella radice. Otto ventisettesimi inverte il rapporto e sei ignora il contributo del raggio."
+        }
+      ],
+      "hints": [
+        "Eleva al cubo solo dopo aver tolto il fattore quattro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è soltanto la radice cubica del rapporto; nove quarti il quadrato di quella radice. Otto ventisettesimi inverte il rapporto e sei ignora il contributo del raggio.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12914,
+      "title": "Display energetico senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 3,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². S=qE_f è continuo e adimensionale. A con R=1 mm,N=8 legge S=6π/25. B legge S=36π/25 e ha N=27. Quanto vale R_B in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha energia 2π/25 µJ, quindi q=3 µJ⁻¹. La nuova lettura equivale a 12π/25 µJ. Con N=27 la legge nelle unità assegnate è E_f=(3π/25)R_num² µJ, dove R_num è il raggio in mm: R_num²=4 e il raggio positivo è due mm."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{\\mu J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,B}=\\frac{12\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B^2=4\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è il rapporto fra letture, non il rapporto fra raggi. Occorre togliere anche il fattore della frammentazione prima della radice. Il display è continuo e non conta figlie."
+        }
+      ],
+      "hints": [
+        "Decodifica l’energia prima dell’inversa quadratica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è il rapporto fra letture, non il rapporto fra raggi. Occorre togliere anche il fattore della frammentazione prima della radice. Il display è continuo e non conta figlie.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12915,
+      "title": "Un offset prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 3,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². S=qE_f+z è continuo e adimensionale. A: R=1 mm,N=8,S=1+4π/25. B: R=2 mm,N=27,S=1+24π/25. C: N=8,S=1+16π/25. Quanto vale R_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mm",
+          "4 mm",
+          "1 mm",
+          "1/2 mm",
+          "√2 mm"
+        ],
+        "value": "2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalle energie 2π/25 e 12π/25 µJ si trova q=2 µJ⁻¹ e z=1. C ha energia 8π/25 µJ. Con lo stesso N di A è quattro volte l’energia A, quindi il raggio è doppio: due mm."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{\\mu J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_{f,C}=\\frac{8\\pi}{25}\\,\\mathrm{\\mu J}"
+        },
+        {
+          "type": "formula",
+          "text": " R_C^2=4\\,\\mathrm{mm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonde il rapporto energetico con quello dei raggi. Uno riproduce A, un mezzo darebbe un quarto dell’energia A e √2 solo il doppio. Nessuno di questi valori ricostruisce la lettura C dopo la taratura."
+        }
+      ],
+      "hints": [
+        "Togli l’offset, converti l’energia e confronta R².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonde il rapporto energetico con quello dei raggi. Uno riproduce A, un mezzo darebbe un quarto dell’energia A e √2 solo il doppio. Nessuno di questi valori ricostruisce la lettura C dopo la taratura.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-droplet-fragmentation-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Volume conservato e nuova superficie",
+      "order": 12916,
+      "title": "Conteggio e raggio legati fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L010",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004",
+        "C2-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "droplet-fragmentation",
+      "difficulty": 3,
+      "prompt": "Una goccia sferica di raggio iniziale R>0 si divide in N goccioline sferiche uguali, separate, con un’unica interfaccia liquido–gas ciascuna. N è un intero positivo; per N=1 non c’è divisione. Si conserva il volume del liquido e si trascura evaporazione, gravità e variazioni di composizione o temperatura. γ=10 mN/m è costante. r indica il raggio di una goccia figlia, distinto da R. Nel modello l’energia di interfaccia è E_s=γA: si chiede il valore totale finale E_f, non il suo incremento. Sono dati V_sfera=4πr³/3 e A_sfera=4πr². Fra prove vale R=cN con c=1/8 mm. Si misura E_f=2π/25 µJ. Quanto vale N intero positivo?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo x=∛N>0. Il vincolo dà R=cx³ e la legge energetica diventa E_f=4πγc²x⁷. Con c=1/8000 m, il coefficiente è π/1600 µJ. La misura impone x⁷=128=2⁷, dunque x=2 e N=8. Si verifica R=1 mm e un conteggio intero."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\sqrt[3]N"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=4\\pi\\gamma c^2x^7"
+        },
+        {
+          "type": "formula",
+          "text": " x^7=128"
+        },
+        {
+          "type": "formula",
+          "text": "128=2^7"
+        },
+        {
+          "type": "formula",
+          "text": " x=2"
+        },
+        {
+          "type": "formula",
+          "text": " N=8"
+        },
+        {
+          "type": "formula",
+          "text": " R=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Il coefficiente c è una lunghezza per unità di conteggio, non un raggio figlio. La potenza settima combina R² con ∛N dopo la sostituzione: fermarsi al quadrato o al cubo perde parte del vincolo. Sul dominio x>0 la settima potenza è crescente, quindi la soluzione è unica."
+        }
+      ],
+      "hints": [
+        "Usa x=∛N per lavorare con una potenza intera esatta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il coefficiente c è una lunghezza per unità di conteggio, non un raggio figlio. La potenza settima combina R² con ∛N dopo la sostituzione: fermarsi al quadrato o al cubo perde parte del vincolo. Sul dominio x>0 la settima potenza è crescente, quindi la soluzione è unica.",
+        "target": "C2-L010"
+      },
+      "coverage": [
+        "Conteggi interi e raggi distinti",
+        "Energia finale e incremento",
+        "Inverse esatte, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ef8bea892e946c7e3055b8c61d5ce5269b191f06604e62ac0e31a90baeb4c918",
+      "name": "droplet-fragmentation-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPk90dG8gZmlnbGllIGNvbnNlcnZhbm8gdm9sdW1lLCBjcmVhbm8gc3VwZXJmaWNpZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlVuYSBzZmVyYSBkaSByYWdnaW8gdW4gbWlsbGltZXRybyBlIG90dG8gc2ZlcmUgZGkgcmFnZ2lvIG1lenpvIG1pbGxpbWV0cm8gYWxsYSBzdGVzc2Egc2NhbGEuIEzigJlhcmVhIGZpbmFsZSDDqCBkb3BwaWEuIEJhcnJlIGVuZXJnZXRpY2hlIGRpc3Rpbmd1b25vIGVuZXJnaWEgaW5pemlhbGUsIGZpbmFsZSBlIGluY3JlbWVudG8uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NDAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgSWwgdm9sdW1lIGZpc3NhIGlsIHJhZ2dpbyBmaWdsaW88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+U2V6aW9uaSBjZW50cmFsaSBkZWxsZSBzZmVyZTogNTAgcHgvbW08L3RleHQ+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjIyMCIgcj0iNTAiIGZpbGw9IiNhN2Q4ZWMiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxnIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIyIj4KPGNpcmNsZSBjeD0iMzU1IiBjeT0iMTgwIiByPSIyNSIvPjxjaXJjbGUgY3g9IjQyNSIgY3k9IjE4MCIgcj0iMjUiLz48Y2lyY2xlIGN4PSI0OTUiIGN5PSIxODAiIHI9IjI1Ii8+PGNpcmNsZSBjeD0iNTY1IiBjeT0iMTgwIiByPSIyNSIvPgo8Y2lyY2xlIGN4PSIzNTUiIGN5PSIyNjAiIHI9IjI1Ii8+PGNpcmNsZSBjeD0iNDI1IiBjeT0iMjYwIiByPSIyNSIvPjxjaXJjbGUgY3g9IjQ5NSIgY3k9IjI2MCIgcj0iMjUiLz48Y2lyY2xlIGN4PSI1NjUiIGN5PSIyNjAiIHI9IjI1Ii8+CjwvZz4KPGcgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHRleHQgeD0iMzU1IiB5PSIxODciPjE8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSIxODciPjI8L3RleHQ+PHRleHQgeD0iNDk1IiB5PSIxODciPjM8L3RleHQ+PHRleHQgeD0iNTY1IiB5PSIxODciPjQ8L3RleHQ+PHRleHQgeD0iMzU1IiB5PSIyNjciPjU8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSIyNjciPjY8L3RleHQ+PHRleHQgeD0iNDk1IiB5PSIyNjciPjc8L3RleHQ+PHRleHQgeD0iNTY1IiB5PSIyNjciPjg8L3RleHQ+PC9nPgo8dGV4dCB4PSI5MCIgeT0iMzMwIj5SID0gMSBtbTwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjMzMCI+ciA9IFIvMiA9IDEvMiBtbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM5NSI+OHLCsyA9IFLCsyDCtyBOIMOoIHVuIGludGVybywgbm9uIHVuYSBmcmF6aW9uZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQ0MCI+T2duaSBmaWdsaWEgaGEgMS84IGRlbCB2b2x1bWUgaW5pemlhbGUuPC90ZXh0Pgo8cGF0aCBkPSJNMzUgNDc1SDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI1MjUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgTGEgc3VwZXJmaWNpZSB0b3RhbGUgYXVtZW50YTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjU2NSI+QeKCgCA9IDTPgFLCsiDCtyBiYXJyZTogMTAwIHB4IHBlciBB4oKAPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjMwIj5BX2k8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSI2MDAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIyMjAiIHk9IjYzMCI+QeKCgDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijc1MCI+QV9mPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iNzIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTQ1ZDgxIi8+PHJlY3QgeD0iMjAwIiB5PSI3MjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIGZpbGw9IiNjNjU5MTkiLz48dGV4dCB4PSIzMjAiIHk9Ijc1MCI+MiBB4oKAPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDU4NVY3ODAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI4MzAiPkFfZiA9IDggwrcgNM+AKFIvMinCsiA9IDIgQeKCgDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg3NSI+Q29uc2VydmFyZSB2b2x1bWUgbm9uIGNvbnNlcnZhIGFyZWEuPC90ZXh0Pgo8cGF0aCBkPSJNMzUgOTEwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgRW5lcmdpYSBmaW5hbGUgZSBpbmNyZW1lbnRvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTAwMCI+zrMgPSAxMCBtTi9tIMK3IDEwMCBweCBwZXIgz4AvMjUgwrVKPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTA4MCI+RV9pPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTA1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjIyMCIgeT0iMTA3NyI+z4AvMjUgwrVKPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE5MCI+RV9mPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTE2MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjMyMCIgeT0iMTE4NyI+Ms+ALzI1IMK1SjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzMDAiPs6URTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjEyNzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzUiIGZpbGw9IiNjNjU5MTkiLz48dGV4dCB4PSIyMjAiIHk9IjEyOTciPs+ALzI1IMK1SjwvdGV4dD4KPHBhdGggZD0iTTEwMCAxMDM1VjEzMzAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMzg1Ij7OlEUgPSBFX2Yg4oiSIEVfaSA9IM6zKEFfZiDiiJIgQV9pKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0MzAiPlNvbG8gcXVlc3RvIGluY3JlbWVudG8gw6ggbGF2b3JvIHJldmVyc2liaWxlPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ3MCI+bWluaW1vIHNlIG5vbiBjYW1iaWFubyBhbHRyZSBlbmVyZ2llLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1MTAiPkxhIGRpc3NpcGF6aW9uZSBwdcOyIHJpY2hpZWRlcmUgcGnDuSBsYXZvcm8uPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
