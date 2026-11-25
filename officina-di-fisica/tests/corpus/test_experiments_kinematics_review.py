@@ -44,7 +44,9 @@ class KinematicsExperimentsReview(unittest.TestCase):
         self.assertEqual({k:digest(v) for k,v in self.sources.items()},review.READ_SOURCE_SHA256)
         self.assertEqual(review.runtime_hashes(),review.READ_RUNTIME)
         self.assertEqual(review.runtime_fingerprint(review.APP)['sha256'],review.READ_RUNTIME_PROFILE_SHA256)
-        self.assertEqual(len(review.READ_RUNTIME),16)
+        self.assertEqual(len(review.READ_RUNTIME),22)
+        self.assertIn('static/js/banchi/voci/assessment-selection.js',review.READ_RUNTIME)
+        self.assertIn('server/domain/experiment_assessment.py',review.READ_RUNTIME)
         self.assertEqual(self.sources['SIM-C1-L003-03']['version'],2)
 
     def test_unknown_sources_cannot_select_or_execute_an_engine(self):

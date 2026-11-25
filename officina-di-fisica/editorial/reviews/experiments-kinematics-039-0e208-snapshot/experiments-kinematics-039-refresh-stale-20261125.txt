@@ -1,0 +1,42 @@
+test_actual_clocks_frames_secants_and_corner_are_challenged (test_experiments_kinematics_review.KinematicsExperimentsReview.test_actual_clocks_frames_secants_and_corner_are_challenged) ... ok
+test_actual_law_domains_assignments_graphs_and_geometry_are_challenged (test_experiments_kinematics_review.KinematicsExperimentsReview.test_actual_law_domains_assignments_graphs_and_geometry_are_challenged) ... ok
+test_empty_or_failed_independent_physics_never_passes (test_experiments_kinematics_review.KinematicsExperimentsReview.test_empty_or_failed_independent_physics_never_passes) ... ok
+test_exact_manual_arithmetic_and_limits_are_independent (test_experiments_kinematics_review.KinematicsExperimentsReview.test_exact_manual_arithmetic_and_limits_are_independent) ... ok
+test_observed_diagnostic_proof_is_bound_and_not_scientific_approval (test_experiments_kinematics_review.KinematicsExperimentsReview.test_observed_diagnostic_proof_is_bound_and_not_scientific_approval) ... ok
+test_six_complete_originals_without_human_or_publication_escalation (test_experiments_kinematics_review.KinematicsExperimentsReview.test_six_complete_originals_without_human_or_publication_escalation) ... FAIL
+test_source_dependencies_version_and_entire_runtime_are_bound (test_experiments_kinematics_review.KinematicsExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound) ... FAIL
+test_stale_missing_or_changed_runtime_rejects_before_execution (test_experiments_kinematics_review.KinematicsExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution) ... FAIL
+test_unknown_sources_cannot_select_or_execute_an_engine (test_experiments_kinematics_review.KinematicsExperimentsReview.test_unknown_sources_cannot_select_or_execute_an_engine) ... ok
+
+======================================================================
+FAIL: test_six_complete_originals_without_human_or_publication_escalation (test_experiments_kinematics_review.KinematicsExperimentsReview.test_six_complete_originals_without_human_or_publication_escalation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 23, in test_six_complete_originals_without_human_or_publication_escalation
+    self.assertEqual(fresh.call_count,2);self.assertEqual(first,second)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_source_dependencies_version_and_entire_runtime_are_bound (test_experiments_kinematics_review.KinematicsExperimentsReview.test_source_dependencies_version_and_entire_runtime_are_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 45, in test_source_dependencies_version_and_entire_runtime_are_bound
+    self.assertEqual(review.runtime_hashes(),review.READ_RUNTIME)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'sta[32 chars]s': 'cc435e51b62d5b9961b32f5d9b349171f7432e3bf[1544 chars]f27'} != {'sta[32 chars]s': 'fce66f301918483fe79d0f8dbf84c280268e48e61[1544 chars]f27'}
+Diff is 2219 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_stale_missing_or_changed_runtime_rejects_before_execution (test_experiments_kinematics_review.KinematicsExperimentsReview.test_stale_missing_or_changed_runtime_rejects_before_execution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_experiments_kinematics_review.py", line 75, in test_stale_missing_or_changed_runtime_rejects_before_execution
+    self.assertTrue(all('Runtime changed during check; discard evidence' in r['errors'] for r in review.verify(self.sources)))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 9 tests in 14.737s
+
+FAILED (failures=3)

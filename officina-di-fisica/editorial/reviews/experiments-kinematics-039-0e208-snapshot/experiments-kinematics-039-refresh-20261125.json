@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "RUNTIME_REVALIDATION_SAME_PREVIOUSLY_REVIEWED_IDS_NO_NEW_CREDIT",
+  "ids": [
+    "SIM-C1-L003-01",
+    "SIM-C1-L003-02",
+    "SIM-C1-L003-03",
+    "SIM-C1-L003-04",
+    "SIM-C1-L003-05",
+    "SIM-C1-L003-06"
+  ],
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "sourceSha256": {
+    "SIM-C1-L003-01": "5e2e0856674e2faeab10fb23ec0770bd42268aa694d6e4e8fb43b08c8c9b6b10",
+    "SIM-C1-L003-02": "573673a59d997610dad354b2ea255409cbb57936fc7f9bb1ee887f04962dcc2d",
+    "SIM-C1-L003-03": "3cff2c0ef18a1f98cd66167f3e25abd99c6aae7b67b244deb1070b9e6d6fb4a7",
+    "SIM-C1-L003-04": "f475c471a8cf4bb33890a1642ae16f49988d8180d5ade06b1753017e4d1ea4a6",
+    "SIM-C1-L003-05": "7ace68920b58c5ec04db0caea277cda7b95574de483c5a072b6976242f9655b6",
+    "SIM-C1-L003-06": "6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93"
+  },
+  "previousRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+  "historicalSnapshot": "editorial/reviews/experiments-kinematics-039-f897-snapshot",
+  "historicalManifestSha256": "0a230c6be284f46e5ccaaff81cc47ac700c1c9496eacde465d9ad76a36e4c5b1",
+  "reusedPhysicsOracleFunctionsByteIdentical": [
+    "exact_value",
+    "check",
+    "independent_checks",
+    "runtime_values",
+    "compare_runtime"
+  ],
+  "actualBrowserRun": {
+    "outputDirectory": "/private/tmp/cric-refresh-kinematics-0e208",
+    "log": "/private/tmp/cric-refresh-kinematics-0e208.log",
+    "terminalExitCode": 0,
+    "observedCases": 66,
+    "pageErrors": [],
+    "protocolSha256": "7a00f0041316cb47591ea6bd0e00ceb06e3547a9b3dafb84e4a4eb4c89c29104",
+    "proofSha256": "01bf9cd85430521b2bc43d1af1bf58394917501c484434dd03453583ee74ca26",
+    "proof": "editorial/reviews/experiments-kinematics-039-browser.json",
+    "screenshotsInspected": "all default 3D and fallback frames; selected secant, corner, projectile/circle plots and quarter-turn/landing/cusp frames; other states executable assertions, not every PNG manually inspected"
+  },
+  "staleTests": {
+    "tests": 9,
+    "failures": 3,
+    "seconds": 14.737,
+    "reason": "Old frozen consumer dependencies correctly reject final runtime; not a new physics defect",
+    "transcript": "editorial/reviews/experiments-kinematics-039-refresh-stale-20261125.txt"
+  },
+  "finalTests": {
+    "tests": 9,
+    "failures": 0,
+    "seconds": 19.981,
+    "terminalExitCode": 0,
+    "command": "PYTHONPYCACHEPREFIX=/private/tmp/cric-recovery-pycache /private/tmp/cric-recovery-venv/bin/python -m unittest discover -s tests/corpus -p test_experiments_kinematics_review.py -v",
+    "transcript": "editorial/reviews/experiments-kinematics-039-refresh-green-20261125.txt"
+  },
+  "verifierSha256": "f295405978d7b647e81cd303ed601a1bc42c48a652fd36fa1412d7daf8fdf999",
+  "testSha256": "50a496c2c6812ba06d27503f8abee64ac872990913ba5748b2733eba9dc2bda5",
+  "reportSha256": "c9f324e6fe1db7212ecbf4ec8a4a2d88cc99de37708cdd910cee38feb6e802bc",
+  "canonicalReportSha256": "67eee61f9ef35dbc1eaa075d13cc1784adde3dddfbd6a9c7360b7e4dbc3345b7",
+  "freshEqualsSaved": true,
+  "pinnedRuntimeDependencyCount": 22,
+  "controlConfigurations": 100,
+  "clockObservations": 249,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "originalEditionRetained": true,
+  "newIdCredit": 0
+}
