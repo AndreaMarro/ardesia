@@ -1,0 +1,1192 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-voltage-divider-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21101,
+      "title": "L’uscita sul secondo resistore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 1,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Con R₁=2 Ω e R₂=2 Ω, quanto vale U in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale è 4 Ω e la corrente comune vale E/(R₁+R₂)=12 V/(4 Ω)=3 A. La caduta sul secondo elemento è U=IR₂=3 A·2 Ω=6 V. L’altra caduta vale anch’essa 6 V e la loro somma ricostruisce i 12 V del generatore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4",
+          "text": "Il nodo M non alimenta alcun carico: le due resistenze da 2 Ω sono attraversate dalla stessa corrente 3 A. U è la caduta da M a B sul secondo resistore, pari a 6 V. I morsetti aperti dell’uscita non sono un filo che cortocircuita R₂."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{12\\,\\mathrm V}{4\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " I=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " U=IR_2"
+        },
+        {
+          "type": "formula",
+          "text": " U=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dodici V assegna tutta la tensione al secondo elemento e lascia zero al primo positivo. Tre copia il valore numerico della corrente in A senza moltiplicare per R₂. Quattro copia il totale in Ω e due copia un resistore: nessuno è la caduta richiesta."
+        }
+      ],
+      "hints": [
+        "Trova la corrente di serie e moltiplicala per il solo R₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici V assegna tutta la tensione al secondo elemento e lascia zero al primo positivo. Tre copia il valore numerico della corrente in A senza moltiplicare per R₂. Quattro copia il totale in Ω e due copia un resistore: nessuno è la caduta richiesta.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21102,
+      "title": "Una caduta di potenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 1,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Quale unità esprime U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "A",
+          "Ω",
+          "W",
+          "1"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U è una differenza di potenziale. Dal prodotto IR₂ si ottiene A·Ω=V. Anche nella formula del partitore il rapporto R₂/(R₁+R₂) è adimensionale, mentre E conserva l’unità volt."
+        },
+        {
+          "type": "formula",
+          "text": "U=IR_2"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm A\\cdot\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Ampere misura corrente, ohm resistenza e watt potenza. Il rapporto delle resistenze è puro, ma il prodotto con E non lo è: perciò 1 non è l’unità dell’uscita."
+        }
+      ],
+      "hints": [
+        "Il rapporto delle resistenze moltiplica una tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Ampere misura corrente, ohm resistenza e watt potenza. Il rapporto delle resistenze è puro, ma il prodotto con E non lo è: perciò 1 non è l’unità dell’uscita.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21103,
+      "title": "La formula del partitore aperto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 1,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Quale relazione dà U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U = E R₂ / (R₁ + R₂)",
+          "U = E R₁ / (R₁ + R₂)",
+          "U = E (R₁ + R₂) / R₂",
+          "U = E R₂ / R₁",
+          "U = E R₁ R₂"
+        ],
+        "value": "U = E R₂ / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente comune è I=E/(R₁+R₂). Moltiplicando per R₂ si ricava U=E R₂/(R₁+R₂). L’assenza di carico al nodo M è essenziale: un resistore aggiuntivo verso B cambierebbe il blocco inferiore e quindi il partitore."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac E{R_1+R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " U=IR_2"
+        },
+        {
+          "type": "formula",
+          "text": " U=E\\frac{R_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "R₁ al numeratore dà l’altra caduta. Invertire il rapporto produce U>E e viola il dominio; dividere per il solo R₁ omette R₂ nel totale. ER₁R₂ ha unità V·Ω², non V."
+        }
+      ],
+      "hints": [
+        "Usa la resistenza dell’uscita al numeratore e la somma al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "R₁ al numeratore dà l’altra caduta. Invertire il rapporto produce U>E e viola il dominio; dividere per il solo R₁ omette R₂ nel totale. ER₁R₂ ha unità V·Ω², non V.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21104,
+      "title": "Diminuisce la resistenza superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 1,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. R₁ passa da 2 a 1 Ω, mentre R₂ resta 2 Ω. Come cambia U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 8 V",
+          "Da 6 a 3 V",
+          "Resta 6 V",
+          "Da 6 a 12 V",
+          "Da 6 a 4 V"
+        ],
+        "value": "Da 6 a 8 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima I_A=12/4=3 A e U_A=6 V. Dopo il totale è 3 Ω, quindi I_B=12/3=4 A e U_B=4·2=8 V. Il generatore mantiene la tensione, non la corrente: riducendo R₁ cresce la corrente e aumenta la caduta sul R₂ invariato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4",
+          "text": "Le due barre del pannello centrale scompongono sempre i 12 V del generatore. A ha cadute 6 V e 6 V; il caso modificato R₁=1 Ω e R₂=2 Ω ha cadute 4 V e 8 V. La scala è comune entro quel pannello."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Tre V dimezza l’uscita come se fosse direttamente proporzionale a R₁. Sei la conserva come se I fosse fissata. Dodici eliminerebbe del tutto la caduta sul primo resistore; quattro è la caduta finale su R₁, non su R₂."
+        }
+      ],
+      "hints": [
+        "Il denominatore del partitore diminuisce, il numeratore resta uguale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre V dimezza l’uscita come se fosse direttamente proporzionale a R₁. Sei la conserva come se I fosse fissata. Dodici eliminerebbe del tutto la caduta sul primo resistore; quattro è la caduta finale su R₁, non su R₂.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21105,
+      "title": "Ricostruire R₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Si misura U=6 V e si conosce R₂=2 Ω. Quanto vale R₁ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da U(R₁+R₂)=ER₂ segue UR₁=(E−U)R₂. Dividendo per U si trova R₁=R₂(E−U)/U. Con i dati: 2 Ω·(12−6)/6=2 Ω. Il dominio 0<U<E assicura una resistenza positiva."
+        },
+        {
+          "type": "formula",
+          "text": "UR_1=(E-U)R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_2\\frac{E-U}{U}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω darebbe U=3 V; quattro Ω darebbe U=4 V. Sottrarre direttamente 6 V da 2 Ω mescola grandezze incompatibili. La divisione per U non è ammessa al confine U=0."
+        }
+      ],
+      "hints": [
+        "Porta il termine UR₂ a destra prima di dividere per U.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω darebbe U=3 V; quattro Ω darebbe U=4 V. Sottrarre direttamente 6 V da 2 Ω mescola grandezze incompatibili. La divisione per U non è ammessa al confine U=0.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21106,
+      "title": "Ricostruire R₂",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Si misura U=6 V e si conosce R₁=2 Ω. Quanto vale R₂ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa equazione può essere raccolta nell’altra incognita: UR₁=(E−U)R₂. Si divide per E−U>0 e si ottiene R₂=UR₁/(E−U). Con 6 V, 2 Ω e 12 V: R₂=12/6 Ω=2 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "UR_1=(E-U)R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac{UR_1}{E-U}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Quattro Ω darebbe U=8 V; un Ω darebbe U=4 V. Sommare E e U al denominatore non deriva dall’equazione e darebbe 2/3 Ω. Il confine U=E non permette R₁>0 con R₂ finita."
+        }
+      ],
+      "hints": [
+        "Per l’inversa inferiore il divisore è E−U, non U.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro Ω darebbe U=8 V; un Ω darebbe U=4 V. Sommare E e U al denominatore non deriva dall’equazione e darebbe 2/3 Ω. Il confine U=E non permette R₁>0 con R₂ finita.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21107,
+      "title": "Aumenta R₂ a generatore fisso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. A ha R₁=2 Ω, R₂=2 Ω. B mantiene R₁ e ha R₂=4 Ω. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 V. B ha totale 6 Ω, corrente 2 A e uscita U_B=2·4=8 V. Il rapporto 8/6 è 4/3. Raddoppiare R₂ non raddoppia U perché aumenta anche la resistenza totale e diminuisce I."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=8\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{U_B}{U_A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 è il reciproco. Due segue solo R₂ senza il totale; un mezzo ne inverte l’effetto; uno ignora la modifica. La nuova uscita deve restare minore dei 12 V del generatore."
+        }
+      ],
+      "hints": [
+        "Valuta sia il numeratore sia il denominatore della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 è il reciproco. Due segue solo R₂ senza il totale; un mezzo ne inverte l’effetto; uno ignora la modifica. La nuova uscita deve restare minore dei 12 V del generatore.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21108,
+      "title": "Lo scarto non è un rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Con R₁=R₂=2 Ω si propone U=12 V. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 V",
+          "−6 V",
+          "12 V",
+          "0 V",
+          "2"
+        ],
+        "value": "6 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corretta caduta inferiore è 6 V. La proposta la supera di 12−6=6 V. Il numero puro due è invece il rapporto tra proposta e corretto. La differenza deve mantenere l’unità volt."
+        },
+        {
+          "type": "formula",
+          "text": "U=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due non è uno scarto di tensione e manca dell’unità pertinente."
+        }
+      ],
+      "hints": [
+        "Dividi prima la tensione fra i due resistori uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due non è uno scarto di tensione e manca dell’unità pertinente.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21109,
+      "title": "La formula inversa superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Sono noti U, E e R₂. Quale formula isola R₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R₂ (E − U) / U",
+          "R₁ = R₂ (E + U) / U",
+          "R₁ = R₂ U / (E − U)",
+          "R₁ = U / R₂",
+          "R₁ = R₂ − U"
+        ],
+        "value": "R₁ = R₂ (E − U) / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per il totale: U(R₁+R₂)=ER₂. Sottraendo UR₂ e dividendo per U>0 si ottiene R₁=R₂(E−U)/U. Il rapporto delle tensioni è puro, quindi l’unità rimane Ω; E−U è positivo nel dominio."
+        },
+        {
+          "type": "formula",
+          "text": "U(R_1+R_2)=ER_2"
+        },
+        {
+          "type": "formula",
+          "text": " UR_1=(E-U)R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_2\\frac{E-U}{U}"
+        },
+        {
+          "type": "text",
+          "text": "Il più al posto del meno non isola il termine. UR₂/(E−U) è l’inversa per R₂ quando il noto è R₁: non risolve questa incognita. U/R₂ misura corrente e R₂−U sottrae Ω e V."
+        }
+      ],
+      "hints": [
+        "Controlla insieme l’algebra e il dominio 0<U<E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più al posto del meno non isola il termine. UR₂/(E−U) è l’inversa per R₂ quando il noto è R₁: non risolve questa incognita. U/R₂ misura corrente e R₂−U sottrae Ω e V.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21110,
+      "title": "Un rapporto con somme definite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. B usa R₁,B=κ₁R₁ e R₂,B=κ₂R₂, con fattori positivi. Definiamo S=R₁+R₂ e S_B=κ₁R₁+κ₂R₂, entrambe resistenze totali. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ S / S_B",
+          "κ₁ S / S_B",
+          "κ₁ κ₂",
+          "S_B / (κ₂ S)",
+          "κ₂ / κ₁"
+        ],
+        "value": "κ₂ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il generatore E resta lo stesso e si cancella nel rapporto. Il numeratore inferiore porta κ₂, mentre il totale passa da S a S_B. Pertanto U_B/U_A=κ₂S/S_B. Con κ₁=κ₂ le due resistenze sono scalate insieme e l’uscita non cambia."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=E\\frac{R_2}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=E\\frac{\\kappa_2R_2}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{U_B}{U_A}=\\frac{\\kappa_2S}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁ davanti a S scala la resistenza sbagliata al numeratore. Il prodotto dei fattori omette i pesi del totale; S_B/(κ₂S) inverte il confronto. κ₂/κ₁ non descrive una somma di resistenze al denominatore."
+        }
+      ],
+      "hints": [
+        "Distingui il fattore dell’elemento inferiore dalla variazione del totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁ davanti a S scala la resistenza sbagliata al numeratore. Il prodotto dei fattori omette i pesi del totale; S_B/(κ₂S) inverte il confronto. κ₂/κ₁ non descrive una somma di resistenze al denominatore.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21111,
+      "title": "Una nuova ripartizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. A ha R₁=2 Ω e R₂=2 Ω. B ha R₁=3 Ω e R₂=1 Ω. Quanto vale U_B/U_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "1",
+          "1/3"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le prove hanno resistenza totale 4 Ω e corrente 3 A. Le cadute inferiori sono 6 V per A e 3 V per B. Il rapporto è 1/2. La somma uguale rende qui il rapporto delle uscite uguale a quello dei soli R₂."
+        },
+        {
+          "type": "formula",
+          "text": "U_A=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{U_B}{U_A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. 3/2 segue soltanto R₁ e un terzo usa il rapporto R₂,B/R₁,B, che non è la frazione della tensione totale. Uno riconosce il totale uguale ma ignora che cambia il suo riparto."
+        }
+      ],
+      "hints": [
+        "Calcola la frazione inferiore in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. 3/2 segue soltanto R₁ e un terzo usa il rapporto R₂,B/R₁,B, che non è la frazione della tensione totale. Uno riconosce il totale uguale ma ignora che cambia il suo riparto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21112,
+      "title": "Una coincidenza delle medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 2,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. A usa R₁=2 Ω, R₂=2 Ω; B usa R₁=3 Ω, R₂=1 Ω. Qual è la media aritmetica delle due U con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 V",
+          "9 V",
+          "3/2 V",
+          "6 V",
+          "3 V"
+        ],
+        "value": "9/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 6 e 3 V, quindi la loro media è 9/2 V. Per questi dati anche il modello sulle medie R₁=5/2 Ω e R₂=3/2 Ω dà 12·(3/2)/4=9/2 V. La coincidenza deriva dal totale identico 4 Ω nelle due prove: non è una proprietà generale del partitore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4",
+          "text": "L’ultimo pannello usa le prove A: R₁=2 Ω, R₂=2 Ω e B: R₁=3 Ω, R₂=1 Ω; non il caso modificato del pannello centrale. Le uscite 6 V e 3 V hanno media 9/2 V. Origine e scala sono comuni entro il pannello; la sua scala è indipendente da quella delle barre centrali."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline U=\\frac{6+3}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline U=\\frac92\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " U_{\\rm dati\\ medi}=\\frac92\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Nove V omette la divisione per due; 3/2 V è metà della differenza. Sei e tre ripetono una singola prova. Qui non serve distinguere numericamente le due medie coincidenti, ma va motivato perché coincidono."
+        }
+      ],
+      "hints": [
+        "Media le due tensioni già calcolate e controlla il totale comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove V omette la divisione per due; 3/2 V è metà della differenza. Sei e tre ripetono una singola prova. Qui non serve distinguere numericamente le due medie coincidenti, ma va motivato perché coincidono.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21113,
+      "title": "R₂ per dimezzare l’uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 3,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. A ha R₁=R₂=2 Ω. B usa R₁=3 Ω e deve dare U_B=U_A/2. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/3",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 3 V. Dall’inversa inferiore R₂,B=U_BR₁,B/(E−U_B)=3·3/(12−3) Ω=1 Ω. Il rapporto con R₂,A=2 Ω è 1/2. La tensione bersaglio è positiva e minore di E, quindi l’inversa è nel dominio."
+        },
+        {
+          "type": "formula",
+          "text": "U_B=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_{2,B}}{R_{2,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. Un terzo confonde il rapporto dei due resistori nella prova B con quello di R₂ fra prove. 3/2 segue R₁ e uno non cambia R₂: nessuno ricostruisce l’uscita 3 V con R₁=3 Ω."
+        }
+      ],
+      "hints": [
+        "Fissa la tensione bersaglio prima di invertire la legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. Un terzo confonde il rapporto dei due resistori nella prova B con quello di R₂ fra prove. 3/2 segue R₁ e uno non cambia R₂: nessuno ricostruisce l’uscita 3 V con R₁=3 Ω.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21114,
+      "title": "Un display proporzionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 3,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. D=a_cal U è continuo e adimensionale, a_cal>0, senza offset. A con R₁=R₂=2 Ω dà D=18. C dà D=9 e ha R₂=1 Ω. Quanto vale R₁,C in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha U_A=6 V, perciò a_cal=18/(6 V)=3 V⁻¹. La lettura 9 significa U_C=3 V. L’inversa superiore dà R₁,C=1 Ω·(12−3)/3=3 Ω. Non si interpreta 9 come volt senza rimuovere la taratura."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "1/3 Ω usa D=9 direttamente come tensione e darebbe un’uscita 9 V. Uno Ω darebbe U=6 V; nove Ω darebbe 6/5 V. Il risultato tre Ω restituisce invece U=3 V e D=9."
+        }
+      ],
+      "hints": [
+        "Decodifica la tensione prima dell’inversa di R₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 Ω usa D=9 direttamente come tensione e darebbe un’uscita 9 V. Uno Ω darebbe U=6 V; nove Ω darebbe 6/5 V. Il risultato tre Ω restituisce invece U=3 V e D=9.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21115,
+      "title": "Guadagno e offset prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 3,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. D=a_cal U+b è continuo e adimensionale. A: R₁=2 Ω, R₂=2 Ω, D=13. B: R₁=3 Ω, R₂=1 Ω, D=7. C: R₂=2 Ω, D=17. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "14/17 Ω",
+          "2 Ω",
+          "4 Ω",
+          "8 Ω"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno U_A=6 V e U_B=3 V. Guadagno a_cal=(13−7)/(6−3) V⁻¹=2 V⁻¹ e b=1. C ha U_C=(17−1)/2 V=8 V, ancora fra zero e 12 V. R₁,C=2 Ω·(12−8)/8=1 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=8\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "14/17 Ω omette l’offset e usa U=17/2 V: ricostruisce D=18, non 17. Due Ω dà D=13; quattro Ω dà D=9; otto Ω dà D=29/5. Solo uno Ω riproduce la lettura assegnata."
+        }
+      ],
+      "hints": [
+        "Sottrai b prima di dividere per a_cal, poi controlla U<E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14/17 Ω omette l’offset e usa U=17/2 V: ricostruisce D=18, non 17. Due Ω dà D=13; quattro Ω dà D=9; otto Ω dà D=29/5. Solo uno Ω riproduce la lettura assegnata.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-voltage-divider-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di tensione senza carico",
+      "order": 21116,
+      "title": "La misura non fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "voltage-divider",
+      "difficulty": 3,
+      "prompt": "Un generatore ideale mantiene E=12 V fra i nodi A e B. Due resistori ohmici R₁>0 e R₂>0 finiti sono in serie: R₁ fra A e M, R₂ fra M e B. Dal nodo M non parte alcun altro carico; un eventuale voltmetro è ideale. La corrente è comune e orientata da A verso B. L’uscita U=V_M−V_B è la caduta positiva sul secondo resistore: U=E R₂/(R₁+R₂), con 0<U<E. Temperatura e valore del generatore restano fissati entro ogni prova. Fra preparazioni vale R₁=R₂. Si misura inoltre U=6 V. Quante coppie positive (R₁,R₂) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive con R₁ = R₂",
+          "Una sola: R₁ = R₂ = 2 Ω",
+          "Nessuna coppia",
+          "Solo R₁ = R₂ = 1 Ω",
+          "Qualunque coppia positiva, anche con R₁ diverso da R₂"
+        ],
+        "value": "Infinite coppie positive con R₁ = R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende la frazione inferiore R₂/(R₁+R₂)=1/2, quindi U=E/2=6 V per ogni resistenza comune x>0 finita. La misura è ridondante e non fissa x. Esempi sono 1 e 1 Ω oppure 2 e 2 Ω; le correnti differiscono, mentre il rapporto delle cadute resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_2"
+        },
+        {
+          "type": "formula",
+          "text": "R_2=x"
+        },
+        {
+          "type": "formula",
+          "text": " U=E\\frac{x}{2x}"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac E2"
+        },
+        {
+          "type": "formula",
+          "text": " U=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie singole sono esempi, non soluzioni uniche. Nessuna è esclusa dagli esempi espliciti. Non tutte le coppie positive sono ammesse: occorre l’uguaglianza imposta. Una misura di corrente fornirebbe una nuova informazione di scala, ma non è data."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se resta una resistenza libera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie singole sono esempi, non soluzioni uniche. Nessuna è esclusa dagli esempi espliciti. Non tutte le coppie positive sono ammesse: occorre l’uguaglianza imposta. Una misura di corrente fornirebbe una nuova informazione di scala, ma non è data.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e generatore ideale",
+        "Riferimento della caduta inferiore",
+        "Inverse nel dominio 0<U<E",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4",
+      "name": "voltage-divider-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2ODAgMTYwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5QYXJ0aXRvcmUgc2VuemEgY2FyaWNvIGUgY2FkdXRhIGluZmVyaW9yZTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5VbiBnZW5lcmF0b3JlIGlkZWFsZSBkYSAxMiB2b2x0IGFsaW1lbnRhIGR1ZSByZXNpc3RvcmkgaW4gc2VyaWUgZGEgMiBvaG0uIElsIG5vZG8gaW50ZXJtZWRpbyBub24gaGEgY2FyaWNoaSBlIGzigJl1c2NpdGEgc3VsIHNlY29uZG8gZWxlbWVudG8gdmFsZSA2IHZvbHQuIE5lbCBjb25mcm9udG8gY2VudHJhbGUgcmlkdXJyZSBpbCBwcmltbyByZXNpc3RvcmUgYSAxIG9obSBkw6AgY2FkdXRlIDQgZSA4IHZvbHQuIE5lbGzigJl1bHRpbW8gY29uZnJvbnRvIGRpc3RpbnRvIGxlIHVzY2l0ZSA2IGUgMyB2b2x0IGhhbm5vIG1lZGlhIDkvMiB2b2x0LiBMZSBzY2FsZSBkZWkgZHVlIHBhbm5lbGxpIGRpIGJhcnJlIHNvbm8gaW5kaXBlbmRlbnRpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY4MCIgaGVpZ2h0PSIxNjAwIiBmaWxsPSIjZmZmZGY2IiAvPgo8dGV4dCB4PSIzNCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFVzY2l0YSBhcGVydGEgc3VsIG5vZG8gTTwvdGV4dD4KPHRleHQgeD0iMzQiIHk9Ijg4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+RSA9IDEyIFYgOyBS4oKBID0gUuKCgiA9IDIgzqkgOyBJID0gMyBBLjwvdGV4dD4KPHBhdGggZD0iTTE2MCAyNjBWMTQwSDQ4MFYxODBNNDgwIDI2MFYzNDBNNDgwIDQyMFY0NjBIMTYwVjM0ME00ODAgMzAwSDYwME00ODAgNDYwSDYwMCIgc3Ryb2tlPSIjMjQ0ODVjIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIC8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjMwMCIgcj0iNDAiIHN0cm9rZT0iIzI0NDg1YyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSIjZmZmZGY2IiAvPgo8dGV4dCB4PSIxNTEiIHk9IjI4NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPis8L3RleHQ+PHRleHQgeD0iMTUzIiB5PSIzMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj7iiJI8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjMwNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPjEyIFY8L3RleHQ+CjxyZWN0IHg9IjQ2MCIgeT0iMTgwIiB3aWR0aD0iNDAiIGhlaWdodD0iODAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSIjZWFmM2Y4IiAvPjxyZWN0IHg9IjQ2MCIgeT0iMzQwIiB3aWR0aD0iNDAiIGhlaWdodD0iODAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSIjZWFmM2Y4IiAvPgo8Y2lyY2xlIGN4PSI0ODAiIGN5PSIxNDAiIHI9IjUiIGZpbGw9IiMyNDQ4NWMiIC8+PGNpcmNsZSBjeD0iNDgwIiBjeT0iMzAwIiByPSI1IiBmaWxsPSIjMjQ0ODVjIiAvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjQ2MCIgcj0iNSIgZmlsbD0iIzI0NDg1YyIgLz4KPGNpcmNsZSBjeD0iNjAwIiBjeT0iMzAwIiByPSI1IiBmaWxsPSIjZmZmZGY2IiBzdHJva2U9IiMyNDQ4NWMiIHN0cm9rZS13aWR0aD0iMiIgLz48Y2lyY2xlIGN4PSI2MDAiIGN5PSI0NjAiIHI9IjUiIGZpbGw9IiNmZmZkZjYiIHN0cm9rZT0iIzI0NDg1YyIgc3Ryb2tlLXdpZHRoPSIyIiAvPgo8dGV4dCB4PSI1MTUiIHk9IjE0OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPkE8L3RleHQ+PHRleHQgeD0iNDA1IiB5PSIyMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj5S4oKBPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMzg4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+UuKCgjwvdGV4dD48dGV4dCB4PSI1MTUiIHk9IjI4OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPk08L3RleHQ+PHRleHQgeD0iNTE1IiB5PSI0OTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj5CPC90ZXh0Pgo8dGV4dCB4PSI1NDUiIHk9IjM2MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPlUgPSA2IFY8L3RleHQ+PHRleHQgeD0iMzQiIHk9IjUxNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMTgiPlUgPSBWX00g4oiSIFZfQiA7IG5lc3N1biBjYXJpY28gZnJhIE0gZSBCLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjU5NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgTGUgZHVlIGNhZHV0ZSBzb21tYW5vIEU8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI2MzUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj5S4oKCIHJlc3RhIDIgzqkgOyBS4oKBIHBhc3NhIGRhIDIgYSAxIM6pLjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSI2NzUiIHdpZHRoPSIxODAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNjVhODciIC8+PHJlY3QgeD0iMzMwIiB5PSI2NzUiIHdpZHRoPSIxODAiIGhlaWdodD0iNDAiIGZpbGw9IiMyODY2NGQiIC8+CjxyZWN0IHg9IjE1MCIgeT0iNzc1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTY1YTg3IiAvPjxyZWN0IHg9IjI3MCIgeT0iNzc1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjg2NjRkIiAvPgo8dGV4dCB4PSI0NSIgeT0iNzAyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+UHJpbWE8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSI2NjEiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj42IFY8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI2NjEiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj42IFY8L3RleHQ+Cjx0ZXh0IHg9IjQ1IiB5PSI4MDIiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj5Eb3BvPC90ZXh0Pjx0ZXh0IHg9IjE4NSIgeT0iNzYxIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+NCBWPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iNzYxIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+OCBWPC90ZXh0Pgo8bGluZSB4MT0iMTUwIiB5MT0iODQ1IiB4Mj0iNTQ1IiB5Mj0iODQ1IiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIgLz4KPHRleHQgeD0iMTI1IiB5PSI4NzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjE2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjQ5MyIgeT0iODcwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIxNiI+MTIgVjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjkxNCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMTgiPkJsdTogY2FkdXRhIHN1cGVyaW9yZSA7IHZlcmRlOiB1c2NpdGEgVS48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI5OTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IER1ZSBhbHRyZSBwcm92ZSBlIGxhIG1lZGlhPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTAzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPkE6IFLigoEgPSAyIM6pLCBS4oKCID0gMiDOqSA7IFVfQSA9IDYgVi48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxMDY1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+QjogUuKCgSA9IDMgzqksIFLigoIgPSAxIM6pIDsgVV9CID0gMyBWLjwvdGV4dD4KPGxpbmUgeDE9IjE1MCIgeTE9IjExMDUiIHgyPSIxNTAiIHkyPSIxNDA1IiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIgLz48bGluZSB4MT0iMTUwIiB5MT0iMTQwNSIgeDI9IjQ0MCIgeTI9IjE0MDUiIHN0cm9rZT0iIzUyNmE3OCIgc3Ryb2tlLXdpZHRoPSIyIiAvPgo8cmVjdCB4PSIxNTAiIHk9IjExMzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciIC8+PHJlY3QgeD0iMTUwIiB5PSIxMjMwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIiAvPjxyZWN0IHg9IjE1MCIgeT0iMTMzMCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzlhNGYyMyIgLz4KPHRleHQgeD0iODAiIHk9IjExNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNjRhIiBmb250LXNpemU9IjIwIj5BPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTE1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPjYgVjwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMTI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMjAiPkI8L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIxMjU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+MyBWPC90ZXh0Pjx0ZXh0IHg9IjQ0IiB5PSIxMzU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSIxMzU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIyMCI+OS8yIFY8L3RleHQ+Cjx0ZXh0IHg9IjEyNSIgeT0iMTQzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMTYiPjA8L3RleHQ+PHRleHQgeD0iMzgyIiB5PSIxNDMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIxNiI+NiBWPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTQ4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM2NGEiIGZvbnQtc2l6ZT0iMTgiPlNjYWxlIGNvbXVuaSBlbnRybyBpbCBwYW5uZWxsbywgaW5kaXBlbmRlbnRpIGZyYSBwYW5uZWxsaS48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNTIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIxOCI+UXVpIGlsIHRvdGFsZSByZXN0YSA0IM6pIGFuY2hlIGFpIGRhdGkgbWVkaTo8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNTU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE4MzY0YSIgZm9udC1zaXplPSIxOCI+UuKCgSBtZWRpbyA9IDUvMiDOqSwgUuKCgiBtZWRpbyA9IDMvMiDOqSA7IFUgPSA5LzIgVi48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}
