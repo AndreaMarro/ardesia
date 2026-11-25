@@ -67,7 +67,7 @@ TASKS=[
 ('Taratura proporzionale della carica',P+'D=a_cal Q è continuo e adimensionale, a_cal>0. A con C=2 μF, V=3 V dà D=18. B legge D=15 e ha V=5 V. Quanto vale C_B in μF?',1,
  'A corrisponde a 6 μC, quindi a_cal=3 μC⁻¹. D_B 15 indica Q_B 5 μC. Dividendo per V_B 5 V ottengo C_B 1 μF. La taratura collega D alla carica, non direttamente alla capacità.',
  r'a_{\rm cal}=3\,(\mu\mathrm C)^{-1}\qquad Q_B=5\,\mu\mathrm C\qquad C_B=1\,\mu\mathrm F',
- 'Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF inverte il rapporto e darebbe Q 1 μC.','Togli il guadagno prima di applicare C=Q/V.'),
+ 'Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF darebbe Q 1 μC, non 5 μC.','Togli il guadagno prima di applicare C=Q/V.'),
 ('Offset e due riferimenti',P+'D=a_cal Q+b_cal è continuo. A: C=2 μF, V=3 V, D=13. B: C=1 μF, V=5 V, D=11. C: V=2 V, D=17. Quanto vale la capacità della prova C in μF?',4,
  'I moduli noti sono 6 e 5 μC. Il guadagno è(13−11)/(6−5)=2 μC⁻¹ e l’offset uno. D 17 decodifica Q_C=(17−1)/2=8 μC. Alla tensione 2 V servono 4 μF; reinserendo si ritrova la lettura 17.',
  r'a_{\rm cal}=2\,(\mu\mathrm C)^{-1}\qquad b_{\rm cal}=1\qquad Q_C=8\,\mu\mathrm C\qquad C_C=4\,\mu\mathrm F',

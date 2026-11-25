@@ -124,7 +124,7 @@ A corrisponde a 6 μC, quindi a_cal=3 μC⁻¹. D_B 15 indica Q_B 5 μC. Dividen
 
 Passaggi: `a_{\rm cal}=3\,(\mu\mathrm C)^{-1}\qquad Q_B=5\,\mu\mathrm C\qquad C_B=1\,\mu\mathrm F`
 
-Distrattori: Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF inverte il rapporto e darebbe Q 1 μC.
+Distrattori: Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF darebbe Q 1 μC, non 5 μC.
 
 ## 15 — Offset e due riferimenti
 
@@ -141,3 +141,7 @@ Ponendo v=V/(1 V), il vincolo dà C/(1 μF)=(2/3)v. Allora Q/(1 μC)=(2/3)v². L
 Passaggi: `v=\frac{V}{1\,\mathrm V}\qquad v^2=9\qquad V=3\,\mathrm V`
 
 Distrattori: −3 V è l’altro ramo algebrico ma viola V>0 e renderebbe C negativa nel vincolo. Nove V omette la radice; due V darebbe Q 8/3 μC. La misura non è ridondante: fissa il quadrato di una variabile positiva.
+
+## Correzione su rilievo distinto del revisore
+
+Nel record 14 il reciproco del rapporto numerico Q/V=5/5 è ancora uno; non produce 1/5. Eliminata soltanto quella attribuzione falsa e conservata la controprova per sostituzione: 1/5 μF a 5 V produce 1 μC, non 5 μC. Vecchi otto file archiviati con checksum in author-evidence/capacitor-charge-218-peer-text-superseded-20261125. Strictdiff: solo feedback/error14 e binding derivato, altri 15 record e tutte chiavi, formule, prompt e SVG identici. Due assembly identici e import canonico reale 16 nuovi poi 0 nuovi/16 invariati; 991 pubblicati invariati. Nessun nuovo render su SVG identico. Nuovi giudizi scientifici indipendenti, UI prodotto e approvazione umana NOT_RUN.
