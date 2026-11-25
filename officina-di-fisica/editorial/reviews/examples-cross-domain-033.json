@@ -1,0 +1,957 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-cross-domain-033",
+  "records": [
+    {
+      "id": "C6-E001",
+      "sourceSha256": "945fcbcedac7d400ac3a7221f1af0705c4e51334310690b85a45022d4031d88b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual3nanoseconds conversion",
+          "independentExact": "3/1000000000",
+          "expectedValue": "3/1000000000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual one-way signal speed2e8",
+          "independentExact": "200000000",
+          "expectedValue": "200000000",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "working c3e8 timing index3over2",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual doublepath echo6nanoseconds",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "ns",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "oneway dimensions length over time",
+          "independentExact": "200000000",
+          "expectedValue": "200000000",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "exact SI c would roundindex to1point5",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual3nanoseconds conversion": {
+          "[time]": "1"
+        },
+        "actual one-way signal speed2e8": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "working c3e8 timing index3over2": {},
+        "actual doublepath echo6nanoseconds": {
+          "[time]": "1"
+        },
+        "oneway dimensions length over time": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "exact SI c would roundindex to1point5": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual0.60m/3.0ns=0.60/(3e-9)=2e8m/s. Courseworkingc3e8 gives timingindex3/2. Same material/path reverse has1.20m path so6ns. Signalspeed/effective timingindex is the scope; general dispersive phase/group indices are not equated. ExactSIc also rounds1.5 at shownprecision. Prefix/powers and division manual, no extra factor2 in distinct emitter/receiver measurement.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Assigned delay is material one-way propagation time over0.60m with distinct fixed emitter/receiver, no instrument/interface contribution; effective constant signal speed and same returnpath. Indexc/v is timing/effective material index in course nondispersive model, not arbitrary equality of group and phase indices. Workingc3e8 is roundedcourseconstant.",
+      "pedagogicalReview": "Distinguishesonewaytransmissionfromecho; dimensionalpowers and courseworkingc. No falseexactSIconstant or numericinversefunction assigned.",
+      "assetChecksums": {},
+      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-E002",
+      "sourceSha256": "e094a7529838f2fd0be0c4b8589e47fdd56051b290f684cf794c756201c445f3",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual1point2litres conversion",
+          "independentExact": "3/2500",
+          "expectedValue": "3/2500",
+          "unit": "m^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual water mass6over5kg",
+          "independentExact": "6/5",
+          "expectedValue": "6/5",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual usefulpotential energy24joules",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual electrical inputpower6over5watt",
+          "independentExact": "6/5",
+          "expectedValue": "6/5",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual inputenergy72joules",
+          "independentExact": "72",
+          "expectedValue": "72",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual dimensionless efficiency one third",
+          "independentExact": "1/3",
+          "expectedValue": "1/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual usefulpower2over5watt",
+          "independentExact": "2/5",
+          "expectedValue": "2/5",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "otheroutputs48joules balance",
+          "independentExact": "48",
+          "expectedValue": "48",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "qualified33percent correctly rounded",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_rounding_checked_not_exact_identity"
+        }
+      ],
+      "dimension": {
+        "actual1point2litres conversion": {
+          "[length]": "3"
+        },
+        "actual water mass6over5kg": {
+          "[mass]": "1"
+        },
+        "actual usefulpotential energy24joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual electrical inputpower6over5watt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual inputenergy72joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual dimensionless efficiency one third": {},
+        "actual usefulpower2over5watt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "otheroutputs48joules balance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "qualified33percent correctly rounded": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual1.2L=1.2e-3m³ at1000kg/m³ gives1.2kg/min. Usefulmgh1.2*10*2=24J/min=0.4W. Electricalinput6*.2=1.2W for60s gives72J. Ratio24/72=1/3 and explicitapprox33percent is manually bounded32.5<100/3<33.5. Otheroutputs48J/min, not assumed all thermal or hydrodynamically apportioned. Same interval and relative usefulpotential output specified.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Steadygivenvolumetricflow/density and2m elevation, electrical6V/0.20A during sameinterval, nonnegativeotheroutputs; usefuloutput deliberately restricted to gravitationalpotential. No claim alloutputuseful or pumpfluidenergyfullydescribed.",
+      "pedagogicalReview": "Sameintervalenergycomparison, litres-to-mass, VIpower and usefulpotential definition beforepercent; approximate33percent correctlymarked.",
+      "assetChecksums": {
+        "/figures/C6-pompa.svg": "24c5a9679e704c11392cbdedde8f62513d448fd978238ff044257da9bb84e274"
+      },
+      "figureReview": "C6-pompa.svg fullXML and complete640x235Chromiumrender independentlyread, actualGit/staticbytesidentical. Left electricalarrowenterspump; right liftedwaterarrowanddownothertransfersleave;6V*.20A and1.2L/min*2m match inputs. Arrowlengths schematic, no quantitativeenergywidthscaleassigned; do not infer allremainingoutputs thermal.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-E003",
+      "sourceSha256": "c839404e2c7c05da0f138de109b89e64ac31bb5db5f6fc4fd2e145c85b709981",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": false,
+      "errors": [
+        "P3 exact-equality/rounding defect: the printed180/(0.050*4200)K=0.86K is false, with no rounding declaration in prompt or blocks. Exact6/7K differs from0.86 by1/350K;0.86 is a correct nearest-hundredth approximation only.",
+        "Independent example mathematics failed"
+      ],
+      "checks": [
+        {
+          "claim": "actual Joule power2watt",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual inputheat240joules",
+          "independentExact": "240",
+          "expectedValue": "240",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual water received180joules",
+          "independentExact": "180",
+          "expectedValue": "180",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual50grams conversion",
+          "independentExact": "1/20",
+          "expectedValue": "1/20",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual total heatcapacity210joulesperkelvin",
+          "independentExact": "210",
+          "expectedValue": "210",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent temperatureincrease6over7kelvin",
+          "independentExact": "6/7",
+          "expectedValue": "6/7",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "SOURCE FALSE exact equality to0point86kelvin",
+          "independentExact": "6/7",
+          "expectedValue": "43/50",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "-1/350",
+          "ok": false,
+          "scope": "actual_source_false_exact_equality"
+        },
+        {
+          "claim": "0point86 is valid only as hundredth approximation",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_rounding_checked_not_exact_identity"
+        },
+        {
+          "claim": "false identity residual minus1over350kelvin",
+          "independentExact": "-1/350",
+          "expectedValue": "-1/350",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "under one kelvin heatbudget180less210",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual Joule power2watt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual inputheat240joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual water received180joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual50grams conversion": {
+          "[mass]": "1"
+        },
+        "actual total heatcapacity210joulesperkelvin": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "independent temperatureincrease6over7kelvin": {
+          "[temperature]": "1"
+        },
+        "SOURCE FALSE exact equality to0point86kelvin": {
+          "[temperature]": "1"
+        },
+        "0point86 is valid only as hundredth approximation": {},
+        "false identity residual minus1over350kelvin": {
+          "[temperature]": "1"
+        },
+        "under one kelvin heatbudget180less210": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualI²R=(1/2)²*8=2W, times120s=240J. Water gets3/4=>180J.50g=1/20kg,mc=210J/K. ExactDeltaT=180/210=6/7K. Originalprints=0.86K without any approximation/precision declaration in allfiveblocks orprompt, hence FAIL.6/7-.86=-1/350K. Integer crossproducts prove.855<6/7<.865, so0.86 would be a valid hundredth approximation with approxnotation. No calculator needed for exactfraction or rounding. Heat180J<210J perK confirmsunder1K.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Constantgivenohmic8ohm/current.5A over120s, assigned75percent deliveryto50gwater, constantc4200 in smallsinglephaseinterval and no other energychange assigned. SourceFAIL is equality/precision, not Joulelaw or heatbudget.",
+      "pedagogicalReview": "FAILminorprecision: correctphysicalmodel/exactfraction, but unqualifiedequalityto.86false. Do not silentlyread=asapprox. Separately authoredneweditionneeded; originalretained.",
+      "assetChecksums": {},
+      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-E004",
+      "sourceSha256": "f20471c6da49103370bd40f3c18667a6069fefb9a1596738574fa2d024fa3635",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": false,
+      "errors": [
+        "P2 standalone prompt underdetermines detector signal: fixed detector area/orientation first appears in solution. A linear planar detector initially normal and then60degrees from radial incidence yields3/40 ratherthan3/20 after inverse-square and0.60transmission. State unchanged detector orientation/response in prompt or ask for incident irradiance explicitly."
+      ],
+      "checks": [
+        {
+          "claim": "intended inverse square factor onequarter",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "intended combined ratio3over20",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "intended15percent nominalsignal",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent planar detector60degree counterexample",
+          "independentExact": "3/40",
+          "expectedValue": "3/40",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "edge-on planar detector counterexample zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "identical two attenuation factors multiply not add",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "inverse square irradiance dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "intended inverse square factor onequarter": {},
+        "intended combined ratio3over20": {},
+        "intended15percent nominalsignal": {},
+        "independent planar detector60degree counterexample": {},
+        "edge-on planar detector counterexample zero": {},
+        "identical two attenuation factors multiply not add": {},
+        "inverse square irradiance dimensions": {
+          "[mass]": "1",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Intended fixed detector geometry/linear signal: distance doubles, inverse-square gives1/4, filter3/5 multiplies to3/20=15percent. But fixed area/orientation is only firststatedin workedsolution, not prompt. A planar linear sensor initially normal then60degrees rotated yields3/20*cos60=3/40=7.5percent with same source, distances and filter; edge-onidealresponse0. OriginalFAIL is standalone prompt/model issue, not wrong intended3/20 arithmetic. Ratios dimensionless, irradianceW/m² distinct totalpower.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Pointisotropicconstantsource, inverse-square losslessair, assignedfiltertransmission.60 for relevant incidence. Intended detectorconstantarea/orientation/linearresponse onlysolution-level; promptdoesnotexcludeprojectedarearesponsechanges when moved. SourceFAILpreserved.",
+      "pedagogicalReview": "FAIL: promptasksdetectorsignalwhileconstantdetectorgeometryappearsfirstinsolution. Explicitunchangednormal/orientation/linearresponse or askingirradiancewouldmake15percentunique; no autoedit.",
+      "assetChecksums": {},
+      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-E005",
+      "sourceSha256": "80b98e1fdab6d03c1364c22c6cbbab31fde9f30274b2e75444972838b8f7964e",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual volume increase onehalf litre",
+          "independentExact": "1/2000",
+          "expectedValue": "1/2000",
+          "unit": "m^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual120kilopascal conversion",
+          "independentExact": "120000",
+          "expectedValue": "120000",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual positive gaswork60joules",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual firstlaw gain25joules",
+          "independentExact": "25",
+          "expectedValue": "25",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "isobaric integral independently givespDeltaV",
+          "independentExact": "-V1*p + V2*p",
+          "expectedValue": "p*(-V1 + V2)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "energy closes85equals25plus60",
+          "independentExact": "85",
+          "expectedValue": "85",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "work done on gas has opposite sign",
+          "independentExact": "-60",
+          "expectedValue": "-60",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual volume increase onehalf litre": {
+          "[length]": "3"
+        },
+        "actual120kilopascal conversion": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "actual positive gaswork60joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual firstlaw gain25joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "isobaric integral independently givespDeltaV": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "energy closes85equals25plus60": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "work done on gas has opposite sign": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualDeltaV=2.5-2.0=.5L=5e-4m³,120kPa=120000Pa. Constant pressure quasi-static boundary work=120000*5e-4=60J positiveout. Q=+85J and DeltaU=Q-W=25J.85=25+60 closure. Manual5*12 powers; no calculator. Assumes assignedpressure absolute/effectiveexternalquasistatic boundarypressure and onlypVwork. No idealgas internalenergy formula is needed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Closedgassystem, quasistaticpiston, constant120kPa relevantboundarypressure, onlyexpansionpVwork, Q85J intogas. Workpositivebygas andDeltaUQ-W explicitlydefined; no imposedidealtemperature law.",
+      "pedagogicalReview": "Grapharea is a verbal pVrepresentation, no missingfigure. Signconvention and energyclosurearevisible; genericbilancedoesnotrequire idealgas.",
+      "assetChecksums": {},
+      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-E006",
+      "sourceSha256": "05ffb1cd6319009d63ef48e191f1cfbfb97f9accf9757a6263be18c3f8b009d9",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C6.json",
+      "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual10squarecentimetres conversion",
+          "independentExact": "1/1000",
+          "expectedValue": "1/1000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual incidentpower onefifthwatt",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual incidentenergy4joules",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual absorbedenergy2joules",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual temperatureincrease onehalfkelvin",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "doubletime under explicit fixedC losslessmodel doublesgain",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "heatcapacity notspecificheat dimension",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual10squarecentimetres conversion": {
+          "[length]": "2"
+        },
+        "actual incidentpower onefifthwatt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual incidentenergy4joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual absorbedenergy2joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual temperatureincrease onehalfkelvin": {
+          "[temperature]": "1"
+        },
+        "doubletime under explicit fixedC losslessmodel doublesgain": {
+          "[temperature]": "1"
+        },
+        "heatcapacity notspecificheat dimension": {
+          "[temperature]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual10cm²=10*(1e-2m)²=1e-3m². PerpendicularuniformI200W/m² gives.2W, over20s=4J incident. Absorbedhalf2J. TotalheatcapacityC4J/K givesDeltaT1/2K; not specificheat and no mass multiplication. Doubletime at same conditions yields1K. Sourceexplicitly bounds extrapolation by negligiblelosses/fixedC; manual finite decimal/fraction products.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Uniformperpendicularbeam covers10cm²absorber, constantI200,50percentabsorption,20s exposure,C4J/Kwholeobjectconstant, negligiblelosses/nootherstorage. Onlyunderexplicitfixedregime doesdoubletime doublegain.",
+      "pedagogicalReview": "Correctsarea-squareprefix and distinguishesobjectheatcapacityfromspecificheat; absorbedversusincidentenergy, boundedlinear-timeextension.",
+      "assetChecksums": {},
+      "figureReview": "All originalblocksread: no figure reference, no hidden numericgraphic required.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "728268bc8ef8b8294ece217d534fe448c82d6f0baee223b829023d5ec46c7a55",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C6.json",
+  "sourceFileSha256": "3f39318c261ec6ed7e68e06f2776dbfb6bce847ccd71cef6354cc5554699ac0c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 2,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [
+    "C6-E003",
+    "C6-E004"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
