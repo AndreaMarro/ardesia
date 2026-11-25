@@ -1,0 +1,111 @@
+{
+  "purpose": "INDEPENDENT_ORIGINAL047_VISUAL_AND_REQUESTED_TASK_READING",
+  "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "terminalReview": "FIVE_ACCEPTED_FIVE_FAILED_ORIGINALS_PENDING_CORRECTION",
+  "browserTerminal": "COMPLETED_WITH_EXPECTED_SOURCE_CONFLICT_OBSERVED",
+  "actualConsumerExitCode": 0,
+  "activityProfiles": 40,
+  "boundaryFrames": 188,
+  "nativeLabelProjectionFrames": 94,
+  "fullCanonicalGrid": 140,
+  "sourceIssueIds": [
+    "SIM-C2-L002-01"
+  ],
+  "materialConsumerIssueIds": [
+    "SIM-C2-L001-02",
+    "SIM-C2-L001-05",
+    "SIM-C2-L002-01",
+    "SIM-C2-L002-02",
+    "SIM-C2-L003-01"
+  ],
+  "findings": [
+    {
+      "id": "SIM-C2-L002-01",
+      "type": "SOURCE_PHYSICAL_TASK_CONFLICT",
+      "sourceVersion": 1,
+      "explicitRequestedData": "transfer h1.5m,ρ1000,g10",
+      "independentExact": "15kPa",
+      "actualAccepted": "14.715kPa",
+      "actualPhysical15Rejected": true,
+      "firstComparisonQualification": "First comparison question uses9.81-model readout; do not claim it separately explicitly assignsg10.",
+      "correctionProposalForSeparateAuthor": "Newv2/base1DRAFT with explicitg9.81 matching unchangedlaw/reference, manual981/100*3/2=2943/200kPa=14.715. No source or candidate edited by reviewer."
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "type": "NATIVE_OPAQUE_BODY_OCCLUSION",
+      "case": "U6cm/s320native plus allnonzero legalgrid1..8",
+      "tipY": 1.4575,
+      "opaquePlateY": [
+        1.3875,
+        1.5275
+      ],
+      "meaning": "Topvelocitytip and horizontalshaft insideplate. Cone can protrude because.0812radius>.07halfthickness; no whole-cone claim.",
+      "png": "SIM-C2-L001-02-320-native-x6-tnull.png"
+    },
+    {
+      "ids": [
+        "SIM-C2-L001-05",
+        "SIM-C2-L002-01",
+        "SIM-C2-L002-02"
+      ],
+      "type": "NATIVE_OPAQUE_LABEL_SENSOR_OCCLUSION",
+      "case": "320native",
+      "probeCenterPixels": [
+        116.01863773947656,
+        160.2021724645481
+      ],
+      "probeRadiusPixels": 3.811111111111111,
+      "exampleLabelBoxPixels": [
+        76.43000812450249,
+        144.77043253813625,
+        123.78294930097307,
+        164.77043253813625
+      ],
+      "meaning": "Entire projected leftprobe circle inside Sonda sprite in example00105/80; same source apparatus comparison checked for other IDs. Rightprobe remainsvisible.",
+      "png": "SIM-C2-L001-05-320-native-x80-tnull.png"
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "type": "NATIVE_OPAQUE_LABEL_FORCE_TIP_OCCLUSION",
+      "case": "70..100kPa320native",
+      "meaning": "Superficie covers redtip. At110 tip is outside label; no extension of tip claim to110.",
+      "png": "SIM-C2-L001-05-320-native-x80-tnull.png"
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "type": "NATIVE_OPAQUE_LABEL_FORCE_TIP_OCCLUSION",
+      "cases": [
+        "2kPaA1redtip",
+        "10kPa4A1greentip"
+      ],
+      "widths": [
+        320,
+        1280
+      ],
+      "meaning": "Actualforce2xNlawcorrect; findingisocclusion, not unsupported common-force-scale inference.",
+      "pngs": [
+        "SIM-C2-L003-01-320-native-x2-tnull.png",
+        "SIM-C2-L003-01-320-native-x10-tnull.png"
+      ]
+    }
+  ],
+  "qualifiedObservationNotFailure": {
+    "id": "SIM-C2-L002-04",
+    "case": "±.2kPa320native",
+    "tipOnlyHorizontalEntryPixels": 0.2530496649534,
+    "meaning": "PartialΔhlabel-tipmask, cone partlyvisible;1280native and320fallback checked. Insufficient evidence of totalinvisibility or materially lost sign direction, not an extraFAIL.",
+    "png": "SIM-C2-L002-04-320-native-x0.2-tnull.png"
+  },
+  "readoutAndDisplayLimits": [
+    "All ten original blocks arrays empty, but generic guides and two assessments require numeric student calculations; no NO_STUDENT_CALCULATION claim.",
+    "Volume chambers/particles illustrative; separatevolumeindicator has correct calibration. Cubic/cuberoot display operations are not student-assigned manual work.",
+    "Piston baselineheightdifference and noncalibratedforceglyphgains not used to infer outputforces: assigned pressureincrement times20cm² determines result.",
+    "Bounded realdefault-camera UI, not allcontinuous times/arbitraryOrbitControls viewpoints. No clocks exist in these ten parameter comparisons.",
+    "No production,source,registry,ledger,candidate,previous1051frozen delivery files or globalbrowserhelpers modified."
+  ],
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
