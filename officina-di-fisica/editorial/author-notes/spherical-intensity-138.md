@@ -14,7 +14,7 @@ La conservazione della potenza dà I=P/(4πr²). Sostituendo P=4πp si cancella 
 
 Passaggi: `I=\frac{P}{4\pi r^2}\qquad P=4\pi p\qquad I=\frac p{r^2}\qquad I=1\,\mathrm{W/m^2}`
 
-Errori e controllo: Due divide per r invece di r². Quattro copia p e 1/4 inverte il quoziente. La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata.
+Errori e controllo: Due divide per r invece di r². Quattro copia p; 1/4 omette il fattore p e usa soltanto 1/r². La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata.
 
 ## 02 — L’unità dell’intensità di propagazione
 
@@ -135,3 +135,7 @@ Sostituire il vincolo nella legge sferica cancella un fattore di r: I=c/r. La di
 Passaggi: `I=\frac{cr}{r^2}\qquad I=\frac cr\qquad r=\frac cI\qquad r=2\,\mathrm m\qquad p=4\,\mathrm W`
 
 Errori e controllo: Non serve una radice dopo la sostituzione, perché resta una sola potenza di r al denominatore. c è una potenza per lunghezza, non un’intensità né una pressione.
+
+## Correzione dopo revisione distinta
+
+Il revisore ha rilevato che 1/4 non è il reciproco del risultato 1: deriva dal solo 1/r² omettendo p. Corretta soltanto la motivazione del distrattore in 01, con il suo error.message e binding. Chiave, formule, figura e altre 15 schede restano identiche. Doppia assembly, import idempotente e 48 nuove anteprime tecniche exit 0; revisione scientifica indipendente da aggiornare dal revisore distinto, nessuna firma dell’autore.

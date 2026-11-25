@@ -5,7 +5,7 @@ TASKS=[
 ('La stessa potenza distribuita su una sfera',P+'Con p=4 W e r=2 m, quanto vale I in W/m²?',1,
  'La conservazione della potenza dà I=P/(4πr²). Sostituendo P=4πp si cancella esattamente 4π e rimane p/r². Quattro watt divisi per quattro metri quadrati danno un W/m². La potenza reale della sorgente è 16π W, non quattro W.',
  r'I=\frac{P}{4\pi r^2}\qquad P=4\pi p\qquad I=\frac p{r^2}\qquad I=1\,\mathrm{W/m^2}',
- 'Due divide per r invece di r². Quattro copia p e 1/4 inverte il quoziente. La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata.','Cancella il fattore 4π prima di inserire i numeri.'),
+ 'Due divide per r invece di r². Quattro copia p; 1/4 omette il fattore p e usa soltanto 1/r². La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata.','Cancella il fattore 4π prima di inserire i numeri.'),
 ('L’unità dell’intensità di propagazione','L’intensità media I è la potenza che attraversa un’area normale divisa per quell’area. Quale unità proposta è adatta?',['W/m²','W','J','Pa','W/m'],
  'Una potenza in watt divisa per un’area in metri quadrati dà W/m². Nel modello sferico p è ancora una potenza e r² è un’area. La pressione acustica è un’altra grandezza: il simbolo p scelto per P/(4π) non ne assume le dimensioni.',
  r'[I]=\frac{[P]}{L^2}\qquad [I]=\mathrm{W/m^2}\qquad [p]=\mathrm W',
