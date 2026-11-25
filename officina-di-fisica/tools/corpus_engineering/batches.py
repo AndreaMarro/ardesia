@@ -10,6 +10,7 @@ from .pipeline import canonical,digest,sha
 from .integration import exercise
 from .runtime_fingerprint import runtime_fingerprint
 from .review_contract import exact_choice_identity
+from .acceptance_withdrawals import load_ledger,acceptance_audit,assert_unchanged_acceptance
 
 APP=Path(__file__).resolve().parents[2]
 
@@ -40,6 +41,9 @@ def load_registry(file=None):
     schema=json.loads((APP/"contracts/corpus-batches-v1.schema.json").read_text())
     try:Draft202012Validator(schema).validate(registry)
     except ValidationError as error:raise ValueError("Invalid batch registry: "+error.message) from error
+    # The optional ledger is rooted at the application containing this registry.
+    ledger_app=file.parent.parent.parent if file.name=="registry.json" and file.parent.name=="batches" and file.parent.parent.name=="editorial" else APP
+    load_ledger(ledger_app,registry)
     seen_ids=set();seen_batches=set()
     for batch in registry["batches"]:
         if batch["id"] in seen_batches or seen_ids.intersection(batch["questionIds"]):
@@ -83,6 +87,7 @@ def validate_batch(spec,app=APP):
     try:Draft202012Validator(rule).validate(spec)
     except ValidationError as error:raise ValueError("Invalid batch specification") from error
     batch=spec["id"]
+    acceptance=acceptance_audit(spec,set(spec["questionIds"]),app)
     package_file=app/"editorial/batches"/(batch+".json")
     binding_file=app/"editorial/batches"/(batch+"-bindings.json")
     package=json.loads(package_file.read_text());bindings=json.loads(binding_file.read_text())
@@ -108,7 +113,9 @@ def validate_batch(spec,app=APP):
         raise ValueError("Integration evidence changed: "+batch)
     browser_file,browser_count=validate_browser_preview(batch,package_file,package,spec['questionIds'],app)
     files={"package":package_file,"bindings":binding_file,"science":scientific,"integration":integration,"browser":browser_file}
-    return {"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":browser_count,
+    assert_unchanged_acceptance(acceptance,spec,set(spec["questionIds"]),app)
+    audit={"acceptanceWithdrawals":acceptance} if acceptance else {}
+    return {**audit,"spec":spec,"package":package,"bindings":bindings,"records":current,"browserCases":browser_count,
             "paths":{key:file.relative_to(app).as_posix() for key,file in files.items()},
             "checksums":{key:sha(file.read_bytes()) for key,file in files.items()}}
 
@@ -150,6 +157,7 @@ def validate_activity_batch(spec,sources,app=APP):
     try:Draft202012Validator(rule).validate(spec)
     except ValidationError as error:raise ValueError("Invalid activity batch specification") from error
     expected=set(spec['activityIds'])
+    acceptance=acceptance_audit(spec,expected,app)
     if not expected.issubset(sources):raise ValueError('Activity source identity missing')
     selected={key:sources[key] for key in expected}
     module=importlib.import_module('.'+spec['verifier'],__package__)
@@ -175,7 +183,9 @@ def validate_activity_batch(spec,sources,app=APP):
         files={'package':package_file,'bindings':binding_file,'integration':integration,'browser':browser}
         edition={'paths':{k:p.relative_to(app).as_posix() for k,p in files.items()},
                  'checksums':{k:sha(p.read_bytes()) for k,p in files.items()},'browserCases':count}
-    return {'spec':spec,'records':records,'path':file.relative_to(app).as_posix(),'sha256':sha(file.read_bytes()),
+    assert_unchanged_acceptance(acceptance,spec,expected,app)
+    audit={'acceptanceWithdrawals':acceptance} if acceptance else {}
+    return {**audit,'spec':spec,'records':records,'path':file.relative_to(app).as_posix(),'sha256':sha(file.read_bytes()),
             'revision':edition,'bindings':bindings}
 
 

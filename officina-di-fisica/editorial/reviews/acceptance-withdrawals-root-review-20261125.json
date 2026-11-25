@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "ROOT_INDEPENDENT_TECHNICAL_REVIEW_OF_B_WITHDRAWAL_GATE",
+  "status": "PASS_TECHNICAL_REAL_WITHDRAWAL_OPEN",
+  "runtimeSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "files": [
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/acceptance_withdrawals.py",
+      "sha256": "f435086a2cf0970545927ac4370c30f7e7d2a7f435871dffe0e23de582ea50fc"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/batches.py",
+      "sha256": "3a11b5d02a7df28c36213a6a2f13739eea0724cbe790c44a2eebce6439b51950"
+    },
+    {
+      "path": "officina-di-fisica/tools/corpus_engineering/evidence.py",
+      "sha256": "72783b57d27cd6a2c926ea87bde52e6751f391069a4655311fbe6da2bc2848c2"
+    },
+    {
+      "path": "officina-di-fisica/contracts/corpus-acceptance-withdrawals-v1.schema.json",
+      "sha256": "b84c2c2d1de56bdab53bb6b12bc2e1afe3ac21f7edc6d5813fb885964f59edbf"
+    },
+    {
+      "path": "officina-di-fisica/contracts/corpus-batches-v1.schema.json",
+      "sha256": "665b65b922acc807b438d89a2f038029b7c403e398c6c71be8ac52cc4c8e7bc5"
+    },
+    {
+      "path": "officina-di-fisica/tests/corpus/test_acceptance_withdrawals.py",
+      "sha256": "045a0c855e515381d12c0fc5d7cb0724c46bc7c5ad10eca178be69b80cbb8051"
+    },
+    {
+      "path": "officina-di-fisica/editorial/acceptance/withdrawals-v1.json",
+      "sha256": "acb204759d240e1ee02c932832e3e5d59de77604dc2325087870cf8f99da3996"
+    },
+    {
+      "path": "officina-di-fisica/editorial/batches/registry.json",
+      "sha256": "677bc3ecb33819b57b9199038bbc9ea0a7480bf78b34f7306dc4b3a17a235ac7"
+    }
+  ],
+  "tests": {
+    "count": 46,
+    "seconds": 0.915,
+    "terminalExitCode": 0,
+    "transcript": "..............................................\n----------------------------------------------------------------------\nRan 46 tests in 0.915s\n\nOK\n",
+    "sha256": "3126233a9bd5e75d869a06ca2611457301453a500d26f4b43fda573990aa2b66"
+  },
+  "actualRealDatasetGate": "Acceptance withdrawn: SIM-C1-L005-05 (normal-visibility-a-20261125)",
+  "reviewFindings": [],
+  "firstLauncherCorrection": "Initial ROOT command used two nonexistent test module names; import failures were preserved in local log and never counted as a passing suite. Corrected named suite exited0.",
+  "legacyRegistryFieldsUnchanged": true,
+  "oldReportsRetagged": 0,
+  "closure": "OPEN",
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
