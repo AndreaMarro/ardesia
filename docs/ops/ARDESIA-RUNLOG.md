@@ -1,3 +1,22 @@
+## Checkpoint corrente — 1.568 quesiti e 187 attività, 25 novembre 2026
+
+Generazione `dbd3d5d8473091ae0faf2d32ba1f76d001b35fb2540a380df0bd77e62d584ae8`, manifest `e297f6940fed78c6e46634870dbe1459e55c871bf68558075ab01a42c87818bc`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati. Revisioni complete: 1.568 quesiti DRAFT e 187 attività; restano **3.038 quesiti e 198 attività**. U1, U2 e U3-01/U3-02/U3-03 revisionati in bozza. Prossimo ID da consolidare: `u3-reservoir-emptying-01`, batch `reservoir-emptying-107`. Il mandato rimane aperto.
+
+I 320 quesiti aggiunti rispetto al canone 1248 hanno autori e verificatori distinti, risoluzioni individuali, ipotesi, controlli matematici e dimensionali, inversi, conti manuali e distrattori motivati. Le nuove famiglie comprendono galleggiamento, continuità, reti, pompa, Bernoulli e getti. Due feedback corretti dagli autori e riletti: un distrattore non era descritto dalla divisione inversa indicata e una frase ometteva l’uguaglianza u=−3. Nessuna modifica alle chiavi per eludere il controllo.
+
+Quattro didascalie hanno fallito il reflow mobile: report e schermate NONPASS conservati; correzioni lette separatamente e 192 casi rifatti con uscita 0. I 960 nuovi casi dei quesiti hanno report validi e processi terminati con 0. Totale 4.746 anteprime sul medesimo runtime: 4.704 quesiti e 42 delle 14 nuove edizioni di attività. Formula termica inizialmente troppo larga su 320 px separata in tappe algebriche; fallimento conservato e sei casi rifatti. Nessuna asserzione o regola CSS allentata. Axe non certifica da solo WCAG/UDL o esperienza reale DSA/ADHD.
+
+Le 58 attività aggiunte comprendono 12 lezioni, 40 esempi C4/C5 e sei esempi C6. Sei nuove edizioni correttive: C5-E008, E009, E017, E018 e C6-E003, E004; i rispettivi finding negativi sulle edizioni originali restano visibili, separati dalle prove delle bozze. Sono ora 14 problemi originali e 14 nuove edizioni DRAFT nel registro. Le nuove spiegazioni precisano tensione costante, geometria degli echi, risposte angolari esatte, bilancio termico senza falsa uguaglianza di arrotondamento e ipotesi del sensore. Nessuna edizione storica sostituita.
+
+Suite tracciata: **371 test PASS in 165,423 s**, inventario degli input e startingHead `3e3f7907173254902f304db981eba19966734235` nel report `editorial/reviews/local-regressions-1568-20261125.json`. Le prove originali 034 aggiunte successivamente restano fuori registro e hanno controlli mirati separati. Fresh e incrementale coincidono. Coesistenza: 1.582 edizioni nel medesimo SQLite temporaneo, secondo import senza scritture, tutti i 991 pubblicati, live head e storia invariati. Adattività verificata con fixture private sintetiche, nessuna misura di apprendimento reale.
+
+Rilievo aperto separato: LAB3D-01 consente μd>μs e restituisce una partenza incoerente nel modello Coulomb da fermo. Caso e hash del consumer in `editorial/reviews/open-findings/bench-piano-domain-20261125.json`, zero credito di completamento. Occorrono correzione del dominio e verifica distinta; il runtime corrente non è stato modificato per nascondere il problema. Le altre attività residue richiedono anche lettura dei consumer e dei parametri effettivi, non solo dei JSON.
+
+Il canone remoto contiene ancora 1.248/129: PR #361 MERGED su `8a2d7c5abf64753c69cdd8066a9dcc8302e03448`, head finale `d77132ba4a7966ee37a9ac23ef1a40ca28d9168c`, CI post-merge 14/14 SUCCESS sui run 45522773668 e 45522773758. Nessun bypass. Release 1248 SHA256 `0eb025ac3697804558ee11eb81dd8756aa7c14a5a5562c10faeb9d01f672fc5a`, zero sorgenti o figure DRAFT distribuiti. Questo incremento 1568/187 sul ramo `feat/cric-u3-buoyancy` richiede ancora release, PR e CI sulla SHA finale prima dell’integrazione canonica.
+
+Dei 199 ID con vecchi controlli tecnici, 65 hanno ora una revisione completa e 134 restano parziali. Backlog completo 3.038 e sola risoluzione indipendente 2.904 sono code diverse. Le 100 revisioni Pro restano NOT_IDENTIFIED. Human NOT_RUN, nuove pubblicazioni zero, 93 domande d’esame protette. U3-04 nei lotti 107–116 e le prove di copertura 034 continuano fuori conteggio. Ownership assegna lavoro, non completa record. Proseguire senza attendere firme umane per l’authoring; pubblicazione separata. Le sezioni successive sono snapshot storici.
+
 ## Checkpoint corrente — 1.408 quesiti e 169 attività, 25 novembre 2026
 
 Generazione `e2b6b54d3a4f665b5827076a5376e75c6f684e6a0800f24357c6d4eea1008f47`, manifest `afa4c8e8fb1ace0ef48722f55f10f598b86d104e2b1090f95a7979abcac629ef`.
