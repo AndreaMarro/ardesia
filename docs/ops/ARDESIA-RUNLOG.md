@@ -1818,3 +1818,26 @@ Il checkpoint storico resta 2.320 quesiti e 230 attività registrate, **227 atti
 U5-03: tutti i 160 candidati A168–172/B173–177 sono scritti e salvati sui rami autore; la review distinta continua. ROOT ha letto tutti i 16 di 168 e l'intero XML della figura: risposte corrette, due frasi precisate e revisione delle etichette grafiche ancora da congelare. B ha letto tutti i 64 di 169–172, trovando un controesempio numerico 171-16 da correggere 32→35 °C; A sta leggendo gli 80 di B, con un hint 173-09 da precisare. Le etichette di coordinate SVG in pixel vengono sostituite da unità fisiche visibili, conservando geometrie, dati e vecchi asset. Nessun risultato è approvato dal proprio autore. Le UI correnti dei candidati finali sono NOT_RUN, le vecchie prove b963 sono archiviate senza ritag.
 
 Prossimo ID da consolidare: `u5-cyclic-work-01` / `AR-u5-cyclic-work-01`, lotto 158. Dopo il positivo scientifico dei gruppi, integrare il vero runtime definitivo e fare i replay globali, ETL fresh/incrementale, coesistenza e suite completa. PR #364 resta DRAFT sulla vecchia head; non integrare senza tutti i gate della nuova SHA. Continuare in parallelo le review U5-03 e il corpus residuo; la primaria B degli 80 U5-04 A178–182 è già salvata, senza authoring successivo avviato. Human NOT_RUN, pubblicazioni nuove zero, 93 esami protetti; mandato aperto.
+
+
+## 2026-11-25 — Aggiornamento operativo — 2.640 revisioni scientifiche, checkpoint 2.320
+
+Il checkpoint resta **2.320/4.606 quesiti DRAFT**; altri **320** hanno concluso la revisione scientifica indipendente (U5-02 e U5-03). Totale scientifico **2.640/4.606**, da revisionare **1.966**. I 320 non ricevono credito di checkpoint prima delle UI e dell’integrazione finale. Le attività effettive restano **227/385**, da chiudere **158**; sei ritiri OPEN, tre riferiti ad accettazioni già registrate. Nessuna approvazione umana o nuova pubblicazione; 93 esami protetti.
+
+ROOT contiene ora il runtime reale `1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba`. Il globale autentico 167 pacchetti/7.491 casi è IN CORSO, due worker, sessione 69122 e log `/private/tmp/cric-runtime1a35-all-ui.log`. Salvati su Git 22 marker terminali autentici/1104 casi come **evidenza parziale**, non PASS globale. Registro e ledger restano congelati finché la corsa non termina. Le vecchie prove b963/8d rimangono storiche, senza ritag.
+
+I due handoff C1 correnti (Third1051 file, A247 file) sono copiati e verificati: 1.300 file unici inclusi i manifest, 752 copiati e 38 versioni precedenti preservate. Commit `6445ce8`; la suite ROOT distinta di 58 test è in corso, sessione61035, log `/private/tmp/cric-c1-root58-current1a35.log`. I cinque banchi035 hanno invece già veri 10 replay correnti con exit0, 378 configurazioni e 9 test PASS in3,158s; nessun nuovo credito, 13 vecchi file b963 conservati. Tutti gli80 B173–177 sono ora verificati da A: 13 test ROOT PASS in16,863s, handoff SHA `16ce849780555048747922984ed3c63d142e782bdb5f0775f492191ae5e6773e`, commit `23118b7`.
+
+U5-04 è assegnato in `editorial/assignments/u5-04-v1.json`, SHA `2560e2203323123c3b8a1bb1568b9d04136bc0c1f7be3b9dfe7c46e99d194070`. Autori A178–182/B183–187 e verificatori incrociati, 160 ID disgiunti. Entrambe le primarie prompt-only sono congelate prima dei candidati: Bc94597… sugli80 A; A004be03… sugli80 B. Authoring parallelo in corso, nessuna nuova UI o modifica di produzione. Prossimo ID scientifico da produrre `u5-plane-conduction-01`; prossimo ID da CONSOLIDARE nel checkpoint rimane `u5-cyclic-work-01` / `AR-u5-cyclic-work-01`, lotto158.
+
+C2 gruppo047 continua la lettura distinta dei10 originali. Negativi reali: sonda coperta in00105/00201/00202, freccia Couette00102 nella lastra, punte Pascal00301 sotto etichette; 00201 ha anche g10 nel prompt contro9,81 nel modello. Le osservazioni di solo bordo0,253px in00204 non sono promosse a FAIL. Root ha prodotto una nuova edizione2 `experiment-stevino-revision-047` con g981/100 coerente e conti esatti19,62/14,715: import canonico1→0/1 e991 pubblicati invariati; review indipendente e UI NOT_RUN, nessun credito. Non corregge da sola il difetto visivo.
+
+Priorità di prosecuzione:
+1. Osservare il terminale vero del globale167 e della suite58; conservare marker validi, diagnosticare eventuali errori senza indebolire i gate.
+2. Dopo il terminale globale, chiudere esplicitamente i sei ritiri con report per ID/SHA/runtime correnti; registrare048/049 e dieci famiglie U5-03, poi vero replay177 con riuso dei marker validi.
+3. Eseguire ETL fresh/incrementale, coesistenza, suite completa e release sul risultato effettivo; aggiornare la stessa PR364, CI sulla SHA finale, merge ordinario e post-merge14/14. La PR364 rimane DRAFT sulla vecchia head5a9a0b8: non integrare quella head.
+4. Continuare autoria e review distinta U5-04; congelare i negativi047 e far verificare a Third il nuovo Stevino prima di qualsiasi accettazione. Ulteriori correzioni runtime C2 richiedono prove reali proprie.
+
+Il mandato rimane aperto. Le sezioni seguenti sono snapshot storici.
+
+---
