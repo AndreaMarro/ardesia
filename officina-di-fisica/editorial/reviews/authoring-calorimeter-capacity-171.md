@@ -1,5 +1,11 @@
 # Authoring DRAFT — calorimeter-capacity-171
 
+## Aggiornamento contenuto 171-09 dopo collaudo remoto mobile
+
+Il run remoto 45591666917 ha segnalato overflow della prima formula a 320 px. Si sostituisce soltanto la derivazione 09 con definizioni brevi M, Δ_h e Δ_c e il bilancio equivalente; chiave, opzioni, dominio, hint, feedback e SVG sono invariati. Gli altri 15 record e i relativi binding restano identici. Nessun CSS o runtime modificato.
+
+Le prove di assembly/import/UI/scientifiche riportate sotto riguardano l’edizione precedente, ora conservata byte per byte nell’archivio calorimeter-capacity-171-before-mobile-step09-20261125. Non si ritaggano come prove della nuova 09. La nuova serializzazione usa soltanto il law_steps esistente estratto come funzione pura, con ingresso serializzato limitato a 2 MiB e memoria osservata nel processo stdlib: nessun database, browser, SymPy o verificatore importato. Assembly completo, import, UI e nuova review distinta 09 restano NOT_RUN fino ai gate dell’integratore e del peer B. Nessuna approvazione propria.
+
 Letti individualmente tutti gli 80 prompt assegnati A168–172 dal pin 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605, source U5-03 SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Riletti i testi reali delle lezioni C3-L01/L03/L04/L06. I casi speciali03 di170/171/172 sono preservati; i rapporti di letture Celsius saranno dichiarati come numerici e non assoluti.
 
 Autore soltanto: DRAFT, revisione scientifica indipendente NOT_RUN, human NOT_RUN e publicationAction NONE. Queste sono note dell’autore, non un oracolo distinto né una firma scientifica.
@@ -110,13 +116,13 @@ Fonte canonica SHA256 b6b51004902b2c370658a6c606b4318b0a837772f362ff42368c76d2fb
 
 Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Sono noti m_c e θ_f. Quale formula isola m_h?
 
-Procedimento d’autore: Nel bilancio c si può raccogliere perché C_r=cm₀: m_h(80−θ_f)=(m_c+m₀)(θ_f−20). Dividiamo per l’intervallo positivo del caldo. La somma delle masse equivalenti mantiene conto del recipiente; il rapporto degli intervalli è puro e lascia il risultato in grammi.
+Procedimento d’autore: Raccogliamo la massa equivalente fredda in M=m_c+m₀. Chiamiamo Δ_h=(80−θ_f) K l’intervallo di raffreddamento del caldo e Δ_c=(θ_f−20) K quello di riscaldamento della parte fredda. Sono entrambi positivi nel dominio dato. Dopo aver diviso il bilancio per c, rimane m_hΔ_h=MΔ_c. Dividiamo per Δ_h: il rapporto Δ_c/Δ_h è puro e la massa cercata resta in grammi. Sostituire le tre definizioni restituisce la formula proposta nelle risposte.
 
-Passaggi: m_h(80-\theta_f)=(m_c+m_0)(\theta_f-20);  m_h=(m_c+m_0)\frac{\theta_f-20}{80-\theta_f}.
+Passaggi: M=m_c+m_0;  \Delta_h=(80-\theta_f)\,\mathrm K;  \Delta_c=(\theta_f-20)\,\mathrm K;  m_h\Delta_h=M\Delta_c;  m_h=M\frac{\Delta_c}{\Delta_h}.
 
 Distrattori: Omettere m₀ elimina una capacità reale. Il rapporto inverso scambia i due intervalli; sottrarre m₀ tratterebbe il recipiente come fonte anziché destinatario termico. La somma finale mescola una lettura numerica con masse invece di usare un bilancio.
 
-Fonte canonica SHA256 a143244713171a6f1cc57e02322820fc69117288b6d0de1086390fdfd54b2b1d. Candidato SHA256 6076db8fd70dea80ad17fd3bea9448fb79faf1389822ef51726e85649ffbfda2. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 a143244713171a6f1cc57e02322820fc69117288b6d0de1086390fdfd54b2b1d. Candidato SHA256 893852fca2bc2672185e3bccb2275ff27bbb99b9bfe56c3ba1482212adc3091e. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-calorimeter-capacity-10 — Il recipiente non scala con le due masse
 
@@ -213,3 +219,5 @@ Review distinta B, correzione16: con masse uguali1 g e recipiente2 J/K il bilanc
 ## Etichette dello zero, dopo review distinta
 
 Il revisore B ha segnalato zeri attraversati dagli assi nei lotti 169–172; lo stesso difetto era presente in 168. Sono state spostate soltanto le etichette 0 indicate nel manifest di questa correzione,20 coordinate intrinseche SVG verso sinistra. Assi, barre, percorsi, tutti gli altri testi, risposte e formule sono identici. I cinque SVG finali sono stati nuovamente letti nel rendering completo; gli zeri sono separati dagli assi. I file precedenti e le loro impronte sono conservati nella cartella before-zero-label-fix. Il precedente confronto geometrico della rimozione dei riferimenti ai pixel resta storico e non viene riscritto: questa correzione dichiara esplicitamente il movimento dei soli testi 0. Due assembly e import canonico ripetuti; UI del prodotto NOT_RUN, nessun marker corrente.
+
+Archivio precedente SHA256 0c8a366c2a599bfd4bd3488390d54145b6572051e7c999b8f8d2fd573e4a32f2. Patch pura SHA256 68fe8f8cbaa417506cec6ee1be777c642feba305c483be7de410d4657a5caa9c.
