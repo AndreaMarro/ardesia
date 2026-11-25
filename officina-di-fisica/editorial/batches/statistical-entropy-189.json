@@ -1,0 +1,1260 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-statistical-entropy-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18901,
+      "title": "Due raddoppi del numero di stati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 1,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Con Ω_i=2 e Ω_f=8, quanto vale z?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione si ottiene sottraendo le due entropie: ΔS=k_B(ln8−ln2)=k_B ln4. Poiché 4=2², ln4=2ln2. Dividere per k_B ln2 lascia due. Gli otto microstati finali non sono otto particelle: sono alternative compatibili con il macrostato finale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1f76f4b89c0c91cb3804ef5206f7aab59f289c1b509e5c7c0200385453e1c0ff",
+          "text": "I cerchi raffigurano alternative equiprobabili del modello, non particelle presenti insieme: due microstati iniziali e otto finali. Il rapporto quattro corrisponde a due raddoppi e z=2. Il secondo pannello mantiene Ω_i=2 e mostra che ogni raddoppio del conteggio finale aggiunge uno a z. Le barre confrontano z_A=2 e z_B=1 con media 3/2; la tabella finale mostra coppie intere sul rapporto quattro, senza una scala determinata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=k_B\\ln(8/2)"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=k_B\\ln4"
+        },
+        {
+          "type": "formula",
+          "text": " \\ln4=2\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " z=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto dei conteggi prima del logaritmo. Tre usa ln8 ma omette lo stato iniziale; sei sottrae i conteggi anziché le entropie. −2 invertirebbe iniziale e finale: una variazione negativa non è vietata in ogni confronto, ma non descrive questi dati."
+        }
+      ],
+      "hints": [
+        "Scrivi il rapporto come potenza di due prima di dividere i logaritmi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto dei conteggi prima del logaritmo. Tre usa ln8 ma omette lo stato iniziale; sei sottrae i conteggi anziché le entropie. −2 invertirebbe iniziale e finale: una variazione negativa non è vietata in ogni confronto, ma non descrive questi dati.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18902,
+      "title": "Un coefficiente senza unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 1,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Quale unità esprime z?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "J/K",
+          "J",
+          "K",
+          "K⁻¹"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "ΔS e k_B hanno entrambi unità J/K; ln2 è un numero puro. Il quoziente non ha dimensioni e si esprime con 1. Essere adimensionale non significa essere intero: per esempio Ω_i=1 e Ω_f=3 danno z=ln3/ln2, strettamente fra uno e due perché 2<3<4."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta S]=[k_B]"
+        },
+        {
+          "type": "formula",
+          "text": "[k_B]=\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " [z]=1"
+        },
+        {
+          "type": "formula",
+          "text": " 1<\\frac{\\ln3}{\\ln2}<2"
+        },
+        {
+          "type": "text",
+          "text": "J/K è l’unità di ΔS, non del quoziente normalizzato. J è energia, K temperatura e K⁻¹ temperatura inversa. I conteggi sono interi, mentre il loro logaritmo normalizzato non deve esserlo."
+        }
+      ],
+      "hints": [
+        "Cancella le unità del numeratore e del denominatore senza imporre un vincolo intero a z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K è l’unità di ΔS, non del quoziente normalizzato. J è energia, K temperatura e K⁻¹ temperatura inversa. I conteggi sono interi, mentre il loro logaritmo normalizzato non deve esserlo.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18903,
+      "title": "Raddoppiare le alternative",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 1,
+      "prompt": "Nel modello equiprobabile S=k_B lnΩ, Ω è un conteggio intero positivo. Si passa da Ω_i=n a Ω_f=2n, con n intero positivo. Qual è la variazione di entropia?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔS = k_B ln2",
+          "ΔS = 2 S_i",
+          "ΔS = 0",
+          "ΔS = −k_B ln2",
+          "ΔS = 2 k_B"
+        ],
+        "value": "ΔS = k_B ln2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto finale/iniziale è 2n/n=2, indipendente da n. La differenza delle entropie è quindi k_B ln2: raddoppiare il numero di alternative aggiunge questo contributo, senza moltiplicare necessariamente per due l’entropia iniziale. Per n=1 l’entropia iniziale del modello è zero ma quella finale è positiva."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1f76f4b89c0c91cb3804ef5206f7aab59f289c1b509e5c7c0200385453e1c0ff",
+          "text": "Ogni passaggio da due a quattro e da quattro a otto microstati raddoppia le alternative e aggiunge k_B ln2 all’entropia. Nel secondo pannello z è misurato rispetto al riferimento Ω_i=2. Le barre mostrano coefficienti adimensionali; la tabella usa soltanto conteggi interi positivi, non punti di una curva continua."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Omega_f}{\\Omega_i}=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=k_B\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "text",
+          "text": "2S_i confonde un raddoppio del conteggio con uno dell’entropia. Zero ignora il cambiamento; il segno meno inverte il rapporto e 2k_B sostituisce erroneamente ln2 con due. Non è assegnato un calore o un percorso isotermo reversibile dal quale ricavare Q."
+        }
+      ],
+      "hints": [
+        "Semplifica il rapporto 2n/n prima di applicare il logaritmo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2S_i confonde un raddoppio del conteggio con uno dell’entropia. Zero ignora il cambiamento; il segno meno inverte il rapporto e 2k_B sostituisce erroneamente ln2 con due. Non è assegnato un calore o un percorso isotermo reversibile dal quale ricavare Q.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18904,
+      "title": "Un raddoppio aggiunge uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 1,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A usa Ω_i=2, Ω_f=8. B mantiene Ω_i=2 e usa Ω_f=16. Come cambia z?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3",
+          "Da 2 a 4",
+          "Da 2 a 1",
+          "Resta 2",
+          "Da 2 a 6"
+        ],
+        "value": "Da 2 a 3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rapporti sono quattro e otto, cioè 2² e 2³. Le due uscite sono due e tre. Il raddoppio del conteggio finale moltiplica il rapporto per due e aggiunge ln2 al logaritmo: z cresce di uno, non di un fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "\\Omega_{f,A}/\\Omega_i=2^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{f,B}/\\Omega_i=2^3"
+        },
+        {
+          "type": "formula",
+          "text": " z_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " z_B=3"
+        },
+        {
+          "type": "text",
+          "text": "Quattro raddoppia z invece del conteggio. Uno va nel verso opposto; due ignora la prova B e sei moltiplica fra loro i due esponenti anziché leggere quello di ciascuna potenza."
+        }
+      ],
+      "hints": [
+        "Confronta gli esponenti di due dei rapporti, non soltanto i conteggi finali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro raddoppia z invece del conteggio. Uno va nel verso opposto; due ignora la prova B e sei moltiplica fra loro i due esponenti anziché leggere quello di ciascuna potenza.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18905,
+      "title": "Dal logaritmo al conteggio finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Si conoscono z=2 e Ω_i=2. Quanto vale Ω_f?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per ln2: ln(Ω_f/Ω_i)=2ln2=ln4. Uguagliando gli argomenti positivi si trova Ω_f/Ω_i=4. Il conteggio finale è 2·4=8, un intero positivo: non occorre né è ammesso arrotondare una molteplicità."
+        },
+        {
+          "type": "formula",
+          "text": "\\ln(\\Omega_f/\\Omega_i)=2\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f/\\Omega_i=2^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f=2\\cdot4"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f=8"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il solo rapporto e dimentica Ω_i. Due copia lo stato iniziale; sei somma due e quattro invece di moltiplicarli. In generale la formula inversa è ammessa solo se il conteggio ottenuto resta intero positivo."
+        }
+      ],
+      "hints": [
+        "Esponenzia e poi moltiplica per il conteggio iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il solo rapporto e dimentica Ω_i. Due copia lo stato iniziale; sei somma due e quattro invece di moltiplicarli. In generale la formula inversa è ammessa solo se il conteggio ottenuto resta intero positivo.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18906,
+      "title": "Ricostruire il conteggio iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Si conoscono z=2 e Ω_f=8. Quanto vale Ω_i?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto finale/iniziale deve essere 2²=4. Perciò Ω_i=Ω_f/4=8/4=2. Sostituendo di nuovo si ritrova ln(8/2)/ln2=2. Il risultato rispetta il dominio dei conteggi senza una scelta di segno ulteriore."
+        },
+        {
+          "type": "formula",
+          "text": "\\Omega_f/\\Omega_i=2^z"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_i=\\Omega_f/2^z"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_i=8/4"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_i=2"
+        },
+        {
+          "type": "text",
+          "text": "Trentadue moltiplicherebbe per quattro invece di dividere. Quattro confonde il rapporto con il conteggio iniziale e otto annullerebbe la variazione. Non si sottrae z direttamente da un conteggio per invertire un logaritmo."
+        }
+      ],
+      "hints": [
+        "Dividi il conteggio finale per la potenza di due determinata da z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentadue moltiplicherebbe per quattro invece di dividere. Quattro confonde il rapporto con il conteggio iniziale e otto annullerebbe la variazione. Non si sottrae z direttamente da un conteggio per invertire un logaritmo.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18907,
+      "title": "Un iniziale più grande riduce la variazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A usa Ω_i=2, Ω_f=8. B mantiene Ω_f=8 e usa Ω_i=4. Quanto vale z_B/z_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha rapporto 8/2=4 e z_A=2. B ha rapporto 8/4=2 e z_B=1. Il quoziente richiesto è uno diviso due. Non è il rapporto dei due Ω_i: il logaritmo è stato applicato prima di confrontare le uscite."
+        },
+        {
+          "type": "formula",
+          "text": "z_A=\\ln4/\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": "\\ln4/\\ln2=2"
+        },
+        {
+          "type": "formula",
+          "text": " z_B=\\ln2/\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": "\\ln2/\\ln2=1"
+        },
+        {
+          "type": "formula",
+          "text": " z_B/z_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte B e A o segue il solo aumento di Ω_i. Uno ignora il diverso rapporto di microstati; un quarto dimezza due volte e −1/2 attribuisce un segno negativo non presente nelle due variazioni assegnate."
+        }
+      ],
+      "hints": [
+        "Calcola entrambi i coefficienti prima del loro rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte B e A o segue il solo aumento di Ω_i. Uno ignora il diverso rapporto di microstati; un quarto dimezza due volte e −1/2 attribuisce un segno negativo non presente nelle due variazioni assegnate.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18908,
+      "title": "Uno scarto fra coefficienti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Con Ω_i=2, Ω_f=8 si propone z=4. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "−2",
+          "4",
+          "0",
+          "6"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei conteggi è quattro, ma il coefficiente corretto è due perché quattro è 2². La proposta lo supera di 4−2=+2. Lo scarto è adimensionale come le due uscite; non è una variazione espressa direttamente in J/K."
+        },
+        {
+          "type": "formula",
+          "text": "z_{\\rm corretto}=2"
+        },
+        {
+          "type": "formula",
+          "text": " e=z_{\\rm proposto}-z_{\\rm corretto}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4-2"
+        },
+        {
+          "type": "formula",
+          "text": " e=2"
+        },
+        {
+          "type": "text",
+          "text": "−2 cambia l’ordine della sottrazione. Quattro copia la proposta, zero la accetta e sei somma i due coefficienti. Non si deve moltiplicare lo scarto per k_B ln2 se viene richiesto proprio il coefficiente."
+        }
+      ],
+      "hints": [
+        "Distingui il rapporto 8/2 dal suo logaritmo in base due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 cambia l’ordine della sottrazione. Quattro copia la proposta, zero la accetta e sei somma i due coefficienti. Non si deve moltiplicare lo scarto per k_B ln2 se viene richiesto proprio il coefficiente.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18909,
+      "title": "L’inversa conserva il conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Sono noti Ω_i e un valore z compatibile con conteggi interi positivi. Quale formula ricava Ω_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω_f = Ω_i 2^z",
+          "Ω_f = Ω_i z",
+          "Ω_f = 2^z / Ω_i",
+          "Ω_f = Ω_i / 2^z",
+          "Ω_f = Ω_i + 2^z"
+        ],
+        "value": "Ω_f = Ω_i 2^z"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla definizione si ha ln(Ω_f/Ω_i)=zln2. Esponenziare dà Ω_f/Ω_i=e^(zln2)=2^z, quindi Ω_f=Ω_i2^z. Il prodotto deve essere intero positivo: un valore z incompatibile con questa condizione non viene corretto arrotondando il risultato."
+        },
+        {
+          "type": "formula",
+          "text": "\\ln(\\Omega_f/\\Omega_i)=z\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f/\\Omega_i=e^{z\\ln2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f=\\Omega_i2^z"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_i2^z\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per z non inverte il logaritmo. Dividere per Ω_i scambia il ruolo del riferimento; dividere per 2^z invertirebbe il verso della variazione. Sommare i due termini non ricostruisce il rapporto esponenziale."
+        }
+      ],
+      "hints": [
+        "Usa l’esponenziale prima di isolare il conteggio finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per z non inverte il logaritmo. Dividere per Ω_i scambia il ruolo del riferimento; dividere per 2^z invertirebbe il verso della variazione. Sommare i due termini non ricostruisce il rapporto esponenziale.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18910,
+      "title": "Scalare due conteggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A ha Ω_f≠Ω_i, così z_A≠0. Definiamo R=Ω_f/Ω_i. B usa Ω_f,B=κ₁Ω_f e Ω_i,B=κ₂Ω_i, con κ₁,κ₂>0 tali che entrambi i nuovi conteggi siano interi positivi. I fattori possono essere frazioni quando i prodotti rispettano tale condizione. Quanto vale z_B/z_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "[ln R + ln(κ₁/κ₂)] / ln R",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "[ln R − ln(κ₁/κ₂)] / ln R",
+          "κ₁ κ₂"
+        ],
+        "value": "[ln R + ln(κ₁/κ₂)] / ln R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei nuovi conteggi è R(κ₁/κ₂). Il logaritmo di un prodotto somma lnR e ln(κ₁/κ₂). Dividendo z_B per z_A si cancellano i due divisori ln2 e rimane il rapporto dei logaritmi indicato. Il denominatore non è nullo perché R≠1. Se κ₁=κ₂, la nuova scala comune dei conteggi lascia z invariato."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=R\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ln R_B=\\ln R+\\ln(\\kappa_1/\\kappa_2)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{z_B}{z_A}=\\frac{\\ln R+\\ln(\\kappa_1/\\kappa_2)}{\\ln R}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo quoziente dei fattori confonde rapporto dei conteggi e rapporto dei logaritmi; il reciproco scambia i fattori. Il segno meno descriverebbe Rκ₂/κ₁. Il prodotto dei fattori non conserva z quando entrambi sono, per esempio, due. La formula non richiede che z_A sia positivo, ma soltanto diverso da zero."
+        }
+      ],
+      "hints": [
+        "Trasforma prima il rapporto dei conteggi e solo dopo applica il logaritmo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo quoziente dei fattori confonde rapporto dei conteggi e rapporto dei logaritmi; il reciproco scambia i fattori. Il segno meno descriverebbe Rκ₂/κ₁. Il prodotto dei fattori non conserva z quando entrambi sono, per esempio, due. La formula non richiede che z_A sia positivo, ma soltanto diverso da zero.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18911,
+      "title": "Due coppie di microstati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A usa Ω_i=2, Ω_f=8. B usa Ω_i=1, Ω_f=2. Quanto vale z_B/z_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rapporti dei conteggi sono quattro in A e due in B. Sono una potenza seconda e una potenza prima di due: z_A=2, z_B=1. Il loro rapporto è 1/2, benché Ω_f sia stato moltiplicato per 1/4 e Ω_i per 1/2: i due fattori dei conteggi non si trasferiscono direttamente a z."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " z_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " z_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " z_B/z_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto inverso. Un quarto considera solo il conteggio finale, uno ignora la variazione del rapporto e −1/2 cambia segno a una delle uscite positive. Tutti i quattro conteggi assegnati sono interi positivi."
+        }
+      ],
+      "hints": [
+        "Riconosci gli esponenti di due per ciascuna coppia separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto inverso. Un quarto considera solo il conteggio finale, uno ignora la variazione del rapporto e −1/2 cambia segno a una delle uscite positive. Tutti i quattro conteggi assegnati sono interi positivi.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18912,
+      "title": "La media non deve essere un conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 2,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A usa Ω_i=2, Ω_f=8; B usa Ω_i=1, Ω_f=2. Qual è la media aritmetica di z_A e z_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "3",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono due e uno. La loro media è (2+1)/2=3/2, perfettamente ammissibile come media di coefficienti. Non è il numero di microstati di un nuovo macrostato. Le medie dei conteggi originali sarebbero Ω_f=5 e Ω_i=3/2: il secondo non è intero e non appartiene al modello, quindi non si sostituiscono tali medie nella legge né le si arrotonda."
+        },
+        {
+          "type": "formula",
+          "text": "z_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " z_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline z=\\frac{2+1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline z=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Tre non dimezza la somma. Un mezzo è metà della differenza, due copia A e uno copia B. Il vincolo di interezza riguarda Ω_i e Ω_f, non questa media statistica e neppure, in generale, un singolo coefficiente z."
+        }
+      ],
+      "hints": [
+        "Fai la media delle due uscite già calcolate, senza creare conteggi frazionari.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre non dimezza la somma. Un mezzo è metà della differenza, due copia A e uno copia B. Il vincolo di interezza riguarda Ω_i e Ω_f, non questa media statistica e neppure, in generale, un singolo coefficiente z.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18913,
+      "title": "Un bersaglio e un iniziale intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 3,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. A usa Ω_i,A=2, Ω_f,A=8. B ha Ω_f,B=2 e deve avere z_B=z_A/2. Quanto vale Ω_i,B/Ω_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà z_A=2, perciò B deve dare uno. Occorre Ω_f,B/Ω_i,B=2¹=2. Con Ω_f,B=2 segue Ω_i,B=1, intero positivo. Il rapporto con il conteggio iniziale A è 1/2. Si ricostruisce il bersaglio su z prima di invertire la legge."
+        },
+        {
+          "type": "formula",
+          "text": "z_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{f,B}/\\Omega_{i,B}=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{i,B}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{i,B}/\\Omega_{i,A}=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto. Uno darebbe Ω_i,B=2 e z_B=0. Un quarto richiederebbe Ω_i,B=1/2, non un conteggio ammesso; quattro darebbe Ω_i,B=8 e z_B=−2, diverso dal bersaglio."
+        }
+      ],
+      "hints": [
+        "Esponenzia il coefficiente bersaglio per trovare il rapporto dei conteggi B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto. Uno darebbe Ω_i,B=2 e z_B=0. Un quarto richiederebbe Ω_i,B=1/2, non un conteggio ammesso; quattro darebbe Ω_i,B=8 e z_B=−2, diverso dal bersaglio.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18914,
+      "title": "Tarare un display di z",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 3,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Un display continuo adimensionale segue D=az, con a>0 e nessun offset. Il riferimento Ω_i=2, Ω_f=8 dà D=6. B dà D=3 e ha Ω_i=1. Quanto vale Ω_f,B?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha z=2, quindi a=6/2=3. La lettura tre significa z_B=1. Il rapporto finale/iniziale B è due: con un solo microstato iniziale si hanno due microstati finali. Il guadagno strumentale non è un conteggio e non modifica la legge fisica."
+        },
+        {
+          "type": "formula",
+          "text": "a=6/2"
+        },
+        {
+          "type": "formula",
+          "text": "6/2=3"
+        },
+        {
+          "type": "formula",
+          "text": " z_B=D_B/a"
+        },
+        {
+          "type": "formula",
+          "text": "D_B/a=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{f,B}=\\Omega_{i,B}2^{z_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{f,B}=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto userebbe D=3 direttamente come z e salterebbe la taratura. Uno annullerebbe la variazione; tre copierebbe il display e quattro darebbe z=2, quindi D=6 anziché tre."
+        }
+      ],
+      "hints": [
+        "Decodifica il display prima di calcolare la potenza di due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto userebbe D=3 direttamente come z e salterebbe la taratura. Uno annullerebbe la variazione; tre copierebbe il display e quattro darebbe z=2, quindi D=6 anziché tre.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18915,
+      "title": "Togliere anche l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 3,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. D=az+b è un display continuo adimensionale, con a>0. A: Ω_i=2, Ω_f=8, D=5. B: Ω_i=1, Ω_f=2, D=3. C: Ω_i=2, D=7. Quanto vale Ω_f,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "16",
+          "16√2",
+          "8",
+          "32",
+          "4"
+        ],
+        "value": "16"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B danno z=2 e z=1. Dalle differenze a=(5−3)/(2−1)=2; poi b=5−2·2=1. C ha z_C=(7−1)/2=3. Il rapporto dei suoi conteggi è 2³=8, quindi Ω_f,C=2·8=16, intero positivo. La sottrazione dell’offset precede l’esponenziale."
+        },
+        {
+          "type": "formula",
+          "text": "a=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " z_C=(7-1)/2"
+        },
+        {
+          "type": "formula",
+          "text": "(7-1)/2=3"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{z_C}=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_{f,C}=16"
+        },
+        {
+          "type": "text",
+          "text": "16√2 omette b: userebbe z=7/2 e Ω_f=2·2^(7/2)=16√2, che non è intero e non si arrotonda. Otto copia il solo rapporto; trentadue userebbe z=4 e predirebbe D=9. Quattro darebbe z=1 e D=3."
+        }
+      ],
+      "hints": [
+        "Ricava due parametri dai due riferimenti, poi decodifica la terza lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16√2 omette b: userebbe z=7/2 e Ω_f=2·2^(7/2)=16√2, che non è intero e non si arrotonda. Otto copia il solo rapporto; trentadue userebbe z=4 e predirebbe D=9. Quattro darebbe z=1 e D=3.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-statistical-entropy-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia e conteggi di microstati",
+      "order": 18916,
+      "title": "La scala intera resta libera",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "statistical-entropy",
+      "difficulty": 3,
+      "prompt": "Il modello assegna uguale probabilità ai microstati compatibili con ciascun macrostato. Ω_i e Ω_f sono conteggi interi positivi e S=k_B lnΩ, con k_B in J/K. Poniamo z=ΔS/(k_B ln2)=ln(Ω_f/Ω_i)/ln2. z è adimensionale e non conta microstati: può essere positivo, nullo o negativo, intero oppure non intero. Si confrontano macrostati; non si assume che ogni confronto sia un processo spontaneo di un sistema isolato. Si impone Ω_f=4Ω_i e si misura z=2. Quante coppie di conteggi soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie intere positive",
+          "Una sola: Ω_i = 2, Ω_f = 8",
+          "Nessuna coppia",
+          "Quattro coppie positive",
+          "Ogni Ω_i reale positivo, con Ω_f = 4Ω_i"
+        ],
+        "value": "Infinite coppie intere positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo Ω_i=n e Ω_f=4n, con n intero positivo. Il rapporto è sempre quattro e z=2: la misura ripete la conseguenza del vincolo, senza scegliere n. Esempi sono (1,4), (2,8), (3,12), e si può continuare per tutti gli interi positivi. Le coppie sono infinite e numerabili, non una famiglia continua di conteggi frazionari."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1f76f4b89c0c91cb3804ef5206f7aab59f289c1b509e5c7c0200385453e1c0ff",
+          "text": "La tabella elenca tre esempi (Ω_i,Ω_f)=(1,4),(2,8),(3,12), tutti con z=2. Il vincolo lascia libero un intero positivo n; le soluzioni sono infinite numerabili. I disegni precedenti distinguono numero di alternative e coefficiente entropico, che non è un conteggio."
+        },
+        {
+          "type": "formula",
+          "text": "\\Omega_i=n"
+        },
+        {
+          "type": "formula",
+          "text": " \\Omega_f=4n"
+        },
+        {
+          "type": "formula",
+          "text": " n\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "formula",
+          "text": " z=\\frac{\\ln4}{\\ln2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\ln4}{\\ln2}=2"
+        },
+        {
+          "type": "text",
+          "text": "La coppia (2,8) è solo un esempio. Quattro è il rapporto imposto, non il numero delle soluzioni. Non sono tutte le coppie reali sul medesimo rapporto: per esempio Ω_i=1/2 non è un conteggio. Nessuna ulteriore misura determina la scala intera."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e osserva se il parametro intero n si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La coppia (2,8) è solo un esempio. Quattro è il rapporto imposto, non il numero delle soluzioni. Non sono tutte le coppie reali sul medesimo rapporto: per esempio Ω_i=1/2 non è un conteggio. Nessuna ulteriore misura determina la scala intera.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Legge di Boltzmann e alternative equiprobabili",
+        "Logaritmi esatti e conteggi interi",
+        "Inverse, rapporti, medie e tarature",
+        "Non identificabilità di una scala intera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "1f76f4b89c0c91cb3804ef5206f7aab59f289c1b509e5c7c0200385453e1c0ff",
+      "name": "statistical-entropy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTc0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5NaWNyb3N0YXRpIGludGVyaSwgdmFyaWF6aW9uaSBsb2dhcml0bWljaGU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+RHVlIGFsdGVybmF0aXZlIGluaXppYWxpIGUgb3R0byBmaW5hbGkgZGFubm8gdW4gcmFwcG9ydG8gcXVhdHRybyBlIGNvZWZmaWNpZW50ZSBlbnRyb3BpY28gZHVlLiBSYWRkb3BwaWFyZSBsZSBhbHRlcm5hdGl2ZSBhZ2dpdW5nZSB1bm8gYWwgY29lZmZpY2llbnRlIG5vcm1hbGl6emF0by4gTGUgdXNjaXRlIGR1ZSBlIHVubyBoYW5ubyBtZWRpYSB0cmUgbWV6emkuIEluZmluaXRlIGNvcHBpZSBpbnRlcmUgc3VsIHJhcHBvcnRvIHF1YXR0cm8gZGFubm8gbG8gc3Rlc3NvIGNvZWZmaWNpZW50ZSBkdWUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJjaGFuZ2UiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMyODY2NGQiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBDb250YXJlIHN0YXRpLCBub24gcGFydGljZWxsZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgzIiBmb250LXNpemU9IjE4Ij5Db25mcm9udG8gZnJhIGR1ZSBtYWNyb3N0YXRpIGRlbCBtb2RlbGxvLjwvdGV4dD4KPHJlY3QgeD0iNTUiIHk9IjEyMCIgd2lkdGg9IjIwNSIgaGVpZ2h0PSIxODAiIHJ4PSIxMCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjM1MCIgeT0iMTIwIiB3aWR0aD0iMjM1IiBoZWlnaHQ9IjE4MCIgcng9IjEwIiBmaWxsPSIjZThmM2VkIiBzdHJva2U9IiMyODY2NGQiLz4KPHRleHQgeD0iMTA1IiB5PSIxNTUiPs6pX2kgPSAyPC90ZXh0Pjx0ZXh0IHg9IjQxOCIgeT0iMTU1Ij7OqV9mID0gODwvdGV4dD4KPGcgZmlsbD0iIzE2NWE4NyI+PGNpcmNsZSBjeD0iMTE1IiBjeT0iMjE1IiByPSIxMyIvPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIxNSIgcj0iMTMiLz48L2c+CjxnIGZpbGw9IiMyODY2NGQiPjxjaXJjbGUgY3g9IjM5MCIgY3k9IjE5NyIgcj0iMTEiLz48Y2lyY2xlIGN4PSI0NDIiIGN5PSIxOTciIHI9IjExIi8+PGNpcmNsZSBjeD0iNDk0IiBjeT0iMTk3IiByPSIxMSIvPjxjaXJjbGUgY3g9IjU0NiIgY3k9IjE5NyIgcj0iMTEiLz48Y2lyY2xlIGN4PSIzOTAiIGN5PSIyNTAiIHI9IjExIi8+PGNpcmNsZSBjeD0iNDQyIiBjeT0iMjUwIiByPSIxMSIvPjxjaXJjbGUgY3g9IjQ5NCIgY3k9IjI1MCIgcj0iMTEiLz48Y2lyY2xlIGN4PSI1NDYiIGN5PSIyNTAiIHI9IjExIi8+PC9nPgo8cGF0aCBkPSJNMjc4IDIyMEgzMzMiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2NoYW5nZSkiLz4KPHRleHQgeD0iMzIiIHk9IjM0MSIgZm9udC1zaXplPSIxOCI+T2duaSBjZXJjaGlvIMOoIHVu4oCZYWx0ZXJuYXRpdmEgZXF1aXByb2JhYmlsZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNzMiIGZvbnQtc2l6ZT0iMTgiPk5vbiBzb25vIHBhcnRpY2VsbGUgcHJlc2VudGkgY29udGVtcG9yYW5lYW1lbnRlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQwNSIgZm9udC1zaXplPSIxOCI+zqlfZiAvIM6pX2kgPSA0ID0gMsKyIDsgeiA9IM6UUyAvIChrX0IgbG4yKSA9IDIuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDM4SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0ODIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFVuIHJhZGRvcHBpbyBhZ2dpdW5nZSB1bm88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1MjMiIGZvbnQtc2l6ZT0iMTgiPlF1aSByZXN0YSBmaXNzbyBpbCByaWZlcmltZW50byDOqV9pID0gMi48L3RleHQ+CjxyZWN0IHg9IjY1IiB5PSI1NjUiIHdpZHRoPSIxMTAiIGhlaWdodD0iMTA1IiByeD0iOCIgZmlsbD0iI2U0ZjNmYSIgc3Ryb2tlPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjI2NSIgeT0iNTY1IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjEwNSIgcng9IjgiIGZpbGw9IiNlNGYzZmEiIHN0cm9rZT0iIzE2NWE4NyIvPgo8cmVjdCB4PSI0NjUiIHk9IjU2NSIgd2lkdGg9IjExMCIgaGVpZ2h0PSIxMDUiIHJ4PSI4IiBmaWxsPSIjZTRmM2ZhIiBzdHJva2U9IiMxNjVhODciLz4KPHRleHQgeD0iODgiIHk9IjYwNSI+zqkgPSAyPC90ZXh0Pjx0ZXh0IHg9Ijg4IiB5PSI2NDUiPnogPSAwPC90ZXh0Pgo8dGV4dCB4PSIyODgiIHk9IjYwNSI+zqkgPSA0PC90ZXh0Pjx0ZXh0IHg9IjI4OCIgeT0iNjQ1Ij56ID0gMTwvdGV4dD4KPHRleHQgeD0iNDg4IiB5PSI2MDUiPs6pID0gODwvdGV4dD48dGV4dCB4PSI0ODgiIHk9IjY0NSI+eiA9IDI8L3RleHQ+CjxwYXRoIGQ9Ik0xOTAgNjIwSDI1MCIgc3Ryb2tlPSIjMjg2NjRkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjY2hhbmdlKSIvPgo8cGF0aCBkPSJNMzkwIDYyMEg0NTAiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2NoYW5nZSkiLz4KPHRleHQgeD0iMjA0IiB5PSI1OTAiPsOXMjwvdGV4dD48dGV4dCB4PSI0MDQiIHk9IjU5MCI+w5cyPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzE4IiBmb250LXNpemU9IjE4Ij5PZ25pIHBhc3NhZ2dpbyBhZ2dpdW5nZSDOlFMgPSBrX0IgbG4yLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijc1MCIgZm9udC1zaXplPSIxOCI+SWwgbG9nYXJpdG1vIHRyYXNmb3JtYSBwcm9kb3R0aSBpbiBzb21tZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA3ODJINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjgyNiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTWVkaWEgZGVsbGUgdXNjaXRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODY1IiBmb250LXNpemU9IjE4Ij5BOiDOqV9mIC8gzqlfaSA9IDgvMiA7IEI6IM6pX2YgLyDOqV9pID0gMi8xLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA4OTZWMTE2NSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI5MjUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMDA1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTA4NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iOTUyIj5BPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iOTUyIj56ID0gMjwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjEwMzIiPkI8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSIxMDMyIj56ID0gMTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExMTIiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMTExMiI+eiA9IDMvMjwvdGV4dD4KPHRleHQgeD0iMTA0IiB5PSIxMTYwIj4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTIxMCIgZm9udC1zaXplPSIxOCI+Q29lZmZpY2llbnRpIGFkaW1lbnNpb25hbGksIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI0MiIgZm9udC1zaXplPSIxOCI+TGEgbWVkaWEgMy8yIG5vbiDDqCB1biBjb250ZWdnaW8gZGkgbWljcm9zdGF0aS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMjc0SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMzE4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+NCDCtyBMYSBtaXN1cmEgbm9uIGZpc3NhIG48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzU3IiBmb250LXNpemU9IjE4Ij7OqV9pID0gbiA7IM6pX2YgPSA0biA7IG4gaW50ZXJvIHBvc2l0aXZvLjwvdGV4dD4KPHJlY3QgeD0iNjUiIHk9IjEzOTAiIHdpZHRoPSI1MTAiIGhlaWdodD0iMjEwIiByeD0iOCIgZmlsbD0iI2U4ZjNlZCIgc3Ryb2tlPSIjMjg2NjRkIi8+CjxwYXRoIGQ9Ik02NSAxNDQzSDU3NU02NSAxNDk1SDU3NU02NSAxNTQ3SDU3NSIgc3Ryb2tlPSIjODI5MmEyIi8+Cjx0ZXh0IHg9Ijk1IiB5PSIxNDI1Ij7OqV9pPC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iMTQyNSI+zqlfZjwvdGV4dD48dGV4dCB4PSI0ODAiIHk9IjE0MjUiPno8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iMTQ3OCI+MTwvdGV4dD48dGV4dCB4PSIyOTciIHk9IjE0NzgiPjQ8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxNDc4Ij4yPC90ZXh0Pgo8dGV4dCB4PSIxMDUiIHk9IjE1MzAiPjI8L3RleHQ+PHRleHQgeD0iMjk3IiB5PSIxNTMwIj44PC90ZXh0Pjx0ZXh0IHg9IjQ4MCIgeT0iMTUzMCI+MjwvdGV4dD4KPHRleHQgeD0iMTA1IiB5PSIxNTgyIj4zPC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iMTU4MiI+MTI8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxNTgyIj4yPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTY0NSIgZm9udC1zaXplPSIxOCI+U2kgY29udGludWEgcGVyIG4gPSA0LCA1LCA2LCDigKYgOiBpbmZpbml0ZSBjb3BwaWUgaW50ZXJlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE2NzciIGZvbnQtc2l6ZT0iMTgiPk5vbiBzaSBpbnRlcnBvbGFubyBjb250ZWdnaSBmcmF6aW9uYXJpIGZyYSBsZSByaWdoZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNzA5IiBmb250LXNpemU9IjE4Ij5MbyBzdGVzc28gcmFwcG9ydG8gbGFzY2lhIGxpYmVyYSB1bmEgc2NhbGEgZGlzY3JldGEuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
