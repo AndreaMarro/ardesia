@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-steam-condensation-cooling-01",
+      "sourceSha256": "05d76179e88d4c238ff1463e1581c015ba5c4956200ef04d1fc33dbaf4bc72d5",
+      "candidateSha256": "ab038e8145a0248b368c6f743ce3f405fe62c44181f91db6be2e96466e341a10",
+      "reviewedSignature": "0087c2502a4386ac1cd03ede6b1bb1764da9fd27530252f52e31c9671f7f9948",
+      "assetChecksums": {
+        "steam-condensation-cooling-progressive.svg": "6749056d9180b2dd91ca0fd0412552d82755ef4f3765572dddc1d143671e49d1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Un grammo cede 2400 J nella condensazione e 4·25=100 J raffreddando il liquido: Q_c=2500 J. Il calore ricevuto con segno è −2500 J.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2400 e 100 J omettono ciascuno un tratto; 2300 J sottrae due cessioni; −2500 J è Q con segno, non Q_c.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Un grammo cede 2400 J nella condensazione e 4·25=100 J raffreddando il liquido: Q_c=2500 J. Il calore ricevuto con segno è −2500 J.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Q_c cumulativo cresce 0→2400→2500 J; plateau alla condensazione e poi T−T_s scende 0→−25 K. Scale intrinseche 3/20 coordinate/J e 4 coordinate/K; barre 360/15/375 per 2400/100/2500 J, confronto 200/416/308 per 2500/5200/3850 J a scala 2/25. Il segno negativo è differenza termica, non temperatura assoluta negativa.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-02",
+      "sourceSha256": "a14cb03ad5701dc749ade7394231c53758e3653a07c5b9bea79d25b4a0eb1d6c",
+      "candidateSha256": "b1ad365e6dfed46d72231b6651d467e819ef54dffb5e3a470a026808ed18235f",
+      "reviewedSignature": "943a86c1e1d07011777881aae747dddeaf2bcf1cd4edff4382128f586c077977",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il modulo Q_c è un’energia in J. J/g descrive un costo specifico e W una potenza; entrambi i contributi mL_v e mc_lΔT sono in J.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "J/g e J/(g K) sono coefficienti specifici, W potenza, K intervallo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il modulo Q_c è un’energia in J. J/g descrive un costo specifico e W una potenza; entrambi i contributi mL_v e mc_lΔT sono in J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-03",
+      "sourceSha256": "6b1cfb59af31482c006455ec56fa0c98b94aec5ce86848e93dbb9ef629ede522",
+      "candidateSha256": "81b1eb1143461cfffbb0cd5306c9b4733b4c2ddcfb01dd2acc71da9234904eb5",
+      "reviewedSignature": "da0de8e2e014c15ffa52bb33c018aaa1278c894d1585e26b882141ec5cea60ca",
+      "assetChecksums": {
+        "steam-condensation-cooling-progressive.svg": "6749056d9180b2dd91ca0fd0412552d82755ef4f3765572dddc1d143671e49d1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q_c = m (L_v + c_l ΔT)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "I due tratti cedono entrambi calore: Q_c=mL_v+mc_lΔT. Si sommano i moduli e si pone Q=−Q_c; non si assume ΔU=Q durante un percorso isobaro.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Sottrarre il sensibile è incompatibile con due cessioni; nessun reciproco dà il calore totale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I due tratti cedono entrambi calore: Q_c=mL_v+mc_lΔT. Si sommano i moduli e si pone Q=−Q_c; non si assume ΔU=Q durante un percorso isobaro.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Q_c cumulativo cresce 0→2400→2500 J; plateau alla condensazione e poi T−T_s scende 0→−25 K. Scale intrinseche 3/20 coordinate/J e 4 coordinate/K; barre 360/15/375 per 2400/100/2500 J, confronto 200/416/308 per 2500/5200/3850 J a scala 2/25. Il segno negativo è differenza termica, non temperatura assoluta negativa.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-04",
+      "sourceSha256": "3da65357b7cc8c55231b4af7a12a3658fe2311adaf8079d927bb96d3cfeb2338",
+      "candidateSha256": "4e70c39069ec5439712ad21a5c76aee3ff9748b183cafd09f007989f05af71d8",
+      "reviewedSignature": "23ea44360b7a659bdddc7f3d33ea7cce4a0e99a29d2dd33fd55eb2111adc2856",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2500 a 5000 J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il costo rimane 2500 J/g. Da 1 a 2 g a pari intervallo di raffreddamento Q_c va da 2500 a 5000 J.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2500 J ignora la massa doppia; il quadrato sovrastima entrambi i tratti.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il costo rimane 2500 J/g. Da 1 a 2 g a pari intervallo di raffreddamento Q_c va da 2500 a 5000 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-05",
+      "sourceSha256": "2153fb046fc0af85d88ad8db8ef2df7db85bf5885d07811d8087f26e7c40fc0f",
+      "candidateSha256": "486aa0662e913143ae5a71e7b7ad6e019783b5e28323f6ecb782e7a5189408ae",
+      "reviewedSignature": "6cf20510dd40c29922989576ba8059ba8f2b9d1da414fdbc55bde322fe20f5f9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=2500/[2400+4·25]=1 g. Si usa l’energia per unità di massa dell’intero percorso, non il solo costo latente.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Solo L_v produce 25/24 g; solo il sensibile produce 25 g, entrambi errati.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. m=2500/[2400+4·25]=1 g. Si usa l’energia per unità di massa dell’intero percorso, non il solo costo latente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-06",
+      "sourceSha256": "ac6cbb784bcf8d30fef67d6fb2ed3d2243ca279338bfbf23c3769753cc8fe928",
+      "candidateSha256": "377a3ea2f60af04319e4dd49ce85cfd15863f33fc7eeba62975ab398f2027893",
+      "reviewedSignature": "bdde2de6acae11145221c4b827da6fcb57e5f5dfa77a773a9e95e3a9b56b3250",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Q_c/m−L_v=100 J/g; dividendo per 4 J/(g K) si ottiene ΔT=25 K. Il ramo liquido impone inoltre il limite assegnato.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Q_c/(mc_l) dà 625 K e salta L_v; il residuo corretto è 100 J/g.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_c/m−L_v=100 J/g; dividendo per 4 J/(g K) si ottiene ΔT=25 K. Il ramo liquido impone inoltre il limite assegnato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-07",
+      "sourceSha256": "379ef212e8dda176477f1134304dd48e2e3173600199f55a0523025d501e4403",
+      "candidateSha256": "c96d17598e5ec3d745e8b1f09f6740f095fbfdc125f4f42c994b2276d52b6697",
+      "reviewedSignature": "5b9dc366cf506e3d32cad6418bb436a95d2bc222acb5f1345a334a4a3ca69573",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "26/25",
+      "dimension": {},
+      "manualArithmetic": "A=2500 J, B=2400+4·50=2600 J a massa uguale; rapporto 2600/2500=26/25. Il costo latente è invariato.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2 perde il latente costante; 25/26 è il reciproco; 1 ignora il raffreddamento maggiore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=2500 J, B=2400+4·50=2600 J a massa uguale; rapporto 2600/2500=26/25. Il costo latente è invariato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-08",
+      "sourceSha256": "02d483387ef529103d04975b0dac9475c910431cc6b79025baa6616a39ac6d9c",
+      "candidateSha256": "1cdda8713345154fcca05dee58e4aa7dbbed55ffd708e300c60bfb2c7f670890",
+      "reviewedSignature": "a120bcbf477044f8d2011aba4a514b32e1823f74cfcf530c6b663bcc4aa0c261",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Proposta 5000 J meno valore corretto 2500 J dà +2500 J. È un errore sul modulo, non il segno del calore del campione.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "−2500 J inverte lo scarto; 5000 J copia la proposta e zero la accetta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 5000 J meno valore corretto 2500 J dà +2500 J. È un errore sul modulo, non il segno del calore del campione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-09",
+      "sourceSha256": "970edf22334c4588707c034a59afde9ba3d902310fe4a6e6ffad1ba1313ffcf1",
+      "candidateSha256": "8873dc80583ae7605c31fada8249221d4760341326685a51aa7ddef12819dccb",
+      "reviewedSignature": "bd423c124864dc05944a8ba3e1afd355435da90f61d8e31b976307b2ac11d298",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m = Q_c / (L_v + c_l ΔT)",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Q_c=m(L_v+c_lΔT) con parentesi positiva J/g. L’inversa m=Q_c/(L_v+c_lΔT) ha unità g.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il denominatore è energia per massa: reciproco o prodotto non è l’inversa corretta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_c=m(L_v+c_lΔT) con parentesi positiva J/g. L’inversa m=Q_c/(L_v+c_lΔT) ha unità g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-10",
+      "sourceSha256": "4d595301d3ad1ee3d233cc87c0a398788bc0bbf9d936106bcb3324cddd9def21",
+      "candidateSha256": "c6232df604b839dbc317eae8398237b25e5876fa69709548c0adc74ee5355f6a",
+      "reviewedSignature": "fa697efa2d5ceb469c62f2f22dedd0cbe29b703ed8be226550fd1a17518e9c22",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (L_v + c_l κ₂ ΔT_A) / (L_v + c_l ΔT_A)",
+      "dimension": {},
+      "manualArithmetic": "Variare massa e intervallo fra prove dà κ₁(L_v+c_lκ₂ΔT_A)/(L_v+c_lΔT_A), rispettando in entrambe il ramo liquido.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "κ₁κ₂ moltiplica indebitamente L_v per κ₂, mentre L_v resta assegnato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Variare massa e intervallo fra prove dà κ₁(L_v+c_lκ₂ΔT_A)/(L_v+c_lΔT_A), rispettando in entrambe il ramo liquido.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-11",
+      "sourceSha256": "04fbaf4280e7b34f12305f5822381deb037ad22b685afa0705efc826ac97572e",
+      "candidateSha256": "b03ca8a0fe9b5d8bcd78b234f48e55320296821fc460d83f8aef3a19f6278595",
+      "reviewedSignature": "9cc0277d998c354a1a033357108a74b87a14caeed7dba1dde3135986bc5741c2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "52/25",
+      "dimension": {},
+      "manualArithmetic": "A cede 2500 J; B con 2 g e 50 K cede 5200 J. Rapporto 5200/2500=52/25.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Due segue la sola massa; 26/25 il solo intervallo; 25/52 inverte il risultato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A cede 2500 J; B con 2 g e 50 K cede 5200 J. Rapporto 5200/2500=52/25.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-12",
+      "sourceSha256": "b8cd5e8b2201e1c88e34f0a86261ff88e259fab7f8b60f7ecd4303af20152adc",
+      "candidateSha256": "9a539081688a771d3de06aedc5c224e9838a3ef61b1f7db8b6ac5294331d5ecc",
+      "reviewedSignature": "daab3c1e441e289ed68dc9fb1271550bd9e42fc23bd5430e05b2a464a7b0e9a0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3850",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media (2500+5200)/2=3850 J. Ingressi medi 3/2 g e 75/2 K danno 3825 J: le due medie differiscono di 25 J.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "3825 J usa ingressi medi; 7700 J è somma; 1350 J metà differenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (2500+5200)/2=3850 J. Ingressi medi 3/2 g e 75/2 K danno 3825 J: le due medie differiscono di 25 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-13",
+      "sourceSha256": "14ae2942e3aa0518b177c83609710e9b6fc4f79ca5f40fc9dc690f614942f0c9",
+      "candidateSha256": "a0be03b4193a99f1189b034d065eba366ab18620e84b5c4462e2d3e32c9083d0",
+      "reviewedSignature": "4992ea2c9c4852323debd339974c6988835d80a8df5b9bce753fde7fef6f0aea",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "B deve cedere 5200 J con 2 g: 2600 J/g. Togliendo 2400 e dividendo per 4 si ottiene ΔT_B=50 K; rapporto con 25 K pari a 2.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "52/25 non è il rapporto degli intervalli; 2 ricostruisce ΔT_B=50 K.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B deve cedere 5200 J con 2 g: 2600 J/g. Togliendo 2400 e dividendo per 4 si ottiene ΔT_B=50 K; rapporto con 25 K pari a 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-14",
+      "sourceSha256": "669bd868f4fdf4a25a49e8874f9a09e22349eeeba2747d3b3caec1a5504c81ba",
+      "candidateSha256": "83266865bf9abe42475f209001336d7b28b466b821ac2ff45ac8b2d36249fea6",
+      "reviewedSignature": "1d0038fbb84eda124c90558593b18fcf0342a3d701afb25a3b2a99d278623cac",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "A: S=7500 su Q_c=2500 J dà q=3 J⁻¹. B: S=15600 implica 5200 J; a 50 K il costo è 2600 J/g, massa 2 g.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "S grezzo produce massa 6 g; occorre q=3 J⁻¹.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: S=7500 su Q_c=2500 J dà q=3 J⁻¹. B: S=15600 implica 5200 J; a 50 K il costo è 2600 J/g, massa 2 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-15",
+      "sourceSha256": "f978767139b08cd76abbc23aee5e1039fa56abac35f72717f38ce7892913a210",
+      "candidateSha256": "f877a2161f34353539355a2ede1ba337eb85a7cbe4ecd6166a1e74953b08e0e9",
+      "reviewedSignature": "d4f17ccc528e7fcaa654e7b268f171a1964e4c77fcc69fe6b44a970d6740e5c3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Q_A=2500 e Q_B=5200 J, letture 5001 e 10401: q=2 J⁻¹, b=1. S_C=10001 dà 5000 J; a 25 K massa 2 g.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Senza b si usa 10001/2 J e si ricostruisce S=10002; 4 g e 1 g sono altre letture.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_A=2500 e Q_B=5200 J, letture 5001 e 10401: q=2 J⁻¹, b=1. S_C=10001 dà 5000 J; a 25 K massa 2 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-16",
+      "sourceSha256": "22f29dcc7eb9d99a8babb3682d0207f764f115fa19a5e810cfdd9746c3dd77b1",
+      "candidateSha256": "43ca3a5f308cb7b7378743413bd2d65bf3ebd4858b04853fa6add70e30a40f01",
+      "reviewedSignature": "5c05c1b9e4e49e69c56bd3e2fc1871046aa83ecb64ddbb70b581b63fe8117222",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Con m=(1/25 g/K)ΔT fra prove, Q_c=2500 J dà x²+600x−15625=0. Si cercano due interi di prodotto −15625 e somma 600: 625 e −25, perché 625·25=15625. Quindi (x−25)(x+625)=0, con radici 25 e −625; soltanto 25 K ha massa positiva e intervallo positivo. Resta il limite liquido esplicito.",
+      "physicalAssumptions": "Vapore saturo secco a pressione costante, massa positiva conservata. Prima condensa completamente alla temperatura T_s, poi il liquido si raffredda di ΔT>0 con ΔT<T_s−T_fus, senza congelare. L_v=2400 J/g e c_l=4 J/(g K) sono valori ideali assegnati. Q_c è il modulo positivo ceduto; Q=−Q_c. Non si identifica questo calore isobaro con ΔU senza considerare il lavoro. Il vincolo confronta preparazioni diverse, non modifica massa o coefficienti nel tempo interno della singola prova.",
+      "distractors": "−625 K ha massa negativa; 50 K dà Q_c=5200 J sotto il vincolo e non 2500.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con m=(1/25 g/K)ΔT fra prove, Q_c=2500 J dà x²+600x−15625=0. Si cercano due interi di prodotto −15625 e somma 600: 625 e −25, perché 625·25=15625. Quindi (x−25)(x+625)=0, con radici 25 e −625; soltanto 25 K ha massa positiva e intervallo positivo. Resta il limite liquido esplicito.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "9163a5f574c5ab9ff4b6741a5a92763fb11efc57c7d8e89c35bc44d26d9cfaf4",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "5579fe2187e28f34c6dfa8632c07113f46610559",
+  "packageSha256": "33422f2a5606da11acebac5829783812d224e3739c95d84938f80d51e2df141f",
+  "bindingsSha256": "ce3aec7381718958c688edf71b2c482afa3a1b26205c21c8e921398e5687d17b",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+    "reference": "Primaria indipendente di tutti gli 80 prompt U5-03, prima di candidati, opzioni o chiavi: SHA256 ea13a6d7b6eca676daa520594e324f8c84aaabe64114d375dc3eabf35f47e2d9. Fonte intera pin 5cf, SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Dopo la primaria, tutti i 16 candidati del lotto letti integralmente, ogni blocco, formula, opzione, hint e feedback, metadati e didascalie. Derivazioni ricontrollate sui dati finali; SVG XML e rendering nativo integrali letti. Catalogo reale C3-L01/L03/L04 verificato. Nessun authoring importato; autore e revisore distinti. ROOT identico ai byte finali B 9d647bca e, per 17309, 5579fe21."
+  }
+}

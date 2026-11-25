@@ -1,0 +1,489 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-ice-final-temperature-01",
+      "sourceSha256": "177d7ac31c401e6610d21924786e9f80acd63e06c6bfc17022886e99fc2a0392",
+      "candidateSha256": "421eca2b6ea3d55cbad5435400f058fc19615e8ce49946fda36c6f17723b6a00",
+      "reviewedSignature": "e468f36a9d83f91f8d2ca4fcd0563fa36bbfcd745e75fb9d2f81f533496aaf9c",
+      "assetChecksums": {
+        "ice-final-temperature-progressive.svg": "e8b399fda8d2275beadec032565c14e54bbda1b0ed8e3874dcf7b097b35e1030"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "La fusione di 5/2 g costa 750 J. Restano 800−750=50 J su capacità 4·5/2=10 J/K: Θ=5 K, lettura finale 5 °C.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Q/(mc_l)=80 K omette 750 J latenti; zero ignora 50 J residui; −5 K rovescia il residuo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La fusione di 5/2 g costa 750 J. Restano 800−750=50 J su capacità 4·5/2=10 J/K: Θ=5 K, lettura finale 5 °C.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Curva (100,320)→(400,320)→(420,220): 2/5 coordinata/J dà 750 J latenti e 50 J sensibili; 20 coordinate/K dà aumento 5 K. Barre 300/20/320 per 750/50/800 J, origini comuni. Incrementi 5/50/55/2 K con larghezze 20/200/110 a scala 4 coordinate/K; corrispondenti letture Celsius distinte dagli assoluti.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-02",
+      "sourceSha256": "c88b7f7c3cb4f20c6a0902173ee75aefd1a711ada1a6d1fdfe09c8d29cbe9854",
+      "candidateSha256": "e27ef9e9797b3ef574762f5dfdbc04a9ac9f3f6857445669a7eb1474bd1cedf5",
+      "reviewedSignature": "30d7c7678cf4b74fbbc99b7ccaa8f1390ce97e67d19cac05ce642865f1f883d2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "°C",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Si chiede il punto termometrico T_f in °C. L’incremento Θ è 5 K, mentre il punto assoluto è 278,15 K: numeri distinti.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "J è energia, J/g costo specifico, J/K capacità e W potenza; non punti termometrici.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Si chiede il punto termometrico T_f in °C. L’incremento Θ è 5 K, mentre il punto assoluto è 278,15 K: numeri distinti.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-03",
+      "sourceSha256": "2be458721a2c549d8d601cdafc01fff661432b3835915906ab48e8cc6bac3502",
+      "candidateSha256": "dd8a89838facd8d54617703e6c81952b527a9949983e40f0ca7c9f94cecad93d",
+      "reviewedSignature": "346b5ef3e3ea337ed34e948d140031a3e3a7584c4909296cfb9469404f4361af",
+      "assetChecksums": {
+        "ice-final-temperature-progressive.svg": "e8b399fda8d2275beadec032565c14e54bbda1b0ed8e3874dcf7b097b35e1030"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "T_f = T_m + (Q − m L_f) / (m c_l)",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Dal bilancio Q=mL_f+mc_lΘ si ricava Θ=(Q−mL_f)/(mc_l), quindi T_f=T_m+Θ. Il dominio 0<Θ<100 K esclude fasi ulteriori.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il termine latente va sottratto da Q, poi si divide per tutta la capacità mc_l, non solo c_l.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dal bilancio Q=mL_f+mc_lΘ si ricava Θ=(Q−mL_f)/(mc_l), quindi T_f=T_m+Θ. Il dominio 0<Θ<100 K esclude fasi ulteriori.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Curva (100,320)→(400,320)→(420,220): 2/5 coordinata/J dà 750 J latenti e 50 J sensibili; 20 coordinate/K dà aumento 5 K. Barre 300/20/320 per 750/50/800 J, origini comuni. Incrementi 5/50/55/2 K con larghezze 20/200/110 a scala 4 coordinate/K; corrispondenti letture Celsius distinte dagli assoluti.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-04",
+      "sourceSha256": "5b0b4dfe3fdc56367832240a4e1b9b0e294cc9c5b2b62ccb62a4476ff4fd682e",
+      "candidateSha256": "30b1e1571545214fad9bb988a30417227e3581a54f7b2da66b1db2a057e39b6d",
+      "reviewedSignature": "ec0271bec1f976f2ce69bff88ae60fdb67c7775f49569b3637e7654eaddbc381",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 5 a 25 °C",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "A: residuo 50 J dà 5 K. B: 1000−750=250 J dà 25 K alla stessa capacità 10 J/K. Letture 5 e 25 °C, non scalate come Q totale.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "25/4 °C scala Q totale perdendo l’offset latente; 100 °C usa tutta l’energia come sensibile.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: residuo 50 J dà 5 K. B: 1000−750=250 J dà 25 K alla stessa capacità 10 J/K. Letture 5 e 25 °C, non scalate come Q totale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-05",
+      "sourceSha256": "dbc6093809052973c05a50f97718a192f295a542387a213a0556da8f0daca64d",
+      "candidateSha256": "e821f44b15289e96279ccd30f4f99b40dc64adfeb1c238397902166353655d6c",
+      "reviewedSignature": "47434260a369eec0372ae2eb57e1c4fb592a7eeeed14d8352ac1b184aafaf3e2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "800",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A 5 °C servono 300+4·5=320 J/g; per 5/2 g Q=800 J. Si ricostruiscono latente e sensibile.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "50 J è solo sensibile e 750 J solo fusione; entrambi insufficienti al percorso completo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A 5 °C servono 300+4·5=320 J/g; per 5/2 g Q=800 J. Si ricostruiscono latente e sensibile.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-06",
+      "sourceSha256": "f523490baf93342954ac3d8ceb14eaf65d322c0db723661f7e811ff2a9cc962a",
+      "candidateSha256": "74c03e97b4d2e0108d07876d45a1b07d1acc690478d0c12bc44b23863ed2ab8a",
+      "reviewedSignature": "895bfb675933f229e0f4fb3eefcb808592b1e11e54a849658aed6108831ca211",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=800/(300+4·5)=800/320=5/2 g. Con questa massa 750 J fondono e 50 J riscaldano: entrambe le soglie sono rispettate.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2 g danno 25 °C; 8/3 g finiscono alla fusione senza incremento; 40 g non fondono tutti, 1 g supera il ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. m=800/(300+4·5)=800/320=5/2 g. Con questa massa 750 J fondono e 50 J riscaldano: entrambe le soglie sono rispettate.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-07",
+      "sourceSha256": "f01fc63456aedbd97eee93624ce3349fb6a4082657868b64dcbd94f71b94c015",
+      "candidateSha256": "49a179da31b8866cc45950794375dfdf73bbe12ccf61acef8f6157f188657e88",
+      "reviewedSignature": "08cefce920019caf468a67f9a14a2f8a00911e678630f9d148fd5b0490e4d940",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {},
+      "manualArithmetic": "A ha lettura 5 °C. Con Q=800 J e massa B=2 g il residuo è 200 J su 8 J/K, lettura 25 °C. Rapporto numerico Celsius 5, uguale qui a quello degli incrementi da 0 °C.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "4/5 e 5/4 confrontano masse, 1/5 inverte le letture, 2 non ricostruisce i residui.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A ha lettura 5 °C. Con Q=800 J e massa B=2 g il residuo è 200 J su 8 J/K, lettura 25 °C. Rapporto numerico Celsius 5, uguale qui a quello degli incrementi da 0 °C.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-08",
+      "sourceSha256": "6b93ddc5a027184bc11829e87d11d23be4c2be029b0079881b53f785b0db9861",
+      "candidateSha256": "687f457cc40c87844258360afed919a425b682c5b00e16996676538b8f224e4b",
+      "reviewedSignature": "dba2ace0f9d72e2995ab9fd908914b5b6404c7416a43803efb54a756a17a11ef",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Proposta 10 °C meno 5 °C è un intervallo di +5 K. Non si aggiunge 273,15 agli scarti.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "−5 K scambia l’ordine; 10 K copia la proposta; zero e 2 K non sono la differenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 10 °C meno 5 °C è un intervallo di +5 K. Non si aggiunge 273,15 agli scarti.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-09",
+      "sourceSha256": "c80d4a1ab6f235223f03c1d759667937747f9809a16e7b092cea6bbedd814bad",
+      "candidateSha256": "fa3b9e0247172d63bb52f7bde8195612d327f7d71d820cdde0e2f65058212862",
+      "reviewedSignature": "85aef4f649afd50e9cab4f3c3307956ce07995d0a5a9236034b0a85dfc59f068",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q = m (L_f + c_l Θ)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Moltiplicare Θ per mc_l e aggiungere mL_f dà Q=m(L_f+c_lΘ); la parentesi è in J/g e il prodotto in J.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Un solo termine omette un tratto, il segno meno toglie energia richiesta; dividere per m dà J/g².",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Moltiplicare Θ per mc_l e aggiungere mL_f dà Q=m(L_f+c_lΘ); la parentesi è in J/g e il prodotto in J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-10",
+      "sourceSha256": "0a84aea575c480950d0c82d0b42f12e791c28b9d393c9e8177e5e3ff5b08a405",
+      "candidateSha256": "b6b672e2e463f19b720bc58722f6669c278a66030e72024f38f6ea5716c301f8",
+      "reviewedSignature": "7bb988578bd5b58477be3792bbf3b54c31d729bc2f6b06457e9fab9d430e0eee",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(κ₁ Q_A − κ₂ m_A L_f) / [κ₂ (Q_A − m_A L_f)]",
+      "dimension": {},
+      "manualArithmetic": "Si rapportano i due residui divisi per le rispettive capacità: (κ₁Q_A−κ₂m_AL_f)/[κ₂(Q_A−m_AL_f)]. Le due finali positive rendono il rapporto definito.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il solo κ₁/κ₂ perde il costo latente; omettere κ₂ perde la capacità finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Si rapportano i due residui divisi per le rispettive capacità: (κ₁Q_A−κ₂m_AL_f)/[κ₂(Q_A−m_AL_f)]. Le due finali positive rendono il rapporto definito.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-11",
+      "sourceSha256": "1e67379b0537e10fa0694bb10d144922738b7b829a7e74a0d151ed3f0ba0a219",
+      "candidateSha256": "eb55f1518859cdf2f38f6745e3a873237cb7dc7f608b3d7e451bda2d6f4dc7d7",
+      "reviewedSignature": "5003225ca81b012cd1c0952214c559df319a8c129b6343c6f78386260e6bbf4c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {},
+      "manualArithmetic": "B: 1000−2·300=400 J su 8 J/K dà 50 °C; A=5 °C. Rapporto delle letture 10, non delle temperature assolute.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "5/4 segue solo Q, 4/5 solo massa; 1/10 capovolge B/A e 5 appartiene al caso a Q comune.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B: 1000−2·300=400 J su 8 J/K dà 50 °C; A=5 °C. Rapporto delle letture 10, non delle temperature assolute.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-12",
+      "sourceSha256": "2ed50766f6899aae20cf680300548989afc95f114ec1d26f68a7711afd268713",
+      "candidateSha256": "941aeacef79aed5c21de87048fb5a13c82726508c6d63dd4ce5149d4357b84af",
+      "reviewedSignature": "d68a1c1b17a42820d334c16a48a6ca2e2a3665d225a1ebf802c0e8af158b7203",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "55/2",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Media letture (5+50)/2=55/2 °C. Q medio 900 J e massa media 9/4 g darebbero invece 25 °C; la media statistica non è una nuova mescolanza.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "25 °C usa gli ingressi medi; 55 °C è somma e 45/2 °C metà differenza; 5 °C ignora B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media letture (5+50)/2=55/2 °C. Q medio 900 J e massa media 9/4 g darebbero invece 25 °C; la media statistica non è una nuova mescolanza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-13",
+      "sourceSha256": "d002a356647ff6250617c004bf2e82a3cdff2cc8a69ea1f87c4e260d56b910c9",
+      "candidateSha256": "19953570a90746b9621c1df2a7077f6c2a3bc6992092b13646b48c43bbacb47a",
+      "reviewedSignature": "376c3c5e7dde9142c7e5d819ee3985ce986e70ce3be6b1775a1dd77c85623289",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio 50 °C: costo 300+4·50=500 J/g. Q_B=1000 J dà m_B=2 g e m_B/m_A=4/5; finale sotto ebollizione.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "5/4 è il reciproco; 10 è il fattore sulla lettura, 2 il numero della massa B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio 50 °C: costo 300+4·50=500 J/g. Q_B=1000 J dà m_B=2 g e m_B/m_A=4/5; finale sotto ebollizione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-14",
+      "sourceSha256": "f6b3878d6613e316867a983e4a7ca2857d919c8e477bf234924582cb4f1b4bae",
+      "candidateSha256": "7d72ea2cc6fd584f4fa9b557cbe03f065206afd0b835ffa0a692c83c3f81996d",
+      "reviewedSignature": "488bde715c5fb44fa6719e70cb621866cd9d2db7801bd8e4446be2718e8e6fe1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1000",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Θ_A=5 K, S_A=15 implica q=3 K⁻¹. S_B=150 dà Θ_B=50 K; con 2 g Q_B=2(300+200)=1000 J.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "S=150 come kelvin dà 1800 J e viola il limite liquido; 400 J omette fusione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Θ_A=5 K, S_A=15 implica q=3 K⁻¹. S_B=150 dà Θ_B=50 K; con 2 g Q_B=2(300+200)=1000 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-15",
+      "sourceSha256": "cc752f7ef9239948d21895ab8b1fd26ad875a01a274f0a08fc542bfb5eeb108b",
+      "candidateSha256": "29a8201e6db7db92a72f11a155b09fbf0bde6000a301724c0a3ec385c78290d8",
+      "reviewedSignature": "0966c9892147ecba264e90a7bc3e9a07d9f6b63d144bb339c9b38c2bc6260078",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1000",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Riferimenti Θ=5 e 50 K, S=11 e 101: q=90/45=2 K⁻¹ e b=1. S_C=51 dà Θ_C=25 K; Q_C=(5/2)(300+100)=1000 J.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "1005 J omette b e produce S=52 anziché 51; 250 e 750 J sono singoli tratti.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti Θ=5 e 50 K, S=11 e 101: q=90/45=2 K⁻¹ e b=1. S_C=51 dà Θ_C=25 K; Q_C=(5/2)(300+100)=1000 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-ice-final-temperature-16",
+      "sourceSha256": "bee7664d0b7f70a934e8282a25d740a964bbece0b63da573082fcd7aa21592e2",
+      "candidateSha256": "d9a05f6c0f57c75c40a3975b696d98cfccc19cb43ed225cc820a01a28b812f52",
+      "reviewedSignature": "7b4eb129c34829256f13a79daa8be29d10c9f4abcd381320c03ddc5b4e6a0d53",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite: ogni m>0 con Q=(320 J/g)m",
+      "dimension": {},
+      "manualArithmetic": "Q=(320 J/g)m cancella m nella legge: Θ=(320−300)/4=5 K. Ogni m>0 con Q=320m è ammesso; ad esempio 1 g/320 J e 5/2 g/800 J. Non identificabile la scala.",
+      "physicalAssumptions": "Ghiaccio a 0 °C, pressione atmosferica, L_f=300 J/g e c_l=4 J/(g K) prescritti. Massa positiva, mL_f<Q<m(L_f+c_l·100 K): fusione completa e acqua finale sotto ebollizione. Recipiente e dispersioni trascurati. Θ è incremento da T_m=0 °C, non temperatura assoluta; i rapporti richiesti sono espressamente di letture Celsius e qui coincidono con quelli di Θ. Il vincolo confronta preparazioni diverse, non modifica massa o coefficienti nel tempo interno della singola prova.",
+      "distractors": "La coppia di riferimento non è unica; massa zero è esclusa prima della cancellazione e annulla il denominatore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q=(320 J/g)m cancella m nella legge: Θ=(320−300)/4=5 K. Ogni m>0 con Q=320m è ammesso; ad esempio 1 g/320 J e 5/2 g/800 J. Non identificabile la scala.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "562d6e3d400c9e1b1f8196723721f0e5dcc6ca69926ff44d922e83dfc8e2d31c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "5579fe2187e28f34c6dfa8632c07113f46610559",
+  "packageSha256": "cd948a716d1f37b25b2a623cefbe1e44b78ac0df8431228afc903d74f9a28549",
+  "bindingsSha256": "c6466c2c4457c37597b8286a133779784a356ddc7c096d5bdb10ebd27a2fc15d",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+    "reference": "Primaria indipendente di tutti gli 80 prompt U5-03, prima di candidati, opzioni o chiavi: SHA256 ea13a6d7b6eca676daa520594e324f8c84aaabe64114d375dc3eabf35f47e2d9. Fonte intera pin 5cf, SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Dopo la primaria, tutti i 16 candidati del lotto letti integralmente, ogni blocco, formula, opzione, hint e feedback, metadati e didascalie. Derivazioni ricontrollate sui dati finali; SVG XML e rendering nativo integrali letti. Catalogo reale C3-L01/L03/L04 verificato. Nessun authoring importato; autore e revisore distinti. ROOT identico ai byte finali B 9d647bca e, per 17309, 5579fe21."
+  }
+}
