@@ -198,12 +198,14 @@ Procedimento d’autore: Il bilancio diventa m·40=(m+2 g)·20 nelle unità asse
 
 Passaggi: 2m=m+m_0;  m=m_0;  m=2\,\mathrm g.
 
-Distrattori: Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 32 °C. Meno due viola le masse positive.
+Distrattori: Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 35 °C. Meno due viola le masse positive.
 
-Fonte canonica SHA256 c558b8e7962b4612b5318c3a205f7209ef2c3ea8d0f783a5acdbe8d70fcdc7ce. Candidato SHA256 c06f23914d1de6cdc0382a12eb2c30cdf2c4be9dfde7762e97f5fdfbcab57585. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 c558b8e7962b4612b5318c3a205f7209ef2c3ea8d0f783a5acdbe8d70fcdc7ce. Candidato SHA256 c52ed7af7900a9106bbcfd2f7fac7c172cfa39c129efabc1629f9d2f42813fc2. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## Correzione della figura dopo review responsive
 
 Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: nessuna lunghezza in pixel. Il confronto XML prima/dopo conferma gli stessi elementi, ordine e tutti gli attributi geometrici e stilistici; cambiano i soli testi delle legende e le didascalie collegate. Tutte le chiavi e formule sono identiche. Le versioni precedenti sono conservate con manifest in author-evidence/thermal-168-172-before-responsive-figure-fix. Le cinque nuove figure sono state lette integralmente in XML e nei rendering nativi completi allegati. Questo è controllo tecnico dell’autore, non revisione scientifica indipendente. UI del prodotto sui byte correnti NOT_RUN, nessun marker corrente.
 
 Coordinate intrinseche SVG: energia5 unità/J,80 J lunghi400 unità e i due40 J lunghi200 ciascuno; letture Celsius6 unità per grado,40/44/42 corrispondono240/264/252 unità. I pixel CSS responsive non sono dati fisici del quesito.
+
+Review distinta B, correzione16: con masse uguali1 g e recipiente2 J/K il bilancio dà(80+60)/4=35 °C, non32 °C. Corretto soltanto il numero di questa controprova nel feedback/error e il binding16. Tutti gli altri15 record, chiavi, formule e asset sono identici; la precedente edizione è archiviata byte per byte. Doppio assembly e import tecnico ripetuti; nessuna nuova UI o approvazione propria.

@@ -81,7 +81,7 @@ TASKS=[
 ('La capacità fissa elimina la libertà di scala',SCENE+'Si impone m_h=m_c=m>0 e si misura θ_f=40. Quanto vale m_c?',['2 g','Qualunque massa positiva','4 g','1 g','−2 g'],
  'Il bilancio diventa m·40=(m+2 g)·20 nelle unità assegnate. Dividendo per 20 K si ha 2 m=m+m₀, quindi m=m₀=2 g. Il recipiente fisso impedisce che una scala arbitraria delle masse si semplifichi, a differenza del modello con recipiente trascurabile.',
  r'2m=m+m_0\qquad m=m_0\qquad m=2\,\mathrm g',
- 'Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 32 °C. Meno due viola le masse positive.',
+ 'Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 35 °C. Meno due viola le masse positive.',
  'Mantieni il termine noto del recipiente quando raccogli la massa.')]
 CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15,16]}
 UNITS={1:'°C',5:'g',6:'g',14:'g'}
