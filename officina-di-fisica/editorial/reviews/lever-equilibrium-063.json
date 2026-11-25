@@ -1,0 +1,483 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-lever-equilibrium-01",
+      "sourceSha256": "942cd6fb86c60f22fcee8135f1a6d48760b674268b64c05d495b7bc3e243e3fa",
+      "candidateSha256": "06069b551d3e66f83634994e230d7e8c19691adaf3845a4e7c6fd2e148fdf318",
+      "reviewedSignature": "8a068b4293f7522d684fbe87bad127b45a1bde61d95e3ba01cbe3b5da9ec4547",
+      "assetChecksums": {
+        "lever-equilibrium-progressive.svg": "b6cb7a36890767467ef46454220f2ffa22dabb1832a1bd9ada41b02cbedcfe6e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Momenti con antiorario positivo: forza F inx=−a diretta inbasso→+aF,caricoR inx=b inbasso→−bR. Reazione nelpolo ha momento0. aF=bR→F=Rb/a=2·2/2=2N. Reazione versoaltoF+R=4N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "F=R qui per bracciuguali,non leggeuniversale;la cerniera non è senza forza,ma senza coppia.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Momenti con antiorario positivo: forza F inx=−a diretta inbasso→+aF,caricoR inx=b inbasso→−bR. Reazione nelpolo ha momento0. aF=bR→F=Rb/a=2·2/2=2N. Reazione versoaltoF+R=4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-02",
+      "sourceSha256": "e12742eefe8db712d733a1f7fc6c1dba85265516502d4870cdb49b54f9316652",
+      "candidateSha256": "2e097a338a18087e4ef10efd30f1467f435e2d68899287baa5ef0eeceb340ac7",
+      "reviewedSignature": "5d18400e5b2b908f750c158f05ae27bd74c547b90b97da1cf79cd41dedb2a53f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Rb/a: N·m/m=N. a=2m è lunghezza,non2puro;Rb solo è momento.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "Nm momento;kg massa;m lunghezza;1puro;soltantoN forza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Rb/a: N·m/m=N. a=2m è lunghezza,non2puro;Rb solo è momento.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-03",
+      "sourceSha256": "ffe8c22792e8857f54ee89a591faf0ec2162dcf323547751341b96ead5dd362e",
+      "candidateSha256": "7af426d38038b7f5de55fe74bd42030804eeebc4081a3dd0b85e25a54ff8dada",
+      "reviewedSignature": "8f8f959ea6628195c7f7faadd4f5d5aee97594b4ada6ee49be5e70ce072dc336",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La distanza fra i due punti",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Rigidità: distanzaPQ=|rQ−rP| costante. RotazioneQ ortogonale conserva normaQ(rQ−rP),non coordinate,quote,direzione o velocità nel laboratorio.",
+      "physicalAssumptions": "Oggetto perfettamente rigido,punti materiali dello stesso corpo:invarianza delle distanze per ogni coppia,in ogni rotazione/traslazione;non coordinate di laboratorio.",
+      "distractors": "Posizioni,direzioni,quote e velocità possono cambiare;puntisullasse fermi non garantiscono tutte le coppie.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Rigidità: distanzaPQ=|rQ−rP| costante. RotazioneQ ortogonale conserva normaQ(rQ−rP),non coordinate,quote,direzione o velocità nel laboratorio.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-04",
+      "sourceSha256": "49e0468d7c85643cc424acfca60b2a073f3c8750cf045220b12fc91ec767a35b",
+      "candidateSha256": "62ffb695369cc9277e81f8b5ad7afb51d8c63e0e4bfa274075ac4fcc25322da6",
+      "reviewedSignature": "8997e38b35c57ed1b29fc85b928bbef9e141a71b120c03b6308857dd61f7e452",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 4 N",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "R2→4N,b=a2m comuni: F2→4N per momenti4→8Nm. Sono equilibri distinti,non accelerazione durante transizione.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "8N raddoppiaancheb;1N inversa;invarianza o0 non compensano nuovo momento.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. R2→4N,b=a2m comuni: F2→4N per momenti4→8Nm. Sono equilibri distinti,non accelerazione durante transizione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-05",
+      "sourceSha256": "c436e35c73584b18dd010acc7162ea81e8bbd6ad5cb1bc324a2675a4f8e6b906",
+      "candidateSha256": "5e0ac124910d3ef2451a989232a0ab2a4089f42e0133edd3d58058f10c3a40d6",
+      "reviewedSignature": "a17938ac0f63b4ca730fd193fd0003fe4a52a33a8052dc70a5de5328ba050492",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "R=Fa/b=2N·2m/2m=2N. Reazione priva di coppia non altera inversa.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "4Nm momento nonforza;fulcrocon coppia cambierebbe bilancio maèescluso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. R=Fa/b=2N·2m/2m=2N. Reazione priva di coppia non altera inversa.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-06",
+      "sourceSha256": "18a1c1f8e5291d14da451823f31183498b9dc1e707f35e387f8470c4aeffb6df",
+      "candidateSha256": "3dda5a904b9a0a108b63a337fa79383c7f1ac6029a85d5a963fc87aad61ade2b",
+      "reviewedSignature": "b3487e47a3d405bc57d0fadd2c230f8874fc755ec79de54ca7013b0e468bb078",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "b=Fa/R=2N·2m/2N=2m. Braccio perpendicolare,non lunghezza totale.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "1m dimezza senza ragione;bracci uguali necessari conforze uguali eopposte come momenti.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. b=Fa/R=2N·2m/2N=2m. Braccio perpendicolare,non lunghezza totale.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-07",
+      "sourceSha256": "02dc47552940b1cafe4f7bbb6285575f993f0298e1e8b89f42b7cb6d75c6044c",
+      "candidateSha256": "b56da6fccab6ce65a508ec76666b57a86feae6378561f3c2b248e178103faab1",
+      "reviewedSignature": "f4402add73b9cacfd48c3d7dfbfb8e4ba923997fa80a979fbf528d9f8470d32a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "R2N,a2m,b2→4m: F2→4N;rapporto2. Maggiore braccio resistente richiede più sforzo.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "1/2 confonde braccio resistente conmotore;4 quadrato;1 ignora;−2 esclude moduli positivi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. R2N,a2m,b2→4m: F2→4N;rapporto2. Maggiore braccio resistente richiede più sforzo.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-08",
+      "sourceSha256": "4d5b1b71d8987195e28387229474300f998fe59061682a33161c1f81a6034457",
+      "candidateSha256": "a9527726ca07b401586de62580e2cc9127edf0a2dc27dcd89f0eb57ac034acaf",
+      "reviewedSignature": "e59f9e47dacb4ca2dd3c233af00f243ba2d33515b6819897938d8fb7e274637e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "CorrettoF2N;proposta4N avrebbe8Nm contro4Nm: scarto4−2=+2N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "−2 ordine inverso,4 proposta,1 dimezza,3 non differenza;Nm non N.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. CorrettoF2N;proposta4N avrebbe8Nm contro4Nm: scarto4−2=+2N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-09",
+      "sourceSha256": "16de513619cf1d846425095df32aa41ed363bbb3e4e2b9a9f98c3d926c83c566",
+      "candidateSha256": "3cdaadbd8853e28caacc940e49881551e997b387e381465fb2c4dbc88c0e271d",
+      "reviewedSignature": "d0e1063267f0c5c7c64cc427553b429666220b98ab4ab3d2519dc5a68391de36",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "R=Fa/b",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Fa=Rb→R=Fa/b. a/b puro;preservare a dimensionale;positività e b>0.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "Fb/a scambia bracci,F/(ab)haN/m²,2Fa/b doppio,Fa/(2b)metà. Coincidenze speciali a=b non rendono identità generale alternative.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Fa=Rb→R=Fa/b. a/b puro;preservare a dimensionale;positività e b>0.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-10",
+      "sourceSha256": "9f855cf8e372cc9150b0f7f5749fb054ccae72082fdc96b3f2d97ac71573642f",
+      "candidateSha256": "6c4021b3bdfe5152bb2290bbb50128e856dae31bf7dcba40b1f9fb45011bc515",
+      "reviewedSignature": "a30550aa1711efba8820592d198a277412d97da4b60645ce127b8e1d10d0c114",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "F_A=Rb/a,F_B=κ1κ2Rb/a;rapportoκ1κ2,braccio motore fisso e momenti opposti.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "Quozienti effetto inverso,somma non1allidentità,quadrato delbraccio assente.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. F_A=Rb/a,F_B=κ1κ2Rb/a;rapportoκ1κ2,braccio motore fisso e momenti opposti.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-11",
+      "sourceSha256": "476f35269b02b4a163c8591a63e1fb6a407dd1c3d7ee25ebfcc5e31a772c79c3",
+      "candidateSha256": "a9d8c755d47f2e09b119b869d8f94e887f3b399ebf74e59047d334e3a83d4b92",
+      "reviewedSignature": "f6ba5ecf802433a4371d3e1f8fa5b01de66dbcd84cfe178891ceffb03fb7a360",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "A2N,B4·4/2=8N;rapporto8/2=4. MomentoB16Nm distinto dalla forza.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "2 un solo cambiamento,8N forzaB non rapporto,16Nm momento,1/4 inverso.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A2N,B4·4/2=8N;rapporto8/2=4. MomentoB16Nm distinto dalla forza.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-12",
+      "sourceSha256": "fd11fde48a466d90c50e59c5da579e82db08a45ca2516b0ce5ffa11023b3735c",
+      "candidateSha256": "fa3fcd0694680377e9d12abeb639b84c330a52dab5d649790a94f65e768a29b5",
+      "reviewedSignature": "627cdf0e8531791c8fb9e2d6e2838266250b58620eb0fe9695918424a389d6bc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(2+8)/2=5N;ingressi mediR3N,b3m danno9/2N,differenza1/2N. Media statistica,non risultante simultanea.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "10somma,5/2 doppia metà,9/2 ingressimedi,4o6 nonsemisomma.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+8)/2=5N;ingressi mediR3N,b3m danno9/2N,differenza1/2N. Media statistica,non risultante simultanea.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-13",
+      "sourceSha256": "1a3e663cd0e25a62a21e7df06b16ef6039edb88fc6a11021d712e5540033d90c",
+      "candidateSha256": "39e439fb2822c11151820201f42ddccc5e89162bd587377c0af3e8229e82d6ea",
+      "reviewedSignature": "07a7515511ed8c18b9cf6da786e5eb79a9c3f2eac3cc44a3f7f67986a32445b9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetF_B4·2=8N,R_B4N: b_B=8·2/4=4m;rapporto4/2=2.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "b invariato dàF4N;quadruplicato dàF16N,otto volteA;4m nonrapporto4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetF_B4·2=8N,R_B4N: b_B=8·2/4=4m;rapporto4/2=2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-14",
+      "sourceSha256": "35364c750273e56c4e3049e635705caa7ec56fe035b7c654e4719bffd87f9a83",
+      "candidateSha256": "ccf5c8662381f9a7bab04d249c1f366e6b60eb235f78e0e73c020657c1f5815c",
+      "reviewedSignature": "a3899562107d5e45e1a702083ae9170c09fc91021783aef315ba1363cb02181d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefF2N,S6→c3N⁻¹;S24→F8N;R=Fa/b=8·2/4=4N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "S24come24N darebbeR12N;guadagno nonlunghezza;4N ricostruisceS24.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefF2N,S6→c3N⁻¹;S24→F8N;R=Fa/b=8·2/4=4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-15",
+      "sourceSha256": "21f9a310ca735d43e77490722f59f6fb1e2429643a379c4707707401e54e2196",
+      "candidateSha256": "0fdf937a068ce21d7081bf39e7d222055e63b9a4ddf69144d5ac128d7d32321c",
+      "reviewedSignature": "ad84d7dcf498f3580e3f19d26dc96c66746b40c2f6ae0d6f3eb17c2592e28cc2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "RefF2,8N;ΔS12/ΔF6N→c2N⁻¹,d1. S9→F4N;R=4·2/2=4N.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie.",
+      "distractors": "R2,3,5,8N dannoS5,7,11,17;solo4N dà9. Rapporti grezzi conservano offset.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. RefF2,8N;ΔS12/ΔF6N→c2N⁻¹,d1. S9→F4N;R=4·2/2=4N.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-lever-equilibrium-16",
+      "sourceSha256": "380836d622a5afef72cc94ea031bd012b9d7e9946e1682cf8d915b4f14912415",
+      "candidateSha256": "2b8b5f49821af30043a2226e5574e61c7f4f0742bb659a8baeba988e3f210e1e",
+      "reviewedSignature": "465d692efe0466b8388e9c29c853f3c47f8e17f229e27efd2c34b4a552840e03",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "R=cb,c1N/m;Fa=cb²→b²Fa/c=4m²;radici±2m,solo+2 ammissibile eR2N. Vincolo fra prove,non lavoro della forza.",
+      "physicalAssumptions": "Corpo rigido ideale senza peso,in equilibrio statico in riferimento inerziale,fulcro fisso senza coppia;forze con momenti opposti e bracci perpendicolari positivi. Reazione della cerniera garantisce anche equilibrio di forze,non momento rispetto aO. Confronti tra equilibri,non leggi transitorie. R=(1N/m)b lega prove distinte;ambedue radici considerate,solo positiva permoduli.",
+      "distractors": "−2m braccio negativo eRnegativa;4 confonde quadrato;1o3m dannoF1/2o9/2N,non2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. R=cb,c1N/m;Fa=cb²→b²Fa/c=4m²;radici±2m,solo+2 ammissibile eR2N. Vincolo fra prove,non lavoro della forza.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_vector_cross_product_and_static_balance",
+        "SymPy_rigid_rotation_inverse_scaling_affine_and_identifiability",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "d0c80517826fc3fdb5044891649012de2f582114fc47a54fe6fdfae79c7cd412",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "2274b3d1b25342ea4f4a5432adc072390f56ab05",
+  "packageSha256": "d6e50a22d365a55c5e0db45b5b0b59de292616521db3bfc6c163a544d62164ab",
+  "bindingsSha256": "341891e65eb4ac7bfac5dc1ca5a4434535b0ae10f98528ef52014b90a0156aed",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-05.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

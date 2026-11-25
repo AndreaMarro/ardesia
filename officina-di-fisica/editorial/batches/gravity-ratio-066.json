@@ -1,0 +1,1166 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-gravity-ratio-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6621,
+      "title": "La distanza raddoppia insieme alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 1,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Con α=2 e β=2, quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo la legge F=GMm/r² in entrambe le configurazioni. La massa attrattiva doppia moltiplica la forza per due, mentre la distanza doppia la divide per quattro. Nel rapporto si cancellano G, m, M₀ e r₀²: resta due quarti, cioè un mezzo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/10b70df7407cf07f6c0bb21a9c4968866b4a42678f255c4a43cab10da1dcae2a",
+          "text": "Modello puntiforme, massa di prova comune, riferimento r₀=1 m e forza di riferimento F₀. Tre configurazioni con identica scala 100 px/m: riferimento M₀ a r₀; α2,β2 dà R1/2; α2,β4 dà R1/8. Nei pannelli inferiori le frecce dei moduli sono disegnate alla scala 160 px per F₀: 160,80,20 px. Simboli delle masse schematici, non una scala delle loro aree; frecce delle forze e distanze hanno scale diverse."
+        },
+        {
+          "type": "formula",
+          "text": "F_0=GM_0m/r_0^2"
+        },
+        {
+          "type": "formula",
+          "text": " F=G(\\alpha M_0)m/(\\beta r_0)^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\alpha/\\beta^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=2/4"
+        },
+        {
+          "type": "formula",
+          "text": " R=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo la massa, un quarto solo la distanza e uno usa erroneamente una distanza alla prima potenza. Quattro rovescia l’effetto della distanza. Il risultato è puro: la forza è metà di F₀, non mezzo newton senza conoscere F₀."
+        }
+      ],
+      "hints": [
+        "Moltiplica per il fattore della massa e dividi per il quadrato di quello della distanza.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo la massa, un quarto solo la distanza e uno usa erroneamente una distanza alla prima potenza. Quattro rovescia l’effetto della distanza. Il risultato è puro: la forza è metà di F₀, non mezzo newton senza conoscere F₀.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6622,
+      "title": "Un rapporto di forze resta puro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 1,
+      "prompt": "Due moduli gravitazionali positivi F,F₀ sono espressi nella stessa unità e R=F/F₀. Quale unità proposta esprime R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "kg",
+          "1",
+          "m",
+          "N/m"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I newton al numeratore e al denominatore si cancellano. R non è una forza, anche se descrive quanto una forza sia grande rispetto a un riferimento. L’unità indicata con 1 esprime l’adimensionalità; nella scrittura ordinaria spesso si omette."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=[F]/[F_0]"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=1"
+        },
+        {
+          "type": "text",
+          "text": "N sarebbe il modulo di una singola forza, kg una massa, m una distanza e N/m una rigidezza. Cambiare l’unità comune delle due forze non cambia il loro rapporto. L’assenza di unità non elimina il vincolo F₀>0 che rende possibile la divisione."
+        }
+      ],
+      "hints": [
+        "Cancella le stesse unità nei due moduli.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N sarebbe il modulo di una singola forza, kg una massa, m una distanza e N/m una rigidezza. Cambiare l’unità comune delle due forze non cambia il loro rapporto. L’assenza di unità non elimina il vincolo F₀>0 che rende possibile la divisione.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6623,
+      "title": "La legge del confronto gravitazionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 1,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Quale espressione fornisce R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R=α/β²",
+          "R=α/β",
+          "R=αβ²",
+          "R=β²/α",
+          "R=α²/β²"
+        ],
+        "value": "R=α/β²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cambiamento della massa entra una sola volta al numeratore della legge di Newton. Il cambiamento della distanza entra due volte al denominatore. Formando F/F₀ si eliminano la massa di prova e tutti i parametri iniziali comuni: R=α/β²."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/10b70df7407cf07f6c0bb21a9c4968866b4a42678f255c4a43cab10da1dcae2a",
+          "text": "Modello puntiforme, massa di prova comune, riferimento r₀=1 m e forza di riferimento F₀. Tre configurazioni con identica scala 100 px/m: riferimento M₀ a r₀; α2,β2 dà R1/2; α2,β4 dà R1/8. Nei pannelli inferiori le frecce dei moduli sono disegnate alla scala 160 px per F₀: 160,80,20 px. Simboli delle masse schematici, non una scala delle loro aree; frecce delle forze e distanze hanno scale diverse."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\frac{\\alpha}{\\beta^2}F_0"
+        },
+        {
+          "type": "formula",
+          "text": " R=F/F_0"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\alpha/\\beta^2"
+        },
+        {
+          "type": "text",
+          "text": "α/β dimentica il quadrato della distanza; αβ² assegna alla distanza un effetto crescente; β²/α inverte il rapporto. α² conta due masse variabili, mentre la massa di prova resta la stessa. Non usare questa legge con tutta la massa di un pianeta se la prova si trova al suo interno."
+        }
+      ],
+      "hints": [
+        "Identifica quale sola massa cambia e quale distanza va al quadrato.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "α/β dimentica il quadrato della distanza; αβ² assegna alla distanza un effetto crescente; β²/α inverte il rapporto. α² conta due masse variabili, mentre la massa di prova resta la stessa. Non usare questa legge con tutta la massa di un pianeta se la prova si trova al suo interno.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6624,
+      "title": "Più massa alla stessa distanza relativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 1,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Fra due confronti A,B si passa da α_A=2 a α_B=4 mantenendo β=2 e lo stesso riferimento F₀. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/2 a 1",
+          "Resta 1/2",
+          "Da 1/2 a 2",
+          "Da 1/2 a 1/4",
+          "Diventa zero"
+        ],
+        "value": "Da 1/2 a 1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il denominatore resta quattro. R_A=2/4=1/2 e R_B=4/4=1: la forza della configurazione B uguaglia quella di riferimento. Raddoppiare α raddoppia R, pur senza cambiare la massa di prova."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=2/2^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=4/2^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=1"
+        },
+        {
+          "type": "text",
+          "text": "Due raddoppierebbe l’uscita una volta di troppo; un quarto invertirebbe l’effetto della massa. Zero è escluso per masse positive e distanze finite. Il confronto mantiene i corpi nel modello puntiforme o esterno sferico, anche quando cambia la massa attrattiva."
+        }
+      ],
+      "hints": [
+        "Con β fisso confronta i numeratori.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due raddoppierebbe l’uscita una volta di troppo; un quarto invertirebbe l’effetto della massa. Zero è escluso per masse positive e distanze finite. Il confronto mantiene i corpi nel modello puntiforme o esterno sferico, anche quando cambia la massa attrattiva.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6625,
+      "title": "Ricostruire il fattore della massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Si misura R=1/2 e si conosce β=2. Quanto vale α?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da R=α/β² moltiplichiamo per β². Il quadrato di due è quattro; un mezzo di quattro è due. Questo α è il rapporto tra la nuova massa attrattiva e M₀, non una massa di due chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha=R\\beta^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=\\frac12\\cdot4"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=2"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per quattro darebbe 1/8 e non ricostruirebbe R. Usare β alla prima potenza darebbe uno. La sostituzione α/β²=2/4=1/2 controlla il dato senza conoscere G o il valore della massa di prova."
+        }
+      ],
+      "hints": [
+        "Moltiplica R per il quadrato del rapporto delle distanze.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere ancora per quattro darebbe 1/8 e non ricostruirebbe R. Usare β alla prima potenza darebbe uno. La sostituzione α/β²=2/4=1/2 controlla il dato senza conoscere G o il valore della massa di prova.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6626,
+      "title": "Ricostruire il fattore della distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Si misura R=1/2 e si conosce α=2. Quanto vale β?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo prima β²=α/R. Due diviso un mezzo è quattro. Il rapporto di distanze β è positivo, quindi la radice ammessa è due: la distanza nuova è il doppio di r₀, non due metri senza conoscere r₀."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta^2=\\alpha/R"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_+=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_-=-2"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è un rapporto di distanze positive. Quattro confonde β² con β e un mezzo inverte il confronto. La prova esterna sferica richiederebbe anche che la distanza ricostruita non entrasse nei corpi; il modello puntiforme dichiarato non impone un raggio materiale aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Isola il quadrato e poi prendi la radice positiva.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il ramo negativo non è un rapporto di distanze positive. Quattro confonde β² con β e un mezzo inverte il confronto. La prova esterna sferica richiederebbe anche che la distanza ricostruita non entrasse nei corpi; il modello puntiforme dichiarato non impone un raggio materiale aggiuntivo.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6627,
+      "title": "Raddoppiare ancora la distanza relativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. A usa α=2,β=2; B usa α=2,β=4. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "2",
+          "4",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due forze sono già rapportate allo stesso F₀. A ha R_A=1/2 e B ha R_B=2/16=1/8. Dividere un ottavo per un mezzo dà un quarto. La nuova distanza doppia riduce quindi ancora la forza di quattro volte."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=1/8"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\frac{1/8}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=1/4"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo dimentica il quadrato; due e quattro farebbero aumentare la forza allontanando i centri; uno ignora la distanza. R_B=1/8 non è il rapporto richiesto R_B/R_A=1/4: il riferimento del secondo confronto è A."
+        }
+      ],
+      "hints": [
+        "Confronta due rapporti completi o usa il quadrato del nuovo fattore due.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Un mezzo dimentica il quadrato; due e quattro farebbero aumentare la forza allontanando i centri; uno ignora la distanza. R_B=1/8 non è il rapporto richiesto R_B/R_A=1/4: il riferimento del secondo confronto è A.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6628,
+      "title": "Lo scarto della proposta unitaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Con α=2,β=2 si propone R_proposto=1. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+1/2",
+          "−1/2",
+          "+1",
+          "0",
+          "+1/4"
+        ],
+        "value": "+1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è un mezzo. La proposta uno lo supera di un mezzo: lo scarto con segno è +1/2, puro come i due valori confrontati. Non si tratta di una forza in newton."
+        },
+        {
+          "type": "formula",
+          "text": "R=2/2^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " e=1-1/2"
+        },
+        {
+          "type": "formula",
+          "text": " e=+1/2"
+        },
+        {
+          "type": "text",
+          "text": "−1/2 inverte la sottrazione, uno ripete la proposta, zero la accetta e un quarto dimezza ancora l’errore. La proposta uno deriverebbe dal rapporto α/β anziché da α/β²: il controllo individua la dipendenza sbagliata dalla distanza."
+        }
+      ],
+      "hints": [
+        "Calcola il denominatore quadratico prima della sottrazione.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "−1/2 inverte la sottrazione, uno ripete la proposta, zero la accetta e un quarto dimezza ancora l’errore. La proposta uno deriverebbe dal rapporto α/β anziché da α/β²: il controllo individua la dipendenza sbagliata dalla distanza.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6629,
+      "title": "L’inversa per la massa relativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Quale formula isola α da R=α/β²?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "α=Rβ²",
+          "α=R/β²",
+          "α=β²/R",
+          "α=Rβ",
+          "α=2 Rβ²"
+        ],
+        "value": "α=Rβ²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo entrambi i membri per β², positivo. Otteniamo α=Rβ² senza alcuna radice: l’incognita α compare alla prima potenza. Tutti i fattori sono rapporti puri."
+        },
+        {
+          "type": "formula",
+          "text": "R\\beta^2=\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=R\\beta^2"
+        },
+        {
+          "type": "text",
+          "text": "R/β² divide nel verso sbagliato; β²/R inverte R; Rβ omette un fattore β. Il due aggiuntivo non proviene dalla legge. Per β=1 l’inversa corretta deve dare α=R, perché le distanze sono uguali."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore, non elevare α al quadrato.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "R/β² divide nel verso sbagliato; β²/R inverte R; Rβ omette un fattore β. Il due aggiuntivo non proviene dalla legge. Per β=1 l’inversa corretta deve dare α=R, perché le distanze sono uguali.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6630,
+      "title": "Scalare due rapporti fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. A ha fattori α,β; B ha α_B=κ₁α e β_B=κ₂β, con κ₁,κ₂>0. Entrambe sono nel dominio del modello e condividono F₀. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂²",
+          "κ₁ / κ₂",
+          "κ₁ κ₂²",
+          "κ₂² / κ₁",
+          "κ₁² / κ₂²"
+        ],
+        "value": "κ₁ / κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore della massa entra direttamente, quello della distanza al quadrato e inversamente. Nel rapporto tra le due uscite si cancellano α e β², lasciando κ₁/κ₂². Questo è un confronto fra configurazioni, non una massa o una distanza che varia durante una misura."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=\\alpha/\\beta^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=\\kappa_1\\alpha/(\\kappa_2\\beta)^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\kappa_1/\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente con κ₂ alla prima potenza dimentica il quadrato; il prodotto assegna un effetto crescente alla distanza. Il reciproco cambia l’ordine e κ₁² cambia anche la massa di prova che invece è invariata. Se κ₁=κ₂², la forza rimane uguale."
+        }
+      ],
+      "hints": [
+        "Scala il quadrato dell’intero β_B.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il quoziente con κ₂ alla prima potenza dimentica il quadrato; il prodotto assegna un effetto crescente alla distanza. Il reciproco cambia l’ordine e κ₁² cambia anche la massa di prova che invece è invariata. Se κ₁=κ₂², la forza rimane uguale.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6631,
+      "title": "Due raddoppi non si compensano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. A usa α=2,β=2; B usa α=4,β=4. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà un mezzo e B dà quattro sedicesimi, cioè un quarto. Il rapporto è (1/4)/(1/2)=1/2. Il doppio della massa compensa solo uno dei due fattori due presenti nel quadrato della distanza."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=1/4"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Uno usa una legge inversa della distanza alla prima potenza; due segue soltanto la massa e un quarto soltanto l’effetto della distanza. Quattro ha entrambi gli effetti nel verso sbagliato. La forza B è un quarto di F₀, ma metà della forza A."
+        }
+      ],
+      "hints": [
+        "Distingui il confronto con F₀ dal confronto con A.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno usa una legge inversa della distanza alla prima potenza; due segue soltanto la massa e un quarto soltanto l’effetto della distanza. Quattro ha entrambi gli effetti nel verso sbagliato. La forza B è un quarto di F₀, ma metà della forza A.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6632,
+      "title": "Media di rapporti gravitazionali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 2,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. A usa α=2,β=2 e B usa α=4,β=4. Qual è la media aritmetica di R_A,R_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/8",
+          "3/4",
+          "3/16",
+          "1/3",
+          "1/4"
+        ],
+        "value": "3/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono 1/2 e 1/4. Riscriviamo un mezzo come due quarti, sommiamo tre quarti e dividiamo per due: la media è 3/8. Il risultato è compreso fra un quarto e un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{1/2+1/4}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=3/8"
+        },
+        {
+          "type": "text",
+          "text": "3/4 è la somma e 3/16 divide ancora. Gli ingressi medi α=3,β=3 darebbero 1/3, non 3/8: i prodotti incrociati nove e otto distinguono le due frazioni, con differenza esatta 1/24. Un quarto ripete B. Non si mediano qui le distanze dei corpi di una singola configurazione."
+        }
+      ],
+      "hints": [
+        "Trova le due forze relative prima di mediarle.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "3/4 è la somma e 3/16 divide ancora. Gli ingressi medi α=3,β=3 darebbero 1/3, non 3/8: i prodotti incrociati nove e otto distinguono le due frazioni, con differenza esatta 1/24. Un quarto ripete B. Non si mediano qui le distanze dei corpi di una singola configurazione.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6633,
+      "title": "Scegliere la distanza per dimezzare la forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 3,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. A ha α_A=2,β_A=2. In B si impone α_B=4 e si vuole R_B=(1/2)R_A. Quanto vale β_B/β_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R_A vale un mezzo, perciò il bersaglio è R_B=1/4. L’inversa β_B²=α_B/R_B dà 4/(1/4)=16. La radice positiva è β_B=4 e il rapporto al precedente β_A=2 è due."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=1/4"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B^2=4/(1/4)"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B^2=16"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B/\\beta_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare β uguale darebbe R_B=1, non 1/4. Quadruplicare β rispetto ad A ridurrebbe la forza troppo: il nuovo fattore β è quattro, ma il rapporto richiesto tra fattori è due. Il ramo negativo è escluso per distanze positive."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima β_B dal rapporto obiettivo.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare β uguale darebbe R_B=1, non 1/4. Quadruplicare β rispetto ad A ridurrebbe la forza troppo: il nuovo fattore β è quattro, ma il rapporto richiesto tra fattori è due. Il ramo negativo è escluso per distanze positive.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6634,
+      "title": "Tarare un rapporto puro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 3,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Un display continuo adimensionale segue S=qR, con q>0 costante e offset nullo. Il riferimento α=2,β=2 dà S=3/2. Una prova con β=4 dà S=3/4. Quanto vale α nella prova?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha R=1/2. Il guadagno è (3/2)/(1/2)=3, puro perché S e R sono adimensionali. La lettura 3/4 dà R=(3/4)/3=1/4. Infine α=Rβ²=(1/4)·16=4."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " R=(3/4)/q"
+        },
+        {
+          "type": "formula",
+          "text": " R=1/4"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=R\\beta^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=4"
+        },
+        {
+          "type": "text",
+          "text": "Usare S=3/4 direttamente come R darebbe α=12 e includerebbe il guadagno tre. Un display di rapporti non deve per questo avere guadagno unitario. Il controllo α/β²=4/16 e qR=3/4 ricostruisce entrambe le relazioni."
+        }
+      ],
+      "hints": [
+        "Pur senza unità, lettura e rapporto fisico restano grandezze diverse.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S=3/4 direttamente come R darebbe α=12 e includerebbe il guadagno tre. Un display di rapporti non deve per questo avere guadagno unitario. Il controllo α/β²=4/16 e qR=3/4 ricostruisce entrambe le relazioni.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6635,
+      "title": "Una taratura con letture decrescenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 3,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Un display continuo adimensionale segue S=qR+b, con q>0,b costanti. A: α=2,β=2,S=2. B: α=4,β=4,S=3/2. C: β=2,S=3. Quanto vale α_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno R_A=1/2 e R_B=1/4. Sia la lettura sia il rapporto diminuiscono: q=[(3/2)−2]/[(1/4)−(1/2)]=(−1/2)/(−1/4)=2, positivo. L’offset è uno. C ha R=(3−1)/2=1 e quindi α=1·2²=4."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{-1/2}{-1/4}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=(3-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_C=4"
+        },
+        {
+          "type": "text",
+          "text": "Le alternative α=2,3,5,8 con β=2 darebbero letture 2,5/2,7/2,5, diverse da tre. I due segni negativi nella taratura si cancellano: una differenza di letture negativa non implica guadagno negativo. Il rapporto delle letture grezze conserva l’offset."
+        }
+      ],
+      "hints": [
+        "Mantieni lo stesso ordine in entrambe le differenze.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le alternative α=2,3,5,8 con β=2 darebbero letture 2,5/2,7/2,5, diverse da tre. I due segni negativi nella taratura si cancellano: una differenza di letture negativa non implica guadagno negativo. Il rapporto delle letture grezze conserva l’offset.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-gravity-ratio-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Gravitazione e rapporti",
+      "order": 6636,
+      "title": "Un vincolo elimina il quadrato apparente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "gravity-ratio",
+      "difficulty": 3,
+      "prompt": "Si confrontano attrazioni gravitazionali newtoniane della stessa massa di prova m>0. Il riferimento ha massa attrattiva M₀>0 e distanza fra i centri r₀>0, con forza di modulo F₀. Un’altra configurazione ha massa αM₀ e distanza βr₀, con α,β>0 e forza di modulo F. I corpi sono puntiformi; per corpi estesi la stessa legge vale soltanto con simmetria sferica e corpi esterni l’uno all’altro in entrambe le configurazioni. R=F/F₀ è un rapporto positivo. Fra configurazioni si impone α=β. Se R=1/2, quanto vale β nel dominio positivo?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo α=β otteniamo R=β/β²=1/β, perché β>0. L’inversa dà β=1/R=2 e poi α=2. Il quadrato iniziale non produce due soluzioni fisiche: un fattore β si è cancellato in un dominio che esclude zero."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\beta/\\beta^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=1/\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=1/R"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=2"
+        },
+        {
+          "type": "text",
+          "text": "β=0 non è ammissibile e non si può introdurre come radice moltiplicando impropriamente denominatori. Il ramo −2 non dà il rapporto positivo richiesto e renderebbe negativa α nel vincolo. Uno o quattro danno R=1 o 1/4, non 1/2."
+        }
+      ],
+      "hints": [
+        "Semplifica usando β>0 prima di cercare radici.",
+        "La forza gravitazionale varia direttamente con la massa attrattiva e inversamente con il quadrato della distanza fra i centri."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "β=0 non è ammissibile e non si può introdurre come radice moltiplicando impropriamente denominatori. Il ramo −2 non dà il rapporto positivo richiesto e renderebbe negativa α nel vincolo. Uno o quattro danno R=1 o 1/4, non 1/2.",
+        "target": "C1-L006"
+      },
+      "coverage": [
+        "Rapporti di forze gravitazionali",
+        "Distanze fra i centri e dipendenza inversa quadratica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "10b70df7407cf07f6c0bb21a9c4968866b4a42678f255c4a43cab10da1dcae2a",
+      "name": "gravity-ratio-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkNvbmZyb250byBncmF2aXRhemlvbmFsZSBhIG1hc3NhIGRpIHByb3ZhIHVndWFsZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkNvcnBpIHB1bnRpZm9ybWkgY29uIHNpbWJvbGkgc2NoZW1hdGljaSwgbm9uIGluIHNjYWxhIGRlbGxlIG1hc3NlLiBEaXN0YW56ZSB0cmEgaSBjZW50cmkgYWxsYSBzY2FsYSBjZW50byBwaXhlbCBwZXIgbWV0cm87IHIgemVybyB1Z3VhbGUgdW4gbWV0cm8uIFByaW1hIGNvbmZpZ3VyYXppb25lIG1hc3NhIGF0dHJhdHRpdmEgTSB6ZXJvIGUgZGlzdGFuemEgdW4gbWV0cm86IGZvcnphIEYgemVyby4gU2Vjb25kYSBjb25maWd1cmF6aW9uZSBtYXNzYSBkb3BwaWEgZSBkaXN0YW56YSBkdWUgbWV0cmk6IGZvcnphIG1ldMOgIEYgemVyby4gVGVyemEgY29uZmlndXJhemlvbmUgbWFzc2EgZG9wcGlhIGUgZGlzdGFuemEgcXVhdHRybyBtZXRyaTogZm9yemEgdW4gb3R0YXZvIEYgemVyby4gUHJvaWV6aW9uaSBzZXBhcmF0ZSBkZWxsZSBmb3J6ZSB2ZXJzbyBpbCBjZW50cm8sIHN0ZXNzYSBzY2FsYSBjZW50b3Nlc3NhbnRhIHBpeGVsIHBlciBGIHplcm86IGZyZWNjZSBkaSBjZW50b3Nlc3NhbnRhLCBvdHRhbnRhIGUgdmVudGkgcGl4ZWwuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDUwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmaWxsPSIjMTYzMjNmIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgRmlzc2EgaWwgcmlmZXJpbWVudG88L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwIj5QdW50aSBtYXRlcmlhbGkuIERpc3RhbnplOiAxMDAgcHgvbTsgcuKCgCA9IDEgbS48L3RleHQ+PHBhdGggZD0iTTgwIDIxMEgxODAiIHN0cm9rZT0iI2I3YzdiZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iODAiIGN5PSIyMTAiIHI9IjEwIiBmaWxsPSIjODE5NjhkIi8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMjEwIiByPSI2IiBmaWxsPSIjMTQ2NDdiIi8+PHRleHQgeD0iNTAiIHk9IjE3MCI+TeKCgDwvdGV4dD48dGV4dCB4PSIxNzAiIHk9IjE3MCI+bTwvdGV4dD48cGF0aCBkPSJNODAgMjUwSDE4ME04MCAyNDBWMjYwTTE4MCAyNDBWMjYwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEwMCIgeT0iMjkwIj5y4oKAPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzNDUiPkZvcnphLCBwcm9pZXppb25lIHNlcGFyYXRhOiAxNjAgcHggcGVyIEbigoAuPC90ZXh0PjxwYXRoIGQ9Ik00MDAgNDAwSDI0MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDQwIiB5PSI0MDgiPkYgPSBG4oKAPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0NTAiPlIgPSBGL0bigoAgPSAxLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjUzNSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBNYXNzYSBkb3BwaWEgZSBkaXN0YW56YSBkb3BwaWE8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU4MCI+zrEgPSAyLCDOsiA9IDIuIExhIG1hc3NhIGRpIHByb3ZhIG0gbm9uIGNhbWJpYS48L3RleHQ+PHBhdGggZD0iTTgwIDY2MEgyODAiIHN0cm9rZT0iI2I3YzdiZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI2NjAiIHI9IjEwIiBmaWxsPSIjODE5NjhkIi8+PGNpcmNsZSBjeD0iMjgwIiBjeT0iNjYwIiByPSI2IiBmaWxsPSIjMTQ2NDdiIi8+PHRleHQgeD0iNDMiIHk9IjYyMCI+Mk3igoA8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSI2MjAiPm08L3RleHQ+PHBhdGggZD0iTTgwIDcwMEgyODBNODAgNjkwVjcxME0yODAgNjkwVjcxMCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNTAiIHk9Ijc0MCI+MnLigoA8L3RleHQ+PHRleHQgeD0iMjgiIHk9Ijc5NSI+Rm9yemEsIHN0ZXNzYSBzY2FsYSAxNjAgcHggcGVyIEbigoAuPC90ZXh0PjxwYXRoIGQ9Ik00MDAgODUwSDMyMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDQwIiB5PSI4NTgiPkYgPSBG4oKALzI8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwMCI+UiA9IDIvMsKyID0gMS8yLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9Ijk4NSIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBBbGxvbnRhbmEgYW5jb3JhLCBjb24gbGEgc3Rlc3NhIG1hc3NhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDMwIj7OsSA9IDIsIM6yID0gNC4gU3Rlc3NhIHNjYWxhIGRlbGxlIGRpc3RhbnplLjwvdGV4dD48cGF0aCBkPSJNODAgMTExMEg0ODAiIHN0cm9rZT0iI2I3YzdiZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iODAiIGN5PSIxMTEwIiByPSIxMCIgZmlsbD0iIzgxOTY4ZCIvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjExMTAiIHI9IjYiIGZpbGw9IiMxNDY0N2IiLz48dGV4dCB4PSI0MyIgeT0iMTA3MCI+Mk3igoA8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMDcwIj5tPC90ZXh0PjxwYXRoIGQ9Ik04MCAxMTUwSDQ4ME04MCAxMTQwVjExNjBNNDgwIDExNDBWMTE2MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNTAiIHk9IjExOTAiPjRy4oKAPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjQ1Ij5Gb3J6YSwgc3Rlc3NhIHNjYWxhIDE2MCBweCBwZXIgRuKCgC48L3RleHQ+PHBhdGggZD0iTTQwMCAxMzAwSDM4MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDQwIiB5PSIxMzA4Ij5GID0gRuKCgC84PC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzYwIj5SID0gMi80wrIgPSAxLzguIFJpc3BldHRvIGFsIHBhbm5lbGxvIDI6IDEvNC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0MTAiIGZvbnQtc2l6ZT0iMTgiPlNpbWJvbGkgZGVsbGUgbWFzc2Ugc2NoZW1hdGljaS4gRm9yemUgZSBkaXN0YW56ZTogc2NhbGUgZGlzdGludGUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

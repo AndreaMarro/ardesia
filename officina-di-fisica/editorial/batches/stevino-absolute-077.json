@@ -1,0 +1,1116 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-stevino-absolute-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7721,
+      "title": "La pressione del gas più quella della colonna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Con p_s=100 kPa e h=2 m, quanto vale p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "120 kPa",
+          "20 kPa",
+          "100 kPa",
+          "200 kPa",
+          "240 kPa"
+        ],
+        "value": "120 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Stevino fornisce l’incremento rispetto alla superficie, non l’assoluta completa. Due metri d’acqua aggiungono10·2=20 kPa alla pressione del gas. La somma100+20 dà120 kPa. La pressione atmosferica non va aggiunta ancora: il dato p_s è già assoluto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a31e1a3a4f6e61b7a861c333f5afff05dcd5b72ef360db6f9388b616aaa459d3",
+          "text": "Acqua in quiete,ρ1000kg/m³,g10m/s². Gas a100kPa assoluti sulla superficie. Due metri,200px alla scala100px/m, aggiungono20kPa. Barra assoluta120kPa composta da100+20, lunghezze300+60px alla scala3px/kPa. Nel grafico pressione-profondità l’intercetta è100kPa, non zero."
+        },
+        {
+          "type": "formula",
+          "text": "\\gamma h=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p=p_s+\\gamma h"
+        },
+        {
+          "type": "formula",
+          "text": " p=(100+20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p=120\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Venti è soltanto la pressione relativa; cento omette la colonna. Duecento raddoppia il gas senza seguire Stevino; duecentoquaranta raddoppia tutto il valore corretto. I contributi sono pressioni e si sommano, non si moltiplicano fra loro."
+        }
+      ],
+      "hints": [
+        "Calcola il contributo idrostatico e aggiungilo una sola volta a p_s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti è soltanto la pressione relativa; cento omette la colonna. Duecento raddoppia il gas senza seguire Stevino; duecentoquaranta raddoppia tutto il valore corretto. I contributi sono pressioni e si sommano, non si moltiplicano fra loro.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7722,
+      "title": "La dimensione della somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 1,
+      "prompt": "Nella relazione idrostatica p=p_s+ρgh, p e p_s sono pressioni assolute, ρ è densità, g accelerazione, h profondità verticale. Quale unità proposta può esprimere p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "kg/m³",
+          "N",
+          "m²/s²",
+          "kg·m"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma è possibile perché p_s eρgh hanno entrambi dimensione di pressione. Il pascal è un newton per metro quadrato, e il chilopascal ne vale mille. Il fatto che il riferimento sia il vuoto o la superficie non cambia l’unità della pressione."
+        },
+        {
+          "type": "formula",
+          "text": "[p]=[p_s]"
+        },
+        {
+          "type": "formula",
+          "text": "[p_s]=[\\rho gh]"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=1000\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "kg/m³ è densità; N forza; m²/s² energia per massa; kg·m non è pressione. Nessuna delle quattro alternative sbagliate si può sommare dimensionalmente a p_s. La parola assoluta specifica lo zero, non una nuova grandezza fisica."
+        }
+      ],
+      "hints": [
+        "Controlla le dimensioni di ciascun termine della somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg/m³ è densità; N forza; m²/s² energia per massa; kg·m non è pressione. Nessuna delle quattro alternative sbagliate si può sommare dimensionalmente a p_s. La parola assoluta specifica lo zero, non una nuova grandezza fisica.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7723,
+      "title": "Avvicinarsi alla superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Un punto si avvicina alla superficie dal lato del liquido: h tende a zero mantenendo fisso p_s. A quale valore tende p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A p_s",
+          "A zero",
+          "Sempre alla pressione atmosferica",
+          "A 2p_s",
+          "A ρg"
+        ],
+        "value": "A p_s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il termineγh tende a zero mentre p_s resta fissato. Il limite è quindi p_s: la pressione del liquido alla superficie coincide con quella del gas nel modello senza salto capillare. È la differenza p−p_s, non la pressione assoluta, ad annullarsi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a31e1a3a4f6e61b7a861c333f5afff05dcd5b72ef360db6f9388b616aaa459d3",
+          "text": "Avvicinando il punto alla superficie, il contributoρgh tende a zero ma resta p_s=100kPa. Nel grafico con pressione orizzontale e profondità verticale, il tratto da h0 a2m passa da p100 a120kPa. Scale100px/m e3px/kPa indipendenti; curva relativa e assoluta non sono confuse."
+        },
+        {
+          "type": "formula",
+          "text": "p=p_s+\\gamma h"
+        },
+        {
+          "type": "formula",
+          "text": " \\lim_{h\\to0^+}\\gamma h=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\lim_{h\\to0^+}p=p_s"
+        },
+        {
+          "type": "text",
+          "text": "Zero confonde assoluta e relativa. La pressione atmosferica è il limite soltanto se il gas è proprio a quella pressione, non per qualunque p_s. Il doppio conta il gas due volte;ρg ha unità di pressione per lunghezza e non può essere il limite di p."
+        }
+      ],
+      "hints": [
+        "Individua il termine che scompare quando h tende a zero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero confonde assoluta e relativa. La pressione atmosferica è il limite soltanto se il gas è proprio a quella pressione, non per qualunque p_s. Il doppio conta il gas due volte;ρg ha unità di pressione per lunghezza e non può essere il limite di p.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7724,
+      "title": "Cambiare la pressione del gas",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A ha p_s=100 kPa e B p_s=80 kPa; entrambi hanno h=2 m. Come cambia p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 120 a 100 kPa",
+          "Da 120 a 96 kPa",
+          "Resta 120 kPa",
+          "Da 120 a 80 kPa",
+          "Diventa 20 kPa"
+        ],
+        "value": "Da 120 a 100 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo dell’acqua resta venti kPa in entrambe le prove. A dà100+20=120 kPa e B80+20=100 kPa. La riduzione della pressione del gas si trasferisce come stessa differenza−20 kPa all’assoluta del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=(100+20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=(80+20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Novantasei applica il fattore80/100 anche al contributo idrostatico che è rimasto fisso. Centoventi ignora il cambio; ottanta omette la colonna e venti omette il gas. Il rapporto finale è5/6, diverso dal rapporto4/5 delle pressioni superiori."
+        }
+      ],
+      "hints": [
+        "Mantieni il contributo dei due metri mentre cambia soltanto p_s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Novantasei applica il fattore80/100 anche al contributo idrostatico che è rimasto fisso. Centoventi ignora il cambio; ottanta omette la colonna e venti omette il gas. Il rapporto finale è5/6, diverso dal rapporto4/5 delle pressioni superiori.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7725,
+      "title": "Ricostruire la pressione superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A h=2 m si misura p=120 kPa. Quanto vale p_s in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il peso della colonna spiega venti kPa della pressione misurata. Per risalire al gas li sottraiamo:120−20=100 kPa. La misura soddisfa p>γh, condizione necessaria alla pressione superiore positiva richiesta dal modello."
+        },
+        {
+          "type": "formula",
+          "text": "p_s=p-\\gamma h"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=(120-20)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Sommare venti darebbe140 kPa e ricostruirebbe al punto160 kPa, non120. Venti è la sola differenza idrostatica. Non sottraiamo separatamente l’atmosfera: p_s è già assoluta ed è il dato incognito."
+        }
+      ],
+      "hints": [
+        "Togli il contributo della colonna dall’assoluta misurata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sommare venti darebbe140 kPa e ricostruirebbe al punto160 kPa, non120. Venti è la sola differenza idrostatica. Non sottraiamo separatamente l’atmosfera: p_s è già assoluta ed è il dato incognito.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7726,
+      "title": "La profondità da due pressioni assolute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Si misurano p=120 kPa e p_s=100 kPa. Quanto vale h in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima sottraiamo i due valori assoluti: il liquido ha aggiunto venti kPa. Dividiamo poi perγ=10 kPa/m, ottenendo due metri. Il numeratore positivo p−p_s rispetta la scelta del punto sotto la superficie."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{p-p_s}{\\gamma}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{20\\,\\mathrm{kPa}}{10\\,\\mathrm{kPa/m}}"
+        },
+        {
+          "type": "formula",
+          "text": " h=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dividere direttamente120 per10 darebbe dodici metri e tratterebbe p_s come zero. La somma delle pressioni non isola la colonna; una radice non serve in una relazione affine. Il controllo100+10·2=120 restituisce la misura."
+        }
+      ],
+      "hints": [
+        "La profondità dipende dalla differenza p−p_s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere direttamente120 per10 darebbe dodici metri e tratterebbe p_s come zero. La somma delle pressioni non isola la colonna; una radice non serve in una relazione affine. Il controllo100+10·2=120 restituisce la misura.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7727,
+      "title": "Raddoppiare la profondità non raddoppia p",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Con p_s=100 kPa, A ha h_A=2 m e B h_B=4 m. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/6",
+          "2",
+          "6/7",
+          "4/3",
+          "1"
+        ],
+        "value": "7/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale120 kPa e B140 kPa: il contributo idrostatico passa da venti a quaranta, mentre il termine superiore resta cento. Nel rapporto140/120 si cancella venti e resta sette sesti."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=120\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=140\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=7/6"
+        },
+        {
+          "type": "text",
+          "text": "Due sarebbe il rapporto delle sole pressioni relative. Sei settimi inverte il confronto; quattro terzi non è140/120 e uno ignora l’aumento. Il valore assoluto resta affine nella profondità: il termine costante impedisce la proporzionalità diretta."
+        }
+      ],
+      "hints": [
+        "Somma p_s in entrambe le prove prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due sarebbe il rapporto delle sole pressioni relative. Sei settimi inverte il confronto; quattro terzi non è140/120 e uno ignora l’aumento. Il valore assoluto resta affine nella profondità: il termine costante impedisce la proporzionalità diretta.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7728,
+      "title": "Lo scarto di una proposta assoluta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Per p_s=100 kPa e h=2 m si propone p_proposta=240 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+120 kPa",
+          "−120 kPa",
+          "+240 kPa",
+          "0 kPa",
+          "+20 kPa"
+        ],
+        "value": "+120 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione corretta è100+20=120 kPa. La differenza richiesta è240−120=+120 kPa. Il segno positivo indica sovrastima: con quel gas la proposta richiederebbe h=(240−100)/10=14 m."
+        },
+        {
+          "type": "formula",
+          "text": "p=120\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(240-120)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+120\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Il meno inverte l’ordine; duecentoquaranta è la proposta stessa, zero la accetta. Venti è il contributo della colonna originaria, non l’errore della proposta. Scarto e valori confrontati hanno la stessa unità di pressione."
+        }
+      ],
+      "hints": [
+        "Confronta la proposta con la somma fisica p_s+γh.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno inverte l’ordine; duecentoquaranta è la proposta stessa, zero la accetta. Venti è il contributo della colonna originaria, non l’errore della proposta. Scarto e valori confrontati hanno la stessa unità di pressione.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7729,
+      "title": "Isolare il termine di superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Quale formula isola p_s? Si considerano dati p>γh, per avere p_s>0.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p_s = p − γ h",
+          "p_s = p + γ h",
+          "p_s = p / (γ h)",
+          "p_s = γ h − p",
+          "p_s = p − γ / h"
+        ],
+        "value": "p_s = p − γ h"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da p=p_s+γh si sottraeγh a entrambi i membri. p_s=p−γh conserva la dimensione di pressione e il segno richiesto dai dati. Il contributo della colonna non viene diviso: è un addendo, non un fattore della pressione superiore."
+        },
+        {
+          "type": "formula",
+          "text": "p=p_s+\\gamma h"
+        },
+        {
+          "type": "formula",
+          "text": " p-\\gamma h=p_s"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=p-\\gamma h"
+        },
+        {
+          "type": "text",
+          "text": "La somma aumenta il contributo invece di eliminarlo. Il rapporto p/(γh) è puro;γh−p dà−p_s. Il termineγ/h ha dimensione pressione per lunghezza al quadrato e non si può sottrarre a p. La positività della soluzione va controllata oltre all’algebra."
+        }
+      ],
+      "hints": [
+        "Sposta l’addendo idrostatico con una sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma aumenta il contributo invece di eliminarlo. Il rapporto p/(γh) è puro;γh−p dà−p_s. Il termineγ/h ha dimensione pressione per lunghezza al quadrato e non si può sottrarre a p. La positività della soluzione va controllata oltre all’algebra.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7730,
+      "title": "Scalare separatamente i due contributi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A usa p_s,h; B usa p_s,B=κ₁p_s e h_B=κ₂h con fattori positivi. Per abbreviare poniamo U=p_s e V=γh, entrambi pressioni. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ U + κ₂ V) / (U + V)",
+          "κ₁ κ₂",
+          "(κ₁ U + κ₂ V) / U",
+          "(κ₂ U + κ₁ V) / (U + V)",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁ U + κ₂ V) / (U + V)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha la sommaU+V, B la sommaκ₁U+κ₂V. Il rapporto delle somme è l’espressione generale: non si può estrarre un solo fattore, a meno che le due scalature coincidano. U eV sono quantità di pressione positive, non letture di profondità."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=U+V"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\kappa_1U+\\kappa_2V"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{p_B}{p_A}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1U+\\kappa_2V}{U+V}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodottoκ₁κ₂ corrisponderebbe a un prodotto dei contributi anziché alla loro somma. Dividere perU ignora parte della pressione A; scambiare i fattori modifica quali dati sono cambiati. La somma dei fattori darebbe due per prove identiche. L’uguaglianza κ₁=κ₂ restituisce quel fattore comune."
+        }
+      ],
+      "hints": [
+        "Calcola prima la somma dei contributi in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodottoκ₁κ₂ corrisponderebbe a un prodotto dei contributi anziché alla loro somma. Dividere perU ignora parte della pressione A; scambiare i fattori modifica quali dati sono cambiati. La somma dei fattori darebbe due per prove identiche. L’uguaglianza κ₁=κ₂ restituisce quel fattore comune.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7731,
+      "title": "Due pressioni assolute a confronto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A ha p_s,A=100 kPa,h_A=2 m. B ha p_s,B=80 kPa,h_B=1 m. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "4/5",
+          "1/2",
+          "3/2"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà cento più venti, centoventi kPa; B ottanta più dieci, novanta kPa. Il rapporto90/120 ridotto dividendo per trenta è tre quarti. Sia il gas sia la colonna cambiano e devono entrare nel confronto."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=120\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=90\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=3/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi inverte A eB. Quattro quinti segue soltanto il gas e un mezzo soltanto la profondità; tre mezzi non è il rapporto delle due somme. Le unità kPa si cancellano: l’uscita richiesta non è una nuova pressione."
+        }
+      ],
+      "hints": [
+        "Forma90/120 dopo aver sommato i due contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi inverte A eB. Quattro quinti segue soltanto il gas e un mezzo soltanto la profondità; tre mezzi non è il rapporto delle due somme. Le unità kPa si cancellano: l’uscita richiesta non è una nuova pressione.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7732,
+      "title": "La media che qui coincide",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A ha p_s,A=100 kPa,h_A=2 m; B p_s,B=80 kPa,h_B=1 m. Qual è la media aritmetica di p_A,p_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "105 kPa",
+          "210 kPa",
+          "105/2 kPa",
+          "90 kPa",
+          "120 kPa"
+        ],
+        "value": "105 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due uscite sono120 e90 kPa. La semisomma210/2 è105 kPa. In questa famiglia p è lineare nei due ingressi p_s,h conγ costante: usare p_s medio90 kPa e h medio3/2 m dà90+15=105 kPa, lo stesso risultato."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p=\\frac{120+90}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p=105\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Duecentodieci è la somma;105/2 divide ancora. Novanta e centoventi sono i singoli valori, non la media. La coincidenza con gli ingressi medi è giustificata dalla forma affine con coefficienti fissi; non è una regola per prodotti, quozienti o coefficienti che cambiano fra prove."
+        }
+      ],
+      "hints": [
+        "Calcola la semisomma e riconosci perché qui l’altra procedura coincide.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecentodieci è la somma;105/2 divide ancora. Novanta e centoventi sono i singoli valori, non la media. La coincidenza con gli ingressi medi è giustificata dalla forma affine con coefficienti fissi; non è una regola per prodotti, quozienti o coefficienti che cambiano fra prove.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7733,
+      "title": "Scegliere h per un rapporto obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. A ha p_s,A=100 kPa,h_A=2 m. B deve avere p_B=(3/4)p_A e p_s,B=80 kPa. Quanto vale h_B/h_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/4",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è(3/4)·120=90 kPa. Alla superficie B ci sono già ottanta kPa, quindi restano dieci kPa di contributo idrostatico. Dividendo per10 kPa/m si trova h_B=1 m, la metà dei due metri di A."
+        },
+        {
+          "type": "formula",
+          "text": "p_B=90\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma h_B=10\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h_B/h_A=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. Tre quarti è il bersaglio di pressione, non quello di profondità, per via del termine superiore. Tre mezzi e uno non riproducono90 kPa con p_s,B80. Il target supera la pressione superiore e rende h_B positivo."
+        }
+      ],
+      "hints": [
+        "Sottrai il gas B al target prima di ricavare la profondità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. Tre quarti è il bersaglio di pressione, non quello di profondità, per via del termine superiore. Tre mezzi e uno non riproducono90 kPa con p_s,B80. Il target supera la pressione superiore e rende h_B positivo.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7734,
+      "title": "Dalla lettura alla pressione del gas",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Un display continuo adimensionale segue S=qp, con q>0 costante e offset nullo. Il riferimento p_s=100 kPa,h=2 m dà S=360. Una prova con h=1 m dà S=270. Quanto vale p_s in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha p120 kPa: il guadagno è360/(120 kPa)=3 kPa⁻¹. La nuova lettura indica p=270/3=90 kPa. A un metro la colonna aggiunge dieci kPa, quindi p_s=90−10=80 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p=90\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=p-\\gamma h"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura270 non è una pressione; dividerla per la profondità non decodifica lo strumento. Novanta è l’assoluta al punto, non quella superiore. Sommando invece di sottrarre si otterrebbe100 kPa e il display previsto diventerebbe330, non270."
+        }
+      ],
+      "hints": [
+        "Decodifica la pressione assoluta, poi elimina il contributo della colonna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura270 non è una pressione; dividerla per la profondità non decodifica lo strumento. Novanta è l’assoluta al punto, non quella superiore. Sommando invece di sottrarre si otterrebbe100 kPa e il display previsto diventerebbe330, non270.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7735,
+      "title": "Offset del display e pressione superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Un display continuo adimensionale segue S=qp+b, con q>0,b costanti. A:p_s=100 kPa,h=2 m,S=241. B:p_s=80 kPa,h=1 m,S=181. C:h=2 m,S=201. Quanto vale p_s,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 kPa",
+          "70 kPa",
+          "80 kPa",
+          "90 kPa",
+          "100 kPa"
+        ],
+        "value": "80 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno p120 e90 kPa. Le differenze−60 nella lettura e−30 kPa nella pressione danno q=2 kPa⁻¹. Poi b=241−2·120=1. C indica p=(201−1)/2=100 kPa; tolti i venti kPa della sua colonna, il gas vale ottanta kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{s,C}=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "I gas alternativi60,70,90,100 kPa, tutti con h2 m, produrrebbero pressioni80,90,110,120 kPa e letture161,181,221,241. Solo80 kPa dà201. Il guadagno è positivo anche se le due differenze sono negative; il rapporto delle letture grezze non rimuove b."
+        }
+      ],
+      "hints": [
+        "Due riferimenti determinano q,b; sottrai poi anche la colonna C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I gas alternativi60,70,90,100 kPa, tutti con h2 m, produrrebbero pressioni80,90,110,120 kPa e letture161,181,221,241. Solo80 kPa dà201. Il guadagno è positivo anche se le due differenze sono negative; il rapporto delle letture grezze non rimuove b.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-stevino-absolute-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Pressione idrostatica assoluta",
+      "order": 7736,
+      "title": "Due contributi crescono con la stessa profondità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "stevino-absolute",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. Fra prove si impone p_s=c h, con c=50 kPa/m fisso. La misura assoluta è p=120 kPa. Quante coppie positive(p_s,h) soddisfano entrambi i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Una"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si sommano due termini entrambi lineari in h: p=(c+γ)h. Il coefficiente complessivo è60 kPa/m, positivo. Centoventi diviso sessanta dà h=2 m, poi p_s=50·2=100 kPa. Esiste una sola coppia positiva."
+        },
+        {
+          "type": "formula",
+          "text": "p=(c+\\gamma)h"
+        },
+        {
+          "type": "formula",
+          "text": " c+\\gamma=60\\,\\mathrm{kPa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " h=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " p_s=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Non compare un quadrato: il vincolo riguarda un addendo della somma, non una densità moltiplicata perh. La funzione ha pendenza positiva e non è ridondante; zero e valori negativi non riproducono p120 con i domini richiesti. Il vincolo collega prove diverse, non un gas che cambia pressione dentro una stessa prova."
+        }
+      ],
+      "hints": [
+        "Raccogli h nei due addendi, poi dividi per la somma dei coefficienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non compare un quadrato: il vincolo riguarda un addendo della somma, non una densità moltiplicata perh. La funzione ha pendenza positiva e non è ridondante; zero e valori negativi non riproducono p120 con i domini richiesti. Il vincolo collega prove diverse, non un gas che cambia pressione dentro una stessa prova.",
+        "target": "C2-L002"
+      },
+      "coverage": [
+        "Riferimento del vuoto e pressione superficiale",
+        "Relazione affine di Stevino e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a31e1a3a4f6e61b7a861c333f5afff05dcd5b72ef360db6f9388b616aaa459d3",
+      "name": "stevino-absolute-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTc0MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODJkNDIiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+UHJlc3Npb25lIGFzc29sdXRhOiBpbCBjb250cmlidXRvIGRlbCBnYXMgcmVzdGEgYWxsYSBzdXBlcmZpY2llPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+R2FzIGEgY2VudG8gY2hpbG9wYXNjYWwgYXNzb2x1dGkgc29wcmEgYWNxdWEgaW4gcXVpZXRlLiBBIGR1ZSBtZXRyaSBsJ2FjcXVhIGFnZ2l1bmdlIHZlbnRpIGNoaWxvcGFzY2FsLiBVbmEgYmFycmEgc29tbWEgaSBkdWUgY29udHJpYnV0aS4gVW4gZ3JhZmljbyBjb24gcHJvZm9uZGl0w6AgdmVyc28gaWwgYmFzc28gcGFydGUgZGEgY2VudG8gY2hpbG9wYXNjYWwgYSBwcm9mb25kaXTDoCB6ZXJvIGUgYXJyaXZhIGEgY2VudG92ZW50aSBhIGR1ZSBtZXRyaS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiMzMzRmNjYiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgZmlsbD0id2hpdGUiLz4KPHRleHQgeD0iMzIiIHk9IjQ2IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MS4gUGFydGkgZGFsbGEgcHJlc3Npb25lIGRlbCBnYXM8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0Ij5BY3F1YTogz4EgPSAxMDAwIGtnL23CsywgZyA9IDEwIG0vc8KyLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTI4Ij5HYXM6IHBfcyA9IDEwMCBrUGEgYXNzb2x1dGkuPC90ZXh0Pgo8cmVjdCB4PSI5MSIgeT0iMTgwIiB3aWR0aD0iMTk4IiBoZWlnaHQ9IjI1MCIgZmlsbD0iI2I1ZGNmMSIvPjxwYXRoIGQ9Ik05MCAxNjBWNDMwSDI5MFYxNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI2M2Y1NSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik03NSAxODBIMzA1IiBzdHJva2U9IiM0ZDdhOTkiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjE5MCIgY3k9IjM4MCIgcj0iNyIgZmlsbD0iI2IwNWIzNSIvPjxwYXRoIGQ9Ik0xOTAgMTgwVjM4MCIgc3Ryb2tlPSIjYjA1YjM1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNCIvPgo8dGV4dCB4PSIzNDAiIHk9IjIxOCI+U3VwZXJmaWNpZTogaCA9IDAuPC90ZXh0Pjx0ZXh0IHg9IjM0MCIgeT0iMjUyIj5wID0gMTAwIGtQYS48L3RleHQ+PHRleHQgeD0iMzQwIiB5PSIzNzAiPlB1bnRvOiBoID0gMiBtLjwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjQwNCI+cCA9IDEyMCBrUGEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDg0Ij4yMDAgcHggZGkgcHJvZm9uZGl0w6A6IHNjYWxhIDEwMCBweC9tLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTIwIj5JbCBnYXMgbm9uIMOoIHVuIHZ1b3RvIGRpIHJpZmVyaW1lbnRvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDU2MEg2MDgiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2MTAiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBTb21tYSBkdWUgcHJlc3Npb25pPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2NTAiPnAgPSBwX3MgKyDPgWdoID0gMTAwIGtQYSArIDIwIGtQYS48L3RleHQ+CjxyZWN0IHg9IjkwIiB5PSI3MDYiIHdpZHRoPSIzMDAiIGhlaWdodD0iNTQiIGZpbGw9IiNlOWJiNzAiLz48cmVjdCB4PSIzOTAiIHk9IjcwNiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjU0IiBmaWxsPSIjODRjN2ViIi8+Cjx0ZXh0IHg9IjE0MCIgeT0iNzQyIj4xMDAga1BhIGRlbCBnYXM8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSI4MDQiPjIwIGtQYSBkZWxs4oCZYWNxdWE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NjAiPlRvdGFsZTogMTIwIGtQYSwgYmFycmEgbHVuZ2EgMzYwIHB4LjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODk4Ij5Db250cmlidXRpOiAzMDAgcHggZSA2MCBweC48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkzMiIgZm9udC1zaXplPSIxOCI+U2NhbGEgZGVsbGEgcHJlc3Npb25lOiAzIHB4L2tQYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5OTAiPlNvbG8gcCDiiJIgcF9zIMOoIGxhIHByZXNzaW9uZSByZWxhdGl2YS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEwMjQiPk5vbiBhZ2dpdW5nZXJlIHVu4oCZYWx0cmEgYXRtb3NmZXJhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDEwNjRINjA4IiBzdHJva2U9IiM2YTdkOGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iMTExNCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIExlZ2dpIGlsIGxpbWl0ZSBhbGxhIHN1cGVyZmljaWU8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNTQiPnAgY3Jlc2NlIGNvbiBoLCBtYSBwYXJ0ZSBkYSBwX3MuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTkwIiBmb250LXNpemU9IjE4Ij5QcmVzc2lvbmUgb3JpenpvbnRhbGU7IHByb2ZvbmRpdMOgIHZlcnNvIGlsIGJhc3NvLjwvdGV4dD4KPHBhdGggZD0iTTkwIDEyNzBINTMwIiBzdHJva2U9IiMzMzRmNjYiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNOTAgMTI3MFYxNTM1IiBzdHJva2U9IiMzMzRmNjYiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTM5MCAxMjcwTDQ1MCAxNDcwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiMDViMzUiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNOTAgMTQ3MEg0NTBNNDUwIDEyNzBWMTQ3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+CjxjaXJjbGUgY3g9IjM5MCIgY3k9IjEyNzAiIHI9IjYiIGZpbGw9IiNiMDViMzUiLz48Y2lyY2xlIGN4PSI0NTAiIGN5PSIxNDcwIiByPSI2IiBmaWxsPSIjYjA1YjM1Ii8+Cjx0ZXh0IHg9IjcyIiB5PSIxMjUwIj4wPC90ZXh0Pjx0ZXh0IHg9IjM2MCIgeT0iMTI0OCI+MTAwPC90ZXh0Pjx0ZXh0IHg9IjQ0MiIgeT0iMTI0OCI+MTIwPC90ZXh0Pjx0ZXh0IHg9IjUzMCIgeT0iMTMwMCI+cCAoa1BhKTwvdGV4dD48dGV4dCB4PSI1MiIgeT0iMTQ3OCI+MjwvdGV4dD48dGV4dCB4PSIxMDQiIHk9IjE1MzUiPmggKG0pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTU5MCI+UXVhbmRvIGggdGVuZGUgYSAwLCBwIHRlbmRlIGEgMTAwIGtQYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE2MzAiPs6UcCB0ZW5kZSBhIHplcm87IHAgcmVzdGEgcG9zaXRpdmEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNjg0IiBmb250LXNpemU9IjE4Ij4xMDAgcHgvbSBlIDMgcHgva1BhOiBzY2FsZSBpbmRpcGVuZGVudGkuPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

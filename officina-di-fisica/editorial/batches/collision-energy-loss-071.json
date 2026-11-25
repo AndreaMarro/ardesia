@@ -1,0 +1,1264 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-collision-energy-loss-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7101,
+      "title": "Due joule diventano energia interna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Con m=2 kg per ciascun corpo e u=2 m/s, quanto vale E in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima troviamo la velocità comune mediante la quantità di moto: mu=2mV, quindi V=u/2=1 m/s. L’energia cinetica iniziale è 4 J; quella finale va calcolata con tutta la massa 2m=4 kg e vale 2 J. La loro differenza positiva è 2 J."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c702bfe297d410893014b7ce074705a61c7f6d0cd1a77378d13c67dd8c2248ee",
+          "text": "Urto con masse uguali di 2 kg: u=2 m/s prima e V=1 m/s dopo, frecce 120 e 60 px alla scala comune 60 px per m/s. I due corpi restano uniti. Il terzo pannello usa una scala separata di 40 px/J: 4 J cinetici iniziali diventano 2 J cinetici e 2 J interni, totale invariato."
+        },
+        {
+          "type": "formula",
+          "text": "mu=2mV"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\frac u2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac u2=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " K_i=\\frac12mu^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12mu^2=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=\\frac12(2m)V^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12(2m)V^2=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E=K_i-K_f"
+        },
+        {
+          "type": "formula",
+          "text": "K_i-K_f=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Quattro joule è l’energia cinetica iniziale, non la sua diminuzione. Zero confonderebbe la conservazione della quantità di moto con quella dell’energia cinetica. L’energia totale non scompare: i due joule diventano energia interna del sistema."
+        }
+      ],
+      "hints": [
+        "Trova V dal momento prima di sottrarre le energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro joule è l’energia cinetica iniziale, non la sua diminuzione. Zero confonderebbe la conservazione della quantità di moto con quella dell’energia cinetica. L’energia totale non scompare: i due joule diventano energia interna del sistema.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7102,
+      "title": "La diminuzione di energia resta un’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Quale unità SI è adatta a E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "N",
+          "kg·m/s",
+          "m/s",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "E è una differenza fra due energie cinetiche. Le due quantità devono avere la stessa unità e la differenza la conserva. Nel risultato mu²/4 la massa moltiplica il quadrato di una velocità; il quarto è puro."
+        },
+        {
+          "type": "formula",
+          "text": "[mu^2]=\\mathrm{kg\\,m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm J=1\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "N misura forza; kg·m/s quantità di moto; m/s velocità; W come unità è watt, energia per tempo. La dissipazione non richiede di dividere E per la durata a meno di chiedere una potenza."
+        }
+      ],
+      "hints": [
+        "Controlla le dimensioni di massa per velocità al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N misura forza; kg·m/s quantità di moto; m/s velocità; W come unità è watt, energia per tempo. La dissipazione non richiede di dividere E per la durata a meno di chiedere una potenza.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7103,
+      "title": "Ricavare la frazione dissipata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Quale formula dà E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E=mu²/4",
+          "E=mu²/2",
+          "E=mu²/8",
+          "E=0",
+          "E=mu/4"
+        ],
+        "value": "E=mu²/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di moto impone V=u/2. Per calcolare K_f bisogna usare la massa congiunta 2m e il quadrato della velocità dimezzata: K_f=mu²/4. Sottraendola da K_i=mu²/2 resta ancora mu²/4, metà dell’energia cinetica iniziale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c702bfe297d410893014b7ce074705a61c7f6d0cd1a77378d13c67dd8c2248ee",
+          "text": "La quantità di moto fissa V=u/2. Nel grafico energetico 4 J iniziali sono una barra da 160 px; dopo, 80 px rappresentano K_f=2 J e altri 80 px l’aumento interno E=2 J, alla stessa scala 40 px/J. L’energia totale si conserva pur diminuendo l’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "V=u/2"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=\\frac12(2m)\\frac{u^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=\\frac{mu^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{mu^2}{2}-\\frac{mu^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{mu^2}{4}"
+        },
+        {
+          "type": "text",
+          "text": "mu²/2 toglierebbe tutta l’energia cinetica, mentre il gruppo continua a muoversi. mu²/8 introduce un altro mezzo; zero descrive assenza di diminuzione. mu/4 ha dimensioni di quantità di moto. La formula riguarda masse uguali e un bersaglio inizialmente fermo."
+        }
+      ],
+      "hints": [
+        "Usa 2m nella cinetica finale e (u/2)² per la velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "mu²/2 toglierebbe tutta l’energia cinetica, mentre il gruppo continua a muoversi. mu²/8 introduce un altro mezzo; zero descrive assenza di diminuzione. mu/4 ha dimensioni di quantità di moto. La formula riguarda masse uguali e un bersaglio inizialmente fermo.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7104,
+      "title": "Raddoppiare entrambe le masse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Si confrontano A con m_A=2 kg e B con m_B=4 kg, mantenendo u=2 m/s. In ogni prova anche il bersaglio ha la stessa massa m dell’incidente. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 J",
+          "Da 2 a 8 J",
+          "Da 2 a 1 J",
+          "Resta 2 J",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità comune rimane u/2, perché il rapporto fra le masse non cambia. Raddoppiano però entrambe le energie cinetiche e quindi la loro differenza: 4−2=2 J in A, 8−4=4 J in B."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=\\frac{(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s})^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(2\\,\\mathrm{kg})(2\\,\\mathrm{m/s})^2}{4}=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\frac{(4\\,\\mathrm{kg})(2\\,\\mathrm{m/s})^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{(4\\,\\mathrm{kg})(2\\,\\mathrm{m/s})^2}{4}=4\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Otto joule sono K_i della seconda prova, non E_B. Un joule inverte la proporzionalità con la massa; nessuna variazione confonde la velocità finale uguale con energie uguali. La massa m indica ciascun corpo, non la somma."
+        }
+      ],
+      "hints": [
+        "Tieni fisso u e raddoppia m per ciascuna delle due masse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto joule sono K_i della seconda prova, non E_B. Un joule inverte la proporzionalità con la massa; nessuna variazione confonde la velocità finale uguale con energie uguali. La massa m indica ciascun corpo, non la somma.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7105,
+      "title": "La massa di ciascun corpo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Si misurano E=2 J e u=2 m/s. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia diminuita e la velocità iniziale permettono di risalire alla massa di un corpo, non direttamente alla massa finale congiunta. Da 4E=mu² isoliamo m=4E/u². Il rapporto J/(m²/s²) è espresso in kg."
+        },
+        {
+          "type": "formula",
+          "text": "4E=mu^2"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{4E}{u^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{8\\,\\mathrm J}{4\\,\\mathrm{m^2/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La massa del gruppo dopo l’urto è invece 4 kg. Usare 2E/u² restituirebbe 1 kg e non riprodurrebbe i 2 J dissipati; omettere il quadrato rompe anche le unità."
+        }
+      ],
+      "hints": [
+        "Il quattro appartiene all’inversa; m è la massa di un solo corpo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La massa del gruppo dopo l’urto è invece 4 kg. Usare 2E/u² restituirebbe 1 kg e non riprodurrebbe i 2 J dissipati; omettere il quadrato rompe anche le unità.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7106,
+      "title": "Una radice per la rapidità iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Si misurano E=2 J con m=2 kg per ciascun corpo. Quanto vale u>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo u²=4E/m, che vale 4 m²/s². Le due radici algebriche ±2 hanno la stessa energia, ma u è qui la rapidità incidente positiva e la direzione è già fissata dal testo. Scegliamo 2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "u^2=\\frac{4E}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " u^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " u_+=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_-=-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il quadrato della rapidità, non la rapidità. Il ramo negativo non è un’altra rapidità ammessa; un’altra scelta dell’asse cambierebbe la componente iniziale, lasciando invariato u. Con u=2, la velocità comune è 1 m/s."
+        }
+      ],
+      "hints": [
+        "Dividi 4E per m e prendi la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il quadrato della rapidità, non la rapidità. Il ramo negativo non è un’altra rapidità ammessa; un’altra scelta dell’asse cambierebbe la componente iniziale, lasciando invariato u. Con u=2, la velocità comune è 1 m/s.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7107,
+      "title": "Rapporto al raddoppio della rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. A: m=2 kg,u_A=2 m/s. B: stessa massa di ciascun corpo,u_B=4 m/s. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A massa fissata E segue il quadrato di u. Gli esiti sono 2 e 8 J: la rapidità doppia porta quattro volte la diminuzione di energia cinetica. La frazione dissipata dell’energia iniziale resta comunque un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=8\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\left(\\frac42\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac42\\right)^2=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue una dipendenza lineare; un quarto inverte l’ordine; uno confonde frazione dissipata uguale con energia dissipata uguale; otto è il valore numerico di E_B con unità, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il rapporto delle rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue una dipendenza lineare; un quarto inverte l’ordine; uno confonde frazione dissipata uguale con energia dissipata uguale; otto è il valore numerico di E_B con unità, non il rapporto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7108,
+      "title": "Errore fra energia iniziale e diminuzione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Con m=2 kg,u=2 m/s si propone E=4 J. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 J",
+          "−2 J",
+          "4 J",
+          "0 J",
+          "1 J"
+        ],
+        "value": "2 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro joule sono disponibili prima dell’urto, ma due restano come energia cinetica del gruppo. E vale 2 J, quindi la proposta eccede la diminuzione corretta di 2 J."
+        },
+        {
+          "type": "formula",
+          "text": "K_i=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm J-2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm J-2\\,\\mathrm J=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Il segno negativo scambia l’ordine richiesto; quattro copia la proposta, zero la accetta e uno divide di nuovo per due. L’energia interna cresce di E, mentre la variazione dell’energia cinetica è −E."
+        }
+      ],
+      "hints": [
+        "Non chiamare dissipata anche l’energia che resta nel moto del gruppo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno negativo scambia l’ordine richiesto; quattro copia la proposta, zero la accetta e uno divide di nuovo per due. L’energia interna cresce di E, mentre la variazione dell’energia cinetica è −E.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7109,
+      "title": "La massa si ricava da E, non da K_i",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Si conoscono E e u. Quale formula dà m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=4E/u²",
+          "m=2E/u²",
+          "m=E/(4u²)",
+          "m=4E/u",
+          "m=u²/(4E)"
+        ],
+        "value": "m=4E/u²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "E=mu²/4 contiene un quarto perché già confronta l’inizio con la fine. Moltiplichiamo entrambi i membri per quattro e dividiamo per u²>0. Il risultato è positivo per i dati ammessi e ha dimensione di massa."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac{mu^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " 4E=mu^2"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{4E}{u^2}"
+        },
+        {
+          "type": "text",
+          "text": "2E/u² sarebbe l’inversa di un’energia cinetica iniziale E, non della diminuzione assegnata. E/(4u²) vale un sedicesimo della massa corretta; u non al quadrato lascia unità diverse; il reciproco è un’inversa di massa."
+        }
+      ],
+      "hints": [
+        "Rimuovi il quarto prima di dividere per il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2E/u² sarebbe l’inversa di un’energia cinetica iniziale E, non della diminuzione assegnata. E/(4u²) vale un sedicesimo della massa corretta; u non al quadrato lascia unità diverse; il reciproco è un’inversa di massa.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7110,
+      "title": "Due fattori, uno dei quali al quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. B ha m_B=κ₁m_A e u_B=κ₂u_A, con fattori positivi; in ciascuna prova le due masse sono uguali. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁ / κ₂²",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa legge E=mu²/4 si applica ai due esperimenti. Il fattore di massa compare una volta, quello di rapidità viene elevato al quadrato. Il quarto e gli ingressi iniziali si cancellano nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=\\frac{\\kappa_1m_A(\\kappa_2u_A)^2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\kappa_1\\kappa_2^2E_A"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ dimentica il quadrato; κ₁²κ₂ lo assegna alla variabile sbagliata; gli ultimi rapporti invertono dipendenze dirette. Se entrambi i fattori valgono due, il rapporto deve essere otto."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato tutto κ₂u_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ dimentica il quadrato; κ₁²κ₂ lo assegna alla variabile sbagliata; gli ultimi rapporti invertono dipendenze dirette. Se entrambi i fattori valgono due, il rapporto deve essere otto.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7111,
+      "title": "Otto volte l’energia dissipata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. A: m=2 kg,u=2 m/s. B: m=4 kg,u=4 m/s, con bersaglio di massa uguale all’incidente in ogni prova. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa doppia raddoppia E e la rapidità doppia la quadruplica; i due effetti si moltiplicano. Diretto controllo: E_A=2·4/4=2 J, E_B=4·16/4=16 J e 16/2=8."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac{16}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{2}=8"
+        },
+        {
+          "type": "text",
+          "text": "Quattro considera solo u; due solo m. Sedici è il valore numerico della seconda energia, non il rapporto; 1/8 lo rovescia. L’esito non richiede approssimazioni."
+        }
+      ],
+      "hints": [
+        "Moltiplica due per il quadrato di due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro considera solo u; due solo m. Sedici è il valore numerico della seconda energia, non il rapporto; 1/8 lo rovescia. L’esito non richiede approssimazioni.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7112,
+      "title": "La media delle diminuzioni cinetiche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Due prove hanno uguale peso statistico: A con m=2 kg,u=2 m/s; B con m=4 kg,u=4 m/s. Qual è la media aritmetica delle due E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 J",
+          "18 J",
+          "9/2 J",
+          "27/4 J",
+          "8 J"
+        ],
+        "value": "9 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcoliamo prima le uscite: 2 e 16 J. Somma 18 J e metà 9 J, fra i due risultati. Le masse e le rapidità medie definiscono un terzo esperimento, non la media delle diminuzioni osservate."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=\\frac{2+16}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=9\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "18 J è la somma, 9/2 divide una seconda volta e 8 J dimezza solo il secondo risultato. Le medie m=3 kg,u=3 m/s darebbero 27/4 J, non 9 J: il prodotto con u² non è lineare negli ingressi congiunti."
+        }
+      ],
+      "hints": [
+        "Medi i due valori di E dopo averli calcolati separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18 J è la somma, 9/2 divide una seconda volta e 8 J dimezza solo il secondo risultato. Le medie m=3 kg,u=3 m/s darebbero 27/4 J, non 9 J: il prodotto con u² non è lineare negli ingressi congiunti.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7113,
+      "title": "La rapidità per una dissipazione obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. A ha m_A=2 kg,u_A=2 m/s. In B ogni corpo ha m_B=4 kg e si vuole E_B=8E_A. Quanto vale u_B/u_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dissipa 2 J; l’obiettivo B è 16 J. L’inversa u_B²=4E_B/m_B dà 16 m²/s², quindi u_B=4 m/s e il rapporto è due. La massa fornisce un fattore due; il restante fattore quattro deriva dal quadrato della rapidità."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " u_B^2=\\frac{4E_B}{m_B}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4E_B}{m_B}=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B/u_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonderebbe il rapporto dei quadrati, otto quello delle energie. Con u invariata e massa doppia si otterrebbero solo 4 J; il valore 4 m/s produce effettivamente 16 J."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore energetico otto per il fattore di massa due e prendi la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonderebbe il rapporto dei quadrati, otto quello delle energie. Con u invariata e massa doppia si otterrebbero solo 4 J; il valore 4 m/s produce effettivamente 16 J.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7114,
+      "title": "Un display della diminuzione cinetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Un display continuo adimensionale segue S=cE,c>0, senza offset. A con m=2 kg,u=2 m/s dà S=6. B con u=4 m/s dà S=48. Quanto vale m_B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dissipa 2 J e fissa c=3 J⁻¹. La lettura 48 rappresenta E_B=16 J. Soltanto dopo questa conversione si applica l’inversa m=4E/u²; con u_B²=16 m²/s² si ricavano 4 kg per ciascun corpo."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=48/c"
+        },
+        {
+          "type": "formula",
+          "text": "48/c=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{4E_B}{u_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 48 come joule darebbe 12 kg, conservando erroneamente il guadagno. Quattro kg non sono la massa finale complessiva: quella è 8 kg. La lettura si verifica con 3 J⁻¹·16 J=48."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno del display prima dell’inversa della massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 48 come joule darebbe 12 kg, conservando erroneamente il guadagno. Quattro kg non sono la massa finale complessiva: quella è 8 kg. La lettura si verifica con 3 J⁻¹·16 J=48.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7115,
+      "title": "Taratura con un’energia non conservata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Un display continuo adimensionale ha S=cE+d,c>0. A: m=2 kg,u=2 m/s,S=5. B: m=4 kg,u=4 m/s,S=33. C: u=2 m/s,S=9. Trova m_C, massa di ciascun corpo.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kg",
+          "2 kg",
+          "3 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti dissipano 2 e 16 J. La differenza delle letture 28 divisa per 14 J dà c=2 J⁻¹; la prima prova lascia d=1. C contiene E_C=(9−1)/2=4 J. Con u=2 m/s la massa richiesta è 4 kg."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{33-5}{16-2}\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{33-5}{16-2}\\,\\mathrm{J^{-1}}=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=5-2\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": "5-2\\cdot2=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac{4E_C}{u_C^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "A u=2 m/s le masse 2,3,5,8 kg danno letture 5,7,11,17. Solo 4 kg riproduce 9. Non si può fare un rapporto grezzo delle letture quando resta l’offset, né scambiare E con l’energia cinetica iniziale."
+        }
+      ],
+      "hints": [
+        "Elimina d con una differenza e poi ricostruisci E_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A u=2 m/s le masse 2,3,5,8 kg danno letture 5,7,11,17. Solo 4 kg riproduce 9. Non si può fare un rapporto grezzo delle letture quando resta l’offset, né scambiare E con l’energia cinetica iniziale.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 7116,
+      "title": "Una dipendenza cubica fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L007",
+        "C1-L008",
+        "C1-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "collision-energy-loss",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un corpo di massa m>0, con velocità iniziale +u,u>0, urta frontalmente un secondo corpo fermo della stessa massa m. Il moto è classico e i corpi restano uniti. Nel sistema dei due corpi si trascurano impulso e lavoro esterni durante l’urto; nessuna energia lascia il sistema. E>0 è la diminuzione dell’energia cinetica totale, convertita in energia interna. Fra prove diverse vale m=c u, con c=1 kg·s/m per ciascuna delle due masse; ciascuna massa è costante nel proprio urto. Si misura E=2 J. Quanto vale u>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo entra prima dell’inversa: E=(cu)u²/4=cu³/4. Si ottiene u³=4E/c=8 m³/s³; la radice cubica esatta è 2 m/s. Il cubo cresce strettamente per u>0, quindi la soluzione fisica è unica."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac{cu^3}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " u^3=\\frac{4E}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " u^3=8\\,\\mathrm{m^3/s^3}"
+        },
+        {
+          "type": "formula",
+          "text": " u=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m=cu"
+        },
+        {
+          "type": "formula",
+          "text": "cu=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Non si tratta di una radice quadrata: −2 avrebbe cubo negativo e massa negativa sotto il vincolo. Quattro m/s darebbero massa 4 kg e E=16 J; uno m/s darebbe 1/4 J. La coppia 2 kg,2 m/s ricostruisce esattamente 2 J."
+        }
+      ],
+      "hints": [
+        "La massa proporzionale a u aggiunge un fattore u al quadrato già presente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non si tratta di una radice quadrata: −2 avrebbe cubo negativo e massa negativa sotto il vincolo. Quattro m/s darebbero massa 4 kg e E=16 J; uno m/s darebbe 1/4 J. La coppia 2 kg,2 m/s ricostruisce esattamente 2 J.",
+        "target": "C1-L009"
+      },
+      "coverage": [
+        "Urto perfettamente anelastico",
+        "Diminuzione cinetica ed energia interna",
+        "Bilanci, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c702bfe297d410893014b7ce074705a61c7f6d0cd1a77378d13c67dd8c2248ee",
+      "name": "collision-energy-loss-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgdmlld0JveD0iMCAwIDY0MCAxMzkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RW5lcmdpYSBjaW5ldGljYSBlIGludGVybmEgaW4gdW4gdXJ0byBjb24gY29ycGkgdW5pdGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5NYXNzZSB1Z3VhbGkgZGkgZHVlIGNoaWxvZ3JhbW1pOiBwcmltYSB1bmEgbWFzc2EgYSBkdWUgbWV0cmkgYWwgc2Vjb25kbyBlIGzigJlhbHRyYSBmZXJtYSwgZG9wbyB2ZWxvY2l0w6AgY29tdW5lIHVuIG1ldHJvIGFsIHNlY29uZG8uIFNjYWxhIHZlbG9jaXTDoCBzZXNzYW50YSBwaXhlbCBwZXIgbWV0cm8gYWwgc2Vjb25kby4gQmFycmUgZW5lcmdldGljaGUgcXVhcmFudGEgcGl4ZWwgcGVyIGpvdWxlLCBjb24gZW5lcmdpYSBmaW5hbGUgY2luZXRpY2EgcGnDuSBpbnRlcm5hIHVndWFsZSBhbGzigJlpbml6aWFsZS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgcng9IjIwIiBmaWxsPSIjZmFmOGYxIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTkzYTQ5Ij48dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiPjEgwrcgUHJpbWE6IHVuYSBtYXNzYSBzaSBtdW92ZSwgbOKAmWFsdHJhIG5vPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+bSA9IDIga2cgY2lhc2N1bmE7IGFzc2UgK3ggdmVyc28gZGVzdHJhLjwvdGV4dD48cmVjdCB4PSIxMzAiIHk9IjIyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjY2RlNGU2IiBzdHJva2U9IiMxOTNhNDkiLz48cmVjdCB4PSI0MDAiIHk9IjIyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZTZkOGJjIiBzdHJva2U9IiMxOTNhNDkiLz48cGF0aCBkPSJNMTYwIDE5MEgyODAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMTMwIiB5PSIzMzAiPnUgPSArMiBtL3M8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIzMzAiPnZlbG9jaXTDoCA9IDA8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjM4NSI+cCBpbml6aWFsZSA9IDQga2fCt20vczsgSyBpbml6aWFsZSA9IDQgSi48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI0NzAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgRG9wbzogaWwgZ3J1cHBvIGhhIG1hc3NhIDQga2c8L3RleHQ+PHJlY3QgeD0iMjMwIiB5PSI2MTAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2NkZTRlNiIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHJlY3QgeD0iMjkwIiB5PSI2MTAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2U2ZDhiYyIgc3Ryb2tlPSIjMTkzYTQ5Ii8+PHBhdGggZD0iTTI5MCA1ODBIMzUwIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjIzMCIgeT0iNzIwIj5WID0gKzEgbS9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3NzAiPnAgZmluYWxlID0gNCBrZ8K3bS9zOyBLIGZpbmFsZSA9IDIgSi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjgxNSI+VmVsb2NpdMOgOiA2MCBweCBwZXIgbS9zIGluIGVudHJhbWJpIGkgcGFubmVsbGkuPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iOTA1IiBmb250LXNpemU9IjI1Ij4zIMK3IEkgZHVlIGpvdWxlIG5vbiBzb25vIHNjb21wYXJzaTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTU1Ij5TY2FsYSBlbmVyZ2lhOiA0MCBweC9KLjwvdGV4dD48cGF0aCBkPSJNMTgwIDk5NVYxMTYwIiBzdHJva2U9IiM3Zjk5OTQiLz48cmVjdCB4PSIxODAiIHk9IjEwMTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzgiIGZpbGw9IiNjZGU0ZTYiLz48cmVjdCB4PSIxODAiIHk9IjExMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzOCIgZmlsbD0iI2NkZTRlNiIvPjxyZWN0IHg9IjI2MCIgeT0iMTEwMCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjZTJhZDcxIi8+PHRleHQgeD0iMzUiIHk9IjEwMzgiPlByaW1hOiA0IEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMjgiPkRvcG86IDQgSjwvdGV4dD48dGV4dCB4PSIzNzUiIHk9IjEwMzgiPksgaW5pemlhbGU8L3RleHQ+PHRleHQgeD0iMzc1IiB5PSIxMTI4Ij5LIGZpbmFsZSArIM6UVSBpbnRlcm5hPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjEwIj5LIGZpbmFsZSA9IDIgSjsgYXVtZW50byBpbnRlcm5vIEUgPSAyIEouPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjU1Ij5FID0gSyBpbml6aWFsZSDiiJIgSyBmaW5hbGUgPSAyIEogJmd0OyAwLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTMwMCI+VmFyaWF6aW9uZSBjaW5ldGljYSDiiJJFOyB2YXJpYXppb25lIGludGVybmEgK0UuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzQ1Ij5TaXN0ZW1hIGlzb2xhdG8gZHVyYW50ZSBs4oCZdXJ0bzsgY29ycGkgc2NoZW1hdGljaS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

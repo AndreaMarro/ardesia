@@ -1,0 +1,1245 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-spring-launch-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6901,
+      "title": "Dalla compressione alla rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Con m=2 kg e ℓ=1 m, quanto vale V in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Consideriamo blocco e molla: non cambia la quota e non ci sono perdite. Il supporto fisso non compie lavoro; peso e normale sono perpendicolari allo spostamento. L’energia elastica iniziale passa quindi tutta al blocco. La molla perde il contatto quando la compressione si annulla, proprio dove il blocco ha l’energia cinetica massima."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/692b6aac0bc3377609711e354271351ec4da20103ddc129e4fcd4571f8ac973a",
+          "text": "Rilascio della molla: compressione 1 m mostrata a 100 px/m fra estremi a x=300 e x=400. Il blocco percorre quel metro e si stacca con V=1 m/s, freccia 80 px a 80 px per m/s. Il terzo pannello usa assi distinti per il modulo della forza e la compressione residua: base 1 m, altezza 2 N, area 1 J."
+        },
+        {
+          "type": "formula",
+          "text": "U_i=\\frac12k\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " U_i=1\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " K_f=\\frac12mV^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12mV^2=U_i"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\frac{k\\ell^2}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=1\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La rapidità è la radice positiva. Due m/s darebbero 4 J di energia cinetica, mentre la molla ne aveva solo 1 J. Usare la forza iniziale kℓ lungo tutta la corsa darebbe 2 J: la forza reale scende fino a zero e il lavoro è l’area triangolare, non rettangolare."
+        }
+      ],
+      "hints": [
+        "Uguaglia energia elastica iniziale ed energia cinetica finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La rapidità è la radice positiva. Due m/s darebbero 4 J di energia cinetica, mentre la molla ne aveva solo 1 J. Usare la forza iniziale kℓ lungo tutta la corsa darebbe 2 J: la forza reale scende fino a zero e il lavoro è l’area triangolare, non rettangolare.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6902,
+      "title": "La radice conserva le dimensioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Quale unità SI esprime V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "m/s",
+          "s",
+          "N",
+          "J"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione energetica dà V²=kℓ²/m. Una rigidezza è una forza divisa per una lunghezza; moltiplicarla per una lunghezza al quadrato produce un’energia, che divisa per una massa ha le dimensioni di una velocità al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "[k]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " [k\\ell^2/m]=\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [V]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il metro misura una lunghezza, il secondo una durata, il newton una forza e il joule un’energia. La radice riguarda anche le unità: non lascia m²/s² come unità della rapidità."
+        }
+      ],
+      "hints": [
+        "Ricava prima l’unità di V², poi prendine la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il metro misura una lunghezza, il secondo una durata, il newton una forza e il joule un’energia. La radice riguarda anche le unità: non lascia m²/s² come unità della rapidità.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6903,
+      "title": "Scegliere il ramo del bilancio energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Quale formula dà V, conservando k con la sua unità?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V=ℓ√(k/m)",
+          "V=2ℓ√(k/m)",
+          "V=ℓ√(k/m)/2",
+          "V=−ℓ√(k/m)",
+          "V=kℓ/m"
+        ],
+        "value": "V=ℓ√(k/m)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia elastica e quella cinetica contengono entrambe il mezzo, che si cancella. Dopo aver isolato V² prendiamo la radice positiva; poiché ℓ>0, la radice di ℓ² è ℓ. Non occorre fingere costante la forza durante la spinta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/692b6aac0bc3377609711e354271351ec4da20103ddc129e4fcd4571f8ac973a",
+          "text": "La forza elastica diminuisce durante il rilascio: il grafico del suo modulo rispetto alla compressione residua è una retta. L’area del triangolo è kℓ²/2=1 J; il lavoro della molla sul blocco durante il rilascio è positivo. La geometria in alto ha scala 100 px/m e la rapidità una scala distinta."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12k\\ell^2=\\frac12mV^2"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\frac{k\\ell^2}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\ell\\sqrt{\\frac{k}{m}}"
+        },
+        {
+          "type": "text",
+          "text": "Il doppio o la metà non rispettano il bilancio. Il ramo negativo può rappresentare una componente con un asse opportuno, ma non la rapidità V. kℓ/m è invece l’accelerazione iniziale e ha unità m/s²."
+        }
+      ],
+      "hints": [
+        "Cancella i due mezzi e isola il quadrato prima della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il doppio o la metà non rispettano il bilancio. Il ramo negativo può rappresentare una componente con un asse opportuno, ma non la rapidità V. kℓ/m è invece l’accelerazione iniziale e ha unità m/s².",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6904,
+      "title": "Quattro volte la massa, metà rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 1,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Con ℓ=1 m invariata si passa da m_A=2 kg a m_B=8 kg. Come cambia V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 1/2 m/s",
+          "Da 1 a 1/4 m/s",
+          "Da 1 a 2 m/s",
+          "Resta 1 m/s",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 1/2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa compressione della stessa molla contiene sempre 1 J. Distribuire quell’energia su una massa quattro volte maggiore divide per quattro il quadrato della rapidità, dunque divide per due la rapidità stessa."
+        },
+        {
+          "type": "formula",
+          "text": "V_A^2=1\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=\\frac14\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_A=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\frac12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto seguirebbe una dipendenza inversa dalla massa senza radice; due invertirebbe il comportamento. L’energia disponibile resta positiva e la massa finita, quindi la rapidità non diventa zero. Il controllo (8 kg)(1/2 m/s)²/2=1 J chiude il bilancio."
+        }
+      ],
+      "hints": [
+        "A energia fissata confronta prima i quadrati delle rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un quarto seguirebbe una dipendenza inversa dalla massa senza radice; due invertirebbe il comportamento. L’energia disponibile resta positiva e la massa finita, quindi la rapidità non diventa zero. Il controllo (8 kg)(1/2 m/s)²/2=1 J chiude il bilancio.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6905,
+      "title": "Pesare il blocco con il lancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Si misurano V=1 m/s e ℓ=1 m. Quanto vale m, in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Risolviamo lo stesso bilancio per la massa. Moltiplicare per due e dividere per V²>0 lascia m=kℓ²/V². Il numeratore vale 2 J e il denominatore 1 m²/s²: il rapporto è una massa."
+        },
+        {
+          "type": "formula",
+          "text": "mV^2=k\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{k\\ell^2}{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{2\\,\\mathrm J}{1\\,\\mathrm{m^2/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Dimenticare il quadrato della compressione o della rapidità rompe anche le dimensioni. Con la massa trovata l’energia cinetica finale è 1 J, uguale all’energia iniziale della molla."
+        }
+      ],
+      "hints": [
+        "Isola m prima di sostituire i dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dimenticare il quadrato della compressione o della rapidità rompe anche le dimensioni. Con la massa trovata l’energia cinetica finale è 1 J, uguale all’energia iniziale della molla.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6906,
+      "title": "Ricostruire una compressione positiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Si misurano V=1 m/s con m=2 kg. Quanto vale ℓ in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La compressione è un modulo. Isoliamo ℓ²=mV²/k, che qui vale 1 m². Le due radici algebriche sono opposte, ma soltanto quella positiva descrive la compressione dichiarata; un’eventuale coordinata negativa è un’altra convenzione."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell^2=\\frac{mV^2}{k}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell^2=1\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_+=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_-=-1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un metro ricostruisce 1 J di energia elastica. Il valore 1 m² è il quadrato, non la lunghezza; −1 m non è un modulo ammesso. Il caso ℓ=0 darebbe V=0 ed è escluso dai dati."
+        }
+      ],
+      "hints": [
+        "Trova ℓ² e seleziona la radice coerente con ℓ>0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un metro ricostruisce 1 J di energia elastica. Il valore 1 m² è il quadrato, non la lunghezza; −1 m non è un modulo ammesso. Il caso ℓ=0 darebbe V=0 ed è escluso dai dati.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6907,
+      "title": "Il doppio della compressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. A: m=2 kg, ℓ_A=1 m. B: stessa massa, ℓ_B=2 m. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La compressione raddoppiata quadruplica l’energia elastica. Con la stessa massa il quadrato della rapidità quadruplica e la rapidità raddoppia: V_A=1 m/s e V_B=2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{U_B}{U_A}=\\left(\\frac{\\ell_B}{\\ell_A}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{\\ell_B}{\\ell_A}\\right)^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_B}{V_A}=\\sqrt4"
+        },
+        {
+          "type": "formula",
+          "text": "\\sqrt4=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto delle energie, non delle rapidità. Un mezzo inverte l’ordine; uno ignora il cambiamento; un rapporto negativo è impossibile fra due rapidità positive."
+        }
+      ],
+      "hints": [
+        "Distingui il rapporto delle energie da quello delle rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto delle energie, non delle rapidità. Un mezzo inverte l’ordine; uno ignora il cambiamento; un rapporto negativo è impossibile fra due rapidità positive.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6908,
+      "title": "Scarto di una rapidità proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Con m=2 kg e ℓ=1 m si propone V=2 m/s. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 m/s",
+          "−1 m/s",
+          "2 m/s",
+          "0 m/s",
+          "1/2 m/s"
+        ],
+        "value": "1 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio dà V²=1 m²/s², quindi la rapidità corretta è 1 m/s. La domanda chiede una differenza con ordine fissato: la proposta eccede il valore corretto di un metro al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "V=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{m/s}-1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte la sottrazione; due ripete la proposta; zero la accetta; un mezzo dimezza ancora lo scarto. Il fatto che una velocità doppia richieda energia quadrupla permette di riconoscere subito la proposta incompatibile con il joule disponibile."
+        }
+      ],
+      "hints": [
+        "Calcola prima V e poi sottrai nell’ordine indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 inverte la sottrazione; due ripete la proposta; zero la accetta; un mezzo dimezza ancora lo scarto. Il fatto che una velocità doppia richieda energia quadrupla permette di riconoscere subito la proposta incompatibile con il joule disponibile.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6909,
+      "title": "Una massa con due quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Misurati V e ℓ, quale espressione isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=kℓ²/V²",
+          "m=kℓ/V",
+          "m=kℓ²/(2V²)",
+          "m=2kℓ²/V²",
+          "m=V²/(kℓ²)"
+        ],
+        "value": "m=kℓ²/V²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eleviamo al quadrato la legge di V oppure torniamo direttamente al bilancio: mV²=kℓ². Dividendo per V²>0 otteniamo una massa positiva, senza ulteriori rami algebrici."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\frac{k\\ell^2}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " mV^2=k\\ell^2"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{k\\ell^2}{V^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco ha unità inverse di massa; kℓ/V non è una massa. Il mezzo non resta perché era presente in entrambe le energie: inserirlo soltanto da un lato dimezza o raddoppia erroneamente il risultato."
+        }
+      ],
+      "hints": [
+        "Moltiplica per m e dividi per V².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco ha unità inverse di massa; kℓ/V non è una massa. Il mezzo non resta perché era presente in entrambe le energie: inserirlo soltanto da un lato dimezza o raddoppia erroneamente il risultato.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6910,
+      "title": "Due scalature e una radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Da A a B si impongono m_B=κ₁m_A e ℓ_B=κ₂ℓ_A, con fattori positivi e k invariata. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ / √κ₁",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "√κ₁ / κ₂",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₂ / √κ₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scriviamo la legge in entrambi gli stati e separiamo i fattori positivi dalla radice. La compressione entra linearmente nella rapidità, la massa con esponente −1/2. Il rapporto è puro e non contiene la rigidezza comune."
+        },
+        {
+          "type": "formula",
+          "text": "V_B=\\kappa_2\\ell_A\\sqrt{\\frac{k}{\\kappa_1m_A}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{V_B}{V_A}=\\frac{\\kappa_2}{\\sqrt{\\kappa_1}}"
+        },
+        {
+          "type": "text",
+          "text": "κ₂²/κ₁ è il rapporto dei quadrati delle rapidità. κ₂/κ₁ dimentica la radice della massa; il reciproco scambia gli stati. Se κ₁=4 e κ₂=2 la rapidità resta uguale, mentre l’energia aumenta insieme alla massa."
+        }
+      ],
+      "hints": [
+        "Separa √κ₁ dal resto della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₂²/κ₁ è il rapporto dei quadrati delle rapidità. κ₂/κ₁ dimentica la radice della massa; il reciproco scambia gli stati. Se κ₁=4 e κ₂=2 la rapidità resta uguale, mentre l’energia aumenta insieme alla massa.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6911,
+      "title": "Una massa dimezzata e una compressione doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. A: m_A=2 kg, ℓ_A=1 m. B: m_B=1 kg, ℓ_B=2 m. Qual è V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2√2",
+          "√2",
+          "4√2",
+          "1/√2",
+          "2"
+        ],
+        "value": "2√2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa dimezzata moltiplica la rapidità per √2; la compressione doppia aggiunge un fattore due. Si conserva il radicale esatto: non serve un’approssimazione decimale. V_A vale 1 m/s e V_B vale 2√2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=8\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\sqrt2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=2\\sqrt2"
+        },
+        {
+          "type": "text",
+          "text": "√2 tiene conto soltanto della massa; due soltanto della compressione. 4√2 aggiunge un fattore due; 1/√2 segue la massa nella direzione sbagliata. Il quadrato del rapporto corretto è otto, uguale al rapporto energia/massa."
+        }
+      ],
+      "hints": [
+        "Usa √8=2√2, senza approssimare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "√2 tiene conto soltanto della massa; due soltanto della compressione. 4√2 aggiunge un fattore due; 1/√2 segue la massa nella direzione sbagliata. Il quadrato del rapporto corretto è otto, uguale al rapporto energia/massa.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6912,
+      "title": "Media di due rapidità esatte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 2,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Due prove hanno uguale peso statistico: A con m=2 kg, ℓ=1 m; B con m=1 kg, ℓ=2 m. Qual è la media aritmetica di V_A e V_B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(1/2 + √2) m/s",
+          "(1 + 2√2) m/s",
+          "(1/4 + √2/2) m/s",
+          "(3/2 + √2) m/s",
+          "(−1/2 + √2) m/s"
+        ],
+        "value": "(1/2 + √2) m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima risolviamo i due lanci: 1 m/s e 2√2 m/s. La loro somma va divisa interamente per due, quindi il primo termine diventa 1/2 e il secondo √2. La media riguarda esiti di prove distinte, non un tratto temporale di uno stesso lancio."
+        },
+        {
+          "type": "formula",
+          "text": "V_A=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\sqrt2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\frac{1+2\\sqrt2}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline V=\\left(\\frac12+\\sqrt2\\right)\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "1+2√2 è la somma; 1/4+√2/2 divide due volte; gli altri due valori aggiungono o sottraggono un’unità alla media. Le medie degli ingressi m=3/2 kg e ℓ=3/2 m darebbero invece √3 m/s: una diversa prova in una legge non lineare."
+        }
+      ],
+      "hints": [
+        "Dividi per due ciascun termine della somma dei due risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1+2√2 è la somma; 1/4+√2/2 divide due volte; gli altri due valori aggiungono o sottraggono un’unità alla media. Le medie degli ingressi m=3/2 kg e ℓ=3/2 m darebbero invece √3 m/s: una diversa prova in una legge non lineare.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6913,
+      "title": "La compressione per un rapporto assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. A ha m_A=2 kg e ℓ_A=1 m. Imposto m_B=1 kg, si vuole V_B=(2√2)V_A. Quanto deve valere ℓ_B/ℓ_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cambiamento di massa fornisce già il fattore √2. Per arrivare al fattore obiettivo 2√2 deve restare un fattore due dalla compressione. Il rapporto fra radicali identici si semplifica esattamente."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_B}{V_A}=\\frac{\\ell_B}{\\ell_A}\\sqrt{\\frac{m_A}{m_B}}"
+        },
+        {
+          "type": "formula",
+          "text": " 2\\sqrt2=\\frac{\\ell_B}{\\ell_A}\\sqrt2"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B/\\ell_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare ℓ_B=1 m darebbe solo √2; quadruplicarla darebbe 4√2. ℓ_B=2 m produce 4 J di energia elastica e V_B²=8 m²/s², verificando la richiesta."
+        }
+      ],
+      "hints": [
+        "Togli dal rapporto obiettivo il fattore dovuto alla massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare ℓ_B=1 m darebbe solo √2; quadruplicarla darebbe 4√2. ℓ_B=2 m produce 4 J di energia elastica e V_B²=8 m²/s², verificando la richiesta.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6914,
+      "title": "Una lettura con un radicale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Un display continuo adimensionale ha S=cV, c>0, senza offset. Nel riferimento m=2 kg, ℓ=1 m legge S=3. Nella prova B, con ℓ=2 m, legge S=6√2. Quanto vale m_B in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dà V_A=1 m/s, dunque c=3 s/m. Dividere la nuova lettura per c lascia V_B=2√2 m/s: il suo quadrato è esattamente 8 m²/s². L’inversa per la massa usa quel quadrato e non richiede calcolo numerico del radicale."
+        },
+        {
+          "type": "formula",
+          "text": "c=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=2\\sqrt2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B^2=8\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{k\\ell_B^2}{V_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{8\\,\\mathrm J}{8\\,\\mathrm{m^2/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{8\\,\\mathrm J}{8\\,\\mathrm{m^2/s^2}}=1\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "S è adimensionale e non si può usarlo come una rapidità. Dimenticare la taratura introdurrebbe il quadrato del guadagno nell’inversa della massa. Con 1 kg, V_B²=8 e S=3·2√2 si ricostruiscono entrambi i dati."
+        }
+      ],
+      "hints": [
+        "Decodifica V e sfrutta (2√2)²=8.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "S è adimensionale e non si può usarlo come una rapidità. Dimenticare la taratura introdurrebbe il quadrato del guadagno nell’inversa della massa. Con 1 kg, V_B²=8 e S=3·2√2 si ricostruiscono entrambi i dati.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6915,
+      "title": "L’offset prima del quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Un display continuo adimensionale segue S=cV+d, con c>0 e d costanti. A: m=2 kg, ℓ=1 m, S_A=3. B: m=1 kg, ℓ=2 m, S_B=1+4√2. C: ℓ=1 m, S_C=2. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 kg",
+          "2 kg",
+          "4 kg",
+          "16 kg",
+          "1/2 kg"
+        ],
+        "value": "8 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno rapidità 1 e 2√2 m/s. Nella differenza delle letture il numeratore 4√2−2 è due volte il denominatore 2√2−1: c=2 s/m, poi d=1. La prova C corrisponde a V_C=1/2 m/s; il suo quadrato è 1/4 m²/s² e l’inversa dà 8 kg."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{4\\sqrt2-2}{2\\sqrt2-1}\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4\\sqrt2-2}{2\\sqrt2-1}\\,\\mathrm{s/m}=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " d=3-2"
+        },
+        {
+          "type": "formula",
+          "text": "3-2=1"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=\\frac12\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " V_C^2=\\frac14\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac{2}{1/4}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2}{1/4}\\,\\mathrm{kg}=8\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "La sottrazione dell’offset precede la divisione e il quadrato. 2 kg darebbero S=3; 4 kg darebbero S=1+√2; 16 kg S=1+1/√2; 1/2 kg S=5. Sono tutti diversi da 2: solo 8 kg ricostruiscono il dato."
+        }
+      ],
+      "hints": [
+        "Fattorizza 4√2−2 come 2(2√2−1), poi decodifica C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sottrazione dell’offset precede la divisione e il quadrato. 2 kg darebbero S=3; 4 kg darebbero S=1+√2; 16 kg S=1+1/√2; 1/2 kg S=5. Sono tutti diversi da 2: solo 8 kg ricostruiscono il dato.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-spring-launch-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Energia e trasformazioni",
+      "order": 6916,
+      "title": "Una massa proporzionale alla compressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L008",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spring-launch",
+      "difficulty": 3,
+      "prompt": "In un laboratorio inerziale un blocco di massa m>0, inizialmente fermo, è solo appoggiato a una molla ideale senza massa di rigidezza k=2 N/m, compressa di ℓ>0. Il piano è orizzontale e liscio; la molla ha un estremo fissato e non è attaccata al blocco. Il moto è classico e tutto il rilascio resta nel regime elastico lineare. V>0 è la rapidità al distacco, alla lunghezza naturale. Fra prove diverse vale m=cℓ, con c=2 kg/m; ogni massa resta costante durante il proprio lancio. Si misura V=1 m/s. Quanto vale ℓ>0, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lega i due ingressi: sostituendolo nell’energia, il quadrato di ℓ perde un fattore perché ℓ>0. V²=(k/c)ℓ è allora lineare nella compressione. Il rapporto k/c ha dimensioni di accelerazione e vale 1 m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\frac{k\\ell^2}{c\\ell}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\frac{k}{c}\\ell"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{k}{c}=1\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\frac{cV^2}{k}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{cV^2}{k}=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " m=c\\ell"
+        },
+        {
+          "type": "formula",
+          "text": "c\\ell=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Zero non soddisfa né massa positiva né V=1; una compressione negativa non è ammessa. 2 m con massa 4 kg darebbero V²=2 m²/s². Non bisogna trattare m come dato indipendente dopo aver imposto m=cℓ."
+        }
+      ],
+      "hints": [
+        "Sostituisci m=cℓ prima di isolare ℓ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero non soddisfa né massa positiva né V=1; una compressione negativa non è ammessa. 2 m con massa 4 kg darebbero V²=2 m²/s². Non bisogna trattare m come dato indipendente dopo aver imposto m=cℓ.",
+        "target": "C1-L008"
+      },
+      "coverage": [
+        "Energia elastica e cinetica",
+        "Lancio con contatto unilaterale",
+        "Radici fisiche e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "692b6aac0bc3377609711e354271351ec4da20103ddc129e4fcd4571f8ac973a",
+      "name": "spring-launch-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgdmlld0JveD0iMCAwIDY0MCAxMzkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlVuYSBtb2xsYSBjZWRlIGVuZXJnaWEgYWwgYmxvY2NvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBjb21wcmVzc2lvbmUgaW5pemlhbGUsIGRpc3RhY2NvIGUgYXJlYSBkZWwgZ3JhZmljbyBmb3J6YSBjb21wcmVzc2lvbmUuIEdlb21ldHJpYSAxMDAgcGl4ZWwgcGVyIG1ldHJvLCByYXBpZGl0w6AgODAgcGl4ZWwgcGVyIG1ldHJvIGFsIHNlY29uZG87IGFzc2kgZGVsIGdyYWZpY28gY29uIHNjYWxlIHByb3ByaWUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTM5MCIgcng9IjIwIiBmaWxsPSIjZmFmOGYxIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTkzYTQ5Ij48dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiPjEgwrcgVW4gam91bGUgbmVsbGEgbW9sbGEgY29tcHJlc3NhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+ayA9IDIgTi9tOyBtID0gMiBrZzsgYmxvY2NvIGluaXppYWxtZW50ZSBmZXJtby48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTQwVjI4ME0xMDAgMjQwSDU1MCIgc3Ryb2tlPSIjNmI4Njg1IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTAwIDIwMEgxMjBMMTM1IDE4MEwxNTUgMjIwTDE3NSAxODBMMTk1IDIyMEwyMTUgMTgwTDIzNSAyMjBMMjU1IDE4MEwyNzUgMjIwTDI5MCAyMDBIMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIvPjxyZWN0IHg9IjMwMCIgeT0iMTcwIiB3aWR0aD0iNjAiIGhlaWdodD0iNzAiIGZpbGw9IiNjZGU0ZTYiIHN0cm9rZT0iIzE5M2E0OSIvPgo8cGF0aCBkPSJNNDAwIDE0MFYzMDAiIHN0cm9rZT0iI2EyYjliNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTMwMCAyOTBINDAwTTMwMCAyODJWMjk4TTQwMCAyODJWMjk4IiBzdHJva2U9IiMxOTNhNDkiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIzMDAiIHk9IjMzMCI+4oSTID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIzODAiPkVzdHJlbW8gbGliZXJvIG5hdHVyYWxlOiBsaW5lYSB0cmF0dGVnZ2lhdGEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI0MjUiPkdlb21ldHJpYTogMTAwIHB4L20uIFUgaW5pemlhbGUgPSAxIEouPC90ZXh0Pgo8dGV4dCB4PSIyOCIgeT0iNTAwIiBmb250LXNpemU9IjI1Ij4yIMK3IEFsbGEgbHVuZ2hlenphIG5hdHVyYWxlIHNpIHN0YWNjYTwvdGV4dD4KPHBhdGggZD0iTTEwMCA1NDVWNjgwTTEwMCA2NDBINTUwIiBzdHJva2U9IiM2Yjg2ODUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMDAgNjAwSDEyMEwxNDUgNTgwTDE3NSA2MjBMMjA1IDU4MEwyMzUgNjIwTDI2NSA1ODBMMjk1IDYyMEwzMjUgNTgwTDM1NSA2MjBMMzgwIDYwMEg0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iNDAwIiB5PSI1NzAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI3MCIgZmlsbD0iI2NkZTRlNiIgc3Ryb2tlPSIjMTkzYTQ5Ii8+CjxwYXRoIGQ9Ik00MzAgNTQwSDUxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIzNTAiIHk9IjcwMCI+ViA9IDEgbS9zIHZlcnNvIGRlc3RyYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzUwIj5SYXBpZGl0w6A6IDgwIHB4IHBlciBtL3M7IEsgZmluYWxlID0gMSBKLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNzk1Ij5Eb3BvIGlsIGRpc3RhY2NvIGxhIG1vbGxhIG5vbiB0aXJhIGlsIGJsb2Njby48L3RleHQ+Cjx0ZXh0IHg9IjI4IiB5PSI4NzUiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgTGEgZm9yemEgbm9uIHJlc3RhIGFsIHZhbG9yZSBpbml6aWFsZTwvdGV4dD48cGF0aCBkPSJNMTAwIDExNzBWOTMwTTc1IDExNDBINDYwIiBzdHJva2U9IiM2Yjg2ODUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMDAgMTE0MEgzMDBWOTgwWiIgZmlsbD0iI2NkZTRlNiIvPjxwYXRoIGQ9Ik0xMDAgMTE0MEwzMDAgOTgwIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjI4IiB5PSI5MjUiPnxGfCAoTik8L3RleHQ+PHRleHQgeD0iNjUiIHk9Ijk5MCI+MjwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTE2NSI+MDwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjExNzUiPjE8L3RleHQ+PHRleHQgeD0iNDIwIiB5PSIxMTk1Ij5xIChtKTwvdGV4dD48dGV4dCB4PSIxOTAiIHk9IjExMTAiPjEgSjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEyNDAiPnE6IGNvbXByZXNzaW9uZSByZXNpZHVhLiAyMDAgcHgvbSwgODAgcHgvTi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEyODUiPkFyZWEgPSAoMSBtKSgyIE4pLzIgPSAxIEouPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzMwIj5SaWxhc2NpbzogcSBwYXNzYSBkYSAxIG0gYSAwOyBsYXZvcm8gKzEgSi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzNjUiPk5lc3N1biBhdHRyaXRvLCBuZXNzdW5hIHZhcmlhemlvbmUgZGkgcXVvdGEuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

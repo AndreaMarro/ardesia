@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "purpose",
+    "completionAuthority",
+    "sourceRef",
+    "sourcePath",
+    "integrator",
+    "assignments"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "purpose": {
+      "const": "contributor_ownership_only_not_review_or_approval"
+    },
+    "completionAuthority": {
+      "const": "editorial/corpus/checkpoint.json"
+    },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "sourcePath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "integrator": {
+      "const": "root"
+    },
+    "assignments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "batchId",
+          "author",
+          "independentVerifier",
+          "questionIds"
+        ],
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "author": {
+            "enum": [
+              "author_vectors_a",
+              "author_vectors_b"
+            ]
+          },
+          "independentVerifier": {
+            "enum": [
+              "author_vectors_a",
+              "author_vectors_b"
+            ]
+          },
+          "questionIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^AR-[a-z0-9-]+$"
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "author": {
+                "const": "author_vectors_a"
+              },
+              "independentVerifier": {
+                "const": "author_vectors_b"
+              }
+            }
+          },
+          {
+            "properties": {
+              "author": {
+                "const": "author_vectors_b"
+              },
+              "independentVerifier": {
+                "const": "author_vectors_a"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

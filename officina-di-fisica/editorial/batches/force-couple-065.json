@@ -1,0 +1,1130 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u2-force-couple-01",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6521,
+      "title": "Due forze che si cancellano soltanto nella somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 1,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Con F=2 N e d=2 m, quanto vale M in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo come polo un punto sulla retta della prima forza: essa ha braccio nullo. La seconda ha braccio d e produce momento di modulo Fd. Il prodotto dà quattro N·m. Non va moltiplicato di nuovo per due: scegliendo un polo intermedio ciascuna forza avrebbe soltanto una parte della distanza totale come braccio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/35d648556aba87a94c102efd4ad539f6795b3459d43221716fb338874455805b",
+          "text": "Primo esempio: forze opposte da 2 N, frecce 60 px alla scala 30 px/N, rette distanti 200 px cioè 2 m alla scala 100 px/m. Momento +4 N·m antiorario. Traslare il polo di 1 m cambia i bracci singoli ma non il momento totale. Ultimo esempio separato: forze da 5 N, frecce 150 px alla stessa scala, distanza 2 m: risultante zero, momento 10 N·m. Scale delle lunghezze e delle forze distinte."
+        },
+        {
+          "type": "formula",
+          "text": "M=Fd"
+        },
+        {
+          "type": "formula",
+          "text": " M=(2\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": " M=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "La risultante nulla non annulla il momento. Traslando il polo, la variazione del momento totale è il prodotto vettoriale dello spostamento cambiato di segno per la risultante: qui vale zero. Il momento di una coppia è dunque indipendente dal polo; una coppia può cambiare il moto rotazionale senza accelerare il centro di massa."
+        }
+      ],
+      "hints": [
+        "Metti il polo sulla retta di una forza e usa d come braccio dell’altra.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La risultante nulla non annulla il momento. Traslando il polo, la variazione del momento totale è il prodotto vettoriale dello spostamento cambiato di segno per la risultante: qui vale zero. Il momento di una coppia è dunque indipendente dal polo; una coppia può cambiare il moto rotazionale senza accelerare il centro di massa.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-02",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6522,
+      "title": "L’unità del momento di una coppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 1,
+      "prompt": "Due forze uguali e opposte hanno rette distanti d e momento di coppia di modulo M=Fd. F è in newton e d in metri. Quale unità proposta esprime M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "N/m",
+          "N·m",
+          "kg",
+          "m"
+        ],
+        "value": "N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo del momento è una forza moltiplicata per una distanza. L’unità è newton per metro moltiplicato, N·m, non newton diviso metro. La dimensione è ML²/T², la stessa dell’energia: grandezze fisiche diverse possono condividere la dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[M]=[F][d]"
+        },
+        {
+          "type": "formula",
+          "text": " [M]=ML^2/T^2"
+        },
+        {
+          "type": "text",
+          "text": "N è una forza, N/m una rigidezza, kg una massa e m una lunghezza. Nessun’altra alternativa ha la dimensione del momento. Scrivere N·m conserva il significato rotazionale; non è stato assegnato uno spostamento angolare da cui calcolare un lavoro."
+        }
+      ],
+      "hints": [
+        "Moltiplica N per m e confronta le cinque unità.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è una forza, N/m una rigidezza, kg una massa e m una lunghezza. Nessun’altra alternativa ha la dimensione del momento. Scrivere N·m conserva il significato rotazionale; non è stato assegnato uno spostamento angolare da cui calcolare un lavoro.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-03",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6523,
+      "title": "Risultante nulla e momento non nullo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 1,
+      "prompt": "Due forze parallele di 5 N, uguali e opposte, agiscono su un corpo rigido lungo rette distinte distanti perpendicolarmente 2 m. Quali sono il modulo della risultante e il modulo del momento della coppia?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0 N; 10 N·m",
+          "0 N; 0 N·m",
+          "10 N; 10 N·m",
+          "5 N; 10 N·m",
+          "0 N; 20 N·m"
+        ],
+        "value": "0 N; 10 N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma vettoriale delle forze è zero perché i moduli sono uguali e i versi opposti. Per i momenti scegliamo il polo sulla prima retta: resta il momento della seconda, cinque newton per due metri. Otteniamo risultante zero e momento dieci N·m, indipendente dal polo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/35d648556aba87a94c102efd4ad539f6795b3459d43221716fb338874455805b",
+          "text": "Primo esempio: forze opposte da 2 N, frecce 60 px alla scala 30 px/N, rette distanti 200 px cioè 2 m alla scala 100 px/m. Momento +4 N·m antiorario. Traslare il polo di 1 m cambia i bracci singoli ma non il momento totale. Ultimo esempio separato: forze da 5 N, frecce 150 px alla stessa scala, distanza 2 m: risultante zero, momento 10 N·m. Scale delle lunghezze e delle forze distinte."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_1+\\vec F_2=\\vec0"
+        },
+        {
+          "type": "formula",
+          "text": " M=Fd"
+        },
+        {
+          "type": "formula",
+          "text": " M=(5\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": " M=10\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "La coppia non è un’interazione fra due corpi con forze interne che si eliminano da un sistema: qui entrambe le forze agiscono sullo stesso corpo. Zero momento confonde somma delle forze con somma dei momenti; dieci newton somma i moduli, cinque ne ignora uno e venti N·m conta due volte tutta la distanza."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente la somma vettoriale e il momento.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La coppia non è un’interazione fra due corpi con forze interne che si eliminano da un sistema: qui entrambe le forze agiscono sullo stesso corpo. Zero momento confonde somma delle forze con somma dei momenti; dieci newton somma i moduli, cinque ne ignora uno e venti N·m conta due volte tutta la distanza.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-04",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6524,
+      "title": "Raddoppiare entrambi i moduli concordemente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 1,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Fra prove d=2 m resta uguale e il modulo di ciascuna forza passa da 2 a 4 N. Come cambia M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 8 N·m",
+          "Resta 4 N·m",
+          "Da 4 a 16 N·m",
+          "Da 4 a 2 N·m",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 8 N·m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni prova rimane una coppia: aumentano insieme i due moduli, conservando versi opposti. Il momento è proporzionale al modulo di una delle due forze, F, e non alla somma dei loro moduli. Con la separazione fissa due metri, quattro N·m diventano otto."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=(4\\,\\mathrm N)(2\\,\\mathrm m)"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici raddoppierebbe anche la distanza; due invertirebbe l’effetto della forza. Invarianza o zero non descrivono la nuova coppia. Non si sta lasciando una forza a due N e cambiando soltanto l’altra: in quel caso la risultante non sarebbe più nulla e il modello sarebbe diverso."
+        }
+      ],
+      "hints": [
+        "Mantieni uguali i due moduli dentro ciascuna prova e cambia F una volta.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici raddoppierebbe anche la distanza; due invertirebbe l’effetto della forza. Invarianza o zero non descrivono la nuova coppia. Non si sta lasciando una forza a due N e cambiando soltanto l’altra: in quel caso la risultante non sarebbe più nulla e il modello sarebbe diverso.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-05",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6525,
+      "title": "Ricostruire ciascuna forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Si misura M=4 N·m e si conosce d=2 m. Quanto vale F, modulo di ciascuna forza, in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo il momento per la distanza perpendicolare positiva. Il rapporto quattro N·m su due metri dà due newton. Questo è il modulo di ciascuna forza; la loro somma vettoriale resta zero e non è il dato che si sta ricostruendo."
+        },
+        {
+          "type": "formula",
+          "text": "F=M/d"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " F=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per due darebbe forze di un N e momento due N·m, insufficiente. Il controllo 2 N·2 m=4 N·m ricostruisce la coppia senza introdurre una forza risultante non nulla. Il prodotto Md avrebbe unità N·m², non forza."
+        }
+      ],
+      "hints": [
+        "La distanza fra le rette è già il braccio totale della coppia.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere ancora per due darebbe forze di un N e momento due N·m, insufficiente. Il controllo 2 N·2 m=4 N·m ricostruisce la coppia senza introdurre una forza risultante non nulla. Il prodotto Md avrebbe unità N·m², non forza.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-06",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6526,
+      "title": "La separazione perpendicolare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Si misura M=4 N·m; ciascuna forza ha modulo F=2 N. Quanto vale d, in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella relazione M=Fd dividiamo per il modulo F positivo. I newton si cancellano e rimane una lunghezza: due metri. d si misura tra le rette d’azione lungo una perpendicolare, non sommando le distanze dei punti di applicazione da un’origine arbitraria."
+        },
+        {
+          "type": "formula",
+          "text": "d=M/F"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{4\\,\\mathrm{N\\,m}}{2\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": " d=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia il numero del momento; uno divide indebitamente per la somma dei moduli. Se le rette coincidessero, d sarebbe zero e il momento nullo, incompatibile con i quattro N·m assegnati. Il polo non entra in questa distanza geometrica."
+        }
+      ],
+      "hints": [
+        "Dividi M per il modulo di una forza e conserva l’unità m.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia il numero del momento; uno divide indebitamente per la somma dei moduli. Se le rette coincidessero, d sarebbe zero e il momento nullo, incompatibile con i quattro N·m assegnati. Il polo non entra in questa distanza geometrica.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-07",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6527,
+      "title": "Rette due volte più distanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Ciascuna forza ha modulo 2 N in entrambe le prove; d_A=2 m e d_B=4 m. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La risultante è zero in entrambe le configurazioni, ma il braccio della coppia raddoppia. I moduli dei momenti sono quattro e otto N·m; il rapporto è due. Conta la separazione delle rette, non la posizione del polo scelto per fare il calcolo."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto, quattro introduce un quadrato assente e uno confonde risultante invariata con momento invariato. Il rapporto negativo non confronta moduli positivi. Una traslazione del solo polo lascerebbe invece d e M invariati."
+        }
+      ],
+      "hints": [
+        "Confronta le due distanze perpendicolari.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Un mezzo inverte il rapporto, quattro introduce un quadrato assente e uno confonde risultante invariata con momento invariato. Il rapporto negativo non confronta moduli positivi. Una traslazione del solo polo lascerebbe invece d e M invariati.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-08",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6528,
+      "title": "Una proposta che conta due volte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Con F=2 N,d=2 m si propone M_proposto=8 N·m. Quanto vale proposto meno corretto, in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è quattro N·m. La proposta otto attribuisce a entrambe le forze il braccio intero d, pur usando un’unica configurazione. Sottraiamo quattro da otto e otteniamo uno scarto positivo quattro N·m."
+        },
+        {
+          "type": "formula",
+          "text": "M=Fd"
+        },
+        {
+          "type": "formula",
+          "text": " M=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Se il polo fosse a metà, i due momenti avrebbero ciascuno modulo Fd/2 e lo stesso verso: sommandoli si ritroverebbe Fd, non 2Fd. −4 inverte la sottrazione, otto ripete la proposta e due dimezza ancora lo scarto. Il segno dell’errore non è il verso di rotazione."
+        }
+      ],
+      "hints": [
+        "Calcola Fd prima di formare lo scarto.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "Se il polo fosse a metà, i due momenti avrebbero ciascuno modulo Fd/2 e lo stesso verso: sommandoli si ritroverebbe Fd, non 2Fd. −4 inverte la sottrazione, otto ripete la proposta e due dimezza ancora lo scarto. Il segno dell’errore non è il verso di rotazione.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-09",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6529,
+      "title": "L’inversa senza raddoppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Quale formula isola F da M=Fd?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F=M/d",
+          "F=Md",
+          "F=d/M",
+          "F=2 M/d",
+          "F=M/(2 d)"
+        ],
+        "value": "F=M/d"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza positiva è un fattore che moltiplica F: dividiamo entrambi i membri per d. Otteniamo M/d, con unità N·m/m=N. La presenza di due forze non introduce un ulteriore fattore due, perché d è già la distanza fra le due rette."
+        },
+        {
+          "type": "formula",
+          "text": "M/d=F"
+        },
+        {
+          "type": "formula",
+          "text": " F=M/d"
+        },
+        {
+          "type": "text",
+          "text": "Md ha dimensioni N·m² invece di N; d/M è un inverso di forza. Il doppio e la metà falliscono il controllo Fd=M. L’unità e la sostituzione nella legge sono due controlli distinti e concordi."
+        }
+      ],
+      "hints": [
+        "Dividi per l’intera distanza fra le rette.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Md ha dimensioni N·m² invece di N; d/M è un inverso di forza. Il doppio e la metà falliscono il controllo Fd=M. L’unità e la sostituzione nella legge sono due controlli distinti e concordi.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-10",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6530,
+      "title": "Scalare la coppia fra configurazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. B usa F_B=κ₁F e d_B=κ₂d, con κ₁,κ₂>0; F,d indicano A. I due moduli restano uguali e opposti in ogni configurazione. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel secondo prodotto entrano il fattore della forza e quello della separazione. Dividendo per Fd si cancellano i dati iniziali e resta κ₁κ₂. La risultante nulla si conserva, perché entrambe le forze vengono scalate nello stesso modo dentro B."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=Fd"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=(\\kappa_1F)(\\kappa_2d)"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza; la somma darebbe due per configurazioni identiche. Il quadrato di κ₂ confonde una lunghezza con una potenza che non compare nel momento. Spostare soltanto il polo non equivale a scalare d."
+        }
+      ],
+      "hints": [
+        "Scala un solo fattore F e un solo fattore d.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "I quozienti invertono una dipendenza; la somma darebbe due per configurazioni identiche. Il quadrato di κ₂ confonde una lunghezza con una potenza che non compare nel momento. Spostare soltanto il polo non equivale a scalare d.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-11",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6531,
+      "title": "Due raddoppi, un rapporto quattro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. A ha F=2 N,d=2 m; B ha F=4 N,d=4 m. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce quattro N·m e B sedici. Dividendo sedici per quattro troviamo quattro, prodotto del raddoppio di ciascuna forza e di quello della separazione. Non si moltiplica nuovamente per il numero delle forze."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto un cambiamento; otto conta un fattore superfluo; sedici è il momento B e non il rapporto puro. Un quarto invertirebbe il confronto. L’assenza di risultante non impedisce questa variazione del momento."
+        }
+      ],
+      "hints": [
+        "Valuta Fd in ciascuna configurazione prima del rapporto.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto un cambiamento; otto conta un fattore superfluo; sedici è il momento B e non il rapporto puro. Un quarto invertirebbe il confronto. L’assenza di risultante non impedisce questa variazione del momento.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-12",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6532,
+      "title": "Media di due intensità di coppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. A usa F=2 N,d=2 m e B usa F=4 N,d=4 m. Qual è la media aritmetica di M_A,M_B con uguale peso, in N·m?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le intensità sono quattro e sedici N·m. La loro semisomma è dieci N·m, fra i due valori. Non si chiede la risultante di due coppie agenti insieme, per la quale occorrerebbero anche i versi dei momenti: qui le prove sono distinte."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=4\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline M=\\frac{4+16}{2}\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline M=10\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Venti è la somma, cinque divide ancora e nove è il prodotto degli ingressi medi tre N e tre m. Quest’ultimo descrive una terza configurazione e non la media richiesta. Undici non deriva dalla semisomma esatta."
+        }
+      ],
+      "hints": [
+        "Media le due uscite complete, non i fattori.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Venti è la somma, cinque divide ancora e nove è il prodotto degli ingressi medi tre N e tre m. Quest’ultimo descrive una terza configurazione e non la media richiesta. Undici non deriva dalla semisomma esatta.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-13",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6533,
+      "title": "Scegliere la separazione desiderata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 3,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. A ha F_A=2 N,d_A=2 m. In B si sceglie F_B=4 N e si vuole M_B=4M_A. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento iniziale è quattro N·m e l’obiettivo sedici. Con ogni forza di quattro N serve una separazione d_B=16/4=4 m. Il rapporto ai due metri iniziali è due: il raddoppio dei moduli fornisce già metà del fattore quattro richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "M_B=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=M_B/F_B"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Lasciare la separazione invariata darebbe momento doppio; quadruplicarla con le forze doppie darebbe otto volte l’iniziale. Quattro metri è la nuova separazione, non il rapporto quattro. Entrambe le forze B devono mantenere lo stesso modulo quattro N."
+        }
+      ],
+      "hints": [
+        "Dividi il momento obiettivo per il modulo nuovo di una forza.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Lasciare la separazione invariata darebbe momento doppio; quadruplicarla con le forze doppie darebbe otto volte l’iniziale. Quattro metri è la nuova separazione, non il rapporto quattro. Entrambe le forze B devono mantenere lo stesso modulo quattro N.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-14",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6534,
+      "title": "Tarare il momento prima delle forze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 3,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Un display continuo adimensionale segue S=qM, con q>0 costante e offset nullo. Il riferimento F=2 N,d=2 m dà S=12. Una prova con d=4 m dà S=48. Quanto vale F in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha momento quattro N·m, perciò q=3(N·m)⁻¹. La lettura 48 rappresenta sedici N·m. Dividendo per la separazione quattro metri otteniamo quattro N per ciascuna forza, dopo avere rimosso il guadagno strumentale."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{(N\\,m)^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " M=48/q"
+        },
+        {
+          "type": "formula",
+          "text": " M=16\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " F=M/d"
+        },
+        {
+          "type": "formula",
+          "text": " F=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Usare 48 come momento SI darebbe dodici N e lascerebbe un fattore tre spurio. Il controllo 4 N·4 m=16 N·m e S=3·16=48 ricostruisce i due passaggi. Il display misura il momento, non la risultante che resta zero."
+        }
+      ],
+      "hints": [
+        "Decodifica M e solo dopo isola F.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 48 come momento SI darebbe dodici N e lascerebbe un fattore tre spurio. Il controllo 4 N·4 m=16 N·m e S=3·16=48 ricostruisce i due passaggi. Il display misura il momento, non la risultante che resta zero.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-15",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6535,
+      "title": "Il display ha anche un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 3,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Un display continuo adimensionale segue S=qM+b, con q>0,b costanti. A: F=2 N,d=2 m,S=9. B: F=4 N,d=4 m,S=33. C: d=2 m,S=17. Quanto vale F_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 N",
+          "3 N",
+          "4 N",
+          "5 N",
+          "8 N"
+        ],
+        "value": "4 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I momenti noti sono quattro e sedici N·m. La differenza delle letture 24 divisa per la differenza dei momenti dodici dà q=2(N·m)⁻¹. Il primo riferimento lascia b=1. C corrisponde a otto N·m e richiede F_C=8/2=4 N."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{(N\\,m)^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " M_C=(17-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " M_C=8\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=4\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Con d_C=2 m, forze 2,3,5,8 N darebbero letture 9,13,21,33: soltanto quattro N dà 17. Un rapporto di letture non elimina b. La taratura di una coppia non trasforma il momento in una forza prima della divisione per d."
+        }
+      ],
+      "hints": [
+        "Usa i due riferimenti per separare guadagno e offset.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con d_C=2 m, forze 2,3,5,8 N darebbero letture 9,13,21,33: soltanto quattro N dà 17. Un rapporto di letture non elimina b. La taratura di una coppia non trasforma il momento in una forza prima della divisione per d.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u2-force-couple-16",
+      "kind": "question",
+      "course": "C1",
+      "section": "Momenti e coppie di forze",
+      "order": 6536,
+      "title": "Un vincolo seleziona la separazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L005",
+        "C1-L010"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-couple",
+      "difficulty": 3,
+      "prompt": "Su un corpo rigido agiscono due forze parallele di uguale modulo F>0 e versi opposti. Le loro rette d’azione hanno distanza perpendicolare d>0; M è il modulo del momento della coppia. La risultante di queste due forze è nulla. Si osserva il corpo in un riferimento inerziale e non si assegnano altre forze o coppie. Si scelgono configurazioni con F=cd, dove c=1 N/m è fisso. Le forze restano uguali e opposte in ciascuna. Se M=4 N·m, quanto vale d in m? Il vincolo collega configurazioni e non descrive il lavoro durante una rotazione.",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inseriamo il vincolo nella relazione del momento: M=cd². Il rapporto M/c vale quattro metri quadrati. Le due radici algebriche sono +2 e −2 m; la distanza perpendicolare positiva seleziona +2 m, che dà F=2 N."
+        },
+        {
+          "type": "formula",
+          "text": "M=cd^2"
+        },
+        {
+          "type": "formula",
+          "text": " d^2=M/c"
+        },
+        {
+          "type": "formula",
+          "text": " d^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " d_+=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_-=-2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo non è una distanza fra rette e renderebbe negativo il modulo F nel vincolo. Uno o tre metri darebbero momenti uno o nove N·m. Quattro confonde d² con d; non va introdotto il mezzo dell’energia elastica, perché qui si calcola un momento istantaneo."
+        }
+      ],
+      "hints": [
+        "Sostituisci F=cd e controlla il dominio dopo la radice.",
+        "Risultante e momento sono bilanci distinti; d è la distanza perpendicolare fra le rette."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il ramo negativo non è una distanza fra rette e renderebbe negativo il modulo F nel vincolo. Uno o tre metri darebbero momenti uno o nove N·m. Quattro confonde d² con d; non va introdotto il mezzo dell’energia elastica, perché qui si calcola un momento istantaneo.",
+        "target": "C1-L010"
+      },
+      "coverage": [
+        "Momento di una coppia",
+        "Risultante nulla e indipendenza dal polo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "35d648556aba87a94c102efd4ad539f6795b3459d43221716fb338874455805b",
+      "name": "force-couple-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlVuYSBjb3BwaWEgaGEgcmlzdWx0YW50ZSBudWxsYSBlIG1vbWVudG8gbm9uIG51bGxvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+Rm9yemUgdmVydGljYWxpIG9wcG9zdGUsIHNpbmlzdHJhIHZlcnNvIGlsIGJhc3NvIGUgZGVzdHJhIHZlcnNvIGzigJlhbHRvLiBTZXBhcmF6aW9uZSBkdWUgbWV0cmksIGR1ZWNlbnRvIHBpeGVsIGFsbGEgc2NhbGEgY2VudG8gcGl4ZWwgcGVyIG1ldHJvLiBOZWwgcHJpbW8gZXNlbXBpbyBjaWFzY3VuYSBmb3J6YSDDqCBkdWUgbmV3dG9uLCBzZXNzYW50YSBwaXhlbCBhbGxhIHNjYWxhIHRyZW50YSBwaXhlbCBwZXIgbmV3dG9uOiBtb21lbnRvIGFudGlvcmFyaW8gcXVhdHRybyBuZXd0b24gbWV0cm8uIFNwb3N0YW5kbyBpbCBwb2xvIGRhIHNpbmlzdHJhIGFsIHB1bnRvIG1lZGlvIGkgbW9tZW50aSBkaXZlbnRhbm8gZHVlIHBpw7kgZHVlIGUgaWwgdG90YWxlIG5vbiBjYW1iaWEuIFVsdGltbyBlc2VtcGlvIGRpc3RpbnRvOiBjaWFzY3VuYSBmb3J6YSBjaW5xdWUgbmV3dG9uLCBjZW50b2NpbnF1YW50YSBwaXhlbCwgc3Rlc3NhIHNlcGFyYXppb25lIGR1ZSBtZXRyaTsgcmlzdWx0YW50ZSB6ZXJvIGUgbW9tZW50byBkaWVjaSBuZXd0b24gbWV0cm8uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTgwIiByeD0iMjQiIGZpbGw9IiNmYWY4ZjIiLz48ZyBmaWxsPSIjMTYzMjNmIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgU29tbWEgZGVsbGUgZm9yemUgZSBtb21lbnRvPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MCI+THVuZ2hlenplOiAxMDAgcHgvbS4gRm9yemU6IDMwIHB4L04uPC90ZXh0PjxwYXRoIGQ9Ik0xNjAgMTUwVjM1ME0zNjAgMTUwVjM1MCIgc3Ryb2tlPSIjYjdjN2JmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPjxwYXRoIGQ9Ik0xNjAgMjUwSDM2MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNMTYwIDI1MFYzMTAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zNjAgMjUwVjE5MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMjUwIiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PHRleHQgeD0iNDgiIHk9IjI5MCI+RiA9IDIgTjwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjIxNSI+RiA9IDIgTjwvdGV4dD48dGV4dCB4PSIxMzIiIHk9IjIzNSI+TzwvdGV4dD48cGF0aCBkPSJNMTYwIDM5MEgzNjBNMTYwIDM4MFY0MDBNMzYwIDM4MFY0MDAiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjE1IiB5PSI0MzUiPmQgPSAyIG08L3RleHQ+PHRleHQgeD0iMjgiIHk9IjQ4NSI+Rm9yemU6IOKIkjIgTiArIDIgTiA9IDAgTi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjUzMCI+TW9tZW50byBpbiBPOiAwICsgRmQgPSArNCBOwrdtLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjYxMCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBDYW1iaWFyZSBwb2xvIG5vbiBjYW1iaWEgbGEgY29wcGlhPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2NTUiPkFudGlvcmFyaW8gcG9zaXRpdm8uIE/igLIgw6ggMSBtIGEgZGVzdHJhIGRpIE8uPC90ZXh0PjxwYXRoIGQ9Ik0xNjAgNzcwSDM2MCIgc3Ryb2tlPSIjODE5NjhkIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNMTYwIDc3MFY4MzAiIHN0cm9rZT0iIzE0NjQ3YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zNjAgNzcwVjcxMCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iNzcwIiByPSI1IiBmaWxsPSIjMTYzMjNmIi8+PGNpcmNsZSBjeD0iMjYwIiBjeT0iNzcwIiByPSI2IiBmaWxsPSIjYjQ0YjJjIi8+PHRleHQgeD0iMTM1IiB5PSI3NDUiPk88L3RleHQ+PHRleHQgeD0iMjQyIiB5PSI4MTUiPk/igLI8L3RleHQ+PHRleHQgeD0iMzkyIiB5PSI3MzUiPkYgPSAyIE48L3RleHQ+PHRleHQgeD0iNDgiIHk9IjgxNSI+RiA9IDIgTjwvdGV4dD48cGF0aCBkPSJNMTYwIDg3NUgzNjBNMTYwIDg2NVY4ODVNMjYwIDg2NVY4ODVNMzYwIDg2NVY4ODUiIHN0cm9rZT0iIzgxOTY4ZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTczIiB5PSI5MjAiPjEgbTwvdGV4dD48dGV4dCB4PSIyODUiIHk9IjkyMCI+MSBtPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5NzAiPkluIE/igLI6ICsyIE7Ct20gKyAyIE7Ct20gPSArNCBOwrdtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAxNSI+SWwgY2FtYmlvIGRlbCBwb2xvIG1vbHRpcGxpY2EgbGEgcmlzdWx0YW50ZSB6ZXJvLjwvdGV4dD4KPHRleHQgeD0iMjgiIHk9IjEwOTUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgVW7igJlhbHRyYSBjb3BwaWE6IGNpYXNjdW5hIGZvcnphIDUgTjwvdGV4dD48cGF0aCBkPSJNMTYwIDEzMDBIMzYwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iNSIvPjxwYXRoIGQ9Ik0xNjAgMTMwMFYxNDUwIiBzdHJva2U9IiMxNDY0N2IiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMzYwIDEzMDBWMTE1MCIgc3Ryb2tlPSIjMTQ2NDdiIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iNDgiIHk9IjEzNzUiPkYgPSA1IE48L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIxMjA1Ij5GID0gNSBOPC90ZXh0PjxwYXRoIGQ9Ik0xNjAgMTQ4MEgzNjBNMTYwIDE0NzBWMTQ5ME0zNjAgMTQ3MFYxNDkwIiBzdHJva2U9IiM4MTk2OGQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIxNSIgeT0iMTUyMCI+ZCA9IDIgbTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTU2MCIgZm9udC1zaXplPSIxOCI+UmlzdWx0YW50ZSAwIE47IG1vbWVudG8gMTAgTsK3bS4gU3Rlc3NlIHNjYWxlIGRlaSBwYW5uZWxsaSBwcmVjZWRlbnRpLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,3 +1,54 @@
+## Checkpoint corrente — 960 quesiti e 105 altre attività, 25 novembre 2026
+
+Generazione `debb91ed15d80c101a2c0fa244640b37ad78bfb1f6f70e12e768e0100170de7a`, manifest `36e7878ea400b1e243590d8f22b05948463fc3724775931369e7dcde69c51189`.
+Contabilizzati tutti i 4.606 quesiti e le 385 attività:960 revisioni individuali DRAFT,
+105 attività riesaminate; restano 3.646 quesiti e 280 attività. U1 e U2-01..05 completi
+in bozza. Prossimo ID da consolidare: `u2-force-couple-01`, lotto 065 inU2-06.
+I 128 candidati 065–072 hanno già review indipendente e 384 anteprime con uscita0,
+ma restano fuori dal registro fino al prossimo incremento 1088. I 160 candidati U3-01
+sono assegnati ad autori e verificatori distinti; non equivalgono a revisioni finite.
+
+Le dieci famiglie 055–064 hanno evidenze individuali distinte dall'autore e
+controprove su chiavi, binding, ipotesi, formule, unità e figure. Le 16 nuove lezioni
+012–015 conservano tutte le edizioni storiche. C2-L007v2 esplicita stazionarietà,
+sviluppo completo, dominio Newtoniano e no-slip prima di dedurre la parabola:
+un controesempio laminare non stazionario e il controllo dell'integrale su anelli
+distinguono questi requisiti. Le altre nuove lezioni termiche016/017 ed elettriche 018
+hanno review già salvate, ma non aumentano 105 finché fuori dal registro.
+
+Il collaudo congiunto ha trovato due falsi positivi del correttore: la normalizzazione
+casefold confondeva M/m e V/v in opzioni fisicamente diverse. La selezione effettiva
+ora conserva l'identità dell'opzione; il fallback testuale vale quando non ambiguo.
+RED su tre controprove, GREEN su cinque test e tre test indipendenti, incluso il
+consumer HTTP reale con 10 tentativi sintetici temporanei. Verificate 4.042 selezioni
+su 241 choice originali e 603 registrate. Nessun tentativo reale è stato ricalcolato.
+
+Il nuovo runtime ha richiesto il rendering di tutti i 65 pacchetti: 2.904 casi,
+2.880 dei quesiti e 24 delle otto nuove edizioni di attività, alle tre larghezze.
+Un processo 055 si è bloccato dopo i controlli nella pulizia finale: interrotto e
+registrato NONPASS; il replay dello stesso pacchetto è terminato con 0. Gli altri 64
+sono terminati con 0 nel run congiunto. Evidenza separata in
+`editorial/reviews/browser-case-runtime-20261125.json`; nessun vecchio report rietichettato.
+209 test editoriali e 18 workflow applicativi PASS. Fresh e incrementale hanno puntatori
+identici. Il collaudo comune importa 968 edizioni, ripete senza scritture, conserva
+991 pubblicati, live head e storia, non aggiunge tentativi reali o pubblicazioni.
+L'adattività è provata con fixture private sintetiche, non con apprendimento osservato.
+
+Otto originali conservano problemi espliciti: C1-E003,C1-E008,C1-L002,C1-L003,
+C2-E005,C2-L007,C3-E003,C3-E020. Le otto nuove edizioni restano DRAFT; firme umane 0,
+nuove pubblicazioni 0. Pro 100 non identificato; 199 controlli recuperati restano parziali.
+Backlog completo 3.646 ID; coda storica della sola risoluzione indipendente 3.447 ID.
+
+Canone verificato: PR #359 MERGED su `884c06422a570fc021401285550ad43ab0ecb132`,
+800/89, post-merge 14/14 SUCCESS (corpus 45502678487, Officina 45502678472).
+Il lotto960/105 richiede la propria PR, CI sulla head esatta e postmerge.
+Le sezioni successive sono snapshot precedenti; prevale questo blocco corrente.
+
+Priorità: integrare 960 con tutti i gate; consolidare 1.088 con i 128 finali U2 e le review
+attività già pronte; completare i 160 U3-01 con verifica incrociata; proseguire
+sistematicamente tutti i restanti ID, senza attendere firme umane per l'authoring.
+Pubblicazione e approvazione umana rimangono gate separati.
+
 ## Checkpoint corrente — 800 quesiti e 89 altre attività
 
 Generazione `bdd6171e789ceb7c06961ed7f9501545e818e011723291e5664de613c4c627ed`, manifest `9b90da6f221144ab1875116d230f6c19bca22e6609267b2925fe954265feb9bb`.

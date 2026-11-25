@@ -1,0 +1,1159 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-thermal-basics-016",
+  "records": [
+    {
+      "id": "C3-L01",
+      "sourceSha256": "45fc983887bd650ee8ab45f9482fd00b1823a95a53dc3cc84ded01cbbe064eef",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "closed system may change energy without matter crossing",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "state function change telescopes on closed cycle",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Celsius to kelvin at20degrees",
+          "independentExact": "5863/20",
+          "expectedValue": "5863/20",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "Celsius zero is273.15kelvin",
+          "independentExact": "5463/20",
+          "expectedValue": "5463/20",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "absolute zero Celsius conversion",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "offset cancels exactly in temperature difference",
+          "independentExact": "cf - ci",
+          "expectedValue": "cf - ci",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "one Celsius interval equals one kelvin interval",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe20to35Celsius gives15kelvin difference",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe40C over20C is not absolute temperature ratio2",
+          "independentExact": "6263/5863",
+          "expectedValue": "6263/5863",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probeabsolute200to400kelvin has ratio2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "closed system may change energy without matter crossing": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "state function change telescopes on closed cycle": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "Celsius to kelvin at20degrees": {
+          "[temperature]": "1"
+        },
+        "Celsius zero is273.15kelvin": {
+          "[temperature]": "1"
+        },
+        "absolute zero Celsius conversion": {
+          "[temperature]": "1"
+        },
+        "offset cancels exactly in temperature difference": {
+          "[temperature]": "1"
+        },
+        "one Celsius interval equals one kelvin interval": {
+          "[temperature]": "1"
+        },
+        "probe20to35Celsius gives15kelvin difference": {
+          "[temperature]": "1"
+        },
+        "probe40C over20C is not absolute temperature ratio2": {},
+        "probeabsolute200to400kelvin has ratio2": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. Exact SI offset273.15=5463/20 cancels in final-minus-initial differences. Reviewer probes:20C=5863/20K and35-20C=15K. The absolute ratio for40C versus20C is6263/5863, not2; absolute200to400K has ratio2. State-function differences telescope to zero on a closed cycle. Boundary classifications were read conceptually, not certified by a zero-valued test: closed forbids matter crossing but permits energy transfer; isolated forbids both. Constructed energy change11-7=4J illustrates an allowed closed-system exchange.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Choose the matter/energy boundary first. Closed gas has no matter crossing; isolated additionally has no energy exchange. Unchanged contents alone do not prove isolation. Equilibrium simple gas at fixed composition has definedp,V,T; state-function changes need endpoints. Thermal contact permits heat exchange. Celsius/kelvin offset is exact; ordinary gas absolute temperatures are positive and denominators in ratios nonzero.",
+      "pedagogicalReview": "Boundary selection precedes closed/open/isolated classification and state variables. Distinguishes heat from work and temperature from energy, then teaches exact offset versus temperature differences before ratios. The historical assisted-review flag is ignored as evidence; all blocks were read.",
+      "assetChecksums": {
+        "/figures/C3-confine.svg": "60305e8f10320fd9030f3ac8a7b3a7d7ba25adbff8489be42e864d1e06ff39f4"
+      },
+      "figureReview": "XML/render read:gas inside the dashed boundary, heat input toward the left wall and work output through the piston; environment outside. Caption and labels agree. Arrows show transfer direction, with no assigned energy/force scale. A moving piston boundary can remain closed to matter.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L02",
+      "sourceSha256": "a5e5291a81721079a6c08422baca89b59539532f3a11211ea339353799e95a67",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "kinetic momentum-flux model gives NkT",
+          "independentExact": "N*T*kb",
+          "expectedValue": "N*T*kb",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "moles and SI definitions convert kinetic pressure to nRT",
+          "independentExact": "207861565453831*T*n/25000000000000",
+          "expectedValue": "207861565453831*T*n/25000000000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gas constant exact SI derived product",
+          "independentExact": "207861565453831/25000000000000",
+          "expectedValue": "207861565453831/25000000000000",
+          "unit": "J/mol/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "rounded_tabulated_working_coefficient_not_exact_SI_identity"
+        },
+        {
+          "claim": "printed gas constant is correct rounded working value",
+          "independentExact": "4157/500",
+          "expectedValue": "4157/500",
+          "unit": "J/mol/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "rounded_tabulated_working_coefficient_not_exact_SI_identity"
+        },
+        {
+          "claim": "printed workingR differs from exactSI by quantified amount",
+          "independentExact": "11565453831/25000000000000",
+          "expectedValue": "11565453831/25000000000000",
+          "unit": "J/mol/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "rounded_tabulated_working_coefficient_not_exact_SI_identity"
+        },
+        {
+          "claim": "Pa times cubicmetre equals joule",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "nRT dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "same nR cancels in pV over T",
+          "independentExact": "Rgas*n",
+          "expectedValue": "Rgas*n",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "isothermal half volume doubles pressure",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "constantvolume double absoluteT doubles pressure",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "same volume and T halfmoles halves pressure",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probeabsolute20kPagauge plus100kPa atmosphere",
+          "independentExact": "120000",
+          "expectedValue": "120000",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy volume using explicitly printed workingR",
+          "independentExact": "4157/2000000",
+          "expectedValue": "4157/2000000",
+          "unit": "m**3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy working model volume inlitres",
+          "independentExact": "4157/2000",
+          "expectedValue": "4157/2000",
+          "unit": "L",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "source isotherm rectangle products agree",
+          "independentExact": "9828",
+          "expectedValue": "9828",
+          "unit": "pixel**2",
+          "dimension": {
+            "[printing_unit]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_equal_rectangles_without_physical_axis_scale"
+        }
+      ],
+      "dimension": {
+        "kinetic momentum-flux model gives NkT": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "moles and SI definitions convert kinetic pressure to nRT": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "gas constant exact SI derived product": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        },
+        "printed gas constant is correct rounded working value": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        },
+        "printed workingR differs from exactSI by quantified amount": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        },
+        "Pa times cubicmetre equals joule": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "nRT dimensions": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "same nR cancels in pV over T": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "isothermal half volume doubles pressure": {},
+        "constantvolume double absoluteT doubles pressure": {},
+        "same volume and T halfmoles halves pressure": {},
+        "probeabsolute20kPagauge plus100kPa atmosphere": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "toy volume using explicitly printed workingR": {
+          "[length]": "3"
+        },
+        "toy working model volume inlitres": {
+          "[length]": "3"
+        },
+        "source isotherm rectangle products agree": {
+          "[printing_unit]": "2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Momentum-flux pressure with isotropic translational energy givespV=NkT, thenN=nNA givesnRT. PrintedR8.314=4157/500 is a rounded tabulated working coefficient, not exactSI. NA*kB=207861565453831/25000000000000; rounding to0.001 gives8.314, with explicit nonzero gap11565453831/25000000000000. No source calculation demands precision beyond the printed coefficient. Reviewer probe:n1/10mol,T250K,p100000Pa gives4157/2000000m³=4157/2000L using that workingR, with no hidden rounding of the computed result. Two-state ratios cancelnR only for fixed gas amount; leaks change n. The source SVG rectangles78*126=234*42=9828px² check constantpV without inventing physical axis scales.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Classical dilute ideal gas, equilibrium states, positive absoluteT,V,n and absolute pressure. Fixed quantity/composition is required for two-state ratios; otherwise change n explicitly. The source excludes molecular size/interactions and warns about condensation. PrintedR is the conventional rounded working value; no exactSI or higher-precision numerical result is claimed. Exact arithmetic within an assigned rounded coefficient is distinguished from physical constant exactness. Gauge pressure needs the atmospheric contribution.",
+      "pedagogicalReview": "Absolute variables and SI units precede two-state ratios; n is held constant only where justified. Explicit manometer warning and ideal-gas limits. The tabulated constant is checked at working precision without silently equating it to exactSI. No false computed rounded identity or calculator requirement.",
+      "assetChecksums": {
+        "/figures/C3-isoterma.svg": "f2b86e9001fe906ef43b1f6b54c3af3908e51e2ea3b3bdf9930aeafda5c00e47"
+      },
+      "figureReview": "XML/render read:origin(72,211),A(150,85),B(306,169). Rectangles78*126 and234*42 both have area9828px². All119 curve vertices approximatey=211-9828/(x-72), maximum vertical rounding0.05px. No physicalp/V calibration assigned; correct fixed-n isotherm and equal products.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L03",
+      "sourceSha256": "1201fe443d15dbdc0b64d6a62d1376f68d429812aa29e76530c6b56324e1e5c3",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "constant heatcapacity integral givesCdeltaT",
+          "independentExact": "c*cf*m - c*ci*m",
+          "expectedValue": "c*m*(cf - ci)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "specific heatcapacity is totalcapacity overmass",
+          "independentExact": "c",
+          "expectedValue": "c",
+          "unit": "J/kg/K",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "heatcapacity times deltaT dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "specificcapacity units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J/kg/K",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probehalfkg withc400 hasC200",
+          "independentExact": "200",
+          "expectedValue": "200",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probecooling10kelvin givesnegative2000J",
+          "independentExact": "-2000",
+          "expectedValue": "-2000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "calorimeter final temperature from complete balance",
+          "independentExact": "(C1*Th + C2*Tc)/(C1 + C2)",
+          "expectedValue": "(C1*Th + C2*Tc)/(C1 + C2)",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "final abovecold forpositive capacities andhot-cold delta",
+          "independentExact": "-Tc + (C1*(Tc + delta) + C2*Tc)/(C1 + C2)",
+          "expectedValue": "C1*delta/(C1 + C2)",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "final belowhot forpositive capacities andhot-cold delta",
+          "independentExact": "Tc + delta - (C1*(Tc + delta) + C2*Tc)/(C1 + C2)",
+          "expectedValue": "C2*delta/(C1 + C2)",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toyC200at80C andC100at20C give60C",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "degC",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy hot minus4000J cold plus4000J",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toyincludecontainerC100at20C gives50C",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "degC",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constantvolume heat equalschangeinternalenergy",
+          "independentExact": "Cv*delta*n",
+          "expectedValue": "Cv*delta*n",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "constantpressure heat includes expansionwork",
+          "independentExact": "Cv*delta*n + Rgas*delta*n",
+          "expectedValue": "delta*(Cv*n + Rgas*n)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "molarCp minusCv isR foridealgas",
+          "independentExact": "-Cv + (Cv*n + Rgas*n)/n",
+          "expectedValue": "Rgas",
+          "unit": "J/mol/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "molar heatcapacity dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J/mol/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "constant heatcapacity integral givesCdeltaT": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "specific heatcapacity is totalcapacity overmass": {
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "heatcapacity times deltaT dimensions": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "specificcapacity units": {
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "probehalfkg withc400 hasC200": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "probecooling10kelvin givesnegative2000J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "calorimeter final temperature from complete balance": {
+          "[temperature]": "1"
+        },
+        "final abovecold forpositive capacities andhot-cold delta": {
+          "[temperature]": "1"
+        },
+        "final belowhot forpositive capacities andhot-cold delta": {
+          "[temperature]": "1"
+        },
+        "toyC200at80C andC100at20C give60C": {
+          "[temperature]": "1"
+        },
+        "toy hot minus4000J cold plus4000J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toyincludecontainerC100at20C gives50C": {
+          "[temperature]": "1"
+        },
+        "constantvolume heat equalschangeinternalenergy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "constantpressure heat includes expansionwork": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "molarCp minusCv isR foridealgas": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        },
+        "molar heatcapacity dimensions": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. Integrating approximately constantC=mc givesQ=mc(Tf-Ti); cooling with positiveC gives negativeQ. Solve isolatedsumCi(Tf-Ti)=0 as a weighted mean; distances from hot/cold endpoints are positive weighted fractions. Reviewer probes:C200J/K at80C andC100 at20C give60C, exchanges-4000/+4000J. Include aC100 container initially20C and the final temperature becomes50C. For ideal gasU=nCvT andH=U+nRT giveCp-Cv=R;QV=nCvDeltaT andQp=nCpDeltaT use the stated constant-capacity approximation. SampleC, specificc and molarCp/Cv have distinct units.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Heat transfer is caused by temperature difference; capacity depends on material, amount and path. Positive capacities approximately constant over the interval, with no phase transition. The ideal calorimeter neglects work and container capacity explicitly; include the container when relevant. The endpoint range assumes only thermal contact. Ideal-gas molarCp/Cv, fixed composition and onlypV expansion work; finiteDeltaT formulas retain the stated constant-capacity approximation.",
+      "pedagogicalReview": "Distinguishes state temperature from heat transfer, sampleC from specificc and molar capacities. Cooling sign and container inclusion precede calorimetry, with final-temperature range as a check. The differenceCp-Cv is explained through expansion work, not an unlabelled memorized formula.",
+      "assetChecksums": {
+        "/figures/C3-scambi.svg": "5fe72c5b200c4e14ad3db3c88469737cf19a1aca4b1516c9c391b025dc6f9c8f"
+      },
+      "figureReview": "XML/render read:hot body left, cold body right; energy arrow points hot to cold entirely inside the insulating outer box. Qhot+Qcold=0 concerns the combined isolated system; individual exchanges have opposite signs. No numerical capacities or arrow-length energy scale assigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L04",
+      "sourceSha256": "cd25cb01f21086c43a8a332874c5e01dcb10c9062e9d26411387e5d8c3d292a3",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "phaseheat magnitude uses transformedmass",
+          "independentExact": "L*mtrans",
+          "expectedValue": "L*mtrans",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "latent heat dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J/kg",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "three-stage heat balance",
+          "independentExact": "L*m - Ti*cs*m - Tm*cl*m + Tm*cs*m + Ttarget*cl*m",
+          "expectedValue": "L*m + cl*m*(-Tm + Ttarget) + cs*m*(-Ti + Tm)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "coexistence temperature independent ofsuppliedphaseheat",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "K/J",
+          "dimension": {
+            "[temperature]": "1",
+            "[mass]": "-1",
+            "[length]": "-2",
+            "[time]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fractionmelted fromenergy aftersolidwarming",
+          "independentExact": "(E - cs*m*(-Ti + Tm))/(L*m)",
+          "expectedValue": "(E - cs*m*(-Ti + Tm))/(L*m)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy warming fromminus10to0 needs20kJ",
+          "independentExact": "20000",
+          "expectedValue": "20000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy entirefusion requires300kJ",
+          "independentExact": "300000",
+          "expectedValue": "300000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy heatingliquid0to10 needs40kJ",
+          "independentExact": "40000",
+          "expectedValue": "40000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy completepath needs360kJ",
+          "independentExact": "360000",
+          "expectedValue": "360000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toybudget170kJ melts onlyhalfkg afterwarming",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toybudget340kJ endsatplus5Celsius",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "degC",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy500W takes600s for300kJ fusion",
+          "independentExact": "600",
+          "expectedValue": "600",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constantpower suppliedheat linearintime",
+          "independentExact": "P*duration",
+          "expectedValue": "P*duration",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toyfreezinghalfkg releases150kJ",
+          "independentExact": "-150000",
+          "expectedValue": "-150000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "source plateau has equal ordinate endpoints",
+          "independentExact": "125",
+          "expectedValue": "125",
+          "unit": "pixel",
+          "dimension": {
+            "[printing_unit]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_phase_coexistence_not_numeric_material_data"
+        }
+      ],
+      "dimension": {
+        "phaseheat magnitude uses transformedmass": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "latent heat dimensions": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "three-stage heat balance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "coexistence temperature independent ofsuppliedphaseheat": {
+          "[temperature]": "1",
+          "[mass]": "-1",
+          "[length]": "-2",
+          "[time]": "2"
+        },
+        "fractionmelted fromenergy aftersolidwarming": {},
+        "toy warming fromminus10to0 needs20kJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy entirefusion requires300kJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy heatingliquid0to10 needs40kJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy completepath needs360kJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toybudget170kJ melts onlyhalfkg afterwarming": {
+          "[mass]": "1"
+        },
+        "toybudget340kJ endsatplus5Celsius": {
+          "[temperature]": "1"
+        },
+        "toy500W takes600s for300kJ fusion": {
+          "[time]": "1"
+        },
+        "constantpower suppliedheat linearintime": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toyfreezinghalfkg releases150kJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "source plateau has equal ordinate endpoints": {
+          "[printing_unit]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. Phase heat magnitude uses transformed mass times positiveL; freezing/condensation reverse the system-heat sign. Integrate sensible heating separately before and after melting, and addmL. Reviewer toy coefficients:m1kg,cs2000,cl4000J/kg/K,L300000J/kg,Tm0C,Ti-10C are assigned illustrative values, not precise water data. Stages20kJ+300kJ+40kJ need360kJ to reach10C. A170kJ budget warms then melts only1/2kg and ends atTm;340kJ ends at5C. Heat input500W needs600s for300kJ fusion. Evaporation cooling is conditional, not guaranteed when external heat compensates.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Pure ice/water near equilibrium at assigned atmospheric pressure, melting near0C and plateau while both phases remain. Positive latentL depends on the phase process and pressure; only transformed mass counts. Full three-stage expression requires complete melting and final liquid aboveTm. Otherwise solve phase fraction or earlier stage. Constant supplied-heat power makes heat linear in time. Evaporation may cool the residue if energy loss is not externally compensated.",
+      "pedagogicalReview": "Checks phase fraction before final temperature. Plateau energy changes phase rather than temperature; signs, transformed mass and separate heating stages are explicit. Evaporation below boiling and possible cooling are qualified. Exact reviewer budgets test the domain of the full-melt expression.",
+      "assetChecksums": {
+        "/figures/C3-fasi.svg": "59316774d57a882676062fc86650c6a080c6aebda3180da2e5aaf83fc6940828"
+      },
+      "figureReview": "XML/render read:T vertical, Q horizontal; solid warming, horizontal coexistence segment(196,125)to(364,125), then liquid warming. Tfusion label matches the plateau. No numerical heat-capacity/latent calibration or literal Celsius-zero baseline assigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "de62c2bbe57f9330ffa050eb34285c0cbd15945afa2a980ddb6195f8483aba14",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C3.json",
+  "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

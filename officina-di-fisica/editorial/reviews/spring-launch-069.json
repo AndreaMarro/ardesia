@@ -1,0 +1,473 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-spring-launch-01",
+      "sourceSha256": "d85f22f5b15faf8ce3b620eae129419d71514b03669d99908c2542811676a0e0",
+      "candidateSha256": "cab2dc78354b89fee6b97519ce937fab72f18508fe6c966a865edf3ccc9ca785",
+      "reviewedSignature": "70c6148377354e5a8cc85981892edb7799cda77354865522e079b3b1f0af04ef",
+      "assetChecksums": {
+        "spring-launch-progressive.svg": "692b6aac0bc3377609711e354271351ec4da20103ddc129e4fcd4571f8ac973a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Forza reale durante corsa s:k(ℓ−s),integrale0→ℓ=kℓ²/2=1J. Quota invariata,normale/peso senza lavoro,supportofisso senza lavoro. KfinalmV²/2=1J con m2→V²1→V1m/s.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "2m/s richiede4J;forzainizialecostanteperℓdarebbe2Jerrati,invecedellareaforza–spostamento1J.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Forza reale durante corsa s:k(ℓ−s),integrale0→ℓ=kℓ²/2=1J. Quota invariata,normale/peso senza lavoro,supportofisso senza lavoro. KfinalmV²/2=1J con m2→V²1→V1m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-02",
+      "sourceSha256": "876d809eb07c11c691c163d0bd4e01fae333113161d4e44a470b69efa3b6ee21",
+      "candidateSha256": "e37b7d32b53987aacb176e847b042117735abef81f6bf17a86bdf6b8495045d5",
+      "reviewedSignature": "4b9e7b177a381f7429ae962528797df14a6a9ad621507d42db91f30db8a0c169",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "kℓ²/m ha N·m/kg=m²/s²;radice→m/s,non energia o durata.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "mlunghezza,sdurata,Nforza,Jenergia;solo m/s rapidità.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. kℓ²/m ha N·m/kg=m²/s²;radice→m/s,non energia o durata.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-03",
+      "sourceSha256": "8d8e15bf5381d13de222699d15925858459acb5176b7542146ba28a6bacff2b8",
+      "candidateSha256": "7857613963512fb9a49dd96977d8a5fb5f6665f5746b28ab271fa5f65fffb5f6",
+      "reviewedSignature": "ec442eecb985a49d0f0958e6c849d6cc654bf2ac9d7d0e301d8ca9145c91488f",
+      "assetChecksums": {
+        "spring-launch-progressive.svg": "692b6aac0bc3377609711e354271351ec4da20103ddc129e4fcd4571f8ac973a"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "V=ℓ√(k/m)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Due mezzi si cancellano:V²=kℓ²/m. ℓ>0→V=ℓ√(k/m),positivo; kℓ/m invece accelerazione iniziale.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Doppio/metà fallisconoenergia;negativo nonrapidità;kℓ/m accelerazione,non velocità.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Due mezzi si cancellano:V²=kℓ²/m. ℓ>0→V=ℓ√(k/m),positivo; kℓ/m invece accelerazione iniziale.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-04",
+      "sourceSha256": "47d218a32178bcb84356d0e9e7a1e0bd2b2fd3141fc92e4749eb2921dc51f9c4",
+      "candidateSha256": "8b51c8ee7fa78d286cce9192ac6d6f97c705264c9657f2e5261885d4bb26c163",
+      "reviewedSignature": "c2a9743c31ce17cfbf076f79b149198295cbcd26a21f4d3a1153d61d70774e21",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 1 a 1/2 m/s",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Compressionsame1m,energia1J. m2→8kg→V²1→1/4m²/s²,quindiV1→1/2m/s.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "1/4salta radice,2effettoinverso,1ignoranuovamassa,zeroimpossibileaenergia positiva/massa finita.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Compressionsame1m,energia1J. m2→8kg→V²1→1/4m²/s²,quindiV1→1/2m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-05",
+      "sourceSha256": "c745113e18b48d458db623e964dca7eb7223115607ea134d196db0e95fb6e55e",
+      "candidateSha256": "7950be7c559e63acac3e296d93acd21463dd66cc25a8e25c8c34fde4154227b0",
+      "reviewedSignature": "a81084f021cfb0c5704bff678c10855817c2456300972322a758b9814fd32f81",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=kℓ²/V²=2J/(1m²/s²)=2kg; controlloK1J.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Quadratimancanti rompono unità;energia cinetica con2kgvalida1J.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=kℓ²/V²=2J/(1m²/s²)=2kg; controlloK1J.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-06",
+      "sourceSha256": "0a54f612a10422eaebface45232e30611033afd256a85bb455fb067e8f874977",
+      "candidateSha256": "a01bdc880d9f11328564fc54640bcece15cbb35624f9326d441df8cb369ae473",
+      "reviewedSignature": "b3ae4f1ebc9ea5e1dd3bb72353cd55dbd8402d586e054f80b75911828f9d16d9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "ℓ²=mV²/k=1m²,radici±1m;solo+1compressionepositiva,noncoordinataconsegno.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "−1modulonegativo,1m²nonlunghezza,zero nonmisuraV1.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ²=mV²/k=1m²,radici±1m;solo+1compressionepositiva,noncoordinataconsegno.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-07",
+      "sourceSha256": "116347ba2f29c22daee272a584da52941891871c23d982c628e22f13d025f164",
+      "candidateSha256": "ca58b9eb78b77f0c56a70570061d9ef66b00cda19024fa7e232aa592d6dfe51b",
+      "reviewedSignature": "63c997239eb884d26c6ca5b958f69514b5f30a6e5586ad18d729cd157dfc6885",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "ℓ1→2,m2→energia1→4J,V1→2m/s,rapporto2;rapportoenergie4distinto.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "4energie nonrapidità;1/2reciproco;1ignora;−2 impossibilepermoduli.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ℓ1→2,m2→energia1→4J,V1→2m/s,rapporto2;rapportoenergie4distinto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-08",
+      "sourceSha256": "73a847c5a4f167c5788f62d6c435ba827d08762972fe192f9619b53b629b4514",
+      "candidateSha256": "ca8e23fc591956f878c6023e34eae6598cbb854c1d6d690eac9c698d5aa8dd0e",
+      "reviewedSignature": "ffb7b7d049ec90e700497ea8cae56a33d7734093e1c829908ad4d817d2f72871",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Vcorretto1m/s,proposta2→scarto+1m/s. Proposta richiederebbe4J,non1.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "−1ordineinverso,2proposta,0accetta,1/2doppia metà.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Vcorretto1m/s,proposta2→scarto+1m/s. Proposta richiederebbe4J,non1.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-09",
+      "sourceSha256": "3b61d8d9a79342a1a40a96b154add720b0b5a6f61be442041137dea5754e217a",
+      "candidateSha256": "08f1927143938fa1a2c232907615cdd0bc5c8de3a732a49feb976e41aed15e75",
+      "reviewedSignature": "f4043a9f5130176470ce0b224508638fc381aed165e8e9fcde13a325f1daa8b3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m=kℓ²/V²",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "V²=kℓ²/m→mV²=kℓ²→m=kℓ²/V²,V>0;unitàkg,nessunmezzo residuo.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "kℓ/V nonmassa,reciprocoinversomassa,mezzo/doppio spuri perché mezzipresenti inentrambi imembri.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V²=kℓ²/m→mV²=kℓ²→m=kℓ²/V²,V>0;unitàkg,nessunmezzo residuo.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-10",
+      "sourceSha256": "8995d8d833e3063bf4b339d3cd0dc6cdb2f101cf3425c75de59ad6225d9fe5b3",
+      "candidateSha256": "64ce8bece4f4f642ec5a1822b98d3f2a22b4c2cbb2886c9e9bec348fa4a2ae77",
+      "reviewedSignature": "4361f699ab588c5e98dab095300a2709e3ca127b88e97ab8611985783d0b4b84",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₂ / √κ₁",
+      "dimension": {},
+      "manualArithmetic": "V_B/V_A=κ2/√κ1 con k comune;perκ1=4,κ2=2 rapporto1 eenergia proporzionaleamassa.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Prodotto cresceconmassaerratamente;κ2/κ1dimenticaradice;reciproco invertestati;κ2²/κ1quadratorapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V_B/V_A=κ2/√κ1 con k comune;perκ1=4,κ2=2 rapporto1 eenergia proporzionaleamassa.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-11",
+      "sourceSha256": "b9c12584a9aa3d27ce456fd7300b25469cc53b0482b09bec9b2ffc8583073ea2",
+      "candidateSha256": "ac7c8160385e325f8d01d3eb73bca4b1f3b5796773e3a24fa6d46e8669d1b972",
+      "reviewedSignature": "12dc6feaceefbb2c5bbb8945091af783842176c3fb80502950449d6ae48592b4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2*sqrt(2)",
+      "dimension": {},
+      "manualArithmetic": "A1m/s;B m1kg,ℓ2m→V²8→V2√2m/s;rapporto2√2esatto,no decimali.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "√2solamassa,2solacompressione,4√2fattore2extra,1/√2massa nelversosbagliato.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A1m/s;B m1kg,ℓ2m→V²8→V2√2m/s;rapporto2√2esatto,no decimali.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-12",
+      "sourceSha256": "2df408958f9a48eec8aa3150156defe4e6a1e69f05ae5afcf9333599d99e86cc",
+      "candidateSha256": "47b40e0ca5f1a2a17e67e43dde83a0c419555eb1e8ea201d1b12d3978378054c",
+      "reviewedSignature": "fca8d012d3cbe5a130f1563457ae4b85a0eff8afb1915c9020cfaa2b4ec5356c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2 + sqrt(2)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media(1+2√2)/2=(1/2+√2)m/s. Ingressi medi3/2kg,3/2m danno√3m/s,distinto senza decimalizzazione.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Somma nonmedia,doppiametà,±1aggiuntisono±1m/s nonderivanodallamedia. √3ingressimedi≠1/2+√2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(1+2√2)/2=(1/2+√2)m/s. Ingressi medi3/2kg,3/2m danno√3m/s,distinto senza decimalizzazione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-13",
+      "sourceSha256": "23ff4ada91aa5ee7dd00a720ede616a87c353e46b0b28c772fc1a6640771d138",
+      "candidateSha256": "814ca1d0c984c5b2f93ba1869346d541efcf0d3baf986f68aade3e1a6f9d5e3b",
+      "reviewedSignature": "10e74e2e9e76d978f5f931348d1162a4476949dee35123d49549a7103b8b59d4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Target2√2V_A,m_B1kg→fattoremassa√2,quindiℓ_B/ℓ_A=(2√2)/√2=2.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "ℓB1dà√2,ℓB4dà4√2;2corretto produce4J eV²8.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Target2√2V_A,m_B1kg→fattoremassa√2,quindiℓ_B/ℓ_A=(2√2)/√2=2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-14",
+      "sourceSha256": "f666fef36911210b3a4e90eb46265500fdc9b3efaa926d519f8646336f210449",
+      "candidateSha256": "4a3417998c411558ddb28b285c89b52b952aed209f9c2d80e0387200256d7771",
+      "reviewedSignature": "f3ed82d10989a3308b851ede6a5cfd3ec899682c54369c4c7cf6a7cbb5843091",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "q=3s/m,S6√2→V2√2,m=kℓ²/V²=8/8=1kg.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Ignoraregain3introducefattore9nelquadratoe1/9nellamassa;1kg ricostruisce lettura6√2.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q=3s/m,S6√2→V2√2,m=kℓ²/V²=8/8=1kg.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-15",
+      "sourceSha256": "419e3f1cd22bcdebeb19d7224f15c46ea1a0ecab80925ee878d8f663f0e35263",
+      "candidateSha256": "19a28ce262022d8e5feb3ea93156c60315d65fbb2fb094852017c0ede3a68ab7",
+      "reviewedSignature": "2f1cfc2beec7c768064a205edb5bda4425d4289860f874b2e08236fcc0e71195",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "ΔS4√2−2=2(2√2−1),ΔV(2√2−1)m/s,nonnullo→q2s/m,offset1. SC2→V1/2,m=2/(1/4)=8kg.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale.",
+      "distractors": "Masse2,4,16,1/2kg dannoS3,1+√2,1+1/√2,5;nessuna2. Offsetprima di gain e quadrato.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. ΔS4√2−2=2(2√2−1),ΔV(2√2−1)m/s,nonnullo→q2s/m,offset1. SC2→V1/2,m=2/(1/4)=8kg.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-spring-launch-16",
+      "sourceSha256": "4e5fbaaa090b6ca3c8409b3d62a4d5e96e0517dd6e9b9611cbf55fd95b60e245",
+      "candidateSha256": "718de7833e853c0a33b1f7bdeeb9ddada3260f6e53afb8b24f097fa802429259",
+      "reviewedSignature": "35b9405ad67e4f31ba4832447b03d4e87ec2db1f4a67bfdb7a2fd54958bdf3bb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "m=cℓ,c2kg/m tra prove,nonmassavariabile durante lancio. V²=(k/c)ℓ con k/c1m/s²;V1→ℓ1m,m2kg,unicalineare.",
+      "physicalAssumptions": "Riferimento inerziale,blocco inizialmente fermo,orizzontale liscio,molla ideale massless k2N/m,estremo fisso senza lavoro,nonattaccata alblocco,regime lineare,compressione positiva. Peso/normale nonlavoro,nessunaperdita;distacco alla lunghezzanaturale. m=(2kg/m)ℓ lega provedistinte,massacostante duranteciascunlancio;ℓ>0consente cancellazione.",
+      "distractors": "0massa ecompressionenulle escluse;negative nonmoduli;ℓ2,m4→V²2non1;massa nonindipendente dopovincolo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=cℓ,c2kg/m tra prove,nonmassavariabile durante lancio. V²=(k/c)ℓ con k/c1m/s²;V1→ℓ1m,m2kg,unicalineare.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "ea876ac0959f00abf8bd07bc277e296e05a185b0a0f7070c8aa28c48d7069c3d",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "5fefc96dc46930732bd8b34d5d7f33d90431984d",
+  "packageSha256": "19d1df7605e417c1ddb4d58938727ab1820c642cb833ad32334c6d4d30399016",
+  "bindingsSha256": "3cf11bc184f722f81e42a5674139f06b5ad5884be777f17298478ce3b7430abe",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-06.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

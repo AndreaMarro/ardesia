@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-thermal-paths-017",
+  "records": [
+    {
+      "id": "C3-L05",
+      "sourceSha256": "e5d6023249016be7b946a4f39d56500a074b24c91a52f6dc83ff270eb593ee8b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "linear steady slab hot endpoint",
+          "independentExact": "Th",
+          "expectedValue": "Th",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "linear steady slab cold endpoint",
+          "independentExact": "Tc",
+          "expectedValue": "Tc",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Fourier gradient gives stated positive conducted power",
+          "independentExact": "-A*lambda*(Tc - Th)/s",
+          "expectedValue": "A*lambda*(-Tc + Th)/s",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "steady heat current constant through slab",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "W/m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "thermal conductivity units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "double thickness halves power",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "double area and thickness leaves power unchanged",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy slab lambda0.5 A2 delta20 s0.1 gives200W",
+          "independentExact": "200",
+          "expectedValue": "200",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "slab10cm converts to0.1m",
+          "independentExact": "1/10",
+          "expectedValue": "1/10",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy buoyancy density contrast can drive natural convection",
+          "independentExact": "1/10",
+          "expectedValue": "1/10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "radiation coefficient gives power units",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "equal absolute temperatures cancel net radiation",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "body twice ambient absoluteT gives15ambient emission units net",
+          "independentExact": "15*A*Tc**4*epsilon*sigma",
+          "expectedValue": "15*A*Tc**4*epsilon*sigma",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "emitted power itself scales by16 on doubled absoluteT",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "arbitrary temperature origin changes fourth power difference",
+          "independentExact": "A*epsilon*sigma*(-4*Tc**3 + 4*Th**3)",
+          "expectedValue": "4*A*epsilon*sigma*(-Tc**3 + Th**3)",
+          "unit": "W/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radiative net power changes sign on swapping temperatures",
+          "independentExact": "A*epsilon*sigma*(Tc**4 - Th**4)",
+          "expectedValue": "-A*epsilon*sigma*(-Tc**4 + Th**4)",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "linear steady slab hot endpoint": {
+          "[temperature]": "1"
+        },
+        "linear steady slab cold endpoint": {
+          "[temperature]": "1"
+        },
+        "Fourier gradient gives stated positive conducted power": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "steady heat current constant through slab": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-3"
+        },
+        "thermal conductivity units": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "double thickness halves power": {},
+        "double area and thickness leaves power unchanged": {},
+        "toy slab lambda0.5 A2 delta20 s0.1 gives200W": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "slab10cm converts to0.1m": {
+          "[length]": "1"
+        },
+        "toy buoyancy density contrast can drive natural convection": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "radiation coefficient gives power units": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "equal absolute temperatures cancel net radiation": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "body twice ambient absoluteT gives15ambient emission units net": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "emitted power itself scales by16 on doubled absoluteT": {},
+        "arbitrary temperature origin changes fourth power difference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[temperature]": "-1"
+        },
+        "radiative net power changes sign on swapping temperatures": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. A linear steady slab profile gives Fourier power-lambda*A*dT/dx=lambda*A(Th-Tc)/s. Double thickness halves power; double area and thickness cancel. Reviewer toy:lambda1/2W/(mK),area2m²,deltaT20K,s1/10m gives200W. Density contrast1000minus990kg/m³ over1L in assignedg10 gives upwardbuoyancy1/10N as a possible natural-convection driver. Radiation uses absolute fourth powers: equalbody/environmentT givesnetzero, doubledbodyT versusunchangedambient gives15ambient emissionunits net, whileemissionalone scales16. Shifting the arbitrary temperature origin changes the expression; Celsius cannot replacekelvin.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "One-dimensional homogeneous slab,positiveconstant/effectiveconductivity,steadyfixedfacetemperatures,negligiblelateral losses,positiveelapsedtime. Th>Tc fixespositiveconductedpower. Naturalconvectionneedsgravityanddensitycontrast;not everyhotparcelnecessarilyrises. Greybodyconstantemissivity[0,1] inlargeisothermalenclosure,absolute temperatures,netoutward sign. Absorption/emissionmaybothnonzerowhilenetzero. Electromagnetictransportdoesnotneedmaterialmedium.",
+      "pedagogicalReview": "ConditionsprecedeFourierlaw,distinguishessteadytemperaturefromzeroheatflow andforcedfromnaturalconvection. Grey-enclosureconditionandabsoluteTprecederadiationformula;netbalance andorigin-dependencewarningarecorrect.",
+      "assetChecksums": {
+        "/figures/C3-parete.svg": "c7241066dc2e892527868cecb8fa7cbb1c14a2771b080d6c17b3edaf2ed4346f"
+      },
+      "figureReview": "XML/renderread:hotleftface,coldrightface,energyarrowrightwardthroughslab;thicknesssmeasuredalongpropagationbetweenfacesx215/420. Steadylegendcorrect. No numericalthermalconductivity/temperature/geometry scaleassigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L06",
+      "sourceSha256": "786a58a1fdd9690ef30134a8b61dc46dbe24afe66933bad555853c50c173c727",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "microscopic kinetic energy excludes coherent translation",
+          "independentExact": "m*u**2",
+          "expectedValue": "m*u**2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "internal translation energy independent of center velocity",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "external constant pressure work from volume integral",
+          "independentExact": "Vf*pext - Vi*pext",
+          "expectedValue": "pext*(Vf - Vi)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "force displacement equals pressure times swept volume",
+          "independentExact": "pext*(Vf - Vi)",
+          "expectedValue": "pext*(Vf - Vi)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual source kPa litre identity",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy expansion2kPa times3L gives6J",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy compression2kPa timesminus3L givesminus6J",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy heat20J and work5J leave deltaU15J",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy adiabatic compression workminus10J increasesU10J",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy positive heat5J with greater work8J still lowersU",
+          "independentExact": "-3",
+          "expectedValue": "-3",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "fixed amount ideal gas equal endpointT giveszero deltaU",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy isothermal nonzero heat and work can cancel deltaU",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "microscopic kinetic energy excludes coherent translation": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "internal translation energy independent of center velocity": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "external constant pressure work from volume integral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "force displacement equals pressure times swept volume": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual source kPa litre identity": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy expansion2kPa times3L gives6J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy compression2kPa timesminus3L givesminus6J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy heat20J and work5J leave deltaU15J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy adiabatic compression workminus10J increasesU10J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy positive heat5J with greater work8J still lowersU": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fixed amount ideal gas equal endpointT giveszero deltaU": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy isothermal nonzero heat and work can cancel deltaU": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical task apart from the printed exact unitidentity1kPa*1L=1J. Decompose two particle velocities drift±thermal to separate coherenttranslation frominternalthermalenergy. Pressurework followsconstantp_ext integral inV, orforcep_ext*A times displacementDeltaV/A. Reviewer probes:2kPa over±3L gives±6J;Q20,W5 givesdeltaU15J;adiabaticcompressionW-10 givesdeltaU+10J. PositiveheatQ5 withwork8 still givesdeltaU-3,soheatinput contribution alone isnot a guaranteeofwarming. FixedcompositionidealgaswithsameendpointT returnsU,even ifnonzeroQ andWcancel.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Closed gas thermodynamic model with internalenergy accounting andnochangesofmacroscopickinetic/potentialenergy. Qpositivein,Wpositiveout,totalworkfirstlaw;subsequentpistonexpressionisexternalpVboundaryworkunderconstantp_ext. p_extisthemechanicalpressureopposingthegasboundary,not anarbitraryinternalbulkpressureinrapidnonequilibrium. Anyadditionalmacroscopicenergy/workmode needs itsownbookkeeping. Fixedamount/compositionidealgasforU(T);quasistaticmechanicalequilibrium requiredforinternalpVpatharea,as explicitlystated.",
+      "pedagogicalReview": "Choosesthegas systemandseparatesinternalfromwhole-bodykineticenergy. Q/Wsignconventionprecedesequation;externalpressureworkandSIunits precedepVarea. Rapidnonequilibriumwarningpreventsassigninganarbitraryuniforminternalpressure. IdealU(T)propertyiscircumscribed.",
+      "assetChecksums": {
+        "/figures/C3-bilancio.svg": "0e2f94b8ca3e6ee11ccd8e3d0cc40d77782dca7a43315db6928fa6259035a815"
+      },
+      "figureReview": "XML/renderread:leftQarrowintobox,rightWarrowoutofbox andDeltaU=Q-Wlabelcorrect. SimilararrowlengthsdonotassignQ=W;onlyreference signs. No numericenergy scale.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L07",
+      "sourceSha256": "54b71deb97e5651a0dfbdd7db4eb6ab02707ef1d9613bdc3b7c2acfcea612d82",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "isochoric volume increment makes boundary work zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "isobaric work is rectangle",
+          "independentExact": "Vf*pext - Vi*pext",
+          "expectedValue": "pext*(Vf - Vi)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "closed ideal isobaric expansion increases temperature",
+          "independentExact": "pext/(Rgas*n)",
+          "expectedValue": "pext/(Rgas*n)",
+          "unit": "K/m**3",
+          "dimension": {
+            "[temperature]": "1",
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "isotherm product is constant nRT",
+          "independentExact": "Rgas*Ti*n",
+          "expectedValue": "Rgas*Ti*n",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversible isothermal doubling work remains exact log",
+          "independentExact": "-Rgas*Ti*n*log(Vi) + Rgas*Ti*n*log(2*Vi)",
+          "expectedValue": "Rgas*Ti*n*log(2)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "adiabatic temperature solves Cv dT plus RT dV overV zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gamma minusone from Cp-Cv relation",
+          "independentExact": "Rgas/Cv",
+          "expectedValue": "Rgas/Cv",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "adiabatic logarithmic pressure slope is minusgamma",
+          "independentExact": "(-Cv - Rgas)/Cv",
+          "expectedValue": "-1 - Rgas/Cv",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "isothermal logarithmic pressure slope is minusone",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversible adiabat pVgamma invariant by derivative",
+          "independentExact": "(1 + Rgas/Cv)/V + V*(-Rgas*Ti*n*(Vi/V)**(Rgas/Cv)/V**2 - Rgas**2*Ti*n*(Vi/V)**(Rgas/Cv)/(Cv*V**2))/(Rgas*Ti*n*(Vi/V)**(Rgas/Cv))",
+          "expectedValue": "0",
+          "unit": "1/m**3",
+          "dimension": {
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy monatomic eightfold expansion temperature quarter",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy same expansion adiabatic pressure one32 versusisothermal one8",
+          "independentExact": "1/32",
+          "expectedValue": "1/32",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy reversibleadiabatic work32kPa1L to1kPa8L",
+          "independentExact": "36",
+          "expectedValue": "36",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "arbitrarily slow dry friction still dissipates positiveFdistance",
+          "independentExact": "distance*friction",
+          "expectedValue": "distance*friction",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_slow_does_not_imply_reversible"
+        }
+      ],
+      "dimension": {
+        "isochoric volume increment makes boundary work zero": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "isobaric work is rectangle": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "closed ideal isobaric expansion increases temperature": {
+          "[temperature]": "1",
+          "[length]": "-3"
+        },
+        "isotherm product is constant nRT": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "reversible isothermal doubling work remains exact log": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "adiabatic temperature solves Cv dT plus RT dV overV zero": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "gamma minusone from Cp-Cv relation": {},
+        "adiabatic logarithmic pressure slope is minusgamma": {},
+        "isothermal logarithmic pressure slope is minusone": {},
+        "reversible adiabat pVgamma invariant by derivative": {
+          "[length]": "-3"
+        },
+        "toy monatomic eightfold expansion temperature quarter": {},
+        "toy same expansion adiabatic pressure one32 versusisothermal one8": {},
+        "toy reversibleadiabatic work32kPa1L to1kPa8L": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "arbitrarily slow dry friction still dissipates positiveFdistance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical calculator exercise. Isochore giveszero boundarywork;isobaricidealexpansionraisesT. Reversibleisotherm integratesnRT/V toexactnRTln2 forvolume doubling;source doesnot demandadecimal log. AdiabaticQ0 andpositiveCv givecooling ifWoutpositive. IntegratingCv*dT+RT*dV/V=0 yieldsTV^(R/Cv) constant andpV^gamma invariant,gamma1+R/Cv>1. Adiabaticlogarithmicslope-gamma issteeperthanisothermal-1. Reviewer toy monatomicgamma5/3,eightfoldV yieldsT/4,p/32 instead ofisothermp/8;32kPa1L to1kPa8L gives36Jwork. FrictionF overdistanceD dissipatesFD even as speedtendszero,so slowalone isnotreversible.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "EquilibriumstatesalongquasistaticpVpaths. Closedfixedcompositionidealgas,positiveT,V,n andpositiveheatcapacities. Reversibleadiabaticpowerlawadditionallyconstantmolarcapacitiesandnodissipation;Q0alone isnot sufficientforpVgamma. Isothermalreversibleexpansionrequirescompensatingheat;rapidpathneednot haveuniforminternalp. Slowmotionwithfrictioncanstillbeirreversible,as sourcenotes. Symbolicln2 is anexactresultofareviewerextension,not ademandeddecimalanswer.",
+      "pedagogicalReview": "Constraintsselectpaths,thenworkandthermalconsequencesfollow. Explicitlydistinguishesquasistaticfromreversiblethroughfriction andqualifiesadiabaticpowerlaw. No numericlogorunassignedtrigonometricsteprequired.",
+      "assetChecksums": {
+        "/figures/C3-percorsi.svg": "3bf54a3478de1a5cc2c30b33268d91d49456b432af41d5df7b0bdd2560edb85f"
+      },
+      "figureReview": "XML/renderread:commonA(167,86),verticalisochore,horizontalisobar,twoexpansioncurvesstartingatA. Atallsharedlaterabscissasadiabaticcurvehaslowerpressurethanisotherm;bothdecreaseandstaypositiveaboveaxis. No numericalgamma/pressure/volume scaleassigned;thecomparisonisqualitative.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-L08",
+      "sourceSha256": "ba1507cbec7061182e0c2e2c8c4a33a3f33cc9293200870a8a0aa017b6761b14",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C3.json",
+      "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "upper pressure expansion work positive coefficient",
+          "independentExact": "Vl*ph - Vs*ph",
+          "expectedValue": "ph*(Vl - Vs)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "lower pressure compression work has opposite sign",
+          "independentExact": "-Vl*pl + Vs*pl",
+          "expectedValue": "-pl*(Vl - Vs)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "clockwise cycle integral equals enclosed rectangle",
+          "independentExact": "(Vl - Vs)*(ph - pl)",
+          "expectedValue": "(Vl - Vs)*(ph - pl)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversed cycle negates net work",
+          "independentExact": "-Vl*ph + Vl*pl + Vs*ph - Vs*pl",
+          "expectedValue": "(Vl - Vs)*(-ph + pl)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "internal energy differences telescope over cycle",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fluid entropy differences telescope over cycle",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy rectangle3minus1kPa and4minus1L gives6J",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy separate expansion9J compressionminus3J",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy heatin10J heatout7J givesnet3J not10J",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy cyclic deltaU zero whennetheat equalsnetwork",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy reservoirs entropy canincrease despitefluidcyclezero",
+          "independentExact": "1/150",
+          "expectedValue": "1/150",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "source drawn rectangle has area246times91",
+          "independentExact": "22386",
+          "expectedValue": "22386",
+          "unit": "pixel**2",
+          "dimension": {
+            "[printing_unit]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_geometry_not_assigned_energy_scale"
+        }
+      ],
+      "dimension": {
+        "upper pressure expansion work positive coefficient": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "lower pressure compression work has opposite sign": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "clockwise cycle integral equals enclosed rectangle": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "reversed cycle negates net work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "internal energy differences telescope over cycle": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fluid entropy differences telescope over cycle": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "toy rectangle3minus1kPa and4minus1L gives6J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy separate expansion9J compressionminus3J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy heatin10J heatout7J givesnet3J not10J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy cyclic deltaU zero whennetheat equalsnetwork": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "toy reservoirs entropy canincrease despitefluidcyclezero": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "source drawn rectangle has area246times91": {
+          "[printing_unit]": "2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No numerical axisvalues assigned. IntegrateupperexpansionpHigh(Vl-Vs) andlowercompression-pLow(Vl-Vs);verticalsegments givezero. Clockwisework is(pressuregap)(volumegap),reversalnegatesit. U andfluidS differences telescope tozero overcycle;thisdoesnot implyzerouniverseentropy. Reviewer toy rectangle3/1kPa and4/1L gives9J-3J=6J. Heat10Jin and7Jout givesnet3J andcyclicwork3J,not10J. Reservoirs600/300K withthoseheats haveentropychange1/150J/K despitefluidSreturning. DrawnSVGarea22386px² hasnoassignedJcalibration.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Closedfluidreturns tosamecompleteequilibriumstate;U andSarestatefunctions,whileheat/workarepathdependent. Quasistaticmechanicallyequilibratedpressurevolume work;simpleclockwiserectanglewithpHigh>pLow andVl>Vs. Netheat meanssignedsum,notonlyabsorbedheat. FluidcycleS0doesnotimplyreversibilityofsystemplusenvironment. Axisscalesneededfornumericalarea;originaldiagramhasnoassignedphysicalscale.",
+      "pedagogicalReview": "Separatesstatefunctionreturnfromnonzerocyclictransfers. Expandsathigherpressurethancompression,soorientedareaandworksigndefined. Netheatnotabsorbedheat,endsnotpath,andscalescheckedbeforemeasurement.",
+      "assetChecksums": {
+        "/figures/C3-ciclo.svg": "84d1b1fb87683ae92240d45760932a7a844a5e01da70037130d703d64690cb03"
+      },
+      "figureReview": "XML/renderread:Aupperleft,Bupperright,Clowerright,Dlowerleft. Toparrowright,rightarrowdown,bottomarrowleft,leftarrowup formclockwisecycle. VerticallegsconstantV,upperlegexpansionandlowerlegcompressioncorrect. Rectangle246x91px;physicalenergycannotbecomputedwithoutp/Vscales.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "aea3bc266e7e8c4e1272c44c43c66a13bd0ecfcc40620c6c409562fade3c11f2",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C3.json",
+  "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

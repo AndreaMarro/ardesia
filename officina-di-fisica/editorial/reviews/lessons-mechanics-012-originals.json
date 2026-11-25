@@ -1,0 +1,1380 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-mechanics-012",
+  "records": [
+    {
+      "id": "C1-L005",
+      "sourceSha256": "b31d059be5483e5b03604a72e1a2cbc0cc85ef37f274ab954231a13ea3ecbe24",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "normal reaction from signed vertical Newton equation",
+          "independentExact": "ay*m + g*m - up",
+          "expectedValue": "ay*m + g*m - up",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "N=mg only for no other vertical force and ay=0",
+          "independentExact": "g*m",
+          "expectedValue": "g*m",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "horizontal force difference divided by mass",
+          "independentExact": "pull - resistance",
+          "expectedValue": "pull - resistance",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "balanced forces give zero acceleration, not zero speed",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "integrate zero acceleration with arbitrary initial speed",
+          "independentExact": "v0",
+          "expectedValue": "v0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Newton unit",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "force per mass acceleration dimension",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe upward-accelerating contact N=2(10+3)",
+          "independentExact": "26",
+          "expectedValue": "26",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe horizontal (10-6)/4",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "third law pair cancels only when both bodies included",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "diagram vertical arrow shaft lengths balanced",
+          "independentExact": "80",
+          "expectedValue": "80",
+          "unit": "pixel",
+          "dimension": {
+            "[printing_unit]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_geometry_not_physical_unit_scale"
+        },
+        {
+          "claim": "diagram horizontal arrow resultant points right",
+          "independentExact": "61",
+          "expectedValue": "61",
+          "unit": "pixel",
+          "dimension": {
+            "[printing_unit]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "read_SVG_geometry_not_physical_unit_scale"
+        }
+      ],
+      "dimension": {
+        "normal reaction from signed vertical Newton equation": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "N=mg only for no other vertical force and ay=0": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "horizontal force difference divided by mass": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "balanced forces give zero acceleration, not zero speed": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "integrate zero acceleration with arbitrary initial speed": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "Newton unit": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "force per mass acceleration dimension": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe upward-accelerating contact N=2(10+3)": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe horizontal (10-6)/4": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "third law pair cancels only when both bodies included": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "diagram vertical arrow shaft lengths balanced": {
+          "[printing_unit]": "1"
+        },
+        "diagram horizontal arrow resultant points right": {
+          "[printing_unit]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise: all source equations and force directions checked. Reviewer probes only: (10-6)N/4kg=1m/s²; N=mg+may-Fup gives 2(10+3)=26N, rather than 20N. Zero resultant integrates to arbitrary constant v0, which may be nonzero. Third-law forces cancel in the combined system; an isolated body receives only its own interaction member.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Classical inertial frame and constant positive mass. Isolate the chosen body and distinguish received forces from forces it exerts. The perpendicular contact normal must satisfy N>=0; N=mg additionally needs zero normal acceleration and no other normal component. Zero net force does not imply zero velocity. For extended static bodies, the source explicitly also requires moment balance.",
+      "pedagogicalReview": "Identifies agents and a one-body force diagram before signed components and equations. Explicitly avoids assuming N=mg or cancelling a third-law pair on one body. Notes that extended equilibrium also needs moment balance. No choice options or hidden numerical calculator step.",
+      "assetChecksums": {
+        "/figures/C1-forze.svg": "23032966207743fa88c6b6c4491a80d13b9da68c1e913bd4ebd8719f610c620a"
+      },
+      "figureReview": "Read XML and rendered original: N upward and mg downward have equal 80px shafts. Rightward traction 140px exceeds leftward friction 79px, consistent with a rightward resultant. Directions and caption agree. No force-per-pixel scale or numerical forces are assigned; only balance and ordering are asserted, without using arrowhead ink as metric data.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-L006",
+      "sourceSha256": "980579f3788f171777b116945d26043a5f8a0ed6322a91ed9a28c7931b23e6b2",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "probe threshold mu_s N = (2/5)80",
+          "independentExact": "32",
+          "expectedValue": "32",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe equilibrium friction opposes applied20N",
+          "independentExact": "-20",
+          "expectedValue": "-20",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe sliding friction magnitude (3/10)80",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe sliding acceleration (40-24)/8",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "friction coefficient dimensionless",
+          "independentExact": "3/10",
+          "expectedValue": "3/10",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Hooke stretched spring restores toward negative x",
+          "independentExact": "-10",
+          "expectedValue": "-10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "Hooke compressed spring restores toward positive x",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "Hooke stiffness dimension",
+          "independentExact": "250",
+          "expectedValue": "250",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gravity divided by test mass",
+          "independentExact": "G*M/r**2",
+          "expectedValue": "G*M/r**2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "doubling center distance quarters g",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gravity constant dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m**3/kg/s**2",
+          "dimension": {
+            "[length]": "3",
+            "[mass]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "force GMm/R2 dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "shell angular antiderivative",
+          "independentExact": "1/sqrt(a**2 - 2*a*r*u + r**2)",
+          "expectedValue": "1/sqrt(a**2 - 2*a*r*u + r**2)",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "interior shell angular integral",
+          "independentExact": "2/a",
+          "expectedValue": "2/a",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "exterior shell angular integral",
+          "independentExact": "2/r",
+          "expectedValue": "2/r",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "interior shell potential independent of r",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "exterior shell inward field",
+          "independentExact": "-G*M/r**2",
+          "expectedValue": "-G*M/r**2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "uniform density enclosed mass from volume integral",
+          "independentExact": "4*pi*r**3*rho/3",
+          "expectedValue": "4*pi*r**3*rho/3",
+          "unit": "kg",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "uniform planet internal field linear in r",
+          "independentExact": "4*pi*G*r*rho/3",
+          "expectedValue": "4*pi*G*r*rho/3",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "uniform planet central field limit",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "uniform planet internal and external boundary agree",
+          "independentExact": "4*pi*G*a*rho/3",
+          "expectedValue": "4*pi*G*a*rho/3",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe static20N is within32N threshold",
+          "independentExact": "|-20|=20<=32;required40>32 cannot be static",
+          "expectedValue": "20<=32<40",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact_threshold_comparison",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "probe threshold mu_s N = (2/5)80": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe equilibrium friction opposes applied20N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe sliding friction magnitude (3/10)80": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe sliding acceleration (40-24)/8": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "friction coefficient dimensionless": {},
+        "Hooke stretched spring restores toward negative x": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "Hooke compressed spring restores toward positive x": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "Hooke stiffness dimension": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "gravity divided by test mass": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "doubling center distance quarters g": {},
+        "gravity constant dimensions": {
+          "[length]": "3",
+          "[mass]": "-1",
+          "[time]": "-2"
+        },
+        "force GMm/R2 dimensions": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "shell angular antiderivative": {
+          "[length]": "-1"
+        },
+        "interior shell angular integral": {
+          "[length]": "-1"
+        },
+        "exterior shell angular integral": {
+          "[length]": "-1"
+        },
+        "interior shell potential independent of r": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "exterior shell inward field": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "uniform density enclosed mass from volume integral": {
+          "[mass]": "1"
+        },
+        "uniform planet internal field linear in r": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "uniform planet central field limit": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "uniform planet internal and external boundary agree": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "probe static20N is within32N threshold": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "No assigned numerical exercise. Reviewer probes: N=80N and mu_s=2/5 give a 32N threshold; a 20N static pull needs -20N friction; 40N exceeds the threshold. If sliding, mu_d=3/10 gives 24N friction and (40-24)/8=2m/s². k=250N/m and x=±1/25m give F=∓10N. Independently integrate the spherical-shell angular kernel: inside, potential -GM/a is constant; outside, -GM/r. Uniform density gives M(r)=4pi*rho*r³/3 and g=4pi*G*rho*r/3, whose center limit is zero. No numerical G or pi evaluation is requested by the source.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Nonnegative dry-friction coefficients. Static friction adapts in the stated initially resting, slow-pull situation and is bounded, rather than universally mu_s*N. Kinetic friction opposes relative sliding; mu_d*N is the explicitly approximate dry-contact model. Hooke law applies in the linear elastic regime, with signed deformation from natural length. Gravity applies to point masses or nonoverlapping spherically symmetric masses, with center distance R. The interior shell result requires spherical symmetry; linear internal g additionally requires uniform density. Local mg assumes approximately uniform g over a small height.",
+      "pedagogicalReview": "Threshold comparison precedes accepting rest, and static inequality is distinguished from the kinetic model. Signed Hooke restoration explains the minus sign. Separates external inverse-square gravity, interior enclosed mass and local uniform g; it does not extrapolate GM/r² through the center. Reviewer exact examples are explicitly labelled as constructed probes.",
+      "assetChecksums": {
+        "/figures/C1-molla.svg": "0a74e505ec7655923b437653802e23302be900f6f2292751d1c56735f41868c1"
+      },
+      "figureReview": "Read XML and rendered original: upper rest and lower extended configurations are offset vertically. Positive extension is rightward from the rest reference; red restoring force is leftward. No numerical stiffness, extension or force scale is declared; schematic arrow placement does not prescribe a point measurement. Caption and restoring direction agree.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-L007",
+      "sourceSha256": "3c1635ae6031ba25c8ed8e4467d54c759b107e0ea4fe4ab1c3d3503908081ede",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "constant force concordant work",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constant force orthogonal work",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constant force opposite work",
+          "independentExact": "-12",
+          "expectedValue": "-12",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "work unit",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "variable spring force work is signed integral",
+          "independentExact": "-k*x**2/2",
+          "expectedValue": "-k*x**2/2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Newton power equals derivative of kinetic energy",
+          "independentExact": "m*vx(t)*Derivative(vx(t), t) + m*vy(t)*Derivative(vy(t), t) + m*vz(t)*Derivative(vz(t), t)",
+          "expectedValue": "m*(2*vx(t)*Derivative(vx(t), t) + 2*vy(t)*Derivative(vy(t), t) + 2*vz(t)*Derivative(vz(t), t))/2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe work-energy final K",
+          "independentExact": "13",
+          "expectedValue": "13",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe exact final speed no decimal radical required",
+          "independentExact": "sqrt(13)",
+          "expectedValue": "sqrt(13)",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "same probe from integrated acceleration",
+          "independentExact": "13",
+          "expectedValue": "13",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "power unit",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "instantaneous power unit F dot v",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe motor work at uniform speed",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe resisting force work at uniform speed",
+          "independentExact": "-60",
+          "expectedValue": "-60",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe total work zero despite individual nonzero work",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "instantaneous power for W(t)=beta t2",
+          "independentExact": "2*beta*t",
+          "expectedValue": "2*beta*t",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "average power for W(t)=beta t2 over0..t",
+          "independentExact": "beta*t",
+          "expectedValue": "beta*t",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "constant force concordant work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "constant force orthogonal work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "constant force opposite work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "work unit": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "variable spring force work is signed integral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "Newton power equals derivative of kinetic energy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "probe work-energy final K": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe exact final speed no decimal radical required": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "same probe from integrated acceleration": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "power unit": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "instantaneous power unit F dot v": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "probe motor work at uniform speed": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe resisting force work at uniform speed": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe total work zero despite individual nonzero work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "instantaneous power for W(t)=beta t2": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "average power for W(t)=beta t2 over0..t": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "The source teaches symbolic relations, with no assigned numerical exercise. Reviewer probes: 4N over 3m at angles 0, pi/2, pi give 12,0,-12J. The spring-force integral gives -kx²/2. Newton F=m*dv/dt dotted with v equals d(mv²/2)/dt. For m=2kg, vi=1m/s, work=12J: Ki=1J, Kf=13J, vf=sqrt(13)m/s exactly; no decimal is required. Uniform motion with motor +10N and resistance -10N at 2m/s for 3s gives individual works ±60J and net zero. W=beta*t² yields instantaneous power 2beta*t and average power beta*t.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Classical point particle, constant mass and inertial frame for the work-kinetic theorem. Constant-force work uses displacement of its application point and angle in [0,pi]; a variable force requires a signed line integral. Total work includes all forces on the chosen body. Instantaneous force power uses velocity of the application point. Average power needs positive elapsed time. Extended-body rotation or internal energy needs expanded system bookkeeping, beyond the stated point-particle theorem.",
+      "pedagogicalReview": "Connects signed projection to work, variable-force area to integration, and total work to DeltaK. Distinguishes average from instantaneous power. Uniform motion with nonzero motor work is explained by including resisting work. The exact radical in a reviewer probe is sufficient; no decimal trigonometric or root evaluation is assigned.",
+      "assetChecksums": {},
+      "figureReview": "No figure blocks in the independently read source. All scalar/vector formulas and explanatory blocks were read.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-L008",
+      "sourceSha256": "c6f724bcee46cc869778a7e3e48a29c18802f42fb756b0f6f073eb1f62793af5",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "uniform gravity potential yields weight",
+          "independentExact": "-g*m",
+          "expectedValue": "-g*m",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "elastic potential yields Hooke restoring force",
+          "independentExact": "-k*x",
+          "expectedValue": "-k*x",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gravity work along straight descent",
+          "independentExact": "g*height*m",
+          "expectedValue": "g*height*m",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gravity work along curved descent",
+          "independentExact": "g*height*m",
+          "expectedValue": "g*height*m",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "common arbitrary potential zero cancels",
+          "independentExact": "-Uf + Ui",
+          "expectedValue": "-Uf + Ui",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "work theorem rearranges to mechanical energy balance",
+          "independentExact": "Wother",
+          "expectedValue": "Wother",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "mechanical energy conserved for zero other work",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "elastic energy even under compression/stretch",
+          "independentExact": "k*x**2/2",
+          "expectedValue": "k*x**2/2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "probe spring energy 200*(1/10)^2/2",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe energy1J into mass1/2kg gives speed2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe fall20J minus friction2J leaves K18J",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe final speed from18J and1kg",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "probe isolated mechanical loss becomes internal gain",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "kinetic energy cannot distinguish opposite velocity",
+          "independentExact": "m*v0**2/2",
+          "expectedValue": "m*v0**2/2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gravity potential dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "elastic potential dimensions",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "uniform gravity potential yields weight": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "elastic potential yields Hooke restoring force": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "gravity work along straight descent": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "gravity work along curved descent": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "common arbitrary potential zero cancels": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "work theorem rearranges to mechanical energy balance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "mechanical energy conserved for zero other work": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "elastic energy even under compression/stretch": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe spring energy 200*(1/10)^2/2": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe energy1J into mass1/2kg gives speed2": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "probe fall20J minus friction2J leaves K18J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "probe final speed from18J and1kg": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "probe isolated mechanical loss becomes internal gain": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "kinetic energy cannot distinguish opposite velocity": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "gravity potential dimensions": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "elastic potential dimensions": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source symbolic balances checked without introducing a numerical requirement. Curves (Ls,H(1-s)) and (Ls,H(1-s²)) give identical gravity work mgH. Differentiating mgz and kx²/2 recovers -mg and -kx. The work theorem with Wcons=Ui-Uf gives Delta(K+U)=Wother; a common potential offset C cancels. Reviewer probes: 200*(1/10)²/2=1J; transferring this to 1/2kg gives 2m/s. A 1kg mass descends 2m with g=10m/s² and friction work -2J: Kf=18J and speed=6m/s. With the stated isolation, the internal gain is 2J. Equal energy for ±v shows that direction is not determined.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "A time-independent conservative interaction permits a potential with a common arbitrary zero. mgz requires uniform g and upward z; elastic energy requires an ideal Hooke spring with x measured from natural length. Mechanical balance includes work of the other forces explicitly. Conversion of mechanical loss into internal energy needs the stated appropriate isolation. Endpoint energy usually determines speed, rather than velocity direction.",
+      "pedagogicalReview": "Progresses from endpoint potential to force-specific expressions and then mechanical balance with other-force work. Distinguishes internal conversion from energy destruction and selects Newton or energy methods based on the requested quantity. Warns that speed is not direction. The path figure is qualitative, with no undeclared measurement exercise.",
+      "assetChecksums": {
+        "/figures/C1-energia.svg": "13899393ff8432b08112f3766b163b4223d5d6f3d3541630b24f5a56faa1d21b"
+      },
+      "figureReview": "Read XML and rendered original: descent from A to B, vertical h marker and dashed B-level zero support dependence on height rather than incline path length. No numeric length scale is declared. The mass icon above the incline is illustrative; no pixel-derived center-of-mass height is asserted. Figure and caption agree with uniform g.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "1763646410d34b6c25b74396e4ffde453d1cd628583f581ecaa562276e061f86",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C1.json",
+  "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

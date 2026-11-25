@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-collision-energy-loss-01",
+      "sourceSha256": "e8bb4f0691f0c25f57e8638a0604a302939893efd1683b08490b5ac5ea8c1a1a",
+      "candidateSha256": "ec0a744a844ca2c3d85a573dcec66baa0c5978d23adbe4f4a97598bf92295a1b",
+      "reviewedSignature": "5e452018df64fb91ab1189ebb1499f3e95bd70a9a65e5be53a32216adef04dd3",
+      "assetChecksums": {
+        "collision-energy-loss-progressive.svg": "c702bfe297d410893014b7ce074705a61c7f6d0cd1a77378d13c67dd8c2248ee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "p_i=mu,p_f=2mV→V=u/2=1m/s. Ki=mu²/2=4J,Kf=(2m)V²/2=2J,E=Ki−Kf=2J>0. ΔK−2J,ΔUint+2J nello stesso sistema chiuso.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "4Jiniziale nonperdita;0confondemomento conK;energiatotaleinternapiùcineticaconservata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. p_i=mu,p_f=2mV→V=u/2=1m/s. Ki=mu²/2=4J,Kf=(2m)V²/2=2J,E=Ki−Kf=2J>0. ΔK−2J,ΔUint+2J nello stesso sistema chiuso.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-02",
+      "sourceSha256": "a3c420cd083c6c6ebdc38d298fccf71ee98c6128f2ba897dfbb25f509e248d92",
+      "candidateSha256": "ea958592b6fa081c3f3c99d844838722478e3253af5fb1ff32b6b3b9e17e2c65",
+      "reviewedSignature": "b33fc851ac1556952ab579b0c707b16eca6dd07f3f0e70219c5720b51ec6891a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "mu² ha kgm²/s²=J. Differenza Ki−Kf mantiene unitàenergia;Epositivo non potenza.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "Nforza,kgm/s quantitàdimoto,m/svelocità,Wpotenza;unicaJenergia.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. mu² ha kgm²/s²=J. Differenza Ki−Kf mantiene unitàenergia;Epositivo non potenza.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-03",
+      "sourceSha256": "987f23a1674477da4bdb179668942f12a190ccc0fd876315b546a24de04f580e",
+      "candidateSha256": "2ba64989b40066aa413f54631a693df180657d17aab6388f8f0f4e1fb936378b",
+      "reviewedSignature": "0bbf8cac43209880994893a5f96681571b21e2bcba532e8c7fe57edf79cab581",
+      "assetChecksums": {
+        "collision-energy-loss-progressive.svg": "c702bfe297d410893014b7ce074705a61c7f6d0cd1a77378d13c67dd8c2248ee"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "E=mu²/4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "V=u/2 da p. Kf=mu²/4,Ki=mu²/2→E=mu²/4=Ki/2;non tutta energia cinetica iniziale scompare dal moto.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "mu²/2tuttacinetica,m u²/8metàulteriore,0noperdita,mu/4momentononenergia.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. V=u/2 da p. Kf=mu²/4,Ki=mu²/2→E=mu²/4=Ki/2;non tutta energia cinetica iniziale scompare dal moto.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-04",
+      "sourceSha256": "7eeb03e203c89396d897f1921a7cc1e2ffd734acbae7aa7ffbbfe6f1fdea74f0",
+      "candidateSha256": "0ed757403e742d1151cfb5d7bdb746b1d9c7beeb40253a67ccc838ee6e1fda53",
+      "reviewedSignature": "74adc3537a0659c629180ed70e88a4722a317aebf5067f0af412adcaadf1e028",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 2 a 4 J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Entrambe lemasse uguali2→4kg,u2:Vcomune1inentrambi,maKi4→8J,Kf2→4J,E2→4J.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E. La massa cambiafra prove perentrambi icorpi,mantengono uguaglianza.",
+      "distractors": "8J KinizialeBnonE;1inverso,2invarianza confondeVuguale conenergiauguale,0incompatibileurtounito conu>0.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Entrambe lemasse uguali2→4kg,u2:Vcomune1inentrambi,maKi4→8J,Kf2→4J,E2→4J.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-05",
+      "sourceSha256": "e1428caf46206f9fa63804349be3b8b764a68ec58ef724401e0a83cf69c7e01e",
+      "candidateSha256": "6d801e1e9470698ee541be56436ec1e4aab4a414681a40c3c0e0c0797df3f2da",
+      "reviewedSignature": "bb11a09388d6431b3449def06b65c3a8a67d5ea5ba7cb18aad2093ad3bb1f304",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=4E/u²=8J/(4m²/s²)=2kg ciascuno;massafinaletotale4kg distinta.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "2E/u²massa1kgfallisceE2;massacongiunta4kg nonquantitàrichiesta;quadratomancanteunitàerrata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=4E/u²=8J/(4m²/s²)=2kg ciascuno;massafinaletotale4kg distinta.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-06",
+      "sourceSha256": "26d81a4c252847746ce726d861a7f33a2692cb1de8735100c6fe679d70fa3984",
+      "candidateSha256": "113264ba2e5e260606d380830cfd9e45eca3b2e65cebb8aebd43b402e9fc5b3c",
+      "reviewedSignature": "367eaa636c49d6ad73d7364b655bdd96136216cc30a05dee3c5440da3cf56916",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "u²=4E/m=4m²/s²;rami±2m/s,solo+2modulo positivo;Vcomune1m/s.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "4valoreu²nonu;−2modulonegativo;direzione inizialegiàconvenzionedichiarata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. u²=4E/m=4m²/s²;rami±2m/s,solo+2modulo positivo;Vcomune1m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-07",
+      "sourceSha256": "266ef924ccd6e77b43fb7a20e341786cd30f013dd08e5a9b670ea2dea2cfe46e",
+      "candidateSha256": "2d7fc6355de0c1410dd00f0cf466368a9a7104f6bf304ed6ff030e4931919309",
+      "reviewedSignature": "d5de2a02f794c69e8cc437378993cef21bc3ae89cbdc8a418d818d7d1f6a9c68",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "m2fissa,u2→4→E2→8J;rapporto4,mentrefrazioneE/Ki resta1/2.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "2lineareinvecequadrato,1/4reciproco,1frazionepersacostante nonvalorecostante,8EBnonrapporto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m2fissa,u2→4→E2→8J;rapporto4,mentrefrazioneE/Ki resta1/2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-08",
+      "sourceSha256": "7c409ee8b3a4eef985105f85b27eb2392071188eb74cdbab314746e69a280e9d",
+      "candidateSha256": "0f84259c9c030a45907fdb046b527afdf44e65081de9969dc8fa1b35574a799d",
+      "reviewedSignature": "cce36be4901692eb777cdeac56708bb372cfbd9f5c7999441fdac2218fefddce",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "CorrettoE2J,proposto4J→scarto+2J. Kfresta2J,non interadiminuzione4.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "−2ordineinverso,4proposta,0accetta,1doppiametà;ΔKnegativa maEpositiva.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. CorrettoE2J,proposto4J→scarto+2J. Kfresta2J,non interadiminuzione4.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-09",
+      "sourceSha256": "3d7f308e45686eabec85bbb2699a02310e374a918a71abe14ffd4e041e6df56c",
+      "candidateSha256": "829b7090952eeb980aa5284015407ffa13e6f951baecbe1677e1127e41de6ae0",
+      "reviewedSignature": "51d6e8260b7c0fca9bf83477675ff621a087844fed8529068ccdc38b7ae73f91",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m=4E/u²",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "E=mu²/4→m=4E/u²,u>0. Quantità richiesta massa diciascun corpo,non gruppo.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "2E/u²inversaKi nonE;E/(4u²)1/16massa,4E/uunitàerrata,reciprocoinversomassa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. E=mu²/4→m=4E/u²,u>0. Quantità richiesta massa diciascun corpo,non gruppo.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-10",
+      "sourceSha256": "ac8c3741eda0f050a8abc40d47765c8595f7119042b6abe928b87d45d07befcc",
+      "candidateSha256": "ec99edf39a283f67900fd7e451c80619d1af0a67d49552992a9682b376640270",
+      "reviewedSignature": "98dd157b3d71a0f0a38221f0aa1b926707c09ec845c0df28ab9d33d48a130c0e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂²",
+      "dimension": {},
+      "manualArithmetic": "m_Bκ1m e u_Bκ2u→E_Bκ1κ2²E_A;ambeduecorpi mantengono uguale massa dentro ciascuna prova.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "κ1κ2dimenticau²,κ1²κ2assegnaquadratoamassa,divisioniinvertonoeffettidiretti.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m_Bκ1m e u_Bκ2u→E_Bκ1κ2²E_A;ambeduecorpi mantengono uguale massa dentro ciascuna prova.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-11",
+      "sourceSha256": "66f3a09eb70450aacf72e2663ddbc39a1b3c3f436b3952ae901f4cbb656f4f4a",
+      "candidateSha256": "ea33aeb6055cfee127c9f678db511da198f48e04101854cd58a58c95962570bc",
+      "reviewedSignature": "97d18999264a03aef35d2b6725e350eae253d8aee0db0e1c7ccff17bd777a09f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "A2J,B4·16/4=16J,rapporto8=2·2².",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "4solou,2solom,16valoreB,1/8reciproco.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A2J,B4·16/4=16J,rapporto8=2·2².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-12",
+      "sourceSha256": "f7103ba2d008c53470aa46ce41bf6091d3f578cc621a57057f4c99054baabec3",
+      "candidateSha256": "50f6a73bfca933f9cdaa3d4941716afffd73654e94081512bef10535ee184d86",
+      "reviewedSignature": "d4a1ee85c59aa7d047a8b4803f02482fc265521bc31c17c317be1b26ce008186",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media(2+16)/2=9J;ingressi medi m3,u3→27/4J,differenza9/4J. Risultati di prove distinte.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "18somma,9/2doppiametà,27/4inputmedi,8metàsoloEB.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(2+16)/2=9J;ingressi medi m3,u3→27/4J,differenza9/4J. Risultati di prove distinte.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-13",
+      "sourceSha256": "fe73091bb3a470501c9a8cf6b60cb354cf6a071a2c42271ff5122dda9f727c13",
+      "candidateSha256": "01f9eebc7ffca6acce3a07b40c73be50c692ad392ce0631ec10d882d4e7acfb7",
+      "reviewedSignature": "52962aa4a0dbf98086266a8fed4a5910597133b73c2602d3b1efbed5337c1d5e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetE_B8·2=16J,m_B4→u_B²4·16/4=16m²/s²,u_B4m/s;rapporto2. Massa dàfattore2,restantefattore4dalu².",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "4rapportou²,8rapportoE,uinvariata→E4Jnon16. Raddoppiouforniscefattore4necessario dopomassadoppia.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetE_B8·2=16J,m_B4→u_B²4·16/4=16m²/s²,u_B4m/s;rapporto2. Massa dàfattore2,restantefattore4dalu².",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-14",
+      "sourceSha256": "79dc7d620fb5120ca456b02510098446069588e4e67463382f8c1f02f140ab22",
+      "candidateSha256": "877ba324d42d8dd504b237127be3536a0b50c10480085caa47d986a7a17739eb",
+      "reviewedSignature": "dba7e0f3963b8086b27829cffc6598dd9853cff0d2a47da6202205936e63bb32",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "q6/2=3J⁻¹,S48→E16J,u4→m4E/u²=64/16=4kg ciascuno.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "S48come48J→m12kg;massacongiunta8kg nonsingola4;calibrazionecorretta restituisce48.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q6/2=3J⁻¹,S48→E16J,u4→m4E/u²=64/16=4kg ciascuno.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-15",
+      "sourceSha256": "0f259363c42f0bafede8c5530433ad8f6caae871a1dd9da270e84d290148c86a",
+      "candidateSha256": "62405c8037dfd7ab414dadb88c8469671ac0125d1f7994a839d6071005f44a7f",
+      "reviewedSignature": "74586630d00b60ef6d4f385211602dc6ea0f8b7b8fbaa87fdd47218edce30b21",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "q(33−5)/(16−2)=28/14=2J⁻¹,offset1. SC9→E4J,u2→m4kg. Massafinaletotale8kg.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E.",
+      "distractors": "m2,3,5,8kgau2→S5,7,11,17;solom4dà9. Offsetnoncancellatodarapportogrezzo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q(33−5)/(16−2)=28/14=2J⁻¹,offset1. SC9→E4J,u2→m4kg. Massafinaletotale8kg.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-collision-energy-loss-16",
+      "sourceSha256": "c6d594e14bfffd20bcb47dcba50fd9b91499dcdbdad64d011a04432c6deffd0b",
+      "candidateSha256": "fcc0efebce5c1b0e357c2cd525608ca19684053025bb8687d6fe43451bf02965",
+      "reviewedSignature": "35624d6ef4a4a691ab073d367cf16bf024ffc946a46c414443ca8887f80a469b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "m=cu,c1kg s/m tra prove→E=cu³/4. u³=4E/c=8m³/s³→u2m/s,m2kg;unicità per cubo strettamente crescente su u>0.",
+      "physicalAssumptions": "Sistema entrambi i corpi,masseuguali m>0 costanti,bersaglioinizialmentefermo,incidente+uconu>0,riferimentoinerziale,classico,urtocompletamenteanelastico. Impulso/lavoroesternitrascurati e nessuna energia esce;E=Ki−Kf>0,ΔK=−E,incrementointerno+E. m=(1kg s/m)u tra prove,cubo positivo,nonmassa chevaria duranteurtostesso.",
+      "distractors": "−2cuboemassanegativi,4→E16J,1→E1/4J,nonradicequadrata;massanonindipendente dalvincolo.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. m=cu,c1kg s/m tra prove→E=cu³/4. u³=4E/c=8m³/s³→u2m/s,m2kg;unicità per cubo strettamente crescente su u>0.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "ef8ffa5cd4cde4f87cb66ee696fc070aefa3cdc605e94accdfe62379677941e3",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "d2d21137991401944e957ff45e811f3733d20a25",
+  "packageSha256": "d9c68570c590102f6d954a01f8974e8397e0013241c3d4a80d521697e4b80724",
+  "bindingsSha256": "e5700ceaf268ba16b65b5f90b5e608b18d62f42ce6615afc54ab388db14584a5",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-06.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

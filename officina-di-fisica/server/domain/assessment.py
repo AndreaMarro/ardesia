@@ -28,6 +28,16 @@ def matches(answer, value):
             )
         except (InvalidOperation, ValueError, TypeError):
             return False
+    if answer["type"] == "choice":
+        # A selected option is an identity: M/m and V/v may denote different
+        # physical quantities. Preserve legacy text normalization only when it
+        # identifies one option unambiguously.
+        options = answer.get("options", [])
+        if value in options:
+            return value == answer["value"]
+        candidates = {option for option in options if normalized(option) == normalized(value)}
+        if candidates:
+            return candidates == {answer["value"]}
     return normalized(value) in {
         normalized(x) for x in [answer["value"], *answer.get("aliases", [])]
     }

@@ -1,0 +1,467 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u2-horizontal-braking-friction-01",
+      "sourceSha256": "f3d26c157698d6aea27ed000fe430e3e4094f05cd117ec46db9156023ef124df",
+      "candidateSha256": "698340e84cd18df3ad565bf876ce1b4ef1147c0b9fd6beea206f807fe1f15f6c",
+      "reviewedSignature": "2872347163f598446ad90518e959420b7317eacf7cf5e7ee1917e4aef66726e0",
+      "assetChecksums": {
+        "horizontal-braking-friction-progressive.svg": "818a2d11ea23c9b2da72363703db5d434c343c8197b7e38a80fd6fad469b27fd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "N=mg,frizione−μmg; a_x−μg=−2m/s². Primozero v_x=v−μgt aT=v/(μg)=1s. Area triangolare vT/2=1m;anche−mv²/2=−μmgD. DopoTsoloattritostaticorichiesto0,nonaccelerazione negativa persistente.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "Non proseguirea_xnegativaoltretT:produrrebbevelocitànegativa senza agente motore. Lo staticorichiesto è0,nonμNsempre.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. N=mg,frizione−μmg; a_x−μg=−2m/s². Primozero v_x=v−μgt aT=v/(μg)=1s. Area triangolare vT/2=1m;anche−mv²/2=−μmgD. DopoTsoloattritostaticorichiesto0,nonaccelerazione negativa persistente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-02",
+      "sourceSha256": "8434e65b644246c56f0188658d97a576ed69aee9b3238942bab16762577e3e57",
+      "candidateSha256": "3ccff0752479a85b2629272bb59e952607dead92c8dd695fb1ace3c883dae442",
+      "reviewedSignature": "06dbc9b399766125a5d39f93f9d2122a7913f7365f461ba6b00baa6f808bb4a2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "v²/g ha lunghezza,μ e2puri. T=v/(μg) ha tempo;v/g anchesso tempo ma nonvaloreTsalvoμ1. D non un intervallo temporale.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "m/svelocità,stempi,Nforza,Jenergia. v/gdimtempo maTè v/(μg),nonv/g ingenerale.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v²/g ha lunghezza,μ e2puri. T=v/(μg) ha tempo;v/g anchesso tempo ma nonvaloreTsalvoμ1. D non un intervallo temporale.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-03",
+      "sourceSha256": "7b5d46369f65f20e41d57dcf639bde182d674901592706b890738eb0bfb876ff",
+      "candidateSha256": "64170a6096587395da32a67479131616e429c9fe31c54f63f4cdced18d55e27c",
+      "reviewedSignature": "5a92f7e096f85fe71c0478eeea90cc555f84ea94dc5c9f07f7e780637bbd16c6",
+      "assetChecksums": {
+        "horizontal-braking-friction-progressive.svg": "818a2d11ea23c9b2da72363703db5d434c343c8197b7e38a80fd6fad469b27fd"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "D=v²/(2μg)",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Segni lavoro eΔK entrambi negativi:−mv²/2=−μmgD→D=v²/(2μg)>0. Validofino primoarresto;massacancella specificamentef∝m.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "Senza2distanzadoppia,4metà,negativa confonde lavoro conlunghezza,v/(μg)tempo. Massacancella perattritosuquestopiano,nonogniresistenza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Segni lavoro eΔK entrambi negativi:−mv²/2=−μmgD→D=v²/(2μg)>0. Validofino primoarresto;massacancella specificamentef∝m.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-04",
+      "sourceSha256": "528598b67c7a90085c7e98b9c49482630ec6dc6ae006f3c2eda630b661f8c9bc",
+      "candidateSha256": "2f7c693893e236eedfe77c622bd39ba91bd31fb3879f39acee98bf0d1e4bc5e2",
+      "reviewedSignature": "5f1f62d9bf703d47a3c9bebf4e2f36410a908a701f0faf4924b97201ca01844e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 1 a 4 m",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "μ1/5fissa,v2→4→D1→4m;Kinizialequadrupla eforzafrenante stessa per stessamassa.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "2seguestessopowerdi v invecev²,1/2inverso,1ignora,0impossibileparametrifinitipositivi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. μ1/5fissa,v2→4→D1→4m;Kinizialequadrupla eforzafrenante stessa per stessamassa.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-05",
+      "sourceSha256": "ca059b9329f2abf035879fa252b3ddeabbe5936a228f65d6a0dfd92ada11babf",
+      "candidateSha256": "1ffafd5418cbac6450c6859a6150680a36832bda58ea63fc1a0a365ee1fb246e",
+      "reviewedSignature": "54d49ff5a7104e01242d37cc79c0f735ec587e0e046b999baeb4eff982ae9281",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "v²=2μgD=4m²/s²;radici±2,solo+2rapidità assegnata;inserita dàD1m.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "4quadratononrapidità,−2nonmodulo;energia fissa modulo maassefissasegno.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v²=2μgD=4m²/s²;radici±2,solo+2rapidità assegnata;inserita dàD1m.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-06",
+      "sourceSha256": "9da3821c6299b57b7584c8c582c6d56277abd976154068e2cb4b92661e38e3de",
+      "candidateSha256": "65a9d7d3bd86302171db43987ee52f7e0ed8f8df11311e460740e53f3ca675fd",
+      "reviewedSignature": "c8e62f5433fd33d3c5f986a890b1e00047c3c73b54adadc712bf0ee13fa640ce",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/5",
+      "dimension": {},
+      "manualArithmetic": "μ=v²/(2gD)=4/20=1/5,puro. Nessunlimiteuniversaleμ≤1 imposto.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "2/5omette2,1/10contadueduevolte,5reciproco,1copiadistanza.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. μ=v²/(2gD)=4/20=1/5,puro. Nessunlimiteuniversaleμ≤1 imposto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-07",
+      "sourceSha256": "5409c80988ddd2122feceb3ae07b58efe67bc277b3088d6f398e73ca7e1d3e32",
+      "candidateSha256": "88a0af9ffdc4efaa316e2ef994fa44c66732a2533b6d0793dc07e615d5426f1f",
+      "reviewedSignature": "de42a124f6f48310e7ddb1e9712cca8e732b0e231f3d4d0546bca32029fca495",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "v2comune,μ1/5→2/5→D1→1/2m,rapporto1/2;forzadoppia assorbela stessa energia inmetàstrada.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "2segueμdirettamente,1ignora,1/4quadratoμindebito,−1/2distanzanegativa.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v2comune,μ1/5→2/5→D1→1/2m,rapporto1/2;forzadoppia assorbela stessa energia inmetàstrada.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-08",
+      "sourceSha256": "0f3acac47664e75c4326d826c4f9c68205ab51f41f344950f54572a45eece803",
+      "candidateSha256": "4dd8e4e70d31c371a49d9c628df752b6114a17df63b63f6ccc71aa8dc9cf555a",
+      "reviewedSignature": "62801dde149f42a5d8f2d198e80384d2eced22b5c01f14b10244b583112bc861",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Dcorretta1m,proposta2→scarto+1m;2mattritodissiperebbeenergia doppia delladisponibile.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "−1ordineinverso,2proposta,0accetta,1/2doppiametà. Modellofinitoprimoarresto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Dcorretta1m,proposta2→scarto+1m;2mattritodissiperebbeenergia doppia delladisponibile.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-09",
+      "sourceSha256": "1ffcabd4aa459a0947dc1936d2c8c2fbea4007e16b60c9c0b10ece8302114c9c",
+      "candidateSha256": "708d9400bff2fa83cdb60dc7ccd11f9a163ec5fd6d05e7754f2658c7dac0f54e",
+      "reviewedSignature": "10b785f8a81896b9ba5d5d111e947241e12dae81d958fcc1b690b60f505228a4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "v=√(2μgD)",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "v=√(2μgD)>0 conμ,g,D>0;quadrato non rapidità,segno assegnato daltesto e nonenergia sola.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "Negativa nonrapidità,doppio/metà falliscono,Dsenza radicetargetvelocitàquadrata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v=√(2μgD)>0 conμ,g,D>0;quadrato non rapidità,segno assegnato daltesto e nonenergia sola.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-10",
+      "sourceSha256": "023d612c5f33c244514a27fa054dbdf580e915b49e1d8594ad9b4e194f9c00b7",
+      "candidateSha256": "96a3760a991b9d9854288e37d7e46d8984acbc6189470e91c61e8bed296cf806",
+      "reviewedSignature": "4b6006544380088c7e6d7eb05610492f7689d53fcc2b67c04b309151f033cd08",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁² / κ₂",
+      "dimension": {},
+      "manualArithmetic": "D_B/D_A=κ1²/κ2:quadratofattorev,dipendenzainversadaμ. Perκ2=κ1²invarianza.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "κ1/κ2mancaquadrato,κ1²κ2effettoμinverso,reciproco invertestati,κ1κ2 entrambeleleggierrate.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. D_B/D_A=κ1²/κ2:quadratofattorev,dipendenzainversadaμ. Perκ2=κ1²invarianza.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-11",
+      "sourceSha256": "fedca07a600f765b1c5fd40b43c750436e71abb3452fab9dee67fc328d5a6bec",
+      "candidateSha256": "f81f5bf9a6a0ae6d704f4bbd51b4f806161c973a49f63faaeff0171fe23d9ec8",
+      "reviewedSignature": "96369ebafbb05a2bdf452aa691001f0bab426ed95e146228dd2f6a8f9ef4abb4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A1m,B16/[2(2/5)10]=2m;rapporto2. Energiainizialequadrupla,forzafrenantedoppia.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "4solov,1/2soloμ,8moltiplicaeffettichevannodivisi.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. A1m,B16/[2(2/5)10]=2m;rapporto2. Energiainizialequadrupla,forzafrenantedoppia.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-12",
+      "sourceSha256": "2c7971408e9e1dee3b752dd347e7f519ac8cb22f1772605e13a56c8f71a48253",
+      "candidateSha256": "a24860029bae0dcd566af21bd47bc0d5b9b003f47432988bfb99f78007fbe1fd",
+      "reviewedSignature": "93feedea8919e890bcf94e8c3b3244f8467a9199d0b768bdaa2394e770f8380c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Media(1+2)/2=3/2m;ingressimediv3,μ3/10danno9/6=3/2anchessi. Nonidentitàgenerale:μ1/5costante,v2e4→media5/2controD(vmedio3)=9/4.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "3somma,3/4doppiametà,1/2metàA,2soloB. Controesempio separato conferma coincidenza nonuniversale.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. Media(1+2)/2=3/2m;ingressimediv3,μ3/10danno9/6=3/2anchessi. Nonidentitàgenerale:μ1/5costante,v2e4→media5/2controD(vmedio3)=9/4.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-13",
+      "sourceSha256": "cf3c0a1e1942d2f1ed933b2c431bba6fe95ded8f2be810c204fae88ae51b03eb",
+      "candidateSha256": "6e9699208823ffea34a03721f2d6ed44bd61e1b591d352e5e936cb7383d87d58",
+      "reviewedSignature": "337b515b53bdfc0370bf4edb15557f09cdb0bef2d96a1d17b373b61121aad966",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "TargetD_B2m,v_B4→μ_B16/(2·10·2)=2/5;rapporto a1/5uguale2.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "μinvariatoD4,quadruploD1;doppioD2richiesto.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. TargetD_B2m,v_B4→μ_B16/(2·10·2)=2/5;rapporto a1/5uguale2.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-14",
+      "sourceSha256": "413c75506913cd38935d88edff7f0db4aabd47ee3b4e40023aa3c1c7b4039499",
+      "candidateSha256": "07fe55f9955aa51c184ca32ef94bb2e76a7329f7a9e29426c2b7b2793902edcd",
+      "reviewedSignature": "519b7bc4b1091c9c71c66f6ac69e5fa6fc6aff94b8a552198a72aaf03e1bea27",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "q3m⁻¹ dalrefD1,S3;S6→D2,μ2/5→v²2μgD16→v4m/s.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "S6nonmetri,16nonrapidità;taratura3/m eprimoradicalequadrato16 danno4.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q3m⁻¹ dalrefD1,S3;S6→D2,μ2/5→v²2μgD16→v4m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-15",
+      "sourceSha256": "7f82a5abf28c2f698c47314623c13a21d6e5fa6195c3b6c6cec77e9f615ed924",
+      "candidateSha256": "70320aadeb06394935b78dd825d5d0701bbc9608322d7a4befbdb821d40bb93e",
+      "reviewedSignature": "5a119d5ad67d196ee29facb30e923b4308a1d6416bbe94f1c551d02fa787d444",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "q(5−3)/(2−1)=2m⁻¹,offset1;S9→D4,μ1/5→v²16→v4m/s.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa.",
+      "distractors": "v2,3,5,8aμ1/5→S3,11/2,27/2,33;solov4dà9. Rapporto letture o radicegrezzaignoranooffset/gain.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. q(5−3)/(2−1)=2m⁻¹,offset1;S9→D4,μ1/5→v²16→v4m/s.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u2-horizontal-braking-friction-16",
+      "sourceSha256": "bcdd850ef56839a17c6ce9b68bd37a2da8cdf63af66a19da758c02ead5fb10e2",
+      "candidateSha256": "ac27d04595d1dcb9cf9921fa30c6153e54cacb374d292a305462ee8d3e60ce59",
+      "reviewedSignature": "1f99c7d57582edf0d9f177585b870edf406f50591d5ba919973ada2ed3265247",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/5",
+      "dimension": {},
+      "manualArithmetic": "v=cμ,c10m/s soltanto tra prove;μcostante dentroogni frenata. D=c²μ/(2g)=(5m)μ;D1→μ1/5,v2. Positivitàμconsentecancellazione,unicitàlineare.",
+      "physicalAssumptions": "Blocco classico m>0costante,orizzontalefisso,inriferimento inerziale,contattomantenuto eaccelerazioneverticalenulla:N=mg. Solo pesonormaleeattrito,secco dinamicoμ>0costante,f_x−μmg nelloscorrimentopositivo. Dfinoalprimoarresto;dopoassenza spinta eattritostaticorichiesto0 consentonoresto,nonproseguimento di a_xnegativa. v=(10m/s)μ tra prove;μcostante durante ciascuna,semplificazioneμ>0 e legge lineare risultante.",
+      "distractors": "2/5→D2,1/10→D1/2,6/5→D6,−4/5violaμ>0. Nonquadraticadopocancellazionelecita;μnonvaria con v(t) nella frenata.",
+      "pedagogicalReview": "Riletti separatamente consegna, tutti i passaggi, hint, feedback e cinque alternative ove presenti; procedura manuale esatta e vincoli espliciti. v=cμ,c10m/s soltanto tra prove;μcostante dentroogni frenata. D=c²μ/(2g)=(5m)μ;D1→μ1/5,v2. Positivitàμconsentecancellazione,unicitàlineare.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_work_integral_or_collision_conservation",
+        "SymPy_inverse_scaling_affine_radicals_and_physical_branches",
+        "Pint_Fraction_exact_SI_dimensions",
+        "separate_per_ID_manual_distractor_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "e12bbf84cd21973d1d22915d1dd15bf0af13e9ac2df66cbdeb64e2efb82f01f0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "d2d21137991401944e957ff45e811f3733d20a25",
+  "packageSha256": "51c942c0cbd0366bcd862795e6ccc5144f253ca75ea82b77ba78d0954386823e",
+  "bindingsSha256": "1291e6647b5fd3000c378723fdae1cacdce8896844271536a85c1d27e60d4c85",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U2-06.json",
+    "reference": "All16original source rows and all16candidate records independently read; full solutions/options/feedback and scientific SVG frozen after separate physical derivation"
+  }
+}

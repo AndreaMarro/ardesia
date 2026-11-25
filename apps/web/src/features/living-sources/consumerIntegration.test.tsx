@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { act, cleanup, render, screen, within } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import { SourceViewer } from "../../components/SourceViewer";
 import { Materials } from "../Materials";
@@ -75,6 +75,8 @@ test("session change invalidates a delayed actor response before a PDF reader ca
   render(<SourceViewer reference={{ resourceId: annotation.id, revisionId: annotation.revisionId,
     contextId: annotation.contextId }} />);
   await screen.findByText("Verifica della sessione…");
+  // Loading can render before the effect reaches fetch; revoke an actual pending request.
+  await waitFor(() => expect(release).toBeTypeOf("function"));
   await act(async () => {
     beginStudySessionCheck();
     release(Response.json(me));

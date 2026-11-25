@@ -1,0 +1,1092 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-density-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7521,
+      "title": "Massa netta divisa per il volume occupato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 1,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Con m=3 kg e V=2 L, quanto vale ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 kg/L",
+          "2/3 kg/L",
+          "6 kg/L",
+          "3 kg/L",
+          "1/2 kg/L"
+        ],
+        "value": "3/2 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità confronta quanta massa occupa ogni unità di volume. Tre chilogrammi distribuiti uniformemente in due litri danno tre mezzi di chilogrammo per litro. Si mantiene la frazione esatta; il volume non è la capacità massima del recipiente, ma quello realmente occupato dal campione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dd440a0eec0196d7b91f4a649f3b07abf4d3e20629fb6abddb96c6e68f2bdace",
+          "text": "Campioni omogenei distinti in recipienti schematici a sezione costante:volumi2 e5L mostrati con altezze80 e200px,scala comune40px/L. Masse3 e4kg rappresentate con barre60 e80px,scala20px/kg. Densità3/2 e4/5kg/L:barre120 e64px alla scala80px per kg/L. Non sono chiamati entrambi acqua;non si presume uguale densità fra campioni né somma automatica dei volumi miscelati."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=m/V"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{3\\,\\mathrm{kg}}{2\\,\\mathrm L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco2/3 avrebbe unità L/kg prima di un’etichetta impropria; sei moltiplica i dati anziché dividerli. Poiché1 L=10⁻³ m³, la stessa densità è1500 kg/m³. Non chiamiamo acqua questo campione: il nome della sostanza non è assegnato dalla formula."
+        }
+      ],
+      "hints": [
+        "Dividi la massa del solo fluido per il suo volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco2/3 avrebbe unità L/kg prima di un’etichetta impropria; sei moltiplica i dati anziché dividerli. Poiché1 L=10⁻³ m³, la stessa densità è1500 kg/m³. Non chiamiamo acqua questo campione: il nome della sostanza non è assegnato dalla formula.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7522,
+      "title": "L’unità di una densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 1,
+      "prompt": "Una densità media è definita da ρ=m/V. Quale unità proposta è dimensionalmente adatta a ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg/L",
+          "kg·L",
+          "L/kg",
+          "kg",
+          "L"
+        ],
+        "value": "kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa sta al numeratore e il volume al denominatore. kg/L è un’unità di densità; convertirla in kg/m³ cambia il valore numerico di un fattore mille ma non la dimensione M/L³. La L maiuscola indica qui il litro, non una lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho]=M/L^3"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm L=10^{-3}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kg/L}=1000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "kg·L è un prodotto, L/kg il volume per massa e kg o L una sola delle due grandezze. Tra queste alternative non c’è un’altra unità dimensionalmente equivalente. Non confondere il litro con il metro: è un volume, non un lato."
+        }
+      ],
+      "hints": [
+        "Riconosci che il litro si converte in metri cubi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg·L è un prodotto, L/kg il volume per massa e kg o L una sola delle due grandezze. Tra queste alternative non c’è un’altra unità dimensionalmente equivalente. Non confondere il litro con il metro: è un volume, non un lato.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7523,
+      "title": "Una definizione, non una legge di peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 1,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Quale formula dà ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ=m/V",
+          "ρ=V/m",
+          "ρ=mV",
+          "ρ=2m/V",
+          "ρ=m/(2V)"
+        ],
+        "value": "ρ=m/V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore conta la massa del campione e il denominatore il volume che occupa. La definizione è ρ=m/V e non contiene g: il peso mg sarebbe una forza e porterebbe a un’altra grandezza. L’omogeneità serve a interpretare la media come densità in ogni porzione del fluido."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dd440a0eec0196d7b91f4a649f3b07abf4d3e20629fb6abddb96c6e68f2bdace",
+          "text": "La densità divide massa per volume:il campione3kg/2L dà3/2kg/L,il campione4kg/5L dà4/5kg/L. Scale indipendenti esplicite per volume,massa e densità. I recipienti sono schematici,a sezione costante per rendere le altezze proporzionali ai litri."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=m/V"
+        },
+        {
+          "type": "text",
+          "text": "V/m è il reciproco e ha unità diverse; mV è un prodotto. Il doppio e la metà cambiano arbitrariamente la massa ricostruita tramite ρV. Per un campione non omogeneo il rapporto totale resterebbe una densità media, ma non identificherebbe necessariamente ogni densità locale."
+        }
+      ],
+      "hints": [
+        "La densità è massa per volume, senza un’accelerazione gravitazionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "V/m è il reciproco e ha unità diverse; mV è un prodotto. Il doppio e la metà cambiano arbitrariamente la massa ricostruita tramite ρV. Per un campione non omogeneo il rapporto totale resterebbe una densità media, ma non identificherebbe necessariamente ogni densità locale.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7524,
+      "title": "Più massa nello stesso volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 1,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A ha m=3 kg e B m=4 kg; entrambi occupano V=2 L. Come cambia ρ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3/2 a 2 kg/L",
+          "Da 3/2 a 3 kg/L",
+          "Resta 3/2 kg/L",
+          "Da 3/2 a 9/8 kg/L",
+          "Diventa zero"
+        ],
+        "value": "Da 3/2 a 2 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume resta due litri. La massa maggiore porta il rapporto da3/2 a4/2=2 kg/L. Questo confronto può descrivere campioni diversi; non afferma che si possa aggiungere massa allo stesso liquido incomprimibile mantenendo identico volume e identico stato."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\frac42\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Tre kg/L richiederebbero6 kg in2 L, non4. Nove ottavi invertirebbe la dipendenza dalla massa. La densità è positiva e non resta invariata quando qui m aumenta mentre V resta fissato."
+        }
+      ],
+      "hints": [
+        "Ricalcola il quoziente con la stessa quantità di litri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre kg/L richiederebbero6 kg in2 L, non4. Nove ottavi invertirebbe la dipendenza dalla massa. La densità è positiva e non resta invariata quando qui m aumenta mentre V resta fissato.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7525,
+      "title": "Dalla densità alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Si conoscono ρ=3/2 kg/L e V=2 L. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la massa per litro per il numero di litri. Il due del volume cancella il denominatore della frazione: m=(3/2)·2=3 kg. Le unità L si cancellano, lasciando massa."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\left(\\frac32\\,\\mathrm{kg/L}\\right)(2\\,\\mathrm L)"
+        },
+        {
+          "type": "formula",
+          "text": " m=3\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Non si divide di nuovo perV: quel rapporto avrebbe unità kg/L². Il dato è densità di massa, non peso per volume, quindi non va diviso per g. La massa del recipiente è già esclusa dai dati e non deve essere aggiunta."
+        }
+      ],
+      "hints": [
+        "Moltiplica la densità per il volume del fluido.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Non si divide di nuovo perV: quel rapporto avrebbe unità kg/L². Il dato è densità di massa, non peso per volume, quindi non va diviso per g. La massa del recipiente è già esclusa dai dati e non deve essere aggiunta.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7526,
+      "title": "Il volume dalla massa netta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Con m=3 kg e ρ=3/2 kg/L, quanto vale V in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione m=ρV dividiamo perρ>0. Tre diviso tre mezzi è tre per due terzi, quindi due litri. Nel rapporto kg/(kg/L) si cancellano i chilogrammi e compare L al numeratore."
+        },
+        {
+          "type": "formula",
+          "text": "V=m/\\rho"
+        },
+        {
+          "type": "formula",
+          "text": " V=3\\cdot\\frac23\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il numero della densità, non quello del volume. Non serve una radice cubica: V è già un volume e non si chiede il lato di un recipiente. Due litri equivalgono a2·10⁻³ m³, senza cambiare il campione."
+        }
+      ],
+      "hints": [
+        "Dividere per una frazione significa moltiplicare per il suo reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il numero della densità, non quello del volume. Non serve una radice cubica: V è già un volume e non si chiede il lato di un recipiente. Due litri equivalgono a2·10⁻³ m³, senza cambiare il campione.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7527,
+      "title": "Stessa massa in un volume maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A usa m=3 kg,V=2 L e B m=3 kg,V=5 L. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "3/5",
+          "1/5",
+          "1"
+        ],
+        "value": "2/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità sono3/2 e3/5 kg/L. Dividendo la seconda per la prima si cancella la massa tre e resta2/5, rapporto inverso dei volumi. Il confronto può richiedere fluidi o stati diversi: non si impone incomprimibilità dello stesso campione in entrambe le misure."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\frac35\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=2/5"
+        },
+        {
+          "type": "text",
+          "text": "Cinque mezzi segueV direttamente;3/5 è la densità B come numero, non il rapporto;1/5 ignora il volume A. Uno manterrebbe la densità senza rispettare i due valori diV assegnati con la stessa massa."
+        }
+      ],
+      "hints": [
+        "Confronta i quozienti completi o usa il rapporto inverso dei volumi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque mezzi segueV direttamente;3/5 è la densità B come numero, non il rapporto;1/5 ignora il volume A. Uno manterrebbe la densità senza rispettare i due valori diV assegnati con la stessa massa.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7528,
+      "title": "Lo scarto di una densità doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Con m=3 kg,V=2 L si propone ρ_proposta=3 kg/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+3/2 kg/L",
+          "−3/2 kg/L",
+          "+3 kg/L",
+          "0 kg/L",
+          "+3/4 kg/L"
+        ],
+        "value": "+3/2 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità corretta è3/2 kg/L. Sottraendola dalla proposta tre otteniamo+3/2 kg/L. La proposta avrebbe attribuito a un solo litro tutta la massa del campione, anche se questo occupa due litri."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\left(3-\\frac32\\right)\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=+\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno inverte l’ordine; tre ripete la proposta; zero la accetta e3/4 divide ancora lo scarto. La differenza mantiene l’unità di densità. Con la proposta, ρV darebbe6 kg invece dei3 assegnati."
+        }
+      ],
+      "hints": [
+        "Trova m/V e sottrailo dal valore proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno inverte l’ordine; tre ripete la proposta; zero la accetta e3/4 divide ancora lo scarto. La differenza mantiene l’unità di densità. Con la proposta, ρV darebbe6 kg invece dei3 assegnati.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7529,
+      "title": "L’inversa per la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Quale formula isola m da ρ=m/V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m=ρV",
+          "m=ρ/V",
+          "m=V/ρ",
+          "m=2ρV",
+          "m=ρV/2"
+        ],
+        "value": "m=ρV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo entrambi i membri perV>0. Il risultato ρV ha unità di massa: l’inversa usa un volume, non un peso o una superficie. Non compare alcuna radice né fattore geometrico aggiuntivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho V=m"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\rho V"
+        },
+        {
+          "type": "text",
+          "text": "ρ/V ha dimensioni massa su volume al quadrato;V/ρ non è una massa. Il doppio e la metà non ricostruiscono la densità assegnata quando si ricalcola m/V. Il volume positivo non è un semplice numero da omettere nelle unità."
+        }
+      ],
+      "hints": [
+        "Elimina il denominatore con una moltiplicazione perV.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ρ/V ha dimensioni massa su volume al quadrato;V/ρ non è una massa. Il doppio e la metà non ricostruiscono la densità assegnata quando si ricalcola m/V. Il volume positivo non è un semplice numero da omettere nelle unità.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7530,
+      "title": "Due scalature del campione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A ha ingressi m,V e B ha m_B=κ₁m,V_B=κ₂V, con fattori positivi. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa scala direttamente la densità e il volume la scala inversamente. Dividendo i due quozienti si cancellano m,V e rimaneκ₁/κ₂. Se lo stesso fluido nello stesso stato viene semplicemente prelevato in quantità diversa, κ₁=κ₂ e la densità resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=m/V"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\frac{\\kappa_1m}{\\kappa_2V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto attribuisce al volume un effetto diretto; il reciproco scambia A eB. Il quadrato conta due volte la massa e la somma darebbe due per prove identiche. Per fattori diversi si stanno confrontando dati che non descrivono una semplice variazione di quantità dello stesso fluido incomprimibile."
+        }
+      ],
+      "hints": [
+        "Confronta massa e volume con i rispettivi fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto attribuisce al volume un effetto diretto; il reciproco scambia A eB. Il quadrato conta due volte la massa e la somma darebbe due per prove identiche. Per fattori diversi si stanno confrontando dati che non descrivono una semplice variazione di quantità dello stesso fluido incomprimibile.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7531,
+      "title": "Entrambi i dati cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A ha m=3 kg,V=2 L e B ha m=4 kg,V=5 L. Quanto vale ρ_B/ρ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/15",
+          "15/8",
+          "4/3",
+          "2/5",
+          "4/5"
+        ],
+        "value": "8/15"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima densità è3/2 kg/L, la seconda4/5 kg/L. Per il rapporto moltiplichiamo4/5 per2/3 e otteniamo8/15. La massa aumenta, ma il volume aumenta in proporzione maggiore, così la densità diminuisce."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_A=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=\\frac45\\cdot\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B/\\rho_A=8/15"
+        },
+        {
+          "type": "text",
+          "text": "Quindici ottavi inverte il confronto;4/3 segue soltanto m e2/5 soltantoV. Quattro quinti è la densità B come numero, non il rapporto delle densità. Le unità uguali si cancellano nel risultato puro."
+        }
+      ],
+      "hints": [
+        "Conserva le due frazioni prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quindici ottavi inverte il confronto;4/3 segue soltanto m e2/5 soltantoV. Quattro quinti è la densità B come numero, non il rapporto delle densità. Le unità uguali si cancellano nel risultato puro.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7532,
+      "title": "Media statistica di densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 2,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A ha m=3 kg,V=2 L e B ha m=4 kg,V=5 L. Qual è la media aritmetica di ρ_A,ρ_B con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "23/20 kg/L",
+          "23/10 kg/L",
+          "23/40 kg/L",
+          "1 kg/L",
+          "7/10 kg/L"
+        ],
+        "value": "23/20 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità sono3/2 e4/5 kg/L. Portiamo entrambe al denominatore dieci:15/10+8/10=23/10. La semisomma è23/20 kg/L. È una media di due misure con uguale peso, non la densità di una miscela fisicamente preparata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\rho=\\frac{3/2+4/5}{2}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\rho=\\frac{23}{20}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "23/10 è la somma,23/40 divide ancora e7/10 è la differenza fra le due densità. Gli ingressi medi m=7/2 kg,V=7/2 L darebbero1 kg/L, diverso da23/20 di3/20 kg/L. Una miscela reale richiederebbe inoltre il suo volume effettivo, non un’additività automatica dei volumi."
+        }
+      ],
+      "hints": [
+        "Somma le due uscite in frazione prima di dimezzare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "23/10 è la somma,23/40 divide ancora e7/10 è la differenza fra le due densità. Gli ingressi medi m=7/2 kg,V=7/2 L darebbero1 kg/L, diverso da23/20 di3/20 kg/L. Una miscela reale richiederebbe inoltre il suo volume effettivo, non un’additività automatica dei volumi.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7533,
+      "title": "Scegliere il volume per una densità obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 3,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. A ha m_A=3 kg,V_A=2 L. Si impone m_B=4 kg e ρ_B=(8/15)ρ_A. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2",
+          "2/5",
+          "8/15",
+          "5",
+          "4/3"
+        ],
+        "value": "5/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è(8/15)(3/2)=4/5 kg/L. Per contenere quattro chilogrammi a questa densità occorrono V_B=m_B/ρ_B=4/(4/5)=5 L. Il rapporto rispetto ai due litri iniziali vale5/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_B=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=m_B/\\rho_B"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=5\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=5/2"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è il volume nuovo in litri, non il rapporto. Due quinti lo inverte;8/15 è il rapporto delle densità e4/3 quello delle masse. Il controllo(4 kg)/(5 L)=4/5 kg/L riproduce il bersaglio con dati positivi."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il volume dalla massa e dalla densità desiderata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è il volume nuovo in litri, non il rapporto. Due quinti lo inverte;8/15 è il rapporto delle densità e4/3 quello delle masse. Il controllo(4 kg)/(5 L)=4/5 kg/L riproduce il bersaglio con dati positivi.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7534,
+      "title": "Tarare prima di ricostruire la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 3,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Un display continuo adimensionale segue S=qρ, con q>0 costante e offset nullo. Il riferimento m=3 kg,V=2 L dà S=9/2. Una prova con V=5 L dà S=12/5. Quanto vale m in kg?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento haρ=3/2 kg/L. Il guadagno è(9/2)/(3/2 kg/L)=3 L/kg. La nuova lettura corrisponde aρ=(12/5)/3=4/5 kg/L. Moltiplicando per cinque litri si ottiene m=4 kg, con cancellazione esatta del cinque."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac45\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " m=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura12/5 come densità darebbe12 kg, includendo il guadagno tre. La taratura ha unità inverse di densità. Il controllo S=3·4/5=12/5 ricostruisce il display, senza trasformare i litri in metri cubi se tutte le unità restano coerenti."
+        }
+      ],
+      "hints": [
+        "Decodifica ρ e poi moltiplicala per il volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura12/5 come densità darebbe12 kg, includendo il guadagno tre. La taratura ha unità inverse di densità. Il controllo S=3·4/5=12/5 ricostruisce il display, senza trasformare i litri in metri cubi se tutte le unità restano coerenti.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7535,
+      "title": "Un offset fra letture frazionarie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 3,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Un display continuo adimensionale segue S=qρ+b, con q>0,b costanti. A: m=3 kg,V=2 L,S=4. B: m=4 kg,V=5 L,S=13/5. C: V=2 L,S=5. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg",
+          "3 kg",
+          "4 kg",
+          "5 kg",
+          "8 kg"
+        ],
+        "value": "4 kg"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità note sono3/2 e4/5 kg/L. Le differenze sonoΔS=−7/5 eΔρ=−7/10 kg/L: il rapporto dàq=2 L/kg, positivo. Dalla provaA segue b=1. C haρ=(5−1)/2=2 kg/L; per due litri la massa è quattro chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{-7/5}{-7/10}\\,\\mathrm{L/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{L/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_C=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "ConV_C=2 L, le masse2,3,5,8 kg darebbero letture3,4,6,9; soltanto4 kg dà5. Le differenze devono avere lo stesso ordine: due segni negativi non rendono negativo il guadagno. Un rapporto delle letture grezze non elimina l’offset."
+        }
+      ],
+      "hints": [
+        "Mantieni lo stesso ordine nelle differenze di lettura e densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ConV_C=2 L, le masse2,3,5,8 kg darebbero letture3,4,6,9; soltanto4 kg dà5. Le differenze devono avere lo stesso ordine: due segni negativi non rendono negativo il guadagno. Un rapporto delle letture grezze non elimina l’offset.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-density-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Massa, volume e densità",
+      "order": 7536,
+      "title": "Una densità già fissata dal vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "density",
+      "difficulty": 3,
+      "prompt": "Si misura un campione omogeneo di fluido con massa netta m>0, escluso il recipiente, e volume V>0. Massa e volume sono riferiti allo stesso stato del campione. ρ=m/V è la densità media, coincidente con quella locale per omogeneità; si richiede in kg/L. Fra prove si possono confrontare fluidi o stati diversi: non si impone una stessa densità quando cambia un solo ingresso. Fra campioni vale m=cV, con c=3/2 kg/L fisso. Si misura inoltreρ=3/2 kg/L. Quante coppie positive(m,V) rispettano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nessuna",
+          "Una",
+          "Due",
+          "Tre",
+          "Infinite"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sostituzione nella definizione dàρ=cV/V=c per qualsiasiV>0. La misura conferma il rapporto imposto ma non determina la quantità di campione. Esistono infinite coppie positive di massa e volume alla stessa densità."
+        },
+        {
+          "type": "formula",
+          "text": "m=cV"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=cV/V"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=c"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Due litri con tre chilogrammi e quattro litri con sei chilogrammi sono esempi distinti, ma il volume può variare in modo continuo. V=0 resta escluso; non si deve annullare anche m per soddisfare il vincolo. La densità è intensiva: lo stesso stato può essere osservato con quantità diverse."
+        }
+      ],
+      "hints": [
+        "Verifica se la misura aggiunge una scala indipendente al rapporto m/V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due litri con tre chilogrammi e quattro litri con sei chilogrammi sono esempi distinti, ma il volume può variare in modo continuo. V=0 resta escluso; non si deve annullare anche m per soddisfare il vincolo. La densità è intensiva: lo stesso stato può essere osservato con quantità diverse.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Densità media e omogeneità",
+        "Massa netta e conversione litro-metro cubo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "dd440a0eec0196d7b91f4a649f3b07abf4d3e20629fb6abddb96c6e68f2bdace",
+      "name": "density-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMxODJkNDIiIGZvbnQtc2l6ZT0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDY0MCAxNDIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0MjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSBkZXNjIj4KPHRpdGxlIGlkPSJ0aXRsZSI+RGVuc2l0w6A6IG1hc3NhIGUgdm9sdW1lIHByaW1hIGRlbCByYXBwb3J0bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkE6IHRyZSBjaGlsb2dyYW1taSBpbiBkdWUgbGl0cmkuIEI6IHF1YXR0cm8gY2hpbG9ncmFtbWkgaW4gY2lucXVlIGxpdHJpLiBBbHRlenplIG90dGFudGEgZSBkdWVjZW50byBwaXhlbCwgcXVhcmFudGEgcGl4ZWwgcGVyIGxpdHJvLiBCYXJyZSBkaXN0aW50ZSBkaSBtYXNzYSBlIGRlbnNpdMOgIGNvbiBzY2FsZSBkaWNoaWFyYXRlLjwvZGVzYz4KCjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQyMCIgZmlsbD0iI2ZmZiIvPgo8dGV4dCBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgeD0iMzIiIHk9IjQ2Ij4xLiBNaXN1cmEgaWwgdm9sdW1lIGRlbCBmbHVpZG88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjgyIj5DYW1waW9uaSBkaXZlcnNpLCBjaWFzY3VubyBvbW9nZW5lby48L3RleHQ+PHRleHQgZm9udC1zaXplPSIxOCIgeD0iMzIiIHk9IjExNiI+UmVjaXBpZW50aSBzY2hlbWF0aWNpIGEgc2V6aW9uZSBjb3N0YW50ZS48L3RleHQ+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI2M2Y1NSIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNMTAwIDE2MFYzOTBIMjQwVjE2ME0zNzAgMTYwVjM5MEg1MTBWMTYwIi8+CjxyZWN0IGZpbGw9IiM4NGM3ZWIiIHg9IjEwMiIgeT0iMzEwIiB3aWR0aD0iMTM2IiBoZWlnaHQ9IjgwIi8+PHJlY3QgZmlsbD0iI2U5YmI3MCIgeD0iMzcyIiB5PSIxOTAiIHdpZHRoPSIxMzYiIGhlaWdodD0iMjAwIi8+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZhN2Q4YSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNODggMzEwSDI1Mk0zNTggMTkwSDUyMiIvPjx0ZXh0IHg9IjEwNSIgeT0iNDMwIj5BOiBWID0gMiBMPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iNDMwIj5COiBWID0gNSBMPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0ODAiPkFsdGV6emU6IDgwIHB4IGUgMjAwIHB4LjwvdGV4dD48dGV4dCBmb250LXNpemU9IjE4IiB4PSIzMiIgeT0iNTE0Ij5TY2FsYSB2b2x1bWV0cmljYSBjb211bmU6IDQwIHB4L0wuPC90ZXh0Pgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM2YTdkOGEiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTMyIDU1Mkg2MDgiLz48dGV4dCBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgeD0iMzIiIHk9IjYwMiI+Mi4gUGVzYSBzb2x0YW50byBpbCBjYW1waW9uZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNjQwIj5MYSBtYXNzYSBkZWwgcmVjaXBpZW50ZSDDqCBnacOgIHNvdHRyYXR0YS48L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSI3MDUiPkE8L3RleHQ+PHJlY3QgZmlsbD0iIzg0YzdlYiIgeD0iMTAwIiB5PSI2NzUiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MiIvPjx0ZXh0IHg9IjE5MiIgeT0iNzA0Ij5tID0gMyBrZzwvdGV4dD48dGV4dCB4PSI1MCIgeT0iNzg1Ij5CPC90ZXh0PjxyZWN0IGZpbGw9IiNlOWJiNzAiIHg9IjEwMCIgeT0iNzU1IiB3aWR0aD0iODAiIGhlaWdodD0iNDIiLz48dGV4dCB4PSIyMTIiIHk9Ijc4NCI+bSA9IDQga2c8L3RleHQ+PHRleHQgZm9udC1zaXplPSIxOCIgeD0iMzIiIHk9Ijg0MiI+U2NhbGEgZGVsbGUgYmFycmUgZGkgbWFzc2E6IDIwIHB4L2tnLjwvdGV4dD4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmE3ZDhhIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0zMiA4ODRINjA4Ii8+PHRleHQgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIHg9IjMyIiB5PSI5MzQiPjMuIERpdmlkaSBtYXNzYSBwZXIgdm9sdW1lPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NzgiPs+BID0gbS9WLCBjb24gdW5pdMOgIGtnL0wuPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTA0MyI+QTwvdGV4dD48cmVjdCBmaWxsPSIjODRjN2ViIiB4PSIxMDAiIHk9IjEwMTMiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDIiLz48dGV4dCB4PSIyNTAiIHk9IjEwNDIiPs+BID0gMy8yIGtnL0w8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjExMjMiPkI8L3RleHQ+PHJlY3QgZmlsbD0iI2U5YmI3MCIgeD0iMTAwIiB5PSIxMDkzIiB3aWR0aD0iNjQiIGhlaWdodD0iNDIiLz48dGV4dCB4PSIxOTYiIHk9IjExMjIiPs+BID0gNC81IGtnL0w8L3RleHQ+PHRleHQgZm9udC1zaXplPSIxOCIgeD0iMzIiIHk9IjExODAiPlNjYWxhIGRpIGRlbnNpdMOgOiA4MCBweCBwZXIga2cvTC48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjQwIj5QacO5IG1hc3NhIG5vbiBpbXBsaWNhIHBpw7kgZGVuc2l0w6A6PC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjc0Ij5pbCB2b2x1bWUgQiBjcmVzY2UgaW4gcHJvcG9yemlvbmUgbWFnZ2lvcmUuPC90ZXh0Pjx0ZXh0IGZvbnQtc2l6ZT0iMTgiIHg9IjMyIiB5PSIxMzMwIj5MZSB0cmUgc2NhbGUgbWlzdXJhbm8gZ3JhbmRlenplIGRpdmVyc2UuPC90ZXh0Pjx0ZXh0IGZvbnQtc2l6ZT0iMTgiIHg9IjMyIiB5PSIxMzY0Ij5OZXNzdW5hIGRlbnNpdMOgIMOoIGF0dHJpYnVpdGEgYWxs4oCZYWNxdWEuPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
