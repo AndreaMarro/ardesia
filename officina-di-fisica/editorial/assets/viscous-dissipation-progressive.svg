@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1720" viewBox="0 0 640 1720" role="img" aria-labelledby="title desc">
+<title id="title">Pressione, energia trasferita e dissipazione</title><desc id="desc">Tre passi: a resistenza due e portata tre il salto di pressione è sei kilopascal e la potenza diciotto watt. Tre gruppi di sei caselle contano diciotto joule in un secondo. Infine il grafico a resistenza fissata due è una parabola con punti due otto, tre diciotto e quattro trentadue nelle unità indicate.</desc>
+<defs><marker id="flow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1720" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27">1. Una caduta mantiene il flusso</text>
+<text x="35" y="95">Pressioni assolute alle due sezioni</text>
+<text x="50" y="155">106 kPa</text><text x="445" y="155">100 kPa</text>
+<rect x="245" y="180" width="150" height="100" rx="12" fill="#f5e9d2" stroke="#79663b" stroke-width="3"/>
+<text x="265" y="235">resistore</text>
+<path d="M75 230H195" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#flow)"/>
+<path d="M425 230H545" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#flow)"/>
+<text x="75" y="325">3 L/s</text><text x="425" y="325">3 L/s</text>
+<text x="35" y="375">Frecce: 40 px/(L/s), lunghezza 120 px</text>
+<text x="35" y="420">R = 2 kPa·s/L; Δp = 6 kPa</text>
+<text x="35" y="465">Schema dell’elemento, non geometria in scala</text>
+<line x1="35" y1="505" x2="605" y2="505" stroke="#bcc6ca"/>
+<text x="35" y="550" font-size="27">2. In un secondo passano tre litri</text>
+<text x="35" y="595">Ogni litro perde 6 J di energia meccanica.</text>
+<text x="35" y="640">Ogni casella vale 1 J: tre gruppi da sei.</text>
+<rect x="100" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="100" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="100" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="125" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="125" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="125" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<text x="100" y="805">1 L</text>
+<rect x="260" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="260" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="260" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="285" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="285" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="285" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<text x="260" y="805">1 L</text>
+<rect x="420" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="420" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="420" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="445" y="690" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="445" y="715" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<rect x="445" y="740" width="25" height="25" fill="#a33430" stroke="#fffdf7" stroke-width="2"/>
+<text x="420" y="805">1 L</text>
+<text x="35" y="860">18 J in 1 s → 18 W dissipati</text>
+<text x="35" y="905">Conversione meccanica in energia interna,</text>
+<text x="35" y="945">non produzione di energia dall’elemento.</text>
+<line x1="35" y1="985" x2="605" y2="985" stroke="#bcc6ca"/>
+<text x="35" y="1030" font-size="27">3. R fissata: una dipendenza quadratica</text>
+<text x="35" y="1075">R = 2 kPa·s/L; numeri: P_d = 2 Q²</text>
+<path d="M100 1500V1100M100 1500H420" fill="none" stroke="#172c3b" stroke-width="2"/>
+<text x="110" y="1135">P_d (W)</text><text x="425" y="1510">Q (L/s)</text>
+<path d="M100 1500Q200 1500 300 1180" fill="none" stroke="#a33430" stroke-width="4"/>
+<path d="M200 1495V1505M250 1495V1505M300 1495V1505M95 1420H105M95 1320H105M95 1180H105" stroke="#172c3b" fill="none"/>
+<circle cx="200" cy="1420" r="6" fill="#155fa0"/><circle cx="250" cy="1320" r="6" fill="#155fa0"/><circle cx="300" cy="1180" r="6" fill="#155fa0"/>
+<text x="78" y="1528">0</text><text x="193" y="1538">2</text><text x="243" y="1538">3</text><text x="293" y="1538">4</text>
+<text x="60" y="1428">8</text><text x="48" y="1328">18</text><text x="48" y="1188">32</text>
+<text x="220" y="1430">(2, 8)</text><text x="275" y="1330">(3, 18)</text><text x="325" y="1190">(4, 32)</text>
+<text x="35" y="1600">Q: 50 px/(L/s); P_d: 10 px/W</text>
+<text x="35" y="1645">Le due origini sono zero.</text>
+<text x="35" y="1690">Non si confrontano lunghezze di unità diverse.</text>
+</g></svg>
