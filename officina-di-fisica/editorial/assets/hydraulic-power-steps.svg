@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1640" viewBox="0 0 640 1640" role="img" aria-labelledby="title desc">
+<title id="title">La pompa aggiunge energia di pressione</title><desc id="desc">Il salto da cento a centodue kilopascal trasferisce due joule per litro. Tre litri al secondo ricevono sei joule al secondo. Un grafico a salto fissato due kilopascal confronta potenze sei e dieci watt per portate tre e cinque litri al secondo.</desc>
+<defs><marker id="flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1640" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Definire il salto della pompa</text>
+<text x="35" y="90">Quota e contributo cinetico invariati</text>
+<rect x="255" y="160" width="110" height="120" rx="15" fill="#f8ead2" stroke="#806a37" stroke-width="3"/>
+<text x="269" y="230">Pompa</text>
+<path d="M75 220H195" fill="none" stroke="#155fa0" stroke-width="5" marker-end="url(#flow)"/><path d="M405 220H525" fill="none" stroke="#155fa0" stroke-width="5" marker-end="url(#flow)"/>
+<text x="65" y="145">100 kPa</text><text x="410" y="145">102 kPa</text>
+<text x="75" y="320">3 L/s</text><text x="425" y="320">3 L/s</text>
+<text x="35" y="370">Pressioni assolute; Δp = 102 − 100 = 2 kPa</text>
+<text x="35" y="410">Scala frecce: 40 px / (L/s)</text>
+<text x="35" y="450">Schema della pompa, geometria non in scala</text>
+<line x1="35" x2="605" y1="485" y2="485" stroke="#b9c4c9"/>
+<text x="35" y="535" font-size="27" font-weight="bold">2. Contare l’energia in un secondo</text>
+<text x="35" y="580">1 kPa · L = 1000 Pa · 0,001 m³ = 1 J</text>
+<text x="35" y="625">Ogni litro riceve 2 J; passano 3 L in 1 s.</text>
+<g fill="#a33430" stroke="#fffdf7" stroke-width="2"><rect x="100" y="665" width="30" height="35"/><rect x="130" y="665" width="30" height="35"/><rect x="160" y="665" width="30" height="35"/><rect x="190" y="665" width="30" height="35"/><rect x="220" y="665" width="30" height="35"/><rect x="250" y="665" width="30" height="35"/></g>
+<text x="335" y="691">6 celle da 1 J</text>
+<text x="35" y="750">Scala energia: 30 px/J, totale 180 px</text>
+<text x="35" y="795">Energia 6 J in 1 s → potenza 6 W</text>
+<text x="35" y="840">La potenza non è l’energia accumulata.</text>
+<line x1="35" x2="605" y1="875" y2="875" stroke="#b9c4c9"/>
+<text x="35" y="925" font-size="27" font-weight="bold">3. A salto fissato: P = Δp Q</text>
+<text x="35" y="965">Qui Δp = 2 kPa per entrambe le prove</text>
+<g fill="none" stroke="#172c3b" stroke-width="2"><path d="M100 1470V1110"/><path d="M100 1470H460"/></g>
+<path d="M100 1470L400 1170" fill="none" stroke="#a33430" stroke-width="4"/>
+<g stroke="#172c3b" stroke-width="2"><path d="M250 1465V1475"/><path d="M350 1465V1475"/><path d="M95 1320H105"/><path d="M95 1220H105"/></g>
+<g fill="#155fa0"><circle cx="250" cy="1320" r="7"/><circle cx="350" cy="1220" r="7"/></g>
+<text x="280" y="1330">A (3, 6)</text><text x="375" y="1220">B (5, 10)</text>
+<text x="65" y="1327">6</text><text x="55" y="1227">10</text><text x="244" y="1508">3</text><text x="344" y="1508">5</text>
+<text x="55" y="1080">P (W)</text><text x="480" y="1478">Q (L/s)</text>
+<text x="35" y="1550">Q: 50 px/(L/s); P: 25 px/W</text>
+<text x="35" y="1595">Punti: 3 L/s → 6 W; 5 L/s → 10 W</text>
+</g></svg>

@@ -1,0 +1,1114 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-hydraulic-power-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9821,
+      "title": "Da pressione per volume a energia al secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 1,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Con Δp=2 kPa e Q=3 L/s, quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni litro riceve due joule di energia di pressione: un kPa per un litro equivale esattamente a un joule. La pompa ne trasferisce tre litri al secondo, quindi fornisce sei joule al secondo, cioè sei watt. Il segno positivo indica energia ceduta al fluido nel verso del moto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b174da11b35be12836712dec88a2ff9398ae04e7d5e2343fde09eab6030e3e01",
+          "text": "Pompa ideale con pressioni assolute di ingresso 100 kPa e uscita 102 kPa, stesso Q=3 L/s ai due lati; quota e contributo cinetico uguali. Le frecce di portata hanno entrambe lunghezza 120 px alla scala 40 px/(L/s). Lo schema della pompa non è una geometria in scala."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{kPa\\cdot L}=1\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\Delta p\\,Q"
+        },
+        {
+          "type": "formula",
+          "text": " P=(2\\cdot3)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=6\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Due copia il salto di pressione e tre la portata. Dodici introdurrebbe un fattore due non presente nel lavoro di pressione. Non si moltiplica per g: il termine gravitazionale non cambia tra le due sezioni scelte."
+        }
+      ],
+      "hints": [
+        "Trasforma kPa per litro in joule, poi conta i litri al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due copia il salto di pressione e tre la portata. Dodici introdurrebbe un fattore due non presente nel lavoro di pressione. Non si moltiplica per g: il termine gravitazionale non cambia tra le due sezioni scelte.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9822,
+      "title": "L’unità del trasferimento per tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 1,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Quale unità esprime P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "Pa",
+          "L/s",
+          "N"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è energia trasferita divisa per tempo. Un pascal per un metro cubo equivale a un joule, quindi pressione per portata volumetrica si misura in joule al secondo, ossia watt."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathrm{Pa\\cdot m^3}=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{Pa\\cdot m^3/s}=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, Pa pressione, L/s portata e N forza. Il prefisso kilo in kPa è compensato dal millesimo di metro cubo contenuto nel litro: il risultato numerico in watt non richiede un altro fattore mille."
+        }
+      ],
+      "hints": [
+        "Semplifica forza per area moltiplicata per volume al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, Pa pressione, L/s portata e N forza. Il prefisso kilo in kPa è compensato dal millesimo di metro cubo contenuto nel litro: il risultato numerico in watt non richiede un altro fattore mille.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9823,
+      "title": "Il lavoro della pompa contro il salto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 1,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Quale formula dà P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = Δp Q",
+          "P = Δp / Q",
+          "P = Q / Δp",
+          "P = 2 Δp Q",
+          "P = Δp Q / 2"
+        ],
+        "value": "P = Δp Q"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per trasferire il volume ΔV alla pressione di uscita maggiore, mantenendo quota e contributo cinetico, la pompa deve fornire il lavoro ΔpΔV. Questo compensa la differenza fra energia di pressione uscente ed entrante. Dividendo per Δt e riconoscendo Q=ΔV/Δt si ottiene P=ΔpQ."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b174da11b35be12836712dec88a2ff9398ae04e7d5e2343fde09eab6030e3e01",
+          "text": "Tre litri in un secondo ricevono 2 J ciascuno: sei celle da 1 J, larghe 30 px, rappresentano 6 J. Il grafico finale tiene Δp=2 kPa: asse Q a 50 px/(L/s), asse P a 25 px/W; punti (3 L/s,6 W) e (5 L/s,10 W). Energia e potenza sono distinte attraverso l’intervallo esplicito di 1 s."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta E=\\Delta p\\,\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{\\Delta E}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\Delta p\\,Q"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti hanno dimensioni diverse da una potenza. Il doppio e la metà non seguono dal lavoro di pressione: il mezzo compare nell’energia cinetica, che qui non cambia. Una macchina non ideale richiederebbe il rendimento per ricavare la potenza assorbita; il modello assegnato ha rendimento meccanico unitario."
+        }
+      ],
+      "hints": [
+        "Dividi il lavoro netto ΔpΔV per lo stesso tempo del volume transitato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I quozienti hanno dimensioni diverse da una potenza. Il doppio e la metà non seguono dal lavoro di pressione: il mezzo compare nell’energia cinetica, che qui non cambia. Una macchina non ideale richiederebbe il rendimento per ricavare la potenza assorbita; il modello assegnato ha rendimento meccanico unitario.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9824,
+      "title": "Raddoppiare il salto a portata fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 1,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. A ha Δp=2 kPa, B Δp=4 kPa; Q resta 3 L/s. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 12 W",
+          "Da 6 a 3 W",
+          "Resta 6 W",
+          "Da 6 a 24 W",
+          "Diventa zero"
+        ],
+        "value": "Da 6 a 12 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni litro riceve il doppio dell’energia di pressione, mentre il numero di litri al secondo resta uguale. La potenza passa da due per tre a quattro per tre, cioè da sei a dodici W."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre W applica una dipendenza inversa dal salto, sei lo ignora e ventiquattro ne usa il quadrato. Zero richiederebbe salto o portata nulli, entrambi esclusi. Si confrontano due stati controllati, non una pompa con una caratteristica non dichiarata."
+        }
+      ],
+      "hints": [
+        "Conta quanta energia riceve ciascun litro prima e dopo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre W applica una dipendenza inversa dal salto, sei lo ignora e ventiquattro ne usa il quadrato. Zero richiederebbe salto o portata nulli, entrambi esclusi. Si confrontano due stati controllati, non una pompa con una caratteristica non dichiarata.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9825,
+      "title": "Ricavare il salto di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Si conoscono P=6 W e Q=3 L/s. Quanto vale Δp in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni secondo si trasferiscono sei joule a tre litri. L’energia per litro è due J/L, equivalente a due kPa. Isoliamo il salto dividendo la potenza per una portata positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=P/Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\frac{6\\,\\mathrm{J/s}}{3\\,\\mathrm{L/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplicherebbe grandezze invece di rimuovere la portata. Un mezzo è il quoziente inverso. Il risultato è una differenza fra pressioni, non necessariamente la pressione assoluta di uscita: quest’ultima richiederebbe anche la pressione di ingresso."
+        }
+      ],
+      "hints": [
+        "Dividi joule al secondo per litri al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplicherebbe grandezze invece di rimuovere la portata. Un mezzo è il quoziente inverso. Il risultato è una differenza fra pressioni, non necessariamente la pressione assoluta di uscita: quest’ultima richiederebbe anche la pressione di ingresso.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9826,
+      "title": "Ricavare il flusso dal lavoro per litro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Si conoscono P=6 W e Δp=2 kPa. Quanto vale Q in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La macchina cede sei joule ogni secondo e due joule per ogni litro. Devono quindi attraversarla tre litri al secondo. La divisione conserva una portata, non un volume totale o una massa."
+        },
+        {
+          "type": "formula",
+          "text": "Q=P/\\Delta p"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{6\\,\\mathrm{J/s}}{2\\,\\mathrm{J/L}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici userebbe il prodotto, due copierebbe il salto e sei la potenza. Un tempo ulteriore servirebbe per il volume totale, ma il compito chiede un volume per tempo. Non occorre la densità perché il lavoro di pressione è già riferito al volume."
+        }
+      ],
+      "hints": [
+        "Quanti litri ricevono in tutto sei joule se ogni litro ne riceve due?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici userebbe il prodotto, due copierebbe il salto e sei la potenza. Un tempo ulteriore servirebbe per il volume totale, ma il compito chiede un volume per tempo. Non occorre la densità perché il lavoro di pressione è già riferito al volume.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9827,
+      "title": "Una portata maggiore allo stesso salto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. A ha Δp=2 kPa e Q=3 L/s. B mantiene Δp e usa Q=5 L/s. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "2/3",
+          "10",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono sei e dieci W. Il rapporto è dieci sesti, cioè cinque terzi, identico a quello delle portate perché il salto resta fissato. Due terzi è invece l’incremento relativo."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=5/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti è il reciproco; due terzi confonde incremento e rapporto. Dieci è la potenza B come numero, non il rapporto puro; uno ignorerebbe l’energia aggiunta ai due litri al secondo in più."
+        }
+      ],
+      "hints": [
+        "Confronta direttamente le due portate a Δp fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti è il reciproco; due terzi confonde incremento e rapporto. Dieci è la potenza B come numero, non il rapporto puro; uno ignorerebbe l’energia aggiunta ai due litri al secondo in più.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9828,
+      "title": "Lo scarto di una potenza raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Con Δp=2 kPa e Q=3 L/s si propone P=12 W. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 W",
+          "−6 W",
+          "12 W",
+          "0 W",
+          "3 W"
+        ],
+        "value": "6 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza corretta è sei W. La proposta dodici supera il valore di sei W. A tre L/s, dodici W richiederebbero un salto quattro kPa, non i due assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "P=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno inverte l’ordine dello scarto. Dodici è la proposta, zero la accetta e tre dimezza di nuovo. Nessun rendimento inferiore a uno è stato introdotto: dodici W non è qui una potenza assorbita alternativa da confrontare con quella idraulica."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il salto implicito nella proposta per controllarla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno inverte l’ordine dello scarto. Dodici è la proposta, zero la accetta e tre dimezza di nuovo. Nessun rendimento inferiore a uno è stato introdotto: dodici W non è qui una potenza assorbita alternativa da confrontare con quella idraulica.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9829,
+      "title": "L’inversa per la differenza di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Quale formula isola Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Δp = P / Q",
+          "Δp = P Q",
+          "Δp = Q / P",
+          "Δp = 2 P / Q",
+          "Δp = P / (2 Q)"
+        ],
+        "value": "Δp = P / Q"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo entrambi i membri di P=ΔpQ per Q>0 resta Δp=P/Q. Le unità sono J/s diviso m³/s, cioè J/m³=Pa. Con watt e L/s il risultato numerico si legge in kPa."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\Delta p\\,Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=P/Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{J/m^3}=\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto P Q non è una pressione e Q/P ne ha le dimensioni inverse. Doppio e metà aggiungono fattori non presenti nell’equazione. La differenza va mantenuta nello stesso verso uscita meno ingresso per una pompa che fornisce energia."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore portata con una divisione su entrambi i membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto P Q non è una pressione e Q/P ne ha le dimensioni inverse. Doppio e metà aggiungono fattori non presenti nell’equazione. La differenza va mantenuta nello stesso verso uscita meno ingresso per una pompa che fornisce energia.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9830,
+      "title": "Fattori di salto e portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. B usa Δp_B=κ₁Δp_A e Q_B=κ₂Q_A, con fattori positivi. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione per litro scala con κ₁ e i litri al secondo con κ₂. I due effetti moltiplicano la potenza, quindi il rapporto è κ₁κ₂. Non si aggiungono due rapporti che agiscono su fattori diversi della stessa energia al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=(\\kappa_1\\Delta p_A)(\\kappa_2Q_A)"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\kappa_1\\kappa_2P_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti introducono un effetto inverso non assegnato; κ₁² duplica la dipendenza dal salto. La somma darebbe due anche confrontando una prova con se stessa, quando entrambi i fattori sono uno. Il dominio mantiene P positiva."
+        }
+      ],
+      "hints": [
+        "Applica i due fattori ai due fattori della legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti introducono un effetto inverso non assegnato; κ₁² duplica la dipendenza dal salto. La somma darebbe due anche confrontando una prova con se stessa, quando entrambi i fattori sono uno. Il dominio mantiene P positiva.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9831,
+      "title": "Due aumenti simultanei",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. A ha Δp=2 kPa, Q=3 L/s; B ha Δp=4 kPa, Q=5 L/s. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10/3",
+          "3/10",
+          "2",
+          "5/3",
+          "20"
+        ],
+        "value": "10/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasferisce sei W e B venti W. Il rapporto venti sesti si riduce a dieci terzi; equivale a due per cinque terzi, i fattori dei due ingressi. Il confronto resta adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=10/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre decimi è il reciproco, due segue soltanto il salto e cinque terzi soltanto la portata. Venti è la potenza B nelle unità watt, non il rapporto. I due contributi aumentano entrambi l’energia trasferita al secondo."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le potenze oppure moltiplica i due fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre decimi è il reciproco, due segue soltanto il salto e cinque terzi soltanto la portata. Venti è la potenza B nelle unità watt, non il rapporto. I due contributi aumentano entrambi l’energia trasferita al secondo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9832,
+      "title": "Mediare le potenze già ricavate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 2,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. A ha Δp=2 kPa, Q=3 L/s; B ha Δp=4 kPa, Q=5 L/s. Qual è la media aritmetica delle due P con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13 W",
+          "26 W",
+          "13/2 W",
+          "12 W",
+          "14 W"
+        ],
+        "value": "13 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La semisomma delle potenze sei e venti W vale tredici W. Il prodotto degli ingressi medi, tre kPa e quattro L/s, vale invece dodici W. Il prodotto di due grandezze variabili non commuta in generale con la media."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{6+20}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=13\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Ventisei è la somma e tredici mezzi dimezza ancora. Dodici è il risultato degli ingressi medi, inferiore di un W; quattordici è la differenza fra le due potenze. I pesi sono uguali per consegna, senza durate differenti implicite."
+        }
+      ],
+      "hints": [
+        "Conserva sei e venti come uscite da mediare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisei è la somma e tredici mezzi dimezza ancora. Dodici è il risultato degli ingressi medi, inferiore di un W; quattordici è la differenza fra le due potenze. I pesi sono uguali per consegna, senza durate differenti implicite.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9833,
+      "title": "La portata per una potenza bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 3,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. A ha Δp_A=2 kPa e Q_A=3 L/s. B deve avere Δp_B=4 kPa e P_B=(10/3)P_A. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "10/3",
+          "2",
+          "5"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza iniziale sei W moltiplicata per dieci terzi dà venti W. Con salto quattro kPa, la portata necessaria è cinque L/s. Rispetto ai tre L/s iniziali il rapporto è cinque terzi."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=P_B/\\Delta p_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=5/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti è il reciproco, dieci terzi ripete il bersaglio della potenza e due segue solo il salto. Cinque è la portata B come numero, non il rapporto. La portata cresce meno della potenza perché cresce anche l’energia per litro."
+        }
+      ],
+      "hints": [
+        "Ricava il nuovo flusso dividendo la potenza bersaglio per il salto B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti è il reciproco, dieci terzi ripete il bersaglio della potenza e due segue solo il salto. Cinque è la portata B come numero, non il rapporto. La portata cresce meno della potenza perché cresce anche l’energia per litro.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9834,
+      "title": "Tarare un display di potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 3,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Un display continuo adimensionale segue S=qP, q>0, senza offset. A con Δp=2 kPa e Q=3 L/s dà S=18. B dà S=60 e ha Q_B=5 L/s. Quanto vale Δp_B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasferisce sei W: il guadagno è q=3 W⁻¹. La lettura sessanta corrisponde a venti W, da distribuire su cinque L/s. Il quoziente è quattro kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=P_B/Q_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=4\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta non è una potenza in watt prima della rimozione del guadagno; usarla direttamente darebbe dodici kPa e una lettura centottanta. Il controllo quattro per cinque per tre ricostruisce sessanta."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura, poi dividi per la portata B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta non è una potenza in watt prima della rimozione del guadagno; usarla direttamente darebbe dodici kPa e una lettura centottanta. Il controllo quattro per cinque per tre ricostruisce sessanta.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9835,
+      "title": "Due riferimenti per guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 3,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Il display continuo adimensionale segue S=qP+b, q>0. A: Δp=2 kPa, Q=3 L/s, S=13. B: Δp=4 kPa, Q=5 L/s, S=41. C: Q=3 L/s, S=25. Quanto vale Δp_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 kPa",
+          "2 kPa",
+          "5 kPa",
+          "3 kPa",
+          "8 kPa"
+        ],
+        "value": "4 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze di riferimento sono sei e venti W. La differenza ventotto della lettura divisa per quattordici W dà q=2 W⁻¹, poi b=1. C ha potenza dodici W e, su tre L/s, salto quattro kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_C=4\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Con Q_C=3 L/s, salti 2,5,3,8 kPa produrrebbero letture 13,31,19,49. Solo quattro kPa dà venticinque. L’offset del display non si sottrae alla pressione fisica: si elimina dalla lettura prima di ricavare P."
+        }
+      ],
+      "hints": [
+        "Trova prima le potenze dei due riferimenti, poi q e b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con Q_C=3 L/s, salti 2,5,3,8 kPa produrrebbero letture 13,31,19,49. Solo quattro kPa dà venticinque. L’offset del display non si sottrae alla pressione fisica: si elimina dalla lettura prima di ricavare P.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydraulic-power-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Potenza meccanica trasferita da una pompa",
+      "order": 9836,
+      "title": "Un vincolo fra salto e portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydraulic-power",
+      "difficulty": 3,
+      "prompt": "Una pompa ideale trasferisce energia meccanica a un liquido incomprimibile in regime stazionario, con portata Q>0. Tra le sezioni di ingresso e uscita non cambia né la quota né l’energia cinetica per unità di massa. La differenza Δp=p_uscita−p_ingresso>0 usa pressioni nella stessa convenzione. Si trascurano dissipazioni nella pompa: P è la potenza meccanica trasferita al fluido, uguale qui alla potenza meccanica fornita alla pompa. Non è una potenza elettrica assegnata. Fra prove possono cambiare Δp e Q. Fra prove si impone Δp=cQ, con c=(2/3) kPa·s/L. Si misura P=6 W. Quanto vale Q in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sostituzione nel prodotto dà P=cQ². Dividendo sei W per il coefficiente si ottiene Q²=9 L²/s². Le radici algebriche sono più o meno tre L/s; il flusso positivo ammesso è tre, cui corrisponde salto due kPa."
+        },
+        {
+          "type": "formula",
+          "text": "P=cQ^2"
+        },
+        {
+          "type": "formula",
+          "text": " Q^2=9\\,\\mathrm{L^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo negativo renderebbe negativo anche Δp nel vincolo, contro le ipotesi. Nove è il numero del quadrato della portata, non la portata; sei copia la potenza. Il coefficiente ha dimensione di resistenza idraulica e collega stati distinti, non impone una dipendenza temporale durante la prova."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e scegli la radice compatibile con entrambi i segni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il ramo negativo renderebbe negativo anche Δp nel vincolo, contro le ipotesi. Nove è il numero del quadrato della portata, non la portata; sei copia la potenza. Il coefficiente ha dimensione di resistenza idraulica e collega stati distinti, non impone una dipendenza temporale durante la prova.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Lavoro di pressione e potenza al fluido",
+        "Unità, inverse e taratura della potenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b174da11b35be12836712dec88a2ff9398ae04e7d5e2343fde09eab6030e3e01",
+      "name": "hydraulic-power-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY0MCIgdmlld0JveD0iMCAwIDY0MCAxNjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkxhIHBvbXBhIGFnZ2l1bmdlIGVuZXJnaWEgZGkgcHJlc3Npb25lPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+SWwgc2FsdG8gZGEgY2VudG8gYSBjZW50b2R1ZSBraWxvcGFzY2FsIHRyYXNmZXJpc2NlIGR1ZSBqb3VsZSBwZXIgbGl0cm8uIFRyZSBsaXRyaSBhbCBzZWNvbmRvIHJpY2V2b25vIHNlaSBqb3VsZSBhbCBzZWNvbmRvLiBVbiBncmFmaWNvIGEgc2FsdG8gZmlzc2F0byBkdWUga2lsb3Bhc2NhbCBjb25mcm9udGEgcG90ZW56ZSBzZWkgZSBkaWVjaSB3YXR0IHBlciBwb3J0YXRlIHRyZSBlIGNpbnF1ZSBsaXRyaSBhbCBzZWNvbmRvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iZmxvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTU1ZmEwIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2NDAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTcyYzNiIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gRGVmaW5pcmUgaWwgc2FsdG8gZGVsbGEgcG9tcGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+UXVvdGEgZSBjb250cmlidXRvIGNpbmV0aWNvIGludmFyaWF0aTwvdGV4dD4KPHJlY3QgeD0iMjU1IiB5PSIxNjAiIHdpZHRoPSIxMTAiIGhlaWdodD0iMTIwIiByeD0iMTUiIGZpbGw9IiNmOGVhZDIiIHN0cm9rZT0iIzgwNmEzNyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjI2OSIgeT0iMjMwIj5Qb21wYTwvdGV4dD4KPHBhdGggZD0iTTc1IDIyMEgxOTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI2Zsb3cpIi8+PHBhdGggZD0iTTQwNSAyMjBINTI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNmbG93KSIvPgo8dGV4dCB4PSI2NSIgeT0iMTQ1Ij4xMDAga1BhPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iMTQ1Ij4xMDIga1BhPC90ZXh0Pgo8dGV4dCB4PSI3NSIgeT0iMzIwIj4zIEwvczwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjMyMCI+MyBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIzNzAiPlByZXNzaW9uaSBhc3NvbHV0ZTsgzpRwID0gMTAyIOKIkiAxMDAgPSAyIGtQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQxMCI+U2NhbGEgZnJlY2NlOiA0MCBweCAvIChML3MpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDUwIj5TY2hlbWEgZGVsbGEgcG9tcGEsIGdlb21ldHJpYSBub24gaW4gc2NhbGE8L3RleHQ+CjxsaW5lIHgxPSIzNSIgeDI9IjYwNSIgeTE9IjQ4NSIgeTI9IjQ4NSIgc3Ryb2tlPSIjYjljNGM5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI1MzUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBDb250YXJlIGzigJllbmVyZ2lhIGluIHVuIHNlY29uZG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1ODAiPjEga1BhIMK3IEwgPSAxMDAwIFBhIMK3IDAsMDAxIG3CsyA9IDEgSjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjYyNSI+T2duaSBsaXRybyByaWNldmUgMiBKOyBwYXNzYW5vIDMgTCBpbiAxIHMuPC90ZXh0Pgo8ZyBmaWxsPSIjYTMzNDMwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiI+PHJlY3QgeD0iMTAwIiB5PSI2NjUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzNSIvPjxyZWN0IHg9IjEzMCIgeT0iNjY1IiB3aWR0aD0iMzAiIGhlaWdodD0iMzUiLz48cmVjdCB4PSIxNjAiIHk9IjY2NSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjM1Ii8+PHJlY3QgeD0iMTkwIiB5PSI2NjUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzNSIvPjxyZWN0IHg9IjIyMCIgeT0iNjY1IiB3aWR0aD0iMzAiIGhlaWdodD0iMzUiLz48cmVjdCB4PSIyNTAiIHk9IjY2NSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjM1Ii8+PC9nPgo8dGV4dCB4PSIzMzUiIHk9IjY5MSI+NiBjZWxsZSBkYSAxIEo8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NTAiPlNjYWxhIGVuZXJnaWE6IDMwIHB4L0osIHRvdGFsZSAxODAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3OTUiPkVuZXJnaWEgNiBKIGluIDEgcyDihpIgcG90ZW56YSA2IFc8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NDAiPkxhIHBvdGVuemEgbm9uIMOoIGzigJllbmVyZ2lhIGFjY3VtdWxhdGEuPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI4NzUiIHkyPSI4NzUiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iOTI1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gQSBzYWx0byBmaXNzYXRvOiBQID0gzpRwIFE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NjUiPlF1aSDOlHAgPSAyIGtQYSBwZXIgZW50cmFtYmUgbGUgcHJvdmU8L3RleHQ+CjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3MmMzYiIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMTAwIDE0NzBWMTExMCIvPjxwYXRoIGQ9Ik0xMDAgMTQ3MEg0NjAiLz48L2c+CjxwYXRoIGQ9Ik0xMDAgMTQ3MEw0MDAgMTE3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTMzNDMwIiBzdHJva2Utd2lkdGg9IjQiLz4KPGcgc3Ryb2tlPSIjMTcyYzNiIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0yNTAgMTQ2NVYxNDc1Ii8+PHBhdGggZD0iTTM1MCAxNDY1VjE0NzUiLz48cGF0aCBkPSJNOTUgMTMyMEgxMDUiLz48cGF0aCBkPSJNOTUgMTIyMEgxMDUiLz48L2c+CjxnIGZpbGw9IiMxNTVmYTAiPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEzMjAiIHI9IjciLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIxMjIwIiByPSI3Ii8+PC9nPgo8dGV4dCB4PSIyODAiIHk9IjEzMzAiPkEgKDMsIDYpPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iMTIyMCI+QiAoNSwgMTApPC90ZXh0Pgo8dGV4dCB4PSI2NSIgeT0iMTMyNyI+NjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMTIyNyI+MTA8L3RleHQ+PHRleHQgeD0iMjQ0IiB5PSIxNTA4Ij4zPC90ZXh0Pjx0ZXh0IHg9IjM0NCIgeT0iMTUwOCI+NTwvdGV4dD4KPHRleHQgeD0iNTUiIHk9IjEwODAiPlAgKFcpPC90ZXh0Pjx0ZXh0IHg9IjQ4MCIgeT0iMTQ3OCI+USAoTC9zKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1NTAiPlE6IDUwIHB4LyhML3MpOyBQOiAyNSBweC9XPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTU5NSI+UHVudGk6IDMgTC9zIOKGkiA2IFc7IDUgTC9zIOKGkiAxMCBXPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
