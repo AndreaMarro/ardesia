@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1600" viewBox="0 0 640 1600" role="img" aria-labelledby="title desc">
+<title id="title">Un profilo locale e due soluzioni di un vincolo</title><desc id="desc">Prima il grafico del profilo a massimo quattro centimetri al secondo: asse quattro, metà raggio tre e parete zero. La scala orizzontale è trecento pixel per unità di u; quella verticale sessanta pixel per centimetro al secondo. Poi quattro celle di puro conteggio mostrano tre quarti. Infine un diverso vincolo fra prove ha due coordinate positive interne, un mezzo e radice di tredici meno uno diviso quattro.</desc>
+<rect width="640" height="1600" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27">1. Dal massimo alla parete ferma</text>
+<text x="35" y="95">v_max = 4 cm/s; u = s/R</text>
+<path d="M100 530V230M100 530H470" fill="none" stroke="#172c3b" stroke-width="2"/>
+<text x="110" y="245">v (cm/s)</text><text x="480" y="540">u</text>
+<path d="M100 290Q250 290 400 530" fill="none" stroke="#155fa0" stroke-width="4"/>
+<path d="M95 290H105M95 350H105M250 525V535M400 525V535" stroke="#172c3b" fill="none"/>
+<circle cx="100" cy="290" r="6" fill="#a33430"/><circle cx="250" cy="350" r="6" fill="#a33430"/><circle cx="400" cy="530" r="6" fill="#a33430"/>
+<text x="65" y="298">4</text><text x="65" y="358">3</text><text x="85" y="565">0</text><text x="230" y="565">1/2</text><text x="393" y="565">1</text>
+<text x="130" y="270">asse (0, 4)</text><text x="275" y="350">interno (1/2, 3)</text><text x="395" y="605">parete (1, 0)</text>
+<text x="35" y="650">u: 300 px/unità; v: 60 px/(cm/s)</text>
+<text x="35" y="690">È un grafico, non la forma del tubo.</text>
+<line x1="35" y1="720" x2="605" y2="720" stroke="#bcc6ca"/>
+<text x="35" y="765" font-size="27">2. A metà raggio resta tre quarti</text>
+<text x="35" y="810">u = 1/2 → u² = 1/4 → 1 − u² = 3/4</text>
+<rect x="130" y="850" width="80" height="70" fill="#ccd3d6" stroke="#fffdf7" stroke-width="2"/><rect x="210" y="850" width="80" height="70" fill="#155fa0" stroke="#fffdf7" stroke-width="2"/><rect x="290" y="850" width="80" height="70" fill="#155fa0" stroke="#fffdf7" stroke-width="2"/><rect x="370" y="850" width="80" height="70" fill="#155fa0" stroke="#fffdf7" stroke-width="2"/>
+<text x="145" y="965">1/4</text><text x="290" y="965">3/4</text>
+<text x="35" y="1015">Quattro celle di puro conteggio:</text>
+<text x="35" y="1055">non sono porzioni dell’area del tubo.</text>
+<line x1="35" y1="1090" x2="605" y2="1090" stroke="#bcc6ca"/>
+<text x="35" y="1135" font-size="27">3. Il vincolo ammette due punti interni</text>
+<text x="35" y="1180">Altro compito: v_max = 8u cm/s, v = 3 cm/s</text>
+<text x="35" y="1225">(2u − 1)(4u² + 2u − 3) = 0</text>
+<text x="35" y="1290">u_a = 1/2 → v_max = 4 cm/s</text>
+<text x="35" y="1345">u_b = (√13 − 1)/4</text>
+<text x="35" y="1390">3 &lt; √13 &lt; 4 → 1/2 &lt; u_b &lt; 3/4</text>
+<text x="35" y="1445">Il terzo ramo è negativo, quindi escluso.</text>
+<text x="35" y="1500">Due coordinate distinte con 0 &lt; u &lt; 1.</text>
+<text x="35" y="1550">I massimi possono cambiare fra prove.</text>
+</g></svg>
