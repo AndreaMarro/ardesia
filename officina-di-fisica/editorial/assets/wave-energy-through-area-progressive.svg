@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1530" viewBox="0 0 640 1530" role="img" aria-labelledby="title desc">
+<title id="title">Energia incidente e quota assorbita</title><desc id="desc">Tre metri quadrati normali al flusso ricevono intensità due watt al metro quadrato. Potenza sei watt per due secondi significa dodici joule incidenti. Solo assegnando metà assorbimento si possono calcolare sei joule assorbiti.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1530" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · Area normale alla propagazione</text>
+<text x="35" y="90">I = 2 W/m² · A = 3 m²</text>
+<text x="100" y="155">Fronte</text><text x="440" y="155">Lato</text>
+<g fill="#d7f1fa" stroke="#145d81" stroke-width="2"><rect x="100" y="220" width="50" height="50"/><rect x="150" y="220" width="50" height="50"/><rect x="200" y="220" width="50" height="50"/></g>
+<text x="113" y="254">⊙</text><text x="163" y="254">⊙</text><text x="213" y="254">⊙</text>
+<path d="M480 190V300" stroke="#c65919" stroke-width="5"/>
+<path d="M350 245H460" stroke="#145d81" stroke-width="3" marker-end="url(#a)"/>
+<text x="35" y="345">Tre caselle da 1 m², scala frontale 50 px/m</text>
+<text x="35" y="390">⊙: verso il lettore · vista laterale schematica</text>
+<text x="35" y="440">Ogni m² riceve 2 W: P_inc = 6 W</text>
+<path d="M35 480H605" stroke="#b3cbd9"/>
+<text x="35" y="530" font-size="25" font-weight="700">2 · Due secondi alla stessa potenza</text>
+<text x="35" y="575">Ogni intervallo da 1 s porta 6 J</text>
+<rect x="100" y="650" width="60" height="50" fill="#d7f1fa" stroke="#145d81"/><rect x="160" y="650" width="60" height="50" fill="#d7f1fa" stroke="#145d81"/>
+<text x="112" y="682" font-size="18">6 J</text><text x="172" y="682" font-size="18">6 J</text>
+<path d="M100 735H220M100 725V745M220 725V745" stroke="#145d81" fill="none"/>
+<text x="260" y="742">2 s totali</text>
+<text x="35" y="805">Linea temporale: 60 px/s</text>
+<text x="35" y="850">E_inc = (6 W)(2 s) = 12 J</text>
+<text x="35" y="895">L’energia non è ancora quella assorbita.</text>
+<path d="M35 935H605" stroke="#b3cbd9"/>
+<text x="35" y="985" font-size="25" font-weight="700">3 · Serve un dato sull’assorbimento</text>
+<text x="35" y="1030">Solo questo esempio assegna α = 1/2</text>
+<text x="35" y="1110">Incidente: 12 J</text>
+<rect x="100" y="1140" width="120" height="35" fill="#145d81"/>
+<text x="35" y="1250">Assorbita: α E_inc = 6 J</text>
+<rect x="100" y="1280" width="60" height="35" fill="#c65919"/>
+<text x="35" y="1380">Barre energetiche: 10 px/J</text>
+<text x="35" y="1430">Il resto può riflettersi o trasmettersi.</text>
+<text x="35" y="1480">Senza α, E_inc non determina E_ass.</text>
+</g></svg>

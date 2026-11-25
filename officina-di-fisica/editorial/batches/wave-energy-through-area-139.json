@@ -1,0 +1,1158 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-wave-energy-through-area-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13901,
+      "title": "Dall’intensità alla potenza e all’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 1,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Con I=2 W/m² e A=3 m², quanto vale E in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità per l’area normale dà la potenza incidente: due per tre sono sei watt. La potenza costante per due secondi dà dodici joule. La normalità della superficie evita fattori di proiezione; il valore dice quanta energia arriva, senza specificare quanta ne rimanga nella membrana."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1272c4de5450dd5fc01dff11594864b213a6965afe5a4c57bf1d2eff09577983",
+          "text": "Area normale A=3 m², rappresentata da tre caselle di 1 m² a 50 px/m. Con I=2 W/m² ciascuna casella riceve 2 W; in 2 s ogni casella è attraversata da 4 J e il totale è 12 J. Le frecce di propagazione sono schematiche e non rappresentano velocità o forze."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm inc}=IA"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm inc}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E=P_{\\rm inc}\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " E=12\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Sei è la potenza in W, non l’energia in J. Ventiquattro raddoppia ancora la durata già inclusa. Dodici J assorbiti richiederebbero un assorbimento completo, che non è dato."
+        }
+      ],
+      "hints": [
+        "Trova prima i watt incidenti e poi moltiplica per i secondi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è la potenza in W, non l’energia in J. Ventiquattro raddoppia ancora la durata già inclusa. Dodici J assorbiti richiederebbero un assorbimento completo, che non è dato.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13902,
+      "title": "L’unità del flusso integrato nel tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 1,
+      "prompt": "I è in W/m², A in m² e Δt in s. Quale unità misura E=IAΔt?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "W",
+          "W/m²",
+          "m²",
+          "J/s²"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area elimina i metri quadrati al denominatore dell’intensità. Resta una potenza in W; moltiplicandola per il tempo si ottiene W·s=J. L’energia non conserva il denominatore di area o di tempo."
+        },
+        {
+          "type": "formula",
+          "text": "[IA]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " [IA\\Delta t]=\\mathrm{W\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "W è potenza, W/m² intensità e m² area. J/s² avrebbe due potenze inverse di tempo estranee al prodotto richiesto."
+        }
+      ],
+      "hints": [
+        "Cancella prima l’area e poi il secondo del watt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W è potenza, W/m² intensità e m² area. J/s² avrebbe due potenze inverse di tempo estranee al prodotto richiesto.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13903,
+      "title": "Il mezzo materiale per il suono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 1,
+      "prompt": "Nel regime usuale di piccole perturbazioni, quale affermazione sulla propagazione sonora è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il suono può propagarsi in gas, liquidi e solidi; le sue proprietà dipendono dal mezzo",
+          "Il suono si propaga soltanto nell’aria",
+          "La velocità del suono è identica in tutti i materiali",
+          "Il suono attraversa il vuoto ideale senza un mezzo",
+          "Le particelle devono viaggiare dalla sorgente fino al ricevitore"
+        ],
+        "value": "Il suono può propagarsi in gas, liquidi e solidi; le sue proprietà dipendono dal mezzo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La propagazione meccanica richiede elasticità e inerzia del mezzo. Gas, liquidi e solidi possono sostenerla, con velocità e modalità differenti. Nei fluidi ordinari il suono è una perturbazione longitudinale; i solidi possono sostenere anche onde elastiche trasversali. Le particelle oscillano localmente, mentre la perturbazione trasferisce energia."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1272c4de5450dd5fc01dff11594864b213a6965afe5a4c57bf1d2eff09577983",
+          "text": "Tre passaggi: contare l’area normale; moltiplicare la potenza per la durata; distinguere energia incidente da assorbimento. Nell’esempio finale separato α=1/2 è assegnato esplicitamente e dà E_ass=6 J su E_inc=12 J. Barre a 10 px/J. Senza un dato come α i quesiti non determinano l’energia assorbita."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{suono: onda meccanica}"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{serve un mezzo materiale}"
+        },
+        {
+          "type": "text",
+          "text": "Limitarsi all’aria esclude onde sonore nei liquidi e nei solidi. Il vuoto ideale manca del mezzo; una velocità universale ignora elasticità e densità. Il trasporto di energia non richiede che una singola particella raggiunga il ricevitore."
+        }
+      ],
+      "hints": [
+        "Distingui il moto locale delle particelle dalla propagazione della perturbazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Limitarsi all’aria esclude onde sonore nei liquidi e nei solidi. Il vuoto ideale manca del mezzo; una velocità universale ignora elasticità e densità. Il trasporto di energia non richiede che una singola particella raggiunga il ricevitore.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13904,
+      "title": "Intensità dimezzata per lo stesso intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 1,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. I passa da 2 a 1 W/m² e A resta 3 m². Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 12 a 6 J",
+          "Da 12 a 24 J",
+          "Resta 12 J",
+          "Da 12 a 3 J",
+          "Diventa zero"
+        ],
+        "value": "Da 12 a 6 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Area e tempo restano uguali. Dimezzare I dimezza la potenza incidente e quindi l’energia: dodici J diventano sei. La durata è ancora due secondi in entrambe le prove e non introduce un ulteriore dimezzamento."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=(1\\,\\mathrm{W/m^2})(3\\,\\mathrm{m^2})(2\\,\\mathrm s)"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro inverte la dipendenza, tre dimezza due volte e dodici ignora I nuova. Zero contraddice tutti i fattori positivi."
+        }
+      ],
+      "hints": [
+        "Con A e Δt fissi l’energia segue I alla prima potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventiquattro inverte la dipendenza, tre dimezza due volte e dodici ignora I nuova. Zero contraddice tutti i fattori positivi.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13905,
+      "title": "Ricavare l’intensità incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Si misura E=12 J e si conosce A=3 m². Quanto vale I in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo l’energia per il prodotto area per durata. Tre m² per due s danno sei m²·s; dodici J diviso sei restituisce due W/m². L’inversa riguarda la componente di energia incidente definita nel prompt, non una quota assorbita sconosciuta."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac E{A\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " A\\Delta t=6\\,\\mathrm{m^2\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " I=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro divide per l’area ma omette il tempo, ottenendo J/m² invece di W/m². Un valore assorbito senza la relativa frazione non permetterebbe questa stessa inferenza dell’intensità incidente."
+        }
+      ],
+      "hints": [
+        "Dividi per area e durata, entrambe positive.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro divide per l’area ma omette il tempo, ottenendo J/m² invece di W/m². Un valore assorbito senza la relativa frazione non permetterebbe questa stessa inferenza dell’intensità incidente.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13906,
+      "title": "L’area dalla potenza incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Si misura E=12 J e si conosce I=2 W/m². Quanto vale A in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia per due secondi dà una potenza incidente di sei W. Dividendo per l’intensità due W/m² si ottiene un’area di tre m². Si ricostruisce l’area effettivamente normale al flusso, non una lunghezza del bordo."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm inc}=\\frac E{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac E{\\Delta t}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{P_{\\rm inc}}I"
+        },
+        {
+          "type": "formula",
+          "text": " A=3\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sei omette la durata prima dell’inversa; una radice darebbe una lunghezza che non è richiesta. La forma geometrica dell’area non serve finché I è uniforme."
+        }
+      ],
+      "hints": [
+        "Ricava i watt incidenti e dividili per i watt al metro quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei omette la durata prima dell’inversa; una radice darebbe una lunghezza che non è richiesta. La forma geometrica dell’area non serve finché I è uniforme.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13907,
+      "title": "Ridurre la sezione attraversata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. A usa I=2 W/m²,A=3 m². B mantiene I e usa A=1 m². Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "2",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata comune e l’intensità si cancellano. L’area B è un terzo di A e anche l’energia incidente si riduce a un terzo: da dodici a quattro J. Un’area è già una grandezza quadrata di lunghezza, senza bisogno di elevarla ancora al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac{A_B}{A_A}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A_B}{A_A}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre è il reciproco, un nono quadra il rapporto di aree già assegnate, due copia I e uno ignora la nuova superficie."
+        }
+      ],
+      "hints": [
+        "Confronta le aree come grandezze, non come lati da quadrare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è il reciproco, un nono quadra il rapporto di aree già assegnate, due copia I e uno ignora la nuova superficie.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13908,
+      "title": "Lo scarto di un’energia duplicata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Con I=2 W/m²,A=3 m² si propone E=24 J. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 J",
+          "−12 J",
+          "24 J",
+          "0 J",
+          "6 J"
+        ],
+        "value": "12 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza incidente è sei W e in due s corrisponde a dodici J. La proposta ventiquattro supera la risposta di dodici J. Il segno positivo riguarda la sovrastima, non il verso di propagazione del suono."
+        },
+        {
+          "type": "formula",
+          "text": "E=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(24-12)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=12\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno dodici rovescia la sottrazione, ventiquattro copia la proposta e zero la accetta. Sei è la potenza numerica iniziale, non lo scarto energetico."
+        }
+      ],
+      "hints": [
+        "Ricalcola IAΔt e poi forma l’errore con l’ordine richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno dodici rovescia la sottrazione, ventiquattro copia la proposta e zero la accetta. Sei è la potenza numerica iniziale, non lo scarto energetico.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13909,
+      "title": "Una formula inversa con il tempo esplicito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Quale formula isola I mantenendo Δt come grandezza fisica?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = E / (A Δt)",
+          "I = E A / Δt",
+          "I = E Δt / A",
+          "I = A Δt / E",
+          "I = E / A"
+        ],
+        "value": "I = E / (A Δt)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da E=IAΔt dividiamo per AΔt. Energia su tempo è potenza e la divisione per area dà intensità. Scrivere Δt=2 s soltanto dopo l’isolamento mantiene chiaro che il coefficiente due porta unità di tempo."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac E{A\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\frac{\\mathrm J}{\\mathrm{m^2\\,s}}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "EA/Δt ha unità W·m², EΔt/A ha unità J·s/m² e AΔt/E è inversa dell’intensità. E/A è energia per area e omette la durata."
+        }
+      ],
+      "hints": [
+        "Non trasformare i due secondi in un fattore adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "EA/Δt ha unità W·m², EΔt/A ha unità J·s/m² e AΔt/E è inversa dell’intensità. E/A è energia per area e omette la durata.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13910,
+      "title": "Due fattori con durata invariata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. B ha I_B=κ₁I_A e A_B=κ₂A_A, con fattori positivi. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata è la stessa per entrambe le prove. Il prodotto I_AA_A viene moltiplicato una volta per ciascun fattore, perciò il rapporto energetico è κ₁κ₂. Il parametro A è già un’area, non un lato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_B}{E_A}=\\frac{\\kappa_1I_A\\kappa_2A_A\\Delta t}{I_AA_A\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta; κ₂² aggiunge un quadrato all’area. La somma darebbe due per due prove identiche, quando il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Cancella la durata comune dopo aver scritto il prodotto completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta; κ₂² aggiunge un quadrato all’area. La somma darebbe due per due prove identiche, quando il rapporto deve essere uno.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13911,
+      "title": "Più intensità attraverso meno area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. A: I=2 W/m²,A=3 m². B: I=4 W/m²,A=2 m². Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "2/3",
+          "16"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A riceve dodici J e B sedici J. Il rapporto sedici su dodici si riduce a quattro terzi. L’intensità doppia si combina con l’area ridotta a due terzi, mentre i due secondi sono comuni."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac{16}{12}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{16}{12}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il reciproco, due segue I soltanto e due terzi l’area soltanto. Sedici è il valore finale in joule, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente i due prodotti IAΔt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il reciproco, due segue I soltanto e due terzi l’area soltanto. Sedici è il valore finale in joule, non il rapporto adimensionale.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13912,
+      "title": "Media delle energie incidenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 2,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. A ha I=2 W/m²,A=3 m² e B ha I=4 W/m²,A=2 m². Qual è la media aritmetica delle due E con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "14 J",
+          "28 J",
+          "7 J",
+          "15 J",
+          "4 J"
+        ],
+        "value": "14 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono dodici e sedici J. La semisomma vale quattordici J. Applicare il modello agli ingressi medi I=3 W/m² e A=5/2 m² darebbe quindici J, un joule in più: il prodotto non conserva in generale la media delle due uscite."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{12+16}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=14\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ventotto è la somma, sette dimezza ancora e quattro è la differenza. Quindici risolve una terza configurazione, distinta dalla media richiesta."
+        }
+      ],
+      "hints": [
+        "Media dopo aver ricavato le due energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventotto è la somma, sette dimezza ancora e quattro è la differenza. Quindici risolve una terza configurazione, distinta dalla media richiesta.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13913,
+      "title": "La sezione per il bersaglio energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 3,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. A usa I=2 W/m²,A=3 m². B impone I=4 W/m² e E_B=(4/3)E_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "4/3",
+          "2",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è sedici J. A intensità quattro W/m² per due s serve area due m². Il rapporto due su tre è due terzi: si ottiene dividendo il fattore energetico quattro terzi per il raddoppio di I."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=\\frac{E_B}{I_B\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=2\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte le aree, quattro terzi copia il bersaglio e due il valore numerico dell’area B. Un terzo produrrebbe otto J anziché sedici."
+        }
+      ],
+      "hints": [
+        "Rimuovi dal fattore energetico il contributo di I_B/I_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi inverte le aree, quattro terzi copia il bersaglio e due il valore numerico dell’area B. Un terzo produrrebbe otto J anziché sedici.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13914,
+      "title": "Dal display energetico all’intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 3,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. S=qE è continuo e adimensionale. A con I=2 W/m²,A=3 m² dà S=36. B dà S=48 e ha A=2 m². Quanto vale I_B in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha dodici J, quindi q=3 J⁻¹. La lettura quarantotto significa sedici J. Il prodotto area per durata vale quattro m²·s; sedici diviso quattro dà quattro W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac{E_B}{A_B\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Usare quarantotto direttamente come joule darebbe dodici W/m², triplo. Il display non è una misura diretta di intensità e non stabilisce quanta energia venga assorbita."
+        }
+      ],
+      "hints": [
+        "Decodifica E e dividi per la nuova area e la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare quarantotto direttamente come joule darebbe dodici W/m², triplo. Il display non è una misura diretta di intensità e non stabilisce quanta energia venga assorbita.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13915,
+      "title": "Guadagno e offset prima del flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 3,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. S=qE+z è continuo e adimensionale. A: I=2 W/m²,A=3 m²,S=25. B: I=4 W/m²,A=2 m²,S=33. C: A=5 m²,S=21. Quanto vale I_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 W/m²",
+          "2 W/m²",
+          "4 W/m²",
+          "1/2 W/m²",
+          "21/10 W/m²"
+        ],
+        "value": "1 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno dodici e sedici J. La differenza otto delle letture divisa per quattro J dà q=2 J⁻¹; poi z=1. C equivale a dieci J. Con cinque m² per due s il prodotto area per durata è dieci m²·s: I_C=1 W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Le intensità 2,4,1/2 W/m² genererebbero letture 41,81,11. 21/10 W/m² usa la lettura grezza al posto dell’energia e darebbe S=43. Solo uno ricostruisce ventuno."
+        }
+      ],
+      "hints": [
+        "Togli l’offset prima di dividere per q e poi per A_CΔt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le intensità 2,4,1/2 W/m² genererebbero letture 41,81,11. 21/10 W/m² usa la lettura grezza al posto dell’energia e darebbe S=43. Solo uno ricostruisce ventuno.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-energy-through-area-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia incidente attraverso una sezione normale",
+      "order": 13916,
+      "title": "Un vincolo fra intensità e area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-energy-through-area",
+      "difficulty": 3,
+      "prompt": "Un’onda progressiva ha intensità media incidente uniforme I>0, in W/m², costante per Δt=2 s. La direzione di propagazione è perpendicolare a una superficie piana di area A>0, in m². E indica l’energia incidente che attraversa questa sezione durante l’intervallo, prima di eventuali riflessioni, trasmissioni o assorbimento da parte di una membrana posta lì. Non è assegnata una frazione assorbita. Si trascurano variazioni spaziali di I sulla sezione; l’intensità media è definita su molti cicli e il prodotto IΔt descrive l’energia media del modello. Fra prove si impone I=cA con c=2/3 W/m⁴. Si misura E=12 J. Quanto vale A>0 in m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente porta unità di intensità per area. La sostituzione dà E=cA²Δt. Con Δt=2 s si ricava A²=9 m⁴: la radice positiva è tre m², un’area. Risulta I=2 W/m². Non si sta rendendo I disuniforme sulla stessa superficie: il vincolo riguarda prove differenti."
+        },
+        {
+          "type": "formula",
+          "text": "E=cA^2\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " A^2=\\frac E{c\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " A^2=9\\,\\mathrm{m^4}"
+        },
+        {
+          "type": "formula",
+          "text": " A=3\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Nove è il numero del quadrato dell’area e non l’area cercata. La radice negativa non è una superficie positiva e renderebbe negativa I nel vincolo. Non si applica una seconda radice per trovare un lato, perché la domanda riguarda A."
+        }
+      ],
+      "hints": [
+        "La radice di m⁴ è m²: conserva la dimensione di area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Nove è il numero del quadrato dell’area e non l’area cercata. La radice negativa non è una superficie positiva e renderebbe negativa I nel vincolo. Non si applica una seconda radice per trovare un lato, perché la domanda riguarda A.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità, potenza ed energia",
+        "Area efficace e durata",
+        "Incidenza distinta da assorbimento"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "1272c4de5450dd5fc01dff11594864b213a6965afe5a4c57bf1d2eff09577983",
+      "name": "wave-energy-through-area-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVuZXJnaWEgaW5jaWRlbnRlIGUgcXVvdGEgYXNzb3JiaXRhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIG1ldHJpIHF1YWRyYXRpIG5vcm1hbGkgYWwgZmx1c3NvIHJpY2V2b25vIGludGVuc2l0w6AgZHVlIHdhdHQgYWwgbWV0cm8gcXVhZHJhdG8uIFBvdGVuemEgc2VpIHdhdHQgcGVyIGR1ZSBzZWNvbmRpIHNpZ25pZmljYSBkb2RpY2kgam91bGUgaW5jaWRlbnRpLiBTb2xvIGFzc2VnbmFuZG8gbWV0w6AgYXNzb3JiaW1lbnRvIHNpIHBvc3Nvbm8gY2FsY29sYXJlIHNlaSBqb3VsZSBhc3NvcmJpdGkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTQ1ZDgxIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MzAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgQXJlYSBub3JtYWxlIGFsbGEgcHJvcGFnYXppb25lPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPkkgPSAyIFcvbcKyIMK3IEEgPSAzIG3CsjwvdGV4dD4KPHRleHQgeD0iMTAwIiB5PSIxNTUiPkZyb250ZTwvdGV4dD48dGV4dCB4PSI0NDAiIHk9IjE1NSI+TGF0bzwvdGV4dD4KPGcgZmlsbD0iI2Q3ZjFmYSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjIiPjxyZWN0IHg9IjEwMCIgeT0iMjIwIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiLz48cmVjdCB4PSIxNTAiIHk9IjIyMCIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIi8+PHJlY3QgeD0iMjAwIiB5PSIyMjAiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIvPjwvZz4KPHRleHQgeD0iMTEzIiB5PSIyNTQiPuKKmTwvdGV4dD48dGV4dCB4PSIxNjMiIHk9IjI1NCI+4oqZPC90ZXh0Pjx0ZXh0IHg9IjIxMyIgeT0iMjU0Ij7iipk8L3RleHQ+CjxwYXRoIGQ9Ik00ODAgMTkwVjMwMCIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjUiLz4KPHBhdGggZD0iTTM1MCAyNDVINDYwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8dGV4dCB4PSIzNSIgeT0iMzQ1Ij5UcmUgY2FzZWxsZSBkYSAxIG3Csiwgc2NhbGEgZnJvbnRhbGUgNTAgcHgvbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM5MCI+4oqZOiB2ZXJzbyBpbCBsZXR0b3JlIMK3IHZpc3RhIGxhdGVyYWxlIHNjaGVtYXRpY2E8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NDAiPk9nbmkgbcKyIHJpY2V2ZSAyIFc6IFBfaW5jID0gNiBXPC90ZXh0Pgo8cGF0aCBkPSJNMzUgNDgwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI1MzAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgRHVlIHNlY29uZGkgYWxsYSBzdGVzc2EgcG90ZW56YTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjU3NSI+T2duaSBpbnRlcnZhbGxvIGRhIDEgcyBwb3J0YSA2IEo8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iNjUwIiB3aWR0aD0iNjAiIGhlaWdodD0iNTAiIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIvPjxyZWN0IHg9IjE2MCIgeT0iNjUwIiB3aWR0aD0iNjAiIGhlaWdodD0iNTAiIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIvPgo8dGV4dCB4PSIxMTIiIHk9IjY4MiIgZm9udC1zaXplPSIxOCI+NiBKPC90ZXh0Pjx0ZXh0IHg9IjE3MiIgeT0iNjgyIiBmb250LXNpemU9IjE4Ij42IEo8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNzM1SDIyME0xMDAgNzI1Vjc0NU0yMjAgNzI1Vjc0NSIgc3Ryb2tlPSIjMTQ1ZDgxIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjI2MCIgeT0iNzQyIj4yIHMgdG90YWxpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODA1Ij5MaW5lYSB0ZW1wb3JhbGU6IDYwIHB4L3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NTAiPkVfaW5jID0gKDYgVykoMiBzKSA9IDEyIEo8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4OTUiPkzigJllbmVyZ2lhIG5vbiDDqCBhbmNvcmEgcXVlbGxhIGFzc29yYml0YS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA5MzVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9Ijk4NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBTZXJ2ZSB1biBkYXRvIHN1bGzigJlhc3NvcmJpbWVudG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDMwIj5Tb2xvIHF1ZXN0byBlc2VtcGlvIGFzc2VnbmEgzrEgPSAxLzI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTEwIj5JbmNpZGVudGU6IDEyIEo8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTE0MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPgo8dGV4dCB4PSIzNSIgeT0iMTI1MCI+QXNzb3JiaXRhOiDOsSBFX2luYyA9IDYgSjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMjgwIiB3aWR0aD0iNjAiIGhlaWdodD0iMzUiIGZpbGw9IiNjNjU5MTkiLz4KPHRleHQgeD0iMzUiIHk9IjEzODAiPkJhcnJlIGVuZXJnZXRpY2hlOiAxMCBweC9KPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQzMCI+SWwgcmVzdG8gcHXDsiByaWZsZXR0ZXJzaSBvIHRyYXNtZXR0ZXJzaS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDgwIj5TZW56YSDOsSwgRV9pbmMgbm9uIGRldGVybWluYSBFX2Fzcy48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
