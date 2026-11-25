@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1320" role="img" aria-labelledby="title desc">
+<title id="title">Temperatura di contatto e resistenza cumulativa</title>
+<desc id="desc">Due resistenze da un kelvin al watt in serie fra cento e zero gradi Celsius conducono cinquanta watt e hanno contatto a cinquanta gradi. Il profilo usa resistenza cumulativa, non distanza. Le barre finali confrontano letture cinquanta, sessanta e media cinquantacinque gradi Celsius.</desc>
+<defs><marker id="heat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b45328"/></marker></defs>
+<rect width="640" height="1320" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Lo stesso flusso nei due tratti</text>
+<text x="32" y="85" font-size="18">Prova A: R_h = R_c = 1 K/W ; ΔT = 100 K.</text>
+<text x="48" y="152">100 °C</text><text x="275" y="152">50 °C</text><text x="496" y="152">0 °C</text>
+<path d="M100 235H540" stroke="#b45328" stroke-width="4" marker-end="url(#heat)"/>
+<rect x="140" y="190" width="140" height="90" rx="8" fill="#fce6dc" stroke="#b45328"/><rect x="360" y="190" width="140" height="90" rx="8" fill="#e4f3fa" stroke="#165a87"/>
+<text x="181" y="222">R_h</text><text x="170" y="257">1 K/W</text><text x="404" y="222">R_c</text><text x="390" y="257">1 K/W</text>
+<circle cx="320" cy="235" r="8" fill="#b45328"/>
+<text x="251" y="329">P = 50 W</text>
+<text x="32" y="375" font-size="18">Schema della rete; il contatto non aggiunge resistenza.</text>
+<text x="32" y="407" font-size="18">La freccia indica il verso del trasferimento energetico.</text>
+<path d="M32 440H608" stroke="#9babbc"/>
+<text x="32" y="484" font-size="25" font-weight="bold">2 · Un profilo su una coordinata termica</text>
+<text x="32" y="523" font-size="18">T in °C ; R è la resistenza cumulativa dal lato caldo.</text>
+<path d="M100 775V560M100 775H530" fill="none" stroke="#14243a" stroke-width="2"/>
+<path d="M100 575L300 675L500 775" fill="none" stroke="#165a87" stroke-width="4"/>
+<path d="M100 675H300V775" fill="none" stroke="#8292a2" stroke-dasharray="5 5"/>
+<g fill="#165a87"><circle cx="100" cy="575" r="5"/><circle cx="300" cy="675" r="5"/><circle cx="500" cy="775" r="5"/></g>
+<text x="49" y="582">100</text><text x="59" y="682">50</text><text x="65" y="782">0</text><text x="82" y="812">0</text><text x="291" y="812">1</text><text x="491" y="812">2</text>
+<text x="322" y="650">Contatto</text><text x="392" y="850">R / (K/W)</text>
+<text x="32" y="878" font-size="18">L’ascissa non indica lo spessore dei materiali.</text>
+<path d="M32 907H608" stroke="#9babbc"/>
+<text x="32" y="951" font-size="25" font-weight="bold">3 · Media di due letture Celsius</text>
+<path d="M130 974V1215" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="994" width="250" height="34" fill="#165a87"/><rect x="130" y="1070" width="300" height="34" fill="#165a87"/><rect x="130" y="1146" width="275" height="34" fill="#28664d"/>
+<text x="50" y="1019">A</text><text x="398" y="1019">50 °C</text><text x="50" y="1095">B</text><text x="448" y="1095">60 °C</text><text x="32" y="1171">Media</text><text x="423" y="1171">55 °C</text>
+<text x="32" y="1255" font-size="18">B usa R_h = 2 K/W e R_c = 3 K/W.</text>
+<text x="32" y="1287" font-size="18">Barre riferite a 0 °C, non allo zero assoluto.</text>
+</g></svg>
