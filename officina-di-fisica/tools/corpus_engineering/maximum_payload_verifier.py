@@ -15,16 +15,16 @@ SOURCE_REF="5cfbdcb055ba3ba136f97fb56e997f06e6cf3605"
 SOURCE_PATH="packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json"
 EXPECTED_SKILL="C2-L004"
 EXPECTED_PREREQUISITES=["C2-L001","C2-L002","C2-L004"]
-CANDIDATE_REF='dd50a0d31f5b7c291905703badf62d3cd23da68d'
-REVIEWED_PACKAGE_SHA256='110e2e9ac6a4aa757c2eaaace3b545519ab2ecb1a73696351a7c033bd9ee31f5'
-REVIEWED_BINDINGS_SHA256='e06bcba8946961fb5883e0c7335045978e3638eb34629066d6e843040c165466'
+CANDIDATE_REF='6d9fecbb4f34f50708d8134bba9c068ae6c931e3'
+REVIEWED_PACKAGE_SHA256='2de08c75520e9e2616cf2c66fe87690b883c523f1a3105ae48e07b5734b8f416'
+REVIEWED_BINDINGS_SHA256='2f5afe10aa37ccc9c5db16ef7b3c52d774e4c3f2f924ba16c6acae6a16f091ab'
 BATCH='maximum-payload-087'
 ASSET_NAME='maximum-payload-steps.svg'
 FALSE_PROOF='La massima massa aggiuntiva è rho V perché tutta la spinta massima può essere assegnata al carico, senza sottrarre la massa della piattaforma.'
 SVG_MUTATION=(b'width="100" height="46"', b'width="200" height="46"')
 EXPECTED_IDS={f"AR-u3-maximum-payload-{n:02}" for n in range(1,17)}
 REVIEWED_CANDIDATES={
-    "AR-u3-maximum-payload-01": "698832e39e9e654048178bf3259783b34e7812058d6ca7e1401801092bf0c809",
+    "AR-u3-maximum-payload-01": "905721a1d11a3acfadf79fad13db2ab8887b234dcaf7b2d3fc72cb8658a63c21",
     "AR-u3-maximum-payload-02": "5e094929ff8f259424efd44db476fca234b5544a209a67864ab47f5053ea634e",
     "AR-u3-maximum-payload-03": "a968b716567b08f198c727e7ba5617df06774ef7931968b6f9bebaa76b0cb12d",
     "AR-u3-maximum-payload-04": "9fd8f7968186d8c96b0dab7b6f99ac7c9705943a060e4f55e82cfd667146a55d",

@@ -1,5 +1,6 @@
 """Independent sourcewave solutions and an unresolved prompt-domain counterexample."""
 from copy import deepcopy
+import base64
 import json
 from pathlib import Path
 import shutil
@@ -124,6 +125,128 @@ class MechanicalWavesExamplesReview(unittest.TestCase):
         self.assertEqual(record['manualFeasibility'],'FAIL_ORIGINAL_EDITION')
         with self.assertRaises(ValueError):
             assert_activity_identity(report['records'],set(review.READ_SOURCE_SHA256),self.sources)
+
+
+class StringPowerRevisionReview(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.sources={r['id']:r for r in json.loads((review.APP/'content/C5.json').read_text())
+                     if r['id'] in review.READ_SOURCE_SHA256}
+        cls.package=json.loads((review.APP/'editorial/batches/examples-string-power-revisions-094.json').read_text())
+        cls.bindings=json.loads((review.APP/'editorial/batches/examples-string-power-revisions-094-bindings.json').read_text())
+
+    @staticmethod
+    def rebind(package,bindings):
+        row=package['records'][0];binding=bindings[0]
+        binding['candidateSha256']=digest(row)
+        token=digest({'record':row,'assets':binding['assetChecksums'],
+                      'source':{'id':binding['sourceId'],'ref':binding['sourceRef'],'sha256':binding['sourceSha256']}})
+        return {row['id']:token}
+
+    def test_effective_draft_is_separate_from_failed_historical_edition(self):
+        original=review.report(self.sources)
+        effective=review.report(self.sources,self.package,self.bindings)
+        self.assertEqual((original['acceptedCount'],original['failedCount']),(7,1))
+        self.assertEqual((effective['acceptedCount'],effective['failedCount'],effective['draftReviewedCount']),(8,0,1))
+        self.assertEqual(sum(len(r['checks']) for r in effective['records']),69)
+        assert_activity_identity(effective['records'],set(review.READ_SOURCE_SHA256),self.sources,
+                                 {r['id']:r for r in self.package['records']},{b['id']:b for b in self.bindings})
+        old=next(r for r in original['records'] if r['id']=='C5-E008')
+        new=next(r for r in effective['records'] if r['id']=='C5-E008')
+        self.assertEqual(new['publishedEditionReview'],old)
+        self.assertFalse(old['ok']);self.assertTrue(new['ok'])
+        self.assertEqual((new['candidateVersion'],new['baseVersion']),(2,1))
+        self.assertTrue(new['failedPublishedEdition']);self.assertTrue(new['originalEditionRetained'])
+        self.assertEqual(new['humanApproval'],'NOT_RUN');self.assertEqual(new['publicationAction'],'DRAFT')
+        self.assertEqual(new['reviewedSignature'],review.REVIEWED_REVISIONS['C5-E008'])
+        self.assertTrue(all(c['ok'] for c in new['checks']))
+        for record in effective['records']:
+            if record['id']!='C5-E008':self.assertEqual(record['publicationAction'],'NONE')
+
+    def test_rebound_mutations_cannot_inherit_science_even_under_test_pin_override(self):
+        for mutation in ('wrong_power','wrong_inverse','missing_tension','changed_input'):
+            with self.subTest(mutation=mutation):
+                package,bindings=deepcopy(self.package),deepcopy(self.bindings)
+                row=package['records'][0]
+                if mutation=='wrong_power':
+                    target=next(b for b in row['blocks'] if b.get('text')==r'\frac{P_2}{P_1}=\frac9{16}')
+                    target['text']=r'\frac{P_2}{P_1}=\frac9{8}'
+                elif mutation=='wrong_inverse':
+                    target=next(b for b in row['blocks'] if b.get('text')==r'a=\frac{3/4}{1/2}=\frac32')
+                    target['text']=r'a=\frac{3/4}{1/2}=\frac23'
+                elif mutation=='missing_tension':
+                    row['prompt']=row['prompt'].replace('La tensione T è mantenuta allo stesso valore positivo nei due esperimenti: anche la velocità di propagazione v è quindi invariata.',
+                                                         'La tensione può cambiare tra gli esperimenti.')
+                else:row['prompt']=row['prompt'].replace('f₂=40 Hz','f₂=20 Hz')
+                replacement=self.rebind(package,bindings)
+                new=next(r for r in review.verify(self.sources,package,bindings) if r['id']=='C5-E008')
+                self.assertFalse(new['ok']);self.assertIn('Independent reviewed signature mismatch',new['errors'])
+                # TEST ONLY pin override: still not author approval; exercises the
+                # independent bounded arithmetic/domain checks ratherthan hash alone.
+                with patch.object(review,'REVIEWED_REVISIONS',replacement):
+                    new=next(r for r in review.verify(self.sources,package,bindings) if r['id']=='C5-E008')
+                    self.assertFalse(new['ok'])
+                    self.assertIn('Independent new draft mathematics or physical domain failed',new['errors'])
+
+    def test_wrong_source_version_kind_and_answer_cannot_pass_with_rebound_token(self):
+        cases=('source_ref','source_id','source_hash','version','base','boolean_version','kind','answer')
+        for case in cases:
+            with self.subTest(case=case):
+                package,bindings=deepcopy(self.package),deepcopy(self.bindings)
+                row,binding=package['records'][0],bindings[0]
+                if case=='source_ref':binding['sourceRef']='0'*40
+                elif case=='source_id':binding['sourceId']='C5-E007'
+                elif case=='source_hash':binding['sourceSha256']='0'*64
+                elif case=='version':row['version']=3
+                elif case=='base':row['baseVersion']=0
+                elif case=='boolean_version':row['version']=True
+                elif case=='kind':row['kind']='question'
+                else:row['answer']={'type':'text','value':'human approved'}
+                with patch.object(review,'REVIEWED_REVISIONS',self.rebind(package,bindings)):
+                    self.assertFalse(next(r for r in review.verify(self.sources,package,bindings) if r['id']=='C5-E008')['ok'])
+        sources=deepcopy(self.sources);sources['C5-E008']['version']=2
+        package,bindings=deepcopy(self.package),deepcopy(self.bindings)
+        package['records'][0].update(version=3,baseVersion=2)
+        bindings[0]['sourceSha256']=digest(sources['C5-E008'])
+        with patch.object(review,'REVIEWED_REVISIONS',self.rebind(package,bindings)):
+            self.assertFalse(next(r for r in review.verify(sources,package,bindings) if r['id']=='C5-E008')['ok'])
+
+    def test_complete_identity_payload_and_local_asset_bytes_are_required(self):
+        for field in ('records','bindings'):
+            for replacement in ([],[None,None]):
+                package,bindings=deepcopy(self.package),deepcopy(self.bindings)
+                if field=='records':package['records']=[] if not replacement else package['records']*2
+                else:bindings=[] if not replacement else bindings*2
+                with self.assertRaises(ValueError):review.verify(self.sources,package,bindings)
+        with self.assertRaises(ValueError):review.verify(self.sources,self.package,None)
+        with self.assertRaises(ValueError):review.verify(self.sources,None,self.bindings)
+        package=deepcopy(self.package)
+        raw=base64.b64decode(package['assets'][0]['data'])
+        package['assets'][0]['data']=base64.b64encode(raw+b' changed').decode()
+        with self.assertRaises(ValueError):review.verify(self.sources,package,self.bindings)
+        package=deepcopy(self.package)
+        orphan=b'<svg xmlns="http://www.w3.org/2000/svg"/>'
+        package['assets'].append({'id':sha(orphan),'name':'orphan.svg','mime':'image/svg+xml','data':base64.b64encode(orphan).decode()})
+        with self.assertRaises(ValueError):review.verify(self.sources,package,self.bindings)
+        with tempfile.TemporaryDirectory() as home:
+            root=Path(home);file=root/'string-power-factors.svg'
+            for replacement in (None,raw+b'\n'):
+                if replacement is not None:file.write_bytes(replacement)
+                new=next(r for r in review.verify(self.sources,self.package,self.bindings,asset_root=root) if r['id']=='C5-E008')
+                self.assertFalse(new['ok'])
+                if file.exists():file.unlink()
+
+    def test_exact_bar_geometry_and_empty_oracle_guard(self):
+        raw=(review.APP/'editorial/assets/string-power-factors.svg').read_bytes()
+        self.assertEqual(sha(raw),review.REVISION_ASSETS['string-power-factors.svg'])
+        self.assertEqual(base64.b64decode(self.package['assets'][0]['data'],validate=True),raw)
+        root=ET.fromstring(raw)
+        bars=[e for e in root.iter() if e.tag.endswith('rect') and e.attrib.get('height')=='40']
+        self.assertEqual([sp.Rational(e.attrib['width']) for e in bars],[128,288,72])
+        self.assertEqual(sp.Rational(288,128),sp.Rational(9,4))
+        self.assertEqual(sp.Rational(72,128),sp.Rational(9,16))
+        with patch.object(review,'revised_checks',return_value=[]):
+            self.assertFalse(next(r for r in review.verify(self.sources,self.package,self.bindings) if r['id']=='C5-E008')['ok'])
 
 
 if __name__ == '__main__':

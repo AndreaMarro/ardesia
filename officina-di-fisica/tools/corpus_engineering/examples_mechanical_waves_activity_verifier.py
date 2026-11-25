@@ -7,7 +7,10 @@ from fractions import Fraction
 from pathlib import Path
 import pint
 import sympy as sp
+import re
+import xml.etree.ElementTree as ET
 from .pipeline import digest,sha
+from .review_contract import reviewed_rows
 APP=Path(__file__).resolve().parents[2]
 SOURCE_REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
 SOURCE_PATH='officina-di-fisica/content/C5.json'
@@ -31,6 +34,11 @@ FIGURES_BY_ID={'C5-E001':['C5-orologio.svg'],'C5-E002':[],
 'C5-E003':['C5-istantanea.svg'],'C5-E004':[],'C5-E005':['C5-somma.svg'],
 'C5-E006':[],'C5-E007':['C5-sfere.svg'],'C5-E008':[]}
 SOURCE_ISSUES={'C5-E008':'P2 pedagogical prompt ambiguity: fixed tension/wavespeed is added only in worked solution. Same cord can remain taut with T2=4T1 and same mu, then v2/v1=2 and power ratio9/8 rather than9/16. Explicit fixed tension is needed in the prompt.'}
+REVISION_IDS={'C5-E008'}
+# Frozen only after independent full reading of29blocks and the complete native
+# Chromium SVG render, not supplied by or copied from the authoring assembler.
+REVIEWED_REVISIONS={'C5-E008':'615c16f5f7e39a7e33cb8e01e2140781dd2eca8da866246d000da338a69e9b2d'}
+REVISION_ASSETS={'string-power-factors.svg':'194b261af76ab3c33d85a95bdfd9699770fb7ee60f2c8b46228723076f5723b9'}
 SI=pint.UnitRegistry(non_int_type=Fraction)
 
 
@@ -165,7 +173,7 @@ FIGURE_REVIEW={
 'C5-E008':'No figureinallfiveblocks;thereisnopromptdiagramthatcouldindependentlyspecifyunchangedtension.'}
 
 
-def verify(sources, asset_root=None):
+def verify_originals(sources, asset_root=None):
     missing = set(READ_SOURCE_SHA256)-set(sources)
     if missing:
         raise ValueError('Missing independently read examples: '+','.join(sorted(missing)))
@@ -204,14 +212,119 @@ def verify(sources, asset_root=None):
     return records
 
 
-def report(sources):
-    records = verify(sources)
-    return {'schemaVersion': '1.0.0', 'batch': BATCH, 'records': records,
-        'verifierSha256': sha(Path(__file__).read_bytes()), 'sourceRef': SOURCE_REF,
-        'sourcePath': SOURCE_PATH, 'sourceFileSha256': SOURCE_FILE_SHA256,
-        'contractSha256': sha(Path(__file__).with_name('review_contract.py').read_bytes()),
-        'acceptedCount': sum(row['ok'] for row in records), 'failedCount': sum(not row['ok'] for row in records),
-        'draftReviewedCount': 0, 'failedPublishedEditionIds': [row['id'] for row in records if row['failedPublishedEdition']],
-        'dependencyVersions': {'sympy': sp.__version__, 'pint': pint.__version__},
-        'reviewer': 'separate_AI_reviewer_not_original_or_revision_author',
-        'originalEditionRetained': True, 'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'}
+def _bounded_latex_fraction(text):
+    """Only the finite positive integer fractions actually present in this draft."""
+    match=re.fullmatch(r'\\frac(?:\{(\d{1,3})\}|(\d))(?:\{(\d{1,3})\}|(\d))',text)
+    if not match:return None
+    numerator,denominator=int(match[1] or match[2]),int(match[3] or match[4])
+    return sp.Rational(numerator,denominator) if denominator else None
+
+
+def revised_checks(row,asset_root):
+    checks=[dict(claim) for claim in independent_checks()['C5-E008']]
+    for claim in checks:
+        claim['scope']=('boundary_case_excluded_by_new_explicit_fixed_tension'
+                        if claim['scope'].startswith('reviewer_') else 'new_draft_actual_worked_calculation')
+    F=sp.Rational
+    mu,c,omega,A,u=sp.symbols('mu c omega A phase',positive=True)
+    ratio=F(3,2)**2*F(1,2)**2
+    fixed='new_draft_actual_worked_calculation'
+    prompt=' '.join(row.get('prompt','').split()).casefold()
+    clauses=('densità lineare μ costante','tensione t è mantenuta allo stesso valore positivo',
+             'progressive sinusoidali','pendenze piccole','senza riflessioni o perdite apprezzabili')
+    inputs=('a₁=2 mm','a₂=3 mm','f₁=80 hz','f₂=40 hz')
+    checks.extend([
+      check('new prompt explicitly fixes physical model and parameters',sp.Integer(int(all(clause in prompt for clause in clauses))),1),
+      check('new prompt keeps independently solved input values',sp.Integer(int(all(value in prompt for value in inputs))),1),
+      check('period average independently gives onehalf',sp.integrate(mu*c*omega**2*A**2*sp.sin(u)**2,(u,0,2*sp.pi))/(2*sp.pi),mu*c*omega**2*A**2/2,'W'),
+      check('new SI power identity kgmSquaredpersecondCubed is watt',SI.Quantity(1,'kg*m^2/s^3'),1,'W',fixed),
+      check('new mm ratio cancels common prefix',SI.Quantity(3,'mm')/SI.Quantity(2,'mm'),F(3,2),'',fixed),
+      check('new angularfrequency ratio cancels2pi',(2*sp.pi*40)/(2*sp.pi*80),F(1,2),'',fixed),
+      check('new intermediate amplitude-only ratio9over4',F(3,2)**2,F(9,4),'',fixed),
+      check('new final ratio9over16',ratio,F(9,16),'',fixed),
+      check('new transversevelocity ratio3over4',F(3,2)*F(1,2),F(3,4),'',fixed),
+      check('new ratio exceeds onehalf byonesixteenth',ratio-F(1,2),F(1,16),'',fixed),
+      check('new inverse positiveamplitude recovers3over2',sp.sqrt(ratio)/F(1,2),F(3,2),'',fixed),
+    ])
+    power_values=[];inverse_values=[]
+    for block in row.get('blocks',[]):
+        if block.get('type')!='formula':continue
+        text=block.get('text','')
+        if text.startswith(r'\frac{P_2}{P_1}='):
+            value=_bounded_latex_fraction(text.split('=',1)[1])
+            if value is not None:power_values.append(value)
+        if text.startswith('a='):
+            value=_bounded_latex_fraction(text.rsplit('=',1)[-1])
+            if value is not None:inverse_values.append(value)
+    checks.append(check('new draft exposes one exact numerical power result',sp.Integer(len(power_values)),1))
+    if len(power_values)==1:checks.append(check('printed power result equals independent ratio',power_values[0],ratio,'',fixed))
+    checks.append(check('new draft exposes one exact numerical inverse result',sp.Integer(len(inverse_values)),1))
+    if len(inverse_values)==1:checks.append(check('printed inverse result equals independent amplitude ratio',inverse_values[0],sp.sqrt(ratio)/F(1,2),'',fixed))
+    try:
+        svg=ET.fromstring((Path(asset_root)/'string-power-factors.svg').read_bytes())
+        bars=[el.attrib for el in svg.iter() if el.tag.endswith('rect')
+              and el.attrib.get('x')=='60' and el.attrib.get('height')=='40']
+        checks.append(check('new diagram has three common-baseline same-height bars',sp.Integer(len(bars)),3))
+        if len(bars)==3:
+            widths=[F(el['width']) for el in bars]
+            checks.extend([
+                check('new diagram scale128pixels per relativeunit',widths[0],128),
+                check('new diagram intermediate relativewidth9over4',widths[1]/widths[0],F(9,4)),
+                check('new diagram final relativewidth9over16',widths[2]/widths[0],ratio)])
+    except (OSError,ET.ParseError,ValueError,ZeroDivisionError):
+        checks.append(check('new diagram must be locally readable with valid bar geometry',sp.Integer(0),1))
+    return checks
+
+
+def verify(sources,package=None,bindings=None,asset_root=None,original_asset_root=None):
+    historical_root=original_asset_root if original_asset_root is not None else asset_root if package is None else None
+    originals=verify_originals(sources,historical_root)
+    if package is None:
+        if bindings is not None:raise ValueError('Bindings require a revision package')
+        return originals
+    if bindings is None:raise ValueError('Revision package requires complete source bindings')
+    root=Path(asset_root) if asset_root is not None else APP/'editorial/assets'
+    byid={record['id']:record for record in originals}
+    for row,binding,signature,assets,errors in reviewed_rows(package,bindings,REVIEWED_REVISIONS,REVISION_IDS,root):
+        key=row['id'];original=byid[key]
+        if (binding['sourceRef']!=SOURCE_REF or binding['sourceId']!=key
+                or binding['sourceSha256']!=original['sourceSha256']
+                or original['sourceSha256']!=READ_SOURCE_SHA256[key]):
+            errors.append('Revision not bound to independently read original source')
+        if (row.get('kind')!='example' or 'answer' in row
+                or type(row.get('version')) is not int or type(row.get('baseVersion')) is not int
+                or row['version']!=original['sourceVersion']+1 or row['baseVersion']!=original['sourceVersion']):
+            errors.append('Expected additive next example edition with correct base and no answer key')
+        if binding.get('assetChecksums')!=REVISION_ASSETS:
+            errors.append('Revision figure differs from independently read protected asset')
+        checks=revised_checks(row,root)
+        if not checks or not all(claim['ok'] for claim in checks):
+            errors.append('Independent new draft mathematics or physical domain failed')
+        revised=dict(original)
+        revised.update(ok=not errors,errors=errors,checks=checks,
+            dimension={claim['claim']:claim['dimension'] for claim in checks},
+            manualFeasibility='PASS_AI_EXACT' if not errors else 'FAIL_NEW_DRAFT',
+            manualArithmetic='NEW DRAFT: same positive tension and linear density now explicitly fix v=sqrt(T/mu). Mean travelling-wave flux averages sin² to1/2, so Pmean=mu*v*omega²*A²/2. Given2to3mm and80to40Hz, amplitude ratio3/2 and frequency ratio1/2 square/multiply to9/16 exactly; common prefixes and2pi cancel. The intermediate amplitude-only comparison is9/4, not a temporal transient. Maximum transversevelocity ratio3/4 squares to9/16;9/16 isone16th abovehalf. Positive inversea=sqrt(r)/b=(3/4)/(1/2)=3/2. No numericalpi, decimalinverse or calculator required. Original variable-tension counterexample remains an explicitly excluded boundary case.',
+            physicalAssumptions='NEW DRAFT actually read: ideal flexible uniform cord, constant positive linear density, same positive tension in both trials, progressive sinusoidal transverse waves at established regime, small slopes in both regimes, no appreciable reflection/losses. Wave propagation speed fixed and distinguished from transverse element speed. Ratiosr,a,b positive; the inverse uses the positive root. The source prompt did not fix tension; its historical FAIL remains nested.',
+            pedagogicalReview='NEW DRAFT29blocks fully read independently. Explicit held parameters repair model selection before the solution. Formula choice, SI units, mm-to-m cancellation,2pi cancellation, exact fraction arithmetic, interpretation and positive inverse are all present.9/4,1/4 and3/4 error routes are explained through missing factors or transversevelocity. No student calibration is inferred from these proofs.',
+            figureReview='New string-power-factors.svg completeXML and native480x840 Chromium render independently read. All three horizontal bars startx60,height40,widths128/288/72; common128pxunit gives1,9/4,9/16. Labels/caption distinguish the intermediate amplitude-only comparison from actual time evolution. All text including bottomlegend visible; QuickLook tallthumbnail was not used as full-figure evidence. Local bytes and packagedBase64 match SHA194b261a...; figure is a protected uploaded /asset/hash reference, original edition had no figure.',
+            assetChecksums=assets,candidateSha256=digest(row),reviewedSignature=signature,
+            candidateVersion=row.get('version'),baseVersion=row.get('baseVersion'),
+            failedPublishedEdition=True,publishedEditionReview=original,reviewedEdition='NEW_DRAFT',
+            verificationMode='EXACT_ORACLE',publicationAction='DRAFT')
+        byid[key]=revised
+    return [byid[key] for key in sorted(byid)]
+
+
+def report(sources,package=None,bindings=None):
+    records=verify(sources,package,bindings)
+    return {'schemaVersion':'1.0.0','batch':BATCH,'records':records,
+        'verifierSha256':sha(Path(__file__).read_bytes()),'sourceRef':SOURCE_REF,
+        'sourcePath':SOURCE_PATH,'sourceFileSha256':SOURCE_FILE_SHA256,
+        'contractSha256':sha(Path(__file__).with_name('review_contract.py').read_bytes()),
+        'acceptedCount':sum(row['ok'] for row in records),'failedCount':sum(not row['ok'] for row in records),
+        'draftReviewedCount':sum(row['publicationAction']=='DRAFT' for row in records),
+        'failedPublishedEditionIds':sorted(SOURCE_ISSUES),
+        'dependencyVersions':{'sympy':sp.__version__,'pint':pint.__version__},
+        'reviewer':'separate_AI_reviewer_not_original_or_revision_author',
+        'originalEditionRetained':True,'humanApproval':'NOT_RUN','publicationAction':'NONE'}

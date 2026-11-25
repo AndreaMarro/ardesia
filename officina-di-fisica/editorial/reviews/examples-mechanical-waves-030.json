@@ -883,10 +883,8 @@
       "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
       "sourcePath": "officina-di-fisica/content/C5.json",
       "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
-      "ok": false,
-      "errors": [
-        "P2 pedagogical prompt ambiguity: fixed tension/wavespeed is added only in worked solution. Same cord can remain taut with T2=4T1 and same mu, then v2/v1=2 and power ratio9/8 rather than9/16. Explicit fixed tension is needed in the prompt."
-      ],
+      "ok": true,
+      "errors": [],
       "checks": [
         {
           "claim": "actual fixedwavespeed amplituderatioSquared9over4",
@@ -897,7 +895,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "actual frequencyratioSquaredonequarter",
@@ -908,7 +906,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "worked fixedtensionpowerratio9over16",
@@ -919,7 +917,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "worked ratiofinite decimal0point5625",
@@ -930,7 +928,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "general samecord ratio retainswavespeedfactor",
@@ -941,7 +939,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          "scope": "boundary_case_excluded_by_new_explicit_fixed_tension"
         },
         {
           "claim": "samecord quadrupletension doubleswavespeed",
@@ -952,7 +950,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          "scope": "boundary_case_excluded_by_new_explicit_fixed_tension"
         },
         {
           "claim": "halvedfrequency withdoubledspeed quadrupleswavelength",
@@ -963,7 +961,224 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          "scope": "boundary_case_excluded_by_new_explicit_fixed_tension"
+        },
+        {
+          "claim": "new prompt explicitly fixes physical model and parameters",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new prompt keeps independently solved input values",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "period average independently gives onehalf",
+          "independentExact": "A**2*c*mu*omega**2/2",
+          "expectedValue": "A**2*c*mu*omega**2/2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new SI power identity kgmSquaredpersecondCubed is watt",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new mm ratio cancels common prefix",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new angularfrequency ratio cancels2pi",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new intermediate amplitude-only ratio9over4",
+          "independentExact": "9/4",
+          "expectedValue": "9/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new final ratio9over16",
+          "independentExact": "9/16",
+          "expectedValue": "9/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new transversevelocity ratio3over4",
+          "independentExact": "3/4",
+          "expectedValue": "3/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new ratio exceeds onehalf byonesixteenth",
+          "independentExact": "1/16",
+          "expectedValue": "1/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new inverse positiveamplitude recovers3over2",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new draft exposes one exact numerical power result",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed power result equals independent ratio",
+          "independentExact": "9/16",
+          "expectedValue": "9/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new draft exposes one exact numerical inverse result",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed inverse result equals independent amplitude ratio",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new diagram has three common-baseline same-height bars",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new diagram scale128pixels per relativeunit",
+          "independentExact": "128",
+          "expectedValue": "128",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new diagram intermediate relativewidth9over4",
+          "independentExact": "9/4",
+          "expectedValue": "9/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new diagram final relativewidth9over16",
+          "independentExact": "9/16",
+          "expectedValue": "9/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
         }
       ],
       "dimension": {
@@ -973,30 +1188,176 @@
         "worked ratiofinite decimal0point5625": {},
         "general samecord ratio retainswavespeedfactor": {},
         "samecord quadrupletension doubleswavespeed": {},
-        "halvedfrequency withdoubledspeed quadrupleswavelength": {}
+        "halvedfrequency withdoubledspeed quadrupleswavelength": {},
+        "new prompt explicitly fixes physical model and parameters": {},
+        "new prompt keeps independently solved input values": {},
+        "period average independently gives onehalf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "new SI power identity kgmSquaredpersecondCubed is watt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "new mm ratio cancels common prefix": {},
+        "new angularfrequency ratio cancels2pi": {},
+        "new intermediate amplitude-only ratio9over4": {},
+        "new final ratio9over16": {},
+        "new transversevelocity ratio3over4": {},
+        "new ratio exceeds onehalf byonesixteenth": {},
+        "new inverse positiveamplitude recovers3over2": {},
+        "new draft exposes one exact numerical power result": {},
+        "printed power result equals independent ratio": {},
+        "new draft exposes one exact numerical inverse result": {},
+        "printed inverse result equals independent amplitude ratio": {},
+        "new diagram has three common-baseline same-height bars": {},
+        "new diagram scale128pixels per relativeunit": {},
+        "new diagram intermediate relativewidth9over4": {},
+        "new diagram final relativewidth9over16": {}
       },
       "calculationScope": "EXACT_MANUAL_CALCULATION",
-      "manualArithmetic": "Originalworked9/16=0.5625iscorrectifmuandwavespeedarefixed. However,thepromptonlysaysthesamecordtaut;fixedtensionisintroducedintheworkedsolution. SamecordmuwithT2=4T1remains taut, givesv2/v1=2andP2/P1=2*(3/2)²*(40/80)²=9/8. Thusoriginalpromptdoesnotuniquelydeterminetheworkedratio. Thisisapedagogical/model-assignmentFAIL,notarithmeticerrorornumericalcalculatorrequirement. No correctededitionisauthoredorapprovedhere.",
-      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
-      "physicalAssumptions": "Arithmeticmodelneedssamemuandwavespeed/tension,smallslopesandprogressiveharmonicwaves. Sametauthysicalcordalonefixesmunottension;solutionaddsfixedtensionabsentfromprompt. OriginalFAILretaineduntilseparatelyauthored/reviewednewdraft.",
-      "pedagogicalReview": "FAIL: beforeopeningthesolution,thestudentcannotknowfrompromptalonewhethertensionisheldfixed;theworkedsolutionaddsaconditionthatsetswavespeed. Newdraftmustmakeheldparameterexplicit;reviewermustnotrepairoriginalinplace.",
-      "assetChecksums": {},
-      "figureReview": "No figureinallfiveblocks;thereisnopromptdiagramthatcouldindependentlyspecifyunchangedtension.",
-      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "manualArithmetic": "NEW DRAFT: same positive tension and linear density now explicitly fix v=sqrt(T/mu). Mean travelling-wave flux averages sin² to1/2, so Pmean=mu*v*omega²*A²/2. Given2to3mm and80to40Hz, amplitude ratio3/2 and frequency ratio1/2 square/multiply to9/16 exactly; common prefixes and2pi cancel. The intermediate amplitude-only comparison is9/4, not a temporal transient. Maximum transversevelocity ratio3/4 squares to9/16;9/16 isone16th abovehalf. Positive inversea=sqrt(r)/b=(3/4)/(1/2)=3/2. No numericalpi, decimalinverse or calculator required. Original variable-tension counterexample remains an explicitly excluded boundary case.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT actually read: ideal flexible uniform cord, constant positive linear density, same positive tension in both trials, progressive sinusoidal transverse waves at established regime, small slopes in both regimes, no appreciable reflection/losses. Wave propagation speed fixed and distinguished from transverse element speed. Ratiosr,a,b positive; the inverse uses the positive root. The source prompt did not fix tension; its historical FAIL remains nested.",
+      "pedagogicalReview": "NEW DRAFT29blocks fully read independently. Explicit held parameters repair model selection before the solution. Formula choice, SI units, mm-to-m cancellation,2pi cancellation, exact fraction arithmetic, interpretation and positive inverse are all present.9/4,1/4 and3/4 error routes are explained through missing factors or transversevelocity. No student calibration is inferred from these proofs.",
+      "assetChecksums": {
+        "string-power-factors.svg": "194b261af76ab3c33d85a95bdfd9699770fb7ee60f2c8b46228723076f5723b9"
+      },
+      "figureReview": "New string-power-factors.svg completeXML and native480x840 Chromium render independently read. All three horizontal bars startx60,height40,widths128/288/72; common128pxunit gives1,9/4,9/16. Labels/caption distinguish the intermediate amplitude-only comparison from actual time evolution. All text including bottomlegend visible; QuickLook tallthumbnail was not used as full-figure evidence. Local bytes and packagedBase64 match SHA194b261a...; figure is a protected uploaded /asset/hash reference, original edition had no figure.",
+      "verificationMode": "EXACT_ORACLE",
       "failedPublishedEdition": true,
       "originalEditionRetained": true,
       "humanApproval": "NOT_RUN",
-      "publicationAction": "NONE"
+      "publicationAction": "DRAFT",
+      "candidateSha256": "1479125f50069d41d81d132150ca3f69d8e9c9a25e8e758279ad5e31e0160535",
+      "reviewedSignature": "615c16f5f7e39a7e33cb8e01e2140781dd2eca8da866246d000da338a69e9b2d",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C5-E008",
+        "sourceSha256": "0dd6349bc0ad11d8b998d2350d5d168b53d2befb497f963fb03a5e7bc47fa76f",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+        "ok": false,
+        "errors": [
+          "P2 pedagogical prompt ambiguity: fixed tension/wavespeed is added only in worked solution. Same cord can remain taut with T2=4T1 and same mu, then v2/v1=2 and power ratio9/8 rather than9/16. Explicit fixed tension is needed in the prompt."
+        ],
+        "checks": [
+          {
+            "claim": "actual fixedwavespeed amplituderatioSquared9over4",
+            "independentExact": "9/4",
+            "expectedValue": "9/4",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "actual frequencyratioSquaredonequarter",
+            "independentExact": "1/4",
+            "expectedValue": "1/4",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "worked fixedtensionpowerratio9over16",
+            "independentExact": "9/16",
+            "expectedValue": "9/16",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "worked ratiofinite decimal0point5625",
+            "independentExact": "9/16",
+            "expectedValue": "9/16",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "general samecord ratio retainswavespeedfactor",
+            "independentExact": "9/8",
+            "expectedValue": "9/8",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "samecord quadrupletension doubleswavespeed",
+            "independentExact": "2",
+            "expectedValue": "2",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          },
+          {
+            "claim": "halvedfrequency withdoubledspeed quadrupleswavelength",
+            "independentExact": "4",
+            "expectedValue": "4",
+            "unit": "",
+            "dimension": {},
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+          }
+        ],
+        "dimension": {
+          "actual fixedwavespeed amplituderatioSquared9over4": {},
+          "actual frequencyratioSquaredonequarter": {},
+          "worked fixedtensionpowerratio9over16": {},
+          "worked ratiofinite decimal0point5625": {},
+          "general samecord ratio retainswavespeedfactor": {},
+          "samecord quadrupletension doubleswavespeed": {},
+          "halvedfrequency withdoubledspeed quadrupleswavelength": {}
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Originalworked9/16=0.5625iscorrectifmuandwavespeedarefixed. However,thepromptonlysaysthesamecordtaut;fixedtensionisintroducedintheworkedsolution. SamecordmuwithT2=4T1remains taut, givesv2/v1=2andP2/P1=2*(3/2)²*(40/80)²=9/8. Thusoriginalpromptdoesnotuniquelydeterminetheworkedratio. Thisisapedagogical/model-assignmentFAIL,notarithmeticerrorornumericalcalculatorrequirement. No correctededitionisauthoredorapprovedhere.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Arithmeticmodelneedssamemuandwavespeed/tension,smallslopesandprogressiveharmonicwaves. Sametauthysicalcordalonefixesmunottension;solutionaddsfixedtensionabsentfromprompt. OriginalFAILretaineduntilseparatelyauthored/reviewednewdraft.",
+        "pedagogicalReview": "FAIL: beforeopeningthesolution,thestudentcannotknowfrompromptalonewhethertensionisheldfixed;theworkedsolutionaddsaconditionthatsetswavespeed. Newdraftmustmakeheldparameterexplicit;reviewermustnotrepairoriginalinplace.",
+        "assetChecksums": {},
+        "figureReview": "No figureinallfiveblocks;thereisnopromptdiagramthatcouldindependentlyspecifyunchangedtension.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "reviewedEdition": "NEW_DRAFT"
     }
   ],
-  "verifierSha256": "e083c63376d1a9e69c8bd375d95dfb023c65aece4412db72ee7bbbdd8e1fd567",
+  "verifierSha256": "72de8ffbce439d2e920de7efc67de4f5b0ac1ab225263e052474100d1b6bfa7c",
   "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
   "sourcePath": "officina-di-fisica/content/C5.json",
   "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
   "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
-  "acceptedCount": 7,
-  "failedCount": 1,
-  "draftReviewedCount": 0,
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 1,
   "failedPublishedEditionIds": [
     "C5-E008"
   ],

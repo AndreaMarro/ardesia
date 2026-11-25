@@ -15,16 +15,16 @@ SOURCE_REF="5cfbdcb055ba3ba136f97fb56e997f06e6cf3605"
 SOURCE_PATH="packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json"
 EXPECTED_SKILL="C2-L004"
 EXPECTED_PREREQUISITES=["C2-L001","C2-L002","C2-L004"]
-CANDIDATE_REF='6c52128c2c2efa4ee4fe754f73179b711c02b4db'
-REVIEWED_PACKAGE_SHA256='bd4414dbeaac62fea8db1fed406d9dce0a415c283e9252d220ba7cfbd73ca6e5'
-REVIEWED_BINDINGS_SHA256='debfb559e0a01e154086d0960eeb0d753fa05a190f14967b7881fdec45eb34f6'
+CANDIDATE_REF='6d9fecbb4f34f50708d8134bba9c068ae6c931e3'
+REVIEWED_PACKAGE_SHA256='9b557b29128a836568163df55372a9ebf83525eeb1721b168919f2704d6d1921'
+REVIEWED_BINDINGS_SHA256='f7027799c76408296103ebbfd1a8d49b6e7c7312d92f854f76fd96b7a151a530'
 BATCH='loaded-raft-depth-088'
 ASSET_NAME='loaded-raft-depth-steps.svg'
 FALSE_PROOF='La massa propria del galleggiante può essere omessa perché non cambia tra le prove, quindi la quota immersa è sempre M/(rho A).'
 SVG_MUTATION=(b'M100 1530L400 1380', b'M100 1580L400 1380')
 EXPECTED_IDS={f"AR-u3-loaded-raft-depth-{n:02}" for n in range(1,17)}
 REVIEWED_CANDIDATES={
-    "AR-u3-loaded-raft-depth-01": "98258d1ff1fbb81c427db80f6c390c70f92929238d67e5d3eba49061bd1539c0",
+    "AR-u3-loaded-raft-depth-01": "77456bfa1ade080a0250d43744eebc091e75512d6dd60e13c4c4323c9dbe47ce",
     "AR-u3-loaded-raft-depth-02": "c1ee096aa1b38487f9805531d16b1834eb95ab7391df0935cb34c51ce906fa3c",
     "AR-u3-loaded-raft-depth-03": "a7892bc1f4ec262c5afa12efd0867597b7a2d5bc10a5e04e4ae07231ac21a090",
     "AR-u3-loaded-raft-depth-04": "b8475b6db1ef32d0de15113bd76e2202af9e8973d2d120b0ab3b45f8e9dcfbfa",

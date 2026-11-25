@@ -15,16 +15,16 @@ SOURCE_REF="5cfbdcb055ba3ba136f97fb56e997f06e6cf3605"
 SOURCE_PATH="packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json"
 EXPECTED_SKILL="C2-L004"
 EXPECTED_PREREQUISITES=["C2-L001","C2-L002","C2-L004"]
-CANDIDATE_REF='31ca83100b9f34124516868462047648f43adf6a'
-REVIEWED_PACKAGE_SHA256='b0850e89e7bd7a6f42a54de4cb2ee3db6afd432c6ceaead7aeffcd35e49e0324'
-REVIEWED_BINDINGS_SHA256='b6a30e801b152336dc114c1594b8eadd13f6c16387fe1c8d2e76c5bd38297b68'
+CANDIDATE_REF='6d9fecbb4f34f50708d8134bba9c068ae6c931e3'
+REVIEWED_PACKAGE_SHA256='1826a7d025eace8a99d492d1990d7acec147b6aadbc87d102669079396991ff0'
+REVIEWED_BINDINGS_SHA256='0c17e55b39cfd7bb5c92a08c61a84c976498dfc690748288a746b419fe357917'
 BATCH='apparent-weight-086'
 ASSET_NAME='apparent-weight-steps.svg'
 FALSE_PROOF='Il peso del corpo diminuisce fisicamente in acqua, perciò la massa reale diventa T/g e la spinta non va aggiunta nel ricostruire m.'
 SVG_MUTATION=(b'M100 850V770', b'M100 850V810')
 EXPECTED_IDS={f"AR-u3-apparent-weight-{n:02}" for n in range(1,17)}
 REVIEWED_CANDIDATES={
-    "AR-u3-apparent-weight-01": "53078da0231c74b190549691dfa4c304fb2dffc7aa90ac073fabb6b6bcb74b24",
+    "AR-u3-apparent-weight-01": "2a667c02d60f12cc5c77cdbc205452af4b32bca6fa9241f4900bff4e88f10d90",
     "AR-u3-apparent-weight-02": "083a9d2afff88b2178ca2938dbbc02e31e1ea81328206fe512a630045aaf280c",
     "AR-u3-apparent-weight-03": "0f2cad2b62feee1c4c04fe4b96b0321c20a27b17c2465ee149d6192e0bd42194",
     "AR-u3-apparent-weight-04": "62e7e2905512f0bd93445eda200fa39d7d93e8aceb776b92694e70af5a5aa0ff",

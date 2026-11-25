@@ -15,16 +15,16 @@ SOURCE_REF="5cfbdcb055ba3ba136f97fb56e997f06e6cf3605"
 SOURCE_PATH="packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-02.json"
 EXPECTED_SKILL="C2-L004"
 EXPECTED_PREREQUISITES=["C2-L001","C2-L002","C2-L004"]
-CANDIDATE_REF='42d4b957a7fbdebab07039b19351f8afa0bb796b'
-REVIEWED_PACKAGE_SHA256='808bf2117bafd076c10cb3ff7e9bdf600524e2b049796ec62a398f08ec2b6d57'
-REVIEWED_BINDINGS_SHA256='0de93eec3d884256458d6ddf27f789399dae2fe6f344683cb43eb6eecfed966e'
+CANDIDATE_REF='6d9fecbb4f34f50708d8134bba9c068ae6c931e3'
+REVIEWED_PACKAGE_SHA256='9e5c7d6c3542d44f73aee03604e33e10c79de7e380acf55cd043190c705799b1'
+REVIEWED_BINDINGS_SHA256='1b231e6e3d08bbbd21f673890929d8ba9cdedc550f2726934456937c883127ba'
 BATCH='floating-fraction-085'
 ASSET_NAME='floating-fraction-steps.svg'
 FALSE_PROOF='Tagliando il blocco omogeneo in due parti, ogni pezzo deve dimezzare anche la frazione immersa perché pesa la metà.'
 SVG_MUTATION=(b'width="100" height="50"', b'width="200" height="50"')
 EXPECTED_IDS={f"AR-u3-floating-fraction-{n:02}" for n in range(1,17)}
 REVIEWED_CANDIDATES={
-    "AR-u3-floating-fraction-01": "f5b99d79ec9378c675b1232d9dc0fe61a9deadb72d1b37ab602ec8b40ecec1ac",
+    "AR-u3-floating-fraction-01": "f7dc4b06d3019a3372fad1ddb334c1180b9d192cbd2a27eae803ba0edded102a",
     "AR-u3-floating-fraction-02": "9cec713d759b371bc4555414754369faf2daec57e595b05a00c125f8fac3b67f",
     "AR-u3-floating-fraction-03": "c4c6bd6065ef2ae581b949da6071452a1c34af424268e15035dc56e103d5f383",
     "AR-u3-floating-fraction-04": "0ad627334a01963a4e0409c4858e22cda558aef7e68854df8e09f1c69139cce8",
