@@ -44,11 +44,11 @@ Procedimento d’autore: Il nodo M comprende una piastra di ciascun condensatore
 
 Passaggi: Q_M=-Q_1+Q_2;  Q_M=0;  Q_1=Q_2.
 
-Distrattori: Tensioni ed energie coincidono soltanto in casi particolari, come capacità uguali, non per ogni serie. La connessione non rende identiche C₁ e C₂. Un dielettrico ideale non sostiene una corrente continua di conduzione nello stato elettrostatico finale.
+Distrattori: Tensioni ed energie coincidono soltanto in casi particolari, come capacità uguali, non per ogni serie. La connessione non rende identiche C₁ e C₂. Una corrente continua di conduzione non nulla è impossibile attraverso un dielettrico ideale nello stato elettrostatico finale.
 
 Hint: Usa la carica netta conservata sul nodo intermedio.
 
-Fonte canonica SHA256 97200b3e5b73ac7d2a3bb7d5b0a1bddaa47306e5bd5628f1bc867527ca92b8f5. Candidato SHA256 3a4d7690a94ff800f79505d1e71293cc01deb681ca8dd3451e8893f619d9d3a6. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 97200b3e5b73ac7d2a3bb7d5b0a1bddaa47306e5bd5628f1bc867527ca92b8f5. Candidato SHA256 b7a6063d6b31f6fffae2f5b03b9cb4530be17e97dc57d77526bc18b399cab2b5. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-series-capacitors-04 — Una capacità si dimezza
 
@@ -234,10 +234,10 @@ Fonte canonica SHA256 3a2e17971ad4cea1562150af11424e99abb12af6bcb89acb840ae6e03c
 
 ## Provenienza tecnica
 
-Asset SHA256 33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6. Package file SHA256 bcd7ee2452fa8d94a0f4ece87c904c55d6e654129f1ddc2c05ce0d9183903538. Binding file SHA256 e4b01a42f3b5a1ed056f69f67d0ab5b3518b4f20e1216bf1133cd141ee447134. Prova strutturale SHA256 888a4f89db0057946280ca8f9158867ebf3ae52d8cc121494289eab2f1a18e84. Manifest asset-only SHA256 d081db0ba9a39f29b6457f77ed21f9b8144c6d3e98aec7eda73e04551a8d5913.
+Asset SHA256 33063149547cd4a33e74926c4d177dbcd3d68ba37fcaa93f089016a9e245f5b6. Package file SHA256 33496cf0758a5a8118b53d6d7028f0719bd4e7b586b37e8cc0a665624dc8fbc4. Binding file SHA256 63c9c5b0093f4f772681c92806df575336e6368b7c0217fba6ddfdfa220fd4a0. Prova strutturale SHA256 ec87380998eef754b2cabfb06bc1e6c95662be258a5ed4fb3eeb33b882d4adda. Manifest asset-only SHA256 d081db0ba9a39f29b6457f77ed21f9b8144c6d3e98aec7eda73e04551a8d5913.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
-## Lettura geometrica d’autore
+## Rilettura del finding distinto03
 
-PNG nativo completo 640×1660 realmente visto. Prima topologia: due coppie di piastre in serie, cariche interne −Q e +Q sullo stesso nodo M, somma zero e nessun ramo aggiunto. Pannello parallelo distinto: i capi di entrambi i componenti condividono A e B; nessuna freccia temporale che imponga conservazioni di una commutazione. Ultime barre larghe160/320/240 rappresentano1/2/3/2 μF, origine150 e scala160 coordinate/μF comune. Zero118 separato dall’asse; tutti i testi visibili sono lontani dalle piastre e dalle linee.
+Il revisore B ha rilevato che la corrente di conduzione, nulla in entrambi i dielettrici ideali, rendeva vera anche l’alternativa non qualificata. Soltanto quell’opzione richiede ora una corrente non nulla e il feedback la confuta esplicitamente. Chiave carica comune, tutte le leggi, altri15 record e SVG sono byte-identici. Vecchia edizione e native conservati con checksum nella cartella peer-choice03-superseded. Due nuove assembly/import reali; stesso SVG e stesso PNG nativo già letto, nessun rerender o marker prodotto inventato. Revisione scientifica distinta della nuova edizione e UI prodotto NOT_RUN.
