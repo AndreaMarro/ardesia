@@ -1,0 +1,109 @@
+.mast-tools { margin-inline-start: auto; display: flex; align-items: center; gap: 1rem; }
+.mast-tools a { display: inline-flex; align-items: center; min-height: 44px; color: var(--violet-dark); font-weight: 650; }
+.mast-tools a[aria-current] { text-decoration-thickness: 3px; }
+.discipline-entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(23rem, 100%), 1fr)); gap: 1rem; margin-block: 1.5rem 3rem; }
+.discipline-entry { display: flex; align-items: flex-start; flex-direction: column; gap: .8rem; padding: clamp(1.2rem, 3vw, 2.5rem); border: 1.5px solid var(--ink); text-decoration: none; }
+.discipline-entry:nth-child(odd) { background: var(--wash); }
+.discipline-entry:nth-child(even) { background: var(--pale); }
+.discipline-entry strong { font: 690 clamp(1.8rem, 3.5vw, 3.5rem)/1.04 var(--sans); letter-spacing: -.03em; }
+.discipline-entry .entry-affordance { margin-top: auto; padding-top: .8rem; font-weight: 650; text-decoration: underline; }
+.discipline-entry:hover .entry-affordance, .discipline-course a:hover, .discipline-units a:hover { color: var(--violet-dark); }
+.discipline-bookmark, .discipline-gate { margin-block: .8rem 1.8rem; padding: 1.2rem clamp(1rem,2.5vw,2.1rem); border: 1px solid var(--ink); background: var(--pale); }
+.discipline-bookmark h2, .discipline-gate h2, .discipline-prereqs h2, .discipline-tasks h2 { margin-bottom: .45rem; font-size: clamp(1.35rem,2vw,1.8rem); }
+.discipline-bookmark > div { display: inline-grid; gap: .45rem; justify-items: start; vertical-align: top; max-width: 52ch; margin: .4rem 1rem .4rem 0; }
+.discipline-bookmark .vignetta { width: clamp(3.5rem,8vw,6.5rem); }
+.discipline-shelf { margin-block: 1.7rem 2.5rem; }
+.discipline-shelf > h2 { margin-block: .5rem 1rem; font: italic 630 clamp(2.1rem,3.8vw,3.9rem)/1.1 var(--serif); }
+.discipline-filter { display: flex; align-items: end; gap: .7rem 1rem; flex-wrap: wrap; }
+.discipline-filter label, .discipline-mathlab label, .discipline-compare label { display: grid; gap: .25rem; min-width: 0; font-size: .92rem; font-weight: 650; }
+.discipline-filter select, .discipline-filter input, .discipline-compare input, .discipline-compare select { background: var(--paper); border: 1px solid var(--ink); border-radius: 0; padding: .55rem; min-height: 44px; max-width: 100%; }
+.discipline-filter label { flex: 1 1 17rem; max-width: 37rem; }
+.discipline-count { margin-block: .8rem .4rem; color: var(--muted); }
+.discipline-courses { border-bottom: 1px solid var(--ink); }
+.discipline-course { display: grid; grid-template-columns: minmax(12rem,.85fr) minmax(12rem,1fr); align-items: center; gap: .5rem 2rem; border-top: 1px solid var(--ink); padding: 1.05rem .25rem; }
+.discipline-course small { font-weight: 650; color: var(--violet-dark); }
+.discipline-course h3 { margin-top: .12rem; line-height: 1.18; }
+.discipline-course a, .discipline-units a { text-decoration-thickness: 1px; text-underline-offset: .16em; }
+.discipline-course ul { grid-column: 1/-1; margin-block: .2rem; }
+.discipline-units { margin: .7rem 0; padding: 0; list-style: none; max-width: 62rem; border-bottom: 1px solid var(--ink); }
+.discipline-units li { padding-block: 1rem; border-top: 1px solid var(--ink); }
+.discipline-units li > a { display: inline-block; font: 680 1.25rem/1.25 var(--sans); }
+.discipline-units li > p, .discipline-gate p { max-width: 77ch; margin-block: .4rem; }
+.discipline-prereqs { border-left: 3px solid var(--violet); padding: .35rem .85rem; margin-block: .8rem 1.5rem; }
+.discipline-prereqs ul, .discipline-tasks ol { padding-left: 1.4rem; margin-block: .5rem .2rem; }
+.discipline-tasks li { margin-block: .7rem; }
+.discipline-tasks a span { display: block; font-weight: 700; }
+.discipline-spread { display: grid; grid-template-columns: minmax(0,2fr) minmax(14rem,.85fr); gap: clamp(1.3rem,4vw,4.3rem); margin: 1rem auto 2.5rem; align-items: start; }
+.discipline-reader, .discipline-practice, .discipline-side { min-width: 0; overflow-wrap: anywhere; }
+.discipline-reader .copy, .discipline-practice { max-width: 75ch; }
+.discipline-reader .copy > section { margin-block: 1.4rem; }
+.discipline-reader .copy h2, .discipline-oral h2, .discipline-mathlab h2, .discipline-correction h2 { font: 650 clamp(1.5rem,2.7vw,2.3rem)/1.12 var(--sans); }
+.discipline-reader .copy p, .discipline-steps p, .discipline-oral > p { font: 460 clamp(1.08rem,1.6vw,1.3rem)/1.53 var(--serif); margin: .55rem 0; }
+.discipline-spread:has(.lettore-concentrato) { display: block; }
+.discipline-spread:has(.lettore-concentrato) .discipline-side { margin-top: 2rem; }
+.discipline-side { border-block: 1px solid var(--ink); padding: .85rem .2rem; }
+.discipline-side > section, .discipline-side > p, .discipline-side > details { margin-block: .6rem 1rem; }
+.discipline-evidence summary, .discipline-oral summary, .discipline-alternatives summary, .discipline-mathlab summary, .discipline-compare > summary { min-height: 44px; padding-block: .65rem; font-weight: 640; }
+.discipline-evidence dl { max-width: 28rem; margin: 0; }
+.discipline-evidence dl div { display: flex; gap: 1rem; justify-content: space-between; padding-block: .2rem; border-bottom: 1px solid var(--fine); }
+.discipline-evidence dd { margin: 0; font-variant-numeric: tabular-nums; }
+.discipline-practice { margin: 1.5rem auto 2.5rem; }
+.discipline-practice fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.discipline-practice legend { font: 580 clamp(1.35rem,2.4vw,2rem)/1.32 var(--serif); margin-bottom: .9rem; }
+.discipline-practice [data-hints] p, .discipline-oral { border-left: 3px solid var(--violet); background: var(--wash); padding: .9rem 1rem; margin-block: 1.3rem; }
+.discipline-oral details p, .discipline-alternatives details p { margin-block: .4rem .8rem; }
+.discipline-correction { margin-block: 1.1rem; }
+.discipline-correction > p { margin-block: .5rem; }
+.discipline-correction > h2, .discipline-alternatives { margin-top: 1.6rem; }
+.discipline-context { color: var(--muted); font-size: .93rem; }
+.discipline-steps { margin-block: 1.1rem; padding-left: 1.8rem; }
+.discipline-steps li { padding-left: .3rem; margin-bottom: 1.25rem; }
+.discipline-steps h3 { font-size: 1.15rem; }
+.discipline-alternatives details { border-bottom: 1px solid var(--fine); }
+.discipline-correction h2:focus { outline: 3px solid var(--violet); outline-offset: 3px; }
+.discipline-mathlab { background: var(--pale); border: 1px solid var(--ink); padding: clamp(1rem,2.5vw,2rem); margin-block: 1.5rem; }
+.discipline-mathlab h2 { margin-bottom: .7rem; }
+.mathlab-graph { max-width: 35rem; margin: .7rem auto; }
+.mathlab-graph svg { display: block; width: 100%; background: var(--paper); border: 1px solid var(--fine); }
+.mathlab-graph text { fill: var(--ink); font: 13px var(--sans); }
+.mathlab-axis { stroke: var(--ink); fill: none; stroke-width: 1; }
+.mathlab-grid { stroke: var(--fine); fill: none; stroke-width: .7; stroke-dasharray: 2 5; }
+.mathlab-curve { stroke: var(--ink); fill: none; stroke-width: 3; }
+.mathlab-line { stroke: var(--violet); stroke-width: 2; stroke-dasharray: 6 3; }
+.mathlab-point { fill: var(--violet); stroke: var(--paper); }
+.mathlab-bar { stroke: var(--violet); fill: var(--wash); }
+.discipline-mathlab input { width: 100%; min-height: 44px; accent-color: var(--violet); }
+.mathlab-observation { font-variant-numeric: tabular-nums; }
+.mathlab-data table { width: 100%; border-collapse: collapse; }
+.mathlab-data caption { text-align: left; font-weight: 650; }
+.mathlab-data :is(th,td) { text-align: left; padding: .35rem; border-bottom: 1px solid var(--fine); }
+.discipline-compare { margin-block: 1.4rem; max-width: 58rem; padding: .2rem 1rem; border: 1px solid var(--ink); }
+.discipline-compare form { display: grid; gap: .7rem; margin-block: .75rem; }
+.discipline-compare form button { justify-self: start; }
+.discipline-compare p { max-width: 74ch; margin: .45rem 0; }
+.discipline-exam { max-width: 75ch; margin: 1.5rem auto 2rem; }
+.discipline-exam > p, .discipline-share > p { margin-block: .6rem; }
+.discipline-exam-question { min-width: 0; padding: 0; border: 0; }
+.discipline-exam-question legend, .discipline-restated { margin-block: .4rem 1rem; font: 560 clamp(1.25rem,2.2vw,1.8rem)/1.36 var(--serif); }
+.discipline-exam-index { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; }
+.discipline-exam-result { border-bottom: 1px solid var(--fine); }
+.discipline-exam-result > summary, .discipline-share > summary, .discipline-formulas > summary, .discipline-symbols > summary { cursor: pointer; min-height: 44px; padding-block: .65rem; font-weight: 650; }
+.discipline-formulas { margin-block: 1.3rem 2.5rem; max-width: 72ch; }
+.discipline-formulas dt, .discipline-symbols dt { margin-top: .8rem; font-weight: 650; }
+.discipline-formulas dd, .discipline-symbols dd { margin-inline: 0; }
+.discipline-share input { accent-color: var(--violet); }
+@media (max-width: 700px) {
+  .mast-tools { gap: .7rem; }
+  .rule-head.discipline-intro { display: block; }
+  .rule-head.discipline-intro p { margin: .5rem 0 0; padding: 0; border: 0; }
+  .discipline-spread, .discipline-course { grid-template-columns: minmax(0,1fr); }
+  .discipline-course { gap: .5rem; }
+  .discipline-filter label { max-width: none; }
+}
+@media print {
+  .mast-tools, .discipline-side, .discipline-filter, .discipline-save, .discipline-compare, .discipline-share { display: none !important; }
+  .discipline-spread, .discipline-reader, .discipline-practice { display: block; max-width: none; }
+  .discipline-reader .copy h2, .discipline-practice :is(h2,h3,summary) { break-after: avoid; }
+  .discipline-mathlab { break-inside: avoid; }
+  .discipline-mathlab input { display: none; }
+}
