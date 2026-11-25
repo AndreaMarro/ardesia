@@ -38,7 +38,7 @@ TASKS=[
 ('La formula inversa per γ',SCENE+'Quale relazione isola γ con grandezze in unità coerenti?',['γ = Δp r / 2','γ = 2 Δp r','γ = Δp / (2 r)','γ = 2 r / Δp','γ = Δp r'],
  'Da Δp=2γ/r moltiplichiamo per r>0 e dividiamo per due. La pressione per lunghezza ha dimensioni N/m, quindi l’inversa restituisce la tensione superficiale. Il raggio si trova al numeratore dopo l’isolamento.',
  r'\Delta p\,r=2\gamma\qquad \gamma=\frac{\Delta p\,r}{2}\qquad [\gamma]=\mathrm{Pa\,m}\qquad [\gamma]=\mathrm{N/m}',
- '2Δpr sovrastima di quattro volte; Δp/(2r) perde due potenze di lunghezza rispetto alla tensione corretta. Il reciproco 2r/Δp ha unità inverse e Δpr omette il divisore due. Non serve una radice quadrata.', 'Elimina prima il denominatore r e poi il coefficiente due.'),
+ '2Δpr sovrastima di quattro volte; Δp/(2r) perde due potenze di lunghezza rispetto alla tensione corretta. 2r/Δp ha unità m/Pa invece di Pa·m e Δpr omette il divisore due. Non serve una radice quadrata.', 'Elimina prima il denominatore r e poi il coefficiente due.'),
 ('Scalare tensione e raggio',SCENE+'Fra A e B, γ_B=κ₁γ_A e r_B=κ₂r_A, con fattori positivi. Quanto vale Δp_B/Δp_A?',['κ₁ / κ₂','κ₁ κ₂','κ₂ / κ₁','κ₁ / κ₂²','κ₁² / κ₂'],
  'La tensione porta il fattore diretto κ₁ e il raggio al denominatore porta il reciproco di κ₂. Il fattore geometrico due si cancella, perciò il rapporto è κ₁/κ₂. Le configurazioni rimangono sferiche a singola interfaccia.',
  r'\Delta p_B=\frac{2\kappa_1\gamma_A}{\kappa_2r_A}\qquad \Delta p_B/\Delta p_A=\frac{\kappa_1}{\kappa_2}',
