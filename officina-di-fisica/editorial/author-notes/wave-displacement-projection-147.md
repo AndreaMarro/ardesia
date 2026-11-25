@@ -126,7 +126,7 @@ I riferimenti s_A=2 mm e s_B=3 mm fissano q=2 mm⁻¹ e b=1. La lettura tre dà 
 
 Passaggi: `q=2\,\mathrm{mm^{-1}}\qquad b=1\qquad s_C=1\,\mathrm{mm}\qquad A_C=1\,\mathrm{mm}`
 
-Errori e controllo: Tre copia la lettura, due e quattro ampiezze delle prove precedenti. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale.
+Errori e controllo: Tre copia la lettura; due copia lo spostamento del riferimento A e quattro la sua ampiezza. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale.
 
 ## 16 — Un vincolo sul coseno e sull’ampiezza
 
@@ -139,3 +139,7 @@ Errori e controllo: Meno un mezzo viola il ramo, un quarto è il quadrato e due 
 ## Dominio e figura
 
 Tutti i dati originali sono mantenuti; le inverse impongono c_φ>0 e verificano c_φ≤1, compreso il bordo superiore. La proiezione geometrica non è una traiettoria del punto. Il raggio e il triangolo hanno coordinate SVG arrotondate al millesimo di pixel per rappresentare una costruzione esatta, con raggio 160 px e proiezione 80 px; nessun risultato didattico è approssimato. Il grafico normalizzato distingue zero escluso e uno incluso, e le barre degli spostamenti usano una diversa scala dichiarata.
+
+## Rilettura dell’autore prima della review
+
+In 15 il distrattore 2 copia lo spostamento del riferimento A, non la sua ampiezza. Corretta esclusivamente questa attribuzione nel feedback e in error.message, con binding15 rigenerato; chiavi, formule, asset e altre 15 schede immutate. Ripetuti assembly, import e 48 anteprime tecniche finali exit 0. Nessuna firma scientifica dell’autore.

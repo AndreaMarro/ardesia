@@ -61,7 +61,7 @@ TASKS=[
 ('Un offset prima della fase',P+'S=qs+b è continuo e adimensionale. A: A=4 mm,c_φ=1/2,S=5. B: A=3 mm,c_φ=1,S=7. C: c_φ=1,S=3. Quanto vale A_C?',['1 mm','3 mm','2 mm','4 mm','1/2 mm'],
  'I riferimenti s_A=2 mm e s_B=3 mm fissano q=2 mm⁻¹ e b=1. La lettura tre dà s_C=(3−1)/2=1 mm. Poiché il nuovo coseno vale uno, l’ampiezza è anch’essa un millimetro.',
  r'q=2\,\mathrm{mm^{-1}}\qquad b=1\qquad s_C=1\,\mathrm{mm}\qquad A_C=1\,\mathrm{mm}',
- 'Tre copia la lettura, due e quattro ampiezze delle prove precedenti. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale.','Rimuovi b e q, poi inverti la relazione fisica.'),
+ 'Tre copia la lettura; due copia lo spostamento del riferimento A e quattro la sua ampiezza. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale.','Rimuovi b e q, poi inverti la relazione fisica.'),
 ('Un vincolo sul coseno e sull’ampiezza',P+'Fra prove si impone A=b c_φ con b=8 mm. Si misura s=2 mm. Quanto vale c_φ nel ramo dichiarato?',['1/2','−1/2','1/4','2','1'],
  'Sostituendo il vincolo si ottiene s=b c_φ². Il rapporto due mm su otto mm dà c_φ²=1/4. Il ramo positivo seleziona un mezzo, che non supera uno. L’ampiezza ricostruita è quattro millimetri; sostituendo si ritrova s=2 mm.',
  r's=b c_\varphi^2\qquad c_\varphi^2=\frac14\qquad c_\varphi=\frac12\qquad A=4\,\mathrm{mm}',
