@@ -1,8 +1,8 @@
 export const legende = {
   calibro: 'Ganasce verdi · tratto ocra fra i due riferimenti',
   campione: 'Il bordo viola misura il lato · il materiale occupa tre dimensioni',
-  vettori: 'Verde e ocra · vettori di partenza. Viola · risultato o proiezione',
-  binario: 'Tacca ocra · partenza. Carrello verde · posizione di misura',
+  vettori: 'Gli assi x e y sono indicati sulla tavola. Verde · primo vettore, a nei confronti oppure v nelle prove con un solo vettore. Ocra · secondo vettore b. Viola · somma, proiezione o prodotto vettoriale a × b, secondo la prova.',
+  binario: 'Tacca ocra · Via, posizione di partenza. Carrello verde · posizione di misura. La freccia sopra il carrello indica la velocità.',
   volo: 'Curva verde · traiettoria. Tratteggio · proiezione al suolo',
   caduta: 'Corpo ocra · massa. Riga graduata · quota. Rosso · peso; nel confronto con il filo il peso di riferimento è 20 N e il verde indica la tensione, alla stessa scala. Le frecce sono separate dal corpo per leggerne il verso.',
   cerchio: 'Il perno indica il centro. Verde · velocità tangente alla circonferenza. Viola · accelerazione verso il centro. Le frecce sono disegnate sopra la pallina, in un piano parallelo. Velocità e accelerazione hanno scale proprie: confronta le lunghezze della stessa grandezza.',

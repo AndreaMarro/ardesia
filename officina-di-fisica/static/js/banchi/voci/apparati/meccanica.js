@@ -126,7 +126,6 @@ export const meccanica = {
     b.label([2.8, oy + 0.14, 0], 'x');
     b.label([ox, oy + 0.14, -2.2], 'y');
     b.arrow(O, A, c.verde);
-    b.label([A[0], oy + 0.26, A[2]], s.bx === undefined ? 'v' : 'a', c.verde);
     if (s.proietta) {
       b.line([A, [A[0], oy, 0]], c.ocra, true);
       b.line([A, [ox, oy, A[2]]], c.ocra, true);
@@ -140,11 +139,9 @@ export const meccanica = {
         end[1] += 0.12;
       }
       b.arrow(start, end, c.ocra);
-      b.label([end[0], oy + 0.55, end[2]], 'b', c.ocra);
       if (s.somma) b.arrow([ox, oy + 0.42, 0], [end[0], oy + 0.42, end[2]], c.viola);
       if (s.croce) {
         b.arrow(O, [ox, oy + 1.55 * s.by, 0], c.viola);
-        b.label([ox, oy + 1.55 * s.by + 0.27, 0], 'a × b', c.viola);
       }
       if (s.prodotto) b.line([B, [B[0], oy, 0]], c.viola, true);
     }
@@ -157,7 +154,7 @@ export const meccanica = {
     b.rod([old, 0.06, 0.65], [old, 0.65, 0.65], 0.026, c.ocra);
     carrello(b, x, c.verde);
     b.arrow([x, 0.95, 0], [x + (s.freccia ?? 0) * 0.65, 0.95, 0], c.viola);
-    b.label([old, 0.85, 0.72], s.startLabel || 'Via', s.marks ? c.inchiostro : c.ocra);
+    if (s.startLabel) b.label([old, 0.85, 0.72], s.startLabel, s.marks ? c.inchiostro : c.ocra);
     if (s.turn !== undefined) {
       b.arrow([old, 0.12, -1.15], [at(s.turn), 0.12, -1.15], c.verde);
       b.arrow([at(s.turn), 0.12, -0.67], [x, 0.12, -0.67], c.viola);

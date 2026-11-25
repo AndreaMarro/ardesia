@@ -183,3 +183,20 @@ test('moving endpoint and mass vector names remain in HTML without sprites cover
   assert.equal(paper.elementi.filter(e=>e.kind==='label').length,0,'Names are read in the existing legend, without a screen-space cover over the arrows');
  }
 });
+
+test('vector names remain in the HTML legend with no opaque name sprite over a or b tips',()=>{
+ assert.match(legende.vettori,/primo vettore/iu);assert.match(legende.vettori,/secondo vettore/iu);
+ assert.match(legende.vettori,/prodotto vettoriale/iu);
+ for(const angle of [0,90,120,180]){
+  const {items}=drawing('SIM-C1-L007-01',angle,'vettori');
+  assert.deepEqual(items.filter(e=>e.kind==='label').map(e=>e.text).sort(),['x','y']);
+ }
+});
+
+test('default start name stays readable in the legend while custom coordinate names are retained',()=>{
+ assert.match(legende.binario,/Via/u);
+ const {items,state}=drawing('SIM-C1-L003-04',0,'binario');
+ assert.equal(items.filter(e=>e.kind==='label'&&e.text==='Via').length,0);
+ const paper=tavolo(2);meccanica.binario(paper,{...state,startLabel:'x₀ = 1/3 m'});
+ assert.equal(paper.elementi.filter(e=>e.kind==='label'&&e.text==='x₀ = 1/3 m').length,1);
+});
