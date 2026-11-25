@@ -1,0 +1,1241 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15401,
+      "title": "Il calore alimenta due contributi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 1,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Con nR=2 J/K e ΔT=10 K, quanto vale Q in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per il gas monoatomico l’energia interna cresce di tre mezzi di nRΔT. Il prodotto nRΔT vale venti joule: trenta restano come aumento di U. L’espansione a pressione costante compie inoltre venti joule di lavoro, perché pΔV=nRΔT. Il calore deve fornire entrambi i contributi: trenta più venti sono cinquanta joule."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca87d1429233500c8fcb112ae4bc71c4833120bf925e8178d31421f5dc6d5602",
+          "text": "Tre passaggi per il gas ideale monoatomico: capacità totali con nR=2 J/K; ripartizione di Q per ΔT=10 K; confronto separato per ΔT=2 K della domanda03. Le barre di capacità usano 50 px per J/K, la barra energetica centrale 8 px/J e le barre finali 25 px/J. Le scale sono dichiarate per pannello e non vanno confrontate fra pannelli."
+        },
+        {
+          "type": "formula",
+          "text": "nR\\Delta T=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=\\frac32nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32nR\\Delta T=30\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": "nR\\Delta T=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\Delta U+W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=50\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Trenta J sono soltanto ΔU e venti J soltanto W. Usare C_V al posto di C_p per Q omette l’energia trasferita all’ambiente mediante il pistone. Non si moltiplica di nuovo per n: il prodotto nR lo include già."
+        }
+      ],
+      "hints": [
+        "Ricava separatamente l’aumento di energia interna e il lavoro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta J sono soltanto ΔU e venti J soltanto W. Usare C_V al posto di C_p per Q omette l’energia trasferita all’ambiente mediante il pistone. Non si moltiplica di nuovo per n: il prodotto nR lo include già.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15402,
+      "title": "L’unità del calore isobaro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 1,
+      "prompt": "nR è in J/K e ΔT in K. Il calore del modello è Q=(5/2)nRΔT. Quale unità è corretta per Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "J/K",
+          "K",
+          "W",
+          "J/(mol·K)"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore cinque mezzi non ha dimensioni. I kelvin si cancellano nel prodotto e rimangono joule, l’unità di un trasferimento energetico. Le moli sono già comprese nel prodotto assegnato nR."
+        },
+        {
+          "type": "formula",
+          "text": "[nR]=\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm{(J/K)K}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "J/K è capacità totale, K intervallo termico e J/(mol·K) capacità molare. W misura energia per tempo: nessuna durata entra nel prodotto richiesto."
+        }
+      ],
+      "hints": [
+        "Tratta nR come una sola grandezza già riferita al campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K è capacità totale, K intervallo termico e J/(mol·K) capacità molare. W misura energia per tempo: nessuna durata entra nel prodotto richiesto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15403,
+      "title": "L’energia interna non coincide con il calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 1,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. In questa prova nR=2 J/K e ΔT=2 K. È data la capacità totale C_V=(3/2)nR. Quanto vale ΔU?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 J",
+          "10 J",
+          "4 J",
+          "0 J",
+          "12 J"
+        ],
+        "value": "6 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui viene chiesta l’energia interna, non il calore. La capacità a volume costante descrive comunque la variazione di U del gas ideale fra le temperature considerate: vale tre J/K. Moltiplicando per due kelvin si ottengono sei joule, anche se il processo reale è isobaro. In questo processo si compiono anche quattro joule di lavoro e servono dieci joule di calore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca87d1429233500c8fcb112ae4bc71c4833120bf925e8178d31421f5dc6d5602",
+          "text": "Il calore si divide fra incremento di energia interna e lavoro uscente: Q=ΔU+W. Nel caso separato della domanda03, ΔT=2 K, i tre valori sono 10 J, 6 J e 4 J. L’energia interna dipende dalle temperature per il gas ideale, anche se il percorso è isobaro."
+        },
+        {
+          "type": "formula",
+          "text": "C_V=\\frac32nR"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32nR=3\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=C_V\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=10\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Dieci J risponde alla domanda su Q e quattro J a quella su W. Zero confonde pressione costante con temperatura costante; dodici raddoppia l’aumento di U. C_V può essere usata per ΔU del gas ideale senza imporre un percorso isocoro."
+        }
+      ],
+      "hints": [
+        "Leggi quale energia si domanda prima di scegliere la capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci J risponde alla domanda su Q e quattro J a quella su W. Zero confonde pressione costante con temperatura costante; dodici raddoppia l’aumento di U. C_V può essere usata per ΔU del gas ideale senza imporre un percorso isocoro.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15404,
+      "title": "Cambiare la quantità di gas fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 1,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. A ha nR=2 J/K e B ha nR=4 J/K; sono campioni distinti dello stesso gas. Entrambi usano ΔT=10 K. Che cosa accade a Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Passa da 50 a 100 J",
+          "Resta 50 J",
+          "Passa da 50 a 25 J",
+          "Passa da 50 a 200 J",
+          "Diventa zero"
+        ],
+        "value": "Passa da 50 a 100 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di intervallo, sia l’aumento di U sia il lavoro sono proporzionali a nR. Raddoppiando la quantità di gas fra i campioni si raddoppia quindi anche il calore. A richiede cinquanta joule e B cento, senza cambiare n all’interno della singola prova chiusa."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=\\frac52(2\\,\\mathrm{J/K})(10\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta ignora il nuovo campione, venticinque inverte la dipendenza e duecento attribuisce un secondo raddoppio a ΔT. Lo zero non è compatibile con il riscaldamento positivo."
+        }
+      ],
+      "hints": [
+        "Il coefficiente cinque mezzi è comune a entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinquanta ignora il nuovo campione, venticinque inverte la dipendenza e duecento attribuisce un secondo raddoppio a ΔT. Lo zero non è compatibile con il riscaldamento positivo.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15405,
+      "title": "Ricostruire il prodotto nR",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Sono misurati Q=50 J e ΔT=10 K. Quanto vale nR in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal calore isobaro isoliamo nR moltiplicando per due e dividendo per cinque e per l’intervallo. Cento joule divisi per cinquanta kelvin danno due J/K. Il controllo restituisce cinquanta joule senza richiedere il valore numerico di R o il numero di moli separato."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac52nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " nR=\\frac{2Q}{5\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " nR=\\frac{100\\,\\mathrm J}{50\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " nR=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Q/ΔT darebbe cinque J/K, che è C_p del campione e non nR. Usare il coefficiente tre mezzi ricaverebbe il parametro da un’energia interna, mentre il dato è un calore."
+        }
+      ],
+      "hints": [
+        "Rimuovi sia l’intervallo sia il fattore cinque mezzi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Q/ΔT darebbe cinque J/K, che è C_p del campione e non nR. Usare il coefficiente tre mezzi ricaverebbe il parametro da un’energia interna, mentre il dato è un calore.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15406,
+      "title": "Il riscaldamento dal calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Sono noti Q=50 J e nR=2 J/K. Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità totale a pressione costante è cinque J/K. Ogni kelvin richiede quindi cinque joule; cinquanta diviso cinque sono dieci kelvin. Non si ricava la temperatura assoluta finale senza quella iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "C_p=\\frac52nR"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac52nR=5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac Q{C_p}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque kelvin usa nR al posto di C_p. Il coefficiente tre mezzi darebbe cinquanta terzi kelvin e confonderebbe Q con ΔU. Non si applica un offset Celsius a questa differenza."
+        }
+      ],
+      "hints": [
+        "Trova prima i joule per kelvin richiesti dal percorso isobaro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venticinque kelvin usa nR al posto di C_p. Il coefficiente tre mezzi darebbe cinquanta terzi kelvin e confonderebbe Q con ΔU. Non si applica un offset Celsius a questa differenza.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15407,
+      "title": "Stesso campione, intervallo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. A e B hanno nR=2 J/K. A usa ΔT=10 K e B usa ΔT=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede cinquanta joule e B cento. Il rapporto vale due: la capacità totale C_p non cambia e il calore segue linearmente l’intervallo termico. L’espansione compresa nel modello non introduce un ulteriore quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte le prove; quattro quadra il raddoppio; uno lo ignora. Meno due contraddice i due calori entranti positivi."
+        }
+      ],
+      "hints": [
+        "Cancella nR e cinque mezzi nel rapporto completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte le prove; quattro quadra il raddoppio; uno lo ignora. Meno due contraddice i due calori entranti positivi.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15408,
+      "title": "Correggere una proposta di 100 J",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Con nR=2 J/K e ΔT=10 K, si propone Q=100 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 J",
+          "−50 J",
+          "100 J",
+          "0 J",
+          "25 J"
+        ],
+        "value": "50 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto nRΔT è venti joule e cinque mezzi di venti sono cinquanta. La proposta eccede il valore corretto di cinquanta joule. Il fatto che Q sia diverso da ΔU è già incluso nel coefficiente cinque mezzi: non occorre raddoppiare ancora."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac52(20\\,\\mathrm J)"
+        },
+        {
+          "type": "formula",
+          "text": " Q=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(100-50)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=50\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno cinquanta cambia l’ordine della sottrazione. Cento è la proposta, zero la accetta e venticinque dimezza nuovamente lo scarto."
+        }
+      ],
+      "hints": [
+        "Calcola prima il calore effettivo, poi la differenza con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno cinquanta cambia l’ordine della sottrazione. Cento è la proposta, zero la accetta e venticinque dimezza nuovamente lo scarto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15409,
+      "title": "L’inversa che conserva il coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Quale relazione isola nR dalla legge Q=(5/2)nRΔT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "nR = 2Q / (5ΔT)",
+          "nR = 2Q / (3ΔT)",
+          "nR = Q / ΔT",
+          "nR = 5Q / (2ΔT)",
+          "nR = Q / (5ΔT)"
+        ],
+        "value": "nR = 2Q / (5ΔT)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per due quinti e poi dividiamo per ΔT positivo. Il risultato ha J/K, la dimensione di nR. Nella sostituzione il prodotto cinque mezzi per due quinti si riduce a uno e ricostruisce esattamente Q."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac25Q=nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " nR=\\frac{2Q}{5\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " [nR]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Il tre usa il coefficiente di ΔU al posto di quello di Q. Q/ΔT è C_p; cinque mezzi anziché due quinti moltiplica per il coefficiente invece di invertirlo. Q/(5ΔT) perde il fattore due necessario."
+        }
+      ],
+      "hints": [
+        "L’inverso di cinque mezzi è due quinti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il tre usa il coefficiente di ΔU al posto di quello di Q. Q/ΔT è C_p; cinque mezzi anziché due quinti moltiplica per il coefficiente invece di invertirlo. Q/(5ΔT) perde il fattore due necessario.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15410,
+      "title": "Scalare due ingressi del calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Fra prove separate nR_B=κ₁nR_A e ΔT_B=κ₂ΔT_A, con fattori positivi. Quale espressione dà Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "(5/2) κ₁ κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni calore contiene lo stesso coefficiente cinque mezzi. Nel rapporto esso si cancella insieme agli ingressi di A. Restano il fattore della quantità di gas e quello dell’intervallo, moltiplicati una sola volta."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\frac52\\kappa_1nR_A\\kappa_2\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=\\frac52nR_A\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una delle dipendenze. La somma dà due per prove identiche; mantenere cinque mezzi nel rapporto dimentica che quel coefficiente compare anche nel denominatore."
+        }
+      ],
+      "hints": [
+        "Scrivi anche il calore del riferimento prima di cancellare i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una delle dipendenze. La somma dà due per prove identiche; mantenere cinque mezzi nel rapporto dimentica che quel coefficiente compare anche nel denominatore.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15411,
+      "title": "Due raddoppi, un rapporto energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. A: nR=2 J/K, ΔT=10 K. B: nR=4 J/K, ΔT=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento assorbe cinquanta joule. B ha prodotto nRΔT pari a ottanta joule e quindi richiede duecento joule di calore. Duecento su cinquanta è quattro, prodotto dei due raddoppi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac52(80\\,\\mathrm J)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo ingresso; duecento è il numero di joule del secondo processo. Un quarto dà il rapporto inverso."
+        }
+      ],
+      "hints": [
+        "Valuta le due prove separatamente e poi forma un numero senza unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo ingresso; duecento è il numero di joule del secondo processo. Un quarto dà il rapporto inverso.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15412,
+      "title": "Mediare due apporti di calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 2,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. A usa nR=2 J/K, ΔT=10 K; B usa nR=4 J/K, ΔT=20 K. Qual è la media aritmetica dei due Q con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "125 J",
+          "250 J",
+          "125/2 J",
+          "225/2 J",
+          "150 J"
+        ],
+        "value": "125 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I calori sono cinquanta e duecento joule. La somma duecentocinquanta divisa per due dà centoventicinque joule. Inserire invece nR medio di tre J/K e ΔT medio di quindici K darebbe duecentoventicinque mezzi di joule: il prodotto degli ingressi medi non conserva qui la media delle uscite."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{50+200}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=125\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Duecentocinquanta è la somma, 125/2 dimezza ancora e centocinquanta è la differenza. 225/2 usa una terza configurazione con ingressi medi."
+        }
+      ],
+      "hints": [
+        "Media le energie del modello, non gli ingressi prima del prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecentocinquanta è la somma, 125/2 dimezza ancora e centocinquanta è la differenza. 225/2 usa una terza configurazione con ingressi medi.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15413,
+      "title": "Il secondo ingresso per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 3,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. A ha nR=2 J/K e ΔT_A=10 K. B ha nR=4 J/K e deve ricevere Q_B=4Q_A. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è duecento joule. La nuova capacità C_p vale dieci J/K, perciò occorrono venti kelvin, il doppio dell’intervallo iniziale. Il raddoppio di nR fornisce un fattore due; serve un altro fattore due nell’intervallo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " C_{p,B}=10\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un rapporto quattro darebbe Q_B=8Q_A, perché raddoppierebbe già anche nR. Un rapporto uno produrrebbe soltanto Q_B=2Q_A."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore energetico richiesto per il fattore di nR.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un rapporto quattro darebbe Q_B=8Q_A, perché raddoppierebbe già anche nR. Un rapporto uno produrrebbe soltanto Q_B=2Q_A.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15414,
+      "title": "Dal display al prodotto nR",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 3,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. S=qQ è continuo e adimensionale. A con nR=2 J/K, ΔT=10 K dà S=150. B dà S=600 e usa ΔT=20 K. Quanto vale nR_B in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento assorbe cinquanta joule e fissa q=3 J⁻¹. La nuova lettura significa duecento joule. Togliendo il fattore cinque mezzi e i venti kelvin dall’energia si ottiene nR_B=4 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " nR_B=\\frac{2Q_B}{5\\Delta T_B}"
+        },
+        {
+          "type": "formula",
+          "text": " nR_B=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 600 come joule darebbe dodici J/K. Q_B/ΔT_B=10 J/K è invece C_p,B e conserva il coefficiente cinque mezzi: non è nR_B."
+        }
+      ],
+      "hints": [
+        "Converti il display in energia e solo dopo applica l’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 600 come joule darebbe dodici J/K. Q_B/ΔT_B=10 J/K è invece C_p,B e conserva il coefficiente cinque mezzi: non è nR_B.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15415,
+      "title": "Guadagno, offset e quantità di gas",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 3,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. S=qQ+b è continuo e adimensionale. A: nR=2 J/K, ΔT=10 K, S=101. B: nR=4 J/K, ΔT=20 K, S=401. C: ΔT=10 K, S=201. Quanto vale nR_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 J/K",
+          "2 J/K",
+          "8 J/K",
+          "201/50 J/K",
+          "5 J/K"
+        ],
+        "value": "4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B richiedono cinquanta e duecento joule. La differenza delle letture è trecento per centocinquanta joule: q=2 J⁻¹, poi b=1. La prova C corrisponde a cento joule; due quinti di cento, divisi per dieci kelvin, danno quattro J/K."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{401-101}{(200-50)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " nR_C=\\frac{2Q_C}{5\\Delta T_C}"
+        },
+        {
+          "type": "formula",
+          "text": " nR_C=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Due, otto e cinque J/K darebbero rispettivamente S=101, 401 e 251. 201/50 J/K omette l’offset e ricostruirebbe S=202. Il confronto va eseguito con entrambe le tarature rispettate."
+        }
+      ],
+      "hints": [
+        "Usa le differenze per q, poi sottrai b prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due, otto e cinque J/K darebbero rispettivamente S=101, 401 e 251. 201/50 J/K omette l’offset e ricostruirebbe S=202. Il confronto va eseguito con entrambe le tarature rispettate.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isobaric-monatomic-heat-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore ed energia interna nel gas monoatomico",
+      "order": 15416,
+      "title": "Un vincolo fra campioni preparati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isobaric-monatomic-heat",
+      "difficulty": 3,
+      "prompt": "Ogni prova riguarda un campione chiuso di gas ideale monoatomico nel regime classico, con capacità termiche costanti. Il riscaldamento avviene lentamente a pressione positiva costante, con pistone senza attrito e pressione esterna uguale a quella interna al limite quasi statico. L’unico lavoro è quello di espansione; non cambiano energia cinetica o potenziale macroscopica. Sono assegnati nR>0 in J/K e l’aumento ΔT>0 in K; le temperature assolute restano positive. Q è positivo se entra nel gas e W se il gas compie lavoro sull’ambiente, perciò ΔU=Q−W. Fra preparazioni diverse si sceglie nR=cΔT, con c=(1/5) J/K². In ciascuna prova nR resta costante: non dipende dalla temperatura istantanea. Se Q=50 J, quanto vale ΔT>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 K",
+          "−10 K",
+          "100 K",
+          "5 K",
+          "20 K"
+        ],
+        "value": "10 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo la quantità scelta per il campione si ottiene Q=(5/2)c(ΔT)². Il coefficiente cinque mezzi per un quinto è un mezzo di J/K². Cinquanta joule equivalgono quindi a cento kelvin quadrati nel quadrato dell’intervallo. La radice positiva è dieci kelvin; il campione ha nR=2 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac52c(\\Delta T)^2"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta T)^2=\\frac{2Q}{5c}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta T)^2=100\\,\\mathrm{K^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " nR=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "La radice negativa viola sia ΔT>0 sia nR>0. Cento è il numero del quadrato e non dell’intervallo; cinque e venti kelvin darebbero 25/2 J e 200 J. Il vincolo fra preparazioni non introduce un’integrazione durante il percorso."
+        }
+      ],
+      "hints": [
+        "Sostituisci prima il vincolo, poi conserva soltanto il ramo fisico positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice negativa viola sia ΔT>0 sia nR>0. Cento è il numero del quadrato e non dell’intervallo; cinque e venti kelvin darebbero 25/2 J e 200 J. Il vincolo fra preparazioni non introduce un’integrazione durante il percorso.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità totali C_p e C_V",
+        "Calore isobaro distinto da energia interna",
+        "Inverse, confronti e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ca87d1429233500c8fcb112ae4bc71c4833120bf925e8178d31421f5dc6d5602",
+      "name": "isobaric-monatomic-heat-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5HYXMgbW9ub2F0b21pY28sIGNhcGFjaXTDoCBlZCBlbmVyZ2llIGRpc3RpbnRlPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlRyZSBwYW5uZWxsaTogY2FwYWNpdMOgIHRvdGFsaSBhIHZvbHVtZSBlIHByZXNzaW9uZSBjb3N0YW50ZTsgcmlwYXJ0aXppb25lIGRlbCBjYWxvcmUgZGkgY2lucXVhbnRhIGpvdWxlIGluIHRyZW50YSBqb3VsZSBkaSBlbmVyZ2lhIGludGVybmEgZSB2ZW50aSBkaSBsYXZvcm87IGNhc28gc2VwYXJhdG8gY29uIGF1bWVudG8gZGkgZHVlIGtlbHZpbiwgZGllY2kgam91bGUgZGkgY2Fsb3JlLCBzZWkgZGkgZW5lcmdpYSBpbnRlcm5hIGUgcXVhdHRybyBkaSBsYXZvcm8uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgQ2FwYWNpdMOgIGRlbGzigJlpbnRlcm8gY2FtcGlvbmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MiI+blIgPSAyIEovSzsgZ2FzIGlkZWFsZSBtb25vYXRvbWljbzwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjE0MyI+Q+G1pTwvdGV4dD48cmVjdCB4PSIxMDUiIHk9IjExOCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPjx0ZXh0IHg9IjI3MiIgeT0iMTQzIj4zIEovSzwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjIwOCI+Q+KCmjwvdGV4dD48cmVjdCB4PSIxMDUiIHk9IjE4MyIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjx0ZXh0IHg9IjM3MiIgeT0iMjA4Ij41IEovSzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjI2NCI+Q+KCmiDiiJIgQ+G1pSA9IG5SID0gMiBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIyOTkiIGZvbnQtc2l6ZT0iMTgiPlNjYWxlIGRlbGxlIGJhcnJlOiA1MCBweCBwZXIgSi9LLjwvdGV4dD4KPHBhdGggZD0iTTMyIDMzMEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iMzc1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBSaXNjYWxkYW1lbnRvIGRpIDEwIEs8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MTUiPlEgPSDOlFUgKyBXID0gMzAgSiArIDIwIEogPSA1MCBKPC90ZXh0Pgo8dGV4dCB4PSI1MiIgeT0iNDc1Ij5RPC90ZXh0PjxyZWN0IHg9IjEwNSIgeT0iNDQ4IiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTQyNDNhIi8+PHRleHQgeD0iNTIyIiB5PSI0NzUiPjUwIEo8L3RleHQ+CjxyZWN0IHg9IjEwNSIgeT0iNTE5IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjUyIiBmaWxsPSIjMjg2NjRkIi8+CjxyZWN0IHg9IjM0NSIgeT0iNTE5IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjUyIiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjEzMiIgeT0iNTUyIiBmaWxsPSIjZmZmIj7OlFUgPSAzMCBKPC90ZXh0Pjx0ZXh0IHg9IjM2NCIgeT0iNTUyIiBmaWxsPSIjZmZmIj5XID0gMjAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjYxNiIgZm9udC1zaXplPSIxOCI+U3Rlc3NhIHNjYWxhIHBlciB0dXR0ZSBsZSBlbmVyZ2llOiA4IHB4L0ouPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjUwIiBmb250LXNpemU9IjE4Ij5JbCBsYXZvcm8gZXNjZTsgbOKAmWF1bWVudG8gZGkgVSByaW1hbmUgbmVsIGdhcy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA2ODNINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjcyOSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgQ2FzbyBzZXBhcmF0bzogYXVtZW50byBkaSAyIEs8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3NzAiPlN0ZXNzbyBuUjsgbGEgZG9tYW5kYSAwMyBjaGllZGUgzpRVLjwvdGV4dD4KPHRleHQgeD0iNDUiIHk9IjgzMiI+UTwvdGV4dD48cmVjdCB4PSIxMTAiIHk9IjgwNyIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE0MjQzYSIvPjx0ZXh0IHg9IjM3NyIgeT0iODMyIj4xMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODk5Ij7OlFU8L3RleHQ+PHJlY3QgeD0iMTEwIiB5PSI4NzQiIHdpZHRoPSIxNTAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz48dGV4dCB4PSIyNzciIHk9Ijg5OSI+NiBKPC90ZXh0Pgo8dGV4dCB4PSI0NSIgeT0iOTY2Ij5XPC90ZXh0PjxyZWN0IHg9IjExMCIgeT0iOTQxIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+PHRleHQgeD0iMjI3IiB5PSI5NjYiPjQgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwMjIiPs6UVSA9IEPhtaUgzpRUOyBRID0gQ+KCmiDOlFQ8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMDYyIiBmb250LXNpemU9IjE4Ij5TY2FsZSBkZWxsZSBiYXJyZSBkZWwgcGFubmVsbG8gMzogMjUgcHgvSi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMDk0IiBmb250LXNpemU9IjE4Ij5JbCB2aW5jb2xvIGlzb2Jhcm8gbm9uIHJlbmRlIFEgdWd1YWxlIGEgzpRVLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
