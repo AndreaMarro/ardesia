@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "LAB3D-01",
+  "result": "WITHDRAWN_NOT_REACHABLE_FROM_BENCH_UI",
+  "actualBrowserCases": [
+    {
+      "order": [
+        "ms",
+        "mk"
+      ],
+      "parameters": {
+        "m": 2,
+        "angle": 0,
+        "ms": 1,
+        "mk": 1,
+        "F": 1
+      },
+      "readings": "Normale N\n19,62 N\nAttrito\n-1 N\nAccelerazione a\n0 m/s²",
+      "expectedAcceleration": 0,
+      "rest": true
+    },
+    {
+      "order": [
+        "mk",
+        "ms"
+      ],
+      "parameters": {
+        "m": 2,
+        "angle": 0,
+        "ms": 0,
+        "mk": 0,
+        "F": 1
+      },
+      "readings": "Normale N\n19,62 N\nAttrito\n-0 N\nAccelerazione a\n0,5 m/s²",
+      "expectedAcceleration": 0.5,
+      "rest": false
+    }
+  ],
+  "liveDatabase": "disposable_sqlite",
+  "runtimeChanged": false,
+  "humanApproval": "NOT_RUN",
+  "completionCredit": 0,
+  "newPublications": 0,
+  "earlierAutomationProbes": [
+    "anonymous probe never entered authenticated bench: NONPASS",
+    "second probe toggled already-open settings closed: NONPASS"
+  ]
+}
