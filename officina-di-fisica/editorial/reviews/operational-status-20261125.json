@@ -1,18 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T13:51:44.058216+00:00",
-  "snapshotHead": "a0136844c7e8a9d34624a1d0b01b18d88d1bb14d",
+  "observedAt": "2026-11-25T14:01:28.286950+00:00",
+  "snapshotHead": "8dda5f7c32f6b4b7173e91a98707c2d70166d546",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 2992,
-    "scientificallyUnreviewed": 1614,
-    "registeredDrafts": 2992,
+    "scientificallyReviewed": 3152,
+    "scientificallyUnreviewed": 1454,
+    "registeredDrafts": 3152,
     "compiledDraftsLocally": 2992,
     "compiledCandidateFullyLocallyValidated": true,
-    "next160AuthorAndPeerReviewedButRootAcceptance": "PENDING",
-    "canonicalHistoricalRevisedDrafts": 1728
+    "canonicalHistoricalRevisedDrafts": 1728,
+    "newRootAcceptanceReceipt": "editorial/reviews/u6-02-root-integration-20261125/receipt.json"
   },
   "activities": {
     "accounted": 385,
@@ -25,7 +25,11 @@
       "C5": 27,
       "C6": 6
     },
-    "C2C3PartialReviewsAddCredit": 0
+    "C2C3PartialReviewsAddCredit": 0,
+    "partialC2C3C4DeliveriesRecovered": true,
+    "partialRootTargetTests": "PENDING",
+    "C3L0705PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; exact radical not accepted by Number, reviewer approximation method absent from source",
+    "C4L0902PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; sin95 input not supported, accepted6 approximation alone is not usability proof"
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -66,6 +70,42 @@
     "fixRereadAndActualLocalUI": "PASS"
   },
   "currentLocalPreparation": {
+    "scientificallyReviewedQuestionDrafts": 3152,
+    "compiledQuestionDrafts": 2992,
+    "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1",
+    "ui": {
+      "batches": 209,
+      "workers": 1,
+      "reused": 199,
+      "rendered": 10,
+      "failed": 0,
+      "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1"
+    },
+    "etl3152": "NOT_RUN_YET",
+    "coexistence3152": "NOT_RUN_YET",
+    "fullSuite3152": "NOT_RUN_YET",
+    "release3152": "NOT_RUN_YET",
+    "isGitHubCI": false,
+    "uploads": false
+  },
+  "nextScientificAcceptanceId": "AR-u6-identical-parallel-resistors-01",
+  "nextNewAuthoringId": "See disjoint ownership U6-03 210-219; authoring in progress, no reallocation",
+  "assignments": "U6-02 all160 Root accepted; U6-03 all160 assigned with both prompt-only primaries frozen; A210-212 and B215-216 authored locally, no scientific acceptance yet; Third C5 then C6",
+  "governance": {
+    "publication": "DEFAULT_DENY",
+    "humanApproval": "NOT_RUN",
+    "newMaterials": "DRAFT",
+    "repositoryVisibility": "PUBLIC_OBSERVED",
+    "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
+    "externalWrites": "HOLD_PENDING_USER_SCOPE_CLARIFICATION",
+    "requiredClarification": "Whether no DRAFT exposure applies only in the application or also to publicly readable GitHub files",
+    "priorPublicPushesExist": true,
+    "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
+    "automaticApprovalReviewRejected": false
+  },
+  "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger",
+  "lastPublicRootHead": "83cafbb9e42ebf6d32f505573602add041c00bf8",
+  "lastFullyValidatedLocalPreparation": {
     "ui": {
       "result": "PASS",
       "packages": 199,
@@ -94,20 +134,24 @@
     "uploads": false,
     "validationReceiptSha256": "23a0acdbc503569282a0ced8f6ee033bcd1a93c4fc7361665aa0c38a42fbbc66"
   },
-  "nextScientificAcceptanceId": "AR-u6-zero-field-distance-ratio-01",
-  "nextNewAuthoringId": "AR-u6-identical-parallel-resistors-01",
-  "assignments": "U6-02 authoring/review complete locally pending Root; U6-03 210-219 ownership assigned and source-only primaries in progress; Third C4 partial review then C5",
-  "governance": {
-    "publication": "DEFAULT_DENY",
+  "durableLocalGitBackup": {
+    "scope": "Private durable local backup outside temporary worktrees; no upload",
+    "createdAt": "2026-11-25T14:00:58.255749+00:00",
+    "bundlePath": "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/private-recovery/cric-after-public-83cafbb.bundle",
+    "sha256": "38c90c7451947e5b7c49ca53642f24615c1ad8847b6d260121c2fd8e3c91b0d0",
+    "bytes": 43555590,
+    "heads": "8dda5f7c32f6b4b7173e91a98707c2d70166d546 refs/heads/feat/cric-experiment-manual-revisions\n7c71e095686a96dae449f7a4507c98bd651f45e8 refs/heads/feat/cric-inclines-a\n459f43c7869844673c18f14d86b40e2de2b636ec refs/heads/feat/cric-contact-b\n",
+    "prerequisite": "83cafbb9e42ebf6d32f505573602add041c00bf8 and its reachable objects from existing repository or public GitHub history",
+    "sourcePinsIncluded": {
+      "ardesia-source": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+      "cric-source": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "historical-fixture-493": "493df796527bdb31b71f223343384656258e8e3a",
+      "historical-fixture-da2": "da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b"
+    },
+    "verifiedAgainstExistingRepository": true,
+    "restore": "Ensure prerequisite commit exists; git bundle verify PATH; git fetch PATH refs/heads/feat/cric-experiment-manual-revisions:refs/heads/recovered-cric; other listed refs likewise as needed",
+    "uploads": false,
     "humanApproval": "NOT_RUN",
-    "newMaterials": "DRAFT",
-    "repositoryVisibility": "PUBLIC_OBSERVED",
-    "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
-    "externalWrites": "HOLD_PENDING_USER_SCOPE_CLARIFICATION",
-    "requiredClarification": "Whether no DRAFT exposure applies only in the application or also to publicly readable GitHub files",
-    "priorPublicPushesExist": true,
-    "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
-    "automaticApprovalReviewRejected": false
-  },
-  "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger"
+    "publicationAction": "NONE"
+  }
 }

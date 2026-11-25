@@ -1961,3 +1961,33 @@ Priorità riproducibili:
 Le sezioni seguenti sono snapshot storici.
 
 ---
+
+
+## Sessione 2026-11-25T14:01:28.286950+00:00 — accettati3152, privacy pendente
+
+## Stato operativo — 3.152 revisioni scientifiche, mandato incompleto
+
+Aggiornato 2026-11-25T14:01:28.286950+00:00; snapshot locale `8dda5f7c32f6b4b7173e91a98707c2d70166d546`, ultimo Root pubblico83cafbb9. **3.152/4.606 quesiti revisionati (68,4%); restano1.454:848Ardesia e606Cric.** Attività complete nella feature246/385, restano139 (41C2,36C3,29C4,27C5,6C6). Le analisi parziali delle attività non ricevono credito. Approvazioni umane0 e pubblicazioni nuove0;93 esami protetti nell’app. Le100revisioniPro restano NOT_IDENTIFIED, i199controlli tecnici recuperati non sono revisioni complete.
+
+**Ultimo checkpoint locale interamente collaudato:2.992/246**, generazione5bf6580b19cfb977b6b9ec9e55af2b44735a8216ae6a7eea9d52f62e140db047, manifestfc03c8a711985064a8f37ed59b345635a679dad9c5e1fd9110100732916266ae, commit0faa887. Anteprime199/9.027 realmente PASS (188riusi+11render), ETLfresh180,531s/incrementale190,608s byte-identici56file, coesistenza3.009draft e991pubblicati invariati, **800testPASS491,766s**, validatore199batchPASS145,44s, release SHA64310e060498b2f6f1acaf9acbba6c27d9424d63e814031365d8c4bfd8c8d977 con0fonti/figureDRAFT incluse. Tutte le prove grezze, ZIP UI467file e ricevute sono salvate sotto `editorial/reviews/local-only-2992-20261125/`. È prova locale, non CI sulla head finale o integrazione nel canone remoto.
+
+**U6-02:160 ulteriori scientificamente accettati da Root**, commitc94946262e90cc7b2f52f495e67cdc9220722293. Aautore200–204/Bverificatore, Bautore205–209/Averificatore; entrambe primarie prompt-only precedenti ai candidati. Root ha recuperato232file conSHA, poi il followup finite/exacteaaaf6c (SHA75762a98b796b9af1e61ac58698a0bc2adefc37806fa0638c4e678f78d7265e4). Le vecchie399c2b8provenienze rimangono storiche. Guardie per nonfiniti/nonreali/Float/simboli/bool completate senza cambiare leggi, candidati, primarie o decoderpurob581. RED reale conservato:251mancatiValueError e605eccezioni di tipo diverso, non605accettazioni. Root ha rieseguito16testPASS3,017s e14testPASS4,738s, tutti160fresh/savedidentici sui file canonici Root senza fallbackfixture, verificati SHA prima/dopo e10import16→0/16 con991pubblicati invariati. Ricevuta completa `editorial/reviews/u6-02-root-integration-20261125/receipt.json`.
+
+Registryora3.152, SHAfde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1. Il replay locale canonico209pacchetti è **PASS**, riusando soltanto199marker autentici; le altre prove3152 restano da compilare/verificare. Non chiamare aggiornato il checkpoint2992 finché ETL e collaudo corrispondenti non sono conclusi. Runtimeimmutato1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba e tre protocolli canonici invariati.
+
+C2/C3/C4: consegne parziali recuperate e salvate suGit localed5963c8 e8dda5f7, SHA individuali verificate. C2restanti26, C336 eC429 hanno prove math/code e negativi espliciti, nessuna UI conclusiva. AddendumC3L07-05 SHA1f538c032dac9c469e49d00d5533d34f6f561c0cb6aea5be6e3683e1e8bdcac0 supera soltanto il vecchio flag di manualità: risultato8√10 non accettato daNumber, bound3,16–3,17 elaborato dal reviewer e noninsegnato nella fonte. C4L09-02 richiede95° e Number:6 passa tolleranza ma non dimostra un procedimento fruibile. Nuove edizioni ancora da scrivere/verificare separatamente. Negativi geometrici restano CODE_GEOMETRY e non screenshot mai eseguiti. Due documentiMarkdown frozen con spazioEOF sono conservati verbatim nelZIP `C2-C3-frozen-raw-evidence-20261125/raw-frozen-documents.zip`; ripristinare le due path da manifest prima dell’audit completo delle consegne originali. Non modificarne bytes o SHA per far passare hygiene. Third prosegue C5 dopo primaria27 già congelata, poiC6sei; nessun anticipo di credito.
+
+U6-03:160 assegnati in `editorial/assignments/u6-03-v1.json`, sorgenteSHA0bd13e1748174df8c30e06641ad153b8e44ab98df47f31c9f1aba7f925f88077. Aautore210–214/Bverificatore; Bautore215–219/Averificatore. PrimariaAperB4c49ff1e2020d073891686e5289e263561531a9b81e84e2f0fa9c8648dc90f4b (e1c789b), primariaBperA5a11a0eae02cb2aaf503d979af679d9a586f1dc8572134ca7523f895ca07e509 (b06205f), entrambe prima dei candidati. I commit autore locali210751185c,211611bbd6,2127c71e09,215e474aa3,216459f43c non sono ancora accettati scientificamente da Root. Prossimo ID scientifico esatto **AR-u6-identical-parallel-resistors-01**; recuperare gli80finali completi e i peerhandoff, non ristudiare i3152 già accettati.
+
+**GitHub pubblico e ambito riservatezza ancora da chiarire:** nessun push/upload/dispatch remoto dopo ultimo83cafbb9. Il default-deny dell’app non protegge file pubblici GitHub; i push precedenti esistono già. Domanda all’utente ancora pendente: il divieto di esposizioneDRAFT si applica solo nell’app oppure anche ai file del repository? Nessuna risposta equivale ad approvazione. Proseguono lavoro e commit locali, con backupbundle persistente fuori dai worktreetemporanei; non cambiare visibilità/storia unilateralmente. Nessun rifiuto auto-review è coinvolto. Canone remoto ancora831b73fa71076b2e9b363006ffd94a350f22fe90, PR364DRAFT alla vecchia5a9a0b8, DO_NOT_MERGE_OLD_HEAD. Solo dopo chiarimento e prove aggiornate: stessaPR, requiredCI sullaSHAeffettiva, mergeordinario e post-merge14/14, approvazione/pubblicazione separate.
+
+Prossimi passi riproducibili:
+1. Osservare terminale del replay209, archiviare report/marker/assetveri e persistere standard; seFAIL correggere solo tramite autore+reviewer distinto e nuovo replay, mai ritag o abbassamento gate. Poi ETL3152fresh/incrementale, coesistenza, suiteaggiornata e release, con ricevute e commit locali.
+2. Rieseguire inRoot i targetC2/C3/C4 recuperati sotto mutex, aggiornando prove della sola faseparziale; creditoattività resta0 fino a edizione manualmente fruibile eUIvera. Conservare ogni negativo.
+3. Continuare autoria/review distinta U6-03 e recupero dei finali; proseguire tutte le848Ardesia residue e606Cric. Preparare nuove edizioni delle139attività, con gate umano separato e nessun app parallela.
+4. Verificare e registrare il Gitbundle locale in `work/private-recovery/`, SHA eprerequisito83cafbb9; aggiornare snapshot dopo i nuovi commit. Un bundle incrementale richiede quel commit pubblico preesistente. Non lasciare risultati esclusivamente in/tmp.
+5. Risolvere il solo ambito privacy quando l’utente risponde, quindi consolidare suGitHub secondo autorizzazione; CI finale, integrazione canonica e revisioneumana restano lavoro residuo. Il mandato non è completo.
+
+Le sezioni seguenti sono snapshot storici.
+
+---
