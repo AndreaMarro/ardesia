@@ -14,6 +14,34 @@
       },
       "humanApproval": "NOT_RUN",
       "publicationAction": "NONE"
+    },
+    {
+      "withdrawalId": "accelerated-freefall-tip-a-20261125",
+      "batchId": "experiments-accelerated-040",
+      "recordId": "SIM-C1-L004-02",
+      "withdrawnAt": "2026-11-25T07:59:50.091387Z",
+      "reason": "Independent native visual acceptance withdrawn: At time2s the native weight tip y=-0.12 is occluded by the opaque tabletop [-0.22,0]. Scalar physics and assigned arithmetic pass separately; changing runtime or hashes cannot close this withdrawal.",
+      "reviewer": "independent_AI_reviewer_A",
+      "evidence": {
+        "path": "editorial/reviews/accelerated-040-visibility-b963-a-20261125/manifest.json",
+        "sha256": "7b837204fd430ce7880d91a866141bb84e8e82f37934fa34b2563ed08987ddd3"
+      },
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "withdrawalId": "accelerated-centripetal-tip-a-20261125",
+      "batchId": "experiments-accelerated-040",
+      "recordId": "SIM-C1-L004-04",
+      "withdrawnAt": "2026-11-25T07:59:50.091806Z",
+      "reason": "Independent native visual acceptance withdrawn: At velocity1m/s the centripetal tip is inside the opaque sphere;97/131 cone vertices are occluded. Entire cone containment is not claimed. Scalar physics and assigned arithmetic pass separately; changing runtime or hashes cannot close this withdrawal.",
+      "reviewer": "independent_AI_reviewer_A",
+      "evidence": {
+        "path": "editorial/reviews/accelerated-040-visibility-b963-a-20261125/manifest.json",
+        "sha256": "7b837204fd430ce7880d91a866141bb84e8e82f37934fa34b2563ed08987ddd3"
+      },
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
     }
   ]
 }
