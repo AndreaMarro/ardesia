@@ -887,7 +887,16 @@
   "publicationAction": "NONE",
   "adoptionScriptReview": {
     "firstExecution": "SUCCESS_ALL_TERMINAL_CHECKS",
-    "laterHardening": "Move checkpoint replacement after standard terminal marker validation; preserve prior-map on repeat. Hardened path not yet reexecuted.",
-    "reproduceScriptSha256": "b78d4685f0db1bd3abc7b4874d7df6fd20c1b5561f6ba7331faff1577731952e"
+    "laterHardening": "Checkpoint changes only after terminal-marker persistence and hash verification; exact ZIP membership rejects staging extras; prior map reconstructed from actual backup files even after interrupted first run.",
+    "reproduceScriptSha256": "b8bbb29c092cf4ca4b0ccd8ce1bf3a66e483464fd381dc52891b9b09d8e159a7",
+    "hardenedEndToEndReplay": "NOT_RUN_AFTER_REGISTRY_ADVANCED_TO_3312",
+    "isolatedControlFlowProbes": {
+      "result": "PASS_7_TEMP_ONLY_PROBES",
+      "receipt": "editorial/reviews/independent-artifact-adoption-456352-20261125/receipt.json",
+      "receiptSha256": "e40a8ca27aab7aed3aa7c8667fcc0587bea6f15010937f7d89e6f4b7e389fc56",
+      "nodeWasStubbed": true,
+      "newUiCredit": 0
+    },
+    "executionPrerequisite": "Materialize the exact 3152 registry from source6f7553 in an isolated worktree before replay. The script must not be run to roll back a newer registry. APP path constant must point to that isolated worktree."
   }
 }

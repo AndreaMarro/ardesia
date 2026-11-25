@@ -68,10 +68,17 @@ def main():
                 else:target.write_bytes(blob)
                 pieces.append({'path':str(target.relative_to(APP)),'bytes':len(blob),'sha256':sha(blob)})
         old_receipt=DEST/'receipt.json'
-        prior=json.loads(old_receipt.read_text())['priorChangedFilesArchived'] if old_receipt.exists() else {}
+        prior={str(p.relative_to(DEST/'prior')):sha(p.read_bytes()) for p in (DEST/'prior').rglob('*') if p.is_file()}
+        if old_receipt.exists():
+            recorded=json.loads(old_receipt.read_text())['priorChangedFilesArchived']
+            assert all(prior.get(p)==h for p,h in recorded.items()), 'Archived prior evidence changed'
         adopted={}
         delivery=TMP/'preintegration/delivery'
-        paths=sorted(p for p in delivery.rglob('*') if p.is_file())
+        delivery_members=[n for n in z.namelist() if n.startswith('preintegration/delivery/') and not n.endswith('/')]
+        expected={Path(n.removeprefix('preintegration/delivery/')) for n in delivery_members}
+        present={p.relative_to(delivery) for p in delivery.rglob('*') if p.is_file()}
+        assert present==expected, 'Unpinned residual delivery files in reusable staging'
+        paths=[delivery/rel for rel in sorted(expected)]
         # The pointer is atomically replaced only after all immutable generation
         # files and all accompanying reports have been verified and installed.
         pointer=delivery/'editorial/corpus/checkpoint.json'

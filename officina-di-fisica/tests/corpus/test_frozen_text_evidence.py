@@ -2,7 +2,7 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
-import unittest
+import unittest,zipfile
 from tools.corpus_engineering import frozen_text_evidence as v,partial_activity_inventory as inventory
 class FrozenTextEvidence(unittest.TestCase):
  def fixture(self,root):
@@ -13,7 +13,11 @@ class FrozenTextEvidence(unittest.TestCase):
    root=Path(folder);self.fixture(root)
    for name,expected in v.ALLOWLIST.items():
     self.assertFalse((root/name).exists());data=v.verified_frozen_bytes(root,name,expected)
-    self.assertEqual(v.sha(data),expected);self.assertEqual(data,(inventory.APP/name).read_bytes());self.assertFalse((root/name).exists())
+    # A clean checkout intentionally stores these exact originals only in ZIP.
+    # Compare against its pinned entry, never require a local raw Markdown copy.
+    with zipfile.ZipFile(inventory.APP/v.ARCHIVE)as archive:archived=archive.read(name)
+    self.assertEqual(v.sha(archived),expected);self.assertEqual(v.sha(data),expected)
+    self.assertEqual(data,archived);self.assertFalse((root/name).exists())
  def test_regular_file_first_and_present_tamper_not_masked(self):
   with TemporaryDirectory()as folder:
    root=Path(folder);self.fixture(root);name,expected=next(iter(v.ALLOWLIST.items()));target=root/name;target.parent.mkdir(parents=True,exist_ok=True)

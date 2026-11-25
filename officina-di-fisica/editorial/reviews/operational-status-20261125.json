@@ -1,18 +1,27 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-25T14:31:40.975932+00:00",
-  "snapshotHead": "ab1266583475c964a569a6a1ad7e759174a8b1bc",
+  "observedAt": "2026-11-25T16:14:35.144444+00:00",
+  "snapshotHead": "4a15046fda85be6904df29031cc2aa89a0c17139",
   "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 3152,
-    "scientificallyUnreviewed": 1454,
-    "registeredDrafts": 3152,
-    "compiledDraftsLocally": 2992,
-    "compiledCandidateFullyLocallyValidated": true,
+    "scientificallyReviewed": 3312,
+    "scientificallyUnreviewed": 1294,
+    "registeredDrafts": 3312,
+    "compiledDraftsLocally": 3152,
+    "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 1728,
-    "newRootAcceptanceReceipt": "editorial/reviews/u6-02-root-integration-20261125/receipt.json"
+    "newRootAcceptanceReceipt": "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json",
+    "compiledCandidateFullyRemotelyValidated": true,
+    "unreviewedBySource": {
+      "Ardesia": 688,
+      "Cric": 606
+    },
+    "newRootAcceptanceReceipts": [
+      "editorial/reviews/u6-03-A80-root-integration-20261125/receipt.json",
+      "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json"
+    ]
   },
   "activities": {
     "accounted": 385,
@@ -27,10 +36,28 @@
     },
     "C2C3PartialReviewsAddCredit": 0,
     "partialC2C3C4DeliveriesRecovered": true,
-    "partialRootTargetTests": "PENDING",
+    "partialRootTargetTests": {
+      "tests": 14,
+      "result": "PASS",
+      "additionalActivityCredit": 0,
+      "receipt": "editorial/reviews/partial-inventory-root-tests-20261125/receipt.json"
+    },
     "C3L0705PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; exact radical not accepted by Number, reviewer approximation method absent from source",
     "C4L0902PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; sin95 input not supported, accepted6 approximation alone is not usability proof",
-    "partialC5C6DeliveriesRecovered": true
+    "partialC5C6DeliveriesRecovered": true,
+    "partialAll139Recovered": true,
+    "confirmedFailureUniqueIds": 19,
+    "supportGapOnlyUniqueIds": 4,
+    "partialRootCleanCloneTests": {
+      "tests": 14,
+      "result": "PASS",
+      "rawMarkdownPhysicallyAbsent": true,
+      "secondsByGroup": [
+        3.974,
+        17.643
+      ],
+      "receipt": "editorial/reviews/independent-artifact-adoption-456352-20261125/root-clean-clone-receipt.json"
+    }
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -38,27 +65,28 @@
   "Pro100Recovery": "NOT_IDENTIFIED",
   "recovered199TechnicalChecksAreNotFullReviews": true,
   "lastFullyValidatedRemotePreparation": {
-    "runId": 45606283140,
-    "headSha": "29f6af6d8b9f12dfad701b4ea76d49af96bebb8a",
+    "runId": 45635225687,
+    "headSha": "6f7553f28b4134941db7c11fdb1d0e7e6a971269",
     "counts": [
       4606,
       385,
-      2640,
+      3152,
       246
     ],
-    "uiCases": 7971,
-    "uiBatches": 177,
+    "uiCases": 9507,
+    "uiBatches": 209,
     "ui": "PASS",
-    "etlFreshAndIncremental": "PASS",
+    "etlFreshAndIncremental": "PASS_IDENTICAL_BYTES",
     "coexistence": "PASS",
     "fullSuite": {
-      "tests": 741,
+      "tests": 879,
       "result": "PASS",
-      "seconds": 506.483
+      "seconds": 909.603
     },
     "release": "PASS",
     "checkpointDownloadedAndAdopted": true,
-    "artifactSha256": "ee98df48cc25a3762c81b8344517b8108a1ad7fb4eeba6889f7d7c06bd2d0004"
+    "artifactSha256": "cafbd2eb618dadc42dbaafadce7a0924b268e9c9414ac6030d32ff0d815c9267",
+    "receipt": "editorial/reviews/preintegration-45635225687-root-adoption-20261125/receipt.json"
   },
   "lastFailedRemotePreparation": {
     "runId": 45611122114,
@@ -71,27 +99,18 @@
     "fixRereadAndActualLocalUI": "PASS"
   },
   "currentLocalPreparation": {
-    "scientificallyReviewedQuestionDrafts": 3152,
-    "compiledQuestionDrafts": 2992,
-    "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1",
-    "ui": {
-      "batches": 209,
-      "workers": 1,
-      "reused": 199,
-      "rendered": 10,
-      "failed": 0,
-      "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1"
-    },
-    "etl3152": "FRESH_AND_INCREMENTAL_PASS_56_IDENTICAL_FILES",
-    "coexistence3152": "NOT_RUN_YET",
-    "fullSuite3152": "NOT_RUN_YET",
-    "release3152": "NOT_RUN_YET",
-    "isGitHubCI": false,
-    "uploads": false
+    "scientificallyReviewedQuestionDrafts": 3312,
+    "registeredQuestionDrafts": 3312,
+    "compiledQuestionDrafts": 3152,
+    "new210Through219ProductUi": "NOT_RUN",
+    "new210Through219RootIndependentTests": "PASS_17_AND_14",
+    "new210Through219CanonicalImports": "PASS_16_THEN_0_SAVED_AND_16_UNCHANGED_FOR_EACH_BATCH",
+    "fullSuiteOnCurrentHead": "NOT_RUN",
+    "registrySha256": "e83e2ca0ef40f4d02f881d992c3b349d2f771ab00d7b0bdec7c81fad99d7e308"
   },
-  "nextScientificAcceptanceId": "AR-u6-identical-parallel-resistors-01",
+  "nextScientificAcceptanceId": "AR-u6-parallel-capacitors-01",
   "nextNewAuthoringId": "See disjoint ownership U6-03 210-219; authoring in progress, no reallocation",
-  "assignments": "U6-02 all160 Root accepted; U6-03 all160 assigned with both prompt-only primaries frozen; A210-212 and B215-216 authored locally, no scientific acceptance yet; Third C5 then C6",
+  "assignments": "U6-03 all160 Root independently accepted. U6-04 all160 authored; cross-review still in progress; authoring alone grants no credit.",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
@@ -99,14 +118,15 @@
     "repositoryVisibility": "PUBLIC_VERIFIED",
     "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
     "externalWrites": "AUTHORIZED_BY_LATEST_USER_INSTRUCTIONS",
-    "requiredClarification": "RESOLVED: no,mantieni pubblico; no,metti pure tutto",
+    "requiredClarification": "RESOLVED: no, mantieni pubblico; no, metti pure tutto",
     "priorPublicPushesExist": true,
     "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
     "automaticApprovalReviewRejected": false,
-    "githubEditorialContentsPublicExplicitlyAuthorized": true
+    "githubEditorialContentsPublicExplicitlyAuthorized": true,
+    "appDraftAndExamAccess": "DEFAULT_DENY_UNCHANGED",
+    "humanPublicationGate": "SEPARATE_NOT_RUN"
   },
   "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger",
-  "lastPublicRootHead": "83cafbb9e42ebf6d32f505573602add041c00bf8",
   "lastFullyValidatedLocalPreparation": {
     "ui": {
       "result": "PASS",
@@ -168,5 +188,18 @@
       }
     },
     "listedHeadsAreActualBundleContents": true
-  }
+  },
+  "currentCheckpoint": {
+    "generation": "generations/201726f6645939c1e18a78d16fab3e79e299f720b6b1015ff211c0e6266becc4",
+    "manifestSha256": "7a6e0f3b0e91019051282111b952512255819c333b15ca1fad4b61ec601b666d",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0",
+    "validationOrigin": "GITHUB_ACTIONS_RUN_45635225687",
+    "questionsReviewed": 3152,
+    "activitiesReviewed": 246,
+    "rootAuthenticTerminalMarkersRevalidated": true
+  },
+  "lastPublicRootHeadObserved": "4a15046fda85be6904df29031cc2aa89a0c17139",
+  "nextRegistrationId": null,
+  "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT"
 }

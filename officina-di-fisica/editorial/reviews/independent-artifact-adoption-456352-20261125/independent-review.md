@@ -1,0 +1,9 @@
+# Limited adoption and clean-checkout review
+
+The reviewed operational script is SHA-256 `b8bbb29c092cf4ca4b0ccd8ce1bf3a66e483464fd381dc52891b9b09d8e159a7`. Its complete reviewed bytes are archived here. Three transport findings were fixed by Root: active pointer ordering, unpinned staging residuals, and prior-map loss on retry/interruption. Seven temp-only probes execute the corresponding actual AST blocks; terminal persistence is explicitly stubbed, so these probes grant no UI or scientific acceptance.
+
+The reviewer’s archive test had a clean-checkout defect: it required the two raw Markdown files that are intentionally stored only in the exact ZIP. With both originals physically absent, the old tests produced a real FileNotFoundError (14 tests, one error, 43.617 s). Comparing against the ZIP member and its frozen SHA fixes the test: the same 14 tests pass in 46.644 s while both originals remain absent. Both local originals were restored with identical SHA-256. The old test and negative log remain separately retained; frozen source/science documents and the historical followup manifest are not rewritten.
+
+The two recovered 047 JSON dependencies match the frozen CORE bytes exactly. Their inventory and transport checks retain source failures, manual gaps, code-only findings and actual historical UI separately. They do not complete 139 activities or grant new credit. The reused preview-producer metadata refers to an older failed producer run; it is distinct from the successful adoption run and its head. No independent GitHub API or full-suite rerun is claimed here.
+
+The input ZIP was independently streamed and matches `cafbd2eb618dadc42dbaafadce7a0924b268e9c9414ac6030d32ff0d815c9267`. Receipt fields distinguish imported Root results from these bounded checks. No ROOT/runtime/registry edits, new content approval, browser cases or publications were performed. Activity credit 0; human NOT_RUN; publication NONE.
