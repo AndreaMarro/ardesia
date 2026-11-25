@@ -52,15 +52,15 @@ Dalla legge generale T=pM/(Rρ). Nelle unità assegnate il numero è 4·80/1=320
 
 Controllo didattico d’autore: Ottanta omette il fattore quattro e uno copia la densità. Trecentoventi °C non rappresenta questa T. Nel dominio positivo l’inversa è lecita perché ρ non è zero.
 
-Source SHA256 933ab77ff784da3cf2f1784485b9380d06c30cfd1d29006f822d7d9147890f22; candidato SHA256 ccad4bcfa551d3cb088415deb42d53d157e1011facb2e6a9eca9f2b9f15803ca. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 933ab77ff784da3cf2f1784485b9380d06c30cfd1d29006f822d7d9147890f22; candidato SHA256 d7e430c97703dc87795046efff974c17e0859468959e003bdda9163e1302f710. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u5-gas-density-07 — Raffreddare alla stessa pressione
 
 La temperatura assoluta si dimezza. A pressione fissata il numero di moli per volume e la densità raddoppiano: A vale uno g/L, B due g/L. È una dipendenza inversa da T, non una proporzione con le letture Celsius.
 
-Controllo didattico d’autore: Un mezzo segue T direttamente, quattro aggiunge un quadrato e uno ignora il raffreddamento. Un quarto combina entrambe le inversioni errate. Non serve cambiare massa molare per ottenere la nuova densità.
+Controllo didattico d’autore: Un mezzo segue T direttamente, quattro aggiunge un quadrato e uno ignora il raffreddamento. Un quarto è (T_B/T_A)²: segue direttamente il rapporto termico un mezzo e poi lo eleva al quadrato, anziché usare l’inverso di T. Non serve cambiare massa molare per ottenere la nuova densità.
 
-Source SHA256 4071e047589db94cff9ecea843003afe3c1a3b6199f92b7ac00303cda4fbae5f; candidato SHA256 2be5d40ba70dd5779928a7c45d2bbcd7927e19a3d963e2a95b7fb4c723487ae4. Nessun giudizio scientifico indipendente attribuito all’autore.
+Source SHA256 4071e047589db94cff9ecea843003afe3c1a3b6199f92b7ac00303cda4fbae5f; candidato SHA256 47c040a429d653de246f8f5055bf37371aeea46d00d25907264bc62fbc35011a. Nessun giudizio scientifico indipendente attribuito all’autore.
 
 ## AR-u5-gas-density-08 — Una legge microscopica fornita, altro quesito
 
@@ -137,3 +137,7 @@ Source SHA256 590a0723626cdd51ffc071a180b4abc1134cf2cb706806ce23214cc7386c3a61; 
 ## Scelte specifiche del modello
 
 R=8 J/(mol·K) è l’approssimazione prescritta, non una nuova costante esatta. M=32 g/mol resta invariata: usando p in kPa e V in L si ottiene direttamente ρ in g/L; 1 g/L=1 kg/m³ perché i due fattori mille si cancellano. Le temperature dei rapporti sono assolute. Il caso 08 è separato: la legge dell’energia traslazionale media per molecola è fornita esplicitamente e non richiede di ricavare una capacità termica totale o di ricordare una formula assente dalla lezione. Le ultime barre SVG rappresentano solo quel rapporto energetico, con una scala diversa dalle barre di densità. Nel 12 la media dei risultati è distinta dal modello sugli ingressi medi; nel 16 la misura fissa il rapporto p/T ma non la scala comune degli stati.
+
+## Correzione dopo review distinta
+
+Il revisore B ha rilevato due frasi imprecise: l’hint 06 deve portare T fuori dal denominatore e poi dividere per ρ>0; il distrattore 1/4 del 07 è il rapporto termico diretto al quadrato, non due inversioni. Corrette soltanto hint 06 e feedback/error 07, con i rispettivi binding. Chiavi, formule, SVG e altre 14 schede sono byte-identiche. Due assembly finali identiche; import canonico SQLite temporaneo, 16→0 nuovi/16 invariati, 991 pubblicati/storici conservati. Il runner canonico browser-batches e il suo helper immutati sono stati eseguiti nella snapshot privata A del runtime ROOT 54054f con registro privato dei soli due lotti 150/152 e ID esatti. Entrambi hanno nuovi 48 casi, vero exit 0 e completion atomiche autentiche; nessun report storico ritaggato. Raw report, completion e report strutturale di questa famiglia sono persistiti in editorial/author-evidence/gas-density-150-feedback-fix-*.json e validati con il medesimo helper e gli hash del ROOT corrente. Nessuna autofirma scientifica: il revisore B rilegge e congela separatamente i nuovi byte.
