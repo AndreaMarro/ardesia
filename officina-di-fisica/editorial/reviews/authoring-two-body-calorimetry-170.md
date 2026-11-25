@@ -20,7 +20,7 @@ Passaggi: C_1(80-\theta_f)=C_2(\theta_f-20);  80-\theta_f=\theta_f-20;  2\theta_
 
 Distrattori: Cento è la somma delle letture, non la loro media nel caso di capacità uguali. Trenta è l’intervallo attraversato da ciascun corpo. Venti o ottanta richiederebbero capacità nulla di uno dei due corpi, escluse dal dominio positivo.
 
-Fonte canonica SHA256 b28b40845cb7577e342b5a71693e91c82579f11f5764b693654414f7bd143c11. Candidato SHA256 3b05d18e27666f2c44ca61109d0e369186129cf655d12c3043d67201226cbe82. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 b28b40845cb7577e342b5a71693e91c82579f11f5764b693654414f7bd143c11. Candidato SHA256 ee4c6aef42d2067876494acbabc951fa02a66acf09dacd874e3c1f32418398d7. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-two-body-calorimetry-02 — La temperatura comune non è una capacità
 
@@ -164,7 +164,7 @@ Passaggi: \theta_{f,B}=44;  C_{2,B}=2\frac{80-44}{44-20}\,\mathrm{J/K};  C_{2,B}
 
 Distrattori: Un terzo inverte il rapporto.22/25 copia il bersaglio sulla lettura e due la variazione diC₁. Quarantaquattro è la lettura finale, non un rapporto fra capacità.
 
-Fonte canonica SHA256 32c9ccedfe3f10905ac1c1ff687c16f4109a61eda3ae319c5fc45ca3747c66a2. Candidato SHA256 e3307386130dbd894a8ba6faa2301c0e571c8c0e25758448b71aa6fe1ae33713. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 32c9ccedfe3f10905ac1c1ff687c16f4109a61eda3ae319c5fc45ca3747c66a2. Candidato SHA256 c7e6d66e3aa5cd5eef9b0ccfdc371f43d4a01162c7e730411cc403ad7377cce4. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-two-body-calorimetry-14 — Un display aiuta soltanto dopo la taratura
 
@@ -201,3 +201,9 @@ Passaggi: \theta_f=\frac{80C+20C}{2C};  \theta_f=50;  C>0.
 Distrattori: Un’unica coppia richiederebbe un dato ulteriore, per esempio il calore trasferito. Due non segue da alcuna equazione quadratica. Nessuna è falso perché 1 J/K e 1 J/K funzionano; non sono però l’unica realizzazione.
 
 Fonte canonica SHA256 74f8996603e626d0ceb766c50c4ce8283f9a6daf4a6a5a8edb0378bfa5e38828. Candidato SHA256 474618ddc339ad831747bd6c49feec859efb48c65192aceda4ce39e8cba273e8. Revisione indipendente NOT_RUN; human NOT_RUN.
+
+## Correzione della figura dopo review responsive
+
+Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: nessuna lunghezza in pixel. Il confronto XML prima/dopo conferma gli stessi elementi, ordine e tutti gli attributi geometrici e stilistici; cambiano i soli testi delle legende e le didascalie collegate. Tutte le chiavi e formule sono identiche. Le versioni precedenti sono conservate con manifest in author-evidence/thermal-168-172-before-responsive-figure-fix. Le cinque nuove figure sono state lette integralmente in XML e nei rendering nativi completi allegati. Questo è controllo tecnico dell’autore, non revisione scientifica indipendente. UI del prodotto sui byte correnti NOT_RUN, nessun marker corrente.
+
+Coordinate intrinseche SVG: barre energetiche5 unità/J, per72 J entrambe360 unità; letture Celsius6 unità per grado, per50/44/47 rispettivamente300/264/282 unità. Non si attribuisce a tali coordinate la dimensione di pixel sul dispositivo.

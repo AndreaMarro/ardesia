@@ -20,7 +20,7 @@ Passaggi: P_{\rm net}=P-P_d;  P_{\rm net}=15\,\mathrm W;  t=\frac{E}{P_{\rm net}
 
 Distrattori: Sei secondi usa 120/20 e trascura la dispersione. Ventiquattro secondi usa soltanto 120/5. Sommare le potenze darebbe 24/5 s, ma conterebbe un’uscita come ingresso. Il reciproco della durata non è il tempo richiesto.
 
-Fonte canonica SHA256 fd4d23d7589e9abe81e619b96e439d21e2d4e75db0b55543258e6a102b0b755c. Candidato SHA256 f66b90eae48d92697db17b95a3eec73f0a6f4dba0ca04cdd2b173a48065ecb4f. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 fd4d23d7589e9abe81e619b96e439d21e2d4e75db0b55543258e6a102b0b755c. Candidato SHA256 c499dcabfd2bd2030c12f69627e87a5513e35abf5d0bcb1d03e7adc5faf88fff. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-02 — L’unità del tempo ricavato da energia e potenza
 
@@ -152,7 +152,7 @@ Passaggi: \overline t=\frac{8+6}{2}\,\mathrm s;  \overline t=7\,\mathrm s;  t_{\
 
 Distrattori: 48/7 s applica la legge agli ingressi medi, senza mediare le due uscite. Quattordici è la somma; sei e otto copiano una sola prova. Non sono necessarie durate sperimentali o incertezze per la media statistica assegnata.
 
-Fonte canonica SHA256 0337125266bcf1ce5f9a796c54134d4e7cd2eeca69ef319501984aa7127946f3. Candidato SHA256 058b31910210261317731482239b2cad8a6282f09376d635dd6dae5977833775. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 0337125266bcf1ce5f9a796c54134d4e7cd2eeca69ef319501984aa7127946f3. Candidato SHA256 c42c1e66ef5f4dfb5e76883766f54a68c96425b478c199807e8359688ae153ca. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-13 — Il bersaglio decide quanto si può disperdere
 
@@ -202,4 +202,10 @@ Distrattori: Quindici watt copia la potenza netta e venti quella entrante.15/4 W
 
 Fonte canonica SHA256 87f5828b2dd64b715018400eab7a765dd40099acea4cd12e6a61eaf072153d76. Candidato SHA256 d94ba6aff14582e25bba85736f907e461c05baf71530b7a3b8adc6e96f6f040a. Revisione indipendente NOT_RUN; human NOT_RUN.
 
-Review distinta ROOT: corretti soltanto prosa14, con q=24/(8 s), e feedback13, distinguendo il numero puro10 dal valore numerico della potenza non ancora diviso per5 W. Gli8 vecchi file, raw e completion b963 autentici sono conservati con manifest di invalidazione in author-evidence/heating-with-losses-168-before-review-fix. Tutte le chiavi, formule, SVG e gli altri14 record sono identici. Nuovo package UI NOT_RUN; nessun marker sintetico.
+## Correzione della figura dopo review responsive
+
+Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: nessuna lunghezza in pixel. Il confronto XML prima/dopo conferma gli stessi elementi, ordine e tutti gli attributi geometrici e stilistici; cambiano i soli testi delle legende e le didascalie collegate. Tutte le chiavi e formule sono identiche. Le versioni precedenti sono conservate con manifest in author-evidence/thermal-168-172-before-responsive-figure-fix. Le cinque nuove figure sono state lette integralmente in XML e nei rendering nativi completi allegati. Questo è controllo tecnico dell’autore, non revisione scientifica indipendente. UI del prodotto sui byte correnti NOT_RUN, nessun marker corrente.
+
+Coordinate intrinseche del disegno: barre di potenza20 unità/W; grafico energia-tempo40 unità/s in orizzontale e8/3 unità/J in verticale; durate40 unità/s. Questi rapporti sono specifiche geometriche dello SVG prima del ridimensionamento, non pixel CSS del dispositivo.
+
+Restano i due fix testuali già riletti da ROOT: prosa14 usa q=24/(8 s); feedback13 distingue il numero puro10 dal valore numerico della potenza non ancora diviso per5 W. Vecchi raw e completion b963 autentici sono archiviati nel precedente before-review-fix e non sono riferiti al package attuale.
