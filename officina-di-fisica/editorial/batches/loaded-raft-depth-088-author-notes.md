@@ -1,0 +1,19 @@
+# Note d’autore — loaded-raft-depth-088
+
+Letti individualmente i 16 originali U3-02 alla fonte 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605. Riletta C2-L004 sul peso totale e sul volume immerso; primaria C2-L004, prerequisiti esistenti C2-L001/L002/L004, riuso C6. Assembler unico, corso C2, unità u3 e source_path U3-02.
+
+Prisma rigido chiuso impermeabile, massa propria fissa m₀ = 2 kg, area orizzontale A costante nella prova, altezza H = 4 dm. Una guida laterale ideale senza attrito evita il ribaltamento senza alcun sostegno verticale: rende concreto il bilancio verticale anche per la geometria alta e stretta disegnata. Carico centrato M > 0, asciutto e senza spinta propria; acqua in quiete, ρ = 1 kg/dm³, gravità uniforme, aria e capillarità trascurate. Si impone h_i < H, equivalente a M + m₀ < ρAH: resta parte emersa. Fra apparati possono cambiare A e M, mantenendo m₀.
+
+01: massa totale 4 kg, volume escluso 4 dm³, altezza 4/2 = 2 dm < H. 02: unità dm, volume su area. 03: ρAh_i = M + m₀, dunque h_i = (M + m₀)/(ρA); nessuna forza verticale della guida. 04: M da 2 a 4 kg porta la massa totale da 4 a 6 kg e l’immersione da 2 a 3 dm, entrambe sotto H. Il carico doppio non raddoppia la massa propria.
+
+05: M = ρAh_i − m₀ = 4 − 2 = 2 kg; dominio inverso ρAh_i > m₀ e h_i < H. 06: A = (M + m₀)/(ρh_i) = 2 dm², area e non raggio. 07: base 2→3 dm² a massa totale 4 kg dà h_i 2→4/3 dm, rapporto 2/3. 08: proposta 4 meno corretto 2 = +2 dm; la proposta raggiunge H e sposta massa d’acqua 8 kg, non i 4 kg richiesti.
+
+09: M = ρAh_i − m₀, bilancio dimensionale di masse. 10: U = M_A + m₀ e W = κ₁M_A + m₀ sono masse totali; rapporto W/(κ₂U), non κ₁/κ₂ perché m₀ non scala. 11: A(2 kg,2 dm²) dà h_i = 2 dm; B(4 kg,4 dm²) dà 3/2 dm, rapporto 3/4. 12: semisomma 7/4 dm; ingressi medi M = 3 kg, A = 3 dm² darebbero 5/3 dm, differenza esatta 1/12 dm.
+
+13: bersaglio 3/2 dm con massa totale 6 kg richiede base 4 dm², rapporto 2. 14: q = 3 dm⁻¹, lettura 9/2 dà h_i = 3/2 dm; A = 4 dm² dà massa totale 6 kg e carico 4 kg. 15: differenze −1 e −1/2 dm danno q = 2 dm⁻¹, b = 1. Lettura C = 7 dà h_i = 3 dm, volume 6 dm³ e carico 4 kg. Alternative 2,3,5,1 kg danno letture 5,6,8,4; tutte quelle immersioni restano nel dominio. Offset strumentale e massa propria sono quantità distinte, rimosse con unità e passaggi diversi.
+
+16: vincolo M = cA, c = 1 kg/dm². Si ottiene A(ρh_i − c) = m₀; con h_i = 2 dm il coefficiente è 1 kg/dm² e A = 2 dm², M = 2 kg. Serve ρh_i > c; denominatore nullo non può equilibrare m₀ > 0 e negativo darebbe area non fisica. Il vincolo non è ridondante perché m₀ non scala con A.
+
+SVG 01/03: base 2 dm × 1 dm, altezza 4 dm; fronti 100 × 200 px a 50 px/dm. Con carichi 2 e 4 kg le immersioni sono 100 e 150 px per 2 e 3 dm; guide laterali visibili, nessuna forza verticale attribuita. Barre di massa propria e carico: 60 + 60 = 120 px per 4 kg e 60 + 120 = 180 px per 6 kg, scala 30 px/kg. Grafico numerico separato con 50 px/kg orizzontali e 50 px/dm verticali: A = 2 dm², punti M = 2 e 4 kg con h_i = 2 e 3 dm; estremo M = 6 kg, h_i = H = 4 dm aperto ed escluso. Anche M = 0 è aperto perché la famiglia impone carico positivo. Non si prosegue oltre la capacità geometrica. XML e rendering completo letti.
+
+Assembly e binding deterministici, metadati C2 controllati. Import canonico ROOT in SQLite temporaneo: 16 DRAFT, poi 0 nuove e 16 invariate; 991 pubblicati e storico invariati, SHA256 99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Package SHA256 bd4414dbeaac62fea8db1fed406d9dce0a415c283e9252d220ba7cfbd73ca6e5. Controlli tecnici d’autore; independentReview NOT_RUN, human NOT_RUN, publication NONE.
