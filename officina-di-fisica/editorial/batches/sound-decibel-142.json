@@ -1,0 +1,1143 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-sound-decibel-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14201,
+      "title": "Dall’intensità al livello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 1,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Con I=1000 pW/m² e Iᵣ=10 pW/m², quanto vale L in dB?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "dB",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo prima le intensità: mille diviso dieci dà cento, cioè dieci al quadrato. Il logaritmo in base dieci di cento è due, perché due è l’esponente che produce cento. Il livello ha valore numerico dieci per due: venti dB. Non occorre usare una calcolatrice."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/113b70632de40c94ef0d537d66097edf22912caa3c312ac622ab06e4adef733e",
+          "text": "Le intensità sono espresse nella stessa unità pW/m². Per il riferimento assegnato Iᵣ=10 pW/m², i rapporti 1, 10, 100 e 1000 corrispondono ai livelli 0, 10, 20 e 30 dB. L’asse ha scala logaritmica per il rapporto, lineare a 10 px/dB per il livello: distanze uguali significano fattori dieci uguali, non incrementi uguali di intensità. La coppia A ha rapporto 100 e livello 20 dB."
+        },
+        {
+          "type": "formula",
+          "text": "R=I/I_r"
+        },
+        {
+          "type": "formula",
+          "text": "I/I_r=100"
+        },
+        {
+          "type": "formula",
+          "text": " R=10^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=10\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": "10\\cdot2=20"
+        },
+        {
+          "type": "formula",
+          "text": " L=20\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "Cento è il rapporto delle intensità, non il livello. Due dimentica il coefficiente dieci; trenta usa tre come esponente, ignorando la divisione per il riferimento. Non si prende il logaritmo di una quantità con unità residue."
+        }
+      ],
+      "hints": [
+        "Scrivi il rapporto come potenza di dieci e leggi l’esponente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento è il rapporto delle intensità, non il livello. Due dimentica il coefficiente dieci; trenta usa tre come esponente, ignorando la divisione per il riferimento. Non si prende il logaritmo di una quantità con unità residue.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14202,
+      "title": "Che cosa misura il decibel",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 1,
+      "prompt": "Il numero ℓ=10 log₁₀(I/Iᵣ) viene accompagnato dal simbolo dB. Quale interpretazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Unità logaritmica di un rapporto adimensionale",
+          "Unità SI di intensità in W/m²",
+          "Unità di pressione in Pa",
+          "Unità di energia in J",
+          "Unità di frequenza in Hz"
+        ],
+        "value": "Unità logaritmica di un rapporto adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I e Iᵣ hanno le stesse dimensioni: il loro rapporto è puro e ammette il logaritmo. Il decibel indica la convenzione logaritmica usata per esprimere quel rapporto. Non è un’intensità, una pressione o un’energia; per risalire a I occorre conoscere anche Iᵣ."
+        },
+        {
+          "type": "formula",
+          "text": "[I/I_r]=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=10\\log_{10}(I/I_r)"
+        },
+        {
+          "type": "text",
+          "text": "W/m² appartiene a I; Pa a una pressione acustica e Hz alla frequenza. J misura energia. Il fatto che dB non introduca una nuova dimensione fisica non autorizza a sostituire il numero del livello al numero di un’intensità."
+        }
+      ],
+      "hints": [
+        "Controlla le dimensioni dell’argomento del logaritmo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W/m² appartiene a I; Pa a una pressione acustica e Hz alla frequenza. J misura energia. Il fatto che dB non introduca una nuova dimensione fisica non autorizza a sostituire il numero del livello al numero di un’intensità.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14203,
+      "title": "Intensità fisica e sensazione sonora",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 1,
+      "prompt": "Due toni di frequenza diversa arrivano all’orecchio con la stessa intensità I e sono riferiti allo stesso Iᵣ. È corretto concludere che sono necessariamente percepiti altrettanto forti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "No: stesso livello fisico non impone uguale sensazione a frequenze diverse",
+          "Sì, perché la percezione dipende soltanto da I",
+          "Sì, perché i dB eliminano la frequenza dalla risposta dell’orecchio",
+          "No, perché a intensità uguale i livelli fisici sono sempre diversi",
+          "Sì, purché si esprima I in W/m²"
+        ],
+        "value": "No: stesso livello fisico non impone uguale sensazione a frequenze diverse"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La formula del livello assegna lo stesso L ai due rapporti I/Iᵣ uguali. La percezione, però, dipende anche dalla frequenza e dalla risposta dell’orecchio: l’uguaglianza del livello di intensità non prova l’uguaglianza della sensazione. Non stiamo usando una curva di ponderazione né facendo una valutazione clinica."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_{r,1}=I_{r,2}"
+        },
+        {
+          "type": "formula",
+          "text": " L_1=L_2"
+        },
+        {
+          "type": "text",
+          "text": "Cambiare unità di intensità non cambia il rapporto fisico. Il logaritmo non rende piatta la sensibilità dell’orecchio. Affermare livelli fisici sempre diversi confonde invece percezione e definizione matematica."
+        }
+      ],
+      "hints": [
+        "Distingui ciò che definisce lo strumento da ciò che percepisce una persona.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cambiare unità di intensità non cambia il rapporto fisico. Il logaritmo non rende piatta la sensibilità dell’orecchio. Affermare livelli fisici sempre diversi confonde invece percezione e definizione matematica.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14204,
+      "title": "Un’intensità dieci volte maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 1,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. A ha I=1000 pW/m², B ha I=10000 pW/m² e il riferimento resta Iᵣ=10 pW/m². Come cambia L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 30 dB, aumentando di 10 dB",
+          "Da 20 a 200 dB",
+          "Da 20 a 21 dB",
+          "Resta 20 dB",
+          "Da 20 a 10 dB"
+        ],
+        "value": "Da 20 a 30 dB, aumentando di 10 dB"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rapporti rispetto al riferimento sono cento e mille, cioè dieci alla seconda e dieci alla terza. I livelli sono venti e trenta dB. Moltiplicare l’intensità per dieci aggiunge dieci dB; non moltiplica per dieci il livello."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=10\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": "10\\cdot2=20"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=10\\cdot3"
+        },
+        {
+          "type": "formula",
+          "text": "10\\cdot3=30"
+        },
+        {
+          "type": "formula",
+          "text": " L_B-L_A=10\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "Duecento trasferisce al livello il fattore dell’intensità. Ventuno aggiunge uno al livello invece che all’esponente prima del fattore dieci. Dieci inverte l’aumento, mentre venti ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Confronta gli esponenti due e tre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Duecento trasferisce al livello il fattore dell’intensità. Ventuno aggiunge uno al livello invece che all’esponente prima del fattore dieci. Dieci inverte l’aumento, mentre venti ignora il cambiamento.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14205,
+      "title": "Invertire il logaritmo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. L=20 dB e Iᵣ=10 pW/m². Quanto vale I in pW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1000,
+        "unit": "pW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo il valore numerico venti per dieci: il logaritmo del rapporto è due. Per definizione del logaritmo, il rapporto è dieci al quadrato, cento. Moltiplicando per il riferimento dieci pW/m² si ottiene mille pW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_{10}(I/I_r)=2"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_r=10^2"
+        },
+        {
+          "type": "formula",
+          "text": " I=1000\\,\\mathrm{pW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Duecento moltiplicherebbe direttamente Iᵣ per il numero venti. Cento è soltanto il rapporto puro. Un’intensità sotto il riferimento darebbe un livello negativo e non venti dB."
+        }
+      ],
+      "hints": [
+        "L’esponente è ℓ/10, non ℓ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento moltiplicherebbe direttamente Iᵣ per il numero venti. Cento è soltanto il rapporto puro. Un’intensità sotto il riferimento darebbe un livello negativo e non venti dB.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14206,
+      "title": "Trovare il riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Un’intensità I=1000 pW/m² corrisponde a L=20 dB. Quanto vale Iᵣ in pW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "pW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Venti dB significa I/Iᵣ=100. Il riferimento è quindi mille diviso cento, dieci pW/m². Si controlla rimettendolo al denominatore: mille su dieci dà cento e restituisce il livello richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "I/I_r=100"
+        },
+        {
+          "type": "formula",
+          "text": " I_r=I/100"
+        },
+        {
+          "type": "formula",
+          "text": " I_r=10\\,\\mathrm{pW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Centomila moltiplica invece di dividere. Cinquanta divide per venti confondendo livello e rapporto. Il riferimento deve avere le stesse dimensioni di I, non unità di dB."
+        }
+      ],
+      "hints": [
+        "Ricava prima il rapporto di intensità dal livello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centomila moltiplica invece di dividere. Cinquanta divide per venti confondendo livello e rapporto. Il riferimento deve avere le stesse dimensioni di I, non unità di dB.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14207,
+      "title": "Cambiare solo il riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. La stessa I=1000 pW/m² è confrontata con Iᵣ,A=10 pW/m² e Iᵣ,B=1 pW/m². Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "10",
+          "1/10",
+          "2/3",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo rapporto è cento e dà venti dB; il secondo è mille e dà trenta dB. Il quoziente dei livelli, entrambi non nulli, è trenta su venti: tre mezzi. È un rapporto fra numeri di livello con riferimenti diversi, non un rapporto di intensità o di sensazioni sonore."
+        },
+        {
+          "type": "formula",
+          "text": "L_A=20\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=30\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Dieci confronta i riferimenti invertiti o i rapporti di intensità, non i livelli. Due terzi scambia A e B. Uno dimentica che il riferimento del logaritmo cambia, pur restando uguale l’intensità fisica."
+        }
+      ],
+      "hints": [
+        "Trova separatamente i due livelli prima di dividerli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci confronta i riferimenti invertiti o i rapporti di intensità, non i livelli. Due terzi scambia A e B. Uno dimentica che il riferimento del logaritmo cambia, pur restando uguale l’intensità fisica.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14208,
+      "title": "Il confine a zero decibel",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Il livello L=10 log₁₀(I/Iᵣ) dB viene ora considerato anche al confine L=0 dB, con I>0 e Iᵣ>0. Quanto vale I/Iᵣ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "0",
+          "10",
+          "1/10",
+          "100"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Zero dB impone log₁₀(I/Iᵣ)=0. La potenza dieci alla zero vale uno: intensità e riferimento coincidono. Non è assenza di energia e non significa che un suono sia universalmente inudibile; qui il riferimento è una scelta assegnata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/113b70632de40c94ef0d537d66097edf22912caa3c312ac622ab06e4adef733e",
+          "text": "Il punto al confine indica I/Iᵣ=1 e L=0 dB, non intensità nulla. L’argomento del logaritmo è positivo. I riferimenti sono assegnati dal problema e non identificati automaticamente con una soglia percettiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=0"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_r=10^0"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_r=1"
+        },
+        {
+          "type": "text",
+          "text": "Zero non è ammesso come argomento del logaritmo. Dieci e cento darebbero dieci e venti dB; un decimo darebbe meno dieci dB. Questo caso sostituisce esplicitamente la condizione L>0 degli altri confronti."
+        }
+      ],
+      "hints": [
+        "Quale potenza di dieci ha esponente zero?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero non è ammesso come argomento del logaritmo. Dieci e cento darebbero dieci e venti dB; un decimo darebbe meno dieci dB. Questo caso sostituisce esplicitamente la condizione L>0 degli altri confronti.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14209,
+      "title": "L’esponenziale che ricostruisce I",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Con ℓ=L/(1 dB), quale formula isola I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = Iᵣ 10^(ℓ/10)",
+          "I = Iᵣ ℓ/10",
+          "I = 10^(ℓ/10) / Iᵣ",
+          "I = Iᵣ 10^(10ℓ)",
+          "I = Iᵣ log₁₀(ℓ/10)"
+        ],
+        "value": "I = Iᵣ 10^(ℓ/10)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo ℓ per dieci e applichiamo la potenza in base dieci a entrambi i membri: l’esponenziale annulla il logaritmo. Il rapporto I/Iᵣ diventa 10^(ℓ/10), poi si moltiplica per Iᵣ. L’esponente è puro e il risultato mantiene unità di intensità."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell/10=\\log_{10}(I/I_r)"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_r=10^{\\ell/10}"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_r10^{\\ell/10}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto lineare con ℓ non inverte un logaritmo. Dividere per Iᵣ produce dimensioni inverse; dieci ℓ usa un esponente sbagliato. Un altro logaritmo non è l’operazione inversa richiesta."
+        }
+      ],
+      "hints": [
+        "Usa la funzione inversa di log₁₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto lineare con ℓ non inverte un logaritmo. Dividere per Iᵣ produce dimensioni inverse; dieci ℓ usa un esponente sbagliato. Un altro logaritmo non è l’operazione inversa richiesta.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14210,
+      "title": "Due cambiamenti nel rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. B usa I_B=κ₁I_A e Iᵣ,B=κ₂Iᵣ,A, con κ₁,κ₂>0. Definiamo R=I_A/Iᵣ,A>1 e R_B=κ₁R/κ₂>1. Quale espressione dà L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "log₁₀(R_B) / log₁₀(R)",
+          "R_B / R",
+          "κ₁ / κ₂",
+          "log₁₀(R) / log₁₀(R_B)",
+          "log₁₀(R_B / R)"
+        ],
+        "value": "log₁₀(R_B) / log₁₀(R)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo rapporto d’intensità è R_B. I due livelli hanno lo stesso coefficiente dieci dB, che si cancella nel quoziente. Rimane il rapporto fra i logaritmi, non il logaritmo del rapporto. R>1 garantisce il denominatore non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell_A=10\\log_{10}R"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=10\\log_{10}R_B"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=\\frac{\\log_{10}R_B}{\\log_{10}R}"
+        },
+        {
+          "type": "text",
+          "text": "R_B/R e κ₁/κ₂ confrontano i rapporti prima del logaritmo. Il quoziente invertito scambia le prove. log₁₀(R_B/R) rappresenta la differenza dei logaritmi, non il loro quoziente."
+        }
+      ],
+      "hints": [
+        "Scrivi i due livelli e cancella solo il fattore comune dieci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "R_B/R e κ₁/κ₂ confrontano i rapporti prima del logaritmo. Il quoziente invertito scambia le prove. log₁₀(R_B/R) rappresenta la differenza dei logaritmi, non il loro quoziente.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14211,
+      "title": "Due livelli con riferimenti assegnati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. A: I=1000 pW/m², Iᵣ=10 pW/m². B: I=10 pW/m², Iᵣ=1 pW/m². Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/100",
+          "1/10",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha rapporto cento e livello venti dB; B ha rapporto dieci e livello dieci dB. Il quoziente dieci su venti è un mezzo. Entrambi i livelli sono positivi, così il confronto è definito."
+        },
+        {
+          "type": "formula",
+          "text": "L_A=20\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=10\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Uno su cento confronta le intensità, un decimo confronta i rapporti rispetto ai riferimenti. Due è il reciproco. Uno ignora che un fattore dieci e un fattore cento hanno esponenti diversi."
+        }
+      ],
+      "hints": [
+        "Riduci cento e dieci alle potenze seconda e prima.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno su cento confronta le intensità, un decimo confronta i rapporti rispetto ai riferimenti. Due è il reciproco. Uno ignora che un fattore dieci e un fattore cento hanno esponenti diversi.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14212,
+      "title": "Media statistica di livelli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 2,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. A ha I=1000 pW/m², Iᵣ=10 pW/m². B ha I=10 pW/m², Iᵣ=1 pW/m². Si chiede soltanto la media aritmetica con uguali pesi dei due livelli, non il livello di un’intensità media. Quanto vale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 dB",
+          "30 dB",
+          "10 dB",
+          "20 dB",
+          "3/2 dB"
+        ],
+        "value": "15 dB"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I livelli assegnati sono venti e dieci dB. La loro semisomma è quindici dB. È una statistica dei livelli dichiarati; con riferimenti diversi non descrive da sola un’intensità media fisica e non rappresenta la somma di due sorgenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline L=\\frac{20+10}{2}\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline L=15\\,\\mathrm{dB}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta è la somma; dieci e venti copiano una sola prova. Tre mezzi è un rapporto, non la semisomma. Mediare I e Iᵣ prima del logaritmo cambierebbe il compito e non è richiesto alcun logaritmo non notevole."
+        }
+      ],
+      "hints": [
+        "Calcola prima i livelli, poi la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta è la somma; dieci e venti copiano una sola prova. Tre mezzi è un rapporto, non la semisomma. Mediare I e Iᵣ prima del logaritmo cambierebbe il compito e non è richiesto alcun logaritmo non notevole.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14213,
+      "title": "Scegliere il riferimento per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 3,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. A ha I=1000 pW/m² e Iᵣ,A=10 pW/m². B ha I_B=10 pW/m² e richiede L_B=L_A/2. Quanto vale Iᵣ,B/Iᵣ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/10",
+          "10",
+          "1/2",
+          "2",
+          "1/100"
+        ],
+        "value": "1/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è dieci dB, quindi I_B/Iᵣ,B deve valere dieci. Con I_B=10 pW/m² il riferimento B vale un pW/m². Il suo rapporto col riferimento A di dieci pW/m² è un decimo."
+        },
+        {
+          "type": "formula",
+          "text": "L_B=10\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{r,B}=1\\,\\mathrm{pW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{r,B}/I_{r,A}=\\frac1{10}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo dimezza il riferimento come se la legge fosse lineare. Dieci inverte il rapporto; uno su cento confonde il cambiamento di I con quello del riferimento. Due inverte inoltre il bersaglio sui livelli."
+        }
+      ],
+      "hints": [
+        "Dimezzare un livello positivo dimezza il suo esponente, non il riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo dimezza il riferimento come se la legge fosse lineare. Dieci inverte il rapporto; uno su cento confonde il cambiamento di I con quello del riferimento. Due inverte inoltre il bersaglio sui livelli.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14214,
+      "title": "Un display proporzionale al livello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 3,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Il display continuo adimensionale segue S=qL con q>0. A, con I=1000 pW/m² e Iᵣ=10 pW/m², legge S=60. B usa Iᵣ=1 pW/m² e legge S=30. Quanto vale I_B in pW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "pW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A fornisce venti dB, dunque il guadagno è tre per dB. Trenta sul display corrisponde a dieci dB. Questo impone un rapporto d’intensità dieci; moltiplicato per il riferimento B di un pW/m² dà dieci pW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{dB^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=10\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_{r,B}=10"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=10\\,\\mathrm{pW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta non è il livello: manca la divisione per q. Usare Iᵣ,A al posto di Iᵣ,B darebbe cento pW/m². Le unità inverse di dB del guadagno rendono S puro."
+        }
+      ],
+      "hints": [
+        "Decodifica prima il livello e poi l’intensità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta non è il livello: manca la divisione per q. Usare Iᵣ,A al posto di Iᵣ,B darebbe cento pW/m². Le unità inverse di dB del guadagno rendono S puro.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14215,
+      "title": "Offset, guadagno ed esponenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 3,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Un display continuo segue S=qL+b con q>0, b puro. A: I=1000 pW/m², Iᵣ=10 pW/m², S=41. B: I=10 pW/m², Iᵣ=1 pW/m², S=21. C usa Iᵣ=10 pW/m² e legge S=61. Quanto vale I_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10000 pW/m²",
+          "1000 pW/m²",
+          "100 pW/m²",
+          "300 pW/m²",
+          "10 pW/m²"
+        ],
+        "value": "10000 pW/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B forniscono venti e dieci dB. La differenza venti delle letture divisa per dieci dB dà q=2 per dB; poi b=1. C ha livello (61−1)/2=30 dB, rapporto mille e intensità dieci per mille, diecimila pW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{dB^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " L_C=30\\,\\mathrm{dB}"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=10000\\,\\mathrm{pW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Mille copia l’intensità A, cento usa il rapporto del livello dieci dB e dieci copia il riferimento. Trecento moltiplica direttamente il numero trenta per Iᵣ: il livello deve invece diventare un esponente."
+        }
+      ],
+      "hints": [
+        "Ricava q dalle differenze prima di trovare b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mille copia l’intensità A, cento usa il rapporto del livello dieci dB e dieci copia il riferimento. Trecento moltiplica direttamente il numero trenta per Iᵣ: il livello deve invece diventare un esponente.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-sound-decibel-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Livello di intensità sonora e riferimento",
+      "order": 14216,
+      "title": "Un livello non identifica la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sound-decibel",
+      "difficulty": 3,
+      "prompt": "Un livello di intensità sonora L è definito rispetto a un riferimento assegnato Iᵣ>0: L=ℓ dB, dove ℓ=10 log₁₀(I/Iᵣ) è il valore numerico del livello. I è l’intensità media nello stesso punto. Si usa pW/m², con 1 pW=10⁻¹² W; nel rapporto le unità uguali si cancellano. Iᵣ è un riferimento di confronto dichiarato, non necessariamente la soglia convenzionale dell’udito. Salvo dove indicato diversamente I>Iᵣ, così L>0. Nei calcoli numerici richiesti i rapporti sono potenze di dieci: log₁₀(10ⁿ)=n. Si impone fra prove il vincolo I=100 Iᵣ e si osserva L=20 dB. Quante coppie positive (I,Iᵣ) soddisfano entrambi i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie: qualunque Iᵣ>0 con I=100 Iᵣ",
+          "Una sola coppia",
+          "Nessuna coppia",
+          "Esattamente due coppie",
+          "Soltanto la coppia con Iᵣ=0"
+        ],
+        "value": "Infinite coppie: qualunque Iᵣ>0 con I=100 Iᵣ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, il rapporto è sempre cento e il livello è sempre venti dB. La misura conferma il vincolo ma non determina la scala assoluta: riferimenti uno e dieci pW/m² generano intensità cento e mille pW/m², entrambe valide. Moltiplicare entrambi per lo stesso fattore positivo non cambia L."
+        },
+        {
+          "type": "formula",
+          "text": "I/I_r=100"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=10\\log_{10}(100)"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=20"
+        },
+        {
+          "type": "text",
+          "text": "Una sola coppia attribuisce al livello un’informazione assoluta che non possiede. Zero come riferimento è vietato e due esempi non esauriscono le infinite scelte positive. Nessuna contraddizione nasce dal dato ridondante."
+        }
+      ],
+      "hints": [
+        "Controlla se la sostituzione lascia ancora libero il riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sola coppia attribuisce al livello un’informazione assoluta che non possiede. Zero come riferimento è vietato e due esempi non esauriscono le infinite scelte positive. Nessuna contraddizione nasce dal dato ridondante.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Potenze di dieci e confine zero dB",
+        "Intensità e percezione distinte",
+        "Inverse, tarature e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "113b70632de40c94ef0d537d66097edf22912caa3c312ac622ab06e4adef733e",
+      "name": "sound-decibel-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ2MCIgdmlld0JveD0iMCAwIDY0MCAxNDYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idCBkIj48dGl0bGUgaWQ9InQiPlJhcHBvcnRvIGRpIGludGVuc2l0w6AgZSBsaXZlbGxvIGluIGRlY2liZWw8L3RpdGxlPjxkZXNjIGlkPSJkIj5UcmUgcGFzc2k6IGZvcm1hcmUgdW4gcmFwcG9ydG8gcHVybywgbGVnZ2VybG8gc3UgdW5hIHNjYWxhIGxvZ2FyaXRtaWNhLCByaWNvc3RydWlyZSBs4oCZaW50ZW5zaXTDoCBjb24gaWwgcmlmZXJpbWVudG8uIElsIGNvbmZpbmUgYSB6ZXJvIGRlY2liZWwgbm9uIMOoIGludGVuc2l0w6AgbnVsbGEuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ2MCIgcng9IjI0IiBmaWxsPSIjZjVmYWZmIi8+PGcgZmlsbD0iIzE2MzA0NyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgaWwgcmFwcG9ydG8gcHVybzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTgiPkkgPSAxMDAwIHBXL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQwIj5J4bWjID0gMTAgcFcvbcKyIMK3IHJpZmVyaW1lbnRvIGFzc2VnbmF0bzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTk1Ij5SID0gSS9J4bWjID0gMTAwID0gMTDCsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjUwIj5TdGVzc2EgdW5pdMOgIHNvcHJhIGUgc290dG86IFtSXSA9IDE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjMwNSI+MSBwVyA9IDEw4oG7wrnCsiBXPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIzNjAiPk5lc3N1bmEgc29nbGlhIHBlcmNldHRpdmEgaW1wbGljaXRhPC90ZXh0PjxwYXRoIGQ9Ik0zNSA0MDVINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iNDU1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBVbiBwYXNzbyBwZXIgb2duaSBmYXR0b3JlIDEwPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1MDAiPkwgPSAxMCBsb2figoHigoAoUikgZEIgwrcgc2NhbGEgMTAgcHgvZEI8L3RleHQ+PHBhdGggZD0iTTEyMCA2NDBINDIwIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjxnIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIzIj48cGF0aCBkPSJNMTIwIDYyNVY2NTUiLz48cGF0aCBkPSJNMjIwIDYyNVY2NTUiLz48cGF0aCBkPSJNMzIwIDYyNVY2NTUiLz48cGF0aCBkPSJNNDIwIDYyNVY2NTUiLz48L2c+PHRleHQgeD0iMTEzIiB5PSI2MDAiPjE8L3RleHQ+PHRleHQgeD0iMjA2IiB5PSI2MDAiPjEwPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iNjAwIj4xMDA8L3RleHQ+PHRleHQgeD0iMzk0IiB5PSI2MDAiPjEwMDA8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSI2MDAiPlI8L3RleHQ+PHRleHQgeD0iMTEzIiB5PSI2OTAiPjA8L3RleHQ+PHRleHQgeD0iMjA2IiB5PSI2OTAiPjEwPC90ZXh0Pjx0ZXh0IHg9IjMwNiIgeT0iNjkwIj4yMDwvdGV4dD48dGV4dCB4PSI0MDYiIHk9IjY5MCI+MzA8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSI2OTAiPkwgKGRCKTwvdGV4dD48Y2lyY2xlIGN4PSIzMjAiIGN5PSI2NDAiIHI9IjkiIGZpbGw9IiNiYzUzMTUiLz48dGV4dCB4PSIzNSIgeT0iNzYwIj5BOiBSID0gMTAwIOKGkiBlc3BvbmVudGUgMiDihpIgTCA9IDIwIGRCPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4MTIiPjEwMCBweCA9IDEwIGRCID0gZmF0dG9yZSAxMCBpbiBSPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4NjUiPkxlIGludGVuc2l0w6Agbm9uIGNyZXNjb25vIGxpbmVhcm1lbnRlPC90ZXh0PjxwYXRoIGQ9Ik0zNSA5MTBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iOTY1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBUb3JuYXJlIGFsbOKAmWludGVuc2l0w6A8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMjUiPkwgPSAyMCBkQiDihpIgUiA9IDEwwrIgPSAxMDA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwODUiPkkgPSBJ4bWjIFIgPSAxMDAwIHBXL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTE1MCI+Q29uZmluZTogTCA9IDAgZEIg4oaSIFIgPSAxMOKBsCA9IDE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyMTAiPlF1aW5kaSBJID0gSeG1oywgbm9uIEkgPSAwPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMjgwIj5DYW1iaWFyZSBJ4bWjIGNhbWJpYSBpbCBsaXZlbGxvIGRlbGxhIHN0ZXNzYSBJLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTM0MCI+U3Rlc3NvIGxpdmVsbG8gbm9uIHByb3ZhIHVndWFsZSBzZW5zYXppb25lPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzgwIj5wZXIgdG9uaSBjb24gZnJlcXVlbnplIGRpdmVyc2UuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
