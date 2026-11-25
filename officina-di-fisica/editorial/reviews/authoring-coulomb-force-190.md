@@ -26,7 +26,7 @@ Fonte canonica SHA256 8796a5ef61daa63b14b6efc339d8436640005999a60c7f618dc2298073
 
 Per due cariche puntiformi si usa F=k_e|Qq|/r², con k_e in N·m²/C². Quale unità esprime F?
 
-Procedimento d’autore: Il prodotto Qq cancella i coulomb al quadrato del denominatore di k_e. Dividere per r² cancella poi i metri quadrati: resta il newton. F è una forza, mentre una sua energia richiederebbe anche un percorso e uno spostamento.
+Procedimento d’autore: Il prodotto Qq cancella i coulomb al quadrato del denominatore di k_e. Dividere per r² cancella poi i metri quadrati: resta il newton. Il lavoro di una forza si riferisce a uno spostamento; qui si chiede una forza.
 
 Passaggi: [F]=\frac{\mathrm{N\,m^2}}{\mathrm{C^2}}\frac{\mathrm{C^2}}{\mathrm{m^2}};  [F]=\mathrm N.
 
@@ -34,7 +34,7 @@ Distrattori: J misura energia, C carica e V potenziale. N/C è invece il campo e
 
 Hint: Segui entrambe le cancellazioni, delle cariche e della distanza.
 
-Fonte canonica SHA256 e008c3311354f7ef3acaef860a818c183c9202ab04fdced62abce1fba92cf312. Candidato SHA256 331ff088f27de12c6ab6ae812e5fbc56317da460608cee156eb3fc00bf63f21e. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 e008c3311354f7ef3acaef860a818c183c9202ab04fdced62abce1fba92cf312. Candidato SHA256 be4c785544aa8543d25f14ac0ae232bf038d910ceb262cd675b6d2ed610fa1f4. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-coulomb-force-03 — La distanza compare due volte
 
@@ -72,11 +72,11 @@ Procedimento d’autore: Isolando la carica variabile nella relazione normalizza
 
 Passaggi: u=\frac{f\rho^2}{90};  u=\frac{10\cdot9}{90};  u=1;  Q=1\,\mu\mathrm C.
 
-Distrattori: Un terzo μC dividerebbe per ρ invece di usare ρ² e darebbe soltanto 10/3 N. Tre μC darebbero 30 N; dieci μC copierebbero il numero della forza e darebbero 100 N. La carica non ha unità newton.
+Distrattori: Un terzo μC darebbe soltanto 10/3 N: si ottiene usando fρ/90 invece di fρ²/90 nell’inversa. Tre μC darebbero 30 N; dieci μC copierebbero il numero della forza e darebbero 100 N. La carica non ha unità newton.
 
 Hint: Moltiplica la forza per il quadrato della distanza normalizzata prima di dividere per 90.
 
-Fonte canonica SHA256 4face97e193333341e0be193ee6a251d3ea85cee6acdfcd23e8f1f0f50e57984. Candidato SHA256 8f6d6bdfa8b2efc54d1ba77646c0d9dbebb9f3e1865b3d77883662e48dde5332. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 4face97e193333341e0be193ee6a251d3ea85cee6acdfcd23e8f1f0f50e57984. Candidato SHA256 ae3ce67aafd3be1162139ca0c9980a483c8d5be34ba56f7e047c06d3278fe191. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-coulomb-force-06 — La distanza è la radice positiva
 
@@ -234,6 +234,12 @@ Fonte canonica SHA256 8352f999361b11d78578024fcff4d5d72a1d41f007fbb029b30521cd3c
 
 ## Provenienza tecnica
 
-Asset SHA256 94e2c6dc17f92f8dc5b10a7ac81bf970f143b7532c17c4df819e9e7ef83dc374. Package file SHA256 a094117de502e57808ee0561b76d3ff6d5dddda22184346b5ac79d82b44c188d. Binding file SHA256 1cb5257253b2ce793e247afe020cb3f890c27ba9d15f3cbfb099492872446aa4. Prova strutturale SHA256 1c4af3f66413aca1211f58e61c955257029d1df0a0f87ae75952569ab6d5ef28. Asset-only manifest SHA256 0bafb9ac59ec3cd1fca8813064cc825ea330da7148fce62e4d05923ba2f13476.
+Asset SHA256 94e2c6dc17f92f8dc5b10a7ac81bf970f143b7532c17c4df819e9e7ef83dc374. Package file SHA256 a365d2c7bcf3697a70a31bc0289961aee9479e881b581a438b9fd0b0d8a629f2. Binding file SHA256 e6af318be701be8c1ee2aeea687d8f2e15acc5306fa2038e2bf58a0d6765ad90. Prova strutturale SHA256 18d6bdea35371ba5a3b8d8af1ac9db208e86b2b280ab6cd817cf3a5569d74b0e. Asset-only manifest SHA256 0bafb9ac59ec3cd1fca8813064cc825ea330da7148fce62e4d05923ba2f13476.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
+
+## Correzioni dopo rilievi del revisore distinto
+
+Il revisore B ha rilevato due attribuzioni testuali imprecise. Nel 02 il confronto tra forza ed energia è sostituito dal richiamo al lavoro riferito a uno spostamento: non si afferma più che ogni energia richieda un percorso. Nel 05 l’alternativa 1/3 μC è confutata per sostituzione, F=10/3 N; l’eventuale errore algebrico corrisponde a usare fρ/90 al posto di fρ²/90, non a dividere perρ. Le vecchie edizioni dei cinque file modificati sono archiviate con manifest in coulomb-force-190-before-feedback02-05-20261125.
+
+Assert effettivi: soltanto blocks02 e blocks/error05, con binding02/05, sono cambiati; gli altri 14 record, tutte le formule, risposte e SVG sono identici. Nuova doppia assembly byte-identica e import canonico 16→0/16, 991 pubblicati invariati. Il rendering nativo precedente resta valido per gli stessi byte SVG e non è un nuovo replay del prodotto. UI prodotto e nuova revisione scientifica indipendente restano NOT_RUN per l’autore; firma riservata a B dopo rilettura.
