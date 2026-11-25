@@ -1,0 +1,98 @@
+{
+  "purpose": "INDEPENDENT_GEOMETRIC_DIAGNOSIS_NO_APPROVAL",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "units": "renderer scene units, not physical metres",
+  "normalAt75": {
+    "normalExact": "5(√6−√2) N",
+    "vectorLengthExact": "3(√6−√2)/16 scene units",
+    "normal": 5.176380902050415,
+    "length": 0.19411428382689055,
+    "sphereRadius": 0.22,
+    "shaftLength": 0.13199771300228558,
+    "headLength": 0.06211657082460498,
+    "shaftRadius": 0.028,
+    "headBaseRadius": 0.0812,
+    "sphereGeometry": {
+      "widthSegments": 24,
+      "heightSegments": 16,
+      "minimumFacetDistance": 0.21708533558391535
+    },
+    "maximumArrowVertexRadius": 0.19411428379995832,
+    "entireArrowWithinOpaqueSphere": true,
+    "material": {
+      "opacity": 1,
+      "transparent": false,
+      "depthWrite": true,
+      "depthTest": true
+    },
+    "manualBound": "√6<5/2 and √2>7/5 imply L<33/160<11/50=r; the computed mesh bound strengthens this to containment within all polygonal facets."
+  },
+  "weightAt0": {
+    "sphereCenter": [
+      0.35,
+      0.4,
+      0
+    ],
+    "forceVector": [
+      0,
+      -0.75,
+      0
+    ],
+    "tip": [
+      0.35,
+      -0.35,
+      0
+    ],
+    "joint": [
+      0.35,
+      -0.11,
+      0
+    ],
+    "table": {
+      "center": [
+        0,
+        -0.11,
+        0
+      ],
+      "size": [
+        6.75,
+        0.22,
+        3.45
+      ],
+      "top": 0,
+      "bottom": -0.22
+    },
+    "headYRange": [
+      -0.34999999731779097,
+      -0.110000002682209
+    ],
+    "cameraDirection": [
+      0.37693036854602263,
+      0.2754491154759396,
+      0.8843366338964377
+    ],
+    "headProjectionRayHitsTabletopForEveryMeshVertex": true,
+    "tabletopIntersectionXRange": [
+      0.4193263158359025,
+      0.8289473647506613
+    ],
+    "tabletopIntersectionZRange": [
+      0.27195789972418233,
+      1.1236842019150133
+    ],
+    "interpretation": "All cone vertices lie below the opaque tabletop and their camera rays hit its interior in the default orthographic oblique view. Only part of the red shaft above the table can remain visible."
+  },
+  "fallbackProjection": {
+    "map": "x_px=229+47x+16z; y_px=156−44y+11z",
+    "normal75": {
+      "dx": -8.8125,
+      "dy": -2.2105808375567615,
+      "length": 9.085528266940408,
+      "sphereProjectedRadius": 9.68
+    },
+    "arrowPaintedAfterBall": true,
+    "nativeTableBaseNotInFallbackElementList": true,
+    "interpretation": "SVG painter order overlays arrows after the ball, so the short normal is drawn inside its projected disk; this is different from native depth testing."
+  }
+}
