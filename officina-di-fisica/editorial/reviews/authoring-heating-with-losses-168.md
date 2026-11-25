@@ -20,7 +20,7 @@ Passaggi: P_{\rm net}=P-P_d;  P_{\rm net}=15\,\mathrm W;  t=\frac{E}{P_{\rm net}
 
 Distrattori: Sei secondi usa 120/20 e trascura la dispersione. Ventiquattro secondi usa soltanto 120/5. Sommare le potenze darebbe 24/5 s, ma conterebbe un’uscita come ingresso. Il reciproco della durata non è il tempo richiesto.
 
-Fonte canonica SHA256 fd4d23d7589e9abe81e619b96e439d21e2d4e75db0b55543258e6a102b0b755c. Candidato SHA256 c499dcabfd2bd2030c12f69627e87a5513e35abf5d0bcb1d03e7adc5faf88fff. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 fd4d23d7589e9abe81e619b96e439d21e2d4e75db0b55543258e6a102b0b755c. Candidato SHA256 5a98166a845507ef5c7151345ef8d8ec77aad73a8e9051862b46ff07ecaeb417. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-02 — L’unità del tempo ricavato da energia e potenza
 
@@ -152,7 +152,7 @@ Passaggi: \overline t=\frac{8+6}{2}\,\mathrm s;  \overline t=7\,\mathrm s;  t_{\
 
 Distrattori: 48/7 s applica la legge agli ingressi medi, senza mediare le due uscite. Quattordici è la somma; sei e otto copiano una sola prova. Non sono necessarie durate sperimentali o incertezze per la media statistica assegnata.
 
-Fonte canonica SHA256 0337125266bcf1ce5f9a796c54134d4e7cd2eeca69ef319501984aa7127946f3. Candidato SHA256 c42c1e66ef5f4dfb5e76883766f54a68c96425b478c199807e8359688ae153ca. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 0337125266bcf1ce5f9a796c54134d4e7cd2eeca69ef319501984aa7127946f3. Candidato SHA256 f8a181887a96c19b4c8d7bc8307ce1cd08f6431187767026920a1c3406d565cb. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-heating-with-losses-13 — Il bersaglio decide quanto si può disperdere
 
@@ -209,3 +209,7 @@ Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: ness
 Coordinate intrinseche del disegno: barre di potenza20 unità/W; grafico energia-tempo40 unità/s in orizzontale e8/3 unità/J in verticale; durate40 unità/s. Questi rapporti sono specifiche geometriche dello SVG prima del ridimensionamento, non pixel CSS del dispositivo.
 
 Restano i due fix testuali già riletti da ROOT: prosa14 usa q=24/(8 s); feedback13 distingue il numero puro10 dal valore numerico della potenza non ancora diviso per5 W. Vecchi raw e completion b963 autentici sono archiviati nel precedente before-review-fix e non sono riferiti al package attuale.
+
+## Etichette dello zero, dopo review distinta
+
+Il revisore B ha segnalato zeri attraversati dagli assi nei lotti 169–172; lo stesso difetto era presente in 168. Sono state spostate soltanto le etichette 0 indicate nel manifest di questa correzione,20 coordinate intrinseche SVG verso sinistra. Assi, barre, percorsi, tutti gli altri testi, risposte e formule sono identici. I cinque SVG finali sono stati nuovamente letti nel rendering completo; gli zeri sono separati dagli assi. I file precedenti e le loro impronte sono conservati nella cartella before-zero-label-fix. Il precedente confronto geometrico della rimozione dei riferimenti ai pixel resta storico e non viene riscritto: questa correzione dichiara esplicitamente il movimento dei soli testi 0. Due assembly e import canonico ripetuti; UI del prodotto NOT_RUN, nessun marker corrente.

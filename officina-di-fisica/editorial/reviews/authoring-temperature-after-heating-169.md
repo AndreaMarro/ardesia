@@ -20,7 +20,7 @@ Passaggi: Q=Pt;  Q=50\,\mathrm J;  \Delta T=\frac QC;  \Delta T=5\,\mathrm K;  \
 
 Distrattori: Cinque è l’aumento, non la lettura finale. Cinquanta copia l’energia e venti ignora il riscaldamento.Settanta somma il numero 50 dell’energia alla lettura 20 senza dividere per la capacità: joule e gradi Celsius non si possono sommare.
 
-Fonte canonica SHA256 d4df60289dac077e40c564aaf5a61bcd2a1cf2b1544f91d6806aca05cb153a33. Candidato SHA256 17f0c912a013cea1c3f83a41d260e419fac7679d527bec33eede76dde01b43e1. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 d4df60289dac077e40c564aaf5a61bcd2a1cf2b1544f91d6806aca05cb153a33. Candidato SHA256 2b7b3f1bdf761dccbd5f377a15f44ed6a2d4c8f4e7fe6b78c0a6587b78bb1793. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-temperature-after-heating-02 — Lettura di temperatura e unità
 
@@ -92,7 +92,7 @@ Passaggi: \theta_{f,A}=25;  \theta_{f,B}=30;  \theta_{f,B}/\theta_{f,A}=\frac65.
 
 Distrattori: Due è il rapporto degli aumenti o delle durate, non delle letture finali. Cinque sesti inverte il quoziente; un mezzo nega l’aumento e uno lo ignora. Il rapporto richiesto non è invariante per cambio dello zero della scala.
 
-Fonte canonica SHA256 74ab6465e9d069816346911b13d564a1f6a91cc00960e2a6885c461f94fc254f. Candidato SHA256 59b88cc583afcf69f5a9e5475b1349fd322ef366758bd9688070294e792acbfc. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 74ab6465e9d069816346911b13d564a1f6a91cc00960e2a6885c461f94fc254f. Candidato SHA256 38e0e1e1d086926c6c7a6471bde9d23804dc4b48ae218284c3d36ef89ae55ca0. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-temperature-after-heating-08 — Lo scarto non è un rapporto di temperature
 
@@ -207,3 +207,7 @@ Fonte canonica SHA256 24d76c0d08eae3d3e75529f02c06eb71a71473820a88e2cedbe70dd734
 Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: nessuna lunghezza in pixel. Il confronto XML prima/dopo conferma gli stessi elementi, ordine e tutti gli attributi geometrici e stilistici; cambiano i soli testi delle legende e le didascalie collegate. Tutte le chiavi e formule sono identiche. Le versioni precedenti sono conservate con manifest in author-evidence/thermal-168-172-before-responsive-figure-fix. Le cinque nuove figure sono state lette integralmente in XML e nei rendering nativi completi allegati. Questo è controllo tecnico dell’autore, non revisione scientifica indipendente. UI del prodotto sui byte correnti NOT_RUN, nessun marker corrente.
 
 Coordinate intrinseche SVG: nel pannello2 le letture sono10 unità per grado Celsius, con base20 lunga200 unità e aumenti5/10 lunghi50/100; nel pannello3 sono8 unità per grado. Non sono pixel effettivi dopo il ridimensionamento responsive.
+
+## Etichette dello zero, dopo review distinta
+
+Il revisore B ha segnalato zeri attraversati dagli assi nei lotti 169–172; lo stesso difetto era presente in 168. Sono state spostate soltanto le etichette 0 indicate nel manifest di questa correzione,20 coordinate intrinseche SVG verso sinistra. Assi, barre, percorsi, tutti gli altri testi, risposte e formule sono identici. I cinque SVG finali sono stati nuovamente letti nel rendering completo; gli zeri sono separati dagli assi. I file precedenti e le loro impronte sono conservati nella cartella before-zero-label-fix. Il precedente confronto geometrico della rimozione dei riferimenti ai pixel resta storico e non viene riscritto: questa correzione dichiara esplicitamente il movimento dei soli testi 0. Due assembly e import canonico ripetuti; UI del prodotto NOT_RUN, nessun marker corrente.

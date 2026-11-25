@@ -20,7 +20,7 @@ Passaggi: 2(80-\theta_f)=4(\theta_f-20);  6\theta_f=240;  \theta_f=40.
 
 Distrattori: Cinquanta °C trascura il recipiente e usa solo le due masse uguali. Venti o ottanta escludono uno dei contributi positivi. Sessanta °C farebbe assorbire 160 J ai corpi freddi mentre il caldo ne cederebbe 40, senza una fonte esterna.
 
-Fonte canonica SHA256 78258f0070667a06eb9c0cbba7c88066424ec92245394d2a21cb5ce3da6b5a98. Candidato SHA256 914ad43f94660b06b0d6a61d91d13a5231a4312377b446e15caa44d7a301f033. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 78258f0070667a06eb9c0cbba7c88066424ec92245394d2a21cb5ce3da6b5a98. Candidato SHA256 9118595d5920450ca0a6c1d62c7e27703d5676d03b9344e2af03953ec28df2a9. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-calorimeter-capacity-02 — La grandezza letta dal calorimetro
 
@@ -140,7 +140,7 @@ Passaggi: \theta_{f,A}=40;  \theta_{f,B}=\frac{440}{10};  \theta_{f,B}=44;  \the
 
 Distrattori: Uno sarebbe corretto se anche la capacità del recipiente raddoppiasse, ma non succede qui. Due raddoppia una lettura direttamente.10/11 è il reciproco;44 è la letturaB prima del rapporto.
 
-Fonte canonica SHA256 22cd52298f47f4c8a0ba6c0f53bd705aa616695a0d9da9d826ed48f781673646. Candidato SHA256 995c9f57987b950609a221b6995a15a69980231c1f0fdaea4683b23404513ed4. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 22cd52298f47f4c8a0ba6c0f53bd705aa616695a0d9da9d826ed48f781673646. Candidato SHA256 2b974148b4a8e9e9fde694ee3543e12d9d82f84d296e0d971b407e2582a077c4. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-calorimeter-capacity-12 — Media di due equilibri con contenitore fisso
 
@@ -209,3 +209,7 @@ Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: ness
 Coordinate intrinseche SVG: energia5 unità/J,80 J lunghi400 unità e i due40 J lunghi200 ciascuno; letture Celsius6 unità per grado,40/44/42 corrispondono240/264/252 unità. I pixel CSS responsive non sono dati fisici del quesito.
 
 Review distinta B, correzione16: con masse uguali1 g e recipiente2 J/K il bilancio dà(80+60)/4=35 °C, non32 °C. Corretto soltanto il numero di questa controprova nel feedback/error e il binding16. Tutti gli altri15 record, chiavi, formule e asset sono identici; la precedente edizione è archiviata byte per byte. Doppio assembly e import tecnico ripetuti; nessuna nuova UI o approvazione propria.
+
+## Etichette dello zero, dopo review distinta
+
+Il revisore B ha segnalato zeri attraversati dagli assi nei lotti 169–172; lo stesso difetto era presente in 168. Sono state spostate soltanto le etichette 0 indicate nel manifest di questa correzione,20 coordinate intrinseche SVG verso sinistra. Assi, barre, percorsi, tutti gli altri testi, risposte e formule sono identici. I cinque SVG finali sono stati nuovamente letti nel rendering completo; gli zeri sono separati dagli assi. I file precedenti e le loro impronte sono conservati nella cartella before-zero-label-fix. Il precedente confronto geometrico della rimozione dei riferimenti ai pixel resta storico e non viene riscritto: questa correzione dichiara esplicitamente il movimento dei soli testi 0. Due assembly e import canonico ripetuti; UI del prodotto NOT_RUN, nessun marker corrente.

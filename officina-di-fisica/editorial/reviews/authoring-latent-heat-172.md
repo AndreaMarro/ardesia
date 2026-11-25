@@ -20,7 +20,7 @@ Passaggi: Q=mL;  Q=(2\,\mathrm g)(100\,\mathrm{J/g});  Q=200\,\mathrm J.
 
 Distrattori: Cinquanta deriva da L/m e ha unità J/g² se si mantengono le unità. Cento è l’energia di un solo grammo; zero confonde temperatura costante con energia nulla. Quattrocento conterebbe due volte la stessa massa.
 
-Fonte canonica SHA256 28ba56434beb96d3cbb3b37dd263d9c6336c3674e7b93a9e7acfc0bcc53fb1db. Candidato SHA256 9199d50cd2c7169f02ea154eb0225956f11007ab505fc9222c5c5f6f25a195ed. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 28ba56434beb96d3cbb3b37dd263d9c6336c3674e7b93a9e7acfc0bcc53fb1db. Candidato SHA256 8fc149b720b2fd68fa950e0e3407224d915f26297ecb8e23a2b5fa937cd520a1. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-latent-heat-02 — L’unità dell’energia di fase
 
@@ -152,7 +152,7 @@ Passaggi: \overline Q=\frac{200+800}{2}\,\mathrm J;  \overline Q=500\,\mathrm J;
 
 Distrattori: Quattrocentocinquanta usa gli ingressi medi. Mille è la somma, seicento la differenza e trecento usa la massa media 3 g con il solo valore specificoA 100 J/g, ignorando il valoreB. Il prodotto delle medie non sostituisce qui la media dei prodotti.
 
-Fonte canonica SHA256 2c6c4670db29997a83032ac79aa3e7bce782bb54bccbec1c255ef22b654728d0. Candidato SHA256 7cb1be759bc5858179815f2dd80a99c23a0f2e097d1dc8efc86f5df1761bd9d5. Revisione indipendente NOT_RUN; human NOT_RUN.
+Fonte canonica SHA256 2c6c4670db29997a83032ac79aa3e7bce782bb54bccbec1c255ef22b654728d0. Candidato SHA256 c491375b47ff4e330fd073a92d67cc0235f7f12bab1ee9ee2bce482587ad62da. Revisione indipendente NOT_RUN; human NOT_RUN.
 
 ## AR-u5-latent-heat-13 — Il valore specifico richiesto dal bersaglio
 
@@ -209,3 +209,7 @@ Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: ness
 Coordinate intrinseche SVG: energie0,5 unità/J,200/800 J danno100/400 unità; media500 J lunga250 e prova agli ingressi medi450 J lunga225. Le aree dei riquadri di fase sono schematiche, non una scala di volume o un conteggio molecolare.
 
 Prima della prima consegna del lotto, la rilettura dell’autore ha corretto nel feedback12 l’attribuzione del distrattore300 J: usa la massa media3 g con il solo L_A=100 J/g, non il valore medio di L. Non è un cambiamento di risposta o formula né una review distinta.
+
+## Etichette dello zero, dopo review distinta
+
+Il revisore B ha segnalato zeri attraversati dagli assi nei lotti 169–172; lo stesso difetto era presente in 168. Sono state spostate soltanto le etichette 0 indicate nel manifest di questa correzione,20 coordinate intrinseche SVG verso sinistra. Assi, barre, percorsi, tutti gli altri testi, risposte e formule sono identici. I cinque SVG finali sono stati nuovamente letti nel rendering completo; gli zeri sono separati dagli assi. I file precedenti e le loro impronte sono conservati nella cartella before-zero-label-fix. Il precedente confronto geometrico della rimozione dei riferimenti ai pixel resta storico e non viene riscritto: questa correzione dichiara esplicitamente il movimento dei soli testi 0. Due assembly e import canonico ripetuti; UI del prodotto NOT_RUN, nessun marker corrente.
