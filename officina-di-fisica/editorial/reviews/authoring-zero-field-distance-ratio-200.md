@@ -16,11 +16,11 @@ Procedimento d’autore: Tra due sorgenti positive il campo della prima va verso
 
 Passaggi: \frac{Q_1}{d_1^2}=\frac{Q_2}{d_2^2};  r^2=\frac14;  r=\frac12.
 
-Distrattori: Un quarto è il rapporto dei quadrati, non delle distanze. Due e quattro scambiano l’ordine d₁/d₂; uno collocherebbe il punto al centro, dove la carica quattro volte maggiore produrrebbe un campo quattro volte maggiore.
+Distrattori: Un quarto è il rapporto dei quadrati, non delle distanze. Due inverte il rapporto d₁/d₂; quattro inverte il rapporto dei quadrati; uno collocherebbe il punto al centro, dove la carica quattro volte maggiore produrrebbe un campo quattro volte maggiore.
 
 Hint: Uguaglia i moduli dei campi, poi estrai la radice del rapporto delle cariche.
 
-Fonte canonica SHA256 4263e8b1ad9ca5171828fce76788e781b305828ef8a2a0c865fae5fad56984aa. Candidato SHA256 e13d0f3488f1ab5c8d8a66479f5a94bc50093cb90cd0d2b0407c54fa7e294f8d. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 4263e8b1ad9ca5171828fce76788e781b305828ef8a2a0c865fae5fad56984aa. Candidato SHA256 bba7fed57ac96cee79fcb6e5fd498153614cfad1b9d680b7bd1750e8ecab47ac. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-zero-field-distance-ratio-02 — Un rapporto senza unità
 
@@ -68,7 +68,7 @@ Fonte canonica SHA256 2f56dfb76dddcbaa43285b701050032caf5cd44693c15f87c01948c00f
 
 Nel vuoto due cariche puntiformi positive Q₁ e Q₂ sono mantenute fisse su una retta a distanza L>0. Il punto P cercato è strettamente fra esse. Le distanze positive da Q₁ e Q₂ sono d₁ e d₂, con d₁+d₂=L. Nel punto di campo nullo i due contributi elettrici hanno versi opposti e uguale modulo: kQ₁/d₁²=kQ₂/d₂². Definiamo r=d₁/d₂>0, un numero puro. Si confrontano configurazioni statiche; le cariche e la separazione non cambiano durante una prova. Si misura r=1/2 e si conosce Q₂=4 nC. Quanto vale Q₁ in nC?
 
-Procedimento d’autore: Dalla relazione r²=Q₁/Q₂ si ricava Q₁=Q₂r². Il quadrato di 1/2 è 1/4; moltiplicato per 4 nC restituisce 1 nC. Reinserendo il dato, il rapporto dei campi può annullarsi alle distanze nel rapporto uno a due.
+Procedimento d’autore: Dalla relazione r²=Q₁/Q₂ si ricava Q₁=Q₂r². Il quadrato di 1/2 è 1/4; moltiplicato per 4 nC restituisce 1 nC. Reinserendo il dato, la somma vettoriale dei campi si annulla alle distanze nel rapporto uno a due: i loro moduli sono uguali.
 
 Passaggi: Q_1=Q_2r^2;  Q_1=4\cdot\frac14\,\mathrm{nC};  Q_1=1\,\mathrm{nC}.
 
@@ -76,7 +76,7 @@ Distrattori: Due nC usa r invece di r². Sedici nC divide per r² e scambia il r
 
 Hint: Eleva al quadrato il rapporto prima di moltiplicare per Q₂.
 
-Fonte canonica SHA256 32ab75d59fb2ce482a8e343146ae59ab0f27ffc5680fa4d33596f7bb5e5fca07. Candidato SHA256 e3c8157b7684814b70ddcda6984db492e1f95c42dc9d89cdc43513b208d5f8da. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 32ab75d59fb2ce482a8e343146ae59ab0f27ffc5680fa4d33596f7bb5e5fca07. Candidato SHA256 39316a82538696f7e1f5a72b283d07f764ae2c78c3f1b73ac3eb81336c49250e. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-zero-field-distance-ratio-06 — La seconda carica al denominatore
 
@@ -234,7 +234,7 @@ Fonte canonica SHA256 ca332c4b4c560ecf43dea273172d132dc517cae83e2a94683c8b852c51
 
 ## Provenienza tecnica
 
-Asset SHA256 8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561. Package file SHA256 cae15b10a8161e68041bd19849e08e38f0ca96312798c7bdf1feedae85c6765b. Binding file SHA256 9ffac90de7ba473e2919c756febd78df6dccf2c3ae48478cec91857fb736929b. Prova strutturale SHA256 6dc216c049ecf5b53dec8841861d66da233bb65047cf195130c5aa8953232682. Asset-only manifest SHA256 bd776fe400271c6f7075efd24e3fa4686177a2b10c6a058c32910c6186a8cd92.
+Asset SHA256 8dc4327f1ed921f7462025603100ea8e5fadd3397ee54b3b326c6cc8c0220561. Package file SHA256 182235d1d0f7d8dc9e91f51f1116df19972cdb9232e6aa4e197b6d91feadee7d. Binding file SHA256 3d85d309ffaeaf8c52ebdd71c35042da34f059ad56e8aadae03509ad5e7e5b35. Prova strutturale SHA256 3bf9737e56a961df7e621c48b2d8caae88f6d888535b540e3bc406ed022a6962. Asset-only manifest SHA256 bd776fe400271c6f7075efd24e3fa4686177a2b10c6a058c32910c6186a8cd92.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
@@ -243,3 +243,9 @@ Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella s
 Nell’SVG le sorgenti sono a x=140 e500, separazione360 coordinate per3 m. Il punto nullo A è a x=260 e B a x=380: distanze1/2 m e2/1 m nella stessa scala geometrica. Le frecce dei campi hanno tutte lunghezza90 coordinate per modulo9 N/C, con punte a distanza positiva dai cerchi che simboleggiano le sorgenti. Questa scala dei vettori è distinta dalla scala spaziale: la didascalia lo dichiara. I segni delle cariche e i simboli di campo non sono misure della dimensione fisica delle cariche puntiformi. Le barre dei rapporti1/2,2,5/4 hanno larghezze80,320,200, origine130 e scala comune160 coordinate per unità di rapporto; lo zero a104 non attraversa l’asse. Le coordinate sono soltanto documentazione tecnica di proporzione e non compaiono nel percorso studente.
 
 Il rapporto può superare1 senza uscire dal segmento: se r>0 e L>0, d₁=Lr/(1+r) e d₂=L/(1+r) restano positive e sommano L. I due campi fuori dal segmento hanno lo stesso verso e non si cancellano per sorgenti positive. L’edizione evita di trasformare una condizione elettrostatica in una legge di Ohm. Nessun proprio verdetto scientifico: revisore distinto B e human NOT_RUN.
+
+## Correzioni dopo revisione distinta
+
+B ha rilevato due frasi imprecise: il reciproco di r=1/2 è 2, mentre 4 è il reciproco di r²; al punto nullo si annulla la somma vettoriale dei campi e non il loro rapporto. I due testi sono ora espliciti. Assert sui payload: solo blocks/error01 e blocks05, con i rispettivi binding, sono cambiati; gli altri 14 record e tutte risposte, formule e SVG sono identici. Nessun congelamento scientifico dell’autore.
+
+La precedente edizione dei cinque file modificati è archiviata con manifest in zero-field-distance-ratio-200-before-feedback01-05-20261125. Il nuovo codice ha concluso due assembly byte-identiche e import canonico 16→0/16 con 991 pubblicati invariati. Nessun nuovo render dell’SVG perché i byte sono identici a quelli già prodotti e letti; nessuna UI prodotto. Il commit finale resta solo locale per il vincolo dell’integratore sui nuovi upload. La firma scientifica successiva è riservata a B sui byte riletti.
