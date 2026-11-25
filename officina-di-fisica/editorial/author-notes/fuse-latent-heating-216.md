@@ -84,7 +84,7 @@ Parto dall’energia fornita I²Rt e la divido per l’energia necessaria per un
 
 Passaggi: `m=\frac{I^2Rt}{L_f}\qquad [m]=\frac{\mathrm J}{\mathrm{J/g}}\qquad [m]=\mathrm g`
 
-Distrattori: Invertire potenza e L_f non ricostruisce una massa. I al primo grado altera la dimensione; dividere per t farebbe diminuire la massa trasformata a potenza e durata maggiori. Il reciproco finale avrebbe dimensione di massa inversa.
+Distrattori: Invertire potenza e L_f non ricostruisce una massa. I al primo grado altera la dimensione; dividere per t farebbe diminuire la massa trasformata all’aumentare della durata, a potenza fissata. Il reciproco finale avrebbe dimensione di massa inversa.
 
 ## 10 — Due fattori di preparazione
 
@@ -145,3 +145,7 @@ Distrattori: Due A darebbero t 1/2 s, mezzo A darebbe 2 s e dieci A darebbero 1/
 ## Correzione visiva interna prima del commit
 
 Il primo native mostrava una label attraversata dalla diagonale. Vecchi SVG, PNG, package, binding e structural sono archiviati con checksum in author-evidence/fuse-latent-heating-216-label-superseded-20261125. Spostata soltanto la label da y705 a y620; nuovi assembly/import e nuovo native completo realmente exit0 e riletti. Nessun credito UI prodotto, revisione indipendente NOT_RUN.
+
+## Rilettura distinta prima del freeze
+
+Il revisore A ha individuato due precisazioni testuali: la dipendenza inversa dalla durata va descritta a potenza fissata (09); le barre energetiche appartengono al primo pannello (01). Corretti soltanto questi testi e i binding derivati. Vecchi otto file conservati con checksum in author-evidence/fuse-latent-heating-216-peer-text-superseded-20261125. Assert strutturale: solo 01 e 09 mutati, gli altri 14 record e tutte le risposte, formule, i prompt e SVG identici. Due assembly identici e import canonico reale 16 nuovi, poi 0 nuovi/16 invariati; 991 pubblicati invariati. Nessun nuovo render su SVG identico. Nuova revisione indipendente, UI prodotto e approvazione umana NOT_RUN.
