@@ -110,7 +110,11 @@ def load_pack(catalog_path):
         indexed(syllabi, "programmi")
     result = fields(catalog, "id", "title", "summary", "schemaVersion")
     result.update(version=str(version), summary=catalog.get("summary", ""), courses=[], skills=[fields(s, "id", "title", "prerequisites") for s in skills.values()],
-                  syllabi=[fields(s, "id", "title", "year", "url", "skills", "courses", "degree", "coverage", "topics") for s in syllabi])
+                  syllabi=[fields(s, "id", "title", "year", "url", "skills", "courses", "degree", "credits", "baseline", "accessed", "assessment", "coverage", "topics", "alignment") for s in syllabi])
+    symbols = catalog.get("symbols", [])
+    require(isinstance(symbols, list) and all(isinstance(s, dict) and all(prose(s.get(k)) for k in ("symbol", "reading", "meaning")) for s in symbols),
+            "Glossario dei simboli non valido.")
+    result["symbols"] = [fields(s, "symbol", "reading", "meaning") for s in symbols]
     units = {}
     activity_ids = set()
     course_skills = set()

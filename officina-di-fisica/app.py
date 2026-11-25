@@ -120,6 +120,7 @@ def main():
             list(workers.map(job, jobs))
         return
     service = ThreadingHTTPServer((args.host, args.port), Handler)
+    url = "http://127.0.0.1:" + str(service.server_port) + "/"
     print("Officina di Fisica · " + url, flush=True)
     if args.open:
         webbrowser.open(url)

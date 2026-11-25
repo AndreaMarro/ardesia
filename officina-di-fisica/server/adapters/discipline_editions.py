@@ -28,6 +28,61 @@ SCHEMA = (
 )
 
 
+# Rebuildable projection of the append-only evidence, maintained in the writer transaction.
+STATS = """CREATE TABLE discipline_skill_stats(
+    user TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, discipline TEXT NOT NULL, skill TEXT NOT NULL,
+    exposures INTEGER, completions INTEGER, assisted INTEGER, independent INTEGER, transfer INTEGER,
+    retention INTEGER, errors INTEGER, lastIndependent INTEGER, lastError INTEGER, lastSuccess INTEGER,
+    PRIMARY KEY(user,discipline,skill))"""
+BACKFILL = """INSERT INTO discipline_skill_stats
+    SELECT user,discipline,skill,SUM(kind='open'),COUNT(DISTINCT CASE WHEN kind='complete' THEN unit END),
+    SUM(CASE WHEN correct AND assisted THEN 1 ELSE 0 END),SUM(CASE WHEN correct AND NOT assisted THEN 1 ELSE 0 END),
+    COALESCE(SUM(transfer),0),COALESCE(SUM(retention),0),SUM(CASE WHEN correct=0 THEN 1 ELSE 0 END),
+    MAX(CASE WHEN correct AND NOT assisted THEN stamp END), MAX(CASE WHEN correct=0 THEN seq END),
+    MAX(CASE WHEN correct AND NOT assisted THEN seq END)
+    FROM discipline_events GROUP BY user,discipline,skill"""
+ON_EVIDENCE = """CREATE TRIGGER discipline_project_evidence AFTER INSERT ON discipline_events BEGIN
+    INSERT INTO discipline_skill_stats VALUES (
+        NEW.user, NEW.discipline, NEW.skill, NEW.kind='open',
+        NEW.kind='complete' AND NOT EXISTS (
+            SELECT 1 FROM discipline_events WHERE user=NEW.user AND discipline=NEW.discipline
+            AND unit=NEW.unit AND kind='complete' AND seq<NEW.seq),
+        COALESCE(NEW.correct AND NEW.assisted,0), COALESCE(NEW.correct AND NOT NEW.assisted,0),
+        COALESCE(NEW.transfer,0), COALESCE(NEW.retention,0), COALESCE(NEW.correct=0,0),
+        CASE WHEN NEW.correct AND NOT NEW.assisted THEN NEW.stamp END,
+        CASE WHEN NEW.correct=0 THEN NEW.seq END, CASE WHEN NEW.correct AND NOT NEW.assisted THEN NEW.seq END)
+    ON CONFLICT(user,discipline,skill) DO UPDATE SET exposures=exposures+excluded.exposures,
+        completions=completions+excluded.completions, assisted=assisted+excluded.assisted,
+        independent=independent+excluded.independent, transfer=transfer+excluded.transfer,
+        retention=retention+excluded.retention, errors=errors+excluded.errors,
+        lastIndependent=CASE WHEN excluded.lastIndependent IS NULL THEN lastIndependent
+            WHEN lastIndependent IS NULL THEN excluded.lastIndependent ELSE MAX(lastIndependent,excluded.lastIndependent) END,
+        lastError=COALESCE(excluded.lastError,lastError), lastSuccess=COALESCE(excluded.lastSuccess,lastSuccess);
+END"""
+
+
+def prepare_stats(db):
+    if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='discipline_skill_stats'").fetchone():
+        return
+    db.execute("CREATE INDEX IF NOT EXISTS discipline_completions ON discipline_events(user,discipline,unit) WHERE kind='complete'")
+    db.execute("CREATE INDEX IF NOT EXISTS discipline_seen ON discipline_events(user,discipline,activity) WHERE kind IN ('answer','hint')")
+    db.execute(STATS)
+    db.execute(BACKFILL)
+    db.execute(ON_EVIDENCE)
+
+
+def stable_ids(db, discipline, units):
+    current = {a["id"]: u["id"] for u in units.values() for a in u["activities"]}
+    for row in db.execute("SELECT payload FROM discipline_units WHERE discipline=?", (discipline,)):
+        old = json.loads(row[0])
+        if old["id"] in units:
+            new = units[old["id"]]
+            require((new["courseId"], new["skillId"]) == (old["courseId"], old["skillId"]),
+                    "Un’unità che cambia microcorso o competenza richiede un nuovo ID.", 409)
+        for item in old["activities"]:
+            require(current.get(item["id"], old["id"]) == old["id"], "Un quesito trasferito a un’altra unità richiede un nuovo ID.",409)
+
+
 def install(db, catalog_path, status="preview", activate=False):
     require(db.in_transaction, "Installare il pacchetto in una transazione di scrittura.")
     require(status in ("preview", "published"), "Stato non valido.")
@@ -36,6 +91,7 @@ def install(db, catalog_path, status="preview", activate=False):
     signature = hashlib.sha256(encode([catalog, units]).encode()).hexdigest()
     for sql in SCHEMA:
         db.execute(sql)
+    prepare_stats(db)
     current = db.execute("SELECT version,status FROM discipline_active WHERE discipline=?", (discipline,)).fetchone()
     previous = db.execute("SELECT digest FROM discipline_editions WHERE discipline=? AND version=?",
                           (discipline, version)).fetchone()
@@ -46,6 +102,7 @@ def install(db, catalog_path, status="preview", activate=False):
         if current and tuple(current) == (version, status):
             return {"id": discipline, "version": version, "sha256": signature, "changed": False}
     else:
+        stable_ids(db, discipline, units)
         revision = db.execute("SELECT COALESCE(MAX(revision),0)+1 FROM discipline_editions WHERE discipline=?", (discipline,)).fetchone()[0]
         db.execute("INSERT INTO discipline_editions VALUES(?,?,?,?,?)", (discipline, version, signature, encode(catalog), revision))
         for key, unit in units.items():

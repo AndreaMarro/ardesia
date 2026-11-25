@@ -14,16 +14,7 @@ KINDS = {"open", "complete", "hint", "answer"}
 
 
 def practice_history(db, uid, discipline):
-    rows = db.execute(
-        """SELECT skill, SUM(kind='open') AS exposures, COUNT(DISTINCT CASE WHEN kind='complete' THEN unit END) AS completions,
-        SUM(CASE WHEN correct=1 AND assisted=1 THEN 1 ELSE 0 END) AS assisted,
-        SUM(CASE WHEN correct=1 AND assisted=0 THEN 1 ELSE 0 END) AS independent,
-        COALESCE(SUM(transfer),0) AS transfer, COALESCE(SUM(retention),0) AS retention,
-        SUM(CASE WHEN correct=0 THEN 1 ELSE 0 END) AS errors,
-        MAX(CASE WHEN correct=1 AND assisted=0 THEN stamp END) AS lastIndependent,
-        MAX(CASE WHEN correct=0 THEN seq END) AS lastError,
-        MAX(CASE WHEN correct=1 AND assisted=0 THEN seq END) AS lastSuccess
-        FROM discipline_events WHERE user=? AND discipline=? GROUP BY skill""", (uid, discipline))
+    rows = db.execute("SELECT * FROM discipline_skill_stats WHERE user=? AND discipline=?", (uid, discipline))
     return {r["skill"]: dict(r) for r in rows}
 
 
@@ -116,8 +107,9 @@ def write_event(db, user, pack, allowed, data, now):
         correct = option == activity["correctOptionId"]
         assisted = bool(db.execute("SELECT 1 FROM discipline_events WHERE user=? AND discipline=? AND activity=? "
                                    "AND kind IN ('answer','hint') LIMIT 1", (user["id"], discipline, aid)).fetchone())
-        previous = db.execute("SELECT MAX(stamp) FROM discipline_events WHERE user=? AND discipline=? AND skill=? AND correct=1 AND assisted=0",
-                              (user["id"], discipline, unit["skillId"])).fetchone()[0]
+        stat = db.execute("SELECT lastIndependent FROM discipline_skill_stats WHERE user=? AND discipline=? AND skill=?",
+                          (user["id"], discipline, unit["skillId"])).fetchone()
+        previous = stat[0] if stat else None
         independent = correct and not assisted
         transfer = bool(independent and previous is not None and activity.get("assessmentRole") == "transfer")
         retention = bool(independent and previous is not None and now - previous >= REVIEW_DELAY)

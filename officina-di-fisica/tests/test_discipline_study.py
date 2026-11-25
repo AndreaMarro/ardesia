@@ -24,7 +24,9 @@ class Disciplines(unittest.TestCase):
         root = Path(self.tmp.name)
         self.catalog = root / "edition" / "catalog.json"
         shutil.copytree(SOURCE, self.catalog.parent)
-        self.enterContext(patch.object(store, "DATA", root / "notebook"))
+        location = patch.object(store, "DATA", root / "notebook")
+        location.start()
+        self.addCleanup(location.stop)
         store.initialize()
         self.reader = {"id": "p1", "role": "lettore"}
         self.student = {"id": "p2", "role": "studente"}
@@ -68,7 +70,7 @@ class Disciplines(unittest.TestCase):
         self.assertEqual(before, legacy())
         # Old code sees the same user_version and tables, even after new evidence was created.
         self.assertEqual(before[-1], 4)
-        self.assertEqual([u["unitId"] for u in [self.call(["misure","me"], user=self.reader)["resume"]]], ["tessere"])
+        self.assertEqual(self.call(["misure","me"], user=self.reader)["resume"]["unitId"], "tessere")
         course = self.catalog.parent / "courses" / "rettangoli.json"
         old = course.read_text()
         course.write_text(old.replace("Dalle righe alla superficie", "Area e righe"))
@@ -137,6 +139,24 @@ class Disciplines(unittest.TestCase):
         self.assertEqual(self.call(["misure","me"], user=self.student)["skills"]["area"]["independent"],0)
         with self.assertRaises(Problem):
             self.event("answer","invented","griglia",optionId="z")
+
+    def test_projection_backfill_matches_online_updates(self):
+        self.install()
+        self.event("complete", "complete-1")
+        self.event("complete", "complete-2")
+        self.event("hint", "hint", "griglia", hintIndex=0)
+        self.event("answer", "wrong", "griglia", optionId="b")
+        self.event("answer", "fixed", "griglia", optionId="a")
+        self.event("answer", "novel", "lato", optionId="a")
+        before = self.call(["misure", "me"], user=self.reader)
+        self.assertEqual(before["skills"]["area"]["completions"], 1)
+        with store.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            # Recreate a historical events-only notebook in this private test database.
+            db.execute("DROP TRIGGER discipline_project_evidence")
+            db.execute("DROP TABLE discipline_skill_stats")
+        self.assertFalse(self.install()["changed"])
+        self.assertEqual(self.call(["misure","me"], user=self.reader), before)
 
     def test_new_discipline_by_configuration_and_broken_graph(self):
         self.install()
