@@ -226,18 +226,18 @@ Procedimento d’autore: Con C₁=C₂=x>0 finito, la frazione C₂/(C₁+C₂) 
 
 Passaggi: C_1=C_2; C_2=x;  V_1=E\frac{x}{2x};  V_1=\frac E2;  V_1=6\,\mathrm V.
 
-Distrattori: Le coppie singole sono esempi e non soluzioni uniche. Nessuna è smentita da esempi espliciti. Non qualsiasi coppia positiva è ammessa: deve valere C₁=C₂.
+Distrattori: Le coppie singole sono esempi e non soluzioni uniche. La risposta “Nessuna coppia” è smentita da esempi espliciti. Non qualsiasi coppia positiva è ammessa: deve valere C₁=C₂.
 
 Hint: Sostituisci il vincolo e verifica se resta una capacità libera.
 
-Fonte canonica SHA256 70969fb7468c2f8079eec69f276ffcb4217799f1cd050da08730b75da8652f28. Candidato SHA256 ee7d46f5ed235a3ca528028fb795a53addf01262c6b5586742dd609e684f4b6f. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 70969fb7468c2f8079eec69f276ffcb4217799f1cd050da08730b75da8652f28. Candidato SHA256 7241b4cbff55eca195b0d322e4e4cc6281be9af999a2e2a91246dc9e22ed6f58. Revisione indipendente e human NOT_RUN.
 
 ## Provenienza tecnica
 
-Asset SHA256 798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb. Package file SHA256 0f74b434aa56f9e3fe6486420aecf373206bf7e1475429bda263eb218aafc7b5. Binding file SHA256 09a3be00490461a80321bb1866c4aa2a7e603eee77830875697ed7aaf95ef06b. Prova strutturale SHA256 dab321f543788c535f1db887dda1de7b9e9f456ed64e47d84a2b3aa4d0bdff90. Manifest asset-only SHA256 72ba2b3b07cbabd169f94b4f613425d1a24129c0c7891bae3c1317923c582699.
+Asset SHA256 798a357186e2333050c2f93de86ed8b8c245304253a3cd2dab50859ea50b7adb. Package file SHA256 2530d65f9887d8266466bcf630c448c07c108d2c82f442521777ab8603344f96. Binding file SHA256 dfc3758c81d92128d22b4faaa15419c5e0ffe0cd13bbfa69d3124513f5d75bd0. Prova strutturale SHA256 99f386b78d0fa4499320a16ef1961c48bee247afa4e61f771b277090254a4ce9. Manifest asset-only SHA256 72ba2b3b07cbabd169f94b4f613425d1a24129c0c7891bae3c1317923c582699.
 
 Nessun runtime, registry, ledger, checkpoint, candidato o Git ROOT modificato. Revisore distinto B assegnato; le sue derivazioni non sono state aperte dall’autore.
 
-## Lettura geometrica d’autore
+## Rilettura del finding distinto16
 
-XML e PNG completo640×1540 realmente letti. La prima topologia ha un solo nodo intermedio neutro, due condensatori in serie e parentesi di caduta A–M e M–B: le etichette V₁ e V₂ identificano rispettivamente V_A−V_M e V_M−V_B, non frecce del campo. Nel secondo pannello le barre impilate180+180 e240+120 rappresentano6+6 e8+4 V, scala30 coordinate/V e somma12 V comune. Il terzo pannello ha altre prove dichiarate: barre240/120/180 per6/3/9/2 V, origine150 e scala40 coordinate/V, diversa da quella centrale come chiarito nelle caption. Zero118 libero, nessuna etichetta attraversata da assi o piastre. Nessuna UI del prodotto o giudizio scientifico autonomo.
+Ripristinata la parola Una nel distrattore falso che indica una sola coppia, dopo sostituzione del simbolo U. Il feedback ora dice esplicitamente che la risposta Nessuna coppia è smentita dagli esempi. Strictdiff: soltanto quell’opzione e ultimo blocco/error16, con binding16 derivato; chiave, formule, SVG e altri15 record byte-identici. Vecchia edizione e native realmente eseguito conservati nel relativo archivio peer-wording16 con manifest. Due nuove assembly/import reali16→0/16; native non ripetuto perché SVG identico, nessuna nuova UI o SCI propria.
