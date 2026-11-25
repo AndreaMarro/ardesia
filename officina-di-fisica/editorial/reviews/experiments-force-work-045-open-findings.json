@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "experiments-force-work-045",
+  "status": "INCOMPLETE_UNREGISTERED",
+  "acceptedOriginalCount": 4,
+  "failedOriginalCount": 2,
+  "checkpointCredit": 0,
+  "reportSha256": "83ab66037510f99a28d6d49c3716d1ac9e439c11f993759ea51da88c70b1bccf",
+  "runtimeSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "nextAction": "Independent author fixes after remaining C1 consumer review; reviewer replays actual corrected consumers; preserve negative proof and old runtime snapshot.",
+  "findings": [
+    {
+      "id": "SIM-C1-L006-02",
+      "category": "CONSUMER_VECTOR_OCCLUSION",
+      "status": "OPEN",
+      "severity": "P3",
+      "trigger": "Native 3D, assigned transfer x=+1 cm; nonzero Hooke force -1/2 N is fully enclosed by opaque spring-tip body.",
+      "candidateCorrection": "Expose signed force outside body, with explicit coherent scale and zero behavior.",
+      "sourceScalarPhysics": "PASS",
+      "assignedManualArithmetic": "PASS"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "category": "EMPTY_INTERVAL_MEAN_DOMAIN",
+      "status": "OPEN",
+      "severity": "P3",
+      "trigger": "Elapsed time t=0: average power from start is displayed as 0 W without undefined/right-limit qualification.",
+      "candidateCorrection": "Represent undefined empty interval or explicitly label the right-limit, preserving instantaneous zero power.",
+      "sourceScalarPhysics": "PASS",
+      "assignedManualArithmetic": "PASS"
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
