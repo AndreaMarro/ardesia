@@ -1,0 +1,1179 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-fuse-latent-heating-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21601,
+      "title": "Dall’energia al tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 1,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Con m=10 mg e I=1 A, quanto vale il tempo t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto anzitutto 10 mg in 1/100 g. L’energia necessaria è mL_f=(1/100)200 J=2 J. La potenza elettrica vale I²R=2 W, costante. Dunque t=2 J/(2 J/s)=1 s. Durante il cambiamento di fase l’energia modifica la frazione fusa, pur senza aumento della temperatura nel modello."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e28e902b1eb9ad4e777d84bbd9b370cd2374e869eae3bd517d2d4f0e573a0412",
+          "text": "La sequenza rappresenta la sola fusione, con temperatura iniziale già uguale a quella di cambiamento di fase. Le barre del secondo pannello mostrano energie richieste da due masse; l’ultimo pannello confronta tempi di prove distinte, con origine e scala comuni entro ciascun pannello."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac1{100}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " E_f=mL_f"
+        },
+        {
+          "type": "formula",
+          "text": "mL_f=2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=I^2R"
+        },
+        {
+          "type": "formula",
+          "text": "I^2R=2\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{E_f}{P}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_f}{P}=1\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Mille s tratterebbero 10 mg come 10 g. Due s copierebbero il numero dell’energia senza dividere per 2 W. Mezzo s dimezzerebbe ancora il rapporto corretto; non serve aggiungere mcΔT perché il filamento è già alla temperatura assegnata."
+        }
+      ],
+      "hints": [
+        "Converti la massa prima di dividere energia necessaria per potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mille s tratterebbero 10 mg come 10 g. Due s copierebbero il numero dell’energia senza dividere per 2 W. Mezzo s dimezzerebbe ancora il rapporto corretto; non serve aggiungere mcΔT perché il filamento è già alla temperatura assegnata.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21602,
+      "title": "Quale dimensione per il tempo?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 1,
+      "prompt": "Il modello ideale di fusione fornisce t=mL_f/(I²R). Quale unità esprime t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "J",
+          "W",
+          "A",
+          "J/s"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "mL_f è un’energia in joule; I²R è una potenza in watt. Il loro quoziente ha unità J/(J/s)=s. L’energia e la potenza sono passaggi del calcolo, mentre il risultato richiesto è una durata."
+        },
+        {
+          "type": "formula",
+          "text": "[t]=\\frac{\\mathrm J}{\\mathrm W}"
+        },
+        {
+          "type": "formula",
+          "text": " [t]=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia e W=J/s potenza. A misura corrente. Ripetere J/s nel risultato darebbe una potenza, non il tempo necessario per trasferire l’energia."
+        }
+      ],
+      "hints": [
+        "Dividi le dimensioni del numeratore per quelle del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia e W=J/s potenza. A misura corrente. Ripetere J/s nel risultato darebbe una potenza, non il tempo necessario per trasferire l’energia.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21603,
+      "title": "Il bilancio della sola fusione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 1,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Quale legge calcola t? Indichiamo x=m/(1 mg) e i=I/(1 A), entrambi numeri puri.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "t / (1 s) = x / (10 i²)",
+          "t / (1 s) = 10 x / i²",
+          "t / (1 s) = x i² / 10",
+          "t / (1 s) = x / (10 i)",
+          "t / (1 s) = i² / (10 x)"
+        ],
+        "value": "t / (1 s) = x / (10 i²)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza costante trasferisce I²Rt. La fusione completa richiede mL_f, quindi t=mL_f/(I²R). Ogni mg richiede 1/5 J, mentre la potenza è 2 i² W. Il tempo numerico in secondi è perciò x/(10 i²). Il coefficiente dieci vale con le unità e i dati di questo modello."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e28e902b1eb9ad4e777d84bbd9b370cd2374e869eae3bd517d2d4f0e573a0412",
+          "text": "L’energia fornita per effetto Joule cresce linearmente nel tempo perché corrente e resistenza sono mantenute costanti nel modello. Il punto di fusione completa riguarda l’energia necessaria alla massa assegnata, non un aumento della temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "mL_f=I^2Rt"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{mL_f}{I^2R}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t}{1\\,\\mathrm s}=\\frac{x}{10i^2}"
+        },
+        {
+          "type": "text",
+          "text": "10 x/i² perde il fattore cento della conversione complessiva. Il prodotto con i² renderebbe più lenta la fusione a potenza maggiore. La prima potenza i ignora Joule; l’inverso in x attribuirebbe tempi minori a più massa."
+        }
+      ],
+      "hints": [
+        "Collega energia di fase e potenza prima di introdurre i valori numerici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "10 x/i² perde il fattore cento della conversione complessiva. Il prodotto con i² renderebbe più lenta la fusione a potenza maggiore. La prima potenza i ignora Joule; l’inverso in x attribuirebbe tempi minori a più massa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21604,
+      "title": "Massa raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 1,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. A usa m=10 mg, I=1 A. B usa m=20 mg alla stessa corrente. Come cambia t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 s a 2 s",
+          "Da 1 s a 1/2 s",
+          "Resta 1 s",
+          "Da 1 s a 4 s",
+          "Da 1 s a 20 s"
+        ],
+        "value": "Da 1 s a 2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia di fusione raddoppia da 2 a 4 J, mentre la potenza resta 2 W. B richiede 4/2=2 s. Il tempo è lineare nella massa trasformata, perché non cambia la potenza che trasferisce l’energia."
+        },
+        {
+          "type": "formula",
+          "text": "E_{f,B}=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=2\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo s inverte la dipendenza dalla massa. Un s ignora il cambiamento e quattro s introduce un quadrato della massa. Venti s copia il numero dei mg senza il bilancio energetico."
+        }
+      ],
+      "hints": [
+        "Individua che cosa cambia nell’energia richiesta e che cosa resta nella potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Mezzo s inverte la dipendenza dalla massa. Un s ignora il cambiamento e quattro s introduce un quadrato della massa. Venti s copia il numero dei mg senza il bilancio energetico.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21605,
+      "title": "La massa da una durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Si misura t=1 s e si conosce I=1 A. Quanto vale m in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riorganizzo il bilancio in m=I²Rt/L_f. L’energia fornita è 2 J; divisa per 200 J/g dà 1/100 g, cioè 10 mg. Prima trovo una massa in grammi, poi esprimo il risultato nell’unità richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{I^2Rt}{L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac1{100}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m=10\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "1/100 mg confonde grammi e milligrammi. Due mg copia il numero dei joule. Duecento mg copia L_f, che è energia per massa e non massa; una massa negativa è esclusa."
+        }
+      ],
+      "hints": [
+        "La potenza per il tempo restituisce l’energia da dividere per L_f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/100 mg confonde grammi e milligrammi. Due mg copia il numero dei joule. Duecento mg copia L_f, che è energia per massa e non massa; una massa negativa è esclusa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21606,
+      "title": "La corrente richiede la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Si misura t=1 s per m=10 mg. Quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fusione richiede 2 J. Isolo I²=mL_f/(Rt)=2/(2·1) A²=1 A². Il dominio dichiara corrente positiva, quindi I=1 A. Un segno opposto potrebbe dissipare la stessa potenza, ma non soddisfa il verso positivo assegnato qui."
+        },
+        {
+          "type": "formula",
+          "text": "I^2=\\frac{mL_f}{Rt}"
+        },
+        {
+          "type": "formula",
+          "text": " I^2=1\\,\\mathrm A^2"
+        },
+        {
+          "type": "formula",
+          "text": " I=1\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Due A fornirebbero 8 W e fonderebbero il filamento in 1/4 s. Mezzo A darebbe 1/2 W e quattro s. Zero non trasferirebbe energia per effetto Joule; −1 viola il ramo dichiarato."
+        }
+      ],
+      "hints": [
+        "Isola il quadrato e scegli soltanto il ramo fisico positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due A fornirebbero 8 W e fonderebbero il filamento in 1/4 s. Mezzo A darebbe 1/2 W e quattro s. Zero non trasferirebbe energia per effetto Joule; −1 viola il ramo dichiarato.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21607,
+      "title": "Più corrente, meno tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. A usa m=10 mg, I=1 A. B mantiene m=10 mg ma usa I=2 A. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "2",
+          "4",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa e l’energia necessaria restano uguali. Raddoppiare la corrente quadruplica la potenza, perciò il tempo diventa un quarto. A richiede un s, B 1/4 s: il rapporto è 1/4."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=4P_A"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{t_A}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "1/2 usa una dipendenza solo lineare dalla corrente. Due e quattro rendono diretto il tempo alla corrente o alla potenza, anziché inverso. Uno ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Ragiona prima sulla potenza, poi sul tempo per la stessa energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/2 usa una dipendenza solo lineare dalla corrente. Due e quattro rendono diretto il tempo alla corrente o alla potenza, anziché inverso. Uno ignora il cambiamento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21608,
+      "title": "Scarto di una proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Con m=10 mg, I=1 A si propone t=2 s. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 s",
+          "−1 s",
+          "2",
+          "2 s",
+          "0 s"
+        ],
+        "value": "1 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo corretto è 1 s; la proposta lo supera di 2−1=1 s. Il numero due, senza unità, è invece il rapporto delle durate. Un processo di due s alla potenza assegnata trasferirebbe 4 J, più dei 2 J necessari alla sola fusione."
+        },
+        {
+          "type": "formula",
+          "text": "t_{\\rm corretto}=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta t=(2-1)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta t=1\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "−1 s inverte l’ordine. Due puro confonde rapporto e differenza, due s copia la proposta e zero non rileva l’errore. Dopo la fusione completa il modello del solo calore latente non descrive ulteriore riscaldamento."
+        }
+      ],
+      "hints": [
+        "Mantieni ordine e unità della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 s inverte l’ordine. Due puro confonde rapporto e differenza, due s copia la proposta e zero non rileva l’errore. Dopo la fusione completa il modello del solo calore latente non descrive ulteriore riscaldamento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21609,
+      "title": "Isolare la massa senza perdere le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Sono noti t, I. Quale relazione ricostruisce m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = I² R t / L_f",
+          "m = L_f t / (I² R)",
+          "m = I R t / L_f",
+          "m = I² R / (L_f t)",
+          "m = L_f / (I² R t)"
+        ],
+        "value": "m = I² R t / L_f"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Parto dall’energia fornita I²Rt e la divido per l’energia necessaria per unità di massa. Si ottiene m=I²Rt/L_f. W·s diviso J/g dà grammi; se il risultato serve in mg, moltiplico la massa numerica in grammi per mille."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{I^2Rt}{L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\frac{\\mathrm J}{\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Invertire potenza e L_f non ricostruisce una massa. I al primo grado altera la dimensione; dividere per t farebbe diminuire la massa trasformata a potenza e durata maggiori. Il reciproco finale avrebbe dimensione di massa inversa."
+        }
+      ],
+      "hints": [
+        "L_f è energia per massa, non una capacità termica specifica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Invertire potenza e L_f non ricostruisce una massa. I al primo grado altera la dimensione; dividere per t farebbe diminuire la massa trasformata a potenza e durata maggiori. Il reciproco finale avrebbe dimensione di massa inversa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21610,
+      "title": "Due fattori di preparazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Da A a B si ha m_B=κ₁m_A, I_B=κ₂I_A, con fattori positivi. Qual è t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂²",
+          "κ₁ κ₂²",
+          "κ₁ / κ₂",
+          "κ₂² / κ₁",
+          "κ₁² / κ₂"
+        ],
+        "value": "κ₁ / κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa moltiplica l’energia richiesta per κ₁. La corrente entra nella potenza al quadrato, quindi il fattore della potenza èκ₂². Il rapporto dei tempi èκ₁/κ₂². L_f e R si cancellano perché sono gli stessi nelle due preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{t_B}{t_A}=\\frac{m_B}{m_A}\\frac{I_A^2}{I_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t_B}{t_A}=\\frac{\\kappa_1}{\\kappa_2^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto il tempo alla potenza. Una sola potenzaκ₂ perde Joule; il reciproco scambia B/A. Il quadrato della massa non nasce dal bilancio di fase, che è lineare in m."
+        }
+      ],
+      "hints": [
+        "Assegna separatamente il fattore dell’energia e quello della potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto il tempo alla potenza. Una sola potenzaκ₂ perde Joule; il reciproco scambia B/A. Il quadrato della massa non nasce dal bilancio di fase, che è lineare in m.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21611,
+      "title": "Entrambi i dati cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. A usa m=10 mg, I=1 A. B usa m=80 mg, I=2 A. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "8",
+          "4",
+          "1/2",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B richiede otto volte l’energia di A, ma riceve quattro volte la potenza. Il rapporto dei tempi è 8/4=2: in B servono 2 s rispetto a 1 s. La corrente maggiore non basta, da sola, a concludere un tempo minore quando cresce anche la massa."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{80}{10\\cdot4}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto considera solo la massa e quattro copia il fattore della potenza.1/2 inverte il confronto; 1/4 tiene soltanto l’effetto della corrente e trascura gli ottanta mg."
+        }
+      ],
+      "hints": [
+        "Confronta energia richiesta e potenza disponibile nella stessa prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto considera solo la massa e quattro copia il fattore della potenza.1/2 inverte il confronto; 1/4 tiene soltanto l’effetto della corrente e trascura gli ottanta mg.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21612,
+      "title": "Mediare durate già calcolate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 2,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. A usa m=10 mg, I=1 A; B usa m=80 mg, I=2 A. Qual è la media aritmetica dei due tempi, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 s",
+          "2 s",
+          "3 s",
+          "1/2 s",
+          "1 s"
+        ],
+        "value": "3/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tempi sono 1 e 2 s, perciò la media vale 3/2 s. Inserendo invece m_media 45 mg e I_media 3/2 A si otterrebbero 45/[10·(9/4)]=2 s. Il quadrato al denominatore impedisce di scambiare le due operazioni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e28e902b1eb9ad4e777d84bbd9b370cd2374e869eae3bd517d2d4f0e573a0412",
+          "text": "Le durate 1 s e 2 s danno media 3/2 s. Le barre dei tempi hanno scala comune; non rappresentano una corrente media o un unico filamento di massa media."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline t=\\frac{1+2}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline t=\\frac32\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm dati\\ medi}=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Due s usa gli ingressi medi, tre s somma senza dimezzare e mezzo s è semidifferenza. Un s ripete A. Non si tratta di una singola corrente variabile nel tempo."
+        }
+      ],
+      "hints": [
+        "Calcola prima ogni tempo con i propri dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due s usa gli ingressi medi, tre s somma senza dimezzare e mezzo s è semidifferenza. Un s ripete A. Non si tratta di una singola corrente variabile nel tempo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21613,
+      "title": "Scegliere la corrente per un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 3,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. A usa m=10 mg, I=1 A. B ha m=80 mg e deve richiedere t_B=2 t_A. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "8",
+          "√2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal rapporto 2=8/(I_B/I_A)² segue che il quadrato del rapporto di correnti è quattro. Le correnti sono positive, quindi il rapporto è due. In B la potenza deve crescere soltanto quattro volte per lasciare il tempo doppio."
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac{I_B}{I_A}\\right)^2=\\frac82"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro omette la radice; 1/2 prende il reciproco. Otto copia il rapporto delle masse e√2 deriva dalla radice del rapporto dei tempi ignorando la massa."
+        }
+      ],
+      "hints": [
+        "Isola il quadrato del rapporto prima di prendere la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro omette la radice; 1/2 prende il reciproco. Otto copia il rapporto delle masse e√2 deriva dalla radice del rapporto dei tempi ignorando la massa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21614,
+      "title": "Taratura proporzionale del tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 3,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. D=a_cal t è continuo e adimensionale, a_cal>0. A con m=10 mg, I=1 A dà D=3. B legge D=6 e usa I=2 A. Quanto vale m_B in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 1 s, dunque a_cal=3 s⁻¹. B decodifica t_B=2 s. La potenza I²R=8 W trasferisce 16 J; con L_f 200 J/g ciò fonde 16/200 g=80 mg. Il numero dello strumento non va usato come durata prima della taratura."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm s^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=80\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Usare D 6 come secondi darebbe 240 mg. Venti mg ignora il quadrato della corrente nuova e darebbe mezzo s. Otto mg perde un fattore dieci nella conversione numerica."
+        }
+      ],
+      "hints": [
+        "Decodifica t, poi applica l’inversa della fusione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare D 6 come secondi darebbe 240 mg. Venti mg ignora il quadrato della corrente nuova e darebbe mezzo s. Otto mg perde un fattore dieci nella conversione numerica.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21615,
+      "title": "Una piccola eccedenza sopra l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 3,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. D=a_cal t+b_cal è continuo. A: m=10 mg, I=1 A, D=3. B: m=80 mg, I=2 A, D=5. C: I=1 A, D=6/5. Quanto vale m_C in mg?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mg",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno tempi 1 e 2 s. La pendenza è 2 s⁻¹ e l’offset uno. D_C 6/5 lascia dopo la sottrazione solo 1/5; dividendo per due si ottiene t_C 1/10 s. Con potenza 2 W occorre 1/5 J, pari a 1/1000 g=1 mg."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm s^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=\\frac1{10}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=1\\,\\mathrm{mg}"
+        },
+        {
+          "type": "text",
+          "text": "Sei mg omette l’offset e predice D 11/5, non 6/5. Due mg sottrae l’offset ma non divide per il guadagno e darebbe D 7/5.1/10 mg copia il numero dei secondi come massa."
+        }
+      ],
+      "hints": [
+        "Sottrai uno prima della divisione per il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei mg omette l’offset e predice D 11/5, non 6/5. Due mg sottrae l’offset ma non divide per il guadagno e darebbe D 7/5.1/10 mg copia il numero dei secondi come massa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Joule e fusione a temperatura assegnata",
+      "order": 21616,
+      "title": "Un vincolo fra massa e corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C3-L03",
+        "C3-L04",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "fuse-latent-heating",
+      "difficulty": 3,
+      "prompt": "Un filamento è già alla sua temperatura di fusione e deve fondere completamente. Il modello assegna L_f=200 J/g, resistenza R=2 Ω mantenuta costante, corrente continua I>0 e massa m>0. La pressione resta fissata, non ci sono perdite termiche e l’alimentazione resta connessa per tutto il processo ideale. Nessun tratto di riscaldamento precede la fusione. Fra prove si impone m=(10 mg/A)I. Si misura t=1 s. Quanto vale I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 A",
+          "2 A",
+          "1/2 A",
+          "10 A",
+          "Infinite correnti positive"
+        ],
+        "value": "1 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo non rende il tempo costante, perché la massa cresce con una sola potenza di I mentre la potenza elettrica cresce con I². Ponendo i=I/(1 A), la legge diventa t/(1 s)=1/i. Il dato t 1 s impone i 1, quindi I 1 A e m 10 mg: unica coppia positiva."
+        },
+        {
+          "type": "formula",
+          "text": "i=\\frac{I}{1\\,\\mathrm A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t}{1\\,\\mathrm s}=\\frac1i"
+        },
+        {
+          "type": "formula",
+          "text": " I=1\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Due A darebbero t 1/2 s, mezzo A darebbe 2 s e dieci A darebbero 1/10 s. Non restano infinite coppie dopo il vincolo e la durata misurata: l’equazione non è ridondante."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella legge prima di interpretare la misura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due A darebbero t 1/2 s, mezzo A darebbe 2 s e dieci A darebbero 1/10 s. Non restano infinite coppie dopo il vincolo e la durata misurata: l’equazione non è ridondante.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Bilancio energetico della sola fusione",
+        "Conversioni mg/g e inverse positive",
+        "Potenze e tempi, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e28e902b1eb9ad4e777d84bbd9b370cd2374e869eae3bd517d2d4f0e573a0412",
+      "name": "fuse-latent-heating-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVuZXJnaWEgZGkgZnVzaW9uZSBlIHRlbXBpIGFsaW1lbnRhdGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Db25mcm9udG8gZGVsbOKAmWVuZXJnaWEgZGkgZnVzaW9uZTogMTAgbWcgcmljaGllZG9ubyAyIGpvdWxlLCA4MCBtZyByaWNoaWVkb25vIDE2IGpvdWxlLiBOZWwgZ3JhZmljbyBkZWxsYSBwcm92YSBBIGEgcG90ZW56YSAyIHdhdHQsIGzigJllbmVyZ2lhIGVsZXR0cmljYSBjcmVzY2UgZGEgemVybyBhIDIgam91bGUgZnJhIHplcm8gZSAxIHNlY29uZG8gZSBsYSBjdXJ2YSBzaSBmZXJtYSBhbCBjb21wbGV0YW1lbnRvIGRlbGxhIGZ1c2lvbmUuIExlIGJhcnJlIGZpbmFsaSBjb25mcm9udGFubyBkdXJhdGUgMSBzZWNvbmRvLDJzZWNvbmRpIGUgbWVkaWEzLzJzZWNvbmRpLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiByeD0iMTYiIGZpbGw9IiNmN2Y5ZmMiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBHacOgIGFsbGEgdGVtcGVyYXR1cmEgZGkgZnVzaW9uZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODQiPlNvbG8gZW5lcmdpYSBkaSBmYXNlOiBMX2YgPSAyMDAgSi9nLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTI0Ij5BOiBtID0gMTAgbWcgOyBCOiBtID0gODAgbWcuPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIyMTUiPkE8L3RleHQ+PHRleHQgeD0iNjAiIHk9IjMxNSI+QjwvdGV4dD48L2c+CjxwYXRoIGQ9Ik0xNTAgMTY1VjM1NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIxNTAiIHk9IjE4NSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjMTg1ZDgzIi8+PHJlY3QgeD0iMTUwIiB5PSIyODUiIHdpZHRoPSIzMjAiIGhlaWdodD0iNDIiIGZpbGw9IiNiODUzMjIiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjIxMCIgeT0iMjE1Ij4yIEo8L3RleHQ+PHRleHQgeD0iNDkwIiB5PSIzMTUiPjE2IEo8L3RleHQ+PHRleHQgeD0iMTE4IiB5PSIzODAiPjA8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQyNSI+QmFycmUgZGkgZW5lcmdpYTogc3Rlc3NhIG9yaWdpbmUgZSBzY2FsYS48L3RleHQ+PC9nPgo8cGF0aCBkPSJNMzIgNDcwSDYwOCIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjMyIiB5PSI1MjAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgRm9ybmlyZSBs4oCZZW5lcmdpYSBhbGxhIHByb3ZhIEE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU2MiI+SSA9IDEgQSA7IFIgPSAyIM6pIDsgUCA9IDIgVy48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjYyMCI+RSAvIEo8L3RleHQ+PC9nPgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTE1MCA2MTBWODUwSDU1MCIvPjxwYXRoIGQ9Ik00NTAgODUwVjY1MEgxNTAiIHN0cm9rZT0iI2E5YjljOSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+PC9nPgo8cGF0aCBkPSJNMTUwIDg1MEw0NTAgNjUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODVkODMiIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjY1MCIgcj0iNSIgZmlsbD0iIzE4NWQ4MyIvPgo8ZyBmaWxsPSIjMTgyYzQ2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSI+PHRleHQgeD0iMTE4IiB5PSI4ODAiPjA8L3RleHQ+PHRleHQgeD0iNDQzIiB5PSI4ODAiPjE8L3RleHQ+PHRleHQgeD0iNTU4IiB5PSI4NTgiPnQgLyBzPC90ZXh0Pjx0ZXh0IHg9IjExOCIgeT0iNjU4Ij4yPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iNzA1Ij5mdXNpb25lIGNvbXBsZXRhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MzgiPklsIHNlZ21lbnRvIHRlcm1pbmEgYSB0ID0gMSBzLCBFID0gMiBKLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTc2Ij5Ob24gZGVzY3JpdmUgaWwgcmlzY2FsZGFtZW50byBzdWNjZXNzaXZvLjwvdGV4dD48L2c+CjxwYXRoIGQ9Ik0zMiAxMDE1SDYwOCIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPGcgZmlsbD0iIzE4MmM0NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiPjx0ZXh0IHg9IjMyIiB5PSIxMDYyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IFRlbXBpIGRpIGR1ZSBwcm92ZSBzZXBhcmF0ZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEwNCI+QTogMTAgbWcsIDEgQSA7IEI6IDgwIG1nLCAyIEEuPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSIxMTg0Ij5BPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSIxMjY0Ij5CPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzQ0Ij5NZWRpYTwvdGV4dD48L2c+CjxwYXRoIGQ9Ik0xNTAgMTE0MFYxMzgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE1MCIgeT0iMTE1NCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPjxyZWN0IHg9IjE1MCIgeT0iMTIzNCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2I4NTMyMiIvPjxyZWN0IHg9IjE1MCIgeT0iMTMxNCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzM1NjU0ZSIvPgo8ZyBmaWxsPSIjMTgyYzQ2IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSI+PHRleHQgeD0iMzMwIiB5PSIxMTg0Ij4xIHM8L3RleHQ+PHRleHQgeD0iNDkwIiB5PSIxMjY0Ij4yIHM8L3RleHQ+PHRleHQgeD0iNDEwIiB5PSIxMzQ0Ij4zLzIgczwvdGV4dD48dGV4dCB4PSIxMTgiIHk9IjE0MDUiPjA8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NDgiPkxlIGR1cmF0ZSBzb25vIHBlc2F0ZSB1Z3VhbG1lbnRlLjwvdGV4dD48L2c+Cjwvc3ZnPgo="
+    }
+  ]
+}
